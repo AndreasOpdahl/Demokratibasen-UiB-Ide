@@ -1,0 +1,8 @@
+{
+  "dokument_id": "b66e9827-bd72-5da8-8641-fe83f1deeb37",
+  "doc_type": "case_attachment",
+  "kommune": 4601,
+  "tittel": "VA_Vedlegg 6 ",
+  "url": "https://bergen.kommune.no/politikere-utvalg/api/fil/bk360/10561742/VA-Vedlegg-6-",
+  "tekst": "Beregningsnotat Kanalstr\u00f8mning. Mannings formel Dato: 31.03.2022 Prosjektnr: 1350017214-021 Input Utf\u00f8rt av: LIHL Prosjektnavn: Beregninger Kontrollert av: Offentlig plan Mindemyren Nord Viktig Resultat Godkjent av: Revisjon: Metodikk: Statens vegvesen N200 405.9 Grunnlagsdata Steinsetting (jevnt Kledningsmateriale i kanal utlagt) Mannings tall, foresl\u00e5tt 30 - 60 m1/3/s Mannings tall, valgt M 45 m1/3/s b2 Fall I 5 o/oo H Tverrsnitt y a Bredde, bunn b1 1,5 m Max. Vannstand H 0,87 m b1 x Helning, vertikal y 1 Helning, horisontal x 1 Mannings formel for kanalstr\u00f8mning Beregninger 2/3 Helning, vinkel a 45,00 o Q = M \u2219 A \u2219 Rh \u2219 I1/2 Bredde, topp b2 3,24 m Q = kanal vannf\u00f8ring [L/s] Areal, tverrsnitt A 2,06 m2 M = Mannings tall [m1/3/s] V\u00e5t omkrets P 3,96 m A = Tverrsnitt av kanal [m2] Hydraulisk radius Rh 0,52 m Rh = Hydraulisk radius = A / P [m] I = Fall [m/m] Resultat P = V\u00e5t omkrets av kanalen [m] Hastighet v 2,06 m/s H\u00f8y hastighet! Vurder fare for erosjon Vannf\u00f8ring, kapasitet Q 4,25 m3/s Vannf\u00f8ring i kanal (m3/s), Manning 4,5 4,0 3,5 3,0 Vannf\u00f8ring (m3/s) 2,5 2,0 1,5 1,0 0,5 0,0 0 0,1 0,2 0,3 0,4 0,5 0,6 0,7 0,8 0,9 1 Vannstand (m) Q m3/s O:\\1350017214\\7-PROD\\021 - Mindemyren offentlig plan\\7-PROD\\VA\\3-BER\\Kanalstr\u00f8mning_Manning.xlsm 1/1 "
+}
