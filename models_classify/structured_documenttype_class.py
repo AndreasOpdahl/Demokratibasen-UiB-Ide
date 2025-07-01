@@ -11,7 +11,7 @@ import re
 from dotenv import load_dotenv
 
 load_dotenv()
-CSV_FILE_PATH = 'labelling_sheet_summarized_data_validation.csv'
+CSV_FILE_PATH = './models_classify/labelling_sheet_summarized_data_validation.csv'
 
 validation_set = pd.read_csv(CSV_FILE_PATH)
 
@@ -93,8 +93,35 @@ Det har de allerede gjort og trenger en til type klassifisering av en kode kalt 
          
 Denne ekstra kategorien for hvilken type dokumentet er, utenom den politiske kategoriseringen.
 Noen av disse kategoriene inkluderer:
-Reguleringsplaner, klager, interne notater, tekniske rapporter, foto, rammetillatelser, høringsdokumenter, øvrige søknader, møteplan, økonomiske rapporter, økonomiske søknader, erklæringer, kart, budsjett, inngående brev, søknad, kunngjøringer, revisjonsrapporter, administrativt vedtak, dispensasjoner, spørsmål fra/til politikere, tegninger, samarbeidsavtale, forslag og byggesaker
 
+Reguleringsplaner, 
+klager, 
+interne notater, 
+tekniske rapporter, 
+foto, 
+rammetillatelser, 
+høringsdokumenter, 
+øvrige søknader, 
+møteplan, 
+økonomiske rapporter, 
+økonomiske søknader, 
+erklæringer, 
+kart, 
+budsjett, 
+inngående brev, 
+søknad, 
+kunngjøringer, 
+revisjonsrapporter, 
+administrativt 
+vedtak, 
+dispensasjoner, 
+spørsmål fra/til politikere, 
+tegninger, 
+samarbeidsavtale, 
+forslag, 
+byggesaker
+
+Dette er bare noen eksempler men gjerne bruk andre koder dersom du føler det er mer passende.
 Gi svaret i strukturert json format for hvilket type dokument det er (ikke politisk, kode2).
 Gi svaret med json-formatet:
 {{"kode2": "hvilken type dokument det er (ikke politisk type)",
