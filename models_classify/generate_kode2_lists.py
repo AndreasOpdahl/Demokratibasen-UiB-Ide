@@ -2,6 +2,8 @@ from summarize_labelling import sample_csv, return_document_dict
 import pandas as pd
 from structured_documenttype_class import classify
 import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 
 DOCUMENTS_CSV_PATH = "./download_texts_from_URLS/dokumenter.csv"
 """
@@ -38,14 +40,16 @@ def create_kode2(provider, dict_list):
             print(f"Classified document #{i}")
             model_response_json = json.loads(model_response_str)
             kode2 = model_response_json["kode2"]
-            kode2_list.append(kode2)
+            begrunnelse = model_response_json["begrunnelse_kode2"]
+
+            kode2_list.append({"kode":kode2, "begrunnelse":begrunnelse})
             i += 1
         except:
             continue
 
         
     return kode2_list
-
+"""
 if __name__ == "__main__":
     gpt_kode2 = create_kode2("openai", sample_list)
     gemini_kode2 = create_kode2("gemini", sample_list)
@@ -57,3 +61,29 @@ if __name__ == "__main__":
     }
     with open("kode2.json", "w") as outfile:
         json.dump(kode2_lists, outfile)
+"""
+if __name__ == "__main__":
+    providers = ["openai", "gemini", "claude"]
+    kode2_lists = {}
+
+    # spin up a pool with one thread per provider
+    with ThreadPoolExecutor(max_workers=len(providers)) as executor:
+        # submit one job per provider
+        futures = {
+            executor.submit(create_kode2, provider, sample_list): provider
+            for provider in providers
+        }
+
+        # as each finishes, grab the result and store it
+        for future in as_completed(futures):
+            provider = futures[future]
+            try:
+                kode2_lists[provider] = future.result()
+                print(f"{provider} done, {len(kode2_lists[provider])} items")
+            except Exception as e:
+                print(f"{provider} raised an exception: {e!r}")
+                kode2_lists[provider] = []
+
+    # write all three into one JSON
+    with open("kode2.json", "w") as outfile:
+        json.dump(kode2_lists, outfile, ensure_ascii=False, indent=2)
