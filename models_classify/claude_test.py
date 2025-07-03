@@ -131,13 +131,18 @@ if __name__ == "__main__":
     gemini_pair = create_kode_begrunnelse_pair(gemini_unique, kode2_gemini) 
     print(claude_pair[0])   
     #print(str(claude_pair))
-    #openai_kode2 = get_kode2_from_model("openai", openai_pair)
+    openai_kode2 = get_kode2_from_model("openai", openai_pair)
     claude_kode2 = get_kode2_from_model("claude", claude_pair)
-    #gemini_kode2 = get_kode2_from_model("gemini", gemini_pair)
+    gemini_kode2 = get_kode2_from_model("gemini", gemini_pair)
     # write all three into one JSON
-    #save_json("openai_kode2", openai_kode2)
+    save_json("openai_kode2", openai_kode2)
     #save_json("claude", claude_kode2)
-    #save_json("gemini_kode2", gemini_kode2)
+    save_json("gemini_kode2", gemini_kode2)
     #Claude doesnt support structured json output, so it's saved as .txt file instead
     with open('./models_classify/claude_kode2.txt', 'w') as file:
         file.write(claude_kode2)
+
+# RESULTS: 
+#   Gemini 42
+#   Claude 36
+#   Openai 
