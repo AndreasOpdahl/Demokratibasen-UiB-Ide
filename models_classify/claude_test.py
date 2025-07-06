@@ -145,4 +145,4 @@ if __name__ == "__main__":
 # RESULTS: 
 #   Gemini 42
 #   Claude 36
-#   Openai 
+#   Openai 37
