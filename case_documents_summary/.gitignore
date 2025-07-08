@@ -1,0 +1,18 @@
+cat <<'EOF' >> .gitignore
+# hemmeligheter / lokale miljø
+.env
+*.env
+demokratibasenVenv/
+venv/
+
+# IDE-filer og Python-artefakter
+.vscode/
+.idea/
+__pycache__/
+*.py[cod]
+
+# test- og mellomfiler du *ikke* vil pushe
+validation/
+LLM_as_judge_individual/
+case_documents_summary/archive/
+EOF
