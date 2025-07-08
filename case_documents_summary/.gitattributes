@@ -1,0 +1,6 @@
+*.jsonl filter=lfs diff=lfs merge=lfs -text
+*.csv filter=lfs diff=lfs merge=lfs -text
+data_raw/** filter=lfs diff=lfs merge=lfs -text
+cleaning_preprocessing/** filter=lfs diff=lfs merge=lfs -text
+*.so filter=lfs diff=lfs merge=lfs -text
+case_documents_summary/LLM_as_judge/** filter=lfs diff=lfs merge=lfs -text
