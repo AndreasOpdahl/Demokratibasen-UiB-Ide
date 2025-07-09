@@ -1,15 +1,18 @@
 # LLM_as_judge/compute_winners.py
 """
-Steg 2: Les judge_scores.csv ➜ avgjør vinner A/B/X (uavgjort)
+Steg 2: Les judge_scores_*.csv ➜ avgjør vinner A/B/X (uavgjort)
 • per kriterium
-• samlet (lik vekt ¼)
+• samlet med vektet gjennomsnitt
 """
 
 import csv, pathlib
 
+LABEL_A = "baseline"
+LABEL_B = "gemini"
+
 ROOT      = pathlib.Path(__file__).resolve().parent
-IN_CSV    = ROOT / "judge_scores.csv"
-OUT_CSV   = ROOT / "judge_winners.csv"
+IN_CSV    = ROOT / f"judge_scores_{LABEL_A}_vs_{LABEL_B}.csv"
+OUT_CSV   = ROOT / f"judge_winners_{LABEL_A}_vs_{LABEL_B}.csv"
 
 WEIGHTS = {
     "koherens": 0.20,
@@ -21,49 +24,59 @@ WEIGHTS = {
 def winner(a: int, b: int) -> str:
     return "A" if a > b else ("B" if b > a else "X")
 
-def main():
+def main() -> None:
     rows_out = []
 
     with IN_CSV.open(encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
+            # Noen ganger følger det med en Pandas-indeks-kolonne – hopp over den
+            if "dokument_id" not in row:
+                continue
+
             did = row["dokument_id"]
-            coh_w = winner(int(row["koherens_A"]),  int(row["koherens_B"]))
-            con_w = winner(int(row["konsistens_A"]), int(row["konsistens_B"]))
-            flu_w = winner(int(row["flyt_A"]),  int(row["flyt_B"]))
-            rel_w = winner(int(row["relevans_A"]),  int(row["relevans_B"]))
 
-            # samlet vekt
-            total_A = (
-                WEIGHTS["koherens"]   * float(row["koherens_A"])   +
-                WEIGHTS["konsistens"] * float(row["konsistens_A"]) +
-                WEIGHTS["flyt"]       * float(row["flyt_A"])       +
-                WEIGHTS["relevans"]   * float(row["relevans_A"])
+            # --- beregn vinner per kriterium -----------------------------
+            per_crit = {}
+            for crit in WEIGHTS.keys():
+                col_a = f"{crit}_{LABEL_A}"
+                col_b = f"{crit}_{LABEL_B}"
+                per_crit[crit] = winner(float(row[col_a]), float(row[col_b]))
+
+            # --- beregn total score --------------------------------------
+            total_A = sum(
+                WEIGHTS[crit] * float(row[f"{crit}_{LABEL_A}"])
+                for crit in WEIGHTS
             )
-
-            total_B = (
-                WEIGHTS["koherens"]   * float(row["koherens_B"])   +
-                WEIGHTS["konsistens"] * float(row["konsistens_B"]) +
-                WEIGHTS["flyt"]       * float(row["flyt_B"])       +
-                WEIGHTS["relevans"]   * float(row["relevans_B"])
+            total_B = sum(
+                WEIGHTS[crit] * float(row[f"{crit}_{LABEL_B}"])
+                for crit in WEIGHTS
             )
-            tot_w = winner(total_A, total_B)
+            total_w = winner(total_A, total_B)
 
-            rows_out.append([did, coh_w, con_w, flu_w, rel_w, tot_w])
+            rows_out.append([
+                did,
+                per_crit["koherens"],
+                per_crit["konsistens"],
+                per_crit["flyt"],
+                per_crit["relevans"],
+                total_w,
+            ])
 
+    # --- skriv resultatfil ----------------------------------------------
     with OUT_CSV.open("w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
         writer.writerow([
             "dokument_id",
-            "vinner_koherens",
-            "vinner_konsistens",
-            "vinner_flyt",
-            "vinner_relevans",
-            "vinner_totalt"
+            f"vinner_koherens",
+            f"vinner_konsistens",
+            f"vinner_flyt",
+            f"vinner_relevans",
+            "vinner_totalt",
         ])
         writer.writerows(rows_out)
 
-    print("Ferdig. Resultat lagret i", OUT_CSV.relative_to(ROOT))
+    print("Ferdig – resultat lagret i", OUT_CSV.relative_to(ROOT))
 
 if __name__ == "__main__":
     main()
