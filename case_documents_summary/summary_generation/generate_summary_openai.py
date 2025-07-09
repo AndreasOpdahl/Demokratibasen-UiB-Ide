@@ -1,7 +1,6 @@
 """
 ============================================================
-Saksfremlegg -> CSV-oversikt med sammendrag for lokaljournalister
-------------------------------------------------------------
+CSV-oversikt med OPENAI-sammendrag
 * Steg 1 : GPT-4o-mini(tool)  -> strukturerte fakta   (case_info)
 * Steg 2 : GPT-4o(chat)  -> kort sammendrag 
 * Steg 3 : Skriv én CSV-linje
@@ -15,7 +14,7 @@ from pathlib import Path
 import openai
 from dotenv import load_dotenv
 
-# ---------- konfigurasjon ----------
+# ---------- KONFIGURASJON ----------
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -28,7 +27,7 @@ OUTCSV = ROOT / "summary" / "openai_summary_results.csv"
 
 KOMMUNE_NAVN = {4601: "Bergen", 5501: "Tromsø", 5536: "Lyngen"}
 
-# ---------- verktøy-schema ----------
+# ---------- VERKTØY-SCHEMA ----------
 SCHEMA = {
     "name": "extract_case_info",
     "description": (
@@ -66,7 +65,8 @@ SCHEMA = {
 TOOL_DEF    = {"type": "function", "function": SCHEMA}
 TOOL_CHOICE = {"type": "function", "function": {"name": "extract_case_info"}}
 
-# ---------- hjelpefunksjoner ----------
+# ---------- HJELPEFUNKSJONER ----------
+
 def kommune_navn(kid) -> str:
     try:
         return KOMMUNE_NAVN[int(kid)]
@@ -143,7 +143,7 @@ def iter_json_objects(handle):
     if buf.strip():
         raise ValueError("Siste JSON-post er ufullstendig")
 
-# ---------- GPT-kall ----------
+# ---------- GPT-KALL ----------
 def gpt_extract(text: str, kommune: str) -> dict:
     resp = openai.chat.completions.create(
         model       = MODEL_EXTRACT,
@@ -198,7 +198,7 @@ def gpt_summary(case_info: dict, kommune: str) -> str:
     )
     return rsp.choices[0].message.content.strip()
 
-# ---------- hovedløp ----------
+# ---------- HOVEDLØP ----------
 def main():
     if not INFILE.exists():
         sys.exit(f"Fant ikke {INFILE}")

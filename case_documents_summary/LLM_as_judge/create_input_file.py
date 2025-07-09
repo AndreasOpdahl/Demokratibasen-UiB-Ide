@@ -6,13 +6,12 @@ Resultatet legges i LLM_as_judge/judge_input_<A>_vs_<B>.jsonl
 import json, pathlib
 import pandas as pd
 
-# ────────────────────── KONFIGURER HER ──────────────────────
-LABEL_A   = "openai"                       # navn i JSONL (og senere i prompt)
-LABEL_B   = "gemini"                         #  ─   ─  ─
+# ---------- KONFIGURASJON ----------
+LABEL_A   = "openai" # navn i JSONL (og senere i prompt)
+LABEL_B   = "gemini" #  ─   ─  ─
 
-CSV_A     = "summary_generation/openai_summary_results.csv"     # har kolonnen «oppsummering»
-CSV_B     = "summary_generation/gemini_summary_results.csv"       # har kolonnen «sammendrag»
-# ────────────────────────────────────────────────────────────
+CSV_A     = "summary_generation/openai_summary_results.csv"
+CSV_B     = "summary_generation/gemini_summary_results.csv"
 
 ROOT      = pathlib.Path(__file__).resolve().parent.parent
 DOC_PATH  = ROOT / "cleaning_preprocessing" / "baseline_documents_cleaned_first300.jsonl"
@@ -23,7 +22,7 @@ out_dir   = ROOT / "LLM_as_judge"
 out_dir.mkdir(exist_ok=True)
 OUT_PATH  = out_dir / f"judge_input_{LABEL_A}_vs_{LABEL_B}.jsonl"
 
-# ---------- les dokumenttekst ------------------------------------------------
+# ---------- LES DOKUMENTTEKST ----------
 def read_summary_csv(path: pathlib.Path, label: str,
                      candidates = ("oppsummering", "sammendrag", "summary")) -> pd.DataFrame:
     """
@@ -42,18 +41,17 @@ def read_summary_csv(path: pathlib.Path, label: str,
         f"Fant: {list(df.columns)}"
     )
 
-# ---------- les dokumenttekst ----------------------------------------------
 with DOC_PATH.open(encoding="utf-8") as fh:
     doc_text = {obj["dokument_id"]: obj.get("tekst_cleaned") or obj.get("tekst")
                 for obj in map(json.loads, fh)}
 
-# ---------- les sammendrag --------------------------------------------------
+# ---------- LES SAMMENDRAG ----------
 df_a = read_summary_csv(A_PATH, LABEL_A)
 df_b = read_summary_csv(B_PATH, LABEL_B)
 
 df = df_a.merge(df_b, on="dokument_id", how="inner")
 
-# ---------- skriv JSONL ------------------------------------------------------
+# ---------- SKRIV JSONL ----------
 with OUT_PATH.open("w", encoding="utf-8") as out:
     for _, r in df.iterrows():
         src = doc_text.get(r.dokument_id)

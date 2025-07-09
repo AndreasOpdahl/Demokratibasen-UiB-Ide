@@ -1,10 +1,9 @@
 """
 ============================================================
-Saksfremlegg → CSV-oversikt med GEMINI-sammendrag
-------------------------------------------------------------
-* Steg 1 : Gemini Flash 1.5 (tools)  → strukturerte fakta
-* Steg 2 : Gemini Pro 1.5 128k       → kort sammendrag
-* Steg 3 : Skriv én CSV-linje
+CSV-oversikt med GEMINI-sammendrag
+* Steg 1 : Gemini Flash 1.5 (tools)  -> strukturerte fakta
+* Steg 2 : Gemini Pro 1.5 128k       -> kort sammendrag
+* Steg 3 : Skriv en CSV-linje
 ============================================================
 """
 
@@ -14,8 +13,7 @@ from pathlib import Path
 import google.generativeai as genai
 from dotenv import load_dotenv
 
-# ---------- konfigurasjon ---------------------------------------------------
-
+# ---------- KONFIGURASJON ----------
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
@@ -28,7 +26,7 @@ OUTCSV = ROOT / "summary" / "gemini_summary_results.csv"
 
 KOMMUNE_NAVN = {4601: "Bergen", 5501: "Tromsø", 5536: "Lyngen"}
 
-# ---------- tools-schema (med korrekte enum-typer) -----------------
+# ---------- VERKTØY-SCHEMA (KORREKT TOOL TYPE) ----------
 # Definerer typene med en snarvei for lesbarhet
 OBJECT = genai.protos.Type.OBJECT
 STRING = genai.protos.Type.STRING
@@ -60,7 +58,7 @@ SCHEMA = {
             "tema": {
                 "type": ARRAY,
                 "items": {"type": STRING},
-                "description": "3–10 sentrale tema saken berører"
+                "description": "3–10 sentrale tema/områder saken berører"
             },
         },
         "required": ["tittel", "hva_saken_gjelder", "tema"],
@@ -70,11 +68,11 @@ SCHEMA = {
 extracter  = genai.GenerativeModel(MODEL_EXTRACT, tools=[SCHEMA])
 summariser = genai.GenerativeModel(MODEL_SUMMARY)
 
-# ---------- hjelpefunksjoner -------------------------------------------------
+# ---------- HJELPEFUNKEJONER ----------
 def kommune_navn(kid): return KOMMUNE_NAVN.get(int(kid or 0), "en norsk kommune")
 def listify(v): return [] if v is None else (v if isinstance(v, list) else [str(v)])
 
-# ---------- hovedløp ---------------------------------------------------------
+# ---------- HOVEDLØP ----------
 def main() -> None:
     if not INFILE.exists():
         sys.exit(f"Fant ikke {INFILE}")
@@ -96,9 +94,7 @@ def main() -> None:
             kommune = kommune_navn(doc.get("kommune"))
 
             try:
-                # =================================================================
                 # Steg 1 : element-ekstraksjon
-                # =================================================================
                 sys_msg_ex = (
                     f"Du er assisterende saksredaktør i {kommune}. "
                     "Ignorer header/footer-metadata og ekskluder personer som "
@@ -129,9 +125,7 @@ def main() -> None:
                     for key, value in args.items()
                 }
 
-                # =================================================================
                 # Steg 2 : sammendrag
-                # =================================================================
                 person_liste = info.get("viktige_personer", []) or []
                 tema_liste = info.get("tema", []) or []
                 allowed_names = ", ".join(person_liste) or "ingen"

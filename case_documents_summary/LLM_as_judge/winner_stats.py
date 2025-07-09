@@ -7,7 +7,7 @@ Steg 3: Les judge_winners_<A>_vs_<B>.csv
 import csv, pathlib
 from collections import Counter, defaultdict
 
-# ───────────  SETT MODELLNAVN HER  ───────────
+# ---------- SETT MODELLNAVN ----------
 LABEL_A = "baseline"
 LABEL_B = "openai"
 # ─────────────────────────────────────────────
@@ -31,7 +31,6 @@ def main() -> None:
                     continue
                 stats[crit][row[col].strip()] += 1
 
-    # --- skriv ut CSV ----------------------------------------------------
     with OUT_CSV.open("w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
         writer.writerow([
@@ -39,7 +38,7 @@ def main() -> None:
             f"seiere_{LABEL_A}",
             f"seiere_{LABEL_B}",
             "uavgjort",
-            f"{LABEL_A}_andel",          # andel av ikke-uavgjorte
+            f"{LABEL_A}_andel",
             f"{LABEL_B}_andel",
         ])
 
@@ -47,7 +46,7 @@ def main() -> None:
             a = stats[crit].get("A", 0)
             b = stats[crit].get("B", 0)
             x = stats[crit].get("X", 0)
-            played = a + b                # kamper som ikke endte X
+            played = a + b                # kamper som ikke endte X (uavgjort)
             a_pct = a / played if played else 0
             b_pct = b / played if played else 0
             writer.writerow([crit, a, b, x, f"{a_pct:.3f}", f"{b_pct:.3f}"])
