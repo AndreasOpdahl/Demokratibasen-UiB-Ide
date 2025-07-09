@@ -7,10 +7,10 @@ import json, pathlib
 import pandas as pd
 
 # ────────────────────── KONFIGURER HER ──────────────────────
-LABEL_A   = "baseline"                       # navn i JSONL (og senere i prompt)
+LABEL_A   = "openai"                       # navn i JSONL (og senere i prompt)
 LABEL_B   = "gemini"                         #  ─   ─  ─
 
-CSV_A     = "baseline/baseline_case_summaries.csv"     # har kolonnen «oppsummering»
+CSV_A     = "summary_generation/openai_summary_results.csv"     # har kolonnen «oppsummering»
 CSV_B     = "summary_generation/gemini_summary_results.csv"       # har kolonnen «sammendrag»
 # ────────────────────────────────────────────────────────────
 
@@ -24,19 +24,32 @@ out_dir.mkdir(exist_ok=True)
 OUT_PATH  = out_dir / f"judge_input_{LABEL_A}_vs_{LABEL_B}.jsonl"
 
 # ---------- les dokumenttekst ------------------------------------------------
-with DOC_PATH.open(encoding="utf-8") as f:
-    doc_text = {json.loads(l)["dokument_id"]:
-                json.loads(l).get("tekst_cleaned") or json.loads(l).get("tekst")
-                for l in f}
+def read_summary_csv(path: pathlib.Path, label: str,
+                     candidates = ("oppsummering", "sammendrag", "summary")) -> pd.DataFrame:
+    """
+    Leser en CSV-fil og returnerer en df med:
+        dokument_id, <label>
+    Der <label> er 'openai', 'gemini' … etc.
+    Velger første kolonne som matcher *candidates*.
+    """
+    df = pd.read_csv(path, dtype={"dokument_id": "string"})
+    for col in candidates:
+        if col in df.columns:
+            return df[["dokument_id", col]].rename(columns={col: label})
 
-# ---------- les sammendrag ---------------------------------------------------
-df_a = pd.read_csv(A_PATH, dtype={"dokument_id": "string"}) \
-          [["dokument_id", "oppsummering"]] \
-          .rename(columns={"oppsummering": LABEL_A})
+    raise ValueError(
+        f"Ingen av kolonnene {candidates} finnes i {path.name}. "
+        f"Fant: {list(df.columns)}"
+    )
 
-df_b = pd.read_csv(B_PATH, dtype={"dokument_id": "string"}) \
-          [["dokument_id", "sammendrag"]] \
-          .rename(columns={"sammendrag": LABEL_B})
+# ---------- les dokumenttekst ----------------------------------------------
+with DOC_PATH.open(encoding="utf-8") as fh:
+    doc_text = {obj["dokument_id"]: obj.get("tekst_cleaned") or obj.get("tekst")
+                for obj in map(json.loads, fh)}
+
+# ---------- les sammendrag --------------------------------------------------
+df_a = read_summary_csv(A_PATH, LABEL_A)
+df_b = read_summary_csv(B_PATH, LABEL_B)
 
 df = df_a.merge(df_b, on="dokument_id", how="inner")
 
@@ -53,4 +66,4 @@ with OUT_PATH.open("w", encoding="utf-8") as out:
             LABEL_B:       r[LABEL_B],
         }, ensure_ascii=False) + "\n")
 
-print(f"Skrev {len(df):,} poster ➜ {OUT_PATH.relative_to(ROOT)}")
+print(f"Skrev {len(df):,} poster til {OUT_PATH.relative_to(ROOT)}")

@@ -9,11 +9,11 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 MODEL        = "gpt-4o"
 TEMPERATURE  = 0
 ROOT         = pathlib.Path(__file__).resolve().parent
-IN_PATH      = ROOT / "judge_input_baseline_vs_gemini.jsonl"
-CSV_OUT      = ROOT / "judge_scores_baseline_vs_gemini.csv"
+IN_PATH      = ROOT / "judge_input_openai_vs_gemini.jsonl"
+CSV_OUT      = ROOT / "judge_scores_openai_vs_gemini.csv"
 
-LABEL_A = "baseline"   # Sett ønsket label her
-LABEL_B = "gemini"     # Sett ønsket label her
+LABEL_A = "openai"   # Sett ønsket label
+LABEL_B = "gemini"     # Sett ønsket label 
 
 SYSTEM_PROMPT = """
 Du er dyktig og hjelpsom assistent i en avisredaksjon.
