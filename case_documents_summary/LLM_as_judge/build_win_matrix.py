@@ -1,16 +1,15 @@
-# LLM_as_judge/build_win_matrix.py
 """
 Bygg en N×N matrise over seiers-andeler mellom alle modeller
 (brukt 'totalt'-kriteriet fra winner_stats_<A>_vs_<B>.csv).
 """
 
 import csv, pathlib, re, itertools
-import pandas as pd     # kun for pen utskrift / CSV
+import pandas as pd
 
 ROOT = pathlib.Path(__file__).resolve().parent
 PAT  = re.compile(r"winner_stats_(.+?)_vs_(.+?)\.csv")
 
-# --- Finn alle stats-filer og hvilke modeller som finnes ---------------------
+# Finn alle stats-filer og hvilke modeller som finnes
 files = list(ROOT.glob("winner_stats_*_vs_*.csv"))
 pairs = [PAT.match(f.name).groups() for f in files]
 models = sorted({m for pair in pairs for m in pair})
@@ -27,11 +26,11 @@ for a, b in pairs:
     win[(a, b)] = float(row_tot[f"{a}_andel"])
     win[(b, a)] = float(row_tot[f"{b}_andel"])
 
-# Egen-diagonalen = NaN (eller 0.0 om du foretrekker)
+# Egen-diagonalen = NaN 
 for m in models:
     win[(m, m)] = float("nan")
 
-# --- Lag DataFrame / skriv CSV ---------------------------------------------
+# Lag DataFrame, skriv CSV 
 matrix = pd.DataFrame(
     [[win[(i, j)] for j in models] for i in models],
     index=models, columns=models

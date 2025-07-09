@@ -1,6 +1,5 @@
-# LLM_as_judge/compute_winners.py
 """
-Steg 2: Les judge_scores_*.csv ➜ avgjør vinner A/B/X (uavgjort)
+Les judge_scores_*.csv ➜ avgjør vinner A/B/X (uavgjort)
 • per kriterium
 • samlet med vektet gjennomsnitt
 """
@@ -36,14 +35,14 @@ def main() -> None:
 
             did = row["dokument_id"]
 
-            # --- beregn vinner per kriterium -----------------------------
+            # beregn vinner per kriterium 
             per_crit = {}
             for crit in WEIGHTS.keys():
                 col_a = f"{crit}_{LABEL_A}"
                 col_b = f"{crit}_{LABEL_B}"
                 per_crit[crit] = winner(float(row[col_a]), float(row[col_b]))
 
-            # --- beregn total score --------------------------------------
+            # beregn total score
             total_A = sum(
                 WEIGHTS[crit] * float(row[f"{crit}_{LABEL_A}"])
                 for crit in WEIGHTS
@@ -63,7 +62,7 @@ def main() -> None:
                 total_w,
             ])
 
-    # --- skriv resultatfil ----------------------------------------------
+    # Skriv resultatfil 
     with OUT_CSV.open("w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
         writer.writerow([

@@ -51,7 +51,7 @@ USER_INSTRUCTION = (
     "[{\"dokument_id\": ..., \"cleaned\": ...}]"
 )
 
-# ────────── few-shot-eksempler ──────────
+# few-shot-eksempler 
 example_msgs: list[dict] = []
 with EXAMPLE_FILE.open(encoding="utf-8") as fh:
     for ln in fh:
@@ -80,7 +80,7 @@ FIXED_TOKENS = (
     + 20
 )
 
-# ────────── batching ──────────
+# batching 
 def batch_iter():
     batch, used = [], FIXED_TOKENS
     with INFILE.open(encoding="utf-8") as fh:
@@ -95,7 +95,7 @@ def batch_iter():
         if batch:
             yield batch
 
-# ────────── OpenAI-kall ──────────
+# OpenAI-kall
 def call_llm(batch):
     payload = [{"dokument_id": d["dokument_id"], "raw": d["tekst"]} for d in batch]
 
@@ -127,7 +127,7 @@ def call_llm(batch):
         print(content)
         raise e
 
-# ────────── hovedløp ──────────
+# hovedløp 
 OUTFILE.parent.mkdir(parents=True, exist_ok=True)
 processed = 0
 
@@ -143,7 +143,7 @@ with OUTFILE.open("w", encoding="utf-8") as fout:
 
         data = resp
 
-        # --- PATCH: håndter {"documents":[...]} ---
+        #  PATCH: håndter {"documents":[...]} 
         if isinstance(data, dict) and "documents" in data:
             data = data["documents"]
 
