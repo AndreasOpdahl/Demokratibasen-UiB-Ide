@@ -13,8 +13,7 @@ from pathlib import Path
 import anthropic        
 from dotenv import load_dotenv
 
-# ---------- konfig ----------------------------------------------------------
-
+# ---------- KONFIGURASJON ----------
 load_dotenv()
 client = anthropic.Anthropic(api_key=os.getenv("ANTRHOPIC_API_KEY"))
 
@@ -26,8 +25,7 @@ INFILE = ROOT / "cleaning_preprocessing" / "baseline_documents_cleaned_first300.
 OUTCSV = ROOT / "summary_generation" / "claude_summary_results.csv"
 
 KOMMUNE_NAVN = {4601: "Bergen", 5501: "Tromsø", 5536: "Lyngen"}
-
-# ---------- tool-schema (Anthropic bruker «input_schema») -------------------
+# ---------- VERKTØY-SCHEME (ANTHORPIC BRUKER "input_schema") ----------
 
 SCHEMA = {
     "name": "extract_case_info",
@@ -61,13 +59,11 @@ SCHEMA = {
     },
 }
 
-# ---------- hjelpere --------------------------------------------------------
-
+# ---------- HJELPEFUNKSJONER ----------
 def kommune_navn(kid): return KOMMUNE_NAVN.get(int(kid or 0), "en norsk kommune")
 def listify(v): return [] if v is None else (v if isinstance(v, list) else [str(v)])
 
-# ---------- hovedløp --------------------------------------------------------
-
+# ---------- HOVEDLØP ----------
 def main() -> None:
     if not INFILE.exists():
         sys.exit(f"Fant ikke {INFILE}")
@@ -91,9 +87,7 @@ def main() -> None:
             doc_id  = doc["dokument_id"]
 
             try:
-                # =============================================================
                 # Steg 1 : Claude-tools → element-ekstraksjon
-                # =============================================================
                 sys_msg_ex = (
                     f"Du er assisterende saksredaktør i {kommune}. "
                     "Ignorer administrativ metadata og ekskluder personer som "
@@ -110,13 +104,10 @@ def main() -> None:
                     tool_choice={"type": "tool", "name": "extract_case_info"},
                 )
 
-                # KORRIGERT: Hent ut tool-resultat på riktig måte
                 invocation = ex_resp.content[0]
                 info = invocation.input  # dict med feltene fra schema
 
-                # =============================================================
                 # Steg 2 : skriv kort sammendrag
-                # =============================================================
                 person_liste = listify(info.get("viktige_personer"))
                 tema_liste   = listify(info.get("tema"))
                 allowed_names = ", ".join(person_liste) or "ingen"
@@ -159,7 +150,7 @@ def main() -> None:
                 time.sleep(2)
                 continue
 
-            # ---------------- skriv til CSV ----------------
+            # skriv til CSV 
             writer.writerow([
                 doc_id,
                 info.get("tittel", "").replace("\n", " ").strip(),

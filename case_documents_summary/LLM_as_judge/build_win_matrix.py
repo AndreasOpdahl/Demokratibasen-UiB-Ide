@@ -6,7 +6,7 @@ Bygg en N×N matrise over seiers-andeler mellom alle modeller
 import csv, pathlib, re, itertools
 import pandas as pd
 
-ROOT = pathlib.Path(__file__).resolve().parent
+ROOT = pathlib.Path(__file__).resolve().parent / "openai_judge"
 PAT  = re.compile(r"winner_stats_(.+?)_vs_(.+?)\.csv")
 
 # Finn alle stats-filer og hvilke modeller som finnes
@@ -38,5 +38,5 @@ matrix = pd.DataFrame(
 
 out_csv = ROOT / "model_win_matrix.csv"
 matrix.to_csv(out_csv, float_format="%.3f")
-print("Matrise lagret ➜", out_csv.relative_to(ROOT))
+print("Matrise lagret i", out_csv.relative_to(ROOT))
 print("\n", matrix.round(3))

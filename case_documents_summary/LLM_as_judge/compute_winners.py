@@ -6,8 +6,8 @@ Les judge_scores_*.csv ➜ avgjør vinner A/B/X (uavgjort)
 
 import csv, pathlib
 
-LABEL_A = "baseline"
-LABEL_B = "gemini"
+LABEL_A = "gemini"
+LABEL_B = "claude"
 
 ROOT      = pathlib.Path(__file__).resolve().parent
 IN_CSV    = ROOT / f"judge_scores_{LABEL_A}_vs_{LABEL_B}.csv"

@@ -7,11 +7,11 @@ import json, pathlib
 import pandas as pd
 
 # ---------- KONFIGURASJON ----------
-LABEL_A   = "openai" # navn i JSONL (og senere i prompt)
-LABEL_B   = "gemini" #  ─   ─  ─
+LABEL_A   = "gemini" # navn i JSONL (og senere i prompt)
+LABEL_B   = "claude" #  ─   ─  ─
 
-CSV_A     = "summary_generation/openai_summary_results.csv"
-CSV_B     = "summary_generation/gemini_summary_results.csv"
+CSV_A     = "summary_generation/gemini_summary_results.csv"
+CSV_B     = "summary_generation/claude_summary_results.csv"
 
 ROOT      = pathlib.Path(__file__).resolve().parent.parent
 DOC_PATH  = ROOT / "cleaning_preprocessing" / "baseline_documents_cleaned_first300.jsonl"
