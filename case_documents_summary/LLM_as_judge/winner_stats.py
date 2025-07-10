@@ -8,8 +8,8 @@ import csv, pathlib
 from collections import Counter, defaultdict
 
 # ---------- SETT MODELLNAVN ----------
-LABEL_A = "baseline"
-LABEL_B = "openai"
+LABEL_A = "gemini"
+LABEL_B = "claude"
 # ─────────────────────────────────────────────
 
 ROOT      = pathlib.Path(__file__).resolve().parent
