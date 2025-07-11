@@ -1,25 +1,25 @@
-# LLM_as_judge/winner_stats.py
 """
-Steg 3: Les judge_winners_<A>_vs_<B>.csv
-        ➜ hvor mange A-, B- og X-utfall per kriterium og totalt
+Les judge_winners_<A>_vs_<B>.csv
+Sjekker hvor mange A-, B- og X-utfall per kriterium og totalt
 """
 
 import csv, pathlib
 from collections import Counter, defaultdict
 
-# ---------- SETT MODELLNAVN ----------
+# ---------- SETT MODELLNAVN OG DOMMERMODELL ----------
 LABEL_A = "gemini"
 LABEL_B = "claude"
+
+JUDGE_MODEL = "gemini"
 # ─────────────────────────────────────────────
 
-ROOT      = pathlib.Path(__file__).resolve().parent
+ROOT      = pathlib.Path(__file__).resolve().parent / f"{JUDGE_MODEL}_judge_results"
 IN_CSV    = ROOT / f"judge_winners_{LABEL_A}_vs_{LABEL_B}.csv"
 OUT_CSV   = ROOT / f"winner_stats_{LABEL_A}_vs_{LABEL_B}.csv"
 
 CRITERIA  = ["koherens", "konsistens", "flyt", "relevans", "totalt"]
 
 def main() -> None:
-    # dict: crit -> Counter({'A':…, 'B':…, 'X':…})
     stats = defaultdict(Counter)
 
     with IN_CSV.open(encoding="utf-8") as f:
@@ -46,7 +46,7 @@ def main() -> None:
             a = stats[crit].get("A", 0)
             b = stats[crit].get("B", 0)
             x = stats[crit].get("X", 0)
-            played = a + b                # kamper som ikke endte X (uavgjort)
+            played = a + b # kamper som ikke endte X (uavgjort)
             a_pct = a / played if played else 0
             b_pct = b / played if played else 0
             writer.writerow([crit, a, b, x, f"{a_pct:.3f}", f"{b_pct:.3f}"])
