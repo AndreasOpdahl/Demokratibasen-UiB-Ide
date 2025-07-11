@@ -6,7 +6,9 @@ Bygg en N×N matrise over seiers-andeler mellom alle modeller
 import csv, pathlib, re, itertools
 import pandas as pd
 
-ROOT = pathlib.Path(__file__).resolve().parent / "openai_judge"
+JUDGE_MODEL="gemini"
+
+ROOT = pathlib.Path(__file__).resolve().parent / f"{JUDGE_MODEL}_judge_results"
 PAT  = re.compile(r"winner_stats_(.+?)_vs_(.+?)\.csv")
 
 # Finn alle stats-filer og hvilke modeller som finnes

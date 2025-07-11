@@ -1,5 +1,5 @@
 """
-Les judge_scores_*.csv ➜ avgjør vinner A/B/X (uavgjort)
+Les judge_scores_*.csv og avgjør vinner A/B/X (uavgjort)
 • per kriterium
 • samlet med vektet gjennomsnitt
 """
@@ -9,7 +9,7 @@ import csv, pathlib
 LABEL_A = "gemini"
 LABEL_B = "claude"
 
-ROOT      = pathlib.Path(__file__).resolve().parent
+ROOT      = pathlib.Path(__file__).resolve().parent / "gemini_judge_results"
 IN_CSV    = ROOT / f"judge_scores_{LABEL_A}_vs_{LABEL_B}.csv"
 OUT_CSV   = ROOT / f"judge_winners_{LABEL_A}_vs_{LABEL_B}.csv"
 
