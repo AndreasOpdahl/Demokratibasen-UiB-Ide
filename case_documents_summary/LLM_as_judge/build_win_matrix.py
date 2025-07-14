@@ -6,7 +6,7 @@ Bygg en N×N matrise over seiers-andeler mellom alle modeller
 import csv, pathlib, re, itertools
 import pandas as pd
 
-JUDGE_MODEL="gemini"
+JUDGE_MODEL="claude"
 
 ROOT = pathlib.Path(__file__).resolve().parent / f"{JUDGE_MODEL}_judge_results"
 PAT  = re.compile(r"winner_stats_(.+?)_vs_(.+?)\.csv")
