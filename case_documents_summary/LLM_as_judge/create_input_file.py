@@ -7,8 +7,8 @@ import json, pathlib
 import pandas as pd
 
 # ---------- KONFIGURASJON ----------
-LABEL_A   = "gemini" # navn i JSONL (og senere i prompt)
-LABEL_B   = "claude" #  ─   ─  ─
+LABEL_A   = "baseline" # navn i JSONL (og senere i prompt)
+LABEL_B   = "openai" #  ─   ─  ─
 
 CSV_A     = "summary_generation/gemini_summary_results.csv"
 CSV_B     = "summary_generation/claude_summary_results.csv"

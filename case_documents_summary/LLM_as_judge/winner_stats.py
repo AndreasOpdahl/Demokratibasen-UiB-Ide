@@ -10,7 +10,7 @@ from collections import Counter, defaultdict
 LABEL_A = "gemini"
 LABEL_B = "claude"
 
-JUDGE_MODEL = "gemini"
+JUDGE_MODEL = "claude"
 # ─────────────────────────────────────────────
 
 ROOT      = pathlib.Path(__file__).resolve().parent / f"{JUDGE_MODEL}_judge_results"
