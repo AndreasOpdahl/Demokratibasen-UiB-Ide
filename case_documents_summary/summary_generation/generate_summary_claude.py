@@ -14,13 +14,16 @@ import anthropic
 from dotenv import load_dotenv
 
 # ---------- KONFIGURASJON ----------
-load_dotenv()
-client = anthropic.Anthropic(api_key=os.getenv("ANTRHOPIC_API_KEY"))
+# Load .env from the repository root so this works regardless of CWD
+ROOT = Path(__file__).resolve().parents[2]
+load_dotenv(ROOT / ".env")
+
+# Expect the standard ANTHROPIC_API_KEY env var
+client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 MODEL_EXTRACT = "claude-sonnet-4-20250514"
 MODEL_SUMMARY = "claude-sonnet-4-20250514"
 
-ROOT   = Path(__file__).resolve().parent.parent
 INFILE = ROOT / "cleaning_preprocessing" / "baseline_documents_cleaned_first300.jsonl"
 OUTCSV = ROOT / "summary_generation" / "claude_summary_results.csv"
 
@@ -39,7 +42,7 @@ SCHEMA = {
         "properties": {
             "tittel":                 {"type": "string"},
             "hva_saken_gjelder":      {"type": "string"},
-            "forelag_vedtak":         {"type": "string"},
+            "foreslått_vedtak":      {"type": "string"},
             "forventede_konsekvenser":{"type": "string"},
             "viktige_hendelser":      {"type": "array", "items": {"type": "string"}},
             "viktige_tidspunkter":    {"type": "array", "items": {"type": "string"}},
