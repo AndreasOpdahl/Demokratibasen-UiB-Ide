@@ -14,13 +14,15 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 
 # ---------- KONFIGURASJON ----------
-load_dotenv()
+# Load .env from the repository root so this works regardless of CWD
+ROOT  = Path(__file__).resolve().parents[2]
+load_dotenv(ROOT / ".env")
+
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 MODEL_EXTRACT = "models/gemini-1.5-flash-latest"
 MODEL_SUMMARY = "models/gemini-1.5-pro-latest"
 
-ROOT   = Path(__file__).resolve().parent.parent
 INFILE = ROOT / "baseline" / "baseline_documents_cleaned_first300.jsonl"
 OUTCSV = ROOT / "summary" / "gemini_summary_results.csv"
 

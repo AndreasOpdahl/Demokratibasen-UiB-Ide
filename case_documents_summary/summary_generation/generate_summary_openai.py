@@ -15,13 +15,14 @@ import openai
 from dotenv import load_dotenv
 
 # ---------- KONFIGURASJON ----------
-load_dotenv()
+ROOT   = Path(__file__).resolve().parent[2]
+load_dotenv(ROOT / ".env")
+
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 MODEL_EXTRACT = "gpt-4o-mini"
 MODEL_SUMMARY = "gpt-4o"
 
-ROOT   = Path(__file__).resolve().parent.parent
 INFILE = ROOT / "baseline" / "baseline_case_documents_cleaned_first300.jsonl"
 OUTCSV = ROOT / "summary" / "openai_summary_results.csv"
 
