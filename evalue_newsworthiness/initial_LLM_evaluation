@@ -1,0 +1,77 @@
+#!/usr/bin/env python3
+"""
+Simple script to test both Claude and ChatGPT with a basic prompt.
+This is a starting point for LLM evaluation.
+"""
+
+import os
+import openai
+import anthropic
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+PROMPT_SYSTEM="""Du er dyktig og hjelpsom assistent i en avisredaksjon.\
+Avisen er interessert i åpne offentlige dokumenter som beskriverpolitiske saker,\
+og de trenger din hjelp til å organisere dokumentene. Du er en ekspert på å returnere strukturert data som er gitt."""
+
+# Define the prompt
+prompt = """
+
+
+
+"""
+
+
+def test_openai():
+    """Test OpenAI GPT model"""
+    try:
+        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=200
+        )
+
+        return response.choices[0].message.content
+
+    except Exception as e:
+        return f"OpenAI Error: {str(e)}"
+
+def test_claude():
+    """Test Anthropic Claude model"""
+    try:
+        client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+        response = client.messages.create(
+            model="claude-3-5-haiku-20241022",
+            max_tokens=200,
+            messages=[
+                {"role": "user", "content": prompt}
+            ]
+        )
+
+        return response.content[0].text
+
+    except Exception as e:
+        return f"Claude Error: {str(e)}"
+
+def main():
+    """Run both tests and print results"""
+    print("=== Testing OpenAI GPT ===")
+    gpt_response = test_openai()
+    print(f"GPT Response: {gpt_response}\n")
+
+    print("=== Testing Claude ===")
+    claude_response = test_claude()
+    print(f"Claude Response: {claude_response}\n")
+
+    print("=== Comparison ===")
+    print("Both models responded successfully!" if "Error" not in gpt_response and "Error" not in claude_response else "One or both models had errors.")
+
+if __name__ == "__main__":
+    main()
