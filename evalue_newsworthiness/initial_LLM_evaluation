@@ -71,7 +71,6 @@ Dokumentet kommer her i et json format:
     'title': {title},
     'fulltekst': {text}
 }}
-
 """
 
 
