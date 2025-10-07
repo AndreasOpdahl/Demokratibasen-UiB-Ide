@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  finetune:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: finetune-container
+    runtime: nvidia
+    volumes:
+      - ./data/input:/app/data/input
+      - ./data/output:/app/data/output
+      - ./models:/app/models
+      - ./scripts:/app/scripts
+    environment:
+      - HF_HOME=/app/models/huggingface
+    stdin_open: true
+    tty: true
