@@ -1,0 +1,12 @@
+transformers
+datasets
+accelerate
+peft
+sentencepiece
+pandas
+numpy
+tqdm
+matplotlib
+torch
+rouge-score
+bitsandbytes
