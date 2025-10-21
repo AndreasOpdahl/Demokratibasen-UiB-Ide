@@ -7,12 +7,12 @@
     },
     "gpt_evaluation": {
       "makteliten": 8,
-      "positivitet": 2,
-      "underholdning": 1,
-      "konflikt": 9,
-      "identifikasjon": 7,
-      "magnitude": 6,
-      "samlet_vurdering": 33
+      "positivitet": 3,
+      "underholdning": 2,
+      "konflikt": 7,
+      "identifikasjon": 6,
+      "magnitude": 5,
+      "samlet_vurdering": 31
     },
     "claude_evaluation": {
       "makteliten": 7,
@@ -23,9 +23,28 @@
       "magnitude": 5,
       "samlet_vurdering": 29
     },
+    "mistral_evaluation": {
+      "dokument_type": "klage_over_avslag_på_søknad_om_bruksendring",
+      "makteliten": 9,
+      "positivitet": 2,
+      "underholdning": 1,
+      "konflikt": 10,
+      "identifikasjon": 8,
+      "magnitude": 7,
+      "samlet_vurdering": 37,
+      "begrunnelser": {
+        "makteliten": "Dokumentet omhandler en sak som involverer flere offentlige etater (Bymiljøetaten, Etat for landbruk, Vestland fylkeskommune, Statsforvaltaren i Vestland) og en politisk prosess knyttet til plan- og bygningsloven. Dette er tydelig en sak som involverer makteliten i lokalsamfunnet.",
+        "positivitet": "Dokumentet har et negativt preg da det omhandler en klage på avslag og ulovlige tiltak. Det er lite positivt innhold.",
+        "underholdning": "Dokumentet omhandler en juridisk sak uten direkte underholdningsverdi for leserne.",
+        "konflikt": "Dokumentet inneholder en tydelig konflikt mellom klageren (Håkon Hauge/Advokatfirmaet Landsvik og Larsen) og flere offentlige etater. Konflikten er både juridisk og prinsipiell, noe som gir høy nyhetsverdi.",
+        "identifikasjon": "Saken omhandler en lokal eiendom (Arna, Langedalen) og lokale aktører (Håkon Hauge, Ing. Asbjørn Danielsen AS). Dette er relevant for lokalsamfunnet, og personen som klagar er navngitt, noe som gir høy identifikasjonsverdi.",
+        "magnitude": "Saken har et visst omfang da den involverer flere offentlige etater, en lokal eiendom og potensielle konsekvenser for arealbruk i LNF-områder. Saken kan også ha signalverdi for andre lignende eiendommer i området."
+      }
+    },
     "raw_responses": {
-      "gpt": "```json\n{\n    \"makteliten\": 8,\n    \"positivitet\": 2,\n    \"underholdning\": 1,\n    \"konflikt\": 9,\n    \"identifikasjon\": 7,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 33\n}\n```",
-      "claude": "Basert på dokumentet, som ser ut til å være en byrådssak om en klage på avslag om bruksendring av et uthus, vil jeg vurdere nyhetsverdiene slik:\n\n```json\n{\n    \"makteliten\": 7,\n    \"positivitet\": 2,\n    \"underholdning\": 1,\n    \"konflikt\": 8,\n    \"identifikasjon\": 6,\n    \"magnitude\": 5,\n    \"samlet_vurdering\": 29\n}\n```\n\nBegrunnelse:\n- Makteliten (7): Dokumentet omhandler en byrådssak med flere kommunale etater involvert som Byantikvaren, Bymiljøetaten, Etat for landbruk, Vestland fylkeskommune og Statsforvalteren.\n\n- Positivitet (2): Dokumentet er preget av avslag og konflikter, lite positivt innhold.\n\n- Underholdning (1): Saklig dokument med lite underholdningsverdi.\n\n- Konflikt (8): Høy konfliktverdi med uenighet mellom klager og kommunale instanser om bruksendring.\n\n- Identifikasjon (6): Lokale aktører som Håkon Hauge, Advokatfirmaet Landsvik og Larsen, samt lokalisert i Bergen/Arna.\n\n- Magnitude (5): Middels omfang, gjelder en enkelt eiendom med potensielle presedensvirkninger."
+      "gpt": "```json\n{\n    \"makteliten\": 8,\n    \"positivitet\": 3,\n    \"underholdning\": 2,\n    \"konflikt\": 7,\n    \"identifikasjon\": 6,\n    \"magnitude\": 5,\n    \"samlet_vurdering\": 31\n}\n```",
+      "claude": "Basert på dokumentet vil jeg vurdere nyhetsverdiene slik:\n\n{\n    \"makteliten\": 7,\n    \"positivitet\": 2,\n    \"underholdning\": 1,\n    \"konflikt\": 8,\n    \"identifikasjon\": 6,\n    \"magnitude\": 5,\n    \"samlet_vurdering\": 29\n}\n\nBegrunnelse:\n- Makteliten (7/10): Dokumentet omhandler kommunale instanser som byrådet, Bymiljøetaten, Statsforvaltaren og fylkeskommunen - høy politisk representasjon.\n\n- Positivitet (2/10): Dokumentet fremstår svært negativt, handler om avslag, ulovlige tiltak og konflikt.\n\n- Underholdning (1/10): Svært lavt, teknisk dokument om bruksendring av eiendom.\n\n- Konflikt (8/10): Høy konfliktgrad - klage på avslag, uenighet mellom ulike etater og grunneier.\n\n- Identifikasjon (6/10): Nevner konkrete personer som Håkon Hauge og lokale instanser, relativt sterk lokal forankring.\n\n- Magnitude (5/10): Middels omfang - handler om enkelt gårdsbruk, men med prinsipielle vurderinger.",
+      "mistral": "```json\n{\n    \"dokument_type\": \"klage_over_avslag_på_søknad_om_bruksendring\",\n    \"makteliten\": 9,\n    \"positivitet\": 2,\n    \"underholdning\": 1,\n    \"konflikt\": 10,\n    \"identifikasjon\": 8,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 37,\n\n    \"begrunnelser\": {\n        \"makteliten\": \"Dokumentet omhandler en sak som involverer flere offentlige etater (Bymiljøetaten, Etat for landbruk, Vestland fylkeskommune, Statsforvaltaren i Vestland) og en politisk prosess knyttet til plan- og bygningsloven. Dette er tydelig en sak som involverer makteliten i lokalsamfunnet.\",\n        \"positivitet\": \"Dokumentet har et negativt preg da det omhandler en klage på avslag og ulovlige tiltak. Det er lite positivt innhold.\",\n        \"underholdning\": \"Dokumentet omhandler en juridisk sak uten direkte underholdningsverdi for leserne.\",\n        \"konflikt\": \"Dokumentet inneholder en tydelig konflikt mellom klageren (Håkon Hauge/Advokatfirmaet Landsvik og Larsen) og flere offentlige etater. Konflikten er både juridisk og prinsipiell, noe som gir høy nyhetsverdi.\",\n        \"identifikasjon\": \"Saken omhandler en lokal eiendom (Arna, Langedalen) og lokale aktører (Håkon Hauge, Ing. Asbjørn Danielsen AS). Dette er relevant for lokalsamfunnet, og personen som klagar er navngitt, noe som gir høy identifikasjonsverdi.\",\n        \"magnitude\": \"Saken har et visst omfang da den involverer flere offentlige etater, en lokal eiendom og potensielle konsekvenser for arealbruk i LNF-områder. Saken kan også ha signalverdi for andre lignende eiendommer i området.\"\n    }\n}\n```"
     }
   },
   "0a3f9ba0-8e48-5819-8d4a-3d8482555a71": {
@@ -35,26 +54,45 @@
       "url": "https://bergen.kommune.no/politikere-utvalg/api/fil/bk360/10626593/Nabosamtykke"
     },
     "gpt_evaluation": {
-      "makteliten": 0,
-      "positivitet": 5,
-      "underholdning": 0,
-      "konflikt": 0,
-      "identifikasjon": 0,
-      "magnitude": 5,
-      "samlet_vurdering": 10
+      "makteliten": 2,
+      "positivitet": 4,
+      "underholdning": 2,
+      "konflikt": 6,
+      "identifikasjon": 3,
+      "magnitude": 4,
+      "samlet_vurdering": 21
     },
     "claude_evaluation": {
-      "makteliten": 2,
-      "positivitet": 3,
+      "makteliten": 1,
+      "positivitet": 2,
       "underholdning": 1,
-      "konflikt": 4,
-      "identifikasjon": 5,
+      "konflikt": 3,
+      "identifikasjon": 4,
       "magnitude": 2,
-      "samlet_vurdering": 17
+      "samlet_vurdering": 13
+    },
+    "mistral_evaluation": {
+      "dokument_type": "nabosamtykke",
+      "makteliten": 2,
+      "positivitet": 4,
+      "underholdning": 1,
+      "konflikt": 6,
+      "identifikasjon": 8,
+      "magnitude": 5,
+      "samlet_vurdering": 26,
+      "begrunnelse": {
+        "makteliten": "Dokumentet kan potensielt involvere kommunale myndigheter hvis det er knyttet til byggetillatelser eller reguleringsplaner, men det er vanligvis ikke sentralt for makteliten.",
+        "positivitet": "Et nabosamtykke kan være positivt hvis det fører til samarbeid eller godkjenning av et prosjekt, men det er ofte nøytralt eller potensielt konfliktfylt.",
+        "underholdning": "Liten underholdningsverdi, da dette er et administrativt dokument.",
+        "konflikt": "Høyere verdi da nabosamtykke ofte kan involvere uenigheter eller konflikter mellom naboer.",
+        "identifikasjon": "Høy verdi da det gjelder lokale personer og eiendommer, noe som er svært relevant for lokalsamfunnet.",
+        "magnitude": "Moderat verdi da det kan påvirke flere parter, men vanligvis ikke i svært stort omfang."
+      }
     },
     "raw_responses": {
-      "gpt": "For dokumentet \"Nabosamtykke\", her er vurderingen basert på de gitte nyhetsverdiene:\n\n```json\n{\n    \"makteliten\": 0,\n    \"positivitet\": 5,\n    \"underholdning\": 0,\n    \"konflikt\": 0,\n    \"identifikasjon\": 0,\n    \"magnitude\": 5,\n    \"samlet_vurdering\": 10\n}\n``` \n\nForklaring:\n- **Makteliten**: 0 (dokumentet omtaler ikke politiske instanser eller personer).\n- **Positivitet**: 5 (kan være positivt i konteksten av å få samtykke fra naboer, men avhenger av spesifikke omstendigheter).\n- **Underholdning**: 0 (ingen underholdningsverdi).\n- **Konflikt**: 0 (ingen konflikt er nevnt).\n- **Identifikasjon**: 0 (ingen kjente personer eller organisasjoner omtales).\n- **Magnitude**: 5 (kan ha en viss betydning hvis det involverer flere naboer, men det er begrenset til lokale forhold).\n\nSamlet vurdering: 10 (sum av alle poeng).",
-      "claude": "Basert på den tomme teksten og den generiske tittelen \"Nabosamtykke\" ser jeg dessverre svært lite innhold å vurdere. Uten mer kontekst eller konkret tekst blir vurderingen generisk.\n\nHer er en foreløpig nøktern vurdering:\n\n{\n    \"makteliten\": 2,\n    \"positivitet\": 3, \n    \"underholdning\": 1,\n    \"konflikt\": 4,\n    \"identifikasjon\": 5,\n    \"magnitude\": 2,\n    \"samlet_vurdering\": 17\n}\n\nBegrunnelse:\n- Lav score på makteliten da ingen politiske aktører nevnes\n- Noe identifikasjon grunnet naboaspektet \n- Mulig mild konfliktdimensjon mellom naboer\n- Lav underholdnings- og magnitudescore grunnet manglende detaljer\n- Nøytral positivitet\n\nFor en mer presis vurdering trenger jeg mer kontekst og innhold i dokumentet."
+      "gpt": "For dokumentet med tittelen \"Nabosamtykke\", som ser ut til å være relatert til naborett og samtykke mellom naboer, vurderer jeg nyhetsverdiene som følger:\n\n```json\n{\n    \"makteliten\": 2,\n    \"positivitet\": 4,\n    \"underholdning\": 2,\n    \"konflikt\": 6,\n    \"identifikasjon\": 3,\n    \"magnitude\": 4,\n    \"samlet_vurdering\": 21\n}\n```\n\nForklaring på vurderingene:\n- **Makteliten (2)**: Dokumentet omhandler sannsynligvis naboskap og samtykke, som i liten grad involverer politisk maktelite.\n- **Positivitet (4)**: Kan ha en positiv vinkel hvis det fremmer gode naboforhold, men det er ikke nødvendigvis en entydig positiv hendelse.\n- **Underholdning (2)**: Ikke særlig underholdende med mindre det er noe uvanlig eller kreativt med nabosamtykket.\n- **Konflikt (6)**: Det er potensial for konflikt når det gjelder naboskap og samtykke, så dette gir en moderat vurdering.\n- **Identifikasjon (3)**: Dersom det nevnes kjente personer i lokalområdet, blir dette mer relevant, men sannsynligvis er det ikke mange direkte kjente personer involvert.\n- **Magnitude (4)**: Konsekvensene kan være moderate, men det involverer vanligvis et begrenset antall personer (naboer).\n\nSamlet vurdering reflekterer de forholdene dokumentet berører.",
+      "claude": "Basert på de beskrevne nyhetsverdiene og det minimale innholdet i dokumentet, vil jeg gi følgende vurdering:\n\n{\n    \"makteliten\": 1,\n    \"positivitet\": 2,\n    \"underholdning\": 1,\n    \"konflikt\": 3,\n    \"identifikasjon\": 4,\n    \"magnitude\": 2,\n    \"samlet_vurdering\": 13\n}\n\nBegrunnelse:\n- Makteliten får lav score da dokumentet ikke ser ut til å inneholde politisk informasjon\n- Positivitet scorer lavt da det ikke er noe positivt innhold\n- Underholdning scorer svært lavt\n- Konflikt scorer litt høyere da \"nabosamtykke\" kan indikere en mulig konflikt mellom naboer\n- Identifikasjon scorer noe høyere da det refererer til lokale naboforhold\n- Magnitude scorer lavt da omfanget virker begrenset\n\nDen samlede vurderingen blir dermed relativt lav, på 13 av 100 mulige poeng.",
+      "mistral": "```json\n{\n    \"dokument_type\": \"nabosamtykke\",\n    \"makteliten\": 2,\n    \"positivitet\": 4,\n    \"underholdning\": 1,\n    \"konflikt\": 6,\n    \"identifikasjon\": 8,\n    \"magnitude\": 5,\n    \"samlet_vurdering\": 26,\n    \"begrunnelse\":\n    {\n        \"makteliten\": \"Dokumentet kan potensielt involvere kommunale myndigheter hvis det er knyttet til byggetillatelser eller reguleringsplaner, men det er vanligvis ikke sentralt for makteliten.\",\n        \"positivitet\": \"Et nabosamtykke kan være positivt hvis det fører til samarbeid eller godkjenning av et prosjekt, men det er ofte nøytralt eller potensielt konfliktfylt.\",\n        \"underholdning\": \"Liten underholdningsverdi, da dette er et administrativt dokument.\",\n        \"konflikt\": \"Høyere verdi da nabosamtykke ofte kan involvere uenigheter eller konflikter mellom naboer.\",\n        \"identifikasjon\": \"Høy verdi da det gjelder lokale personer og eiendommer, noe som er svært relevant for lokalsamfunnet.\",\n        \"magnitude\": \"Moderat verdi da det kan påvirke flere parter, men vanligvis ikke i svært stort omfang.\"\n    }\n}\n```"
     }
   },
   "0a56c2ae-579f-5297-bf6a-aa786dc52a11": {
@@ -64,13 +102,13 @@
       "url": "https://bergen.kommune.no/politikere-utvalg/api/fil/bk360/10588602/E-post-vedr-klage-til-PFU"
     },
     "gpt_evaluation": {
-      "makteliten": 10,
+      "makteliten": 8,
       "positivitet": 2,
-      "underholdning": 1,
-      "konflikt": 10,
-      "identifikasjon": 8,
-      "magnitude": 7,
-      "samlet_vurdering": 38
+      "underholdning": 4,
+      "konflikt": 9,
+      "identifikasjon": 7,
+      "magnitude": 6,
+      "samlet_vurdering": 36
     },
     "claude_evaluation": {
       "makteliten": 7,
@@ -78,12 +116,31 @@
       "underholdning": 2,
       "konflikt": 9,
       "identifikasjon": 6,
-      "magnitude": 6,
-      "samlet_vurdering": 31
+      "magnitude": 5,
+      "samlet_vurdering": 30
+    },
+    "mistral_evaluation": {
+      "dokument_type": "klage_til_PFU",
+      "makteliten": 9,
+      "positivitet": 0,
+      "underholdning": 0,
+      "konflikt": 10,
+      "identifikasjon": 8,
+      "magnitude": 8,
+      "samlet_vurdering": 35,
+      "begrunnelse": {
+        "makteliten": "Dokumentet omhandler en sak som involverer en person (Gøril Selvik) med tilknytning til et kommunalt selskap (BTS Utvikling AS) og en potensiell konflikt med journalister i NRK. Dette er relevant for makteliten da det involverer både kommunal forvaltning og medieetikk.",
+        "positivitet": "Dokumentet inneholder ingen positive elementer, men er i stedet en klage på en publisering som oppleves som krenkende og feilaktig.",
+        "underholdning": "Ingen underholdningsverdi i dette dokumentet, da det er en alvorlig klage på journalistisk praksis.",
+        "konflikt": "Høy konfliktverdi da dokumentet beskriver en alvorlig konflikt mellom en privatperson, kommunale interesser, og NRKs journalistikk. Det er også en tydelig konflikt mellom klageren og de omtalte journalistene.",
+        "identifikasjon": "Gøril Selvik og Thorsten Selvik er lokale personer med tilknytning til Bergen-området. Selvik er også en kjent navn i lokal sammenheng, noe som gir høy identifikasjonsverdi.",
+        "magnitude": "Saken har et stort omfang, da den involverer en klage til PFU, en stor medieaktør (NRK), og potensielle konsekvenser for både klagerens omdømme og journalistisk praksis."
+      }
     },
     "raw_responses": {
-      "gpt": "```json\n{\n    \"makteliten\": 10,\n    \"positivitet\": 2,\n    \"underholdning\": 1,\n    \"konflikt\": 10,\n    \"identifikasjon\": 8,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 38\n}\n```",
-      "claude": "Basert på dokumentet, som ser ut til å være en e-post vedrørende en klage til Pressens Faglige Utvalg (PFU), vil jeg vurdere nyhetsverdiene slik:\n\n{\n    \"makteliten\": 7,\n    \"positivitet\": 1,\n    \"underholdning\": 2,\n    \"konflikt\": 9,\n    \"identifikasjon\": 6,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 31\n}\n\nBegrunnelse:\n- Makteliten (7): Dokumentet omhandler kommunalt eiendomssalg og involverer styremedlem, journalister og kommunalt selskap\n- Positivitet (1): Svært lav, dokumentet handler om en klage og mulig kritikkverdig journalistikk\n- Underholdning (2): Lav underholdningsverdi, saklig dokument\n- Konflikt (9): Høy konfliktscore - klage på journalistikk, mulig ærekrenkelse, uenighet om fakta\n- Identifikasjon (6): Nevner lokale personer fra Bergen, noe lokalforankring\n- Magnitude (6): Omfatter kommunalt eiendomssalg, involverer flere parter"
+      "gpt": "```json\n{\n    \"makteliten\": 8,\n    \"positivitet\": 2,\n    \"underholdning\": 4,\n    \"konflikt\": 9,\n    \"identifikasjon\": 7,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 36\n}\n```",
+      "claude": "Basert på dokumentet som er en e-post vedrørende en klage til Pressens Faglige Utvalg (PFU), vil jeg vurdere nyhetsverdiene slik:\n\n{\n    \"makteliten\": 7,\n    \"positivitet\": 1,\n    \"underholdning\": 2,\n    \"konflikt\": 9,\n    \"identifikasjon\": 6,\n    \"magnitude\": 5,\n    \"samlet_vurdering\": 30\n}\n\nBegrunnelse:\n- Makteliten (7): Dokumentet omhandler kommunalt eiendomssalg, journalister og et kommunalt selskap - høy politisk relevans\n- Positivitet (1): Svært lav, dokumentet handler om en konflikt og klage\n- Underholdning (2): Lav underholdningsverdi, rent saklig dokument\n- Konflikt (9): Høy konfliktverdi - klage på journalistisk fremstilling, mulig presseetisk overtredelse\n- Identifikasjon (6): Nevner lokale aktører som kan være kjente i lokalsamfunnet\n- Magnitude (5): Middels omfang, handler om eiendomssalg og mulig interessekonflikt",
+      "mistral": "```json\n{\n    \"dokument_type\": \"klage_til_PFU\",\n    \"makteliten\": 9,\n    \"positivitet\": 0,\n    \"underholdning\": 0,\n    \"konflikt\": 10,\n    \"identifikasjon\": 8,\n    \"magnitude\": 8,\n    \"samlet_vurdering\": 35,\n\n    \"begrunnelse\":\n    {\n        \"makteliten\": \"Dokumentet omhandler en sak som involverer en person (Gøril Selvik) med tilknytning til et kommunalt selskap (BTS Utvikling AS) og en potensiell konflikt med journalister i NRK. Dette er relevant for makteliten da det involverer både kommunal forvaltning og medieetikk.\",\n        \"positivitet\": \"Dokumentet inneholder ingen positive elementer, men er i stedet en klage på en publisering som oppleves som krenkende og feilaktig.\",\n        \"underholdning\": \"Ingen underholdningsverdi i dette dokumentet, da det er en alvorlig klage på journalistisk praksis.\",\n        \"konflikt\": \"Høy konfliktverdi da dokumentet beskriver en alvorlig konflikt mellom en privatperson, kommunale interesser, og NRKs journalistikk. Det er også en tydelig konflikt mellom klageren og de omtalte journalistene.\",\n        \"identifikasjon\": \"Gøril Selvik og Thorsten Selvik er lokale personer med tilknytning til Bergen-området. Selvik er også en kjent navn i lokal sammenheng, noe som gir høy identifikasjonsverdi.\",\n        \"magnitude\": \"Saken har et stort omfang, da den involverer en klage til PFU, en stor medieaktør (NRK), og potensielle konsekvenser for både klagerens omdømme og journalistisk praksis.\"\n    }\n}\n```"
     }
   },
   "0a8763fb-6949-5163-894b-9791a6c2a8c8": {
@@ -94,25 +151,44 @@
     },
     "gpt_evaluation": {
       "makteliten": 8,
+      "positivitet": 4,
+      "underholdning": 2,
+      "konflikt": 6,
+      "identifikasjon": 5,
+      "magnitude": 7,
+      "samlet_vurdering": 32
+    },
+    "claude_evaluation": {
+      "makteliten": 8,
       "positivitet": 6,
       "underholdning": 2,
+      "konflikt": 5,
+      "identifikasjon": 7,
+      "magnitude": 5,
+      "samlet_vurdering": 33
+    },
+    "mistral_evaluation": {
+      "dokument_type": "saksprotokoll_om_fradeling_av_boligparsell",
+      "makteliten": 9,
+      "positivitet": 6,
+      "underholdning": 1,
       "konflikt": 7,
       "identifikasjon": 5,
       "magnitude": 6,
-      "samlet_vurdering": 34
-    },
-    "claude_evaluation": {
-      "makteliten": 7,
-      "positivitet": 5,
-      "underholdning": 3,
-      "konflikt": 6,
-      "identifikasjon": 7,
-      "magnitude": 6,
-      "samlet_vurdering": 34
+      "samlet_vurdering": 34,
+      "begrunnelser": {
+        "makteliten": "Dokumentet omhandler en politisk sak behandlet av Utvalg for miljø og byutvikling (UMBY), som er en del av den lokale makteliten. Det er også referanse til plan- og bygningsloven, som er en sentral politisk forskrift. Det er derfor høy score på makteliten.",
+        "positivitet": "Dokumentet inneholder en positiv avgjørelse for søker (innvilget fradeling), men er ellers teknisk og juridisk. Det er derfor moderat score på positivitet.",
+        "underholdning": "Dokumentet er av teknisk-administrativ karakter og har ingen underholdningsverdi. Lav score.",
+        "konflikt": "Det er en tydelig konflikt mellom søker og naboer, samt at saken opprinnelig ble avvist av plan- og bygningsetaten. Det er derfor en relativt høy score på konflikt.",
+        "identifikasjon": "Dokumentet omtaler konkrete eiendommer og personer (søker, naboer, arkitekter, entreprenører), men disse er ikke spesielt kjente offentlige personer. Moderat score.",
+        "magnitude": "Saken gjelder en konkret parsell og har lokale konsekvenser, men er ikke av stor samfunnsmessig betydning. Moderat score."
+      }
     },
     "raw_responses": {
-      "gpt": "{\n    \"makteliten\": 8,\n    \"positivitet\": 6,\n    \"underholdning\": 2,\n    \"konflikt\": 7,\n    \"identifikasjon\": 5,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 34\n}",
-      "claude": "Basert på dokumentet vil jeg vurdere nyhetsverdiene slik:\n\n1. Makteliten: 7/10\n- Dokumentet er fra et kommunalt utvalg (UMBY)\n- Inneholder politisk saksbehandling og vedtak\n- Representerer den lokale politiske makteliten\n\n2. Positivitet: 5/10\n- Dokumentet er relativt nøytralt i form\n- Inneholder en positiv avgjørelse (innvilgelse av søknad)\n- Mindre positivt ladet enn et rent positivt dokument\n\n3. Underholdning: 3/10\n- Saklig saksbehandlingsdokument\n- Liten underholdningsverdi\n- Teknisk gjennomgang av eiendomssak\n\n4. Konflikt: 6/10\n- Dokumentet nevner naboers innvendinger\n- Viser en potensiell konflikt mellom tiltakshaver og naboer\n- Konfliktnivå er moderat\n\n5. Identifikasjon: 7/10\n- Lokal sak i Bergen\n- Omhandler konkrete lokale aktører\n- Høy grad av lokal forankring\n\n6. Magnitude: 6/10\n- Gjelder fradeling av én boligparsell\n- Påvirker relativt få personer\n- Middels omfang\n\n{\n    \"makteliten\": 7,\n    \"positivitet\": 5,\n    \"underholdning\": 3,\n    \"konflikt\": 6,\n    \"identifikasjon\": 7,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 34\n}"
+      "gpt": "{\n    \"makteliten\": 8,\n    \"positivitet\": 4,\n    \"underholdning\": 2,\n    \"konflikt\": 6,\n    \"identifikasjon\": 5,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 32\n}",
+      "claude": "Basert på dokumentet om en saksprotokoll fra Utvalg for miljø og byutvikling, vil jeg vurdere nyhetsverdien slik:\n\n{\n    \"makteliten\": 8,\n    \"positivitet\": 6, \n    \"underholdning\": 2,\n    \"konflikt\": 5,\n    \"identifikasjon\": 7,\n    \"magnitude\": 5,\n    \"samlet_vurdering\": 33\n}\n\nBegrunnelse:\n- Makteliten (8/10): Dokumentet er fra et kommunalt utvalg som behandler en byggesak, høy politisk relevans\n- Positivitet (6/10): Saken ender positivt med innvilget søknad \n- Underholdning (2/10): Lite underholdningsverdi, teknisk byggesak\n- Konflikt (5/10): Naboer har kommet med innvendinger, moderat konfliktnivå\n- Identifikasjon (7/10): Lokal sak fra Bergen med konkrete personer og naboer involvert\n- Magnitude (5/10): Gjelder fradeling av én boligparsell, begrenset omfang",
+      "mistral": "```json\n{\n    \"dokument_type\": \"saksprotokoll_om_fradeling_av_boligparsell\",\n    \"makteliten\": 9,\n    \"positivitet\": 6,\n    \"underholdning\": 1,\n    \"konflikt\": 7,\n    \"identifikasjon\": 5,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 34,\n\n    \"begrunnelser\": {\n        \"makteliten\": \"Dokumentet omhandler en politisk sak behandlet av Utvalg for miljø og byutvikling (UMBY), som er en del av den lokale makteliten. Det er også referanse til plan- og bygningsloven, som er en sentral politisk forskrift. Det er derfor høy score på makteliten.\",\n        \"positivitet\": \"Dokumentet inneholder en positiv avgjørelse for søker (innvilget fradeling), men er ellers teknisk og juridisk. Det er derfor moderat score på positivitet.\",\n        \"underholdning\": \"Dokumentet er av teknisk-administrativ karakter og har ingen underholdningsverdi. Lav score.\",\n        \"konflikt\": \"Det er en tydelig konflikt mellom søker og naboer, samt at saken opprinnelig ble avvist av plan- og bygningsetaten. Det er derfor en relativt høy score på konflikt.\",\n        \"identifikasjon\": \"Dokumentet omtaler konkrete eiendommer og personer (søker, naboer, arkitekter, entreprenører), men disse er ikke spesielt kjente offentlige personer. Moderat score.\",\n        \"magnitude\": \"Saken gjelder en konkret parsell og har lokale konsekvenser, men er ikke av stor samfunnsmessig betydning. Moderat score.\"\n    }\n}\n```"
     }
   },
   "0ac7af4b-7cea-576b-8a0d-f755c25b5d04": {
@@ -126,9 +202,9 @@
       "positivitet": 5,
       "underholdning": 2,
       "konflikt": 6,
-      "identifikasjon": 4,
+      "identifikasjon": 5,
       "magnitude": 7,
-      "samlet_vurdering": 32
+      "samlet_vurdering": 33
     },
     "claude_evaluation": {
       "makteliten": 8,
@@ -139,9 +215,11 @@
       "magnitude": 7,
       "samlet_vurdering": 34
     },
+    "mistral_evaluation": null,
     "raw_responses": {
-      "gpt": "```json\n{\n    \"makteliten\": 8,\n    \"positivitet\": 5,\n    \"underholdning\": 2,\n    \"konflikt\": 6,\n    \"identifikasjon\": 4,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 32\n}\n```",
-      "claude": "Basert på dokumentet, som ser ut til å være et tilleggsnotat til en reguleringsplan i Bergen kommune, vil jeg vurdere nyhetsverdien slik:\n\n{\n    \"makteliten\": 8,\n    \"positivitet\": 4,\n    \"underholdning\": 2,\n    \"konflikt\": 6,\n    \"identifikasjon\": 7,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 34\n}\n\nBegrunnelse:\n- Makteliten (8): Dokumentet er fra kommunens byrådsavdeling og omhandler politisk saksbehandling\n- Positivitet (4): Dokumentet er relativt teknisk og nøytralt, med få positive aspekter\n- Underholdning (2): Lite underholdningsverdi, svært teknisk dokument\n- Konflikt (6): Antyder noe uenighet rundt byggehøyder og planløsning\n- Identifikasjon (7): Omhandler lokalt område i Bergen (Mindemyren), lokale spørsmål\n- Magnitude (7): Omfatter flere tema som byutvikling, bolig, barnehage, parker"
+      "gpt": "```json\n{\n    \"makteliten\": 8,\n    \"positivitet\": 5,\n    \"underholdning\": 2,\n    \"konflikt\": 6,\n    \"identifikasjon\": 5,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 33\n}\n```",
+      "claude": "Basert på dokumentet, som ser ut til å være et kommunalt tilleggsnotat for en reguleringsplan, vil jeg vurdere nyhetsverdiene slik:\n\n{\n    \"makteliten\": 8,\n    \"positivitet\": 4,\n    \"underholdning\": 2,\n    \"konflikt\": 6,\n    \"identifikasjon\": 7,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 34\n}\n\nBegrunnelse:\n- Makteliten (8): Høy score fordi dokumentet direkte omhandler kommunal saksbehandling og politisk prosess rundt byutvikling\n- Positivitet (4): Nøytral/moderat positiv tone, handler om byutvikling men med noen utfordringer\n- Underholdning (2): Lav score, saklig dokument uten underholdningsverdi\n- Konflikt (6): Visse spenninger/uenigheter rundt byggehøyder, parkeringsløsninger etc.\n- Identifikasjon (7): Omhandler lokalt område i Bergen (Årstad/Mindemyren), med lokale stedsnavn\n- Magnitude (7): Omfatter flere aspekter som bolig, barnehage, park, og involverer flere interessenter",
+      "mistral": "```json\n{\n    \"dokument_type\": \"reguleringsplan_sluttbehandling\",\n    \"makteliten\": 9,\n    \"positivitet\": 5,\n    \"underholdning\": 2,\n    \"konflikt\": 8,\n    \"identifikasjon\": 7,\n    \"magnitude\": 9,\n    \"samlet_vurdering\": 40,\n\n    \"begrunnelser\":\n    {\n        \"makteliten\": \"Dokumentet omhandler en politisk sak (reguleringsplan) som involverer byrådsavdelingen, bystyret og andre politiske instanser. Det er tydelig at makteliten er sentral i dokumentet, med spørsmål rettet mot byråden og referanser til politiske prosesser.\",\n        \"positivitet\": \"Dokumentet har et nøytralt til delvis positivt preg, da det omhandler justeringer for å forbedre solforhold og oppholdskvalitet i parken. Men det er også kritiske spørsmål, noe som trekker ned positivitetsscoren.\",\n        \"underholdning\": \"Lav score da dokumentet ikke omhandler arrangementer eller aktiviteter for lokalsamfunnet, men snarere tekniske og politiske detaljer rundt en reguleringsplan.\",\n        \"konflikt\": \"Høy score da dokumentet inneholder flere kritiske spørsmål og potensielle uenigheter (f.eks. om byggehøyder, fjerning av skatepark, akebakke, og hastebehandling). Det er tydelige interesser som står mot hverandre, noe som indikerer konfliktpotensial.\",\n        \"identifikasjon\": \"Middels score da saken gjelder et konkret område (Mindemyren Nord) i Bergen, som er lokalt relevant. Det nevnes også lokale aktører som barnehage, skolebyråd, og beboere, men ingen spesifikke kjente personer eller organisasjoner.\",\n        \"magnitude\": \"Høy score da saken har stor lokal betydning (reguleringsplan for et større område) og potensielt vil påvirke mange beboere, barnehage, park, og framtidig boligbygging. Konsekvensene av planen er omfattende.\"\n    },\n\n    \"forslag_til_vinkling\":\n    {\n        \"overskrift\": \"Strid om byggehøyder og fasiliteter i Mindemyren Nord: – Bystyret får for lite tid til å vurdere planen\",\n        \"ingress\": \"Byrådsavdelingen for byutvikling har lagt frem et tilleggsnotat til reguleringsplanen for Mindemyren Nord. Men kritiske spørsmål om byggehøyder, fjerning av skatepark og akebakke, samt hastebehandlingen av saken, skaper debatt. Bystyret krever mer tid til å vurdere den omfattende planen, som vil påvirke boliger, barnehage og park i området.\",\n        \"sentrale_punkter\":\n        [\n            \"Byrådsavdelingen forklarer at byggehøydene er justert for å bedre solforholdene i parken, men kritikerne spør om det er mulig å gå tilbake til opprinnelige høyder uten ny høring.\",\n            \"Fjerning av skatepark og akebakke skaper undring: – Er det satt inn andre tiltak for barn og unge?\",\n            \"Hastebehandling kritiseres: – Bystyret fikk saken bare en uke før behandling, til tross for at byrådsavdelingen har brukt tre måneder på tilleggsnotatet.\",\n            \"Spørsmål om parallell byggesaksbehandling og mulighet for befaring før vedtak.\",\n            \"Barnehage og flerbrukshall: Er det satt av penger, og når bygges hallen?\",\n            \"Beboere lurer på muligheten for å sette opp plantekasser og solenergi på byggene.\"\n        ],\n        \"aktuelle_kilder\":\n        [\n            \"Byrådsavdeling for byutvikling (Marie Mildestveit, saksbehandler)\",\n            \"Representanter fra bystyret/UMBY-utvalget\",\n            \"Lokale beboere eller beboerforeninger i Mindemyren Nord\",\n            \"Skolebyråden (om spørsmål knyttet til flerbrukshall og barnehage)\",\n            \"Miljøorganisasjoner (om naturmangfold og solforhold"
     }
   },
   "0b4de86a-ed3d-5cde-9689-f47263f2a46e": {
@@ -154,23 +232,48 @@
       "makteliten": 8,
       "positivitet": 7,
       "underholdning": 2,
-      "konflikt": 0,
+      "konflikt": 1,
       "identifikasjon": 6,
       "magnitude": 7,
-      "samlet_vurdering": 30
+      "samlet_vurdering": 31
     },
     "claude_evaluation": {
       "makteliten": 8,
-      "positivitet": 6,
+      "positivitet": 5,
       "underholdning": 2,
       "konflikt": 3,
       "identifikasjon": 7,
+      "magnitude": 6,
+      "samlet_vurdering": 62
+    },
+    "mistral_evaluation": {
+      "dokument_type": "Redegjørelse om krisekommunikasjon med fokus på personer med funksjonsnedsettelser",
+      "makteliten": 9,
+      "positivitet": 7,
+      "underholdning": 1,
+      "konflikt": 2,
+      "identifikasjon": 8,
       "magnitude": 9,
-      "samlet_vurdering": 65
+      "samlet_vurdering": 36,
+      "begrunnelse": {
+        "makteliten": "Dokumentet er en byrådssak som omhandler kommunens ansvar og strategi for informasjon i krisesituasjoner. Det er tydelig knyttet til politisk ledelse (byrådet, bystyret) og kommunal forvaltning, noe som gir høy score på makteliten.",
+        "positivitet": "Dokumentet har et konstruktivt fokus på å forbedre kommunikasjon og inkludering, spesielt for sårbare grupper. Dette er positivt, men ikke sensasjonelt eller ekstraordinært, derav en moderat score.",
+        "underholdning": "Ingen underholdningsverdi, da dokumentet er en teknisk redegjørelse uten arrangementer eller aktiviteter.",
+        "konflikt": "Det er ingen direkte konflikter nevnt, men det kan antydes en underliggende utfordring (f.eks. manglende tilgjengelighet for personer med funksjonsnedsettelser). Dette gir en lav score.",
+        "identifikasjon": "Dokumentet omhandler en viktig lokal sak som angår alle innbyggere, spesielt sårbare grupper. Det er relevant for lokalbefolkningen, men uten navngitte personer eller organisasjoner, derav en høy, men ikke maksimal score.",
+        "magnitude": "Saken har stort omfang, da den gjelder kommunens krisekommunikasjon til hele befolkningen, inkludert personer med funksjonsnedsettelser. Dette er en kritisk og omfattende sak, derav høy score."
+      },
+      "anbefaling": {
+        "overskrift": "«Bergen kommune styrker krisekommunikasjonen for personer med funksjonsnedsettelser»",
+        "vinkling": "Fokus på hvordan kommunen jobber for å sikre at alle innbyggere, inkludert de med funksjonsnedsettelser, får nødvendig informasjon i en krise. Kan trekke inn erfaringer fra koronapandemien og hvordan dette nå implementeres i fremtidige planer. Intervju med ansvarlig byråd eller kommunikasjonsdirektør kan gi dybde.",
+        "målgruppe": "Bredt relevant for alle innbyggere, men spesielt for personer med funksjonsnedsettelser, pårørende og organisasjoner som jobber med tilgjengelighet.",
+        "prioritet": "Høy. Dette er en viktig samfunnssak med stor relevans for lokaldemokratiet og innbyggernes trygghet."
+      }
     },
     "raw_responses": {
-      "gpt": "```json\n{\n    \"makteliten\": 8,\n    \"positivitet\": 7,\n    \"underholdning\": 2,\n    \"konflikt\": 0,\n    \"identifikasjon\": 6,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 30\n}\n```",
-      "claude": "Basert på dokumentet om kommunens informasjonsberedskap vil jeg vurdere nyhetsverdiene slik:\n\n{\n    \"makteliten\": 8,\n    \"positivitet\": 6,\n    \"underholdning\": 2,\n    \"konflikt\": 3,\n    \"identifikasjon\": 7,\n    \"magnitude\": 9,\n    \"samlet_vurdering\": 65\n}\n\nBegrunnelse:\n- Makteliten (8/10): Dokumentet er direkte fra byrådet og omhandler kommunal beredskapsplanlegging\n- Positivitet (6/10): Fremstår konstruktivt med fokus på løsninger og informasjonsstrategi  \n- Underholdning (2/10): Svært saklig og administrativt dokument\n- Konflikt (3/10): Lite konfliktstoff, mest beskrivende \n- Identifikasjon (7/10): Omhandler lokale innbyggere, spesielt personer med funksjonsnedsettelser\n- Magnitude (9/10): Omhandler kommunikasjonsberedskap for hele befolkningen i krisesituasjoner\n\nDen samlede vurderingen på 65 indikerer en middels til høy nyhetsverdi, særlig grunnet dokumentets betydning for kommunal beredskap og innbyggernes informasjonsbehov."
+      "gpt": "{\n    \"makteliten\": 8,\n    \"positivitet\": 7,\n    \"underholdning\": 2,\n    \"konflikt\": 1,\n    \"identifikasjon\": 6,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 31\n}",
+      "claude": "Basert på dokumentet vil jeg vurdere nyhetsverdien slik:\n\n{\n    \"makteliten\": 8,\n    \"positivitet\": 5,\n    \"underholdning\": 2,\n    \"konflikt\": 3,\n    \"identifikasjon\": 7,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 62\n}\n\nBegrunnelse:\n- Makteliten (8/10): Dokumentet omhandler kommunens byråd og beskriver kommunikasjonsberedskap, som har høy politisk relevans.\n- Positivitet (5/10): Dokumentet er saklig og beskrivende, med noe positiv tone rundt kommunens beredskapsplaner.\n- Underholdning (2/10): Dokumentet er svært faglig og lite underholdende.\n- Konflikt (3/10): Lite konflikt, mest beskrivende tekst om kommunikasjonsberedskap.\n- Identifikasjon (7/10): Handler om lokale innbyggere, spesielt personer med funksjonsnedsettelser, som gir høy identifikasjonsverdi.\n- Magnitude (6/10): Omhandler informasjonsberedskap for hele byens befolkning, noe som gir middels omfang.",
+      "mistral": "```json\n{\n    \"dokument_type\": \"Redegjørelse om krisekommunikasjon med fokus på personer med funksjonsnedsettelser\",\n    \"makteliten\": 9,\n    \"positivitet\": 7,\n    \"underholdning\": 1,\n    \"konflikt\": 2,\n    \"identifikasjon\": 8,\n    \"magnitude\": 9,\n    \"samlet_vurdering\": 36,\n\n    \"begrunnelse\": {\n        \"makteliten\": \"Dokumentet er en byrådssak som omhandler kommunens ansvar og strategi for informasjon i krisesituasjoner. Det er tydelig knyttet til politisk ledelse (byrådet, bystyret) og kommunal forvaltning, noe som gir høy score på makteliten.\",\n        \"positivitet\": \"Dokumentet har et konstruktivt fokus på å forbedre kommunikasjon og inkludering, spesielt for sårbare grupper. Dette er positivt, men ikke sensasjonelt eller ekstraordinært, derav en moderat score.\",\n        \"underholdning\": \"Ingen underholdningsverdi, da dokumentet er en teknisk redegjørelse uten arrangementer eller aktiviteter.\",\n        \"konflikt\": \"Det er ingen direkte konflikter nevnt, men det kan antydes en underliggende utfordring (f.eks. manglende tilgjengelighet for personer med funksjonsnedsettelser). Dette gir en lav score.\",\n        \"identifikasjon\": \"Dokumentet omhandler en viktig lokal sak som angår alle innbyggere, spesielt sårbare grupper. Det er relevant for lokalbefolkningen, men uten navngitte personer eller organisasjoner, derav en høy, men ikke maksimal score.\",\n        \"magnitude\": \"Saken har stort omfang, da den gjelder kommunens krisekommunikasjon til hele befolkningen, inkludert personer med funksjonsnedsettelser. Dette er en kritisk og omfattende sak, derav høy score.\"\n    },\n\n    \"anbefaling\": {\n        \"overskrift\": \"«Bergen kommune styrker krisekommunikasjonen for personer med funksjonsnedsettelser»\",\n        \"vinkling\": \"Fokus på hvordan kommunen jobber for å sikre at alle innbyggere, inkludert de med funksjonsnedsettelser, får nødvendig informasjon i en krise. Kan trekke inn erfaringer fra koronapandemien og hvordan dette nå implementeres i fremtidige planer. Intervju med ansvarlig byråd eller kommunikasjonsdirektør kan gi dybde.\",\n        \"målgruppe\": \"Bredt relevant for alle innbyggere, men spesielt for personer med funksjonsnedsettelser, pårørende og organisasjoner som jobber med tilgjengelighet.\",\n        \"prioritet\": \"Høy. Dette er en viktig samfunnssak med stor relevans for lokaldemokratiet og innbyggernes trygghet.\"\n    }\n}\n```"
     }
   },
   "0b0910b1-e4c4-59f4-bb0e-e44042402f6e": {
@@ -180,26 +283,34 @@
       "url": "https://bergen.kommune.no/politikere-utvalg/api/fil/bk360/10937809/Fotomontasje-og-perspektiv-datert-29-04-24-og-27-03-24"
     },
     "gpt_evaluation": {
-      "makteliten": 7,
-      "positivitet": 6,
-      "underholdning": 3,
-      "konflikt": 2,
-      "identifikasjon": 4,
-      "magnitude": 8,
-      "samlet_vurdering": 30
+      "makteliten": 0,
+      "positivitet": 5,
+      "underholdning": 2,
+      "konflikt": 0,
+      "identifikasjon": 2,
+      "magnitude": 6,
+      "samlet_vurdering": 15
     },
     "claude_evaluation": {
-      "makteliten": 6,
+      "makteliten": 5,
       "positivitet": 7,
       "underholdning": 3,
       "konflikt": 2,
-      "identifikasjon": 8,
+      "identifikasjon": 6,
       "magnitude": 8,
-      "samlet_vurdering": 34
+      "samlet_vurdering": 41
+    },
+    "mistral_evaluation": {
+      "object": "error",
+      "message": "Service tier capacity exceeded for this model.",
+      "type": "service_tier_capacity_exceeded",
+      "param": null,
+      "code": "3505"
     },
     "raw_responses": {
-      "gpt": "```json\n{\n    \"makteliten\": 7,\n    \"positivitet\": 6,\n    \"underholdning\": 3,\n    \"konflikt\": 2,\n    \"identifikasjon\": 4,\n    \"magnitude\": 8,\n    \"samlet_vurdering\": 30\n}\n```",
-      "claude": "Basert på dokumentet, som ser ut til å være en teknisk tegning/illustrasjonsplan for et bolig- og bosentersprosjekt i Sandbrekkevegen, Bergen, vil jeg vurdere nyhetsverdien slik:\n\n{\n    \"makteliten\": 6,\n    \"positivitet\": 7,\n    \"underholdning\": 3,\n    \"konflikt\": 2,\n    \"identifikasjon\": 8,\n    \"magnitude\": 8,\n    \"samlet_vurdering\": 34\n}\n\nBegrunnelse:\n- Makteliten (6/10): Kommunal reguleringsplan, relativt høy politisk interesse\n- Positivitet (7/10): Nye boligprosjekter og bosenter regnes som positivt byutviklingstiltak\n- Underholdning (3/10): Teknisk dokumentasjon, lite underholdningsverdi\n- Konflikt (2/10): Ingen synlig konflikt i dokumentet\n- Identifikasjon (8/10): Lokalt prosjekt i Bergen, berører lokalmiljøet direkte\n- Magnitude (8/10): Betydelig prosjekt med nye boliger og bosenter, flere eiendommer involvert"
+      "gpt": "{\n    \"makteliten\": 0,\n    \"positivitet\": 5,\n    \"underholdning\": 2,\n    \"konflikt\": 0,\n    \"identifikasjon\": 2,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 15\n}",
+      "claude": "Basert på det tilsendte dokumentet, som ser ut til å være en teknisk tegning/illustrasjonsplan for et bolig- og bosentersprosjekt i Bergen kommune, vil jeg vurdere nyhetsverdiene slik:\n\n{\n    \"makteliten\": 5,\n    \"positivitet\": 7,\n    \"underholdning\": 3,\n    \"konflikt\": 2,\n    \"identifikasjon\": 6,\n    \"magnitude\": 8,\n    \"samlet_vurdering\": 41\n}\n\nBegrunnelse:\n- Makteliten (5/10): Dokumentet er fra Bergen kommune, som gir noe politisk relevans\n- Positivitet (7/10): Viser byutvikling og nye boligløsninger, fremstår positivt\n- Underholdning (3/10): Teknisk tegning med begrenset underholdningsverdi\n- Konflikt (2/10): Ingen synlig konflikt i dokumentet\n- Identifikasjon (6/10): Lokalt prosjekt i Bergen, med referanser til lokale steder\n- Magnitude (8/10): Stort boligprosjekt som berører flere eiendommer og områder\n\nSamlet vurdering blir dermed 41 av 100 mulige poeng.",
+      "mistral": "Mistral Error: API error occurred: Status 429. Body: {\"object\":\"error\",\"message\":\"Service tier capacity exceeded for this model.\",\"type\":\"service_tier_capacity_exceeded\",\"param\":null,\"code\":\"3505\"}"
     }
   },
   "0be2e301-0fbf-53d6-84e0-6af712dc7f4f": {
@@ -209,13 +320,13 @@
       "url": "https://bergen.kommune.no/politikere-utvalg/api/fil/bk360/10245571/Innstilling-vedtak-Evaluering-av-forskrift-for-utleie-av-sma-elektriske-kjoretoy-pa-offentlig-grunn-i-Bergen-kommune"
     },
     "gpt_evaluation": {
-      "makteliten": 10,
+      "makteliten": 8,
       "positivitet": 5,
       "underholdning": 3,
-      "konflikt": 7,
-      "identifikasjon": 8,
-      "magnitude": 6,
-      "samlet_vurdering": 39
+      "konflikt": 6,
+      "identifikasjon": 7,
+      "magnitude": 7,
+      "samlet_vurdering": 36
     },
     "claude_evaluation": {
       "makteliten": 9,
@@ -223,12 +334,14 @@
       "underholdning": 3,
       "konflikt": 7,
       "identifikasjon": 8,
-      "magnitude": 9,
-      "samlet_vurdering": 42
+      "magnitude": 8,
+      "samlet_vurdering": 69
     },
+    "mistral_evaluation": null,
     "raw_responses": {
-      "gpt": "```json\n{\n    \"makteliten\": 10,\n    \"positivitet\": 5,\n    \"underholdning\": 3,\n    \"konflikt\": 7,\n    \"identifikasjon\": 8,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 39\n}\n```",
-      "claude": "Basert på dokumentet, her er en vurdering av nyhetsverdiene:\n\n{\n    \"makteliten\": 9,\n    \"positivitet\": 6,\n    \"underholdning\": 3,\n    \"konflikt\": 7,\n    \"identifikasjon\": 8,\n    \"magnitude\": 9,\n    \"samlet_vurdering\": 42\n}\n\nBegrunnelse:\n- Makteliten (9/10): Dokumentet er en protokoll fra Bergen bystyre, høy politisk relevans\n- Positivitet (6/10): Dokumentet er en nøktern evaluering med både konstruktive og kritiske merknader\n- Underholdning (3/10): Lite underholdningsverdi, svært formelt dokument\n- Konflikt (7/10): Flere ulike politiske synspunkter og forslag som indikerer uenighet\n- Identifikasjon (8/10): Lokalt dokument som omhandler Bergen kommunes elsparkesykkel-forskrift\n- Magnitude (9/10): Stor påvirkning på byens infrastruktur og mobilitet, mange involverte parter\n\nDen samlede vurderingen på 42 reflekterer dokumentets faglige og politiske tyngde, men relativt lave underholdningsverdi."
+      "gpt": "```json\n{\n    \"makteliten\": 8,\n    \"positivitet\": 5,\n    \"underholdning\": 3,\n    \"konflikt\": 6,\n    \"identifikasjon\": 7,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 36\n}\n```",
+      "claude": "Basert på dokumentet, her er en vurdering av nyhetsverdiene:\n\n{\n    \"makteliten\": 9,\n    \"positivitet\": 6,\n    \"underholdning\": 3,\n    \"konflikt\": 7,\n    \"identifikasjon\": 8,\n    \"magnitude\": 8,\n    \"samlet_vurdering\": 69\n}\n\nBegrunnelse:\n- Makteliten (9/10): Dokumentet er et kommunalt bystyrevedtak som detaljert beskriver politisk behandling av en forskrift. Høy politisk relevans.\n\n- Positivitet (6/10): Dokumentet inneholder både konstruktive forbedringsforslag og noen ulike syn, men har ikke overveiende positivt sentiment.\n\n- Underholdning (3/10): Dokumentet er svært teknisk og juridisk, lite underholdningsverdi.\n\n- Konflikt (7/10): Flere ulike politiske syn og forslag som viser nyanser og uenighet rundt elsparkesykkel-forskriften.\n\n- Identifikasjon (8/10): Lokalt dokument fra Bergen, nevner lokale råd, politiske representanter og handler om lokale forhold.\n\n- Magnitude (8/10): Omfatter hele kommunen, involverer mange interessenter (eldreråd, ungdomsråd, etc.) og har potensielt betydelige konsekvenser for byens infrastruktur.",
+      "mistral": "Dette dokumentet er en **saksprotokoll fra bystyret** (politisk dokument), men siden oppgaven ber om vurdering av *ikke-politiske dokumenter*, vil jeg likevel gi en vurdering basert på innholdet, da det også berører lokale forhold og potensielt allmenninteresse. Men merk at dette egentlig er et politisk dokument, og normalt ville det vært ekskludert.\n\n---\n```json\n{\n    \"dokument_type\": \"Saksprotokoll (Bystyret - politisk dokument, men med lokal allmenninteresse)\",\n    \"makteliten\": 10,\n    \"positivitet\": 4,\n    \"underholdning\": 2,\n    \"konflikt\": 7,\n    \"identifikasjon\": 8,\n    \"magnitude\": 9,\n    \"samlet_vurdering\": 40,\n    \"begrunnelse\": {\n        \"makteliten\": \"Dokumentet er en ren politisk sak med omfattende omtale av bystyret, byrådet, etater og lokale politikere (H, A, FrP, etc.). Maksimal score.\",\n        \"positivitet\": \"Lav score da saken hovedsakelig handler om reguleringer og problemer (feilparkering, nattestenging, bøter). Noe positivt i at det søkes løsninger, men overveiende kritisk tone.\",\n        \"underholdning\": \"Minimal score. Ingen arrangementer eller underholdningsverdi, men potensielt interessant for lesere som følger med på elsparkesykler.\",\n        \"konflikt\": \"Høy score pga. politiske uenigheter (f.eks. nattestenging vs. oppheving, bøter, soner). Flere merknader og avstemninger viser motstridende syn.\",\n        \"identifikasjon\": \"Høy score da saken gjelder Bergen kommune, lokale råd (Eldrerådet, Ungdomsrådet), og et tema (elsparkesykler) som berører mange innbyggere direkte.\",\n        \"magnitude\": \"Høy score pga. stor konsekvens for bybildet, trafikksikkerhet, og potensielt miljø. Gjelder hele kommunen og mange brukere.\",\n        \"samlet_kommentar\": \"Selv om dokumentet er politisk, har det høy lokal relevans (identifikasjon/magnitude) og konfliktpotensial. Men siden det er en saksprotokoll uten \"nyhetshendelse\", ville en journalist kanskje prioritert å dekke *utfallet* (f.eks. \"Nå innføres nattestenging for elsparkesykler\") fremfor selve protokollen. Samlet score reflekterer at dette er viktig for lokalbefolkningen, men ikke nødvendigvis en 'nyhet' i seg selv.\"\n    }\n}\n```\n\n---\n**Merknad til redaksjonen:**\nDette er teknisk sett et **politisk dokument**, og burde kanskje vært ekskludert fra vurderingen. Men siden elsparkesykler er et *kontroversielt og synlig tema* i Bergen, kan en oppsummerende artikkel om *utfallet* (f.eks. \"Dette blir de nye reglene for elsparkesykler i Bergen\") ha høy nyhetsverdi. Protokollen alene er imidlertid mer et **kildedokument** enn en ferdig nyhet.\n\n---\n**Eksempel på ikke-politisk dokument som ville fått høyere score:**\nEt dokument om *\"Åpning av nytt svømmebasseng i [lokalområde] med gratis tilgang for barn\"* ville sannsynligvis fått høyere score på *positivitet* (10), *underholdning* (8), *identifikasjon* (9), og *magnitude* (7), avhengig av størrelsen på prosjektet."
     }
   },
   "0c8ee3d3-f043-5e04-86da-571fe739fa60": {
@@ -238,26 +351,37 @@
       "url": "https://bergen.kommune.no/politikere-utvalg/api/fil/bk360/11807979/Innstilling-vedtak-Kjoreplan-for-bystyrets-mote-29-og-30-januar-2025"
     },
     "gpt_evaluation": {
-      "makteliten": 10,
-      "positivitet": 7,
-      "underholdning": 3,
+      "makteliten": 8,
+      "positivitet": 5,
+      "underholdning": 2,
       "konflikt": 0,
-      "identifikasjon": 8,
-      "magnitude": 5,
-      "samlet_vurdering": 33
+      "identifikasjon": 7,
+      "magnitude": 6,
+      "samlet_vurdering": 28
     },
     "claude_evaluation": {
-      "makteliten": 9,
+      "makteliten": 8,
       "positivitet": 3,
       "underholdning": 2,
       "konflikt": 1,
       "identifikasjon": 7,
       "magnitude": 6,
-      "samlet_vurdering": 28
+      "samlet_vurdering": 27
+    },
+    "mistral_evaluation": {
+      "type": "saksprotokoll",
+      "makteliten": 9,
+      "positivitet": 3,
+      "underholdning": 0,
+      "konflikt": 0,
+      "identifikasjon": 7,
+      "magnitude": 5,
+      "samlet_vurdering": 24
     },
     "raw_responses": {
-      "gpt": "{\n    \"makteliten\": 10,\n    \"positivitet\": 7,\n    \"underholdning\": 3,\n    \"konflikt\": 0,\n    \"identifikasjon\": 8,\n    \"magnitude\": 5,\n    \"samlet_vurdering\": 33\n}",
-      "claude": "Basert på dokumentet, her er en vurdering av nyhetsverdiene:\n\n{\n    \"makteliten\": 9,\n    \"positivitet\": 3,\n    \"underholdning\": 2,\n    \"konflikt\": 1,\n    \"identifikasjon\": 7,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 28\n}\n\nBegrunnelse:\n- Makteliten (9/10): Dokumentet handler direkte om bystyrets møte og involverer flere politiske representanter.\n- Positivitet (3/10): Dokumentet er nøytralt og prosedyralt, lite positivt ladet.\n- Underholdning (2/10): En administrativ kjøreplan har lav underholdningsverdi.\n- Konflikt (1/10): Dokumentet viser enstemmig votering og lite konflikt.\n- Identifikasjon (7/10): Nevner flere lokale politiske representanter ved navn.\n- Magnitude (6/10): Omfatter et kommunalt bystyremøte med flere deltakere.\n\nDen lave samlede vurderingen skyldes dokumentets tekniske og administrative natur, med lav underholdnings- og konfliktverdi."
+      "gpt": "```json\n{\n    \"makteliten\": 8,\n    \"positivitet\": 5,\n    \"underholdning\": 2,\n    \"konflikt\": 0,\n    \"identifikasjon\": 7,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 28\n}\n```",
+      "claude": "Basert på dokumentet om kjøreplan for bystyrets møte, vil jeg vurdere nyhetsverdiene slik:\n\n{\n    \"makteliten\": 8,\n    \"positivitet\": 3,\n    \"underholdning\": 2,\n    \"konflikt\": 1,\n    \"identifikasjon\": 7,\n    \"magnitude\": 6,\n    \"samlet_vurdering\": 27\n}\n\nBegrunnelse:\n- Makteliten (8/10): Dokumentet omhandler direkte bystyrets møteplan, med høy politisk relevans\n- Positivitet (3/10): Nøytralt dokument uten spesielt positivt innhold\n- Underholdning (2/10): Saklig møteplanuten underholdningsverdi\n- Konflikt (1/10): Ingen konflikter, enstemmig vedtak\n- Identifikasjon (7/10): Nevner flere lokale politiske representanter ved navn\n- Magnitude (6/10): Dekker et møte som involverer hele bystyret\n\nDokumenttypen er en administrativ møteprotokoll fra et politisk forretningsutvalg.",
+      "mistral": "Dette dokumentet er en **saksprotokoll** (administrativt/forvaltningsdokument) og ikke et politisk vedtaksdokument i seg selv, men det refererer til politiske prosesser. Her er vurderingen:\n\n```json\n{\n    \"type\": \"saksprotokoll\",\n    \"makteliten\": 9,\n    \"positivitet\": 3,\n    \"underholdning\": 0,\n    \"konflikt\": 0,\n    \"identifikasjon\": 7,\n    \"magnitude\": 5,\n    \"samlet_vurdering\": 24\n}\n```\n\n**Begrundelse for poengsettingen:**\n\n1. **Makteliten (9/10):**\n   - Dokumentet omhandler **bystyrets møte** og **Forretningsutvalgets behandling**, som er sentrale politiske organer i kommunen.\n   - Flere **navngitte politikere** (Even Sørland, Thor Haakon Bakke, etc.) er nevnt, noe som styrker maktelite-aspektet.\n   - Saken gjelder **kjøreplanen for bystyremøter**, som er en viktig politisk prosess.\n\n2. **Positivitet (3/10):**\n   - Dokumentet er **nøytralt/administrativt** (ingen tydelig positiv eller negativ vinkling).\n   - Det nevnes at vedtaket ble **enstemmig**, noe som kan tolkes som en form for positiv konsensus, men dette er ikke en \"positiv hendelse\" i tradisjonell forstand.\n\n3. **Underholdning (0/10):**\n   - Ingenting i dokumentet peker mot **arrangementer, aktiviteter eller underholdning** for lokalsamfunnet.\n\n4. **Konflikt (0/10):**\n   - Det var **enstemmig vedtak**, så ingen konflikt eller uenighet er nevnt.\n\n5. **Identifikasjon (7/10):**\n   - **Flere lokale politikere** er navngitt (Even Sørland, Thor Haakon Bakke, etc.), som er kjent i lokalsamfunnet.\n   - Dokumentet gjelder **bystyrets møter**, som er svært lokalt relevant.\n   - Poengtrekk fordi det ikke omhandler \"vanlige\" innbyggere eller lokale organisasjoner, men politiske representanter.\n\n6. **Magnitude (5/10):**\n   - Saken gjelder **planlegging av bystyremøter**, som er viktig for kommunens styring, men ikke en stor, omveltende sak.\n   - Konsekvensene er **administrative** (møteplanlegging) og ikke direkte merkbare for innbyggerne.\n   - Poeng for at det gjelder **hele bystyret** (alle representanter), men ikke en sak med stor påvirkning utenfor det politiske systemet.\n\n---\n**Samlet vurdering (24/100):**\nDokumentet er **primært relevant for politisk interesserte** og har **lav nyhetsverdi for den gjennomsnittlige leser**. Det er **ikke konfliktfylt, underholdende eller direkte positivt/negativt**, men det er **høy identifikasjon og maktelite-relevans**. Kan være aktuelt for en **kort notis** i avisens \"politikk\"-seksjon, men ikke en hovedsak."
     }
   },
   "0c1882ff-87bf-59ce-92e8-87829aa88651": {
@@ -267,26 +391,45 @@
       "url": "https://bergen.kommune.no/politikere-utvalg/api/fil/bk360/9325316/Kostnadsskjema-Midtunvegen-bofellesskap-H0590"
     },
     "gpt_evaluation": {
-      "makteliten": 8,
-      "positivitet": 5,
+      "makteliten": 5,
+      "positivitet": 6,
       "underholdning": 2,
-      "konflikt": 0,
-      "identifikasjon": 6,
+      "konflikt": 1,
+      "identifikasjon": 4,
       "magnitude": 7,
-      "samlet_vurdering": 28
+      "samlet_vurdering": 25
     },
     "claude_evaluation": {
       "makteliten": 6,
-      "positivitet": 4,
+      "positivitet": 3,
       "underholdning": 2,
       "konflikt": 1,
       "identifikasjon": 5,
       "magnitude": 8,
-      "samlet_vurdering": 52
+      "samlet_vurdering": 25
+    },
+    "mistral_evaluation": {
+      "dokument_type": "kostnadsskjema_for_bofellesskap",
+      "makteliten": 3,
+      "positivitet": 7,
+      "underholdning": 1,
+      "konflikt": 0,
+      "identifikasjon": 6,
+      "magnitude": 8,
+      "samlet_vurdering": 25,
+      "begunnelse": {
+        "makteliten": "Dokumentet nevner prosjektleder Ivar Alvær, som kan være en lokal aktør, men det er ikke klart om han er en del av den politiske eliten. Lav score da det ikke er tydelig politisk involvering.",
+        "positivitet": "Et bofellesskap er en positiv sak for lokalsamfunnet, og prosjektet skaper nye boliger. Dette gir en moderat positiv score.",
+        "underholdning": "Dokumentet er av teknisk og økonomisk karakter, og har ingen underholdningsverdi.",
+        "konflikt": "Ingen tegn til konflikter i dokumentet.",
+        "identifikasjon": "Midttunveien bofellesskap er et lokalt prosjekt, og Ivar Alvær kan være en lokal aktør. Dette gir en moderat score for lokal identifikasjon.",
+        "magnitude": "Prosjektet er stort med en kostnadsramme på over 133 millioner kroner og 8 boenheter. Dette har betydelig omfang og konsekvenser for lokalsamfunnet, og gir en høy score."
+      }
     },
     "raw_responses": {
-      "gpt": "```json\n{\n    \"makteliten\": 8,\n    \"positivitet\": 5,\n    \"underholdning\": 2,\n    \"konflikt\": 0,\n    \"identifikasjon\": 6,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 28\n}\n```",
-      "claude": "Basert på dokumentet som er et kostnadsskjema for et bofellesskap, vil jeg vurdere nyhetsverdiene slik:\n\n{\n    \"makteliten\": 6,\n    \"positivitet\": 4,\n    \"underholdning\": 2,\n    \"konflikt\": 1,\n    \"identifikasjon\": 5,\n    \"magnitude\": 8,\n    \"samlet_vurdering\": 52\n}\n\nBegrunnelse:\n- Makteliten (6/10): Dokumentet inneholder kommunal prosjektinformasjon med prosjektleder\n- Positivitet (4/10): Nøytralt kostnadsskjema, lite positivt ladet\n- Underholdning (2/10): Teknisk dokument med lav underholdningsverdi\n- Konflikt (1/10): Ingen konflikt synlig\n- Identifikasjon (5/10): Nevner lokal prosjektleder og gjelder lokalt bofellesskap\n- Magnitude (8/10): Høy kostnad (133,5 mill), 8 brukere, omfattende prosjekt"
+      "gpt": "```json\n{\n    \"makteliten\": 5,\n    \"positivitet\": 6,\n    \"underholdning\": 2,\n    \"konflikt\": 1,\n    \"identifikasjon\": 4,\n    \"magnitude\": 7,\n    \"samlet_vurdering\": 25\n}\n```",
+      "claude": "Basert på dokumentet om kostnadsskjema for Midtunvegen bofellesskap, vil jeg vurdere nyhetsverdiene slik:\n\n{\n    \"makteliten\": 6,\n    \"positivitet\": 3,\n    \"underholdning\": 2,\n    \"konflikt\": 1,\n    \"identifikasjon\": 5,\n    \"magnitude\": 8,\n    \"samlet_vurdering\": 25\n}\n\nBegrunnelse:\n- Makteliten (6/10): Dokumentet inneholder prosjektlederinformasjon og kommunalt byggeprosjekt\n- Positivitet (3/10): Teknisk dokument med nøytral tone\n- Underholdning (2/10): Lavt underholdningspotensiale\n- Konflikt (1/10): Ingen synlig konflikt\n- Identifikasjon (5/10): Lokalt bofellesskap med 8 plasser, noe lokal relevans\n- Magnitude (8/10): Høy kostnad (133,5 mill kr) og stort prosjektomfang\n\nDokumenttypen er et kommunalt kostnadsskjema for et bofellesskapsprosjekt.",
+      "mistral": "```json\n{\n    \"dokument_type\": \"kostnadsskjema_for_bofellesskap\",\n    \"makteliten\": 3,\n    \"positivitet\": 7,\n    \"underholdning\": 1,\n    \"konflikt\": 0,\n    \"identifikasjon\": 6,\n    \"magnitude\": 8,\n    \"samlet_vurdering\": 25,\n    \"begunnelse\": {\n        \"makteliten\": \"Dokumentet nevner prosjektleder Ivar Alvær, som kan være en lokal aktør, men det er ikke klart om han er en del av den politiske eliten. Lav score da det ikke er tydelig politisk involvering.\",\n        \"positivitet\": \"Et bofellesskap er en positiv sak for lokalsamfunnet, og prosjektet skaper nye boliger. Dette gir en moderat positiv score.\",\n        \"underholdning\": \"Dokumentet er av teknisk og økonomisk karakter, og har ingen underholdningsverdi.\",\n        \"konflikt\": \"Ingen tegn til konflikter i dokumentet.\",\n        \"identifikasjon\": \"Midttunveien bofellesskap er et lokalt prosjekt, og Ivar Alvær kan være en lokal aktør. Dette gir en moderat score for lokal identifikasjon.\",\n        \"magnitude\": \"Prosjektet er stort med en kostnadsramme på over 133 millioner kroner og 8 boenheter. Dette har betydelig omfang og konsekvenser for lokalsamfunnet, og gir en høy score.\"\n    }\n}\n```"
     }
   }
 }

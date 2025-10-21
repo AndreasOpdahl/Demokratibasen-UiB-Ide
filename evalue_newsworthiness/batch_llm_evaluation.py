@@ -9,6 +9,7 @@ import json
 import glob
 import openai
 import anthropic
+from mistralai import Mistral
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -111,7 +112,7 @@ def create_prompt(title, text):
 
 
 def test_openai(prompt):
-    """Test OpenAI GPT model with a specific prompt"""
+    #Test OpenAI GPT model with a specific prompt
     try:
         client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -131,7 +132,7 @@ def test_openai(prompt):
 
 
 def test_claude(prompt):
-    """Test Anthropic Claude model with a specific prompt"""
+    #Test Anthropic Claude model with a specific prompt
     try:
         client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
@@ -149,6 +150,52 @@ def test_claude(prompt):
     except Exception as e:
         return f"Claude Error: {str(e)}"
 
+
+def test_mistral(prompt):
+    #Test Mistral model with a specific prompt
+
+    mistral_api_key = os.getenv("MISTRAL_API_KEY")
+    mistral_model = "mistral-large-latest"
+
+    try:
+        client = Mistral(api_key=mistral_api_key)
+
+        print("Mistral: ", client)
+
+        response = client.chat.complete(
+            model=mistral_model,
+            messages=[
+                {"role": "system", "content": PROMPT_SYSTEM},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=1024
+        )
+
+        return response.choices[0].message.content
+
+    except Exception as e:
+        return f"Mistral Error: {str(e)}"
+
+""" 
+def test_cohere(prompt):
+    #Test Cohere model with a specific prompt
+    try:
+        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+        response = client.chat.completions.create(
+            model="cohere",
+            messages=[
+                {"role": "system", "content": PROMPT_SYSTEM},
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=1024
+        )
+
+        return response.choices[0].message.content
+
+    except Exception as e:
+        return f"Cohere Error: {str(e)}" 
+"""
 
 def parse_llm_response(response_text):
     """Parse the LLM response to extract JSON data"""
@@ -184,10 +231,14 @@ def process_documents():
         # Get evaluations from both models
         gpt_response = test_openai(prompt)
         claude_response = test_claude(prompt)
+        mistral_response = test_mistral(prompt)
+        #cohere_response = test_cohere(prompt)
 
         # Parse responses
         gpt_data = parse_llm_response(gpt_response)
         claude_data = parse_llm_response(claude_response)
+        mistral_data = parse_llm_response(mistral_response)
+        #cohere_data = parse_llm_response(cohere_response)
 
         # Store results
         results[doc['id']] = {
@@ -198,9 +249,13 @@ def process_documents():
             },
             'gpt_evaluation': gpt_data,
             'claude_evaluation': claude_data,
+            'mistral_evaluation': mistral_data,
+            #'cohere_evaluation': cohere_data,
             'raw_responses': {
                 'gpt': gpt_response,
-                'claude': claude_response
+                'claude': claude_response,
+                'mistral': mistral_response,
+                #'cohere': cohere_response
             }
         }
 
