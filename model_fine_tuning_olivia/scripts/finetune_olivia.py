@@ -1,132 +1,140 @@
-# finetune.py
-from transformers import (
-    AutoTokenizer,
-    AutoModelForCausalLM,
-    MT5Tokenizer,
-    MT5ForConditionalGeneration,
-    TrainingArguments,
-    Trainer, EarlyStoppingCallback,
-    TrainerCallback,
-    DataCollatorForLanguageModeling
-)
-from datasets import Dataset
-from huggingface_hub import login
-import pandas as pd
-import json
-import subprocess
-import tempfile
-import torch
+"""
+Before runnning:
+export PPYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+"""
+
 import argparse
-import os
-from peft import LoraConfig, get_peft_model
-torch.cuda.empty_cache()
-
+import json
 import multiprocessing as mp
-import time 
-from tqdm import tqdm
-
-from tqdm import tqdm
+import os
+import random
 import time
+from typing import Any, Dict, Optional, Tuple, Union
 
-class CPUEvaluationCallback(TrainerCallback):
-    def __init__(self, tokenizer, eval_dataset_path, num_samples=20, eval_steps=100, patience=5):
-        self.tokenizer = tokenizer
-        self.eval_dataset_path = eval_dataset_path
-        self.num_samples = num_samples  # Reduced for faster evaluation
-        self.eval_steps = eval_steps
-        self.patience = patience
-        self.best_loss = float('inf')
-        self.no_improvement_count = 0
-        self.model = None
-        self.evaluation_times = []
+import numpy as np
+import pandas as pd
+from tqdm import tqdm
 
-    def on_train_begin(self, args, state, control, model=None, **kwargs):
-        self.model = model
-        print(f"CPU Evaluation Callback initialized (evaluating every {self.eval_steps} steps)")
+from datasets import Dataset
+import evaluate
+from huggingface_hub import login
+from peft import (
+    LoraConfig, 
+    get_peft_model, 
+    prepare_model_for_kbit_training
+)
+import torch
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    DataCollatorForLanguageModeling,
+    EarlyStoppingCallback,
+    MT5ForConditionalGeneration,
+    MT5Tokenizer,
+    Trainer,
+    TrainerCallback,
+    TrainingArguments,
+)
+from transformers.trainer_utils import EvalPrediction
 
-    def on_step_end(self, args, state, control, model=None, **kwargs):
-        if model is not None:
-            self.model = model
 
-        if (state.global_step % self.eval_steps == 0 and
-            state.global_step > 0 and
-            self.model is not None):
+VAL_DATA_SIZE=100  # number of examples to use for validation
+MAX_TOKENS=2048  # maximum number of tokens to use for input and output
 
-            self.run_cpu_evaluation(args, state, control)
 
-    def run_cpu_evaluation(self, args, state, control):
-        checkpoint_dir = tempfile.mkdtemp()
-        eval_start_time = time.time()
+class CausalLMTrainer(Trainer):
+    def __init__(self, *args, 
+                 generation_max_length: Optional[int] = None,
+                 generation_num_beams: Optional[int] = None,
+                 **kwargs) -> None:
+        # 1. Store generation parameters
+        self.generation_max_length = generation_max_length
+        self.generation_num_beams = generation_num_beams
+        # 2. Call parent constructor
+        super().__init__(*args, **kwargs)
 
-        try:
-            # Save model and tokenizer
-            self.model.save_pretrained(checkpoint_dir)
-            self.tokenizer.save_pretrained(checkpoint_dir)
+    def prediction_step(
+        self,
+        model: torch.nn.Module,
+        inputs: Dict[str, Union[torch.Tensor, Any]],
+        prediction_loss_only: bool,
+        ignore_keys: Optional[list[str]] = None,
+    ) -> Tuple[Optional[torch.Tensor], Optional[torch.Tensor], Optional[torch.Tensor]]:
+        
+        # 1. Compute Loss (Standard behavior)
+        if prediction_loss_only:
+            return super().prediction_step(
+                model, inputs, prediction_loss_only=prediction_loss_only, ignore_keys=ignore_keys
+            )
 
-            print(f"\n--- Step {state.global_step}: Starting CPU Evaluation ---")
+        # If we are here, we are evaluating the model
+        print('*** evaluation: prediction_step ***')
+        torch.cuda.empty_cache()
 
-            # Run CPU evaluation with progress tracking
-            result = subprocess.run([
-                'python', 'scripts/cpu_evaluation_worker.py',
-                '--model_path', checkpoint_dir,
-                '--eval_data', self.eval_dataset_path,
-                '--num_samples', str(self.num_samples),
-                #'--num_processes', '4',  # Conservative number
-                #'--sequential'  # Use sequential for more reliable progress tracking
-            ], capture_output=True, text=True, timeout=600)
+        # 2. Get Input IDs and Labels
+        # We need the input_ids to use as the prompt for generation
+        if 'input_ids' in inputs:
+            input_ids = inputs["input_ids"]
+        else:
+            # Handle cases where DataCollator might rename input_ids
+            # This logic needs to be robust based on your data collator
+            raise KeyError("input_ids not found in batch. Check your DataCollator setup.")
 
-            eval_time = time.time() - eval_start_time
-            self.evaluation_times.append(eval_time)
-            avg_eval_time = sum(self.evaluation_times) / len(self.evaluation_times)
+        # Get the labels for metric calculation (target summary)
+        labels = inputs.get("labels")
 
-            if result.returncode == 0:
-                try:
-                    # Extract the loss from output
-                    output_lines = result.stdout.strip().split('\n')
-                    loss_line = [line for line in output_lines if 'Average loss:' in line]
-                    time_line = [line for line in output_lines if 'Evaluation completed in' in line]
+        print('*** evaluation: input_ids ***', input_ids.shape)
 
-                    if loss_line:
-                        current_loss = float(loss_line[0].split(':')[-1].strip())
+        # 3. Autoregressive Generation (The Key Step)
+        # Call generate() using the model and the input IDs
+        # Pass any necessary generation arguments (e.g., num_beams, max_new_tokens, etc.)
+        generated_ids = model.generate(
+            input_ids=input_ids,
+            use_cache=True,
+            # Use generation settings defined in TrainingArguments or passed here
+            max_new_tokens=self.generation_max_length or model.config.max_length, 
+            num_beams=self.generation_num_beams,  # was: 1 or model.config.num_beams,
+            do_sample=False,  # Set to True for sampling, False for beam search
+            # Add any other required generation arguments
+        )
+        
+        # CRITICAL FIX: Remove the input prompt from generated_ids
+        # model.generate() returns [input_ids + new_tokens], we only want the new tokens for ROUGE
+        input_length = input_ids.shape[1]
+        generated_ids = generated_ids[:, input_length:]
+        
+        print('*** evaluation: generated_ids (without prompt) ***', generated_ids.shape)
+        
+        # 4. Handle Loss Calculation (Optional, but good practice)
+        # You may want to calculate loss for logging alongside the ROUGE score
+        # For evaluation, we typically don't need the logits, just the loss and generated IDs.
+        
+        torch.cuda.empty_cache()
 
-                        print(f"✅ Evaluation completed in {eval_time:.2f}s (avg: {avg_eval_time:.2f}s)")
-                        print(f"📊 Current loss: {current_loss:.4f}")
-                        print(f"🏆 Best loss: {self.best_loss:.4f}")
+        calc_loss_on_evaluation = False
+        if calc_loss_on_evaluation:
+            with torch.no_grad():
+                # Process in chunks of 2 examples at a time
+                losses = []
+                chunk_size = 2
+                for i in range(0, input_ids.shape[0], chunk_size):
+                    chunk_inputs = {k: v[i:i+chunk_size] for k, v in inputs.items()}
+                    chunk_loss = model(**chunk_inputs).loss
+                    losses.append(chunk_loss.item())
+                loss = sum(losses) / len(losses)
+            torch.cuda.empty_cache()
+        else:        
+            # alternative if little memory is available
+            loss = None
+        
+        # 5. Return Results
+        # The Trainer expects: (loss, predictions, labels)
+        # We return loss, the generated IDs (predictions), and the original labels.
+        return (loss, generated_ids, labels)
 
-                        # Check for improvement
-                        if current_loss < self.best_loss:
-                            self.best_loss = current_loss
-                            self.no_improvement_count = 0
-                            print("🎉 New best loss achieved!")
-                        else:
-                            self.no_improvement_count += 1
-                            print(f"⏳ No improvement ({self.no_improvement_count}/{self.patience})")
-
-                        # Trigger early stopping if no improvement
-                        if self.no_improvement_count >= self.patience:
-                            print("🛑 Early stopping triggered!")
-                            control.should_training_stop = True
-                    else:
-                        print("❌ Could not parse loss from evaluation output")
-
-                except ValueError as e:
-                    print(f"❌ Error parsing loss value: {e}")
-            else:
-                print(f"❌ CPU evaluation failed with return code {result.returncode}")
-                print(f"Stderr: {result.stderr}")
-
-        except subprocess.TimeoutExpired:
-            print("⏰ CPU evaluation timed out after 10 minutes")
-        except Exception as e:
-            print(f"❌ CPU evaluation error: {e}")
-        finally:
-            # Clean up temporary directory
-            import shutil
-            shutil.rmtree(checkpoint_dir, ignore_errors=True)
-
-        print("--- Evaluation Complete ---\n")
-
-            
+# only do this once
+rouge = evaluate.load("rouge")
+          
 
 def fine_tune_model(
     model_name: str,
@@ -135,6 +143,29 @@ def fine_tune_model(
     output_dir: str,
     hf_token: str = None
 ):
+    
+    def compute_metrics(eval_pred):
+        print('*** evaluation: compute_metrics ***')
+        
+        preds, labels = eval_pred  # preds: generated ids; labels: target ids (with -100 masked)
+        print('*** evaluation: preds ***', preds.shape)
+        print('*** evaluation: labels ***', labels.shape)
+        
+        # Replace -100 so we can decode labels
+        labels = np.where(labels != -100, labels, 0)
+        decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
+        decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
+
+        # (optional) strip/normalize for ROUGE
+        decoded_preds = [p.strip() for p in decoded_preds]
+        decoded_labels = [l.strip() for l in decoded_labels]
+
+        scores = rouge.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
+        print('*** evaluation: computed_metrics ***', scores)
+        return {k: v * 100 for k, v in scores.items()}  # % values
+
+
+    
     # Login to Hugging Face if token is provided
     if hf_token:
         print("Logging in to Hugging Face Hub...")
@@ -165,6 +196,7 @@ def fine_tune_model(
         else:
             model = AutoModelForCausalLM.from_pretrained(
                 model_name,
+                # load_in_4bit=True,
                 torch_dtype=torch.float16,
                 device_map="auto",
                 token=hf_token if hf_token else None
@@ -210,12 +242,16 @@ def fine_tune_model(
 
     # Convert to Hugging Face Dataset
     dataset = Dataset.from_pandas(df)
+    
+    # randomly sample VAL_DATA_SIZE examples from val_data
+    val_data = random.sample(val_data, VAL_DATA_SIZE)
 
     # Create a pandas DataFrame
     df = pd.DataFrame(val_data)
 
     # Convert to Hugging Face Dataset
     val_dataset = Dataset.from_pandas(df)
+    print('*** evaluation: val_dataset ***', val_dataset.shape)
 
     def format_example(example):
         # Format the input-output pair for the model
@@ -227,7 +263,7 @@ def fine_tune_model(
         return tokenizer(
             examples["text"],
             truncation=True,
-            max_length=2048,
+            max_length=MAX_TOKENS,
             padding=False
         )
 
@@ -243,7 +279,29 @@ def fine_tune_model(
         mlm=False
     )
 
-    cpu_eval_callback =  CPUEvaluationCallback(eval_dataset_path=val_dataset_path, tokenizer=tokenizer, num_samples=5, eval_steps=500, patience=5)
+    # cpu_eval_callback =  CPUEvaluationCallback(eval_dataset_path=val_dataset_path, tokenizer=tokenizer, num_samples=5, eval_steps=500, patience=5)
+    
+    # Manually prepare model for LoRA training (without quantization)
+    # This replicates the key parts of prepare_model_for_kbit_training() without the quantization-specific code
+    
+    # Enable gradient checkpointing
+    model.gradient_checkpointing_enable()
+    
+    # Enable gradients for input embeddings (critical for LoRA!)
+    # Without this, the embeddings stay frozen and cause "does not require grad" errors
+    for param in model.parameters():
+        param.requires_grad = False  # Freeze all parameters first
+    
+    # Enable input embeddings to require gradients
+    if hasattr(model, 'get_input_embeddings'):
+        input_embeddings = model.get_input_embeddings()
+        if input_embeddings is not None:
+            def make_inputs_require_grad(module, input, output):
+                output.requires_grad_(True)
+            input_embeddings.register_forward_hook(make_inputs_require_grad)
+    
+    # Disable cache for gradient checkpointing
+    model.config.use_cache = False
 
     # Define LoRA config
     lora_config = LoraConfig(
@@ -255,39 +313,82 @@ def fine_tune_model(
         task_type="CAUSAL_LM"
     )
 
+    # Apply LoRA (this will unfreeze the LoRA parameters)
     model = get_peft_model(model, lora_config)
-    print(model.print_trainable_parameters())
+    model.print_trainable_parameters()
 
     # Training arguments
     training_args = TrainingArguments(
         output_dir=output_dir,
-        per_device_train_batch_size=4,
-        gradient_accumulation_steps=4,
+        per_device_train_batch_size=2,  # was 2
+        per_device_eval_batch_size=5,  # was 10 with beam 1  
+        gradient_accumulation_steps=4,  # was 4
         learning_rate=2e-5,
-        num_train_epochs=3,
+        max_steps=1200,
+        # num_train_epochs=None,
         fp16=False,
         logging_steps=10,
-        save_strategy="steps",        # It's often best to align save and eval strategies
-        greater_is_better=False,      # A lower eval_loss is better
-        save_steps=500,
+        
+        # Validate + save on a schedule (needed for ES)
+        eval_strategy="steps",
+        eval_steps=50,  # was 500                    # align eval & save cadence
+        save_strategy="steps",
+        save_steps=50,  # was 500
+        save_total_limit=10,         # keep disk usage sane
+
+        # Pick the best checkpoint and restore it at the end
+        load_best_model_at_end=True,
+        metric_for_best_model="rougeLsum",   # was "eval_loss", or a custom metric key, e.g., "accuracy"
+        greater_is_better=True,     # was False
+                
         optim="adamw_torch",
         report_to="none",
         gradient_checkpointing=True,
         dataloader_pin_memory=False  # Can help with memory issues
     )
+    
+    # Optional: if you compute custom metrics, define compute_metrics=... in Trainer
+    # Check if we're resuming from checkpoint
+    import glob
+    checkpoints_exist = len(glob.glob(os.path.join(output_dir, "checkpoint-*"))) > 0
+    
+    # Only add EarlyStoppingCallback when starting fresh (not resuming)
+    # This avoids KeyError when resuming from checkpoint
+    callbacks = []
+    if not checkpoints_exist:
+        early_stopping = EarlyStoppingCallback(
+            early_stopping_patience=10,           # stop if no improvement for n evals
+            early_stopping_threshold=0.0         # require strictly better than best
+        )
+        callbacks.append(early_stopping)
+        print("Adding EarlyStoppingCallback (fresh training)")
+    else:
+        print("Resuming from checkpoint - skipping EarlyStoppingCallback to avoid state errors")
 
     # Initialize Trainer
-    trainer = Trainer(
+    trainer = CausalLMTrainer(
+        # Generation settings (important so ROUGE is computed on model outputs)
+        generation_max_length=MAX_TOKENS,  # Ample length for summaries (was MAX_TOKENS=2048)
+        generation_num_beams=4,  # Greedy decoding for speed during training (was 4)
+        # General Trainer settings
         model=model,
         args=training_args,
         train_dataset=tokenized_dataset,
+        eval_dataset=tokenized_val_dataset, # <-- ES needs this
+        tokenizer=tokenizer,
+        compute_metrics=compute_metrics,
         data_collator=data_collator,
-        callbacks=[cpu_eval_callback]
+        callbacks=callbacks
     )
+    
 
     # Start training
-    print("Starting training...")
-    trainer.train()
+    if checkpoints_exist:
+        print("Resuming training from checkpoint...")
+        trainer.train(resume_from_checkpoint=True)
+    else:
+        print("Starting training from scratch...")
+        trainer.train()
     trainer.save_model()
     tokenizer.save_pretrained(output_dir)
     print(f"Training completed. Model saved to {output_dir}")
