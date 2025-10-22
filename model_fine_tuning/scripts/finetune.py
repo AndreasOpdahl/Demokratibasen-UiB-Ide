@@ -1,132 +1,202 @@
-# finetune.py
-from transformers import (
-    AutoTokenizer,
-    AutoModelForCausalLM,
-    MT5Tokenizer,
-    MT5ForConditionalGeneration,
-    TrainingArguments,
-    Trainer, EarlyStoppingCallback,
-    TrainerCallback,
-    DataCollatorForLanguageModeling
-)
-from datasets import Dataset
-from huggingface_hub import login
-import pandas as pd
-import json
-import subprocess
-import tempfile
-import torch
+"""
+Before runnning:
+export PPYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+"""
+
 import argparse
-import os
-from peft import prepare_model_for_kbit_training, LoraConfig, get_peft_model
-torch.cuda.empty_cache()
-
+import json
 import multiprocessing as mp
-import time 
-from tqdm import tqdm
-
-from tqdm import tqdm
+import os
+import random
 import time
+from typing import Any, Dict, Optional, Tuple, Union
 
-class CPUEvaluationCallback(TrainerCallback):
-    def __init__(self, tokenizer, eval_dataset_path, num_samples=20, eval_steps=100, patience=5):
+import numpy as np
+import pandas as pd
+from tqdm import tqdm
+
+from datasets import Dataset
+import evaluate
+from huggingface_hub import login
+from peft import (
+    LoraConfig, 
+    get_peft_model, 
+    prepare_model_for_kbit_training
+)
+import torch
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    BitsAndBytesConfig,
+    DataCollatorForLanguageModeling,
+    DataCollatorWithPadding,
+    EarlyStoppingCallback,
+    MT5ForConditionalGeneration,
+    MT5Tokenizer,
+    Trainer,
+    TrainerCallback,
+    TrainingArguments,
+)
+from transformers.trainer_utils import EvalPrediction
+
+
+VAL_DATA_SIZE=100  # number of examples to use for validation
+MAX_TOKENS=2048  # maximum number of tokens to use for input and output
+
+
+class EvalDataCollator:
+    """Custom data collator for evaluation that pads both input_ids and labels.
+    
+    Uses left-padding for input_ids (decoder-only models) and right-padding for labels.
+    """
+    
+    def __init__(self, tokenizer, pad_to_multiple_of=None):
         self.tokenizer = tokenizer
-        self.eval_dataset_path = eval_dataset_path
-        self.num_samples = num_samples  # Reduced for faster evaluation
-        self.eval_steps = eval_steps
-        self.patience = patience
-        self.best_loss = float('inf')
-        self.no_improvement_count = 0
-        self.model = None
-        self.evaluation_times = []
+        self.pad_to_multiple_of = pad_to_multiple_of
+    
+    def __call__(self, features):
+        # Separate input_ids and labels
+        input_ids = [f['input_ids'] for f in features]
+        labels = [f['labels'] for f in features]
+        
+        # Pad input_ids (LEFT padding for decoder-only models)
+        max_input_length = max(len(ids) for ids in input_ids)
+        if self.pad_to_multiple_of:
+            max_input_length = ((max_input_length + self.pad_to_multiple_of - 1) 
+                               // self.pad_to_multiple_of * self.pad_to_multiple_of)
+        
+        padded_input_ids = []
+        attention_mask = []
+        for ids in input_ids:
+            padding_length = max_input_length - len(ids)
+            # LEFT padding: pad tokens go BEFORE the actual tokens
+            padded_input_ids.append([self.tokenizer.pad_token_id] * padding_length + ids)
+            attention_mask.append([0] * padding_length + [1] * len(ids))
+        
+        # Pad labels (RIGHT padding - standard for targets)
+        max_label_length = max(len(lbl) for lbl in labels)
+        if self.pad_to_multiple_of:
+            max_label_length = ((max_label_length + self.pad_to_multiple_of - 1) 
+                               // self.pad_to_multiple_of * self.pad_to_multiple_of)
+        
+        padded_labels = []
+        for lbl in labels:
+            padding_length = max_label_length - len(lbl)
+            # RIGHT padding for labels: pad with -100 so they're ignored
+            padded_labels.append(lbl + [-100] * padding_length)
+        
+        return {
+            'input_ids': torch.tensor(padded_input_ids, dtype=torch.long),
+            'attention_mask': torch.tensor(attention_mask, dtype=torch.long),
+            'labels': torch.tensor(padded_labels, dtype=torch.long),
+        }
 
-    def on_train_begin(self, args, state, control, model=None, **kwargs):
-        self.model = model
-        print(f"CPU Evaluation Callback initialized (evaluating every {self.eval_steps} steps)")
 
-    def on_step_end(self, args, state, control, model=None, **kwargs):
-        if model is not None:
-            self.model = model
+class CausalLMTrainer(Trainer):
+    def __init__(self, *args, 
+                 generation_max_length: Optional[int] = None,
+                 generation_num_beams: Optional[int] = None,
+                 eval_data_collator: Optional[Any] = None,
+                 **kwargs) -> None:
+        # 1. Store generation parameters
+        self.generation_max_length = generation_max_length
+        self.generation_num_beams = generation_num_beams
+        self.eval_data_collator = eval_data_collator
+        # 2. Call parent constructor
+        super().__init__(*args, **kwargs)
+        # 3. Store reference to processing_class to avoid deprecation warning
+        self._processing_class = self.processing_class
+    
+    def get_eval_dataloader(self, eval_dataset=None):
+        """Override to use a different data collator for evaluation."""
+        if eval_dataset is None:
+            eval_dataset = self.eval_dataset
+        
+        # Temporarily swap the data collator
+        original_collator = self.data_collator
+        if self.eval_data_collator is not None:
+            self.data_collator = self.eval_data_collator
+        
+        # Get the dataloader using parent's method
+        dataloader = super().get_eval_dataloader(eval_dataset)
+        
+        # Restore original collator
+        self.data_collator = original_collator
+        
+        return dataloader
 
-        if (state.global_step % self.eval_steps == 0 and
-            state.global_step > 0 and
-            self.model is not None):
+    def prediction_step(
+        self,
+        model: torch.nn.Module,
+        inputs: Dict[str, Union[torch.Tensor, Any]],
+        prediction_loss_only: bool,
+        ignore_keys: Optional[list[str]] = None,
+    ) -> Tuple[Optional[torch.Tensor], Optional[torch.Tensor], Optional[torch.Tensor]]:
+        
+        # 1. Compute Loss (Standard behavior)
+        if prediction_loss_only:
+            # For loss-only, we can't compute it properly since eval data is prompt-only
+            # Just return None and skip loss calculation
+            return (None, None, None)
 
-            self.run_cpu_evaluation(args, state, control)
+        # If we are here, we are evaluating the model
+        print('*** evaluation: prediction_step ***')
+        torch.cuda.empty_cache()
 
-    def run_cpu_evaluation(self, args, state, control):
-        checkpoint_dir = tempfile.mkdtemp()
-        eval_start_time = time.time()
+        # 2. Get Input IDs and Labels
+        # input_ids contains ONLY the prompt (no target answer)
+        if 'input_ids' in inputs:
+            input_ids = inputs["input_ids"]
+        else:
+            raise KeyError("input_ids not found in batch. Check your DataCollator setup.")
 
-        try:
-            # Save model and tokenizer
-            self.model.save_pretrained(checkpoint_dir)
-            self.tokenizer.save_pretrained(checkpoint_dir)
+        # labels contains the tokenized target summary (for ROUGE)
+        labels = inputs.get("labels")
+        
+        # Remove padding from labels (-100 will be there from DataCollator)
+        # We need clean label token IDs for ROUGE
+        if labels is not None:
+            # Create a copy and replace -100 with pad_token_id for proper shape
+            labels = labels.clone()
+            labels[labels == -100] = self._processing_class.pad_token_id
 
-            print(f"\n--- Step {state.global_step}: Starting CPU Evaluation ---")
+        print('*** evaluation: input_ids (prompt only) ***', input_ids.shape)
+        if labels is not None:
+            print('*** evaluation: labels (target summary) ***', labels.shape)
 
-            # Run CPU evaluation with progress tracking
-            result = subprocess.run([
-                'python', 'scripts/cpu_evaluation_worker.py',
-                '--model_path', checkpoint_dir,
-                '--eval_data', self.eval_dataset_path,
-                '--num_samples', str(self.num_samples),
-                #'--num_processes', '4',  # Conservative number
-                #'--sequential'  # Use sequential for more reliable progress tracking
-            ], capture_output=True, text=True, timeout=600)
+        # 3. Autoregressive Generation (The Key Step)
+        # Generate from the prompt only
+        generated_ids = model.generate(
+            input_ids=input_ids,
+            use_cache=True,
+            max_new_tokens=self.generation_max_length or 512,  # Generate up to 512 new tokens
+            num_beams=self.generation_num_beams,
+            do_sample=False,  # Greedy/beam search
+            pad_token_id=self._processing_class.pad_token_id,
+            eos_token_id=self._processing_class.eos_token_id,
+        )
+        
+        # CRITICAL: Remove the input prompt from generated_ids
+        # model.generate() returns [input_ids + new_tokens], we only want the new tokens for ROUGE
+        input_length = input_ids.shape[1]
+        generated_ids = generated_ids[:, input_length:]
+        
+        print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
+        
+        torch.cuda.empty_cache()
 
-            eval_time = time.time() - eval_start_time
-            self.evaluation_times.append(eval_time)
-            avg_eval_time = sum(self.evaluation_times) / len(self.evaluation_times)
+        # No loss calculation during evaluation (we can't compute it from prompt-only data)
+        loss = None
+        
+        # 5. Return Results
+        # The Trainer expects: (loss, predictions, labels)
+        # predictions: generated summary tokens
+        # labels: target summary tokens
+        return (loss, generated_ids, labels)
 
-            if result.returncode == 0:
-                try:
-                    # Extract the loss from output
-                    output_lines = result.stdout.strip().split('\n')
-                    loss_line = [line for line in output_lines if 'Average loss:' in line]
-                    time_line = [line for line in output_lines if 'Evaluation completed in' in line]
-
-                    if loss_line:
-                        current_loss = float(loss_line[0].split(':')[-1].strip())
-
-                        print(f"✅ Evaluation completed in {eval_time:.2f}s (avg: {avg_eval_time:.2f}s)")
-                        print(f"📊 Current loss: {current_loss:.4f}")
-                        print(f"🏆 Best loss: {self.best_loss:.4f}")
-
-                        # Check for improvement
-                        if current_loss < self.best_loss:
-                            self.best_loss = current_loss
-                            self.no_improvement_count = 0
-                            print("🎉 New best loss achieved!")
-                        else:
-                            self.no_improvement_count += 1
-                            print(f"⏳ No improvement ({self.no_improvement_count}/{self.patience})")
-
-                        # Trigger early stopping if no improvement
-                        if self.no_improvement_count >= self.patience:
-                            print("🛑 Early stopping triggered!")
-                            control.should_training_stop = True
-                    else:
-                        print("❌ Could not parse loss from evaluation output")
-
-                except ValueError as e:
-                    print(f"❌ Error parsing loss value: {e}")
-            else:
-                print(f"❌ CPU evaluation failed with return code {result.returncode}")
-                print(f"Stderr: {result.stderr}")
-
-        except subprocess.TimeoutExpired:
-            print("⏰ CPU evaluation timed out after 10 minutes")
-        except Exception as e:
-            print(f"❌ CPU evaluation error: {e}")
-        finally:
-            # Clean up temporary directory
-            import shutil
-            shutil.rmtree(checkpoint_dir, ignore_errors=True)
-
-        print("--- Evaluation Complete ---\n")
-
-            
+# only do this once
+rouge = evaluate.load("rouge")
+          
 
 def fine_tune_model(
     model_name: str,
@@ -135,6 +205,46 @@ def fine_tune_model(
     output_dir: str,
     hf_token: str = None
 ):
+    
+    """debug:
+    model_name='google/gemma-2b'
+    dataset_path='../data/input/processed_data_train.jsonl'
+    val_dataset_path='../data/input/processed_data_val.jsonl'
+    output_dir='../models/gemma2b_finetuned_max_1_epoch_4_beams_50_eval_stride'
+    hf_token='...'
+    """
+    
+    
+    def compute_metrics(eval_pred):
+        print('*** evaluation: compute_metrics ***')
+        
+        preds, labels = eval_pred  # preds: generated summary ids; labels: target summary ids
+        print('*** evaluation: preds ***', preds.shape)
+        print('*** evaluation: labels ***', labels.shape)
+        
+        # Replace -100 and pad tokens so we can decode properly
+        labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
+        
+        # Decode predictions and labels
+        decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
+        decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
+
+        # Strip/normalize for ROUGE
+        decoded_preds = [p.strip() for p in decoded_preds]
+        decoded_labels = [l.strip() for l in decoded_labels]
+        
+        # Debug: print first example
+        if len(decoded_preds) > 0:
+            print(f'\n*** Example 1 ***')
+            print(f'Prediction: {decoded_preds[0][:200]}...')
+            print(f'Reference:  {decoded_labels[0][:200]}...\n')
+
+        scores = rouge.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
+        print('*** evaluation: computed_metrics ***', scores)
+        return {k: v * 100 for k, v in scores.items()}  # % values
+
+
+    
     # Login to Hugging Face if token is provided
     if hf_token:
         print("Logging in to Hugging Face Hub...")
@@ -157,16 +267,28 @@ def fine_tune_model(
     # Set padding token if it doesn't exist
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
+    
+    # For decoder-only models (like GPT, Gemma), use left padding for generation
+    # This ensures the model attends to the actual prompt, not padding
+    tokenizer.padding_side = 'left'
 
     # Load model with device_map if supported, otherwise fallback
     try:
         if model_name == 'google/mt5-base':
             model = MT5ForConditionalGeneration.from_pretrained(model_name)
         else:
+            # Configure 4-bit quantization using BitsAndBytesConfig
+            bnb_config = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_quant_type="nf4",
+                bnb_4bit_compute_dtype=torch.float16,
+                bnb_4bit_use_double_quant=True,
+            )
+            
             model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                load_in_4bit=True,
-                torch_dtype=torch.float16,
+                quantization_config=bnb_config,
+                dtype=torch.float16,
                 device_map="auto",
                 token=hf_token if hf_token else None
             )
@@ -176,7 +298,7 @@ def fine_tune_model(
             # Fallback if device_map isn't supported
             model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                torch_dtype=torch.float16,
+                dtype=torch.float16,
                 token=hf_token if hf_token else None
             ).cuda()
         except Exception as e2:
@@ -187,11 +309,11 @@ def fine_tune_model(
     print(f"Loading dataset from: {dataset_path}")
 
     # Read JSONL file manually
-    data = []
+    train_data = []
     try:
         with open(dataset_path, 'r', encoding='utf-8') as f:
             for line in f:
-                data.append(json.loads(line))
+                train_data.append(json.loads(line))
     except Exception as e:
         print(f"Error reading dataset: {e}")
         return
@@ -207,44 +329,81 @@ def fine_tune_model(
         return
 
     # Create a pandas DataFrame
-    df = pd.DataFrame(data)
+    train_df = pd.DataFrame(train_data)
 
     # Convert to Hugging Face Dataset
-    dataset = Dataset.from_pandas(df)
+    dataset = Dataset.from_pandas(train_df)
+    
+    # randomly sample VAL_DATA_SIZE examples from val_data
+    val_data = random.sample(val_data, VAL_DATA_SIZE)
 
     # Create a pandas DataFrame
-    df = pd.DataFrame(val_data)
+    val_df = pd.DataFrame(val_data)
 
     # Convert to Hugging Face Dataset
-    val_dataset = Dataset.from_pandas(df)
+    val_dataset = Dataset.from_pandas(val_df)
+    print('*** evaluation: val_dataset ***', val_dataset.shape)
 
-    def format_example(example):
-        # Format the input-output pair for the model
-        text = f"### Oppgave: Oppsummer følgende tekst\n{example['input']}\n\n### Svar: {example['output']}"
+    def format_example_train(example):
+        # Format the input-output pair for the model (TRAINING: full text for teacher forcing)
+        text = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n{example['output']}\n\n###\n"
         return {"text": text}
 
-    def tokenize_function(examples):
-        # Tokenize the formatted text
+    def format_example_eval(example):
+        # Format for EVALUATION: only the input prompt, not the answer
+        prompt = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
+        # Keep the target output separate for ROUGE calculation
+        return {
+            "prompt": prompt,
+            "target_summary": example['output']
+        }
+
+    def tokenize_function_train(examples):
+        # Tokenize the formatted text for training
         return tokenizer(
             examples["text"],
             truncation=True,
-            max_length=2048,
+            max_length=MAX_TOKENS,
             padding=False
         )
 
-    formatted_dataset = dataset.map(format_example)
-    tokenized_dataset = formatted_dataset.map(tokenize_function, batched=True)
+    def tokenize_function_eval(examples):
+        # Tokenize ONLY the prompt (without answer) for evaluation
+        tokenized_prompts = tokenizer(
+            examples["prompt"],
+            truncation=True,
+            max_length=MAX_TOKENS // 2,  # Leave room for generation
+            padding=False
+        )
+        # Tokenize target summaries for labels
+        tokenized_targets = tokenizer(
+            examples["target_summary"],
+            truncation=True,
+            max_length=MAX_TOKENS // 2,
+            padding=False
+        )
+        # Store target token IDs as labels
+        tokenized_prompts["labels"] = tokenized_targets["input_ids"]
+        return tokenized_prompts
 
-    # Format and tokenize the dataset
-    formatted_val_dataset = val_dataset.map(format_example)
-    tokenized_val_dataset = formatted_val_dataset.map(tokenize_function, batched=True)
-    # Data collator for dynamic padding
-    data_collator = DataCollatorForLanguageModeling(
+    formatted_dataset = dataset.map(format_example_train)
+    tokenized_dataset = formatted_dataset.map(tokenize_function_train, batched=True)
+
+    # Format and tokenize the VALIDATION dataset differently
+    formatted_val_dataset = val_dataset.map(format_example_eval)
+    tokenized_val_dataset = formatted_val_dataset.map(tokenize_function_eval, batched=True)
+    
+    # Data collators
+    # For TRAINING: use standard causal LM collator (creates labels by shifting)
+    train_data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer,
         mlm=False
     )
+    
+    # For EVALUATION: use custom collator that pads both input_ids and labels
+    eval_data_collator = EvalDataCollator(tokenizer=tokenizer)
 
-    cpu_eval_callback =  CPUEvaluationCallback(eval_dataset_path=val_dataset_path, tokenizer=tokenizer, num_samples=5, eval_steps=500, patience=5)
+    # cpu_eval_callback =  CPUEvaluationCallback(eval_dataset_path=val_dataset_path, tokenizer=tokenizer, num_samples=5, eval_steps=500, patience=5)
     model = prepare_model_for_kbit_training(model)
 
     # Define LoRA config
@@ -258,38 +417,80 @@ def fine_tune_model(
     )
 
     model = get_peft_model(model, lora_config)
+    model.config.use_cache = False
     print(model.print_trainable_parameters())
 
     # Training arguments
     training_args = TrainingArguments(
         output_dir=output_dir,
-        per_device_train_batch_size=1,
-        gradient_accumulation_steps=4,
+        per_device_train_batch_size=2,  # was 2
+        per_device_eval_batch_size=5,  # was 10 with beam 1  
+        gradient_accumulation_steps=4,  # was 4
         learning_rate=2e-5,
         num_train_epochs=3,
         fp16=False,
         logging_steps=10,
-        save_strategy="steps",        # It's often best to align save and eval strategies
-        greater_is_better=False,      # A lower eval_loss is better
-        save_steps=500,
+        
+        # Validate + save on a schedule (needed for ES)
+        eval_strategy="steps",
+        eval_steps=50,  # was 500                    # align eval & save cadence
+        save_strategy="steps",
+        save_steps=50,  # was 500
+        save_total_limit=10,         # keep disk usage sane
+
+        # Pick the best checkpoint and restore it at the end
+        load_best_model_at_end=True,
+        metric_for_best_model="rougeLsum",   # was "eval_loss", or a custom metric key, e.g., "accuracy"
+        greater_is_better=True,     # was False
+                
         optim="adamw_torch",
         report_to="none",
         gradient_checkpointing=True,
         dataloader_pin_memory=False  # Can help with memory issues
     )
+    
+    # Optional: if you compute custom metrics, define compute_metrics=... in Trainer
+    # Check if we're resuming from checkpoint
+    import glob
+    checkpoints_exist = len(glob.glob(os.path.join(output_dir, "checkpoint-*"))) > 0
+    
+    # Only add EarlyStoppingCallback when starting fresh (not resuming)
+    # This avoids KeyError when resuming from checkpoint
+    callbacks = []
+    if not checkpoints_exist:
+        early_stopping = EarlyStoppingCallback(
+            early_stopping_patience=10,           # stop if no improvement for n evals
+            early_stopping_threshold=0.0         # require strictly better than best
+        )
+        callbacks.append(early_stopping)
+        print("Adding EarlyStoppingCallback (fresh training)")
+    else:
+        print("Resuming from checkpoint - skipping EarlyStoppingCallback to avoid state errors")
 
     # Initialize Trainer
-    trainer = Trainer(
+    trainer = CausalLMTrainer(
+        # Generation settings (important so ROUGE is computed on model outputs)
+        generation_max_length=MAX_TOKENS,  # Ample length for summaries (was MAX_TOKENS=2048)
+        generation_num_beams=4,  # Greedy decoding for speed during training (was 4)
+        eval_data_collator=eval_data_collator,  # Use separate collator for eval
+        # General Trainer settings
         model=model,
         args=training_args,
         train_dataset=tokenized_dataset,
-        data_collator=data_collator,
-        callbacks=[cpu_eval_callback]
+        eval_dataset=tokenized_val_dataset, # <-- ES needs this
+        processing_class=tokenizer,  # Use processing_class instead of tokenizer (future-proof)
+        compute_metrics=compute_metrics,
+        data_collator=train_data_collator,  # Training collator
+        callbacks=callbacks
     )
 
     # Start training
-    print("Starting training...")
-    trainer.train()
+    if checkpoints_exist:
+        print("Resuming training from checkpoint...")
+        trainer.train(resume_from_checkpoint=True)
+    else:
+        print("Starting training from scratch...")
+        trainer.train()
     trainer.save_model()
     tokenizer.save_pretrained(output_dir)
     print(f"Training completed. Model saved to {output_dir}")

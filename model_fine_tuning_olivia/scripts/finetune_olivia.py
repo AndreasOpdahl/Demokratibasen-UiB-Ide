@@ -42,16 +42,86 @@ VAL_DATA_SIZE=100  # number of examples to use for validation
 MAX_TOKENS=2048  # maximum number of tokens to use for input and output
 
 
+class EvalDataCollator:
+    """Custom data collator for evaluation that pads both input_ids and labels.
+    
+    Uses left-padding for input_ids (decoder-only models) and right-padding for labels.
+    """
+    
+    def __init__(self, tokenizer, pad_to_multiple_of=None):
+        self.tokenizer = tokenizer
+        self.pad_to_multiple_of = pad_to_multiple_of
+    
+    def __call__(self, features):
+        # Separate input_ids and labels
+        input_ids = [f['input_ids'] for f in features]
+        labels = [f['labels'] for f in features]
+        
+        # Pad input_ids (LEFT padding for decoder-only models)
+        max_input_length = max(len(ids) for ids in input_ids)
+        if self.pad_to_multiple_of:
+            max_input_length = ((max_input_length + self.pad_to_multiple_of - 1) 
+                               // self.pad_to_multiple_of * self.pad_to_multiple_of)
+        
+        padded_input_ids = []
+        attention_mask = []
+        for ids in input_ids:
+            padding_length = max_input_length - len(ids)
+            # LEFT padding: pad tokens go BEFORE the actual tokens
+            padded_input_ids.append([self.tokenizer.pad_token_id] * padding_length + ids)
+            attention_mask.append([0] * padding_length + [1] * len(ids))
+        
+        # Pad labels (RIGHT padding - standard for targets)
+        max_label_length = max(len(lbl) for lbl in labels)
+        if self.pad_to_multiple_of:
+            max_label_length = ((max_label_length + self.pad_to_multiple_of - 1) 
+                               // self.pad_to_multiple_of * self.pad_to_multiple_of)
+        
+        padded_labels = []
+        for lbl in labels:
+            padding_length = max_label_length - len(lbl)
+            # RIGHT padding for labels: pad with -100 so they're ignored
+            padded_labels.append(lbl + [-100] * padding_length)
+        
+        return {
+            'input_ids': torch.tensor(padded_input_ids, dtype=torch.long),
+            'attention_mask': torch.tensor(attention_mask, dtype=torch.long),
+            'labels': torch.tensor(padded_labels, dtype=torch.long),
+        }
+
+
 class CausalLMTrainer(Trainer):
     def __init__(self, *args, 
                  generation_max_length: Optional[int] = None,
                  generation_num_beams: Optional[int] = None,
+                 eval_data_collator: Optional[Any] = None,
                  **kwargs) -> None:
         # 1. Store generation parameters
         self.generation_max_length = generation_max_length
         self.generation_num_beams = generation_num_beams
+        self.eval_data_collator = eval_data_collator
         # 2. Call parent constructor
         super().__init__(*args, **kwargs)
+        # 3. Store reference to processing_class to avoid deprecation warning
+        self._processing_class = self.processing_class
+    
+    def get_eval_dataloader(self, eval_dataset=None):
+        """Override to use a different data collator for evaluation."""
+        if eval_dataset is None:
+            eval_dataset = self.eval_dataset
+        
+        # Temporarily swap the data collator
+        original_collator = self.data_collator
+        if self.eval_data_collator is not None:
+            self.data_collator = self.eval_data_collator
+        
+        # Get the dataloader using parent's method
+        dataloader = super().get_eval_dataloader(eval_dataset)
+        
+        # Restore original collator
+        self.data_collator = original_collator
+        
+        return dataloader
 
     def prediction_step(
         self,
@@ -63,73 +133,63 @@ class CausalLMTrainer(Trainer):
         
         # 1. Compute Loss (Standard behavior)
         if prediction_loss_only:
-            return super().prediction_step(
-                model, inputs, prediction_loss_only=prediction_loss_only, ignore_keys=ignore_keys
-            )
+            # For loss-only, we can't compute it properly since eval data is prompt-only
+            # Just return None and skip loss calculation
+            return (None, None, None)
 
         # If we are here, we are evaluating the model
         print('*** evaluation: prediction_step ***')
         torch.cuda.empty_cache()
 
         # 2. Get Input IDs and Labels
-        # We need the input_ids to use as the prompt for generation
+        # input_ids contains ONLY the prompt (no target answer)
         if 'input_ids' in inputs:
             input_ids = inputs["input_ids"]
         else:
-            # Handle cases where DataCollator might rename input_ids
-            # This logic needs to be robust based on your data collator
             raise KeyError("input_ids not found in batch. Check your DataCollator setup.")
 
-        # Get the labels for metric calculation (target summary)
+        # labels contains the tokenized target summary (for ROUGE)
         labels = inputs.get("labels")
+        
+        # Remove padding from labels (-100 will be there from DataCollator)
+        # We need clean label token IDs for ROUGE
+        if labels is not None:
+            # Create a copy and replace -100 with pad_token_id for proper shape
+            labels = labels.clone()
+            labels[labels == -100] = self._processing_class.pad_token_id
 
-        print('*** evaluation: input_ids ***', input_ids.shape)
+        print('*** evaluation: input_ids (prompt only) ***', input_ids.shape)
+        if labels is not None:
+            print('*** evaluation: labels (target summary) ***', labels.shape)
 
         # 3. Autoregressive Generation (The Key Step)
-        # Call generate() using the model and the input IDs
-        # Pass any necessary generation arguments (e.g., num_beams, max_new_tokens, etc.)
+        # Generate from the prompt only
         generated_ids = model.generate(
             input_ids=input_ids,
             use_cache=True,
-            # Use generation settings defined in TrainingArguments or passed here
-            max_new_tokens=self.generation_max_length or model.config.max_length, 
-            num_beams=self.generation_num_beams,  # was: 1 or model.config.num_beams,
-            do_sample=False,  # Set to True for sampling, False for beam search
-            # Add any other required generation arguments
+            max_new_tokens=self.generation_max_length or 512,  # Generate up to 512 new tokens
+            num_beams=self.generation_num_beams,
+            do_sample=False,  # Greedy/beam search
+            pad_token_id=self._processing_class.pad_token_id,
+            eos_token_id=self._processing_class.eos_token_id,
         )
         
-        # CRITICAL FIX: Remove the input prompt from generated_ids
+        # CRITICAL: Remove the input prompt from generated_ids
         # model.generate() returns [input_ids + new_tokens], we only want the new tokens for ROUGE
         input_length = input_ids.shape[1]
         generated_ids = generated_ids[:, input_length:]
         
-        print('*** evaluation: generated_ids (without prompt) ***', generated_ids.shape)
-        
-        # 4. Handle Loss Calculation (Optional, but good practice)
-        # You may want to calculate loss for logging alongside the ROUGE score
-        # For evaluation, we typically don't need the logits, just the loss and generated IDs.
+        print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
         
         torch.cuda.empty_cache()
 
-        calc_loss_on_evaluation = False
-        if calc_loss_on_evaluation:
-            with torch.no_grad():
-                # Process in chunks of 2 examples at a time
-                losses = []
-                chunk_size = 2
-                for i in range(0, input_ids.shape[0], chunk_size):
-                    chunk_inputs = {k: v[i:i+chunk_size] for k, v in inputs.items()}
-                    chunk_loss = model(**chunk_inputs).loss
-                    losses.append(chunk_loss.item())
-                loss = sum(losses) / len(losses)
-            torch.cuda.empty_cache()
-        else:        
-            # alternative if little memory is available
-            loss = None
+        # No loss calculation during evaluation (we can't compute it from prompt-only data)
+        loss = None
         
         # 5. Return Results
         # The Trainer expects: (loss, predictions, labels)
-        # We return loss, the generated IDs (predictions), and the original labels.
+        # predictions: generated summary tokens
+        # labels: target summary tokens
         return (loss, generated_ids, labels)
 
 # only do this once
@@ -147,18 +207,26 @@ def fine_tune_model(
     def compute_metrics(eval_pred):
         print('*** evaluation: compute_metrics ***')
         
-        preds, labels = eval_pred  # preds: generated ids; labels: target ids (with -100 masked)
+        preds, labels = eval_pred  # preds: generated summary ids; labels: target summary ids
         print('*** evaluation: preds ***', preds.shape)
         print('*** evaluation: labels ***', labels.shape)
         
-        # Replace -100 so we can decode labels
-        labels = np.where(labels != -100, labels, 0)
+        # Replace -100 and pad tokens so we can decode properly
+        labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
+        
+        # Decode predictions and labels
         decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
         decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
 
-        # (optional) strip/normalize for ROUGE
+        # Strip/normalize for ROUGE
         decoded_preds = [p.strip() for p in decoded_preds]
         decoded_labels = [l.strip() for l in decoded_labels]
+        
+        # Debug: print first example
+        if len(decoded_preds) > 0:
+            print(f'\n*** Example 1 ***')
+            print(f'Prediction: {decoded_preds[0][:200]}...')
+            print(f'Reference:  {decoded_labels[0][:200]}...\n')
 
         scores = rouge.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
         print('*** evaluation: computed_metrics ***', scores)
@@ -188,6 +256,10 @@ def fine_tune_model(
     # Set padding token if it doesn't exist
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
+    
+    # For decoder-only models (like GPT, Gemma), use left padding for generation
+    # This ensures the model attends to the actual prompt, not padding
+    tokenizer.padding_side = 'left'
 
     # Load model with device_map if supported, otherwise fallback
     try:
@@ -197,7 +269,7 @@ def fine_tune_model(
             model = AutoModelForCausalLM.from_pretrained(
                 model_name,
                 # load_in_4bit=True,
-                torch_dtype=torch.float16,
+                dtype=torch.float16,
                 device_map="auto",
                 token=hf_token if hf_token else None
             )
@@ -207,7 +279,7 @@ def fine_tune_model(
             # Fallback if device_map isn't supported
             model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                torch_dtype=torch.float16,
+                dtype=torch.float16,
                 token=hf_token if hf_token else None
             ).cuda()
         except Exception as e2:
@@ -253,13 +325,22 @@ def fine_tune_model(
     val_dataset = Dataset.from_pandas(df)
     print('*** evaluation: val_dataset ***', val_dataset.shape)
 
-    def format_example(example):
-        # Format the input-output pair for the model
+    def format_example_train(example):
+        # Format the input-output pair for the model (TRAINING: full text for teacher forcing)
         text = f"### Oppgave: Oppsummer følgende tekst\n{example['input']}\n\n### Svar: {example['output']}"
         return {"text": text}
 
-    def tokenize_function(examples):
-        # Tokenize the formatted text
+    def format_example_eval(example):
+        # Format for EVALUATION: only the input prompt, not the answer
+        prompt = f"### Oppgave: Oppsummer følgende tekst\n{example['input']}\n\n### Svar:"
+        # Keep the target output separate for ROUGE calculation
+        return {
+            "prompt": prompt,
+            "target_summary": example['output']
+        }
+
+    def tokenize_function_train(examples):
+        # Tokenize the formatted text for training
         return tokenizer(
             examples["text"],
             truncation=True,
@@ -267,17 +348,41 @@ def fine_tune_model(
             padding=False
         )
 
-    formatted_dataset = dataset.map(format_example)
-    tokenized_dataset = formatted_dataset.map(tokenize_function, batched=True)
+    def tokenize_function_eval(examples):
+        # Tokenize ONLY the prompt (without answer) for evaluation
+        tokenized_prompts = tokenizer(
+            examples["prompt"],
+            truncation=True,
+            max_length=MAX_TOKENS // 2,  # Leave room for generation
+            padding=False
+        )
+        # Tokenize target summaries for labels
+        tokenized_targets = tokenizer(
+            examples["target_summary"],
+            truncation=True,
+            max_length=MAX_TOKENS // 2,
+            padding=False
+        )
+        # Store target token IDs as labels
+        tokenized_prompts["labels"] = tokenized_targets["input_ids"]
+        return tokenized_prompts
 
-    # Format and tokenize the dataset
-    formatted_val_dataset = val_dataset.map(format_example)
-    tokenized_val_dataset = formatted_val_dataset.map(tokenize_function, batched=True)
-    # Data collator for dynamic padding
-    data_collator = DataCollatorForLanguageModeling(
+    formatted_dataset = dataset.map(format_example_train)
+    tokenized_dataset = formatted_dataset.map(tokenize_function_train, batched=True)
+
+    # Format and tokenize the VALIDATION dataset differently
+    formatted_val_dataset = val_dataset.map(format_example_eval)
+    tokenized_val_dataset = formatted_val_dataset.map(tokenize_function_eval, batched=True)
+    
+    # Data collators
+    # For TRAINING: use standard causal LM collator (creates labels by shifting)
+    train_data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer,
         mlm=False
     )
+    
+    # For EVALUATION: use custom collator that pads both input_ids and labels
+    eval_data_collator = EvalDataCollator(tokenizer=tokenizer)
 
     # cpu_eval_callback =  CPUEvaluationCallback(eval_dataset_path=val_dataset_path, tokenizer=tokenizer, num_samples=5, eval_steps=500, patience=5)
     
@@ -370,14 +475,15 @@ def fine_tune_model(
         # Generation settings (important so ROUGE is computed on model outputs)
         generation_max_length=MAX_TOKENS,  # Ample length for summaries (was MAX_TOKENS=2048)
         generation_num_beams=4,  # Greedy decoding for speed during training (was 4)
+        eval_data_collator=eval_data_collator,  # Use separate collator for eval
         # General Trainer settings
         model=model,
         args=training_args,
         train_dataset=tokenized_dataset,
         eval_dataset=tokenized_val_dataset, # <-- ES needs this
-        tokenizer=tokenizer,
+        processing_class=tokenizer,  # Use processing_class instead of tokenizer (future-proof)
         compute_metrics=compute_metrics,
-        data_collator=data_collator,
+        data_collator=train_data_collator,  # Training collator
         callbacks=callbacks
     )
     
