@@ -80,16 +80,7 @@ EOF
         six==1.16.0 \
         sympy==1.12
     pip install evaluate==0.4.6  # had to install this one manually on the GPU node
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     pip install jinja2==3.1.6
-=======
->>>>>>> a1f1896dc62263972a9586eb54f57fa3cbe1a47e
-=======
->>>>>>> a1f1896dc62263972a9586eb54f57fa3cbe1a47e
-=======
->>>>>>> a1f1896dc62263972a9586eb54f57fa3cbe1a47e
     pip install --no-binary=rouge-score rouge-score==0.1.2
     pip install --no-deps accelerate==1.10.1
     pip install --no-deps peft==0.17.1  # Install peft *without* pulling torch
