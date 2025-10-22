@@ -55,9 +55,13 @@ Her følger en forklaring av hver nyhetsverdi:
 
 Oppgaven din er som følger:
 
-For hvert dokument, skal du gi dokumentet en vurdering på en skala fra 0-10 for hver nyhetsverdi.
+For hvert dokument, skal du først oppsummere hva dokumentet handler om, og deretter gi dokumentet en vurdering på en skala fra 0-10 for hver nyhetsverdi.
 
-Deretter skal du gi dokumentet en samlet vurdering på en skala fra 0-100, som er summen av alle vurderingene for hver nyhetsverdi.
+En vurdering på 10 betyr at definisjonen av nyhetsverdien, som gitt over, er fullstendig tilfredsstilles av dokumentet. En vurdering på 0 betyr at definisjonen av nyhetsverdien, som gitt over, ikke tilfredsstilles av dokumentet i det hele tatt.
+
+For hver nyhetsverdi, hvis dokumentet ikke er nyhetsverdig, skal du gi dokumentet en vurdering på 0 for den spesifikke nyhetsverdien. Det samme gjelder hvis teksten ikke eksisterer eller gir mening.
+
+Deretter skal du gi dokumentet en samlet vurdering på en skala fra 0-10, som er summen av alle vurderingene for hver nyhetsverdi.
 
 Gi svaret i strukturert json format for hvilket type dokument det er (ikke politisk type).
 Gi svaret med json-formatet:
