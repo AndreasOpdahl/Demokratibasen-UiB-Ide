@@ -20,8 +20,7 @@ import evaluate
 from huggingface_hub import login
 from peft import (
     LoraConfig, 
-    get_peft_model, 
-    prepare_model_for_kbit_training
+    get_peft_model
 )
 import torch
 from transformers import (
@@ -38,8 +37,17 @@ from transformers import (
 from transformers.trainer_utils import EvalPrediction
 
 
-VAL_DATA_SIZE=100  # number of examples to use for validation
-MAX_TOKENS=2048  # maximum number of tokens to use for input and output
+# default values when command-line args are not supplied (or implemented)
+MAX_INPUT_TEXT_TOKENS=2048  # max tokens for input to summarisation
+MAX_EXTRA_PROMPT_TOKENS=40  # max extra tokens for input prompt (the task description)
+MAX_INPUT_PROMPT_TOKENS=MAX_INPUT_TEXT_TOKENS+MAX_EXTRA_PROMPT_TOKENS
+MAX_OUTPUT_SUMMARY_TOKENS=512  # max tokens for output from summarisation
+MAX_EPOCHS=3
+TRAIN_BATCH_SIZE=2
+VAL_BATCH_SIZE=20
+VAL_DATA_SIZE=20  # number of examples to use for validation
+VAL_BEAM_SIZE=4  # beam size for evaluation
+VAL_STEPS=200
 
 
 class EvalDataCollator:
@@ -344,7 +352,7 @@ def fine_tune_model(
         return tokenizer(
             examples["text"],
             truncation=True,
-            max_length=MAX_TOKENS,
+            max_length=MAX_INPUT_PROMPT_TOKENS + MAX_OUTPUT_SUMMARY_TOKENS,
             padding=False
         )
 
@@ -353,14 +361,14 @@ def fine_tune_model(
         tokenized_prompts = tokenizer(
             examples["prompt"],
             truncation=True,
-            max_length=MAX_TOKENS // 2,  # Leave room for generation
+            max_length=MAX_INPUT_PROMPT_TOKENS,
             padding=False
         )
         # Tokenize target summaries for labels
         tokenized_targets = tokenizer(
             examples["target_summary"],
             truncation=True,
-            max_length=MAX_TOKENS // 2,
+            max_length=MAX_OUTPUT_SUMMARY_TOKENS,
             padding=False
         )
         # Store target token IDs as labels
@@ -425,9 +433,9 @@ def fine_tune_model(
     # Training arguments
     training_args = TrainingArguments(
         output_dir=output_dir,
-        per_device_train_batch_size=2,  # was 2
-        per_device_eval_batch_size=5,  # was 10 with beam 1  
-        gradient_accumulation_steps=4,  # was 4
+        per_device_train_batch_size=TRAIN_BATCH_SIZE,
+        per_device_eval_batch_size=VAL_BATCH_SIZE,
+        gradient_accumulation_steps=4,
         learning_rate=2e-5,
         max_steps=1200,
         # num_train_epochs=None,
@@ -436,9 +444,9 @@ def fine_tune_model(
         
         # Validate + save on a schedule (needed for ES)
         eval_strategy="steps",
-        eval_steps=50,  # was 500                    # align eval & save cadence
+        eval_steps=VAL_STEPS,  # align eval & save cadence
         save_strategy="steps",
-        save_steps=50,  # was 500
+        save_steps=VAL_STEPS,
         save_total_limit=10,         # keep disk usage sane
 
         # Pick the best checkpoint and restore it at the end
@@ -473,8 +481,8 @@ def fine_tune_model(
     # Initialize Trainer
     trainer = CausalLMTrainer(
         # Generation settings (important so ROUGE is computed on model outputs)
-        generation_max_length=MAX_TOKENS,  # Ample length for summaries (was MAX_TOKENS=2048)
-        generation_num_beams=4,  # Greedy decoding for speed during training (was 4)
+        generation_max_length=MAX_OUTPUT_SUMMARY_TOKENS,  # Max tokens to generate for summaries (512)
+        generation_num_beams=VAL_BEAM_SIZE,  # Beam search for better quality during evaluation
         eval_data_collator=eval_data_collator,  # Use separate collator for eval
         # General Trainer settings
         model=model,
