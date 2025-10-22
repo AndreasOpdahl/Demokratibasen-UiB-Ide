@@ -1,27 +1,31 @@
 """
-Before runnning:
-export PPYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+Unified fine-tuning script for both quantized (GTX3090) and non-quantized (GH200) training.
+
+Usage:
+  # With 4-bit quantization (GTX3090):
+  python finetune.py --model gemma-2b --quantization 4bit --hf_token YOUR_TOKEN
+  
+  # Without quantization (GH200/Cray):
+  python finetune.py --model gemma-2b --quantization none --max_steps 1200 --hf_token YOUR_TOKEN
+
+Before running:
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 """
 
 import argparse
+import glob
 import json
-import multiprocessing as mp
 import os
 import random
-import time
 from typing import Any, Dict, Optional, Tuple, Union
 
 import numpy as np
 import pandas as pd
-from tqdm import tqdm
 
 from datasets import Dataset
 import evaluate
 from huggingface_hub import login
-from peft import (
-    LoraConfig, 
-    get_peft_model
-)
+from peft import LoraConfig, get_peft_model
 import torch
 from transformers import (
     AutoModelForCausalLM,
@@ -31,23 +35,31 @@ from transformers import (
     MT5ForConditionalGeneration,
     MT5Tokenizer,
     Trainer,
-    TrainerCallback,
     TrainingArguments,
 )
-from transformers.trainer_utils import EvalPrediction
+
+# Optional imports for quantization
+try:
+    from transformers import BitsAndBytesConfig
+    from peft import prepare_model_for_kbit_training
+    QUANTIZATION_AVAILABLE = True
+except ImportError:
+    QUANTIZATION_AVAILABLE = False
+    print("Warning: BitsAndBytesConfig/prepare_model_for_kbit_training not available.")
+    print("Quantization will be disabled. This is expected on ARM-based systems (e.g., GH200).")
 
 
-# default values when command-line args are not supplied (or implemented)
-MAX_INPUT_TEXT_TOKENS=2048  # max tokens for input to summarisation
-MAX_EXTRA_PROMPT_TOKENS=40  # max extra tokens for input prompt (the task description)
-MAX_INPUT_PROMPT_TOKENS=MAX_INPUT_TEXT_TOKENS+MAX_EXTRA_PROMPT_TOKENS
-MAX_OUTPUT_SUMMARY_TOKENS=512  # max tokens for output from summarisation
-MAX_EPOCHS=3
-TRAIN_BATCH_SIZE=2
-VAL_BATCH_SIZE=20
-VAL_DATA_SIZE=20  # number of examples to use for validation
-VAL_BEAM_SIZE=4  # beam size for evaluation
-VAL_STEPS=200
+# Default values when command-line args are not supplied
+MAX_INPUT_TEXT_TOKENS = 2048  # max tokens for input to summarisation
+MAX_EXTRA_PROMPT_TOKENS = 40  # max extra tokens for input prompt (the task description)
+MAX_INPUT_PROMPT_TOKENS = MAX_INPUT_TEXT_TOKENS + MAX_EXTRA_PROMPT_TOKENS
+MAX_OUTPUT_SUMMARY_TOKENS = 512  # max tokens for output from summarisation
+MAX_EPOCHS = 3
+TRAIN_BATCH_SIZE = 2
+VAL_BATCH_SIZE = 10
+VAL_DATA_SIZE = 20  # number of examples to use for validation
+VAL_BEAM_SIZE = 4  # beam size for evaluation
+VAL_STEPS = 200
 
 
 class EvalDataCollator:
@@ -175,7 +187,7 @@ class CausalLMTrainer(Trainer):
         generated_ids = model.generate(
             input_ids=input_ids,
             use_cache=True,
-            max_new_tokens=self.generation_max_length or 512,  # Generate up to 512 new tokens
+            max_new_tokens=self.generation_max_length,  # Generate up to 512 new tokens
             num_beams=self.generation_num_beams,
             do_sample=False,  # Greedy/beam search
             pad_token_id=self._processing_class.pad_token_id,
@@ -200,17 +212,161 @@ class CausalLMTrainer(Trainer):
         # labels: target summary tokens
         return (loss, generated_ids, labels)
 
-# only do this once
+
+# Load ROUGE metric once
 rouge = evaluate.load("rouge")
-          
+
+
+def load_model_with_optional_quantization(
+    model_name: str,
+    quantization: str,
+    hf_token: Optional[str] = None
+):
+    """Load model with optional quantization.
+    
+    Args:
+        model_name: Model identifier (e.g., 'google/gemma-2b')
+        quantization: One of 'none', '4bit', '8bit'
+        hf_token: Hugging Face token for private models
+    
+    Returns:
+        Loaded model
+    """
+    if model_name == 'google/mt5-base':
+        return MT5ForConditionalGeneration.from_pretrained(model_name)
+    
+    if quantization == 'none':
+        # No quantization (GH200/Cray path)
+        print("Loading model without quantization (FP16)...")
+        try:
+            model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                torch_dtype=torch.float16,
+                device_map="auto",
+                token=hf_token
+            )
+        except Exception as e:
+            print(f"Error loading model with device_map: {e}")
+            print("Trying fallback without device_map...")
+            model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                torch_dtype=torch.float16,
+                token=hf_token
+            ).cuda()
+        return model
+    
+    elif quantization == '4bit':
+        # 4-bit quantization (GTX3090 path)
+        if not QUANTIZATION_AVAILABLE:
+            raise ImportError(
+                "BitsAndBytesConfig not available. Install bitsandbytes for quantization support:\n"
+                "  pip install bitsandbytes"
+            )
+        
+        print("Loading model with 4-bit quantization...")
+        bnb_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_use_double_quant=True,
+        )
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            quantization_config=bnb_config,
+            torch_dtype=torch.float16,
+            device_map="auto",
+            token=hf_token
+        )
+        return model
+    
+    elif quantization == '8bit':
+        # 8-bit quantization (optional)
+        if not QUANTIZATION_AVAILABLE:
+            raise ImportError(
+                "BitsAndBytesConfig not available. Install bitsandbytes for quantization support:\n"
+                "  pip install bitsandbytes"
+            )
+        
+        print("Loading model with 8-bit quantization...")
+        bnb_config = BitsAndBytesConfig(load_in_8bit=True)
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            quantization_config=bnb_config,
+            torch_dtype=torch.float16,
+            device_map="auto",
+            token=hf_token
+        )
+        return model
+    
+    else:
+        raise ValueError(f"Unknown quantization method: {quantization}")
+
+
+def prepare_model_for_lora(model, use_quantization: bool):
+    """Prepare model for LoRA training with or without quantization.
+    
+    Args:
+        model: The model to prepare
+        use_quantization: Whether the model uses quantization
+    
+    Returns:
+        Prepared model (note: model is modified in-place)
+    """
+    if use_quantization:
+        # Use peft's built-in function for quantized models
+        if not QUANTIZATION_AVAILABLE:
+            raise ImportError("prepare_model_for_kbit_training not available. Install peft.")
+        
+        print("Preparing quantized model for LoRA training...")
+        model = prepare_model_for_kbit_training(model)
+    else:
+        # Manual preparation for non-quantized models
+        print("Preparing non-quantized model for LoRA training...")
+        
+        # Enable gradient checkpointing
+        model.gradient_checkpointing_enable()
+        
+        # Freeze all parameters
+        for param in model.parameters():
+            param.requires_grad = False
+        
+        # Enable gradients for input embeddings (critical for LoRA!)
+        # Without this, the embeddings stay frozen and cause "does not require grad" errors
+        if hasattr(model, 'get_input_embeddings'):
+            input_embeddings = model.get_input_embeddings()
+            if input_embeddings is not None:
+                def make_inputs_require_grad(module, input, output):
+                    output.requires_grad_(True)
+                input_embeddings.register_forward_hook(make_inputs_require_grad)
+        
+        # Disable cache for gradient checkpointing
+        model.config.use_cache = False
+    
+    return model
+
 
 def fine_tune_model(
     model_name: str,
     dataset_path: str,
     val_dataset_path: str,
     output_dir: str,
-    hf_token: str = None
+    quantization: str = 'none',
+    max_steps: Optional[int] = None,
+    num_train_epochs: Optional[int] = None,
+    hf_token: Optional[str] = None
 ):
+    """Fine-tune a language model with LoRA.
+    
+    Args:
+        model_name: Model identifier
+        dataset_path: Path to training dataset (JSONL)
+        val_dataset_path: Path to validation dataset (JSONL)
+        output_dir: Directory to save the fine-tuned model
+        quantization: Quantization method ('none', '4bit', '8bit')
+        max_steps: Maximum training steps (overrides num_train_epochs if set)
+        num_train_epochs: Number of training epochs
+        hf_token: Hugging Face authentication token
+    """
     
     def compute_metrics(eval_pred):
         print('*** evaluation: compute_metrics ***')
@@ -240,7 +396,6 @@ def fine_tune_model(
         print('*** evaluation: computed_metrics ***', scores)
         return {k: v * 100 for k, v in scores.items()}  # % values
 
-
     
     # Login to Hugging Face if token is provided
     if hf_token:
@@ -269,78 +424,54 @@ def fine_tune_model(
     # This ensures the model attends to the actual prompt, not padding
     tokenizer.padding_side = 'left'
 
-    # Load model with device_map if supported, otherwise fallback
+    # Load model with optional quantization
     try:
-        if model_name == 'google/mt5-base':
-            model = MT5ForConditionalGeneration.from_pretrained(model_name)
-        else:
-            model = AutoModelForCausalLM.from_pretrained(
-                model_name,
-                # load_in_4bit=True,
-                torch_dtype=torch.float16,
-                device_map="auto",
-                token=hf_token if hf_token else None
-            )
+        model = load_model_with_optional_quantization(model_name, quantization, hf_token)
     except Exception as e:
-        print(f"Error loading model with device_map: {e}")
-        try:
-            # Fallback if device_map isn't supported
-            model = AutoModelForCausalLM.from_pretrained(
-                model_name,
-                torch_dtype=torch.float16,
-                token=hf_token if hf_token else None
-            ).cuda()
-        except Exception as e2:
-            print(f"Error loading model: {e2}")
-            return
+        print(f"Error loading model: {e}")
+        return
 
     # Load and preprocess dataset
     print(f"Loading dataset from: {dataset_path}")
 
     # Read JSONL file manually
-    data = []
+    train_data = []
     try:
         with open(dataset_path, 'r', encoding='utf-8') as f:
             for line in f:
-                data.append(json.loads(line))
+                train_data.append(json.loads(line))
     except Exception as e:
-        print(f"Error reading dataset: {e}")
+        print(f"Error reading training dataset: {e}")
         return
 
-    # Read JSONL file manually
+    # Read validation JSONL file
     val_data = []
     try:
         with open(val_dataset_path, 'r', encoding='utf-8') as f:
             for line in f:
                 val_data.append(json.loads(line))
     except Exception as e:
-        print(f"Error reading dataset: {e}")
+        print(f"Error reading validation dataset: {e}")
         return
 
-    # Create a pandas DataFrame
-    df = pd.DataFrame(data)
-
-    # Convert to Hugging Face Dataset
-    dataset = Dataset.from_pandas(df)
+    # Create training dataset
+    train_df = pd.DataFrame(train_data)
+    dataset = Dataset.from_pandas(train_df)
     
-    # randomly sample VAL_DATA_SIZE examples from val_data
-    val_data = random.sample(val_data, VAL_DATA_SIZE)
-
-    # Create a pandas DataFrame
-    df = pd.DataFrame(val_data)
-
-    # Convert to Hugging Face Dataset
-    val_dataset = Dataset.from_pandas(df)
-    print('*** evaluation: val_dataset ***', val_dataset.shape)
+    # Randomly sample VAL_DATA_SIZE examples from val_data
+    val_data = random.sample(val_data, min(VAL_DATA_SIZE, len(val_data)))
+    val_df = pd.DataFrame(val_data)
+    val_dataset = Dataset.from_pandas(val_df)
+    print(f'*** validation dataset size: {len(val_dataset)} examples ***')
 
     def format_example_train(example):
         # Format the input-output pair for the model (TRAINING: full text for teacher forcing)
-        text = f"### Oppgave: Oppsummer følgende tekst\n{example['input']}\n\n### Svar: {example['output']}"
+        text = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n{example['output']}\n\n###\n"
         return {"text": text}
 
     def format_example_eval(example):
         # Format for EVALUATION: only the input prompt, not the answer
-        prompt = f"### Oppgave: Oppsummer følgende tekst\n{example['input']}\n\n### Svar:"
+        prompt = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
         # Keep the target output separate for ROUGE calculation
         return {
             "prompt": prompt,
@@ -353,7 +484,7 @@ def fine_tune_model(
             examples["text"],
             truncation=True,
             max_length=MAX_INPUT_PROMPT_TOKENS + MAX_OUTPUT_SUMMARY_TOKENS,
-            padding=False
+            padding=True
         )
 
     def tokenize_function_eval(examples):
@@ -392,29 +523,9 @@ def fine_tune_model(
     # For EVALUATION: use custom collator that pads both input_ids and labels
     eval_data_collator = EvalDataCollator(tokenizer=tokenizer)
 
-    # cpu_eval_callback =  CPUEvaluationCallback(eval_dataset_path=val_dataset_path, tokenizer=tokenizer, num_samples=5, eval_steps=500, patience=5)
-    
-    # Manually prepare model for LoRA training (without quantization)
-    # This replicates the key parts of prepare_model_for_kbit_training() without the quantization-specific code
-    
-    # Enable gradient checkpointing
-    model.gradient_checkpointing_enable()
-    
-    # Enable gradients for input embeddings (critical for LoRA!)
-    # Without this, the embeddings stay frozen and cause "does not require grad" errors
-    for param in model.parameters():
-        param.requires_grad = False  # Freeze all parameters first
-    
-    # Enable input embeddings to require gradients
-    if hasattr(model, 'get_input_embeddings'):
-        input_embeddings = model.get_input_embeddings()
-        if input_embeddings is not None:
-            def make_inputs_require_grad(module, input, output):
-                output.requires_grad_(True)
-            input_embeddings.register_forward_hook(make_inputs_require_grad)
-    
-    # Disable cache for gradient checkpointing
-    model.config.use_cache = False
+    # Prepare model for LoRA training
+    use_quantization = (quantization != 'none')
+    model = prepare_model_for_lora(model, use_quantization)
 
     # Define LoRA config
     lora_config = LoraConfig(
@@ -426,9 +537,19 @@ def fine_tune_model(
         task_type="CAUSAL_LM"
     )
 
-    # Apply LoRA (this will unfreeze the LoRA parameters)
+    # Apply LoRA adapters
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
+
+    # Determine training duration
+    if max_steps is not None and max_steps > 0:
+        train_epochs = None
+        train_steps = max_steps
+        print(f"Training for {max_steps} steps (epochs ignored)")
+    else:
+        train_epochs = num_train_epochs if num_train_epochs is not None else MAX_EPOCHS
+        train_steps = -1
+        print(f"Training for {train_epochs} epochs")
 
     # Training arguments
     training_args = TrainingArguments(
@@ -437,22 +558,22 @@ def fine_tune_model(
         per_device_eval_batch_size=VAL_BATCH_SIZE,
         gradient_accumulation_steps=4,
         learning_rate=2e-5,
-        max_steps=1200,
-        # num_train_epochs=None,
+        num_train_epochs=train_epochs,
+        max_steps=train_steps,
         fp16=False,
         logging_steps=10,
         
-        # Validate + save on a schedule (needed for ES)
+        # Validate + save on a schedule (needed for early stopping)
         eval_strategy="steps",
         eval_steps=VAL_STEPS,  # align eval & save cadence
         save_strategy="steps",
         save_steps=VAL_STEPS,
-        save_total_limit=10,         # keep disk usage sane
+        save_total_limit=10,  # keep disk usage sane
 
         # Pick the best checkpoint and restore it at the end
         load_best_model_at_end=True,
-        metric_for_best_model="rougeLsum",   # was "eval_loss", or a custom metric key, e.g., "accuracy"
-        greater_is_better=True,     # was False
+        metric_for_best_model="rougeLsum",
+        greater_is_better=True,
                 
         optim="adamw_torch",
         report_to="none",
@@ -460,9 +581,7 @@ def fine_tune_model(
         dataloader_pin_memory=False  # Can help with memory issues
     )
     
-    # Optional: if you compute custom metrics, define compute_metrics=... in Trainer
     # Check if we're resuming from checkpoint
-    import glob
     checkpoints_exist = len(glob.glob(os.path.join(output_dir, "checkpoint-*"))) > 0
     
     # Only add EarlyStoppingCallback when starting fresh (not resuming)
@@ -470,8 +589,8 @@ def fine_tune_model(
     callbacks = []
     if not checkpoints_exist:
         early_stopping = EarlyStoppingCallback(
-            early_stopping_patience=10,           # stop if no improvement for n evals
-            early_stopping_threshold=0.0         # require strictly better than best
+            early_stopping_patience=10,  # stop if no improvement for n evals
+            early_stopping_threshold=0.0  # require strictly better than best
         )
         callbacks.append(early_stopping)
         print("Adding EarlyStoppingCallback (fresh training)")
@@ -481,20 +600,19 @@ def fine_tune_model(
     # Initialize Trainer
     trainer = CausalLMTrainer(
         # Generation settings (important so ROUGE is computed on model outputs)
-        generation_max_length=MAX_OUTPUT_SUMMARY_TOKENS,  # Max tokens to generate for summaries (512)
-        generation_num_beams=VAL_BEAM_SIZE,  # Beam search for better quality during evaluation
+        generation_max_length=MAX_OUTPUT_SUMMARY_TOKENS,
+        generation_num_beams=VAL_BEAM_SIZE,
         eval_data_collator=eval_data_collator,  # Use separate collator for eval
         # General Trainer settings
         model=model,
         args=training_args,
         train_dataset=tokenized_dataset,
-        eval_dataset=tokenized_val_dataset, # <-- ES needs this
+        eval_dataset=tokenized_val_dataset,
         tokenizer=tokenizer,
         compute_metrics=compute_metrics,
         data_collator=train_data_collator,  # Training collator
         callbacks=callbacks
     )
-    
 
     # Start training
     if checkpoints_exist:
@@ -503,25 +621,57 @@ def fine_tune_model(
     else:
         print("Starting training from scratch...")
         trainer.train()
+    
+    # Save the final model
     trainer.save_model()
     tokenizer.save_pretrained(output_dir)
     print(f"Training completed. Model saved to {output_dir}")
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Fine-tune a language model')
+    parser = argparse.ArgumentParser(
+        description='Fine-tune a language model with optional quantization',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  # GTX3090 with 4-bit quantization:
+  python finetune.py --model gemma-2b --quantization 4bit --hf_token YOUR_TOKEN
+
+  # GH200/Cray without quantization, fixed steps:
+  python finetune.py --model gemma-2b --quantization none --max_steps 1200 --hf_token YOUR_TOKEN
+
+  # Without quantization, train for epochs:
+  python finetune.py --model gemma-2b --quantization none --num_train_epochs 3 --hf_token YOUR_TOKEN
+        """
+    )
+    
     parser.add_argument('--model', type=str, required=True,
                        choices=['viking-7b', 'gemma-2b', 'mt5', 'gemma-7b'],
                        help='Model to fine-tune')
+    parser.add_argument('--quantization', type=str, default='none',
+                       choices=['none', '4bit', '8bit'],
+                       help='Quantization method (default: none). Use "4bit" for GTX3090, "none" for GH200.')
     parser.add_argument('--train_dataset', type=str, default='/app/data/output/processed_data_train.jsonl',
-                       help='Path to processed dataset')
+                       help='Path to training dataset (JSONL format)')
     parser.add_argument('--val_dataset', type=str, default='/app/data/output/processed_data_val.jsonl',
-                       help='Path to processed val dataset')
+                       help='Path to validation dataset (JSONL format)')
     parser.add_argument('--output_dir', type=str,
                        help='Output directory for the fine-tuned model')
+    parser.add_argument('--max_steps', type=int, default=None,
+                       help='Maximum training steps (overrides num_train_epochs if set)')
+    parser.add_argument('--num_train_epochs', type=int, default=None,
+                       help=f'Number of training epochs (default: {MAX_EPOCHS}, ignored if max_steps is set)')
     parser.add_argument('--hf_token', type=str,
                        help='Hugging Face authentication token for private models')
 
     args = parser.parse_args()
+
+    # Validate quantization availability
+    if args.quantization != 'none' and not QUANTIZATION_AVAILABLE:
+        print(f"ERROR: Quantization requested ({args.quantization}) but BitsAndBytesConfig is not available.")
+        print("Please install bitsandbytes: pip install bitsandbytes")
+        print("Or use --quantization none to run without quantization.")
+        exit(1)
 
     # Model mapping
     model_mapping = {
@@ -533,15 +683,23 @@ if __name__ == "__main__":
 
     model_name = model_mapping[args.model]
 
-    if args.model == 'viking-7b':
-        output_dir = args.output_dir or "/app/models/viking_finetuned"
+    # Set default output directory
+    if args.output_dir:
+        output_dir = args.output_dir
+    elif args.model == 'viking-7b':
+        output_dir = "/app/models/viking_finetuned"
     else:
-        output_dir = args.output_dir or "/app/models/gemma_finetuned"
+        output_dir = "/app/models/gemma_finetuned"
 
+    # Run fine-tuning
     fine_tune_model(
         model_name=model_name,
         dataset_path=args.train_dataset,
         val_dataset_path=args.val_dataset,
         output_dir=output_dir,
+        quantization=args.quantization,
+        max_steps=args.max_steps,
+        num_train_epochs=args.num_train_epochs,
         hf_token=args.hf_token
     )
+
