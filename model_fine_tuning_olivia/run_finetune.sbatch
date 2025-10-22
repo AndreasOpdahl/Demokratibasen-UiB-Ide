@@ -2,9 +2,9 @@
 #SBATCH -J gpu-smoke
 #SBATCH -p accel
 #SBATCH --gres=gpu:1
-#SBATCH --cpus-per-task=2
+#SBATCH --cpus-per-task=1
 #SBATCH --mem=16G
-#SBATCH --time=00:03:00
+#SBATCH --time=06:00:00
 #SBATCH -A nn12075k
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
@@ -79,6 +79,7 @@ EOF
         absl-py==2.1.0 \
         six==1.16.0 \
         sympy==1.12
+    pip install evaluate==0.4.6  # had to install this one manually on the GPU node
     pip install --no-binary=rouge-score rouge-score==0.1.2
     pip install --no-deps accelerate==1.10.1
     pip install --no-deps peft==0.17.1  # Install peft *without* pulling torch
