@@ -80,8 +80,8 @@ EOF
         six==1.16.0 \
         sympy==1.12 \ 
         evaluate==0.4.6 \
-        bitsandbytes==0.46.0
-    pip install jinja2==3.1.6
+        bitsandbytes==0.46.0 \
+        jinja2==3.1.6
     pip install --no-binary=rouge-score rouge-score==0.1.2
     pip install --no-deps accelerate==1.10.1
     pip install --no-deps peft==0.17.1  # Install peft *without* pulling torch
