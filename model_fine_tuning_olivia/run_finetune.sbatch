@@ -82,7 +82,10 @@ EOF
     pip install evaluate==0.4.6  # had to install this one manually on the GPU node
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     pip install jinja2==3.1.6
+=======
+>>>>>>> a1f1896dc62263972a9586eb54f57fa3cbe1a47e
 =======
 >>>>>>> a1f1896dc62263972a9586eb54f57fa3cbe1a47e
 =======
