@@ -589,11 +589,18 @@ def fine_tune_model(
         load_best_model_at_end=True,
         metric_for_best_model="rougeLsum",
         greater_is_better=True,
+        
+        # Numerical stability improvements
+        max_grad_norm=1.0,  # Gradient clipping to prevent explosion
+        warmup_steps=100,  # Warmup learning rate to improve stability
+        weight_decay=0.01,  # L2 regularization
                 
         optim="adamw_torch",
         report_to="none",
         gradient_checkpointing=True,
-        dataloader_pin_memory=False  # Can help with memory issues
+        dataloader_pin_memory=False,  # Can help with memory issues
+        # Disable resume_from_checkpoint_lr_scheduler to prevent scheduler issues
+        resume_from_checkpoint_lr_scheduler=False,
     )
     
     # Check if we're resuming from checkpoint
