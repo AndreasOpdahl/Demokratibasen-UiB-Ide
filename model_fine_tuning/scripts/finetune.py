@@ -30,17 +30,17 @@ import torch
 import torch.serialization
 
 # Fix for PyTorch 2.6+ weights_only security issue
-# Allow numpy globals for checkpoint loading
-try:
-    import numpy
-    torch.serialization.add_safe_globals([
-        numpy.core.multiarray._reconstruct,
-        numpy.core.multiarray.scalar,
-        numpy.ndarray,
-        numpy.dtype,
-    ])
-except (ImportError, AttributeError):
-    pass
+# Patch torch.load to disable weights_only for checkpoint files (we trust our own checkpoints)
+_original_torch_load = torch.load
+
+def _torch_load_with_weights_only_false(path, *args, **kwargs):
+    """Wrapper around torch.load that disables weights_only for checkpoint compatibility."""
+    # Only disable weights_only for checkpoint-related files
+    if 'rng_state' in str(path) or 'optimizer' in str(path) or 'scheduler' in str(path):
+        kwargs['weights_only'] = False
+    return _original_torch_load(path, *args, **kwargs)
+
+torch.load = _torch_load_with_weights_only_false
 
 from transformers import (
     AutoModelForCausalLM,
