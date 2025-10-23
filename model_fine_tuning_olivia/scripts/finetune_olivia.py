@@ -29,7 +29,10 @@ import torch.serialization
 # Allow numpy globals for checkpoint loading
 try:
     import numpy
-    torch.serialization.add_safe_globals([numpy.core.multiarray._reconstruct])
+    torch.serialization.add_safe_globals([
+        numpy.core.multiarray._reconstruct,
+        numpy.ndarray,
+    ])
 except (ImportError, AttributeError):
     pass
 
