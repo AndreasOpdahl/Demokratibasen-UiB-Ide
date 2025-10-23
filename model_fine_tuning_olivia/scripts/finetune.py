@@ -27,6 +27,16 @@ import evaluate
 from huggingface_hub import login
 from peft import LoraConfig, get_peft_model
 import torch
+import torch.serialization
+
+# Fix for PyTorch 2.6+ weights_only security issue
+# Allow numpy globals for checkpoint loading
+try:
+    import numpy
+    torch.serialization.add_safe_globals([numpy.core.multiarray._reconstruct])
+except (ImportError, AttributeError):
+    pass
+
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
@@ -54,7 +64,7 @@ MAX_INPUT_TEXT_TOKENS = 2048  # max tokens for input to summarisation
 MAX_EXTRA_PROMPT_TOKENS = 40  # max extra tokens for input prompt (the task description)
 MAX_INPUT_PROMPT_TOKENS = MAX_INPUT_TEXT_TOKENS + MAX_EXTRA_PROMPT_TOKENS
 MAX_OUTPUT_SUMMARY_TOKENS = 512  # max tokens for output from summarisation
-MAX_EPOCHS = 3
+MAX_EPOCHS = 30
 TRAIN_BATCH_SIZE = 2
 VAL_BATCH_SIZE = 10
 VAL_DATA_SIZE = 20  # number of examples to use for validation
