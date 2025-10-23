@@ -23,6 +23,16 @@ from peft import (
     get_peft_model
 )
 import torch
+import torch.serialization
+
+# Fix for PyTorch 2.6+ weights_only security issue
+# Allow numpy globals for checkpoint loading
+try:
+    import numpy
+    torch.serialization.add_safe_globals([numpy.core.multiarray._reconstruct])
+except (ImportError, AttributeError):
+    pass
+
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
