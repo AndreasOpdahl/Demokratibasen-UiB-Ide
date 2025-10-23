@@ -31,7 +31,9 @@ try:
     import numpy
     torch.serialization.add_safe_globals([
         numpy.core.multiarray._reconstruct,
+        numpy.core.multiarray.scalar,
         numpy.ndarray,
+        numpy.dtype,
     ])
 except (ImportError, AttributeError):
     pass
