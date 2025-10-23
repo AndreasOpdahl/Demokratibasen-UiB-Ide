@@ -478,8 +478,6 @@ def fine_tune_model(
         report_to="none",
         gradient_checkpointing=True,
         dataloader_pin_memory=False,  # Can help with memory issues
-        # Disable resume_from_checkpoint_lr_scheduler to prevent scheduler issues
-        resume_from_checkpoint_lr_scheduler=False,
     )
     
     # Optional: if you compute custom metrics, define compute_metrics=... in Trainer
