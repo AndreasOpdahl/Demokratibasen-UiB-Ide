@@ -572,7 +572,7 @@ def fine_tune_model(
         per_device_train_batch_size=TRAIN_BATCH_SIZE,
         per_device_eval_batch_size=VAL_BATCH_SIZE,
         gradient_accumulation_steps=4,
-        learning_rate=2e-5,
+        learning_rate=1e-5,  # Reduced from 2e-5 - too high can cause instability
         num_train_epochs=train_epochs,
         max_steps=train_steps,
         fp16=False,
@@ -591,9 +591,13 @@ def fine_tune_model(
         greater_is_better=True,
         
         # Numerical stability improvements
-        max_grad_norm=1.0,  # Gradient clipping to prevent explosion
-        warmup_steps=100,  # Warmup learning rate to improve stability
-        weight_decay=0.01,  # L2 regularization
+        max_grad_norm=0.5,  # More aggressive gradient clipping
+        warmup_steps=500,  # Much longer warmup (was 100)
+        warmup_ratio=0.0,  # Ensure warmup_steps is used
+        weight_decay=0.05,  # Increased regularization (was 0.01)
+        adam_epsilon=1e-8,  # Standard Adam epsilon
+        adam_beta1=0.9,
+        adam_beta2=0.999,
                 
         optim="adamw_torch",
         report_to="none",
