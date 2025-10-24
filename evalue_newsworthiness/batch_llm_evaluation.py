@@ -53,29 +53,62 @@ Her følger en forklaring av hver nyhetsverdi:
 
 6. Magnitude innebærer om størrelse på saken. I dette tilfellet omhandler om hvor mange som er involvert i dokumentet, eller hvor store konsekvensene av innholdet i dokumentet er, hvor stort omfanget av innholdet i dokumentet er
 
-Oppgaven din er som følger:
+For hvert dokument, skal du gjøre følgende i rekkefølge:
 
-For hvert dokument, skal du først oppsummere hva dokumentet handler om, og deretter gi dokumentet en vurdering på en skala fra 0-10 for hver nyhetsverdi.
+1. Oppsummere hva dokumentet handler om. Spør deg selv følgende før du gir en oppsummering:
+    - Hva er viktige detaljer av saken for å formidle helheten?
 
-En vurdering på 10 betyr at definisjonen av nyhetsverdien, som gitt over, er fullstendig tilfredsstilles av dokumentet. En vurdering på 0 betyr at definisjonen av nyhetsverdien, som gitt over, ikke tilfredsstilles av dokumentet i det hele tatt.
+2. For hver nyhetsverdi, gi en forklaring av hvor godt dokumentet tilfredsstiller definisjonen av nyhetsverdien. Dette er spørsmål du må tenke gjennom før du gir en forklaring:
+    - Hvilke aktører er involvert i saken som omtales?
+    - Hvilke relasjoner har de?
+    - Når skjedde saken som omtales i forhold til dagens dato?
+    - Hva er konsekvensene av saken som omtales?
 
-For hver nyhetsverdi, hvis dokumentet ikke er nyhetsverdig, skal du gi dokumentet en vurdering på 0 for den spesifikke nyhetsverdien. Det samme gjelder hvis teksten ikke eksisterer eller gir mening.
+3. For hver nyhetsverdi, gi dokumentet en numerisk vurdering på en skala fra 0-10 for hvor nyhetsverdig dokumentet er basert på forklaringen du selv har gitt for hver nyhetsverdi.
 
-Deretter skal du gi dokumentet en samlet vurdering på en skala fra 0-10, som er summen av alle vurderingene for hver nyhetsverdi.
+4. Gi en samlet vurdering som er en summering av alle de numeriske vurderingene du har gitt for hver nyhetsverdi.
+
+En vurdering på 10 betyr at definisjonen av nyhetsverdien, som gitt over, fullstendig tilfredsstilles av dokumentet. En vurdering på 0 betyr at definisjonen av nyhetsverdien, som gitt over, ikke tilfredsstilles av dokumentet i det hele tatt.
+
+For hver nyhetsverdi, hvis dokumentet ikke er nyhetsverdig, skal du gi dokumentet en vurdering på 0 for den spesifikke nyhetsverdien. Det samme gjelder hvis teksten ikke eksisterer eller ikke gir mening.
 
 Gi svaret i strukturert json format for hvilket type dokument det er (ikke politisk type).
+
 Gi svaret med json-formatet:
-{{
-    "makteliten": 10,
-    "positivitet": 10,
-    "underholdning": 10,
-    "konflikt": 10,
-    "identifikasjon": 10,
-    "magnitude": 10,
-    "samlet_vurdering": 10
+
+ {{
+    "oppsummering": <<oppsummering>>,
+    "vurdering": {{
+    "makteliten": {{
+        "forklaring": <<forklaring>>,
+        "poeng": <<poeng>>
+    }},
+    "positivitet": {{
+        "forklaring": <<forklaring>>,
+        "poeng": <<poeng>>
+    }},
+    "underholdning": {{
+        "forklaring": <<forklaring>>,
+        "poeng": <<poeng>>
+    }},
+    "konflikt": {{
+        "forklaring": <<forklaring>>,
+        "poeng": <<poeng>>
+    }},
+    "identifikasjon": {{
+        "forklaring": <<forklaring>>,
+        "poeng": <<poeng>>
+    }},
+    "magnitude": {{
+        "forklaring": <<forklaring>>,
+        "poeng": <<poeng>>
+    }},
+    "samlet_vurdering": <<samlet_vurdering>>
+    }}
 }}
 
 Dokumentet kommer her i et json format:
+
 {{
     'title': '{title}',
     'fulltekst': '{text}'
