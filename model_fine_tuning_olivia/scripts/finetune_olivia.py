@@ -237,6 +237,18 @@ def fine_tune_model(
         # Replace -100 and pad tokens so we can decode properly
         labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
         
+        # Fix for 4-bit quantization: clip token IDs to valid vocabulary range
+        # This prevents OverflowError during decoding when quantization causes out-of-range values
+        vocab_size = tokenizer.vocab_size
+        print(f'*** Vocab size: {vocab_size} ***')
+        
+        # Clip predictions to valid token ID range [0, vocab_size)
+        # Replace any invalid values with pad_token_id
+        preds = np.clip(preds, 0, vocab_size - 1)
+        
+        # Also ensure labels are in valid range
+        labels = np.clip(labels, 0, vocab_size - 1)
+        
         # Decode predictions and labels
         decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
         decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
