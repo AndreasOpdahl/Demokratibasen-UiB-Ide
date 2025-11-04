@@ -1,15 +1,29 @@
 """
 Unified fine-tuning script for both quantized (GTX3090) and non-quantized (GH200) training.
+Supports single-GPU and multi-GPU (DDP) training.
 
 Usage:
-  # With 4-bit quantization (GTX3090):
+  # Single GPU with 4-bit quantization (GTX3090):
   python finetune.py --model gemma-2b --quantization 4bit --hf_token YOUR_TOKEN
   
-  # Without quantization (GH200/Cray):
+  # Single GPU without quantization (GH200/Cray):
   python finetune.py --model gemma-2b --quantization none --max_steps 1200 --hf_token YOUR_TOKEN
+  
+  # Multi-GPU training with torchrun (recommended):
+  torchrun --nproc_per_node=4 finetune.py --model gemma-2b --quantization none --hf_token YOUR_TOKEN
+  
+  # Multi-GPU training with accelerate:
+  accelerate launch --num_processes=4 finetune.py --model gemma-2b --quantization none --hf_token YOUR_TOKEN
 
 Before running:
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+Important Notes:
+  - Multi-GPU training removes device_map="auto" (handled automatically)
+  - Quantization + multi-GPU is not well supported - use single GPU or no quantization
+  - CRITICAL: Multi-GPU training with LoRA CANNOT resume from checkpoints due to PEFT limitations
+    Checkpoints will be automatically ignored in distributed mode to prevent errors.
+    If interrupted, training will restart from scratch (checkpoints are still saved for recovery).
 """
 
 import argparse
@@ -22,8 +36,8 @@ from typing import Any, Dict, Optional, Tuple, Union
 import numpy as np
 import pandas as pd
 
-from datasets import Dataset
 import evaluate
+from datasets import Dataset
 from huggingface_hub import login
 from peft import LoraConfig, get_peft_model
 import torch
@@ -69,12 +83,12 @@ MAX_INPUT_TEXT_TOKENS = 2048  # max tokens for input to summarisation
 MAX_EXTRA_PROMPT_TOKENS = 40  # max extra tokens for input prompt (the task description)
 MAX_INPUT_PROMPT_TOKENS = MAX_INPUT_TEXT_TOKENS + MAX_EXTRA_PROMPT_TOKENS
 MAX_OUTPUT_SUMMARY_TOKENS = 512  # max tokens for output from summarisation
-MAX_EPOCHS = 30
+MAX_EPOCHS = 20
 TRAIN_BATCH_SIZE = 2
-VAL_BATCH_SIZE = 10
-VAL_DATA_SIZE = 20  # number of examples to use for validation
+VAL_BATCH_SIZE = 5
+VAL_DATA_SIZE = 5  # WAS 20, number of examples to use for validation
 VAL_BEAM_SIZE = 4  # beam size for evaluation
-VAL_STEPS = 200
+VAL_STEPS = 20  # WAS 200
 
 
 class EvalDataCollator:
@@ -235,7 +249,8 @@ rouge = evaluate.load("rouge")
 def load_model_with_optional_quantization(
     model_name: str,
     quantization: str,
-    hf_token: Optional[str] = None
+    hf_token: Optional[str] = None,
+    use_distributed: bool = False
 ):
     """Load model with optional quantization.
     
@@ -243,6 +258,7 @@ def load_model_with_optional_quantization(
         model_name: Model identifier (e.g., 'google/gemma-2b')
         quantization: One of 'none', '4bit', '8bit'
         hf_token: Hugging Face token for private models
+        use_distributed: Whether to use distributed training (removes device_map)
     
     Returns:
         Loaded model
@@ -253,21 +269,38 @@ def load_model_with_optional_quantization(
     if quantization == 'none':
         # No quantization (GH200/Cray path)
         print("Loading model without quantization (FP16)...")
-        try:
+        
+        # For distributed training, we must NOT use device_map="auto"
+        # The DDP/FSDP launcher will handle device placement
+        # Keep model on CPU - Trainer will move it to the correct device for each rank
+        if use_distributed:
+            print("Distributed training enabled - loading model without device_map (keeping on CPU)")
             model = AutoModelForCausalLM.from_pretrained(
                 model_name,
                 torch_dtype=torch.float16,
-                device_map="auto",
-                token=hf_token
+                token=hf_token,
+                low_cpu_mem_usage=True  # Efficient loading for large models
             )
-        except Exception as e:
-            print(f"Error loading model with device_map: {e}")
-            print("Trying fallback without device_map...")
-            model = AutoModelForCausalLM.from_pretrained(
-                model_name,
-                torch_dtype=torch.float16,
-                token=hf_token
-            ).cuda()
+            # Explicitly keep on CPU - do NOT move to CUDA yet
+            # The Trainer will handle device placement after DDP wrapping
+            print(f"Model loaded on CPU (distributed mode)")
+        else:
+            # Single GPU path with device_map
+            try:
+                model = AutoModelForCausalLM.from_pretrained(
+                    model_name,
+                    torch_dtype=torch.float16,
+                    device_map="auto",
+                    token=hf_token
+                )
+            except Exception as e:
+                print(f"Error loading model with device_map: {e}")
+                print("Trying fallback without device_map...")
+                model = AutoModelForCausalLM.from_pretrained(
+                    model_name,
+                    torch_dtype=torch.float16,
+                    token=hf_token
+                ).cuda()
         return model
     
     elif quantization == '4bit':
@@ -277,6 +310,10 @@ def load_model_with_optional_quantization(
                 "BitsAndBytesConfig not available. Install bitsandbytes for quantization support:\n"
                 "  pip install bitsandbytes"
             )
+        
+        if use_distributed:
+            print("WARNING: Quantization with distributed training is not well supported.")
+            print("Consider using FSDP with quantization or single-GPU training.")
         
         print("Loading model with 4-bit quantization...")
         bnb_config = BitsAndBytesConfig(
@@ -289,7 +326,7 @@ def load_model_with_optional_quantization(
             model_name,
             quantization_config=bnb_config,
             torch_dtype=torch.float16,
-            device_map="auto",
+            device_map="auto" if not use_distributed else None,
             token=hf_token
         )
         return model
@@ -302,13 +339,17 @@ def load_model_with_optional_quantization(
                 "  pip install bitsandbytes"
             )
         
+        if use_distributed:
+            print("WARNING: Quantization with distributed training is not well supported.")
+            print("Consider using FSDP with quantization or single-GPU training.")
+        
         print("Loading model with 8-bit quantization...")
         bnb_config = BitsAndBytesConfig(load_in_8bit=True)
         model = AutoModelForCausalLM.from_pretrained(
             model_name,
             quantization_config=bnb_config,
             torch_dtype=torch.float16,
-            device_map="auto",
+            device_map="auto" if not use_distributed else None,
             token=hf_token
         )
         return model
@@ -368,7 +409,8 @@ def fine_tune_model(
     quantization: str = 'none',
     max_steps: Optional[int] = None,
     num_train_epochs: Optional[int] = None,
-    hf_token: Optional[str] = None
+    hf_token: Optional[str] = None,
+    use_distributed: bool = False
 ):
     """Fine-tune a language model with LoRA.
     
@@ -381,6 +423,7 @@ def fine_tune_model(
         max_steps: Maximum training steps (overrides num_train_epochs if set)
         num_train_epochs: Number of training epochs
         hf_token: Hugging Face authentication token
+        use_distributed: Whether to enable distributed training (multi-GPU)
     """
     
     def compute_metrics(eval_pred):
@@ -392,6 +435,18 @@ def fine_tune_model(
         
         # Replace -100 and pad tokens so we can decode properly
         labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
+        
+        # Fix for 4-bit quantization: clip token IDs to valid vocabulary range
+        # This prevents OverflowError during decoding when quantization causes out-of-range values
+        vocab_size = tokenizer.vocab_size
+        print(f'*** Vocab size: {vocab_size} ***')
+        
+        # Clip predictions to valid token ID range [0, vocab_size)
+        # Replace any invalid values with pad_token_id
+        preds = np.clip(preds, 0, vocab_size - 1)
+        
+        # Also ensure labels are in valid range
+        labels = np.clip(labels, 0, vocab_size - 1)
         
         # Decode predictions and labels
         decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
@@ -439,9 +494,26 @@ def fine_tune_model(
     # This ensures the model attends to the actual prompt, not padding
     tokenizer.padding_side = 'left'
 
+    # Detect if we're in a distributed environment
+    # If launched with torchrun/accelerate, environment variables will be set
+    world_size = int(os.environ.get('WORLD_SIZE', 1))
+    local_rank = int(os.environ.get('LOCAL_RANK', -1))
+    rank = int(os.environ.get('RANK', -1))
+    
+    if world_size > 1 or use_distributed:
+        print(f"=== Distributed Training Detected ===")
+        print(f"WORLD_SIZE={world_size}, RANK={rank}, LOCAL_RANK={local_rank}")
+        print(f"CUDA available: {torch.cuda.is_available()}")
+        print(f"CUDA device count: {torch.cuda.device_count()}")
+        use_distributed = True
+    else:
+        print("=== Single-GPU Training Mode ===")
+    
     # Load model with optional quantization
     try:
-        model = load_model_with_optional_quantization(model_name, quantization, hf_token)
+        model = load_model_with_optional_quantization(
+            model_name, quantization, hf_token, use_distributed=use_distributed
+        )
     except Exception as e:
         print(f"Error loading model: {e}")
         return
@@ -555,6 +627,16 @@ def fine_tune_model(
     # Apply LoRA adapters
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
+    
+    # In distributed mode, ensure model stays on CPU
+    # The Trainer will move it to the correct device for each rank
+    if use_distributed:
+        # Verify model is on CPU
+        device_str = str(next(model.parameters()).device)
+        print(f"After LoRA, model device: {device_str}")
+        if device_str != "cpu":
+            print(f"WARNING: Model is on {device_str}, moving to CPU for distributed training")
+            model = model.cpu()
 
     # Determine training duration
     if max_steps is not None and max_steps > 0:
@@ -603,10 +685,39 @@ def fine_tune_model(
         report_to="none",
         gradient_checkpointing=True,
         dataloader_pin_memory=False,  # Can help with memory issues
+        
+        # Distributed training settings
+        # DDP is automatically enabled by Trainer when multiple GPUs are detected
+        # or when launched with torchrun/accelerate
+        ddp_find_unused_parameters=False,  # Set to True if you get DDP errors
+        ddp_backend="nccl",  # Use NCCL for GPU communication
     )
     
     # Check if we're resuming from checkpoint
     checkpoints_exist = len(glob.glob(os.path.join(output_dir, "checkpoint-*"))) > 0
+    force_restart = globals().get('force_restart', False)
+    
+    # CRITICAL: PEFT + DDP + checkpoint resumption is problematic
+    # The adapter loading conflicts with DDP device management
+    if checkpoints_exist and use_distributed and not force_restart:
+        print("\n" + "=" * 70)
+        print("CRITICAL: Checkpoint resumption with PEFT + DDP is not supported!")
+        print("=" * 70)
+        print("Found existing checkpoints, but distributed training with LoRA adapters")
+        print("cannot resume from checkpoints due to PEFT device management conflicts.")
+        print("")
+        print("This is a known limitation: PEFT's load_adapter() tries to load weights")
+        print("to CUDA before DDP is properly coordinated across ranks.")
+        print("")
+        print("Solutions:")
+        print(f"  1. Use --force_restart to ignore checkpoints and start fresh")
+        print(f"  2. Delete checkpoints: rm -rf {output_dir}/checkpoint-*")
+        print(f"  3. Use a different output_dir")
+        print(f"  4. Train on single GPU (no distributed mode)")
+        print("=" * 70)
+        print("FORCING RESTART to avoid checkpoint loading errors...")
+        print("=" * 70 + "\n")
+        force_restart = True  # Force it to avoid the error
     
     # Only add EarlyStoppingCallback when starting fresh (not resuming)
     # This avoids KeyError when resuming from checkpoint
@@ -639,11 +750,14 @@ def fine_tune_model(
     )
 
     # Start training
-    if checkpoints_exist:
+    if checkpoints_exist and not force_restart:
         print("Resuming training from checkpoint...")
         trainer.train(resume_from_checkpoint=True)
     else:
-        print("Starting training from scratch...")
+        if force_restart and checkpoints_exist:
+            print("Force restart enabled - ignoring existing checkpoints and starting fresh...")
+        else:
+            print("Starting training from scratch...")
         trainer.train()
     
     # Save the final model
@@ -687,8 +801,15 @@ Examples:
                        help=f'Number of training epochs (default: {MAX_EPOCHS}, ignored if max_steps is set)')
     parser.add_argument('--hf_token', type=str,
                        help='Hugging Face authentication token for private models')
+    parser.add_argument('--distributed', action='store_true',
+                       help='Enable distributed training (multi-GPU). Auto-detected if launched with torchrun/accelerate.')
+    parser.add_argument('--force_restart', action='store_true',
+                       help='Ignore existing checkpoints and start training from scratch.')
 
     args = parser.parse_args()
+    
+    # Store force_restart in globals for access in fine_tune_model
+    globals()['force_restart'] = args.force_restart
 
     # Validate quantization availability
     if args.quantization != 'none' and not QUANTIZATION_AVAILABLE:
@@ -724,6 +845,7 @@ Examples:
         quantization=args.quantization,
         max_steps=args.max_steps,
         num_train_epochs=args.num_train_epochs,
-        hf_token=args.hf_token
+        hf_token=args.hf_token,
+        use_distributed=args.distributed
     )
 
