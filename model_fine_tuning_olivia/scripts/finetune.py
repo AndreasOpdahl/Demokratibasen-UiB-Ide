@@ -1,27 +1,58 @@
 """
 Unified fine-tuning script for both quantized (GTX3090) and non-quantized (GH200) training.
-Supports single-GPU and multi-GPU (DDP) training.
+Supports single-GPU, multi-GPU DDP (Distributed Data Parallel), and FSDP (Fully Sharded Data Parallel).
 
 Usage:
   # Single GPU with 4-bit quantization (GTX3090):
-  python finetune.py --model gemma-2b --quantization 4bit --hf_token YOUR_TOKEN
+  python finetune.py \\
+    --model gemma-2b \\
+    --quantization 4bit \\
+    --train_dataset data/train.jsonl \\
+    --val_dataset data/val.jsonl \\
+    --output_dir models/gemma_2b_4bit \\
+    --hf_token YOUR_TOKEN
   
-  # Single GPU without quantization (GH200/Cray):
-  python finetune.py --model gemma-2b --quantization none --max_steps 1200 --hf_token YOUR_TOKEN
+  # Single GPU without quantization with custom hyperparameters:
+  python finetune.py \\
+    --model gemma-7b \\
+    --quantization none \\
+    --train_dataset data/train.jsonl \\
+    --val_dataset data/val.jsonl \\
+    --output_dir models/gemma_7b \\
+    --max_steps 1200 \\
+    --train_batch_size 4 \\
+    --val_steps 100 \\
+    --hf_token YOUR_TOKEN
   
-  # Multi-GPU training with torchrun (recommended):
-  torchrun --nproc_per_node=4 finetune.py --model gemma-2b --quantization none --hf_token YOUR_TOKEN
+  # Multi-GPU DDP training with torchrun:
+  torchrun --nproc_per_node=2 finetune.py \\
+    --model gemma-2b \\
+    --quantization none \\
+    --ddp \\
+    --train_dataset data/train.jsonl \\
+    --val_dataset data/val.jsonl \\
+    --output_dir models/gemma_2b_ddp \\
+    --hf_token YOUR_TOKEN
   
-  # Multi-GPU training with accelerate:
-  accelerate launch --num_processes=4 finetune.py --model gemma-2b --quantization none --hf_token YOUR_TOKEN
+  # Multi-GPU FSDP training for large models:
+  torchrun --nproc_per_node=4 finetune.py \\
+    --model gemma-7b \\
+    --quantization none \\
+    --fsdp \\
+    --train_dataset data/train.jsonl \\
+    --val_dataset data/val.jsonl \\
+    --output_dir models/gemma_7b_fsdp \\
+    --hf_token YOUR_TOKEN
 
 Before running:
-export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+  export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 Important Notes:
-  - Multi-GPU training removes device_map="auto" (handled automatically)
-  - Quantization + multi-GPU is not well supported - use single GPU or no quantization
-  - CRITICAL: Multi-GPU training with LoRA CANNOT resume from checkpoints due to PEFT limitations
+  - DDP/FSDP training removes device_map="auto" (handled automatically)
+  - Quantization + DDP/FSDP is not well supported - use single GPU or no quantization
+  - FSDP shards the model across GPUs (saves memory) vs DDP (full replicas)
+  - FSDP is better for very large models (e.g., 7B+ parameters)
+  - CRITICAL: DDP/FSDP training with LoRA CANNOT resume from checkpoints due to PEFT limitations
     Checkpoints will be automatically ignored in distributed mode to prevent errors.
     If interrupted, training will restart from scratch (checkpoints are still saved for recovery).
 """
@@ -31,6 +62,7 @@ import glob
 import json
 import os
 import random
+import sys
 from typing import Any, Dict, Optional, Tuple, Union
 
 import numpy as np
@@ -242,15 +274,12 @@ class CausalLMTrainer(Trainer):
         return (loss, generated_ids, labels)
 
 
-# Load ROUGE metric once
-rouge = evaluate.load("rouge")
-
-
 def load_model_with_optional_quantization(
     model_name: str,
     quantization: str,
     hf_token: Optional[str] = None,
-    use_distributed: bool = False
+    use_ddp: bool = False,
+    use_fsdp: bool = False
 ):
     """Load model with optional quantization.
     
@@ -258,7 +287,8 @@ def load_model_with_optional_quantization(
         model_name: Model identifier (e.g., 'google/gemma-2b')
         quantization: One of 'none', '4bit', '8bit'
         hf_token: Hugging Face token for private models
-        use_distributed: Whether to use distributed training (removes device_map)
+        use_ddp: Whether to use DDP (Distributed Data Parallel) training (removes device_map)
+        use_fsdp: Whether to use FSDP (Fully Sharded Data Parallel) training (removes device_map)
     
     Returns:
         Loaded model
@@ -270,11 +300,13 @@ def load_model_with_optional_quantization(
         # No quantization (GH200/Cray path)
         print("Loading model without quantization (FP16)...")
         
-        # For distributed training, we must NOT use device_map="auto"
+        # For DDP/FSDP training, we must NOT use device_map="auto"
         # The DDP/FSDP launcher will handle device placement
         # Keep model on CPU - Trainer will move it to the correct device for each rank
+        use_distributed = use_ddp or use_fsdp
         if use_distributed:
-            print("Distributed training enabled - loading model without device_map (keeping on CPU)")
+            mode_str = "FSDP" if use_fsdp else "DDP"
+            print(f"{mode_str} enabled - loading model without device_map (keeping on CPU)")
             model = AutoModelForCausalLM.from_pretrained(
                 model_name,
                 torch_dtype=torch.float16,
@@ -282,8 +314,8 @@ def load_model_with_optional_quantization(
                 low_cpu_mem_usage=True  # Efficient loading for large models
             )
             # Explicitly keep on CPU - do NOT move to CUDA yet
-            # The Trainer will handle device placement after DDP wrapping
-            print(f"Model loaded on CPU (distributed mode)")
+            # The Trainer will handle device placement after DDP/FSDP wrapping
+            print(f"Model loaded on CPU ({mode_str} mode)")
         else:
             # Single GPU path with device_map
             try:
@@ -311,9 +343,9 @@ def load_model_with_optional_quantization(
                 "  pip install bitsandbytes"
             )
         
-        if use_distributed:
-            print("WARNING: Quantization with distributed training is not well supported.")
-            print("Consider using FSDP with quantization or single-GPU training.")
+        if use_ddp or use_fsdp:
+            print("WARNING: Quantization with DDP/FSDP is not well supported.")
+            print("Consider single-GPU training with quantization.")
         
         print("Loading model with 4-bit quantization...")
         bnb_config = BitsAndBytesConfig(
@@ -326,7 +358,7 @@ def load_model_with_optional_quantization(
             model_name,
             quantization_config=bnb_config,
             torch_dtype=torch.float16,
-            device_map="auto" if not use_distributed else None,
+            device_map="auto" if not (use_ddp or use_fsdp) else None,
             token=hf_token
         )
         return model
@@ -339,9 +371,9 @@ def load_model_with_optional_quantization(
                 "  pip install bitsandbytes"
             )
         
-        if use_distributed:
-            print("WARNING: Quantization with distributed training is not well supported.")
-            print("Consider using FSDP with quantization or single-GPU training.")
+        if use_ddp or use_fsdp:
+            print("WARNING: Quantization with DDP/FSDP is not well supported.")
+            print("Consider single-GPU training with quantization.")
         
         print("Loading model with 8-bit quantization...")
         bnb_config = BitsAndBytesConfig(load_in_8bit=True)
@@ -349,7 +381,7 @@ def load_model_with_optional_quantization(
             model_name,
             quantization_config=bnb_config,
             torch_dtype=torch.float16,
-            device_map="auto" if not use_distributed else None,
+            device_map="auto" if not (use_ddp or use_fsdp) else None,
             token=hf_token
         )
         return model
@@ -410,7 +442,16 @@ def fine_tune_model(
     max_steps: Optional[int] = None,
     num_train_epochs: Optional[int] = None,
     hf_token: Optional[str] = None,
-    use_distributed: bool = False
+    use_ddp: bool = False,
+    use_fsdp: bool = False,
+    max_input_text_tokens: int = MAX_INPUT_TEXT_TOKENS,
+    max_extra_prompt_tokens: int = MAX_EXTRA_PROMPT_TOKENS,
+    max_output_summary_tokens: int = MAX_OUTPUT_SUMMARY_TOKENS,
+    train_batch_size: int = TRAIN_BATCH_SIZE,
+    val_batch_size: int = VAL_BATCH_SIZE,
+    val_data_size: int = VAL_DATA_SIZE,
+    val_beam_size: int = VAL_BEAM_SIZE,
+    val_steps: int = VAL_STEPS
 ):
     """Fine-tune a language model with LoRA.
     
@@ -423,11 +464,16 @@ def fine_tune_model(
         max_steps: Maximum training steps (overrides num_train_epochs if set)
         num_train_epochs: Number of training epochs
         hf_token: Hugging Face authentication token
-        use_distributed: Whether to enable distributed training (multi-GPU)
+        use_ddp: Whether to enable DDP (Distributed Data Parallel) multi-GPU training
+        use_fsdp: Whether to enable FSDP (Fully Sharded Data Parallel) multi-GPU training
     """
     
     def compute_metrics(eval_pred):
         print('*** evaluation: compute_metrics ***')
+        
+        # Load ROUGE metric (lazy loading after cache paths are set)
+        # This avoids loading at module level before environment is configured
+        rouge = evaluate.load("rouge")
         
         preds, labels = eval_pred  # preds: generated summary ids; labels: target summary ids
         print('*** evaluation: preds ***', preds.shape)
@@ -494,25 +540,97 @@ def fine_tune_model(
     # This ensures the model attends to the actual prompt, not padding
     tokenizer.padding_side = 'left'
 
+    # Validate DDP/FSDP flags (mutually exclusive)
+    if use_ddp and use_fsdp:
+        raise ValueError("Cannot use both --ddp and --fsdp. Choose one distributed training strategy.")
+    
     # Detect if we're in a distributed environment
     # If launched with torchrun/accelerate, environment variables will be set
     world_size = int(os.environ.get('WORLD_SIZE', 1))
     local_rank = int(os.environ.get('LOCAL_RANK', -1))
     rank = int(os.environ.get('RANK', -1))
     
+    use_distributed = use_ddp or use_fsdp
+    
+    print(f"=== Environment Check ===")
+    print(f"use_ddp flag: {use_ddp}, use_fsdp flag: {use_fsdp}")
+    print(f"WORLD_SIZE={world_size}, RANK={rank}, LOCAL_RANK={local_rank}")
+    
     if world_size > 1 or use_distributed:
-        print(f"=== Distributed Training Detected ===")
-        print(f"WORLD_SIZE={world_size}, RANK={rank}, LOCAL_RANK={local_rank}")
+        mode = "FSDP" if use_fsdp else "DDP"
+        print(f"=== {mode} Training Detected ===")
         print(f"CUDA available: {torch.cuda.is_available()}")
         print(f"CUDA device count: {torch.cuda.device_count()}")
-        use_distributed = True
+        if use_fsdp:
+            use_fsdp = True
+        else:
+            use_ddp = True
     else:
         print("=== Single-GPU Training Mode ===")
+        # CRITICAL: Clean up any DDP environment variables
+        # These can be set by SLURM or previous runs and confuse TrainingArguments/Accelerate
+        # We must clean these BEFORE creating TrainingArguments
+        ddp_vars = [
+            'WORLD_SIZE', 'RANK', 'LOCAL_RANK', 'MASTER_ADDR', 'MASTER_PORT',
+            'LOCAL_WORLD_SIZE', 'NODE_RANK', 'GROUP_RANK', 
+            'TORCHELASTIC_RUN_ID', 'TORCHELASTIC_RESTART_COUNT', 'TORCHELASTIC_MAX_RESTARTS',
+            'NCCL_ASYNC_ERROR_HANDLING', 'TORCH_DISTRIBUTED_DEBUG',
+            # Accelerate-specific variables
+            'ACCELERATE_USE_CPU', 'ACCELERATE_MIXED_PRECISION', 'ACCELERATE_USE_FSDP',
+            'ACCELERATE_USE_DEEPSPEED', 'ACCELERATE_DYNAMO_BACKEND'
+        ]
+        cleaned = []
+        for var in ddp_vars:
+            if var in os.environ:
+                cleaned.append(f"{var}={os.environ[var]}")
+                del os.environ[var]
+        if cleaned:
+            print(f"Cleaned DDP env vars: {cleaned}")
+        else:
+            print("No DDP env vars found to clean")
+        
+        # Double-check cleanup worked
+        remaining = {k: v for k, v in os.environ.items() 
+                    if any(x in k.upper() for x in ['RANK', 'WORLD', 'DIST', 'TORCH_DIST'])}
+        if remaining:
+            print(f"WARNING: Some DDP vars still present: {list(remaining.keys())}")
+            for k in list(remaining.keys()):
+                del os.environ[k]
+                print(f"  Force-deleted: {k}")
+        
+        # Explicitly disable DDP for Accelerate/Transformers
+        # This prevents PartialState from trying to initialize DDP
+        # Do NOT set LOCAL_RANK - that triggers DDP detection!
+        
+        # Force single-process mode for Accelerate
+        # These variables tell Accelerate to NOT use DDP
+        os.environ['ACCELERATE_USE_CPU'] = 'false'
+        os.environ['ACCELERATE_NUM_PROCESSES'] = '1'
+        
+        # CRITICAL FIX: Restrict CUDA visibility to single GPU
+        # This prevents accelerate from detecting multi-GPU and assuming DDP mode
+        # If CUDA_VISIBLE_DEVICES is not already set, set it to GPU 0
+        if 'CUDA_VISIBLE_DEVICES' not in os.environ:
+            os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+            print("Set CUDA_VISIBLE_DEVICES=0 to restrict to single GPU")
+        else:
+            print(f"CUDA_VISIBLE_DEVICES already set to: {os.environ['CUDA_VISIBLE_DEVICES']}")
+        
+        # Verify GPU count after setting CUDA_VISIBLE_DEVICES
+        # NOTE: This won't take effect until we import torch again, but good to log
+        print(f"CUDA device count: {torch.cuda.device_count()}")
+        
+        # Destroy any existing DDP process group
+        if torch.distributed.is_initialized():
+            print("WARNING: torch.distributed was already initialized - destroying it")
+            torch.distributed.destroy_process_group()
+        
+        print("DDP environment variables cleaned for single-GPU mode")
     
     # Load model with optional quantization
     try:
         model = load_model_with_optional_quantization(
-            model_name, quantization, hf_token, use_distributed=use_distributed
+            model_name, quantization, hf_token, use_ddp=use_ddp, use_fsdp=use_fsdp
         )
     except Exception as e:
         print(f"Error loading model: {e}")
@@ -545,8 +663,8 @@ def fine_tune_model(
     train_df = pd.DataFrame(train_data)
     dataset = Dataset.from_pandas(train_df)
     
-    # Randomly sample VAL_DATA_SIZE examples from val_data
-    val_data = random.sample(val_data, min(VAL_DATA_SIZE, len(val_data)))
+    # Randomly sample validation_data_size examples from val_data
+    val_data = random.sample(val_data, min(val_data_size, len(val_data)))
     val_df = pd.DataFrame(val_data)
     val_dataset = Dataset.from_pandas(val_df)
     print(f'*** validation dataset size: {len(val_dataset)} examples ***')
@@ -567,26 +685,28 @@ def fine_tune_model(
 
     def tokenize_function_train(examples):
         # Tokenize the formatted text for training
+        max_input_prompt_tokens = max_input_text_tokens + max_extra_prompt_tokens
         return tokenizer(
             examples["text"],
             truncation=True,
-            max_length=MAX_INPUT_PROMPT_TOKENS + MAX_OUTPUT_SUMMARY_TOKENS,
+            max_length=max_input_prompt_tokens + max_output_summary_tokens,
             padding=True
         )
 
     def tokenize_function_eval(examples):
         # Tokenize ONLY the prompt (without answer) for evaluation
+        max_input_prompt_tokens = max_input_text_tokens + max_extra_prompt_tokens
         tokenized_prompts = tokenizer(
             examples["prompt"],
             truncation=True,
-            max_length=MAX_INPUT_PROMPT_TOKENS,
+            max_length=max_input_prompt_tokens,
             padding=False
         )
         # Tokenize target summaries for labels
         tokenized_targets = tokenizer(
             examples["target_summary"],
             truncation=True,
-            max_length=MAX_OUTPUT_SUMMARY_TOKENS,
+            max_length=max_output_summary_tokens,
             padding=False
         )
         # Store target token IDs as labels
@@ -628,49 +748,64 @@ def fine_tune_model(
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
     
-    # In distributed mode, ensure model stays on CPU
+    # In distributed mode (DDP/FSDP), ensure model stays on CPU
     # The Trainer will move it to the correct device for each rank
-    if use_distributed:
+    if use_ddp or use_fsdp:
         # Verify model is on CPU
         device_str = str(next(model.parameters()).device)
+        mode = "FSDP" if use_fsdp else "DDP"
         print(f"After LoRA, model device: {device_str}")
         if device_str != "cpu":
-            print(f"WARNING: Model is on {device_str}, moving to CPU for distributed training")
+            print(f"WARNING: Model is on {device_str}, moving to CPU for {mode} training")
             model = model.cpu()
 
     # Determine training duration
     if max_steps is not None and max_steps > 0:
-        train_epochs = None
+        train_epochs = 1  # Set to 1 instead of None to avoid Trainer comparison errors
         train_steps = max_steps
         print(f"Training for {max_steps} steps (epochs ignored)")
     else:
         train_epochs = num_train_epochs if num_train_epochs is not None else MAX_EPOCHS
-        train_steps = -1
+        train_steps = -1  # -1 means "use epochs instead"
         print(f"Training for {train_epochs} epochs")
 
     # Training arguments
-    training_args = TrainingArguments(
+    # CRITICAL: FSDP + generation during evaluation causes errors
+    # Disable evaluation for FSDP training
+    if use_fsdp:
+        print("\n" + "=" * 70)
+        print("WARNING: FSDP mode detected - disabling evaluation")
+        print("=" * 70)
+        print("FSDP parameter sharding is incompatible with model.generate()")
+        print("during evaluation. Training will proceed without ROUGE metrics.")
+        print("You can evaluate checkpoints later using load_distributed_peft_checkpoint.py")
+        print("=" * 70 + "\n")
+        eval_enabled = False
+    else:
+        eval_enabled = True
+    
+    training_args_kwargs = dict(
         output_dir=output_dir,
-        per_device_train_batch_size=TRAIN_BATCH_SIZE,
-        per_device_eval_batch_size=VAL_BATCH_SIZE,
+        per_device_train_batch_size=train_batch_size,
+        per_device_eval_batch_size=val_batch_size,
         gradient_accumulation_steps=4,
         learning_rate=1e-5,  # Reduced from 2e-5 - too high can cause instability
-        num_train_epochs=train_epochs,
-        max_steps=train_steps,
+        num_train_epochs=train_epochs,  # Always has a valid value (never None)
+        max_steps=train_steps,  # Either valid int or -1
         fp16=False,
         logging_steps=10,
         
-        # Validate + save on a schedule (needed for early stopping)
-        eval_strategy="steps",
-        eval_steps=VAL_STEPS,  # align eval & save cadence
+        # Validate + save on a schedule (disabled for FSDP due to generation incompatibility)
+        eval_strategy="steps" if eval_enabled else "no",
+        eval_steps=val_steps if eval_enabled else None,
         save_strategy="steps",
-        save_steps=VAL_STEPS,
+        save_steps=val_steps,
         save_total_limit=10,  # keep disk usage sane
 
-        # Pick the best checkpoint and restore it at the end
-        load_best_model_at_end=True,
-        metric_for_best_model="rougeLsum",
-        greater_is_better=True,
+        # Pick the best checkpoint and restore it at the end (only if eval enabled)
+        load_best_model_at_end=eval_enabled,
+        metric_for_best_model="rougeLsum" if eval_enabled else None,
+        greater_is_better=True if eval_enabled else None,
         
         # Numerical stability improvements
         max_grad_norm=0.5,  # More aggressive gradient clipping
@@ -685,69 +820,96 @@ def fine_tune_model(
         report_to="none",
         gradient_checkpointing=True,
         dataloader_pin_memory=False,  # Can help with memory issues
-        
-        # Distributed training settings
-        # DDP is automatically enabled by Trainer when multiple GPUs are detected
-        # or when launched with torchrun/accelerate
-        ddp_find_unused_parameters=False,  # Set to True if you get DDP errors
-        ddp_backend="nccl",  # Use NCCL for GPU communication
     )
+    
+    # Add distributed or single-GPU-specific parameters
+    if use_ddp:
+        # DDP training settings (only when actually using DDP)
+        training_args_kwargs['ddp_find_unused_parameters'] = False
+        training_args_kwargs['ddp_backend'] = 'nccl'
+        print("Added DDP parameters for multi-GPU training")
+    elif use_fsdp:
+        # FSDP training settings
+        # FSDP shards model parameters, gradients, and optimizer states across GPUs
+        training_args_kwargs['fsdp'] = "full_shard auto_wrap"
+        training_args_kwargs['fsdp_transformer_layer_cls_to_wrap'] = "GemmaDecoderLayer"  # For Gemma models
+        # You may need to adjust this for different models (e.g., "LlamaDecoderLayer" for Llama)
+        print("Added FSDP parameters for multi-GPU training (full sharding)")
+        print("Note: fsdp_transformer_layer_cls_to_wrap is set for Gemma. Adjust for other models if needed.")
+    
+    if not (use_ddp or use_fsdp):
+        # Single-GPU mode - explicitly prevent distributed detection
+        training_args_kwargs['local_rank'] = -1  # Explicitly tell it we're not in distributed mode
+        print("Added local_rank=-1 to TrainingArguments for single-GPU mode")
+    
+    training_args = TrainingArguments(**training_args_kwargs)
     
     # Check if we're resuming from checkpoint
     checkpoints_exist = len(glob.glob(os.path.join(output_dir, "checkpoint-*"))) > 0
     force_restart = globals().get('force_restart', False)
     
-    # CRITICAL: PEFT + DDP + checkpoint resumption is problematic
-    # The adapter loading conflicts with DDP device management
-    if checkpoints_exist and use_distributed and not force_restart:
+    # CRITICAL: PEFT + DDP/FSDP + checkpoint resumption is problematic
+    # The adapter loading conflicts with distributed device management
+    if checkpoints_exist and (use_ddp or use_fsdp) and not force_restart:
+        mode = "FSDP" if use_fsdp else "DDP"
         print("\n" + "=" * 70)
-        print("CRITICAL: Checkpoint resumption with PEFT + DDP is not supported!")
+        print(f"CRITICAL: Checkpoint resumption with PEFT + {mode} is not supported!")
         print("=" * 70)
-        print("Found existing checkpoints, but distributed training with LoRA adapters")
+        print(f"Found existing checkpoints, but {mode} training with LoRA adapters")
         print("cannot resume from checkpoints due to PEFT device management conflicts.")
         print("")
         print("This is a known limitation: PEFT's load_adapter() tries to load weights")
-        print("to CUDA before DDP is properly coordinated across ranks.")
+        print(f"to CUDA before {mode} is properly coordinated across ranks.")
         print("")
         print("Solutions:")
         print(f"  1. Use --force_restart to ignore checkpoints and start fresh")
         print(f"  2. Delete checkpoints: rm -rf {output_dir}/checkpoint-*")
         print(f"  3. Use a different output_dir")
-        print(f"  4. Train on single GPU (no distributed mode)")
+        print(f"  4. Train on single GPU (no --ddp or --fsdp flag)")
         print("=" * 70)
         print("FORCING RESTART to avoid checkpoint loading errors...")
         print("=" * 70 + "\n")
         force_restart = True  # Force it to avoid the error
     
-    # Only add EarlyStoppingCallback when starting fresh (not resuming)
-    # This avoids KeyError when resuming from checkpoint
+    # Only add EarlyStoppingCallback when:
+    # 1. Starting fresh (not resuming)
+    # 2. Evaluation is enabled (FSDP disables eval, so no early stopping)
     callbacks = []
-    if not checkpoints_exist:
+    if not checkpoints_exist and eval_enabled:
         early_stopping = EarlyStoppingCallback(
             early_stopping_patience=10,  # stop if no improvement for n evals
             early_stopping_threshold=0.0  # require strictly better than best
         )
         callbacks.append(early_stopping)
-        print("Adding EarlyStoppingCallback (fresh training)")
+        print("Adding EarlyStoppingCallback (fresh training with evaluation enabled)")
     else:
-        print("Resuming from checkpoint - skipping EarlyStoppingCallback to avoid state errors")
+        if checkpoints_exist:
+            print("Resuming from checkpoint - skipping EarlyStoppingCallback to avoid state errors")
+        elif not eval_enabled:
+            print("Evaluation disabled (FSDP mode) - skipping EarlyStoppingCallback")
 
     # Initialize Trainer
-    trainer = CausalLMTrainer(
+    # Prepare trainer kwargs
+    trainer_kwargs = dict(
         # Generation settings (important so ROUGE is computed on model outputs)
-        generation_max_length=MAX_OUTPUT_SUMMARY_TOKENS,
-        generation_num_beams=VAL_BEAM_SIZE,
+        generation_max_length=max_output_summary_tokens,
+        generation_num_beams=val_beam_size,
         eval_data_collator=eval_data_collator,  # Use separate collator for eval
         # General Trainer settings
         model=model,
         args=training_args,
         train_dataset=tokenized_dataset,
-        eval_dataset=tokenized_val_dataset,
         tokenizer=tokenizer,
-        compute_metrics=compute_metrics,
         data_collator=train_data_collator,  # Training collator
         callbacks=callbacks
     )
+    
+    # Only add eval_dataset and compute_metrics if evaluation is enabled
+    if eval_enabled:
+        trainer_kwargs['eval_dataset'] = tokenized_val_dataset
+        trainer_kwargs['compute_metrics'] = compute_metrics
+    
+    trainer = CausalLMTrainer(**trainer_kwargs)
 
     # Start training
     if checkpoints_exist and not force_restart:
@@ -801,10 +963,30 @@ Examples:
                        help=f'Number of training epochs (default: {MAX_EPOCHS}, ignored if max_steps is set)')
     parser.add_argument('--hf_token', type=str,
                        help='Hugging Face authentication token for private models')
-    parser.add_argument('--distributed', action='store_true',
-                       help='Enable distributed training (multi-GPU). Auto-detected if launched with torchrun/accelerate.')
+    parser.add_argument('--ddp', action='store_true',
+                       help='Enable DDP (Distributed Data Parallel) multi-GPU training. Auto-detected if launched with torchrun.')
+    parser.add_argument('--fsdp', action='store_true',
+                       help='Enable FSDP (Fully Sharded Data Parallel) multi-GPU training for large models. Shards model across GPUs to save memory.')
     parser.add_argument('--force_restart', action='store_true',
                        help='Ignore existing checkpoints and start training from scratch.')
+    
+    # Hyperparameters
+    parser.add_argument('--max_input_text_tokens', type=int, default=MAX_INPUT_TEXT_TOKENS,
+                       help=f'Maximum tokens for input text (default: {MAX_INPUT_TEXT_TOKENS})')
+    parser.add_argument('--max_extra_prompt_tokens', type=int, default=MAX_EXTRA_PROMPT_TOKENS,
+                       help=f'Maximum extra tokens for input prompt/task description (default: {MAX_EXTRA_PROMPT_TOKENS})')
+    parser.add_argument('--max_output_summary_tokens', type=int, default=MAX_OUTPUT_SUMMARY_TOKENS,
+                       help=f'Maximum tokens for output summary (default: {MAX_OUTPUT_SUMMARY_TOKENS})')
+    parser.add_argument('--train_batch_size', type=int, default=TRAIN_BATCH_SIZE,
+                       help=f'Training batch size per device (default: {TRAIN_BATCH_SIZE})')
+    parser.add_argument('--val_batch_size', type=int, default=VAL_BATCH_SIZE,
+                       help=f'Validation batch size per device (default: {VAL_BATCH_SIZE})')
+    parser.add_argument('--val_data_size', type=int, default=VAL_DATA_SIZE,
+                       help=f'Number of examples to use for validation (default: {VAL_DATA_SIZE})')
+    parser.add_argument('--val_beam_size', type=int, default=VAL_BEAM_SIZE,
+                       help=f'Beam size for validation generation (default: {VAL_BEAM_SIZE})')
+    parser.add_argument('--val_steps', type=int, default=VAL_STEPS,
+                       help=f'Validate and save every N steps (default: {VAL_STEPS})')
 
     args = parser.parse_args()
     
@@ -825,16 +1007,16 @@ Examples:
         'mt5': 'google/mt5-base',
         'gemma-7b': 'google/gemma-7b'
     }
+    try:
+        model_name = model_mapping[args.model]
+    except Exception as e:
+        print(f"Error mapping model name: {e}")
+        sys.exit(1)
 
-    model_name = model_mapping[args.model]
-
-    # Set default output directory
     if args.output_dir:
         output_dir = args.output_dir
-    elif args.model == 'viking-7b':
-        output_dir = "/app/models/viking_finetuned"
     else:
-        output_dir = "/app/models/gemma_finetuned"
+        output_dir = 'models/' + model_name
 
     # Run fine-tuning
     fine_tune_model(
@@ -846,6 +1028,15 @@ Examples:
         max_steps=args.max_steps,
         num_train_epochs=args.num_train_epochs,
         hf_token=args.hf_token,
-        use_distributed=args.distributed
+        use_ddp=args.ddp,
+        use_fsdp=args.fsdp,
+        max_input_text_tokens=args.max_input_text_tokens,
+        max_extra_prompt_tokens=args.max_extra_prompt_tokens,
+        max_output_summary_tokens=args.max_output_summary_tokens,
+        train_batch_size=args.train_batch_size,
+        val_batch_size=args.val_batch_size,
+        val_data_size=args.val_data_size,
+        val_beam_size=args.val_beam_size,
+        val_steps=args.val_steps
     )
 
