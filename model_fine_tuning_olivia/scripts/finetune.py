@@ -63,6 +63,8 @@ import json
 import os
 import random
 import sys
+import importlib
+import math
 from typing import Any, Dict, Optional, Tuple, Union
 
 import numpy as np
@@ -71,9 +73,10 @@ import pandas as pd
 import evaluate
 from datasets import Dataset
 from huggingface_hub import login
-from peft import LoraConfig, get_peft_model
+from peft import LoraConfig, get_peft_model, set_peft_model_state_dict
 import torch
 import torch.serialization
+from safetensors.torch import load_file
 
 # Fix for PyTorch 2.6+ weights_only security issue
 # Patch torch.load to disable weights_only for checkpoint files (we trust our own checkpoints)
@@ -98,6 +101,10 @@ from transformers import (
     Trainer,
     TrainingArguments,
 )
+try:
+    TrainerState = importlib.import_module("transformers.trainer_state").TrainerState  # type: ignore[attr-defined]
+except (ImportError, AttributeError):  # pragma: no cover - environment without transformers installed
+    TrainerState = None  # type: ignore[assignment]
 
 # Optional imports for quantization
 try:
@@ -451,7 +458,8 @@ def fine_tune_model(
     val_batch_size: int = VAL_BATCH_SIZE,
     val_data_size: int = VAL_DATA_SIZE,
     val_beam_size: int = VAL_BEAM_SIZE,
-    val_steps: int = VAL_STEPS
+    val_steps: int = VAL_STEPS,
+    resume_checkpoint: Optional[str] = None,
 ):
     """Fine-tune a language model with LoRA.
     
@@ -747,6 +755,69 @@ def fine_tune_model(
     # Apply LoRA adapters
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
+
+    # Resolve resume checkpoint directory (if provided)
+    resolved_resume_checkpoint: Optional[str] = None
+    if resume_checkpoint:
+        resume_checkpoint = resume_checkpoint.strip()
+        if resume_checkpoint.lower() == "latest":
+            candidate_paths = glob.glob(os.path.join(output_dir, "checkpoint-*"))
+            if not candidate_paths:
+                print(f"WARNING: resume_checkpoint=latest requested but no checkpoints found in {output_dir}")
+            else:
+                def _checkpoint_step(path: str) -> int:
+                    base = os.path.basename(path.rstrip(os.sep))
+                    try:
+                        return int(base.split("-")[-1])
+                    except (IndexError, ValueError):
+                        return -1
+                candidate_paths.sort(key=_checkpoint_step)
+                resolved_resume_checkpoint = os.path.abspath(candidate_paths[-1])
+        else:
+            candidate_path = resume_checkpoint
+            if not os.path.isabs(candidate_path):
+                candidate_path = os.path.join(output_dir, candidate_path)
+            candidate_path = os.path.abspath(candidate_path)
+            if os.path.isdir(candidate_path):
+                resolved_resume_checkpoint = candidate_path
+            else:
+                print(f"ERROR: resume checkpoint directory not found: {candidate_path}")
+                return
+        if resolved_resume_checkpoint:
+            print(f"Resume checkpoint resolved to: {resolved_resume_checkpoint}")
+
+    # Check if we're resuming from checkpoint
+    checkpoints_exist = len(glob.glob(os.path.join(output_dir, "checkpoint-*"))) > 0
+    force_restart = False
+
+    # CRITICAL: PEFT + DDP/FSDP + checkpoint resumption is problematic
+    # The adapter loading conflicts with distributed device management
+    if checkpoints_exist and (use_ddp or use_fsdp) and not resolved_resume_checkpoint:
+        mode = "FSDP" if use_fsdp else "DDP"
+        print("\n" + "=" * 70)
+        print(f"CRITICAL: Checkpoint resumption with PEFT + {mode} is not supported!")
+        print("=" * 70)
+        print(f"Found existing checkpoints, but {mode} training with LoRA adapters")
+        print("cannot resume from checkpoints due to PEFT device management conflicts.")
+        print("")
+        print("This is a known limitation: PEFT's load_adapter() tries to load weights")
+        print(f"to CUDA before {mode} is properly coordinated across ranks.")
+        print("")
+        print("Solutions:")
+        print(f"  1. Use --force_restart to ignore checkpoints and start fresh")
+        print(f"  2. Delete checkpoints: rm -rf {output_dir}/checkpoint-*")
+        print(f"  3. Use a different output_dir")
+        print(f"  4. Train on single GPU (no --ddp or --fsdp flag)")
+        print("=" * 70)
+        print("FORCING RESTART to avoid checkpoint loading errors...")
+        print("=" * 70 + "\n")
+        force_restart = True  # Force it to avoid the error
+    elif checkpoints_exist and (use_ddp or use_fsdp) and resolved_resume_checkpoint:
+        print("\n" + "=" * 70)
+        print("Manual checkpoint resumption requested.")
+        print("Proceeding with user-specified resume checkpoint despite PEFT + FSDP limitation.")
+        print("Ensure all ranks see the same checkpoint directory.")
+        print("=" * 70 + "\n")
     
     # In distributed mode (DDP/FSDP), ensure model stays on CPU
     # The Trainer will move it to the correct device for each rank
@@ -758,6 +829,18 @@ def fine_tune_model(
         if device_str != "cpu":
             print(f"WARNING: Model is on {device_str}, moving to CPU for {mode} training")
             model = model.cpu()
+    
+    if resolved_resume_checkpoint:
+        adapter_path = os.path.join(resolved_resume_checkpoint, "adapter_model.safetensors")
+        if not os.path.exists(adapter_path):
+            print(f"ERROR: Expected adapter weights not found at {adapter_path}")
+            return
+        print(f"Loading LoRA adapter weights from {adapter_path}")
+        adapter_state = load_file(adapter_path, device="cpu")
+        set_peft_model_state_dict(model, adapter_state)
+        if use_fsdp and torch.distributed.is_initialized():
+            torch.distributed.barrier()
+        print("LoRA adapter weights loaded successfully.")
 
     # Determine training duration
     if max_steps is not None and max_steps > 0:
@@ -844,33 +927,6 @@ def fine_tune_model(
     
     training_args = TrainingArguments(**training_args_kwargs)
     
-    # Check if we're resuming from checkpoint
-    checkpoints_exist = len(glob.glob(os.path.join(output_dir, "checkpoint-*"))) > 0
-    force_restart = globals().get('force_restart', False)
-    
-    # CRITICAL: PEFT + DDP/FSDP + checkpoint resumption is problematic
-    # The adapter loading conflicts with distributed device management
-    if checkpoints_exist and (use_ddp or use_fsdp) and not force_restart:
-        mode = "FSDP" if use_fsdp else "DDP"
-        print("\n" + "=" * 70)
-        print(f"CRITICAL: Checkpoint resumption with PEFT + {mode} is not supported!")
-        print("=" * 70)
-        print(f"Found existing checkpoints, but {mode} training with LoRA adapters")
-        print("cannot resume from checkpoints due to PEFT device management conflicts.")
-        print("")
-        print("This is a known limitation: PEFT's load_adapter() tries to load weights")
-        print(f"to CUDA before {mode} is properly coordinated across ranks.")
-        print("")
-        print("Solutions:")
-        print(f"  1. Use --force_restart to ignore checkpoints and start fresh")
-        print(f"  2. Delete checkpoints: rm -rf {output_dir}/checkpoint-*")
-        print(f"  3. Use a different output_dir")
-        print(f"  4. Train on single GPU (no --ddp or --fsdp flag)")
-        print("=" * 70)
-        print("FORCING RESTART to avoid checkpoint loading errors...")
-        print("=" * 70 + "\n")
-        force_restart = True  # Force it to avoid the error
-    
     # Only add EarlyStoppingCallback when:
     # 1. Starting fresh (not resuming)
     # 2. Evaluation is enabled (FSDP disables eval, so no early stopping)
@@ -911,10 +967,58 @@ def fine_tune_model(
     
     trainer = CausalLMTrainer(**trainer_kwargs)
 
+    if resolved_resume_checkpoint:
+        training_args.resume_from_checkpoint = resolved_resume_checkpoint
+        if not use_fsdp:
+            print(f"Restoring optimizer/scheduler state from {resolved_resume_checkpoint}")
+            total_training_steps = training_args.max_steps if training_args.max_steps and training_args.max_steps > 0 else None
+            if total_training_steps is None:
+                # Fallback estimate for epoch-based training
+                effective_batch = training_args.per_device_train_batch_size * max(training_args.gradient_accumulation_steps, 1)
+                steps_per_epoch = math.ceil(len(tokenized_dataset) / max(effective_batch, 1))
+                total_training_steps = steps_per_epoch * max(training_args.num_train_epochs, 1)
+            trainer.create_optimizer_and_scheduler(num_training_steps=total_training_steps)
+
+            optimizer_state_path = os.path.join(resolved_resume_checkpoint, "optimizer.bin")
+            scheduler_state_path = os.path.join(resolved_resume_checkpoint, "scheduler.pt")
+            trainer_state_path = os.path.join(resolved_resume_checkpoint, "trainer_state.json")
+
+            if os.path.exists(optimizer_state_path) or os.path.exists(scheduler_state_path):
+                trainer._load_optimizer_and_scheduler(resolved_resume_checkpoint)
+            else:
+                print("WARNING: Optimizer or scheduler state not found; continuing without optimizer resume.")
+
+            if os.path.exists(trainer_state_path):
+                if TrainerState is None:
+                    raise ImportError("TrainerState is unavailable. Ensure transformers is installed in the runtime environment.")
+                trainer.state = TrainerState.load_from_json(trainer_state_path)
+                trainer.state.is_local_process_zero = trainer.args.process_index == 0
+                trainer._globalstep_last_logged = trainer.state.global_step
+                print(f"Trainer state restored (global_step={trainer.state.global_step}).")
+            else:
+                print("WARNING: trainer_state.json not found; starting trainer state from scratch.")
+
+            try:
+                trainer._load_rng_state(resolved_resume_checkpoint)
+                print("RNG state restored.")
+            except Exception as rng_error:
+                print(f"WARNING: Failed to restore RNG state: {rng_error}")
+        else:
+            print("FSDP detected - skipping manual optimizer/scheduler restore. Trainer will handle resumption internally.")
+
     # Start training
-    if checkpoints_exist and not force_restart:
-        print("Resuming training from checkpoint...")
-        trainer.train(resume_from_checkpoint=True)
+    manual_resume = resolved_resume_checkpoint is not None and not use_fsdp
+
+    if manual_resume:
+        print("Continuing training with manually restored checkpoint state...")
+        trainer.train()
+    elif checkpoints_exist and not force_restart:
+        resume_arg = resolved_resume_checkpoint if resolved_resume_checkpoint else True
+        if isinstance(resume_arg, str):
+            print(f"Resuming training from checkpoint path: {resume_arg}")
+        else:
+            print("Resuming training from latest checkpoint in output directory...")
+        trainer.train(resume_from_checkpoint=resume_arg)
     else:
         if force_restart and checkpoints_exist:
             print("Force restart enabled - ignoring existing checkpoints and starting fresh...")
@@ -987,6 +1091,9 @@ Examples:
                        help=f'Beam size for validation generation (default: {VAL_BEAM_SIZE})')
     parser.add_argument('--val_steps', type=int, default=VAL_STEPS,
                        help=f'Validate and save every N steps (default: {VAL_STEPS})')
+    parser.add_argument('--resume_checkpoint', type=str, default=None,
+                       help='Path to a checkpoint directory to resume from. '
+                            'Use "latest" to automatically pick the newest checkpoint in the output_dir.')
 
     args = parser.parse_args()
     
@@ -1037,6 +1144,7 @@ Examples:
         val_batch_size=args.val_batch_size,
         val_data_size=args.val_data_size,
         val_beam_size=args.val_beam_size,
-        val_steps=args.val_steps
+        val_steps=args.val_steps,
+        resume_checkpoint=args.resume_checkpoint,
     )
 

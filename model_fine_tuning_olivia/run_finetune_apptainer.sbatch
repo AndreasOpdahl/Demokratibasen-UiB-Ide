@@ -14,15 +14,17 @@ set -euo pipefail
 
 # define run control variables
 MODEL=gemma-7b  # this is not properly used
-DDP_FLAG="--fsdp"  # this should be renamed
+DISTRIBUTION_FLAG="--fsdp"  # this should be renamed
+RESUME_CHECKPOINT=checkpoint-61  # or a specific checkpoint path
+TASK_LIMIT="--max_steps 121"
 NUM_GPUS=${SLURM_GPUS_ON_NODE:-1}
 echo "Detected $NUM_GPUS GPUs"
 
-# define job-local cache
+# define job-local cache for training
 export SLURM_TMPDIR=/tmp/${USER}_$SLURM_JOB_ID
 mkdir -p "$SLURM_TMPDIR"
 
-# create a job-local HF cache
+# create a job-local HF cache, overrides the global HF_home cache
 export HF_HOME="$SLURM_TMPDIR/.cache/huggingface"
 export HF_DATASETS_CACHE="$HF_HOME/datasets"
 export HF_MODULES_CACHE="$HF_HOME/modules"
@@ -78,16 +80,24 @@ export HF_DATASETS_CACHE=$HF_DATASETS_CACHE
 export HF_MODULES_CACHE=$HF_MODULES_CACHE
 export HF_METRICS_CACHE=$HF_METRICS_CACHE
 # export HF_HUB_OFFLINE=1
-torchrun --standalone --nproc_per_node="${NUM_GPUS}" \\
-    scripts/finetune.py \\
-        --model $MODEL \\
-        --quantization none \\
-        $DDP_FLAG \\
-        --hf_token "$HUGGINGFACE_TOKEN" \\
-        --train_dataset data/output/processed_data_train.jsonl \\
-        --val_dataset data/output/processed_data_val.jsonl \\
-        --max_steps 60 \\
-        --output_dir models/${MODEL}-apptainer-fsdp
+TORCHRUN_ARGS=(
+    torchrun
+    --standalone
+    --nproc_per_node="${NUM_GPUS}"
+    scripts/finetune.py
+    --model $MODEL
+    --quantization none
+    $DISTRIBUTION_FLAG
+    --hf_token "$HUGGINGFACE_TOKEN"
+    --train_dataset data/output/processed_data_train.jsonl
+    --val_dataset data/output/processed_data_val.jsonl
+    $TASK_LIMIT
+    --output_dir models/${MODEL}-apptainer-fsdp
+)
+if [[ -n "$RESUME_CHECKPOINT" ]]; then
+    TORCHRUN_ARGS+=(--resume_checkpoint "$RESUME_CHECKPOINT")
+fi
+\${TORCHRUN_ARGS[@]}
 "
 
 # Apptainer commands
