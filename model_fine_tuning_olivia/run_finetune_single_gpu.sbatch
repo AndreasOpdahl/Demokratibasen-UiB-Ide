@@ -1,23 +1,26 @@
 #!/usr/bin/env bash
-#SBATCH -J gpu-smoke
+#SBATCH -J gpu-finetune-single-gpu
 #SBATCH -p accel
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=16G
+#SBATCH --mem=24G
 #SBATCH --time=06:00:00
 #SBATCH -A nn12075k
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
 
-set -euo pipefail
-
 # env setup
-module purge
-module load CrayEnv
-module load cuda/12.6
+module --force purge
 module load BuildEnv/NeoverseV2
 module load NRIS/GPU
+module load CUDA/12.6.0
 module load PyTorch/2.8.0
+
+# variables
+MODEL="gemma-2b"
+
+# fail on error
+set -euo pipefail
 
 # debug
 python -V
@@ -104,10 +107,22 @@ PY
 # run finetune
 echo "Running finetune..."
 source .env
+
+# CRITICAL: Restrict to single GPU to prevent accelerate from detecting distributed mode
+# Even though --gres=gpu:1 requests 1 GPU, the node has multiple GPUs visible
+# Setting CUDA_VISIBLE_DEVICES=0 ensures only GPU 0 is visible to Python/torch
+export CUDA_VISIBLE_DEVICES=0
+echo "Set CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES for single-GPU mode"
+
 srun --ntasks=1 --cpus-per-task=${SLURM_CPUS_PER_TASK:-2} \
-    python scripts/finetune_olivia.py \
-        --model gemma-2b \
+    python scripts/finetune.py \
+        --model $MODEL \
         --hf_token "$HUGGINGFACE_TOKEN" \
         --train_dataset data/output/processed_data_train.jsonl \
         --val_dataset data/output/processed_data_val.jsonl \
-        --output_dir data/output
+        --output_dir models/${MODEL}-single-gpu \
+        --train_batch_size 16 \
+        --val_batch_size 16 \
+        --val_data_size 16 \
+        --val_beam_size 4 \
+        --val_steps 10
