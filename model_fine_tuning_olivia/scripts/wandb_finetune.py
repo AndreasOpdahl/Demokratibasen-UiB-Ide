@@ -1,8 +1,21 @@
 """
-Unified fine-tuning script for both quantized (GTX3090) and non-quantized (GH200) training.
+Unified fine-tuning script.
 Supports single-GPU, multi-GPU DDP (Distributed Data Parallel), and FSDP (Fully Sharded Data Parallel).
+Supports both quantized (GTX3090 with AMD64-architecture) and non-quantized (GH200 with ARM64-architecture) training.
 
-Usage:
+Before running:
+  export YOUR_TOKEN=...your huggingface token here, or source it from an .env file...
+  export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+val_df = pd.DataFrame(val_data)
+val_df = val_df[val_df['output'].notna()]
+val_df = val_df.sample(n=VALIDATION_SIZE)
+
+assert val_df['input'].apply(lambda x: x is not None and x != '').all()
+assert val_df['input'].notna().all()
+assert val_df['output'].apply(lambda x: x is not None and x != '').all()
+assert val_df['output'].notna().all()
+
+Usage examples:
   # Single GPU with 4-bit quantization (GTX3090):
   python finetune.py \\
     --model gemma-2b \\
@@ -25,31 +38,30 @@ Usage:
     --hf_token YOUR_TOKEN
   
   # Multi-GPU DDP training with torchrun:
-  torchrun --nproc_per_node=2 finetune.py \\
-    --model gemma-2b \\
-    --quantization none \\
-    --ddp \\
-    --train_dataset data/train.jsonl \\
-    --val_dataset data/val.jsonl \\
-    --output_dir models/gemma_2b_ddp \\
-    --hf_token YOUR_TOKEN
+  torchrun --nproc_per_node=2 \\
+    finetune.py \\
+      --model gemma-2b \\
+      --quantization none \\
+      --ddp \\
+      --train_dataset data/train.jsonl \\
+      --val_dataset data/val.jsonl \\
+      --output_dir models/gemma_2b_ddp \\
+      --hf_token YOUR_TOKEN
   
   # Multi-GPU FSDP training for large models:
-  torchrun --nproc_per_node=4 finetune.py \\
-    --model gemma-7b \\
-    --quantization none \\
-    --fsdp \\
-    --train_dataset data/train.jsonl \\
-    --val_dataset data/val.jsonl \\
-    --output_dir models/gemma_7b_fsdp \\
-    --hf_token YOUR_TOKEN
-
-Before running:
-  export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+  torchrun --nproc_per_node=4 \\
+    finetune.py \\
+      --model gemma-7b \\
+      --quantization none \\
+      --fsdp \\
+      --train_dataset data/train.jsonl \\
+      --val_dataset data/val.jsonl \\
+      --output_dir models/gemma_7b_fsdp \\
+      --hf_token YOUR_TOKEN
 
 Important Notes:
   - DDP/FSDP training removes device_map="auto" (handled automatically)
-  - Quantization + DDP/FSDP is not well supported - use single GPU or no quantization
+  - Quantization + DDP/FSDP is not well (or at all)supported - use single GPU or no quantization
   - FSDP shards the model across GPUs (saves memory) vs DDP (full replicas)
   - FSDP is better for very large models (e.g., 7B+ parameters)
   - CRITICAL: DDP/FSDP training with LoRA CANNOT resume from checkpoints due to PEFT limitations
@@ -73,12 +85,11 @@ import pandas as pd
 import evaluate
 from datasets import Dataset
 from huggingface_hub import login
-from transformers import DataCollatorWithPadding
-from peft import LoraConfig, get_peft_model, set_peft_model_state_dict
 import torch
 import torch.serialization
 from safetensors.torch import load_file
 import pynvml
+
 # Fix for PyTorch 2.6+ weights_only security issue
 # Patch torch.load to disable weights_only for checkpoint files (we trust our own checkpoints)
 _original_torch_load = torch.load
@@ -92,10 +103,11 @@ def _torch_load_with_weights_only_false(path, *args, **kwargs):
 
 torch.load = _torch_load_with_weights_only_false
 
+# Imports that depend on torch
 from transformers import (
     AutoModelForCausalLM,
     AutoTokenizer,
-    DataCollatorForLanguageModeling,
+    DataCollatorWithPadding,
     EarlyStoppingCallback,
     TrainerCallback,
     MT5ForConditionalGeneration,
@@ -103,6 +115,9 @@ from transformers import (
     Trainer,
     TrainingArguments,
 )
+from peft import LoraConfig, get_peft_model, set_peft_model_state_dict
+
+# Optional imports for trainer state
 try:
     TrainerState = importlib.import_module("transformers.trainer_state").TrainerState  # type: ignore[attr-defined]
 except (ImportError, AttributeError):  # pragma: no cover - environment without transformers installed
@@ -191,6 +206,7 @@ class EvalDataCollator:
 
 
 class CausalLMTrainer(Trainer):
+    
     def __init__(self, *args, 
                  generation_max_length: Optional[int] = None,
                  generation_num_beams: Optional[int] = None,
@@ -222,6 +238,78 @@ class CausalLMTrainer(Trainer):
         self.data_collator = original_collator
         
         return dataloader
+    
+    def compute_loss(self, model, inputs, return_outputs=False):
+        """Override to ensure loss is extracted correctly from model output.
+        
+        This is especially important for FSDP where model outputs might be wrapped.
+        """
+        # Get model outputs directly
+        outputs = model(**inputs)
+        
+        # Extract or compute loss from outputs
+        loss = None
+        
+        # Handle dict-like outputs (including FSDP-wrapped outputs)
+        # Check if outputs is dict-like (has 'get' method and 'keys' method)
+        is_dict_like = isinstance(outputs, dict) or (hasattr(outputs, 'get') and hasattr(outputs, 'keys'))
+        
+        if is_dict_like:
+            # Try to get loss from outputs
+            loss = outputs.get("loss") if hasattr(outputs, 'get') else (outputs["loss"] if "loss" in outputs else None)
+            
+            # Safety check: ensure loss is a tensor, not a dict or other type
+            if loss is not None and not isinstance(loss, torch.Tensor):
+                # If loss exists but is not a tensor, ignore it and compute from logits
+                loss = None
+            
+            # If loss is not in outputs or is not a tensor, compute it from logits and labels
+            if loss is None:
+                if "logits" not in outputs:
+                    raise ValueError(f"Cannot compute loss: 'logits' not found in outputs. Output keys: {list(outputs.keys())}")
+                
+                # Get labels - use input_ids if labels are not provided (standard for causal LM)
+                if "labels" in inputs:
+                    labels = inputs["labels"]
+                elif "input_ids" in inputs:
+                    # For causal LM, labels are typically the same as input_ids (shifted)
+                    labels = inputs["input_ids"]
+                else:
+                    raise ValueError(f"Cannot compute loss: neither 'labels' nor 'input_ids' found in inputs. Input keys: {list(inputs.keys())}")
+                
+                # Compute loss manually using cross entropy
+                logits = outputs["logits"]
+                
+                # Shift labels and logits for causal LM (next token prediction)
+                shift_logits = logits[..., :-1, :].contiguous()
+                shift_labels = labels[..., 1:].contiguous()
+                # Flatten for cross entropy
+                loss_fct = torch.nn.CrossEntropyLoss()
+                loss = loss_fct(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))
+                
+                # Verify loss was computed correctly
+                if not isinstance(loss, torch.Tensor):
+                    raise RuntimeError(f"Loss computation failed: expected tensor, got {type(loss)}")
+        elif isinstance(outputs, tuple):
+            # Outputs is a tuple, first element is typically loss
+            loss = outputs[0] if len(outputs) > 0 else None
+            if loss is None or not isinstance(loss, torch.Tensor):
+                raise ValueError("Model output tuple does not contain loss tensor")
+        else:
+            # Unexpected output type
+            raise TypeError(f"Unexpected model output type: {type(outputs)}. Expected dict or tuple.")
+        
+        # Final validation - ensure loss is a tensor
+        if loss is None:
+            raise ValueError("Could not extract or compute loss from model outputs")
+        if not isinstance(loss, torch.Tensor):
+            # This should never happen, but if it does, provide detailed error
+            raise TypeError(
+                f"Expected loss to be a tensor, got {type(loss)}: {loss}. "
+                f"Outputs type: {type(outputs)}, Outputs keys (if dict): {list(outputs.keys()) if isinstance(outputs, dict) else 'N/A'}"
+            )
+        
+        return (loss, outputs) if return_outputs else loss
 
     def prediction_step(
         self,
@@ -455,7 +543,7 @@ def prepare_model_for_lora(model, use_quantization: bool):
 
 def fine_tune_model(
     model_name: str,
-    dataset_path: str,
+    train_dataset_path: str,
     val_dataset_path: str,
     output_dir: str,
     quantization: str = 'none',
@@ -478,7 +566,7 @@ def fine_tune_model(
     
     Args:
         model_name: Model identifier
-        dataset_path: Path to training dataset (JSONL)
+        train_dataset_path: Path to training dataset (JSONL)
         val_dataset_path: Path to validation dataset (JSONL)
         output_dir: Directory to save the fine-tuned model
         quantization: Quantization method ('none', '4bit', '8bit')
@@ -607,6 +695,19 @@ def fine_tune_model(
         print(f"=== {mode} Training Detected ===")
         print(f"CUDA available: {torch.cuda.is_available()}")
         print(f"CUDA device count: {torch.cuda.device_count()}")
+        
+        # CUDA cleanup for distributed mode to avoid "device busy" errors
+        if torch.cuda.is_available() and local_rank >= 0:
+            try:
+                # Set the device for this process before any CUDA operations
+                torch.cuda.set_device(local_rank)
+                # Clear cache and synchronize
+                torch.cuda.empty_cache()
+                torch.cuda.synchronize()
+                print(f"Process rank {rank} (local_rank {local_rank}) initialized on device {local_rank}")
+            except Exception as e:
+                print(f"Warning: Could not initialize CUDA device {local_rank} for rank {rank}: {e}")
+        
         if use_fsdp:
             use_fsdp = True
         else:
@@ -683,14 +784,15 @@ def fine_tune_model(
         return
 
     # Load and preprocess dataset
-    print(f"Loading dataset from: {dataset_path}")
+    print(f"Loading dataset from: {train_dataset_path}")
 
     # Read JSONL file manually
     train_data = []
     try:
-        with open(dataset_path, 'r', encoding='utf-8') as f:
-            for line in f:
-                train_data.append(json.loads(line))
+        with open(train_dataset_path, 'r', encoding='utf-8') as f:
+            for json_line in f:
+                json_dict = json.loads(json_line)
+                train_data.append(json_dict)
     except Exception as e:
         print(f"Error reading training dataset: {e}")
         return
@@ -699,21 +801,38 @@ def fine_tune_model(
     val_data = []
     try:
         with open(val_dataset_path, 'r', encoding='utf-8') as f:
-            for line in f:
-                val_data.append(json.loads(line))
+            for json_line in f:
+                json_dict = json.loads(json_line)
+                val_data.append(json_dict)
     except Exception as e:
         print(f"Error reading validation dataset: {e}")
         return
 
     # Create training dataset
     train_df = pd.DataFrame(train_data)
-    dataset = Dataset.from_pandas(train_df)
-    
-    # Randomly sample validation_data_size examples from val_data
-    val_data = random.sample(val_data, min(val_data_size, len(val_data)))
+    train_df = train_df[train_df['output'].notna()]
+
+    assert train_df['input'].apply(lambda x: x is not None and x != '').all()
+    assert train_df['input'].notna().all()
+    assert train_df['output'].apply(lambda x: x is not None and x != '').all()
+    assert train_df['output'].notna().all()
+
+    train_dataset = Dataset.from_pandas(train_df)
+    print(f'*** Training dataset size: {len(train_dataset)} examples ***')
+
+    # Create validation dataset, with VALIDATION_SIZE examples
     val_df = pd.DataFrame(val_data)
+    val_df = val_df[val_df['output'].notna()]
+    val_df = val_df.sample(n=val_data_size)
+
+    assert val_df['input'].apply(lambda x: x is not None and x != '').all()
+    assert val_df['input'].notna().all()
+    assert val_df['output'].apply(lambda x: x is not None and x != '').all()
+    assert val_df['output'].notna().all()
+
     val_dataset = Dataset.from_pandas(val_df)
     print(f'*** validation dataset size: {len(val_dataset)} examples ***')
+
 
     def format_example_train(example):
         # Format the input-output pair for the model (TRAINING: full text for teacher forcing)
@@ -759,7 +878,7 @@ def fine_tune_model(
         tokenized_prompts["labels"] = tokenized_targets["input_ids"]
         return tokenized_prompts
 
-    formatted_dataset = dataset.map(format_example_train)
+    formatted_dataset = train_dataset.map(format_example_train)
     tokenized_dataset = formatted_dataset.map(tokenize_function_train, batched=True)
 
     # Format and tokenize the VALIDATION dataset differently
@@ -967,13 +1086,7 @@ def fine_tune_model(
                 
         optim="adamw_torch",
         report_to="wandb",
-        gradient_checkpointing=True,
         dataloader_pin_memory=False,  # Can help with memory issues
-
-        # fsdp config
-        fsdp_min_num_params=1e8,
-        activation_checkpointing=True,
-        cpu_offload=True,
     )
     
     # Add distributed or single-GPU-specific parameters
@@ -981,26 +1094,54 @@ def fine_tune_model(
         # DDP training settings (only when actually using DDP)
         training_args_kwargs['ddp_find_unused_parameters'] = False
         training_args_kwargs['ddp_backend'] = 'nccl'
+        # For DDP, use gradient_checkpointing in TrainingArguments
+        training_args_kwargs['gradient_checkpointing'] = True
         print("Added DDP parameters for multi-GPU training")
     elif use_fsdp:
         # FSDP training settings
         # FSDP shards model parameters, gradients, and optimizer states across GPUs
         training_args_kwargs['fsdp'] = "full_shard auto_wrap"
+        
+        # Configure FSDP using fsdp_config (not deprecated parameters)
+        fsdp_config = {
+            "activation_checkpointing": True,  # Use activation_checkpointing instead of gradient_checkpointing
+        }
+        
+        # Set transformer_layer_cls_to_wrap based on model type
         if model_name == 'google/gemma-2b' or model_name == 'google/gemma-7b':
             print("GEMMA model utilized")
-            training_args_kwargs['fsdp_transformer_layer_cls_to_wrap'] = "GemmaDecoderLayer"  # For Gemma models
-        if model_name == 'LumiOpen/Viking-7B':
+            fsdp_config['transformer_layer_cls_to_wrap'] = "GemmaDecoderLayer"
+        elif model_name == 'LumiOpen/Viking-7B':
             print("VIKING model utilized")
-            training_args_kwargs['fsdp_transformer_layer_cls_to_wrap'] = "LlamaDecoderLayer"
-
-        # You may need to adjust this for different models (e.g., "LlamaDecoderLayer" for Llama)
+            fsdp_config['transformer_layer_cls_to_wrap'] = "LlamaDecoderLayer"
+        
+        training_args_kwargs['fsdp_config'] = fsdp_config
+        
+        # Do NOT set gradient_checkpointing=True for FSDP - use activation_checkpointing in fsdp_config instead
+        # This avoids redundant AllGather operations in backward pass
         print("Added FSDP parameters for multi-GPU training (full sharding)")
-        print("Note: fsdp_transformer_layer_cls_to_wrap is set for Gemma. Adjust for other models if needed.")
+        print("Using activation_checkpointing in fsdp_config (not gradient_checkpointing)")
+        if 'transformer_layer_cls_to_wrap' in fsdp_config:
+            print(f"FSDP transformer_layer_cls_to_wrap: {fsdp_config['transformer_layer_cls_to_wrap']}")
+    else:
+        # Single-GPU mode - use gradient_checkpointing
+        training_args_kwargs['gradient_checkpointing'] = True
     
     if not (use_ddp or use_fsdp):
         # Single-GPU mode - explicitly prevent distributed detection
         training_args_kwargs['local_rank'] = -1  # Explicitly tell it we're not in distributed mode
         print("Added local_rank=-1 to TrainingArguments for single-GPU mode")
+    
+    # CUDA cleanup before creating TrainingArguments to avoid "device busy" errors
+    if torch.cuda.is_available():
+        try:
+            # Clear CUDA cache to free up any lingering allocations
+            torch.cuda.empty_cache()
+            # Synchronize to ensure all CUDA operations are complete
+            torch.cuda.synchronize()
+            print("CUDA cache cleared and synchronized before TrainingArguments initialization")
+        except Exception as e:
+            print(f"Warning: Could not clear CUDA cache: {e}")
     
     training_args = TrainingArguments(**training_args_kwargs)
     
@@ -1120,10 +1261,10 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # GTX3090 with 4-bit quantization:
+  # AMD64-architecture (like GTX3090) with 4-bit quantization:
   python finetune.py --model gemma-2b --quantization 4bit --hf_token YOUR_TOKEN
 
-  # GH200/Cray without quantization, fixed steps:
+  # ARM64-architecture (like GH200/Cray) without quantization, fixed steps:
   python finetune.py --model gemma-2b --quantization none --max_steps 1200 --hf_token YOUR_TOKEN
 
   # Without quantization, train for epochs:
@@ -1211,7 +1352,7 @@ Examples:
     # Run fine-tuning
     fine_tune_model(
         model_name=model_name,
-        dataset_path=args.train_dataset,
+        train_dataset_path=args.train_dataset,
         val_dataset_path=args.val_dataset,
         output_dir=output_dir,
         quantization=args.quantization,
