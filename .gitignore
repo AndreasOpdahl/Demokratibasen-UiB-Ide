@@ -1,1 +1,7 @@
-model_fine_tuning_olivia/
+.env
+venv/
+*.pyc
+*~
+OLD/
+model_fine_tuning/models/
+model_fine_tuning_olivia/models/
