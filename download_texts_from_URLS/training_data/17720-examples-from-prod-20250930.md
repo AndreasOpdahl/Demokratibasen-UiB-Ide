@@ -4,6 +4,10 @@
 
 Extracted from demokratibasen-prod 2025-09-30 and OpenAI batch files ("30 last days") with full texts.
 
+THE COMMANDS BELOW HAVE BEEN SUPERCEDED. 
+
+See the README.MD file in the download_texts_from_URLS/ folder (which may since have been renamed).
+
 ## To extract from demokratibasen-prod
 
 ```
