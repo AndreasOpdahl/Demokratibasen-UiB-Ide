@@ -17,7 +17,7 @@ FINETUNE_SCRIPT="scripts/wandb_finetune.py"  # was "scripts/finetune.py"
 MODEL=gemma-7b  # this is not properly used
 DISTRIBUTION_FLAG="--fsdp"  # this should be renamed
 RESUME_CHECKPOINT="checkpoint-60"  # or "" or a specific checkpoint path
-TASK_LIMIT="--max_steps 60"
+TASK_LIMIT="--max_steps 120"
 
 NUM_GPUS=${SLURM_GPUS_ON_NODE:-1}
 printf "Allocated $NUM_GPUS GPUs...\n"
