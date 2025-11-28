@@ -6,14 +6,6 @@ Supports both quantized (GTX3090 with AMD64-architecture) and non-quantized (GH2
 Before running:
   export YOUR_TOKEN=...your huggingface token here, or source it from an .env file...
   export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
-val_df = pd.DataFrame(val_data)
-val_df = val_df[val_df['output'].notna()]
-val_df = val_df.sample(n=VALIDATION_SIZE)
-
-assert val_df['input'].apply(lambda x: x is not None and x != '').all()
-assert val_df['input'].notna().all()
-assert val_df['output'].apply(lambda x: x is not None and x != '').all()
-assert val_df['output'].notna().all()
 
 Usage examples:
   # Single GPU with 4-bit quantization (GTX3090):
@@ -399,7 +391,53 @@ def load_model_with_optional_quantization(
     
     Returns:
         Loaded model
-    """
+    """            
+            # If loss is not in outputs or is not a tensor, compute it from logits and labels
+            if loss is None:
+                if "logits" not in outputs:
+                    raise ValueError(f"Cannot compute loss: 'logits' not found in outputs. Output keys: {list(outputs.keys())}")
+                
+                # Get labels - use input_ids if labels are not provided (standard for causal LM)
+                if "labels" in inputs:
+                    labels = inputs["labels"]
+                elif "input_ids" in inputs:
+                    # For causal LM, labels are typically the same as input_ids (shifted)
+                    labels = inputs["input_ids"]
+                else:
+                    raise ValueError(f"Cannot compute loss: neither 'labels' nor 'input_ids' found in inputs. Input keys: {list(inputs.keys())}")
+                
+                # Compute loss manually using cross entropy
+                logits = outputs["logits"]
+                
+                # Shift labels and logits for causal LM (next token prediction)
+                shift_logits = logits[..., :-1, :].contiguous()
+                shift_labels = labels[..., 1:].contiguous()
+                # Flatten for cross entropy
+                loss_fct = torch.nn.CrossEntropyLoss()
+                loss = loss_fct(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))
+                
+                # Verify loss was computed correctly
+                if not isinstance(loss, torch.Tensor):
+                    raise RuntimeError(f"Loss computation failed: expected tensor, got {type(loss)}")
+        elif isinstance(outputs, tuple):
+            # Outputs is a tuple, first element is typically loss
+            loss = outputs[0] if len(outputs) > 0 else None
+            if loss is None or not isinstance(loss, torch.Tensor):
+                raise ValueError("Model output tuple does not contain loss tensor")
+        else:
+            # Unexpected output type
+            raise TypeError(f"Unexpected model output type: {type(outputs)}. Expected dict or tuple.")
+        
+        # Final validation - ensure loss is a tensor
+        if loss is None:
+            raise ValueError("Could not extract or compute loss from model outputs")
+        if not isinstance(loss, torch.Tensor):
+            # This should never happen, but if it does, provide detailed error
+            raise TypeError(
+                f"Expected loss to be a tensor, got {type(loss)}: {loss}. "
+                f"Outputs type: {type(outputs)}, Outputs keys (if dict): {list(outputs.keys()) if isinstance(outputs, dict) else 'N/A'}"
+            )
+
     if model_name == 'google/mt5-base':
         return MT5ForConditionalGeneration.from_pretrained(model_name)
     
