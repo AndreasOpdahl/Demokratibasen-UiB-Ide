@@ -125,11 +125,11 @@ MAX_EXTRA_PROMPT_TOKENS = 40  # max extra tokens for input prompt (the task desc
 MAX_INPUT_PROMPT_TOKENS = MAX_INPUT_TEXT_TOKENS + MAX_EXTRA_PROMPT_TOKENS
 MAX_OUTPUT_SUMMARY_TOKENS = 512  # max tokens for output from summarisation
 MAX_EPOCHS = 5
-TRAIN_BATCH_SIZE = 1
+TRAIN_BATCH_SIZE = 4
 VAL_BATCH_SIZE = 5
 VAL_DATA_SIZE = 5  # WAS 20, number of examples to use for validation
 VAL_BEAM_SIZE = 4  # beam size for evaluation
-VAL_STEPS = 20  # WAS 200
+VAL_STEPS = 100  # Reduce checkpoint frequency (was 20)
 
 
 
@@ -330,7 +330,8 @@ def load_model_with_optional_quantization(
                 model_name,
                 torch_dtype=torch.float16,
                 token=hf_token,
-                device_map="auto",
+                # DO NOT use device_map for distributed training
+                # Let torchrun/FSDP handle device placement
                 low_cpu_mem_usage=True  # Efficient loading for large models
             )
             # Explicitly keep on CPU - do NOT move to CUDA yet
@@ -532,7 +533,8 @@ def fine_tune_model(
         scores = rouge.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
         print('*** evaluation: computed_metrics ***', scores)
         
-        if wandb.run is not None:
+        # Only log to wandb from main process
+        if wandb.run is not None and int(os.environ.get('RANK', 0)) == 0:
             wandb.log({
                 "eval/rouge1": scores['rouge1'] * 100,
                 "eval/rouge2": scores['rouge2'] * 100,
@@ -542,27 +544,36 @@ def fine_tune_model(
 
         return {k: v * 100 for k, v in scores.items()}  # % values
 
-    
-    # Login to Hugging Face if token is provided
+    # Set HF token via environment variable
     if hf_token:
-        print("Logging in to Hugging Face Hub...")
-        login(token=hf_token)
+        os.environ['HF_TOKEN'] = hf_token
 
-    print("Initializing Weights & Biases...")
-    wandb.init(
-        project="lm-finetuning",  # Change to your project name
-        name=f"{os.path.basename(output_dir)}_{quantization}",
-        config={
-            "model_name": model_name,
-            "quantization": quantization,
-            "max_input_text_tokens": max_input_text_tokens,
-            "max_output_summary_tokens": max_output_summary_tokens,
-            "train_batch_size": train_batch_size,
-            "val_batch_size": val_batch_size,
-            "use_ddp": use_ddp,
-            "use_fsdp": use_fsdp,
-        }
-    )
+    # Determine rank for distributed training
+    rank = int(os.environ.get('RANK', 0))
+    is_main_process = (rank == 0)
+    
+    # Only initialize wandb on rank 0
+    if is_main_process:
+        print("Initializing Weights & Biases...")
+        wandb.init(
+            project="lm-finetuning",
+            name=f"{os.path.basename(output_dir)}_{quantization}",
+            config={
+                "model_name": model_name,
+                "quantization": quantization,
+                "max_input_text_tokens": max_input_text_tokens,
+                "max_output_summary_tokens": max_output_summary_tokens,
+                "train_batch_size": train_batch_size,
+                "val_batch_size": val_batch_size,
+                "use_ddp": use_ddp,
+                "use_fsdp": use_fsdp,
+            }
+        )
+        print(f">>> wandb run initialized: {wandb.run.name}")
+        print(f">>> wandb run URL: {wandb.run.get_url()}")
+    else:
+        # Disable wandb for non-rank-0 processes
+        os.environ['WANDB_DISABLED'] = 'true'
 
     # Load tokenizer
     try:
@@ -582,9 +593,12 @@ def fine_tune_model(
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     
-    # For decoder-only models (like GPT, Gemma), use left padding for generation
-    # This ensures the model attends to the actual prompt, not padding
-    tokenizer.padding_side = 'left'
+    # For TRAINING: use RIGHT padding (DataCollatorForLanguageModeling needs this)
+    # For GENERATION: we'll switch to left padding later if needed
+    tokenizer.padding_side = 'right'  # Changed from 'left' - needed for training
+    
+    # Note: If you need left padding for generation, set it in the generation code
+    # or use a separate tokenizer instance for evaluation
 
     # Validate DDP/FSDP flags (mutually exclusive)
     if use_ddp and use_fsdp:
@@ -711,6 +725,10 @@ def fine_tune_model(
     
     # Randomly sample validation_data_size examples from val_data
     val_data = random.sample(val_data, min(val_data_size, len(val_data)))
+    
+    # Filter out examples with missing input or output
+    val_data = [ex for ex in val_data if ex.get('input') and ex.get('output')]
+    
     val_df = pd.DataFrame(val_data)
     val_dataset = Dataset.from_pandas(val_df)
     print(f'*** validation dataset size: {len(val_dataset)} examples ***')
@@ -724,9 +742,11 @@ def fine_tune_model(
         # Format for EVALUATION: only the input prompt, not the answer
         prompt = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
         # Keep the target output separate for ROUGE calculation
+        # Handle None or missing output
+        target = example['output'] if example['output'] is not None else ""
         return {
             "prompt": prompt,
-            "target_summary": example['output']
+            "target_summary": str(target)  # Ensure it's a string
         }
 
     def tokenize_function_train(examples):
@@ -760,18 +780,85 @@ def fine_tune_model(
         return tokenized_prompts
 
     formatted_dataset = dataset.map(format_example_train)
-    tokenized_dataset = formatted_dataset.map(tokenize_function_train, batched=True)
+    tokenized_dataset = formatted_dataset.map(
+        tokenize_function_train, 
+        batched=True,
+        load_from_cache_file=False,  # ADD THIS - keeps data in memory
+    )
 
     # Format and tokenize the VALIDATION dataset differently
     formatted_val_dataset = val_dataset.map(format_example_eval)
-    tokenized_val_dataset = formatted_val_dataset.map(tokenize_function_eval, batched=True)
+    tokenized_val_dataset = formatted_val_dataset.map(
+        tokenize_function_eval, 
+        batched=True,
+        load_from_cache_file=False,  # ADD THIS
+    )
     
     # Data collators
-    # For TRAINING: use standard causal LM collator (creates labels by shifting)
-    train_data_collator = DataCollatorWithPadding(
+    # For TRAINING: use DataCollatorForLanguageModeling which creates labels
+    # IMPORTANT: Must use RIGHT padding for this to work correctly
+    train_data_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer,
-        pad_to_multiple_of=8
+        mlm=False,  # Causal LM, not masked LM
     )
+
+    # Debug: Verify labels are created correctly (only on rank 0)
+    if is_main_process:
+        print("\n=== Verifying data collator ===")
+        try:
+            # Get a sample - ensure it's a dict with proper structure
+            sample = tokenized_dataset[0]
+            print(f"Sample keys: {sample.keys()}")
+            print(f"Sample type: {type(sample)}")
+            
+            # Check if input_ids exists and is the right type
+            if 'input_ids' in sample:
+                input_ids = sample['input_ids']
+                print(f"input_ids type: {type(input_ids)}, length: {len(input_ids) if hasattr(input_ids, '__len__') else 'N/A'}")
+                if isinstance(input_ids, list):
+                    print(f"input_ids first few: {input_ids[:5] if len(input_ids) > 5 else input_ids}")
+                elif hasattr(input_ids, 'tolist'):
+                    print(f"input_ids first few: {input_ids[:5].tolist() if len(input_ids) > 5 else input_ids.tolist()}")
+            
+            # Convert sample to proper format if needed (HuggingFace datasets sometimes return lists)
+            # Ensure all values are lists/tensors, not nested structures
+            sample_dict = {}
+            for key, value in sample.items():
+                if isinstance(value, list):
+                    # If it's already a list, use it
+                    sample_dict[key] = value
+                elif hasattr(value, 'tolist'):
+                    # If it's a tensor/array, convert to list
+                    sample_dict[key] = value.tolist()
+                else:
+                    # Otherwise, wrap in list
+                    sample_dict[key] = [value] if not isinstance(value, list) else value
+            
+            # Now try collating
+            collated = train_data_collator([sample_dict])
+            
+            if 'labels' in collated:
+                labels = collated['labels']
+                if hasattr(labels, 'numel'):
+                    non_ignored = (labels != -100).sum().item()
+                    total = labels.numel()
+                    print(f"Labels shape: {labels.shape}")
+                    print(f"Non-ignored labels: {non_ignored}/{total} ({100*non_ignored/total:.1f}%)")
+                    if non_ignored == 0:
+                        print("ERROR: All labels are ignored (-100)! This will cause loss=0.0")
+                else:
+                    print(f"Labels type: {type(labels)}")
+            else:
+                print("WARNING: No 'labels' key in collated output")
+            print("=" * 50 + "\n")
+        except Exception as e:
+            print(f"ERROR during data collator verification: {e}")
+            print(f"Sample structure: {sample if 'sample' in locals() else 'N/A'}")
+            import traceback
+            traceback.print_exc()
+            print("=" * 50 + "\n")
+            # Don't fail training, just warn
+            print("WARNING: Data collator verification failed, but continuing training...")
     
     # For EVALUATION: use custom collator that pads both input_ids and labels
     eval_data_collator = EvalDataCollator(tokenizer=tokenizer)
@@ -792,22 +879,43 @@ def fine_tune_model(
     model = prepare_model_for_lora(model, use_quantization)
     
     if model_name == "google/gemma-7b" or model_name == "google/gemma-2b":    
-        # Define LoRA config
+        # Define LoRA config for Gemma
         lora_config = LoraConfig(
             r=8,
             lora_alpha=32,
-            target_modules=["q_proj", "v_proj"],  # depends on model architecture
+            target_modules=["q_proj", "v_proj"],  # Gemma architecture
             lora_dropout=0.05,
             bias="none",
             task_type="CAUSAL_LM"
         )
-    
-    if model_name == "LumiOpen/Viking-7B" or model_name == "LumiOpen/Viking-13B":
-        # Define LoRA config
+    elif model_name == "LumiOpen/Viking-7B" or model_name == "LumiOpen/Viking-13B" or \
+         'normistral' in model_name.lower() or 'NorwAI/NorMistral' in model_name:
+        # Define LoRA config for Mistral-based models (Viking, NorMistral)
         lora_config = LoraConfig(
             r=8,
             lora_alpha=16,
-            target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],  # depends on model architecture
+            target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],  # Mistral architecture
+            lora_dropout=0.05,
+            bias="none",
+            task_type="CAUSAL_LM"
+        )
+    elif 'llama' in model_name.lower() or 'norskgpt' in model_name.lower():
+        # Define LoRA config for Llama-based models (NorskGPT, Llama-2-13b-chat-norwegian)
+        lora_config = LoraConfig(
+            r=8,
+            lora_alpha=16,
+            target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],  # Llama architecture
+            lora_dropout=0.05,
+            bias="none",
+            task_type="CAUSAL_LM"
+        )
+    else:
+        # Default LoRA config for unknown models
+        print(f"WARNING: Unknown model {model_name}, using default LoRA config")
+        lora_config = LoraConfig(
+            r=8,
+            lora_alpha=16,
+            target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
             lora_dropout=0.05,
             bias="none",
             task_type="CAUSAL_LM"
@@ -937,9 +1045,10 @@ def fine_tune_model(
         per_device_train_batch_size=train_batch_size,
         per_device_eval_batch_size=val_batch_size,
         gradient_accumulation_steps=4,
-        learning_rate=1e-5,  # Reduced from 2e-5 - too high can cause instability
-        num_train_epochs=train_epochs,  # Always has a valid value (never None)
-        max_steps=train_steps,  # Either valid int or -1
+        # Model-specific learning rate for stability
+        learning_rate=2e-5 if 'viking-13b' in model_name.lower() or 'llama-2-13b' in model_name.lower() else 1e-5,
+        num_train_epochs=train_epochs,
+        max_steps=train_steps,
         fp16=False,
         bf16=True,
         logging_steps=10,
@@ -957,23 +1066,24 @@ def fine_tune_model(
         greater_is_better=True if eval_enabled else None,
         
         # Numerical stability improvements
-        max_grad_norm=0.5,  # More aggressive gradient clipping
-        warmup_steps=500,  # Much longer warmup (was 100)
-        warmup_ratio=0.0,  # Ensure warmup_steps is used
-        weight_decay=0.05,  # Increased regularization (was 0.01)
-        adam_epsilon=1e-8,  # Standard Adam epsilon
+        max_grad_norm=1.0,  # Increased from 0.5 - too aggressive clipping can cause NaN
+        warmup_steps=500,
+        warmup_ratio=0.0,
+        weight_decay=0.05,
+        adam_epsilon=1e-8,
         adam_beta1=0.9,
         adam_beta2=0.999,
                 
         optim="adamw_torch",
-        report_to="wandb",
-        gradient_checkpointing=True,
-        dataloader_pin_memory=False,  # Can help with memory issues
-
+        report_to="wandb" if is_main_process else "none",
+        gradient_checkpointing=not use_fsdp,  # Disable for FSDP, use activation_checkpointing instead
+        dataloader_num_workers=4,
+        dataloader_pin_memory=True,
+        dataloader_prefetch_factor=2,
+        
         # fsdp config
-        fsdp_min_num_params=1e8,
-        activation_checkpointing=True,
-        cpu_offload=True,
+        #fsdp_min_num_params=1e8,
+        #cpu_offload=True,
     )
     
     # Add distributed or single-GPU-specific parameters
@@ -983,23 +1093,31 @@ def fine_tune_model(
         training_args_kwargs['ddp_backend'] = 'nccl'
         print("Added DDP parameters for multi-GPU training")
     elif use_fsdp:
-        # FSDP training settings
-        # FSDP shards model parameters, gradients, and optimizer states across GPUs
-        training_args_kwargs['fsdp'] = "full_shard auto_wrap"
-        if model_name == 'google/gemma-2b' or model_name == 'google/gemma-7b':
-            print("GEMMA model utilized")
-            training_args_kwargs['fsdp_transformer_layer_cls_to_wrap'] = "GemmaDecoderLayer"  # For Gemma models
-        if model_name == 'LumiOpen/Viking-7B':
-            print("VIKING model utilized")
-            training_args_kwargs['fsdp_transformer_layer_cls_to_wrap'] = "LlamaDecoderLayer"
-
-        # You may need to adjust this for different models (e.g., "LlamaDecoderLayer" for Llama)
-        print("Added FSDP parameters for multi-GPU training (full sharding)")
-        print("Note: fsdp_transformer_layer_cls_to_wrap is set for Gemma. Adjust for other models if needed.")
+        # FSDP training settings - Compatible with transformers 4.45.2 and PEFT/LoRA
+        # IMPORTANT: With PEFT/LoRA, we MUST use "full_shard" WITHOUT "auto_wrap"
+        # because PEFT wraps the model and breaks auto-wrapping detection
+        
+        print("Configuring FSDP for PEFT/LoRA training...")
+        print("Using 'full_shard' mode (without auto_wrap) for PEFT compatibility")
+        
+        # Use full_shard only - NO auto_wrap when using PEFT/LoRA
+        # This avoids the "Could not find transformer layer class" error
+        training_args_kwargs['fsdp'] = "full_shard"
+        
+        # Do NOT set fsdp_transformer_layer_cls_to_wrap when not using auto_wrap
+        # It will cause errors and deprecation warnings
+        
+        # Disable gradient_checkpointing when using FSDP
+        # FSDP has its own memory optimization mechanisms
+        if 'gradient_checkpointing' in training_args_kwargs:
+            training_args_kwargs['gradient_checkpointing'] = False
+            print("Disabled gradient_checkpointing for FSDP (FSDP handles memory optimization)")
+        
+        print("FSDP configured: full_shard mode (compatible with PEFT/LoRA)")
     
     if not (use_ddp or use_fsdp):
         # Single-GPU mode - explicitly prevent distributed detection
-        training_args_kwargs['local_rank'] = -1  # Explicitly tell it we're not in distributed mode
+        training_args_kwargs['local_rank'] = -1
         print("Added local_rank=-1 to TrainingArguments for single-GPU mode")
     
     training_args = TrainingArguments(**training_args_kwargs)
@@ -1008,10 +1126,7 @@ def fine_tune_model(
     # 1. Starting fresh (not resuming)
     # 2. Evaluation is enabled (FSDP disables eval, so no early stopping)
     callbacks = []
-
-    from transformers.integrations import WandbCallback
-    callbacks.append(WandbCallback)
-
+    
     if not checkpoints_exist and eval_enabled:
         early_stopping = EarlyStoppingCallback(
             early_stopping_patience=10,  # stop if no improvement for n evals
@@ -1025,7 +1140,6 @@ def fine_tune_model(
         elif not eval_enabled:
             print("Evaluation disabled (FSDP mode) - skipping EarlyStoppingCallback")
 
-    callbacks.append(GPUMemoryCallback)
     # Initialize Trainer
     # Prepare trainer kwargs
     trainer_kwargs = dict(
@@ -1113,6 +1227,11 @@ def fine_tune_model(
     tokenizer.save_pretrained(output_dir)
     print(f"Training completed. Model saved to {output_dir}")
 
+    # After trainer.train() finishes
+    if is_main_process and wandb.run is not None:
+        print(f">>> wandb final sync...")
+        wandb.finish()  # Ensure all logs are synced
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -1132,8 +1251,10 @@ Examples:
     )
     
     parser.add_argument('--model', type=str, required=True,
-                       choices=['viking-7b', 'gemma-2b', 'mt5', 'gemma-7b'],
-                       help='Model to fine-tune')
+                   choices=['viking-7b', 'viking-13b', 'gemma-2b', 'gemma-7b', 
+                            'normistral-7b', 'normistral-11b',
+                            'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian', 'mt5'],
+                   help='Model to fine-tune')
     parser.add_argument('--quantization', type=str, default='none',
                        choices=['none', '4bit', '8bit'],
                        help='Quantization method (default: none). Use "4bit" for GTX3090, "none" for GH200.')
@@ -1192,10 +1313,14 @@ Examples:
     # Model mapping
     model_mapping = {
         'viking-7b': 'LumiOpen/Viking-7B',
-        'gemma-2b': 'google/gemma-2b',
         'viking-13b': 'LumiOpen/Viking-13B',
-        'mt5': 'google/mt5-base',
-        'gemma-7b': 'google/gemma-7b'
+        'gemma-2b': 'google/gemma-2b',
+        'gemma-7b': 'google/gemma-7b',
+        'normistral-7b': 'norallm/normistral-7b-warm',
+        'normistral-11b': 'norallm/normistral-11b-warm',
+        'norskgpt-llama3-8b': 'bineric/norskgpt-llama3-8b',
+        'llama-2-13b-chat-norwegian': 'ruternorway/llama-2-13b-chat-norwegian',
+        'mt5': 'google/mt5-base'
     }
     try:
         model_name = model_mapping[args.model]
@@ -1206,7 +1331,9 @@ Examples:
     if args.output_dir:
         output_dir = args.output_dir
     else:
-        output_dir = 'models/' + model_name
+        # Clean model name for directory (replace / with _)
+        clean_model_name = model_name.replace('/', '_').replace('\\', '_')
+        output_dir = 'models/' + clean_model_name
 
     # Run fine-tuning
     fine_tune_model(
