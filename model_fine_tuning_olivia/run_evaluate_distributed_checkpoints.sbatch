@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH -J gpu-eval-checkpoints
+#SBATCH -J eval-gemma-3-12b-pt-checkpoints
 #SBATCH -p accel
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks=1
@@ -14,13 +14,14 @@ set -euo pipefail
 
 # ===== CONFIGURATION =====
 # Set the model and checkpoint directory to evaluate
-MODEL=gemma-7b
-CHECKPOINT_BASE_DIR="models/gemma-7b-apptainer-fsdp"  # Directory containing checkpoint-* subdirectories
-VAL_DATASET="data/output/processed_data_val.jsonl"
+MODEL=${MODEL:="gemma-3-12b-pt"}
+CHECKPOINT_BASE_DIR=${CHECKPOINT_BASE_DIR:="training_runs/${MODEL}-apptainer-fsdp-with-collator"}
+SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:=""}
 
-# Optional: Evaluate specific checkpoints (space-separated numbers)
-# Leave empty to evaluate ALL checkpoints
-SPECIFIC_CHECKPOINTS=""  # e.g., "100 200 300" or "" for all
+# Shared project files location
+PROJECT_DIR="/cluster/projects/nn12075k/shared"
+DATASET_DIR="$PROJECT_DIR/datasets/dataset_43221_examples"
+VAL_DATASET=${VAL_DATASET:="${DATASET_DIR}/processed_data_val.jsonl"}
 
 echo "==================================================================="
 echo "Evaluating checkpoints from: $CHECKPOINT_BASE_DIR"
@@ -42,25 +43,27 @@ export HF_METRICS_CACHE="$HF_HOME/metrics"
 mkdir -p "$HF_HOME" "$HF_DATASETS_CACHE" "$HF_MODULES_CACHE" "$HF_METRICS_CACHE"
 
 # stage model/dataset into job-local cache (fast local read, writable)
-echo "Copying model to job-local cache..."
-PROJECT_HF_DIR=/cluster/projects/nn12075k/shared/.cache/huggingface
+PROJECT_HF_DIR="$PROJECT_DIR/.cache/huggingface"
 mkdir -p "$HF_HOME/hub"
-rsync -av "$PROJECT_HF_DIR/hub/models--google--gemma-7b/" \
-          "$HF_HOME/hub/models--google--gemma-7b/"
 
-# Also copy metrics cache if it exists (needed for ROUGE)
+# Symlink read-only model from read-only project storage (instant, no copy time!)
+printf "Linking model to job-local cache (symlink for speed)...\n"
+ln -s "$PROJECT_HF_DIR/hub/models--google--$MODEL" \
+      "$HF_HOME/hub/models--google--$MODEL"
+
+# Copy metrics cache if it exists (needed for ROUGE - needs write access)
 if [ -d "$PROJECT_HF_DIR/metrics" ]; then
     echo "Copying metrics cache..."
-    rsync -av "$PROJECT_HF_DIR/metrics/" "$HF_METRICS_CACHE/"
+    rsync -a "$PROJECT_HF_DIR/metrics/" "$HF_METRICS_CACHE/"
 else
     echo "WARNING: No metrics cache found at $PROJECT_HF_DIR/metrics"
     echo "ROUGE metric may need to be downloaded during job (requires internet)"
 fi
 
-# Copy modules cache if it exists (needed for evaluate library)
+# Copy modules cache if it exists (needed for evaluate library - needs write access)
 if [ -d "$PROJECT_HF_DIR/modules" ]; then
     echo "Copying modules cache..."
-    rsync -av "$PROJECT_HF_DIR/modules/" "$HF_MODULES_CACHE/"
+    rsync -a "$PROJECT_HF_DIR/modules/" "$HF_MODULES_CACHE/"
 fi
 
 echo "Cache staging complete"
@@ -75,12 +78,9 @@ module load NRIS/GPU
 module load CUDA/12.6.0
 module load PyTorch/2.8.0
 
-# Load environment variables
-source .env
-
-
 # Apptainer image
-export IMAGE=/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif
+export IMAGE=${HOME}/apptainer_images/pytorch_25.11-py3.sif
+export BINDINGS="--bind ${DATASET_DIR} --bind ${PROJECT_HF_DIR}"
 
 # Find all checkpoint directories
 if [ -n "$SPECIFIC_CHECKPOINTS" ]; then
@@ -129,14 +129,39 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     echo "[$CHECKPOINT_NUM/$NUM_CHECKPOINTS] Evaluating: $CHECKPOINT_NAME"
     echo "==================================================================="
     
-    # Command to run inside apptainer - all on one line to avoid escaping issues
-    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && python scripts/evaluate_distributed_checkpoints.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --hf_token $HUGGINGFACE_TOKEN --output_dir $CHECKPOINT_DIR/eval_results"
-
-    # Apptainer commands - all on one line
-    COMMAND="pip install --upgrade pip setuptools wheel > /dev/null 2>&1 && pip install --only-binary=:all: transformers==4.45.2 tokenizers==0.20.3 datasets==4.0.0 sentencepiece==0.2.1 > /dev/null 2>&1 && pip install --no-binary=rouge-score rouge-score==0.1.2 > /dev/null 2>&1 && pip install --no-deps accelerate==1.10.1 peft==0.17.1 > /dev/null 2>&1 && pip install --upgrade pyyaml psutil typing-extensions packaging==24.2 > /dev/null 2>&1 && $EVAL_CMD"
+    # Install commands (matching training script setup)
+    INSTALL_CMD="
+    set -e
+    pip install setuptools wheel
+    pip install transformers>=4.45.0 tokenizers datasets sentencepiece evaluate
+    pip install 'accelerate>=0.30.0' 'peft>=0.11.0,<0.18.0' wandb
+    pip install --no-binary=rouge-score rouge-score==0.1.2
+    pip install --upgrade packaging==24.2 psutil nvidia-ml-py pyyaml typing-extensions
+    echo 'Pip installations complete'
+    pip list | grep -E 'transformers|accelerate|peft|evaluate|wandb'
+    "
+    
+    # Command to run inside apptainer
+    EVAL_CMD="
+    export HF_HOME=$HF_HOME
+    export HF_DATASETS_CACHE=$HF_DATASETS_CACHE
+    export HF_MODULES_CACHE=$HF_MODULES_CACHE
+    export HF_METRICS_CACHE=$HF_METRICS_CACHE
+    
+    source ./.env
+    
+    python scripts/evaluate_distributed_checkpoints.py \
+      --model $MODEL \
+      --checkpoint_dir $CHECKPOINT_DIR \
+      --val_dataset $VAL_DATASET \
+      --output_dir $CHECKPOINT_DIR/eval_results
+    "
     
     # Run evaluation directly (already in SLURM job context from sbatch)
-    apptainer exec --nv $IMAGE bash -c "$COMMAND"
+    apptainer exec --nv ${BINDINGS} $IMAGE bash -c "
+        $INSTALL_CMD 
+        $EVAL_CMD
+    "
     
     EVAL_STATUS=$?
     
