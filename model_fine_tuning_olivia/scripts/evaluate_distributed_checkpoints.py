@@ -1,26 +1,25 @@
 """
-Script to load PEFT checkpoints from distributed training (DDP/FSDP) for inference/evaluation.
+Script to evaluate FSDP checkpoints from distributed training.
 
-The main finetune.py script cannot resume from its own checkpoints in distributed mode
-due to PEFT + DDP/FSDP conflicts. This script loads checkpoints in single-GPU mode for inference.
+Note: With FULL_STATE_DICT checkpoints (now default), checkpoints are NOT distributed/sharded.
+They can be loaded directly in single-GPU mode for evaluation.
 
 Usage:
-  # Evaluate a checkpoint from DDP or FSDP training:
+  # Set environment variables first:
+  export HF_TOKEN=your_huggingface_token  # or HUGGINGFACE_TOKEN
+  export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+  
+  # Evaluate a checkpoint from FSDP training:
   python evaluate_distributed_checkpoints.py \
-    --model gemma-2b \
-    --checkpoint_dir models/gemma-2b_fsdp/checkpoint-100 \
-    --val_dataset data/output/processed_data_val.jsonl \
-    --hf_token YOUR_TOKEN
+    --model gemma-3-12b-pt \
+    --checkpoint_dir training_runs/gemma-3-12b-pt-fsdp/checkpoint-100 \
+    --val_dataset data/processed_data_val.jsonl
   
   # Just load for inference (no evaluation):
   python evaluate_distributed_checkpoints.py \
-    --model gemma-7b \
-    --checkpoint_dir models/gemma-7b_fsdp/checkpoint-500 \
-    --hf_token YOUR_TOKEN \
+    --model gemma-3-12b-pt \
+    --checkpoint_dir training_runs/gemma-3-12b-pt-fsdp/checkpoint-500 \
     --skip_eval
-
-Before running:
-export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 """
 
 import argparse
@@ -38,6 +37,7 @@ from huggingface_hub import login
 from peft import PeftModel, LoraConfig
 import torch
 import torch.serialization
+import wandb
 
 # Fix for PyTorch 2.6+ weights_only security issue
 _original_torch_load = torch.load
@@ -63,7 +63,7 @@ MAX_EXTRA_PROMPT_TOKENS = 40
 MAX_INPUT_PROMPT_TOKENS = MAX_INPUT_TEXT_TOKENS + MAX_EXTRA_PROMPT_TOKENS
 MAX_OUTPUT_SUMMARY_TOKENS = 512
 VAL_BATCH_SIZE = 5
-VAL_DATA_SIZE = 5
+VAL_DATA_SIZE = 50
 VAL_BEAM_SIZE = 4
 
 
@@ -192,19 +192,23 @@ class CausalLMTrainer(Trainer):
 
 def load_model_and_peft_checkpoint(
     model_name: str,
-    checkpoint_dir: str,
-    hf_token: Optional[str] = None
+    checkpoint_dir: str
 ):
     """Load base model and PEFT checkpoint for inference.
     
     Args:
         model_name: Base model identifier (e.g., 'google/gemma-2b')
         checkpoint_dir: Path to PEFT checkpoint directory
-        hf_token: Hugging Face token for private models
     
     Returns:
         Loaded model with PEFT adapters
+    
+    Note:
+        HuggingFace token is read from HF_TOKEN or HUGGINGFACE_TOKEN environment variable
     """
+    # Get HF token from environment
+    hf_token = os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_TOKEN")
+    
     print(f"Loading base model: {model_name}")
     
     # Load base model without quantization, on single GPU
@@ -235,7 +239,6 @@ def evaluate_checkpoint(
     model_name: str,
     checkpoint_dir: str,
     val_dataset_path: str,
-    hf_token: Optional[str] = None,
     output_dir: Optional[str] = None,
     max_input_text_tokens: int = MAX_INPUT_TEXT_TOKENS,
     max_extra_prompt_tokens: int = MAX_EXTRA_PROMPT_TOKENS,
@@ -250,7 +253,6 @@ def evaluate_checkpoint(
         model_name: Base model identifier
         checkpoint_dir: Path to PEFT checkpoint
         val_dataset_path: Path to validation dataset (JSONL)
-        hf_token: Hugging Face authentication token
         output_dir: Optional directory to save evaluation results
         max_input_text_tokens: Maximum tokens for input text
         max_extra_prompt_tokens: Maximum extra tokens for input prompt
@@ -258,7 +260,35 @@ def evaluate_checkpoint(
         val_batch_size: Validation batch size per device
         val_data_size: Number of examples to use for validation
         val_beam_size: Beam size for validation generation
+    
+    Note:
+        HuggingFace token is read from HF_TOKEN or HUGGINGFACE_TOKEN environment variable
     """
+    
+    # Get HF token from environment
+    hf_token = os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_TOKEN")
+    if hf_token:
+        print("HuggingFace token found in environment")
+        os.environ["HF_TOKEN"] = hf_token
+    else:
+        print("WARNING: No HuggingFace token found in environment")
+    
+    # Initialize Weights & Biases for logging evaluation results
+    checkpoint_name = os.path.basename(checkpoint_dir)
+    print("Initializing Weights & Biases...")
+    wandb.login(key=os.environ["WANDB_API_KEY"])
+    wandb.init(
+        project="lm-finetuning",  # Same project as training
+        name=f"eval_{checkpoint_name}",
+        tags=["evaluation", model_name.split('/')[-1]],
+        config={
+            "model_name": model_name,
+            "checkpoint_dir": checkpoint_dir,
+            "val_dataset": val_dataset_path,
+            "val_batch_size": val_batch_size,
+            "val_beam_size": val_beam_size,
+        }
+    )
     
     def compute_metrics(eval_pred):
         print('*** evaluation: compute_metrics ***')
@@ -284,20 +314,23 @@ def evaluate_checkpoint(
         decoded_preds = [p.strip() for p in decoded_preds]
         decoded_labels = [l.strip() for l in decoded_labels]
         
-        if len(decoded_preds) > 0:
-            print(f'\n*** Example 1 ***')
-            print(f'Prediction: {decoded_preds[0][:200]}...')
-            print(f'Reference:  {decoded_labels[0][:200]}...\n')
+        # Print first 5 examples
+        num_examples_to_show = min(5, len(decoded_preds))
+        if num_examples_to_show > 0:
+            print(f'\n*** Showing first {num_examples_to_show} examples ***')
+            for i in range(num_examples_to_show):
+                print(f'\n--- Example {i+1} ---')
+                print(f'Prediction: {decoded_preds[i][:200]}...')
+                print(f'Reference:  {decoded_labels[i][:200]}...')
+            print()
 
         scores = rouge.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
         print('*** evaluation: computed_metrics ***', scores)
         return {k: v * 100 for k, v in scores.items()}
 
     
-    # Login to Hugging Face if token is provided
-    if hf_token:
-        print("Logging in to Hugging Face Hub...")
-        login(token=hf_token)
+    # Token is already set in environment from above
+    # No need to call login() separately
 
     # Load tokenizer
     print(f"Loading tokenizer for: {model_name}")
@@ -312,7 +345,7 @@ def evaluate_checkpoint(
     tokenizer.padding_side = 'left'
 
     # Load model with PEFT checkpoint
-    model = load_model_and_peft_checkpoint(model_name, checkpoint_dir, hf_token)
+    model = load_model_and_peft_checkpoint(model_name, checkpoint_dir)
 
     # Load validation dataset
     print(f"Loading validation dataset from: {val_dataset_path}")
@@ -321,9 +354,17 @@ def evaluate_checkpoint(
         for line in f:
             val_data.append(json.loads(line))
 
-    # Sample validation examples
-    val_data = random.sample(val_data, min(val_data_size, len(val_data)))
+    # Create validation dataset (matching wandb_finetune.py)
     val_df = pd.DataFrame(val_data)
+    val_df = val_df[val_df['output'].notna()]  # Filter out null outputs
+    val_df = val_df.sample(n=min(val_data_size, len(val_df)))  # Sample requested size
+    
+    # Validate data quality
+    assert val_df['input'].apply(lambda x: x is not None and x != '').all()
+    assert val_df['input'].notna().all()
+    assert val_df['output'].apply(lambda x: x is not None and x != '').all()
+    assert val_df['output'].notna().all()
+    
     val_dataset = Dataset.from_pandas(val_df)
     print(f'*** validation dataset size: {len(val_dataset)} examples ***')
 
@@ -394,12 +435,26 @@ def evaluate_checkpoint(
         print(f"{key}: {value:.4f}")
     print("=" * 70 + "\n")
     
+    # Log results to Weights & Biases
+    if wandb.run is not None:
+        wandb_metrics = {}
+        for key, value in eval_results.items():
+            if 'rouge' in key.lower():
+                wandb_metrics[f"checkpoint_eval/{key}"] = value
+            else:
+                wandb_metrics[f"checkpoint_eval/{key}"] = value
+        wandb.log(wandb_metrics)
+        print("Results logged to Weights & Biases")
+    
     # Save results to file
     results_file = os.path.join(output_dir, "eval_results.json")
     os.makedirs(output_dir, exist_ok=True)
     with open(results_file, 'w') as f:
         json.dump(eval_results, f, indent=2)
     print(f"Results saved to: {results_file}")
+    
+    # Finish W&B run
+    wandb.finish()
     
     return eval_results, model
 
@@ -410,33 +465,33 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
+  # Set environment first:
+  export HF_TOKEN=your_huggingface_token
+  
   # Evaluate a checkpoint:
   python evaluate_distributed_checkpoints.py \\
-    --model gemma-2b \\
-    --checkpoint_dir ../models/g2b_distr_peft/checkpoint-100 \\
-    --val_dataset /app/data/output/processed_data_val.jsonl \\
-    --hf_token YOUR_TOKEN
+    --model gemma-3-12b-pt \\
+    --checkpoint_dir training_runs/gemma-3-12b-pt-fsdp/checkpoint-100 \\
+    --val_dataset /cluster/projects/nn12075k/shared/datasets/dataset_43221_examples/processed_data_val.jsonl
 
   # Load without evaluation (inference only):
-  python load_distributed_peft_checkpoint.py \\
-    --model gemma-2b \\
-    --checkpoint_dir ../models/g2b_distr_peft/checkpoint-100 \\
-    --hf_token YOUR_TOKEN \\
+  python evaluate_distributed_checkpoints.py \\
+    --model gemma-3-12b-pt \\
+    --checkpoint_dir training_runs/gemma-3-12b-pt-fsdp/checkpoint-100 \\
     --skip_eval
         """
     )
     
     parser.add_argument('--model', type=str, required=True,
-                       choices=['viking-7b', 'gemma-2b', 'mt5', 'gemma-7b'],
+                       choices=['viking-7b', 'gemma-2b', 'mt5', 'gemma-7b', 'gemma-3-12b-pt'],
                        help='Base model that was fine-tuned')
     parser.add_argument('--checkpoint_dir', type=str, required=True,
-                       help='Path to PEFT checkpoint directory (e.g., models/gemma-7b_fsdp/checkpoint-100)')
+                       help='Path to PEFT checkpoint directory (e.g., training_runs/gemma-3-12b-pt-fsdp/checkpoint-100)')
     parser.add_argument('--val_dataset', type=str, default=None,
                        help='Path to validation dataset (JSONL format). Required unless --skip_eval is used.')
     parser.add_argument('--output_dir', type=str, default=None,
                        help='Output directory for evaluation results (default: checkpoint_dir/eval_results)')
-    parser.add_argument('--hf_token', type=str,
-                       help='Hugging Face authentication token for private models')
+    # HF_TOKEN is now read from environment variable (HF_TOKEN or HUGGINGFACE_TOKEN)
     parser.add_argument('--skip_eval', action='store_true',
                        help='Skip evaluation, only load the model')
     
@@ -465,7 +520,8 @@ Examples:
         'viking-7b': 'LumiOpen/Viking-7B',
         'gemma-2b': 'google/gemma-2b',
         'mt5': 'google/mt5-base',
-        'gemma-7b': 'google/gemma-7b'
+        'gemma-7b': 'google/gemma-7b',
+        'gemma-3-12b-pt': 'google/gemma-3-12b-pt'
     }
 
     model_name = model_mapping[args.model]
@@ -473,9 +529,8 @@ Examples:
     if args.skip_eval:
         # Just load the model
         print("Loading model without evaluation...")
-        if args.hf_token:
-            login(token=args.hf_token)
-        model = load_model_and_peft_checkpoint(model_name, args.checkpoint_dir, args.hf_token)
+        # Token is read from environment in load_model_and_peft_checkpoint
+        model = load_model_and_peft_checkpoint(model_name, args.checkpoint_dir)
         print("Model loaded successfully! Ready for inference.")
     else:
         # Run evaluation
@@ -483,7 +538,6 @@ Examples:
             model_name=model_name,
             checkpoint_dir=args.checkpoint_dir,
             val_dataset_path=args.val_dataset,
-            hf_token=args.hf_token,
             output_dir=args.output_dir,
             max_input_text_tokens=args.max_input_text_tokens,
             max_extra_prompt_tokens=args.max_extra_prompt_tokens,
