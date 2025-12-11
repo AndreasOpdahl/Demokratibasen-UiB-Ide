@@ -61,6 +61,9 @@ from transformers import (
     TrainingArguments,
 )
 
+# Import model configurations
+from model_configs import get_model_config_by_hf_name, get_model_name_mapping
+
 # Evaluation parameters
 MAX_INPUT_TEXT_TOKENS = 2048
 MAX_EXTRA_PROMPT_TOKENS = 40
@@ -220,8 +223,10 @@ class CausalLMTrainer(Trainer):
             for i in range(torch.cuda.device_count()):
                 allocated = torch.cuda.memory_allocated(i) / 1e9  # GB
                 reserved = torch.cuda.memory_reserved(i) / 1e9  # GB
+                max_allocated = torch.cuda.max_memory_allocated(i) / 1e9  # GB
                 gpu_memory[f"gpu_{i}_allocated_gb"] = allocated
                 gpu_memory[f"gpu_{i}_reserved_gb"] = reserved
+                gpu_memory[f"gpu_{i}_max_allocated_gb"] = max_allocated  # Track peak usage
             
             # Log periodically (every 10 steps to avoid spam)
             if hasattr(self, '_eval_step_count'):
@@ -231,6 +236,10 @@ class CausalLMTrainer(Trainer):
             
             if self._eval_step_count % 10 == 0:
                 wandb.log(gpu_memory, step=self._eval_step_count)
+                # Print warning if getting close to OOM
+                for i in range(torch.cuda.device_count()):
+                    if reserved > 80:  # >80GB used out of 102GB
+                        print(f"WARNING: GPU {i} using {reserved:.1f}GB - consider reducing batch size")
 
         loss = None
         
@@ -433,20 +442,21 @@ def get_model_batch_size(model_name: str, default_batch_size: int) -> int:
     """Get appropriate batch size based on model size."""
     model_name_lower = model_name.lower()
     
-    # Very large models (13B+) - use very small batches
+    # Very large models (13B+) - can use larger batches with model parallelism
+    # Peak memory usage was only ~19GB, so we have ~80GB headroom
     if 'viking-13b' in model_name_lower or 'llama-2-13b' in model_name_lower:
-        return min(2, default_batch_size)  # Cap at 2 for 13B models
-    # Large models (7B-11B) - use smaller batches
+        return min(8, default_batch_size)  # Increase from 4 to 8 (2x faster)
+    # Large models (7B-11B)
     elif 'gemma-7b' in model_name_lower:
-        return min(8, default_batch_size)  # Cap at 8 for large models
+        return min(8, default_batch_size)
     elif 'normistral-11b' in model_name_lower:
-        return min(4, default_batch_size)  # Even smaller for 11B models
+        return min(6, default_batch_size)  # Increase from 4 to 6
     # Medium models (2-7B)
     elif 'gemma-2b' in model_name_lower or 'viking-7b' in model_name_lower or 'normistral-7b' in model_name_lower:
-        return min(16, default_batch_size)  # Cap at 16
+        return min(16, default_batch_size)
     # Small models
     else:
-        return default_batch_size  # Use full batch size
+        return default_batch_size
 
 
 def evaluate_checkpoint(
@@ -465,6 +475,7 @@ def evaluate_checkpoint(
     use_multi_gpu: bool = False,  # Changed from use_fsdp
     wandb_project: Optional[str] = "lm-evaluation",
     wandb_entity: Optional[str] = None,
+    wandb_disabled: bool = False,  # ADD THIS PARAMETER
 ):
     """Load a PEFT checkpoint and run evaluation with model parallelism support."""
     
@@ -482,11 +493,8 @@ def evaluate_checkpoint(
         print(f"Adjusted batch size from {val_batch_size} to {adjusted_batch_size} for {model_name}")
         val_batch_size = adjusted_batch_size
     
-    # For very large models (13B+), force batch size to 1 if still too large
-    if ('13b' in model_name.lower() or '11b' in model_name.lower()) and val_batch_size > 2:
-        print(f"Further reducing batch size to 1 for very large model {model_name}")
-        val_batch_size = 1
-    
+    print(f"Using batch size: {val_batch_size} for evaluation")
+
     def compute_metrics(eval_pred):
         if is_main_process:
             print('*** evaluation: compute_metrics ***')
@@ -523,8 +531,8 @@ def evaluate_checkpoint(
         if is_main_process:
             print('*** evaluation: computed_metrics ***', scores)
         
-        # Log to wandb if initialized (only on main process)
-        if wandb.run is not None and is_main_process:
+        # Log to wandb if initialized and not disabled (only on main process)
+        if wandb.run is not None and is_main_process and not wandb_disabled:
             wandb.log({
                 "eval/rouge1": scores['rouge1'] * 100,
                 "eval/rouge2": scores['rouge2'] * 100,
@@ -532,7 +540,7 @@ def evaluate_checkpoint(
                 "eval/rougeLsum": scores['rougeLsum'] * 100,
             })
         
-        return {k: v * 100 for k, v in scores.items()}
+        return {k: v * 100 for k, v in scores.items()}  # % values
 
     
     # Login to Hugging Face if token is provided
@@ -564,8 +572,8 @@ def evaluate_checkpoint(
     # Create a clean model name for display
     clean_model_name = model_name.split('/')[-1].replace('-', '_')
     
-    # Initialize wandb for evaluation tracking (only on main process)
-    if wandb_project and is_main_process:
+    # Only initialize wandb if not disabled and not already initialized
+    if wandb_project and not wandb_disabled and wandb.run is None and is_main_process:
         print(f"Initializing Weights & Biases for evaluation...")
         
         # Collect GPU information
@@ -623,14 +631,17 @@ def evaluate_checkpoint(
         use_multi_gpu=use_multi_gpu
     )
     
-    # Enable gradient checkpointing for large models to save memory
+    # DISABLE gradient checkpointing for evaluation - it's only for training
+    # It trades speed for memory, but during inference we want speed
+    # Model parallelism already saves memory by splitting the model
     if '13b' in model_name.lower() or '11b' in model_name.lower():
         if is_main_process:
-            print("Enabling gradient checkpointing for large model to save memory...")
-        if hasattr(model, 'gradient_checkpointing_enable'):
-            model.gradient_checkpointing_enable()
-        elif hasattr(model, 'base_model') and hasattr(model.base_model, 'gradient_checkpointing_enable'):
-            model.base_model.gradient_checkpointing_enable()
+            print("Skipping gradient checkpointing for evaluation (disabled for speed - not needed for inference)...")
+        # Do NOT enable - it slows down inference without benefit
+        # if hasattr(model, 'gradient_checkpointing_enable'):
+        #     model.gradient_checkpointing_enable()
+        # elif hasattr(model, 'base_model') and hasattr(model.base_model, 'gradient_checkpointing_enable'):
+        #     model.base_model.gradient_checkpointing_enable()
 
     # Load validation dataset (only on main process, then broadcast)
     if is_main_process:
@@ -653,11 +664,18 @@ def evaluate_checkpoint(
         print(f'*** validation dataset size: {len(val_dataset)} examples ***')
 
     def format_example_eval(example):
-        prompt = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
+        """Format evaluation example with model-specific prompt template."""
+        model_config = get_model_config_by_hf_name(model_name)
+        if model_config:
+            prompt = model_config.prompt_config.format_eval(input_text=example['input'])
+        else:
+            # Fallback to default format
+            prompt = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
+        
         target = example['output'] if example.get('output') is not None else ""
         return {
             "prompt": prompt,
-            "target_summary": str(target)
+            "target_summary": str(target)  # Ensure it's a string
         }
 
     def tokenize_function_eval(examples):
@@ -731,8 +749,8 @@ def evaluate_checkpoint(
             print(f"{key}: {value:.4f}")
         print("=" * 70 + "\n")
     
-    # Log final summary to wandb if initialized
-    if wandb_project and wandb.run is not None and is_main_process:
+    # Log final summary to wandb if initialized and not disabled
+    if wandb_project and wandb.run is not None and is_main_process and not wandb_disabled:
         wandb.summary.update({
             "rouge1": eval_results.get("eval_rouge1", 0),
             "rouge2": eval_results.get("eval_rouge2", 0),
@@ -742,6 +760,8 @@ def evaluate_checkpoint(
         
         wandb.finish()
         print(">>> Evaluation results logged to wandb")
+    elif wandb_disabled and is_main_process:
+        print(">>> Wandb disabled - skipping wandb logging")
     
     # Save results to file (only on main process)
     if is_main_process:
@@ -830,20 +850,13 @@ Examples:
     if not args.skip_eval and args.val_dataset is None:
         parser.error("--val_dataset is required when evaluation is enabled (use --skip_eval to skip evaluation)")
 
-    # Model mapping
-    model_mapping = {
-        'viking-7b': 'LumiOpen/Viking-7B',
-        'viking-13b': 'LumiOpen/Viking-13B',
-        'gemma-2b': 'google/gemma-2b',
-        'gemma-7b': 'google/gemma-7b',
-        'normistral-7b': 'norallm/normistral-7b-warm',
-        'normistral-11b': 'norallm/normistral-11b-warm',
-        'norskgpt-llama3-8b': 'bineric/norskgpt-llama3-8b',
-        'llama-2-13b-chat-norwegian': 'ruternorway/llama-2-13b-chat-norwegian',
-        'mt5': 'google/mt5-base'
-    }
-
-    model_name = model_mapping[args.model]
+    # Model mapping from configs
+    model_mapping = get_model_name_mapping()
+    try:
+        model_name = model_mapping[args.model]
+    except Exception as e:
+        print(f"Error mapping model name: {e}")
+        sys.exit(1)
 
     if args.skip_eval:
         # Just load the model
@@ -873,4 +886,5 @@ Examples:
             use_multi_gpu=args.use_multi_gpu,  # Remove use_fsdp
             wandb_project=None if args.wandb_disabled else args.wandb_project,
             wandb_entity=None if args.wandb_disabled else args.wandb_entity,
+            wandb_disabled=args.wandb_disabled,
         )

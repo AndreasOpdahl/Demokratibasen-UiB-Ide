@@ -65,6 +65,7 @@ import random
 import sys
 import importlib
 import math
+import time
 from typing import Any, Dict, Optional, Tuple, Union
 import wandb
 import numpy as np
@@ -117,6 +118,13 @@ except ImportError:
     print("Warning: BitsAndBytesConfig/prepare_model_for_kbit_training not available.")
     print("Quantization will be disabled. This is expected on ARM-based systems (e.g., GH200).")
 
+# Import model configurations
+from model_configs import (
+    get_model_config,
+    get_model_config_by_hf_name,
+    get_model_name_mapping,
+)
+
 
 # Default values when command-line args are not supplied
 MAX_INPUT_TEXT_TOKENS = 2048  # max tokens for input to summarisation
@@ -140,7 +148,35 @@ class GPUMemoryCallback(TrainerCallback):
             mem_info = pynvml.nvmlDeviceGetMemoryInfo(handle)
             print(f"Step {state.global_step} | GPU {i}: {mem_info.used / 1024**2:.2f} MB")
 
+def check_early_stopping_signal(output_dir: str) -> bool:
+    """Check if early stopping signal exists from evaluation monitor."""
+    signal_file = os.path.join(output_dir, ".early_stop")
+    return os.path.exists(signal_file)
 
+
+class EarlyStoppingMonitorCallback(TrainerCallback):
+    """Callback to check for early stopping signal from evaluation monitor.
+    
+    This allows the evaluation monitor script to signal early stopping
+    during FSDP training when evaluation is disabled.
+    """
+    
+    def __init__(self, output_dir: str):
+        self.output_dir = output_dir
+        self.check_interval = 100  # Check every 100 steps to avoid too much I/O
+    
+    def on_step_end(self, args, state, control, **kwargs):
+        """Check for early stopping signal periodically."""
+        # Only check periodically to avoid too much I/O
+        if state.global_step % self.check_interval == 0:
+            if check_early_stopping_signal(self.output_dir):
+                print("\n" + "="*70)
+                print("Early stopping signal detected from evaluation monitor!")
+                print(f"Best checkpoint will be selected from evaluated checkpoints.")
+                print("Stopping training...")
+                print("="*70 + "\n")
+                control.should_training_stop = True
+                
 class EvalDataCollator:
     """Custom data collator for evaluation that pads both input_ids and labels.
     
@@ -570,9 +606,12 @@ def fine_tune_model(
         )
         print(f">>> wandb run initialized: {wandb.run.name}")
         print(f">>> wandb run URL: {wandb.run.get_url()}")
+        # Get the run name for TrainingArguments
+        wandb_run_name = wandb.run.name
     else:
         # Disable wandb for non-rank-0 processes
         os.environ['WANDB_DISABLED'] = 'true'
+        wandb_run_name = None
 
     # Load tokenizer
     try:
@@ -733,16 +772,28 @@ def fine_tune_model(
     print(f'*** validation dataset size: {len(val_dataset)} examples ***')
 
     def format_example_train(example):
-        # Format the input-output pair for the model (TRAINING: full text for teacher forcing)
-        text = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n{example['output']}\n\n###\n"
-        return {"text": text}
+        """Format training example with model-specific prompt template."""
+        model_config = get_model_config_by_hf_name(model_name)
+        if model_config:
+            return {"text": model_config.prompt_config.format_train(
+                input_text=example['input'],
+                output_text=example['output']
+            )}
+        else:
+            # Fallback to default format
+            text = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n{example['output']}\n\n###\n"
+            return {"text": text}
 
     def format_example_eval(example):
-        # Format for EVALUATION: only the input prompt, not the answer
-        prompt = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
-        # Keep the target output separate for ROUGE calculation
-        # Handle None or missing output
-        target = example['output'] if example['output'] is not None else ""
+        """Format evaluation example with model-specific prompt template."""
+        model_config = get_model_config_by_hf_name(model_name)
+        if model_config:
+            prompt = model_config.prompt_config.format_eval(input_text=example['input'])
+        else:
+            # Fallback to default format
+            prompt = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
+        
+        target = example['output'] if example.get('output') is not None else ""
         return {
             "prompt": prompt,
             "target_summary": str(target)  # Ensure it's a string
@@ -877,39 +928,12 @@ def fine_tune_model(
     use_quantization = (quantization != 'none')
     model = prepare_model_for_lora(model, use_quantization)
     
-    if model_name == "google/gemma-7b" or model_name == "google/gemma-2b":    
-        # Define LoRA config for Gemma
-        lora_config = LoraConfig(
-            r=8,
-            lora_alpha=32,
-            target_modules=["q_proj", "v_proj"],  # Gemma architecture
-            lora_dropout=0.05,
-            bias="none",
-            task_type="CAUSAL_LM"
-        )
-    elif model_name == "LumiOpen/Viking-7B" or model_name == "LumiOpen/Viking-13B" or \
-         'normistral' in model_name.lower() or 'NorwAI/NorMistral' in model_name:
-        # Define LoRA config for Mistral-based models (Viking, NorMistral)
-        lora_config = LoraConfig(
-            r=8,
-            lora_alpha=16,
-            target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],  # Mistral architecture
-            lora_dropout=0.05,
-            bias="none",
-            task_type="CAUSAL_LM"
-        )
-    elif 'llama' in model_name.lower() or 'norskgpt' in model_name.lower():
-        # Define LoRA config for Llama-based models (NorskGPT, Llama-2-13b-chat-norwegian)
-        lora_config = LoraConfig(
-            r=8,
-            lora_alpha=16,
-            target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],  # Llama architecture
-            lora_dropout=0.05,
-            bias="none",
-            task_type="CAUSAL_LM"
-        )
+    # Get model config for LoRA settings
+    model_config = get_model_config_by_hf_name(model_name)
+    if model_config:
+        lora_config = model_config.get_lora_config()
+        print(f"Using LoRA config for {model_config.short_name}: r={model_config.lora_r}, alpha={model_config.lora_alpha}")
     else:
-        # Default LoRA config for unknown models
         print(f"WARNING: Unknown model {model_name}, using default LoRA config")
         lora_config = LoraConfig(
             r=8,
@@ -1039,13 +1063,17 @@ def fine_tune_model(
     else:
         eval_enabled = True
     
+    # Get model config for hyperparameters (if not already loaded)
+    if 'model_config' not in locals():
+        model_config = get_model_config_by_hf_name(model_name)
+    
     training_args_kwargs = dict(
         output_dir=output_dir,
         per_device_train_batch_size=train_batch_size,
         per_device_eval_batch_size=val_batch_size,
         gradient_accumulation_steps=4,
-        # Model-specific learning rate for stability
-        learning_rate=2e-5 if 'viking-13b' in model_name.lower() or 'llama-2-13b' in model_name.lower() else 1e-5,
+        # Model-specific learning rate from config
+        learning_rate=model_config.learning_rate if model_config else 1e-5,
         num_train_epochs=train_epochs,
         max_steps=train_steps,
         fp16=False,
@@ -1075,6 +1103,7 @@ def fine_tune_model(
                 
         optim="adamw_torch",
         report_to="wandb" if is_main_process else "none",
+        run_name=wandb_run_name,  # ADD THIS - link to manually initialized wandb run
         gradient_checkpointing=not use_fsdp,  # Disable for FSDP, use activation_checkpointing instead
         dataloader_num_workers=4,
         dataloader_pin_memory=True,
@@ -1138,6 +1167,12 @@ def fine_tune_model(
             print("Resuming from checkpoint - skipping EarlyStoppingCallback to avoid state errors")
         elif not eval_enabled:
             print("Evaluation disabled (FSDP mode) - skipping EarlyStoppingCallback")
+
+    # Add early stopping monitor callback for FSDP (when eval is disabled)
+    if use_fsdp and not eval_enabled:
+        early_stopping_monitor = EarlyStoppingMonitorCallback(output_dir)
+        callbacks.append(early_stopping_monitor)
+        print("Added EarlyStoppingMonitorCallback for FSDP (checks for external early stopping signal)")
 
     # Initialize Trainer
     # Prepare trainer kwargs
@@ -1230,6 +1265,13 @@ def fine_tune_model(
     if is_main_process and wandb.run is not None:
         print(f">>> wandb final sync...")
         wandb.finish()  # Ensure all logs are synced
+    
+    # Write training completion signal for monitor script
+    if is_main_process:
+        completion_file = os.path.join(output_dir, ".training_complete")
+        with open(completion_file, 'w') as f:
+            f.write(f"Training completed at {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
+        print(f"Training completion signal written to {completion_file}")
 
 
 if __name__ == "__main__":
@@ -1296,6 +1338,8 @@ Examples:
     parser.add_argument('--resume_checkpoint', type=str, default=None,
                        help='Path to a checkpoint directory to resume from. '
                             'Use "latest" to automatically pick the newest checkpoint in the output_dir.')
+    parser.add_argument('--timeout_minutes', type=int, default=30,
+                       help='Stop monitoring if no new checkpoints appear for this many minutes (default: 30)')
 
     args = parser.parse_args()
     
@@ -1309,18 +1353,8 @@ Examples:
         print("Or use --quantization none to run without quantization.")
         exit(1)
 
-    # Model mapping
-    model_mapping = {
-        'viking-7b': 'LumiOpen/Viking-7B',
-        'viking-13b': 'LumiOpen/Viking-13B',
-        'gemma-2b': 'google/gemma-2b',
-        'gemma-7b': 'google/gemma-7b',
-        'normistral-7b': 'norallm/normistral-7b-warm',
-        'normistral-11b': 'norallm/normistral-11b-warm',
-        'norskgpt-llama3-8b': 'bineric/norskgpt-llama3-8b',
-        'llama-2-13b-chat-norwegian': 'ruternorway/llama-2-13b-chat-norwegian',
-        'mt5': 'google/mt5-base'
-    }
+    # Model mapping from configs
+    model_mapping = get_model_name_mapping()
     try:
         model_name = model_mapping[args.model]
     except Exception as e:
