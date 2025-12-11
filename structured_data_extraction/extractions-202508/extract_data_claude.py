@@ -22,6 +22,7 @@ client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 MODEL_EXTRACT = "claude-sonnet-4-20250514"
 
+# moved to datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/202505-and-06-Demokratibasen-demo/36812-demokratibasen-texts-20250528.jsonl
 INFILE = ROOT / "case_documents_summary" / "data_raw" / "dokumenter.jsonl"
 OUTJSONL = ROOT / "data_extraction" / "extracted_data_claude.jsonl"
 
