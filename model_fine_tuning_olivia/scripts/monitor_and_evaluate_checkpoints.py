@@ -104,9 +104,9 @@ def get_best_checkpoint_metric(eval_results_dir: str) -> Optional[Dict]:
                 with open(eval_file, 'r') as f:
                     results = json.load(f)
                 
-                # Use rougeLsum as the metric
-                if 'rougeLsum' in results:
-                    metric_value = results['rougeLsum']
+                # Use rougeLsum as the metric (check both with and without eval_ prefix)
+                metric_value = results.get('eval_rougeLsum', results.get('rougeLsum', None))
+                if metric_value is not None:
                     if best_metric is None or metric_value > best_metric:
                         best_metric = metric_value
                         best_checkpoint = os.path.basename(ckpt_dir)
@@ -196,6 +196,7 @@ def monitor_and_evaluate(
     no_improvement_count = 0
     last_checkpoint_time = None  # Track when we last saw a new checkpoint
     timeout_seconds = timeout_minutes * 60
+    logged_to_wandb = set()  # Track which checkpoints we've already logged to wandb
     
     print("\nStarting checkpoint monitoring...")
     print(f"Will stop if no new checkpoints appear for {timeout_minutes} minutes")
@@ -221,80 +222,67 @@ def monitor_and_evaluate(
                 time.sleep(check_interval)
                 continue
             
-            # Get latest checkpoint
-            latest_checkpoint = checkpoints[-1]
-            try:
-                checkpoint_step = int(os.path.basename(latest_checkpoint).split("-")[-1])
-            except (ValueError, IndexError) as e:
-                print(f"Error extracting step from checkpoint path {latest_checkpoint}: {e}")
-                time.sleep(check_interval)
-                continue
+            # Find the first (oldest) checkpoint that hasn't been evaluated yet
+            checkpoint_to_evaluate = None
+            checkpoint_step = None
             
-            # Check timeout: if we've been waiting too long for new checkpoints, stop
-            current_time = time.time()
-            if last_checkpoint_time is not None:
-                time_since_last_checkpoint = current_time - last_checkpoint_time
-                if time_since_last_checkpoint > timeout_seconds:
-                    print(f"\n{'='*70}")
-                    print(f"Timeout: No new checkpoints for {timeout_minutes} minutes")
-                    print("Assuming training has completed. Stopping monitor.")
-                    print(f"{'='*70}\n")
-                    break
-            
-            # Verify checkpoint directory exists and is complete
-            adapter_file = os.path.join(latest_checkpoint, "adapter_model.safetensors")
-            if not os.path.exists(adapter_file):
-                print(f"Checkpoint {checkpoint_step} not complete yet (adapter file missing). Waiting...")
-                time.sleep(check_interval)
-                continue
-            
-            # Check if already evaluated (check both in-memory set and disk files)
-            eval_results_file = os.path.join(latest_checkpoint, "eval_results", "eval_results.json")
-            if checkpoint_step in evaluated_steps or os.path.exists(eval_results_file):
+            for checkpoint_path in checkpoints:
+                try:
+                    step = int(os.path.basename(checkpoint_path).split("-")[-1])
+                except (ValueError, IndexError):
+                    continue
+                
+                # Skip if already evaluated
+                if step in evaluated_steps:
+                    continue
+                
+                # Check if evaluation results file exists
+                eval_results_file = os.path.join(checkpoint_path, "eval_results", "eval_results.json")
                 if os.path.exists(eval_results_file):
-                    # Load existing results instead of re-evaluating
-                    print(f"Checkpoint {checkpoint_step} already evaluated. Loading existing results...")
+                    # Already evaluated - mark it and continue
+                    evaluated_steps.add(step)
+                    continue
+                
+                # Verify checkpoint is complete
+                adapter_file = os.path.join(checkpoint_path, "adapter_model.safetensors")
+                if not os.path.exists(adapter_file):
+                    # Not complete yet - skip this one, check next
+                    continue
+                
+                # Found an unevaluated, complete checkpoint
+                checkpoint_to_evaluate = checkpoint_path
+                checkpoint_step = step
+                break
+            
+            # If no checkpoint found to evaluate, wait
+            if checkpoint_to_evaluate is None:
+                # Check if we should update timeout
+                if checkpoints:
+                    latest_checkpoint = checkpoints[-1]
                     try:
-                        with open(eval_results_file, 'r') as f:
-                            eval_results = json.load(f)
-                        
-                        rouge_lsum = eval_results.get('rougeLsum', 0)
-                        if isinstance(rouge_lsum, (int, float)) and rouge_lsum >= 0:
-                            # Use existing results for tracking
-                            if best_rouge_lsum is None or rouge_lsum > best_rouge_lsum:
-                                best_rouge_lsum = rouge_lsum
-                                best_checkpoint_step = checkpoint_step
-                                no_improvement_count = 0
-                            else:
-                                no_improvement_count += 1
-                            
-                            # Log to wandb
-                            if wandb.run:
-                                wandb.log({
-                                    "monitor/checkpoint_step": checkpoint_step,
-                                    "monitor/rouge1": eval_results.get('rouge1', 0),
-                                    "monitor/rouge2": eval_results.get('rouge2', 0),
-                                    "monitor/rougeL": eval_results.get('rougeL', 0),
-                                    "monitor/rougeLsum": rouge_lsum,
-                                }, step=checkpoint_step)
-                            
-                            evaluated_steps.add(checkpoint_step)
-                            print(f"✓ Loaded existing results: ROUGE-Lsum = {rouge_lsum:.2f}")
-                        else:
-                            evaluated_steps.add(checkpoint_step)
-                    except Exception as e:
-                        print(f"Error loading existing results: {e}. Will skip this checkpoint.")
-                        evaluated_steps.add(checkpoint_step)
-                else:
-                    evaluated_steps.add(checkpoint_step)
+                        latest_step = int(os.path.basename(latest_checkpoint).split("-")[-1])
+                        print(f"All checkpoints up to {latest_step} are evaluated. Waiting for new checkpoints...")
+                    except (ValueError, IndexError):
+                        pass
+                
+                # Check timeout
+                current_time = time.time()
+                if last_checkpoint_time is not None:
+                    time_since_last_checkpoint = current_time - last_checkpoint_time
+                    if time_since_last_checkpoint > timeout_seconds:
+                        print(f"\n{'='*70}")
+                        print(f"Timeout: No new checkpoints for {timeout_minutes} minutes")
+                        print("Assuming training has completed. Stopping monitor.")
+                        print(f"{'='*70}\n")
+                        break
                 
                 time.sleep(check_interval)
                 continue
             
-            # NEW CHECKPOINT DETECTED - reset timeout timer
-            last_checkpoint_time = current_time
+            # NEW CHECKPOINT TO EVALUATE - reset timeout timer
+            last_checkpoint_time = time.time()
             
-            # Evaluate the checkpoint (only if not already evaluated)
+            # Evaluate the checkpoint
             print(f"\n{'='*70}")
             print(f"Evaluating checkpoint-{checkpoint_step}")
             print(f"{'='*70}")
@@ -302,14 +290,14 @@ def monitor_and_evaluate(
             try:
                 eval_results, _ = evaluate_checkpoint(
                     model_name=model_name,
-                    checkpoint_dir=latest_checkpoint,
+                    checkpoint_dir=checkpoint_to_evaluate,
                     val_dataset_path=val_dataset_path,
                     hf_token=hf_token,
-                    output_dir=os.path.join(latest_checkpoint, "eval_results"),
+                    output_dir=os.path.join(checkpoint_to_evaluate, "eval_results"),
                     use_multi_gpu=use_multi_gpu,
-                    wandb_project=None,  # Don't create wandb runs in evaluate_checkpoint
+                    wandb_project=None,
                     wandb_entity=None,
-                    wandb_disabled=True,  # Disable wandb in evaluate_checkpoint
+                    wandb_disabled=True,
                 )
                 
                 if not eval_results:
@@ -320,22 +308,32 @@ def monitor_and_evaluate(
                     continue
                 
                 if eval_results:
-                    rouge_lsum = eval_results.get('rougeLsum', 0)
+                    rouge_lsum = eval_results.get('eval_rougeLsum', eval_results.get('rougeLsum', 0))
                     # Validate metric value
                     if not isinstance(rouge_lsum, (int, float)) or rouge_lsum < 0:
                         print(f"Warning: Invalid ROUGE-Lsum value: {rouge_lsum}")
                         evaluated_steps.add(checkpoint_step)
                         time.sleep(check_interval)
                         continue
+                    
+                    # Skip if result is 0.00 (likely failed evaluation)
+                    if rouge_lsum == 0:
+                        print(f"Warning: ROUGE-Lsum is 0.00 for checkpoint-{checkpoint_step}. This may indicate a failed evaluation.")
+                        evaluated_steps.add(checkpoint_step)
+                        logged_to_wandb.add(checkpoint_step)
+                        time.sleep(check_interval)
+                        continue
+                    
                     evaluated_steps.add(checkpoint_step)
+                    logged_to_wandb.add(checkpoint_step)
                     
                     # Log to wandb
                     if wandb.run:
                         wandb.log({
                             "monitor/checkpoint_step": checkpoint_step,
-                            "monitor/rouge1": eval_results.get('rouge1', 0),
-                            "monitor/rouge2": eval_results.get('rouge2', 0),
-                            "monitor/rougeL": eval_results.get('rougeL', 0),
+                            "monitor/rouge1": eval_results.get('eval_rouge1', eval_results.get('rouge1', 0)),
+                            "monitor/rouge2": eval_results.get('eval_rouge2', eval_results.get('rouge2', 0)),
+                            "monitor/rougeL": eval_results.get('eval_rougeL', eval_results.get('rougeL', 0)),
                             "monitor/rougeLsum": rouge_lsum,
                         }, step=checkpoint_step)
                     
@@ -404,7 +402,9 @@ if __name__ == "__main__":
     parser.add_argument('--output_dir', type=str, required=True,
                        help='Training output directory (where checkpoints are saved)')
     parser.add_argument('--model', type=str, required=True,
-                       choices=['viking-7b', 'viking-13b', 'gemma-2b', 'gemma-7b',
+                       choices=['viking-7b', 'viking-13b', 'viking-33b',
+                                'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
+                                'gemma-3-12b', 'gemma-3-27b',
                                 'normistral-7b', 'normistral-11b',
                                 'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian'],
                        help='Model short name')
