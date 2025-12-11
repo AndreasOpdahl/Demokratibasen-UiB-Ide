@@ -95,7 +95,7 @@ pip install packaging psutil nvidia-ml-py pyyaml typing-extensions wandb
 # core HuggingFace dependencies
 pip install transformers>=4.45.0 tokenizers datasets sentencepiece evaluate
 # FSDP tools
-pip install 'accelerate>=0.30.0' 'peft>=0.11.0,<0.18.0'
+pip install accelerate>=0.30.0 peft>=0.11.0
 # evaluation metrics
 pip install --no-binary=rouge-score rouge-score==0.1.2
 echo 'Pip installations complete'
@@ -109,7 +109,7 @@ FINETUNE_SCRIPT_ARGS="\
     ${DISTRIBUTION_FLAG} \
     --train_dataset ${DATASET_DIR}/processed_data_train.jsonl \
     --val_dataset ${DATASET_DIR}/processed_data_val.jsonl \
-    --output_dir ${OUTPUT_DIR}/${SLURM_JOB_NAME}-${MODEL}"
+    --output_dir ${OUTPUT_DIR}/${MODEL}-apptainer-fsdp-with-collator"
 if [[ -n "${TASK_LIMIT}" ]]; then
     FINETUNE_SCRIPT_ARGS+=" ${TASK_LIMIT}"
 fi
