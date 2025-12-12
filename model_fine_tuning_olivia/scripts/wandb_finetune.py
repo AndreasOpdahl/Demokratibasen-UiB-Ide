@@ -1292,10 +1292,12 @@ Examples:
     )
     
     parser.add_argument('--model', type=str, required=True,
-                   choices=['viking-7b', 'viking-13b', 'gemma-2b', 'gemma-7b', 
-                            'normistral-7b', 'normistral-11b',
-                            'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian', 'mt5'],
-                   help='Model to fine-tune')
+                    choices=['viking-7b', 'viking-13b', 'viking-33b',
+                             'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
+                             'gemma-3-12b', 'gemma-3-27b',
+                             'normistral-7b', 'normistral-11b',
+                             'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian', 'mt5'],
+                    help='Model to fine-tune')
     parser.add_argument('--quantization', type=str, default='none',
                        choices=['none', '4bit', '8bit'],
                        help='Quantization method (default: none). Use "4bit" for GTX3090, "none" for GH200.')

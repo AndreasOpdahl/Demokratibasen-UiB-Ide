@@ -63,8 +63,13 @@ get_full_model_name() {
     case "$short_name" in
         gemma-2b) echo "google/gemma-2b" ;;
         gemma-7b) echo "google/gemma-7b" ;;
+        gemma-2-9b) echo "google/gemma-2-9b" ;;
+        gemma-2-27b) echo "google/gemma-2-27b" ;;
+        gemma-3-12b) echo "google/gemma-3-12b-pt" ;;
+        gemma-3-27b) echo "google/gemma-3-27b-pt" ;;
         viking-7b) echo "LumiOpen/Viking-7B" ;;
         viking-13b) echo "LumiOpen/Viking-13B" ;;
+        viking-33b) echo "LumiOpen/Viking-33B" ;;
         normistral-7b) echo "norallm/normistral-7b-warm" ;;
         normistral-11b) echo "norallm/normistral-11b-warm" ;;
         norskgpt-llama3-8b) echo "bineric/norskgpt-llama3-8b" ;;

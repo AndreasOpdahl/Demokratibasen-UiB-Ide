@@ -53,6 +53,11 @@ get_full_model_name() {
         normistral-11b) echo "norallm/normistral-11b-warm" ;;
         norskgpt-llama3-8b) echo "bineric/norskgpt-llama3-8b" ;;
         llama-2-13b-chat-norwegian) echo "ruternorway/llama-2-13b-chat-norwegian" ;;
+        gemma-2-9b) echo "google/gemma-2-9b" ;;
+        gemma-2-27b) echo "google/gemma-2-27b" ;;
+        gemma-3-12b) echo "google/gemma-3-12b-pt" ;;
+        gemma-3-27b) echo "google/gemma-3-27b-pt" ;;
+        viking-33b) echo "LumiOpen/Viking-33B" ;;
         *) echo "$short_name" ;;  # Assume it's already a full name
     esac
 }

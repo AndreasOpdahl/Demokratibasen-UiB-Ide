@@ -119,10 +119,47 @@ def get_best_checkpoint_metric(eval_results_dir: str) -> Optional[Dict]:
     } if best_checkpoint else None
 
 
-def check_training_complete(output_dir: str) -> bool:
-    """Check if training has completed (by looking for completion signal file)."""
+def check_training_complete(output_dir: str, checkpoints: List[str] = None) -> bool:
+    """Check if training has completed (by looking for completion signal file).
+    
+    Only returns True if:
+    1. The .training_complete file exists AND is recent (within last hour)
+    2. AND there are no checkpoints newer than the file, OR no checkpoints at all
+    
+    This prevents false positives from previous training runs.
+    """
     completion_file = os.path.join(output_dir, ".training_complete")
-    return os.path.exists(completion_file)
+    if not os.path.exists(completion_file):
+        return False
+    
+    try:
+        file_time = os.path.getmtime(completion_file)
+        current_time = time.time()
+        
+        # If file is older than 1 hour, ignore it (probably from previous run)
+        if current_time - file_time > 3600:  # 1 hour in seconds
+            print(f"Warning: Found old .training_complete file (older than 1 hour). Ignoring it.")
+            return False
+        
+        # If checkpoints are provided, check if any are newer than the completion file
+        # If there are newer checkpoints, training is still ongoing - ignore the file
+        if checkpoints:
+            for checkpoint_path in checkpoints:
+                try:
+                    ckpt_time = os.path.getmtime(checkpoint_path)
+                    # If checkpoint is newer than completion file, training is still running
+                    if ckpt_time > file_time:
+                        print(f"Warning: Found .training_complete file, but checkpoint {os.path.basename(checkpoint_path)} "
+                              f"is newer. Training appears to be ongoing. Ignoring completion signal.")
+                        return False
+                except Exception:
+                    continue
+        
+        # File exists, is recent, and no newer checkpoints found
+        return True
+    except Exception:
+        # If we can't check file time, err on the side of continuing monitoring
+        return False
 
 
 def monitor_and_evaluate(
@@ -209,13 +246,14 @@ def monitor_and_evaluate(
                 print("Early stopping signal detected. Stopping monitor.")
                 break
             
-            # Check if training has completed
-            if check_training_complete(output_dir):
-                print("Training completion signal detected. Stopping monitor.")
-                break
-            
             # Find all checkpoints
             checkpoints = find_checkpoints(output_dir)
+            
+            # Check if training has completed (with time check to avoid false positives)
+            # Pass checkpoints to verify no newer checkpoints exist
+            if check_training_complete(output_dir, checkpoints):
+                print("Training completion signal detected. Stopping monitor.")
+                break
             
             if not checkpoints:
                 print(f"No checkpoints found yet. Waiting {check_interval}s...")
@@ -246,6 +284,12 @@ def monitor_and_evaluate(
                 # Verify checkpoint is complete
                 adapter_file = os.path.join(checkpoint_path, "adapter_model.safetensors")
                 if not os.path.exists(adapter_file):
+                    # Check if this checkpoint was already evaluated (only has eval_results)
+                    dir_contents = os.listdir(checkpoint_path) if os.path.isdir(checkpoint_path) else []
+                    if len(dir_contents) == 1 and 'eval_results' in dir_contents:
+                        # Already evaluated and adapter files cleaned up - mark as evaluated
+                        print(f"Checkpoint-{step} appears to be already evaluated (adapter files cleaned up). Skipping.")
+                        evaluated_steps.add(step)
                     # Not complete yet - skip this one, check next
                     continue
                 
@@ -302,8 +346,9 @@ def monitor_and_evaluate(
                 
                 if not eval_results:
                     print(f"Warning: Evaluation returned no results for checkpoint-{checkpoint_step}")
-                    # Mark as evaluated to avoid re-evaluating
                     evaluated_steps.add(checkpoint_step)
+                    if checkpoint_step not in logged_to_wandb:
+                        logged_to_wandb.add(checkpoint_step)
                     time.sleep(check_interval)
                     continue
                 
@@ -313,6 +358,8 @@ def monitor_and_evaluate(
                     if not isinstance(rouge_lsum, (int, float)) or rouge_lsum < 0:
                         print(f"Warning: Invalid ROUGE-Lsum value: {rouge_lsum}")
                         evaluated_steps.add(checkpoint_step)
+                        if checkpoint_step not in logged_to_wandb:
+                            logged_to_wandb.add(checkpoint_step)
                         time.sleep(check_interval)
                         continue
                     
@@ -320,12 +367,14 @@ def monitor_and_evaluate(
                     if rouge_lsum == 0:
                         print(f"Warning: ROUGE-Lsum is 0.00 for checkpoint-{checkpoint_step}. This may indicate a failed evaluation.")
                         evaluated_steps.add(checkpoint_step)
-                        logged_to_wandb.add(checkpoint_step)
+                        if checkpoint_step not in logged_to_wandb:
+                            logged_to_wandb.add(checkpoint_step)
                         time.sleep(check_interval)
                         continue
                     
                     evaluated_steps.add(checkpoint_step)
-                    logged_to_wandb.add(checkpoint_step)
+                    if checkpoint_step not in logged_to_wandb:
+                        logged_to_wandb.add(checkpoint_step)
                     
                     # Log to wandb
                     if wandb.run:
@@ -339,7 +388,8 @@ def monitor_and_evaluate(
                     
                     # Check for improvement
                     if best_rouge_lsum is None or rouge_lsum > best_rouge_lsum:
-                        print(f"✓ New best ROUGE-Lsum: {rouge_lsum:.2f} (was {best_rouge_lsum:.2f if best_rouge_lsum else 'N/A'})")
+                        was_str = f"{best_rouge_lsum:.2f}" if best_rouge_lsum is not None else "N/A"
+                        print(f"✓ New best ROUGE-Lsum: {rouge_lsum:.2f} (was {was_str})")
                         best_rouge_lsum = rouge_lsum
                         best_checkpoint_step = checkpoint_step
                         no_improvement_count = 0
@@ -371,6 +421,8 @@ def monitor_and_evaluate(
                 print(f"Error evaluating checkpoint-{checkpoint_step}: {e}")
                 import traceback
                 traceback.print_exc()
+                # Mark as evaluated to avoid infinite retries, but don't add to logged_to_wandb
+                evaluated_steps.add(checkpoint_step)
                 # Continue monitoring even if evaluation fails
             
             # Wait before next check

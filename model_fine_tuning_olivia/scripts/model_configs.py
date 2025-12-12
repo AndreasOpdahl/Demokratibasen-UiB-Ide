@@ -116,6 +116,48 @@ MODEL_CONFIGS = {
         prompt_config=PROMPT_PLAIN,
         architecture='gemma',
     ),
+    # Gemma-2 models (new generation) - https://huggingface.co/collections/google/gemma-2-release
+    'gemma-2-9b': ModelConfig(
+        short_name='gemma-2-9b',
+        hf_name='google/gemma-2-9b',
+        lora_r=8,
+        lora_alpha=32,
+        lora_target_modules=["q_proj", "v_proj"],
+        learning_rate=1e-5,
+        prompt_config=PROMPT_PLAIN,
+        architecture='gemma',
+    ),
+    'gemma-2-27b': ModelConfig(
+        short_name='gemma-2-27b',
+        hf_name='google/gemma-2-27b',
+        lora_r=16,  # Increased for larger model
+        lora_alpha=32,
+        lora_target_modules=["q_proj", "v_proj"],
+        learning_rate=2e-5,  # Higher LR for larger model
+        prompt_config=PROMPT_PLAIN,
+        architecture='gemma',
+    ),
+    # Gemma-3 models - https://huggingface.co/collections/google/gemma-3-release
+    'gemma-3-12b': ModelConfig(
+        short_name='gemma-3-12b',
+        hf_name='google/gemma-3-12b-pt',  # Pre-trained version for fine-tuning
+        lora_r=16,  # Increased for larger model
+        lora_alpha=32,
+        lora_target_modules=["q_proj", "v_proj"],
+        learning_rate=2e-5,  # Higher LR for larger model
+        prompt_config=PROMPT_PLAIN,
+        architecture='gemma',
+    ),
+    'gemma-3-27b': ModelConfig(
+        short_name='gemma-3-27b',
+        hf_name='google/gemma-3-27b-pt',  # Pre-trained version for fine-tuning
+        lora_r=16,  # Increased for larger model
+        lora_alpha=32,
+        lora_target_modules=["q_proj", "v_proj"],
+        learning_rate=2e-5,  # Higher LR for larger model
+        prompt_config=PROMPT_PLAIN,
+        architecture='gemma',
+    ),
     
     # Viking models (Mistral-based)
     'viking-7b': ModelConfig(
@@ -133,6 +175,16 @@ MODEL_CONFIGS = {
         hf_name='LumiOpen/Viking-13B',
         lora_r=8,
         lora_alpha=16,
+        lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
+        learning_rate=2e-5,  # Higher LR for larger model
+        prompt_config=PROMPT_PLAIN,
+        architecture='mistral',
+    ),
+    'viking-33b': ModelConfig(
+        short_name='viking-33b',
+        hf_name='LumiOpen/Viking-33B',  # https://huggingface.co/LumiOpen/Viking-33B
+        lora_r=16,  # Increased for larger model
+        lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
         learning_rate=2e-5,  # Higher LR for larger model
         prompt_config=PROMPT_PLAIN,
