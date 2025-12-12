@@ -15,10 +15,10 @@ set -euo pipefail
 
 # Model selection: Use short name (gemma-7b, viking-7b, normistral-7b, etc.)
 # Supported models: gemma-2b, gemma-7b, viking-7b, viking-13b, no
-MODEL=viking-7b
+MODEL=gemma-2-9b
 DISTRIBUTION_FLAG="--fsdp"
-RESUME_CHECKPOINT=""
-TASK_LIMIT="--max_steps 2000"
+RESUME_CHECKPOINT="checkpoint-5000"
+TASK_LIMIT="--max_steps 10000"
 NUM_GPUS=${SLURM_GPUS_ON_NODE:-1}
 
 export SLURM_TMPDIR=/tmp/${USER}_$SLURM_JOB_ID
