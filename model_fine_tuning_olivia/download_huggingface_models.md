@@ -6,14 +6,23 @@ The cache directory (~/.cache/huggingface/) is accessible from both login and GP
 
 TODO: sharing base models with other project users
 
+## Load Python modules
+
+module load NRIS/Login
+module load Python/3.11.3-GCCcore-12.3.0
+
 # Install if needed
+
 pip install huggingface-hub
 
 # Login once
+
 huggingface-cli login
 
 # Download model
+
 huggingface-cli download google/gemma-2b
 
 # Or for gated models with token
+
 huggingface-cli download google/gemma-2b --token YOUR_TOKEN

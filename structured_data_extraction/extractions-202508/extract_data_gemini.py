@@ -21,6 +21,7 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 MODEL_EXTRACT = "models/gemini-2.5-flash"
 
+# moved to datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/202505-and-06-Demokratibasen-demo/36812-demokratibasen-texts-20250528.jsonl
 INFILE = ROOT / "case_documents_summary" / "data_raw" / "dokumenter.jsonl"
 OUTJSONL = ROOT / "data_extraction" / "extracted_data_gemini.jsonl"
 

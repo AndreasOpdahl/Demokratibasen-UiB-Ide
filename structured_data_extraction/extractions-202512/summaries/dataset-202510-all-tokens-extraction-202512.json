@@ -1,0 +1,3304 @@
+{
+  "metadata": {
+    "prompt": "extraction-202512",
+    "dataset": "dataset-202510",
+    "max_tokens": "all",
+    "task_name": "dataset-202510-all-tokens-extraction-202512"
+  },
+  "coverage_stats": {
+    "total_documents": 5,
+    "total_models": 6,
+    "coverage_by_missing": {
+      "0": 5
+    },
+    "model_missing_docs": {
+      "deepseek-chat": {
+        "missing_count": 0,
+        "missing_doc_ids": []
+      },
+      "gpt-4o-mini": {
+        "missing_count": 0,
+        "missing_doc_ids": []
+      },
+      "gemini-2.5-flash": {
+        "missing_count": 0,
+        "missing_doc_ids": []
+      },
+      "qwen-flash": {
+        "missing_count": 0,
+        "missing_doc_ids": []
+      },
+      "mistral-medium-latest": {
+        "missing_count": 0,
+        "missing_doc_ids": []
+      },
+      "claude-3-5-haiku-20241022": {
+        "missing_count": 0,
+        "missing_doc_ids": []
+      }
+    }
+  },
+  "document_analyses": [
+    {
+      "dokument_id": "250b38a8-db16-50a9-a313-817885ded23b",
+      "models": [
+        "claude-3-5-haiku-20241022",
+        "deepseek-chat",
+        "gemini-2.5-flash",
+        "gpt-4o-mini",
+        "mistral-medium-latest",
+        "qwen-flash"
+      ],
+      "properties": {
+        "hva_saken_gjelder": [
+          [
+            "Møte i Eidfjord motorferdselutval med godkjenning av innkalling, protokoll og behandling av delegerte vedtak"
+          ],
+          [
+            "Møte i Eidfjord motorferdselutval for å behandle saker som godkjenning av innkalling, sakliste, møteprotokoll, en ikke-offentlig søknad om motorferdsel i utmark med snøskuter, og samlesak for delegerte vedtak."
+          ],
+          [
+            "Behandling av søknad om motorferdsel i utmark med snøskuter, samt godkjenning av innkalling, sakliste, møteprotokoll og delegerte vedtak i Eidfjord motorferdselutval."
+          ],
+          [
+            "Møte i Eidfjord motorferdselutval med behandling av saker knyttet til motorferdsel i utmark."
+          ],
+          [
+            "Godkjenning av innkalling, sakliste og møteprotokoll, samt behandling av søknad om motorferdsel i utmark og delegerte vedtak."
+          ],
+          [
+            "Godkjenning av innkalling og sakliste, godkjenning av møteprotokoll, behandling av søknad om motorferdsel i utmark med snøskuter fra 10. til 14. mai 2025, og oppfølging av delegerte vedtak."
+          ]
+        ],
+        "tema": [
+          [
+            "Motorferdsel",
+            "Kommunal saksbehandling",
+            "Utmarkssaker"
+          ],
+          [
+            "Motorferdsel i utmark",
+            "Snøskuterkjøring",
+            "Utvalgsmøter",
+            "Godkjenning av dokumenter",
+            "Delegerte vedtak"
+          ],
+          [
+            "Motorferdsel i utmark",
+            "Snøskuter",
+            "Forvaltning",
+            "Møteadministrasjon",
+            "Delegerte vedtak"
+          ],
+          [
+            "Motorferdsel",
+            "Miljø",
+            "Landbruk"
+          ],
+          [
+            "Motorferdsel",
+            "Møteadministrasjon",
+            "Protokollgodkjenning",
+            "Delegerte vedtak"
+          ],
+          [
+            "Motorferdsel",
+            "Utmark",
+            "Miljø",
+            "Natur",
+            "Landbruk"
+          ]
+        ],
+        "viktige_hendelser": [
+          [
+            "Godkjenning av innkalling",
+            "Godkjenning av forrige møteprotokoll",
+            "Behandling av delegerte vedtak",
+            "Søknad om snøskuterkjøring"
+          ],
+          [
+            "Møte i Eidfjord motorferdselutval",
+            "Godkjenning av innkalling og sakliste",
+            "Godkjenning av møteprotokoll",
+            "Behandling av søknad om motorferdsel i utmark",
+            "Samlesak for delegerte vedtak"
+          ],
+          [
+            "Møte i Eidfjord motorferdselutval",
+            "Godkjenning av innkalling og sakliste",
+            "Godkjenning av møteprotokoll",
+            "Søknad om motorferdsel i utmark - snøskuter",
+            "Samlesak for delegerte vedtak"
+          ],
+          [],
+          [
+            "Godkjenning av innkalling og sakliste",
+            "Godkjenning av møteprotokoll",
+            "Søknad om motorferdsel i utmark",
+            "Samlesak for delegerte vedtak"
+          ],
+          [
+            "Møte i Eidfjord motorferdselutval på 10.04.2025",
+            "Søknad om motorferdsel i utmark med snøskuter 10.-14. mai 2025",
+            "Godkjenning av møteprotokoll fra forrige møte",
+            "Delegerte vedtak ble tatt til vitande"
+          ]
+        ],
+        "viktige_tidspunkter": [
+          [
+            "10.04.2025",
+            "10.-14. mai 2025"
+          ],
+          [
+            "10.04.2025",
+            "10.-14. mai 2025"
+          ],
+          [
+            "10.04.2025",
+            "kl 11:00 - 11:30",
+            "10.-14. mai 2025"
+          ],
+          [
+            "10.04.2025",
+            "10.-14. mai 2025"
+          ],
+          [
+            "10.04.2025",
+            "10.-14. mai 2025"
+          ],
+          [
+            "10.04.2025",
+            "10.-14. mai 2025"
+          ]
+        ],
+        "viktige_personer": [
+          [
+            "Bergljot Maria Veivåg Hauso",
+            "Asbjørn Riber",
+            "Trygve Sæbø",
+            "Ivar Ulgenes"
+          ],
+          [
+            "Bergljot Maria Veivåg Hauso",
+            "Asbjørn Riber",
+            "Trygve Sæbø",
+            "Ivar Ulgenes"
+          ],
+          [
+            "Bergljot Maria Veivåg Hauso",
+            "Asbjørn Riber",
+            "Trygve Sæbø",
+            "Ivar Ulgenes"
+          ],
+          [
+            "Bergljot Maria Veivåg",
+            "Asbjørn Riber",
+            "Trygve Sæbø",
+            "Ivar Ulgenes"
+          ],
+          [
+            "Bergljot Maria Veivåg Hauso",
+            "Asbjørn Riber",
+            "Trygve Sæbø",
+            "Ivar Ulgenes"
+          ],
+          [
+            "Bergljot Maria Veivåg",
+            "Asbjørn Riber",
+            "Trygve Sæbø",
+            "Ivar Ulgenes"
+          ]
+        ],
+        "viktige_organisasjoner": [
+          [
+            "Eidfjord motorferdselutval"
+          ],
+          [
+            "Eidfjord motorferdselutval"
+          ],
+          [
+            "Eidfjord motorferdselutval"
+          ],
+          [
+            "Eidfjord motorferdselutval"
+          ],
+          [
+            "Eidfjord motorferdselutval"
+          ],
+          [
+            "Eidfjord motorferdselutval",
+            "Hauso",
+            "EAP",
+            "EH"
+          ]
+        ],
+        "viktige_steder": [
+          [
+            "Teams"
+          ],
+          [
+            "Eidfjord"
+          ],
+          [
+            "Eidfjord"
+          ],
+          [
+            "Eidfjord"
+          ],
+          [
+            "Eidfjord"
+          ],
+          [
+            "Eidfjord",
+            "utmark"
+          ]
+        ]
+      },
+      "counts": {
+        "tema": [
+          [
+            "Motorferdsel",
+            4,
+            2
+          ],
+          [
+            "Delegerte vedtak",
+            3,
+            0
+          ],
+          [
+            "Landbruk",
+            2,
+            0
+          ],
+          [
+            "Motorferdsel i utmark",
+            2,
+            0
+          ],
+          [
+            "Møteadministrasjon",
+            2,
+            0
+          ],
+          [
+            "Miljø",
+            2,
+            0
+          ],
+          [
+            "Utmark",
+            1,
+            3
+          ],
+          [
+            "Snøskuter",
+            1,
+            1
+          ],
+          [
+            "Kommunal saksbehandling",
+            1,
+            0
+          ],
+          [
+            "Protokollgodkjenning",
+            1,
+            0
+          ],
+          [
+            "Forvaltning",
+            1,
+            0
+          ],
+          [
+            "Utvalgsmøter",
+            1,
+            0
+          ],
+          [
+            "Natur",
+            1,
+            0
+          ],
+          [
+            "Utmarkssaker",
+            1,
+            0
+          ],
+          [
+            "Snøskuterkjøring",
+            1,
+            0
+          ],
+          [
+            "Godkjenning av dokumenter",
+            1,
+            0
+          ]
+        ],
+        "viktige_hendelser": [
+          [
+            "Godkjenning av møteprotokoll",
+            3,
+            1
+          ],
+          [
+            "Samlesak for delegerte vedtak",
+            3,
+            0
+          ],
+          [
+            "Godkjenning av innkalling og sakliste",
+            3,
+            0
+          ],
+          [
+            "Møte i Eidfjord motorferdselutval",
+            2,
+            1
+          ],
+          [
+            "Godkjenning av innkalling",
+            1,
+            3
+          ],
+          [
+            "Søknad om motorferdsel i utmark",
+            1,
+            3
+          ],
+          [
+            "Godkjenning av forrige møteprotokoll",
+            1,
+            0
+          ],
+          [
+            "Delegerte vedtak ble tatt til vitande",
+            1,
+            0
+          ],
+          [
+            "Søknad om motorferdsel i utmark med snøskuter 10.-14. mai 2025",
+            1,
+            0
+          ],
+          [
+            "Godkjenning av møteprotokoll fra forrige møte",
+            1,
+            0
+          ],
+          [
+            "Møte i Eidfjord motorferdselutval på 10.04.2025",
+            1,
+            0
+          ],
+          [
+            "Behandling av søknad om motorferdsel i utmark",
+            1,
+            0
+          ],
+          [
+            "Behandling av delegerte vedtak",
+            1,
+            0
+          ],
+          [
+            "Søknad om snøskuterkjøring",
+            1,
+            0
+          ],
+          [
+            "Søknad om motorferdsel i utmark - snøskuter",
+            1,
+            0
+          ]
+        ],
+        "viktige_tidspunkter": [
+          [
+            "10.-14. mai 2025",
+            6,
+            0
+          ],
+          [
+            "10.04.2025",
+            6,
+            0
+          ],
+          [
+            "kl 11:00 - 11:30",
+            1,
+            0
+          ]
+        ],
+        "viktige_personer": [
+          [
+            "Asbjørn Riber",
+            6,
+            0
+          ],
+          [
+            "Ivar Ulgenes",
+            6,
+            0
+          ],
+          [
+            "Trygve Sæbø",
+            6,
+            0
+          ],
+          [
+            "Bergljot Maria Veivåg Hauso",
+            4,
+            0
+          ],
+          [
+            "Bergljot Maria Veivåg",
+            2,
+            4
+          ]
+        ],
+        "viktige_organisasjoner": [
+          [
+            "Eidfjord motorferdselutval",
+            6,
+            0
+          ],
+          [
+            "Hauso",
+            1,
+            0
+          ],
+          [
+            "EAP",
+            1,
+            0
+          ],
+          [
+            "EH",
+            1,
+            0
+          ]
+        ],
+        "viktige_steder": [
+          [
+            "Eidfjord",
+            5,
+            0
+          ],
+          [
+            "utmark",
+            1,
+            0
+          ],
+          [
+            "Teams",
+            1,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "dokument_id": "595b66b0-3f6c-559a-b14b-ce22ad44d0b7",
+      "models": [
+        "claude-3-5-haiku-20241022",
+        "deepseek-chat",
+        "gemini-2.5-flash",
+        "gpt-4o-mini",
+        "mistral-medium-latest",
+        "qwen-flash"
+      ],
+      "properties": {
+        "hva_saken_gjelder": [
+          [
+            "Saksliste for Oppvekst- og utdanningsutvalget i Tromsø kommune med flere ulike saker innen oppvekst og utdanning"
+          ],
+          [
+            "Møteinnkalling og saksliste for Oppvekst- og utdanningsutvalget med behandling av ulike saker knyttet til oppvekst, utdanning, helse, velferd, omsorg, barnehager, skole, IT-tjenester og områdesatsing."
+          ],
+          [
+            "En saksliste for møtet i Oppvekst- og utdanningsutvalget, som inkluderer saker om helhetlig plan for helse, velferd og omsorg, handlingsplan for uterom i barnehager, evaluering av seksårsreformen, avvikling av IT-tjenester til Tromsø International School, onsdagstid for pedagogisk utvikling, og programbeskrivelse for områdesatsingen i Kroken."
+          ],
+          [
+            "Møteinnkalling for Oppvekst- og utdanningsutvalget med saker til behandling."
+          ],
+          [],
+          [
+            "Helhetlig plan for helse, velferd og omsorg i Tromsø kommune, handlingsplan for uterom ved kommunale barnehager, evaluering av seksårsreformen, avvikling av IT-tjenester fra Tromsø kommune til Tromsø International School, onsdagstid for pedagogisk utviklingsarbeid i Tromsøskolen, og programbeskrivelse for områdesatsingen i Kroken."
+          ]
+        ],
+        "tema": [
+          [
+            "Oppvekst",
+            "Utdanning",
+            "Barnehage",
+            "Skole",
+            "Helse",
+            "Velferd",
+            "Omsorg",
+            "Pedagogisk utvikling"
+          ],
+          [
+            "Oppvekst",
+            "Utdanning",
+            "Helse",
+            "Velferd",
+            "Omsorg",
+            "Barnehager",
+            "Skole",
+            "IT-tjenester",
+            "Områdesatsing"
+          ],
+          [
+            "Oppvekst",
+            "Utdanning",
+            "Helse og velferd",
+            "Barnehager",
+            "Skoleutvikling",
+            "IT-tjenester",
+            "Områdesatsing",
+            "Fysisk miljø",
+            "Pedagogisk utvikling"
+          ],
+          [
+            "Oppvekst",
+            "Utdanning",
+            "Helse",
+            "Velferd",
+            "Omsorg",
+            "Barnehager",
+            "Skole",
+            "Pedagogisk utvikling",
+            "Områdesatsing"
+          ],
+          [],
+          [
+            "Oppvekst",
+            "Utdanning",
+            "Barnehage",
+            "Helse og velferd",
+            "IT- og digitalisering",
+            "Pedagogikk",
+            "Kommunal planlegging"
+          ]
+        ],
+        "viktige_hendelser": [
+          [
+            "Gjennomgang av helhetlig plan",
+            "Handlingsplan for barnehagers uterom",
+            "Evaluering av seksårsreformen",
+            "Avvikling av IT-tjenester",
+            "Pedagogisk utviklingsarbeid",
+            "Områdesatsing i Kroken"
+          ],
+          [
+            "Møte i Oppvekst- og utdanningsutvalget",
+            "Godkjenning av innkalling og saksliste",
+            "Godkjenning av protokoll",
+            "Behandling av saker"
+          ],
+          [
+            "Møte i Oppvekst- og utdanningsutvalget",
+            "Godkjenning av innkalling og saksliste",
+            "Godkjenning av protokoll",
+            "Behandling av sak om helhetlig plan for helse, velferd og omsorg",
+            "Behandling av sak om handlingsplan for uterom ved kommunale barnehager",
+            "Behandling av sak om evaluering av seksårsreformen",
+            "Behandling av sak om avvikling av IT-tjenester fra Tromsø kommune til Tromsø International School",
+            "Behandling av sak om onsdagstid for pedagogisk utviklingsarbeid",
+            "Behandling av sak om programbeskrivelse for områdesatsingen i Kroken"
+          ],
+          [],
+          [],
+          [
+            "Godkjenning av innkalling og saksliste",
+            "Godkjenning av protokoll",
+            "Spørsmål om habilitetsvurdering",
+            "Møte i Oppvekst- og utdanningsutvalget den 28.02.2025",
+            "Avvikling av IT-tjenester fra Tromsø kommune til Tromsø International School",
+            "Onsdagstid – tid til pedagogisk utviklingsarbeid for pedagogisk personale i Tromsøskolen",
+            "Programbeskrivelse for områdesatsingen i Kroken 2024–2028"
+          ]
+        ],
+        "viktige_tidspunkter": [
+          [
+            "28.02.2025",
+            "2024-2028",
+            "2025-2029"
+          ],
+          [
+            "28.02.2025 kl. 12:00"
+          ],
+          [
+            "28.02.2025",
+            "2025-2029",
+            "2024-2028"
+          ],
+          [
+            "28.02.2025 12:00"
+          ],
+          [],
+          [
+            "28.02.2025",
+            "11/25",
+            "12/25",
+            "13/25",
+            "14/25",
+            "2024–2028",
+            "2025–2029"
+          ]
+        ],
+        "viktige_personer": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "viktige_organisasjoner": [
+          [
+            "Tromsø kommune",
+            "Tromsø International School",
+            "Oppvekst- og utdanningsutvalget"
+          ],
+          [
+            "Oppvekst- og utdanningsutvalget",
+            "Tromsø kommune",
+            "Tromsø International School"
+          ],
+          [
+            "Oppvekst- og utdanningsutvalget",
+            "Tromsø kommune",
+            "Tromsø International School"
+          ],
+          [],
+          [],
+          [
+            "Tromsø kommune",
+            "Tromsø International School",
+            "Tromsøskolen",
+            "Kroken (område)"
+          ]
+        ],
+        "viktige_steder": [
+          [
+            "Tromsø",
+            "Kroken",
+            "Formannskapssalen"
+          ],
+          [
+            "Formannskapssalen",
+            "Tromsø kommune",
+            "Kroken"
+          ],
+          [
+            "Formannskapssalen",
+            "Tromsø",
+            "Kroken"
+          ],
+          [
+            "Tromsø kommune",
+            "Formannskapssalen"
+          ],
+          [],
+          [
+            "Formannskapssalen",
+            "Tromsø kommune",
+            "Tromsø International School",
+            "Tromsøskolen",
+            "Kroken"
+          ]
+        ]
+      },
+      "counts": {
+        "tema": [
+          [
+            "Oppvekst",
+            5,
+            0
+          ],
+          [
+            "Utdanning",
+            5,
+            0
+          ],
+          [
+            "Velferd",
+            3,
+            2
+          ],
+          [
+            "Helse",
+            3,
+            2
+          ],
+          [
+            "Skole",
+            3,
+            1
+          ],
+          [
+            "Pedagogisk utvikling",
+            3,
+            0
+          ],
+          [
+            "Barnehager",
+            3,
+            0
+          ],
+          [
+            "Områdesatsing",
+            3,
+            0
+          ],
+          [
+            "Omsorg",
+            3,
+            0
+          ],
+          [
+            "Barnehage",
+            2,
+            3
+          ],
+          [
+            "IT-tjenester",
+            2,
+            0
+          ],
+          [
+            "Helse og velferd",
+            2,
+            0
+          ],
+          [
+            "Kommunal planlegging",
+            1,
+            0
+          ],
+          [
+            "Pedagogikk",
+            1,
+            0
+          ],
+          [
+            "IT- og digitalisering",
+            1,
+            0
+          ],
+          [
+            "Fysisk miljø",
+            1,
+            0
+          ],
+          [
+            "Skoleutvikling",
+            1,
+            0
+          ]
+        ],
+        "viktige_hendelser": [
+          [
+            "Godkjenning av innkalling og saksliste",
+            3,
+            0
+          ],
+          [
+            "Godkjenning av protokoll",
+            3,
+            0
+          ],
+          [
+            "Møte i Oppvekst- og utdanningsutvalget",
+            2,
+            1
+          ],
+          [
+            "Pedagogisk utviklingsarbeid",
+            1,
+            2
+          ],
+          [
+            "Avvikling av IT-tjenester",
+            1,
+            2
+          ],
+          [
+            "Evaluering av seksårsreformen",
+            1,
+            1
+          ],
+          [
+            "Avvikling av IT-tjenester fra Tromsø kommune til Tromsø International School",
+            1,
+            1
+          ],
+          [
+            "Behandling av saker",
+            1,
+            0
+          ],
+          [
+            "Behandling av sak om avvikling av IT-tjenester fra Tromsø kommune til Tromsø International School",
+            1,
+            0
+          ],
+          [
+            "Programbeskrivelse for områdesatsingen i Kroken 2024–2028",
+            1,
+            0
+          ],
+          [
+            "Behandling av sak om onsdagstid for pedagogisk utviklingsarbeid",
+            1,
+            0
+          ],
+          [
+            "Handlingsplan for barnehagers uterom",
+            1,
+            0
+          ],
+          [
+            "Gjennomgang av helhetlig plan",
+            1,
+            0
+          ],
+          [
+            "Møte i Oppvekst- og utdanningsutvalget den 28.02.2025",
+            1,
+            0
+          ],
+          [
+            "Onsdagstid – tid til pedagogisk utviklingsarbeid for pedagogisk personale i Tromsøskolen",
+            1,
+            0
+          ],
+          [
+            "Behandling av sak om programbeskrivelse for områdesatsingen i Kroken",
+            1,
+            0
+          ],
+          [
+            "Spørsmål om habilitetsvurdering",
+            1,
+            0
+          ],
+          [
+            "Behandling av sak om handlingsplan for uterom ved kommunale barnehager",
+            1,
+            0
+          ],
+          [
+            "Behandling av sak om evaluering av seksårsreformen",
+            1,
+            0
+          ],
+          [
+            "Behandling av sak om helhetlig plan for helse, velferd og omsorg",
+            1,
+            0
+          ],
+          [
+            "Områdesatsing i Kroken",
+            1,
+            0
+          ]
+        ],
+        "viktige_tidspunkter": [
+          [
+            "28.02.2025",
+            3,
+            2
+          ],
+          [
+            "2025-2029",
+            2,
+            0
+          ],
+          [
+            "2024-2028",
+            2,
+            0
+          ],
+          [
+            "11/25",
+            1,
+            0
+          ],
+          [
+            "12/25",
+            1,
+            0
+          ],
+          [
+            "13/25",
+            1,
+            0
+          ],
+          [
+            "2024–2028",
+            1,
+            0
+          ],
+          [
+            "28.02.2025 12:00",
+            1,
+            0
+          ],
+          [
+            "14/25",
+            1,
+            0
+          ],
+          [
+            "2025–2029",
+            1,
+            0
+          ],
+          [
+            "28.02.2025 kl. 12:00",
+            1,
+            0
+          ]
+        ],
+        "viktige_personer": [],
+        "viktige_organisasjoner": [
+          [
+            "Tromsø International School",
+            4,
+            0
+          ],
+          [
+            "Tromsø kommune",
+            4,
+            0
+          ],
+          [
+            "Oppvekst- og utdanningsutvalget",
+            3,
+            0
+          ],
+          [
+            "Tromsøskolen",
+            1,
+            0
+          ],
+          [
+            "Kroken (område)",
+            1,
+            0
+          ]
+        ],
+        "viktige_steder": [
+          [
+            "Formannskapssalen",
+            5,
+            0
+          ],
+          [
+            "Kroken",
+            4,
+            0
+          ],
+          [
+            "Tromsø kommune",
+            3,
+            0
+          ],
+          [
+            "Tromsø",
+            2,
+            5
+          ],
+          [
+            "Tromsø International School",
+            1,
+            0
+          ],
+          [
+            "Tromsøskolen",
+            1,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "dokument_id": "6d0cce9c-d400-518d-9d38-f88fff3fcefb",
+      "models": [
+        "claude-3-5-haiku-20241022",
+        "deepseek-chat",
+        "gemini-2.5-flash",
+        "gpt-4o-mini",
+        "mistral-medium-latest",
+        "qwen-flash"
+      ],
+      "properties": {
+        "hva_saken_gjelder": [
+          [
+            "Uttale til felles sti- og løypeplan for Hardangervidda, som har som mål å styre friluftsferdselen av hensyn til villrein og naturmangfold"
+          ],
+          [
+            "Uttale fra Eidfjord fjellstyre til felles sti- og løypeplan for Hardangervidda, som er en regional temaplan for styring av friluftsferdsel på Hardangervidda med hensyn til villrein og naturmangfold. Fjellstyret ønsker å se tiltak i denne planen sammen med tiltaksplan for Hardangervidda villreinområde, og vil komme tilbake med konkrete innspel etter nærmere drøftinger."
+          ],
+          [
+            "Eidfjord fjellstyre skal gi sin uttale til Felles sti- og løypeplan for Hardangervidda, en regional temaplan som skal styre friluftsferdsel på Hardangervidda for å ta hensyn til villrein og naturmangfold."
+          ],
+          [
+            "Uttale til felles sti- og løypeplan for Hardangervidda."
+          ],
+          [
+            "Uttale til felles sti- og løypeplan for Hardangervidda"
+          ],
+          [
+            "Uttale fra Eidfjord fjellstyre til felles sti- og løypeplan for Hardangervidda, med fokus på samordning av tiltak i regional sti- og løypeplan og tiltaksplan for Hardangervidda villreinområde, samt forslag til regulering av ulike formar for ferdsel som sykling, kiting, skitur og hundekjøring."
+          ]
+        ],
+        "tema": [
+          [
+            "Friluftsliv",
+            "Naturforvaltning",
+            "Villreinvern",
+            "Arealplanlegging",
+            "Kommunal forvaltning"
+          ],
+          [
+            "Friluftsliv",
+            "Villreinforvaltning",
+            "Naturvern",
+            "Regional planlegging",
+            "Ferdselstyring",
+            "Turisme",
+            "Kommunal forvaltning",
+            "Miljøvern"
+          ],
+          [
+            "Sti- og løypeplanlegging",
+            "Friluftsferdsel",
+            "Villreinforvaltning",
+            "Naturmangfold",
+            "Verneområdeforvaltning",
+            "Regional planlegging",
+            "Kommunal planlegging",
+            "Turisme",
+            "Restaureringstiltak",
+            "Sonering av ferdsel"
+          ],
+          [
+            "Friluftsliv",
+            "Villreinforvaltning",
+            "Naturmangfold",
+            "Ferdsel",
+            "Planlegging",
+            "Miljøvern",
+            "Lokalsamfunn",
+            "Turisme"
+          ],
+          [
+            "Friluftsliv",
+            "Villreinforvaltning",
+            "Turisme",
+            "Naturvern",
+            "Arealbruk",
+            "Ferdselsregulering",
+            "Kommunal planlegging"
+          ],
+          [
+            "Friluftsferdsel",
+            "Villrein",
+            "Naturvern",
+            "Regionalt samarbeid",
+            "Transport og infrastruktur",
+            "Turisme",
+            "Miljø- og naturressursforvaltning"
+          ]
+        ],
+        "viktige_hendelser": [
+          [
+            "Høring av felles sti- og løypeplan",
+            "Vurdering av tiltak for å redusere forstyrrelser for villrein",
+            "Forslag om stenging/omlegging av stier og turisthytter",
+            "Regulering av ferdsel som sykling, kiting og hundekjøring"
+          ],
+          [
+            "Innsending av uttale til felles sti- og løypeplan",
+            "Høyring av tiltaksplan for villrein på Hardangervidda",
+            "Initiert felles uttale med Tilsynsutvalet og kommunen",
+            "Kartlegging av motorferdsel på Hardangervidda",
+            "Klassifisering av villreinområder i Norge etter kvalitetsnormen i 2022"
+          ],
+          [
+            "Utarbeiding av Felles sti- og løypeplan for Hardangervidda",
+            "Høring av Felles sti- og løypeplan for Hardangervidda",
+            "Utarbeiding av tiltaksplan for Hardangervidda villreinområde",
+            "Fjellstyrets drøftinger om konkrete innspill",
+            "Hardangerviddarådet skal vedta temaplanen",
+            "Klassifisering av villreinområdene i Norge i 2022",
+            "Påbegynt formidlings- og informasjonsprosjekt i samarbeid med DNT",
+            "Prosjekt for å kartlegge motorferdsel på Hardangervidda"
+          ],
+          [],
+          [
+            "Høring av felles sti- og løypeplan for Hardangervidda",
+            "Vedtak av tiltaksplan for villrein på Hardangervidda",
+            "Revisjon av forskrift om teltforbudssoner",
+            "Stenging av turisthytter som Litlos og Lågaros"
+          ],
+          [
+            "Felles sti- og løypeplan for Hardangervidda er det fyrste steget i ein meir heilskapleg forvaltning av friluftsferdsel",
+            "Hardangerviddarådet er prosjekteigar og styringsgruppe for temaplanen",
+            "Arbeidet med tiltaksplan for Hardangervidda villreinområde er i gang og har tett samarbeid med departementet",
+            "Fjellstyret, Tilsynsutvalet og kommunen har teke initiativ til ein felles uttale",
+            "Planforslaget står på eigne bein, men bør sjåast i en breiare kontekst med Stortingsmelding 18 (2023–24) og tiltaksplanen for villreinen"
+          ]
+        ],
+        "viktige_tidspunkter": [
+          [
+            "03.09.2025",
+            "11.09.2025",
+            "Vinterstid",
+            "Barmarkssesongen",
+            "Kalvingsperioden"
+          ],
+          [
+            "11.09.2025",
+            "2021-2024",
+            "2023-24",
+            "01.05."
+          ],
+          [
+            "03.09.2025",
+            "11.09.2025",
+            "2021-2024",
+            "2023-24",
+            "2023",
+            "2022",
+            "etter 01.05"
+          ],
+          [
+            "11.09.2025"
+          ],
+          [
+            "11.09.2025",
+            "Vintersesongen",
+            "Kalvings- og oppvekstperioden for villrein",
+            "2023"
+          ],
+          [
+            "11.09.2025",
+            "2021–2024",
+            "2023–2024"
+          ]
+        ],
+        "viktige_personer": [
+          [
+            "Gunnar Elnan"
+          ],
+          [
+            "Gunnar Elnan"
+          ],
+          [],
+          [
+            "Gunnar Elnan"
+          ],
+          [],
+          [
+            "Gunnar Elnan"
+          ]
+        ],
+        "viktige_organisasjoner": [
+          [
+            "Eidfjord fjellstyre",
+            "Hardangerviddarådet",
+            "Buskerud fylkeskommune",
+            "Vestland fylkeskommune",
+            "Telemark fylkeskommune",
+            "DNT",
+            "Innovasjon Norge"
+          ],
+          [
+            "Eidfjord fjellstyre",
+            "Buskerud fylkeskommune",
+            "Eidfjord kommune",
+            "Tilsynsutvalet",
+            "Hardangerviddarådet",
+            "Vestland fylkeskommune",
+            "Telemark fylkeskommune",
+            "DNT",
+            "Miljødirektoratet",
+            "Innovasjon Norge",
+            "Klima- og miljødepartementet"
+          ],
+          [
+            "Eidfjord fjellstyre",
+            "Buskerud fylkeskommune",
+            "Eidfjord kommune",
+            "Tilsynsutvalet",
+            "Hardangerviddarådet",
+            "Vestland fylkeskommune",
+            "Telemark fylkeskommune",
+            "DNT",
+            "Villreinfjellet som verdiskapar",
+            "Miljødirektoratet",
+            "Innovasjon Norge",
+            "Klima- og miljødepartementet"
+          ],
+          [
+            "Eidfjord fjellstyre",
+            "Hardangerviddarådet",
+            "DNT",
+            "Miljødirektoratet",
+            "Buskerud fylkeskommune",
+            "Vestland fylkeskommune",
+            "Telemark fylkeskommune"
+          ],
+          [
+            "Hardangerviddarådet",
+            "Buskerud fylkeskommune",
+            "Vestland fylkeskommune",
+            "Telemark fylkeskommune",
+            "DNT",
+            "Innovasjon Norge",
+            "Miljødirektoratet"
+          ],
+          [
+            "Eidfjord fjellstyre",
+            "Hardangerviddarådet",
+            "Buskerud fylkeskommune",
+            "Vestland fylkeskommune",
+            "Telemark fylkeskommune",
+            "Tilsynsutvalet",
+            "DNT",
+            "Innovasjon Norge",
+            "Miljødirektoratet",
+            "Villreinfjellet"
+          ]
+        ],
+        "viktige_steder": [
+          [
+            "Hardangervidda",
+            "Eidfjord",
+            "Kvenna",
+            "Litlos",
+            "Lågaros",
+            "Hadlaskard",
+            "Hellevassbu",
+            "Møsvatn",
+            "Totak"
+          ],
+          [
+            "Hardangervidda",
+            "Eidfjord",
+            "Ullensvang",
+            "Røldal",
+            "Vinje",
+            "Tinn",
+            "Valldalen",
+            "Holmavatnet",
+            "Litlos",
+            "Møsvatn",
+            "Totak",
+            "Kvenna",
+            "Hellevassbu",
+            "Lågaros",
+            "Hadlaskard",
+            "Sandhaug",
+            "Bjoreidalen",
+            "Nordmannslågen",
+            "Veigdalen"
+          ],
+          [
+            "Hardangervidda",
+            "Norge",
+            "Nasjonalparken",
+            "Tinnhølvegen",
+            "Fagerheim",
+            "Lægreidstølen",
+            "Tuva",
+            "Møsvatn",
+            "Totak",
+            "Kvenna",
+            "Valldalen",
+            "Holmavatnet",
+            "Litlos",
+            "Ullensvang",
+            "Røldal",
+            "Øvre Numedal statsallmenning",
+            "Vinje kommune",
+            "Tinn",
+            "Hellevassbu",
+            "Haukeliseter",
+            "Nupshallane",
+            "Middalsbu",
+            "Lågaros",
+            "Gjuvsjåen/Hellegjuvet",
+            "Mårbu",
+            "Sandhaug",
+            "Rauhelleren",
+            "Mogen",
+            "Hadlaskard",
+            "Nybu",
+            "Hedlo",
+            "Lofthus",
+            "Trolltunga",
+            "Reinsnos",
+            "Bjoreidalen",
+            "Saupskardbotn",
+            "Rjoto",
+            "Langavasshadle",
+            "Nordmannslågen",
+            "Veigdalen",
+            "Kvennsjøen",
+            "Litlosvatnet"
+          ],
+          [
+            "Hardangervidda",
+            "Eidfjord",
+            "Kvenna",
+            "Møsvatn",
+            "Totak",
+            "Hellevassbu",
+            "Lågaros",
+            "Hadlaskard",
+            "Litlos"
+          ],
+          [
+            "Hardangervidda",
+            "Eidfjord",
+            "Ullensvang",
+            "Vinje",
+            "Tinn",
+            "Kvenna",
+            "Hellevassbu",
+            "Lågaros",
+            "Hadlaskard",
+            "Litlos",
+            "Mogen",
+            "Haukeliseter",
+            "Nupshallane",
+            "Middalsbu",
+            "Sandhaug",
+            "Trolltunga",
+            "Reinsnos"
+          ],
+          [
+            "Hardangervidda",
+            "Hardangervidda nasjonalpark",
+            "Lægreidstølen",
+            "Tuva",
+            "Fagerheim",
+            "Tinnhølvegen"
+          ]
+        ]
+      },
+      "counts": {
+        "tema": [
+          [
+            "Turisme",
+            5,
+            0
+          ],
+          [
+            "Villreinforvaltning",
+            4,
+            0
+          ],
+          [
+            "Friluftsliv",
+            4,
+            0
+          ],
+          [
+            "Naturvern",
+            3,
+            0
+          ],
+          [
+            "Kommunal planlegging",
+            2,
+            0
+          ],
+          [
+            "Regional planlegging",
+            2,
+            0
+          ],
+          [
+            "Kommunal forvaltning",
+            2,
+            0
+          ],
+          [
+            "Friluftsferdsel",
+            2,
+            0
+          ],
+          [
+            "Naturmangfold",
+            2,
+            0
+          ],
+          [
+            "Miljøvern",
+            2,
+            0
+          ],
+          [
+            "Planlegging",
+            1,
+            6
+          ],
+          [
+            "Ferdsel",
+            1,
+            5
+          ],
+          [
+            "Villrein",
+            1,
+            5
+          ],
+          [
+            "Naturforvaltning",
+            1,
+            0
+          ],
+          [
+            "Restaureringstiltak",
+            1,
+            0
+          ],
+          [
+            "Ferdselsregulering",
+            1,
+            0
+          ],
+          [
+            "Regionalt samarbeid",
+            1,
+            0
+          ],
+          [
+            "Ferdselstyring",
+            1,
+            0
+          ],
+          [
+            "Lokalsamfunn",
+            1,
+            0
+          ],
+          [
+            "Arealplanlegging",
+            1,
+            0
+          ],
+          [
+            "Miljø- og naturressursforvaltning",
+            1,
+            0
+          ],
+          [
+            "Sonering av ferdsel",
+            1,
+            0
+          ],
+          [
+            "Villreinvern",
+            1,
+            0
+          ],
+          [
+            "Verneområdeforvaltning",
+            1,
+            0
+          ],
+          [
+            "Sti- og løypeplanlegging",
+            1,
+            0
+          ],
+          [
+            "Arealbruk",
+            1,
+            0
+          ],
+          [
+            "Transport og infrastruktur",
+            1,
+            0
+          ]
+        ],
+        "viktige_hendelser": [
+          [
+            "Høring av felles sti- og løypeplan for Hardangervidda",
+            2,
+            2
+          ],
+          [
+            "Høring av Felles sti- og løypeplan for Hardangervidda",
+            2,
+            2
+          ],
+          [
+            "Høring av felles sti- og løypeplan",
+            1,
+            4
+          ],
+          [
+            "Vedtak av tiltaksplan for villrein på Hardangervidda",
+            1,
+            0
+          ],
+          [
+            "Felles sti- og løypeplan for Hardangervidda er det fyrste steget i ein meir heilskapleg forvaltning av friluftsferdsel",
+            1,
+            0
+          ],
+          [
+            "Hardangerviddarådet skal vedta temaplanen",
+            1,
+            0
+          ],
+          [
+            "Forslag om stenging/omlegging av stier og turisthytter",
+            1,
+            0
+          ],
+          [
+            "Klassifisering av villreinområder i Norge etter kvalitetsnormen i 2022",
+            1,
+            0
+          ],
+          [
+            "Fjellstyrets drøftinger om konkrete innspill",
+            1,
+            0
+          ],
+          [
+            "Kartlegging av motorferdsel på Hardangervidda",
+            1,
+            0
+          ],
+          [
+            "Innsending av uttale til felles sti- og løypeplan",
+            1,
+            0
+          ],
+          [
+            "Utarbeiding av Felles sti- og løypeplan for Hardangervidda",
+            1,
+            0
+          ],
+          [
+            "Planforslaget står på eigne bein, men bør sjåast i en breiare kontekst med Stortingsmelding 18 (2023–24) og tiltaksplanen for villreinen",
+            1,
+            0
+          ],
+          [
+            "Fjellstyret, Tilsynsutvalet og kommunen har teke initiativ til ein felles uttale",
+            1,
+            0
+          ],
+          [
+            "Vurdering av tiltak for å redusere forstyrrelser for villrein",
+            1,
+            0
+          ],
+          [
+            "Påbegynt formidlings- og informasjonsprosjekt i samarbeid med DNT",
+            1,
+            0
+          ],
+          [
+            "Arbeidet med tiltaksplan for Hardangervidda villreinområde er i gang og har tett samarbeid med departementet",
+            1,
+            0
+          ],
+          [
+            "Initiert felles uttale med Tilsynsutvalet og kommunen",
+            1,
+            0
+          ],
+          [
+            "Hardangerviddarådet er prosjekteigar og styringsgruppe for temaplanen",
+            1,
+            0
+          ],
+          [
+            "Revisjon av forskrift om teltforbudssoner",
+            1,
+            0
+          ],
+          [
+            "Regulering av ferdsel som sykling, kiting og hundekjøring",
+            1,
+            0
+          ],
+          [
+            "Stenging av turisthytter som Litlos og Lågaros",
+            1,
+            0
+          ],
+          [
+            "Prosjekt for å kartlegge motorferdsel på Hardangervidda",
+            1,
+            0
+          ],
+          [
+            "Utarbeiding av tiltaksplan for Hardangervidda villreinområde",
+            1,
+            0
+          ],
+          [
+            "Klassifisering av villreinområdene i Norge i 2022",
+            1,
+            0
+          ],
+          [
+            "Høyring av tiltaksplan for villrein på Hardangervidda",
+            1,
+            0
+          ]
+        ],
+        "viktige_tidspunkter": [
+          [
+            "11.09.2025",
+            6,
+            0
+          ],
+          [
+            "2023",
+            2,
+            3
+          ],
+          [
+            "03.09.2025",
+            2,
+            0
+          ],
+          [
+            "2023-24",
+            2,
+            0
+          ],
+          [
+            "2021-2024",
+            2,
+            0
+          ],
+          [
+            "Barmarkssesongen",
+            1,
+            0
+          ],
+          [
+            "01.05.",
+            1,
+            0
+          ],
+          [
+            "2021–2024",
+            1,
+            0
+          ],
+          [
+            "2023–2024",
+            1,
+            0
+          ],
+          [
+            "2022",
+            1,
+            0
+          ],
+          [
+            "Vinterstid",
+            1,
+            0
+          ],
+          [
+            "Kalvings- og oppvekstperioden for villrein",
+            1,
+            0
+          ],
+          [
+            "Vintersesongen",
+            1,
+            0
+          ],
+          [
+            "Kalvingsperioden",
+            1,
+            0
+          ],
+          [
+            "etter 01.05",
+            1,
+            0
+          ]
+        ],
+        "viktige_personer": [
+          [
+            "Gunnar Elnan",
+            4,
+            0
+          ]
+        ],
+        "viktige_organisasjoner": [
+          [
+            "Hardangerviddarådet",
+            6,
+            0
+          ],
+          [
+            "DNT",
+            6,
+            0
+          ],
+          [
+            "Telemark fylkeskommune",
+            6,
+            0
+          ],
+          [
+            "Buskerud fylkeskommune",
+            6,
+            0
+          ],
+          [
+            "Vestland fylkeskommune",
+            6,
+            0
+          ],
+          [
+            "Miljødirektoratet",
+            5,
+            0
+          ],
+          [
+            "Eidfjord fjellstyre",
+            5,
+            0
+          ],
+          [
+            "Innovasjon Norge",
+            5,
+            0
+          ],
+          [
+            "Tilsynsutvalet",
+            3,
+            0
+          ],
+          [
+            "Klima- og miljødepartementet",
+            2,
+            0
+          ],
+          [
+            "Eidfjord kommune",
+            2,
+            0
+          ],
+          [
+            "Villreinfjellet",
+            1,
+            1
+          ],
+          [
+            "Villreinfjellet som verdiskapar",
+            1,
+            0
+          ]
+        ],
+        "viktige_steder": [
+          [
+            "Hardangervidda",
+            6,
+            1
+          ],
+          [
+            "Litlos",
+            5,
+            1
+          ],
+          [
+            "Hadlaskard",
+            5,
+            0
+          ],
+          [
+            "Kvenna",
+            5,
+            0
+          ],
+          [
+            "Lågaros",
+            5,
+            0
+          ],
+          [
+            "Hellevassbu",
+            5,
+            0
+          ],
+          [
+            "Møsvatn",
+            4,
+            0
+          ],
+          [
+            "Eidfjord",
+            4,
+            0
+          ],
+          [
+            "Totak",
+            4,
+            0
+          ],
+          [
+            "Tinn",
+            3,
+            2
+          ],
+          [
+            "Sandhaug",
+            3,
+            0
+          ],
+          [
+            "Ullensvang",
+            3,
+            0
+          ],
+          [
+            "Vinje",
+            2,
+            1
+          ],
+          [
+            "Nupshallane",
+            2,
+            0
+          ],
+          [
+            "Tuva",
+            2,
+            0
+          ],
+          [
+            "Reinsnos",
+            2,
+            0
+          ],
+          [
+            "Tinnhølvegen",
+            2,
+            0
+          ],
+          [
+            "Veigdalen",
+            2,
+            0
+          ],
+          [
+            "Fagerheim",
+            2,
+            0
+          ],
+          [
+            "Bjoreidalen",
+            2,
+            0
+          ],
+          [
+            "Mogen",
+            2,
+            0
+          ],
+          [
+            "Nordmannslågen",
+            2,
+            0
+          ],
+          [
+            "Røldal",
+            2,
+            0
+          ],
+          [
+            "Lægreidstølen",
+            2,
+            0
+          ],
+          [
+            "Holmavatnet",
+            2,
+            0
+          ],
+          [
+            "Trolltunga",
+            2,
+            0
+          ],
+          [
+            "Haukeliseter",
+            2,
+            0
+          ],
+          [
+            "Valldalen",
+            2,
+            0
+          ],
+          [
+            "Middalsbu",
+            2,
+            0
+          ],
+          [
+            "Hardangervidda nasjonalpark",
+            1,
+            0
+          ],
+          [
+            "Rauhelleren",
+            1,
+            0
+          ],
+          [
+            "Litlosvatnet",
+            1,
+            0
+          ],
+          [
+            "Øvre Numedal statsallmenning",
+            1,
+            0
+          ],
+          [
+            "Kvennsjøen",
+            1,
+            0
+          ],
+          [
+            "Rjoto",
+            1,
+            0
+          ],
+          [
+            "Nybu",
+            1,
+            0
+          ],
+          [
+            "Gjuvsjåen/Hellegjuvet",
+            1,
+            0
+          ],
+          [
+            "Vinje kommune",
+            1,
+            0
+          ],
+          [
+            "Nasjonalparken",
+            1,
+            0
+          ],
+          [
+            "Langavasshadle",
+            1,
+            0
+          ],
+          [
+            "Norge",
+            1,
+            0
+          ],
+          [
+            "Hedlo",
+            1,
+            0
+          ],
+          [
+            "Saupskardbotn",
+            1,
+            0
+          ],
+          [
+            "Mårbu",
+            1,
+            0
+          ],
+          [
+            "Lofthus",
+            1,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "dokument_id": "85eee930-835a-5747-9a41-a82aa84c8cff",
+      "models": [
+        "claude-3-5-haiku-20241022",
+        "deepseek-chat",
+        "gemini-2.5-flash",
+        "gpt-4o-mini",
+        "mistral-medium-latest",
+        "qwen-flash"
+      ],
+      "properties": {
+        "hva_saken_gjelder": [
+          [
+            "Reduksjon av elbilrabatt og justering av bompengetakster i Tromsø"
+          ],
+          [
+            "Vedtak om reduksjon av elbilrabatt fra 50 % til 30 % og indeksjustering av bompengetakster i takt med konsumprisindeks."
+          ],
+          [
+            "Reduksjon av elbilrabatt og justering av bompengetakster i takt med konsumprisindeks."
+          ],
+          [
+            "Reduksjon av elbilrabatt og justering av bompengetakster i Tromsø kommune."
+          ],
+          [
+            "Reduksjon av elbilrabatt og justering av KPI for bompengetakster"
+          ],
+          [
+            "Reduksjon av elbilrabatt fra 50 % til 30 % og justering av bompengesatsene i tråd med konsumprisindeks."
+          ]
+        ],
+        "tema": [
+          [
+            "Samferdsel",
+            "Økonomi",
+            "Miljøpolitikk",
+            "Bompenger",
+            "Elbilpolitikk"
+          ],
+          [
+            "Bompenger",
+            "Elbilpolitikk",
+            "Rabattjustering",
+            "Indeksjustering",
+            "Konsumprisindeks",
+            "Transportpolitikk",
+            "Miljøpolitikk"
+          ],
+          [
+            "Bompenge",
+            "Elbilrabatt",
+            "Prisjustering",
+            "Konsumprisindeks",
+            "Samferdsel",
+            "Kommunal økonomi",
+            "Miljø"
+          ],
+          [
+            "Miljø",
+            "Transport",
+            "Økonomi",
+            "Bompenger",
+            "Elbilpolitikk"
+          ],
+          [
+            "Miljø",
+            "Transport",
+            "Økonomi",
+            "Kommunal politikk",
+            "Bompenger",
+            "Elbiler",
+            "Konsumprisindeks"
+          ],
+          [
+            "Miljø",
+            "Transport",
+            "Byutvikling",
+            "Kommunal økonomi",
+            "Energi"
+          ]
+        ],
+        "viktige_hendelser": [
+          [
+            "Indeksjustering av bompengetakster",
+            "Reduksjon av elbilrabatt fra 50% til 30%"
+          ],
+          [
+            "Votering i Formannskapet med 11 stemmer for og 2 stemmer mot",
+            "Behandling i Formannskapet i møte 11.06.2024 sak 86/24"
+          ],
+          [
+            "Behandling i Miljø-, idrett-, kultur- og samfunnsutviklingsutvalget",
+            "Behandling i Kommune- og byutviklingsutvalget",
+            "Behandling i Formannskapet",
+            "Votering i Formannskapet",
+            "Behandling i Kommunestyret",
+            "Godkjenning av indeksjustering av bompengetakster",
+            "Justering av rabatt for elbiler"
+          ],
+          [],
+          [
+            "Formannskapets behandling av saken",
+            "Vedtak om indeksjustering av bompengetakster",
+            "Vedtak om reduksjon av elbilrabatt"
+          ],
+          [
+            "Formannskapets behandling av saken den 11.06.2024",
+            "Votering og vedtak i Formannskapet",
+            "Innføring av ny elbilrabatt fra 30.06.2026",
+            "Forventet vedtak fra Troms fylkeskommune"
+          ]
+        ],
+        "viktige_tidspunkter": [
+          [
+            "30.06.2026",
+            "11.06.2024",
+            "19.06.2024"
+          ],
+          [
+            "05.06.2024",
+            "06.06.2024",
+            "11.06.2024",
+            "19.06.2024",
+            "30.06.2026"
+          ],
+          [
+            "05.06.2024",
+            "06.06.2024",
+            "11.06.2024",
+            "19.06.2024",
+            "30.06.2026"
+          ],
+          [
+            "30.06.2026",
+            "11.06.2024",
+            "19.06.2024"
+          ],
+          [
+            "11.06.2024",
+            "30.06.2026"
+          ],
+          [
+            "11.06.2024",
+            "30.06.2026"
+          ]
+        ],
+        "viktige_personer": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "viktige_organisasjoner": [
+          [
+            "Tromsø kommune",
+            "Troms fylkeskommune",
+            "Bompengeselskapet"
+          ],
+          [
+            "Formannskapet",
+            "Kommunestyret",
+            "Bompengeselskapet",
+            "Troms fylkeskommune"
+          ],
+          [
+            "Formannskapet",
+            "Miljø-, idrett-, kultur- og samfunnsutviklingsutvalget",
+            "Kommune- og byutviklingsutvalget",
+            "Kommunestyret",
+            "Bompengeselskapet",
+            "Tromsø kommune",
+            "Troms fylkeskommune",
+            "Ap",
+            "Høyre",
+            "KrF",
+            "MDG",
+            "Rødt",
+            "SV",
+            "SP",
+            "FrP",
+            "INP"
+          ],
+          [
+            "Tromsø kommune",
+            "Troms fylkeskommune"
+          ],
+          [
+            "Tromsø kommune",
+            "Troms fylkeskommune",
+            "Bompengeselskapet"
+          ],
+          [
+            "Formannskapet",
+            "Bompengeselskapet",
+            "Troms fylkeskommune"
+          ]
+        ],
+        "viktige_steder": [
+          [
+            "Tromsø"
+          ],
+          [
+            "Tromsø kommune"
+          ],
+          [
+            "Tromsø kommune",
+            "Troms fylkeskommune"
+          ],
+          [
+            "Tromsø"
+          ],
+          [
+            "Tromsø"
+          ],
+          [
+            "Tromsø kommune"
+          ]
+        ]
+      },
+      "counts": {
+        "tema": [
+          [
+            "Miljø",
+            4,
+            2
+          ],
+          [
+            "Bompenger",
+            4,
+            0
+          ],
+          [
+            "Økonomi",
+            3,
+            2
+          ],
+          [
+            "Transport",
+            3,
+            1
+          ],
+          [
+            "Elbilpolitikk",
+            3,
+            0
+          ],
+          [
+            "Konsumprisindeks",
+            3,
+            0
+          ],
+          [
+            "Samferdsel",
+            2,
+            0
+          ],
+          [
+            "Kommunal økonomi",
+            2,
+            0
+          ],
+          [
+            "Miljøpolitikk",
+            2,
+            0
+          ],
+          [
+            "Bompenge",
+            1,
+            4
+          ],
+          [
+            "Prisjustering",
+            1,
+            0
+          ],
+          [
+            "Elbilrabatt",
+            1,
+            0
+          ],
+          [
+            "Rabattjustering",
+            1,
+            0
+          ],
+          [
+            "Kommunal politikk",
+            1,
+            0
+          ],
+          [
+            "Elbiler",
+            1,
+            0
+          ],
+          [
+            "Energi",
+            1,
+            0
+          ],
+          [
+            "Indeksjustering",
+            1,
+            0
+          ],
+          [
+            "Byutvikling",
+            1,
+            0
+          ],
+          [
+            "Transportpolitikk",
+            1,
+            0
+          ]
+        ],
+        "viktige_hendelser": [
+          [
+            "Indeksjustering av bompengetakster",
+            1,
+            2
+          ],
+          [
+            "Behandling i Formannskapet",
+            1,
+            1
+          ],
+          [
+            "Formannskapets behandling av saken",
+            1,
+            1
+          ],
+          [
+            "Votering i Formannskapet",
+            1,
+            1
+          ],
+          [
+            "Behandling i Miljø-, idrett-, kultur- og samfunnsutviklingsutvalget",
+            1,
+            0
+          ],
+          [
+            "Godkjenning av indeksjustering av bompengetakster",
+            1,
+            0
+          ],
+          [
+            "Justering av rabatt for elbiler",
+            1,
+            0
+          ],
+          [
+            "Formannskapets behandling av saken den 11.06.2024",
+            1,
+            0
+          ],
+          [
+            "Forventet vedtak fra Troms fylkeskommune",
+            1,
+            0
+          ],
+          [
+            "Votering i Formannskapet med 11 stemmer for og 2 stemmer mot",
+            1,
+            0
+          ],
+          [
+            "Vedtak om indeksjustering av bompengetakster",
+            1,
+            0
+          ],
+          [
+            "Votering og vedtak i Formannskapet",
+            1,
+            0
+          ],
+          [
+            "Vedtak om reduksjon av elbilrabatt",
+            1,
+            0
+          ],
+          [
+            "Innføring av ny elbilrabatt fra 30.06.2026",
+            1,
+            0
+          ],
+          [
+            "Behandling i Formannskapet i møte 11.06.2024 sak 86/24",
+            1,
+            0
+          ],
+          [
+            "Behandling i Kommune- og byutviklingsutvalget",
+            1,
+            0
+          ],
+          [
+            "Reduksjon av elbilrabatt fra 50% til 30%",
+            1,
+            0
+          ],
+          [
+            "Behandling i Kommunestyret",
+            1,
+            0
+          ]
+        ],
+        "viktige_tidspunkter": [
+          [
+            "11.06.2024",
+            6,
+            0
+          ],
+          [
+            "30.06.2026",
+            6,
+            0
+          ],
+          [
+            "19.06.2024",
+            4,
+            0
+          ],
+          [
+            "05.06.2024",
+            2,
+            0
+          ],
+          [
+            "06.06.2024",
+            2,
+            0
+          ]
+        ],
+        "viktige_personer": [],
+        "viktige_organisasjoner": [
+          [
+            "Troms fylkeskommune",
+            6,
+            0
+          ],
+          [
+            "Bompengeselskapet",
+            5,
+            0
+          ],
+          [
+            "Tromsø kommune",
+            4,
+            0
+          ],
+          [
+            "Formannskapet",
+            3,
+            0
+          ],
+          [
+            "Kommunestyret",
+            2,
+            0
+          ],
+          [
+            "Ap",
+            1,
+            8
+          ],
+          [
+            "Miljø-, idrett-, kultur- og samfunnsutviklingsutvalget",
+            1,
+            0
+          ],
+          [
+            "Rødt",
+            1,
+            0
+          ],
+          [
+            "INP",
+            1,
+            0
+          ],
+          [
+            "MDG",
+            1,
+            0
+          ],
+          [
+            "Høyre",
+            1,
+            0
+          ],
+          [
+            "FrP",
+            1,
+            0
+          ],
+          [
+            "Kommune- og byutviklingsutvalget",
+            1,
+            0
+          ],
+          [
+            "KrF",
+            1,
+            0
+          ],
+          [
+            "SV",
+            1,
+            0
+          ],
+          [
+            "SP",
+            1,
+            0
+          ]
+        ],
+        "viktige_steder": [
+          [
+            "Tromsø",
+            3,
+            3
+          ],
+          [
+            "Tromsø kommune",
+            3,
+            0
+          ],
+          [
+            "Troms fylkeskommune",
+            1,
+            0
+          ]
+        ]
+      }
+    },
+    {
+      "dokument_id": "b77ddd91-fc69-5067-8457-d9774480c870",
+      "models": [
+        "claude-3-5-haiku-20241022",
+        "deepseek-chat",
+        "gemini-2.5-flash",
+        "gpt-4o-mini",
+        "mistral-medium-latest",
+        "qwen-flash"
+      ],
+      "properties": {
+        "hva_saken_gjelder": [
+          [
+            "Godkjenning av innkalling og saksliste for kommunestyremøte"
+          ],
+          [
+            "Godkjenning av innkalling og saksliste for Heradsstyret med endringer og merknader."
+          ],
+          [
+            "Godkjenning av innkalling og saksliste for Heradsstyret, inkludert et endringsforslag om å trekke sak 65 og en oppdatering om Fotlandsvåg skule."
+          ],
+          [
+            "Godkjenning av innkalling og saksliste for Heradsstyret."
+          ],
+          [
+            "Godkjenning av innkalling og saksliste for Heradsstyret"
+          ],
+          [
+            "Godkjenning av innkalling og saksliste for Heradsstyret, med endringer basert på vedtak i Levekårsutvalet og oppdatering om Fotlandsvåg skule."
+          ]
+        ],
+        "tema": [
+          [
+            "Møteadministrasjon",
+            "Politisk saksbehandling"
+          ],
+          [
+            "Kommunal styring",
+            "Møteadministrasjon",
+            "Politisk behandling"
+          ],
+          [
+            "Møtebehandling",
+            "Saksliste",
+            "Innkalling",
+            "Vedtak",
+            "Politisk prosess",
+            "Skole",
+            "Levekår"
+          ],
+          [
+            "Utdanning",
+            "Politikk",
+            "Kommunal forvaltning"
+          ],
+          [
+            "Kommunal administrasjon",
+            "Politisk prosess",
+            "Utdanning",
+            "Levekår"
+          ],
+          [
+            "Utdanning",
+            "Kommunal planlegging",
+            "Administrativ prosess",
+            "Styre- og beslutningsprosesser"
+          ]
+        ],
+        "viktige_hendelser": [
+          [
+            "Endringsforslag om å trekke sak 65",
+            "Votering over endringsforslag"
+          ],
+          [
+            "Votering om endringsforslag",
+            "Godkjenning av innkalling og saksliste"
+          ],
+          [
+            "Handsaming i Heradsstyret",
+            "Ønske om oppdatering om Fotlandsvåg skule",
+            "Endringsforslag fra Kjersti Vevatne",
+            "Votering over endringsforslag",
+            "Vedtak i Levekårsutvalet om å trekke sak 65",
+            "Godkjenning av innkalling og saksliste"
+          ],
+          [
+            "Oppdatering om Fotlandsvåg skule",
+            "Vedtak i Levekårsutvalet"
+          ],
+          [
+            "Handsaming i Heradsstyret",
+            "Votering om endringsforslag",
+            "Vedtak i Heradsstyret"
+          ],
+          [
+            "Oppdatering om Fotlandsvåg skule foreslått av Bjarte Aarland (KrF)",
+            "Endringsforslag fra Kjersti Vevatne (V) om sak 65",
+            "Votering i Heradsstyret den 19.06.2025",
+            "Trekking av sak 65 i tråd med vedtak i Levekårsutvalet"
+          ]
+        ],
+        "viktige_tidspunkter": [
+          [
+            "19.06.2025"
+          ],
+          [
+            "19.06.2025"
+          ],
+          [
+            "19.06.2025"
+          ],
+          [
+            "19.06.2025"
+          ],
+          [
+            "19.06.2025"
+          ],
+          [
+            "19.06.2025"
+          ]
+        ],
+        "viktige_personer": [
+          [
+            "Bjarte Aarland",
+            "Kjersti Vevatne",
+            "Herdis Helle",
+            "Ann Helen Solberg",
+            "Kim Andre Hartveit",
+            "Kurt Ove Øksnes",
+            "Ragnar J Tyssebotn",
+            "Ruben Nielsen",
+            "Sigmund Arve Faugstad",
+            "Aksel Mjøs",
+            "Roald Waldemar Martinsen",
+            "Atle Solberg",
+            "Tor Georg Hella",
+            "Stian Torp",
+            "Bjarte Hammer Aarland",
+            "Jarle Skeidsvoll",
+            "Alexander Thunestvedt",
+            "Ann Kristin Borge",
+            "Geir Olsen",
+            "Roy Husebø",
+            "Frode Flesland",
+            "Gerd Karin Njaastad",
+            "Helge Valestrand Edvardsdal",
+            "Johannes Haugland",
+            "Kjellaug Hartveit",
+            "Lars Fjeldstad",
+            "Turid Bjørndal Njåstad"
+          ],
+          [
+            "Bjarte Aarland",
+            "Kjersti Vevatne",
+            "Herdis Helle",
+            "Ann Helen Solberg",
+            "Kim Andre Hartveit",
+            "Kurt Ove Øksnes",
+            "Ragnar J Tyssebotn",
+            "Ruben Nielsen",
+            "Sigmund Arve Faugstad",
+            "Aksel Mjøs",
+            "Roald Waldemar Martinsen",
+            "Atle Solberg",
+            "Tor Georg Hella",
+            "Stian Torp",
+            "Bjarte Hammer Aarland",
+            "Jarle Skeidsvoll",
+            "Kjersti Ingolvsdotter Vevatne",
+            "Alexander Thunestvedt",
+            "Ann Kristin Borge",
+            "Geir Olsen",
+            "Roy Husebø",
+            "Frode Flesland",
+            "Gerd Karin Njaastad",
+            "Helge Valestrand Edvardsdal",
+            "Johannes Haugland",
+            "Kjellaug Hartveit",
+            "Lars Fjeldstad",
+            "Turid Bjørndal Njåstad"
+          ],
+          [
+            "Bjarte Aarland",
+            "Kjersti Vevatne",
+            "Herdis Helle",
+            "Ann Helen Solberg",
+            "Kim Andre Hartveit",
+            "Kurt Ove Øksnes",
+            "Ragnar J Tyssebotn",
+            "Ruben Nielsen",
+            "Sigmund Arve Faugstad",
+            "Aksel Mjøs",
+            "Roald Waldemar Martinsen",
+            "Atle Solberg",
+            "Tor Georg Hella",
+            "Stian Torp",
+            "Bjarte Hammer Aarland",
+            "Jarle Skeidsvoll",
+            "Kjersti Ingolvsdotter Vevatne",
+            "Alexander Thunestvedt",
+            "Ann Kristin Borge",
+            "Geir Olsen",
+            "Roy Husebø",
+            "Frode Flesland",
+            "Gerd Karin Njaastad",
+            "Helge Valestrand Edvardsdal",
+            "Johannes Haugland",
+            "Kjellaug Hartveit",
+            "Lars Fjeldstad",
+            "Turid Bjørndal Njåstad"
+          ],
+          [
+            "Bjarte Aarland",
+            "Kjersti Vevatne",
+            "Herdis Helle",
+            "Ann Helen Solberg",
+            "Kim Andre Hartveit",
+            "Kurt Ove Øksnes",
+            "Ragnar J Tyssebotn",
+            "Ruben Nielsen",
+            "Sigmund Arve Faugstad",
+            "Aksel Mjøs",
+            "Roald Waldemar Martinsen",
+            "Atle Solberg",
+            "Tor Georg Hella",
+            "Stian Torp",
+            "Bjarte Hammer Aarland",
+            "Jarle Skeidsvoll",
+            "Kjersti Ingolvsdotter Vevatne",
+            "Alexander Thunestvedt",
+            "Ann Kristin Borge",
+            "Geir Olsen",
+            "Roy Husebø",
+            "Frode Flesland",
+            "Gerd Karin Njaastad",
+            "Helge Valestrand Edvardsdal",
+            "Johannes Haugland",
+            "Kjellaug Hartveit",
+            "Lars Fjeldstad",
+            "Turid Bjørndal Njåstad"
+          ],
+          [
+            "Bjarte Aarland",
+            "Kjersti Vevatne",
+            "Herdis Helle",
+            "Ann Helen Solberg",
+            "Kim Andre Hartveit",
+            "Kurt Ove Øksnes",
+            "Ragnar J Tyssebotn",
+            "Ruben Nielsen",
+            "Sigmund Arve Faugstad",
+            "Aksel Mjøs",
+            "Roald Waldemar Martinsen",
+            "Atle Solberg",
+            "Tor Georg Hella",
+            "Stian Torp",
+            "Bjarte Hammer Aarland",
+            "Jarle Skeidsvoll",
+            "Kjersti Ingolvsdotter Vevatne",
+            "Alexander Thunestvedt",
+            "Ann Kristin Borge",
+            "Geir Olsen",
+            "Roy Husebø",
+            "Frode Flesland",
+            "Gerd Karin Njaastad",
+            "Helge Valestrand Edvardsdal",
+            "Johannes Haugland",
+            "Kjellaug Hartveit",
+            "Lars Fjeldstad",
+            "Turid Bjørndal Njåstad"
+          ],
+          [
+            "Bjarte Aarland",
+            "Kjersti Vevatne"
+          ]
+        ],
+        "viktige_organisasjoner": [
+          [
+            "Heradsstyret",
+            "Levekårsutvalet"
+          ],
+          [
+            "Heradsstyret",
+            "Levekårsutvalet"
+          ],
+          [
+            "Heradsstyret",
+            "Levekårsutvalet",
+            "KrF",
+            "V",
+            "AP",
+            "FrP",
+            "H",
+            "INP",
+            "SP"
+          ],
+          [
+            "Heradsstyret",
+            "Levekårsutvalet"
+          ],
+          [
+            "Heradsstyret",
+            "Levekårsutvalet"
+          ],
+          [
+            "Heradsstyret",
+            "Levekårsutvalet"
+          ]
+        ],
+        "viktige_steder": [
+          [
+            "Osterøy"
+          ],
+          [
+            "Fotlandsvåg skule"
+          ],
+          [
+            "Fotlandsvåg skule",
+            "Osterøy"
+          ],
+          [
+            "Fotlandsvåg skule"
+          ],
+          [
+            "Fotlandsvåg skule"
+          ],
+          [
+            "Fotlandsvåg"
+          ]
+        ]
+      },
+      "counts": {
+        "tema": [
+          [
+            "Utdanning",
+            3,
+            0
+          ],
+          [
+            "Levekår",
+            2,
+            0
+          ],
+          [
+            "Politisk prosess",
+            2,
+            0
+          ],
+          [
+            "Møteadministrasjon",
+            2,
+            0
+          ],
+          [
+            "Kommunal planlegging",
+            1,
+            0
+          ],
+          [
+            "Kommunal administrasjon",
+            1,
+            0
+          ],
+          [
+            "Styre- og beslutningsprosesser",
+            1,
+            0
+          ],
+          [
+            "Innkalling",
+            1,
+            0
+          ],
+          [
+            "Politisk behandling",
+            1,
+            0
+          ],
+          [
+            "Vedtak",
+            1,
+            0
+          ],
+          [
+            "Skole",
+            1,
+            0
+          ],
+          [
+            "Politikk",
+            1,
+            0
+          ],
+          [
+            "Kommunal forvaltning",
+            1,
+            0
+          ],
+          [
+            "Administrativ prosess",
+            1,
+            0
+          ],
+          [
+            "Politisk saksbehandling",
+            1,
+            0
+          ],
+          [
+            "Saksliste",
+            1,
+            0
+          ],
+          [
+            "Møtebehandling",
+            1,
+            0
+          ],
+          [
+            "Kommunal styring",
+            1,
+            0
+          ]
+        ],
+        "viktige_hendelser": [
+          [
+            "Votering over endringsforslag",
+            2,
+            0
+          ],
+          [
+            "Handsaming i Heradsstyret",
+            2,
+            0
+          ],
+          [
+            "Godkjenning av innkalling og saksliste",
+            2,
+            0
+          ],
+          [
+            "Votering om endringsforslag",
+            2,
+            0
+          ],
+          [
+            "Oppdatering om Fotlandsvåg skule",
+            1,
+            2
+          ],
+          [
+            "Vedtak i Levekårsutvalet",
+            1,
+            2
+          ],
+          [
+            "Endringsforslag fra Kjersti Vevatne",
+            1,
+            1
+          ],
+          [
+            "Endringsforslag fra Kjersti Vevatne (V) om sak 65",
+            1,
+            0
+          ],
+          [
+            "Ønske om oppdatering om Fotlandsvåg skule",
+            1,
+            0
+          ],
+          [
+            "Vedtak i Levekårsutvalet om å trekke sak 65",
+            1,
+            0
+          ],
+          [
+            "Vedtak i Heradsstyret",
+            1,
+            0
+          ],
+          [
+            "Trekking av sak 65 i tråd med vedtak i Levekårsutvalet",
+            1,
+            0
+          ],
+          [
+            "Oppdatering om Fotlandsvåg skule foreslått av Bjarte Aarland (KrF)",
+            1,
+            0
+          ],
+          [
+            "Endringsforslag om å trekke sak 65",
+            1,
+            0
+          ],
+          [
+            "Votering i Heradsstyret den 19.06.2025",
+            1,
+            0
+          ]
+        ],
+        "viktige_tidspunkter": [
+          [
+            "19.06.2025",
+            6,
+            0
+          ]
+        ],
+        "viktige_personer": [
+          [
+            "Kjersti Vevatne",
+            6,
+            0
+          ],
+          [
+            "Bjarte Aarland",
+            6,
+            0
+          ],
+          [
+            "Kim Andre Hartveit",
+            5,
+            0
+          ],
+          [
+            "Geir Olsen",
+            5,
+            0
+          ],
+          [
+            "Sigmund Arve Faugstad",
+            5,
+            0
+          ],
+          [
+            "Stian Torp",
+            5,
+            0
+          ],
+          [
+            "Frode Flesland",
+            5,
+            0
+          ],
+          [
+            "Tor Georg Hella",
+            5,
+            0
+          ],
+          [
+            "Bjarte Hammer Aarland",
+            5,
+            0
+          ],
+          [
+            "Ruben Nielsen",
+            5,
+            0
+          ],
+          [
+            "Kurt Ove Øksnes",
+            5,
+            0
+          ],
+          [
+            "Roald Waldemar Martinsen",
+            5,
+            0
+          ],
+          [
+            "Kjellaug Hartveit",
+            5,
+            0
+          ],
+          [
+            "Atle Solberg",
+            5,
+            0
+          ],
+          [
+            "Alexander Thunestvedt",
+            5,
+            0
+          ],
+          [
+            "Turid Bjørndal Njåstad",
+            5,
+            0
+          ],
+          [
+            "Ann Helen Solberg",
+            5,
+            0
+          ],
+          [
+            "Roy Husebø",
+            5,
+            0
+          ],
+          [
+            "Aksel Mjøs",
+            5,
+            0
+          ],
+          [
+            "Lars Fjeldstad",
+            5,
+            0
+          ],
+          [
+            "Helge Valestrand Edvardsdal",
+            5,
+            0
+          ],
+          [
+            "Ragnar J Tyssebotn",
+            5,
+            0
+          ],
+          [
+            "Herdis Helle",
+            5,
+            0
+          ],
+          [
+            "Gerd Karin Njaastad",
+            5,
+            0
+          ],
+          [
+            "Johannes Haugland",
+            5,
+            0
+          ],
+          [
+            "Ann Kristin Borge",
+            5,
+            0
+          ],
+          [
+            "Jarle Skeidsvoll",
+            5,
+            0
+          ],
+          [
+            "Kjersti Ingolvsdotter Vevatne",
+            4,
+            0
+          ]
+        ],
+        "viktige_organisasjoner": [
+          [
+            "Levekårsutvalet",
+            6,
+            0
+          ],
+          [
+            "Heradsstyret",
+            6,
+            0
+          ],
+          [
+            "V",
+            1,
+            6
+          ],
+          [
+            "H",
+            1,
+            6
+          ],
+          [
+            "AP",
+            1,
+            0
+          ],
+          [
+            "INP",
+            1,
+            0
+          ],
+          [
+            "FrP",
+            1,
+            0
+          ],
+          [
+            "KrF",
+            1,
+            0
+          ],
+          [
+            "SP",
+            1,
+            0
+          ]
+        ],
+        "viktige_steder": [
+          [
+            "Fotlandsvåg skule",
+            4,
+            0
+          ],
+          [
+            "Osterøy",
+            2,
+            0
+          ],
+          [
+            "Fotlandsvåg",
+            1,
+            4
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -4,4 +4,11 @@ venv/
 *~
 OLD/
 model_fine_tuning/models/
+model_fine_tuning/scripts/learning_curve.png
 model_fine_tuning_olivia/models/
+model_fine_tuning_olivia/scripts/finetune_ajay.py
+model_fine_tuning_olivia/learning_curve_from_olivia_with_gradient_explosion_epoch4-06.png
+model_fine_tuning_olivia/learning_curve_from_olivia_test_with_validation_error.png
+model_fine_tuning_olivia/gpu-finetune-apptainer-13816.err
+model_fine_tuning_olivia/from_vinay.sbatch
+model_fine_tuning/scripts/finetune-WORKING-WITH-EVALUATION.py
