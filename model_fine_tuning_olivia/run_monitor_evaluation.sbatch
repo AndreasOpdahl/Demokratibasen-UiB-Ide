@@ -14,7 +14,7 @@ set -euo pipefail
 
 # ===== CONFIGURATION =====
 # These should match your training script
-MODEL=viking-7b
+MODEL=gemma-2-9b
 OUTPUT_DIR="models/${MODEL}-apptainer-fsdp"
 VAL_DATASET="data/output/new_processed_data_val.jsonl"
 CHECK_INTERVAL=60  # Check every 60 seconds

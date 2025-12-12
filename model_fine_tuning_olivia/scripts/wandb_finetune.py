@@ -9,7 +9,8 @@ Usage:
     --quantization 4bit \\
     --train_dataset data/train.jsonl \\
     --val_dataset data/val.jsonl \\
-    --output_dir models/gemma_2b_4bit
+    --output_dir models/gemma_2b_4bit \\
+    --hf_token YOUR_TOKEN
   
   # Single GPU without quantization with custom hyperparameters:
   python finetune.py \\
@@ -20,7 +21,8 @@ Usage:
     --output_dir models/gemma_7b \\
     --max_steps 1200 \\
     --train_batch_size 4 \\
-    --val_steps 100
+    --val_steps 100 \\
+    --hf_token YOUR_TOKEN
   
   # Multi-GPU DDP training with torchrun:
   torchrun --nproc_per_node=2 finetune.py \\
@@ -57,18 +59,18 @@ Important Notes:
 
 import argparse
 import glob
-import importlib
 import json
-import math
 import os
+import random
 import sys
 import importlib
 import math
 import time
 from typing import Any, Dict, Optional, Tuple, Union
-
+import wandb
 import numpy as np
 import pandas as pd
+
 import evaluate
 from datasets import Dataset
 from huggingface_hub import login
@@ -124,20 +126,7 @@ from model_configs import (
 )
 
 
-# Default TEST VALUES for hyperparameters when command-line args are not supplied
-TRAIN_BATCH_SIZE = 1
-MAX_TRAIN_STEPS = 60  # ignored if NUM_TRAIN_EPOCHS is set
-NUM_TRAIN_EPOCHS = None  # ignored if MAX_TRAIN_STEPS is set
-VAL_BATCH_SIZE = 4
-VAL_DATA_SIZE = 8  # multiple of batch size
-VAL_BEAM_SIZE = 4  # beam size for evaluation
-VAL_STEPS = 20  # multiple of save_steps
-SAVE_STRATEGY = "steps"
-SAVE_STEPS = 10
-SAVE_TOTAL_LIMIT = 10
-
-
-# Default values for training data preparation
+# Default values when command-line args are not supplied
 MAX_INPUT_TEXT_TOKENS = 2048  # max tokens for input to summarisation
 MAX_EXTRA_PROMPT_TOKENS = 40  # max extra tokens for input prompt (the task description)
 MAX_INPUT_PROMPT_TOKENS = MAX_INPUT_TEXT_TOKENS + MAX_EXTRA_PROMPT_TOKENS
@@ -342,6 +331,7 @@ class CausalLMTrainer(Trainer):
 def load_model_with_optional_quantization(
     model_name: str,
     quantization: str,
+    hf_token: Optional[str] = None,
     use_ddp: bool = False,
     use_fsdp: bool = False
 ):
@@ -350,11 +340,9 @@ def load_model_with_optional_quantization(
     Args:
         model_name: Model identifier (e.g., 'google/gemma-2b')
         quantization: One of 'none', '4bit', '8bit'
+        hf_token: Hugging Face token for private models
         use_ddp: Whether to use DDP (Distributed Data Parallel) training (removes device_map)
         use_fsdp: Whether to use FSDP (Fully Sharded Data Parallel) training (removes device_map)
-    
-    Note:
-        HuggingFace token is read from HF_TOKEN environment variable
     
     Returns:
         Loaded model
@@ -509,6 +497,7 @@ def fine_tune_model(
     quantization: str = 'none',
     max_steps: Optional[int] = None,
     num_train_epochs: Optional[int] = None,
+    hf_token: Optional[str] = None,
     use_ddp: bool = False,
     use_fsdp: bool = False,
     max_input_text_tokens: int = MAX_INPUT_TEXT_TOKENS,
@@ -519,9 +508,6 @@ def fine_tune_model(
     val_data_size: int = VAL_DATA_SIZE,
     val_beam_size: int = VAL_BEAM_SIZE,
     val_steps: int = VAL_STEPS,
-    save_strategy: str = SAVE_STRATEGY,
-    save_steps: int = SAVE_STEPS,
-    save_total_limit: int = SAVE_TOTAL_LIMIT,
     resume_checkpoint: Optional[str] = None,
 ):
     """Fine-tune a language model with LoRA.
@@ -534,11 +520,9 @@ def fine_tune_model(
         quantization: Quantization method ('none', '4bit', '8bit')
         max_steps: Maximum training steps (overrides num_train_epochs if set)
         num_train_epochs: Number of training epochs
+        hf_token: Hugging Face authentication token
         use_ddp: Whether to enable DDP (Distributed Data Parallel) multi-GPU training
         use_fsdp: Whether to enable FSDP (Fully Sharded Data Parallel) multi-GPU training
-    
-    Note:
-        HuggingFace token is read from HF_TOKEN or HUGGINGFACE_TOKEN environment variable
     """
     
     def compute_metrics(eval_pred):
@@ -555,21 +539,17 @@ def fine_tune_model(
         # Replace -100 and pad tokens so we can decode properly
         labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
         
-        # Are we using 4-bit quantization?
-        if quantization == '4bit':
-            print('*** evaluation: using 4-bit quantization ***')
-
-            # Fix for 4-bit quantization: clip token IDs to valid vocabulary range
-            # This prevents OverflowError during decoding when quantization causes out-of-range values
-            vocab_size = tokenizer.vocab_size
-            print(f'*** evaluation: vocab size: {vocab_size} ***')
-            
-            # Clip predictions to valid token ID range [0, vocab_size)
-            # Replace any invalid values with pad_token_id
-            preds = np.clip(preds, 0, vocab_size - 1)
-            
-            # Also ensure labels are in valid range
-            labels = np.clip(labels, 0, vocab_size - 1)
+        # Fix for 4-bit quantization: clip token IDs to valid vocabulary range
+        # This prevents OverflowError during decoding when quantization causes out-of-range values
+        vocab_size = tokenizer.vocab_size
+        print(f'*** Vocab size: {vocab_size} ***')
+        
+        # Clip predictions to valid token ID range [0, vocab_size)
+        # Replace any invalid values with pad_token_id
+        preds = np.clip(preds, 0, vocab_size - 1)
+        
+        # Also ensure labels are in valid range
+        labels = np.clip(labels, 0, vocab_size - 1)
         
         # Decode predictions and labels
         decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
@@ -579,15 +559,11 @@ def fine_tune_model(
         decoded_preds = [p.strip() for p in decoded_preds]
         decoded_labels = [l.strip() for l in decoded_labels]
         
-        # Print first 5 examples
-        num_examples_to_show = min(5, len(decoded_preds))
-        if num_examples_to_show > 0:
-            print(f'\n*** Showing first {num_examples_to_show} examples ***')
-            for i in range(num_examples_to_show):
-                print(f'\n--- Example {i+1} ---')
-                print(f'Prediction: {decoded_preds[i][:200]}...')
-                print(f'Reference:  {decoded_labels[i][:200]}...')
-            print()
+        # Debug: print first example
+        if len(decoded_preds) > 0:
+            print(f'\n*** Example 1 ***')
+            print(f'Prediction: {decoded_preds[0][:200]}...')
+            print(f'Reference:  {decoded_labels[0][:200]}...\n')
 
         scores = rouge.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
         print('*** evaluation: computed_metrics ***', scores)
@@ -752,7 +728,7 @@ def fine_tune_model(
     # Load model with optional quantization
     try:
         model = load_model_with_optional_quantization(
-            model_name, quantization, use_ddp=use_ddp, use_fsdp=use_fsdp
+            model_name, quantization, hf_token, use_ddp=use_ddp, use_fsdp=use_fsdp
         )
     except Exception as e:
         print(f"Error loading model: {e}")
@@ -807,93 +783,6 @@ def fine_tune_model(
             # Fallback to default format
             text = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n{example['output']}\n\n###\n"
             return {"text": text}
-
-    def tokenize_function_train(examples):
-        # Tokenize the full text first to ensure consistent tokenization
-        max_input_prompt_tokens = max_input_text_tokens + max_extra_prompt_tokens
-        max_total_length = max_input_prompt_tokens + max_output_summary_tokens
-        
-        # Tokenize full sequences
-        tokenized_full = tokenizer(
-            examples["text"],
-            truncation=True,
-            max_length=max_total_length,
-            padding=False,
-            add_special_tokens=True
-        )
-        
-        # Find prompt boundaries by matching prompt tokens in full sequence
-        # Extract prompt portions to tokenize separately
-        prompts_only = []
-        for text in examples["text"]:
-            # Extract prompt portion (everything before the output)
-            prompt = text.split("Oppsummering:\n\n###\n\n")[0] + "Oppsummering:\n\n###\n\n"
-            prompts_only.append(prompt)
-        
-        tokenized_prompts = tokenizer(
-            prompts_only,
-            truncation=True,
-            max_length=max_input_prompt_tokens,
-            padding=False,
-            add_special_tokens=True
-        )
-        
-        # Create labels: mask prompt tokens, keep target tokens
-        input_ids = []
-        attention_mask = []
-        labels = []
-        
-        for i in range(len(tokenized_full["input_ids"])):
-            full_ids = tokenized_full["input_ids"][i]
-            prompt_ids = tokenized_prompts["input_ids"][i]
-            
-            # Find where prompt ends in full sequence by actually matching tokens
-            # Tokenize separately can differ, so we need to find the actual match point
-            prompt_len = len(prompt_ids)
-            
-            # Try to find where prompt tokens match in full sequence
-            # Check if prompt tokens match at the start of full_ids
-            if prompt_len <= len(full_ids):
-                # Try to match tokens from the beginning
-                match_count = 0
-                for j in range(min(prompt_len, len(full_ids))):
-                    if j < len(prompt_ids) and j < len(full_ids) and prompt_ids[j] == full_ids[j]:
-                        match_count += 1
-                    else:
-                        break
-                
-                # Use the matched length (or minimum if mismatch found)
-                # This handles cases where tokenization differs slightly
-                prompt_len = match_count if match_count > 0 else min(prompt_len, len(full_ids))
-            else:
-                # Full sequence was truncated more than prompt, mask everything
-                prompt_len = len(full_ids)
-            
-            # Create labels: mask prompt tokens with -100, keep target tokens
-            combined_labels = [-100] * prompt_len + full_ids[prompt_len:]
-            
-            # Safety check: ensure labels length matches input_ids length
-            if len(combined_labels) != len(full_ids):
-                # This should never happen, but handle it gracefully
-                if len(combined_labels) < len(full_ids):
-                    # Pad labels if somehow shorter
-                    combined_labels.extend([-100] * (len(full_ids) - len(combined_labels)))
-                else:
-                    # Truncate if somehow longer (shouldn't happen)
-                    combined_labels = combined_labels[:len(full_ids)]
-            
-            input_ids.append(full_ids)
-            attention_mask.append([1] * len(full_ids))
-            labels.append(combined_labels)
-        
-        return {
-            "input_ids": input_ids,
-            "attention_mask": attention_mask,
-            "labels": labels
-        }
-
-    formatted_dataset = train_dataset.map(format_example_train)
-    tokenized_dataset = formatted_dataset.map(tokenize_function_train, batched=True)
 
     def format_example_eval(example):
         """Format evaluation example with model-specific prompt template."""
@@ -1024,6 +913,7 @@ def fine_tune_model(
     # For EVALUATION: use custom collator that pads both input_ids and labels
     eval_data_collator = EvalDataCollator(tokenizer=tokenizer)
 
+    print("--- VIKING DEBUGGING ---")
     # Method 1: Print the model and look for the layer class names
     print(model)
 
@@ -1057,30 +947,15 @@ def fine_tune_model(
     # Apply LoRA adapters
     model = get_peft_model(model, lora_config)
     model.print_trainable_parameters()
-    
-    # Debug: Print layer class names for FSDP configuration
-    print("\n=== Model Layer Classes (for FSDP debugging) ===")
-    layer_classes = set()
-    for name, module in model.named_modules():
-        layer_classes.add(type(module).__name__)
-    decoder_layers = [cls for cls in layer_classes if 'Decoder' in cls or 'Layer' in cls]
-    print(f"Decoder/Layer classes found: {sorted(decoder_layers)}")
-    print("=" * 50 + "\n")
 
     # Resolve resume checkpoint directory (if provided)
     resolved_resume_checkpoint: Optional[str] = None
-    print(f"\n=== CHECKPOINT RESUMPTION DEBUG ===")
-    print(f"resume_checkpoint argument: {repr(resume_checkpoint)}")
-    print(f"output_dir: {output_dir}")
-    print(f"Current working directory: {os.getcwd()}")
     if resume_checkpoint:
         resume_checkpoint = resume_checkpoint.strip()
-        print(f"After strip: {repr(resume_checkpoint)}")
+        print(resume_checkpoint)
         if resume_checkpoint.lower() == "latest":
-            search_path = os.path.join(output_dir, "checkpoint-*")
-            print(f"Searching for checkpoints at: {search_path}")
-            candidate_paths = glob.glob(search_path)
-            print(f"LATEST CANDIDATE PATHS: {candidate_paths}")
+            candidate_paths = glob.glob(os.path.join(output_dir, "checkpoint-*"))
+            print("LATEST CANDIDATE PATHS", candidate_paths)
             if not candidate_paths:
                 print(f"WARNING: resume_checkpoint=latest requested but no checkpoints found in {output_dir}")
             else:
@@ -1169,7 +1044,7 @@ def fine_tune_model(
         train_steps = max_steps
         print(f"Training for {max_steps} steps (epochs ignored)")
     else:
-        train_epochs = num_train_epochs if num_train_epochs is not None else 1
+        train_epochs = num_train_epochs if num_train_epochs is not None else MAX_EPOCHS
         train_steps = -1  # -1 means "use epochs instead"
         print(f"Training for {train_epochs} epochs")
 
@@ -1208,9 +1083,9 @@ def fine_tune_model(
         # Validate + save on a schedule (disabled for FSDP due to generation incompatibility)
         eval_strategy="steps" if eval_enabled else "no",
         eval_steps=val_steps if eval_enabled else None,
-        save_strategy=save_strategy,
-        save_steps=save_steps,
-        save_total_limit=save_total_limit,  # keep disk usage sane
+        save_strategy="steps",
+        save_steps=val_steps,
+        save_total_limit=10,  # keep disk usage sane
 
         # Pick the best checkpoint and restore it at the end (only if eval enabled)
         load_best_model_at_end=eval_enabled,
@@ -1412,7 +1287,7 @@ Examples:
   python finetune.py --model gemma-2b --quantization none --max_steps 1200 --hf_token YOUR_TOKEN
 
   # Without quantization, train for epochs:
-  python finetune.py --model gemma-2b --quantization none --num_train_epochs 3
+  python finetune.py --model gemma-2b --quantization none --num_train_epochs 3 --hf_token YOUR_TOKEN
         """
     )
     
@@ -1432,7 +1307,12 @@ Examples:
                        help='Path to validation dataset (JSONL format)')
     parser.add_argument('--output_dir', type=str,
                        help='Output directory for the fine-tuned model')
-    # HF_TOKEN is now read from environment variable (HF_TOKEN or HUGGINGFACE_TOKEN)
+    parser.add_argument('--max_steps', type=int, default=None,
+                       help='Maximum training steps (overrides num_train_epochs if set)')
+    parser.add_argument('--num_train_epochs', type=int, default=None,
+                       help=f'Number of training epochs (default: {MAX_EPOCHS}, ignored if max_steps is set)')
+    parser.add_argument('--hf_token', type=str,
+                       help='Hugging Face authentication token for private models')
     parser.add_argument('--ddp', action='store_true',
                        help='Enable DDP (Distributed Data Parallel) multi-GPU training. Auto-detected if launched with torchrun.')
     parser.add_argument('--fsdp', action='store_true',
@@ -1449,10 +1329,6 @@ Examples:
                        help=f'Maximum tokens for output summary (default: {MAX_OUTPUT_SUMMARY_TOKENS})')
     parser.add_argument('--train_batch_size', type=int, default=TRAIN_BATCH_SIZE,
                        help=f'Training batch size per device (default: {TRAIN_BATCH_SIZE})')
-    parser.add_argument('--max_steps', type=int, default=MAX_TRAIN_STEPS,
-                       help='Maximum training steps (overrides num_train_epochs if set)')
-    parser.add_argument('--num_train_epochs', type=int, default=None,
-                       help=f'Number of training epochs (default: {NUM_TRAIN_EPOCHS}, ignored if max_steps is set)')
     parser.add_argument('--val_batch_size', type=int, default=VAL_BATCH_SIZE,
                        help=f'Validation batch size per device (default: {VAL_BATCH_SIZE})')
     parser.add_argument('--val_data_size', type=int, default=VAL_DATA_SIZE,
@@ -1461,13 +1337,6 @@ Examples:
                        help=f'Beam size for validation generation (default: {VAL_BEAM_SIZE})')
     parser.add_argument('--val_steps', type=int, default=VAL_STEPS,
                        help=f'Validate and save every N steps (default: {VAL_STEPS})')
-    parser.add_argument('--save_strategy', type=str, default=SAVE_STRATEGY,
-                       choices=['no', 'steps', 'epoch'],
-                       help=f'Checkpoint save strategy (default: {SAVE_STRATEGY})')
-    parser.add_argument('--save_steps', type=int, default=SAVE_STEPS,
-                       help=f'Save a checkpoint every N steps (default: {SAVE_STEPS})')
-    parser.add_argument('--save_total_limit', type=int, default=SAVE_TOTAL_LIMIT,
-                       help=f'Maximum number of checkpoints to keep (default: {SAVE_TOTAL_LIMIT})')
     parser.add_argument('--resume_checkpoint', type=str, default=None,
                        help='Path to a checkpoint directory to resume from. '
                             'Use "latest" to automatically pick the newest checkpoint in the output_dir.')
@@ -1510,6 +1379,7 @@ Examples:
         quantization=args.quantization,
         max_steps=args.max_steps,
         num_train_epochs=args.num_train_epochs,
+        hf_token=args.hf_token,
         use_ddp=args.ddp,
         use_fsdp=args.fsdp,
         max_input_text_tokens=args.max_input_text_tokens,
@@ -1520,9 +1390,6 @@ Examples:
         val_data_size=args.val_data_size,
         val_beam_size=args.val_beam_size,
         val_steps=args.val_steps,
-        save_strategy=args.save_strategy,
-        save_steps=args.save_steps,
-        save_total_limit=args.save_total_limit,
         resume_checkpoint=args.resume_checkpoint,
     )
 

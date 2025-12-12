@@ -16,7 +16,7 @@ set -euo pipefail
 # Set the model and checkpoint directory to evaluate
 # Supported models: gemma-2b, gemma-7b, viking-7b, viking-13b, normistral-7b, normistral-11b,
 #                   norskgpt-llama3-8b, llama-2-13b-chat-norwegian
-MODEL=gemma-7b
+MODEL=llama-2-13b-chat-norwegian
 # Default checkpoint directory pattern (adjust if your naming convention differs)
 CHECKPOINT_BASE_DIR="models/${MODEL}-apptainer-fsdp"  # Directory containing checkpoint-* subdirectories
 VAL_DATASET="data/output/new_processed_data_val.jsonl"  # Match training script
