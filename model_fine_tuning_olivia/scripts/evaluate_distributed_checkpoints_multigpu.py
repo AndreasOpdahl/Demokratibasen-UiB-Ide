@@ -73,6 +73,11 @@ VAL_BATCH_SIZE = 32
 VAL_DATA_SIZE = 500
 VAL_BEAM_SIZE = 4
 
+# Add a custom exception at the top of the file (near other imports)
+class AlreadyEvaluatedError(Exception):
+    """Raised when a checkpoint has already been evaluated (only contains eval_results)."""
+    pass
+
 
 def setup_distributed_evaluation():
     """Check if we should use multi-GPU model parallelism.
@@ -198,15 +203,30 @@ class CausalLMTrainer(Trainer):
 
         # Generate with memory-efficient settings
         with torch.amp.autocast('cuda'):
-            generated_ids = model.generate(
-                input_ids=input_ids,
-                use_cache=True,
-                max_new_tokens=self.generation_max_length,
-                num_beams=1 if self.use_greedy else self.generation_num_beams,
-                do_sample=False,
-                pad_token_id=self._processing_class.pad_token_id,
-                eos_token_id=self._processing_class.eos_token_id,
-            )
+            # Get special token IDs for better stopping
+            inst_token_id = None
+            if hasattr(self._processing_class, 'convert_tokens_to_ids'):
+                try:
+                    inst_token_id = self._processing_class.convert_tokens_to_ids('[/INST]')
+                except:
+                    pass
+            
+            generation_kwargs = {
+                'input_ids': input_ids,
+                'use_cache': True,
+                'max_new_tokens': self.generation_max_length,
+                'num_beams': 1 if self.use_greedy else self.generation_num_beams,
+                'do_sample': False,
+                'pad_token_id': self._processing_class.pad_token_id,
+                'eos_token_id': self._processing_class.eos_token_id,
+            }
+            
+            # Add stop token if found (for chat models)
+            if inst_token_id is not None:
+                # Don't stop on [/INST] during generation, but we'll clean it later
+                pass
+            
+            generated_ids = model.generate(**generation_kwargs)
         
         input_length = input_ids.shape[1]
         generated_ids = generated_ids[:, input_length:]
@@ -265,6 +285,10 @@ def load_model_and_peft_checkpoint(
     
     Returns:
         Loaded model with PEFT adapters
+    
+    Raises:
+        AlreadyEvaluatedError: If checkpoint was already evaluated (only contains eval_results)
+        ValueError: If checkpoint directory is invalid or missing adapter files
     """
     print(f"Loading base model: {model_name}")
     
@@ -372,16 +396,81 @@ def load_model_and_peft_checkpoint(
         else:
             print(f"⚠ WARNING: Base model is only on {unique_devices} - device_map may not have worked!")
     
+    # Convert checkpoint_dir to absolute path to avoid PEFT interpreting it as a repo ID
+    checkpoint_dir = os.path.abspath(checkpoint_dir)
+    
+    # Verify checkpoint directory exists
+    if not os.path.isdir(checkpoint_dir):
+        raise ValueError(f"Checkpoint directory does not exist: {checkpoint_dir}")
+    
+    # Check if this checkpoint was already evaluated (only has eval_results)
+    dir_contents = os.listdir(checkpoint_dir)
+    if len(dir_contents) == 1 and 'eval_results' in dir_contents:
+        eval_results_file = os.path.join(checkpoint_dir, 'eval_results', 'eval_results.json')
+        if os.path.exists(eval_results_file):
+            raise AlreadyEvaluatedError(
+                f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                f"(only contains 'eval_results' with results file). "
+                f"The adapter files may have been cleaned up. Skipping evaluation."
+            )
+    
+    adapter_config_path = os.path.join(checkpoint_dir, "adapter_config.json")
+    adapter_model_path = os.path.join(checkpoint_dir, "adapter_model.safetensors")
+    
+    if not os.path.exists(adapter_config_path):
+        # Check if maybe adapter files are in a parent directory (FSDP might save differently)
+        parent_dir = os.path.dirname(checkpoint_dir)
+        parent_adapter_config = os.path.join(parent_dir, "adapter_config.json")
+        
+        if os.path.exists(parent_adapter_config):
+            print(f"Warning: adapter_config.json not found in {checkpoint_dir}, but found in parent directory.")
+            print(f"Using parent directory: {parent_dir}")
+            checkpoint_dir = parent_dir
+            adapter_config_path = parent_adapter_config
+            adapter_model_path = os.path.join(parent_dir, "adapter_model.safetensors")
+        else:
+            raise ValueError(
+                f"PEFT adapter config not found at {adapter_config_path}. "
+                f"This checkpoint may not be a valid PEFT checkpoint. "
+                f"Files in checkpoint directory: {dir_contents}. "
+                f"Expected files: adapter_config.json, adapter_model.safetensors (or adapter_model.bin)"
+            )
+    
+    if not os.path.exists(adapter_model_path):
+        # Try alternative name
+        adapter_model_path = os.path.join(checkpoint_dir, "adapter_model.bin")
+        if not os.path.exists(adapter_model_path):
+            raise ValueError(
+                f"PEFT adapter weights not found. Expected one of: "
+                f"{os.path.join(checkpoint_dir, 'adapter_model.safetensors')} or "
+                f"{os.path.join(checkpoint_dir, 'adapter_model.bin')}. "
+                f"Files in directory: {os.listdir(checkpoint_dir)}"
+            )
+    
+    print(f"Found PEFT adapter at: {checkpoint_dir}")
+    print(f"  - adapter_config.json: {os.path.exists(adapter_config_path)}")
+    print(f"  - adapter_model: {os.path.basename(adapter_model_path)}")
+    
     print(f"Loading PEFT checkpoint from: {checkpoint_dir}")
     
     # Load PEFT adapter
     # Note: PEFT adapters are small, but the base model should remain split
     # We explicitly pass device_map=None to let PEFT preserve the base model's device_map
-    model = PeftModel.from_pretrained(
-        base_model,
-        checkpoint_dir,
-        is_trainable=False,
-    )
+    # Use absolute path to ensure PEFT treats it as a local path, not a repo ID
+    try:
+        model = PeftModel.from_pretrained(
+            base_model,
+            checkpoint_dir,  # Now an absolute path
+            is_trainable=False,
+        )
+    except ValueError as e:
+        if "Can't find 'adapter_config.json'" in str(e):
+            raise ValueError(
+                f"Failed to load PEFT adapter from {checkpoint_dir}. "
+                f"Make sure this is a valid PEFT checkpoint directory containing adapter_config.json. "
+                f"Original error: {e}"
+            )
+        raise
     
     # CRITICAL: After loading PEFT, verify base model is still split
     # PEFT might have moved things around, so we need to check
@@ -442,9 +531,13 @@ def get_model_batch_size(model_name: str, default_batch_size: int) -> int:
     """Get appropriate batch size based on model size."""
     model_name_lower = model_name.lower()
     
-    # Very large models (13B+) - can use larger batches with model parallelism
+    # Very large models (27B+) - need very small batches even with model parallelism
+    # These models take ~85GB per GPU even when split, leaving little room for batch processing
+    if 'gemma-2-27b' in model_name_lower or 'gemma-3-27b' in model_name_lower or 'viking-33b' in model_name_lower:
+        return min(2, default_batch_size)  # Very small batch for 27B+ models
+    # Large models (13B-20B) - can use larger batches with model parallelism
     # Peak memory usage was only ~19GB, so we have ~80GB headroom
-    if 'viking-13b' in model_name_lower or 'llama-2-13b' in model_name_lower:
+    elif 'viking-13b' in model_name_lower or 'llama-2-13b' in model_name_lower:
         return min(8, default_batch_size)  # Increase from 4 to 8 (2x faster)
     # Large models (7B-11B)
     elif 'gemma-7b' in model_name_lower:
@@ -519,9 +612,25 @@ def evaluate_checkpoint(
         decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
         decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
 
+        # Clean up decoded predictions - remove special tokens and backslashes
+        def clean_text(text):
+            """Clean decoded text by removing special tokens and unwanted characters."""
+            # Remove common chat format tokens
+            text = text.replace('[/INST]', '').replace('[INST]', '')
+            text = text.replace('</s>', '').replace('<s>', '')
+            # Remove backslashes (common issue with Llama-2 chat models)
+            text = text.replace('\\', '')
+            # Remove multiple spaces
+            text = ' '.join(text.split())
+            return text.strip()
+        
+        decoded_preds = [clean_text(p) for p in decoded_preds]
+        decoded_labels = [clean_text(l) for l in decoded_labels]
+        
+        # Additional strip (keep the existing strip)
         decoded_preds = [p.strip() for p in decoded_preds]
         decoded_labels = [l.strip() for l in decoded_labels]
-        
+
         if len(decoded_preds) > 0 and is_main_process:
             print(f'\n*** Example 1 ***')
             print(f'Prediction: {decoded_preds[0][:200]}...')
@@ -626,10 +735,14 @@ def evaluate_checkpoint(
     # Load model with PEFT checkpoint
     if is_main_process:
         print("Loading model with PEFT checkpoint...")
-    model = load_model_and_peft_checkpoint(
-        model_name, checkpoint_dir, hf_token, 
-        use_multi_gpu=use_multi_gpu
-    )
+    try:
+        model = load_model_and_peft_checkpoint(
+            model_name, checkpoint_dir, hf_token, 
+            use_multi_gpu=use_multi_gpu
+        )
+    except AlreadyEvaluatedError:
+        # Re-raise to be caught by the main block
+        raise
     
     # DISABLE gradient checkpointing for evaluation - it's only for training
     # It trades speed for memory, but during inference we want speed
@@ -803,7 +916,9 @@ Examples:
     )
     
     parser.add_argument('--model', type=str, required=True,
-                       choices=['viking-7b', 'viking-13b', 'gemma-2b', 'gemma-7b',
+                       choices=['viking-7b', 'viking-13b', 'viking-33b',
+                                'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
+                                'gemma-3-12b', 'gemma-3-27b',
                                 'normistral-7b', 'normistral-11b',
                                 'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian', 'mt5'],
                        help='Base model that was fine-tuned')
@@ -870,21 +985,19 @@ Examples:
         print("Model loaded successfully! Ready for inference.")
     else:
         # Run evaluation
-        evaluate_checkpoint(
-            model_name=model_name,
-            checkpoint_dir=args.checkpoint_dir,
-            val_dataset_path=args.val_dataset,
-            hf_token=args.hf_token,
-            output_dir=args.output_dir,
-            max_input_text_tokens=args.max_input_text_tokens,
-            max_extra_prompt_tokens=args.max_extra_prompt_tokens,
-            max_output_summary_tokens=args.max_output_summary_tokens,
-            val_batch_size=args.val_batch_size,
-            val_data_size=args.val_data_size,
-            val_beam_size=args.val_beam_size,
-            use_greedy=args.use_greedy,
-            use_multi_gpu=args.use_multi_gpu,  # Remove use_fsdp
-            wandb_project=None if args.wandb_disabled else args.wandb_project,
-            wandb_entity=None if args.wandb_disabled else args.wandb_entity,
-            wandb_disabled=args.wandb_disabled,
-        )
+        try:
+            evaluate_checkpoint(
+                model_name=model_name,
+                checkpoint_dir=args.checkpoint_dir,
+                val_dataset_path=args.val_dataset,
+                hf_token=args.hf_token,
+                output_dir=args.output_dir if args.output_dir else os.path.join(args.checkpoint_dir, "eval_results"),
+                use_multi_gpu=args.use_multi_gpu,
+                wandb_project=args.wandb_project if not args.wandb_disabled else None,
+                wandb_entity=args.wandb_entity,
+                wandb_disabled=args.wandb_disabled,
+            )
+        except AlreadyEvaluatedError as e:
+            print(f"⚠ SKIPPING: {e}")
+            print(f"Checkpoint {args.checkpoint_dir} was already evaluated. Moving to next checkpoint.")
+            sys.exit(0)  # Exit with success code so bash loop continues
