@@ -12,3 +12,6 @@ model_fine_tuning_olivia/learning_curve_from_olivia_test_with_validation_error.p
 model_fine_tuning_olivia/gpu-finetune-apptainer-13816.err
 model_fine_tuning_olivia/from_vinay.sbatch
 model_fine_tuning/scripts/finetune-WORKING-WITH-EVALUATION.py
+datasets_from_demokratibasen/data_collection/entities_themes/extractions-202512/extracted-data
+datasets_from_demokratibasen/data_collection/**/input_files/file-*.json
+datasets_from_demokratibasen/data_collection/**/output_files/file-*.json
