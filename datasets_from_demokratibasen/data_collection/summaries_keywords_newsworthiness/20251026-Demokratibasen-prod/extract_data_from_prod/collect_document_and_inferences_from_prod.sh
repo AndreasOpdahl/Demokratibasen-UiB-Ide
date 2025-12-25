@@ -1,4 +1,4 @@
-CSV_FILE=url_oppsummering.csv
+CSV_FILE=url_oppsummering_from_prod20251215.csv
 REMOTE=demokratibasen-prod
 # REMOTE=demokratibasen-demo
 ssh -T $REMOTE "REMOTE_CSV_FILE='$CSV_FILE' bash -se" << 'EOF'
