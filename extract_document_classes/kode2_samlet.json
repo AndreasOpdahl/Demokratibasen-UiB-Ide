@@ -1,0 +1,150 @@
+[
+  {
+    "kode": "administrativt_vedtak",
+    "beskrivelse": "Formell beslutning eller vedtak fattet av administrativ instans eller politisk organ."
+  },
+  {
+    "kode": "artikkel",
+    "beskrivelse": "Eksternt informasjonsdokument eller nyhetsartikkel om et spesifikt tema."
+  },
+  {
+    "kode": "bilag",
+    "beskrivelse": "Vedlegg som gir tilleggsinformasjon eller dokumentasjon til et hoveddokument."
+  },
+  {
+    "kode": "byggesak",
+    "beskrivelse": "Dokumenter knyttet til søknader, tillatelser, avslag, klager, dispensasjoner og vedtak i byggeprosjekter."
+  },
+  {
+    "kode": "erklæring",
+    "beskrivelse": "Formell skriftlig uttalelse eller bekreftelse, for eksempel nabosamtykke eller standpunktserklæring."
+  },
+  {
+    "kode": "erklaering_fra_nabovarsel",
+    "beskrivelse": "Uttalelse eller svar fra offentlige etater på nabovarsler i byggesaker."
+  },
+  {
+    "kode": "høringsdokument",
+    "beskrivelse": "Dokumenter som inviterer til høring eller presenterer innspill, endringsforslag og sammendrag."
+  },
+  {
+    "kode": "intern_notat",
+    "beskrivelse": "Internt arbeidsdokument eller kommunikasjon—notater, e-poster og statusoppdateringer."
+  },
+  {
+    "kode": "kart",
+    "beskrivelse": "Visuelle fremstillinger av geografisk informasjon som situasjonskart eller plankart."
+  },
+  {
+    "kode": "klage",
+    "beskrivelse": "Formell innvending eller protest mot et vedtak eller handling, inkludert klagesvar."
+  },
+  {
+    "kode": "kompetanse_og_forskning",
+    "beskrivelse": "Offentlige utredninger, rapporter, revisjonsrapporter og faglige analyser."
+  },
+  {
+    "kode": "handlingsplan",
+    "beskrivelse": "Dokument som beskriver mål, strategier og konkrete tiltak for et bestemt område eller prosjekt."
+  },
+  {
+    "kode": "innstilling",
+    "beskrivelse": "Formell anbefaling eller forslag fra en administrasjon, utvalg eller byråd til vedtak."
+  },
+  {
+    "kode": "internkontroll",
+    "beskrivelse": "Dokumentasjon av prosedyrer og tiltak for å sikre etterlevelse av interne krav."
+  },
+  {
+    "kode": "møteagenda",
+    "beskrivelse": "Oversikt over saker og temaer som skal behandles i et møte, inkludert saksliste."
+  },
+  {
+    "kode": "møteprotokoll",
+    "beskrivelse": "Formell protokoll over saksbehandling og vedtak fra et møte (lovpålagt møtedokument)."
+  },
+  {
+    "kode": "møtereferat",
+    "beskrivelse": "Uformelt referat som oppsummerer diskusjoner, beslutninger og oppfølging fra et møte."
+  },
+  {
+    "kode": "offentlig_utredning",
+    "beskrivelse": "Grundig rapport fra regjeringsoppnevnt utvalg eller kommisjon (NOU, offentlige utredninger)."
+  },
+  {
+    "kode": "oppfølgingsrapport",
+    "beskrivelse": "Rapport som beskriver fremdrift og oppfølging av tidligere anbefalinger, vedtak eller prosjekter."
+  },
+  {
+    "kode": "orientering",
+    "beskrivelse": "Skriftlig oppdatering eller informasjon om pågående saker til politiske eller administrative organer."
+  },
+  {
+    "kode": "planverk",
+    "beskrivelse": "Samlebetegnelse for reguleringsplaner, kommunedelplaner, plankart og tilhørende dokumentasjon."
+  },
+  {
+    "kode": "politisk_spørsmål_svar",
+    "beskrivelse": "Spørsmål fra politikere og tilhørende skriftlige svar eller redegjørelser."
+  },
+  {
+    "kode": "presentasjon",
+    "beskrivelse": "PowerPoint eller annet presentasjonsdokument med oppsummering av funn og anbefalinger."
+  },
+  {
+    "kode": "rapport",
+    "beskrivelse": "Generell rapport eller utredning—faglige, tekniske eller økonomiske analyser."
+  },
+  {
+    "kode": "risikoanalyse",
+    "beskrivelse": "Dokument som identifiserer, evaluerer og håndterer risikoer knyttet til et prosjekt eller område."
+  },
+  {
+    "kode": "saksdokument",
+    "beskrivelse": "Dokument som presenterer en sak for behandling—bakgrunn, analyse og forslag til vedtak."
+  },
+  {
+    "kode": "saksprotokoll",
+    "beskrivelse": "Detaljert formell dokumentasjon av beslutninger fra politiske møter eller utvalg."
+  },
+  {
+    "kode": "strategisk_dokument",
+    "beskrivelse": "Overordnet strategi- eller styringsdokument som setter mål og retning for virksomheten."
+  },
+  {
+    "kode": "søknad",
+    "beskrivelse": "Formell henvendelse om tillatelse, tilskudd eller godkjenning (forhåndstilsagn, dispensasjon osv.)."
+  },
+  {
+    "kode": "tegninger",
+    "beskrivelse": "Visuelle eller tekniske tegninger—arkitekt-, situasjons- eller diagramtegninger."
+  },
+  {
+    "kode": "vedlegg",
+    "beskrivelse": "Dokumenter som gir relevant bakgrunnsmateriale til politiske eller administrative saker."
+  },
+  {
+    "kode": "vedtak",
+    "beskrivelse": "Formelle beslutninger fattet av kommunestyre, bystyre eller administrativt organ."
+  },
+  {
+    "kode": "økonomidokument",
+    "beskrivelse": "Dokumenter med økonomisk innhold—budsjetter, kostnadsberegninger, regnskap og økonomiske søknader."
+  },
+  {
+    "kode": "rammetillatelser",
+    "beskrivelse": "Dokumentasjon av formelle rammetillatelser for byggeprosjekter."
+  },
+  {
+    "kode": "dispensasjoner",
+    "beskrivelse": "Søknad om tillatelse til å avvike fra reguleringsbestemmelser eller byggegrenser."
+  },
+  {
+    "kode": "internasjonal",
+    "beskrivelse": "Dokumenter som omhandler kommunens internasjonale forpliktelser og samarbeid."
+  },
+  {
+    "kode": "digitalisering",
+    "beskrivelse": "Dokumenter som beskriver digitaliseringsstrategier, prosjekter og tiltak."
+  }
+]

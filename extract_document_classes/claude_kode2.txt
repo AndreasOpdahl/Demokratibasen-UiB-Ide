@@ -1,0 +1,42 @@
+Basert på gjennomgangen av dokumentkategoriene, har jeg laget følgende liste med koder som dekker bredden av dokumenttyper:
+
+```json
+[
+    {"kode2": "plan", "forklaring": "Dokumenter som beskriver overordnede planer, strategier og retningslinjer for kommunal virksomhet"},
+    {"kode2": "regulering", "forklaring": "Dokumenter knyttet til arealplanlegging, reguleringsplaner og byutvikling"},
+    {"kode2": "byggesak", "forklaring": "Dokumenter som omhandler søknader, tillatelser og prosesser relatert til byggeprosjekter"},
+    {"kode2": "politisk_dokument", "forklaring": "Dokumenter fra politiske møter, vedtak, protokoller og innkallinger"},
+    {"kode2": "høring", "forklaring": "Dokumenter som inviterer til eller presenterer høringsinnspill"},
+    {"kode2": "rapport", "forklaring": "Faglige rapporter som analyserer, evaluerer eller dokumenterer ulike kommunale områder"},
+    {"kode2": "økonomi", "forklaring": "Dokumenter som omhandler budsjett, regnskap, søknader og økonomiske vurderinger"},
+    {"kode2": "teknisk", "forklaring": "Tekniske dokumenter med faglige beregninger, analyser og prosjektbeskrivelser"},
+    {"kode2": "intern_kommunikasjon", "forklaring": "Interne notater, e-poster og korrespondanse mellom kommunale enheter"},
+    {"kode2": "tillatelse", "forklaring": "Formelle tillatelser som rammetillatelser, dispensasjoner og godkjenninger"},
+    {"kode2": "klage", "forklaring": "Dokumenter som inneholder klager, merknader og formelle innsigelser"},
+    {"kode2": "strategi", "forklaring": "Overordnede strategiske dokumenter som definerer mål og retning for kommunen"},
+    {"kode2": "handlingsplan", "forklaring": "Konkrete planer med tiltak for å oppnå spesifikke mål innen ulike kommunale områder"},
+    {"kode2": "kulturminne", "forklaring": "Dokumenter som omhandler kulturarv, bevaring og dokumentasjon av historiske miljøer"},
+    {"kode2": "beredskap", "forklaring": "Dokumenter som beskriver kommunens beredskapsplaner og risikohåndtering"},
+    {"kode2": "sosial", "forklaring": "Dokumenter som omhandler sosiale tjenester, inkludering og velferd"},
+    {"kode2": "helse", "forklaring": "Dokumenter relatert til helsetjenester, samhandling og folkehelse"},
+    {"kode2": "utdanning", "forklaring": "Dokumenter som omhandler skole, barnehage og læring"},
+    {"kode2": "miljø", "forklaring": "Dokumenter som fokuserer på miljø, klima og bærekraft"},
+    {"kode2": "infrastruktur", "forklaring": "Dokumenter som beskriver teknisk infrastruktur, vei, vann og avløp"},
+    {"kode2": "bolig", "forklaring": "Dokumenter som omhandler boligutvikling, boligpolitikk og boligsosiale tiltak"},
+    {"kode2": "næring", "forklaring": "Dokumenter relatert til næringsutvikling, næringspolitikk og lokalt næringsliv"},
+    {"kode2": "kultur", "forklaring": "Dokumenter som omhandler kulturelle aktiviteter, arrangementer og kulturtilbud"},
+    {"kode2": "idrett", "forklaring": "Dokumenter relatert til idrettsanlegg, aktiviteter og idrettspolitikk"},
+    {"kode2": "revisjon", "forklaring": "Dokumenter som gjennomgår kommunens drift, økonomi og tjenestekvalitet"},
+    {"kode2": "samarbeid", "forklaring": "Dokumenter som beskriver samarbeidsavtaler mellom kommunen og andre aktører"},
+    {"kode2": "innbyggerdialog", "forklaring": "Dokumenter som representerer innbyggerforslag, medvirkning og dialog"},
+    {"kode2": "eiendom", "forklaring": "Dokumenter som omhandler kommunal eiendomsforvaltning og -utvikling"},
+    {"kode2": "transport", "forklaring": "Dokumenter relatert til kollektivtrafikk, samferdselsplanlegging og mobilitet"},
+    {"kode2": "universell_utforming", "forklaring": "Dokumenter som fokuserer på tilgjengelighet og inkludering"},
+    {"kode2": "barn_og_unge", "forklaring": "Dokumenter som spesifikt omhandler tiltak og tjenester for barn og unge"},
+    {"kode2": "eldre", "forklaring": "Dokumenter som fokuserer på eldreomsorgen og tilbud til eldre"},
+    {"kode2": "rus_og_psykisk_helse", "forklaring": "Dokumenter som omhandler tjenester og tiltak innen rus og psykisk helse"},
+    {"kode2": "beredskap", "forklaring": "Dokumenter som beskriver kommunens beredskapsplaner og risikohåndtering"},
+    {"kode2": "internasjonal", "forklaring": "Dokumenter som omhandler kommunens internasjonale forpliktelser og samarbeid"},
+    {"kode2": "digitalisering", "forklaring": "Dokumenter som beskriver kommunens digitaliseringsstrategier og -tiltak"}
+]
+```
