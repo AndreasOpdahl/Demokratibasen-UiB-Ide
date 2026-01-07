@@ -15,7 +15,7 @@ from pathlib import Path
 # Add the directory containing this script to the path so we can import dataset_loader
 sys.path.insert(0, str(Path(__file__).parent))
 
-from dataset_loader import DatasetLoader, DatasetAdapter202505
+from loader import DatasetLoader, DatasetAdapter202505
 
 
 def main():

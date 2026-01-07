@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, Tuple, Type, Optional
 from .dataset_adapter_202505 import DatasetAdapter202505
 from .dataset_adapter_202510 import DatasetAdapter202510
+from .dataset_adapter_bergen_2017_2023 import DatasetAdapterBergen2017_2023
 
 
 # Default root path (can be overridden)
@@ -32,6 +33,10 @@ DATASET_REGISTRY: Dict[str, Tuple[str, Type]] = {
     "dataset-202510": (
         "datasets_from_demokratibasen/datasets/dataset_43221_examples/processed_data.jsonl",
         DatasetAdapter202510
+    ),
+    "dataset-Bergen-2017-2023": (
+        "../Kommunebasen-Bergen/ekstraher_tekster_og_typer/dok_tekster",
+        DatasetAdapterBergen2017_2023
     ),
 }
 
@@ -80,14 +85,14 @@ def _find_repo_root(start_path: Path) -> Path:
 
 def get_dataset_path(dataset_name: str, root: Optional[Path] = None) -> Path:
     """
-    Get the full path to a dataset file.
+    Get the full path to a dataset file or directory.
     
     Args:
         dataset_name: Name of the dataset (e.g., "dataset-202505")
         root: Root path for resolving relative paths. If None, tries to find repo root automatically.
         
     Returns:
-        Full path to the dataset file
+        Full path to the dataset file (JSONL) or directory (for datasets with individual JSON files)
         
     Raises:
         ValueError: If dataset name is not in registry or root cannot be determined

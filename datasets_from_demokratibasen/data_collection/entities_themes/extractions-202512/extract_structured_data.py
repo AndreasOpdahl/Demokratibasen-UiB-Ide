@@ -10,14 +10,18 @@ import sys
 import time
 from pathlib import Path
 
+import tiktoken
+
 from llm_adapter import LLMAdapter, get_factory
+from llm_adapter.gpt_factory import estimate_tokens
 from dataset_loader import DatasetLoader
 from create_prompt import Prompt
 
 
 # Control variables (defaults)
 TEMPERATURE = 0.1
-MAX_TOKENS = 4096
+MAX_OUTPUT_TOKENS = 1000  # used by Demokratibasen since 2024-08-29
+MAX_INPUT_TEXT_TOKENS = 2048  # Maximum tokens for document text (prompt tokens are separate)
 
 OUTPUT_BASE_DIR = "extracted-data"
 
@@ -106,6 +110,45 @@ class BadResponseMonitor:
             "window_size": self.window_size,
             "max_bad_allowed": self.max_bad
         }
+
+
+def _truncate_text_to_tokens(text: str, max_tokens: int, model_name: str, system_prompt_tokens: int = 0) -> str:
+    """
+    Truncate text to fit within max_tokens.
+    
+    Args:
+        text: Text to truncate
+        max_tokens: Maximum tokens for the text (after accounting for system_prompt_tokens if provided)
+        model_name: Model name for tiktoken encoding
+        system_prompt_tokens: Number of tokens in system prompt (to reserve space, if needed)
+    
+    Returns:
+        Truncated text
+    """
+    if max_tokens is None:
+        return text
+    
+    # Calculate available tokens for the text (reserve space for prompt if provided)
+    available_tokens = max(0, max_tokens - system_prompt_tokens)
+    
+    if available_tokens <= 0:
+        return ""  # Not enough space even without text
+    
+    # Get encoding for the model
+    try:
+        enc = tiktoken.encoding_for_model(model_name)
+    except KeyError:
+        enc = tiktoken.get_encoding("cl100k_base")
+    
+    # Encode and truncate
+    encoded = enc.encode(text)
+    if len(encoded) <= available_tokens:
+        return text
+    
+    truncated_encoded = encoded[:available_tokens]
+    truncated_text = enc.decode(truncated_encoded)
+    
+    return truncated_text
 
 
 def _extract_token_usage(response) -> tuple[int, int]:
@@ -500,21 +543,39 @@ def parse_arguments():
     parser.add_argument(
         "--dataset",
         type=str,
-        default="dataset-202510",
-        choices=["dataset-202505", "dataset-202510"],
-        help="Dataset name to use (default: dataset-202510)"
+        required=True,
+        choices=["dataset-202505", "dataset-202510", "dataset-Bergen-2017-2023"],
+        help="Dataset name to use (required)"
     )
     parser.add_argument(
         "--prompt",
         type=str,
-        default="structured-data-202512",
-        help="Prompt name to use (default: structured-data-202512)"
+        required=True,
+        help="Prompt name to use (required)"
     )
     parser.add_argument(
-        "--max-tokens",
+        "--max-output-tokens",
         type=str,
         default=None,
-        help="Maximum tokens to send to the model. Use 'all' or number >= 100000 for 'all-tokens', or a number like '4096' (default: 4096)"
+        help="Maximum output tokens (completion tokens). Use 'all' or number >= 100000 for 'all-tokens', or a number like '4096' (default: 1000)"
+    )
+    parser.add_argument(
+        "--max-input-text-tokens",
+        type=int,
+        default=MAX_INPUT_TEXT_TOKENS,
+        help=f"Maximum tokens for document text (prompt tokens are separate). Documents will be truncated to fit if needed (default: {MAX_INPUT_TEXT_TOKENS})"
+    )
+    parser.add_argument(
+        "--ignore-below",
+        type=int,
+        default=None,
+        help="Skip documents whose input token count (prompt+text) is below this value"
+    )
+    parser.add_argument(
+        "--ignore-above",
+        type=int,
+        default=None,
+        help="Skip documents whose input token count (prompt+text) is above this value"
     )
     parser.add_argument(
         "--ignore-bad-responses",
@@ -538,19 +599,22 @@ def main():
     dataset_name = args.dataset
     prompt_name = args.prompt
     ignore_bad_responses = args.ignore_bad_responses
+    ignore_below = args.ignore_below
+    ignore_above = args.ignore_above
+    max_input_text_tokens = args.max_input_text_tokens
     
-    # Parse max_tokens argument
-    if args.max_tokens is None:
-        max_tokens = MAX_TOKENS
-    elif args.max_tokens.lower() == "all":
-        max_tokens = None  # None means "all tokens"
+    # Parse max_output_tokens argument
+    if args.max_output_tokens is None:
+        max_output_tokens = MAX_OUTPUT_TOKENS
+    elif args.max_output_tokens.lower() == "all":
+        max_output_tokens = None  # None means "all tokens"
     else:
         try:
-            max_tokens = int(args.max_tokens)
-            if max_tokens >= 100000:
-                max_tokens = None  # Treat very large values as "all tokens"
+            max_output_tokens = int(args.max_output_tokens)
+            if max_output_tokens >= 100000:
+                max_output_tokens = None  # Treat very large values as "all tokens"
         except ValueError:
-            print(f"Error: --max-tokens must be 'all' or a number, got '{args.max_tokens}'", file=sys.stderr)
+            print(f"Error: --max-output-tokens must be 'all' or a number, got '{args.max_output_tokens}'", file=sys.stderr)
             sys.exit(1)
     
     # Set default model based on model_family if not explicitly provided ("gpt-4o-mini" is the default)
@@ -608,16 +672,14 @@ def main():
     # Initialize prompt creator with specified prompt
     prompt_creator = Prompt(prompt_name)
     
-    # Determine task name: <dataset_name>-<max_tokens>-<prompt_name>
-    # max_tokens format: "2048-tokens", "1024-tokens", or "all-tokens" if None or very large
-    # Note: max_tokens here reflects how many tokens we request to be sent to the model,
-    # but the model may limit this further based on its context window size.
-    if max_tokens is None or max_tokens >= 100000:
-        max_tokens_str = "all-tokens"
+    # Determine task name
+    if max_output_tokens is None or max_output_tokens >= 100000:
+        max_output_tokens_str = "all-tokens"
     else:
-        max_tokens_str = f"{max_tokens}-tokens"
+        max_output_tokens_str = f"{max_output_tokens}-tokens"
     
-    task_name = f"{dataset_name}-{max_tokens_str}-{prompt_name}"
+    input_tokens_str = f"input{max_input_text_tokens}" if max_input_text_tokens else "input-auto"
+    task_name = f"{dataset_name}-{max_output_tokens_str}-{input_tokens_str}-{prompt_name}"
     
     # Create output directory: extracted-data/<task-name>/<model-name>
     output_dir = Path(__file__).parent / OUTPUT_BASE_DIR / task_name / model
@@ -656,13 +718,14 @@ def main():
     start_time = time.time()
     
     # Print configuration at start of processing
-    max_tokens_display = "all" if max_tokens is None or max_tokens >= 100000 else str(max_tokens)
+    max_output_tokens_display = "all" if max_output_tokens is None or max_output_tokens >= 100000 else str(max_output_tokens)
     print("=" * 80, file=sys.stderr)
     print("Starter prosessering", file=sys.stderr)
     print("-" * 80, file=sys.stderr)
     print(f"Modell: {model}", file=sys.stderr)
     print(f"Dataset: {dataset_name}", file=sys.stderr)
-    print(f"Max tokens: {max_tokens_display}", file=sys.stderr)
+    print(f"Max output tokens: {max_output_tokens_display}", file=sys.stderr)
+    print(f"Max input text tokens: {max_input_text_tokens}", file=sys.stderr)
     print(f"Prompt: {prompt_name}", file=sys.stderr)
     print(f"Output folder: {output_dir.relative_to(Path(__file__).parent)}", file=sys.stderr)
     print("=" * 80 + "\n", file=sys.stderr)
@@ -678,15 +741,51 @@ def main():
             skipped_count += 1
             continue
         
+        # Check if we should skip based on token count
+        should_skip = False
+        skip_reason = None
+        
+        # Determine if model only supports basic json_object (not full structured outputs)
+        # Models that only support json_object need schema in prompt
+        model_family_lower = model_family.lower()
+        supports_only_json_object = model_family_lower in ["mistral", "deepseek", "qwen"]
+        
+        # Estimate input token count for filtering
+        try:
+            prompt_preview = prompt_creator.get_prompt(kommune_navn, include_schema=supports_only_json_object)
+            document_text_preview = prompt_creator.get_document_text(text)
+            input_tokens_est = (
+                estimate_tokens(prompt_preview, model_name=model)
+                + estimate_tokens(document_text_preview, model_name=model)
+            )
+        except Exception as e:
+            # If token estimation fails, proceed with processing (don't skip)
+            input_tokens_est = None
+        
+        # Check ignore options if token estimation succeeded
+        if input_tokens_est is not None:
+            # Check ignore-below (input tokens only)
+            if ignore_below is not None:
+                if input_tokens_est < ignore_below:
+                    should_skip = True
+                    skip_reason = f"input token count ({input_tokens_est}) < --ignore-below ({ignore_below})"
+            
+            # Check ignore-above (input tokens only)
+            if ignore_above is not None:
+                if input_tokens_est > ignore_above:
+                    should_skip = True
+                    skip_reason = f"input token count ({input_tokens_est}) > --ignore-above ({ignore_above})"
+        
+        if should_skip:
+            skipped_count += 1
+            if skip_reason:
+                print(f"Skipping {doc_id}: {skip_reason}", file=sys.stderr)
+            continue
+        
         # Count this as an attempt (will be processed or fail)
         attempt_count += 1
         
         try:
-            # Determine if model only supports basic json_object (not full structured outputs)
-            # Models that only support json_object need schema in prompt
-            model_family_lower = model_family.lower()
-            supports_only_json_object = model_family_lower in ["mistral", "deepseek", "qwen"]
-            
             # Prepare prompt with kommune_navn inserted (text, not number)
             # Include schema in prompt for models that don't support structured outputs
             prompt = prompt_creator.get_prompt(kommune_navn, include_schema=supports_only_json_object)
@@ -694,17 +793,41 @@ def main():
             # Prepare document text (user input)
             document_text = prompt_creator.get_document_text(text)
             
+            # Truncate document text to fit within max_input_text_tokens
+            document_text = _truncate_text_to_tokens(
+                document_text, 
+                max_input_text_tokens, 
+                model_name=model,
+                system_prompt_tokens=0  # We're only limiting document text
+            )
+            
+            # Sanity check: estimate actual document text tokens after truncation
+            actual_document_tokens_est = estimate_tokens(document_text, model_name=model)
+            
+            if actual_document_tokens_est > max_input_text_tokens:
+                print(f"ERROR: Document text token sanity check failed for {doc_id}", file=sys.stderr)
+                print(f"  Estimated document text tokens ({actual_document_tokens_est}) exceed max_input_text_tokens ({max_input_text_tokens})", file=sys.stderr)
+                print(f"  Aborting immediately.", file=sys.stderr)
+                sys.exit(1)
+            
             # Get response from LLM adapter with schema
             response = llm_adapter.generate_text(
                 prompt=document_text,
                 system_prompt=prompt,
                 temperature=TEMPERATURE,
-                max_tokens=max_tokens,
+                max_tokens=max_output_tokens,
                 json_schema=prompt_creator.SCHEMA
             )
             
             # Extract token usage
             input_tokens, output_tokens = _extract_token_usage(response)
+            
+            # Sanity check: actual output tokens after API call
+            if max_output_tokens is not None and output_tokens > max_output_tokens:
+                print(f"ERROR: Output token sanity check failed for {doc_id}", file=sys.stderr)
+                print(f"  Actual output tokens ({output_tokens}) exceed max_output_tokens ({max_output_tokens})", file=sys.stderr)
+                print(f"  Aborting immediately.", file=sys.stderr)
+                sys.exit(1)
             total_input_tokens += input_tokens
             total_output_tokens += output_tokens
             
@@ -759,7 +882,8 @@ def main():
                 "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
                 "model": model,
                 "temperature": TEMPERATURE,
-                "max_tokens": max_tokens,
+                "max_output_tokens": max_output_tokens if max_output_tokens else "all",
+                "max_input_text_tokens": max_input_text_tokens,
                 "response": extracted_data
             }
             
@@ -783,15 +907,16 @@ def main():
                 avg_input_tokens_per_doc = input_tokens_since_last / status_interval
                 avg_output_tokens_per_doc = output_tokens_since_last / status_interval
                 
-                # Format max_tokens for display
-                max_tokens_display = "all" if max_tokens is None or max_tokens >= 100000 else str(max_tokens)
+                # Format tokens for display
+                max_output_tokens_display = "all" if max_output_tokens is None or max_output_tokens >= 100000 else str(max_output_tokens)
                 
                 print("\n" + "=" * 80, file=sys.stderr)
                 print(f"Status etter {processed_count} vellykkede dokumenter", file=sys.stderr)
                 print("-" * 80, file=sys.stderr)
                 print(f"Modell: {model}", file=sys.stderr)
                 print(f"Dataset: {dataset_name}", file=sys.stderr)
-                print(f"Max tokens: {max_tokens_display}", file=sys.stderr)
+                print(f"Max output tokens: {max_output_tokens_display}", file=sys.stderr)
+                print(f"Max input text tokens: {max_input_text_tokens}", file=sys.stderr)
                 print(f"Prompt: {prompt_name}", file=sys.stderr)
                 print("-" * 80, file=sys.stderr)
                 print(f"Tid siden forrige status: {time_since_last:.1f} sekunder", file=sys.stderr)

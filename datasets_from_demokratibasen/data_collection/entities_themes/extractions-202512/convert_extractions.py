@@ -188,7 +188,7 @@ def main():
     """Main conversion function."""
     # Define paths
     script_dir = Path(__file__).parent
-    input_dir = script_dir.parent / "extractions-202508"
+    input_dir = script_dir.parent / "OLD-extractions-202508"
     base_output_dir = script_dir / "extracted-data" / "dataset-202505-all-tokens-extraction-202512"
     
     # Input files
