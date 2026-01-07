@@ -1,8 +1,15 @@
 """
-Evaluation metrics for fine-tuning summarisation models for Norwegian
-when LLM-generated reference summaries are available.
+Metrics for in-training validation and final evaluation of summarisation models for 
+Norwegian public documents, assuming that LLM-generated reference summaries are available.
 
-The full set can be used for final model evaluation, and a subset for validation to monitor training progress.
+TODO: Rename to "summarisation_evaluation.py", which is more descriptive and
+      contrasts the "capability_retention_evaluation.py" script.
+
+TODO: Do not run NLI-based faithfulness metrics on the whole validation set for every checkpoint. 
+      Either: 
+      - Run only on a subset of the validation set for every checkpoint.
+      - Run on the full validation set only for every N checkpoints.
+      The full set can be used for final model evaluation, and a subset for validation to monitor training progress.
 
 Types of metrics:
 - Reference-based metrics (weak signals, used for monitoring)
@@ -35,7 +42,7 @@ from transformers import AutoTokenizer
 
 
 # the checkpoint data to evaluate   
-DATA_DIR = "all_eval_results/"
+DATA_DIR = "small_eval_results/"  # test_eval_results/ contains a larger dataset
 FILE_MASK = r"^checkpoint-(\d+)-inputs-refs-preds.jsonl$"
 
 # the tokenizer to use
@@ -402,12 +409,15 @@ def detokenize_data(data):
     return TOKENIZER.batch_decode(data, skip_special_tokens=True)
 
 
-if __name__ == "__main__":
-    
+def find_files(data_dir=DATA_DIR, file_mask=FILE_MASK):
     data_files = sorted(
-        f for f in os.listdir(DATA_DIR) 
-        if re.match(FILE_MASK, f)
+        f for f in os.listdir(data_dir) 
+        if re.match(file_mask, f)
     )
+    return data_files
+
+
+def load_texts(input_file):
     
     def collect(data, key):
         fields = []
@@ -415,31 +425,43 @@ if __name__ == "__main__":
             fields.extend(d[key])
         return fields
     
+    data = []
+    with open(os.path.join(DATA_DIR, input_file), "r") as f:
+        for line in f:
+            data.append(json.loads(line))
+
+    inputs = collect(data, "input")
+    predictions = collect(data, "prediction")
+    references = collect(data, "reference")
+    
+    assert len(inputs) == len(references) == len(predictions)
+    print(f"Loaded {len(inputs)} input-reference-prediction examples from {input_file}")
+    
+    input_texts = detokenize_data(inputs)
+    prediction_texts = detokenize_data(predictions)
+    reference_texts = detokenize_data(references)
+    
+    # remove the prompt from the input text
+    # TODO: the prompt should not have been saved in the first place
+    input_texts = [text.replace('[INST] Oppsummer følgende tekst:\n\nDokument: ', '') for text in input_texts]
+
+    return input_texts, prediction_texts, reference_texts
+
+
+def save_results(eval_results, input_file, data_dir=DATA_DIR, file_mask=FILE_MASK):
+    checkpoint_id = re.match(file_mask, input_file).group(1)
+    output_file = os.path.join(data_dir, f"checkpoint-{checkpoint_id}-eval-results.json")
+    with open(output_file, "w") as f:
+        json.dump(eval_results, f, indent=2, ensure_ascii=False, default=str)
+        print(f"Saved evaluation results to {output_file}")
+
+
+if __name__ == "__main__":
+
+    data_files = find_files(DATA_DIR, FILE_MASK)    
     for input_file in data_files:
-        data = []
-        with open(os.path.join(DATA_DIR, input_file), "r") as f:
-            for line in f:
-                data.append(json.loads(line))
 
-        inputs = collect(data, "input")
-        predictions = collect(data, "prediction")
-        references = collect(data, "reference")
-        
-        assert len(inputs) == len(references) == len(predictions)
-        print(f"Loaded {len(inputs)} input-reference-prediction examples from {input_file}")
-        
-        input_texts = detokenize_data(inputs)
-        prediction_texts = detokenize_data(predictions)
-        reference_texts = detokenize_data(references)
-        
-        # remove the prompt from the input text
-        # TODO: the prompt should not have been saved in the first place
-        input_texts = [text.replace('[INST] Oppsummer følgende tekst:\n\nDokument: ', '') for text in input_texts]
-
+        input_texts, prediction_texts, reference_texts = load_texts(input_file)
         eval_results = evaluate(input_texts, prediction_texts, reference_texts)
-      
-        checkpoint_id = re.match(FILE_MASK, input_file).group(1)
-        output_file = os.path.join(DATA_DIR, f"checkpoint-{checkpoint_id}-eval-results.json")
-        with open(output_file, "w") as f:
-            json.dump(eval_results, f, indent=2, ensure_ascii=False, default=str)
-            print(f"Saved evaluation results to {output_file}")
+        save_results(eval_results, input_file)
+        

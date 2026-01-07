@@ -1,0 +1,67 @@
+{
+  "reference": {
+    "rouge1": 0.06592222041602637,
+    "rouge2": 0.02057391349634143,
+    "rougeL": 0.04611079813098987,
+    "rougeLsum": 0.05476533332972755,
+    "bertscore_f1_mean": 0.2523376438766718
+  },
+  "hygiene": {
+    "mean_compression_ratio": 0.1424068528486338,
+    "mean_rep_3gram": 0.7182206915464096,
+    "ratio_ends_with_punct": 0.08333333333333333
+  },
+  "faithfulness": {
+    "mean_entailment_score": 0.3999125901884765,
+    "min_entailment_score": 0.004146228078752756,
+    "mean_low_entailment_sentences": 0.7152629233511587,
+    "max_contradiction_score": 0.9977893829345703,
+    "mean_high_contradiction_sentences": 0.04829545454545455,
+    "mean_outlier_rate": 0.7204712566844921,
+    "ratio_passed": 0.16666666666666666,
+    "reasons_failed": [
+      [
+        "mean_entailment 0.013 < 0.720",
+        "low_entailment_sentences 9 > 0 (threshold 0.60)"
+      ],
+      [
+        "mean_entailment 0.292 < 0.720",
+        "low_entailment_sentences 12 > 0 (threshold 0.60)",
+        "high_contradiction_sentences 2 > 0 (threshold 0.35)"
+      ],
+      [
+        "mean_entailment 0.264 < 0.720",
+        "low_entailment_sentences 11 > 0 (threshold 0.60)",
+        "high_contradiction_sentences 5 > 0 (threshold 0.35)"
+      ],
+      [
+        "mean_entailment 0.529 < 0.720",
+        "low_entailment_sentences 12 > 0 (threshold 0.60)"
+      ],
+      [
+        "mean_entailment 0.123 < 0.720",
+        "low_entailment_sentences 1 > 0 (threshold 0.60)"
+      ],
+      [
+        "mean_entailment 0.005 < 0.720",
+        "low_entailment_sentences 1 > 0 (threshold 0.60)"
+      ],
+      [
+        "mean_entailment 0.401 < 0.720",
+        "low_entailment_sentences 8 > 0 (threshold 0.60)"
+      ],
+      [
+        "mean_entailment 0.670 < 0.720",
+        "low_entailment_sentences 8 > 0 (threshold 0.60)"
+      ],
+      [
+        "mean_entailment 0.205 < 0.720",
+        "low_entailment_sentences 1 > 0 (threshold 0.60)"
+      ],
+      [
+        "mean_entailment 0.479 < 0.720",
+        "low_entailment_sentences 1 > 0 (threshold 0.60)"
+      ]
+    ]
+  }
+}
