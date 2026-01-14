@@ -118,10 +118,12 @@ class CausalLMTrainer(Trainer):
                  generation_max_length: Optional[int] = None,
                  generation_num_beams: Optional[int] = None,
                  eval_data_collator: Optional[Any] = None,
+                 checkpoint_dir: Optional[str] = None,
                  **kwargs) -> None:
         self.generation_max_length = generation_max_length
         self.generation_num_beams = generation_num_beams
         self.eval_data_collator = eval_data_collator
+        self.checkpoint_dir = checkpoint_dir  # Store checkpoint directory
         super().__init__(*args, **kwargs)
         self._processing_class = self.tokenizer
     
@@ -151,6 +153,22 @@ class CausalLMTrainer(Trainer):
             return (None, None, None)
 
         print('*** evaluation: prediction_step ***')
+        
+        # Access checkpoint and training state information
+        checkpoint_info = {
+            "checkpoint_dir": self.checkpoint_dir,
+            "output_dir": self.args.output_dir,
+        }
+        
+        # Training state (available during evaluation, but may not have meaningful step/epoch)
+        if hasattr(self, 'state') and self.state is not None:
+            checkpoint_info.update({
+                "global_step": getattr(self.state, 'global_step', None),
+                "epoch": getattr(self.state, 'epoch', None),
+                "log_history": getattr(self.state, 'log_history', []),
+            })
+        
+        print(f'*** checkpoint_info: {checkpoint_info} ***')
         torch.cuda.empty_cache()
 
         if 'input_ids' in inputs:
@@ -182,6 +200,13 @@ class CausalLMTrainer(Trainer):
         generated_ids = generated_ids[:, input_length:]
         
         print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
+        
+        with open(self.checkpoint_dir + "/inputs_refs_preds.jsonl", "a") as f:
+            f.write(json.dumps({
+                "input": input_ids.tolist(),
+                "reference": labels.tolist(),
+                "prediction": generated_ids.tolist()
+            }) + "\n")
         
         torch.cuda.empty_cache()
 
@@ -414,6 +439,7 @@ def evaluate_checkpoint(
         generation_max_length=max_output_summary_tokens,
         generation_num_beams=val_beam_size,
         eval_data_collator=eval_data_collator,
+        checkpoint_dir=checkpoint_dir,  # Pass checkpoint directory to Trainer
         model=model,
         args=training_args,
         eval_dataset=tokenized_val_dataset,

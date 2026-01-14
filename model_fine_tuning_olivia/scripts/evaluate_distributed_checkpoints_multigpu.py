@@ -25,6 +25,7 @@ import argparse
 import json
 import os
 import random
+import sys
 import time  # ADD THIS for staggered loading
 from typing import Any, Dict, Optional, Tuple, Union
 
@@ -148,11 +149,13 @@ class CausalLMTrainer(Trainer):
                  generation_num_beams: Optional[int] = None,
                  eval_data_collator: Optional[Any] = None,
                  use_greedy: bool = True,
+                 checkpoint_dir: Optional[str] = None,
                  **kwargs) -> None:
         self.generation_max_length = generation_max_length
         self.generation_num_beams = generation_num_beams
         self.eval_data_collator = eval_data_collator
         self.use_greedy = use_greedy
+        self.checkpoint_dir = checkpoint_dir  # Store checkpoint directory
         super().__init__(*args, **kwargs)
         self._processing_class = self.tokenizer
     
@@ -232,6 +235,15 @@ class CausalLMTrainer(Trainer):
         generated_ids = generated_ids[:, input_length:]
         
         print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
+        
+        # Save inputs, references, and predictions to JSONL file
+        if self.checkpoint_dir is not None:
+            with open(os.path.join(self.checkpoint_dir, "inputs_refs_preds.jsonl"), "a") as f:
+                f.write(json.dumps({
+                    "input": input_ids.tolist(),
+                    "reference": labels.tolist() if labels is not None else None,
+                    "prediction": generated_ids.tolist()
+                }) + "\n")
         
         # Clear cache after generation
         torch.cuda.empty_cache()
@@ -839,6 +851,7 @@ def evaluate_checkpoint(
         generation_num_beams=val_beam_size,
         eval_data_collator=eval_data_collator,
         use_greedy=use_greedy,
+        checkpoint_dir=checkpoint_dir,  # Pass checkpoint directory to Trainer
         model=model,
         args=training_args,
         eval_dataset=tokenized_val_dataset,

@@ -1,0 +1,38 @@
+{
+  "dataset_name": "text_summary_dataset_13077_examples",
+  "data_file": "/media/disk_7300G/sinoa/Local/Tools/GitProjects/Demokratibasen-UiB-Ide/datasets_from_demokratibasen/prepared_datasets/text_summary_dataset_13077_examples/text_summary_examples_202505.jsonl",
+  "total_examples": 13077,
+  "doc_type_distribution": {
+    "case_minutes": 5844,
+    "case_presentation": 5844,
+    "meeting_minutes": 639,
+    "meeting_agenda": 750
+  },
+  "kommune_distribution": {
+    "Bergen (4601)": 10456,
+    "Lyngen (5536)": 259,
+    "Tromsø (5501)": 2362
+  },
+  "input_text": {
+    "average_length_chars": 5781.328821595167,
+    "min_length_chars": 66,
+    "max_length_chars": 396132,
+    "average_length_tokens": 1995.9135122734572,
+    "min_length_tokens": 23,
+    "max_length_tokens": 139547,
+    "percentage_above_2048_tokens": 24.837500955876727
+  },
+  "summary_text": {
+    "average_length_chars": 342.45843847977363,
+    "min_length_chars": 94,
+    "max_length_chars": 847,
+    "average_length_tokens": 113.63347862659631,
+    "min_length_tokens": 30,
+    "max_length_tokens": 282
+  },
+  "embedding_distance": {
+    "average_distance": 0.16816200590773855,
+    "min_distance": 0.028000734153857842,
+    "max_distance": 0.7328369114768923
+  }
+}

@@ -31,7 +31,7 @@ DATASET_REGISTRY: Dict[str, Tuple[str, Type]] = {
         DatasetAdapter202505
     ),
     "dataset-202510": (
-        "datasets_from_demokratibasen/datasets/dataset_43221_examples/processed_data.jsonl",
+        "datasets_from_demokratibasen/prepared_datasets/text_summary_dataset_43221_examples/text_summary_examples_202505_to_10.jsonl",
         DatasetAdapter202510
     ),
     "dataset-Bergen-2017-2023": (

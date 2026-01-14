@@ -15,7 +15,7 @@ csv.field_size_limit(sys.maxsize)
 base_dir = Path(__file__).parent.parent.parent.parent
 file_1584 = base_dir / "raw_training_data" / "1584-url-tekst-oppsummering-from-prod-20251125.csv"
 file_28081 = base_dir / "raw_training_data" / "28081-url-tekst-oppsummering-from-prod-20251215.csv"
-output_dir = base_dir / "datasets" / "text_summary_dataset_29665_examples"
+output_dir = base_dir / "prepared_datasets" / "text_summary_dataset_29665_examples"
 output_file = output_dir / "processed_data.jsonl"
 
 

@@ -6,12 +6,13 @@
 * `raw_training_data/` : The outputs from `data_collection/` but not in standardised `dataset/` format.
   * These are flat document-level datasets (dokument_id + text + basic metadata).
   * See the "Attribute names" below.
-* `datasets/` : The datasets to use for training purposes.
-  * The processed files contain training example datasets: they wrap text into input, labels into output, and move/enrich document metadata into a nested metadata dict (with additional fields such as personer, nokkelord, nyhetsverdi that are not present in the raw file).
+* `prepared_datasets/` : Processed and aggregated raw-training data files: they wrap text into input, labels into output, and move/enrich document metadata into a nested metadata dict (with additional fields such as personer, nokkelord, nyhetsverdi that are not present in the raw file).
+* `datasets/` : The processed and aggregated datasets to use for training purposes.
   * The 12811 dataset is legacy. All the documents are included in the larger 43221 dataset.
   * The larger 43221 dataset covers all dok_id values from the CSV files:
     * `raw_training_data/`17720-examples-from-prod-20250930.csv
     * `raw_training_data/`27725-url-tekst-oppsummering-20251026.csv
+  * `test_summary_dataset_ALL_examples`: this is the largest and most recent dataset with 160 000+ examples
 
 # Attribute names
 
