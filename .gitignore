@@ -17,3 +17,4 @@ model_fine_tuning/scripts/finetune-WORKING-WITH-EVALUATION.py
 datasets_from_demokratibasen/data_collection/entities_themes/extractions-202512/extracted-data
 datasets_from_demokratibasen/data_collection/**/input_files/file-*.json
 datasets_from_demokratibasen/data_collection/**/output_files/file-*.json
+datasets_from_demokratibasen/prepared_datasets/**/*_embeddings.jsonl
