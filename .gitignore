@@ -3,6 +3,8 @@ venv/
 *.pyc
 *~
 OLD/
+OLD*
+STALE*
 model_fine_tuning/models/
 model_fine_tuning/scripts/learning_curve.png
 model_fine_tuning_olivia/models/
