@@ -8,3 +8,4 @@ models/*.bin filter=lfs diff=lfs merge=lfs -text
 ../../datasets_from_demokratibasen/cleaned_datasets/**/*.{json,jsonl,png} filter=lfs diff=lfs merge=lfs -text
 ../../datasets_from_demokratibasen/prepared_datasets/**/*.{json,jsonl,png} filter=lfs diff=lfs merge=lfs -text
 ../../datasets_from_demokratibasen/raw_training_data/**/*.{csv,pkl,zip} filter=lfs diff=lfs merge=lfs -text
+../../datasets_from_demokratibasen/data_collection/**/*.{csv,pkl,zip} filter=lfs diff=lfs merge=lfs -text
