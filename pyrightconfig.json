@@ -1,0 +1,26 @@
+{
+    "exclude": [
+      "**/node_modules",
+      "**/.venv",
+      "**/venv",
+      "**/.git",
+      "**/build",
+      "**/dist",
+      "**/target",
+      "**/.cache",
+      "**/data",
+      "**/datasets",
+      "**/outputs",
+      "**/.cursor",
+      "**/.idea",
+      "**/*.csv",
+      "**/*.db",
+      "**/*.pkl",
+      "**/*.zip",
+      "model_fine_tuning/models/**/*",
+      "datasets_from_demokratibasen/data_collection/**/*.{csv,jsonl}",
+      "datasets_from_demokratibasen/cleaned_datasets/**/*.{json,jsonl,png}",
+      "datasets_from_demokratibasen/prepared_datasets/**/*.{json,jsonl,png}",
+      "datasets_from_demokratibasen/raw_training_data/**/*.{csv,pkl,zip}"
+    ]
+  }
