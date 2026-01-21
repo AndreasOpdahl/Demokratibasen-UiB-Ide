@@ -25,7 +25,7 @@ import argparse
 import json
 import os
 import random
-import sys  # ADD THIS
+import sys
 import time  # ADD THIS for staggered loading
 from typing import Any, Dict, Optional, Tuple, Union
 
@@ -149,11 +149,13 @@ class CausalLMTrainer(Trainer):
                  generation_num_beams: Optional[int] = None,
                  eval_data_collator: Optional[Any] = None,
                  use_greedy: bool = True,
+                 checkpoint_dir: Optional[str] = None,
                  **kwargs) -> None:
         self.generation_max_length = generation_max_length
         self.generation_num_beams = generation_num_beams
         self.eval_data_collator = eval_data_collator
         self.use_greedy = use_greedy
+        self.checkpoint_dir = checkpoint_dir  # Store checkpoint directory
         super().__init__(*args, **kwargs)
         self._processing_class = self.tokenizer
     
@@ -476,6 +478,17 @@ def load_model_and_peft_checkpoint(
             f"Skipping evaluation."
         )
     
+    # Also check if checkpoint directory only contains eval_results (old structure)
+    dir_contents = os.listdir(checkpoint_dir)
+    if len(dir_contents) == 1 and 'eval_results' in dir_contents:
+        eval_results_file = os.path.join(checkpoint_dir, 'eval_results', 'eval_results.json')
+        if os.path.exists(eval_results_file):
+            raise AlreadyEvaluatedError(
+                f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                f"(only contains 'eval_results' with results file). "
+                f"The adapter files may have been cleaned up. Skipping evaluation."
+            )
+    
     adapter_config_path = os.path.join(checkpoint_dir, "adapter_config.json")
     adapter_model_path = os.path.join(checkpoint_dir, "adapter_model.safetensors")
     
@@ -595,7 +608,7 @@ def get_model_batch_size(model_name: str, default_batch_size: int) -> int:
     
     # Very large models (27B+) - need very small batches even with model parallelism
     # These models take ~85GB per GPU even when split, leaving little room for batch processing
-    if 'gemma-2-27b' in model_name_lower or 'viking-33b' in model_name_lower:
+    if 'gemma-2-27b' in model_name_lower or 'gemma-3-27b' in model_name_lower or 'viking-33b' in model_name_lower:
         return min(2, default_batch_size)  # Very small batch for 27B+ models
     # Large models (12B-13B) - can use larger batches with model parallelism
     # Peak memory usage was only ~19GB, so we have ~80GB headroom
@@ -898,9 +911,13 @@ def evaluate_checkpoint(
                 "evaluation",
                 "multi-gpu" if use_multi_gpu else "single-gpu",
                 clean_model_name,
+                f"checkpoint-{checkpoint_step}",
+                os.path.basename(checkpoint_dir).replace('checkpoint-', 'step-')
             ],
             config={
                 "model_name": model_name,
+                "checkpoint_dir": checkpoint_dir,
+                "checkpoint_step": checkpoint_step,
                 "val_dataset_path": val_dataset_path,
                 "val_data_size": val_data_size,
                 "val_batch_size": val_batch_size,
@@ -1007,9 +1024,7 @@ def evaluate_checkpoint(
     eval_data_collator = EvalDataCollator(tokenizer=tokenizer)
 
     # Set up evaluation-only training args
-    if output_dir is None:
-        output_dir = os.path.join(checkpoint_dir, "eval_results")
-    
+    # Note: output_dir was already set earlier to model_dir/all_eval_results
     training_args = TrainingArguments(
         output_dir=output_dir,
         per_device_eval_batch_size=val_batch_size,
@@ -1032,6 +1047,7 @@ def evaluate_checkpoint(
         generation_num_beams=val_beam_size,
         eval_data_collator=eval_data_collator,
         use_greedy=use_greedy,
+        checkpoint_dir=checkpoint_dir,  # Pass checkpoint directory to Trainer
         model=model,
         args=training_args,
         eval_dataset=tokenized_val_dataset,
@@ -1122,6 +1138,7 @@ Examples:
     parser.add_argument('--model', type=str, required=True,
                        choices=['viking-7b', 'viking-13b', 'viking-33b',
                                 'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
+                                'gemma-3-12b', 'gemma-3-27b',
                                 'normistral-7b', 'normistral-11b',
                                 'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian', 'mt5'],
                        help='Base model that was fine-tuned')

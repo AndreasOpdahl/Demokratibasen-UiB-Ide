@@ -1,0 +1,17 @@
+{
+    "git.fetchOnPull": false,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": false,
+    "git.trace": true,
+    "git.verboseLogging": true,
+    "git.autofetch": false,
+    "files.watcherExclude": {
+        "**/.venv/**": true,
+        "**/venv/**": true,
+        "**/node_modules/**": true,
+        "**/datasets/**": true,
+        "**/data/**": true,
+        "**/outputs/**": true,
+        "**/models/**": true
+    }
+}

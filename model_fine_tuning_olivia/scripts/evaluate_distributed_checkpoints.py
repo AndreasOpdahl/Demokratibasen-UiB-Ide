@@ -118,10 +118,12 @@ class CausalLMTrainer(Trainer):
                  generation_max_length: Optional[int] = None,
                  generation_num_beams: Optional[int] = None,
                  eval_data_collator: Optional[Any] = None,
+                 checkpoint_dir: Optional[str] = None,
                  **kwargs) -> None:
         self.generation_max_length = generation_max_length
         self.generation_num_beams = generation_num_beams
         self.eval_data_collator = eval_data_collator
+        self.checkpoint_dir = checkpoint_dir  # Store checkpoint directory
         super().__init__(*args, **kwargs)
         self._processing_class = self.tokenizer
     
@@ -182,7 +184,6 @@ class CausalLMTrainer(Trainer):
         generated_ids = generated_ids[:, input_length:]
         
         print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
-        
         torch.cuda.empty_cache()
 
         loss = None
@@ -414,6 +415,7 @@ def evaluate_checkpoint(
         generation_max_length=max_output_summary_tokens,
         generation_num_beams=val_beam_size,
         eval_data_collator=eval_data_collator,
+        checkpoint_dir=checkpoint_dir,  # Pass checkpoint directory to Trainer
         model=model,
         args=training_args,
         eval_dataset=tokenized_val_dataset,

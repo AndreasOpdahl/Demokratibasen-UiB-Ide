@@ -125,40 +125,6 @@ from model_configs import (
     get_model_name_mapping,
 )
 
-
-def get_fsdp_transformer_layer_cls(model_name: str) -> Optional[str]:
-    """Get the transformer layer class name for FSDP auto-wrap policy.
-    
-    Returns the class name that should be used for fsdp_transformer_layer_cls_to_wrap
-    based on the model architecture. This is needed for transformers 4.57.0's
-    automatic FSDP QLoRA plugin updates.
-    """
-    model_name_lower = model_name.lower()
-    
-    # Llama models
-    if 'llama' in model_name_lower or 'ruternorway/llama' in model_name_lower:
-        return 'LlamaDecoderLayer'
-    
-    # Gemma models
-    if 'gemma' in model_name_lower:
-        return 'GemmaDecoderLayer'
-    
-    # Mistral models
-    if 'mistral' in model_name_lower or 'normistral' in model_name_lower:
-        return 'MistralDecoderLayer'
-    
-    # Viking models
-    if 'viking' in model_name_lower:
-        return 'LlamaDecoderLayer'  # Viking is based on Llama
-    
-    # GPT-2 models (if any)
-    if 'gpt2' in model_name_lower:
-        return 'GPT2Block'
-    
-    # Default: try to infer from model config at runtime
-    return None
-
-
 # Default values when command-line args are not supplied
 MAX_INPUT_TEXT_TOKENS = 2048  # max tokens for input to summarisation
 MAX_EXTRA_PROMPT_TOKENS = 40  # max extra tokens for input prompt (the task description)
@@ -209,7 +175,7 @@ class EarlyStoppingMonitorCallback(TrainerCallback):
                 print("Stopping training...")
                 print("="*70 + "\n")
                 control.should_training_stop = True
-
+                
 class EvalDataCollator:
     """Custom data collator for evaluation that pads both input_ids and labels.
     
@@ -272,80 +238,6 @@ class CausalLMTrainer(Trainer):
         super().__init__(*args, **kwargs)
         # 3. Store reference to tokenizer for compatibility
         self._processing_class = self.tokenizer
-    
-    def _fsdp_qlora_plugin_updates(self):
-        """Override to manually set auto_wrap_policy with correct transformer layer class.
-        
-        This fixes the issue where PEFT's fsdp_auto_wrap_policy() fails to auto-detect
-        the transformer layer class in PEFT-wrapped models. We use the transformer layer
-        class specified in TrainingArguments.fsdp_transformer_layer_cls_to_wrap.
-        """
-        # Only proceed if using FSDP and the parameter is set
-        if not hasattr(self.args, 'fsdp') or not self.args.fsdp:
-            return
-        
-        if not hasattr(self.args, 'fsdp_transformer_layer_cls_to_wrap') or not self.args.fsdp_transformer_layer_cls_to_wrap:
-            # If not set, let parent handle it (will likely fail, but consistent behavior)
-            return super()._fsdp_qlora_plugin_updates()
-        
-        # Import here to avoid circular imports
-        from functools import partial
-        from torch.distributed.fsdp.wrap import transformer_auto_wrap_policy
-        
-        transformer_layer_cls_name = self.args.fsdp_transformer_layer_cls_to_wrap
-        
-        # Get the actual transformer layer class from the model
-        # Try to find it in the base model (unwrapped from PEFT)
-        base_model = self.model
-        if hasattr(base_model, 'base_model'):
-            base_model = base_model.base_model
-        if hasattr(base_model, 'model'):  # Some PEFT wrappers use .model
-            base_model = base_model.model
-        
-        # Find the transformer layer class in the model
-        transformer_layer_cls = None
-        for module in base_model.modules():
-            if module.__class__.__name__ == transformer_layer_cls_name:
-                transformer_layer_cls = module.__class__
-                break
-        
-        if transformer_layer_cls is None:
-            # Fallback: try to import from transformers
-            try:
-                import transformers
-                # Try common locations
-                if transformer_layer_cls_name == 'LlamaDecoderLayer':
-                    from transformers.models.llama.modeling_llama import LlamaDecoderLayer
-                    transformer_layer_cls = LlamaDecoderLayer
-                elif transformer_layer_cls_name == 'GemmaDecoderLayer':
-                    from transformers.models.gemma.modeling_gemma import GemmaDecoderLayer
-                    transformer_layer_cls = GemmaDecoderLayer
-                elif transformer_layer_cls_name == 'MistralDecoderLayer':
-                    from transformers.models.mistral.modeling_mistral import MistralDecoderLayer
-                    transformer_layer_cls = MistralDecoderLayer
-                elif transformer_layer_cls_name == 'GPT2Block':
-                    from transformers.models.gpt2.modeling_gpt2 import GPT2Block
-                    transformer_layer_cls = GPT2Block
-                else:
-                    print(f"WARNING: Could not find transformer layer class {transformer_layer_cls_name}")
-                    return super()._fsdp_qlora_plugin_updates()
-            except ImportError:
-                print(f"WARNING: Could not import transformer layer class {transformer_layer_cls_name}")
-                return super()._fsdp_qlora_plugin_updates()
-        
-        # Create the auto_wrap_policy
-        auto_wrap_policy = partial(
-            transformer_auto_wrap_policy,
-            transformer_layer_cls={transformer_layer_cls},
-        )
-        
-        # Set it in the FSDP plugin
-        if hasattr(self.accelerator.state, 'fsdp_plugin') and self.accelerator.state.fsdp_plugin is not None:
-            self.accelerator.state.fsdp_plugin.auto_wrap_policy = auto_wrap_policy
-            print(f"✓ Manually set FSDP auto_wrap_policy using {transformer_layer_cls_name}")
-        else:
-            # If plugin not initialized yet, let parent handle it
-            return super()._fsdp_qlora_plugin_updates()
     
     def get_eval_dataloader(self, eval_dataset=None):
         """Override to use a different data collator for evaluation."""
@@ -1008,7 +900,21 @@ def fine_tune_model(
                 collated = train_data_collator([sample_dict])
             else:
                 print("WARNING: Could not create valid sample_dict for collation test")
-                collated = None
+                # Ensure all values are lists/tensors, not nested structures
+                sample_dict = {}
+                for key, value in sample.items():
+                    if isinstance(value, list):
+                        # If it's already a list, use it
+                        sample_dict[key] = value
+                    elif hasattr(value, 'tolist'):
+                        # If it's a tensor/array, convert to list
+                        sample_dict[key] = value.tolist()
+                    else:
+                        # Otherwise, wrap in list
+                        sample_dict[key] = [value] if not isinstance(value, list) else value
+                
+                # Now try collating
+                collated = train_data_collator([sample_dict])
             
             if 'labels' in collated:
                 labels = collated['labels']
@@ -1231,7 +1137,7 @@ def fine_tune_model(
         dataloader_num_workers=4,
         dataloader_pin_memory=True,
         dataloader_prefetch_factor=2,
-
+        
         # fsdp config
         #fsdp_min_num_params=1e8,
         #cpu_offload=True,
@@ -1244,12 +1150,19 @@ def fine_tune_model(
         training_args_kwargs['ddp_backend'] = 'nccl'
         print("Added DDP parameters for multi-GPU training")
     elif use_fsdp:
-        # FSDP training settings - Compatible with PEFT/LoRA
+        # FSDP training settings - Compatible with transformers 4.45.2 and PEFT/LoRA
+        # IMPORTANT: With PEFT/LoRA, we MUST use "full_shard" WITHOUT "auto_wrap"
+        # because PEFT wraps the model and breaks auto-wrapping detection
+        
         print("Configuring FSDP for PEFT/LoRA training...")
-        print("Using 'full_shard' mode for PEFT compatibility")
+        print("Using 'full_shard' mode (without auto_wrap) for PEFT compatibility")
         
         # Use full_shard only - NO auto_wrap when using PEFT/LoRA
+        # This avoids the "Could not find transformer layer class" error
         training_args_kwargs['fsdp'] = "full_shard"
+        
+        # Do NOT set fsdp_transformer_layer_cls_to_wrap when not using auto_wrap
+        # It will cause errors and deprecation warnings
         
         # Disable gradient_checkpointing when using FSDP
         # FSDP has its own memory optimization mechanisms
@@ -1257,7 +1170,7 @@ def fine_tune_model(
             training_args_kwargs['gradient_checkpointing'] = False
             print("Disabled gradient_checkpointing for FSDP (FSDP handles memory optimization)")
         
-        print("FSDP configured: full_shard mode with CPU offloading (compatible with PEFT/LoRA)")
+        print("FSDP configured: full_shard mode (compatible with PEFT/LoRA)")
     
     if not (use_ddp or use_fsdp):
         # Single-GPU mode - explicitly prevent distributed detection
@@ -1270,7 +1183,7 @@ def fine_tune_model(
     # 1. Starting fresh (not resuming)
     # 2. Evaluation is enabled (FSDP disables eval, so no early stopping)
     callbacks = []
-
+    
     if not checkpoints_exist and eval_enabled:
         early_stopping = EarlyStoppingCallback(
             early_stopping_patience=10,  # stop if no improvement for n evals
@@ -1410,9 +1323,10 @@ Examples:
     parser.add_argument('--model', type=str, required=True,
                     choices=['viking-7b', 'viking-13b', 'viking-33b',
                              'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
+                             'gemma-3-12b', 'gemma-3-27b',
                              'normistral-7b', 'normistral-11b',
                              'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian', 'mt5'],
-                       help='Model to fine-tune')
+                    help='Model to fine-tune')
     parser.add_argument('--quantization', type=str, default='none',
                        choices=['none', '4bit', '8bit'],
                        help='Quantization method (default: none). Use "4bit" for GTX3090, "none" for GH200.')

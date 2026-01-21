@@ -8,8 +8,8 @@ from transformers import AutoTokenizer
 
 # --- CONFIG ---
 
-TRAIN_FILE = "../../datasets_from_demokratibasen/datasets/dataset_43221_examples/processed_data_train.jsonl"  # replace with actual path
-VAL_FILE = "../../datasets_from_demokratibasen/datasets/dataset_43221_examples/processed_data_val.jsonl"
+TRAIN_FILE = "../../datasets_from_demokratibasen/prepared_datasets/dataset_43221_examples/processed_data_train.jsonl"  # replace with actual path
+VAL_FILE = "../../datasets_from_demokratibasen/prepared_datasets/dataset_43221_examples/processed_data_val.jsonl"
 MODEL_NAME = "google/gemma-2b"
 VALIDATION_SIZE = 100
 MAX_INPUT_TEXT_TOKENS = 2048

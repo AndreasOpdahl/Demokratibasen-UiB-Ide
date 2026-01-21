@@ -497,6 +497,7 @@ if __name__ == "__main__":
     parser.add_argument('--model', type=str, required=True,
                        choices=['viking-7b', 'viking-13b', 'viking-33b',
                                 'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
+                                'gemma-3-12b', 'gemma-3-27b',
                                 'normistral-7b', 'normistral-11b',
                                 'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian'],
                        help='Model short name')
