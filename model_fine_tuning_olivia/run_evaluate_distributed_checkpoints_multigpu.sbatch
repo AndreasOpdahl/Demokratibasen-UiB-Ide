@@ -1,32 +1,261 @@
 #!/usr/bin/env bash
 #SBATCH -J gpu-eval-checkpoints-multigpu
 #SBATCH -p accel
-#SBATCH --gres=gpu:4  # Request 4 GPUs
+#SBATCH --gres=gpu:4  # Request 4 GPUs (adjust if needed)
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16  # Increase CPUs for multi-GPU
 #SBATCH --mem=384G  # Increase memory for multi-GPU
 #SBATCH --time=12:00:00
-#SBATCH -A nn12075k
+# Account: REQUIRED - Pass via: sbatch --account=YOUR_ACCOUNT run_evaluate_distributed_checkpoints_multigpu.sbatch ...
+# Example: sbatch --account=nn12075k run_evaluate_distributed_checkpoints_multigpu.sbatch --model=gemma-2-9b
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
 
 set -euo pipefail
 
+# Load environment variables from .env file
+# .env should contain: SLURM_ACCOUNT, WANDB_API_KEY, HUGGINGFACE_TOKEN
+if [ -f .env ]; then
+    source .env
+else
+    echo "WARNING: .env file not found. Using defaults or environment variables."
+fi
+
+# Note: Account is set in #SBATCH -A line above (or via --account flag)
+# Check if account was overridden via --account flag (SLURM sets this)
+# If not, the #SBATCH -A line value will be used
+
 # ===== CONFIGURATION =====
-# Set the model and checkpoint directory to evaluate
-# Supported models: gemma-2b, gemma-7b, viking-7b, viking-13b, normistral-7b, normistral-11b,
-#                   norskgpt-llama3-8b, llama-2-13b-chat-norwegian
-MODEL=llama-2-13b-chat-norwegian
-# Default checkpoint directory pattern (adjust if your naming convention differs)
-CHECKPOINT_BASE_DIR="models/${MODEL}-apptainer-fsdp"  # Directory containing checkpoint-* subdirectories
-VAL_DATASET="data/output/new_processed_data_val.jsonl"  # Match training script
+# Parse command-line arguments or use defaults
+# Usage: sbatch --export=SLURM_ACCOUNT=nn12075k run_evaluate_distributed_checkpoints_multigpu.sbatch [--model=MODEL] [--num_gpus=N] [--checkpoint_base_dir=DIR] [--val_dataset=PATH] [--specific_checkpoints="100 200 300"]
+MODEL=${MODEL:-llama-2-13b-chat-norwegian}
+NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
+CHECKPOINT_BASE_DIR=${CHECKPOINT_BASE_DIR:-"models/${MODEL}-apptainer-fsdp"}
+VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
+SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:-""}
+DRY_RUN=${DRY_RUN:-false}
 
-# Optional: Evaluate specific checkpoints (space-separated numbers)
-# Leave empty to evaluate ALL checkpoints
-SPECIFIC_CHECKPOINTS=""  # e.g., "100 200 300" or "" for all
+# Parse command-line arguments if provided
+for arg in "$@"; do
+    case $arg in
+        --model=*)
+            MODEL="${arg#*=}"
+            # Update CHECKPOINT_BASE_DIR if it wasn't explicitly set
+            if [ -z "${CHECKPOINT_BASE_DIR_SET:-}" ]; then
+                CHECKPOINT_BASE_DIR="models/${MODEL}-apptainer-fsdp"
+            fi
+            ;;
+        --num_gpus=*)
+            NUM_GPUS="${arg#*=}"
+            ;;
+        --checkpoint_base_dir=*)
+            CHECKPOINT_BASE_DIR="${arg#*=}"
+            CHECKPOINT_BASE_DIR_SET=1
+            ;;
+        --val_dataset=*)
+            VAL_DATASET="${arg#*=}"
+            ;;
+        --specific_checkpoints=*)
+            SPECIFIC_CHECKPOINTS="${arg#*=}"
+            ;;
+        --dry-run|--debug)
+            DRY_RUN=true
+            ;;
+        *)
+            echo "ERROR: Unknown argument: $arg"
+            echo ""
+            echo "Usage: sbatch --export=SLURM_ACCOUNT=nn12075k run_evaluate_distributed_checkpoints_multigpu.sbatch [OPTIONS]"
+            echo ""
+            echo "Options:"
+            echo "  --model=MODEL                    Model short name (default: llama-2-13b-chat-norwegian)"
+            echo "  --num_gpus=N                     Number of GPUs (default: 4)"
+            echo "  --checkpoint_base_dir=DIR         Base directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
+            echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
+            echo "  --specific_checkpoints=\"N1 N2\"   Space-separated checkpoint numbers to evaluate (default: all)"
+            echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
+            echo ""
+            echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+            echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b,"
+            echo "              norskgpt-llama3-8b, llama-2-13b-chat-norwegian, mt5"
+            exit 1
+            ;;
+    esac
+done
 
-# Number of GPUs to use
-NUM_GPUS=${SLURM_GPUS_ON_NODE:-4}
+# Validation functions
+validate_model() {
+    local model=$1
+    case "$model" in
+        gemma-2b|gemma-7b|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
+        viking-7b|viking-13b|viking-33b| \
+        normistral-7b|normistral-11b| \
+        norskgpt-llama3-8b|llama-2-13b-chat-norwegian|mt5)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+validate_num_gpus() {
+    local num=$1
+    if ! [[ "$num" =~ ^[0-9]+$ ]] || [ "$num" -lt 1 ] || [ "$num" -gt 8 ]; then
+        return 1
+    fi
+    return 0
+}
+
+validate_checkpoint_numbers() {
+    local checkpoints=$1
+    if [ -z "$checkpoints" ]; then
+        return 0  # Empty is valid (evaluate all)
+    fi
+    for ckpt in $checkpoints; do
+        if ! [[ "$ckpt" =~ ^[0-9]+$ ]]; then
+            return 1
+        fi
+    done
+    return 0
+}
+
+# Validate inputs
+ERRORS=0
+
+if ! validate_model "$MODEL"; then
+    echo "ERROR: Invalid model name: $MODEL"
+    echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+    echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b,"
+    echo "              norskgpt-llama3-8b, llama-2-13b-chat-norwegian, mt5"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if ! validate_num_gpus "$NUM_GPUS"; then
+    echo "ERROR: Invalid num_gpus: $NUM_GPUS"
+    echo "num_gpus must be a positive integer between 1 and 8"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if [ ! -d "$CHECKPOINT_BASE_DIR" ]; then
+    echo "ERROR: Checkpoint base directory does not exist: $CHECKPOINT_BASE_DIR"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if [ ! -f "$VAL_DATASET" ]; then
+    echo "ERROR: Validation dataset file does not exist: $VAL_DATASET"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if ! validate_checkpoint_numbers "$SPECIFIC_CHECKPOINTS"; then
+    echo "ERROR: Invalid specific_checkpoints format: $SPECIFIC_CHECKPOINTS"
+    echo "specific_checkpoints must be space-separated numbers, e.g., \"100 200 300\""
+    ERRORS=$((ERRORS + 1))
+fi
+
+# Check if NUM_GPUS matches #SBATCH --gres (warning only, skip in dry-run)
+if [ "$DRY_RUN" != "true" ]; then
+    SBATCH_GPUS=$(grep "^#SBATCH --gres=gpu:" "$0" | sed 's/.*gpu:\([0-9]*\).*/\1/' | head -1)
+    if [ -n "$SBATCH_GPUS" ] && [ "$NUM_GPUS" != "$SBATCH_GPUS" ]; then
+        echo "WARNING: NUM_GPUS ($NUM_GPUS) does not match #SBATCH --gres=gpu:$SBATCH_GPUS"
+        echo "         Consider updating the #SBATCH --gres line or using --num_gpus=$SBATCH_GPUS"
+    fi
+fi
+
+if [ $ERRORS -gt 0 ]; then
+    echo ""
+    echo "Validation failed with $ERRORS error(s). Please fix the errors above and try again."
+    exit 1
+fi
+
+echo "Configuration:"
+echo "  MODEL: $MODEL"
+echo "  NUM_GPUS: $NUM_GPUS"
+echo "  CHECKPOINT_BASE_DIR: $CHECKPOINT_BASE_DIR"
+echo "  VAL_DATASET: $VAL_DATASET"
+echo "  SPECIFIC_CHECKPOINTS: ${SPECIFIC_CHECKPOINTS:-all}"
+echo "  DRY_RUN: $DRY_RUN"
+
+# Verify required environment variables are set
+if [ -z "${WANDB_API_KEY:-}" ] || [ -z "${HUGGINGFACE_TOKEN:-}" ]; then
+    echo "ERROR: Required environment variables not set. Please check your .env file contains:"
+    echo "  WANDB_API_KEY"
+    echo "  HUGGINGFACE_TOKEN"
+    exit 1
+fi
+
+# ===== DRY-RUN MODE =====
+if [ "$DRY_RUN" = "true" ]; then
+    echo ""
+    echo "==================================================================="
+    echo "DRY-RUN MODE: Validation and Preview"
+    echo "==================================================================="
+    echo ""
+    
+    # Show what would be executed
+    echo "✓ All validations passed!"
+    echo ""
+    echo "Would execute with the following configuration:"
+    echo "  Checkpoint base directory: $CHECKPOINT_BASE_DIR"
+    echo "  Validation dataset: $VAL_DATASET"
+    echo "  Number of GPUs: $NUM_GPUS"
+    
+    # Find checkpoints that would be evaluated
+    if [ -n "$SPECIFIC_CHECKPOINTS" ]; then
+        echo "  Specific checkpoints to evaluate: $SPECIFIC_CHECKPOINTS"
+        CHECKPOINTS=""
+        for ckpt_num in $SPECIFIC_CHECKPOINTS; do
+            ckpt_dir="$CHECKPOINT_BASE_DIR/checkpoint-$ckpt_num"
+            if [ -d "$ckpt_dir" ]; then
+                CHECKPOINTS="$CHECKPOINTS $ckpt_dir"
+                echo "    ✓ Found: checkpoint-$ckpt_num"
+            else
+                echo "    ⚠ Not found: checkpoint-$ckpt_num"
+            fi
+        done
+    else
+        echo "  Would evaluate ALL checkpoints in: $CHECKPOINT_BASE_DIR"
+        if [ -d "$CHECKPOINT_BASE_DIR" ]; then
+            FOUND_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR" -maxdepth 1 -type d -name "checkpoint-*" | wc -l)
+            echo "    Found $FOUND_CHECKPOINTS checkpoint directory(ies)"
+        fi
+    fi
+    
+    echo ""
+    echo "File/Directory checks:"
+    if [ -d "$CHECKPOINT_BASE_DIR" ]; then
+        echo "  ✓ Checkpoint base directory exists"
+    else
+        echo "  ⚠ Checkpoint base directory not found: $CHECKPOINT_BASE_DIR"
+    fi
+    
+    if [ -f "$VAL_DATASET" ]; then
+        echo "  ✓ Validation dataset exists"
+    else
+        echo "  ⚠ Validation dataset not found: $VAL_DATASET"
+    fi
+    
+    echo ""
+    echo "Environment variables:"
+    echo "  ✓ SLURM_ACCOUNT: ${SLURM_ACCOUNT:-NOT SET}"
+    echo "  ✓ WANDB_API_KEY: ${WANDB_API_KEY:+SET (hidden)}"
+    echo "  ✓ HUGGINGFACE_TOKEN: ${HUGGINGFACE_TOKEN:+SET (hidden)}"
+    echo ""
+    echo "Evaluation command would be:"
+    echo "  python scripts/evaluate_distributed_checkpoints_multigpu.py"
+    echo "    --model $MODEL"
+    echo "    --checkpoint_dir [checkpoint-dir]"
+    echo "    --val_dataset $VAL_DATASET"
+    echo "    --hf_token [REDACTED]"
+    echo "    --output_dir [checkpoint-dir]/eval_results"
+    echo "    --wandb_project lm-evaluation"
+    echo "    --use_greedy --use_multi_gpu"
+    echo ""
+    echo "==================================================================="
+    echo "Dry-run complete. No job was submitted."
+    echo "To actually run, remove --dry-run flag."
+    echo "==================================================================="
+    exit 0
+fi
 
 echo "==================================================================="
 echo "Multi-GPU Evaluation: $NUM_GPUS GPUs"
@@ -106,8 +335,7 @@ module load NRIS/GPU
 module load CUDA/12.6.0
 module load PyTorch/2.8.0
 
-# Load environment variables
-source .env
+# .env already sourced above, variables should be available
 
 # Apptainer image
 export IMAGE=/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif
