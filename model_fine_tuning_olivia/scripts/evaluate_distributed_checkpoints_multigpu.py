@@ -159,6 +159,56 @@ class CausalLMTrainer(Trainer):
         super().__init__(*args, **kwargs)
         self._processing_class = self.tokenizer
     
+    def _move_model_to_device(self, model, device):
+        """Override to prevent moving models that are already dispatched with device_map.
+        
+        When using model parallelism (device_map="auto"), the model is already
+        distributed across devices and cannot be moved. This prevents the error:
+        "You can't move a model that has some modules offloaded to cpu or disk."
+        
+        We detect dispatched models and skip device movement, but ensure the
+        Trainer's device attribute is set to the primary GPU to avoid overloading.
+        """
+        # Check if model is already dispatched (has device_map)
+        is_dispatched = False
+        
+        # Check for hf_device_map attribute (accelerate's indicator)
+        if hasattr(model, 'hf_device_map') or (hasattr(model, 'base_model') and hasattr(model.base_model, 'hf_device_map')):
+            is_dispatched = True
+        
+        # Also check if model parameters are on multiple devices
+        if not is_dispatched:
+            devices = set(str(p.device) for p in model.parameters() if p.device.type == 'cuda')
+            if len(devices) > 1:
+                is_dispatched = True
+        
+        if is_dispatched:
+            # Model is already dispatched - don't try to move it
+            print("Model is already dispatched with device_map - skipping device movement")
+            
+            # Find the primary device (GPU with most parameters) for Trainer operations
+            device_counts = {}
+            for p in model.parameters():
+                if p.device.type == 'cuda':
+                    dev_str = str(p.device)
+                    device_counts[dev_str] = device_counts.get(dev_str, 0) + p.numel()
+            
+            if device_counts:
+                # Use the GPU with the most parameters as the "primary" device
+                primary_device = max(device_counts.items(), key=lambda x: x[1])[0]
+                print(f"Using {primary_device} as primary device for Trainer operations")
+                # Set the device attribute so Trainer knows where to put inputs
+                self.args.device = torch.device(primary_device)
+            else:
+                # Fallback to first available CUDA device
+                if torch.cuda.is_available():
+                    self.args.device = torch.device("cuda:0")
+            
+            return model
+        
+        # For single-device models, use the parent implementation
+        return super()._move_model_to_device(model, device)
+    
     def get_eval_dataloader(self, eval_dataset=None):
         """Override to use a different data collator for evaluation."""
         if eval_dataset is None:
@@ -235,15 +285,6 @@ class CausalLMTrainer(Trainer):
         generated_ids = generated_ids[:, input_length:]
         
         print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
-        
-        # Save inputs, references, and predictions to JSONL file
-        if self.checkpoint_dir is not None:
-            with open(os.path.join(self.checkpoint_dir, "inputs_refs_preds.jsonl"), "a") as f:
-                f.write(json.dumps({
-                    "input": input_ids.tolist(),
-                    "reference": labels.tolist() if labels is not None else None,
-                    "prediction": generated_ids.tolist()
-                }) + "\n")
         
         # Clear cache after generation
         torch.cuda.empty_cache()
@@ -415,7 +456,29 @@ def load_model_and_peft_checkpoint(
     if not os.path.isdir(checkpoint_dir):
         raise ValueError(f"Checkpoint directory does not exist: {checkpoint_dir}")
     
-    # Check if this checkpoint was already evaluated (only has eval_results)
+    # Check if this checkpoint was already evaluated
+    # Look in model_dir/all_eval_results/checkpoint-nnn-eval-results.json
+    model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
+    checkpoint_name = os.path.basename(checkpoint_dir.rstrip('/'))
+    all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
+    eval_results_file = os.path.join(all_eval_results_dir, f"{checkpoint_name}-eval-results.json")
+    if os.path.exists(eval_results_file):
+        raise AlreadyEvaluatedError(
+            f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+            f"(results file exists at {eval_results_file}). "
+            f"Skipping evaluation."
+        )
+    
+    # Also check old location for backwards compatibility
+    old_eval_results_file = os.path.join(checkpoint_dir, 'eval_results', 'eval_results.json')
+    if os.path.exists(old_eval_results_file):
+        raise AlreadyEvaluatedError(
+            f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+            f"(old results file exists at {old_eval_results_file}). "
+            f"Skipping evaluation."
+        )
+    
+    # Also check if checkpoint directory only contains eval_results (old structure)
     dir_contents = os.listdir(checkpoint_dir)
     if len(dir_contents) == 1 and 'eval_results' in dir_contents:
         eval_results_file = os.path.join(checkpoint_dir, 'eval_results', 'eval_results.json')
@@ -547,7 +610,7 @@ def get_model_batch_size(model_name: str, default_batch_size: int) -> int:
     # These models take ~85GB per GPU even when split, leaving little room for batch processing
     if 'gemma-2-27b' in model_name_lower or 'gemma-3-27b' in model_name_lower or 'viking-33b' in model_name_lower:
         return min(2, default_batch_size)  # Very small batch for 27B+ models
-    # Large models (13B-20B) - can use larger batches with model parallelism
+    # Large models (12B-13B) - can use larger batches with model parallelism
     # Peak memory usage was only ~19GB, so we have ~80GB headroom
     elif 'viking-13b' in model_name_lower or 'llama-2-13b' in model_name_lower:
         return min(8, default_batch_size)  # Increase from 4 to 8 (2x faster)
@@ -577,12 +640,145 @@ def evaluate_checkpoint(
     val_data_size: int = VAL_DATA_SIZE,
     val_beam_size: int = VAL_BEAM_SIZE,
     use_greedy: bool = True,
-    use_multi_gpu: bool = False,  # Changed from use_fsdp
+    use_multi_gpu: bool = False,
     wandb_project: Optional[str] = "lm-evaluation",
     wandb_entity: Optional[str] = None,
-    wandb_disabled: bool = False,  # ADD THIS PARAMETER
+    wandb_disabled: bool = False,
+    wandb_run_name: Optional[str] = None,
+    wandb_group: Optional[str] = None,
 ):
     """Load a PEFT checkpoint and run evaluation with model parallelism support."""
+    
+    # Convert checkpoint_dir to absolute path
+    checkpoint_dir = os.path.abspath(checkpoint_dir)
+    
+    # Extract checkpoint step number early (needed for checking existing results)
+    checkpoint_name = os.path.basename(checkpoint_dir.rstrip('/'))
+    checkpoint_step = checkpoint_name.replace('checkpoint-', '') if 'checkpoint-' in checkpoint_name else 'unknown'
+    try:
+        checkpoint_step_int = int(checkpoint_step)
+    except ValueError:
+        checkpoint_step_int = 0
+    
+    # Determine output directory: save to model/all_eval_results/checkpoint-nnn-eval-results.json
+    if output_dir is None:
+        # Get model directory (parent of checkpoint_dir)
+        model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
+        # Create all_eval_results directory in model directory
+        output_dir = os.path.join(model_dir, "all_eval_results")
+    else:
+        output_dir = os.path.abspath(output_dir)
+    
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Save as checkpoint-nnn-eval-results.json instead of eval_results.json
+    results_file = os.path.join(output_dir, f"{checkpoint_name}-eval-results.json")
+    
+    # If results file exists, load and log to Wandb without re-evaluating
+    if os.path.exists(results_file):
+        print(f"⚠ Checkpoint {checkpoint_name} already evaluated. Loading existing results...")
+        
+        try:
+            with open(results_file, 'r') as f:
+                existing_results = json.load(f)
+            print(f"✓ Loaded existing results from {results_file}")
+            
+            # Extract ROUGE scores (handle both eval_rouge* and rouge* keys)
+            rouge1 = existing_results.get("eval_rouge1", existing_results.get("rouge1", 0))
+            rouge2 = existing_results.get("eval_rouge2", existing_results.get("rouge2", 0))
+            rougeL = existing_results.get("eval_rougeL", existing_results.get("rougeL", 0))
+            rougeLsum = existing_results.get("eval_rougeLsum", existing_results.get("rougeLsum", 0))
+            
+            # Check if all ROUGE scores are zero (indicates failed evaluation)
+            all_zeros = (rouge1 == 0.0 and rouge2 == 0.0 and rougeL == 0.0 and rougeLsum == 0.0)
+            
+            if all_zeros:
+                print(f"⚠ Warning: All ROUGE scores are 0.00 - this indicates a failed evaluation.")
+                print(f"   Re-evaluating checkpoint {checkpoint_name}...")
+                # Fall through to normal evaluation instead of returning
+            else:
+                # Initialize Wandb if needed (even for already-evaluated checkpoints)
+                is_main_process = True
+                if wandb_project and not wandb_disabled and wandb.run is None and is_main_process:
+                    print(f"Initializing Weights & Biases to log existing results...")
+                    
+                    # Create a clean model name for display
+                    clean_model_name = model_name.split('/')[-1].replace('-', '_')
+                    
+                    # Collect GPU information
+                    gpu_info = {}
+                    num_gpus = torch.cuda.device_count()
+                    for i in range(num_gpus):
+                        props = torch.cuda.get_device_properties(i)
+                        gpu_info[f"gpu_{i}_name"] = props.name
+                        gpu_info[f"gpu_{i}_memory_total_gb"] = props.total_memory / 1e9
+                    
+                    # Use provided run_name or create one based on model
+                    run_name = wandb_run_name or f"{clean_model_name}_evaluation"
+                    
+                    wandb.init(
+                        project=wandb_project,
+                        entity=wandb_entity,
+                        name=run_name,
+                        group=wandb_group or clean_model_name,
+                        tags=[
+                            "evaluation",
+                            "multi-gpu" if use_multi_gpu else "single-gpu",
+                            clean_model_name,
+                            "already-evaluated",  # Tag to indicate this was loaded from cache
+                        ],
+                        config={
+                            "model_name": model_name,
+                            "val_dataset_path": val_dataset_path,
+                            "val_data_size": val_data_size,
+                            "val_batch_size": val_batch_size,
+                            "val_beam_size": val_beam_size,
+                            "max_input_text_tokens": max_input_text_tokens,
+                            "max_output_summary_tokens": max_output_summary_tokens,
+                            "num_gpus": num_gpus,
+                            "use_multi_gpu": use_multi_gpu,
+                            "world_size": 1,
+                            "is_distributed": False,
+                            "results_loaded_from_cache": True,  # Indicate these are cached results
+                            **gpu_info,
+                        },
+                        reinit=True,
+                    )
+                    print(f">>> wandb run initialized: {wandb.run.name}")
+                    print(f">>> wandb run URL: {wandb.run.get_url()}")
+                
+                # Log existing results to Wandb
+                if wandb.run is not None and is_main_process and not wandb_disabled:
+                    # Log with checkpoint step as the x-axis
+                    wandb.log({
+                        "eval/rouge1": rouge1,
+                        "eval/rouge2": rouge2,
+                        "eval/rougeL": rougeL,
+                        "eval/rougeLsum": rougeLsum,
+                        "checkpoint_step": checkpoint_step_int,
+                        "from_cache": True,  # Flag to indicate this was loaded from cache
+                    }, step=checkpoint_step_int)
+                    
+                    # Update summary
+                    wandb.summary.update({
+                        "latest_checkpoint": checkpoint_step_int,
+                        "latest_rouge1": rouge1,
+                        "latest_rouge2": rouge2,
+                        "latest_rougeL": rougeL,
+                        "latest_rougeLsum": rougeLsum,
+                    })
+                    
+                    print(f">>> Logged existing results to wandb at step {checkpoint_step_int}")
+                    print(f"   ROUGE-1: {rouge1:.2f}, ROUGE-2: {rouge2:.2f}, ROUGE-L: {rougeL:.2f}, ROUGE-Lsum: {rougeLsum:.2f}")
+                
+                # Return existing results (no model needed since we're not evaluating)
+                return existing_results, None
+            
+        except Exception as e:
+            print(f"⚠ Warning: Failed to load existing results from {results_file}: {e}")
+            print("   Proceeding with full evaluation...")
+            # Fall through to normal evaluation
     
     # Auto-enable multi-GPU if multiple GPUs available and not explicitly disabled
     num_gpus = torch.cuda.device_count()
@@ -653,13 +849,15 @@ def evaluate_checkpoint(
             print('*** evaluation: computed_metrics ***', scores)
         
         # Log to wandb if initialized and not disabled (only on main process)
+        # Use checkpoint_step as the step so all checkpoints appear in one timeline
         if wandb.run is not None and is_main_process and not wandb_disabled:
             wandb.log({
                 "eval/rouge1": scores['rouge1'] * 100,
                 "eval/rouge2": scores['rouge2'] * 100,
                 "eval/rougeL": scores['rougeL'] * 100,
                 "eval/rougeLsum": scores['rougeLsum'] * 100,
-            })
+                "checkpoint_step": checkpoint_step_int,  # Track which checkpoint this is
+            }, step=checkpoint_step_int)  # CRITICAL: Use checkpoint step as x-axis
         
         return {k: v * 100 for k, v in scores.items()}  # % values
 
@@ -686,10 +884,6 @@ def evaluate_checkpoint(
     
     tokenizer.padding_side = 'left'
 
-    # Extract checkpoint step number for run naming
-    checkpoint_name = os.path.basename(checkpoint_dir.rstrip('/'))
-    checkpoint_step = checkpoint_name.replace('checkpoint-', '') if 'checkpoint-' in checkpoint_name else 'unknown'
-    
     # Create a clean model name for display
     clean_model_name = model_name.split('/')[-1].replace('-', '_')
     
@@ -705,10 +899,14 @@ def evaluate_checkpoint(
             gpu_info[f"gpu_{i}_name"] = props.name
             gpu_info[f"gpu_{i}_memory_total_gb"] = props.total_memory / 1e9
         
+        # Use provided run_name or create one based on model
+        run_name = wandb_run_name or f"{clean_model_name}_evaluation"
+        
         wandb.init(
             project=wandb_project,
             entity=wandb_entity,
-            name=f"{clean_model_name}_ckpt-{checkpoint_step}",
+            name=run_name,
+            group=wandb_group or clean_model_name,  # Group all checkpoints together
             tags=[
                 "evaluation",
                 "multi-gpu" if use_multi_gpu else "single-gpu",
@@ -728,9 +926,9 @@ def evaluate_checkpoint(
                 "max_output_summary_tokens": max_output_summary_tokens,
                 "num_gpus": num_gpus,
                 "use_multi_gpu": use_multi_gpu,
-                "world_size": 1, # No distributed mode
-                "is_distributed": False, # No distributed mode
-                **gpu_info,  # ADD GPU INFO
+                "world_size": 1,
+                "is_distributed": False,
+                **gpu_info,
             },
             reinit=True,
         )
@@ -826,9 +1024,7 @@ def evaluate_checkpoint(
     eval_data_collator = EvalDataCollator(tokenizer=tokenizer)
 
     # Set up evaluation-only training args
-    if output_dir is None:
-        output_dir = os.path.join(checkpoint_dir, "eval_results")
-    
+    # Note: output_dir was already set earlier to model_dir/all_eval_results
     training_args = TrainingArguments(
         output_dir=output_dir,
         per_device_eval_batch_size=val_batch_size,
@@ -876,23 +1072,34 @@ def evaluate_checkpoint(
         print("=" * 70 + "\n")
     
     # Log final summary to wandb if initialized and not disabled
+    # Log with checkpoint step so it appears in the timeline
     if wandb_project and wandb.run is not None and is_main_process and not wandb_disabled:
+        wandb.log({
+            "final/rouge1": eval_results.get("eval_rouge1", 0),
+            "final/rouge2": eval_results.get("eval_rouge2", 0),
+            "final/rougeL": eval_results.get("eval_rougeL", 0),
+            "final/rougeLsum": eval_results.get("eval_rougeLsum", 0),
+        }, step=checkpoint_step_int)
+        
+        # Update summary with latest checkpoint results
         wandb.summary.update({
-            "rouge1": eval_results.get("eval_rouge1", 0),
-            "rouge2": eval_results.get("eval_rouge2", 0),
-            "rougeL": eval_results.get("eval_rougeL", 0),
-            "rougeLsum": eval_results.get("eval_rougeLsum", 0),
+            "latest_checkpoint": checkpoint_step_int,
+            "latest_rouge1": eval_results.get("eval_rouge1", 0),
+            "latest_rouge2": eval_results.get("eval_rouge2", 0),
+            "latest_rougeL": eval_results.get("eval_rougeL", 0),
+            "latest_rougeLsum": eval_results.get("eval_rougeLsum", 0),
         })
         
-        wandb.finish()
-        print(">>> Evaluation results logged to wandb")
+        # DON'T call wandb.finish() here - keep the run open for multiple checkpoints
+        # Only finish if explicitly requested or at the very end
+        print(">>> Evaluation results logged to wandb (run kept open for additional checkpoints)")
     elif wandb_disabled and is_main_process:
         print(">>> Wandb disabled - skipping wandb logging")
     
     # Save results to file (only on main process)
     if is_main_process:
-        results_file = os.path.join(output_dir, "eval_results.json")
-        os.makedirs(output_dir, exist_ok=True)
+        # results_file was already set earlier with the new naming scheme
+        # output_dir was already created earlier, so just save
         with open(results_file, 'w') as f:
             json.dump(eval_results, f, indent=2)
         print(f"Results saved to: {results_file}")
@@ -940,7 +1147,7 @@ Examples:
     parser.add_argument('--val_dataset', type=str, default=None,
                        help='Path to validation dataset (JSONL format). Required unless --skip_eval is used.')
     parser.add_argument('--output_dir', type=str, default=None,
-                       help='Output directory for evaluation results (default: checkpoint_dir/eval_results)')
+                       help='Output directory for evaluation results (default: model_dir/all_eval_results)')
     parser.add_argument('--hf_token', type=str,
                        help='Hugging Face authentication token for private models')
     parser.add_argument('--skip_eval', action='store_true',
@@ -971,6 +1178,10 @@ Examples:
                        help='Wandb entity/team name (default: uses your default entity)')
     parser.add_argument('--wandb_disabled', action='store_true',
                        help='Disable wandb logging for this evaluation')
+    parser.add_argument('--wandb_run_name', type=str, default=None,
+                       help='Wandb run name (if not provided, uses model name). Use same name for all checkpoints to combine them.')
+    parser.add_argument('--wandb_group', type=str, default=None,
+                       help='Wandb group name to combine multiple runs (default: model name)')
 
     args = parser.parse_args()
     
@@ -1004,11 +1215,13 @@ Examples:
                 checkpoint_dir=args.checkpoint_dir,
                 val_dataset_path=args.val_dataset,
                 hf_token=args.hf_token,
-                output_dir=args.output_dir if args.output_dir else os.path.join(args.checkpoint_dir, "eval_results"),
+                output_dir=args.output_dir,  # None will trigger default: model_dir/all_eval_results
                 use_multi_gpu=args.use_multi_gpu,
                 wandb_project=args.wandb_project if not args.wandb_disabled else None,
                 wandb_entity=args.wandb_entity,
                 wandb_disabled=args.wandb_disabled,
+                wandb_run_name=args.wandb_run_name,  # ADD THIS
+                wandb_group=args.wandb_group,  # ADD THIS
             )
         except AlreadyEvaluatedError as e:
             print(f"⚠ SKIPPING: {e}")

@@ -5,7 +5,7 @@
 * Model: most likely gpt-3.5-turbo
 * Number of documents: ??
 * Attributes: dokument_id,doc_type,kommune,tittel,url,text; dokument_id, batch_id, oppsumering_tittel, oppsummering, personer, nokkelord, nyhetsverdi; ???
-* File: Ajay processes these?
+* File: AJAY cleaned and merged these files -> it was his first dataset!
 
 ## Files
 
@@ -15,13 +15,3 @@
 * `dokument_jsons/`: 36812 full texts, with dokument_id,doc_type,kommune,tittel,url,text from 2025-06-16 or earlier. Municipalities: 4601|5501|5536.
 * `36812-demokratibasen-texts-20250528.jsonl`: 36 813 objects with keys doc_type, dokument_id, kommune, tekst, tittel, url. Generated 2025-05-28. Same fields as the corresponding `...-urls-....csv` file but with doc_tekst too. Compiled from `dokument_jsons/` with the `split_jsonl.py` script.
 * `17569-demokratibasen-inferences-20250624.csv`: 16 276 rows with columns dokument_id, batch_id, tittel, oppsummering, personer, nokkelord, nyhetsverdi. (This is a dump of the `inferens` table in Demokratibasen. It is possible that some dokument_id-er were analysed several times, perhaps with different GPT models.) Generated 2025-06-24.
-* `12810-url-tekst-oppsummering-20250624.csv`: 12810 rows with dok_id, kommune, url, dok_type, dok_tittel, text, model, max_tokens, oppsum_tittel, oppsummering, personer, nokkelord, nyhetsverdi. Generated using gpt-3.5-turbo by Demokratibasen-demo with a simpler prompt and without `max_tokens`.
-
-## Key Aliases / Copies
-
-The same data appears under these names/locations:
-
-* dokumenter.jsonl (original output of urls_to_texts.py)
-* 36812-demokratibasen-texts-20250528.jsonl (renamed with date)
-* dokument_jsons/ folder (split into individual files)
-* case_documents_summary/data_raw/dokumenter.jsonl (symlink or copy used by extraction scripts)

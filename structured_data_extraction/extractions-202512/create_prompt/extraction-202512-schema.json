@@ -1,0 +1,65 @@
+{
+    "name": "extract_case_info",
+    "description": "Trekk ut strukturerte kjerneopplysninger fra et kommunalt saksframlegg. Kun innhold som faktisk omtales i saken skal inkluderes.",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "hva_saken_gjelder": {
+          "type": "string",
+          "description": "Kortfattet beskrivelse av hva saken handler om i praksis."
+        },
+        "tema": {
+          "type": "array",
+          "description": "3–10 sentrale tema eller politikkområder saken berører.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "viktige_hendelser": {
+          "type": "array",
+          "description": "Tidligere, pågående eller planlagte hendelser som er sentrale for saken.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "viktige_tidspunkter": {
+          "type": "array",
+          "description": "Datoer eller tidsperioder som er viktige for saken (f.eks. frister, vedtaksdatoer, gjennomføring).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "viktige_personer": {
+          "type": "array",
+          "description": "Navn på personer som har en faktisk og aktiv rolle i saken. Ekskluder personer som kun er nevnt i administrative roller eller signaturer.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "viktige_organisasjoner": {
+          "type": "array",
+          "description": "Organisasjoner, virksomheter eller offentlige organer som spiller en sentral rolle i saken.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "viktige_steder": {
+          "type": "array",
+          "description": "Geografiske steder som saken gjelder (kommuner, bydeler, eiendommer, områder).",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "hva_saken_gjelder",
+        "tema",
+        "viktige_hendelser",
+        "viktige_tidspunkter",
+        "viktige_personer",
+        "viktige_organisasjoner",
+        "viktige_steder"
+      ],
+      "additionalProperties": false
+    }
+  }

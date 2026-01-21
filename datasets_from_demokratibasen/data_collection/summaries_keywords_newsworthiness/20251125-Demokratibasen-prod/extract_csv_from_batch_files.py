@@ -3,11 +3,8 @@ import json
 from pathlib import Path
 
 
-# Define the directory with OpenAI batch files
+# Define the sources directory
 SOURCE_DIR = Path('./batch-files-20251125')
-
-# Define the CSV file with summaries from Demokratibasen prod
-CSV_FILE = Path("./49409_url_oppsummering_from_prod_20251125.csv")
 
 # What to do
 EXTRACT_RAW_TEXTS_FROM_INPUT_FILES = True
@@ -18,6 +15,7 @@ JOIN_SUMMARIES_AND_TEXTS = True \
     and (EXTRACT_SUMMARIES_FROM_OUTPUT_FILES \
             or EXTRACT_SUMMARIES_FROM_CSV_FILE)
 
+CSV_FILE = Path("../../extract_data_from_prod/49409_url_oppsummering_from_prod_20251125.csv")
 
 
 if EXTRACT_RAW_TEXTS_FROM_INPUT_FILES:

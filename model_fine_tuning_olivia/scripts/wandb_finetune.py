@@ -125,7 +125,6 @@ from model_configs import (
     get_model_name_mapping,
 )
 
-
 # Default values when command-line args are not supplied
 MAX_INPUT_TEXT_TOKENS = 2048  # max tokens for input to summarisation
 MAX_EXTRA_PROMPT_TOKENS = 40  # max extra tokens for input prompt (the task description)
@@ -802,12 +801,15 @@ def fine_tune_model(
     def tokenize_function_train(examples):
         # Tokenize the formatted text for training
         max_input_prompt_tokens = max_input_text_tokens + max_extra_prompt_tokens
-        return tokenizer(
+        # Note: padding=False here - DataCollatorForLanguageModeling handles padding
+        # This approach is compatible with both tokenizers 0.20.0 and 0.22.0
+        tokenized = tokenizer(
             examples["text"],
             truncation=True,
             max_length=max_input_prompt_tokens + max_output_summary_tokens,
-            padding=True
+            padding=False  # Padding done by data collator for compatibility across tokenizer versions
         )
+        return tokenized
 
     def tokenize_function_eval(examples):
         # Tokenize ONLY the prompt (without answer) for evaluation
@@ -871,21 +873,48 @@ def fine_tune_model(
                     print(f"input_ids first few: {input_ids[:5].tolist() if len(input_ids) > 5 else input_ids.tolist()}")
             
             # Convert sample to proper format if needed (HuggingFace datasets sometimes return lists)
-            # Ensure all values are lists/tensors, not nested structures
+            # Ensure all values are lists of integers (token IDs), not nested structures
             sample_dict = {}
             for key, value in sample.items():
                 if isinstance(value, list):
-                    # If it's already a list, use it
-                    sample_dict[key] = value
+                    # If it's already a list, check if it contains token IDs (integers)
+                    if len(value) > 0 and isinstance(value[0], (int, np.integer)):
+                        sample_dict[key] = value
+                    else:
+                        # If it's a list of strings or other types, skip this sample
+                        print(f"WARNING: {key} is a list but not token IDs, skipping debug collation")
+                        continue
                 elif hasattr(value, 'tolist'):
                     # If it's a tensor/array, convert to list
                     sample_dict[key] = value.tolist()
+                elif isinstance(value, (int, np.integer)):
+                    # Single integer token ID - wrap in list
+                    sample_dict[key] = [value]
                 else:
-                    # Otherwise, wrap in list
-                    sample_dict[key] = [value] if not isinstance(value, list) else value
+                    # Skip non-integer values to avoid tokenization errors
+                    print(f"WARNING: {key} has unsupported type {type(value)}, skipping")
+                    continue
             
-            # Now try collating
-            collated = train_data_collator([sample_dict])
+            # Only try collating if we have valid token IDs
+            if 'input_ids' in sample_dict and isinstance(sample_dict['input_ids'], list):
+                collated = train_data_collator([sample_dict])
+            else:
+                print("WARNING: Could not create valid sample_dict for collation test")
+                # Ensure all values are lists/tensors, not nested structures
+                sample_dict = {}
+                for key, value in sample.items():
+                    if isinstance(value, list):
+                        # If it's already a list, use it
+                        sample_dict[key] = value
+                    elif hasattr(value, 'tolist'):
+                        # If it's a tensor/array, convert to list
+                        sample_dict[key] = value.tolist()
+                    else:
+                        # Otherwise, wrap in list
+                        sample_dict[key] = [value] if not isinstance(value, list) else value
+                
+                # Now try collating
+                collated = train_data_collator([sample_dict])
             
             if 'labels' in collated:
                 labels = collated['labels']

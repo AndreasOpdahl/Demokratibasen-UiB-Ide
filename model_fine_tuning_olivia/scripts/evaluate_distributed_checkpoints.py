@@ -153,22 +153,6 @@ class CausalLMTrainer(Trainer):
             return (None, None, None)
 
         print('*** evaluation: prediction_step ***')
-        
-        # Access checkpoint and training state information
-        checkpoint_info = {
-            "checkpoint_dir": self.checkpoint_dir,
-            "output_dir": self.args.output_dir,
-        }
-        
-        # Training state (available during evaluation, but may not have meaningful step/epoch)
-        if hasattr(self, 'state') and self.state is not None:
-            checkpoint_info.update({
-                "global_step": getattr(self.state, 'global_step', None),
-                "epoch": getattr(self.state, 'epoch', None),
-                "log_history": getattr(self.state, 'log_history', []),
-            })
-        
-        print(f'*** checkpoint_info: {checkpoint_info} ***')
         torch.cuda.empty_cache()
 
         if 'input_ids' in inputs:
@@ -200,14 +184,6 @@ class CausalLMTrainer(Trainer):
         generated_ids = generated_ids[:, input_length:]
         
         print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
-        
-        with open(self.checkpoint_dir + "/inputs_refs_preds.jsonl", "a") as f:
-            f.write(json.dumps({
-                "input": input_ids.tolist(),
-                "reference": labels.tolist(),
-                "prediction": generated_ids.tolist()
-            }) + "\n")
-        
         torch.cuda.empty_cache()
 
         loss = None
