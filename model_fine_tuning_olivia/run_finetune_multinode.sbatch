@@ -7,19 +7,264 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=512G
 #SBATCH --time=25:00:00
-#SBATCH -A nn12075k
+# Account: REQUIRED - Pass via: sbatch --account=YOUR_ACCOUNT run_finetune_multinode.sbatch ...
+# Example: sbatch --account=nn12075k run_finetune_multinode.sbatch --model=gemma-2-9b
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
 
 set -euo pipefail
 
-# Model selection: Use short name (gemma-7b, viking-7b, normistral-7b, etc.)
-# Supported models: gemma-2b, gemma-7b, viking-7b, viking-13b, no
-MODEL=gemma-2-9b
-DISTRIBUTION_FLAG="--fsdp"
-RESUME_CHECKPOINT=""
-TASK_LIMIT="--max_steps 10000"
-NUM_GPUS=${SLURM_GPUS_ON_NODE:-1}
+# Load environment variables from .env file
+# .env should contain: SLURM_ACCOUNT, WANDB_API_KEY, HUGGINGFACE_TOKEN
+if [ -f .env ]; then
+    source .env
+else
+    echo "WARNING: .env file not found. Using defaults or environment variables."
+fi
+
+# Note: SLURM_ACCOUNT is hardcoded in #SBATCH -A line above (nn12075k)
+# If you need a different account, update the #SBATCH -A line directly
+# SLURM_ACCOUNT from .env is still used for informational purposes
+
+# Parse command-line arguments or use defaults
+# Usage: sbatch --export=SLURM_ACCOUNT=nn12075k run_finetune_multinode.sbatch [--model=MODEL] [--num_gpus=N] [--resume_checkpoint=CHECKPOINT] [--task_limit="--max_steps N"] [--distribution_flag="--fsdp"] [--dry-run]
+MODEL=${MODEL:-gemma-2-9b}
+NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
+RESUME_CHECKPOINT=${RESUME_CHECKPOINT:-""}
+TASK_LIMIT=${TASK_LIMIT:-"--max_steps 10000"}
+DISTRIBUTION_FLAG=${DISTRIBUTION_FLAG:-"--fsdp"}
+DRY_RUN=${DRY_RUN:-false}
+
+# Parse command-line arguments if provided
+for arg in "$@"; do
+    case $arg in
+        --model=*)
+            MODEL="${arg#*=}"
+            ;;
+        --num_gpus=*)
+            NUM_GPUS="${arg#*=}"
+            ;;
+        --resume_checkpoint=*)
+            RESUME_CHECKPOINT="${arg#*=}"
+            ;;
+        --task_limit=*)
+            TASK_LIMIT="${arg#*=}"
+            ;;
+        --distribution_flag=*)
+            DISTRIBUTION_FLAG="${arg#*=}"
+            ;;
+        --dry-run|--debug)
+            DRY_RUN=true
+            ;;
+        *)
+            echo "ERROR: Unknown argument: $arg"
+            echo ""
+            echo "Usage: sbatch --export=SLURM_ACCOUNT=nn12075k run_finetune_multinode.sbatch [OPTIONS]"
+            echo ""
+            echo "Options:"
+            echo "  --model=MODEL              Model short name (default: gemma-2-9b)"
+            echo "  --num_gpus=N               Number of GPUs (default: 4)"
+            echo "  --resume_checkpoint=DIR    Checkpoint directory to resume from (default: none)"
+            echo "  --task_limit=\"OPTIONS\"     Task limit, e.g. \"--max_steps 10000\" (default: --max_steps 10000)"
+            echo "  --distribution_flag=FLAG   Distribution flag: --fsdp or --ddp (default: --fsdp)"
+            echo "  --dry-run|--debug          Debug mode: validate inputs and show what would run (no job submission)"
+            echo ""
+            echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+            echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b,"
+            echo "              norskgpt-llama3-8b, llama-2-13b-chat-norwegian, mt5"
+            exit 1
+            ;;
+    esac
+done
+
+# Validation functions
+validate_model() {
+    local model=$1
+    case "$model" in
+        gemma-2b|gemma-7b|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
+        viking-7b|viking-13b|viking-33b| \
+        normistral-7b|normistral-11b| \
+        norskgpt-llama3-8b|llama-2-13b-chat-norwegian|mt5)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+validate_num_gpus() {
+    local num=$1
+    if ! [[ "$num" =~ ^[0-9]+$ ]] || [ "$num" -lt 1 ] || [ "$num" -gt 8 ]; then
+        return 1
+    fi
+    return 0
+}
+
+validate_distribution_flag() {
+    local flag=$1
+    case "$flag" in
+        --fsdp|--ddp|"")
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+validate_task_limit() {
+    local limit=$1
+    if [[ "$limit" =~ ^--max_steps\ [0-9]+$ ]] || [[ "$limit" =~ ^--num_train_epochs\ [0-9]+(\.[0-9]+)?$ ]] || [ -z "$limit" ]; then
+        return 0
+    fi
+    return 1
+}
+
+# Validate inputs
+ERRORS=0
+
+if ! validate_model "$MODEL"; then
+    echo "ERROR: Invalid model name: $MODEL"
+    echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+    echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b,"
+    echo "              norskgpt-llama3-8b, llama-2-13b-chat-norwegian, mt5"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if ! validate_num_gpus "$NUM_GPUS"; then
+    echo "ERROR: Invalid num_gpus: $NUM_GPUS"
+    echo "num_gpus must be a positive integer between 1 and 8"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if ! validate_distribution_flag "$DISTRIBUTION_FLAG"; then
+    echo "ERROR: Invalid distribution_flag: $DISTRIBUTION_FLAG"
+    echo "distribution_flag must be: --fsdp, --ddp, or empty"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if ! validate_task_limit "$TASK_LIMIT"; then
+    echo "ERROR: Invalid task_limit format: $TASK_LIMIT"
+    echo "task_limit must be in format: \"--max_steps N\" or \"--num_train_epochs N\" or empty"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if [ -n "$RESUME_CHECKPOINT" ]; then
+    if [ ! -d "$RESUME_CHECKPOINT" ]; then
+        echo "ERROR: Resume checkpoint directory does not exist: $RESUME_CHECKPOINT"
+        ERRORS=$((ERRORS + 1))
+    fi
+fi
+
+# Check if NUM_GPUS matches #SBATCH --gres (warning only, skip in dry-run)
+if [ "$DRY_RUN" != "true" ]; then
+    SBATCH_GPUS=$(grep "^#SBATCH --gres=gpu:" "$0" | sed 's/.*gpu:\([0-9]*\).*/\1/' | head -1)
+    if [ -n "$SBATCH_GPUS" ] && [ "$NUM_GPUS" != "$SBATCH_GPUS" ]; then
+        echo "WARNING: NUM_GPUS ($NUM_GPUS) does not match #SBATCH --gres=gpu:$SBATCH_GPUS"
+        echo "         Consider updating the #SBATCH --gres line or using --num_gpus=$SBATCH_GPUS"
+    fi
+fi
+
+if [ $ERRORS -gt 0 ]; then
+    echo ""
+    echo "Validation failed with $ERRORS error(s). Please fix the errors above and try again."
+    exit 1
+fi
+
+echo "Configuration:"
+echo "  MODEL: $MODEL"
+echo "  NUM_GPUS: $NUM_GPUS"
+echo "  RESUME_CHECKPOINT: ${RESUME_CHECKPOINT:-none}"
+echo "  TASK_LIMIT: $TASK_LIMIT"
+echo "  DISTRIBUTION_FLAG: $DISTRIBUTION_FLAG"
+echo "  DRY_RUN: $DRY_RUN"
+
+# Verify required environment variables are set
+if [ -z "${WANDB_API_KEY:-}" ] || [ -z "${HUGGINGFACE_TOKEN:-}" ]; then
+    echo "ERROR: Required environment variables not set. Please check your .env file contains:"
+    echo "  WANDB_API_KEY"
+    echo "  HUGGINGFACE_TOKEN"
+    exit 1
+fi
+
+# ===== DRY-RUN MODE =====
+# Note: Functions are defined later, but we'll compute values here for dry-run
+if [ "$DRY_RUN" = "true" ]; then
+    echo ""
+    echo "==================================================================="
+    echo "DRY-RUN MODE: Validation and Preview"
+    echo "==================================================================="
+    echo ""
+    
+    # Compute model info (functions defined later, but we can compute manually for preview)
+    case "$MODEL" in
+        gemma-2b) FULL_MODEL_NAME="google/gemma-2b" ;;
+        gemma-7b) FULL_MODEL_NAME="google/gemma-7b" ;;
+        gemma-2-9b) FULL_MODEL_NAME="google/gemma-2-9b" ;;
+        gemma-2-27b) FULL_MODEL_NAME="google/gemma-2-27b" ;;
+        gemma-3-12b) FULL_MODEL_NAME="google/gemma-3-12b-pt" ;;
+        gemma-3-27b) FULL_MODEL_NAME="google/gemma-3-27b-pt" ;;
+        viking-7b) FULL_MODEL_NAME="LumiOpen/Viking-7B" ;;
+        viking-13b) FULL_MODEL_NAME="LumiOpen/Viking-13B" ;;
+        viking-33b) FULL_MODEL_NAME="LumiOpen/Viking-33B" ;;
+        normistral-7b) FULL_MODEL_NAME="norallm/normistral-7b-warm" ;;
+        normistral-11b) FULL_MODEL_NAME="norallm/normistral-11b-warm" ;;
+        norskgpt-llama3-8b) FULL_MODEL_NAME="bineric/norskgpt-llama3-8b" ;;
+        llama-2-13b-chat-norwegian) FULL_MODEL_NAME="ruternorway/llama-2-13b-chat-norwegian" ;;
+        *) FULL_MODEL_NAME="$MODEL" ;;
+    esac
+    MODEL_CACHE_DIR="models--${FULL_MODEL_NAME//\//--}"
+    OUTPUT_DIR="models/${MODEL}-apptainer-fsdp"
+    
+    echo "✓ All validations passed!"
+    echo ""
+    echo "Would execute with the following configuration:"
+    echo "  Full model name: $FULL_MODEL_NAME"
+    echo "  Model cache dir: $MODEL_CACHE_DIR"
+    echo "  Output directory: $OUTPUT_DIR"
+    echo "  Training command would be:"
+    echo "    torchrun --nnodes=1 --nproc_per_node=$NUM_GPUS ..."
+    echo "    scripts/wandb_finetune.py --model $MODEL --quantization none $DISTRIBUTION_FLAG"
+    echo "    --hf_token [REDACTED] --train_dataset data/output/new_processed_data_train.jsonl"
+    echo "    --val_dataset data/output/new_processed_data_val.jsonl $TASK_LIMIT"
+    echo "    --output_dir $OUTPUT_DIR ${RESUME_CHECKPOINT:+--resume_checkpoint $RESUME_CHECKPOINT}"
+    echo ""
+    
+    # Check if files/directories exist (non-blocking in dry-run)
+    echo "File/Directory checks:"
+    if [ -f "data/output/new_processed_data_train.jsonl" ]; then
+        echo "  ✓ Training dataset exists"
+    else
+        echo "  ⚠ Training dataset not found: data/output/new_processed_data_train.jsonl"
+    fi
+    
+    if [ -f "data/output/new_processed_data_val.jsonl" ]; then
+        echo "  ✓ Validation dataset exists"
+    else
+        echo "  ⚠ Validation dataset not found: data/output/new_processed_data_val.jsonl"
+    fi
+    
+    if [ -n "$RESUME_CHECKPOINT" ]; then
+        if [ -d "$RESUME_CHECKPOINT" ]; then
+            echo "  ✓ Resume checkpoint directory exists"
+        else
+            echo "  ⚠ Resume checkpoint directory not found: $RESUME_CHECKPOINT"
+        fi
+    fi
+    
+    echo ""
+    echo "Environment variables:"
+    echo "  ✓ SLURM_ACCOUNT: ${SLURM_ACCOUNT:-NOT SET}"
+    echo "  ✓ WANDB_API_KEY: ${WANDB_API_KEY:+SET (hidden)}"
+    echo "  ✓ HUGGINGFACE_TOKEN: ${HUGGINGFACE_TOKEN:+SET (hidden)}"
+    echo ""
+    echo "==================================================================="
+    echo "Dry-run complete. No job was submitted."
+    echo "To actually run, remove --dry-run flag."
+    echo "==================================================================="
+    exit 0
+fi
 
 export SLURM_TMPDIR=/tmp/${USER}_$SLURM_JOB_ID
 mkdir -p "$SLURM_TMPDIR"

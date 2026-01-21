@@ -6,22 +6,207 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=192G
 #SBATCH --time=48:00:00  # Long time to match training duration
-#SBATCH -A nn12075k
+# Account: REQUIRED - Pass via: sbatch --account=YOUR_ACCOUNT run_monitor_evaluation.sbatch ...
+# Example: sbatch --account=nn12075k run_monitor_evaluation.sbatch --model=gemma-2-9b
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
 
 set -euo pipefail
 
-# ===== CONFIGURATION =====
-# These should match your training script
-MODEL=gemma-2-9b
-OUTPUT_DIR="models/${MODEL}-apptainer-fsdp"
-VAL_DATASET="data/output/new_processed_data_val.jsonl"
-CHECK_INTERVAL=60  # Check every 60 seconds
-EARLY_STOPPING_PATIENCE=3  # Stop if no improvement for 3 evaluations
+# Load environment variables from .env file
+# .env should contain: WANDB_API_KEY, HUGGINGFACE_TOKEN
+if [ -f .env ]; then
+    source .env
+else
+    echo "WARNING: .env file not found. Using defaults or environment variables."
+fi
 
-# Load environment
-source .env
+# Verify required environment variables are set
+if [ -z "${WANDB_API_KEY:-}" ] || [ -z "${HUGGINGFACE_TOKEN:-}" ]; then
+    echo "ERROR: Required environment variables not set. Please check your .env file contains:"
+    echo "  WANDB_API_KEY"
+    echo "  HUGGINGFACE_TOKEN"
+    exit 1
+fi
+
+# ===== CONFIGURATION =====
+# Parse command-line arguments or use defaults
+# Usage: sbatch run_monitor_evaluation.sbatch [--model=MODEL] [--output_dir=DIR] [--val_dataset=PATH] [--check_interval=N] [--early_stopping_patience=N] [--dry-run]
+MODEL=${MODEL:-gemma-2-9b}
+OUTPUT_DIR=${OUTPUT_DIR:-"models/${MODEL}-apptainer-fsdp"}
+VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
+CHECK_INTERVAL=${CHECK_INTERVAL:-60}  # Check every 60 seconds
+EARLY_STOPPING_PATIENCE=${EARLY_STOPPING_PATIENCE:-3}  # Stop if no improvement for 3 evaluations
+DRY_RUN=${DRY_RUN:-false}
+
+# Parse command-line arguments if provided
+for arg in "$@"; do
+    case $arg in
+        --model=*)
+            MODEL="${arg#*=}"
+            # Update OUTPUT_DIR if it wasn't explicitly set
+            if [ -z "${OUTPUT_DIR_SET:-}" ]; then
+                OUTPUT_DIR="models/${MODEL}-apptainer-fsdp"
+            fi
+            ;;
+        --output_dir=*)
+            OUTPUT_DIR="${arg#*=}"
+            OUTPUT_DIR_SET=1
+            ;;
+        --val_dataset=*)
+            VAL_DATASET="${arg#*=}"
+            ;;
+        --check_interval=*)
+            CHECK_INTERVAL="${arg#*=}"
+            ;;
+        --early_stopping_patience=*)
+            EARLY_STOPPING_PATIENCE="${arg#*=}"
+            ;;
+        --dry-run|--debug)
+            DRY_RUN=true
+            ;;
+        *)
+            echo "ERROR: Unknown argument: $arg"
+            echo ""
+            echo "Usage: sbatch run_monitor_evaluation.sbatch [OPTIONS]"
+            echo ""
+            echo "Options:"
+            echo "  --model=MODEL                    Model short name (default: gemma-2-9b)"
+            echo "  --output_dir=DIR                 Output directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
+            echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
+            echo "  --check_interval=N               Check for new checkpoints every N seconds (default: 60)"
+            echo "  --early_stopping_patience=N      Stop if no improvement for N evaluations (default: 3)"
+            echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
+            echo ""
+            echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+            echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b,"
+            echo "              norskgpt-llama3-8b, llama-2-13b-chat-norwegian, mt5"
+            exit 1
+            ;;
+    esac
+done
+
+# Validation functions
+validate_model() {
+    local model=$1
+    case "$model" in
+        gemma-2b|gemma-7b|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
+        viking-7b|viking-13b|viking-33b| \
+        normistral-7b|normistral-11b| \
+        norskgpt-llama3-8b|llama-2-13b-chat-norwegian|mt5)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+validate_positive_integer() {
+    local num=$1
+    local name=$2
+    if ! [[ "$num" =~ ^[0-9]+$ ]] || [ "$num" -lt 1 ]; then
+        echo "ERROR: Invalid $name: $num"
+        echo "$name must be a positive integer"
+        return 1
+    fi
+    return 0
+}
+
+# Validate inputs
+ERRORS=0
+
+if ! validate_model "$MODEL"; then
+    echo "ERROR: Invalid model name: $MODEL"
+    echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+    echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b,"
+    echo "              norskgpt-llama3-8b, llama-2-13b-chat-norwegian, mt5"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if ! validate_positive_integer "$CHECK_INTERVAL" "check_interval"; then
+    ERRORS=$((ERRORS + 1))
+fi
+
+if ! validate_positive_integer "$EARLY_STOPPING_PATIENCE" "early_stopping_patience"; then
+    ERRORS=$((ERRORS + 1))
+fi
+
+if [ ! -f "$VAL_DATASET" ]; then
+    echo "ERROR: Validation dataset file does not exist: $VAL_DATASET"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if [ ! -d "$OUTPUT_DIR" ]; then
+    echo "WARNING: Output directory does not exist: $OUTPUT_DIR"
+    echo "         It will be created when training starts"
+fi
+
+if [ $ERRORS -gt 0 ]; then
+    echo ""
+    echo "Validation failed with $ERRORS error(s). Please fix the errors above and try again."
+    exit 1
+fi
+
+echo "Configuration:"
+echo "  MODEL: $MODEL"
+echo "  OUTPUT_DIR: $OUTPUT_DIR"
+echo "  VAL_DATASET: $VAL_DATASET"
+echo "  CHECK_INTERVAL: $CHECK_INTERVAL seconds"
+echo "  EARLY_STOPPING_PATIENCE: $EARLY_STOPPING_PATIENCE evaluations"
+echo "  DRY_RUN: $DRY_RUN"
+
+# ===== DRY-RUN MODE =====
+if [ "$DRY_RUN" = "true" ]; then
+    echo ""
+    echo "==================================================================="
+    echo "DRY-RUN MODE: Validation and Preview"
+    echo "==================================================================="
+    echo ""
+    
+    echo "✓ All validations passed!"
+    echo ""
+    echo "Would execute with the following configuration:"
+    echo "  Monitoring checkpoints in: $OUTPUT_DIR"
+    echo "  Validation dataset: $VAL_DATASET"
+    echo "  Check interval: $CHECK_INTERVAL seconds"
+    echo "  Early stopping patience: $EARLY_STOPPING_PATIENCE evaluations"
+    echo ""
+    echo "Monitoring command would be:"
+    echo "  python scripts/monitor_and_evaluate_checkpoints.py"
+    echo "    --output_dir $OUTPUT_DIR"
+    echo "    --model $MODEL"
+    echo "    --val_dataset $VAL_DATASET"
+    echo "    --hf_token [REDACTED]"
+    echo "    --check_interval $CHECK_INTERVAL"
+    echo "    --early_stopping_patience $EARLY_STOPPING_PATIENCE"
+    echo "    --wandb_project lm-finetuning"
+    echo "    --use_multi_gpu"
+    echo ""
+    echo "File/Directory checks:"
+    if [ -d "$OUTPUT_DIR" ]; then
+        echo "  ✓ Output directory exists"
+    else
+        echo "  ⚠ Output directory not found: $OUTPUT_DIR (will be created during training)"
+    fi
+    
+    if [ -f "$VAL_DATASET" ]; then
+        echo "  ✓ Validation dataset exists"
+    else
+        echo "  ⚠ Validation dataset not found: $VAL_DATASET"
+    fi
+    
+    echo ""
+    echo "Environment variables:"
+    echo "  ✓ WANDB_API_KEY: ${WANDB_API_KEY:+SET (hidden)}"
+    echo "  ✓ HUGGINGFACE_TOKEN: ${HUGGINGFACE_TOKEN:+SET (hidden)}"
+    echo ""
+    echo "==================================================================="
+    echo "Dry-run complete. No job was submitted."
+    echo "To actually run, remove --dry-run flag."
+    echo "==================================================================="
+    exit 0
+fi
 
 # Apptainer image
 export IMAGE=/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif
