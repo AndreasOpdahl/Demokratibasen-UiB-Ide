@@ -1,2 +1,0 @@
-{"id": "batch_req_690bca8f74c48190a0be68614388d34c", "custom_id": "6836bb4e-d0e5-5dce-b533-04fd85e47d24", "response": {"status_code": 0, "request_id": "", "body": {}}, "error": null}
-{"id": "batch_req_690bca8f46548190a8fbe4af51d2edf4", "custom_id": "8443eddf-922f-54a1-849c-1e1da9f8e50f", "response": {"status_code": 500, "request_id": "41f01c5f0d93e1ce0413e5b6f7e0d48a", "body": {"error": {"message": "The server had an error while processing your request. Sorry about that!", "type": "server_error", "param": null, "code": null}}}, "error": null}

@@ -1,8 +1,0 @@
-{
-  "error": {
-    "message": "The server had an error while processing your request. Sorry about that! You can retry your request, or contact us through our help center at help.openai.com if the error persists. (Please include the request ID req_8310d330fb8cc49e2b9f7e50fe627aa2 in your message.)",
-    "type": "server_error",
-    "param": null,
-    "code": null
-  }
-}
