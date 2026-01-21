@@ -17,7 +17,7 @@ set -euo pipefail
 # Supported models: gemma-2b, gemma-7b, viking-7b, viking-13b, no
 MODEL=gemma-2-9b
 DISTRIBUTION_FLAG="--fsdp"
-RESUME_CHECKPOINT="checkpoint-5000"
+RESUME_CHECKPOINT=""
 TASK_LIMIT="--max_steps 10000"
 NUM_GPUS=${SLURM_GPUS_ON_NODE:-1}
 
@@ -55,8 +55,6 @@ get_full_model_name() {
         llama-2-13b-chat-norwegian) echo "ruternorway/llama-2-13b-chat-norwegian" ;;
         gemma-2-9b) echo "google/gemma-2-9b" ;;
         gemma-2-27b) echo "google/gemma-2-27b" ;;
-        gemma-3-12b) echo "google/gemma-3-12b-pt" ;;
-        gemma-3-27b) echo "google/gemma-3-27b-pt" ;;
         viking-33b) echo "LumiOpen/Viking-33B" ;;
         *) echo "$short_name" ;;  # Assume it's already a full name
     esac

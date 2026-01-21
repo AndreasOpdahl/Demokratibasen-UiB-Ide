@@ -65,8 +65,6 @@ get_full_model_name() {
         gemma-7b) echo "google/gemma-7b" ;;
         gemma-2-9b) echo "google/gemma-2-9b" ;;
         gemma-2-27b) echo "google/gemma-2-27b" ;;
-        gemma-3-12b) echo "google/gemma-3-12b-pt" ;;
-        gemma-3-27b) echo "google/gemma-3-27b-pt" ;;
         viking-7b) echo "LumiOpen/Viking-7B" ;;
         viking-13b) echo "LumiOpen/Viking-13B" ;;
         viking-33b) echo "LumiOpen/Viking-33B" ;;

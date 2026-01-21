@@ -137,28 +137,6 @@ MODEL_CONFIGS = {
         prompt_config=PROMPT_PLAIN,
         architecture='gemma',
     ),
-    # Gemma-3 models - https://huggingface.co/collections/google/gemma-3-release
-    'gemma-3-12b': ModelConfig(
-        short_name='gemma-3-12b',
-        hf_name='google/gemma-3-12b-pt',  # Pre-trained version for fine-tuning
-        lora_r=16,  # Increased for larger model
-        lora_alpha=32,
-        lora_target_modules=["q_proj", "v_proj"],
-        learning_rate=2e-5,  # Higher LR for larger model
-        prompt_config=PROMPT_PLAIN,
-        architecture='gemma',
-    ),
-    'gemma-3-27b': ModelConfig(
-        short_name='gemma-3-27b',
-        hf_name='google/gemma-3-27b-pt',  # Pre-trained version for fine-tuning
-        lora_r=16,  # Increased for larger model
-        lora_alpha=32,
-        lora_target_modules=["q_proj", "v_proj"],
-        learning_rate=2e-5,  # Higher LR for larger model
-        prompt_config=PROMPT_PLAIN,
-        architecture='gemma',
-    ),
-    
     # Viking models (Mistral-based)
     'viking-7b': ModelConfig(
         short_name='viking-7b',

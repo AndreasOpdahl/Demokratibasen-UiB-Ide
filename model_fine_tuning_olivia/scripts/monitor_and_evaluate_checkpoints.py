@@ -60,15 +60,27 @@ def find_checkpoints(output_dir: str) -> List[str]:
 
 
 def get_evaluated_checkpoints_from_files(output_dir: str) -> set:
-    """Get set of already evaluated checkpoint steps by checking for eval_results.json files."""
+    """Get set of already evaluated checkpoint steps by checking for eval results files in all_eval_results/."""
     evaluated = set()
     if not os.path.exists(output_dir):
         return evaluated
     
-    # Check each checkpoint directory for eval_results.json
+    # Check all_eval_results directory for checkpoint-nnn-eval-results.json files
+    all_eval_results_dir = os.path.join(output_dir, "all_eval_results")
+    if os.path.exists(all_eval_results_dir):
+        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results.json")):
+            try:
+                # Extract step from filename: checkpoint-123-eval-results.json -> 123
+                filename = os.path.basename(eval_file)
+                step = int(filename.replace("checkpoint-", "").replace("-eval-results.json", ""))
+                evaluated.add(step)
+            except (ValueError, IndexError):
+                pass
+    
+    # Also check old location for backwards compatibility
     for ckpt_dir in glob.glob(os.path.join(output_dir, "checkpoint-*")):
-        eval_results_file = os.path.join(ckpt_dir, "eval_results", "eval_results.json")
-        if os.path.exists(eval_results_file):
+        old_eval_results_file = os.path.join(ckpt_dir, "eval_results", "eval_results.json")
+        if os.path.exists(old_eval_results_file):
             try:
                 step = int(os.path.basename(ckpt_dir).split("-")[-1])
                 evaluated.add(step)
@@ -97,6 +109,28 @@ def get_best_checkpoint_metric(eval_results_dir: str) -> Optional[Dict]:
     best_metric = None
     best_checkpoint = None
     
+    # Check new location: all_eval_results/checkpoint-nnn-eval-results.json
+    all_eval_results_dir = os.path.join(eval_results_dir, "all_eval_results")
+    if os.path.exists(all_eval_results_dir):
+        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results.json")):
+            try:
+                with open(eval_file, 'r') as f:
+                    results = json.load(f)
+                
+                # Use rougeLsum as the metric (check both with and without eval_ prefix)
+                metric_value = results.get('eval_rougeLsum', results.get('rougeLsum', None))
+                if metric_value is not None:
+                    if best_metric is None or metric_value > best_metric:
+                        best_metric = metric_value
+                        # Extract checkpoint step from filename
+                        filename = os.path.basename(eval_file)
+                        checkpoint_step = filename.replace("checkpoint-", "").replace("-eval-results.json", "")
+                        best_checkpoint = f"checkpoint-{checkpoint_step}"
+            except (json.JSONDecodeError, ValueError, IndexError) as e:
+                print(f"Error reading {eval_file}: {e}")
+                continue
+    
+    # Also check old location for backwards compatibility
     for ckpt_dir in glob.glob(os.path.join(eval_results_dir, "checkpoint-*")):
         eval_file = os.path.join(ckpt_dir, "eval_results", "eval_results.json")
         if os.path.exists(eval_file):
@@ -274,9 +308,16 @@ def monitor_and_evaluate(
                 if step in evaluated_steps:
                     continue
                 
-                # Check if evaluation results file exists
-                eval_results_file = os.path.join(checkpoint_path, "eval_results", "eval_results.json")
-                if os.path.exists(eval_results_file):
+                # Check if evaluation results file exists (new location)
+                model_dir = os.path.dirname(checkpoint_path.rstrip('/'))
+                all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
+                checkpoint_name = os.path.basename(checkpoint_path.rstrip('/'))
+                eval_results_file = os.path.join(all_eval_results_dir, f"{checkpoint_name}-eval-results.json")
+                
+                # Also check old location for backwards compatibility
+                old_eval_results_file = os.path.join(checkpoint_path, "eval_results", "eval_results.json")
+                
+                if os.path.exists(eval_results_file) or os.path.exists(old_eval_results_file):
                     # Already evaluated - mark it and continue
                     evaluated_steps.add(step)
                     continue
@@ -284,7 +325,7 @@ def monitor_and_evaluate(
                 # Verify checkpoint is complete
                 adapter_file = os.path.join(checkpoint_path, "adapter_model.safetensors")
                 if not os.path.exists(adapter_file):
-                    # Check if this checkpoint was already evaluated (only has eval_results)
+                    # Check if this checkpoint was already evaluated (only has eval_results in old location)
                     dir_contents = os.listdir(checkpoint_path) if os.path.isdir(checkpoint_path) else []
                     if len(dir_contents) == 1 and 'eval_results' in dir_contents:
                         # Already evaluated and adapter files cleaned up - mark as evaluated
@@ -337,7 +378,7 @@ def monitor_and_evaluate(
                     checkpoint_dir=checkpoint_to_evaluate,
                     val_dataset_path=val_dataset_path,
                     hf_token=hf_token,
-                    output_dir=os.path.join(checkpoint_to_evaluate, "eval_results"),
+                    output_dir=None,  # None will trigger default: model_dir/all_eval_results
                     use_multi_gpu=use_multi_gpu,
                     wandb_project=None,
                     wandb_entity=None,
@@ -456,7 +497,6 @@ if __name__ == "__main__":
     parser.add_argument('--model', type=str, required=True,
                        choices=['viking-7b', 'viking-13b', 'viking-33b',
                                 'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
-                                'gemma-3-12b', 'gemma-3-27b',
                                 'normistral-7b', 'normistral-11b',
                                 'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian'],
                        help='Model short name')
