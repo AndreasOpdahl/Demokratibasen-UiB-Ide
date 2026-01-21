@@ -1,4 +1,5 @@
 .env
+.venv/
 venv/
 *.pyc
 *~
@@ -23,3 +24,12 @@ datasets_from_demokratibasen/prepared_datasets/**/*_embeddings.jsonl
 model_fine_tuning/**/huggingface/
 model_fine_tuning/**/.cache/huggingface/
 model_fine_tuning/scripts/finetune-WORKING-WITH-EVALUATION.py
+model_fine_tuning/models/
+
+# smelly
+model_fine_tuning/scripts/learning_curve.png
+
+model_fine_tuning_olivia/scripts/finetune_ajay.py
+model_fine_tuning_olivia/from_ajay.sbatch
+model_fine_tuning_olivia/learning_curve_from_olivia_test_with_validation_error.png
+model_fine_tuning_olivia/learning_curve_from_olivia_with_gradient_explosion_epoch4-06.png
