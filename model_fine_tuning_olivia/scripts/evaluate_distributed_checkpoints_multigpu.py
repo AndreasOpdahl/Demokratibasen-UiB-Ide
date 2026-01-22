@@ -27,6 +27,7 @@ import os
 import random
 import sys
 import time  # ADD THIS for staggered loading
+from datetime import datetime
 from typing import Any, Dict, Optional, Tuple, Union
 
 # Disable tokenizer parallelism to avoid fork warnings in multi-process environment
@@ -78,6 +79,58 @@ VAL_BEAM_SIZE = 4
 class AlreadyEvaluatedError(Exception):
     """Raised when a checkpoint has already been evaluated (only contains eval_results)."""
     pass
+
+
+def _update_summary_statistics(summary: Dict[str, Any]) -> None:
+    """Update summary statistics in the summary dictionary."""
+    successful = [c for c in summary["checkpoints"] if c.get("status") == "success"]
+    
+    if successful:
+        # Extract ROUGE scores
+        rouge1_scores = [c.get("rouge1", 0) for c in successful if "rouge1" in c]
+        rouge2_scores = [c.get("rouge2", 0) for c in successful if "rouge2" in c]
+        rougeL_scores = [c.get("rougel", 0) for c in successful if "rougel" in c]
+        rougeLsum_scores = [c.get("rougelsum", 0) for c in successful if "rougelsum" in c]
+        
+        summary["statistics"] = {
+            "total_checkpoints": len(summary["checkpoints"]),
+            "successful": len(successful),
+            "failed": len([c for c in summary["checkpoints"] if c.get("status") == "failed"]),
+            "no_results": len([c for c in summary["checkpoints"] if c.get("status") == "no_results_file"]),
+            "rouge1": {
+                "mean": sum(rouge1_scores) / len(rouge1_scores) if rouge1_scores else 0,
+                "max": max(rouge1_scores) if rouge1_scores else 0,
+                "min": min(rouge1_scores) if rouge1_scores else 0
+            },
+            "rouge2": {
+                "mean": sum(rouge2_scores) / len(rouge2_scores) if rouge2_scores else 0,
+                "max": max(rouge2_scores) if rouge2_scores else 0,
+                "min": min(rouge2_scores) if rouge2_scores else 0
+            },
+            "rougeL": {
+                "mean": sum(rougeL_scores) / len(rougeL_scores) if rougeL_scores else 0,
+                "max": max(rougeL_scores) if rougeL_scores else 0,
+                "min": min(rougeL_scores) if rougeL_scores else 0
+            },
+            "rougeLsum": {
+                "mean": sum(rougeLsum_scores) / len(rougeLsum_scores) if rougeLsum_scores else 0,
+                "max": max(rougeLsum_scores) if rougeLsum_scores else 0,
+                "min": min(rougeLsum_scores) if rougeLsum_scores else 0
+            }
+        }
+        
+        # Find best checkpoint by ROUGE-Lsum
+        if rougeLsum_scores:
+            best_idx = rougeLsum_scores.index(max(rougeLsum_scores))
+            summary["best_checkpoint"] = successful[best_idx]["checkpoint"]
+            summary["best_rouge_lsum"] = max(rougeLsum_scores)
+    else:
+        summary["statistics"] = {
+            "total_checkpoints": len(summary["checkpoints"]),
+            "successful": 0,
+            "failed": len([c for c in summary["checkpoints"] if c.get("status") == "failed"]),
+            "no_results": len([c for c in summary["checkpoints"] if c.get("status") == "no_results_file"])
+        }
 
 
 def setup_distributed_evaluation():
@@ -158,6 +211,8 @@ class CausalLMTrainer(Trainer):
         self.checkpoint_dir = checkpoint_dir  # Store checkpoint directory
         super().__init__(*args, **kwargs)
         self._processing_class = self.tokenizer
+        # Store predictions for saving to JSONL
+        self._eval_predictions = []
     
     def _move_model_to_device(self, model, device):
         """Override to prevent moving models that are already dispatched with device_map.
@@ -288,6 +343,27 @@ class CausalLMTrainer(Trainer):
         
         # Clear cache after generation
         torch.cuda.empty_cache()
+        
+        # Store predictions for JSONL output
+        # Decode predictions (generated summary only, without special tokens)
+        decoded_predictions = self._processing_class.batch_decode(generated_ids, skip_special_tokens=True)
+        
+        # Clean up decoded predictions - remove special tokens and backslashes (same as in compute_metrics)
+        def clean_text(text):
+            """Clean decoded text by removing special tokens and unwanted characters."""
+            # Remove common chat format tokens
+            text = text.replace('[/INST]', '').replace('[INST]', '')
+            text = text.replace('</s>', '').replace('<s>', '')
+            # Remove backslashes (common issue with Llama-2 chat models)
+            text = text.replace('\\', '')
+            # Remove multiple spaces
+            text = ' '.join(text.split())
+            return text.strip()
+        
+        cleaned_predictions = [clean_text(p) for p in decoded_predictions]
+        
+        # Store for later saving to JSONL (predictions only - inputs/references will come from original dataset)
+        self._eval_predictions.extend(cleaned_predictions)
         
         # Log GPU memory usage if wandb is active
         # Note: No distributed mode, so always main process
@@ -772,6 +848,57 @@ def evaluate_checkpoint(
                     print(f">>> Logged existing results to wandb at step {checkpoint_step_int}")
                     print(f"   ROUGE-1: {rouge1:.2f}, ROUGE-2: {rouge2:.2f}, ROUGE-L: {rougeL:.2f}, ROUGE-Lsum: {rougeLsum:.2f}")
                 
+                # Update evaluation summary JSON file even for cached results
+                summary_file = os.path.join(output_dir, "evaluation_summary.json")
+                
+                # Load existing summary or create new one
+                if os.path.exists(summary_file):
+                    with open(summary_file, 'r') as f:
+                        summary = json.load(f)
+                else:
+                    # Initialize new summary
+                    summary = {
+                        "model": model_name,
+                        "checkpoint_base_dir": os.path.dirname(checkpoint_dir.rstrip('/')),
+                        "val_dataset": val_dataset_path,
+                        "num_gpus": torch.cuda.device_count() if torch.cuda.is_available() else 0,
+                        "generated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                        "checkpoints": []
+                    }
+                
+                # Create checkpoint entry with all metrics from existing results
+                checkpoint_entry = {
+                    "checkpoint": checkpoint_name,
+                    "checkpoint_number": checkpoint_step_int,
+                    "status": "success",
+                    "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "result_file": results_file,
+                    "from_cache": True
+                }
+                
+                # Add all metrics from existing_results
+                for key, value in existing_results.items():
+                    normalized_key = key.replace("eval_", "").lower()
+                    if isinstance(value, (int, float)):
+                        checkpoint_entry[normalized_key] = float(value)
+                    elif isinstance(value, dict):
+                        for sub_key, sub_value in value.items():
+                            if isinstance(sub_value, (int, float)):
+                                checkpoint_entry[f"{normalized_key}_{sub_key}"] = float(sub_value)
+                
+                # Remove existing entry for this checkpoint if it exists, then add new one
+                summary["checkpoints"] = [c for c in summary["checkpoints"] if c.get("checkpoint") != checkpoint_name]
+                summary["checkpoints"].append(checkpoint_entry)
+                
+                # Sort and update statistics (same logic as in main save section)
+                summary["checkpoints"].sort(key=lambda x: x.get("checkpoint_number", 0))
+                _update_summary_statistics(summary)
+                
+                # Save updated summary
+                with open(summary_file, 'w') as f:
+                    json.dump(summary, f, indent=2)
+                print(f"Evaluation summary updated: {summary_file}")
+                
                 # Return existing results (no model needed since we're not evaluating)
                 return existing_results, None
             
@@ -1021,6 +1148,18 @@ def evaluate_checkpoint(
     formatted_val_dataset = val_dataset.map(format_example_eval)
     tokenized_val_dataset = formatted_val_dataset.map(tokenize_function_eval, batched=True)
     
+    # Store original examples for JSONL output (before tokenization)
+    # We need both the raw input text and the formatted prompt
+    original_examples_for_jsonl = []
+    for i, example in enumerate(formatted_val_dataset):
+        # Get the original raw input from the original dataset (before formatting)
+        raw_input = val_data[i].get('input', '') if i < len(val_data) else ''
+        original_examples_for_jsonl.append({
+            "input_text": raw_input,  # Raw input text (human-readable)
+            "prompt": example.get("prompt", ""),  # Formatted prompt with template (human-readable)
+            "reference": example.get("target_summary", "")  # Target summary (human-readable)
+        })
+    
     eval_data_collator = EvalDataCollator(tokenizer=tokenizer)
 
     # Set up evaluation-only training args
@@ -1063,6 +1202,33 @@ def evaluate_checkpoint(
     
     eval_results = trainer.evaluate()
     
+    # Save inputs, references, and predictions to JSONL file
+    if is_main_process:
+        predictions_file = os.path.join(output_dir, f"{checkpoint_name}-inputs-refs-preds.jsonl")
+        
+        # Write to JSONL file
+        # Predictions are generated in the same order as the dataset
+        with open(predictions_file, 'w', encoding='utf-8') as f:
+            num_examples = len(original_examples_for_jsonl)
+            num_predictions = len(trainer._eval_predictions)
+            
+            # If counts don't match, use the minimum (shouldn't happen, but safety check)
+            num_to_save = min(num_examples, num_predictions)
+            
+            for i in range(num_to_save):
+                # Match predictions with original examples (same order)
+                # All fields are human-readable text
+                entry = {
+                    "input_text": original_examples_for_jsonl[i].get("input_text", ""),  # Raw input text
+                    "prompt": original_examples_for_jsonl[i].get("prompt", ""),  # Formatted prompt with template
+                    "reference": original_examples_for_jsonl[i].get("reference", ""),  # Target summary (ground truth)
+                    "prediction": trainer._eval_predictions[i] if i < len(trainer._eval_predictions) else ""  # Model prediction (cleaned)
+                }
+                f.write(json.dumps(entry, ensure_ascii=False) + '\n')
+        
+        print(f"Saved predictions to: {predictions_file}")
+        print(f"  - {num_to_save} examples saved")
+    
     if is_main_process:
         print("\n" + "=" * 70)
         print("Evaluation Results:")
@@ -1103,6 +1269,65 @@ def evaluate_checkpoint(
         with open(results_file, 'w') as f:
             json.dump(eval_results, f, indent=2)
         print(f"Results saved to: {results_file}")
+        
+        # Update evaluation summary JSON file
+        summary_file = os.path.join(output_dir, "evaluation_summary.json")
+        
+        # Load existing summary or create new one
+        if os.path.exists(summary_file):
+            with open(summary_file, 'r') as f:
+                summary = json.load(f)
+        else:
+            # Initialize new summary
+            summary = {
+                "model": model_name,
+                "checkpoint_base_dir": os.path.dirname(checkpoint_dir.rstrip('/')),
+                "val_dataset": val_dataset_path,
+                "num_gpus": torch.cuda.device_count() if torch.cuda.is_available() else 0,
+                "generated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                "checkpoints": []
+            }
+        
+        # Create checkpoint entry with all metrics
+        checkpoint_entry = {
+            "checkpoint": checkpoint_name,
+            "checkpoint_number": checkpoint_step_int,
+            "status": "success",
+            "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "result_file": results_file
+        }
+        
+        # Add all metrics from eval_results
+        for key, value in eval_results.items():
+            # Normalize key names (handle both eval_rouge* and rouge*)
+            normalized_key = key.replace("eval_", "").lower()
+            
+            # Extract numeric values
+            if isinstance(value, (int, float)):
+                checkpoint_entry[normalized_key] = float(value)
+            elif isinstance(value, dict):
+                # Handle nested metrics (e.g., bertscore with precision/recall/f1)
+                for sub_key, sub_value in value.items():
+                    if isinstance(sub_value, (int, float)):
+                        checkpoint_entry[f"{normalized_key}_{sub_key}"] = float(sub_value)
+        
+        # Remove existing entry for this checkpoint if it exists, then add new one
+        summary["checkpoints"] = [c for c in summary["checkpoints"] if c.get("checkpoint") != checkpoint_name]
+        summary["checkpoints"].append(checkpoint_entry)
+        
+        # Sort checkpoints by checkpoint number
+        summary["checkpoints"].sort(key=lambda x: x.get("checkpoint_number", 0))
+        
+        # Update statistics
+        _update_summary_statistics(summary)
+        
+        # Update generated_at timestamp
+        summary["generated_at"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+        
+        # Save updated summary
+        with open(summary_file, 'w') as f:
+            json.dump(summary, f, indent=2)
+        print(f"Evaluation summary updated: {summary_file}")
     
     # Clean up distributed process group
     if use_multi_gpu: # No distributed mode, so no barrier needed
