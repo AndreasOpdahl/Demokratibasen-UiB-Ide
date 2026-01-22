@@ -1,4 +1,5 @@
 .env
+.venv/
 venv/
 *.pyc
 *~
@@ -13,6 +14,7 @@ datasets_from_demokratibasen/data_collection/entities_themes/extractions-202512/
 datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/202505-and-06-Demokratibasen-demo/dokument_jsons/
 datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/**/input_files/
 datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/**/output_files/
+datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/*/*.pkl
 datasets_from_demokratibasen/prepared_datasets/dataset_bergen_2017_2023/
 datasets_from_demokratibasen/prepared_datasets/text_summary_dataset*/
 datasets_from_demokratibasen/prepared_datasets/text_summary_dataset*/** */
@@ -20,6 +22,16 @@ datasets_from_demokratibasen/prepared_datasets/**/analysis_results/
 datasets_from_demokratibasen/prepared_datasets/**/analysis_results/**
 datasets_from_demokratibasen/prepared_datasets/**/*.png
 datasets_from_demokratibasen/prepared_datasets/**/*_embeddings.jsonl
+datasets_from_demokratibasen/raw_training_data/*.pkl
+datasets_from_demokratibasen/raw_training_data/*.zip
 model_fine_tuning/**/huggingface/
 model_fine_tuning/**/.cache/huggingface/
 model_fine_tuning/scripts/finetune-WORKING-WITH-EVALUATION.py
+model_fine_tuning/models/
+
+# smelly
+model_fine_tuning/scripts/learning_curve.png
+model_fine_tuning_olivia/scripts/finetune_ajay.py
+model_fine_tuning_olivia/from_ajay.sbatch
+model_fine_tuning_olivia/learning_curve_from_olivia_test_with_validation_error.png
+model_fine_tuning_olivia/learning_curve_from_olivia_with_gradient_explosion_epoch4-06.png
