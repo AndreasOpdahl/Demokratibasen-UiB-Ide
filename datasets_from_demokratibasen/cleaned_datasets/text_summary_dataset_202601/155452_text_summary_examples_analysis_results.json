@@ -71,29 +71,528 @@
     "Gáivuotna - Kåfjord - Kaivuono (5540)": 7
   },
   "input_text": {
-    "mean_length_chars": 4991.143330417106,
-    "median_length_chars": 1189.0,
+    "average_length_chars": 4991.143330417106,
     "min_length_chars": 17,
     "max_length_chars": 1278755,
-    "mean_length_tokens": 1784.8026400432288,
-    "median_length_tokens": 440.0,
+    "average_length_tokens": 1784.8026400432288,
     "min_length_tokens": 8,
     "max_length_tokens": 463239,
     "percentage_above_2048_tokens": 19.84599747832128
   },
   "summary_text": {
-    "mean_length_chars": 299.23070787124,
-    "median_length_chars": 294.0,
+    "average_length_chars": 299.23070787124,
     "min_length_chars": 27,
     "max_length_chars": 1408,
-    "mean_length_tokens": 99.57807554743586,
-    "median_length_tokens": 98.0,
+    "average_length_tokens": 99.57807554743586,
     "min_length_tokens": 9,
     "max_length_tokens": 506
   },
   "embedding_distance": {
-    "mean_distance": 0.20138462919284408,
+    "average_distance": 0.20138462919284408,
     "min_distance": 0.025609585306003657,
     "max_distance": 0.9972297634581238
+  },
+  "lid_statistics": {
+    "input_lid_distribution": {
+      "nno": 26175,
+      "sma": 112,
+      "nob": 128761,
+      "sme": 162,
+      "smj": 56,
+      "smn": 10,
+      "swe": 25,
+      "dan": 101,
+      "fin": 3,
+      "fao": 3,
+      "sms": 23,
+      "eng": 10,
+      "isl": 11
+    },
+    "output_lid_distribution": {
+      "nob": 154583,
+      "nno": 831,
+      "dan": 35,
+      "sma": 2,
+      "eng": 1
+    },
+    "lid_matches": {
+      "identical": 129351,
+      "different": 26101,
+      "total_with_both": 155452
+    },
+    "kommune_statistics": {
+      "Bømlo (4613)": {
+        "input_nynorsk": 614,
+        "input_bokmål": 132,
+        "output_nynorsk": 7,
+        "output_bokmål": 747,
+        "matches": 139,
+        "total": 754
+      },
+      "Stad (4649)": {
+        "input_nynorsk": 1220,
+        "input_bokmål": 464,
+        "output_nynorsk": 56,
+        "output_bokmål": 1631,
+        "matches": 503,
+        "total": 1688
+      },
+      "Bremanger (4648)": {
+        "input_nynorsk": 384,
+        "input_bokmål": 48,
+        "output_nynorsk": 2,
+        "output_bokmål": 434,
+        "matches": 48,
+        "total": 436
+      },
+      "Askøy (4627)": {
+        "input_nynorsk": 50,
+        "input_bokmål": 1208,
+        "output_nynorsk": 0,
+        "output_bokmål": 1265,
+        "matches": 1208,
+        "total": 1265
+      },
+      "Bergen (4601)": {
+        "input_nynorsk": 1729,
+        "input_bokmål": 119256,
+        "output_nynorsk": 102,
+        "output_bokmål": 121009,
+        "matches": 119174,
+        "total": 121141
+      },
+      "Ullensvang (4618)": {
+        "input_nynorsk": 874,
+        "input_bokmål": 164,
+        "output_nynorsk": 22,
+        "output_bokmål": 1018,
+        "matches": 182,
+        "total": 1040
+      },
+      "Balsfjord (5532)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 455,
+        "output_nynorsk": 0,
+        "output_bokmål": 455,
+        "matches": 455,
+        "total": 455
+      },
+      "Høyanger (4638)": {
+        "input_nynorsk": 311,
+        "input_bokmål": 126,
+        "output_nynorsk": 4,
+        "output_bokmål": 433,
+        "matches": 130,
+        "total": 437
+      },
+      "Askvoll (4645)": {
+        "input_nynorsk": 698,
+        "input_bokmål": 46,
+        "output_nynorsk": 15,
+        "output_bokmål": 730,
+        "matches": 61,
+        "total": 745
+      },
+      "Luster (4644)": {
+        "input_nynorsk": 787,
+        "input_bokmål": 71,
+        "output_nynorsk": 15,
+        "output_bokmål": 846,
+        "matches": 86,
+        "total": 861
+      },
+      "Senja (5530)": {
+        "input_nynorsk": 1,
+        "input_bokmål": 903,
+        "output_nynorsk": 0,
+        "output_bokmål": 914,
+        "matches": 903,
+        "total": 914
+      },
+      "Gulen (4635)": {
+        "input_nynorsk": 546,
+        "input_bokmål": 57,
+        "output_nynorsk": 11,
+        "output_bokmål": 592,
+        "matches": 68,
+        "total": 603
+      },
+      "Lærdal (4642)": {
+        "input_nynorsk": 275,
+        "input_bokmål": 2,
+        "output_nynorsk": 4,
+        "output_bokmål": 273,
+        "matches": 6,
+        "total": 277
+      },
+      "Stryn (4651)": {
+        "input_nynorsk": 586,
+        "input_bokmål": 45,
+        "output_nynorsk": 9,
+        "output_bokmål": 626,
+        "matches": 53,
+        "total": 635
+      },
+      "Vik (4639)": {
+        "input_nynorsk": 449,
+        "input_bokmål": 28,
+        "output_nynorsk": 17,
+        "output_bokmål": 461,
+        "matches": 45,
+        "total": 478
+      },
+      "Voss (4621)": {
+        "input_nynorsk": 1423,
+        "input_bokmål": 125,
+        "output_nynorsk": 32,
+        "output_bokmål": 1551,
+        "matches": 155,
+        "total": 1583
+      },
+      "Kinn (4602)": {
+        "input_nynorsk": 1403,
+        "input_bokmål": 131,
+        "output_nynorsk": 26,
+        "output_bokmål": 1519,
+        "matches": 155,
+        "total": 1545
+      },
+      "Sunnfjord (4647)": {
+        "input_nynorsk": 985,
+        "input_bokmål": 119,
+        "output_nynorsk": 24,
+        "output_bokmål": 1089,
+        "matches": 141,
+        "total": 1113
+      },
+      "Kvinnherad (4617)": {
+        "input_nynorsk": 683,
+        "input_bokmål": 77,
+        "output_nynorsk": 27,
+        "output_bokmål": 736,
+        "matches": 104,
+        "total": 763
+      },
+      "Etne (4611)": {
+        "input_nynorsk": 422,
+        "input_bokmål": 55,
+        "output_nynorsk": 7,
+        "output_bokmål": 469,
+        "matches": 62,
+        "total": 477
+      },
+      "Modalen (4629)": {
+        "input_nynorsk": 344,
+        "input_bokmål": 27,
+        "output_nynorsk": 7,
+        "output_bokmål": 363,
+        "matches": 34,
+        "total": 371
+      },
+      "Tromsø (5501)": {
+        "input_nynorsk": 14,
+        "input_bokmål": 2824,
+        "output_nynorsk": 2,
+        "output_bokmål": 2840,
+        "matches": 2823,
+        "total": 2843
+      },
+      "Karlsøy (5534)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 182,
+        "output_nynorsk": 0,
+        "output_bokmål": 182,
+        "matches": 182,
+        "total": 182
+      },
+      "Austrheim (4632)": {
+        "input_nynorsk": 500,
+        "input_bokmål": 17,
+        "output_nynorsk": 13,
+        "output_bokmål": 505,
+        "matches": 30,
+        "total": 518
+      },
+      "Alta (5601)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 293,
+        "output_nynorsk": 0,
+        "output_bokmål": 293,
+        "matches": 293,
+        "total": 293
+      },
+      "Fjaler (4646)": {
+        "input_nynorsk": 282,
+        "input_bokmål": 34,
+        "output_nynorsk": 7,
+        "output_bokmål": 311,
+        "matches": 41,
+        "total": 318
+      },
+      "Alver (4631)": {
+        "input_nynorsk": 1083,
+        "input_bokmål": 71,
+        "output_nynorsk": 60,
+        "output_bokmål": 1095,
+        "matches": 129,
+        "total": 1155
+      },
+      "Sveio (4612)": {
+        "input_nynorsk": 743,
+        "input_bokmål": 40,
+        "output_nynorsk": 22,
+        "output_bokmål": 761,
+        "matches": 58,
+        "total": 784
+      },
+      "Masfjorden (4634)": {
+        "input_nynorsk": 537,
+        "input_bokmål": 10,
+        "output_nynorsk": 11,
+        "output_bokmål": 536,
+        "matches": 21,
+        "total": 547
+      },
+      "Eidfjord (4619)": {
+        "input_nynorsk": 652,
+        "input_bokmål": 28,
+        "output_nynorsk": 13,
+        "output_bokmål": 667,
+        "matches": 41,
+        "total": 680
+      },
+      "Vaksdal (4628)": {
+        "input_nynorsk": 340,
+        "input_bokmål": 63,
+        "output_nynorsk": 7,
+        "output_bokmål": 397,
+        "matches": 70,
+        "total": 404
+      },
+      "Osterøy (4630)": {
+        "input_nynorsk": 587,
+        "input_bokmål": 23,
+        "output_nynorsk": 13,
+        "output_bokmål": 599,
+        "matches": 36,
+        "total": 612
+      },
+      "Sogndal (4640)": {
+        "input_nynorsk": 1162,
+        "input_bokmål": 77,
+        "output_nynorsk": 78,
+        "output_bokmål": 1162,
+        "matches": 149,
+        "total": 1240
+      },
+      "Samnanger (4623)": {
+        "input_nynorsk": 553,
+        "input_bokmål": 19,
+        "output_nynorsk": 21,
+        "output_bokmål": 551,
+        "matches": 40,
+        "total": 572
+      },
+      "Fitjar (4615)": {
+        "input_nynorsk": 365,
+        "input_bokmål": 31,
+        "output_nynorsk": 9,
+        "output_bokmål": 388,
+        "matches": 40,
+        "total": 397
+      },
+      "Stord (4614)": {
+        "input_nynorsk": 717,
+        "input_bokmål": 88,
+        "output_nynorsk": 61,
+        "output_bokmål": 754,
+        "matches": 147,
+        "total": 815
+      },
+      "Bjørnafjorden (4624)": {
+        "input_nynorsk": 1587,
+        "input_bokmål": 77,
+        "output_nynorsk": 29,
+        "output_bokmål": 1635,
+        "matches": 106,
+        "total": 1664
+      },
+      "Gloppen (4650)": {
+        "input_nynorsk": 606,
+        "input_bokmål": 53,
+        "output_nynorsk": 16,
+        "output_bokmål": 643,
+        "matches": 69,
+        "total": 659
+      },
+      "Austevoll (4625)": {
+        "input_nynorsk": 829,
+        "input_bokmål": 58,
+        "output_nynorsk": 14,
+        "output_bokmål": 874,
+        "matches": 72,
+        "total": 888
+      },
+      "Guovdageaidnu - Kautokeino (5612)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 203,
+        "output_nynorsk": 0,
+        "output_bokmål": 390,
+        "matches": 203,
+        "total": 390
+      },
+      "Aurland (4641)": {
+        "input_nynorsk": 568,
+        "input_bokmål": 30,
+        "output_nynorsk": 30,
+        "output_bokmål": 569,
+        "matches": 60,
+        "total": 599
+      },
+      "Solund (4636)": {
+        "input_nynorsk": 202,
+        "input_bokmål": 19,
+        "output_nynorsk": 1,
+        "output_bokmål": 220,
+        "matches": 20,
+        "total": 221
+      },
+      "Øygarden (4626)": {
+        "input_nynorsk": 508,
+        "input_bokmål": 358,
+        "output_nynorsk": 19,
+        "output_bokmål": 877,
+        "matches": 373,
+        "total": 896
+      },
+      "Ulvik (4620)": {
+        "input_nynorsk": 158,
+        "input_bokmål": 33,
+        "output_nynorsk": 8,
+        "output_bokmål": 185,
+        "matches": 36,
+        "total": 194
+      },
+      "Tysnes (4616)": {
+        "input_nynorsk": 42,
+        "input_bokmål": 11,
+        "output_nynorsk": 0,
+        "output_bokmål": 52,
+        "matches": 11,
+        "total": 53
+      },
+      "Sortland - Suortá (1870)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 102,
+        "output_nynorsk": 0,
+        "output_bokmål": 106,
+        "matches": 101,
+        "total": 107
+      },
+      "Hyllestad (4637)": {
+        "input_nynorsk": 296,
+        "input_bokmål": 30,
+        "output_nynorsk": 6,
+        "output_bokmål": 323,
+        "matches": 36,
+        "total": 329
+      },
+      "Vågan (1865)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 35,
+        "output_nynorsk": 0,
+        "output_bokmål": 35,
+        "matches": 35,
+        "total": 35
+      },
+      "Målselv (5524)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 27,
+        "output_nynorsk": 0,
+        "output_bokmål": 27,
+        "matches": 27,
+        "total": 27
+      },
+      "Lyngen (5536)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 260,
+        "output_nynorsk": 0,
+        "output_bokmål": 260,
+        "matches": 260,
+        "total": 260
+      },
+      "Skjervøy (5542)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 4,
+        "output_nynorsk": 0,
+        "output_bokmål": 5,
+        "matches": 4,
+        "total": 5
+      },
+      "Øksnes (1868)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 37,
+        "output_nynorsk": 0,
+        "output_bokmål": 37,
+        "matches": 37,
+        "total": 37
+      },
+      "Nordreisa - Ráisa - Raisi (5544)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 26,
+        "output_nynorsk": 0,
+        "output_bokmål": 26,
+        "matches": 26,
+        "total": 26
+      },
+      "Fedje (4633)": {
+        "input_nynorsk": 29,
+        "input_bokmål": 0,
+        "output_nynorsk": 0,
+        "output_bokmål": 29,
+        "matches": 0,
+        "total": 29
+      },
+      "Harstad - Hárstták (5503)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 40,
+        "output_nynorsk": 0,
+        "output_bokmål": 41,
+        "matches": 40,
+        "total": 41
+      },
+      "Storfjord - Omasvuotna - Omasvuono (5538)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 9,
+        "output_nynorsk": 0,
+        "output_bokmål": 9,
+        "matches": 9,
+        "total": 9
+      },
+      "Årdal (4643)": {
+        "input_nynorsk": 10,
+        "input_bokmål": 3,
+        "output_nynorsk": 0,
+        "output_bokmål": 13,
+        "matches": 3,
+        "total": 13
+      },
+      "Kvam (4622)": {
+        "input_nynorsk": 21,
+        "input_bokmål": 1,
+        "output_nynorsk": 4,
+        "output_bokmål": 18,
+        "matches": 5,
+        "total": 22
+      },
+      "Gáivuotna - Kåfjord - Kaivuono (5540)": {
+        "input_nynorsk": 0,
+        "input_bokmål": 6,
+        "output_nynorsk": 0,
+        "output_bokmål": 7,
+        "matches": 6,
+        "total": 7
+      }
+    }
   }
 }
