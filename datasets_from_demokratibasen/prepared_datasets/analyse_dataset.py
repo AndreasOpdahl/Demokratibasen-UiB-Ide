@@ -103,6 +103,11 @@ class AnalysisResult:
     output_embeddings: List[np.ndarray]
     doc_types: List[str]
     samples: List[Dict[str, Any]]
+    # LID statistics (if LID metadata is present)
+    input_lid_counter: Optional[Dict[str, int]] = None
+    output_lid_counter: Optional[Dict[str, int]] = None
+    lid_matches: Optional[Dict[str, int]] = None
+    kommune_lid_stats: Optional[Dict[str, Dict[str, int]]] = None
 
 
 def _count_alphanumeric(text: str) -> int:
@@ -559,15 +564,7 @@ def analyze_dataset(
     embeddings_path = _get_embeddings_path(file_path)
     embeddings_dict = {}
     
-    # Check if embeddings file exists and is up-to-date
-    # If data file is newer than embeddings file, regenerate embeddings
-    if embeddings_path.exists():
-        data_mtime = file_path.stat().st_mtime
-        embeddings_mtime = embeddings_path.stat().st_mtime
-        if data_mtime > embeddings_mtime:
-            print(f"Data file {file_path.name} is newer than embeddings file {embeddings_path.name}. Regenerating embeddings...", file=sys.stderr)
-            embeddings_path.unlink()  # Delete old embeddings file
-    
+    # NEVER regenerate existing embeddings files - only load them if they exist
     # For split files, check if plain embeddings exist
     if split:
         # Look for plain embeddings file (find the corresponding plain data file first)
@@ -580,15 +577,7 @@ def analyze_dataset(
         if plain_data_files:
             plain_data_file = plain_data_files[0]
             plain_embeddings_path = _get_embeddings_path(plain_data_file)
-            if plain_embeddings_path.exists():
-                # Check if plain data file is newer than plain embeddings file
-                plain_data_mtime = plain_data_file.stat().st_mtime
-                plain_embeddings_mtime = plain_embeddings_path.stat().st_mtime
-                if plain_data_mtime > plain_embeddings_mtime:
-                    print(f"Plain data file {plain_data_file.name} is newer than plain embeddings file {plain_embeddings_path.name}. Regenerating embeddings...", file=sys.stderr)
-                    plain_embeddings_path.unlink()  # Delete old embeddings file
-            
-            # Load embeddings if they still exist (after potential deletion)
+            # Load embeddings if they exist (never regenerate)
             if plain_embeddings_path.exists():
                 # Load all plain embeddings (filtering out invalid documents)
                 plain_embeddings = _load_embeddings(plain_embeddings_path, data_file_path=plain_data_file)
@@ -607,6 +596,7 @@ def analyze_dataset(
                 print(f"Loaded {len(embeddings_dict)} embeddings from plain embeddings file for {split} split", file=sys.stderr)
     
     # If embeddings don't exist, generate them (only for documents that pass filtering)
+    # NEVER regenerate if embeddings file already exists
     if not embeddings_dict and not embeddings_path.exists():
         if not TRANSFORMERS_AVAILABLE:
             print("Warning: transformers not available, cannot generate embeddings", file=sys.stderr)
@@ -672,6 +662,13 @@ def analyze_dataset(
     output_low_alnum_count = 0
     input_low_alnum_doc_types: Counter[str] = Counter()
     output_low_alnum_doc_types: Counter[str] = Counter()
+    
+    # LID statistics (if LID metadata is present)
+    input_lid_counter: Counter[str] = Counter()
+    output_lid_counter: Counter[str] = Counter()
+    lid_match_counter: Counter[bool] = Counter()  # True/False for whether input_lid == output_lid
+    kommune_lid_stats: Dict[int, Dict[str, int]] = {}  # kommune -> {input_nynorsk, input_bokmål, output_nynorsk, output_bokmål, matches, total}
+    has_lid_metadata = False
     
     for example in _iter_examples(file_path):
         total_examples += 1
@@ -740,6 +737,46 @@ def analyze_dataset(
             output_embeddings_list.append(output_emb)
             doc_types_list.append(doc_type if doc_type else "unknown")
         
+        # Collect LID statistics if LID metadata is present
+        input_lid = metadata.get("input_lid")
+        output_lid = metadata.get("output_lid")
+        if input_lid is not None or output_lid is not None:
+            has_lid_metadata = True
+            if input_lid:
+                input_lid_counter[input_lid] += 1
+            if output_lid:
+                output_lid_counter[output_lid] += 1
+            if input_lid and output_lid:
+                lid_match_counter[input_lid == output_lid] += 1
+            
+            # Track per kommune
+            if kommune is not None:
+                if kommune not in kommune_lid_stats:
+                    kommune_lid_stats[kommune] = {
+                        "input_nynorsk": 0,
+                        "input_bokmål": 0,
+                        "output_nynorsk": 0,
+                        "output_bokmål": 0,
+                        "matches": 0,
+                        "total": 0
+                    }
+                
+                stats = kommune_lid_stats[kommune]
+                stats["total"] += 1
+                
+                if input_lid == "nno":
+                    stats["input_nynorsk"] += 1
+                elif input_lid == "nob":
+                    stats["input_bokmål"] += 1
+                
+                if output_lid == "nno":
+                    stats["output_nynorsk"] += 1
+                elif output_lid == "nob":
+                    stats["output_bokmål"] += 1
+                
+                if input_lid and output_lid and input_lid == output_lid:
+                    stats["matches"] += 1
+        
         # Collect samples if requested
         if num_examples is not None and len(samples) < num_examples:
             samples.append({
@@ -796,6 +833,26 @@ def analyze_dataset(
                 )
         print()
     
+    # Prepare LID statistics if present
+    lid_stats = None
+    if has_lid_metadata:
+        # Add kommune names to kommune LID statistics
+        kommune_lid_stats_with_names = {}
+        for kommune_nummer, kommune_stats in kommune_lid_stats.items():
+            navn = kommunenavn(kommune_nummer)
+            kommune_lid_stats_with_names[f"{navn} ({kommune_nummer})"] = kommune_stats
+        
+        lid_stats = {
+            "input_lid_distribution": dict(input_lid_counter),
+            "output_lid_distribution": dict(output_lid_counter),
+            "lid_matches": {
+                "identical": lid_match_counter.get(True, 0),
+                "different": lid_match_counter.get(False, 0),
+                "total_with_both": sum(lid_match_counter.values())
+            },
+            "kommune_statistics": kommune_lid_stats_with_names
+        }
+    
     return AnalysisResult(
         dataset_name=folder_name,
         path=str(file_path),
@@ -811,6 +868,10 @@ def analyze_dataset(
         output_embeddings=output_embeddings_list,
         doc_types=doc_types_list,
         samples=samples,
+        input_lid_counter=dict(input_lid_counter) if has_lid_metadata else None,
+        output_lid_counter=dict(output_lid_counter) if has_lid_metadata else None,
+        lid_matches=lid_stats["lid_matches"] if lid_stats else None,
+        kommune_lid_stats=lid_stats["kommune_statistics"] if lid_stats else None,
     )
 
 
@@ -1031,11 +1092,18 @@ def _print_result(result: AnalysisResult):
         print(f"  Min length: {min_input:,} characters{min_token_str}")
         print(f"  Max length: {max_input:,} characters{max_token_str}")
         
-        # Calculate percentage of inputs > 2048 tiktokens
+        # Calculate percentage of inputs > 2048, 4096, and 8192 tiktokens
         if result.input_token_lengths and TIKTOKEN_AVAILABLE:
+            total = len(result.input_token_lengths)
             count_above_2048 = sum(1 for tokens in result.input_token_lengths if tokens > 2048)
-            percentage_above_2048 = (count_above_2048 / len(result.input_token_lengths)) * 100
+            count_above_4096 = sum(1 for tokens in result.input_token_lengths if tokens > 4096)
+            count_above_8192 = sum(1 for tokens in result.input_token_lengths if tokens > 8192)
+            percentage_above_2048 = (count_above_2048 / total) * 100
+            percentage_above_4096 = (count_above_4096 / total) * 100
+            percentage_above_8192 = (count_above_8192 / total) * 100
             print(f"  Percentage length > 2048 tiktokens: {percentage_above_2048:.1f}%")
+            print(f"  Percentage length > 4096 tiktokens: {percentage_above_4096:.1f}%")
+            print(f"  Percentage length > 8192 tiktokens: {percentage_above_8192:.1f}%")
         
         print()
     
@@ -1103,6 +1171,45 @@ def _print_result(result: AnalysisResult):
         print(f"  {navn} ({kommune_nummer}): {count:,} examples")
     print()
     
+    # LID statistics (if LID metadata is present)
+    if result.input_lid_counter is not None and result.output_lid_counter is not None:
+        print("=" * 80)
+        print("LID (LANGUAGE IDENTIFICATION) STATISTICS")
+        print("=" * 80)
+        print("\nInput LID Distribution:")
+        for lid, count in sorted(result.input_lid_counter.items(), key=lambda x: x[1], reverse=True):
+            print(f"  {lid}: {count:,}")
+        
+        print("\nOutput LID Distribution:")
+        for lid, count in sorted(result.output_lid_counter.items(), key=lambda x: x[1], reverse=True):
+            print(f"  {lid}: {count:,}")
+        
+        if result.lid_matches and result.lid_matches.get("total_with_both", 0) > 0:
+            matches = result.lid_matches
+            match_pct = (matches["identical"] / matches["total_with_both"]) * 100
+            diff_pct = (matches["different"] / matches["total_with_both"]) * 100
+            print("\nLID Match Statistics:")
+            print(f"  Identical (input_lid == output_lid): {matches['identical']:,} ({match_pct:.1f}%)")
+            print(f"  Different (input_lid != output_lid): {matches['different']:,} ({diff_pct:.1f}%)")
+            print(f"  Total with both LIDs: {matches['total_with_both']:,}")
+        
+        if result.kommune_lid_stats:
+            print("\nKommune LID Statistics (top 10 by total):")
+            sorted_kommuner = sorted(
+                result.kommune_lid_stats.items(),
+                key=lambda x: x[1].get("total", 0),
+                reverse=True
+            )[:10]
+            for kommune_name, kommune_data in sorted_kommuner:
+                print(f"\n  {kommune_name}:")
+                print(f"    Total: {kommune_data.get('total', 0):,}")
+                print(f"    Input - Nynorsk: {kommune_data.get('input_nynorsk', 0):,}, Bokmål: {kommune_data.get('input_bokmål', 0):,}")
+                print(f"    Output - Nynorsk: {kommune_data.get('output_nynorsk', 0):,}, Bokmål: {kommune_data.get('output_bokmål', 0):,}")
+                if kommune_data.get('total', 0) > 0:
+                    match_pct = (kommune_data.get('matches', 0) / kommune_data.get('total', 1)) * 100
+                    print(f"    Matches: {kommune_data.get('matches', 0):,} ({match_pct:.1f}%)")
+        print()
+    
     if result.samples:
         print("=" * 80)
         print("SAMPLE EXAMPLES")
@@ -1131,7 +1238,7 @@ def _save_analysis_results(result: AnalysisResult):
     output_file = data_file_path.parent / f"{data_file_path.stem}_analysis_results.json"
     
     # Calculate statistics
-    stats = {
+    stats: Dict[str, Any] = {
         "dataset_name": result.dataset_name,
         "data_file": result.path,
         "total_examples": result.total_examples,
@@ -1156,8 +1263,13 @@ def _save_analysis_results(result: AnalysisResult):
             stats["input_text"]["average_length_tokens"] = sum(result.input_token_lengths) / len(result.input_token_lengths)
             stats["input_text"]["min_length_tokens"] = min(result.input_token_lengths)
             stats["input_text"]["max_length_tokens"] = max(result.input_token_lengths)
+            total = len(result.input_token_lengths)
             count_above_2048 = sum(1 for tokens in result.input_token_lengths if tokens > 2048)
-            stats["input_text"]["percentage_above_2048_tokens"] = (count_above_2048 / len(result.input_token_lengths)) * 100
+            count_above_4096 = sum(1 for tokens in result.input_token_lengths if tokens > 4096)
+            count_above_8192 = sum(1 for tokens in result.input_token_lengths if tokens > 8192)
+            stats["input_text"]["percentage_above_2048_tokens"] = (count_above_2048 / total) * 100
+            stats["input_text"]["percentage_above_4096_tokens"] = (count_above_4096 / total) * 100
+            stats["input_text"]["percentage_above_8192_tokens"] = (count_above_8192 / total) * 100
     
     # Summary text statistics
     if result.summary_lengths:
@@ -1178,6 +1290,18 @@ def _save_analysis_results(result: AnalysisResult):
             "min_distance": min(result.cosine_distances),
             "max_distance": max(result.cosine_distances),
         }
+    
+    # LID statistics (if LID metadata is present)
+    if result.input_lid_counter is not None and result.output_lid_counter is not None:
+        lid_stats_dict: Dict[str, Any] = {
+            "input_lid_distribution": result.input_lid_counter,
+            "output_lid_distribution": result.output_lid_counter,
+        }
+        if result.lid_matches:
+            lid_stats_dict["lid_matches"] = result.lid_matches
+        if result.kommune_lid_stats:
+            lid_stats_dict["kommune_statistics"] = result.kommune_lid_stats
+        stats["lid_statistics"] = lid_stats_dict
     
     # Save to JSON
     try:
@@ -2110,15 +2234,7 @@ Examples:
         # Get embeddings path
         embeddings_path = _get_embeddings_path(file_path)
         
-        # Check if embeddings file exists and is up-to-date
-        if embeddings_path.exists():
-            data_mtime = file_path.stat().st_mtime
-            embeddings_mtime = embeddings_path.stat().st_mtime
-            if data_mtime > embeddings_mtime:
-                print(f"Error: Data file {file_path.name} is newer than embeddings file {embeddings_path.name}.", file=sys.stderr)
-                print("Please run the standard analysis first to regenerate embeddings.", file=sys.stderr)
-                return 1
-        
+        # Check if embeddings file exists (never regenerate)
         if not embeddings_path.exists():
             print(f"Error: Embeddings file not found: {embeddings_path}", file=sys.stderr)
             print("Please run the standard analysis first to generate embeddings.", file=sys.stderr)

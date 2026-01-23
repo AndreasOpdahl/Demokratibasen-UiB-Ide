@@ -43,15 +43,74 @@ def extract_doc_ids(file_path, is_embeddings_file=False, suppress_warnings=False
     
     return doc_ids
 
-def main():
-    base_dir = Path('.')
+def extract_records_with_fields(file_path, suppress_warnings=False):
+    """Extract records with input and output fields, keyed by dokument_id."""
+    records = {}
+    missing_count = 0
+    missing_fields = 0
+    json_errors = 0
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line_num, line in enumerate(f, 1):
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    example = json.loads(line)
+                    metadata = example.get('metadata', {})
+                    doc_id = metadata.get('dokument_id')
+                    
+                    if doc_id:
+                        input_field = example.get('input')
+                        output_field = example.get('output')
+                        
+                        if input_field is not None and output_field is not None:
+                            records[doc_id] = {
+                                'input': input_field,
+                                'output': output_field
+                            }
+                        else:
+                            missing_fields += 1
+                    else:
+                        missing_count += 1
+                except json.JSONDecodeError:
+                    json_errors += 1
+                    if not suppress_warnings and json_errors <= 5:
+                        print(f'Warning: JSON decode error on line {line_num} in {file_path.name}', file=sys.stderr)
+    except Exception as e:
+        print(f'Error reading {file_path}: {e}', file=sys.stderr)
+        sys.exit(1)
     
-    # File paths
-    main_file = base_dir / 'text_summary_examples_ALL.jsonl'
-    embeddings_file = base_dir / 'text_summary_examples_ALL_embeddings.jsonl'
-    train_file = base_dir / 'text_summary_examples_ALL_train.jsonl'
-    val_file = base_dir / 'text_summary_examples_ALL_val.jsonl'
-    test_file = base_dir / 'text_summary_examples_ALL_test.jsonl'
+    if missing_count > 0 and not suppress_warnings:
+        print(f'  Note: {missing_count} lines in {file_path.name} have no dokument_id', file=sys.stderr)
+    if missing_fields > 0 and not suppress_warnings:
+        print(f'  Note: {missing_fields} records in {file_path.name} missing input or output fields', file=sys.stderr)
+    if json_errors > 5 and not suppress_warnings:
+        print(f'  Note: {json_errors} JSON decode errors in {file_path.name} (showing first 5)', file=sys.stderr)
+    
+    return records
+
+def main():
+    # Try to find the correct base directory
+    # First, try the text_summary_dataset_202601 directory
+    script_dir = Path(__file__).parent
+    dataset_dir = script_dir / 'text_summary_dataset_202601'
+    
+    if (dataset_dir / '155452_text_summary_examples.jsonl').exists():
+        base_dir = dataset_dir
+        main_file = base_dir / '155452_text_summary_examples.jsonl'
+        embeddings_file = base_dir / '155452_text_summary_examples_embeddings.jsonl'
+        train_file = base_dir / '155452_text_summary_examples_train.jsonl'
+        val_file = base_dir / '155452_text_summary_examples_val.jsonl'
+        test_file = base_dir / '155452_text_summary_examples_test.jsonl'
+    else:
+        # Fall back to current directory with old naming
+        base_dir = Path('.')
+        main_file = base_dir / 'text_summary_examples_ALL.jsonl'
+        embeddings_file = base_dir / 'text_summary_examples_ALL_embeddings.jsonl'
+        train_file = base_dir / 'text_summary_examples_ALL_train.jsonl'
+        val_file = base_dir / 'text_summary_examples_ALL_val.jsonl'
+        test_file = base_dir / 'text_summary_examples_ALL_test.jsonl'
     
     print('=' * 80)
     print('DATASET CONSISTENCY CHECK')
@@ -189,6 +248,76 @@ def main():
                 if not test_ok:
                     print(f'    Test: {test_pct:.2f}% (expected ~{target_test}% ± {tolerance}%)')
                 all_checks_passed = False
+    print()
+    
+    # Check 5: Input and output fields match between main file and splits
+    print('5. Checking input and output fields match between main file and splits...')
+    if not main_file.exists():
+        print(f'  ERROR: {main_file.name} not found', file=sys.stderr)
+        all_checks_passed = False
+    elif not all(f.exists() for f in [train_file, val_file, test_file]):
+        print(f'  ERROR: One or more split files not found', file=sys.stderr)
+        all_checks_passed = False
+    else:
+        main_records = extract_records_with_fields(main_file, suppress_warnings=True)
+        train_records = extract_records_with_fields(train_file, suppress_warnings=True)
+        val_records = extract_records_with_fields(val_file, suppress_warnings=True)
+        test_records = extract_records_with_fields(test_file, suppress_warnings=True)
+        
+        # Combine all split records
+        split_records = {}
+        split_records.update(train_records)
+        split_records.update(val_records)
+        split_records.update(test_records)
+        
+        # Find common document IDs
+        main_ids = set(main_records.keys())
+        split_ids = set(split_records.keys())
+        common_ids = main_ids & split_ids
+        
+        if not common_ids:
+            print(f'  WARNING: No common document IDs found between main file and splits')
+            all_checks_passed = False
+        else:
+            print(f'    Main file records: {len(main_records):,}')
+            print(f'    Train records: {len(train_records):,}')
+            print(f'    Val records: {len(val_records):,}')
+            print(f'    Test records: {len(test_records):,}')
+            print(f'    Common document IDs: {len(common_ids):,}')
+            
+            mismatches = []
+            for doc_id in common_ids:
+                main_input = main_records[doc_id]['input']
+                main_output = main_records[doc_id]['output']
+                split_input = split_records[doc_id]['input']
+                split_output = split_records[doc_id]['output']
+                
+                if main_input != split_input or main_output != split_output:
+                    mismatches.append({
+                        'doc_id': doc_id,
+                        'input_mismatch': main_input != split_input,
+                        'output_mismatch': main_output != split_output
+                    })
+            
+            if mismatches:
+                print(f'  FAILED: Found {len(mismatches)} mismatches in input/output fields!')
+                print(f'    Total common document IDs checked: {len(common_ids):,}')
+                print(f'    Mismatches found: {len(mismatches):,}')
+                
+                # Show first few mismatches
+                for i, mismatch in enumerate(mismatches[:5], 1):
+                    print(f'    Mismatch {i}:')
+                    print(f'      Document ID: {mismatch["doc_id"]}')
+                    if mismatch['input_mismatch']:
+                        print(f'      - Input fields differ')
+                    if mismatch['output_mismatch']:
+                        print(f'      - Output fields differ')
+                
+                if len(mismatches) > 5:
+                    print(f'    ... and {len(mismatches) - 5} more mismatches')
+                all_checks_passed = False
+            else:
+                print(f'  PASSED: All {len(common_ids):,} common document IDs have identical input and output fields')
     print()
     
     # Summary
