@@ -86,6 +86,10 @@ import numpy as np
 # Import kommune name translation
 from kommuner.kommune import kommunenavn
 
+# Embedding chunking constants
+MAX_CHUNK_SIZE = 512
+CHUNK_OVERLAP = 64
+
 
 @dataclass
 class AnalysisResult:
@@ -267,42 +271,135 @@ def _get_embedding_model():
         sys.exit(1)
 
 
+def _mean_pool_embeddings(token_embeddings, attention_mask):
+    """Mean-pool embeddings with attention mask."""
+    # Expand mask to match embedding dimensions
+    mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
+    # Sum embeddings, masking out padding
+    sum_embeddings = torch.sum(token_embeddings * mask_expanded, dim=1)
+    # Sum of mask (number of non-padding tokens)
+    sum_mask = torch.clamp(mask_expanded.sum(1), min=1e-9)
+    # Mean pooling
+    return sum_embeddings / sum_mask
+
+
+def _build_model_inputs(chunk_ids: List[int], tokenizer, device, max_chunk_ids: int) -> Dict[str, Any]:
+    """Build model inputs from token id chunks without relying on tokenizer.prepare_for_model."""
+    if len(chunk_ids) > max_chunk_ids:
+        chunk_ids = chunk_ids[:max_chunk_ids]
+    # Add special tokens
+    input_ids = tokenizer.build_inputs_with_special_tokens(chunk_ids)
+    attention_mask = [1] * len(input_ids)
+    inputs: Dict[str, Any] = {
+        "input_ids": torch.tensor([input_ids], device=device),
+        "attention_mask": torch.tensor([attention_mask], device=device),
+    }
+    if "token_type_ids" in getattr(tokenizer, "model_input_names", []):
+        token_type_ids = tokenizer.create_token_type_ids_from_sequences(chunk_ids)
+        inputs["token_type_ids"] = torch.tensor([token_type_ids], device=device)
+    return inputs
+
+
+def _build_chunks(input_ids: List[int], max_chunk_ids: int) -> List[List[int]]:
+    """Build forward and backward chunks with overlap."""
+    if len(input_ids) <= max_chunk_ids:
+        return [input_ids]
+
+    forw_chunks: List[Tuple[int, int, List[int]]] = []
+    backw_chunks: List[Tuple[int, int, List[int]]] = []
+
+    # Initial forward and backward chunks
+    forw_start = 0
+    forw_end = min(len(input_ids), max_chunk_ids)
+    backw_end = len(input_ids)
+    backw_start = max(0, backw_end - max_chunk_ids)
+
+    forw_chunks.append((forw_start, forw_end, input_ids[forw_start:forw_end]))
+    backw_chunks.append((backw_start, backw_end, input_ids[backw_start:backw_end]))
+
+    # Iterate until overlap
+    while forw_end < backw_start:
+        # Forward: start CHUNK_OVERLAP tokens before end of previous forward chunk
+        forw_start = max(0, forw_end - CHUNK_OVERLAP)
+        forw_end = min(len(input_ids), forw_start + max_chunk_ids)
+        forw_chunks.append((forw_start, forw_end, input_ids[forw_start:forw_end]))
+
+        # Backward: end CHUNK_OVERLAP tokens after start of previous backward chunk
+        backw_end = min(len(input_ids), backw_start + CHUNK_OVERLAP)
+        backw_start = max(0, backw_end - max_chunk_ids)
+        backw_chunks.append((backw_start, backw_end, input_ids[backw_start:backw_end]))
+
+        # Update for loop condition
+        if forw_end >= backw_start:
+            break
+
+    # If previous backward chunk starts before previous forward chunk, drop it
+    if backw_chunks and forw_chunks:
+        if backw_chunks[-1][0] < forw_chunks[-1][0]:
+            backw_chunks.pop()
+
+    # Concatenate forward chunks with reversed backward chunks
+    chunks = forw_chunks + list(reversed(backw_chunks))
+    return [chunk_ids for _, _, chunk_ids in chunks]
+
+
 def _create_embedding(text: str, model, tokenizer, device) -> Optional[np.ndarray]:
-    """Create embedding for a text using mean-pooling, masking padding, and L2-normalization on CUDA."""
+    """Create embedding for a text using chunked mean-pooling and L2-normalization on CUDA."""
     if model is None or tokenizer is None:
         return None
     
     try:
-        # Tokenize
-        inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True, max_length=512)
-        # Move inputs to CUDA device
-        inputs = {k: v.to(device) for k, v in inputs.items()}
-        
-        # Get embeddings
+        # Tokenize without max_length; get input_ids without special tokens
+        encoding = tokenizer(text, add_special_tokens=False)
+        input_ids = encoding.get("input_ids", [])
+        if not input_ids:
+            return None
+
+        # Build chunks (reserve space for special tokens)
+        special_tokens = tokenizer.num_special_tokens_to_add(pair=False)
+        max_chunk_ids = MAX_CHUNK_SIZE - special_tokens
+        if max_chunk_ids <= 0:
+            raise ValueError("MAX_CHUNK_SIZE too small for required special tokens")
+        chunks = _build_chunks(input_ids, max_chunk_ids)
+
+        # Compute per-chunk embeddings
+        chunk_embeddings: List[np.ndarray] = []
         with torch.no_grad():
-            outputs = model(**inputs)
-            token_embeddings = outputs.last_hidden_state  # [batch_size, seq_len, hidden_size]
-        
-        # Get attention mask
-        attention_mask = inputs["attention_mask"]  # [batch_size, seq_len]
-        
-        # Mean-pool with masking
-        # Expand mask to match embedding dimensions
-        mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
-        # Sum embeddings, masking out padding
-        sum_embeddings = torch.sum(token_embeddings * mask_expanded, dim=1)
-        # Sum of mask (number of non-padding tokens)
-        sum_mask = torch.clamp(mask_expanded.sum(1), min=1e-9)
-        # Mean pooling
-        mean_embeddings = sum_embeddings / sum_mask
-        
-        # Convert to numpy and L2-normalize
-        embedding = mean_embeddings[0].cpu().numpy()
-        norm = np.linalg.norm(embedding)
+            for chunk_ids in chunks:
+                # Prepare inputs with special tokens and attention mask
+                inputs = _build_model_inputs(chunk_ids, tokenizer, device, max_chunk_ids)
+                outputs = model(**inputs)
+                token_embeddings = outputs.last_hidden_state  # [batch_size, seq_len, hidden_size]
+                attention_mask = inputs["attention_mask"]  # [batch_size, seq_len]
+                mean_embeddings = _mean_pool_embeddings(token_embeddings, attention_mask)
+                chunk_embeddings.append(mean_embeddings[0].cpu().numpy())
+
+        if not chunk_embeddings:
+            return None
+
+        # Aggregate with linear edge weighting (alpha=1)
+        n = len(chunk_embeddings)
+        if n == 1:
+            aggregated = chunk_embeddings[0]
+        else:
+            alpha = 1.0
+            weights = []
+            for i in range(1, n + 1):
+                w_i = 1.0 + alpha * abs(2 * (i - 1) / (n - 1) - 1)
+                weights.append(w_i)
+            weighted_sum = np.zeros_like(chunk_embeddings[0])
+            weight_total = 0.0
+            for emb, w in zip(chunk_embeddings, weights):
+                weighted_sum += emb * w
+                weight_total += w
+            aggregated = weighted_sum / max(weight_total, 1e-9)
+
+        # L2-normalize aggregated embedding
+        norm = np.linalg.norm(aggregated)
         if norm > 0:
-            embedding = embedding / norm
-        
-        return embedding
+            aggregated = aggregated / norm
+
+        return aggregated
     except Exception as e:
         print(f"Warning: Failed to create embedding: {e}", file=sys.stderr)
         return None
@@ -325,8 +422,30 @@ def _get_embeddings_path(data_path: Path) -> Path:
     stem = data_path.stem
     return data_path.parent / f"{stem}_embeddings.jsonl"
 
+def _get_analysis_results_dir(data_path: Path) -> Path:
+    """Get the analysis_results subdirectory for output files."""
+    analysis_dir = data_path.parent / "analysis_results"
+    analysis_dir.mkdir(exist_ok=True)
+    return analysis_dir
 
-def _load_embeddings(embeddings_path: Path, data_file_path: Optional[Path] = None) -> Dict[str, Dict[str, np.ndarray]]:
+def _confirm_overwrite(file_path: Path, force_overwrite: bool = False) -> bool:
+    """Ask for confirmation before overwriting a file."""
+    if force_overwrite:
+        return True
+    
+    if not file_path.exists():
+        return True
+    
+    print(f"\n<Explanation.> Proceed to delete {file_path.name} [yN]? ", end="", file=sys.stderr)
+    try:
+        response = input().strip().lower()
+        return response == 'y'
+    except (EOFError, KeyboardInterrupt):
+        print("", file=sys.stderr)
+        return False
+
+
+def _load_embeddings(embeddings_path: Path, data_file_path: Optional[Path] = None, force_overwrite: bool = False) -> Dict[str, Dict[str, np.ndarray]]:
     """
     Load embeddings from a JSONL file. Returns dict mapping dokument_id to embeddings.
     
@@ -386,11 +505,15 @@ def _load_embeddings(embeddings_path: Path, data_file_path: Optional[Path] = Non
     return embeddings_dict
 
 
-def _clean_embeddings_file(embeddings_path: Path, valid_doc_ids: Set[str]):
+def _clean_embeddings_file(embeddings_path: Path, valid_doc_ids: Set[str], force_overwrite: bool = False):
     """
     Clean an embeddings file by removing entries for documents not in valid_doc_ids.
     Rewrites the file with only valid embeddings.
     """
+    if not _confirm_overwrite(embeddings_path, force_overwrite):
+        print("Skipping embeddings file cleanup (user cancelled)", file=sys.stderr)
+        return
+    
     try:
         cleaned_data = []
         with open(embeddings_path, "r", encoding="utf-8") as f:
@@ -416,8 +539,12 @@ def _clean_embeddings_file(embeddings_path: Path, valid_doc_ids: Set[str]):
         print(f"Warning: Failed to clean embeddings file: {e}", file=sys.stderr)
 
 
-def _save_embeddings(embeddings_path: Path, embeddings_data: List[Dict[str, Any]]):
+def _save_embeddings(embeddings_path: Path, embeddings_data: List[Dict[str, Any]], force_overwrite: bool = False):
     """Save embeddings to a JSONL file."""
+    if not _confirm_overwrite(embeddings_path, force_overwrite):
+        print("Skipping embeddings file save (user cancelled)", file=sys.stderr)
+        return
+    
     try:
         with open(embeddings_path, "w", encoding="utf-8") as f:
             for item in embeddings_data:
@@ -452,7 +579,8 @@ def analyze_dataset(
     dataset_suffix: str,
     split: Optional[str] = None,
     datasets_root: Optional[Path] = None,
-    num_examples: Optional[int] = None
+    num_examples: Optional[int] = None,
+    force_overwrite: bool = False
 ) -> AnalysisResult:
     """
     Analyze a text_summary dataset and return structured results.
@@ -580,7 +708,7 @@ def analyze_dataset(
             # Load embeddings if they exist (never regenerate)
             if plain_embeddings_path.exists():
                 # Load all plain embeddings (filtering out invalid documents)
-                plain_embeddings = _load_embeddings(plain_embeddings_path, data_file_path=plain_data_file)
+                plain_embeddings = _load_embeddings(plain_embeddings_path, data_file_path=plain_data_file, force_overwrite=force_overwrite)
                 # Get dokument_ids from current split file (only valid ones)
                 split_doc_ids = set()
                 for example in _iter_examples(file_path):
@@ -611,6 +739,14 @@ def analyze_dataset(
             
             print(f"Generating embeddings for {num_docs} valid documents (filtered out {len(examples_list) - num_docs} documents)", file=sys.stderr)
             
+            # NOTE: Embedding generation could potentially be sped up with batching:
+            # - Process multiple texts in parallel by batching tokenized inputs
+            # - This would require padding/attention masks for variable-length sequences
+            # - Current implementation processes one text at a time for simplicity
+            # - Batching would be most beneficial when processing many short texts
+            # - For long texts that require chunking, the benefit is less clear since
+            #   chunks are already processed sequentially within each text
+            
             embeddings_data = []
             for example in tqdm(valid_examples, total=num_docs, desc="Generating embeddings", unit="docs"):
                 metadata = example.get("metadata", {})
@@ -633,12 +769,12 @@ def analyze_dataset(
                     })
             
             if embeddings_data:
-                _save_embeddings(embeddings_path, embeddings_data)
+                _save_embeddings(embeddings_path, embeddings_data, force_overwrite)
                 print(f"Saved {len(embeddings_data)} embeddings to {embeddings_path.name}", file=sys.stderr)
     
     # If embeddings file exists but not loaded, load it (and filter out invalid documents)
     if not embeddings_dict and embeddings_path.exists():
-        embeddings_dict = _load_embeddings(embeddings_path, data_file_path=file_path)
+        embeddings_dict = _load_embeddings(embeddings_path, data_file_path=file_path, force_overwrite=force_overwrite)
         print(f"Loaded {len(embeddings_dict)} embeddings from {embeddings_path.name}", file=sys.stderr)
     
     # Analyze the dataset
@@ -932,7 +1068,8 @@ def _plot_histograms(result: AnalysisResult):
     plt.tight_layout()
     
     # Save figure to file (Agg backend doesn't support plt.show())
-    output_file = Path(result.path).parent / f"length_distributions_{Path(result.path).stem}.png"
+    analysis_dir = _get_analysis_results_dir(Path(result.path))
+    output_file = analysis_dir / f"length_distributions_{Path(result.path).stem}.png"
     plt.savefig(output_file, dpi=150, bbox_inches='tight')
     plt.close()
     print(f"Histograms saved to: {output_file}", file=sys.stderr)
@@ -1053,7 +1190,8 @@ def _plot_embedding_projections(result: AnalysisResult):
     plt.tight_layout()
     
     # Save figure
-    output_file = Path(result.path).parent / f"embedding_projections_{Path(result.path).stem}.png"
+    analysis_dir = _get_analysis_results_dir(Path(result.path))
+    output_file = analysis_dir / f"embedding_projections_{Path(result.path).stem}.png"
     plt.savefig(output_file, dpi=150, bbox_inches='tight')
     plt.close()
     print(f"Embedding projections saved to: {output_file}", file=sys.stderr)
@@ -1079,9 +1217,9 @@ def _print_result(result: AnalysisResult):
             avg_input_tokens = sum(result.input_token_lengths) / len(result.input_token_lengths)
             min_input_tokens = min(result.input_token_lengths)
             max_input_tokens = max(result.input_token_lengths)
-            token_str = f", ~{avg_input_tokens:.1f} tiktokens"
-            min_token_str = f", ~{min_input_tokens:.0f} tiktokens"
-            max_token_str = f", ~{max_input_tokens:.0f} tiktokens"
+            token_str = f", {avg_input_tokens:.1f} tiktokens"
+            min_token_str = f", {min_input_tokens:.0f} tiktokens"
+            max_token_str = f", {max_input_tokens:.0f} tiktokens"
         else:
             token_str = ""
             min_token_str = ""
@@ -1117,9 +1255,9 @@ def _print_result(result: AnalysisResult):
             avg_output_tokens = sum(result.summary_token_lengths) / len(result.summary_token_lengths)
             min_output_tokens = min(result.summary_token_lengths)
             max_output_tokens = max(result.summary_token_lengths)
-            token_str = f", ~{avg_output_tokens:.1f} tiktokens"
-            min_token_str = f", ~{min_output_tokens:.0f} tiktokens"
-            max_token_str = f", ~{max_output_tokens:.0f} tiktokens"
+            token_str = f", {avg_output_tokens:.1f} tiktokens"
+            min_token_str = f", {min_output_tokens:.0f} tiktokens"
+            max_token_str = f", {max_output_tokens:.0f} tiktokens"
         else:
             token_str = ""
             min_token_str = ""
@@ -1235,7 +1373,8 @@ def _save_analysis_results(result: AnalysisResult):
     """Save analysis results to a JSON file."""
     # Get the data file path and construct output filename
     data_file_path = Path(result.path)
-    output_file = data_file_path.parent / f"{data_file_path.stem}_analysis_results.json"
+    analysis_dir = _get_analysis_results_dir(data_file_path)
+    output_file = analysis_dir / f"{data_file_path.stem}_analysis_results.json"
     
     # Calculate statistics
     stats: Dict[str, Any] = {
@@ -2188,6 +2327,11 @@ Examples:
         default=None,
         help="Output file path for duplicate detection results (default: <dataset>_duplicates.json)",
     )
+    parser.add_argument(
+        "--force-overwrite",
+        action="store_true",
+        help="Force overwrite of embeddings file without confirmation prompt",
+    )
     
     args = parser.parse_args(argv)
     
@@ -2296,7 +2440,8 @@ Examples:
                 # Build default output filename with threshold suffix, e.g. _threshold_099.json for 0.99
                 threshold_str = str(args.similarity_threshold).replace('.', '')
                 output_stem = embeddings_path.stem.replace('_embeddings', '')
-                output_path = embeddings_path.parent / f"{output_stem}_duplicates_threshold_{threshold_str}.json"
+                analysis_dir = _get_analysis_results_dir(embeddings_path)
+                output_path = analysis_dir / f"{output_stem}_duplicates_threshold_{threshold_str}.json"
             
             save_duplicate_results(
                 results, 
@@ -2336,7 +2481,8 @@ Examples:
             args.dataset,
             split=args.split,
             datasets_root=datasets_root,
-            num_examples=args.examples
+            num_examples=args.examples,
+            force_overwrite=args.force_overwrite
         )
     except FileNotFoundError as e:
         print(f"Error: {e}", file=sys.stderr)
