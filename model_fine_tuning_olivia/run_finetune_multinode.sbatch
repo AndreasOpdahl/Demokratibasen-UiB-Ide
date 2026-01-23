@@ -8,7 +8,7 @@
 #SBATCH --mem=512G
 #SBATCH --time=25:00:00
 # Account: REQUIRED - Pass via: sbatch --account=YOUR_ACCOUNT run_finetune_multinode.sbatch ...
-# Example: sbatch --account=nn12075k run_finetune_multinode.sbatch --model=gemma-2-9b
+# Example: sbatch --account=nnXDXFWF run_finetune_multinode.sbatch --model=gemma-2-9b
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
 
@@ -22,14 +22,16 @@ else
     echo "WARNING: .env file not found. Using defaults or environment variables."
 fi
 
-# Note: SLURM_ACCOUNT is hardcoded in #SBATCH -A line above (nn12075k)
+# Note: SLURM_ACCOUNT is hardcoded in #SBATCH -A line above (nnXDXFWF)
 # If you need a different account, update the #SBATCH -A line directly
 # SLURM_ACCOUNT from .env is still used for informational purposes
 
 # Parse command-line arguments or use defaults
-# Usage: sbatch --export=SLURM_ACCOUNT=nn12075k run_finetune_multinode.sbatch [--model=MODEL] [--num_gpus=N] [--resume_checkpoint=CHECKPOINT] [--task_limit="--max_steps N"] [--distribution_flag="--fsdp"] [--dry-run]
+# Usage: sbatch --export=SLURM_ACCOUNT=nnXDXFWF run_finetune_multinode.sbatch [--model=MODEL] [--num_gpus=N] [--train_dataset=PATH] [--val_dataset=PATH] [--resume_checkpoint=CHECKPOINT] [--task_limit="--max_steps N"] [--distribution_flag="--fsdp"] [--dry-run]
 MODEL=${MODEL:-gemma-2-9b}
 NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
+TRAIN_DATASET=${TRAIN_DATASET:-"data/output/new_processed_data_train.jsonl"}
+VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
 RESUME_CHECKPOINT=${RESUME_CHECKPOINT:-""}
 TASK_LIMIT=${TASK_LIMIT:-"--max_steps 10000"}
 DISTRIBUTION_FLAG=${DISTRIBUTION_FLAG:-"--fsdp"}
@@ -53,6 +55,12 @@ for arg in "$@"; do
         --distribution_flag=*)
             DISTRIBUTION_FLAG="${arg#*=}"
             ;;
+        --train_dataset=*)
+            TRAIN_DATASET="${arg#*=}"
+            ;;
+        --val_dataset=*)
+            VAL_DATASET="${arg#*=}"
+            ;;
         --dry-run|--debug)
             DRY_RUN=true
             ;;
@@ -64,6 +72,8 @@ for arg in "$@"; do
             echo "Options:"
             echo "  --model=MODEL              Model short name (default: gemma-2-9b)"
             echo "  --num_gpus=N               Number of GPUs (default: 4)"
+            echo "  --train_dataset=PATH       Path to training dataset JSONL file (default: data/output/new_processed_data_train.jsonl)"
+            echo "  --val_dataset=PATH         Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
             echo "  --resume_checkpoint=DIR    Checkpoint directory to resume from (default: none)"
             echo "  --task_limit=\"OPTIONS\"     Task limit, e.g. \"--max_steps 10000\" (default: --max_steps 10000)"
             echo "  --distribution_flag=FLAG   Distribution flag: --fsdp or --ddp (default: --fsdp)"
@@ -175,6 +185,8 @@ fi
 echo "Configuration:"
 echo "  MODEL: $MODEL"
 echo "  NUM_GPUS: $NUM_GPUS"
+echo "  TRAIN_DATASET: $TRAIN_DATASET"
+echo "  VAL_DATASET: $VAL_DATASET"
 echo "  RESUME_CHECKPOINT: ${RESUME_CHECKPOINT:-none}"
 echo "  TASK_LIMIT: $TASK_LIMIT"
 echo "  DISTRIBUTION_FLAG: $DISTRIBUTION_FLAG"
@@ -226,23 +238,25 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "  Training command would be:"
     echo "    torchrun --nnodes=1 --nproc_per_node=$NUM_GPUS ..."
     echo "    scripts/wandb_finetune.py --model $MODEL --quantization none $DISTRIBUTION_FLAG"
-    echo "    --hf_token [REDACTED] --train_dataset data/output/new_processed_data_train.jsonl"
-    echo "    --val_dataset data/output/new_processed_data_val.jsonl $TASK_LIMIT"
+    echo "    --hf_token [REDACTED]"
+    echo "    --train_dataset $TRAIN_DATASET"
+    echo "    --val_dataset $VAL_DATASET"
+    echo "    $TASK_LIMIT"
     echo "    --output_dir $OUTPUT_DIR ${RESUME_CHECKPOINT:+--resume_checkpoint $RESUME_CHECKPOINT}"
     echo ""
     
     # Check if files/directories exist (non-blocking in dry-run)
     echo "File/Directory checks:"
-    if [ -f "data/output/new_processed_data_train.jsonl" ]; then
-        echo "  ✓ Training dataset exists"
+    if [ -f "$TRAIN_DATASET" ]; then
+        echo "  ✓ Training dataset exists: $TRAIN_DATASET"
     else
-        echo "  ⚠ Training dataset not found: data/output/new_processed_data_train.jsonl"
+        echo "  ⚠ Training dataset not found: $TRAIN_DATASET"
     fi
     
-    if [ -f "data/output/new_processed_data_val.jsonl" ]; then
-        echo "  ✓ Validation dataset exists"
+    if [ -f "$VAL_DATASET" ]; then
+        echo "  ✓ Validation dataset exists: $VAL_DATASET"
     else
-        echo "  ⚠ Validation dataset not found: data/output/new_processed_data_val.jsonl"
+        echo "  ⚠ Validation dataset not found: $VAL_DATASET"
     fi
     
     if [ -n "$RESUME_CHECKPOINT" ]; then
@@ -390,7 +404,7 @@ echo "=== Network interfaces ==="
 ip link show | grep -E "^[0-9]+" | cut -d: -f2
 
 echo "=== Step 5: Launch training ==="
-torchrun --nnodes=SLURM_NNODES_PLACEHOLDER --nproc_per_node=SLURM_GPUS_ON_NODE_PLACEHOLDER --node_rank=$SLURM_NODEID --rdzv_backend=c10d --rdzv_endpoint=MASTER_ADDR_PLACEHOLDER:MASTER_PORT_PLACEHOLDER scripts/wandb_finetune.py --model MODEL_PLACEHOLDER --quantization none DISTRIBUTION_FLAG_PLACEHOLDER --hf_token HUGGINGFACE_TOKEN_PLACEHOLDER --train_dataset data/output/new_processed_data_train.jsonl --val_dataset data/output/new_processed_data_val.jsonl TASK_LIMIT_PLACEHOLDER --output_dir models/MODEL_PLACEHOLDER-apptainer-fsdp RESUME_ARG_PLACEHOLDER
+torchrun --nnodes=SLURM_NNODES_PLACEHOLDER --nproc_per_node=SLURM_GPUS_ON_NODE_PLACEHOLDER --node_rank=$SLURM_NODEID --rdzv_backend=c10d --rdzv_endpoint=MASTER_ADDR_PLACEHOLDER:MASTER_PORT_PLACEHOLDER scripts/wandb_finetune.py --model MODEL_PLACEHOLDER --quantization none DISTRIBUTION_FLAG_PLACEHOLDER --hf_token HUGGINGFACE_TOKEN_PLACEHOLDER --train_dataset TRAIN_DATASET_PLACEHOLDER --val_dataset VAL_DATASET_PLACEHOLDER TASK_LIMIT_PLACEHOLDER --output_dir models/MODEL_PLACEHOLDER-apptainer-fsdp RESUME_ARG_PLACEHOLDER
 SCRIPT_EOF
 
 # Replace placeholders with actual values
@@ -412,6 +426,8 @@ sed -i "s|MODEL_PLACEHOLDER|$MODEL|g" "$SCRIPT_FILE"
 sed -i "s|DISTRIBUTION_FLAG_PLACEHOLDER|$DISTRIBUTION_FLAG|g" "$SCRIPT_FILE"
 sed -i "s|HUGGINGFACE_TOKEN_PLACEHOLDER|$HUGGINGFACE_TOKEN|g" "$SCRIPT_FILE"
 sed -i "s|TASK_LIMIT_PLACEHOLDER|$TASK_LIMIT|g" "$SCRIPT_FILE"
+sed -i "s|TRAIN_DATASET_PLACEHOLDER|$TRAIN_DATASET|g" "$SCRIPT_FILE"
+sed -i "s|VAL_DATASET_PLACEHOLDER|$VAL_DATASET|g" "$SCRIPT_FILE"
 sed -i "s|RESUME_ARG_PLACEHOLDER|$RESUME_ARG|g" "$SCRIPT_FILE"
 sed -i "s|INSTALL_FLAG_PLACEHOLDER|${PWD}/logs/install_done_${SLURM_JOB_ID}|g" "$SCRIPT_FILE"
 

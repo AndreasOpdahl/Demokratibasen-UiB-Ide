@@ -64,7 +64,7 @@ from transformers import (
 )
 
 # Import model configurations
-from model_configs import get_model_config_by_hf_name, get_model_name_mapping
+from model_configs import get_model_config_by_hf_name, get_model_name_mapping, get_doc_type_norwegian
 
 # Evaluation parameters
 MAX_INPUT_TEXT_TOKENS = 2048
@@ -1096,10 +1096,49 @@ def evaluate_checkpoint(
     # Load validation dataset (only on main process, then broadcast)
     if is_main_process:
         print(f"Loading validation dataset from: {val_dataset_path}")
+    
+    # Check if file exists
+    if not os.path.exists(val_dataset_path):
+        raise FileNotFoundError(f"Validation dataset file does not exist: {val_dataset_path}")
+    
+    # Check file size (Git LFS pointers are typically < 200 bytes)
+    file_size = os.path.getsize(val_dataset_path)
+    if file_size < 200:
+        print(f"WARNING: Validation dataset file is very small ({file_size} bytes).")
+        print(f"         This might be a Git LFS pointer file. Please ensure the actual file is downloaded.")
+    
     val_data = []
     with open(val_dataset_path, 'r', encoding='utf-8') as f:
+        first_line = f.readline()
+        # Check if it's a Git LFS pointer
+        if first_line.strip().startswith('version https://git-lfs.github.com/spec/v1'):
+            raise ValueError(
+                f"Validation dataset file appears to be a Git LFS pointer, not actual data.\n"
+                f"Please download the actual file using: git lfs pull\n"
+                f"Or ensure the file at {val_dataset_path} contains actual JSONL data."
+            )
+        
+        # Reset file pointer and read all lines
+        f.seek(0)
+        line_num = 0
         for line in f:
-            val_data.append(json.loads(line))
+            line_num += 1
+            line = line.strip()
+            if not line:  # Skip empty lines
+                continue
+            try:
+                val_data.append(json.loads(line))
+            except json.JSONDecodeError as json_err:
+                raise ValueError(
+                    f"Invalid JSON on line {line_num} of validation dataset: {json_err}\n"
+                    f"Line content (first 200 chars): {line[:200]}"
+                )
+    
+    if len(val_data) == 0:
+        raise ValueError(f"Validation dataset file is empty or contains no valid JSON lines: {val_dataset_path}")
+    
+    if is_main_process:
+        print(f"Successfully loaded {len(val_data)} validation examples")
 
     # Sample validation examples
     val_data = random.sample(val_data, min(val_data_size, len(val_data)))
@@ -1115,12 +1154,19 @@ def evaluate_checkpoint(
 
     def format_example_eval(example):
         """Format evaluation example with model-specific prompt template."""
+        # Extract doc_type from metadata if available
+        doc_type = None
+        if 'metadata' in example and isinstance(example['metadata'], dict):
+            doc_type = example['metadata'].get('doc_type')
+        
         model_config = get_model_config_by_hf_name(model_name)
         if model_config:
-            prompt = model_config.prompt_config.format_eval(input_text=example['input'])
+            prompt = model_config.prompt_config.format_eval(input_text=example['input'], doc_type=doc_type)
         else:
-            # Fallback to default format
-            prompt = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
+            # Fallback to default format with doc_type
+            from model_configs import get_doc_type_norwegian
+            doc_type_nor = get_doc_type_norwegian(doc_type)
+            prompt = f"Oppgave: Oppsummer følgende {doc_type_nor}:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
         
         target = example['output'] if example.get('output') is not None else ""
         return {
@@ -1146,6 +1192,54 @@ def evaluate_checkpoint(
         return tokenized_prompts
 
     formatted_val_dataset = val_dataset.map(format_example_eval)
+    
+    # Log example prompts to wandb (lightweight - just a few examples to verify prompt formatting)
+    if is_main_process and wandb.run is not None:
+        # Collect example prompts with different doc_types (only first 3 examples to keep it lightweight)
+        example_prompts = []
+        doc_types_seen = set()
+        
+        for i in range(min(3, len(formatted_val_dataset))):
+            example = formatted_val_dataset[i]
+            original_example = val_data[i] if i < len(val_data) else {}
+            
+            # Extract doc_type
+            doc_type = None
+            if 'metadata' in original_example and isinstance(original_example['metadata'], dict):
+                doc_type = original_example['metadata'].get('doc_type')
+            
+            doc_type_nor = get_doc_type_norwegian(doc_type) if doc_type else "tekst"
+            doc_types_seen.add(doc_type_nor)
+            
+            # Get prompt
+            prompt = example.get('prompt', '')
+            prompt_preview = prompt[:300] + "..." if len(prompt) > 300 else prompt
+            
+            example_prompts.append({
+                "example_num": i + 1,
+                "doc_type": doc_type or "unknown",
+                "doc_type_norwegian": doc_type_nor,
+                "prompt_preview": prompt_preview
+            })
+        
+        # Log to wandb config (lightweight - just metadata, once per evaluation)
+        model_config = get_model_config_by_hf_name(model_name)
+        wandb.config.update({
+            "eval_prompt_examples": example_prompts,
+            "eval_doc_types_seen": sorted(list(doc_types_seen)),
+            "eval_prompt_template_type": model_config.prompt_config.template_type if model_config else "plain"
+        })
+        
+        # Print to console (lightweight - just once)
+        print("\n" + "=" * 70)
+        print("EVALUATION PROMPT EXAMPLES (logged to wandb config):")
+        print("=" * 70)
+        for ex in example_prompts:
+            print(f"\nExample {ex['example_num']}:")
+            print(f"  Doc Type: {ex['doc_type']} -> {ex['doc_type_norwegian']}")
+            print(f"  Prompt Preview: {ex['prompt_preview']}")
+        print("=" * 70 + "\n")
+    
     tokenized_val_dataset = formatted_val_dataset.map(tokenize_function_eval, batched=True)
     
     # Store original examples for JSONL output (before tokenization)
