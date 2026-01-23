@@ -1,65 +1,68 @@
 {
   "reference": {
-    "rouge1": 0.02615368071658163,
-    "rouge2": 0.007338311703308585,
-    "rougeL": 0.024741973480744126,
-    "rougeLsum": 0.022923066420916103,
-    "bertscore_f1_mean": 0.20011751850446066
+    "rouge1": 0.028550354837466332,
+    "rouge2": 0.006684716932066755,
+    "rougeL": 0.026332415446321398,
+    "rougeLsum": 0.02369429171918482,
+    "bertscore_f1_mean": 0.20011751850446066,
+    "reference_metrics_failed": false
   },
   "hygiene": {
     "mean_compression_ratio": 0.1304171115634398,
     "mean_rep_3gram": 0.8267272089074523,
-    "ratio_ends_with_punct": 0.0
+    "ratio_ends_with_punct": 0.5
   },
   "faithfulness": {
-    "mean_entailment_score": 0.39254833247085935,
-    "min_entailment_score": 0.004905435256659985,
-    "mean_low_entailment_sentences": 0.7360962566844921,
-    "max_contradiction_score": 0.9977893829345703,
-    "mean_high_contradiction_sentences": 0.03787878787878788,
-    "mean_outlier_rate": 0.7360962566844921,
-    "ratio_passed": 0.16666666666666666,
+    "mean_entailment_score": 0.6243115393794505,
+    "min_entailment_score": 0.0010602298425510526,
+    "mean_low_entailment_sentences": 0.41893939393939394,
+    "max_contradiction_score": 0.9995726943016052,
+    "mean_high_contradiction_sentences": 0.455548128342246,
+    "mean_outlier_rate": 0.6964572192513369,
+    "ratio_passed": 0.08333333333333333,
     "reasons_failed": [
       [
-        "mean_entailment 0.264 < 0.720",
-        "low_entailment_sentences 11 > 0 (threshold 0.60)",
+        "mean_entailment 0.615 < 0.720",
+        "low_entailment_sentences 5 > 0 (threshold 0.60)",
+        "high_contradiction_sentences 10 > 0 (threshold 0.35)"
+      ],
+      [
+        "high_contradiction_sentences 6 > 0 (threshold 0.35)"
+      ],
+      [
+        "mean_entailment 0.168 < 0.720",
+        "low_entailment_sentences 1 > 0 (threshold 0.60)"
+      ],
+      [
+        "high_contradiction_sentences 1 > 0 (threshold 0.35)"
+      ],
+      [
+        "low_entailment_sentences 3 > 0 (threshold 0.60)",
         "high_contradiction_sentences 5 > 0 (threshold 0.35)"
       ],
       [
-        "mean_entailment 0.529 < 0.720",
-        "low_entailment_sentences 12 > 0 (threshold 0.60)"
+        "low_entailment_sentences 8 > 0 (threshold 0.60)",
+        "high_contradiction_sentences 11 > 0 (threshold 0.35)"
       ],
       [
-        "mean_entailment 0.123 < 0.720",
+        "mean_entailment 0.378 < 0.720",
         "low_entailment_sentences 1 > 0 (threshold 0.60)"
       ],
       [
-        "mean_entailment 0.005 < 0.720",
-        "low_entailment_sentences 1 > 0 (threshold 0.60)"
+        "mean_entailment 0.683 < 0.720"
       ],
       [
-        "mean_entailment 0.401 < 0.720",
-        "low_entailment_sentences 8 > 0 (threshold 0.60)"
+        "high_contradiction_sentences 1 > 0 (threshold 0.35)"
       ],
       [
-        "mean_entailment 0.670 < 0.720",
-        "low_entailment_sentences 8 > 0 (threshold 0.60)"
+        "mean_entailment 0.262 < 0.720",
+        "low_entailment_sentences 1 > 0 (threshold 0.60)",
+        "high_contradiction_sentences 1 > 0 (threshold 0.35)"
       ],
       [
-        "mean_entailment 0.205 < 0.720",
-        "low_entailment_sentences 1 > 0 (threshold 0.60)"
-      ],
-      [
-        "mean_entailment 0.479 < 0.720",
-        "low_entailment_sentences 1 > 0 (threshold 0.60)"
-      ],
-      [
-        "mean_entailment 0.099 < 0.720",
-        "low_entailment_sentences 1 > 0 (threshold 0.60)"
-      ],
-      [
-        "mean_entailment 0.117 < 0.720",
-        "low_entailment_sentences 10 > 0 (threshold 0.60)"
+        "mean_entailment 0.114 < 0.720",
+        "low_entailment_sentences 9 > 0 (threshold 0.60)",
+        "high_contradiction_sentences 2 > 0 (threshold 0.35)"
       ]
     ]
   }
