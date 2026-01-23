@@ -122,6 +122,7 @@ except ImportError:
 from model_configs import (
     get_model_config,
     get_model_config_by_hf_name,
+    get_doc_type_norwegian,
     get_model_name_mapping,
 )
 
@@ -739,21 +740,103 @@ def fine_tune_model(
     # Read JSONL file manually
     train_data = []
     try:
+        # Check if file exists and is readable
+        if not os.path.exists(dataset_path):
+            print(f"ERROR: Training dataset file does not exist: {dataset_path}")
+            return
+        
+        # Check file size (Git LFS pointers are typically < 200 bytes)
+        file_size = os.path.getsize(dataset_path)
+        if file_size < 200:
+            print(f"WARNING: Training dataset file is very small ({file_size} bytes).")
+            print(f"         This might be a Git LFS pointer file. Please ensure the actual file is downloaded.")
+        
         with open(dataset_path, 'r', encoding='utf-8') as f:
+            first_line = f.readline()
+            # Check if it's a Git LFS pointer
+            if first_line.strip().startswith('version https://git-lfs.github.com/spec/v1'):
+                print(f"ERROR: Training dataset file appears to be a Git LFS pointer, not actual data.")
+                print(f"       Please download the actual file using: git lfs pull")
+                print(f"       Or ensure the file at {dataset_path} contains actual JSONL data.")
+                return
+            
+            # Reset file pointer and read all lines
+            f.seek(0)
+            line_num = 0
             for line in f:
-                train_data.append(json.loads(line))
+                line_num += 1
+                line = line.strip()
+                if not line:  # Skip empty lines
+                    continue
+                try:
+                    train_data.append(json.loads(line))
+                except json.JSONDecodeError as json_err:
+                    print(f"ERROR: Invalid JSON on line {line_num} of training dataset:")
+                    print(f"       {str(json_err)}")
+                    print(f"       Line content (first 200 chars): {line[:200]}")
+                    return
+            
+        if len(train_data) == 0:
+            print(f"ERROR: Training dataset file is empty or contains no valid JSON lines: {dataset_path}")
+            return
+            
+        print(f"Successfully loaded {len(train_data)} training examples")
     except Exception as e:
         print(f"Error reading training dataset: {e}")
+        print(f"File path: {dataset_path}")
+        import traceback
+        traceback.print_exc()
         return
 
     # Read validation JSONL file
     val_data = []
     try:
+        # Check if file exists and is readable
+        if not os.path.exists(val_dataset_path):
+            print(f"ERROR: Validation dataset file does not exist: {val_dataset_path}")
+            return
+        
+        # Check file size (Git LFS pointers are typically < 200 bytes)
+        file_size = os.path.getsize(val_dataset_path)
+        if file_size < 200:
+            print(f"WARNING: Validation dataset file is very small ({file_size} bytes).")
+            print(f"         This might be a Git LFS pointer file. Please ensure the actual file is downloaded.")
+        
         with open(val_dataset_path, 'r', encoding='utf-8') as f:
+            first_line = f.readline()
+            # Check if it's a Git LFS pointer
+            if first_line.strip().startswith('version https://git-lfs.github.com/spec/v1'):
+                print(f"ERROR: Validation dataset file appears to be a Git LFS pointer, not actual data.")
+                print(f"       Please download the actual file using: git lfs pull")
+                print(f"       Or ensure the file at {val_dataset_path} contains actual JSONL data.")
+                return
+            
+            # Reset file pointer and read all lines
+            f.seek(0)
+            line_num = 0
             for line in f:
-                val_data.append(json.loads(line))
+                line_num += 1
+                line = line.strip()
+                if not line:  # Skip empty lines
+                    continue
+                try:
+                    val_data.append(json.loads(line))
+                except json.JSONDecodeError as json_err:
+                    print(f"ERROR: Invalid JSON on line {line_num} of validation dataset:")
+                    print(f"       {str(json_err)}")
+                    print(f"       Line content (first 200 chars): {line[:200]}")
+                    return
+            
+        if len(val_data) == 0:
+            print(f"ERROR: Validation dataset file is empty or contains no valid JSON lines: {val_dataset_path}")
+            return
+            
+        print(f"Successfully loaded {len(val_data)} validation examples")
     except Exception as e:
         print(f"Error reading validation dataset: {e}")
+        print(f"File path: {val_dataset_path}")
+        import traceback
+        traceback.print_exc()
         return
 
     # Create training dataset
@@ -772,25 +855,40 @@ def fine_tune_model(
 
     def format_example_train(example):
         """Format training example with model-specific prompt template."""
+        # Extract doc_type from metadata if available
+        doc_type = None
+        if 'metadata' in example and isinstance(example['metadata'], dict):
+            doc_type = example['metadata'].get('doc_type')
+        
         model_config = get_model_config_by_hf_name(model_name)
         if model_config:
             return {"text": model_config.prompt_config.format_train(
                 input_text=example['input'],
-                output_text=example['output']
+                output_text=example['output'],
+                doc_type=doc_type
             )}
         else:
-            # Fallback to default format
-            text = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n{example['output']}\n\n###\n"
+            # Fallback to default format with doc_type
+            from model_configs import get_doc_type_norwegian
+            doc_type_nor = get_doc_type_norwegian(doc_type)
+            text = f"Oppgave: Oppsummer følgende {doc_type_nor}:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n{example['output']}\n\n###\n"
             return {"text": text}
 
     def format_example_eval(example):
         """Format evaluation example with model-specific prompt template."""
+        # Extract doc_type from metadata if available
+        doc_type = None
+        if 'metadata' in example and isinstance(example['metadata'], dict):
+            doc_type = example['metadata'].get('doc_type')
+        
         model_config = get_model_config_by_hf_name(model_name)
         if model_config:
-            prompt = model_config.prompt_config.format_eval(input_text=example['input'])
+            prompt = model_config.prompt_config.format_eval(input_text=example['input'], doc_type=doc_type)
         else:
-            # Fallback to default format
-            prompt = f"Oppgave: Oppsummer følgende tekst:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
+            # Fallback to default format with doc_type
+            from model_configs import get_doc_type_norwegian
+            doc_type_nor = get_doc_type_norwegian(doc_type)
+            prompt = f"Oppgave: Oppsummer følgende {doc_type_nor}:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
         
         target = example['output'] if example.get('output') is not None else ""
         return {
@@ -832,6 +930,63 @@ def fine_tune_model(
         return tokenized_prompts
 
     formatted_dataset = dataset.map(format_example_train)
+    
+    # Log example prompts to wandb (lightweight - just a few examples to verify prompt formatting)
+    if is_main_process and wandb.run is not None:
+        # Collect example prompts with different doc_types
+        example_prompts = []
+        doc_types_seen = set()
+        
+        # Sample from training dataset (first 5 examples to show variety)
+        for i in range(min(5, len(formatted_dataset))):
+            example = formatted_dataset[i]
+            original_example = train_data[i] if i < len(train_data) else {}
+            
+            # Extract doc_type
+            doc_type = None
+            if 'metadata' in original_example and isinstance(original_example['metadata'], dict):
+                doc_type = original_example['metadata'].get('doc_type')
+            
+            doc_type_nor = get_doc_type_norwegian(doc_type) if doc_type else "tekst"
+            doc_types_seen.add(doc_type_nor)
+            
+            # Get formatted text (full prompt + output for training)
+            formatted_text = example.get('text', '')
+            # Extract just the prompt part (before the output summary)
+            if 'Oppsummering:\n\n###\n\n' in formatted_text:
+                prompt_part = formatted_text.split('Oppsummering:\n\n###\n\n')[0] + 'Oppsummering:\n\n###\n\n'
+            elif 'Oppsummering:' in formatted_text:
+                prompt_part = formatted_text.split('Oppsummering:')[0] + 'Oppsummering:'
+            else:
+                # For other prompt formats, take first 400 chars
+                prompt_part = formatted_text[:400] + "..." if len(formatted_text) > 400 else formatted_text
+            
+            example_prompts.append({
+                "example_num": i + 1,
+                "doc_type": doc_type or "unknown",
+                "doc_type_norwegian": doc_type_nor,
+                "prompt_preview": prompt_part[:300] + "..." if len(prompt_part) > 300 else prompt_part
+            })
+        
+        # Log to wandb config (lightweight - just metadata)
+        # Get model_config for template type
+        model_config = get_model_config_by_hf_name(model_name)
+        wandb.config.update({
+            "prompt_examples": example_prompts,
+            "doc_types_in_training": sorted(list(doc_types_seen)),
+            "prompt_template_type": model_config.prompt_config.template_type if model_config else "plain"
+        })
+        
+        # Also print to console for visibility
+        print("\n" + "=" * 70)
+        print("PROMPT EXAMPLES (logged to wandb config):")
+        print("=" * 70)
+        for ex in example_prompts:
+            print(f"\nExample {ex['example_num']}:")
+            print(f"  Doc Type: {ex['doc_type']} -> {ex['doc_type_norwegian']}")
+            print(f"  Prompt Preview: {ex['prompt_preview']}")
+        print("=" * 70 + "\n")
+    
     tokenized_dataset = formatted_dataset.map(
         tokenize_function_train, 
         batched=True,

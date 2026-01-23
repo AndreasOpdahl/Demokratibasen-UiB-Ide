@@ -13,6 +13,22 @@ from typing import List, Optional, Callable
 from peft import LoraConfig
 
 
+# Document type mapping (English -> Norwegian)
+DOC_TYPE_MAPPING = {
+    "case_minutes": "vedtak",
+    "case_presentation": "saksforelegg",
+    "meeting_minutes": "møtereferat",
+    "meeting_agenda": "saksliste",
+    "case_attachment": "vedlegg"
+}
+
+def get_doc_type_norwegian(doc_type: Optional[str]) -> str:
+    """Get Norwegian translation of document type, default to 'tekst' if unknown."""
+    if doc_type and doc_type in DOC_TYPE_MAPPING:
+        return DOC_TYPE_MAPPING[doc_type]
+    return "tekst"  # Default fallback
+
+
 @dataclass
 class PromptConfig:
     """Configuration for prompt formatting."""
@@ -20,24 +36,26 @@ class PromptConfig:
     # Prompt template type
     template_type: str  # 'plain', 'llama2', 'llama3', 'mistral', 'custom'
     
-    # Template strings (use {input} and {output} placeholders)
+    # Template strings (use {input}, {output}, and {doc_type} placeholders)
     train_template: str
     eval_template: str
     
     # Optional: custom formatting function
     format_fn: Optional[Callable] = None
     
-    def format_train(self, input_text: str, output_text: str) -> str:
+    def format_train(self, input_text: str, output_text: str, doc_type: Optional[str] = None) -> str:
         """Format training example."""
         if self.format_fn:
-            return self.format_fn(input_text, output_text, is_training=True)
-        return self.train_template.format(input=input_text, output=output_text)
+            return self.format_fn(input_text, output_text, is_training=True, doc_type=doc_type)
+        doc_type_nor = get_doc_type_norwegian(doc_type)
+        return self.train_template.format(input=input_text, output=output_text, doc_type=doc_type_nor)
     
-    def format_eval(self, input_text: str) -> str:
+    def format_eval(self, input_text: str, doc_type: Optional[str] = None) -> str:
         """Format evaluation example."""
         if self.format_fn:
-            return self.format_fn(input_text, None, is_training=False)
-        return self.eval_template.format(input=input_text)
+            return self.format_fn(input_text, None, is_training=False, doc_type=doc_type)
+        doc_type_nor = get_doc_type_norwegian(doc_type)
+        return self.eval_template.format(input=input_text, doc_type=doc_type_nor)
 
 
 @dataclass
@@ -69,27 +87,27 @@ class ModelConfig:
 # Prompt configurations
 PROMPT_PLAIN = PromptConfig(
     template_type='plain',
-    train_template="Oppgave: Oppsummer følgende tekst:\n\n###\n\n{input}\n\n###\n\nOppsummering:\n\n###\n\n{output}\n\n###\n",
-    eval_template="Oppgave: Oppsummer følgende tekst:\n\n###\n\n{input}\n\n###\n\nOppsummering:\n\n###\n\n",
+    train_template="Oppgave: Oppsummer følgende {doc_type}:\n\n###\n\n{input}\n\n###\n\nOppsummering:\n\n###\n\n{output}\n\n###\n",
+    eval_template="Oppgave: Oppsummer følgende {doc_type}:\n\n###\n\n{input}\n\n###\n\nOppsummering:\n\n###\n\n",
 )
 
 PROMPT_LLAMA2 = PromptConfig(
     template_type='llama2',
-    train_template="[INST] Oppsummer følgende tekst:\n\n{input}\n\nOppsummering: [/INST] {output}",
-    eval_template="[INST] Oppsummer følgende tekst:\n\n{input}\n\nOppsummering: [/INST]",
+    train_template="[INST] Oppsummer følgende {doc_type}:\n\n{input}\n\nOppsummering: [/INST] {output}",
+    eval_template="[INST] Oppsummer følgende {doc_type}:\n\n{input}\n\nOppsummering: [/INST]",
 )
 
 PROMPT_LLAMA3 = PromptConfig(
     template_type='llama3',
-    train_template="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nOppsummer følgende tekst:\n\n{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n{output}<|eot_id|>",
-    eval_template="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nOppsummer følgende tekst:\n\n{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    train_template="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nOppsummer følgende {doc_type}:\n\n{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n{output}<|eot_id|>",
+    eval_template="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nOppsummer følgende {doc_type}:\n\n{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
 )
 
 # Custom prompt for Normistral (more explicit instruction)
 PROMPT_NORMISTRAL = PromptConfig(
     template_type='custom',
-    train_template="Du er en ekspert på tekstoppsummering. Oppsummer følgende tekst på norsk:\n\n{input}\n\nOppsummering:\n\n{output}",
-    eval_template="Du er en ekspert på tekstoppsummering. Oppsummer følgende tekst på norsk:\n\n{input}\n\nOppsummering:\n\n",
+    train_template="Du er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input}\n\nOppsummering:\n\n{output}",
+    eval_template="Du er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input}\n\nOppsummering:\n\n",
 )
 
 
