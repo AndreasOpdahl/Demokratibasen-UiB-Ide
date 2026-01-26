@@ -66,6 +66,21 @@ from transformers import (
 # Import model configurations
 from model_configs import get_model_config_by_hf_name, get_model_name_mapping, get_doc_type_norwegian
 
+# Import extended evaluation metrics
+try:
+    from extended_evaluation import evaluate as extended_evaluate
+    EXTENDED_EVAL_AVAILABLE = True
+except ImportError:
+    EXTENDED_EVAL_AVAILABLE = False
+    print("Warning: extended_evaluation.py not found. Only ROUGE metrics will be computed.")
+
+# Helper function to calculate examples from steps
+def calculate_examples_from_steps(steps, batch_size, gradient_accumulation_steps, num_gpus):
+    """Calculate total number of examples processed given training parameters."""
+    if steps is None or steps <= 0:
+        return None
+    return steps * batch_size * gradient_accumulation_steps * num_gpus
+
 # Evaluation parameters
 MAX_INPUT_TEXT_TOKENS = 2048
 MAX_EXTRA_PROMPT_TOKENS = 40
@@ -722,6 +737,9 @@ def evaluate_checkpoint(
     wandb_disabled: bool = False,
     wandb_run_name: Optional[str] = None,
     wandb_group: Optional[str] = None,
+    major_checkpoint_interval: int = 5,  # Every Nth checkpoint is major (gets BERTScore)
+    include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation (slow, ~37 min for 500 examples)
+    nli_subset_size: Optional[int] = None,  # Subset size for NLI (None = all examples, recommended: 50-100)
 ):
     """Load a PEFT checkpoint and run evaluation with model parallelism support."""
     
@@ -731,10 +749,31 @@ def evaluate_checkpoint(
     # Extract checkpoint step number early (needed for checking existing results)
     checkpoint_name = os.path.basename(checkpoint_dir.rstrip('/'))
     checkpoint_step = checkpoint_name.replace('checkpoint-', '') if 'checkpoint-' in checkpoint_name else 'unknown'
+    
     try:
         checkpoint_step_int = int(checkpoint_step)
     except ValueError:
         checkpoint_step_int = 0
+    
+    # Determine if this is a "major" checkpoint for tiered evaluation
+    # Major checkpoints: every Nth checkpoint (based on major_checkpoint_interval)
+    # Normal checkpoints: all others
+    # This allows selective computation of expensive metrics (BERTScore, NLI)
+    # Tiered evaluation strategy:
+    #   - Normal checkpoints: ROUGE + Hygiene only (~2 min)
+    #   - Major checkpoints: ROUGE + Hygiene + BERTScore (~3-4 min)
+    #   - NLI Faithfulness: Skip for all checkpoints (too slow, ~37 min - use only for final evaluation)
+    is_major_checkpoint = (checkpoint_step_int > 0 and checkpoint_step_int % major_checkpoint_interval == 0)
+    
+    # Default training parameters for example calculation (may vary - check training config for exact values)
+    DEFAULT_TRAIN_BATCH_SIZE = 4
+    DEFAULT_GRADIENT_ACCUMULATION = 4
+    DEFAULT_TRAIN_NUM_GPUS = 2  # Typical for multi-node training
+    
+    # Calculate estimated examples from checkpoint step
+    estimated_examples = calculate_examples_from_steps(
+        checkpoint_step_int, DEFAULT_TRAIN_BATCH_SIZE, DEFAULT_GRADIENT_ACCUMULATION, DEFAULT_TRAIN_NUM_GPUS
+    ) if checkpoint_step_int > 0 else None
     
     # Determine output directory: save to model/all_eval_results/checkpoint-nnn-eval-results.json
     if output_dir is None:
@@ -1039,7 +1078,8 @@ def evaluate_checkpoint(
                 "multi-gpu" if use_multi_gpu else "single-gpu",
                 clean_model_name,
                 f"checkpoint-{checkpoint_step}",
-                os.path.basename(checkpoint_dir).replace('checkpoint-', 'step-')
+                os.path.basename(checkpoint_dir).replace('checkpoint-', 'step-'),
+                "major-checkpoint" if is_major_checkpoint else "normal-checkpoint",  # Tag for tiered evaluation
             ],
             config={
                 "model_name": model_name,
@@ -1055,12 +1095,35 @@ def evaluate_checkpoint(
                 "use_multi_gpu": use_multi_gpu,
                 "world_size": 1,
                 "is_distributed": False,
+                # Note: Training examples calculation requires training batch_size, gradient_accumulation_steps
+                # These are typically 4 and 4 respectively, but may vary. Check training config for exact values.
+                "checkpoint_step_note": f"Checkpoint at step {checkpoint_step} - examples calculation requires training parameters",
+                # Tiered evaluation configuration
+                "checkpoint_type": "major" if is_major_checkpoint else "normal",
+                "major_checkpoint_interval": major_checkpoint_interval,
+                "extended_metrics": {
+                    "rouge": True,  # Always computed
+                    "hygiene": True,  # Always computed
+                    "bertscore": is_major_checkpoint,  # Only for major checkpoints
+                    "faithfulness": include_nli_faithfulness,  # User-controlled
+                    "nli_subset_size": nli_subset_size if include_nli_faithfulness else None,
+                },
                 **gpu_info,
             },
             reinit=True,
         )
         print(f">>> wandb run initialized: {wandb.run.name}")
         print(f">>> wandb run URL: {wandb.run.get_url()}")
+        
+        # Display estimated examples from checkpoint step
+        if estimated_examples:
+            print(f"\n{'='*70}")
+            print(f"CHECKPOINT TRAINING INFO:")
+            print(f"{'='*70}")
+            print(f"  Checkpoint step: {checkpoint_step_int:,}")
+            print(f"  Estimated examples (using defaults: batch=4, grad_acc=4, gpus=2): {estimated_examples:,} ({estimated_examples/1000:.1f}k)")
+            print(f"  Note: Actual values may vary - check training config for exact parameters")
+            print(f"{'='*70}\n")
     elif wandb_project and not is_main_process:
         # Disable wandb on non-main processes
         os.environ['WANDB_DISABLED'] = 'true'
@@ -1297,6 +1360,7 @@ def evaluate_checkpoint(
     eval_results = trainer.evaluate()
     
     # Save inputs, references, and predictions to JSONL file
+    predictions_file = None
     if is_main_process:
         predictions_file = os.path.join(output_dir, f"{checkpoint_name}-inputs-refs-preds.jsonl")
         
@@ -1323,32 +1387,265 @@ def evaluate_checkpoint(
         print(f"Saved predictions to: {predictions_file}")
         print(f"  - {num_to_save} examples saved")
     
+    # Run extended evaluation metrics (reference-based, hygiene, faithfulness)
+    if is_main_process and EXTENDED_EVAL_AVAILABLE and predictions_file and os.path.exists(predictions_file):
+        print("\n" + "=" * 70)
+        print("Running Extended Evaluation Metrics...")
+        print("=" * 70)
+        
+        try:
+            # Load texts from JSONL file
+            input_texts = []
+            prediction_texts = []
+            reference_texts = []
+            
+            with open(predictions_file, 'r', encoding='utf-8') as f:
+                for line in f:
+                    entry = json.loads(line)
+                    input_texts.append(entry.get("input_text", ""))
+                    prediction_texts.append(entry.get("prediction", ""))
+                    reference_texts.append(entry.get("reference", ""))
+            
+            if len(input_texts) > 0 and len(prediction_texts) > 0 and len(reference_texts) > 0:
+                # Determine which metrics to compute based on checkpoint type and user settings
+                # Normal checkpoints: ROUGE + Hygiene only (fast, ~2 min)
+                # Major checkpoints: ROUGE + Hygiene + BERTScore (moderate, ~3-4 min)
+                # NLI Faithfulness: Optional, can be enabled via include_nli_faithfulness parameter
+                include_bertscore = is_major_checkpoint
+                include_faithfulness = include_nli_faithfulness  # User-controlled
+                
+                # Prepare subset for NLI if requested
+                # For ROUGE, Hygiene, and BERTScore: use full dataset
+                # For NLI: use subset if specified
+                nli_input_texts = input_texts
+                nli_prediction_texts = prediction_texts
+                nli_reference_texts = reference_texts
+                
+                if include_faithfulness and nli_subset_size and nli_subset_size < len(input_texts):
+                    # Sample subset for NLI
+                    random.seed(42)  # Fixed seed for reproducibility
+                    indices = random.sample(range(len(input_texts)), nli_subset_size)
+                    nli_input_texts = [input_texts[i] for i in indices]
+                    nli_prediction_texts = [prediction_texts[i] for i in indices]
+                    nli_reference_texts = [reference_texts[i] for i in indices]
+                    print(f"  → NLI subset: Using {nli_subset_size} examples from {len(input_texts)} total")
+                
+                checkpoint_type = "MAJOR" if is_major_checkpoint else "NORMAL"
+                print(f"Computing extended metrics on {len(input_texts)} examples...")
+                print(f"Checkpoint type: {checkpoint_type} (step {checkpoint_step_int})")
+                if is_major_checkpoint:
+                    print(f"  → Computing: ROUGE + Hygiene + BERTScore (~3-4 min)")
+                else:
+                    print(f"  → Computing: ROUGE + Hygiene only (~2 min)")
+                
+                if include_faithfulness:
+                    nli_examples = len(nli_input_texts)
+                    nli_time_estimate = (nli_examples * 4.5) / 60  # ~4.5 seconds per example
+                    print(f"  → Computing: NLI Faithfulness on {nli_examples} examples (~{nli_time_estimate:.1f} min)")
+                else:
+                    print(f"  → Skipping: NLI Faithfulness (enable with --include_nli_faithfulness)")
+                
+                # Run extended evaluation with selective metrics
+                # Note: extended_evaluate computes all metrics on the same input set
+                # For NLI, we pass the subset if specified; for other metrics, we need to handle separately
+                # However, extended_evaluate expects all inputs to be the same length
+                # So we'll run it twice: once for non-NLI metrics (full set), once for NLI (subset if specified)
+                
+                # First run: ROUGE + Hygiene + BERTScore (on full set)
+                extended_results = extended_evaluate(
+                    input_texts=input_texts,
+                    prediction_texts=prediction_texts,
+                    reference_texts=reference_texts,
+                    print_output=False,  # We'll print formatted results ourselves
+                    include_bertscore=include_bertscore,
+                    include_faithfulness=False  # Skip NLI in first run
+                )
+                
+                # Second run: NLI only (on subset if specified)
+                if include_faithfulness:
+                    nli_results = extended_evaluate(
+                        input_texts=nli_input_texts,
+                        prediction_texts=nli_prediction_texts,
+                        reference_texts=nli_reference_texts,
+                        print_output=False,
+                        include_bertscore=False,  # Skip BERTScore in second run (already computed)
+                        include_faithfulness=True  # Only compute NLI
+                    )
+                    # Merge NLI results into extended_results
+                    extended_results["faithfulness"] = nli_results.get("faithfulness")
+                
+                # Note: If NLI was run on a subset, the NLI results are for that subset only
+                # The other metrics (ROUGE, Hygiene, BERTScore) are computed on the full set
+                # This is intentional - NLI is expensive, so we sample for it
+                
+                # Merge extended results into eval_results
+                # Flatten nested structure for easier access
+                for category, metrics in extended_results.items():
+                    if isinstance(metrics, dict):
+                        for key, value in metrics.items():
+                            # Normalize key names (use eval_ prefix for consistency)
+                            eval_key = f"eval_{category}_{key}"
+                            eval_results[eval_key] = value
+                    else:
+                        eval_key = f"eval_{category}"
+                        eval_results[eval_key] = metrics
+                
+                # Print extended metrics summary
+                print("\nExtended Evaluation Results:")
+                print("-" * 70)
+                
+                # Reference-based metrics (ROUGE always, BERTScore if major checkpoint)
+                if "reference" in extended_results:
+                    ref_metrics = extended_results["reference"]
+                    print("Reference-based Metrics:")
+                    for key, value in ref_metrics.items():
+                        if isinstance(value, (int, float)):
+                            print(f"  {key}: {value:.4f}")
+                    if not is_major_checkpoint and "bertscore_f1_mean" not in ref_metrics:
+                        print("  (BERTScore skipped - not a major checkpoint)")
+                
+                # Hygiene metrics
+                if "hygiene" in extended_results:
+                    hygiene_metrics = extended_results["hygiene"]
+                    print("\nHygiene Metrics:")
+                    for key, value in hygiene_metrics.items():
+                        if isinstance(value, (int, float)):
+                            print(f"  {key}: {value:.4f}")
+                        elif value is not None:
+                            print(f"  {key}: {value}")
+                
+                # Faithfulness metrics (skipped for checkpoints)
+                if "faithfulness" in extended_results and extended_results["faithfulness"] is not None:
+                    faith_metrics = extended_results["faithfulness"]
+                    print("\nFaithfulness Metrics:")
+                    for key, value in faith_metrics.items():
+                        if isinstance(value, (int, float)):
+                            print(f"  {key}: {value:.4f}")
+                        elif isinstance(value, list):
+                            # Skip reasons_failed list (too verbose)
+                            if key != "reasons_failed":
+                                print(f"  {key}: {len(value)} items")
+                        elif value is not None:
+                            print(f"  {key}: {value}")
+                elif "faithfulness" in extended_results:
+                    print("\nFaithfulness Metrics: (skipped - too slow for checkpoint evaluation)")
+                
+                print("=" * 70 + "\n")
+            else:
+                print("Warning: No valid examples found in predictions file for extended evaluation")
+        except Exception as e:
+            print(f"Warning: Extended evaluation failed: {e}")
+            import traceback
+            traceback.print_exc()
+            print("Continuing with ROUGE metrics only...")
+    elif is_main_process and not EXTENDED_EVAL_AVAILABLE:
+        print("Note: Extended evaluation metrics not available (extended_evaluation.py not found)")
+    
     if is_main_process:
         print("\n" + "=" * 70)
-        print("Evaluation Results:")
+        print("Evaluation Results (ROUGE + Extended Metrics):")
         print("=" * 70)
-        for key, value in eval_results.items():
-            print(f"{key}: {value:.4f}")
+        # Print ROUGE metrics first
+        rouge_keys = [k for k in eval_results.keys() if 'rouge' in k.lower() and isinstance(eval_results[k], (int, float))]
+        if rouge_keys:
+            print("ROUGE Metrics:")
+            for key in sorted(rouge_keys):
+                value = eval_results[key]
+                if isinstance(value, (int, float)):
+                    print(f"  {key}: {value:.4f}")
+                else:
+                    print(f"  {key}: {value}")
+        
+        # Print extended metrics if available
+        if EXTENDED_EVAL_AVAILABLE:
+            extended_keys = [k for k in eval_results.keys() if any(prefix in k for prefix in ['reference_', 'hygiene_', 'faithfulness_'])]
+            if extended_keys:
+                print("\nExtended Metrics:")
+                # Group by category
+                reference_keys = [k for k in extended_keys if 'reference_' in k]
+                hygiene_keys = [k for k in extended_keys if 'hygiene_' in k]
+                faithfulness_keys = [k for k in extended_keys if 'faithfulness_' in k]
+                
+                if reference_keys:
+                    print("  Reference-based:")
+                    for key in sorted(reference_keys):
+                        value = eval_results[key]
+                        if isinstance(value, (int, float)):
+                            print(f"    {key}: {value:.4f}")
+                        else:
+                            print(f"    {key}: {value}")
+                if hygiene_keys:
+                    print("  Hygiene:")
+                    for key in sorted(hygiene_keys):
+                        value = eval_results[key]
+                        if isinstance(value, (int, float)):
+                            print(f"    {key}: {value:.4f}")
+                        else:
+                            print(f"    {key}: {value}")
+                if faithfulness_keys:
+                    print("  Faithfulness:")
+                    for key in sorted(faithfulness_keys):
+                        value = eval_results[key]
+                        if isinstance(value, (int, float)):
+                            print(f"    {key}: {value:.4f}")
+                        else:
+                            print(f"    {key}: {value}")
         print("=" * 70 + "\n")
     
     # Log final summary to wandb if initialized and not disabled
     # Log with checkpoint step so it appears in the timeline
     if wandb_project and wandb.run is not None and is_main_process and not wandb_disabled:
-        wandb.log({
+        # Log ROUGE metrics
+        wandb_log_dict = {
             "final/rouge1": eval_results.get("eval_rouge1", 0),
             "final/rouge2": eval_results.get("eval_rouge2", 0),
             "final/rougeL": eval_results.get("eval_rougeL", 0),
             "final/rougeLsum": eval_results.get("eval_rougeLsum", 0),
-        }, step=checkpoint_step_int)
+        }
+        
+        # Log extended metrics if available
+        if EXTENDED_EVAL_AVAILABLE:
+            # Reference-based metrics
+            if "eval_reference_bertscore_f1_mean" in eval_results:
+                wandb_log_dict["final/bertscore_f1"] = eval_results.get("eval_reference_bertscore_f1_mean", 0)
+            
+            # Hygiene metrics
+            if "eval_hygiene_mean_compression_ratio" in eval_results:
+                wandb_log_dict["final/compression_ratio"] = eval_results.get("eval_hygiene_mean_compression_ratio", 0)
+            if "eval_hygiene_mean_rep_3gram" in eval_results:
+                wandb_log_dict["final/rep_3gram"] = eval_results.get("eval_hygiene_mean_rep_3gram", 0)
+            if "eval_hygiene_ratio_ends_with_punct" in eval_results:
+                wandb_log_dict["final/ends_with_punct"] = eval_results.get("eval_hygiene_ratio_ends_with_punct", 0)
+            
+            # Faithfulness metrics
+            if "eval_faithfulness_mean_entailment_score" in eval_results:
+                wandb_log_dict["final/entailment_mean"] = eval_results.get("eval_faithfulness_mean_entailment_score", 0)
+            if "eval_faithfulness_mean_outlier_rate" in eval_results:
+                wandb_log_dict["final/outlier_rate"] = eval_results.get("eval_faithfulness_mean_outlier_rate", 0)
+            if "eval_faithfulness_ratio_passed" in eval_results:
+                wandb_log_dict["final/faithfulness_passed"] = eval_results.get("eval_faithfulness_ratio_passed", 0)
+        
+        wandb.log(wandb_log_dict, step=checkpoint_step_int)
         
         # Update summary with latest checkpoint results
-        wandb.summary.update({
+        summary_update = {
             "latest_checkpoint": checkpoint_step_int,
             "latest_rouge1": eval_results.get("eval_rouge1", 0),
             "latest_rouge2": eval_results.get("eval_rouge2", 0),
             "latest_rougeL": eval_results.get("eval_rougeL", 0),
             "latest_rougeLsum": eval_results.get("eval_rougeLsum", 0),
-        })
+        }
+        
+        # Add extended metrics to summary
+        if EXTENDED_EVAL_AVAILABLE:
+            if "eval_reference_bertscore_f1_mean" in eval_results:
+                summary_update["latest_bertscore_f1"] = eval_results.get("eval_reference_bertscore_f1_mean", 0)
+            if "eval_faithfulness_mean_entailment_score" in eval_results:
+                summary_update["latest_entailment_mean"] = eval_results.get("eval_faithfulness_mean_entailment_score", 0)
+            if "eval_faithfulness_ratio_passed" in eval_results:
+                summary_update["latest_faithfulness_passed"] = eval_results.get("eval_faithfulness_ratio_passed", 0)
+        
+        wandb.summary.update(summary_update)
         
         # DON'T call wandb.finish() here - keep the run open for multiple checkpoints
         # Only finish if explicitly requested or at the very end
@@ -1451,6 +1748,15 @@ Examples:
     --checkpoint_dir models/gemma-7b_fsdp/checkpoint-100 \\
     --val_dataset data/output/processed_data_val.jsonl \\
     --hf_token YOUR_TOKEN
+
+  # With NLI faithfulness evaluation on a subset:
+  python evaluate_distributed_checkpoints_multigpu.py \\
+    --model gemma-7b \\
+    --checkpoint_dir models/gemma-7b_fsdp/checkpoint-100 \\
+    --val_dataset data/output/processed_data_val.jsonl \\
+    --hf_token YOUR_TOKEN \\
+    --include_nli_faithfulness \\
+    --nli_subset_size 100
         """
     )
     
@@ -1501,6 +1807,10 @@ Examples:
                        help='Wandb run name (if not provided, uses model name). Use same name for all checkpoints to combine them.')
     parser.add_argument('--wandb_group', type=str, default=None,
                        help='Wandb group name to combine multiple runs (default: model name)')
+    parser.add_argument('--include_nli_faithfulness', action='store_true',
+                       help='Enable NLI-based faithfulness evaluation (slow: ~4.5s per example, ~37 min for 500 examples)')
+    parser.add_argument('--nli_subset_size', type=int, default=None,
+                       help='Subset size for NLI evaluation (default: all examples if --include_nli_faithfulness is set, recommended: 50-100 for faster evaluation)')
 
     args = parser.parse_args()
     
@@ -1539,8 +1849,10 @@ Examples:
                 wandb_project=args.wandb_project if not args.wandb_disabled else None,
                 wandb_entity=args.wandb_entity,
                 wandb_disabled=args.wandb_disabled,
-                wandb_run_name=args.wandb_run_name,  # ADD THIS
-                wandb_group=args.wandb_group,  # ADD THIS
+                wandb_run_name=args.wandb_run_name,
+                wandb_group=args.wandb_group,
+                include_nli_faithfulness=args.include_nli_faithfulness,
+                nli_subset_size=args.nli_subset_size,
             )
         except AlreadyEvaluatedError as e:
             print(f"⚠ SKIPPING: {e}")

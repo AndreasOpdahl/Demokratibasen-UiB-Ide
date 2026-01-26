@@ -148,6 +148,21 @@ class GPUMemoryCallback(TrainerCallback):
             mem_info = pynvml.nvmlDeviceGetMemoryInfo(handle)
             print(f"Step {state.global_step} | GPU {i}: {mem_info.used / 1024**2:.2f} MB")
 
+
+class ExamplesTrackingCallback(TrainerCallback):
+    """Callback to track and log examples processed during training."""
+    def __init__(self, batch_size, gradient_accumulation_steps, num_gpus):
+        self.batch_size = batch_size
+        self.gradient_accumulation_steps = gradient_accumulation_steps
+        self.num_gpus = num_gpus
+    
+    def on_log(self, args, state, control, logs=None, **kwargs):
+        """Log examples count to wandb alongside other metrics."""
+        if logs is not None and wandb.run is not None:
+            examples_seen = state.global_step * self.batch_size * self.gradient_accumulation_steps * self.num_gpus
+            logs['examples_seen'] = examples_seen
+            logs['examples_seen_k'] = examples_seen / 1000.0  # Also log in thousands for readability
+
 def check_early_stopping_signal(output_dir: str) -> bool:
     """Check if early stopping signal exists from evaluation monitor."""
     signal_file = os.path.join(output_dir, ".early_stop")
@@ -587,22 +602,33 @@ def fine_tune_model(
     rank = int(os.environ.get('RANK', 0))
     is_main_process = (rank == 0)
     
+    # Helper function to calculate examples from steps
+    def calculate_examples_from_steps(steps, batch_size, gradient_accumulation_steps, num_gpus):
+        """Calculate total number of examples processed given training parameters."""
+        if steps is None or steps <= 0:
+            return None
+        return steps * batch_size * gradient_accumulation_steps * num_gpus
+    
     # Only initialize wandb on rank 0
     if is_main_process:
         print("Initializing Weights & Biases...")
+        # Calculate training examples info (will be updated after dataset is loaded)
+        wandb_config = {
+            "model_name": model_name,
+            "quantization": quantization,
+            "max_input_text_tokens": max_input_text_tokens,
+            "max_output_summary_tokens": max_output_summary_tokens,
+            "train_batch_size": train_batch_size,
+            "val_batch_size": val_batch_size,
+            "use_ddp": use_ddp,
+            "use_fsdp": use_fsdp,
+            "gradient_accumulation_steps": 4,  # Will be set in TrainingArguments
+            "num_gpus": num_gpus if 'num_gpus' in locals() else 1,
+        }
         wandb.init(
             project="lm-finetuning",
             name=f"{os.path.basename(output_dir)}_{quantization}",
-            config={
-                "model_name": model_name,
-                "quantization": quantization,
-                "max_input_text_tokens": max_input_text_tokens,
-                "max_output_summary_tokens": max_output_summary_tokens,
-                "train_batch_size": train_batch_size,
-                "val_batch_size": val_batch_size,
-                "use_ddp": use_ddp,
-                "use_fsdp": use_fsdp,
-            }
+            config=wandb_config
         )
         print(f">>> wandb run initialized: {wandb.run.name}")
         print(f">>> wandb run URL: {wandb.run.get_url()}")
@@ -992,6 +1018,56 @@ def fine_tune_model(
         batched=True,
         load_from_cache_file=False,  # ADD THIS - keeps data in memory
     )
+    
+    # Update wandb config with final training parameters and example calculations (after dataset is loaded)
+    if is_main_process and wandb.run is not None:
+        effective_batch_size = train_batch_size * gradient_accumulation_steps * num_gpus
+        examples_per_step = effective_batch_size
+        
+        # Calculate total examples based on training strategy
+        if train_steps > 0:
+            total_training_examples = calculate_examples_from_steps(train_steps, train_batch_size, gradient_accumulation_steps, num_gpus)
+            estimated_epochs = total_training_examples / len(tokenized_dataset) if len(tokenized_dataset) > 0 else None
+        else:
+            total_training_examples = len(tokenized_dataset) * train_epochs
+            estimated_steps = total_training_examples / examples_per_step if examples_per_step > 0 else None
+        
+        wandb.config.update({
+            "num_gpus": num_gpus,
+            "gradient_accumulation_steps": gradient_accumulation_steps,
+            "effective_batch_size": effective_batch_size,
+            "examples_per_step": examples_per_step,
+            "max_steps": train_steps if train_steps > 0 else None,
+            "num_train_epochs": train_epochs if train_steps <= 0 else None,
+            "total_training_examples": total_training_examples,
+            "dataset_size": len(tokenized_dataset),
+            "estimated_epochs": estimated_epochs if train_steps > 0 and estimated_epochs else None,
+            "estimated_steps": int(estimated_steps) if train_steps <= 0 and estimated_steps else None,
+        })
+        
+        # Print training summary
+        print("\n" + "=" * 70)
+        print("TRAINING CONFIGURATION:")
+        print("=" * 70)
+        print(f"  Batch size (per GPU): {train_batch_size}")
+        print(f"  Gradient accumulation steps: {gradient_accumulation_steps}")
+        print(f"  Number of GPUs: {num_gpus}")
+        print(f"  Effective batch size: {effective_batch_size}")
+        print(f"  Examples per step: {examples_per_step}")
+        print(f"  Dataset size: {len(tokenized_dataset):,} examples")
+        if train_steps > 0:
+            print(f"  Max steps: {train_steps:,}")
+            if total_training_examples:
+                print(f"  Total examples: {total_training_examples:,} ({total_training_examples/1000:.1f}k)")
+                if estimated_epochs:
+                    print(f"  Estimated epochs: {estimated_epochs:.2f}")
+        else:
+            print(f"  Epochs: {train_epochs}")
+            if total_training_examples:
+                print(f"  Total examples: {total_training_examples:,} ({total_training_examples/1000:.1f}k)")
+                if estimated_steps:
+                    print(f"  Estimated steps: {int(estimated_steps):,}")
+        print("=" * 70 + "\n")
 
     # Format and tokenize the VALIDATION dataset differently
     formatted_val_dataset = val_dataset.map(format_example_eval)
@@ -1223,14 +1299,29 @@ def fine_tune_model(
         print("LoRA adapter weights loaded successfully.")
 
     # Determine training duration
+    # Get number of GPUs for example calculation
+    world_size = int(os.environ.get('WORLD_SIZE', 1))
+    num_gpus = world_size if world_size > 1 else (torch.cuda.device_count() if torch.cuda.is_available() else 1)
+    gradient_accumulation_steps = 4  # This is set in TrainingArguments below
+    
     if max_steps is not None and max_steps > 0:
         train_epochs = 1  # Set to 1 instead of None to avoid Trainer comparison errors
         train_steps = max_steps
+        total_examples = calculate_examples_from_steps(train_steps, train_batch_size, gradient_accumulation_steps, num_gpus)
         print(f"Training for {max_steps} steps (epochs ignored)")
+        if total_examples:
+            print(f"  → Total examples: {total_examples:,} ({total_examples/1000:.1f}k)")
     else:
         train_epochs = num_train_epochs if num_train_epochs is not None else MAX_EPOCHS
         train_steps = -1  # -1 means "use epochs instead"
         print(f"Training for {train_epochs} epochs")
+        # Calculate examples per epoch
+        effective_batch = train_batch_size * gradient_accumulation_steps * num_gpus
+        examples_per_epoch = len(tokenized_dataset) if 'tokenized_dataset' in locals() else 0
+        if examples_per_epoch > 0:
+            total_examples = examples_per_epoch * train_epochs
+            print(f"  → Examples per epoch: {examples_per_epoch:,} (effective batch: {effective_batch})")
+            print(f"  → Total examples: {total_examples:,} ({total_examples/1000:.1f}k)")
 
     # Training arguments
     # CRITICAL: FSDP + generation during evaluation causes errors
@@ -1251,11 +1342,12 @@ def fine_tune_model(
     if 'model_config' not in locals():
         model_config = get_model_config_by_hf_name(model_name)
     
+    gradient_accumulation_steps = 4
     training_args_kwargs = dict(
         output_dir=output_dir,
         per_device_train_batch_size=train_batch_size,
         per_device_eval_batch_size=val_batch_size,
-        gradient_accumulation_steps=4,
+        gradient_accumulation_steps=gradient_accumulation_steps,
         # Model-specific learning rate from config
         learning_rate=model_config.learning_rate if model_config else 1e-5,
         num_train_epochs=train_epochs,
@@ -1357,6 +1449,11 @@ def fine_tune_model(
         early_stopping_monitor = EarlyStoppingMonitorCallback(output_dir)
         callbacks.append(early_stopping_monitor)
         print("Added EarlyStoppingMonitorCallback for FSDP (checks for external early stopping signal)")
+    
+    # Add examples tracking callback
+    examples_tracker = ExamplesTrackingCallback(train_batch_size, gradient_accumulation_steps, num_gpus)
+    callbacks.append(examples_tracker)
+    print("Adding ExamplesTrackingCallback to log examples processed during training")
 
     # Initialize Trainer
     # Prepare trainer kwargs

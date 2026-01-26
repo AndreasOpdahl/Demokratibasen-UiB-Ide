@@ -78,7 +78,17 @@ def _truncate_text_for_bert(text, max_tokens=510):
     # Decode back to text
     return tokenizer.decode(tokens, skip_special_tokens=True)
 
-def eval_reference(pred_summaries, ref_summaries):
+def eval_reference(pred_summaries, ref_summaries, include_bertscore=True):
+    """Compute reference-based metrics (ROUGE + optionally BERTScore).
+    
+    Args:
+        pred_summaries: List of predicted summaries
+        ref_summaries: List of reference summaries
+        include_bertscore: If True, compute BERTScore (slower, ~1.5-2 min for 500 examples)
+    
+    Returns:
+        Dictionary with ROUGE metrics and optionally BERTScore
+    """
     r = rouge.compute(
         predictions=pred_summaries,
         references=ref_summaries,
@@ -86,22 +96,24 @@ def eval_reference(pred_summaries, ref_summaries):
         rouge_types=["rouge1", "rouge2", "rougeL", "rougeLsum"],
     )
     
-    # Truncate texts to avoid BERT max length errors (512 tokens)
-    # BERTScore will handle this internally, but we need to ensure texts aren't too long
-    pred_summaries_truncated = [_truncate_text_for_bert(text) for text in pred_summaries]
-    ref_summaries_truncated = [_truncate_text_for_bert(text) for text in ref_summaries]
+    result = {**r}
     
-    b = bertscore.compute(
-        predictions=pred_summaries_truncated,
-        references=ref_summaries_truncated,
-        model_type="NbAiLab/nb-bert-large",  # Norwegian encoder
-        num_layers=24,  # BERT-large has 24 layers (must specify manually as model not in BERTScore registry)
-        rescale_with_baseline=False  # Baseline not available for this model
-    )
-    return {
-        **r,
-        "bertscore_f1_mean": sum(b["f1"]) / len(b["f1"]),
-    }
+    if include_bertscore:
+        # Truncate texts to avoid BERT max length errors (512 tokens)
+        # BERTScore will handle this internally, but we need to ensure texts aren't too long
+        pred_summaries_truncated = [_truncate_text_for_bert(text) for text in pred_summaries]
+        ref_summaries_truncated = [_truncate_text_for_bert(text) for text in ref_summaries]
+        
+        b = bertscore.compute(
+            predictions=pred_summaries_truncated,
+            references=ref_summaries_truncated,
+            model_type="NbAiLab/nb-bert-large",  # Norwegian encoder
+            num_layers=24,  # BERT-large has 24 layers (must specify manually as model not in BERTScore registry)
+            rescale_with_baseline=False  # Baseline not available for this model
+        )
+        result["bertscore_f1_mean"] = sum(b["f1"]) / len(b["f1"])
+    
+    return result
     
 # TODO: also bleurt
 
@@ -367,31 +379,50 @@ class NLIFaithfulnessGate:
         }
 
 
-def evaluate(input_texts, prediction_texts, reference_texts, print_output=False):
-    # Reference-based metrics
-    reference_out = eval_reference(prediction_texts, reference_texts)
+def evaluate(input_texts, prediction_texts, reference_texts, print_output=False, 
+             include_bertscore=True, include_faithfulness=False):
+    """Compute evaluation metrics with selective inclusion of expensive metrics.
+    
+    Args:
+        input_texts: List of input documents
+        prediction_texts: List of predicted summaries
+        reference_texts: List of reference summaries
+        print_output: If True, print detailed results
+        include_bertscore: If True, compute BERTScore (~1.5-2 min for 500 examples)
+        include_faithfulness: If True, compute NLI faithfulness (~37 min for 500 examples)
+    
+    Returns:
+        Dictionary with computed metrics
+    """
+    # Reference-based metrics (ROUGE always, BERTScore optional)
+    reference_out = eval_reference(prediction_texts, reference_texts, include_bertscore=include_bertscore)
     if print_output:
         print("REFERENCE:")
         print(json.dumps(reference_out, indent=2, ensure_ascii=False, default=str))
 
-    # Hygiene metrics
+    # Hygiene metrics (always fast)
     hygiene_out = eval_hygiene(input_texts, prediction_texts)
     if print_output:
         print("\nHYGIENE:")
         print(json.dumps(hygiene_out, indent=2, ensure_ascii=False, default=str))
 
-    # NLI-based faithfulness metrics
-    gate = NLIFaithfulnessGate()
-    faithfulness_out = gate.eval_faithfulness(input_texts, prediction_texts)
-    if print_output:
-        print("\nFAITHFULNESS:")
-        print(json.dumps(faithfulness_out, indent=2, ensure_ascii=False, default=str))
-
-    return {
+    result = {
         "reference": reference_out,
         "hygiene": hygiene_out,
-        "faithfulness": faithfulness_out,
     }
+
+    # NLI-based faithfulness metrics (very slow, optional)
+    if include_faithfulness:
+        gate = NLIFaithfulnessGate()
+        faithfulness_out = gate.eval_faithfulness(input_texts, prediction_texts)
+        if print_output:
+            print("\nFAITHFULNESS:")
+            print(json.dumps(faithfulness_out, indent=2, ensure_ascii=False, default=str))
+        result["faithfulness"] = faithfulness_out
+    else:
+        result["faithfulness"] = None
+
+    return result
 
 
 def dummy_data_test():
@@ -402,7 +433,7 @@ def dummy_data_test():
     pred_summ = "Budsjettet i Oslo øker i 2026, mens eiendomsskatten forblir uendret."
     ref_summ = "Oslo kommune øker budsjettet med 3 prosent i 2026, uten å heve eiendomsskatten."
 
-    evaluate([doc], [pred_summ], [ref_summ])
+    evaluate([doc], [pred_summ], [ref_summ], include_bertscore=True, include_faithfulness=False)
 
 
 def detokenize_data(data):
