@@ -63,17 +63,23 @@ from transformers import (
     TrainingArguments,
 )
 
+# Ensure scripts directory is in Python path for imports
+_script_dir = os.path.dirname(os.path.abspath(__file__))
+if _script_dir not in sys.path:
+    sys.path.insert(0, _script_dir)
+
 # Import model configurations
 from model_configs import get_model_config_by_hf_name, get_model_name_mapping, get_doc_type_norwegian
 
 # Import extended evaluation metrics
 try:
-    from extended_evaluation import evaluate as extended_evaluate
+    from extended_evaluation import extended_evaluate
     EXTENDED_EVAL_AVAILABLE = True
-except ImportError:
+except ImportError as e:
     EXTENDED_EVAL_AVAILABLE = False
     extended_evaluate = None  # type: ignore
-    print("Warning: extended_evaluation.py not found. Only ROUGE metrics will be computed.")
+    print(f"Warning: extended_evaluation.py could not be imported: {e}")
+    print("Only ROUGE metrics will be computed.")
 
 # Helper function to calculate examples from steps
 def calculate_examples_from_steps(steps, batch_size, gradient_accumulation_steps, num_gpus):
@@ -417,6 +423,7 @@ def load_model_and_peft_checkpoint(
     checkpoint_dir: str,
     hf_token: Optional[str] = None,
     use_multi_gpu: bool = False,
+    major_checkpoint_interval: int = 500,
 ):
     """Load base model and PEFT checkpoint for inference.
     
@@ -549,27 +556,108 @@ def load_model_and_peft_checkpoint(
     if not os.path.isdir(checkpoint_dir):
         raise ValueError(f"Checkpoint directory does not exist: {checkpoint_dir}")
     
+    # Extract checkpoint step number early (needed for checking existing results)
+    checkpoint_name = os.path.basename(checkpoint_dir.rstrip('/'))
+    checkpoint_step = checkpoint_name.replace('checkpoint-', '') if 'checkpoint-' in checkpoint_name else 'unknown'
+    try:
+        checkpoint_step_int = int(checkpoint_step)
+    except ValueError:
+        checkpoint_step_int = 0
+    
     # Check if this checkpoint was already evaluated
     # Look in model_dir/all_eval_results/checkpoint-nnn-eval-results.json
     model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
-    checkpoint_name = os.path.basename(checkpoint_dir.rstrip('/'))
     all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
     eval_results_file = os.path.join(all_eval_results_dir, f"{checkpoint_name}-eval-results.json")
     if os.path.exists(eval_results_file):
-        raise AlreadyEvaluatedError(
-            f"Checkpoint {checkpoint_dir} appears to be already evaluated "
-            f"(results file exists at {eval_results_file}). "
-            f"Skipping evaluation."
-        )
+        # Check if extended metrics are missing (if extended evaluation is available)
+        # If extended metrics should be computed but aren't present, allow re-evaluation
+        if EXTENDED_EVAL_AVAILABLE:
+            try:
+                with open(eval_results_file, 'r') as f:
+                    existing_results = json.load(f)
+                
+                # Check if this is a major checkpoint that should have BERTScore
+                is_major_checkpoint = (checkpoint_step_int > 0 and checkpoint_step_int % major_checkpoint_interval == 0)
+                
+                # Check if extended metrics are missing
+                has_extended_metrics = any(
+                    key.startswith("eval_reference_") or 
+                    key.startswith("eval_hygiene_") or 
+                    key.startswith("eval_faithfulness_")
+                    for key in existing_results.keys()
+                )
+                
+                # If it's a major checkpoint and should have BERTScore but doesn't, re-evaluate
+                if is_major_checkpoint and "eval_reference_bertscore_f1_mean" not in existing_results:
+                    print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
+                    print(f"   Re-evaluating to compute extended metrics...")
+                    # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                elif not has_extended_metrics:
+                    print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
+                    print(f"   Re-evaluating to compute extended metrics...")
+                    # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                else:
+                    # Extended metrics are present, skip evaluation
+                    raise AlreadyEvaluatedError(
+                        f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                        f"(results file exists at {eval_results_file}). "
+                        f"Skipping evaluation."
+                    )
+            except (json.JSONDecodeError, ValueError, KeyError) as e:
+                # If we can't parse the file, allow re-evaluation
+                print(f"⚠ Warning: Could not parse existing results file: {e}")
+                print(f"   Re-evaluating checkpoint {checkpoint_name}...")
+                # Don't raise AlreadyEvaluatedError - allow re-evaluation
+        else:
+            # Extended evaluation not available, skip if results exist
+            raise AlreadyEvaluatedError(
+                f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                f"(results file exists at {eval_results_file}). "
+                f"Skipping evaluation."
+            )
     
     # Also check old location for backwards compatibility
     old_eval_results_file = os.path.join(checkpoint_dir, 'eval_results', 'eval_results.json')
     if os.path.exists(old_eval_results_file):
-        raise AlreadyEvaluatedError(
-            f"Checkpoint {checkpoint_dir} appears to be already evaluated "
-            f"(old results file exists at {old_eval_results_file}). "
-            f"Skipping evaluation."
-        )
+        # Check if extended metrics are missing (same logic as above)
+        if EXTENDED_EVAL_AVAILABLE:
+            try:
+                with open(old_eval_results_file, 'r') as f:
+                    existing_results = json.load(f)
+                
+                is_major_checkpoint = (checkpoint_step_int > 0 and checkpoint_step_int % major_checkpoint_interval == 0)
+                has_extended_metrics = any(
+                    key.startswith("eval_reference_") or 
+                    key.startswith("eval_hygiene_") or 
+                    key.startswith("eval_faithfulness_")
+                    for key in existing_results.keys()
+                )
+                
+                if is_major_checkpoint and "eval_reference_bertscore_f1_mean" not in existing_results:
+                    print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
+                    print(f"   Re-evaluating to compute extended metrics...")
+                    # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                elif not has_extended_metrics:
+                    print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
+                    print(f"   Re-evaluating to compute extended metrics...")
+                    # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                else:
+                    raise AlreadyEvaluatedError(
+                        f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                        f"(old results file exists at {old_eval_results_file}). "
+                        f"Skipping evaluation."
+                    )
+            except (json.JSONDecodeError, ValueError, KeyError):
+                # If we can't parse, allow re-evaluation
+                print(f"⚠ Warning: Could not parse existing results file. Re-evaluating...")
+                # Don't raise AlreadyEvaluatedError - allow re-evaluation
+        else:
+            raise AlreadyEvaluatedError(
+                f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                f"(old results file exists at {old_eval_results_file}). "
+                f"Skipping evaluation."
+            )
     
     # Also check if checkpoint directory only contains eval_results (old structure)
     dir_contents = os.listdir(checkpoint_dir)
@@ -739,7 +827,7 @@ def evaluate_checkpoint(
     wandb_disabled: bool = False,
     wandb_run_name: Optional[str] = None,
     wandb_group: Optional[str] = None,
-    major_checkpoint_interval: int = 5,  # Every Nth checkpoint is major (gets BERTScore)
+    major_checkpoint_interval: int = 500,  # Every Nth step is major (gets BERTScore). Default: 500 (every 500 steps = checkpoint-500, checkpoint-1000, etc.)
     include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation (slow, ~37 min for 500 examples)
     nli_subset_size: Optional[int] = None,  # Subset size for NLI (None = all examples, recommended: 50-100)
 ):
@@ -810,9 +898,27 @@ def evaluate_checkpoint(
             # Check if all ROUGE scores are zero (indicates failed evaluation)
             all_zeros = (rouge1 == 0.0 and rouge2 == 0.0 and rougeL == 0.0 and rougeLsum == 0.0)
             
-            if all_zeros:
-                print(f"⚠ Warning: All ROUGE scores are 0.00 - this indicates a failed evaluation.")
-                print(f"   Re-evaluating checkpoint {checkpoint_name}...")
+            # Check if extended metrics are missing (if extended evaluation is available)
+            missing_extended_metrics = False
+            if EXTENDED_EVAL_AVAILABLE:
+                has_extended_metrics = any(
+                    key.startswith("eval_reference_") or 
+                    key.startswith("eval_hygiene_") or 
+                    key.startswith("eval_faithfulness_")
+                    for key in existing_results.keys()
+                )
+                
+                if is_major_checkpoint and "eval_reference_bertscore_f1_mean" not in existing_results:
+                    missing_extended_metrics = True
+                    print(f"⚠ Checkpoint {checkpoint_name} missing BERTScore (major checkpoint). Re-evaluating...")
+                elif not has_extended_metrics:
+                    missing_extended_metrics = True
+                    print(f"⚠ Checkpoint {checkpoint_name} missing extended metrics. Re-evaluating...")
+            
+            if all_zeros or missing_extended_metrics:
+                if all_zeros:
+                    print(f"⚠ Warning: All ROUGE scores are 0.00 - this indicates a failed evaluation.")
+                    print(f"   Re-evaluating checkpoint {checkpoint_name}...")
                 # Fall through to normal evaluation instead of returning
             else:
                 # Initialize Wandb if needed (even for already-evaluated checkpoints)
@@ -1140,7 +1246,8 @@ def evaluate_checkpoint(
     try:
         model = load_model_and_peft_checkpoint(
             model_name, checkpoint_dir, hf_token, 
-            use_multi_gpu=use_multi_gpu
+            use_multi_gpu=use_multi_gpu,
+            major_checkpoint_interval=major_checkpoint_interval
         )
     except AlreadyEvaluatedError:
         # Re-raise to be caught by the main block
@@ -1837,6 +1944,8 @@ Examples:
                        help='Wandb run name (if not provided, uses model name). Use same name for all checkpoints to combine them.')
     parser.add_argument('--wandb_group', type=str, default=None,
                        help='Wandb group name to combine multiple runs (default: model name)')
+    parser.add_argument('--major_checkpoint_interval', type=int, default=500,
+                       help='Every Nth step is considered "major" for BERTScore evaluation (default: 500). Major checkpoints: checkpoint-500, checkpoint-1000, checkpoint-1500, etc.')
     parser.add_argument('--include_nli_faithfulness', action='store_true',
                        help='Enable NLI-based faithfulness evaluation (slow: ~4.5s per example, ~37 min for 500 examples)')
     parser.add_argument('--nli_subset_size', type=int, default=None,
@@ -1881,6 +1990,7 @@ Examples:
                 wandb_disabled=args.wandb_disabled,
                 wandb_run_name=args.wandb_run_name,
                 wandb_group=args.wandb_group,
+                major_checkpoint_interval=args.major_checkpoint_interval,
                 include_nli_faithfulness=args.include_nli_faithfulness,
                 nli_subset_size=args.nli_subset_size,
             )

@@ -55,7 +55,21 @@ TOKENIZER = AutoTokenizer.from_pretrained(MODEL)
 import evaluate
 
 rouge = evaluate.load("rouge")
-bertscore = evaluate.load("bertscore")
+
+# Load BERTScore lazily - it requires bert_score package which may not be installed
+_bertscore = None
+def _get_bertscore():
+    """Lazy load BERTScore metric."""
+    global _bertscore
+    if _bertscore is None:
+        try:
+            _bertscore = evaluate.load("bertscore")
+        except Exception as e:
+            raise ImportError(
+                f"BERTScore could not be loaded. Install with: pip install bert_score. "
+                f"Original error: {e}"
+            )
+    return _bertscore
 
 # Load BERT tokenizer for truncation (same model as used in BERTScore)
 _bert_tokenizer = None
@@ -99,19 +113,25 @@ def eval_reference(pred_summaries, ref_summaries, include_bertscore=True):
     result = {**r}
     
     if include_bertscore:
-        # Truncate texts to avoid BERT max length errors (512 tokens)
-        # BERTScore will handle this internally, but we need to ensure texts aren't too long
-        pred_summaries_truncated = [_truncate_text_for_bert(text) for text in pred_summaries]
-        ref_summaries_truncated = [_truncate_text_for_bert(text) for text in ref_summaries]
-        
-        b = bertscore.compute(
-            predictions=pred_summaries_truncated,
-            references=ref_summaries_truncated,
-            model_type="NbAiLab/nb-bert-large",  # Norwegian encoder
-            num_layers=24,  # BERT-large has 24 layers (must specify manually as model not in BERTScore registry)
-            rescale_with_baseline=False  # Baseline not available for this model
-        )
-        result["bertscore_f1_mean"] = sum(b["f1"]) / len(b["f1"])
+        try:
+            bertscore = _get_bertscore()
+            # Truncate texts to avoid BERT max length errors (512 tokens)
+            # BERTScore will handle this internally, but we need to ensure texts aren't too long
+            pred_summaries_truncated = [_truncate_text_for_bert(text) for text in pred_summaries]
+            ref_summaries_truncated = [_truncate_text_for_bert(text) for text in ref_summaries]
+            
+            b = bertscore.compute(
+                predictions=pred_summaries_truncated,
+                references=ref_summaries_truncated,
+                model_type="NbAiLab/nb-bert-large",  # Norwegian encoder
+                num_layers=24,  # BERT-large has 24 layers (must specify manually as model not in BERTScore registry)
+                rescale_with_baseline=False  # Baseline not available for this model
+            )
+            result["bertscore_f1_mean"] = sum(b["f1"]) / len(b["f1"])
+        except ImportError as e:
+            # BERTScore not available - skip it but don't fail the whole evaluation
+            print(f"Warning: BERTScore not available: {e}")
+            print("Continuing without BERTScore...")
     
     return result
     
@@ -379,8 +399,8 @@ class NLIFaithfulnessGate:
         }
 
 
-def evaluate(input_texts, prediction_texts, reference_texts, print_output=False, 
-             include_bertscore=True, include_faithfulness=False):
+def extended_evaluate(input_texts, prediction_texts, reference_texts, print_output=False, 
+                      include_bertscore=True, include_faithfulness=False):
     """Compute evaluation metrics with selective inclusion of expensive metrics.
     
     Args:
@@ -433,7 +453,7 @@ def dummy_data_test():
     pred_summ = "Budsjettet i Oslo øker i 2026, mens eiendomsskatten forblir uendret."
     ref_summ = "Oslo kommune øker budsjettet med 3 prosent i 2026, uten å heve eiendomsskatten."
 
-    evaluate([doc], [pred_summ], [ref_summ], include_bertscore=True, include_faithfulness=False)
+    extended_evaluate([doc], [pred_summ], [ref_summ], include_bertscore=True, include_faithfulness=False)
 
 
 def detokenize_data(data):
@@ -493,6 +513,6 @@ if __name__ == "__main__":
     for input_file in data_files:
 
         input_texts, prediction_texts, reference_texts = load_texts(input_file)
-        eval_results = evaluate(input_texts, prediction_texts, reference_texts)
+        eval_results = extended_evaluate(input_texts, prediction_texts, reference_texts)
         save_results(eval_results, input_file)
         
