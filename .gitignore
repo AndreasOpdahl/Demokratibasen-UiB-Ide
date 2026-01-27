@@ -46,3 +46,9 @@ model_fine_tuning_olivia/models/**/eval_results/
 model_fine_tuning_olivia/models/**/eval_results/**
 model_fine_tuning_olivia/models/**/.training_complete
 model_fine_tuning_olivia/models/**/.early_stop
+
+# Visualization outputs
+model_fine_tuning_olivia/visualizations/
+model_fine_tuning_olivia/**/*.png
+model_fine_tuning_olivia/**/*.html
+model_fine_tuning_olivia/**/checkpoint_visualization.html
