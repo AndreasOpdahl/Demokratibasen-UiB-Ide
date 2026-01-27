@@ -538,6 +538,10 @@ def fine_tune_model(
         hf_token: Hugging Face authentication token
         use_ddp: Whether to enable DDP (Distributed Data Parallel) multi-GPU training
         use_fsdp: Whether to enable FSDP (Fully Sharded Data Parallel) multi-GPU training
+    
+    Note: Critical training variables (gradient_accumulation_steps, num_gpus, train_steps, train_epochs)
+          are defined early in the function to prevent UnboundLocalError when used in wandb config
+          and other early calculations.
     """
     
     def compute_metrics(eval_pred):
@@ -602,6 +606,29 @@ def fine_tune_model(
     rank = int(os.environ.get('RANK', 0))
     is_main_process = (rank == 0)
     
+    # ============================================================================
+    # CRITICAL: Initialize all training variables EARLY to prevent UnboundLocalError
+    # These variables are used in wandb config updates and calculations before
+    # the TrainingArguments are created. They must be defined here, not later.
+    # ============================================================================
+    
+    # Define gradient accumulation steps early (used in wandb config and calculations)
+    gradient_accumulation_steps = 4  # This is set in TrainingArguments below
+    
+    # Get number of GPUs early (used in wandb config and calculations)
+    world_size = int(os.environ.get('WORLD_SIZE', 1))
+    num_gpus = world_size if world_size > 1 else (torch.cuda.device_count() if torch.cuda.is_available() else 1)
+    
+    # Determine training duration early (used in wandb config and calculations)
+    if max_steps is not None and max_steps > 0:
+        train_epochs = 1  # Set to 1 instead of None to avoid Trainer comparison errors
+        train_steps = max_steps
+    else:
+        train_epochs = num_train_epochs if num_train_epochs is not None else MAX_EPOCHS
+        train_steps = -1  # -1 means "use epochs instead"
+    
+    # ============================================================================
+    
     # Helper function to calculate examples from steps
     def calculate_examples_from_steps(steps, batch_size, gradient_accumulation_steps, num_gpus):
         """Calculate total number of examples processed given training parameters."""
@@ -622,8 +649,8 @@ def fine_tune_model(
             "val_batch_size": val_batch_size,
             "use_ddp": use_ddp,
             "use_fsdp": use_fsdp,
-            "gradient_accumulation_steps": 4,  # Will be set in TrainingArguments
-            "num_gpus": num_gpus if 'num_gpus' in locals() else 1,
+            "gradient_accumulation_steps": gradient_accumulation_steps,
+            "num_gpus": num_gpus,
         }
         wandb.init(
             project="lm-finetuning",
@@ -1024,13 +1051,18 @@ def fine_tune_model(
         effective_batch_size = train_batch_size * gradient_accumulation_steps * num_gpus
         examples_per_step = effective_batch_size
         
+        # Initialize variables to prevent UnboundLocalError
+        total_training_examples = None
+        estimated_epochs = None
+        estimated_steps = None
+        
         # Calculate total examples based on training strategy
         if train_steps > 0:
             total_training_examples = calculate_examples_from_steps(train_steps, train_batch_size, gradient_accumulation_steps, num_gpus)
-            estimated_epochs = total_training_examples / len(tokenized_dataset) if len(tokenized_dataset) > 0 else None
+            estimated_epochs = total_training_examples / len(tokenized_dataset) if total_training_examples and len(tokenized_dataset) > 0 else None
         else:
             total_training_examples = len(tokenized_dataset) * train_epochs
-            estimated_steps = total_training_examples / examples_per_step if examples_per_step > 0 else None
+            estimated_steps = total_training_examples / examples_per_step if total_training_examples and examples_per_step > 0 else None
         
         wandb.config.update({
             "num_gpus": num_gpus,
@@ -1299,21 +1331,15 @@ def fine_tune_model(
         print("LoRA adapter weights loaded successfully.")
 
     # Determine training duration
-    # Get number of GPUs for example calculation
-    world_size = int(os.environ.get('WORLD_SIZE', 1))
-    num_gpus = world_size if world_size > 1 else (torch.cuda.device_count() if torch.cuda.is_available() else 1)
-    gradient_accumulation_steps = 4  # This is set in TrainingArguments below
+    # train_steps, train_epochs, num_gpus, and gradient_accumulation_steps already defined earlier
     
-    if max_steps is not None and max_steps > 0:
-        train_epochs = 1  # Set to 1 instead of None to avoid Trainer comparison errors
-        train_steps = max_steps
+    # Calculate and print training info
+    if train_steps > 0:
         total_examples = calculate_examples_from_steps(train_steps, train_batch_size, gradient_accumulation_steps, num_gpus)
-        print(f"Training for {max_steps} steps (epochs ignored)")
+        print(f"Training for {train_steps} steps (epochs ignored)")
         if total_examples:
             print(f"  → Total examples: {total_examples:,} ({total_examples/1000:.1f}k)")
     else:
-        train_epochs = num_train_epochs if num_train_epochs is not None else MAX_EPOCHS
-        train_steps = -1  # -1 means "use epochs instead"
         print(f"Training for {train_epochs} epochs")
         # Calculate examples per epoch
         effective_batch = train_batch_size * gradient_accumulation_steps * num_gpus
@@ -1342,7 +1368,7 @@ def fine_tune_model(
     if 'model_config' not in locals():
         model_config = get_model_config_by_hf_name(model_name)
     
-    gradient_accumulation_steps = 4
+    # gradient_accumulation_steps already defined earlier
     training_args_kwargs = dict(
         output_dir=output_dir,
         per_device_train_batch_size=train_batch_size,

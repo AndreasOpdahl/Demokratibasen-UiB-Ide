@@ -72,6 +72,7 @@ try:
     EXTENDED_EVAL_AVAILABLE = True
 except ImportError:
     EXTENDED_EVAL_AVAILABLE = False
+    extended_evaluate = None  # type: ignore
     print("Warning: extended_evaluation.py not found. Only ROUGE metrics will be computed.")
 
 # Helper function to calculate examples from steps
@@ -402,6 +403,7 @@ class CausalLMTrainer(Trainer):
                 wandb.log(gpu_memory, step=self._eval_step_count)
                 # Print warning if getting close to OOM
                 for i in range(torch.cuda.device_count()):
+                    reserved = torch.cuda.memory_reserved(i) / 1e9  # GB
                     if reserved > 80:  # >80GB used out of 102GB
                         print(f"WARNING: GPU {i} using {reserved:.1f}GB - consider reducing batch size")
 
@@ -1388,6 +1390,30 @@ def evaluate_checkpoint(
         print(f"  - {num_to_save} examples saved")
     
     # Run extended evaluation metrics (reference-based, hygiene, faithfulness)
+    if is_main_process:
+        # Debug: Print why extended evaluation might not run
+        if not EXTENDED_EVAL_AVAILABLE:
+            print("\n" + "=" * 70)
+            print("WARNING: Extended evaluation NOT available")
+            print("=" * 70)
+            print("Reason: extended_evaluation.py could not be imported")
+            print("Only ROUGE metrics will be saved to JSON.")
+            print("=" * 70 + "\n")
+        elif not predictions_file:
+            print("\n" + "=" * 70)
+            print("WARNING: Extended evaluation NOT running")
+            print("=" * 70)
+            print("Reason: predictions_file is None")
+            print("Only ROUGE metrics will be saved to JSON.")
+            print("=" * 70 + "\n")
+        elif not os.path.exists(predictions_file):
+            print("\n" + "=" * 70)
+            print("WARNING: Extended evaluation NOT running")
+            print("=" * 70)
+            print(f"Reason: predictions_file does not exist: {predictions_file}")
+            print("Only ROUGE metrics will be saved to JSON.")
+            print("=" * 70 + "\n")
+    
     if is_main_process and EXTENDED_EVAL_AVAILABLE and predictions_file and os.path.exists(predictions_file):
         print("\n" + "=" * 70)
         print("Running Extended Evaluation Metrics...")
@@ -1407,130 +1433,135 @@ def evaluate_checkpoint(
                     reference_texts.append(entry.get("reference", ""))
             
             if len(input_texts) > 0 and len(prediction_texts) > 0 and len(reference_texts) > 0:
-                # Determine which metrics to compute based on checkpoint type and user settings
-                # Normal checkpoints: ROUGE + Hygiene only (fast, ~2 min)
-                # Major checkpoints: ROUGE + Hygiene + BERTScore (moderate, ~3-4 min)
-                # NLI Faithfulness: Optional, can be enabled via include_nli_faithfulness parameter
-                include_bertscore = is_major_checkpoint
-                include_faithfulness = include_nli_faithfulness  # User-controlled
-                
-                # Prepare subset for NLI if requested
-                # For ROUGE, Hygiene, and BERTScore: use full dataset
-                # For NLI: use subset if specified
-                nli_input_texts = input_texts
-                nli_prediction_texts = prediction_texts
-                nli_reference_texts = reference_texts
-                
-                if include_faithfulness and nli_subset_size and nli_subset_size < len(input_texts):
-                    # Sample subset for NLI
-                    random.seed(42)  # Fixed seed for reproducibility
-                    indices = random.sample(range(len(input_texts)), nli_subset_size)
-                    nli_input_texts = [input_texts[i] for i in indices]
-                    nli_prediction_texts = [prediction_texts[i] for i in indices]
-                    nli_reference_texts = [reference_texts[i] for i in indices]
-                    print(f"  → NLI subset: Using {nli_subset_size} examples from {len(input_texts)} total")
-                
-                checkpoint_type = "MAJOR" if is_major_checkpoint else "NORMAL"
-                print(f"Computing extended metrics on {len(input_texts)} examples...")
-                print(f"Checkpoint type: {checkpoint_type} (step {checkpoint_step_int})")
-                if is_major_checkpoint:
-                    print(f"  → Computing: ROUGE + Hygiene + BERTScore (~3-4 min)")
+                if not EXTENDED_EVAL_AVAILABLE:
+                    print("Warning: Extended evaluation not available (extended_evaluation.py not found). Skipping extended metrics.")
                 else:
-                    print(f"  → Computing: ROUGE + Hygiene only (~2 min)")
-                
-                if include_faithfulness:
-                    nli_examples = len(nli_input_texts)
-                    nli_time_estimate = (nli_examples * 4.5) / 60  # ~4.5 seconds per example
-                    print(f"  → Computing: NLI Faithfulness on {nli_examples} examples (~{nli_time_estimate:.1f} min)")
-                else:
-                    print(f"  → Skipping: NLI Faithfulness (enable with --include_nli_faithfulness)")
-                
-                # Run extended evaluation with selective metrics
-                # Note: extended_evaluate computes all metrics on the same input set
-                # For NLI, we pass the subset if specified; for other metrics, we need to handle separately
-                # However, extended_evaluate expects all inputs to be the same length
-                # So we'll run it twice: once for non-NLI metrics (full set), once for NLI (subset if specified)
-                
-                # First run: ROUGE + Hygiene + BERTScore (on full set)
-                extended_results = extended_evaluate(
-                    input_texts=input_texts,
-                    prediction_texts=prediction_texts,
-                    reference_texts=reference_texts,
-                    print_output=False,  # We'll print formatted results ourselves
-                    include_bertscore=include_bertscore,
-                    include_faithfulness=False  # Skip NLI in first run
-                )
-                
-                # Second run: NLI only (on subset if specified)
-                if include_faithfulness:
-                    nli_results = extended_evaluate(
-                        input_texts=nli_input_texts,
-                        prediction_texts=nli_prediction_texts,
-                        reference_texts=nli_reference_texts,
-                        print_output=False,
-                        include_bertscore=False,  # Skip BERTScore in second run (already computed)
-                        include_faithfulness=True  # Only compute NLI
-                    )
-                    # Merge NLI results into extended_results
-                    extended_results["faithfulness"] = nli_results.get("faithfulness")
-                
-                # Note: If NLI was run on a subset, the NLI results are for that subset only
-                # The other metrics (ROUGE, Hygiene, BERTScore) are computed on the full set
-                # This is intentional - NLI is expensive, so we sample for it
-                
-                # Merge extended results into eval_results
-                # Flatten nested structure for easier access
-                for category, metrics in extended_results.items():
-                    if isinstance(metrics, dict):
-                        for key, value in metrics.items():
-                            # Normalize key names (use eval_ prefix for consistency)
-                            eval_key = f"eval_{category}_{key}"
-                            eval_results[eval_key] = value
+                    # Determine which metrics to compute based on checkpoint type and user settings
+                    # Normal checkpoints: ROUGE + Hygiene only (fast, ~2 min)
+                    # Major checkpoints: ROUGE + Hygiene + BERTScore (moderate, ~3-4 min)
+                    # NLI Faithfulness: Optional, can be enabled via include_nli_faithfulness parameter
+                    include_bertscore = is_major_checkpoint
+                    include_faithfulness = include_nli_faithfulness  # User-controlled
+                    
+                    # Prepare subset for NLI if requested
+                    # For ROUGE, Hygiene, and BERTScore: use full dataset
+                    # For NLI: use subset if specified
+                    nli_input_texts = input_texts
+                    nli_prediction_texts = prediction_texts
+                    nli_reference_texts = reference_texts
+                    
+                    if include_faithfulness and nli_subset_size and nli_subset_size < len(input_texts):
+                        # Sample subset for NLI
+                        random.seed(42)  # Fixed seed for reproducibility
+                        indices = random.sample(range(len(input_texts)), nli_subset_size)
+                        nli_input_texts = [input_texts[i] for i in indices]
+                        nli_prediction_texts = [prediction_texts[i] for i in indices]
+                        nli_reference_texts = [reference_texts[i] for i in indices]
+                        print(f"  → NLI subset: Using {nli_subset_size} examples from {len(input_texts)} total")
+                    
+                    checkpoint_type = "MAJOR" if is_major_checkpoint else "NORMAL"
+                    print(f"Computing extended metrics on {len(input_texts)} examples...")
+                    print(f"Checkpoint type: {checkpoint_type} (step {checkpoint_step_int})")
+                    if is_major_checkpoint:
+                        print(f"  → Computing: ROUGE + Hygiene + BERTScore (~3-4 min)")
                     else:
-                        eval_key = f"eval_{category}"
-                        eval_results[eval_key] = metrics
-                
-                # Print extended metrics summary
-                print("\nExtended Evaluation Results:")
-                print("-" * 70)
-                
-                # Reference-based metrics (ROUGE always, BERTScore if major checkpoint)
-                if "reference" in extended_results:
-                    ref_metrics = extended_results["reference"]
-                    print("Reference-based Metrics:")
-                    for key, value in ref_metrics.items():
-                        if isinstance(value, (int, float)):
-                            print(f"  {key}: {value:.4f}")
-                    if not is_major_checkpoint and "bertscore_f1_mean" not in ref_metrics:
-                        print("  (BERTScore skipped - not a major checkpoint)")
-                
-                # Hygiene metrics
-                if "hygiene" in extended_results:
-                    hygiene_metrics = extended_results["hygiene"]
-                    print("\nHygiene Metrics:")
-                    for key, value in hygiene_metrics.items():
-                        if isinstance(value, (int, float)):
-                            print(f"  {key}: {value:.4f}")
-                        elif value is not None:
-                            print(f"  {key}: {value}")
-                
-                # Faithfulness metrics (skipped for checkpoints)
-                if "faithfulness" in extended_results and extended_results["faithfulness"] is not None:
-                    faith_metrics = extended_results["faithfulness"]
-                    print("\nFaithfulness Metrics:")
-                    for key, value in faith_metrics.items():
-                        if isinstance(value, (int, float)):
-                            print(f"  {key}: {value:.4f}")
-                        elif isinstance(value, list):
-                            # Skip reasons_failed list (too verbose)
-                            if key != "reasons_failed":
-                                print(f"  {key}: {len(value)} items")
-                        elif value is not None:
-                            print(f"  {key}: {value}")
-                elif "faithfulness" in extended_results:
-                    print("\nFaithfulness Metrics: (skipped - too slow for checkpoint evaluation)")
-                
-                print("=" * 70 + "\n")
+                        print(f"  → Computing: ROUGE + Hygiene only (~2 min)")
+                    
+                    if include_faithfulness:
+                        nli_examples = len(nli_input_texts)
+                        nli_time_estimate = (nli_examples * 4.5) / 60  # ~4.5 seconds per example
+                        print(f"  → Computing: NLI Faithfulness on {nli_examples} examples (~{nli_time_estimate:.1f} min)")
+                    else:
+                        print(f"  → Skipping: NLI Faithfulness (enable with --include_nli_faithfulness)")
+                    
+                    # Run extended evaluation with selective metrics
+                    # Note: extended_evaluate computes all metrics on the same input set
+                    # For NLI, we pass the subset if specified; for other metrics, we need to handle separately
+                    # However, extended_evaluate expects all inputs to be the same length
+                    # So we'll run it twice: once for non-NLI metrics (full set), once for NLI (subset if specified)
+                    
+                    # First run: ROUGE + Hygiene + BERTScore (on full set)
+                    assert extended_evaluate is not None, "extended_evaluate should be available when EXTENDED_EVAL_AVAILABLE is True"
+                    extended_results = extended_evaluate(
+                        input_texts=input_texts,
+                        prediction_texts=prediction_texts,
+                        reference_texts=reference_texts,
+                        print_output=False,  # We'll print formatted results ourselves
+                        include_bertscore=include_bertscore,
+                        include_faithfulness=False  # Skip NLI in first run
+                    )
+                    
+                    # Second run: NLI only (on subset if specified)
+                    if include_faithfulness:
+                        assert extended_evaluate is not None, "extended_evaluate should be available when EXTENDED_EVAL_AVAILABLE is True"
+                        nli_results = extended_evaluate(
+                            input_texts=nli_input_texts,
+                            prediction_texts=nli_prediction_texts,
+                            reference_texts=nli_reference_texts,
+                            print_output=False,
+                            include_bertscore=False,  # Skip BERTScore in second run (already computed)
+                            include_faithfulness=True  # Only compute NLI
+                        )
+                        # Merge NLI results into extended_results
+                        extended_results["faithfulness"] = nli_results.get("faithfulness")
+                    
+                    # Note: If NLI was run on a subset, the NLI results are for that subset only
+                    # The other metrics (ROUGE, Hygiene, BERTScore) are computed on the full set
+                    # This is intentional - NLI is expensive, so we sample for it
+                    
+                    # Merge extended results into eval_results
+                    # Flatten nested structure for easier access
+                    for category, metrics in extended_results.items():
+                        if isinstance(metrics, dict):
+                            for key, value in metrics.items():
+                                # Normalize key names (use eval_ prefix for consistency)
+                                eval_key = f"eval_{category}_{key}"
+                                eval_results[eval_key] = value
+                        else:
+                            eval_key = f"eval_{category}"
+                            eval_results[eval_key] = metrics
+                    
+                    # Print extended metrics summary
+                    print("\nExtended Evaluation Results:")
+                    print("-" * 70)
+                    
+                    # Reference-based metrics (ROUGE always, BERTScore if major checkpoint)
+                    if "reference" in extended_results:
+                        ref_metrics = extended_results["reference"]
+                        print("Reference-based Metrics:")
+                        for key, value in ref_metrics.items():
+                            if isinstance(value, (int, float)):
+                                print(f"  {key}: {value:.4f}")
+                        if not is_major_checkpoint and "bertscore_f1_mean" not in ref_metrics:
+                            print("  (BERTScore skipped - not a major checkpoint)")
+                    
+                    # Hygiene metrics
+                    if "hygiene" in extended_results:
+                        hygiene_metrics = extended_results["hygiene"]
+                        print("\nHygiene Metrics:")
+                        for key, value in hygiene_metrics.items():
+                            if isinstance(value, (int, float)):
+                                print(f"  {key}: {value:.4f}")
+                            elif value is not None:
+                                print(f"  {key}: {value}")
+                    
+                    # Faithfulness metrics (skipped for checkpoints)
+                    if "faithfulness" in extended_results and extended_results["faithfulness"] is not None:
+                        faith_metrics = extended_results["faithfulness"]
+                        print("\nFaithfulness Metrics:")
+                        for key, value in faith_metrics.items():
+                            if isinstance(value, (int, float)):
+                                print(f"  {key}: {value:.4f}")
+                            elif isinstance(value, list):
+                                # Skip reasons_failed list (too verbose)
+                                if key != "reasons_failed":
+                                    print(f"  {key}: {len(value)} items")
+                            elif value is not None:
+                                print(f"  {key}: {value}")
+                    elif "faithfulness" in extended_results:
+                        print("\nFaithfulness Metrics: (skipped - too slow for checkpoint evaluation)")
+                    
+                    print("=" * 70 + "\n")
             else:
                 print("Warning: No valid examples found in predictions file for extended evaluation")
         except Exception as e:
@@ -1538,8 +1569,7 @@ def evaluate_checkpoint(
             import traceback
             traceback.print_exc()
             print("Continuing with ROUGE metrics only...")
-    elif is_main_process and not EXTENDED_EVAL_AVAILABLE:
-        print("Note: Extended evaluation metrics not available (extended_evaluation.py not found)")
+    # Note: Diagnostic messages for why extended evaluation didn't run are printed earlier
     
     if is_main_process:
         print("\n" + "=" * 70)

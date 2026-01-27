@@ -207,7 +207,10 @@ def monitor_and_evaluate(
     wandb_entity: Optional[str] = None,
     wandb_run_name: Optional[str] = None,
     use_multi_gpu: bool = True,
-    timeout_minutes: int = 30,  # ADD THIS: Stop if no new checkpoints for X minutes
+    timeout_minutes: int = 30,  # Stop if no new checkpoints for X minutes
+    major_checkpoint_interval: int = 5,  # Every Nth checkpoint is major (gets BERTScore)
+    include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation
+    nli_subset_size: Optional[int] = None,  # Subset size for NLI evaluation
 ):
     """Monitor checkpoints and evaluate them as they appear.
     
@@ -223,6 +226,9 @@ def monitor_and_evaluate(
         wandb_run_name: Wandb run name (for linking to training run)
         use_multi_gpu: Whether to use multi-GPU evaluation
         timeout_minutes: Stop monitoring if no new checkpoints appear for this many minutes
+        major_checkpoint_interval: Every Nth checkpoint is major (gets BERTScore, default: 5)
+        include_nli_faithfulness: Enable NLI faithfulness evaluation (slow, default: False)
+        nli_subset_size: Subset size for NLI evaluation (None = all, recommended: 50-100)
     """
     print("=" * 70)
     print("Checkpoint Evaluation Monitor")
@@ -383,6 +389,9 @@ def monitor_and_evaluate(
                     wandb_project=None,
                     wandb_entity=None,
                     wandb_disabled=True,
+                    major_checkpoint_interval=major_checkpoint_interval,
+                    include_nli_faithfulness=include_nli_faithfulness,
+                    nli_subset_size=nli_subset_size,
                 )
                 
                 if not eval_results:
@@ -519,6 +528,12 @@ if __name__ == "__main__":
                        help='Use multi-GPU evaluation')
     parser.add_argument('--timeout_minutes', type=int, default=30,
                        help='Stop monitoring if no new checkpoints appear for this many minutes (default: 30)')
+    parser.add_argument('--major_checkpoint_interval', type=int, default=5,
+                       help='Every Nth checkpoint is considered "major" for BERTScore evaluation (default: 5)')
+    parser.add_argument('--include_nli_faithfulness', action='store_true',
+                       help='Enable NLI-based faithfulness evaluation (slow: ~4.5s per example, ~37 min for 500 examples)')
+    parser.add_argument('--nli_subset_size', type=int, default=None,
+                       help='Subset size for NLI evaluation (default: all examples if --include_nli_faithfulness is set, recommended: 50-100 for faster evaluation)')
     
     args = parser.parse_args()
     
@@ -537,5 +552,8 @@ if __name__ == "__main__":
         wandb_entity=args.wandb_entity,
         wandb_run_name=args.wandb_run_name,
         use_multi_gpu=args.use_multi_gpu,
-        timeout_minutes=args.timeout_minutes,  # ADD THIS
+        timeout_minutes=args.timeout_minutes,
+        major_checkpoint_interval=args.major_checkpoint_interval,
+        include_nli_faithfulness=args.include_nli_faithfulness,
+        nli_subset_size=args.nli_subset_size,
     )
