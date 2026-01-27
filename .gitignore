@@ -36,3 +36,19 @@ model_fine_tuning_olivia/scripts/finetune_ajay.py
 model_fine_tuning_olivia/from_ajay.sbatch
 model_fine_tuning_olivia/learning_curve_from_olivia_test_with_validation_error.png
 model_fine_tuning_olivia/learning_curve_from_olivia_with_gradient_explosion_epoch4-06.png
+
+# Model checkpoints and evaluation results
+model_fine_tuning_olivia/models/**/checkpoint-*/
+model_fine_tuning_olivia/models/**/all_eval_results/
+model_fine_tuning_olivia/models/**/*-eval-results.json
+model_fine_tuning_olivia/models/**/*-inputs-refs-preds.jsonl
+model_fine_tuning_olivia/models/**/eval_results/
+model_fine_tuning_olivia/models/**/eval_results/**
+model_fine_tuning_olivia/models/**/.training_complete
+model_fine_tuning_olivia/models/**/.early_stop
+
+# Visualization outputs
+model_fine_tuning_olivia/visualizations/
+model_fine_tuning_olivia/**/*.png
+model_fine_tuning_olivia/**/*.html
+model_fine_tuning_olivia/**/checkpoint_visualization.html

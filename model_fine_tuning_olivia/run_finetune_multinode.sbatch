@@ -287,7 +287,9 @@ export HF_HOME="$SLURM_TMPDIR/.cache/huggingface"
 export HF_DATASETS_CACHE="$HF_HOME/datasets"
 export HF_MODULES_CACHE="$HF_HOME/modules"
 export HF_METRICS_CACHE="$HF_HOME/metrics"
-mkdir -p "$HF_HOME" "$HF_DATASETS_CACHE" "$HF_MODULES_CACHE" "$HF_METRICS_CACHE"
+# Set PYTHONUSERBASE to writable location to avoid .local read-only filesystem errors
+export PYTHONUSERBASE="$SLURM_TMPDIR/.local"
+mkdir -p "$HF_HOME" "$HF_DATASETS_CACHE" "$HF_MODULES_CACHE" "$HF_METRICS_CACHE" "$PYTHONUSERBASE"
 
 PROJECT_HF_DIR=/cluster/projects/nn12075k/shared/.cache/huggingface
 mkdir -p "$HF_HOME/hub"
@@ -363,6 +365,8 @@ echo "=== Step 1: Environment setup ==="
 export HF_HOME=HF_HOME_PLACEHOLDER
 export HF_MODULES_CACHE=HF_MODULES_CACHE_PLACEHOLDER
 export HF_METRICS_CACHE=HF_METRICS_CACHE_PLACEHOLDER
+export PYTHONUSERBASE=PYTHONUSERBASE_PLACEHOLDER
+mkdir -p "$PYTHONUSERBASE"
 export NCCL_DEBUG=NCCL_DEBUG_PLACEHOLDER
 export NCCL_IB_DISABLE=NCCL_IB_DISABLE_PLACEHOLDER
 export NCCL_P2P_DISABLE=NCCL_P2P_DISABLE_PLACEHOLDER
@@ -373,6 +377,8 @@ export MASTER_PORT=MASTER_PORT_PLACEHOLDER
 
 echo "=== Step 2: Install packages ==="
 INSTALL_DONE_FLAG="INSTALL_FLAG_PLACEHOLDER"
+# PYTHONUSERBASE is already set in Step 1 to redirect --user installs to writable location
+
 if [ "$SLURM_NODEID" = "0" ]; then
     echo "Node 0: Installing packages..."
     pip install --break-system-packages --upgrade pip setuptools wheel
@@ -412,6 +418,7 @@ sed -i "s|HF_HOME_PLACEHOLDER|$HF_HOME|g" "$SCRIPT_FILE"
 sed -i "s|HF_DATASETS_CACHE_PLACEHOLDER|$HF_DATASETS_CACHE|g" "$SCRIPT_FILE"
 sed -i "s|HF_MODULES_CACHE_PLACEHOLDER|$HF_MODULES_CACHE|g" "$SCRIPT_FILE"
 sed -i "s|HF_METRICS_CACHE_PLACEHOLDER|$HF_METRICS_CACHE|g" "$SCRIPT_FILE"
+sed -i "s|PYTHONUSERBASE_PLACEHOLDER|$PYTHONUSERBASE|g" "$SCRIPT_FILE"
 sed -i "s|NCCL_DEBUG_PLACEHOLDER|$NCCL_DEBUG|g" "$SCRIPT_FILE"
 sed -i "s|NCCL_IB_DISABLE_PLACEHOLDER|$NCCL_IB_DISABLE|g" "$SCRIPT_FILE"
 sed -i "s|NCCL_P2P_DISABLE_PLACEHOLDER|$NCCL_P2P_DISABLE|g" "$SCRIPT_FILE"
