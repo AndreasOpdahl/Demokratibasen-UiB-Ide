@@ -25,6 +25,7 @@ import argparse
 import json
 import os
 import random
+import shutil
 import sys
 import time  # ADD THIS for staggered loading
 from datetime import datetime
@@ -556,13 +557,67 @@ def load_model_and_peft_checkpoint(
     if not os.path.isdir(checkpoint_dir):
         raise ValueError(f"Checkpoint directory does not exist: {checkpoint_dir}")
     
-    # Extract checkpoint step number early (needed for checking existing results)
+    # Extract checkpoint step number early (needed for checking existing results and checkpoint backups)
     checkpoint_name = os.path.basename(checkpoint_dir.rstrip('/'))
     checkpoint_step = checkpoint_name.replace('checkpoint-', '') if 'checkpoint-' in checkpoint_name else 'unknown'
     try:
         checkpoint_step_int = int(checkpoint_step)
     except ValueError:
         checkpoint_step_int = 0
+
+    # Determine model directory once (parent of checkpoint_dir)
+    model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
+
+    # ------------------------------------------------------------------
+    # Backup: Regular checkpoints
+    # ------------------------------------------------------------------
+    # For every evaluated checkpoint, create a copy under model_dir/regular_checkpoints
+    # This preserves all evaluated checkpoints even if training later deletes
+    # the original checkpoint directories.
+    if checkpoint_step_int > 0:
+        regular_ckpt_dir = os.path.join(model_dir, "regular_checkpoints")
+        os.makedirs(regular_ckpt_dir, exist_ok=True)
+        regular_ckpt_name = f"regular-checkpoint-{checkpoint_step_int}"
+        regular_ckpt_path = os.path.join(regular_ckpt_dir, regular_ckpt_name)
+
+        # Remove existing copy if it exists (e.g., re-evaluation)
+        if os.path.exists(regular_ckpt_path):
+            print(f"Removing existing regular checkpoint copy: {regular_ckpt_path}")
+            shutil.rmtree(regular_ckpt_path)
+
+        print(f"Copying regular checkpoint to: {regular_ckpt_path}")
+        try:
+            shutil.copytree(checkpoint_dir, regular_ckpt_path)
+            print(f"✓ Successfully copied regular checkpoint to {regular_ckpt_path}")
+        except Exception as e:
+            print(f"⚠ Warning: Failed to copy regular checkpoint: {e}")
+            print("   Continuing with evaluation, but regular checkpoint copy was not created.")
+
+    # ------------------------------------------------------------------
+    # Backup: Major checkpoints (subset of regular checkpoints)
+    # ------------------------------------------------------------------
+    # For major checkpoints, also create a copy under model_dir/major_checkpoints
+    # Format: major-checkpoint-nnn (copy of checkpoint-nnn)
+    if checkpoint_step_int > 0 and checkpoint_step_int % major_checkpoint_interval == 0:
+        major_ckpt_dir = os.path.join(model_dir, "major_checkpoints")
+        os.makedirs(major_ckpt_dir, exist_ok=True)
+        major_ckpt_name = f"major-checkpoint-{checkpoint_step_int}"
+        major_ckpt_path = os.path.join(major_ckpt_dir, major_ckpt_name)
+        
+        # Remove existing copy if it exists (in case we're re-evaluating or updating)
+        if os.path.exists(major_ckpt_path):
+            print(f"Removing existing major checkpoint copy: {major_ckpt_path}")
+            shutil.rmtree(major_ckpt_path)
+        
+        # Copy checkpoint to major_checkpoints directory
+        # This ensures major checkpoints persist even if original checkpoints are deleted
+        print(f"Copying major checkpoint to: {major_ckpt_path}")
+        try:
+            shutil.copytree(checkpoint_dir, major_ckpt_path)
+            print(f"✓ Successfully copied major checkpoint to {major_ckpt_path}")
+        except Exception as e:
+            print(f"⚠ Warning: Failed to copy major checkpoint: {e}")
+            print("   Continuing with evaluation, but major checkpoint copy was not created.")
     
     # Check if this checkpoint was already evaluated
     # Look in model_dir/all_eval_results/checkpoint-nnn-eval-results.json
@@ -937,8 +992,14 @@ def evaluate_checkpoint(
                         gpu_info[f"gpu_{i}_name"] = props.name
                         gpu_info[f"gpu_{i}_memory_total_gb"] = props.total_memory / 1e9
                     
-                    # Use provided run_name or create one based on model
-                    run_name = wandb_run_name or f"{clean_model_name}_evaluation"
+                    # Use provided run_name or create one based on model and checkpoint
+                    # Include checkpoint step and type (major/normal) in run name for better identification
+                    if wandb_run_name:
+                        run_name = wandb_run_name
+                    else:
+                        # Default: include checkpoint step and type for uniqueness
+                        checkpoint_type = "major" if is_major_checkpoint else "normal"
+                        run_name = f"{clean_model_name}_eval_{checkpoint_type}-{checkpoint_step_int}"
                     
                     wandb.init(
                         project=wandb_project,
@@ -947,24 +1008,19 @@ def evaluate_checkpoint(
                         group=wandb_group or clean_model_name,
                         tags=[
                             "evaluation",
-                            "multi-gpu" if use_multi_gpu else "single-gpu",
-                            clean_model_name,
-                            "already-evaluated",  # Tag to indicate this was loaded from cache
+                            "cached",  # Indicate this was loaded from cache
+                            "major" if is_major_checkpoint else "normal",
                         ],
                         config={
-                            "model_name": model_name,
-                            "val_dataset_path": val_dataset_path,
-                            "val_data_size": val_data_size,
+                            "model": model_name,
+                            "checkpoint_step": checkpoint_step_int,
+                            "checkpoint_type": "major" if is_major_checkpoint else "normal",
+                            "val_dataset": val_dataset_path,
+                            "val_size": val_data_size,
                             "val_batch_size": val_batch_size,
-                            "val_beam_size": val_beam_size,
-                            "max_input_text_tokens": max_input_text_tokens,
-                            "max_output_summary_tokens": max_output_summary_tokens,
+                            "max_input_tokens": max_input_text_tokens,
+                            "max_output_tokens": max_output_summary_tokens,
                             "num_gpus": num_gpus,
-                            "use_multi_gpu": use_multi_gpu,
-                            "world_size": 1,
-                            "is_distributed": False,
-                            "results_loaded_from_cache": True,  # Indicate these are cached results
-                            **gpu_info,
                         },
                         reinit=True,
                     )
@@ -973,24 +1029,13 @@ def evaluate_checkpoint(
                 
                 # Log existing results to Wandb
                 if wandb.run is not None and is_main_process and not wandb_disabled:
-                    # Log with checkpoint step as the x-axis
+                    # Log metrics with checkpoint step as the x-axis
                     wandb.log({
-                        "eval/rouge1": rouge1,
-                        "eval/rouge2": rouge2,
-                        "eval/rougeL": rougeL,
-                        "eval/rougeLsum": rougeLsum,
-                        "checkpoint_step": checkpoint_step_int,
-                        "from_cache": True,  # Flag to indicate this was loaded from cache
+                        "rouge1": rouge1,
+                        "rouge2": rouge2,
+                        "rougeL": rougeL,
+                        "rougeLsum": rougeLsum,
                     }, step=checkpoint_step_int)
-                    
-                    # Update summary
-                    wandb.summary.update({
-                        "latest_checkpoint": checkpoint_step_int,
-                        "latest_rouge1": rouge1,
-                        "latest_rouge2": rouge2,
-                        "latest_rougeL": rougeL,
-                        "latest_rougeLsum": rougeLsum,
-                    })
                     
                     print(f">>> Logged existing results to wandb at step {checkpoint_step_int}")
                     print(f"   ROUGE-1: {rouge1:.2f}, ROUGE-2: {rouge2:.2f}, ROUGE-L: {rougeL:.2f}, ROUGE-Lsum: {rougeLsum:.2f}")
@@ -1126,12 +1171,11 @@ def evaluate_checkpoint(
         # Use checkpoint_step as the step so all checkpoints appear in one timeline
         if wandb.run is not None and is_main_process and not wandb_disabled:
             wandb.log({
-                "eval/rouge1": scores['rouge1'] * 100,
-                "eval/rouge2": scores['rouge2'] * 100,
-                "eval/rougeL": scores['rougeL'] * 100,
-                "eval/rougeLsum": scores['rougeLsum'] * 100,
-                "checkpoint_step": checkpoint_step_int,  # Track which checkpoint this is
-            }, step=checkpoint_step_int)  # CRITICAL: Use checkpoint step as x-axis
+                "rouge1": scores['rouge1'] * 100,
+                "rouge2": scores['rouge2'] * 100,
+                "rougeL": scores['rougeL'] * 100,
+                "rougeLsum": scores['rougeLsum'] * 100,
+            }, step=checkpoint_step_int)  # Use checkpoint step as x-axis
         
         return {k: v * 100 for k, v in scores.items()}  # % values
 
@@ -1173,8 +1217,14 @@ def evaluate_checkpoint(
             gpu_info[f"gpu_{i}_name"] = props.name
             gpu_info[f"gpu_{i}_memory_total_gb"] = props.total_memory / 1e9
         
-        # Use provided run_name or create one based on model
-        run_name = wandb_run_name or f"{clean_model_name}_evaluation"
+        # Use provided run_name or create one based on model and checkpoint
+        # Include checkpoint step and type (major/normal) in run name for better identification
+        if wandb_run_name:
+            run_name = wandb_run_name
+        else:
+            # Default: include checkpoint step and type for uniqueness
+            checkpoint_type = "major" if is_major_checkpoint else "normal"
+            run_name = f"{clean_model_name}_eval_{checkpoint_type}-{checkpoint_step_int}"
         
         wandb.init(
             project=wandb_project,
@@ -1183,40 +1233,25 @@ def evaluate_checkpoint(
             group=wandb_group or clean_model_name,  # Group all checkpoints together
             tags=[
                 "evaluation",
-                "multi-gpu" if use_multi_gpu else "single-gpu",
-                clean_model_name,
-                f"checkpoint-{checkpoint_step}",
-                os.path.basename(checkpoint_dir).replace('checkpoint-', 'step-'),
-                "major-checkpoint" if is_major_checkpoint else "normal-checkpoint",  # Tag for tiered evaluation
+                "major" if is_major_checkpoint else "normal",
             ],
             config={
-                "model_name": model_name,
-                "checkpoint_dir": checkpoint_dir,
-                "checkpoint_step": checkpoint_step,
-                "val_dataset_path": val_dataset_path,
-                "val_data_size": val_data_size,
-                "val_batch_size": val_batch_size,
-                "val_beam_size": val_beam_size,
-                "max_input_text_tokens": max_input_text_tokens,
-                "max_output_summary_tokens": max_output_summary_tokens,
-                "num_gpus": num_gpus,
-                "use_multi_gpu": use_multi_gpu,
-                "world_size": 1,
-                "is_distributed": False,
-                # Note: Training examples calculation requires training batch_size, gradient_accumulation_steps
-                # These are typically 4 and 4 respectively, but may vary. Check training config for exact values.
-                "checkpoint_step_note": f"Checkpoint at step {checkpoint_step} - examples calculation requires training parameters",
-                # Tiered evaluation configuration
+                "model": model_name,
+                "checkpoint_step": checkpoint_step_int,
                 "checkpoint_type": "major" if is_major_checkpoint else "normal",
+                "val_dataset": val_dataset_path,
+                "val_size": val_data_size,
+                "val_batch_size": val_batch_size,
+                "max_input_tokens": max_input_text_tokens,
+                "max_output_tokens": max_output_summary_tokens,
+                "num_gpus": num_gpus,
                 "major_checkpoint_interval": major_checkpoint_interval,
-                "extended_metrics": {
-                    "rouge": True,  # Always computed
-                    "hygiene": True,  # Always computed
-                    "bertscore": is_major_checkpoint,  # Only for major checkpoints
-                    "faithfulness": include_nli_faithfulness,  # User-controlled
-                    "nli_subset_size": nli_subset_size if include_nli_faithfulness else None,
+                "metrics": {
+                    "rouge": True,
+                    "hygiene": True,
+                    "bertscore": is_major_checkpoint,
+                    "faithfulness": include_nli_faithfulness,
                 },
-                **gpu_info,
             },
             reinit=True,
         )
@@ -1394,12 +1429,9 @@ def evaluate_checkpoint(
                 "prompt_preview": prompt_preview
             })
         
-        # Log to wandb config (lightweight - just metadata, once per evaluation)
-        model_config = get_model_config_by_hf_name(model_name)
+        # Log doc types to wandb config (lightweight metadata)
         wandb.config.update({
-            "eval_prompt_examples": example_prompts,
-            "eval_doc_types_seen": sorted(list(doc_types_seen)),
-            "eval_prompt_template_type": model_config.prompt_config.template_type if model_config else "plain"
+            "doc_types": sorted(list(doc_types_seen)),
         })
         
         # Print to console (lightweight - just once)
@@ -1468,9 +1500,52 @@ def evaluate_checkpoint(
     
     eval_results = trainer.evaluate()
     
+    # ------------------------------------------------------------------
+    # Enrich eval_results with clearer runtime and cardinality metadata
+    # ------------------------------------------------------------------
+    # HF Trainer reports wall-clock time in eval_runtime and per-second rates.
+    # Make this explicit and add simple counts for easier inspection.
+    eval_num_examples = len(tokenized_val_dataset)
+    eval_results.setdefault("eval_num_examples", eval_num_examples)
+    # For evaluation we run exactly one pass over the dataset
+    eval_results.setdefault("eval_num_epochs", 1)
+    
+    # Clarify that these are wall-clock metrics by adding explicit aliases
+    if "eval_runtime" in eval_results:
+        eval_results.setdefault("eval_wall_runtime", eval_results["eval_runtime"])
+    if "eval_samples_per_second" in eval_results:
+        eval_results.setdefault("eval_wall_samples_per_second", eval_results["eval_samples_per_second"])
+    if "eval_steps_per_second" in eval_results:
+        eval_results.setdefault("eval_wall_steps_per_second", eval_results["eval_steps_per_second"])
+
+    # ------------------------------------------------------------------
+    # Doc-type distribution for evaluated examples
+    # ------------------------------------------------------------------
+    # Summarise how many examples of each doc_type were used in this evaluation.
+    doc_type_counts: Dict[str, int] = {}
+    doc_type_nor_counts: Dict[str, int] = {}
+    for ex in val_data:
+        meta = ex.get("metadata") if isinstance(ex, dict) else None
+        if isinstance(meta, dict):
+            raw_doc_type = meta.get("doc_type") or "unknown"
+        else:
+            raw_doc_type = "unknown"
+        doc_type_counts[raw_doc_type] = doc_type_counts.get(raw_doc_type, 0) + 1
+
+        # Also track Norwegian label where possible
+        try:
+            doc_type_nor = get_doc_type_norwegian(raw_doc_type)
+        except Exception:
+            doc_type_nor = "tekst"
+        doc_type_nor_counts[doc_type_nor] = doc_type_nor_counts.get(doc_type_nor, 0) + 1
+
+    eval_results.setdefault("eval_num_examples_by_doc_type", doc_type_counts)
+    eval_results.setdefault("eval_num_examples_by_doc_type_norwegian", doc_type_nor_counts)
+    
     # Save inputs, references, and predictions to JSONL file
+    # Only save for major checkpoints to save disk space
     predictions_file = None
-    if is_main_process:
+    if is_main_process and is_major_checkpoint:
         predictions_file = os.path.join(output_dir, f"{checkpoint_name}-inputs-refs-preds.jsonl")
         
         # Write to JSONL file
@@ -1495,8 +1570,12 @@ def evaluate_checkpoint(
         
         print(f"Saved predictions to: {predictions_file}")
         print(f"  - {num_to_save} examples saved")
+    elif is_main_process and not is_major_checkpoint:
+        print(f"Skipping predictions file (not a major checkpoint - only saved for major checkpoints to save disk space)")
     
     # Run extended evaluation metrics (reference-based, hygiene, faithfulness)
+    # Note: For normal checkpoints, we still run extended evaluation but use predictions from memory
+    # For major checkpoints, we can load from the saved JSONL file
     if is_main_process:
         # Debug: Print why extended evaluation might not run
         if not EXTENDED_EVAL_AVAILABLE:
@@ -1506,38 +1585,58 @@ def evaluate_checkpoint(
             print("Reason: extended_evaluation.py could not be imported")
             print("Only ROUGE metrics will be saved to JSON.")
             print("=" * 70 + "\n")
-        elif not predictions_file:
+        elif not is_major_checkpoint and not predictions_file:
+            # For normal checkpoints, we'll use predictions from memory (trainer._eval_predictions)
+            # This is fine - we don't need the file for normal checkpoints
+            pass
+        elif is_major_checkpoint and not predictions_file:
             print("\n" + "=" * 70)
-            print("WARNING: Extended evaluation NOT running")
+            print("WARNING: Extended evaluation may be limited")
             print("=" * 70)
-            print("Reason: predictions_file is None")
-            print("Only ROUGE metrics will be saved to JSON.")
+            print("Reason: predictions_file is None for major checkpoint")
+            print("Will use predictions from memory instead.")
             print("=" * 70 + "\n")
-        elif not os.path.exists(predictions_file):
+        elif predictions_file and not os.path.exists(predictions_file):
             print("\n" + "=" * 70)
-            print("WARNING: Extended evaluation NOT running")
+            print("WARNING: Extended evaluation may be limited")
             print("=" * 70)
             print(f"Reason: predictions_file does not exist: {predictions_file}")
-            print("Only ROUGE metrics will be saved to JSON.")
+            print("Will use predictions from memory instead.")
             print("=" * 70 + "\n")
     
-    if is_main_process and EXTENDED_EVAL_AVAILABLE and predictions_file and os.path.exists(predictions_file):
+    # Run extended evaluation metrics (reference-based, hygiene, faithfulness)
+    # For major checkpoints: load from saved JSONL file
+    # For normal checkpoints: use predictions from memory (trainer._eval_predictions)
+    if is_main_process and EXTENDED_EVAL_AVAILABLE:
         print("\n" + "=" * 70)
         print("Running Extended Evaluation Metrics...")
         print("=" * 70)
         
         try:
-            # Load texts from JSONL file
+            # Load texts from JSONL file if available (major checkpoints), otherwise use memory
             input_texts = []
             prediction_texts = []
             reference_texts = []
             
-            with open(predictions_file, 'r', encoding='utf-8') as f:
-                for line in f:
-                    entry = json.loads(line)
-                    input_texts.append(entry.get("input_text", ""))
-                    prediction_texts.append(entry.get("prediction", ""))
-                    reference_texts.append(entry.get("reference", ""))
+            if predictions_file and os.path.exists(predictions_file):
+                # Major checkpoint: load from saved file
+                with open(predictions_file, 'r', encoding='utf-8') as f:
+                    for line in f:
+                        entry = json.loads(line)
+                        input_texts.append(entry.get("input_text", ""))
+                        prediction_texts.append(entry.get("prediction", ""))
+                        reference_texts.append(entry.get("reference", ""))
+            else:
+                # Normal checkpoint: use predictions from memory
+                # We have original_examples_for_jsonl and trainer._eval_predictions in memory
+                num_examples = len(original_examples_for_jsonl)
+                num_predictions = len(trainer._eval_predictions)
+                num_to_use = min(num_examples, num_predictions)
+                
+                for i in range(num_to_use):
+                    input_texts.append(original_examples_for_jsonl[i].get("input_text", ""))
+                    prediction_texts.append(trainer._eval_predictions[i] if i < len(trainer._eval_predictions) else "")
+                    reference_texts.append(original_examples_for_jsonl[i].get("reference", ""))
             
             if len(input_texts) > 0 and len(prediction_texts) > 0 and len(reference_texts) > 0:
                 if not EXTENDED_EVAL_AVAILABLE:
@@ -1733,56 +1832,42 @@ def evaluate_checkpoint(
     # Log with checkpoint step so it appears in the timeline
     if wandb_project and wandb.run is not None and is_main_process and not wandb_disabled:
         # Log ROUGE metrics
-        wandb_log_dict = {
-            "final/rouge1": eval_results.get("eval_rouge1", 0),
-            "final/rouge2": eval_results.get("eval_rouge2", 0),
-            "final/rougeL": eval_results.get("eval_rougeL", 0),
-            "final/rougeLsum": eval_results.get("eval_rougeLsum", 0),
-        }
-        
-        # Log extended metrics if available
+        # Log extended metrics if available (ROUGE already logged in compute_metrics)
         if EXTENDED_EVAL_AVAILABLE:
-            # Reference-based metrics
+            log_dict = {}
+            
+            # Reference-based metrics (BERTScore)
             if "eval_reference_bertscore_f1_mean" in eval_results:
-                wandb_log_dict["final/bertscore_f1"] = eval_results.get("eval_reference_bertscore_f1_mean", 0)
+                log_dict["bertscore_f1"] = eval_results.get("eval_reference_bertscore_f1_mean", 0)
             
             # Hygiene metrics
             if "eval_hygiene_mean_compression_ratio" in eval_results:
-                wandb_log_dict["final/compression_ratio"] = eval_results.get("eval_hygiene_mean_compression_ratio", 0)
+                log_dict["compression_ratio"] = eval_results.get("eval_hygiene_mean_compression_ratio", 0)
             if "eval_hygiene_mean_rep_3gram" in eval_results:
-                wandb_log_dict["final/rep_3gram"] = eval_results.get("eval_hygiene_mean_rep_3gram", 0)
+                log_dict["rep_3gram"] = eval_results.get("eval_hygiene_mean_rep_3gram", 0)
             if "eval_hygiene_ratio_ends_with_punct" in eval_results:
-                wandb_log_dict["final/ends_with_punct"] = eval_results.get("eval_hygiene_ratio_ends_with_punct", 0)
+                log_dict["ends_with_punct"] = eval_results.get("eval_hygiene_ratio_ends_with_punct", 0)
             
             # Faithfulness metrics
             if "eval_faithfulness_mean_entailment_score" in eval_results:
-                wandb_log_dict["final/entailment_mean"] = eval_results.get("eval_faithfulness_mean_entailment_score", 0)
-            if "eval_faithfulness_mean_outlier_rate" in eval_results:
-                wandb_log_dict["final/outlier_rate"] = eval_results.get("eval_faithfulness_mean_outlier_rate", 0)
+                log_dict["entailment_mean"] = eval_results.get("eval_faithfulness_mean_entailment_score", 0)
             if "eval_faithfulness_ratio_passed" in eval_results:
-                wandb_log_dict["final/faithfulness_passed"] = eval_results.get("eval_faithfulness_ratio_passed", 0)
+                log_dict["faithfulness_passed"] = eval_results.get("eval_faithfulness_ratio_passed", 0)
+            
+            if log_dict:
+                wandb.log(log_dict, step=checkpoint_step_int)
         
-        wandb.log(wandb_log_dict, step=checkpoint_step_int)
-        
-        # Update summary with latest checkpoint results
-        summary_update = {
-            "latest_checkpoint": checkpoint_step_int,
-            "latest_rouge1": eval_results.get("eval_rouge1", 0),
-            "latest_rouge2": eval_results.get("eval_rouge2", 0),
-            "latest_rougeL": eval_results.get("eval_rougeL", 0),
-            "latest_rougeLsum": eval_results.get("eval_rougeLsum", 0),
-        }
-        
-        # Add extended metrics to summary
-        if EXTENDED_EVAL_AVAILABLE:
-            if "eval_reference_bertscore_f1_mean" in eval_results:
-                summary_update["latest_bertscore_f1"] = eval_results.get("eval_reference_bertscore_f1_mean", 0)
-            if "eval_faithfulness_mean_entailment_score" in eval_results:
-                summary_update["latest_entailment_mean"] = eval_results.get("eval_faithfulness_mean_entailment_score", 0)
-            if "eval_faithfulness_ratio_passed" in eval_results:
-                summary_update["latest_faithfulness_passed"] = eval_results.get("eval_faithfulness_ratio_passed", 0)
-        
-        wandb.summary.update(summary_update)
+        # Update summary with best metrics only (for quick overview)
+        best_rouge_lsum = eval_results.get("eval_rougeLsum", 0)
+        current_best = getattr(wandb.summary, "best_rouge_lsum", 0)
+        if current_best < best_rouge_lsum:
+            wandb.summary.update({
+                "best_checkpoint": checkpoint_step_int,
+                "best_rouge_lsum": best_rouge_lsum,
+                "best_rouge1": eval_results.get("eval_rouge1", 0),
+                "best_rouge2": eval_results.get("eval_rouge2", 0),
+                "best_rougeL": eval_results.get("eval_rougeL", 0),
+            })
         
         # DON'T call wandb.finish() here - keep the run open for multiple checkpoints
         # Only finish if explicitly requested or at the very end
@@ -1792,11 +1877,20 @@ def evaluate_checkpoint(
     
     # Save results to file (only on main process)
     if is_main_process:
+        # Save to new location: all_eval_results/checkpoint-nnn-eval-results.json
         # results_file was already set earlier with the new naming scheme
         # output_dir was already created earlier, so just save
         with open(results_file, 'w') as f:
             json.dump(eval_results, f, indent=2)
         print(f"Results saved to: {results_file}")
+        
+        # Also save to old location: checkpoint_dir/eval_results/eval_results.json (for backwards compatibility)
+        old_eval_results_dir = os.path.join(checkpoint_dir, 'eval_results')
+        os.makedirs(old_eval_results_dir, exist_ok=True)
+        old_results_file = os.path.join(old_eval_results_dir, 'eval_results.json')
+        with open(old_results_file, 'w') as f:
+            json.dump(eval_results, f, indent=2)
+        print(f"Results also saved to: {old_results_file}")
         
         # Update evaluation summary JSON file
         summary_file = os.path.join(output_dir, "evaluation_summary.json")
@@ -1941,7 +2035,7 @@ Examples:
     parser.add_argument('--wandb_disabled', action='store_true',
                        help='Disable wandb logging for this evaluation')
     parser.add_argument('--wandb_run_name', type=str, default=None,
-                       help='Wandb run name (if not provided, uses model name). Use same name for all checkpoints to combine them.')
+                       help='Wandb run name (if not provided, defaults to {model}_eval_{major|normal}-{step}). Use same name for all checkpoints to combine them.')
     parser.add_argument('--wandb_group', type=str, default=None,
                        help='Wandb group name to combine multiple runs (default: model name)')
     parser.add_argument('--major_checkpoint_interval', type=int, default=500,
@@ -1972,7 +2066,8 @@ Examples:
             login(token=args.hf_token)
         model = load_model_and_peft_checkpoint(
             model_name, args.checkpoint_dir, args.hf_token, 
-            use_multi_gpu=args.use_multi_gpu
+            use_multi_gpu=args.use_multi_gpu,
+            major_checkpoint_interval=args.major_checkpoint_interval,
         )
         print("Model loaded successfully! Ready for inference.")
     else:
