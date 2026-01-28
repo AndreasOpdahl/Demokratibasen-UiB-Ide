@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH -J gpu-eval-checkpoints-multigpu
 #SBATCH -p accel
-#SBATCH --gres=gpu:4  # Request 4 GPUs (adjust if needed)
+#SBATCH --gres=gpu:2  # Request 2 GPUs (adjust if needed)
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16  # Increase CPUs for multi-GPU
 #SBATCH --mem=384G  # Increase memory for multi-GPU
@@ -246,7 +246,7 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "    --checkpoint_dir [checkpoint-dir]"
     echo "    --val_dataset $VAL_DATASET"
     echo "    --hf_token [REDACTED]"
-    echo "    --output_dir [checkpoint-dir]/eval_results"
+    echo "    --output_dir [optional, defaults to model_dir/all_eval_results]"
     echo "    --wandb_project lm-evaluation"
     echo "    --use_greedy --use_multi_gpu"
     echo ""
@@ -385,7 +385,7 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     
     # Command to run inside apptainer - use model parallelism, not torchrun
     # Model parallelism (device_map="auto") doesn't need torchrun
-    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --hf_token $HUGGINGFACE_TOKEN --output_dir $CHECKPOINT_DIR/eval_results --wandb_project lm-evaluation --use_greedy --use_multi_gpu"
+    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu"
 
     # Apptainer commands - all on one line
     # Install bert_score for BERTScore evaluation (required by evaluate library)
