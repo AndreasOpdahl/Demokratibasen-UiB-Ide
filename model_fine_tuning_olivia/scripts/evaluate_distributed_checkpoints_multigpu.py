@@ -29,7 +29,7 @@ import shutil
 import sys
 import time  # ADD THIS for staggered loading
 from datetime import datetime
-from typing import Any, Dict, Optional, Tuple, Union
+from typing import Any, Dict, Optional, Tuple, Union, List
 
 # Disable tokenizer parallelism to avoid fork warnings in multi-process environment
 os.environ['TOKENIZERS_PARALLELISM'] = 'false'
@@ -388,31 +388,28 @@ class CausalLMTrainer(Trainer):
         # Store for later saving to JSONL (predictions only - inputs/references will come from original dataset)
         self._eval_predictions.extend(cleaned_predictions)
         
-        # Log GPU memory usage if wandb is active
-        # Note: No distributed mode, so always main process
-        if wandb.run is not None:
-            gpu_memory = {}
-            for i in range(torch.cuda.device_count()):
-                allocated = torch.cuda.memory_allocated(i) / 1e9  # GB
-                reserved = torch.cuda.memory_reserved(i) / 1e9  # GB
+        # Monitor GPU memory usage and log peak usage
+        # Track peak memory to identify optimal batch size
+        if torch.cuda.is_available():
+            num_gpus = torch.cuda.device_count()
+            peak_memory = {}
+            for i in range(num_gpus):
                 max_allocated = torch.cuda.max_memory_allocated(i) / 1e9  # GB
-                gpu_memory[f"gpu_{i}_allocated_gb"] = allocated
-                gpu_memory[f"gpu_{i}_reserved_gb"] = reserved
-                gpu_memory[f"gpu_{i}_max_allocated_gb"] = max_allocated  # Track peak usage
-            
-            # Log periodically (every 10 steps to avoid spam)
-            if hasattr(self, '_eval_step_count'):
-                self._eval_step_count += 1
-            else:
-                self._eval_step_count = 1
-            
-            if self._eval_step_count % 10 == 0:
-                wandb.log(gpu_memory, step=self._eval_step_count)
+                reserved = torch.cuda.memory_reserved(i) / 1e9  # GB
+                total = torch.cuda.get_device_properties(i).total_memory / 1e9  # GB
+                peak_memory[f"gpu_{i}_peak_gb"] = max_allocated
+                peak_memory[f"gpu_{i}_reserved_gb"] = reserved
+                peak_memory[f"gpu_{i}_total_gb"] = total
+                peak_memory[f"gpu_{i}_utilization_pct"] = (reserved / total * 100) if total > 0 else 0
+                
                 # Print warning if getting close to OOM
-                for i in range(torch.cuda.device_count()):
-                    reserved = torch.cuda.memory_reserved(i) / 1e9  # GB
-                    if reserved > 80:  # >80GB used out of 102GB
-                        print(f"WARNING: GPU {i} using {reserved:.1f}GB - consider reducing batch size")
+                if reserved > 80:  # >80GB used out of 102GB
+                    print(f"⚠ WARNING: GPU {i} using {reserved:.1f}GB / {total:.1f}GB ({reserved/total*100:.1f}%) - consider reducing batch size")
+            
+            # Log peak memory to wandb (once per evaluation, not every step)
+            if wandb.run is not None and not hasattr(self, '_peak_memory_logged'):
+                wandb.log(peak_memory, step=0)  # Log at step 0 for this checkpoint
+                self._peak_memory_logged = True
 
         loss = None
         
@@ -863,6 +860,78 @@ def get_model_batch_size(model_name: str, default_batch_size: int) -> int:
         return default_batch_size
 
 
+def check_gpu_memory_utilization(num_gpus: Optional[int] = None) -> Dict[str, Any]:
+    """Check current GPU memory utilization and return statistics.
+    
+    Returns:
+        Dictionary with memory stats per GPU and recommendations
+    """
+    if num_gpus is None:
+        num_gpus = torch.cuda.device_count()
+    
+    if num_gpus == 0:
+        return {"error": "No GPUs available"}
+    
+    # Ensure num_gpus is an int for range()
+    num_gpus_int = int(num_gpus) if num_gpus is not None else 0
+    if num_gpus_int == 0:
+        return {"error": "No GPUs available"}
+    
+    memory_stats = {
+        "gpus": [],
+        "total_memory_gb": 0,
+        "total_allocated_gb": 0,
+        "total_reserved_gb": 0,
+        "total_free_gb": 0,
+        "utilization_pct": 0.0,
+    }
+    
+    for i in range(num_gpus_int):
+        props = torch.cuda.get_device_properties(i)
+        total_memory = props.total_memory / 1e9  # GB
+        allocated = torch.cuda.memory_allocated(i) / 1e9  # GB
+        reserved = torch.cuda.memory_reserved(i) / 1e9  # GB
+        free = total_memory - reserved
+        
+        utilization = (reserved / total_memory * 100) if total_memory > 0 else 0
+        
+        memory_stats["gpus"].append({
+            "gpu_id": i,
+            "name": props.name,
+            "total_gb": total_memory,
+            "allocated_gb": allocated,
+            "reserved_gb": reserved,
+            "free_gb": free,
+            "utilization_pct": utilization,
+        })
+        
+        memory_stats["total_memory_gb"] += total_memory
+        memory_stats["total_allocated_gb"] += allocated
+        memory_stats["total_reserved_gb"] += reserved
+        memory_stats["total_free_gb"] += free
+    
+    if memory_stats["total_memory_gb"] > 0:
+        memory_stats["utilization_pct"] = (memory_stats["total_reserved_gb"] / memory_stats["total_memory_gb"] * 100)
+    
+    # Add recommendations
+    avg_utilization = memory_stats["utilization_pct"]
+    avg_free = memory_stats["total_free_gb"] / num_gpus_int if num_gpus_int > 0 else 0
+    
+    recommendations = []
+    if avg_utilization < 50:
+        recommendations.append(f"Low GPU utilization ({avg_utilization:.1f}%) - consider increasing batch size")
+        if avg_free > 20:
+            recommendations.append(f"High free memory ({avg_free:.1f}GB per GPU) - batch size can likely be increased")
+    elif avg_utilization > 90:
+        recommendations.append(f"High GPU utilization ({avg_utilization:.1f}%) - consider decreasing batch size")
+    elif avg_utilization > 80:
+        recommendations.append(f"Moderate-high GPU utilization ({avg_utilization:.1f}%) - monitor for OOM")
+    
+    memory_stats["recommendations"] = recommendations
+    
+    return memory_stats
+
+
 def evaluate_checkpoint(
     model_name: str,
     checkpoint_dir: str,
@@ -1113,7 +1182,27 @@ def evaluate_checkpoint(
         print(f"Adjusted batch size from {val_batch_size} to {adjusted_batch_size} for {model_name}")
         val_batch_size = adjusted_batch_size
     
-    print(f"Using batch size: {val_batch_size} for evaluation")
+    # Check GPU memory utilization before evaluation
+    if is_main_process and torch.cuda.is_available():
+        print("\n" + "=" * 70)
+        print("GPU MEMORY UTILIZATION CHECK")
+        print("=" * 70)
+        memory_stats = check_gpu_memory_utilization(num_gpus)
+        for gpu_info in memory_stats.get("gpus", []):
+            print(f"GPU {gpu_info['gpu_id']}: {gpu_info['name']}")
+            print(f"  Total: {gpu_info['total_gb']:.1f} GB")
+            print(f"  Reserved: {gpu_info['reserved_gb']:.1f} GB ({gpu_info['utilization_pct']:.1f}%)")
+            print(f"  Free: {gpu_info['free_gb']:.1f} GB")
+        
+        if memory_stats.get("recommendations"):
+            print("\nRecommendations:")
+            for rec in memory_stats["recommendations"]:
+                print(f"  • {rec}")
+        
+        print(f"\nUsing batch size: {val_batch_size} for evaluation")
+        print("=" * 70 + "\n")
+    else:
+        print(f"Using batch size: {val_batch_size} for evaluation")
 
     def compute_metrics(eval_pred):
         if is_main_process:
@@ -1499,6 +1588,24 @@ def evaluate_checkpoint(
         print("=" * 70 + "\n")
     
     eval_results = trainer.evaluate()
+    
+    # Check GPU memory utilization after evaluation
+    if is_main_process and torch.cuda.is_available():
+        print("\n" + "=" * 70)
+        print("GPU MEMORY UTILIZATION AFTER EVALUATION")
+        print("=" * 70)
+        memory_stats = check_gpu_memory_utilization(num_gpus)
+        for gpu_info in memory_stats.get("gpus", []):
+            print(f"GPU {gpu_info['gpu_id']}: {gpu_info['name']}")
+            print(f"  Peak allocated: {gpu_info['allocated_gb']:.1f} GB")
+            print(f"  Reserved: {gpu_info['reserved_gb']:.1f} GB ({gpu_info['utilization_pct']:.1f}%)")
+            print(f"  Free: {gpu_info['free_gb']:.1f} GB")
+        
+        if memory_stats.get("recommendations"):
+            print("\nRecommendations:")
+            for rec in memory_stats["recommendations"]:
+                print(f"  • {rec}")
+        print("=" * 70 + "\n")
     
     # ------------------------------------------------------------------
     # Enrich eval_results with clearer runtime and cardinality metadata
@@ -2017,7 +2124,7 @@ Examples:
     parser.add_argument('--max_output_summary_tokens', type=int, default=MAX_OUTPUT_SUMMARY_TOKENS,
                        help=f'Maximum tokens for output summary (default: {MAX_OUTPUT_SUMMARY_TOKENS})')
     parser.add_argument('--val_batch_size', type=int, default=VAL_BATCH_SIZE,
-                       help=f'Validation batch size per device (default: {VAL_BATCH_SIZE})')
+                       help=f'Validation batch size per device (default: {VAL_BATCH_SIZE}). The script will automatically adjust based on model size and provide memory utilization reports.')
     parser.add_argument('--val_data_size', type=int, default=VAL_DATA_SIZE,
                        help=f'Number of examples to use for validation (default: {VAL_DATA_SIZE})')
     parser.add_argument('--val_beam_size', type=int, default=VAL_BEAM_SIZE,
