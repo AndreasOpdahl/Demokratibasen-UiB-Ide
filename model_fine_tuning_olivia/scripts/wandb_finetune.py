@@ -141,12 +141,107 @@ VAL_STEPS = 100  # Reduce checkpoint frequency (was 20)
 
 
 class GPUMemoryCallback(TrainerCallback):
+    """Enhanced GPU memory monitoring with utilization analysis and batch size recommendations."""
+    
+    def __init__(self, log_interval: int = 50, warn_threshold_gb: float = 80.0):
+        """Initialize memory callback.
+        
+        Args:
+            log_interval: Log memory stats every N steps (default: 50)
+            warn_threshold_gb: Warn if memory usage exceeds this (GB, default: 80)
+        """
+        self.log_interval = log_interval
+        self.warn_threshold_gb = warn_threshold_gb
+        self.peak_memory = {}  # Track peak memory per GPU
+        self.step_count = 0
+        
     def on_step_end(self, args, state, control, **kwargs):
-        pynvml.nvmlInit()
-        for i in range(pynvml.nvmlDeviceGetCount()):
-            handle = pynvml.nvmlDeviceGetHandleByIndex(i)
-            mem_info = pynvml.nvmlDeviceGetMemoryInfo(handle)
-            print(f"Step {state.global_step} | GPU {i}: {mem_info.used / 1024**2:.2f} MB")
+        """Monitor GPU memory and provide recommendations."""
+        self.step_count += 1
+        
+        # Only check periodically to avoid overhead
+        if self.step_count % self.log_interval != 0:
+            return
+        
+        try:
+            import pynvml
+            pynvml.nvmlInit()
+            num_gpus = pynvml.nvmlDeviceGetCount()
+            
+            memory_stats = []
+            for i in range(num_gpus):
+                handle = pynvml.nvmlDeviceGetHandleByIndex(i)
+                mem_info = pynvml.nvmlDeviceGetMemoryInfo(handle)
+                total_gb = mem_info.total / (1024**3)
+                used_gb = mem_info.used / (1024**3)
+                free_gb = mem_info.free / (1024**3)
+                utilization_pct = (used_gb / total_gb * 100) if total_gb > 0 else 0
+                
+                # Track peak memory
+                if i not in self.peak_memory or used_gb > self.peak_memory[i]:
+                    self.peak_memory[i] = used_gb
+                
+                memory_stats.append({
+                    'gpu_id': i,
+                    'used_gb': used_gb,
+                    'total_gb': total_gb,
+                    'free_gb': free_gb,
+                    'utilization_pct': utilization_pct
+                })
+                
+                # Log to wandb periodically
+                if wandb.run is not None:
+                    wandb.log({
+                        f"gpu_{i}_memory_gb": used_gb,
+                        f"gpu_{i}_memory_pct": utilization_pct,
+                    }, step=state.global_step)
+                
+                # Print warning if high utilization
+                if used_gb > self.warn_threshold_gb:
+                    print(f"⚠ Step {state.global_step} | GPU {i}: {used_gb:.1f}GB / {total_gb:.1f}GB ({utilization_pct:.1f}%) - consider reducing batch size")
+            
+            # Print summary every 100 steps
+            if self.step_count % (self.log_interval * 2) == 0:
+                avg_utilization = sum(s['utilization_pct'] for s in memory_stats) / len(memory_stats) if memory_stats else 0
+                avg_free = sum(s['free_gb'] for s in memory_stats) / len(memory_stats) if memory_stats else 0
+                
+                if avg_utilization < 50:
+                    print(f"ℹ Step {state.global_step} | Avg GPU utilization: {avg_utilization:.1f}% | Free: {avg_free:.1f}GB per GPU")
+                    print(f"   → Consider increasing batch size for better GPU utilization")
+                elif avg_utilization > 90:
+                    print(f"⚠ Step {state.global_step} | High GPU utilization: {avg_utilization:.1f}% | Free: {avg_free:.1f}GB per GPU")
+                    print(f"   → Consider decreasing batch size to avoid OOM")
+                    
+        except (ImportError, Exception):
+            # pynvml not available or error, use PyTorch memory tracking
+            if torch.cuda.is_available():
+                for i in range(torch.cuda.device_count()):
+                    allocated = torch.cuda.memory_allocated(i) / 1e9
+                    reserved = torch.cuda.memory_reserved(i) / 1e9
+                    total = torch.cuda.get_device_properties(i).total_memory / 1e9
+                    utilization = (reserved / total * 100) if total > 0 else 0
+                    
+                    if reserved > self.warn_threshold_gb:
+                        print(f"⚠ Step {state.global_step} | GPU {i}: {reserved:.1f}GB / {total:.1f}GB ({utilization:.1f}%) - consider reducing batch size")
+        
+    def on_train_end(self, args, state, control, **kwargs):
+        """Print final memory utilization summary."""
+        if self.peak_memory:
+            print("\n" + "=" * 70)
+            print("PEAK GPU MEMORY USAGE DURING TRAINING")
+            print("=" * 70)
+            for gpu_id, peak_gb in sorted(self.peak_memory.items()):
+                print(f"GPU {gpu_id}: Peak memory: {peak_gb:.1f} GB")
+            
+            avg_peak = sum(self.peak_memory.values()) / len(self.peak_memory)
+            print(f"\nAverage peak memory: {avg_peak:.1f} GB per GPU")
+            
+            # Recommendations
+            if avg_peak < 50:
+                print("→ Low memory usage - consider increasing batch size for better GPU utilization")
+            elif avg_peak > 90:
+                print("→ High memory usage - consider decreasing batch size to avoid OOM")
+            print("=" * 70 + "\n")
 
 
 class ExamplesTrackingCallback(TrainerCallback):
@@ -191,7 +286,7 @@ class EarlyStoppingMonitorCallback(TrainerCallback):
                 print("Stopping training...")
                 print("="*70 + "\n")
                 control.should_training_stop = True
-                
+
 class EvalDataCollator:
     """Custom data collator for evaluation that pads both input_ids and labels.
     
@@ -254,6 +349,67 @@ class CausalLMTrainer(Trainer):
         super().__init__(*args, **kwargs)
         # 3. Store reference to tokenizer for compatibility
         self._processing_class = self.tokenizer
+    
+    def compute_loss(self, model, inputs, return_outputs=False):
+        """Custom loss computation with prompt masking and monitoring.
+        
+        This method:
+        1. Computes loss using the model's forward pass (which handles label smoothing if enabled)
+        2. Separately tracks loss on prompt vs summary tokens
+        3. Logs metrics to wandb for monitoring
+        """
+        # Get labels
+        labels = inputs.get("labels")
+        
+        # Forward pass - this will use label smoothing if enabled in TrainingArguments
+        outputs = model(**inputs)
+        logits = outputs.logits
+        loss = outputs.loss if hasattr(outputs, 'loss') and outputs.loss is not None else None
+        
+        # If model didn't compute loss (shouldn't happen, but safety check)
+        if loss is None:
+            # Fallback: compute loss manually
+            shift_logits = logits[..., :-1, :].contiguous()
+            shift_labels = labels[..., 1:].contiguous()
+            loss_fct = torch.nn.CrossEntropyLoss(ignore_index=-100)
+            loss = loss_fct(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))
+        
+        # For monitoring: compute per-token loss to separate prompt vs summary
+        shift_logits = logits[..., :-1, :].contiguous()
+        shift_labels = labels[..., 1:].contiguous()
+        
+        # Flatten the tokens
+        loss_fct_none = torch.nn.CrossEntropyLoss(ignore_index=-100, reduction='none')
+        flat_logits = shift_logits.view(-1, shift_logits.size(-1))
+        flat_labels = shift_labels.view(-1)
+        
+        # Compute per-token loss (for monitoring only)
+        per_token_loss = loss_fct_none(flat_logits, flat_labels)
+        
+        # Identify prompt vs summary tokens
+        # Prompt tokens have label = -100 (masked), summary tokens have label != -100
+        is_prompt_token = (flat_labels == -100)
+        is_summary_token = ~is_prompt_token
+        
+        # Compute losses separately (for monitoring)
+        prompt_loss = per_token_loss[is_prompt_token].mean() if is_prompt_token.any() else torch.tensor(0.0, device=per_token_loss.device)
+        summary_loss = per_token_loss[is_summary_token].mean() if is_summary_token.any() else torch.tensor(0.0, device=per_token_loss.device)
+        
+        # Log prompt vs summary loss to wandb (only on main process, periodically)
+        if self.args.local_rank in [-1, 0] and wandb.run is not None:
+            # Only log every N steps to avoid spam (use logging_steps from args)
+            log_interval = getattr(self.args, 'logging_steps', 10)
+            if hasattr(self, 'state') and self.state.global_step % log_interval == 0:
+                wandb.log({
+                    "train/loss_prompt": prompt_loss.item() if isinstance(prompt_loss, torch.Tensor) else prompt_loss,
+                    "train/loss_summary": summary_loss.item() if isinstance(summary_loss, torch.Tensor) else summary_loss,
+                    "train/prompt_tokens_ratio": is_prompt_token.float().mean().item() if is_prompt_token.any() else 0.0,
+                    "train/summary_tokens_ratio": is_summary_token.float().mean().item() if is_summary_token.any() else 0.0,
+                }, step=self.state.global_step)
+        
+        if return_outputs:
+            return loss, outputs
+        return loss
     
     def get_eval_dataloader(self, eval_dataset=None):
         """Override to use a different data collator for evaluation."""
@@ -925,7 +1081,7 @@ def fine_tune_model(
             from model_configs import get_doc_type_norwegian
             doc_type_nor = get_doc_type_norwegian(doc_type)
             text = f"Oppgave: Oppsummer følgende {doc_type_nor}:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n{example['output']}\n\n###\n"
-            return {"text": text}
+        return {"text": text}
 
     def format_example_eval(example):
         """Format evaluation example with model-specific prompt template."""
@@ -951,15 +1107,45 @@ def fine_tune_model(
 
     def tokenize_function_train(examples):
         # Tokenize the formatted text for training
+        # We need to separate prompt and summary to properly mask prompt tokens
         max_input_prompt_tokens = max_input_text_tokens + max_extra_prompt_tokens
-        # Note: padding=False here - DataCollatorForLanguageModeling handles padding
-        # This approach is compatible with both tokenizers 0.20.0 and 0.22.0
+        
+        # Tokenize full text first
         tokenized = tokenizer(
             examples["text"],
             truncation=True,
             max_length=max_input_prompt_tokens + max_output_summary_tokens,
             padding=False  # Padding done by data collator for compatibility across tokenizer versions
         )
+        
+        # Find where summary starts by looking for summary markers in the text
+        # Store the prompt length for later masking in the collator
+        prompt_lengths = []
+        summary_markers = [
+            "Oppsummering:\n\n###\n\n",
+            "Oppsummering:",
+            "[/INST]",
+            "<|start_header_id|>assistant<|end_header_id|>\n\n",
+        ]
+        
+        for text in examples["text"]:
+            prompt_len = None
+            for marker in summary_markers:
+                if marker in text:
+                    # Tokenize up to the marker to find position
+                    prompt_part = text.split(marker)[0] + marker
+                    prompt_tokens = tokenizer.encode(prompt_part, add_special_tokens=False)
+                    prompt_len = len(prompt_tokens)
+                    break
+            # If no marker found, assume first 80% is prompt (fallback)
+            if prompt_len is None:
+                total_tokens = len(tokenized["input_ids"][len(prompt_lengths)])
+                prompt_len = int(total_tokens * 0.8)
+            prompt_lengths.append(prompt_len)
+        
+        # Store prompt length for use in collator
+        tokenized["prompt_length"] = prompt_lengths
+        
         return tokenized
 
     def tokenize_function_eval(examples):
@@ -1100,6 +1286,30 @@ def fine_tune_model(
                 if estimated_steps:
                     print(f"  Estimated steps: {int(estimated_steps):,}")
         print("=" * 70 + "\n")
+        
+        # Check initial GPU memory utilization
+        if is_main_process and torch.cuda.is_available():
+            print("\n" + "=" * 70)
+            print("INITIAL GPU MEMORY UTILIZATION")
+            print("=" * 70)
+            num_gpus = torch.cuda.device_count()
+            for i in range(num_gpus):
+                props = torch.cuda.get_device_properties(i)
+                total = props.total_memory / 1e9
+                allocated = torch.cuda.memory_allocated(i) / 1e9
+                reserved = torch.cuda.memory_reserved(i) / 1e9
+                free = total - reserved
+                utilization = (reserved / total * 100) if total > 0 else 0
+                
+                print(f"GPU {i}: {props.name}")
+                print(f"  Total: {total:.1f} GB")
+                print(f"  Reserved: {reserved:.1f} GB ({utilization:.1f}%)")
+                print(f"  Free: {free:.1f} GB")
+            
+            avg_free = sum((torch.cuda.get_device_properties(i).total_memory / 1e9 - torch.cuda.memory_reserved(i) / 1e9) for i in range(num_gpus)) / num_gpus
+            if avg_free > 20:
+                print(f"\n→ High free memory ({avg_free:.1f}GB per GPU) - consider increasing batch size for better GPU utilization")
+            print("=" * 70 + "\n")
 
     # Format and tokenize the VALIDATION dataset differently
     formatted_val_dataset = val_dataset.map(format_example_eval)
@@ -1112,10 +1322,41 @@ def fine_tune_model(
     # Data collators
     # For TRAINING: use DataCollatorForLanguageModeling which creates labels
     # IMPORTANT: Must use RIGHT padding for this to work correctly
-    train_data_collator = DataCollatorForLanguageModeling(
+    base_collator = DataCollatorForLanguageModeling(
         tokenizer=tokenizer,
         mlm=False,  # Causal LM, not masked LM
     )
+    
+    # Create a wrapper that masks prompt tokens in labels
+    class PromptMaskingCollator:
+        """Wrapper around DataCollatorForLanguageModeling that masks prompt tokens."""
+        def __init__(self, base_collator, tokenizer):
+            self.base_collator = base_collator
+            self.tokenizer = tokenizer
+        
+        def __call__(self, features):
+            # First, get the base collation
+            batch = self.base_collator(features)
+            
+            # Get labels and input_ids
+            labels = batch['labels']
+            input_ids = batch['input_ids']
+            
+            # Mask prompt tokens in labels (set to -100)
+            # Labels are shifted by 1 position in causal LM, so we mask positions 0 to prompt_length-1
+            for i, feature in enumerate(features):
+                prompt_length = feature.get('prompt_length', None)
+                if prompt_length is not None:
+                    seq_len = labels[i].shape[0]
+                    # Mask positions 0 to prompt_length-1 (accounting for shift)
+                    mask_end = min(prompt_length, seq_len)
+                    labels[i, :mask_end] = -100
+            
+            batch['labels'] = labels
+            return batch
+    
+    # Wrap the collator to mask prompt tokens
+    train_data_collator = PromptMaskingCollator(base_collator, tokenizer)
 
     # Debug: Verify labels are created correctly (only on rank 0)
     if is_main_process:
@@ -1183,11 +1424,17 @@ def fine_tune_model(
                 labels = collated['labels']
                 if hasattr(labels, 'numel'):
                     non_ignored = (labels != -100).sum().item()
+                    prompt_tokens = (labels == -100).sum().item()
                     total = labels.numel()
                     print(f"Labels shape: {labels.shape}")
-                    print(f"Non-ignored labels: {non_ignored}/{total} ({100*non_ignored/total:.1f}%)")
+                    print(f"Prompt tokens (masked): {prompt_tokens}/{total} ({100*prompt_tokens/total:.1f}%)")
+                    print(f"Summary tokens (active): {non_ignored}/{total} ({100*non_ignored/total:.1f}%)")
                     if non_ignored == 0:
                         print("ERROR: All labels are ignored (-100)! This will cause loss=0.0")
+                    elif prompt_tokens == 0:
+                        print("WARNING: No prompt tokens masked! Loss will be computed on prompt tokens too.")
+                    else:
+                        print("✓ Prompt masking verified: prompt tokens are masked, only summary tokens contribute to loss")
                 else:
                     print(f"Labels type: {type(labels)}")
             else:
@@ -1195,7 +1442,8 @@ def fine_tune_model(
             print("=" * 50 + "\n")
         except Exception as e:
             print(f"ERROR during data collator verification: {e}")
-            print(f"Sample structure: {sample if 'sample' in locals() else 'N/A'}")
+            sample_var = locals().get('sample', 'N/A')
+            print(f"Sample structure: {sample_var}")
             import traceback
             traceback.print_exc()
             print("=" * 50 + "\n")
@@ -1407,10 +1655,11 @@ def fine_tune_model(
         report_to="wandb" if is_main_process else "none",
         run_name=wandb_run_name,  # ADD THIS - link to manually initialized wandb run
         gradient_checkpointing=not use_fsdp,  # Disable for FSDP, use activation_checkpointing instead
+        label_smoothing_factor=0.1,  # Add label smoothing to improve generalization
         dataloader_num_workers=4,
         dataloader_pin_memory=True,
         dataloader_prefetch_factor=2,
-        
+
         # fsdp config
         #fsdp_min_num_params=1e8,
         #cpu_offload=True,
@@ -1456,7 +1705,7 @@ def fine_tune_model(
     # 1. Starting fresh (not resuming)
     # 2. Evaluation is enabled (FSDP disables eval, so no early stopping)
     callbacks = []
-    
+
     if not checkpoints_exist and eval_enabled:
         early_stopping = EarlyStoppingCallback(
             early_stopping_patience=10,  # stop if no improvement for n evals
@@ -1480,6 +1729,11 @@ def fine_tune_model(
     examples_tracker = ExamplesTrackingCallback(train_batch_size, gradient_accumulation_steps, num_gpus)
     callbacks.append(examples_tracker)
     print("Adding ExamplesTrackingCallback to log examples processed during training")
+    
+    # Add GPU memory monitoring callback
+    gpu_memory_callback = GPUMemoryCallback(log_interval=50, warn_threshold_gb=80.0)
+    callbacks.append(gpu_memory_callback)
+    print("Adding GPUMemoryCallback to monitor GPU utilization and provide batch size recommendations")
 
     # Initialize Trainer
     # Prepare trainer kwargs
@@ -1604,7 +1858,7 @@ Examples:
                              'gemma-3-12b', 'gemma-3-27b',
                              'normistral-7b', 'normistral-11b',
                              'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian', 'mt5'],
-                    help='Model to fine-tune')
+                       help='Model to fine-tune')
     parser.add_argument('--quantization', type=str, default='none',
                        choices=['none', '4bit', '8bit'],
                        help='Quantization method (default: none). Use "4bit" for GTX3090, "none" for GH200.')
