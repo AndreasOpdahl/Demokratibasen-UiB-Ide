@@ -151,11 +151,14 @@ def main(argv: Optional[List[str]] = None) -> int:
         per_doc_result = se.eval_reference([pred], [ref])
         per_doc_results.append(per_doc_result)
     elapsed = time.time() - start
-    print(f"  Done in {elapsed:.1f}s ({num_pairs / elapsed:.2f} pairs/s)")
+    print(f"  Done in {elapsed:.1f}s ({num_pairs / elapsed:.2f} docs/s)")
 
     # Aggregate overall from per-document results (mean of numeric metrics); drop reference_metrics_failed
+    # Separate reference metrics (rouge/bertscore) from other metrics
     n = len(per_doc_results)
     aggregate = {}
+    reference_metrics = {}
+    reference_keys = {"rouge1", "rouge2", "rougeL", "rougeLsum", "bertscore_f1_mean"}
     if n > 0:
         for key in per_doc_results[0]:
             if key == "reference_metrics_failed":
@@ -163,38 +166,60 @@ def main(argv: Optional[List[str]] = None) -> int:
             vals = [r.get(key) for r in per_doc_results]
             numeric_vals = [v for v in vals if v is not None and isinstance(v, (int, float))]
             if numeric_vals:
-                aggregate[key] = sum(numeric_vals) / len(numeric_vals)
+                value = sum(numeric_vals) / len(numeric_vals)
             else:
-                aggregate[key] = per_doc_results[0].get(key)
+                value = per_doc_results[0].get(key)
+            
+            # Move reference metrics under "reference" field
+            if key in reference_keys:
+                reference_metrics[key] = value
+            else:
+                aggregate[key] = value
 
-    # Overall file: baseline_metrics/evaluation_<pred_summary_stem>_<num_pairs>.json
-    num_pairs_str = f"first{num_pairs}" if first_n is not None else "all"
+    # Overall file: baseline_metrics/evaluation_<pred_summary_stem>_<num_docs>.json
+    num_docs_str = f"first{num_pairs}" if first_n is not None else "all"
     pred_summary_stem = summary_file.stem.replace("text_summary", "pred_summary", 1)
+    
+    # Make paths relative to project root
+    try:
+        summary_file_rel = summary_file.relative_to(_repo_root)
+        predictions_folder_rel = predictions_folder.relative_to(_repo_root)
+    except ValueError:
+        # If paths are not under repo root, use absolute paths
+        summary_file_rel = str(summary_file)
+        predictions_folder_rel = str(predictions_folder)
+    
     overall_data = {
-        "num_pairs": num_pairs,
-        "limit_applied": first_n is not None,
-        "summary_file": str(summary_file),
-        "predictions_folder": str(predictions_folder),
+        "num_docs": num_pairs,
+        "summary_file": str(summary_file_rel),
+        "predictions_folder": str(predictions_folder_rel),
         "runtime_seconds": elapsed,
-        "pairs_per_second": num_pairs / elapsed if elapsed > 0 else 0.0,
+        "docs_per_second": num_pairs / elapsed if elapsed > 0 else 0.0,
+        "reference": reference_metrics,
         **aggregate,
     }
     if first_n is not None:
         overall_data["dokument_ids"] = common_ids
 
-    overall_path = out_dir / f"evaluation_{pred_summary_stem}_{num_pairs_str}.json"
+    overall_path = out_dir / f"evaluation_{pred_summary_stem}_{num_docs_str}.json"
     with overall_path.open("w", encoding="utf-8") as f:
         json.dump(overall_data, f, ensure_ascii=False, indent=2)
     print(f"Overall results saved to: {overall_path}")
 
     # Per-document files: baseline_metrics/pred_ref_summary_evaluations/<dokument_id>-evaluation.json
-    # Drop reference_metrics_failed from per-doc output
+    # Drop reference_metrics_failed from per-doc output and restructure under "reference" field
     print(f"Saving per-document results to: {eval_subdir}")
+    reference_keys = {"rouge1", "rouge2", "rougeL", "rougeLsum", "bertscore_f1_mean"}
     for doc_id, per_doc_result in zip(common_ids, per_doc_results):
-        ref_metrics = {k: v for k, v in per_doc_result.items() if k != "reference_metrics_failed"}
+        # Separate reference metrics from other metrics
+        ref_metrics = {k: v for k, v in per_doc_result.items() 
+                      if k != "reference_metrics_failed" and k in reference_keys}
+        other_metrics = {k: v for k, v in per_doc_result.items() 
+                       if k != "reference_metrics_failed" and k not in reference_keys}
         per_doc = {
             "dokument_id": doc_id,
-            "reference_metrics": ref_metrics,
+            "reference": ref_metrics,
+            **other_metrics,
         }
         per_doc_path = eval_subdir / f"{doc_id}-evaluation.json"
         with per_doc_path.open("w", encoding="utf-8") as f:

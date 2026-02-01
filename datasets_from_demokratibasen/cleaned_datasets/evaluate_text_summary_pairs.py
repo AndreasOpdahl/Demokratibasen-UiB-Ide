@@ -193,12 +193,22 @@ def main(argv: List[str] | None = None) -> int:
     num_pairs = faithfulness_overall.get("num_premise_sentence_pairs", 0)
     # Enrich faithfulness with per-second pair processing rate; keep only faithfulness-scoped stats
     faithfulness_overall["premise_sentence_pairs_per_second"] = num_pairs / elapsed if elapsed > 0 else 0.0
+    
+    # Make path relative to project root
+    try:
+        data_file_rel = data_file.relative_to(_repo_root)
+    except ValueError:
+        # If path is not under repo root, use absolute path
+        data_file_rel = str(data_file)
+    
     overall = {
         "num_docs": actual_n,
+        "text_summary_file": str(data_file_rel),
         "runtime_seconds": elapsed,
         "docs_per_second": actual_n / elapsed if elapsed > 0 else 0.0,
         "hygiene": hygiene_overall,
         "faithfulness": faithfulness_overall,
+        "reference": {},  # Will contain rouge/bertscore metrics when reference evaluation is added
     }
 
     print("\nOVERALL HYGIENE METRICS:")
