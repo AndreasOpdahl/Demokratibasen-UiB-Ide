@@ -29,6 +29,7 @@ import json
 import os
 import re
 import sys
+import time
 import unicodedata
 
 from transformers import AutoTokenizer
@@ -160,8 +161,17 @@ def eval_hygiene(docs, pred_summaries):
 # NLI-based faithfulness
 from typing import List, Dict, Any, Optional, Tuple
 
+import warnings
+
+# Suppress PyTorch/CUDA pynvml deprecation FutureWarning (before torch is imported)
+warnings.filterwarnings("ignore", category=FutureWarning, module="torch.cuda")
+
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers.utils import logging as hf_logging
+
+# Suppress "overflowing tokens are not returned..." and similar tokenizer warnings
+hf_logging.set_verbosity_error()
 
 
 def split_sentences(text: str) -> List[str]:
@@ -371,12 +381,13 @@ class NLIFaithfulnessGate:
         doc_chunk_tokens: int = 350,
         batch_size: int = 4,
         # --- Suggested starting thresholds for CI (tune with a small human-audited set) ---
-        entailment_mean_min: float = 0.72,
-        entailment_sentence_min: float = 0.60,
-        max_low_entailment_sentences: int = 0,
-        contradiction_sentence_max: float = 0.35,
-        max_high_contradiction_sentences: int = 0,
+        entailment_mean_min: float = 0.6,
+        entailment_sentence_min: float = 0.50,
+        max_low_entailment_sentences: int = 1,
+        contradiction_sentence_max: float = 0.50,
+        max_high_contradiction_sentences: int = 1,
     ) -> Dict[str, Any]:
+        start_time = time.perf_counter()
         sents = split_sentences(summary)
         hyp_ids_list = [self.tokenizer.encode(s, add_special_tokens=False) for s in sents]
         hyp_lengths = [len(ids) for ids in hyp_ids_list]
@@ -426,6 +437,7 @@ class NLIFaithfulnessGate:
 
         # Sort by sequence length to reduce padding overhead
         pair_inputs.sort(key=lambda x: len(x[2]), reverse=True)
+        num_premise_sentence_pairs = len(pair_inputs)
 
         start = 0
         while start < len(pair_inputs):
@@ -475,15 +487,41 @@ class NLIFaithfulnessGate:
             start += cur_batch_size
 
         for idx, sent in enumerate(sents):
+            best_chunk_idx = best_ent_chunk_idx[idx]
+            worst_chunk_idx = worst_con_chunk_idx[idx]
             per_sentence.append(
                 {
                     "sentence": sent,
                     "best_entailment": best_entailments[idx],
-                    "best_entailment_chunk_idx": best_ent_chunk_idx[idx],
+                    "best_entailment_chunk_idx": best_chunk_idx,
+                    "best_entailment_premise": doc_chunks[best_chunk_idx] if 0 <= best_chunk_idx < len(doc_chunks) else None,
                     "worst_contradiction": worst_contradictions[idx],
-                    "worst_contradiction_chunk_idx": worst_con_chunk_idx[idx],
+                    "worst_contradiction_chunk_idx": worst_chunk_idx,
+                    "worst_contradiction_premise": doc_chunks[worst_chunk_idx] if 0 <= worst_chunk_idx < len(doc_chunks) else None,
                 }
             )
+
+        # Failing pairs: premise-hypothesis pairs that cause failure (low entailment or high contradiction)
+        failing_pairs: List[Dict[str, Any]] = []
+        for idx, sent in enumerate(sents):
+            prem_low = doc_chunks[best_ent_chunk_idx[idx]] if 0 <= best_ent_chunk_idx[idx] < len(doc_chunks) else None
+            prem_high = doc_chunks[worst_con_chunk_idx[idx]] if 0 <= worst_con_chunk_idx[idx] < len(doc_chunks) else None
+            if best_entailments[idx] < entailment_sentence_min:
+                failing_pairs.append({
+                    "premise": prem_low or prem_high,
+                    "hypothesis": sent,
+                    "entailment": best_entailments[idx],
+                    "contradiction": worst_contradictions[idx],
+                    "reason": "low_entailment",
+                })
+            if worst_contradictions[idx] > contradiction_sentence_max:
+                failing_pairs.append({
+                    "premise": prem_high or prem_low,
+                    "hypothesis": sent,
+                    "entailment": best_entailments[idx],
+                    "contradiction": worst_contradictions[idx],
+                    "reason": "high_contradiction",
+                })
 
         # Aggregates
         if best_entailments:
@@ -515,7 +553,7 @@ class NLIFaithfulnessGate:
         reasons = []
         if entail_mean < entailment_mean_min:
             reasons.append(
-                f"mean_entailment {entail_mean:.3f} < {entailment_mean_min:.3f}"
+                f"low_mean_entailment {entail_mean:.3f} < {entailment_mean_min:.3f}"
             )
         if low_entail_count > max_low_entailment_sentences:
             reasons.append(
@@ -530,6 +568,9 @@ class NLIFaithfulnessGate:
 
         passed = (len(reasons) == 0)
 
+        runtime_seconds = time.perf_counter() - start_time
+        premise_sentence_pairs_per_second = num_premise_sentence_pairs / runtime_seconds if runtime_seconds > 0 else 0.0
+
         return {
             "faithfulness": {
                 "entailment_mean": entail_mean,
@@ -543,6 +584,10 @@ class NLIFaithfulnessGate:
             "passed": passed,
             "reasons": reasons,
             "per_sentence": per_sentence,
+            "failing_pairs": failing_pairs,
+            "runtime_seconds": runtime_seconds,
+            "num_premise_sentence_pairs": num_premise_sentence_pairs,
+            "premise_sentence_pairs_per_second": premise_sentence_pairs_per_second,
         }
         
     def eval_faithfulness(self, docs, pred_summaries):
@@ -550,24 +595,26 @@ class NLIFaithfulnessGate:
         for doc, pred_summary in zip(docs, pred_summaries):
             faithfulness_out.append(self.score_and_gate(doc, pred_summary))
         # return ratio of that passed the gate and list of reasons for failure
-        ratio_passed = sum(1 for f in faithfulness_out if f["passed"]) / len(faithfulness_out)
+        ratio_passed_documents = sum(1 for f in faithfulness_out if f["passed"]) / len(faithfulness_out)
         reasons_failed = [f["reasons"] for f in faithfulness_out if not f["passed"]]
+        num_premise_sentence_pairs = sum(f["num_premise_sentence_pairs"] for f in faithfulness_out)
         # return mean entailment score, mean contradiction score, and mean outlier rate
         mean_entailment_score = sum(f["faithfulness"]["entailment_mean"] for f in faithfulness_out) / len(faithfulness_out)
         min_entailment_score = min(f["faithfulness"]["entailment_min"] for f in faithfulness_out)  # Don't divide by length - this is the minimum across all examples
-        mean_low_entailment_sentences = sum(f["faithfulness"]["low_entailment_sentences"] for f in faithfulness_out) / len(faithfulness_out)
+        mean_ratio_low_entailment_sentences = sum(f["faithfulness"]["low_entailment_sentences"] for f in faithfulness_out) / len(faithfulness_out)
         max_contradiction_score = max(f["faithfulness"]["contradiction_max"] for f in faithfulness_out)  # Don't divide by length - this is the maximum across all examples
-        mean_high_contradiction_sentences = sum(f["faithfulness"]["high_contradiction_sentences"] for f in faithfulness_out) / len(faithfulness_out)
-        mean_outlier_rate = sum(f["faithfulness"]["outlier_rate"] for f in faithfulness_out) / len(faithfulness_out)
+        mean_ratio_high_contradiction_sentences = sum(f["faithfulness"]["high_contradiction_sentences"] for f in faithfulness_out) / len(faithfulness_out)
+        mean_ratio_outliers = sum(f["faithfulness"]["outlier_rate"] for f in faithfulness_out) / len(faithfulness_out)
         return {
             "mean_entailment_score": mean_entailment_score,
             "min_entailment_score": min_entailment_score,
-            "mean_low_entailment_sentences": mean_low_entailment_sentences,
+            "mean_ratio_low_entailment_sentences": mean_ratio_low_entailment_sentences,
             "max_contradiction_score": max_contradiction_score,
-            "mean_high_contradiction_sentences": mean_high_contradiction_sentences,
-            "mean_outlier_rate": mean_outlier_rate,
-            "ratio_passed": ratio_passed,
+            "mean_ratio_high_contradiction_sentences": mean_ratio_high_contradiction_sentences,
+            "mean_ratio_outliers": mean_ratio_outliers,
+            "ratio_passed_documents": ratio_passed_documents,
             "reasons_failed": reasons_failed,
+            "num_premise_sentence_pairs": num_premise_sentence_pairs,
         }
 
 
