@@ -205,18 +205,29 @@ if [ "$DRY_RUN" = "true" ]; then
         CHECKPOINTS=""
         for ckpt_num in $SPECIFIC_CHECKPOINTS; do
             ckpt_dir="$CHECKPOINT_BASE_DIR/checkpoint-$ckpt_num"
+            regular_ckpt="$CHECKPOINT_BASE_DIR/regular_checkpoints/regular-checkpoint-$ckpt_num"
+            major_ckpt="$CHECKPOINT_BASE_DIR/major_checkpoints/major-checkpoint-$ckpt_num"
+            
             if [ -d "$ckpt_dir" ]; then
                 CHECKPOINTS="$CHECKPOINTS $ckpt_dir"
-                echo "    ✓ Found: checkpoint-$ckpt_num"
+                echo "    ✓ Found: checkpoint-$ckpt_num (main)"
+            elif [ -d "$regular_ckpt" ]; then
+                CHECKPOINTS="$CHECKPOINTS $regular_ckpt"
+                echo "    ✓ Found: checkpoint-$ckpt_num (regular backup)"
+            elif [ -d "$major_ckpt" ]; then
+                CHECKPOINTS="$CHECKPOINTS $major_ckpt"
+                echo "    ✓ Found: checkpoint-$ckpt_num (major backup)"
             else
-                echo "    ⚠ Not found: checkpoint-$ckpt_num"
+                echo "    ⚠ Not found: checkpoint-$ckpt_num (checked main and backups)"
             fi
         done
     else
-        echo "  Would evaluate ALL checkpoints in: $CHECKPOINT_BASE_DIR"
+        echo "  Would evaluate ALL checkpoints in: $CHECKPOINT_BASE_DIR (including backups)"
         if [ -d "$CHECKPOINT_BASE_DIR" ]; then
-            FOUND_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR" -maxdepth 1 -type d -name "checkpoint-*" | wc -l)
-            echo "    Found $FOUND_CHECKPOINTS checkpoint directory(ies)"
+            MAIN_COUNT=$(find "$CHECKPOINT_BASE_DIR" -maxdepth 1 -type d -name "checkpoint-*" 2>/dev/null | wc -l)
+            REGULAR_COUNT=$(find "$CHECKPOINT_BASE_DIR/regular_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "regular-checkpoint-*" 2>/dev/null | wc -l)
+            MAJOR_COUNT=$(find "$CHECKPOINT_BASE_DIR/major_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "major-checkpoint-*" 2>/dev/null | wc -l)
+            echo "    Main: $MAIN_COUNT, Regular backups: $REGULAR_COUNT, Major backups: $MAJOR_COUNT"
         fi
     fi
     
@@ -340,19 +351,60 @@ module load PyTorch/2.8.0
 # Apptainer image
 export IMAGE=/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif
 
-# Find all checkpoint directories
+# Find all checkpoint directories (main + backups)
+# Priority: main checkpoints first, then backups if main doesn't exist
 if [ -n "$SPECIFIC_CHECKPOINTS" ]; then
     CHECKPOINTS=""
     for ckpt_num in $SPECIFIC_CHECKPOINTS; do
+        # Try main checkpoint directory first
         ckpt_dir="$CHECKPOINT_BASE_DIR/checkpoint-$ckpt_num"
         if [ -d "$ckpt_dir" ]; then
             CHECKPOINTS="$CHECKPOINTS $ckpt_dir"
         else
-            echo "WARNING: Checkpoint not found: $ckpt_dir"
+            # Try backup directories
+            regular_ckpt="$CHECKPOINT_BASE_DIR/regular_checkpoints/regular-checkpoint-$ckpt_num"
+            major_ckpt="$CHECKPOINT_BASE_DIR/major_checkpoints/major-checkpoint-$ckpt_num"
+            
+            if [ -d "$regular_ckpt" ]; then
+                CHECKPOINTS="$CHECKPOINTS $regular_ckpt"
+                echo "Using backup checkpoint: $regular_ckpt"
+            elif [ -d "$major_ckpt" ]; then
+                CHECKPOINTS="$CHECKPOINTS $major_ckpt"
+                echo "Using backup checkpoint: $major_ckpt"
+            else
+                echo "WARNING: Checkpoint not found in main or backup directories: checkpoint-$ckpt_num"
+            fi
         fi
     done
 else
-    CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR" -maxdepth 1 -type d -name "checkpoint-*" | sort -V)
+    # Find all checkpoints: main first, then backups
+    MAIN_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR" -maxdepth 1 -type d -name "checkpoint-*" | sort -V)
+    REGULAR_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR/regular_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "regular-checkpoint-*" 2>/dev/null | sort -V)
+    MAJOR_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR/major_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "major-checkpoint-*" 2>/dev/null | sort -V)
+    
+    # Create a map to avoid duplicates (prioritize main checkpoints)
+    declare -A CHECKPOINT_MAP
+    
+    # Add main checkpoints first
+    for ckpt in $MAIN_CHECKPOINTS; do
+        step=$(basename "$ckpt" | sed 's/checkpoint-//')
+        CHECKPOINT_MAP[$step]="$ckpt"
+    done
+    
+    # Add backup checkpoints only if main doesn't exist
+    for ckpt in $REGULAR_CHECKPOINTS $MAJOR_CHECKPOINTS; do
+        step=$(basename "$ckpt" | sed 's/regular-checkpoint-//' | sed 's/major-checkpoint-//')
+        if [ -z "${CHECKPOINT_MAP[$step]:-}" ]; then
+            CHECKPOINT_MAP[$step]="$ckpt"
+        fi
+    done
+    
+    # Sort by step number and build CHECKPOINTS string
+    CHECKPOINTS=""
+    for step in $(printf '%s\n' "${!CHECKPOINT_MAP[@]}" | sort -n); do
+        CHECKPOINTS="$CHECKPOINTS ${CHECKPOINT_MAP[$step]}"
+    done
+    CHECKPOINTS=$(echo $CHECKPOINTS | xargs)  # Trim leading/trailing spaces
 fi
 
 # Count checkpoints

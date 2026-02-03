@@ -62,9 +62,11 @@ import glob
 import json
 import os
 import random
+import shutil
 import sys
 import importlib
 import math
+import threading
 import time
 from typing import Any, Dict, Optional, Tuple, Union
 import wandb
@@ -124,6 +126,12 @@ from model_configs import (
     get_model_config_by_hf_name,
     get_doc_type_norwegian,
     get_model_name_mapping,
+)
+
+# Import shared utilities
+from utils import (
+    EvalDataCollator,
+    compute_rouge_metrics,
 )
 
 # Default values when command-line args are not supplied
@@ -244,6 +252,145 @@ class GPUMemoryCallback(TrainerCallback):
             print("=" * 70 + "\n")
 
 
+class CheckpointBackupCallback(TrainerCallback):
+    """Callback to backup checkpoints when they're saved (runs in background to avoid blocking training).
+    
+    This ensures checkpoints are backed up to regular_checkpoints/ and major_checkpoints/
+    folders when saved, regardless of whether the monitor script is running.
+    This prevents checkpoints from being overwritten by save_total_limit before backup.
+    
+    The backup runs in a background thread to avoid blocking training.
+    """
+    
+    def __init__(self, output_dir: str, major_checkpoint_interval: int = 500, async_backup: bool = True):
+        """Initialize checkpoint backup callback.
+        
+        Args:
+            output_dir: Training output directory (where checkpoints are saved)
+            major_checkpoint_interval: Every Nth step is a major checkpoint (default: 500)
+            async_backup: If True, backup runs in background thread (default: True). 
+                         If False, backup blocks training (faster but may slow training).
+        """
+        self.output_dir = output_dir
+        self.major_checkpoint_interval = major_checkpoint_interval
+        self.async_backup = async_backup
+        self.backed_up_steps = set()  # Track which steps we've already backed up
+        self._backup_lock = threading.Lock()  # Thread safety for backed_up_steps
+    
+    def _backup_checkpoint(self, checkpoint_dir: str, checkpoint_step_int: int):
+        """Internal method to perform the actual backup (runs in thread or synchronously)."""
+        model_dir = self.output_dir
+        
+        # ------------------------------------------------------------------
+        # Backup: Regular checkpoints
+        # ------------------------------------------------------------------
+        if checkpoint_step_int > 0:
+            regular_ckpt_dir = os.path.join(model_dir, "regular_checkpoints")
+            os.makedirs(regular_ckpt_dir, exist_ok=True)
+            regular_ckpt_name = f"regular-checkpoint-{checkpoint_step_int}"
+            regular_ckpt_path = os.path.join(regular_ckpt_dir, regular_ckpt_name)
+            
+            # Check if backup already exists and is complete (has adapter files)
+            backup_adapter_file = os.path.join(regular_ckpt_path, "adapter_model.safetensors")
+            if os.path.exists(regular_ckpt_path) and os.path.exists(backup_adapter_file):
+                # Backup already exists - skip to avoid unnecessary I/O
+                pass  # Don't print anything to avoid spam during training
+            else:
+                # Remove existing incomplete copy if it exists
+                if os.path.exists(regular_ckpt_path):
+                    try:
+                        shutil.rmtree(regular_ckpt_path)
+                    except Exception as e:
+                        print(f"⚠ Warning: Failed to remove incomplete regular checkpoint copy: {e}")
+                
+                print(f"\n[Checkpoint Backup] Copying checkpoint-{checkpoint_step_int} to regular_checkpoints/...")
+                start_time = time.time()
+                try:
+                    shutil.copytree(checkpoint_dir, regular_ckpt_path)
+                    elapsed = time.time() - start_time
+                    print(f"✓ Successfully backed up checkpoint-{checkpoint_step_int} to {regular_ckpt_path} ({elapsed:.1f}s)")
+                except Exception as e:
+                    print(f"⚠ Warning: Failed to backup regular checkpoint: {e}")
+                    print("   Continuing training, but regular checkpoint backup was not created.")
+        
+        # ------------------------------------------------------------------
+        # Backup: Major checkpoints (subset of regular checkpoints)
+        # ------------------------------------------------------------------
+        if checkpoint_step_int > 0 and checkpoint_step_int % self.major_checkpoint_interval == 0:
+            major_ckpt_dir = os.path.join(model_dir, "major_checkpoints")
+            os.makedirs(major_ckpt_dir, exist_ok=True)
+            major_ckpt_name = f"major-checkpoint-{checkpoint_step_int}"
+            major_ckpt_path = os.path.join(major_ckpt_dir, major_ckpt_name)
+            
+            # Check if backup already exists and is complete (has adapter files)
+            backup_adapter_file = os.path.join(major_ckpt_path, "adapter_model.safetensors")
+            if os.path.exists(major_ckpt_path) and os.path.exists(backup_adapter_file):
+                # Backup already exists - skip to avoid unnecessary I/O
+                pass  # Don't print anything to avoid spam during training
+            else:
+                # Remove existing incomplete copy if it exists
+                if os.path.exists(major_ckpt_path):
+                    try:
+                        shutil.rmtree(major_ckpt_path)
+                    except Exception as e:
+                        print(f"⚠ Warning: Failed to remove incomplete major checkpoint copy: {e}")
+                
+                print(f"[Checkpoint Backup] Copying major checkpoint-{checkpoint_step_int} to major_checkpoints/...")
+                start_time = time.time()
+                try:
+                    shutil.copytree(checkpoint_dir, major_ckpt_path)
+                    elapsed = time.time() - start_time
+                    print(f"✓ Successfully backed up major checkpoint-{checkpoint_step_int} to {major_ckpt_path} ({elapsed:.1f}s)")
+                except Exception as e:
+                    print(f"⚠ Warning: Failed to backup major checkpoint: {e}")
+                    print("   Continuing training, but major checkpoint backup was not created.")
+    
+    def on_save(self, args, state, control, **kwargs):
+        """Backup checkpoint when it's saved (non-blocking if async_backup=True)."""
+        # Only backup on main process (rank 0)
+        if args.local_rank not in [-1, 0]:
+            return
+        
+        # Get current checkpoint directory
+        checkpoint_dir = os.path.join(self.output_dir, f"checkpoint-{state.global_step}")
+        
+        # Check if checkpoint directory exists and has adapter files
+        if not os.path.exists(checkpoint_dir):
+            return
+        
+        adapter_file = os.path.join(checkpoint_dir, "adapter_model.safetensors")
+        if not os.path.exists(adapter_file):
+            # Checkpoint might still be saving, skip this time
+            return
+        
+        # Skip if already backed up (avoid duplicate backups)
+        with self._backup_lock:
+            if state.global_step in self.backed_up_steps:
+                return
+            # Mark as being backed up immediately to prevent race conditions
+            self.backed_up_steps.add(state.global_step)
+        
+        checkpoint_step_int = state.global_step
+        
+        # Run backup in background thread to avoid blocking training
+        if self.async_backup:
+            def backup_thread():
+                try:
+                    self._backup_checkpoint(checkpoint_dir, checkpoint_step_int)
+                except Exception as e:
+                    print(f"⚠ Error in backup thread: {e}")
+                    # Remove from backed_up_steps so it can be retried
+                    with self._backup_lock:
+                        self.backed_up_steps.discard(checkpoint_step_int)
+            
+            thread = threading.Thread(target=backup_thread, daemon=True)
+            thread.start()
+            # Don't wait for thread - training continues immediately
+        else:
+            # Synchronous backup (blocks training, but ensures backup completes)
+            self._backup_checkpoint(checkpoint_dir, checkpoint_step_int)
+
+
 class ExamplesTrackingCallback(TrainerCallback):
     """Callback to track and log examples processed during training."""
     def __init__(self, batch_size, gradient_accumulation_steps, num_gpus):
@@ -287,52 +434,7 @@ class EarlyStoppingMonitorCallback(TrainerCallback):
                 print("="*70 + "\n")
                 control.should_training_stop = True
 
-class EvalDataCollator:
-    """Custom data collator for evaluation that pads both input_ids and labels.
-    
-    Uses left-padding for input_ids (decoder-only models) and right-padding for labels.
-    """
-    
-    def __init__(self, tokenizer, pad_to_multiple_of=None):
-        self.tokenizer = tokenizer
-        self.pad_to_multiple_of = pad_to_multiple_of
-    
-    def __call__(self, features):
-        # Separate input_ids and labels
-        input_ids = [f['input_ids'] for f in features]
-        labels = [f['labels'] for f in features]
-        
-        # Pad input_ids (LEFT padding for decoder-only models)
-        max_input_length = max(len(ids) for ids in input_ids)
-        if self.pad_to_multiple_of:
-            max_input_length = ((max_input_length + self.pad_to_multiple_of - 1) 
-                               // self.pad_to_multiple_of * self.pad_to_multiple_of)
-        
-        padded_input_ids = []
-        attention_mask = []
-        for ids in input_ids:
-            padding_length = max_input_length - len(ids)
-            # LEFT padding: pad tokens go BEFORE the actual tokens
-            padded_input_ids.append([self.tokenizer.pad_token_id] * padding_length + ids)
-            attention_mask.append([0] * padding_length + [1] * len(ids))
-        
-        # Pad labels (RIGHT padding - standard for targets)
-        max_label_length = max(len(lbl) for lbl in labels)
-        if self.pad_to_multiple_of:
-            max_label_length = ((max_label_length + self.pad_to_multiple_of - 1) 
-                               // self.pad_to_multiple_of * self.pad_to_multiple_of)
-        
-        padded_labels = []
-        for lbl in labels:
-            padding_length = max_label_length - len(lbl)
-            # RIGHT padding for labels: pad with -100 so they're ignored
-            padded_labels.append(lbl + [-100] * padding_length)
-        
-        return {
-            'input_ids': torch.tensor(padded_input_ids, dtype=torch.long),
-            'attention_mask': torch.tensor(attention_mask, dtype=torch.long),
-            'labels': torch.tensor(padded_labels, dtype=torch.long),
-        }
+# EvalDataCollator is now imported from utils.data_collators
 
 
 class CausalLMTrainer(Trainer):
@@ -355,7 +457,7 @@ class CausalLMTrainer(Trainer):
         
         This method:
         1. Computes loss using the model's forward pass (which handles label smoothing if enabled)
-        2. Separately tracks loss on prompt vs summary tokens
+        2. Tracks loss on summary tokens (prompt tokens are masked with -100 and ignored)
         3. Logs metrics to wandb for monitoring
         """
         # Get labels
@@ -374,7 +476,7 @@ class CausalLMTrainer(Trainer):
             loss_fct = torch.nn.CrossEntropyLoss(ignore_index=-100)
             loss = loss_fct(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1))
         
-        # For monitoring: compute per-token loss to separate prompt vs summary
+        # For monitoring: compute per-token loss to track summary token loss
         shift_logits = logits[..., :-1, :].contiguous()
         shift_labels = labels[..., 1:].contiguous()
         
@@ -391,18 +493,17 @@ class CausalLMTrainer(Trainer):
         is_prompt_token = (flat_labels == -100)
         is_summary_token = ~is_prompt_token
         
-        # Compute losses separately (for monitoring)
-        prompt_loss = per_token_loss[is_prompt_token].mean() if is_prompt_token.any() else torch.tensor(0.0, device=per_token_loss.device)
+        # Compute summary loss (prompt tokens are ignored, so their loss is always 0)
         summary_loss = per_token_loss[is_summary_token].mean() if is_summary_token.any() else torch.tensor(0.0, device=per_token_loss.device)
         
-        # Log prompt vs summary loss to wandb (only on main process, periodically)
+        # Log summary loss and token ratios to wandb (only on main process, periodically)
         if self.args.local_rank in [-1, 0] and wandb.run is not None:
             # Only log every N steps to avoid spam (use logging_steps from args)
             log_interval = getattr(self.args, 'logging_steps', 10)
             if hasattr(self, 'state') and self.state.global_step % log_interval == 0:
                 wandb.log({
-                    "train/loss_prompt": prompt_loss.item() if isinstance(prompt_loss, torch.Tensor) else prompt_loss,
                     "train/loss_summary": summary_loss.item() if isinstance(summary_loss, torch.Tensor) else summary_loss,
+                    "train/loss_total": loss.item() if isinstance(loss, torch.Tensor) else loss,
                     "train/prompt_tokens_ratio": is_prompt_token.float().mean().item() if is_prompt_token.any() else 0.0,
                     "train/summary_tokens_ratio": is_summary_token.float().mean().item() if is_summary_token.any() else 0.0,
                 }, step=self.state.global_step)
@@ -674,8 +775,8 @@ def fine_tune_model(
     max_input_text_tokens: int = MAX_INPUT_TEXT_TOKENS,
     max_extra_prompt_tokens: int = MAX_EXTRA_PROMPT_TOKENS,
     max_output_summary_tokens: int = MAX_OUTPUT_SUMMARY_TOKENS,
-    train_batch_size: int = TRAIN_BATCH_SIZE,
-    val_batch_size: int = VAL_BATCH_SIZE,
+    train_batch_size: Optional[int] = None,  # None = use model config default
+    val_batch_size: Optional[int] = None,    # None = use model config default
     val_data_size: int = VAL_DATA_SIZE,
     val_beam_size: int = VAL_BEAM_SIZE,
     val_steps: int = VAL_STEPS,
@@ -701,58 +802,16 @@ def fine_tune_model(
     """
     
     def compute_metrics(eval_pred):
-        print('*** evaluation: compute_metrics ***')
-        
-        # Load ROUGE metric (lazy loading after cache paths are set)
-        # This avoids loading at module level before environment is configured
-        rouge = evaluate.load("rouge")
-        
-        preds, labels = eval_pred  # preds: generated summary ids; labels: target summary ids
-        print('*** evaluation: preds ***', preds.shape)
-        print('*** evaluation: labels ***', labels.shape)
-        
-        # Replace -100 and pad tokens so we can decode properly
-        labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
-        
-        # Fix for 4-bit quantization: clip token IDs to valid vocabulary range
-        # This prevents OverflowError during decoding when quantization causes out-of-range values
-        vocab_size = tokenizer.vocab_size
-        print(f'*** Vocab size: {vocab_size} ***')
-        
-        # Clip predictions to valid token ID range [0, vocab_size)
-        # Replace any invalid values with pad_token_id
-        preds = np.clip(preds, 0, vocab_size - 1)
-        
-        # Also ensure labels are in valid range
-        labels = np.clip(labels, 0, vocab_size - 1)
-        
-        # Decode predictions and labels
-        decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
-        decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
-
-        # Strip/normalize for ROUGE
-        decoded_preds = [p.strip() for p in decoded_preds]
-        decoded_labels = [l.strip() for l in decoded_labels]
-        
-        # Debug: print first example
-        if len(decoded_preds) > 0:
-            print(f'\n*** Example 1 ***')
-            print(f'Prediction: {decoded_preds[0][:200]}...')
-            print(f'Reference:  {decoded_labels[0][:200]}...\n')
-
-        scores = rouge.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
-        print('*** evaluation: computed_metrics ***', scores)
-        
-        # Only log to wandb from main process
-        if wandb.run is not None and int(os.environ.get('RANK', 0)) == 0:
-            wandb.log({
-                "eval/rouge1": scores['rouge1'] * 100,
-                "eval/rouge2": scores['rouge2'] * 100,
-                "eval/rougeL": scores['rougeL'] * 100,
-                "eval/rougeLsum": scores['rougeLsum'] * 100,
-            })
-
-        return {k: v * 100 for k, v in scores.items()}  # % values
+        """Compute ROUGE metrics using shared utility function."""
+        is_main_process = (int(os.environ.get('RANK', 0)) == 0)
+        return compute_rouge_metrics(
+            eval_pred=eval_pred,
+            tokenizer=tokenizer,
+            log_to_wandb=True,
+            step=None,  # Step will be set by Trainer
+            is_main_process=is_main_process,
+            verbose=True
+        )
 
     # Set HF token via environment variable
     if hf_token:
@@ -770,6 +829,22 @@ def fine_tune_model(
     
     # Define gradient accumulation steps early (used in wandb config and calculations)
     gradient_accumulation_steps = 4  # This is set in TrainingArguments below
+    
+    # Resolve batch sizes from model config if not provided (must be done early)
+    model_config_early = get_model_config_by_hf_name(model_name)
+    if model_config_early:
+        if train_batch_size is None:
+            train_batch_size = model_config_early.train_batch_size if model_config_early.train_batch_size is not None else TRAIN_BATCH_SIZE
+            print(f"Using model config default train_batch_size: {train_batch_size}")
+        if val_batch_size is None:
+            val_batch_size = model_config_early.val_batch_size if model_config_early.val_batch_size is not None else VAL_BATCH_SIZE
+            print(f"Using model config default val_batch_size: {val_batch_size}")
+    else:
+        # Use global defaults if model config not found
+        if train_batch_size is None:
+            train_batch_size = TRAIN_BATCH_SIZE
+        if val_batch_size is None:
+            val_batch_size = VAL_BATCH_SIZE
     
     # Get number of GPUs early (used in wandb config and calculations)
     world_size = int(os.environ.get('WORLD_SIZE', 1))
@@ -1128,7 +1203,10 @@ def fine_tune_model(
             "<|start_header_id|>assistant<|end_header_id|>\n\n",
         ]
         
-        for text in examples["text"]:
+        # Get input_ids list (already tokenized)
+        input_ids_list = tokenized["input_ids"]
+        
+        for idx, text in enumerate(examples["text"]):
             prompt_len = None
             for marker in summary_markers:
                 if marker in text:
@@ -1139,11 +1217,12 @@ def fine_tune_model(
                     break
             # If no marker found, assume first 80% is prompt (fallback)
             if prompt_len is None:
-                total_tokens = len(tokenized["input_ids"][len(prompt_lengths)])
+                # Use the actual tokenized input_ids length for this example
+                total_tokens = len(input_ids_list[idx])
                 prompt_len = int(total_tokens * 0.8)
             prompt_lengths.append(prompt_len)
         
-        # Store prompt length for use in collator
+        # Store prompt length for use in collator (as a list, one per example)
         tokenized["prompt_length"] = prompt_lengths
         
         return tokenized
@@ -1234,6 +1313,9 @@ def fine_tune_model(
     
     # Update wandb config with final training parameters and example calculations (after dataset is loaded)
     if is_main_process and wandb.run is not None:
+        # train_batch_size and val_batch_size are guaranteed to be int at this point
+        # (set from model config or defaults earlier in the function, around line 610)
+        assert train_batch_size is not None and isinstance(train_batch_size, int), "train_batch_size must be set to an int"
         effective_batch_size = train_batch_size * gradient_accumulation_steps * num_gpus
         examples_per_step = effective_batch_size
         
@@ -1346,10 +1428,13 @@ def fine_tune_model(
             # Labels are shifted by 1 position in causal LM, so we mask positions 0 to prompt_length-1
             for i, feature in enumerate(features):
                 prompt_length = feature.get('prompt_length', None)
-                if prompt_length is not None:
+                # Handle case where prompt_length might be a list (shouldn't happen, but be defensive)
+                if isinstance(prompt_length, list):
+                    prompt_length = prompt_length[0] if len(prompt_length) > 0 else None
+                if prompt_length is not None and isinstance(prompt_length, (int, float)):
                     seq_len = labels[i].shape[0]
                     # Mask positions 0 to prompt_length-1 (accounting for shift)
-                    mask_end = min(prompt_length, seq_len)
+                    mask_end = min(int(prompt_length), seq_len)
                     labels[i, :mask_end] = -100
             
             batch['labels'] = labels
@@ -1380,6 +1465,17 @@ def fine_tune_model(
             # Ensure all values are lists of integers (token IDs), not nested structures
             sample_dict = {}
             for key, value in sample.items():
+                # Special handling for prompt_length - should be a scalar, not a list
+                if key == 'prompt_length':
+                    if isinstance(value, list):
+                        # If it's a list, take the first element (shouldn't happen, but handle it)
+                        sample_dict[key] = value[0] if len(value) > 0 else None
+                    elif isinstance(value, (int, np.integer, float)):
+                        sample_dict[key] = int(value)
+                    else:
+                        sample_dict[key] = value
+                    continue
+                
                 if isinstance(value, list):
                     # If it's already a list, check if it contains token IDs (integers)
                     if len(value) > 0 and isinstance(value[0], (int, np.integer)):
@@ -1468,8 +1564,12 @@ def fine_tune_model(
     use_quantization = (quantization != 'none')
     model = prepare_model_for_lora(model, use_quantization)
     
-    # Get model config for LoRA settings
-    model_config = get_model_config_by_hf_name(model_name)
+    # Get model config for LoRA settings (batch sizes already resolved earlier at line ~915)
+    # Reuse model_config_early if available, otherwise fetch it
+    if 'model_config_early' in locals():
+        model_config = model_config_early
+    else:
+        model_config = get_model_config_by_hf_name(model_name)
     if model_config:
         lora_config = model_config.get_lora_config()
         print(f"Using LoRA config for {model_config.short_name}: r={model_config.lora_r}, alpha={model_config.lora_alpha}")
@@ -1590,6 +1690,7 @@ def fine_tune_model(
     else:
         print(f"Training for {train_epochs} epochs")
         # Calculate examples per epoch
+        assert train_batch_size is not None, "train_batch_size must be set"
         effective_batch = train_batch_size * gradient_accumulation_steps * num_gpus
         examples_per_epoch = len(tokenized_dataset) if 'tokenized_dataset' in locals() else 0
         if examples_per_epoch > 0:
@@ -1734,6 +1835,19 @@ def fine_tune_model(
     gpu_memory_callback = GPUMemoryCallback(log_interval=50, warn_threshold_gb=80.0)
     callbacks.append(gpu_memory_callback)
     print("Adding GPUMemoryCallback to monitor GPU utilization and provide batch size recommendations")
+    
+    # Add checkpoint backup callback - CRITICAL: Backs up checkpoints immediately when saved
+    # This ensures checkpoints are preserved even if monitor script doesn't run
+    # Major checkpoint interval: every 500 steps (same as evaluation script default)
+    major_checkpoint_interval = 500
+    checkpoint_backup_callback = CheckpointBackupCallback(
+        output_dir=output_dir,
+        major_checkpoint_interval=major_checkpoint_interval
+    )
+    callbacks.append(checkpoint_backup_callback)
+    print(f"Adding CheckpointBackupCallback to backup checkpoints immediately when saved")
+    print(f"  → Regular checkpoints: all checkpoints → regular_checkpoints/")
+    print(f"  → Major checkpoints: every {major_checkpoint_interval} steps → major_checkpoints/")
 
     # Initialize Trainer
     # Prepare trainer kwargs
@@ -1888,10 +2002,10 @@ Examples:
                        help=f'Maximum extra tokens for input prompt/task description (default: {MAX_EXTRA_PROMPT_TOKENS})')
     parser.add_argument('--max_output_summary_tokens', type=int, default=MAX_OUTPUT_SUMMARY_TOKENS,
                        help=f'Maximum tokens for output summary (default: {MAX_OUTPUT_SUMMARY_TOKENS})')
-    parser.add_argument('--train_batch_size', type=int, default=TRAIN_BATCH_SIZE,
-                       help=f'Training batch size per device (default: {TRAIN_BATCH_SIZE})')
-    parser.add_argument('--val_batch_size', type=int, default=VAL_BATCH_SIZE,
-                       help=f'Validation batch size per device (default: {VAL_BATCH_SIZE})')
+    parser.add_argument('--train_batch_size', type=int, default=None,
+                       help=f'Training batch size per device (default: use model config default, or {TRAIN_BATCH_SIZE} if model not found)')
+    parser.add_argument('--val_batch_size', type=int, default=None,
+                       help=f'Validation batch size per device (default: use model config default, or {VAL_BATCH_SIZE} if model not found)')
     parser.add_argument('--val_data_size', type=int, default=VAL_DATA_SIZE,
                        help=f'Number of examples to use for validation (default: {VAL_DATA_SIZE})')
     parser.add_argument('--val_beam_size', type=int, default=VAL_BEAM_SIZE,

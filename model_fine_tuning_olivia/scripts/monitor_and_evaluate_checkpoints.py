@@ -39,23 +39,68 @@ from evaluate_distributed_checkpoints_multigpu import evaluate_checkpoint
 
 
 def find_checkpoints(output_dir: str) -> List[str]:
-    """Find all checkpoint directories, sorted by step number."""
+    """Find all checkpoint directories, sorted by step number.
+    
+    Checks both:
+    1. Main checkpoint directories (checkpoint-*)
+    2. Backup directories (regular_checkpoints/regular-checkpoint-*, major_checkpoints/major-checkpoint-*)
+    
+    Returns list of checkpoint paths, prioritizing main directories if they exist.
+    """
     if not os.path.exists(output_dir):
         return []
     
+    checkpoints = []
+    
+    # 1. Check main checkpoint directories
     checkpoint_pattern = os.path.join(output_dir, "checkpoint-*")
-    checkpoints = glob.glob(checkpoint_pattern)
+    main_checkpoints = glob.glob(checkpoint_pattern)
+    
+    # 2. Check backup directories (if main checkpoints don't exist or were deleted)
+    regular_ckpt_dir = os.path.join(output_dir, "regular_checkpoints")
+    major_ckpt_dir = os.path.join(output_dir, "major_checkpoints")
+    
+    backup_checkpoints = []
+    if os.path.exists(regular_ckpt_dir):
+        backup_pattern = os.path.join(regular_ckpt_dir, "regular-checkpoint-*")
+        backup_checkpoints.extend(glob.glob(backup_pattern))
+    if os.path.exists(major_ckpt_dir):
+        backup_pattern = os.path.join(major_ckpt_dir, "major-checkpoint-*")
+        backup_checkpoints.extend(glob.glob(backup_pattern))
     
     def get_step(ckpt_path: str) -> int:
         """Extract step number from checkpoint path."""
         try:
-            return int(os.path.basename(ckpt_path).split("-")[-1])
+            basename = os.path.basename(ckpt_path)
+            # Handle both "checkpoint-123" and "regular-checkpoint-123" / "major-checkpoint-123"
+            if basename.startswith("checkpoint-"):
+                return int(basename.split("-")[-1])
+            elif basename.startswith("regular-checkpoint-") or basename.startswith("major-checkpoint-"):
+                return int(basename.split("-")[-1])
         except (ValueError, IndexError):
             return -1
+        return -1
     
-    # Sort by step number, filter out invalid ones
-    valid_checkpoints = [ckpt for ckpt in checkpoints if get_step(ckpt) >= 0]
-    valid_checkpoints.sort(key=get_step)
+    # Create a map of step -> checkpoint paths (prioritize main checkpoints)
+    checkpoint_map = {}
+    
+    # Add main checkpoints first (they take priority)
+    for ckpt in main_checkpoints:
+        step = get_step(ckpt)
+        if step >= 0:
+            checkpoint_map[step] = ckpt
+    
+    # Add backup checkpoints only if main checkpoint doesn't exist for that step
+    for ckpt in backup_checkpoints:
+        step = get_step(ckpt)
+        if step >= 0 and step not in checkpoint_map:
+            # Verify backup has adapter files before including it
+            adapter_file = os.path.join(ckpt, "adapter_model.safetensors")
+            if os.path.exists(adapter_file):
+                checkpoint_map[step] = ckpt
+    
+    # Sort by step number
+    valid_checkpoints = [checkpoint_map[step] for step in sorted(checkpoint_map.keys())]
     return valid_checkpoints
 
 
@@ -291,7 +336,7 @@ def monitor_and_evaluate(
             
             # Check if training has completed (with time check to avoid false positives)
             # Pass checkpoints to verify no newer checkpoints exist
-            if check_training_complete(output_dir, checkpoints):
+            if check_training_complete(output_dir, checkpoints if checkpoints else None):
                 print("Training completion signal detected. Stopping monitor.")
                 break
             
@@ -306,7 +351,17 @@ def monitor_and_evaluate(
             
             for checkpoint_path in checkpoints:
                 try:
-                    step = int(os.path.basename(checkpoint_path).split("-")[-1])
+                    # Extract step from checkpoint path (handles both main and backup paths)
+                    basename = os.path.basename(checkpoint_path.rstrip('/'))
+                    if basename.startswith("checkpoint-"):
+                        step = int(basename.split("-")[-1])
+                        checkpoint_name = basename
+                    elif basename.startswith("regular-checkpoint-") or basename.startswith("major-checkpoint-"):
+                        step = int(basename.split("-")[-1])
+                        # Convert backup name to standard checkpoint name for eval results lookup
+                        checkpoint_name = f"checkpoint-{step}"
+                    else:
+                        continue
                 except (ValueError, IndexError):
                     continue
                 
@@ -315,9 +370,14 @@ def monitor_and_evaluate(
                     continue
                 
                 # Check if evaluation results file exists (new location)
-                model_dir = os.path.dirname(checkpoint_path.rstrip('/'))
+                # model_dir is the parent of checkpoint_path (could be output_dir or backup subdir)
+                if "regular_checkpoints" in checkpoint_path or "major_checkpoints" in checkpoint_path:
+                    # For backup checkpoints, model_dir is the parent of the backup directory
+                    model_dir = os.path.dirname(os.path.dirname(checkpoint_path.rstrip('/')))
+                else:
+                    model_dir = os.path.dirname(checkpoint_path.rstrip('/'))
+                
                 all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
-                checkpoint_name = os.path.basename(checkpoint_path.rstrip('/'))
                 eval_results_file = os.path.join(all_eval_results_dir, f"{checkpoint_name}-eval-results.json")
                 
                 # Also check old location for backwards compatibility
@@ -328,7 +388,7 @@ def monitor_and_evaluate(
                     evaluated_steps.add(step)
                     continue
                 
-                # Verify checkpoint is complete
+                # Verify checkpoint is complete (must have adapter files)
                 adapter_file = os.path.join(checkpoint_path, "adapter_model.safetensors")
                 if not os.path.exists(adapter_file):
                     # Check if this checkpoint was already evaluated (only has eval_results in old location)
@@ -343,6 +403,11 @@ def monitor_and_evaluate(
                 # Found an unevaluated, complete checkpoint
                 checkpoint_to_evaluate = checkpoint_path
                 checkpoint_step = step
+                
+                # Log if we're using a backup checkpoint
+                if "regular_checkpoints" in checkpoint_path or "major_checkpoints" in checkpoint_path:
+                    backup_type = "major" if "major_checkpoints" in checkpoint_path else "regular"
+                    print(f"ℹ Using {backup_type} checkpoint backup for evaluation (original checkpoint was deleted)")
                 break
             
             # If no checkpoint found to evaluate, wait

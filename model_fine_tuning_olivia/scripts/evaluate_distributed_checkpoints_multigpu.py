@@ -571,50 +571,68 @@ def load_model_and_peft_checkpoint(
     # For every evaluated checkpoint, create a copy under model_dir/regular_checkpoints
     # This preserves all evaluated checkpoints even if training later deletes
     # the original checkpoint directories.
+    # Only backup if backup doesn't already exist (to avoid unnecessary I/O)
     if checkpoint_step_int > 0:
         regular_ckpt_dir = os.path.join(model_dir, "regular_checkpoints")
         os.makedirs(regular_ckpt_dir, exist_ok=True)
         regular_ckpt_name = f"regular-checkpoint-{checkpoint_step_int}"
         regular_ckpt_path = os.path.join(regular_ckpt_dir, regular_ckpt_name)
 
-        # Remove existing copy if it exists (e.g., re-evaluation)
-        if os.path.exists(regular_ckpt_path):
-            print(f"Removing existing regular checkpoint copy: {regular_ckpt_path}")
-            shutil.rmtree(regular_ckpt_path)
+        # Check if backup already exists and has adapter files
+        backup_adapter_file = os.path.join(regular_ckpt_path, "adapter_model.safetensors")
+        if os.path.exists(regular_ckpt_path) and os.path.exists(backup_adapter_file):
+            print(f"✓ Regular checkpoint backup already exists: {regular_ckpt_path} (skipping backup)")
+        else:
+            # Remove existing incomplete copy if it exists
+            if os.path.exists(regular_ckpt_path):
+                print(f"Removing incomplete regular checkpoint copy: {regular_ckpt_path}")
+                try:
+                    shutil.rmtree(regular_ckpt_path)
+                except Exception as e:
+                    print(f"⚠ Warning: Failed to remove incomplete backup: {e}")
 
-        print(f"Copying regular checkpoint to: {regular_ckpt_path}")
-        try:
-            shutil.copytree(checkpoint_dir, regular_ckpt_path)
-            print(f"✓ Successfully copied regular checkpoint to {regular_ckpt_path}")
-        except Exception as e:
-            print(f"⚠ Warning: Failed to copy regular checkpoint: {e}")
-            print("   Continuing with evaluation, but regular checkpoint copy was not created.")
+            print(f"Copying regular checkpoint to: {regular_ckpt_path}")
+            try:
+                shutil.copytree(checkpoint_dir, regular_ckpt_path)
+                print(f"✓ Successfully copied regular checkpoint to {regular_ckpt_path}")
+            except Exception as e:
+                print(f"⚠ Warning: Failed to copy regular checkpoint: {e}")
+                print("   Continuing with evaluation, but regular checkpoint copy was not created.")
 
     # ------------------------------------------------------------------
     # Backup: Major checkpoints (subset of regular checkpoints)
     # ------------------------------------------------------------------
     # For major checkpoints, also create a copy under model_dir/major_checkpoints
     # Format: major-checkpoint-nnn (copy of checkpoint-nnn)
+    # Only backup if backup doesn't already exist (to avoid unnecessary I/O)
     if checkpoint_step_int > 0 and checkpoint_step_int % major_checkpoint_interval == 0:
         major_ckpt_dir = os.path.join(model_dir, "major_checkpoints")
         os.makedirs(major_ckpt_dir, exist_ok=True)
         major_ckpt_name = f"major-checkpoint-{checkpoint_step_int}"
         major_ckpt_path = os.path.join(major_ckpt_dir, major_ckpt_name)
         
-        # Remove existing copy if it exists (in case we're re-evaluating or updating)
-        if os.path.exists(major_ckpt_path):
-            print(f"Removing existing major checkpoint copy: {major_ckpt_path}")
-            shutil.rmtree(major_ckpt_path)
-        
-        # Copy checkpoint to major_checkpoints directory
-        # This ensures major checkpoints persist even if original checkpoints are deleted
-        print(f"Copying major checkpoint to: {major_ckpt_path}")
-        try:
-            shutil.copytree(checkpoint_dir, major_ckpt_path)
-            print(f"✓ Successfully copied major checkpoint to {major_ckpt_path}")
-        except Exception as e:
-            print(f"⚠ Warning: Failed to copy major checkpoint: {e}")
-            print("   Continuing with evaluation, but major checkpoint copy was not created.")
+        # Check if backup already exists and has adapter files
+        backup_adapter_file = os.path.join(major_ckpt_path, "adapter_model.safetensors")
+        if os.path.exists(major_ckpt_path) and os.path.exists(backup_adapter_file):
+            print(f"✓ Major checkpoint backup already exists: {major_ckpt_path} (skipping backup)")
+        else:
+            # Remove existing incomplete copy if it exists
+            if os.path.exists(major_ckpt_path):
+                print(f"Removing incomplete major checkpoint copy: {major_ckpt_path}")
+                try:
+                    shutil.rmtree(major_ckpt_path)
+                except Exception as e:
+                    print(f"⚠ Warning: Failed to remove incomplete backup: {e}")
+            
+            # Copy checkpoint to major_checkpoints directory
+            # This ensures major checkpoints persist even if original checkpoints are deleted
+            print(f"Copying major checkpoint to: {major_ckpt_path}")
+            try:
+                shutil.copytree(checkpoint_dir, major_ckpt_path)
+                print(f"✓ Successfully copied major checkpoint to {major_ckpt_path}")
+            except Exception as e:
+                print(f"⚠ Warning: Failed to copy major checkpoint: {e}")
+                print("   Continuing with evaluation, but major checkpoint copy was not created.")
     
     # Check if this checkpoint was already evaluated
     # Look in model_dir/all_eval_results/checkpoint-nnn-eval-results.json
@@ -771,14 +789,62 @@ def load_model_and_peft_checkpoint(
             checkpoint_dir,  # Now an absolute path
             is_trainable=False,
         )
-    except ValueError as e:
-        if "Can't find 'adapter_config.json'" in str(e):
+    except (ValueError, TypeError) as e:
+        error_str = str(e)
+        # Handle corrupted adapter_config.json files (e.g., typos like 'corda_config' instead of 'lora_config')
+        if "Can't find 'adapter_config.json'" in error_str:
             raise ValueError(
                 f"Failed to load PEFT adapter from {checkpoint_dir}. "
                 f"Make sure this is a valid PEFT checkpoint directory containing adapter_config.json. "
                 f"Original error: {e}"
             )
-        raise
+        elif "unexpected keyword argument" in error_str and ("corda_config" in error_str or "adapter_config" in error_str):
+            # Try to fix corrupted adapter_config.json
+            print(f"⚠ Warning: Detected corrupted adapter_config.json with error: {e}")
+            print(f"Attempting to fix adapter_config.json...")
+            try:
+                with open(adapter_config_path, 'r') as f:
+                    config = json.load(f)
+                
+                # Fix common typos - remove invalid keys
+                fixed = False
+                if 'corda_config' in config:
+                    print(f"  Fixing typo: removing 'corda_config' (invalid key)")
+                    del config['corda_config']
+                    fixed = True
+                
+                if fixed:
+                    # Save fixed config
+                    backup_path = adapter_config_path + '.backup'
+                    shutil.copy2(adapter_config_path, backup_path)
+                    print(f"  Created backup: {backup_path}")
+                    
+                    with open(adapter_config_path, 'w') as f:
+                        json.dump(config, f, indent=2)
+                    print(f"  Fixed adapter_config.json, retrying load...")
+                    
+                    # Retry loading
+                    model = PeftModel.from_pretrained(
+                        base_model,
+                        checkpoint_dir,
+                        is_trainable=False,
+                    )
+                else:
+                    # Couldn't fix it automatically
+                    raise ValueError(
+                        f"Failed to load PEFT adapter from {checkpoint_dir}. "
+                        f"The adapter_config.json appears to be corrupted with error: {e}. "
+                        f"Please check the adapter_config.json file manually."
+                    )
+            except Exception as fix_error:
+                raise ValueError(
+                    f"Failed to load PEFT adapter from {checkpoint_dir}. "
+                    f"The adapter_config.json appears to be corrupted. "
+                    f"Original error: {e}. "
+                    f"Fix attempt error: {fix_error}"
+                )
+        else:
+            raise
     
     # CRITICAL: After loading PEFT, verify base model is still split
     # PEFT might have moved things around, so we need to check
@@ -1966,7 +2032,7 @@ def evaluate_checkpoint(
         
         # Update summary with best metrics only (for quick overview)
         best_rouge_lsum = eval_results.get("eval_rougeLsum", 0)
-        current_best = getattr(wandb.summary, "best_rouge_lsum", 0)
+        current_best = wandb.summary.get("best_rouge_lsum", 0)
         if current_best < best_rouge_lsum:
             wandb.summary.update({
                 "best_checkpoint": checkpoint_step_int,

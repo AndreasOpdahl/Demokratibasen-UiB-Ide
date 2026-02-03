@@ -27,11 +27,13 @@ fi
 # SLURM_ACCOUNT from .env is still used for informational purposes
 
 # Parse command-line arguments or use defaults
-# Usage: sbatch --export=SLURM_ACCOUNT=nnXDXFWF run_finetune_multinode.sbatch [--model=MODEL] [--num_gpus=N] [--train_dataset=PATH] [--val_dataset=PATH] [--resume_checkpoint=CHECKPOINT] [--task_limit="--max_steps N"] [--distribution_flag="--fsdp"] [--dry-run]
+# Usage: sbatch --export=SLURM_ACCOUNT=nnXDXFWF run_finetune_multinode.sbatch [--model=MODEL] [--num_gpus=N] [--train_dataset=PATH] [--val_dataset=PATH] [--train_batch_size=N] [--val_batch_size=N] [--resume_checkpoint=CHECKPOINT] [--task_limit="--max_steps N"] [--distribution_flag="--fsdp"] [--dry-run]
 MODEL=${MODEL:-gemma-2-9b}
 NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
 TRAIN_DATASET=${TRAIN_DATASET:-"data/output/new_processed_data_train.jsonl"}
 VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
+TRAIN_BATCH_SIZE=${TRAIN_BATCH_SIZE:-""}  # Empty = use model config default
+VAL_BATCH_SIZE=${VAL_BATCH_SIZE:-""}      # Empty = use model config default
 RESUME_CHECKPOINT=${RESUME_CHECKPOINT:-""}
 TASK_LIMIT=${TASK_LIMIT:-"--max_steps 10000"}
 DISTRIBUTION_FLAG=${DISTRIBUTION_FLAG:-"--fsdp"}
@@ -61,6 +63,12 @@ for arg in "$@"; do
         --val_dataset=*)
             VAL_DATASET="${arg#*=}"
             ;;
+        --train_batch_size=*)
+            TRAIN_BATCH_SIZE="${arg#*=}"
+            ;;
+        --val_batch_size=*)
+            VAL_BATCH_SIZE="${arg#*=}"
+            ;;
         --dry-run|--debug)
             DRY_RUN=true
             ;;
@@ -74,6 +82,8 @@ for arg in "$@"; do
             echo "  --num_gpus=N               Number of GPUs (default: 4)"
             echo "  --train_dataset=PATH       Path to training dataset JSONL file (default: data/output/new_processed_data_train.jsonl)"
             echo "  --val_dataset=PATH         Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
+            echo "  --train_batch_size=N       Training batch size per device (default: use model config default)"
+            echo "  --val_batch_size=N         Validation batch size per device (default: use model config default)"
             echo "  --resume_checkpoint=DIR    Checkpoint directory to resume from (default: none)"
             echo "  --task_limit=\"OPTIONS\"     Task limit, e.g. \"--max_steps 10000\" (default: --max_steps 10000)"
             echo "  --distribution_flag=FLAG   Distribution flag: --fsdp or --ddp (default: --fsdp)"
@@ -187,6 +197,8 @@ echo "  MODEL: $MODEL"
 echo "  NUM_GPUS: $NUM_GPUS"
 echo "  TRAIN_DATASET: $TRAIN_DATASET"
 echo "  VAL_DATASET: $VAL_DATASET"
+echo "  TRAIN_BATCH_SIZE: ${TRAIN_BATCH_SIZE:-use model config default}"
+echo "  VAL_BATCH_SIZE: ${VAL_BATCH_SIZE:-use model config default}"
 echo "  RESUME_CHECKPOINT: ${RESUME_CHECKPOINT:-none}"
 echo "  TASK_LIMIT: $TASK_LIMIT"
 echo "  DISTRIBUTION_FLAG: $DISTRIBUTION_FLAG"
@@ -435,6 +447,13 @@ sed -i "s|HUGGINGFACE_TOKEN_PLACEHOLDER|$HUGGINGFACE_TOKEN|g" "$SCRIPT_FILE"
 sed -i "s|TASK_LIMIT_PLACEHOLDER|$TASK_LIMIT|g" "$SCRIPT_FILE"
 sed -i "s|TRAIN_DATASET_PLACEHOLDER|$TRAIN_DATASET|g" "$SCRIPT_FILE"
 sed -i "s|VAL_DATASET_PLACEHOLDER|$VAL_DATASET|g" "$SCRIPT_FILE"
+# Add batch size arguments if provided (empty string if not provided)
+TRAIN_BATCH_SIZE_ARG=""
+VAL_BATCH_SIZE_ARG=""
+[ -n "$TRAIN_BATCH_SIZE" ] && TRAIN_BATCH_SIZE_ARG="--train_batch_size $TRAIN_BATCH_SIZE"
+[ -n "$VAL_BATCH_SIZE" ] && VAL_BATCH_SIZE_ARG="--val_batch_size $VAL_BATCH_SIZE"
+sed -i "s|TRAIN_BATCH_SIZE_PLACEHOLDER|$TRAIN_BATCH_SIZE_ARG|g" "$SCRIPT_FILE"
+sed -i "s|VAL_BATCH_SIZE_PLACEHOLDER|$VAL_BATCH_SIZE_ARG|g" "$SCRIPT_FILE"
 sed -i "s|RESUME_ARG_PLACEHOLDER|$RESUME_ARG|g" "$SCRIPT_FILE"
 sed -i "s|INSTALL_FLAG_PLACEHOLDER|${PWD}/logs/install_done_${SLURM_JOB_ID}|g" "$SCRIPT_FILE"
 

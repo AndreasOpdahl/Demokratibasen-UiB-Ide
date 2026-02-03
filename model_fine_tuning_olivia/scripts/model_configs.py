@@ -71,6 +71,8 @@ class ModelConfig:
     architecture: str
     lora_dropout: float = 0.05
     learning_rate: float = 1e-5
+    train_batch_size: Optional[int] = None  # Default training batch size (None = use global default)
+    val_batch_size: Optional[int] = None    # Default validation batch size (None = use global default)
     
     def get_lora_config(self) -> LoraConfig:
         """Get LoRA configuration for this model."""
@@ -123,6 +125,8 @@ MODEL_CONFIGS = {
         learning_rate=1e-5,
         prompt_config=PROMPT_PLAIN,
         architecture='gemma',
+        train_batch_size=4,
+        val_batch_size=16,
     ),
     'gemma-7b': ModelConfig(
         short_name='gemma-7b',
@@ -133,6 +137,8 @@ MODEL_CONFIGS = {
         learning_rate=1e-5,
         prompt_config=PROMPT_PLAIN,
         architecture='gemma',
+        train_batch_size=4,
+        val_batch_size=8,
     ),
     # Gemma-2 models (new generation) - https://huggingface.co/collections/google/gemma-2-release
     'gemma-2-9b': ModelConfig(
@@ -144,6 +150,8 @@ MODEL_CONFIGS = {
         learning_rate=1e-5,
         prompt_config=PROMPT_PLAIN,
         architecture='gemma',
+        train_batch_size=4,
+        val_batch_size=8,
     ),
     'gemma-2-27b': ModelConfig(
         short_name='gemma-2-27b',
@@ -154,6 +162,8 @@ MODEL_CONFIGS = {
         learning_rate=2e-5,  # Higher LR for larger model
         prompt_config=PROMPT_PLAIN,
         architecture='gemma',
+        train_batch_size=2,  # Very large model - smaller batch
+        val_batch_size=2,
     ),
     # Gemma-3 models - https://huggingface.co/collections/google/gemma-3-release
     'gemma-3-12b': ModelConfig(
@@ -165,6 +175,8 @@ MODEL_CONFIGS = {
         learning_rate=2e-5,  # Higher LR for larger model
         prompt_config=PROMPT_PLAIN,
         architecture='gemma',
+        train_batch_size=4,
+        val_batch_size=8,
     ),
     'gemma-3-27b': ModelConfig(
         short_name='gemma-3-27b',
@@ -175,6 +187,8 @@ MODEL_CONFIGS = {
         learning_rate=2e-5,  # Higher LR for larger model
         prompt_config=PROMPT_PLAIN,
         architecture='gemma',
+        train_batch_size=2,  # Very large model - smaller batch
+        val_batch_size=2,
     ),
     
     # Viking models (Mistral-based)
@@ -187,6 +201,8 @@ MODEL_CONFIGS = {
         learning_rate=1e-5,
         prompt_config=PROMPT_PLAIN,
         architecture='mistral',
+        train_batch_size=4,
+        val_batch_size=16,
     ),
     'viking-13b': ModelConfig(
         short_name='viking-13b',
@@ -197,6 +213,8 @@ MODEL_CONFIGS = {
         learning_rate=2e-5,  # Higher LR for larger model
         prompt_config=PROMPT_PLAIN,
         architecture='mistral',
+        train_batch_size=4,
+        val_batch_size=8,
     ),
     'viking-33b': ModelConfig(
         short_name='viking-33b',
@@ -207,6 +225,8 @@ MODEL_CONFIGS = {
         learning_rate=2e-5,  # Higher LR for larger model
         prompt_config=PROMPT_PLAIN,
         architecture='mistral',
+        train_batch_size=2,  # Very large model - smaller batch
+        val_batch_size=2,
     ),
     
     # Normistral models (Mistral-based) - using custom prompt
@@ -219,6 +239,8 @@ MODEL_CONFIGS = {
         learning_rate=1.5e-5,
         prompt_config=PROMPT_NORMISTRAL,  # Custom prompt
         architecture='mistral',
+        train_batch_size=4,
+        val_batch_size=16,
     ),
     'normistral-11b': ModelConfig(
         short_name='normistral-11b',
@@ -229,6 +251,8 @@ MODEL_CONFIGS = {
         learning_rate=2e-5,
         prompt_config=PROMPT_NORMISTRAL,  # Custom prompt
         architecture='mistral',
+        train_batch_size=4,
+        val_batch_size=6,
     ),
     
     # Llama-based models - using chat templates
@@ -241,6 +265,8 @@ MODEL_CONFIGS = {
         learning_rate=1e-5,
         prompt_config=PROMPT_LLAMA3,  # Llama-3 chat format
         architecture='llama',
+        train_batch_size=4,
+        val_batch_size=16,
     ),
     'llama-2-13b-chat-norwegian': ModelConfig(
         short_name='llama-2-13b-chat-norwegian',
@@ -251,6 +277,8 @@ MODEL_CONFIGS = {
         learning_rate=2e-5,
         prompt_config=PROMPT_LLAMA2,  # Llama-2 chat format
         architecture='llama',
+        train_batch_size=4,
+        val_batch_size=8,
     ),
     
     # MT5 (special case)
@@ -263,6 +291,8 @@ MODEL_CONFIGS = {
         learning_rate=1e-5,
         prompt_config=PROMPT_PLAIN,
         architecture='mt5',
+        train_batch_size=4,
+        val_batch_size=32,
     ),
 }
 
