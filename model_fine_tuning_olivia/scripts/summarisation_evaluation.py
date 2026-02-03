@@ -118,7 +118,7 @@ def eval_reference(pred_summaries, ref_summaries):
 from collections import Counter
 
 def ngram_repetition(doc, n=3):
-    tokens = re.findall(r"\w+|[^\w\s]", doc.lower())
+    tokens = re.findall(r"\d+(?:[.,]\d+)?|[\w/-]+|[^\w\s]", doc.lower())
     if len(tokens) < n:
         return 0.0
     ngrams = [tuple(tokens[i:i+n]) for i in range(len(tokens)-n+1)]
