@@ -20,8 +20,7 @@ Outputs are saved in baseline_metrics/ under the summary file's parent folder:
   Per-document: baseline_metrics/summarisation_evaluations/<dokument_id>-evaluation.json
     Top-level fields: dokument_id, reference_metrics, hygiene_metrics, faithfulness_metrics
   Overall: baseline_metrics/evaluation_<stem>_<num_docs>.json
-    When with predictions: stem = summary stem with "text_summary" replaced by "pred_summary"
-    When without: stem = summary file stem
+    stem = summary file stem (e.g. 149978_text_summary_examples_test)
 """
 
 import json
@@ -318,10 +317,7 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     # Overall output
     num_docs_str = f"first{actual_n}" if first_n is not None else "all"
-    if with_predictions:
-        input_stem = summary_file.stem.replace("text_summary", "pred_summary", 1)
-    else:
-        input_stem = summary_file.stem
+    input_stem = summary_file.stem
 
     overall = {
         "num_docs": actual_n,
