@@ -5,7 +5,7 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=24G
 #SBATCH --time=06:00:00
-#SBATCH -A nn12075k
+#SBATCH -A YOUR_PROJECT_ID
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
 

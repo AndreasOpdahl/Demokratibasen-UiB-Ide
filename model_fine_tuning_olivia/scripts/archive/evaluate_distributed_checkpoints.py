@@ -474,7 +474,7 @@ Examples:
   python evaluate_distributed_checkpoints.py \\
     --model gemma-3-12b-pt \\
     --checkpoint_dir training_runs/gemma-3-12b-pt-fsdp/checkpoint-100 \\
-    --val_dataset /cluster/projects/nn12075k/shared/datasets/dataset_43221_examples/processed_data_val.jsonl
+    --val_dataset /cluster/projects/YOUR_PROJECT_ID/shared/datasets/dataset_43221_examples/processed_data_val.jsonl
 
   # Load without evaluation (inference only):
   python evaluate_distributed_checkpoints.py \\

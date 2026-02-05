@@ -11,4 +11,4 @@ squeue -u $USER
 tail -f logs/gpu-smoke-*.out
 
 
-salloc -p accel --gres=gpu:1 --cpus-per-task=4 --mem=16G -A nn12075k --time=01:00:00
+salloc -p accel --gres=gpu:1 --cpus-per-task=4 --mem=16G -A YOUR_PROJECT_ID --time=01:00:00

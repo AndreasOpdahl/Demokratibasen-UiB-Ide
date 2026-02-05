@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=96G
 #SBATCH --time=02:00:00
-#SBATCH -A nn12075k
+#SBATCH -A YOUR_PROJECT_ID
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
 
@@ -19,7 +19,7 @@ CHECKPOINT_BASE_DIR=${CHECKPOINT_BASE_DIR:="training_runs/${MODEL}-apptainer-fsd
 SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:=""}
 
 # Shared project files location
-PROJECT_DIR="/cluster/projects/nn12075k/shared"
+PROJECT_DIR="/cluster/projects/YOUR_PROJECT_ID/shared"
 DATASET_DIR="$PROJECT_DIR/datasets/dataset_43221_examples"
 VAL_DATASET=${VAL_DATASET:="${DATASET_DIR}/processed_data_val.jsonl"}
 

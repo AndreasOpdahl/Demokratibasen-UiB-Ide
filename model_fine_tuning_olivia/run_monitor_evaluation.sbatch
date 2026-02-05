@@ -7,7 +7,14 @@
 #SBATCH --mem=192G
 #SBATCH --time=48:00:00  # Long time to match training duration
 # Account: REQUIRED - Pass via: sbatch --account=YOUR_ACCOUNT run_monitor_evaluation.sbatch ...
-# Example: sbatch --account=nn12075k run_monitor_evaluation.sbatch --model=gemma-2-9b
+# Example: sbatch --account=YOUR_PROJECT_ID run_monitor_evaluation.sbatch --model=gemma-2-9b
+#
+# OPTIONAL: Use SLURM job dependency to ensure training starts first:
+#   1. Submit training job first: TRAINING_JOB_ID=$(sbatch --account=YOUR_PROJECT_ID run_finetune_multinode.sbatch --model=gemma-2-9b | grep -oP '\d+')
+#   2. Submit monitor job with dependency: sbatch --account=YOUR_PROJECT_ID --dependency=afterok:$TRAINING_JOB_ID run_monitor_evaluation.sbatch --model=gemma-2-9b
+#
+# If not using job dependency, the monitor script will wait up to 1 hour for training to start
+# by checking for the training_started.txt signal file in the output directory.
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
 

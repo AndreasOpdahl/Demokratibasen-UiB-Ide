@@ -37,6 +37,14 @@ import torch
 from model_configs import get_model_config
 from evaluate_distributed_checkpoints_multigpu import evaluate_checkpoint
 
+# Import shared utilities
+from utils import (
+    extract_checkpoint_step,
+    get_checkpoint_name_and_step,
+    is_major_checkpoint,
+    get_evaluated_checkpoint_steps,
+)
+
 
 def find_checkpoints(output_dir: str) -> List[str]:
     """Find all checkpoint directories, sorted by step number.
@@ -69,17 +77,9 @@ def find_checkpoints(output_dir: str) -> List[str]:
         backup_checkpoints.extend(glob.glob(backup_pattern))
     
     def get_step(ckpt_path: str) -> int:
-        """Extract step number from checkpoint path."""
-        try:
-            basename = os.path.basename(ckpt_path)
-            # Handle both "checkpoint-123" and "regular-checkpoint-123" / "major-checkpoint-123"
-            if basename.startswith("checkpoint-"):
-                return int(basename.split("-")[-1])
-            elif basename.startswith("regular-checkpoint-") or basename.startswith("major-checkpoint-"):
-                return int(basename.split("-")[-1])
-        except (ValueError, IndexError):
-            return -1
-        return -1
+        """Extract step number from checkpoint path using utility function."""
+        step = extract_checkpoint_step(ckpt_path)
+        return step if step is not None else -1
     
     # Create a map of step -> checkpoint paths (prioritize main checkpoints)
     checkpoint_map = {}
@@ -105,34 +105,8 @@ def find_checkpoints(output_dir: str) -> List[str]:
 
 
 def get_evaluated_checkpoints_from_files(output_dir: str) -> set:
-    """Get set of already evaluated checkpoint steps by checking for eval results files in all_eval_results/."""
-    evaluated = set()
-    if not os.path.exists(output_dir):
-        return evaluated
-    
-    # Check all_eval_results directory for checkpoint-nnn-eval-results.json files
-    all_eval_results_dir = os.path.join(output_dir, "all_eval_results")
-    if os.path.exists(all_eval_results_dir):
-        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results.json")):
-            try:
-                # Extract step from filename: checkpoint-123-eval-results.json -> 123
-                filename = os.path.basename(eval_file)
-                step = int(filename.replace("checkpoint-", "").replace("-eval-results.json", ""))
-                evaluated.add(step)
-            except (ValueError, IndexError):
-                pass
-    
-    # Also check old location for backwards compatibility
-    for ckpt_dir in glob.glob(os.path.join(output_dir, "checkpoint-*")):
-        old_eval_results_file = os.path.join(ckpt_dir, "eval_results", "eval_results.json")
-        if os.path.exists(old_eval_results_file):
-            try:
-                step = int(os.path.basename(ckpt_dir).split("-")[-1])
-                evaluated.add(step)
-            except (ValueError, IndexError):
-                pass
-    
-    return evaluated
+    """Get set of already evaluated checkpoint steps using utility function."""
+    return get_evaluated_checkpoint_steps(output_dir)
 
 
 def check_early_stopping_signal(output_dir: str) -> bool:
@@ -198,7 +172,7 @@ def get_best_checkpoint_metric(eval_results_dir: str) -> Optional[Dict]:
     } if best_checkpoint else None
 
 
-def check_training_complete(output_dir: str, checkpoints: List[str] = None) -> bool:
+def check_training_complete(output_dir: str, checkpoints: Optional[List[str]] = None) -> bool:
     """Check if training has completed (by looking for completion signal file).
     
     Only returns True if:
@@ -291,6 +265,45 @@ def monitor_and_evaluate(
         os.makedirs(output_dir, exist_ok=True)
         print("Waiting for training to start...")
     
+    # Wait for training to start (check for signal file)
+    training_started_file = os.path.join(output_dir, "training_started.txt")
+    max_wait_time = 3600  # Wait up to 1 hour for training to start
+    wait_interval = 10  # Check every 10 seconds
+    waited_time = 0
+    
+    if not os.path.exists(training_started_file):
+        print(f"\n{'='*70}")
+        print("WAITING FOR TRAINING TO START")
+        print(f"{'='*70}")
+        print(f"Looking for signal file: {training_started_file}")
+        print(f"Will wait up to {max_wait_time // 60} minutes...")
+        print(f"Checking every {wait_interval} seconds...")
+        print(f"{'='*70}\n")
+        
+        while not os.path.exists(training_started_file) and waited_time < max_wait_time:
+            time.sleep(wait_interval)
+            waited_time += wait_interval
+            if waited_time % 60 == 0:  # Print status every minute
+                print(f"Still waiting for training to start... ({waited_time // 60} minutes elapsed)")
+        
+        if not os.path.exists(training_started_file):
+            print(f"\n{'='*70}")
+            print("ERROR: Training did not start within the timeout period")
+            print(f"{'='*70}")
+            print(f"Waited {waited_time // 60} minutes for training to start.")
+            print(f"Expected signal file: {training_started_file}")
+            print("\nPossible reasons:")
+            print("  1. Training job hasn't started yet")
+            print("  2. Training job failed to start")
+            print("  3. Training script doesn't create the signal file")
+            print("\nSuggestion: Use SLURM job dependency:")
+            print("  sbatch --dependency=afterok:TRAINING_JOB_ID run_monitor_evaluation.sbatch")
+            print(f"{'='*70}\n")
+            return
+        else:
+            print(f"✓ Training started! Signal file found: {training_started_file}")
+            print(f"  Waited {waited_time // 60} minutes and {waited_time % 60} seconds\n")
+    
     # Initialize wandb for monitoring
     if wandb_project:
         wandb.init(
@@ -336,7 +349,7 @@ def monitor_and_evaluate(
             
             # Check if training has completed (with time check to avoid false positives)
             # Pass checkpoints to verify no newer checkpoints exist
-            if check_training_complete(output_dir, checkpoints if checkpoints else None):
+            if check_training_complete(output_dir, checkpoints):
                 print("Training completion signal detected. Stopping monitor.")
                 break
             
@@ -351,16 +364,9 @@ def monitor_and_evaluate(
             
             for checkpoint_path in checkpoints:
                 try:
-                    # Extract step from checkpoint path (handles both main and backup paths)
-                    basename = os.path.basename(checkpoint_path.rstrip('/'))
-                    if basename.startswith("checkpoint-"):
-                        step = int(basename.split("-")[-1])
-                        checkpoint_name = basename
-                    elif basename.startswith("regular-checkpoint-") or basename.startswith("major-checkpoint-"):
-                        step = int(basename.split("-")[-1])
-                        # Convert backup name to standard checkpoint name for eval results lookup
-                        checkpoint_name = f"checkpoint-{step}"
-                    else:
+                    # Extract step and name from checkpoint path using utility function
+                    checkpoint_name, step = get_checkpoint_name_and_step(checkpoint_path)
+                    if step is None:
                         continue
                 except (ValueError, IndexError):
                     continue

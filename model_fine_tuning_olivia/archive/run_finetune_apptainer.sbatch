@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=128G
 #SBATCH --time=00:10:00
-#SBATCH -A nn12075k
+#SBATCH -A YOUR_PROJECT_ID
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
 
@@ -32,7 +32,7 @@ NUM_GPUS=${SLURM_GPUS_ON_NODE:-1}
 printf "Allocated $NUM_GPUS GPUs...\n"
 
 # where to find shared project files, including training and evaluation datasets
-PROJECT_DIR="/cluster/projects/nn12075k/shared"
+PROJECT_DIR="/cluster/projects/YOUR_PROJECT_ID/shared"
 DATASET_DIR="$PROJECT_DIR/datasets/dataset_43221_examples"
 OUTPUT_DIR="training_runs"
 

@@ -182,10 +182,19 @@ def eval_hygiene(docs, pred_summaries):
 
     
 # NLI-based faithfulness
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Tuple
+import time
+import warnings
+
+# Suppress PyTorch/CUDA pynvml deprecation FutureWarning (before torch is imported)
+warnings.filterwarnings("ignore", category=FutureWarning, module="torch.cuda")
 
 import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers.utils import logging as hf_logging
+
+# Suppress "overflowing tokens are not returned..." and similar tokenizer warnings
+hf_logging.set_verbosity_error()
 
 
 def split_sentences(text: str) -> List[str]:
@@ -196,16 +205,138 @@ def split_sentences(text: str) -> List[str]:
     return [s.strip() for s in sents if s.strip()]
 
 
-def chunk_document(doc: str, tokenizer, max_tokens: int = 350) -> List[str]:
-    doc = re.sub(r"\s+", " ", doc).strip()
+# Improved chunking constants from summarisation_evaluation.py
+MAX_NLI_TOKENS = 512
+PREMISE_CHUNK_OVERLAP = 96
+PREMISE_SENT_MAX_TOKENS = 96
+PREMISE_SENT_PART_TOKENS = 72
+PREMISE_SENT_PART_OVERLAP = 24
+
+def _build_overlapping_chunks(token_ids: List[int], max_tokens: int, overlap: int) -> List[List[int]]:
+    """Build overlapping chunks in a single forward pass."""
+    if max_tokens <= 0:
+        return []
+    if len(token_ids) <= max_tokens:
+        return [token_ids]
+
+    step = max(1, max_tokens - overlap)
+    chunks: List[List[int]] = []
+    for start in range(0, len(token_ids), step):
+        end = min(len(token_ids), start + max_tokens)
+        chunks.append(token_ids[start:end])
+        if end == len(token_ids):
+            break
+    return chunks
+
+def _split_long_sentence_ids(ids: List[int]) -> List[List[int]]:
+    """Split over-long sentence token IDs into overlapping parts."""
+    if len(ids) <= PREMISE_SENT_MAX_TOKENS:
+        return [ids]
+    step = max(1, PREMISE_SENT_PART_TOKENS - PREMISE_SENT_PART_OVERLAP)
+    parts: List[List[int]] = []
+    for start in range(0, len(ids), step):
+        end = min(len(ids), start + PREMISE_SENT_PART_TOKENS)
+        parts.append(ids[start:end])
+        if end == len(ids):
+            break
+    return parts
+
+def _build_sentence_aligned_chunks(text: str, tokenizer, max_tokens: int, overlap: int) -> List[List[int]]:
+    """Chunk by sentences while ensuring at least overlap tokens between chunks."""
+    sentences = split_sentences(text)
+    if not sentences:
+        return []
+
+    sent_ids: List[List[int]] = []
+    for s in sentences:
+        ids = tokenizer.encode(s, add_special_tokens=False)
+        sent_ids.extend(_split_long_sentence_ids(ids))
+    chunks: List[List[int]] = []
+    current: List[int] = []
+
+    for ids in sent_ids:
+        if not current:
+            current = ids[:]
+            continue
+
+        if len(current) + len(ids) <= max_tokens:
+            current.extend(ids)
+        else:
+            chunks.append(current)
+            # Carry over last overlap tokens as a minimum requirement
+            if overlap > 0:
+                current = current[-overlap:] + ids
+            else:
+                current = ids[:]
+
+        if len(current) > max_tokens:
+            # If a single sentence is too long, split it with overlap
+            overflow_chunks = _build_overlapping_chunks(current, max_tokens, overlap)
+            chunks.extend(overflow_chunks[:-1])
+            current = overflow_chunks[-1] if overflow_chunks else []
+
+    if current:
+        chunks.append(current)
+
+    return chunks
+
+def _split_paragraphs(text: str) -> List[str]:
+    """Split text into paragraphs based on blank lines."""
+    paragraphs = re.split(r"\n\s*\n+", text.strip())
+    return [p.strip() for p in paragraphs if p.strip()]
+
+def _build_paragraph_aware_chunks(text: str, tokenizer, max_tokens: int, overlap: int) -> List[List[int]]:
+    """Chunk by paragraphs, using sentence-aware chunking inside long paragraphs."""
+    paragraphs = _split_paragraphs(text)
+    if not paragraphs:
+        return []
+
+    chunks: List[List[int]] = []
+    for paragraph in paragraphs:
+        # Normalize whitespace inside paragraph for tokenization stability
+        para_text = re.sub(r"\s+", " ", paragraph).strip()
+        if not para_text:
+            continue
+
+        para_ids = tokenizer.encode(para_text, add_special_tokens=False)
+        if len(para_ids) <= max_tokens:
+            para_chunks = [para_ids]
+        else:
+            para_chunks = _build_sentence_aligned_chunks(para_text, tokenizer, max_tokens=max_tokens, overlap=overlap)
+            if not para_chunks:
+                para_chunks = _build_overlapping_chunks(para_ids, max_tokens=max_tokens, overlap=overlap)
+
+        for chunk_ids in para_chunks:
+            if chunks and overlap > 0:
+                carry = chunks[-1][-overlap:]
+                chunk_ids = carry + chunk_ids
+                if len(chunk_ids) > max_tokens:
+                    chunk_ids = chunk_ids[:max_tokens]
+            chunks.append(chunk_ids)
+
+    return chunks
+
+def chunk_document(
+    doc: str,
+    tokenizer,
+    max_tokens: int = 350,
+    overlap: int = PREMISE_CHUNK_OVERLAP,
+    prefer_sentence_boundaries: bool = True,
+) -> List[str]:
+    """Improved chunking function from summarisation_evaluation.py."""
+    doc = doc.strip()
     if not doc:
         return [""]
 
-    ids = tokenizer.encode(doc, add_special_tokens=False)
-    chunks = []
-    for i in range(0, len(ids), max_tokens):
-        chunk_ids = ids[i : i + max_tokens]
-        chunks.append(tokenizer.decode(chunk_ids, skip_special_tokens=True))
+    if prefer_sentence_boundaries:
+        chunk_ids_list = _build_paragraph_aware_chunks(doc, tokenizer, max_tokens=max_tokens, overlap=overlap)
+        if not chunk_ids_list:
+            ids = tokenizer.encode(doc, add_special_tokens=False)
+            chunk_ids_list = _build_overlapping_chunks(ids, max_tokens=max_tokens, overlap=overlap)
+    else:
+        ids = tokenizer.encode(doc, add_special_tokens=False)
+        chunk_ids_list = _build_overlapping_chunks(ids, max_tokens=max_tokens, overlap=overlap)
+    chunks = [tokenizer.decode(chunk_ids, skip_special_tokens=True) for chunk_ids in chunk_ids_list]
     return chunks if chunks else [""]
 
 
@@ -256,8 +387,7 @@ class NLIFaithfulnessGate:
         inputs = self.tokenizer(
             premise,
             hypothesis,
-            truncation=True,
-            max_length=self.tokenizer.model_max_length,
+            truncation=False,  # Changed from True - we handle truncation in batch processing
             return_tensors="pt",
         ).to(self.device)
         logits = self.model(**inputs).logits[0]
@@ -268,48 +398,123 @@ class NLIFaithfulnessGate:
         document: str,
         summary: str,
         doc_chunk_tokens: int = 350,
+        batch_size: int = 4,
         # --- Suggested starting thresholds for CI (tune with a small human-audited set) ---
-        entailment_mean_min: float = 0.72,
-        entailment_sentence_min: float = 0.60,
-        max_low_entailment_sentences: int = 0,
-        contradiction_sentence_max: float = 0.35,
-        max_high_contradiction_sentences: int = 0,
+        entailment_mean_min: float = 0.6,  # Lowered from 0.72 to match summarisation_evaluation.py
+        entailment_sentence_min: float = 0.50,  # Lowered from 0.60 to match summarisation_evaluation.py
+        max_low_entailment_sentences: int = 1,  # Changed from 0 to match summarisation_evaluation.py
+        contradiction_sentence_max: float = 0.50,  # Raised from 0.35 to match summarisation_evaluation.py
+        max_high_contradiction_sentences: int = 1,  # Changed from 0 to match summarisation_evaluation.py
     ) -> Dict[str, Any]:
+        start_time = time.perf_counter()
         sents = split_sentences(summary)
-        doc_chunks = chunk_document(document, self.tokenizer, max_tokens=doc_chunk_tokens)
+        hyp_ids_list = [self.tokenizer.encode(s, add_special_tokens=False) for s in sents]
+        hyp_lengths = [len(ids) for ids in hyp_ids_list]
+        max_hyp_len = max(hyp_lengths) if hyp_lengths else 0
+        max_chunk_size = MAX_NLI_TOKENS - max_hyp_len - 3
+        max_chunk_size = max(413, max_chunk_size)
+
+        doc_chunks = chunk_document(
+            document,
+            self.tokenizer,
+            max_tokens=max_chunk_size,
+            overlap=PREMISE_CHUNK_OVERLAP,
+            prefer_sentence_boundaries=True,
+        )
+        chunk_ids_list = [self.tokenizer.encode(c, add_special_tokens=False) for c in doc_chunks]
 
         per_sentence: List[Dict[str, Any]] = []
-        best_entailments: List[float] = []
-        worst_contradictions: List[float] = []
+        best_entailments: List[float] = [-1.0 for _ in sents]
+        worst_contradictions: List[float] = [-1.0 for _ in sents]
+        best_ent_chunk_idx: List[int] = [-1 for _ in sents]
+        worst_con_chunk_idx: List[int] = [-1 for _ in sents]
 
-        for sent in sents:
-            best_ent = -1.0
-            best_ent_chunk = -1
-            worst_con = -1.0
-            worst_con_chunk = -1
+        special_tokens = self.tokenizer.num_special_tokens_to_add(pair=True)
 
-            for j, chunk in enumerate(doc_chunks):
-                probs = self._probs(chunk, sent)
-                p_ent = float(probs[self.entailment_idx].cpu().item())
-                p_con = float(probs[self.contradiction_idx].cpu().item())
+        # Build all pair inputs once (tokenized), then batch
+        pair_inputs: List[Tuple[int, int, List[int], List[int]]] = []
+        for s_idx, hyp_ids in enumerate(hyp_ids_list):
+            for c_idx, prem_ids in enumerate(chunk_ids_list):
+                prem_ids_use = prem_ids
+                hyp_ids_use = hyp_ids
+                total_len = len(prem_ids_use) + len(hyp_ids_use) + special_tokens
+                if total_len > MAX_NLI_TOKENS:
+                    to_remove = total_len - MAX_NLI_TOKENS
+                    truncated = self.tokenizer.truncate_sequences(
+                        prem_ids_use,
+                        hyp_ids_use,
+                        num_tokens_to_remove=to_remove,
+                        truncation_strategy="longest_first",
+                    )
+                    if len(truncated) >= 2:
+                        prem_ids_use, hyp_ids_use = truncated[0], truncated[1]
+                    else:
+                        prem_ids_use = truncated[0] if truncated else prem_ids_use
+                input_ids = self.tokenizer.build_inputs_with_special_tokens(prem_ids_use, hyp_ids_use)
+                token_type_ids = self.tokenizer.create_token_type_ids_from_sequences(prem_ids_use, hyp_ids_use)
+                pair_inputs.append((s_idx, c_idx, input_ids, token_type_ids))
 
-                if p_ent > best_ent:
-                    best_ent = p_ent
-                    best_ent_chunk = j
-                if p_con > worst_con:
-                    worst_con = p_con
-                    worst_con_chunk = j
+        # Sort by sequence length to reduce padding overhead
+        pair_inputs.sort(key=lambda x: len(x[2]), reverse=True)
+        num_premise_sentence_pairs = len(pair_inputs)
 
-            best_entailments.append(best_ent)
-            worst_contradictions.append(worst_con)
+        start = 0
+        while start < len(pair_inputs):
+            cur_batch_size = batch_size
+            while True:
+                batch = pair_inputs[start:start + cur_batch_size]
+                if not batch:
+                    break
+                max_len = max(len(x[2]) for x in batch)
+                input_ids_batch = []
+                token_type_ids_batch = []
+                attention_mask_batch = []
+                for _, _, input_ids, token_type_ids in batch:
+                    pad_len = max_len - len(input_ids)
+                    input_ids_batch.append(input_ids + [self.tokenizer.pad_token_id] * pad_len)
+                    token_type_ids_batch.append(token_type_ids + [0] * pad_len)
+                    attention_mask_batch.append([1] * len(input_ids) + [0] * pad_len)
 
+                inputs = {
+                    "input_ids": torch.tensor(input_ids_batch, device=self.device),
+                    "attention_mask": torch.tensor(attention_mask_batch, device=self.device),
+                }
+                if "token_type_ids" in self.tokenizer.model_input_names:
+                    inputs["token_type_ids"] = torch.tensor(token_type_ids_batch, device=self.device)
+
+                try:
+                    logits = self.model(**inputs).logits
+                    probs = torch.softmax(logits, dim=-1)
+                except torch.cuda.OutOfMemoryError:
+                    if cur_batch_size <= 1:
+                        raise
+                    torch.cuda.empty_cache()
+                    cur_batch_size = max(1, cur_batch_size // 2)
+                    continue
+
+                for i, (s_idx, c_idx, _, _) in enumerate(batch):
+                    p_ent = float(probs[i, self.entailment_idx].cpu().item())
+                    p_con = float(probs[i, self.contradiction_idx].cpu().item())
+                    if p_ent > best_entailments[s_idx]:
+                        best_entailments[s_idx] = p_ent
+                        best_ent_chunk_idx[s_idx] = c_idx
+                    if p_con > worst_contradictions[s_idx]:
+                        worst_contradictions[s_idx] = p_con
+                        worst_con_chunk_idx[s_idx] = c_idx
+                break
+
+            start += cur_batch_size
+
+        for idx, sent in enumerate(sents):
+            best_chunk_idx = best_ent_chunk_idx[idx]
+            worst_chunk_idx = worst_con_chunk_idx[idx]
             per_sentence.append(
                 {
                     "sentence": sent,
-                    "best_entailment": best_ent,
-                    "best_entailment_chunk_idx": best_ent_chunk,
-                    "worst_contradiction": worst_con,
-                    "worst_contradiction_chunk_idx": worst_con_chunk,
+                    "best_entailment": best_entailments[idx],
+                    "best_entailment_chunk_idx": best_chunk_idx,
+                    "worst_contradiction": worst_contradictions[idx],
+                    "worst_contradiction_chunk_idx": worst_chunk_idx,
                 }
             )
 
@@ -339,11 +544,33 @@ class NLIFaithfulnessGate:
         else:
             outlier_rate = 0.0
 
+        # Failing pairs: premise-hypothesis pairs that cause failure (low entailment or high contradiction)
+        failing_pairs: List[Dict[str, Any]] = []
+        for idx, sent in enumerate(sents):
+            prem_low = doc_chunks[best_ent_chunk_idx[idx]] if 0 <= best_ent_chunk_idx[idx] < len(doc_chunks) else None
+            prem_high = doc_chunks[worst_con_chunk_idx[idx]] if 0 <= worst_con_chunk_idx[idx] < len(doc_chunks) else None
+            if best_entailments[idx] < entailment_sentence_min:
+                failing_pairs.append({
+                    "premise": prem_low or prem_high,
+                    "hypothesis": sent,
+                    "entailment": best_entailments[idx],
+                    "contradiction": worst_contradictions[idx],
+                    "reason": "low_entailment",
+                })
+            if worst_contradictions[idx] > contradiction_sentence_max:
+                failing_pairs.append({
+                    "premise": prem_high or prem_low,
+                    "hypothesis": sent,
+                    "entailment": best_entailments[idx],
+                    "contradiction": worst_contradictions[idx],
+                    "reason": "high_contradiction",
+                })
+
         # Gate logic
         reasons = []
         if entail_mean < entailment_mean_min:
             reasons.append(
-                f"mean_entailment {entail_mean:.3f} < {entailment_mean_min:.3f}"
+                f"low_mean_entailment {entail_mean:.3f} < {entailment_mean_min:.3f}"
             )
         if low_entail_count > max_low_entailment_sentences:
             reasons.append(
@@ -358,6 +585,9 @@ class NLIFaithfulnessGate:
 
         passed = (len(reasons) == 0)
 
+        runtime_seconds = time.perf_counter() - start_time
+        premise_sentence_pairs_per_second = num_premise_sentence_pairs / runtime_seconds if runtime_seconds > 0 else 0.0
+
         return {
             "faithfulness": {
                 "entailment_mean": entail_mean,
@@ -371,6 +601,10 @@ class NLIFaithfulnessGate:
             "passed": passed,
             "reasons": reasons,
             "per_sentence": per_sentence,
+            "failing_pairs": failing_pairs,
+            "runtime_seconds": runtime_seconds,
+            "num_premise_sentence_pairs": num_premise_sentence_pairs,
+            "premise_sentence_pairs_per_second": premise_sentence_pairs_per_second,
         }
         
     def eval_faithfulness(self, docs, pred_summaries):
@@ -378,24 +612,26 @@ class NLIFaithfulnessGate:
         for doc, pred_summary in zip(docs, pred_summaries):
             faithfulness_out.append(self.score_and_gate(doc, pred_summary))
         # return ratio of that passed the gate and list of reasons for failure
-        ratio_passed = sum(1 for f in faithfulness_out if f["passed"]) / len(faithfulness_out)
+        ratio_passed_documents = sum(1 for f in faithfulness_out if f["passed"]) / len(faithfulness_out)
         reasons_failed = [f["reasons"] for f in faithfulness_out if not f["passed"]]
+        num_premise_sentence_pairs = sum(f["num_premise_sentence_pairs"] for f in faithfulness_out)
         # return mean entailment score, mean contradiction score, and mean outlier rate
         mean_entailment_score = sum(f["faithfulness"]["entailment_mean"] for f in faithfulness_out) / len(faithfulness_out)
         min_entailment_score = min(f["faithfulness"]["entailment_min"] for f in faithfulness_out)  # Don't divide by length - this is the minimum across all examples
-        mean_low_entailment_sentences = sum(f["faithfulness"]["low_entailment_sentences"] for f in faithfulness_out) / len(faithfulness_out)
+        mean_ratio_low_entailment_sentences = sum(f["faithfulness"]["low_entailment_sentences"] for f in faithfulness_out) / len(faithfulness_out)
         max_contradiction_score = max(f["faithfulness"]["contradiction_max"] for f in faithfulness_out)  # Don't divide by length - this is the maximum across all examples
-        mean_high_contradiction_sentences = sum(f["faithfulness"]["high_contradiction_sentences"] for f in faithfulness_out) / len(faithfulness_out)
-        mean_outlier_rate = sum(f["faithfulness"]["outlier_rate"] for f in faithfulness_out) / len(faithfulness_out)
+        mean_ratio_high_contradiction_sentences = sum(f["faithfulness"]["high_contradiction_sentences"] for f in faithfulness_out) / len(faithfulness_out)
+        mean_ratio_outliers = sum(f["faithfulness"]["outlier_rate"] for f in faithfulness_out) / len(faithfulness_out)
         return {
             "mean_entailment_score": mean_entailment_score,
             "min_entailment_score": min_entailment_score,
-            "mean_low_entailment_sentences": mean_low_entailment_sentences,
+            "mean_ratio_low_entailment_sentences": mean_ratio_low_entailment_sentences,
             "max_contradiction_score": max_contradiction_score,
-            "mean_high_contradiction_sentences": mean_high_contradiction_sentences,
-            "mean_outlier_rate": mean_outlier_rate,
-            "ratio_passed": ratio_passed,
+            "mean_ratio_high_contradiction_sentences": mean_ratio_high_contradiction_sentences,
+            "mean_ratio_outliers": mean_ratio_outliers,
+            "ratio_passed_documents": ratio_passed_documents,
             "reasons_failed": reasons_failed,
+            "num_premise_sentence_pairs": num_premise_sentence_pairs,
         }
 
 
@@ -500,7 +736,8 @@ def load_texts(input_file):
 
 
 def save_results(eval_results, input_file, data_dir=DATA_DIR, file_mask=FILE_MASK):
-    checkpoint_id = re.match(file_mask, input_file).group(1)
+    match = re.match(file_mask, input_file)
+    checkpoint_id = match.group(1) if match and match.group(1) else 'UNKNOWN'
     output_file = os.path.join(data_dir, f"checkpoint-{checkpoint_id}-eval-results.json")
     with open(output_file, "w") as f:
         json.dump(eval_results, f, indent=2, ensure_ascii=False, default=str)

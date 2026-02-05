@@ -132,6 +132,11 @@ from model_configs import (
 from utils import (
     EvalDataCollator,
     compute_rouge_metrics,
+    load_jsonl_dataset,
+    tokenize_train_examples,
+    tokenize_eval_examples,
+    format_train_example,
+    format_eval_example,
 )
 
 # Default values when command-line args are not supplied
@@ -867,8 +872,9 @@ def fine_tune_model(
             return None
         return steps * batch_size * gradient_accumulation_steps * num_gpus
     
-    # Only initialize wandb on rank 0
-    if is_main_process:
+    # Only initialize wandb on rank 0 (unless disabled via environment)
+    wandb_disabled = os.environ.get('WANDB_DISABLED', '').lower() in ('true', '1', 'yes')
+    if is_main_process and not wandb_disabled:
         print("Initializing Weights & Biases...")
         # Calculate training examples info (will be updated after dataset is loaded)
         wandb_config = {
@@ -893,7 +899,9 @@ def fine_tune_model(
         # Get the run name for TrainingArguments
         wandb_run_name = wandb.run.name
     else:
-        # Disable wandb for non-rank-0 processes
+        # Disable wandb for non-rank-0 processes or if explicitly disabled
+        if is_main_process and wandb_disabled:
+            print("WandB is disabled (WANDB_DISABLED=true)")
         os.environ['WANDB_DISABLED'] = 'true'
         wandb_run_name = None
 
@@ -1021,107 +1029,15 @@ def fine_tune_model(
     # Load and preprocess dataset
     print(f"Loading dataset from: {dataset_path}")
 
-    # Read JSONL file manually
-    train_data = []
-    try:
-        # Check if file exists and is readable
-        if not os.path.exists(dataset_path):
-            print(f"ERROR: Training dataset file does not exist: {dataset_path}")
-            return
-        
-        # Check file size (Git LFS pointers are typically < 200 bytes)
-        file_size = os.path.getsize(dataset_path)
-        if file_size < 200:
-            print(f"WARNING: Training dataset file is very small ({file_size} bytes).")
-            print(f"         This might be a Git LFS pointer file. Please ensure the actual file is downloaded.")
-        
-        with open(dataset_path, 'r', encoding='utf-8') as f:
-            first_line = f.readline()
-            # Check if it's a Git LFS pointer
-            if first_line.strip().startswith('version https://git-lfs.github.com/spec/v1'):
-                print(f"ERROR: Training dataset file appears to be a Git LFS pointer, not actual data.")
-                print(f"       Please download the actual file using: git lfs pull")
-                print(f"       Or ensure the file at {dataset_path} contains actual JSONL data.")
-                return
-            
-            # Reset file pointer and read all lines
-            f.seek(0)
-            line_num = 0
-            for line in f:
-                line_num += 1
-                line = line.strip()
-                if not line:  # Skip empty lines
-                    continue
-                try:
-                    train_data.append(json.loads(line))
-                except json.JSONDecodeError as json_err:
-                    print(f"ERROR: Invalid JSON on line {line_num} of training dataset:")
-                    print(f"       {str(json_err)}")
-                    print(f"       Line content (first 200 chars): {line[:200]}")
-                    return
-            
-        if len(train_data) == 0:
-            print(f"ERROR: Training dataset file is empty or contains no valid JSON lines: {dataset_path}")
-            return
-            
-        print(f"Successfully loaded {len(train_data)} training examples")
-    except Exception as e:
-        print(f"Error reading training dataset: {e}")
-        print(f"File path: {dataset_path}")
-        import traceback
-        traceback.print_exc()
-        return
+    # Load training dataset using shared utility
+    train_data = load_jsonl_dataset(dataset_path, dataset_type="training", raise_on_error=False)
+    if train_data is None:
+        return  # Error already printed by load_jsonl_dataset
 
-    # Read validation JSONL file
-    val_data = []
-    try:
-        # Check if file exists and is readable
-        if not os.path.exists(val_dataset_path):
-            print(f"ERROR: Validation dataset file does not exist: {val_dataset_path}")
-            return
-        
-        # Check file size (Git LFS pointers are typically < 200 bytes)
-        file_size = os.path.getsize(val_dataset_path)
-        if file_size < 200:
-            print(f"WARNING: Validation dataset file is very small ({file_size} bytes).")
-            print(f"         This might be a Git LFS pointer file. Please ensure the actual file is downloaded.")
-        
-        with open(val_dataset_path, 'r', encoding='utf-8') as f:
-            first_line = f.readline()
-            # Check if it's a Git LFS pointer
-            if first_line.strip().startswith('version https://git-lfs.github.com/spec/v1'):
-                print(f"ERROR: Validation dataset file appears to be a Git LFS pointer, not actual data.")
-                print(f"       Please download the actual file using: git lfs pull")
-                print(f"       Or ensure the file at {val_dataset_path} contains actual JSONL data.")
-                return
-            
-            # Reset file pointer and read all lines
-            f.seek(0)
-            line_num = 0
-            for line in f:
-                line_num += 1
-                line = line.strip()
-                if not line:  # Skip empty lines
-                    continue
-                try:
-                    val_data.append(json.loads(line))
-                except json.JSONDecodeError as json_err:
-                    print(f"ERROR: Invalid JSON on line {line_num} of validation dataset:")
-                    print(f"       {str(json_err)}")
-                    print(f"       Line content (first 200 chars): {line[:200]}")
-                    return
-            
-        if len(val_data) == 0:
-            print(f"ERROR: Validation dataset file is empty or contains no valid JSON lines: {val_dataset_path}")
-            return
-            
-        print(f"Successfully loaded {len(val_data)} validation examples")
-    except Exception as e:
-        print(f"Error reading validation dataset: {e}")
-        print(f"File path: {val_dataset_path}")
-        import traceback
-        traceback.print_exc()
-        return
+    # Load validation dataset using shared utility
+    val_data = load_jsonl_dataset(val_dataset_path, dataset_type="validation", raise_on_error=False)
+    if val_data is None:
+        return  # Error already printed by load_jsonl_dataset
 
     # Create training dataset
     train_df = pd.DataFrame(train_data)
@@ -1137,117 +1053,36 @@ def fine_tune_model(
     val_dataset = Dataset.from_pandas(val_df)
     print(f'*** validation dataset size: {len(val_dataset)} examples ***')
 
-    def format_example_train(example):
-        """Format training example with model-specific prompt template."""
-        # Extract doc_type from metadata if available
-        doc_type = None
-        if 'metadata' in example and isinstance(example['metadata'], dict):
-            doc_type = example['metadata'].get('doc_type')
-        
-        model_config = get_model_config_by_hf_name(model_name)
-        if model_config:
-            return {"text": model_config.prompt_config.format_train(
-                input_text=example['input'],
-                output_text=example['output'],
-                doc_type=doc_type
-            )}
-        else:
-            # Fallback to default format with doc_type
-            from model_configs import get_doc_type_norwegian
-            doc_type_nor = get_doc_type_norwegian(doc_type)
-            text = f"Oppgave: Oppsummer følgende {doc_type_nor}:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n{example['output']}\n\n###\n"
-        return {"text": text}
-
-    def format_example_eval(example):
-        """Format evaluation example with model-specific prompt template."""
-        # Extract doc_type from metadata if available
-        doc_type = None
-        if 'metadata' in example and isinstance(example['metadata'], dict):
-            doc_type = example['metadata'].get('doc_type')
-        
-        model_config = get_model_config_by_hf_name(model_name)
-        if model_config:
-            prompt = model_config.prompt_config.format_eval(input_text=example['input'], doc_type=doc_type)
-        else:
-            # Fallback to default format with doc_type
-            from model_configs import get_doc_type_norwegian
-            doc_type_nor = get_doc_type_norwegian(doc_type)
-            prompt = f"Oppgave: Oppsummer følgende {doc_type_nor}:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
-        
-        target = example['output'] if example.get('output') is not None else ""
-        return {
-            "prompt": prompt,
-            "target_summary": str(target)  # Ensure it's a string
-        }
-
-    def tokenize_function_train(examples):
-        # Tokenize the formatted text for training
-        # We need to separate prompt and summary to properly mask prompt tokens
-        max_input_prompt_tokens = max_input_text_tokens + max_extra_prompt_tokens
-        
-        # Tokenize full text first
-        tokenized = tokenizer(
-            examples["text"],
-            truncation=True,
-            max_length=max_input_prompt_tokens + max_output_summary_tokens,
-            padding=False  # Padding done by data collator for compatibility across tokenizer versions
+    # Use shared formatting and tokenization functions
+    def format_example_train_wrapper(example):
+        """Wrapper to call shared format_train_example with model_name."""
+        return format_train_example(example, model_name)
+    
+    def format_example_eval_wrapper(example):
+        """Wrapper to call shared format_eval_example with model_name."""
+        return format_eval_example(example, model_name)
+    
+    def tokenize_function_train_wrapper(examples):
+        """Wrapper to call shared tokenize_train_examples with tokenizer and config."""
+        return tokenize_train_examples(
+            examples=examples,
+            tokenizer=tokenizer,
+            max_input_text_tokens=max_input_text_tokens,
+            max_extra_prompt_tokens=max_extra_prompt_tokens,
+            max_output_summary_tokens=max_output_summary_tokens
         )
-        
-        # Find where summary starts by looking for summary markers in the text
-        # Store the prompt length for later masking in the collator
-        prompt_lengths = []
-        summary_markers = [
-            "Oppsummering:\n\n###\n\n",
-            "Oppsummering:",
-            "[/INST]",
-            "<|start_header_id|>assistant<|end_header_id|>\n\n",
-        ]
-        
-        # Get input_ids list (already tokenized)
-        input_ids_list = tokenized["input_ids"]
-        
-        for idx, text in enumerate(examples["text"]):
-            prompt_len = None
-            for marker in summary_markers:
-                if marker in text:
-                    # Tokenize up to the marker to find position
-                    prompt_part = text.split(marker)[0] + marker
-                    prompt_tokens = tokenizer.encode(prompt_part, add_special_tokens=False)
-                    prompt_len = len(prompt_tokens)
-                    break
-            # If no marker found, assume first 80% is prompt (fallback)
-            if prompt_len is None:
-                # Use the actual tokenized input_ids length for this example
-                total_tokens = len(input_ids_list[idx])
-                prompt_len = int(total_tokens * 0.8)
-            prompt_lengths.append(prompt_len)
-        
-        # Store prompt length for use in collator (as a list, one per example)
-        tokenized["prompt_length"] = prompt_lengths
-        
-        return tokenized
-
-    def tokenize_function_eval(examples):
-        # Tokenize ONLY the prompt (without answer) for evaluation
-        max_input_prompt_tokens = max_input_text_tokens + max_extra_prompt_tokens
-        tokenized_prompts = tokenizer(
-            examples["prompt"],
-            truncation=True,
-            max_length=max_input_prompt_tokens,
-            padding=False
+    
+    def tokenize_function_eval_wrapper(examples):
+        """Wrapper to call shared tokenize_eval_examples with tokenizer and config."""
+        return tokenize_eval_examples(
+            examples=examples,
+            tokenizer=tokenizer,
+            max_input_text_tokens=max_input_text_tokens,
+            max_extra_prompt_tokens=max_extra_prompt_tokens,
+            max_output_summary_tokens=max_output_summary_tokens
         )
-        # Tokenize target summaries for labels
-        tokenized_targets = tokenizer(
-            examples["target_summary"],
-            truncation=True,
-            max_length=max_output_summary_tokens,
-            padding=False
-        )
-        # Store target token IDs as labels
-        tokenized_prompts["labels"] = tokenized_targets["input_ids"]
-        return tokenized_prompts
 
-    formatted_dataset = dataset.map(format_example_train)
+    formatted_dataset = dataset.map(format_example_train_wrapper)
     
     # Log example prompts to wandb (lightweight - just a few examples to verify prompt formatting)
     if is_main_process and wandb.run is not None:
@@ -1306,7 +1141,7 @@ def fine_tune_model(
         print("=" * 70 + "\n")
     
     tokenized_dataset = formatted_dataset.map(
-        tokenize_function_train, 
+        tokenize_function_train_wrapper, 
         batched=True,
         load_from_cache_file=False,  # ADD THIS - keeps data in memory
     )
@@ -1394,9 +1229,9 @@ def fine_tune_model(
             print("=" * 70 + "\n")
 
     # Format and tokenize the VALIDATION dataset differently
-    formatted_val_dataset = val_dataset.map(format_example_eval)
+    formatted_val_dataset = val_dataset.map(format_example_eval_wrapper)
     tokenized_val_dataset = formatted_val_dataset.map(
-        tokenize_function_eval, 
+        tokenize_function_eval_wrapper, 
         batched=True,
         load_from_cache_file=False,  # ADD THIS
     )
@@ -1753,7 +1588,7 @@ def fine_tune_model(
         adam_beta2=0.999,
                 
         optim="adamw_torch",
-        report_to="wandb" if is_main_process else "none",
+        report_to="wandb" if (is_main_process and not wandb_disabled) else "none",
         run_name=wandb_run_name,  # ADD THIS - link to manually initialized wandb run
         gradient_checkpointing=not use_fsdp,  # Disable for FSDP, use activation_checkpointing instead
         label_smoothing_factor=0.1,  # Add label smoothing to improve generalization
@@ -1849,6 +1684,17 @@ def fine_tune_model(
     print(f"  → Regular checkpoints: all checkpoints → regular_checkpoints/")
     print(f"  → Major checkpoints: every {major_checkpoint_interval} steps → major_checkpoints/")
 
+    # Create training started signal file for monitor script (only on main process)
+    if is_main_process:
+        training_started_file = os.path.join(output_dir, "training_started.txt")
+        os.makedirs(output_dir, exist_ok=True)
+        with open(training_started_file, 'w') as f:
+            import datetime
+            f.write(f"Training started at: {datetime.datetime.now().isoformat()}\n")
+            f.write(f"Model: {model_name}\n")
+            f.write(f"Output directory: {output_dir}\n")
+        print(f"✓ Created training started signal file: {training_started_file}")
+    
     # Initialize Trainer
     # Prepare trainer kwargs
     trainer_kwargs = dict(

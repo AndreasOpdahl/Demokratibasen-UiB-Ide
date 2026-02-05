@@ -21,6 +21,9 @@ from .eval_results import (
     get_evaluated_checkpoint_steps,
     update_evaluation_summary,
 )
+from .dataset_loading import load_jsonl_dataset
+from .tokenization import tokenize_train_examples, tokenize_eval_examples
+from .formatting import format_train_example, format_eval_example
 
 __all__ = [
     # Data collators
@@ -40,4 +43,12 @@ __all__ = [
     'save_eval_results',
     'get_evaluated_checkpoint_steps',
     'update_evaluation_summary',
+    # Dataset loading
+    'load_jsonl_dataset',
+    # Tokenization
+    'tokenize_train_examples',
+    'tokenize_eval_examples',
+    # Formatting
+    'format_train_example',
+    'format_eval_example',
 ]

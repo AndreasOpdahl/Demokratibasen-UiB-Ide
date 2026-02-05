@@ -7,7 +7,7 @@
 #SBATCH --mem=384G  # Increase memory for multi-GPU
 #SBATCH --time=12:00:00
 # Account: REQUIRED - Pass via: sbatch --account=YOUR_ACCOUNT run_evaluate_distributed_checkpoints_multigpu.sbatch ...
-# Example: sbatch --account=nn12075k run_evaluate_distributed_checkpoints_multigpu.sbatch --model=gemma-2-9b
+# Example: sbatch --account=YOUR_PROJECT_ID run_evaluate_distributed_checkpoints_multigpu.sbatch --model=gemma-2-9b
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
 
@@ -27,13 +27,16 @@ fi
 
 # ===== CONFIGURATION =====
 # Parse command-line arguments or use defaults
-# Usage: sbatch --export=SLURM_ACCOUNT=nn12075k run_evaluate_distributed_checkpoints_multigpu.sbatch [--model=MODEL] [--num_gpus=N] [--checkpoint_base_dir=DIR] [--val_dataset=PATH] [--specific_checkpoints="100 200 300"]
+# Usage: sbatch --export=SLURM_ACCOUNT=YOUR_PROJECT_ID run_evaluate_distributed_checkpoints_multigpu.sbatch [--model=MODEL] [--num_gpus=N] [--checkpoint_base_dir=DIR] [--val_dataset=PATH] [--specific_checkpoints="100 200 300"]
 MODEL=${MODEL:-llama-2-13b-chat-norwegian}
 NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
 CHECKPOINT_BASE_DIR=${CHECKPOINT_BASE_DIR:-"models/${MODEL}-apptainer-fsdp"}
 VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
 SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:-""}
 DRY_RUN=${DRY_RUN:-false}
+# NLI Faithfulness evaluation flags
+INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-false}
+NLI_SUBSET_SIZE=${NLI_SUBSET_SIZE:-""}
 
 # Parse command-line arguments if provided
 for arg in "$@"; do
@@ -58,13 +61,19 @@ for arg in "$@"; do
         --specific_checkpoints=*)
             SPECIFIC_CHECKPOINTS="${arg#*=}"
             ;;
+        --include_nli_faithfulness|--include-nli-faithfulness)
+            INCLUDE_NLI_FAITHFULNESS=true
+            ;;
+        --nli_subset_size=*|--nli-subset-size=*)
+            NLI_SUBSET_SIZE="${arg#*=}"
+            ;;
         --dry-run|--debug)
             DRY_RUN=true
             ;;
         *)
             echo "ERROR: Unknown argument: $arg"
             echo ""
-            echo "Usage: sbatch --export=SLURM_ACCOUNT=nn12075k run_evaluate_distributed_checkpoints_multigpu.sbatch [OPTIONS]"
+            echo "Usage: sbatch --export=SLURM_ACCOUNT=YOUR_PROJECT_ID run_evaluate_distributed_checkpoints_multigpu.sbatch [OPTIONS]"
             echo ""
             echo "Options:"
             echo "  --model=MODEL                    Model short name (default: llama-2-13b-chat-norwegian)"
@@ -72,6 +81,8 @@ for arg in "$@"; do
             echo "  --checkpoint_base_dir=DIR         Base directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
             echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
             echo "  --specific_checkpoints=\"N1 N2\"   Space-separated checkpoint numbers to evaluate (default: all)"
+            echo "  --include_nli_faithfulness        Enable NLI-based faithfulness evaluation (slow: ~4.5s per example)"
+            echo "  --nli_subset_size=N               Subset size for NLI evaluation (recommended: 50-100 for faster evaluation)"
             echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
             echo ""
             echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
@@ -173,6 +184,10 @@ echo "  NUM_GPUS: $NUM_GPUS"
 echo "  CHECKPOINT_BASE_DIR: $CHECKPOINT_BASE_DIR"
 echo "  VAL_DATASET: $VAL_DATASET"
 echo "  SPECIFIC_CHECKPOINTS: ${SPECIFIC_CHECKPOINTS:-all}"
+echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS"
+if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ] && [ -n "$NLI_SUBSET_SIZE" ]; then
+    echo "  NLI_SUBSET_SIZE: $NLI_SUBSET_SIZE"
+fi
 echo "  DRY_RUN: $DRY_RUN"
 
 # Verify required environment variables are set
@@ -288,7 +303,7 @@ export HF_METRICS_CACHE="$HF_HOME/metrics"
 mkdir -p "$HF_HOME" "$HF_DATASETS_CACHE" "$HF_MODULES_CACHE" "$HF_METRICS_CACHE"
 
 # stage model/dataset into job-local cache (fast local read, writable)
-PROJECT_HF_DIR=/cluster/projects/nn12075k/shared/.cache/huggingface
+PROJECT_HF_DIR=/cluster/projects/YOUR_PROJECT_ID/shared/.cache/huggingface
 mkdir -p "$HF_HOME/hub"
 
 # Convert model name to HuggingFace cache directory format
@@ -340,20 +355,29 @@ echo "Cache staging complete"
 # ********** END JOB-LOCAL CACHE **********
 
 # env setup
-module --force purge
-module load BuildEnv/NeoverseV2
-module load NRIS/GPU
-module load CUDA/12.6.0
-module load PyTorch/2.8.0
+echo "DEBUG: About to load modules..."
+module --force purge || { echo "ERROR: Failed to purge modules"; exit 1; }
+echo "DEBUG: Modules purged, loading new ones..."
+module load BuildEnv/NeoverseV2 || { echo "ERROR: Failed to load BuildEnv/NeoverseV2"; exit 1; }
+module load NRIS/GPU || { echo "ERROR: Failed to load NRIS/GPU"; exit 1; }
+module load CUDA/12.6.0 || { echo "ERROR: Failed to load CUDA/12.6.0"; exit 1; }
+module load PyTorch/2.8.0 || { echo "ERROR: Failed to load PyTorch/2.8.0"; exit 1; }
+echo "DEBUG: All modules loaded successfully"
 
 # .env already sourced above, variables should be available
 
 # Apptainer image
 export IMAGE=/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif
+echo "DEBUG: Apptainer image set to: $IMAGE"
 
 # Find all checkpoint directories (main + backups)
 # Priority: main checkpoints first, then backups if main doesn't exist
+echo "DEBUG: Starting checkpoint discovery..."
+echo "DEBUG: CHECKPOINT_BASE_DIR=$CHECKPOINT_BASE_DIR"
+echo "DEBUG: SPECIFIC_CHECKPOINTS=$SPECIFIC_CHECKPOINTS"
+
 if [ -n "$SPECIFIC_CHECKPOINTS" ]; then
+    echo "DEBUG: Using specific checkpoints mode"
     CHECKPOINTS=""
     for ckpt_num in $SPECIFIC_CHECKPOINTS; do
         # Try main checkpoint directory first
@@ -378,26 +402,40 @@ if [ -n "$SPECIFIC_CHECKPOINTS" ]; then
     done
 else
     # Find all checkpoints: main first, then backups
-    MAIN_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR" -maxdepth 1 -type d -name "checkpoint-*" | sort -V)
-    REGULAR_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR/regular_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "regular-checkpoint-*" 2>/dev/null | sort -V)
-    MAJOR_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR/major_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "major-checkpoint-*" 2>/dev/null | sort -V)
+    # Add error handling to prevent script exit on find errors
+    MAIN_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR" -maxdepth 1 -type d -name "checkpoint-*" 2>/dev/null | sort -V || true)
+    REGULAR_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR/regular_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "regular-checkpoint-*" 2>/dev/null | sort -V || true)
+    MAJOR_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR/major_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "major-checkpoint-*" 2>/dev/null | sort -V || true)
     
     # Create a map to avoid duplicates (prioritize main checkpoints)
+    # Check bash version for associative array support
+    if [ "${BASH_VERSION%%.*}" -lt 4 ]; then
+        echo "ERROR: Bash version 4+ required for associative arrays. Current version: $BASH_VERSION"
+        exit 1
+    fi
     declare -A CHECKPOINT_MAP
     
     # Add main checkpoints first
+    echo "DEBUG: Processing main checkpoints..."
     for ckpt in $MAIN_CHECKPOINTS; do
-        step=$(basename "$ckpt" | sed 's/checkpoint-//')
-        CHECKPOINT_MAP[$step]="$ckpt"
-    done
-    
-    # Add backup checkpoints only if main doesn't exist
-    for ckpt in $REGULAR_CHECKPOINTS $MAJOR_CHECKPOINTS; do
-        step=$(basename "$ckpt" | sed 's/regular-checkpoint-//' | sed 's/major-checkpoint-//')
-        if [ -z "${CHECKPOINT_MAP[$step]:-}" ]; then
+        if [ -n "$ckpt" ]; then
+            step=$(basename "$ckpt" | sed 's/checkpoint-//')
             CHECKPOINT_MAP[$step]="$ckpt"
         fi
     done
+    echo "DEBUG: Found ${#CHECKPOINT_MAP[@]} main checkpoints"
+    
+    # Add backup checkpoints only if main doesn't exist
+    echo "DEBUG: Processing backup checkpoints..."
+    for ckpt in $REGULAR_CHECKPOINTS $MAJOR_CHECKPOINTS; do
+        if [ -n "$ckpt" ]; then
+            step=$(basename "$ckpt" | sed 's/regular-checkpoint-//' | sed 's/major-checkpoint-//')
+            if [ -z "${CHECKPOINT_MAP[$step]:-}" ]; then
+                CHECKPOINT_MAP[$step]="$ckpt"
+            fi
+        fi
+    done
+    echo "DEBUG: Total checkpoints after adding backups: ${#CHECKPOINT_MAP[@]}"
     
     # Sort by step number and build CHECKPOINTS string
     CHECKPOINTS=""
@@ -405,10 +443,12 @@ else
         CHECKPOINTS="$CHECKPOINTS ${CHECKPOINT_MAP[$step]}"
     done
     CHECKPOINTS=$(echo $CHECKPOINTS | xargs)  # Trim leading/trailing spaces
+    echo "DEBUG: Checkpoint discovery complete (all checkpoints mode)"
 fi
 
 # Count checkpoints
 NUM_CHECKPOINTS=$(echo "$CHECKPOINTS" | wc -w)
+echo "DEBUG: Checkpoint count calculation complete"
 echo "Found $NUM_CHECKPOINTS checkpoints to evaluate"
 
 if [ $NUM_CHECKPOINTS -eq 0 ]; then
@@ -437,7 +477,16 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     
     # Command to run inside apptainer - use model parallelism, not torchrun
     # Model parallelism (device_map="auto") doesn't need torchrun
-    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu"
+    # Build NLI flags if enabled
+    NLI_FLAGS=""
+    if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
+        NLI_FLAGS="--include_nli_faithfulness"
+        if [ -n "$NLI_SUBSET_SIZE" ]; then
+            NLI_FLAGS="$NLI_FLAGS --nli_subset_size $NLI_SUBSET_SIZE"
+        fi
+    fi
+    
+    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu $NLI_FLAGS"
 
     # Apptainer commands - all on one line
     # Install bert_score for BERTScore evaluation (required by evaluate library)

@@ -72,6 +72,24 @@ if _script_dir not in sys.path:
 # Import model configurations
 from model_configs import get_model_config_by_hf_name, get_model_name_mapping, get_doc_type_norwegian
 
+# Import shared utilities
+from utils import (
+    EvalDataCollator,
+    compute_rouge_metrics,
+    extract_checkpoint_step,
+    get_checkpoint_name_and_step,
+    is_major_checkpoint,
+    get_model_dir_from_checkpoint,
+    get_eval_results_path,
+    get_old_eval_results_path,
+    load_eval_results,
+    save_eval_results,
+    update_evaluation_summary,
+    load_jsonl_dataset,
+    tokenize_eval_examples,
+    format_eval_example,
+)
+
 # Import extended evaluation metrics
 try:
     from extended_evaluation import extended_evaluate
@@ -173,50 +191,7 @@ def setup_distributed_evaluation():
         return False, 0, 1, 0
 
 
-class EvalDataCollator:
-    """Custom data collator for evaluation that pads both input_ids and labels.
-    
-    Uses left-padding for input_ids (decoder-only models) and right-padding for labels.
-    """
-    
-    def __init__(self, tokenizer, pad_to_multiple_of=None):
-        self.tokenizer = tokenizer
-        self.pad_to_multiple_of = pad_to_multiple_of
-    
-    def __call__(self, features):
-        # Separate input_ids and labels
-        input_ids = [f['input_ids'] for f in features]
-        labels = [f['labels'] for f in features]
-        
-        # Pad input_ids (LEFT padding for decoder-only models)
-        max_input_length = max(len(ids) for ids in input_ids)
-        if self.pad_to_multiple_of:
-            max_input_length = ((max_input_length + self.pad_to_multiple_of - 1) 
-                               // self.pad_to_multiple_of * self.pad_to_multiple_of)
-        
-        padded_input_ids = []
-        attention_mask = []
-        for ids in input_ids:
-            padding_length = max_input_length - len(ids)
-            padded_input_ids.append([self.tokenizer.pad_token_id] * padding_length + ids)
-            attention_mask.append([0] * padding_length + [1] * len(ids))
-        
-        # Pad labels (RIGHT padding)
-        max_label_length = max(len(lbl) for lbl in labels)
-        if self.pad_to_multiple_of:
-            max_label_length = ((max_label_length + self.pad_to_multiple_of - 1) 
-                               // self.pad_to_multiple_of * self.pad_to_multiple_of)
-        
-        padded_labels = []
-        for lbl in labels:
-            padding_length = max_label_length - len(lbl)
-            padded_labels.append(lbl + [-100] * padding_length)
-        
-        return {
-            'input_ids': torch.tensor(padded_input_ids, dtype=torch.long),
-            'attention_mask': torch.tensor(attention_mask, dtype=torch.long),
-            'labels': torch.tensor(padded_labels, dtype=torch.long),
-        }
+# EvalDataCollator is now imported from utils.data_collators
 
 
 class CausalLMTrainer(Trainer):
@@ -275,13 +250,15 @@ class CausalLMTrainer(Trainer):
                 # Use the GPU with the most parameters as the "primary" device
                 primary_device = max(device_counts.items(), key=lambda x: x[1])[0]
                 print(f"Using {primary_device} as primary device for Trainer operations")
-                # Set the device attribute so Trainer knows where to put inputs
-                self.args.device = torch.device(primary_device)
+                # Note: We can't set self.args.device directly (it's read-only)
+                # The Trainer will automatically use the correct device for inputs
+                # based on where the model parameters are located
             else:
                 # Fallback to first available CUDA device
                 if torch.cuda.is_available():
-                    self.args.device = torch.device("cuda:0")
+                    print("Using cuda:0 as primary device for Trainer operations")
             
+            # Return model without moving it - Trainer will handle input device placement
             return model
         
         # For single-device models, use the parent implementation
@@ -422,6 +399,7 @@ def load_model_and_peft_checkpoint(
     hf_token: Optional[str] = None,
     use_multi_gpu: bool = False,
     major_checkpoint_interval: int = 500,
+    include_nli_faithfulness: bool = False,  # Check for missing NLI metrics if True
 ):
     """Load base model and PEFT checkpoint for inference.
     
@@ -554,16 +532,13 @@ def load_model_and_peft_checkpoint(
     if not os.path.isdir(checkpoint_dir):
         raise ValueError(f"Checkpoint directory does not exist: {checkpoint_dir}")
     
-    # Extract checkpoint step number early (needed for checking existing results and checkpoint backups)
-    checkpoint_name = os.path.basename(checkpoint_dir.rstrip('/'))
-    checkpoint_step = checkpoint_name.replace('checkpoint-', '') if 'checkpoint-' in checkpoint_name else 'unknown'
-    try:
-        checkpoint_step_int = int(checkpoint_step)
-    except ValueError:
+    # Extract checkpoint step number and name using utility function
+    checkpoint_name, checkpoint_step_int = get_checkpoint_name_and_step(checkpoint_dir)
+    if checkpoint_step_int is None:
         checkpoint_step_int = 0
-
-    # Determine model directory once (parent of checkpoint_dir)
-    model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
+    
+    # Determine model directory using utility function
+    model_dir = get_model_dir_from_checkpoint(checkpoint_dir)
 
     # ------------------------------------------------------------------
     # Backup: Regular checkpoints
@@ -634,46 +609,72 @@ def load_model_and_peft_checkpoint(
                 print(f"⚠ Warning: Failed to copy major checkpoint: {e}")
                 print("   Continuing with evaluation, but major checkpoint copy was not created.")
     
-    # Check if this checkpoint was already evaluated
-    # Look in model_dir/all_eval_results/checkpoint-nnn-eval-results.json
-    model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
-    all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
-    eval_results_file = os.path.join(all_eval_results_dir, f"{checkpoint_name}-eval-results.json")
+    # Check if this checkpoint was already evaluated using utility functions
+    eval_results_file = get_eval_results_path(checkpoint_dir, model_dir)
+    old_eval_results_file = get_old_eval_results_path(checkpoint_dir)
+    
+    # Check if results exist in new location
     if os.path.exists(eval_results_file):
         # Check if extended metrics are missing (if extended evaluation is available)
         # If extended metrics should be computed but aren't present, allow re-evaluation
         if EXTENDED_EVAL_AVAILABLE:
             try:
-                with open(eval_results_file, 'r') as f:
-                    existing_results = json.load(f)
-                
-                # Check if this is a major checkpoint that should have BERTScore
-                is_major_checkpoint = (checkpoint_step_int > 0 and checkpoint_step_int % major_checkpoint_interval == 0)
-                
-                # Check if extended metrics are missing
-                has_extended_metrics = any(
-                    key.startswith("eval_reference_") or 
-                    key.startswith("eval_hygiene_") or 
-                    key.startswith("eval_faithfulness_")
-                    for key in existing_results.keys()
-                )
-                
-                # If it's a major checkpoint and should have BERTScore but doesn't, re-evaluate
-                if is_major_checkpoint and "eval_reference_bertscore_f1_mean" not in existing_results:
-                    print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
-                    print(f"   Re-evaluating to compute extended metrics...")
-                    # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                elif not has_extended_metrics:
-                    print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
-                    print(f"   Re-evaluating to compute extended metrics...")
+                existing_results = load_eval_results(checkpoint_dir, model_dir)
+                if existing_results is None:
+                    # Can't parse, allow re-evaluation
+                    print(f"⚠ Warning: Could not parse existing results file. Re-evaluating...")
                     # Don't raise AlreadyEvaluatedError - allow re-evaluation
                 else:
-                    # Extended metrics are present, skip evaluation
-                    raise AlreadyEvaluatedError(
-                        f"Checkpoint {checkpoint_dir} appears to be already evaluated "
-                        f"(results file exists at {eval_results_file}). "
-                        f"Skipping evaluation."
+                    # Check if this is a major checkpoint that should have BERTScore
+                    is_major = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                    
+                    # Check if extended metrics are missing
+                    has_extended_metrics = any(
+                        key.startswith("eval_reference_") or 
+                        key.startswith("eval_hygiene_") or 
+                        key.startswith("eval_faithfulness_") or
+                        key == "eval_faithfulness"
+                        for key in existing_results.keys()
                     )
+                    
+                    # If it's a major checkpoint and should have BERTScore but doesn't, re-evaluate
+                    if is_major and "eval_reference_bertscore_f1_mean" not in existing_results:
+                        print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
+                        print(f"   Re-evaluating to compute extended metrics...")
+                        # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                    elif not has_extended_metrics:
+                        print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
+                        print(f"   Re-evaluating to compute extended metrics...")
+                        # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                    # Check if NLI faithfulness is requested but missing
+                    elif include_nli_faithfulness:
+                        has_nli_metrics = (
+                            any(key.startswith("eval_faithfulness_") for key in existing_results.keys()) or
+                            ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
+                        )
+                        # Also check for eval_faithfulness key (could be set to null)
+                        has_nli_results = (
+                            has_nli_metrics or 
+                            ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
+                        )
+                        if not has_nli_results:
+                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing NLI faithfulness metrics (--include_nli_faithfulness was requested).")
+                            print(f"   Re-evaluating to compute NLI metrics...")
+                            # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                        else:
+                            # All metrics present, skip evaluation
+                            raise AlreadyEvaluatedError(
+                                f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                                f"(results file exists at {eval_results_file}). "
+                                f"Skipping evaluation."
+                            )
+                    else:
+                        # Extended metrics are present, skip evaluation
+                        raise AlreadyEvaluatedError(
+                            f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                            f"(results file exists at {eval_results_file}). "
+                            f"Skipping evaluation."
+                        )
             except (json.JSONDecodeError, ValueError, KeyError) as e:
                 # If we can't parse the file, allow re-evaluation
                 print(f"⚠ Warning: Could not parse existing results file: {e}")
@@ -688,36 +689,61 @@ def load_model_and_peft_checkpoint(
             )
     
     # Also check old location for backwards compatibility
-    old_eval_results_file = os.path.join(checkpoint_dir, 'eval_results', 'eval_results.json')
     if os.path.exists(old_eval_results_file):
         # Check if extended metrics are missing (same logic as above)
         if EXTENDED_EVAL_AVAILABLE:
             try:
-                with open(old_eval_results_file, 'r') as f:
-                    existing_results = json.load(f)
-                
-                is_major_checkpoint = (checkpoint_step_int > 0 and checkpoint_step_int % major_checkpoint_interval == 0)
-                has_extended_metrics = any(
-                    key.startswith("eval_reference_") or 
-                    key.startswith("eval_hygiene_") or 
-                    key.startswith("eval_faithfulness_")
-                    for key in existing_results.keys()
-                )
-                
-                if is_major_checkpoint and "eval_reference_bertscore_f1_mean" not in existing_results:
-                    print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
-                    print(f"   Re-evaluating to compute extended metrics...")
-                    # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                elif not has_extended_metrics:
-                    print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
-                    print(f"   Re-evaluating to compute extended metrics...")
-                    # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                else:
-                    raise AlreadyEvaluatedError(
-                        f"Checkpoint {checkpoint_dir} appears to be already evaluated "
-                        f"(old results file exists at {old_eval_results_file}). "
-                        f"Skipping evaluation."
+                existing_results_old = load_eval_results(checkpoint_dir, model_dir)
+                if existing_results_old is not None:
+                    is_major_old = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                    has_extended_metrics_old = any(
+                        key.startswith("eval_reference_") or 
+                        key.startswith("eval_hygiene_") or 
+                        key.startswith("eval_faithfulness_") or
+                        key == "eval_faithfulness"
+                        for key in existing_results_old.keys()
                     )
+                    
+                    if is_major_old and "eval_reference_bertscore_f1_mean" not in existing_results_old:
+                        print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
+                        print(f"   Re-evaluating to compute extended metrics...")
+                        # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                    elif not has_extended_metrics_old:
+                        print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
+                        print(f"   Re-evaluating to compute extended metrics...")
+                        # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                    # Check if NLI faithfulness is requested but missing
+                    elif include_nli_faithfulness:
+                        has_nli_metrics_old = (
+                            any(key.startswith("eval_faithfulness_") for key in existing_results_old.keys()) or
+                            ("eval_faithfulness" in existing_results_old and existing_results_old.get("eval_faithfulness") is not None)
+                        )
+                        # Also check for eval_faithfulness key (could be set to null)
+                        has_nli_results_old = (
+                            has_nli_metrics_old or 
+                            ("eval_faithfulness" in existing_results_old and existing_results_old.get("eval_faithfulness") is not None)
+                        )
+                        if not has_nli_results_old:
+                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing NLI faithfulness metrics (--include_nli_faithfulness was requested).")
+                            print(f"   Re-evaluating to compute NLI metrics...")
+                            # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                        else:
+                            # All metrics present, skip evaluation
+                            raise AlreadyEvaluatedError(
+                                f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                                f"(old results file exists at {old_eval_results_file}). "
+                                f"Skipping evaluation."
+                            )
+                    else:
+                        raise AlreadyEvaluatedError(
+                            f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                            f"(old results file exists at {old_eval_results_file}). "
+                            f"Skipping evaluation."
+                        )
+                else:
+                    # Can't parse, allow re-evaluation
+                    print(f"⚠ Warning: Could not parse existing results file. Re-evaluating...")
+                    # Don't raise AlreadyEvaluatedError - allow re-evaluation
             except (json.JSONDecodeError, ValueError, KeyError):
                 # If we can't parse, allow re-evaluation
                 print(f"⚠ Warning: Could not parse existing results file. Re-evaluating...")
@@ -1042,8 +1068,17 @@ def evaluate_checkpoint(
     # Tiered evaluation strategy:
     #   - Normal checkpoints: ROUGE + Hygiene only (~2 min)
     #   - Major checkpoints: ROUGE + Hygiene + BERTScore (~3-4 min)
-    #   - NLI Faithfulness: Skip for all checkpoints (too slow, ~37 min - use only for final evaluation)
-    is_major_checkpoint = (checkpoint_step_int > 0 and checkpoint_step_int % major_checkpoint_interval == 0)
+    #   - NLI Faithfulness: Optional, controlled by include_nli_faithfulness parameter
+    is_major_checkpoint_bool = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+    
+    # Debug: Print NLI flag status
+    print(f"\n{'='*70}")
+    print(f"NLI FAITHFULNESS CONFIGURATION:")
+    print(f"{'='*70}")
+    print(f"  include_nli_faithfulness parameter: {include_nli_faithfulness}")
+    print(f"  nli_subset_size parameter: {nli_subset_size}")
+    print(f"  EXTENDED_EVAL_AVAILABLE: {EXTENDED_EVAL_AVAILABLE}")
+    print(f"{'='*70}\n")
     
     # Default training parameters for example calculation (may vary - check training config for exact values)
     DEFAULT_TRAIN_BATCH_SIZE = 4
@@ -1056,65 +1091,87 @@ def evaluate_checkpoint(
     ) if checkpoint_step_int > 0 else None
     
     # Determine output directory: save to model/all_eval_results/checkpoint-nnn-eval-results.json
+    # Get model directory first (needed for results_file path)
+    model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
+    
     if output_dir is None:
-        # Get model directory (parent of checkpoint_dir)
-        model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
         # Create all_eval_results directory in model directory
-        output_dir = os.path.join(model_dir, "all_eval_results")
+        output_dir = os.path.join(model_dir_eval, "all_eval_results")
     else:
         output_dir = os.path.abspath(output_dir)
     
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
     
-    # Save as checkpoint-nnn-eval-results.json instead of eval_results.json
-    results_file = os.path.join(output_dir, f"{checkpoint_name}-eval-results.json")
+    # Get results file path using utility function
+    results_file = get_eval_results_path(checkpoint_dir, model_dir_eval)
     
     # If results file exists, load and log to Wandb without re-evaluating
     if os.path.exists(results_file):
         print(f"⚠ Checkpoint {checkpoint_name} already evaluated. Loading existing results...")
         
         try:
-            with open(results_file, 'r') as f:
-                existing_results = json.load(f)
-            print(f"✓ Loaded existing results from {results_file}")
-            
-            # Extract ROUGE scores (handle both eval_rouge* and rouge* keys)
-            rouge1 = existing_results.get("eval_rouge1", existing_results.get("rouge1", 0))
-            rouge2 = existing_results.get("eval_rouge2", existing_results.get("rouge2", 0))
-            rougeL = existing_results.get("eval_rougeL", existing_results.get("rougeL", 0))
-            rougeLsum = existing_results.get("eval_rougeLsum", existing_results.get("rougeLsum", 0))
-            
-            # Check if all ROUGE scores are zero (indicates failed evaluation)
-            all_zeros = (rouge1 == 0.0 and rouge2 == 0.0 and rougeL == 0.0 and rougeLsum == 0.0)
-            
-            # Check if extended metrics are missing (if extended evaluation is available)
-            missing_extended_metrics = False
-            if EXTENDED_EVAL_AVAILABLE:
-                has_extended_metrics = any(
-                    key.startswith("eval_reference_") or 
-                    key.startswith("eval_hygiene_") or 
-                    key.startswith("eval_faithfulness_")
-                    for key in existing_results.keys()
-                )
-                
-                if is_major_checkpoint and "eval_reference_bertscore_f1_mean" not in existing_results:
-                    missing_extended_metrics = True
-                    print(f"⚠ Checkpoint {checkpoint_name} missing BERTScore (major checkpoint). Re-evaluating...")
-                elif not has_extended_metrics:
-                    missing_extended_metrics = True
-                    print(f"⚠ Checkpoint {checkpoint_name} missing extended metrics. Re-evaluating...")
-            
-            if all_zeros or missing_extended_metrics:
-                if all_zeros:
-                    print(f"⚠ Warning: All ROUGE scores are 0.00 - this indicates a failed evaluation.")
-                    print(f"   Re-evaluating checkpoint {checkpoint_name}...")
-                # Fall through to normal evaluation instead of returning
+            existing_results = load_eval_results(checkpoint_dir, model_dir_eval)
+            if existing_results is None:
+                print(f"⚠ Warning: Could not load existing results from {results_file}")
+                # Fall through to normal evaluation
             else:
-                # Initialize Wandb if needed (even for already-evaluated checkpoints)
-                is_main_process = True
-                if wandb_project and not wandb_disabled and wandb.run is None and is_main_process:
-                    print(f"Initializing Weights & Biases to log existing results...")
+                print(f"✓ Loaded existing results from {results_file}")
+                
+                # Extract ROUGE scores (handle both eval_rouge* and rouge* keys)
+                rouge1 = existing_results.get("eval_rouge1", existing_results.get("rouge1", 0))
+                rouge2 = existing_results.get("eval_rouge2", existing_results.get("rouge2", 0))
+                rougeL = existing_results.get("eval_rougeL", existing_results.get("rougeL", 0))
+                rougeLsum = existing_results.get("eval_rougeLsum", existing_results.get("rougeLsum", 0))
+                
+                # Check if all ROUGE scores are zero (indicates failed evaluation)
+                all_zeros = (rouge1 == 0.0 and rouge2 == 0.0 and rougeL == 0.0 and rougeLsum == 0.0)
+                
+                # Check if extended metrics are missing (if extended evaluation is available)
+                missing_extended_metrics = False
+                if EXTENDED_EVAL_AVAILABLE:
+                    has_extended_metrics = any(
+                        key.startswith("eval_reference_") or 
+                        key.startswith("eval_hygiene_") or 
+                        key.startswith("eval_faithfulness_") or
+                        key == "eval_faithfulness"
+                        for key in existing_results.keys()
+                    )
+                    
+                    is_major_val = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                    if is_major_val and "eval_reference_bertscore_f1_mean" not in existing_results:
+                        missing_extended_metrics = True
+                        print(f"⚠ Checkpoint {checkpoint_name} missing BERTScore (major checkpoint). Re-evaluating...")
+                    elif not has_extended_metrics:
+                        missing_extended_metrics = True
+                        print(f"⚠ Checkpoint {checkpoint_name} missing extended metrics. Re-evaluating...")
+                    
+                    # Check if NLI faithfulness is requested but missing (separate check, not elif)
+                    # Always check NLI if requested, regardless of other extended metrics status
+                    if include_nli_faithfulness:
+                        has_nli_metrics = (
+                            any(key.startswith("eval_faithfulness_") for key in existing_results.keys()) or
+                            ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
+                        )
+                        # Also check for eval_faithfulness key (could be set to null)
+                        has_nli_results = (
+                            has_nli_metrics or 
+                            ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
+                        )
+                        if not has_nli_results:
+                            missing_extended_metrics = True
+                            print(f"⚠ Checkpoint {checkpoint_name} missing NLI faithfulness metrics (--include_nli_faithfulness was requested). Re-evaluating...")
+                
+                if all_zeros or missing_extended_metrics:
+                    if all_zeros:
+                        print(f"⚠ Warning: All ROUGE scores are 0.00 - this indicates a failed evaluation.")
+                        print(f"   Re-evaluating checkpoint {checkpoint_name}...")
+                    # Fall through to normal evaluation instead of returning
+                else:
+                    # Initialize Wandb if needed (even for already-evaluated checkpoints)
+                    is_main_process_cached = True
+                    if wandb_project and not wandb_disabled and wandb.run is None and is_main_process_cached:
+                        print(f"Initializing Weights & Biases to log existing results...")
                     
                     # Create a clean model name for display
                     clean_model_name = model_name.split('/')[-1].replace('-', '_')
@@ -1127,16 +1184,18 @@ def evaluate_checkpoint(
                         gpu_info[f"gpu_{i}_name"] = props.name
                         gpu_info[f"gpu_{i}_memory_total_gb"] = props.total_memory / 1e9
                     
-                    # Use provided run_name or create one based on model and checkpoint
-                    # Include checkpoint step and type (major/normal) in run name for better identification
-                    if wandb_run_name:
-                        run_name = wandb_run_name
-                    else:
-                        # Default: include checkpoint step and type for uniqueness
-                        checkpoint_type = "major" if is_major_checkpoint else "normal"
-                        run_name = f"{clean_model_name}_eval_{checkpoint_type}-{checkpoint_step_int}"
-                    
-                    wandb.init(
+                        # Use provided run_name or create one based on model and checkpoint
+                        # Include checkpoint step and type (major/normal) in run name for better identification
+                        if wandb_run_name:
+                            run_name = wandb_run_name
+                            is_major_cached = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                        else:
+                            # Default: include checkpoint step and type for uniqueness
+                            is_major_cached = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                            checkpoint_type = "major" if is_major_cached else "normal"
+                            run_name = f"{clean_model_name}_eval_{checkpoint_type}-{checkpoint_step_int}"
+                        
+                        wandb.init(
                         project=wandb_project,
                         entity=wandb_entity,
                         name=run_name,
@@ -1144,12 +1203,12 @@ def evaluate_checkpoint(
                         tags=[
                             "evaluation",
                             "cached",  # Indicate this was loaded from cache
-                            "major" if is_major_checkpoint else "normal",
+                            "major" if is_major_cached else "normal",
                         ],
                         config={
                             "model": model_name,
                             "checkpoint_step": checkpoint_step_int,
-                            "checkpoint_type": "major" if is_major_checkpoint else "normal",
+                            "checkpoint_type": "major" if is_major_cached else "normal",
                             "val_dataset": val_dataset_path,
                             "val_size": val_data_size,
                             "val_batch_size": val_batch_size,
@@ -1162,10 +1221,10 @@ def evaluate_checkpoint(
                     print(f">>> wandb run initialized: {wandb.run.name}")
                     print(f">>> wandb run URL: {wandb.run.get_url()}")
                 
-                # Log existing results to Wandb
-                if wandb.run is not None and is_main_process and not wandb_disabled:
-                    # Log metrics with checkpoint step as the x-axis
-                    wandb.log({
+                    # Log existing results to Wandb
+                    if wandb.run is not None and is_main_process_cached and not wandb_disabled:
+                        # Log metrics with checkpoint step as the x-axis
+                        wandb.log({
                         "rouge1": rouge1,
                         "rouge2": rouge2,
                         "rougeL": rougeL,
@@ -1174,60 +1233,60 @@ def evaluate_checkpoint(
                     
                     print(f">>> Logged existing results to wandb at step {checkpoint_step_int}")
                     print(f"   ROUGE-1: {rouge1:.2f}, ROUGE-2: {rouge2:.2f}, ROUGE-L: {rougeL:.2f}, ROUGE-Lsum: {rougeLsum:.2f}")
-                
-                # Update evaluation summary JSON file even for cached results
-                summary_file = os.path.join(output_dir, "evaluation_summary.json")
-                
-                # Load existing summary or create new one
-                if os.path.exists(summary_file):
-                    with open(summary_file, 'r') as f:
-                        summary = json.load(f)
-                else:
-                    # Initialize new summary
-                    summary = {
-                        "model": model_name,
-                        "checkpoint_base_dir": os.path.dirname(checkpoint_dir.rstrip('/')),
-                        "val_dataset": val_dataset_path,
-                        "num_gpus": torch.cuda.device_count() if torch.cuda.is_available() else 0,
-                        "generated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-                        "checkpoints": []
+                    
+                    # Update evaluation summary JSON file even for cached results
+                    summary_file = os.path.join(output_dir, "evaluation_summary.json")
+                    
+                    # Load existing summary or create new one
+                    if os.path.exists(summary_file):
+                        with open(summary_file, 'r') as f:
+                            summary = json.load(f)
+                    else:
+                        # Initialize new summary
+                        summary = {
+                            "model": model_name,
+                            "checkpoint_base_dir": os.path.dirname(checkpoint_dir.rstrip('/')),
+                            "val_dataset": val_dataset_path,
+                            "num_gpus": torch.cuda.device_count() if torch.cuda.is_available() else 0,
+                            "generated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                            "checkpoints": []
+                        }
+                    
+                    # Create checkpoint entry with all metrics from existing results
+                    checkpoint_entry = {
+                        "checkpoint": checkpoint_name,
+                        "checkpoint_number": checkpoint_step_int,
+                        "status": "success",
+                        "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+                        "result_file": results_file,
+                        "from_cache": True
                     }
-                
-                # Create checkpoint entry with all metrics from existing results
-                checkpoint_entry = {
-                    "checkpoint": checkpoint_name,
-                    "checkpoint_number": checkpoint_step_int,
-                    "status": "success",
-                    "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-                    "result_file": results_file,
-                    "from_cache": True
-                }
-                
-                # Add all metrics from existing_results
-                for key, value in existing_results.items():
-                    normalized_key = key.replace("eval_", "").lower()
-                    if isinstance(value, (int, float)):
-                        checkpoint_entry[normalized_key] = float(value)
-                    elif isinstance(value, dict):
-                        for sub_key, sub_value in value.items():
-                            if isinstance(sub_value, (int, float)):
-                                checkpoint_entry[f"{normalized_key}_{sub_key}"] = float(sub_value)
-                
-                # Remove existing entry for this checkpoint if it exists, then add new one
-                summary["checkpoints"] = [c for c in summary["checkpoints"] if c.get("checkpoint") != checkpoint_name]
-                summary["checkpoints"].append(checkpoint_entry)
-                
-                # Sort and update statistics (same logic as in main save section)
-                summary["checkpoints"].sort(key=lambda x: x.get("checkpoint_number", 0))
-                _update_summary_statistics(summary)
-                
-                # Save updated summary
-                with open(summary_file, 'w') as f:
-                    json.dump(summary, f, indent=2)
-                print(f"Evaluation summary updated: {summary_file}")
-                
-                # Return existing results (no model needed since we're not evaluating)
-                return existing_results, None
+                    
+                    # Add all metrics from existing_results
+                    for key, value in existing_results.items():
+                        normalized_key = key.replace("eval_", "").lower()
+                        if isinstance(value, (int, float)):
+                            checkpoint_entry[normalized_key] = float(value)
+                        elif isinstance(value, dict):
+                            for sub_key, sub_value in value.items():
+                                if isinstance(sub_value, (int, float)):
+                                    checkpoint_entry[f"{normalized_key}_{sub_key}"] = float(sub_value)
+                    
+                    # Remove existing entry for this checkpoint if it exists, then add new one
+                    summary["checkpoints"] = [c for c in summary["checkpoints"] if c.get("checkpoint") != checkpoint_name]
+                    summary["checkpoints"].append(checkpoint_entry)
+                    
+                    # Sort and update statistics (same logic as in main save section)
+                    summary["checkpoints"].sort(key=lambda x: x.get("checkpoint_number", 0))
+                    _update_summary_statistics(summary)
+                    
+                    # Save updated summary
+                    with open(summary_file, 'w') as f:
+                        json.dump(summary, f, indent=2)
+                    print(f"Evaluation summary updated: {summary_file}")
+                    
+                    # Return existing results (no model needed since we're not evaluating)
+                    return existing_results, None
             
         except Exception as e:
             print(f"⚠ Warning: Failed to load existing results from {results_file}: {e}")
@@ -1271,68 +1330,15 @@ def evaluate_checkpoint(
         print(f"Using batch size: {val_batch_size} for evaluation")
 
     def compute_metrics(eval_pred):
-        if is_main_process:
-            print('*** evaluation: compute_metrics ***')
-        
-        # Load ROUGE metric (lazy loading after cache paths are set)
-        rouge = evaluate.load("rouge")
-        
-        preds, labels = eval_pred
-        if is_main_process:
-            print('*** evaluation: preds ***', preds.shape)
-            print('*** evaluation: labels ***', labels.shape)
-        
-        labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
-        
-        vocab_size = tokenizer.vocab_size
-        if is_main_process:
-            print(f'*** Vocab size: {vocab_size} ***')
-        
-        preds = np.clip(preds, 0, vocab_size - 1)
-        labels = np.clip(labels, 0, vocab_size - 1)
-        
-        decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
-        decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
-
-        # Clean up decoded predictions - remove special tokens and backslashes
-        def clean_text(text):
-            """Clean decoded text by removing special tokens and unwanted characters."""
-            # Remove common chat format tokens
-            text = text.replace('[/INST]', '').replace('[INST]', '')
-            text = text.replace('</s>', '').replace('<s>', '')
-            # Remove backslashes (common issue with Llama-2 chat models)
-            text = text.replace('\\', '')
-            # Remove multiple spaces
-            text = ' '.join(text.split())
-            return text.strip()
-        
-        decoded_preds = [clean_text(p) for p in decoded_preds]
-        decoded_labels = [clean_text(l) for l in decoded_labels]
-        
-        # Additional strip (keep the existing strip)
-        decoded_preds = [p.strip() for p in decoded_preds]
-        decoded_labels = [l.strip() for l in decoded_labels]
-
-        if len(decoded_preds) > 0 and is_main_process:
-            print(f'\n*** Example 1 ***')
-            print(f'Prediction: {decoded_preds[0][:200]}...')
-            print(f'Reference:  {decoded_labels[0][:200]}...\n')
-
-        scores = rouge.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
-        if is_main_process:
-            print('*** evaluation: computed_metrics ***', scores)
-        
-        # Log to wandb if initialized and not disabled (only on main process)
-        # Use checkpoint_step as the step so all checkpoints appear in one timeline
-        if wandb.run is not None and is_main_process and not wandb_disabled:
-            wandb.log({
-                "rouge1": scores['rouge1'] * 100,
-                "rouge2": scores['rouge2'] * 100,
-                "rougeL": scores['rougeL'] * 100,
-                "rougeLsum": scores['rougeLsum'] * 100,
-            }, step=checkpoint_step_int)  # Use checkpoint step as x-axis
-        
-        return {k: v * 100 for k, v in scores.items()}  # % values
+        """Compute ROUGE metrics using shared utility function."""
+        return compute_rouge_metrics(
+            eval_pred=eval_pred,
+            tokenizer=tokenizer,
+            log_to_wandb=True,
+            step=checkpoint_step_int,  # Use checkpoint step as x-axis
+            is_main_process=is_main_process,
+            verbose=True
+        )
 
     
     # Login to Hugging Face if token is provided
@@ -1374,11 +1380,12 @@ def evaluate_checkpoint(
         
         # Use provided run_name or create one based on model and checkpoint
         # Include checkpoint step and type (major/normal) in run name for better identification
+        is_major_eval = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
         if wandb_run_name:
             run_name = wandb_run_name
         else:
             # Default: include checkpoint step and type for uniqueness
-            checkpoint_type = "major" if is_major_checkpoint else "normal"
+            checkpoint_type = "major" if is_major_eval else "normal"
             run_name = f"{clean_model_name}_eval_{checkpoint_type}-{checkpoint_step_int}"
         
         wandb.init(
@@ -1388,12 +1395,12 @@ def evaluate_checkpoint(
             group=wandb_group or clean_model_name,  # Group all checkpoints together
             tags=[
                 "evaluation",
-                "major" if is_major_checkpoint else "normal",
+                "major" if is_major_eval else "normal",
             ],
             config={
                 "model": model_name,
                 "checkpoint_step": checkpoint_step_int,
-                "checkpoint_type": "major" if is_major_checkpoint else "normal",
+                "checkpoint_type": "major" if is_major_eval else "normal",
                 "val_dataset": val_dataset_path,
                 "val_size": val_data_size,
                 "val_batch_size": val_batch_size,
@@ -1437,7 +1444,8 @@ def evaluate_checkpoint(
         model = load_model_and_peft_checkpoint(
             model_name, checkpoint_dir, hf_token, 
             use_multi_gpu=use_multi_gpu,
-            major_checkpoint_interval=major_checkpoint_interval
+            major_checkpoint_interval=major_checkpoint_interval,
+            include_nli_faithfulness=include_nli_faithfulness
         )
     except AlreadyEvaluatedError:
         # Re-raise to be caught by the main block
@@ -1459,45 +1467,10 @@ def evaluate_checkpoint(
     if is_main_process:
         print(f"Loading validation dataset from: {val_dataset_path}")
     
-    # Check if file exists
-    if not os.path.exists(val_dataset_path):
-        raise FileNotFoundError(f"Validation dataset file does not exist: {val_dataset_path}")
-    
-    # Check file size (Git LFS pointers are typically < 200 bytes)
-    file_size = os.path.getsize(val_dataset_path)
-    if file_size < 200:
-        print(f"WARNING: Validation dataset file is very small ({file_size} bytes).")
-        print(f"         This might be a Git LFS pointer file. Please ensure the actual file is downloaded.")
-    
-    val_data = []
-    with open(val_dataset_path, 'r', encoding='utf-8') as f:
-        first_line = f.readline()
-        # Check if it's a Git LFS pointer
-        if first_line.strip().startswith('version https://git-lfs.github.com/spec/v1'):
-            raise ValueError(
-                f"Validation dataset file appears to be a Git LFS pointer, not actual data.\n"
-                f"Please download the actual file using: git lfs pull\n"
-                f"Or ensure the file at {val_dataset_path} contains actual JSONL data."
-            )
-        
-        # Reset file pointer and read all lines
-        f.seek(0)
-        line_num = 0
-        for line in f:
-            line_num += 1
-            line = line.strip()
-            if not line:  # Skip empty lines
-                continue
-            try:
-                val_data.append(json.loads(line))
-            except json.JSONDecodeError as json_err:
-                raise ValueError(
-                    f"Invalid JSON on line {line_num} of validation dataset: {json_err}\n"
-                    f"Line content (first 200 chars): {line[:200]}"
-                )
-    
-    if len(val_data) == 0:
-        raise ValueError(f"Validation dataset file is empty or contains no valid JSON lines: {val_dataset_path}")
+    # Load validation dataset using shared utility
+    val_data = load_jsonl_dataset(val_dataset_path, dataset_type="validation", raise_on_error=True)
+    if val_data is None:
+        raise ValueError(f"Failed to load validation dataset from {val_dataset_path}")
     
     if is_main_process:
         print(f"Successfully loaded {len(val_data)} validation examples")
@@ -1514,46 +1487,22 @@ def evaluate_checkpoint(
     if is_main_process:
         print(f'*** validation dataset size: {len(val_dataset)} examples ***')
 
-    def format_example_eval(example):
-        """Format evaluation example with model-specific prompt template."""
-        # Extract doc_type from metadata if available
-        doc_type = None
-        if 'metadata' in example and isinstance(example['metadata'], dict):
-            doc_type = example['metadata'].get('doc_type')
-        
-        model_config = get_model_config_by_hf_name(model_name)
-        if model_config:
-            prompt = model_config.prompt_config.format_eval(input_text=example['input'], doc_type=doc_type)
-        else:
-            # Fallback to default format with doc_type
-            from model_configs import get_doc_type_norwegian
-            doc_type_nor = get_doc_type_norwegian(doc_type)
-            prompt = f"Oppgave: Oppsummer følgende {doc_type_nor}:\n\n###\n\n{example['input']}\n\n###\n\nOppsummering:\n\n###\n\n"
-        
-        target = example['output'] if example.get('output') is not None else ""
-        return {
-            "prompt": prompt,
-            "target_summary": str(target)  # Ensure it's a string
-        }
-
-    def tokenize_function_eval(examples):
-        max_input_prompt_tokens = max_input_text_tokens + max_extra_prompt_tokens
-        tokenized_prompts = tokenizer(
-            examples["prompt"],
-            truncation=True,
-            max_length=max_input_prompt_tokens,
-            padding=False
+    # Use shared formatting and tokenization functions
+    def format_example_eval_wrapper(example):
+        """Wrapper to call shared format_eval_example with model_name."""
+        return format_eval_example(example, model_name)
+    
+    def tokenize_function_eval_wrapper(examples):
+        """Wrapper to call shared tokenize_eval_examples with tokenizer and config."""
+        return tokenize_eval_examples(
+            examples=examples,
+            tokenizer=tokenizer,
+            max_input_text_tokens=max_input_text_tokens,
+            max_extra_prompt_tokens=max_extra_prompt_tokens,
+            max_output_summary_tokens=max_output_summary_tokens
         )
-        tokenized_targets = tokenizer(
-            examples["target_summary"],
-            truncation=True,
-            max_length=max_output_summary_tokens,
-            padding=False
-        )
-        tokenized_prompts["labels"] = tokenized_targets["input_ids"]
-        return tokenized_prompts
 
-    formatted_val_dataset = val_dataset.map(format_example_eval)
+    formatted_val_dataset = val_dataset.map(format_example_eval_wrapper)
     
     # Log example prompts to wandb (lightweight - just a few examples to verify prompt formatting)
     if is_main_process and wandb.run is not None:
@@ -1599,7 +1548,7 @@ def evaluate_checkpoint(
             print(f"  Prompt Preview: {ex['prompt_preview']}")
         print("=" * 70 + "\n")
     
-    tokenized_val_dataset = formatted_val_dataset.map(tokenize_function_eval, batched=True)
+    tokenized_val_dataset = formatted_val_dataset.map(tokenize_function_eval_wrapper, batched=True)
     
     # Store original examples for JSONL output (before tokenization)
     # We need both the raw input text and the formatted prompt
@@ -1780,6 +1729,8 @@ def evaluate_checkpoint(
     # Run extended evaluation metrics (reference-based, hygiene, faithfulness)
     # For major checkpoints: load from saved JSONL file
     # For normal checkpoints: use predictions from memory (trainer._eval_predictions)
+    include_faithfulness = False  # Initialize to avoid unbound variable errors
+    
     if is_main_process and EXTENDED_EVAL_AVAILABLE:
         print("\n" + "=" * 70)
         print("Running Extended Evaluation Metrics...")
@@ -1819,7 +1770,8 @@ def evaluate_checkpoint(
                     # Normal checkpoints: ROUGE + Hygiene only (fast, ~2 min)
                     # Major checkpoints: ROUGE + Hygiene + BERTScore (moderate, ~3-4 min)
                     # NLI Faithfulness: Optional, can be enabled via include_nli_faithfulness parameter
-                    include_bertscore = is_major_checkpoint
+                    is_major_extended = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                    include_bertscore = is_major_extended
                     include_faithfulness = include_nli_faithfulness  # User-controlled
                     
                     # Prepare subset for NLI if requested
@@ -1838,10 +1790,11 @@ def evaluate_checkpoint(
                         nli_reference_texts = [reference_texts[i] for i in indices]
                         print(f"  → NLI subset: Using {nli_subset_size} examples from {len(input_texts)} total")
                     
-                    checkpoint_type = "MAJOR" if is_major_checkpoint else "NORMAL"
+                    is_major_extended = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                    checkpoint_type = "MAJOR" if is_major_extended else "NORMAL"
                     print(f"Computing extended metrics on {len(input_texts)} examples...")
                     print(f"Checkpoint type: {checkpoint_type} (step {checkpoint_step_int})")
-                    if is_major_checkpoint:
+                    if is_major_extended:
                         print(f"  → Computing: ROUGE + Hygiene + BERTScore (~3-4 min)")
                     else:
                         print(f"  → Computing: ROUGE + Hygiene only (~2 min)")
@@ -1869,20 +1822,33 @@ def evaluate_checkpoint(
                         include_bertscore=include_bertscore,
                         include_faithfulness=False  # Skip NLI in first run
                     )
+                    # Initialize faithfulness to None if not present (will be set in second run if requested)
+                    if "faithfulness" not in extended_results:
+                        extended_results["faithfulness"] = None
                     
                     # Second run: NLI only (on subset if specified)
                     if include_faithfulness:
                         assert extended_evaluate is not None, "extended_evaluate should be available when EXTENDED_EVAL_AVAILABLE is True"
-                        nli_results = extended_evaluate(
-                            input_texts=nli_input_texts,
-                            prediction_texts=nli_prediction_texts,
-                            reference_texts=nli_reference_texts,
-                            print_output=False,
-                            include_bertscore=False,  # Skip BERTScore in second run (already computed)
-                            include_faithfulness=True  # Only compute NLI
-                        )
-                        # Merge NLI results into extended_results
-                        extended_results["faithfulness"] = nli_results.get("faithfulness")
+                        try:
+                            nli_results = extended_evaluate(
+                                input_texts=nli_input_texts,
+                                prediction_texts=nli_prediction_texts,
+                                reference_texts=nli_reference_texts,
+                                print_output=False,
+                                include_bertscore=False,  # Skip BERTScore in second run (already computed)
+                                include_faithfulness=True  # Only compute NLI
+                            )
+                            # Merge NLI results into extended_results
+                            faithfulness_result = nli_results.get("faithfulness") if nli_results else None
+                            extended_results["faithfulness"] = faithfulness_result
+                        except Exception as nli_error:
+                            print(f"\n{'='*70}")
+                            print(f"ERROR: NLI faithfulness evaluation failed: {nli_error}")
+                            print(f"{'='*70}")
+                            import traceback
+                            traceback.print_exc()
+                            print(f"{'='*70}\n")
+                            extended_results["faithfulness"] = None
                     
                     # Note: If NLI was run on a subset, the NLI results are for that subset only
                     # The other metrics (ROUGE, Hygiene, BERTScore) are computed on the full set
@@ -1892,10 +1858,15 @@ def evaluate_checkpoint(
                     # Flatten nested structure for easier access
                     for category, metrics in extended_results.items():
                         if isinstance(metrics, dict):
-                            for key, value in metrics.items():
-                                # Normalize key names (use eval_ prefix for consistency)
-                                eval_key = f"eval_{category}_{key}"
-                                eval_results[eval_key] = value
+                            # For faithfulness, preserve the full dict only (nested structure is cleaner)
+                            if category == "faithfulness" and metrics is not None:
+                                # Save full faithfulness dict
+                                eval_results["eval_faithfulness"] = metrics
+                            else:
+                                # For other categories, flatten for easier access
+                                for key, value in metrics.items():
+                                    eval_key = f"eval_{category}_{key}"
+                                    eval_results[eval_key] = value
                         else:
                             eval_key = f"eval_{category}"
                             eval_results[eval_key] = metrics
@@ -1944,10 +1915,13 @@ def evaluate_checkpoint(
             else:
                 print("Warning: No valid examples found in predictions file for extended evaluation")
         except Exception as e:
-            print(f"Warning: Extended evaluation failed: {e}")
+            print(f"\n{'='*70}")
+            print(f"ERROR: Extended evaluation failed: {e}")
+            print(f"{'='*70}")
             import traceback
             traceback.print_exc()
             print("Continuing with ROUGE metrics only...")
+            print(f"{'='*70}\n")
     # Note: Diagnostic messages for why extended evaluation didn't run are printed earlier
     
     if is_main_process:
@@ -2021,11 +1995,13 @@ def evaluate_checkpoint(
             if "eval_hygiene_ratio_ends_with_punct" in eval_results:
                 log_dict["ends_with_punct"] = eval_results.get("eval_hygiene_ratio_ends_with_punct", 0)
             
-            # Faithfulness metrics
-            if "eval_faithfulness_mean_entailment_score" in eval_results:
-                log_dict["entailment_mean"] = eval_results.get("eval_faithfulness_mean_entailment_score", 0)
-            if "eval_faithfulness_ratio_passed" in eval_results:
-                log_dict["faithfulness_passed"] = eval_results.get("eval_faithfulness_ratio_passed", 0)
+            # Faithfulness metrics (from nested dict)
+            if "eval_faithfulness" in eval_results and isinstance(eval_results["eval_faithfulness"], dict):
+                faithfulness = eval_results["eval_faithfulness"]
+                if "mean_entailment_score" in faithfulness:
+                    log_dict["entailment_mean"] = faithfulness.get("mean_entailment_score", 0)
+                if "ratio_passed_documents" in faithfulness:
+                    log_dict["faithfulness_passed"] = faithfulness.get("ratio_passed_documents", 0)
             
             if log_dict:
                 wandb.log(log_dict, step=checkpoint_step_int)
@@ -2050,79 +2026,23 @@ def evaluate_checkpoint(
     
     # Save results to file (only on main process)
     if is_main_process:
-        # Save to new location: all_eval_results/checkpoint-nnn-eval-results.json
-        # results_file was already set earlier with the new naming scheme
-        # output_dir was already created earlier, so just save
-        with open(results_file, 'w') as f:
-            json.dump(eval_results, f, indent=2)
+        # Save results using utility function (saves to both new and old locations)
+        save_eval_results(
+            results=eval_results,
+            checkpoint_dir=checkpoint_dir,
+            model_dir=model_dir_eval,
+            save_to_old_location=True  # Keep backwards compatibility
+        )
         print(f"Results saved to: {results_file}")
         
-        # Also save to old location: checkpoint_dir/eval_results/eval_results.json (for backwards compatibility)
-        old_eval_results_dir = os.path.join(checkpoint_dir, 'eval_results')
-        os.makedirs(old_eval_results_dir, exist_ok=True)
-        old_results_file = os.path.join(old_eval_results_dir, 'eval_results.json')
-        with open(old_results_file, 'w') as f:
-            json.dump(eval_results, f, indent=2)
-        print(f"Results also saved to: {old_results_file}")
-        
-        # Update evaluation summary JSON file
-        summary_file = os.path.join(output_dir, "evaluation_summary.json")
-        
-        # Load existing summary or create new one
-        if os.path.exists(summary_file):
-            with open(summary_file, 'r') as f:
-                summary = json.load(f)
-        else:
-            # Initialize new summary
-            summary = {
-                "model": model_name,
-                "checkpoint_base_dir": os.path.dirname(checkpoint_dir.rstrip('/')),
-                "val_dataset": val_dataset_path,
-                "num_gpus": torch.cuda.device_count() if torch.cuda.is_available() else 0,
-                "generated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-                "checkpoints": []
-            }
-        
-        # Create checkpoint entry with all metrics
-        checkpoint_entry = {
-            "checkpoint": checkpoint_name,
-            "checkpoint_number": checkpoint_step_int,
-            "status": "success",
-            "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "result_file": results_file
-        }
-        
-        # Add all metrics from eval_results
-        for key, value in eval_results.items():
-            # Normalize key names (handle both eval_rouge* and rouge*)
-            normalized_key = key.replace("eval_", "").lower()
-            
-            # Extract numeric values
-            if isinstance(value, (int, float)):
-                checkpoint_entry[normalized_key] = float(value)
-            elif isinstance(value, dict):
-                # Handle nested metrics (e.g., bertscore with precision/recall/f1)
-                for sub_key, sub_value in value.items():
-                    if isinstance(sub_value, (int, float)):
-                        checkpoint_entry[f"{normalized_key}_{sub_key}"] = float(sub_value)
-        
-        # Remove existing entry for this checkpoint if it exists, then add new one
-        summary["checkpoints"] = [c for c in summary["checkpoints"] if c.get("checkpoint") != checkpoint_name]
-        summary["checkpoints"].append(checkpoint_entry)
-        
-        # Sort checkpoints by checkpoint number
-        summary["checkpoints"].sort(key=lambda x: x.get("checkpoint_number", 0))
-        
-        # Update statistics
-        _update_summary_statistics(summary)
-        
-        # Update generated_at timestamp
-        summary["generated_at"] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-        
-        # Save updated summary
-        with open(summary_file, 'w') as f:
-            json.dump(summary, f, indent=2)
-        print(f"Evaluation summary updated: {summary_file}")
+        # Update evaluation summary using utility function
+        update_evaluation_summary(
+            results=eval_results,
+            checkpoint_dir=checkpoint_dir,
+            model_name=model_name,
+            val_dataset_path=val_dataset_path,
+            model_dir=model_dir_eval
+        )
     
     # Clean up distributed process group
     if use_multi_gpu: # No distributed mode, so no barrier needed
@@ -2241,6 +2161,7 @@ Examples:
             model_name, args.checkpoint_dir, args.hf_token, 
             use_multi_gpu=args.use_multi_gpu,
             major_checkpoint_interval=args.major_checkpoint_interval,
+            include_nli_faithfulness=args.include_nli_faithfulness,
         )
         print("Model loaded successfully! Ready for inference.")
     else:

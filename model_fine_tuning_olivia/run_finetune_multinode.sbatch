@@ -75,7 +75,7 @@ for arg in "$@"; do
         *)
             echo "ERROR: Unknown argument: $arg"
             echo ""
-            echo "Usage: sbatch --export=SLURM_ACCOUNT=nn12075k run_finetune_multinode.sbatch [OPTIONS]"
+            echo "Usage: sbatch --export=SLURM_ACCOUNT=YOUR_PROJECT_ID run_finetune_multinode.sbatch [OPTIONS]"
             echo ""
             echo "Options:"
             echo "  --model=MODEL              Model short name (default: gemma-2-9b)"
@@ -303,7 +303,7 @@ export HF_METRICS_CACHE="$HF_HOME/metrics"
 export PYTHONUSERBASE="$SLURM_TMPDIR/.local"
 mkdir -p "$HF_HOME" "$HF_DATASETS_CACHE" "$HF_MODULES_CACHE" "$HF_METRICS_CACHE" "$PYTHONUSERBASE"
 
-PROJECT_HF_DIR=/cluster/projects/nn12075k/shared/.cache/huggingface
+PROJECT_HF_DIR=/cluster/projects/YOUR_PROJECT_ID/shared/.cache/huggingface
 mkdir -p "$HF_HOME/hub"
 
 # Convert model name to HuggingFace cache directory format
