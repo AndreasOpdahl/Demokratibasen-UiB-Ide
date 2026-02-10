@@ -43,6 +43,7 @@ from utils import (
     get_checkpoint_name_and_step,
     is_major_checkpoint,
     get_evaluated_checkpoint_steps,
+    get_model_dir_from_checkpoint,
 )
 
 
@@ -51,7 +52,12 @@ def find_checkpoints(output_dir: str) -> List[str]:
     
     Checks both:
     1. Main checkpoint directories (checkpoint-*)
-    2. Backup directories (regular_checkpoints/regular-checkpoint-*, major_checkpoints/major-checkpoint-*)
+    2. Backup directories:
+       - regular_checkpoints/regular-checkpoint-* (non-major checkpoints only)
+       - major_checkpoints/major-checkpoint-* (major checkpoints only, not in regular_checkpoints)
+    
+    Note: Major checkpoints (multiples of 500) are stored ONLY in major_checkpoints/,
+    not in regular_checkpoints/, to save space and avoid redundancy.
     
     Returns list of checkpoint paths, prioritizing main directories if they exist.
     """
@@ -229,7 +235,7 @@ def monitor_and_evaluate(
     timeout_minutes: int = 30,  # Stop if no new checkpoints for X minutes
     major_checkpoint_interval: int = 500,  # Every Nth step is major (gets BERTScore). Default: 500 (every 500 steps = checkpoint-500, checkpoint-1000, etc.)
     include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation
-    nli_subset_size: Optional[int] = None,  # Subset size for NLI evaluation
+    checkpoint_stability_seconds: int = 120,  # Wait for checkpoint to be stable (not modified) for this many seconds before evaluating
 ):
     """Monitor checkpoints and evaluate them as they appear.
     
@@ -247,7 +253,7 @@ def monitor_and_evaluate(
         timeout_minutes: Stop monitoring if no new checkpoints appear for this many minutes
         major_checkpoint_interval: Every Nth checkpoint is major (gets BERTScore, default: 5)
         include_nli_faithfulness: Enable NLI faithfulness evaluation (slow, default: False)
-        nli_subset_size: Subset size for NLI evaluation (None = all, recommended: 50-100)
+        checkpoint_stability_seconds: Wait for checkpoint to be stable (not modified) for this many seconds before evaluating (default: 120)
     """
     print("=" * 70)
     print("Checkpoint Evaluation Monitor")
@@ -376,12 +382,8 @@ def monitor_and_evaluate(
                     continue
                 
                 # Check if evaluation results file exists (new location)
-                # model_dir is the parent of checkpoint_path (could be output_dir or backup subdir)
-                if "regular_checkpoints" in checkpoint_path or "major_checkpoints" in checkpoint_path:
-                    # For backup checkpoints, model_dir is the parent of the backup directory
-                    model_dir = os.path.dirname(os.path.dirname(checkpoint_path.rstrip('/')))
-                else:
-                    model_dir = os.path.dirname(checkpoint_path.rstrip('/'))
+                # Use utility function to get model_dir (handles backup directories correctly)
+                model_dir = get_model_dir_from_checkpoint(checkpoint_path)
                 
                 all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
                 eval_results_file = os.path.join(all_eval_results_dir, f"{checkpoint_name}-eval-results.json")
@@ -406,7 +408,26 @@ def monitor_and_evaluate(
                     # Not complete yet - skip this one, check next
                     continue
                 
-                # Found an unevaluated, complete checkpoint
+                # Check if checkpoint is stable (not recently modified)
+                # This prevents evaluating checkpoints that are still being written
+                try:
+                    checkpoint_mtime = os.path.getmtime(checkpoint_path)
+                    current_time = time.time()
+                    time_since_modification = current_time - checkpoint_mtime
+                    
+                    if time_since_modification < checkpoint_stability_seconds:
+                        # Checkpoint was recently modified - wait for it to stabilize
+                        wait_time = checkpoint_stability_seconds - time_since_modification
+                        print(f"Checkpoint-{step} was modified {time_since_modification:.0f}s ago. "
+                              f"Waiting {wait_time:.0f}s for stability before evaluating...")
+                        # Skip this checkpoint for now, will check again next iteration
+                        continue
+                except Exception as e:
+                    # If we can't check mtime, be cautious and skip
+                    print(f"Warning: Could not check checkpoint stability for checkpoint-{step}: {e}")
+                    continue
+                
+                # Found an unevaluated, complete, and stable checkpoint
                 checkpoint_to_evaluate = checkpoint_path
                 checkpoint_step = step
                 
@@ -444,9 +465,54 @@ def monitor_and_evaluate(
             # NEW CHECKPOINT TO EVALUATE - reset timeout timer
             last_checkpoint_time = time.time()
             
+            # Prefer backup checkpoints if they exist (they're guaranteed to be stable)
+            # Check if this checkpoint exists in backup directories
+            model_dir = get_model_dir_from_checkpoint(checkpoint_to_evaluate)
+            is_in_backup = "regular_checkpoints" in checkpoint_to_evaluate or "major_checkpoints" in checkpoint_to_evaluate
+            
+            if not is_in_backup:
+                # Check if backup exists - prefer backup for stability
+                regular_backup = os.path.join(model_dir, "regular_checkpoints", f"regular-checkpoint-{checkpoint_step}")
+                major_backup = os.path.join(model_dir, "major_checkpoints", f"major-checkpoint-{checkpoint_step}")
+                
+                backup_path = None
+                if os.path.exists(major_backup):
+                    backup_adapter = os.path.join(major_backup, "adapter_model.safetensors")
+                    if os.path.exists(backup_adapter):
+                        backup_path = major_backup
+                        print(f"ℹ Found stable backup of checkpoint-{checkpoint_step} in major_checkpoints/. Using backup for evaluation.")
+                elif os.path.exists(regular_backup):
+                    backup_adapter = os.path.join(regular_backup, "adapter_model.safetensors")
+                    if os.path.exists(backup_adapter):
+                        backup_path = regular_backup
+                        print(f"ℹ Found stable backup of checkpoint-{checkpoint_step} in regular_checkpoints/. Using backup for evaluation.")
+                
+                if backup_path:
+                    checkpoint_to_evaluate = backup_path
+            
+            # Final verification before evaluation (checkpoint might have been deleted)
+            if not os.path.exists(checkpoint_to_evaluate):
+                print(f"Warning: Checkpoint directory no longer exists: {checkpoint_to_evaluate}")
+                print(f"  This checkpoint may have been backed up and removed. Skipping evaluation.")
+                # Mark as evaluated to avoid infinite retries
+                evaluated_steps.add(checkpoint_step)
+                time.sleep(check_interval)
+                continue
+            
+            # Verify checkpoint has required adapter files
+            adapter_file = os.path.join(checkpoint_to_evaluate, "adapter_model.safetensors")
+            if not os.path.exists(adapter_file):
+                print(f"Warning: Checkpoint missing adapter files: {checkpoint_to_evaluate}")
+                print(f"  This checkpoint may be incomplete or already cleaned up. Skipping evaluation.")
+                # Mark as evaluated to avoid infinite retries
+                evaluated_steps.add(checkpoint_step)
+                time.sleep(check_interval)
+                continue
+            
             # Evaluate the checkpoint
             print(f"\n{'='*70}")
             print(f"Evaluating checkpoint-{checkpoint_step}")
+            print(f"Checkpoint path: {checkpoint_to_evaluate}")
             print(f"{'='*70}")
             
             try:
@@ -462,7 +528,6 @@ def monitor_and_evaluate(
                     wandb_disabled=True,
                     major_checkpoint_interval=major_checkpoint_interval,
                     include_nli_faithfulness=include_nli_faithfulness,
-                    nli_subset_size=nli_subset_size,
                 )
                 
                 if not eval_results:
@@ -538,6 +603,20 @@ def monitor_and_evaluate(
                         
                         break
                 
+            except ValueError as e:
+                # Handle checkpoint not found errors gracefully
+                error_msg = str(e)
+                if "Checkpoint directory does not exist" in error_msg or "does not exist" in error_msg:
+                    print(f"Warning: Checkpoint directory does not exist: {checkpoint_to_evaluate}")
+                    print(f"  This checkpoint may have been backed up and removed. Skipping evaluation.")
+                    # Mark as evaluated to avoid infinite retries
+                    evaluated_steps.add(checkpoint_step)
+                else:
+                    # Other ValueError - print full traceback
+                    print(f"Error evaluating checkpoint-{checkpoint_step}: {e}")
+                    import traceback
+                    traceback.print_exc()
+                    evaluated_steps.add(checkpoint_step)
             except Exception as e:
                 print(f"Error evaluating checkpoint-{checkpoint_step}: {e}")
                 import traceback
@@ -603,8 +682,8 @@ if __name__ == "__main__":
                        help='Every Nth step is considered "major" for BERTScore evaluation (default: 500). Major checkpoints: checkpoint-500, checkpoint-1000, checkpoint-1500, etc.')
     parser.add_argument('--include_nli_faithfulness', action='store_true',
                        help='Enable NLI-based faithfulness evaluation (slow: ~4.5s per example, ~37 min for 500 examples)')
-    parser.add_argument('--nli_subset_size', type=int, default=None,
-                       help='Subset size for NLI evaluation (default: all examples if --include_nli_faithfulness is set, recommended: 50-100 for faster evaluation)')
+    parser.add_argument('--checkpoint_stability_seconds', type=int, default=120,
+                       help='Wait for checkpoint to be stable (not modified) for this many seconds before evaluating (default: 120). Prevents evaluating checkpoints that are still being written.')
     
     args = parser.parse_args()
     
@@ -626,5 +705,5 @@ if __name__ == "__main__":
         timeout_minutes=args.timeout_minutes,
         major_checkpoint_interval=args.major_checkpoint_interval,
         include_nli_faithfulness=args.include_nli_faithfulness,
-        nli_subset_size=args.nli_subset_size,
+        checkpoint_stability_seconds=args.checkpoint_stability_seconds,
     )

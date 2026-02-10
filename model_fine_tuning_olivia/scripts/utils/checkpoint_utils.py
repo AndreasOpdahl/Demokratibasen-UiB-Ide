@@ -82,12 +82,30 @@ def is_major_checkpoint(checkpoint_step: int, major_checkpoint_interval: int = 5
 def get_model_dir_from_checkpoint(checkpoint_dir: str) -> str:
     """Get model directory from checkpoint directory path.
     
-    The model directory is the parent directory of the checkpoint directory.
+    Handles checkpoints in different locations:
+    - Main directory: models/gemma-2-9b-apptainer-fsdp/checkpoint-500
+      → returns models/gemma-2-9b-apptainer-fsdp
+    - Regular backup: models/gemma-2-9b-apptainer-fsdp/regular_checkpoints/regular-checkpoint-100
+      → returns models/gemma-2-9b-apptainer-fsdp
+    - Major backup: models/gemma-2-9b-apptainer-fsdp/major_checkpoints/major-checkpoint-500
+      → returns models/gemma-2-9b-apptainer-fsdp
     
     Args:
         checkpoint_dir: Path to checkpoint directory
     
     Returns:
-        Path to model directory (parent of checkpoint_dir)
+        Path to model directory (parent of checkpoint_dir, or parent of backup directory if in backup)
     """
-    return os.path.dirname(checkpoint_dir.rstrip('/'))
+    checkpoint_dir = checkpoint_dir.rstrip('/')
+    
+    # Check if checkpoint is in a backup directory
+    if "regular_checkpoints" in checkpoint_dir or "major_checkpoints" in checkpoint_dir:
+        # For backup checkpoints, model_dir is the parent of the backup directory
+        # e.g., models/gemma-2-9b-apptainer-fsdp/regular_checkpoints/regular-checkpoint-100
+        # → models/gemma-2-9b-apptainer-fsdp
+        return os.path.dirname(os.path.dirname(checkpoint_dir))
+    else:
+        # For main checkpoints, model_dir is the parent of checkpoint_dir
+        # e.g., models/gemma-2-9b-apptainer-fsdp/checkpoint-500
+        # → models/gemma-2-9b-apptainer-fsdp
+        return os.path.dirname(checkpoint_dir)

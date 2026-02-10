@@ -151,7 +151,7 @@ MODEL_CONFIGS = {
         prompt_config=PROMPT_PLAIN,
         architecture='gemma',
         train_batch_size=4,
-        val_batch_size=8,
+        val_batch_size=4,
     ),
     'gemma-2-27b': ModelConfig(
         short_name='gemma-2-27b',

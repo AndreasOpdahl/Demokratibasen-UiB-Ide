@@ -171,8 +171,77 @@ if ! validate_task_limit "$TASK_LIMIT"; then
 fi
 
 if [ -n "$RESUME_CHECKPOINT" ]; then
-    if [ ! -d "$RESUME_CHECKPOINT" ]; then
-        echo "ERROR: Resume checkpoint directory does not exist: $RESUME_CHECKPOINT"
+    # Determine output_dir for validation (same logic as later in script)
+    case "$MODEL" in
+        gemma-2b) FULL_MODEL_NAME="google/gemma-2b" ;;
+        gemma-7b) FULL_MODEL_NAME="google/gemma-7b" ;;
+        gemma-2-9b) FULL_MODEL_NAME="google/gemma-2-9b" ;;
+        gemma-2-27b) FULL_MODEL_NAME="google/gemma-2-27b" ;;
+        gemma-3-12b) FULL_MODEL_NAME="google/gemma-3-12b-pt" ;;
+        gemma-3-27b) FULL_MODEL_NAME="google/gemma-3-27b-pt" ;;
+        viking-7b) FULL_MODEL_NAME="LumiOpen/Viking-7B" ;;
+        viking-13b) FULL_MODEL_NAME="LumiOpen/Viking-13B" ;;
+        viking-33b) FULL_MODEL_NAME="LumiOpen/Viking-33B" ;;
+        normistral-7b) FULL_MODEL_NAME="norallm/normistral-7b-warm" ;;
+        normistral-11b) FULL_MODEL_NAME="norallm/normistral-11b-warm" ;;
+        norskgpt-llama3-8b) FULL_MODEL_NAME="bineric/norskgpt-llama3-8b" ;;
+        llama-2-13b-chat-norwegian) FULL_MODEL_NAME="ruternorway/llama-2-13b-chat-norwegian" ;;
+        *) FULL_MODEL_NAME="$MODEL" ;;
+    esac
+    OUTPUT_DIR_VALIDATION="models/${MODEL}-apptainer-fsdp"
+    
+    # Try multiple resolution strategies (same as Python script)
+    CHECKPOINT_FOUND=false
+    
+    # Strategy 1: Absolute path
+    if [[ "$RESUME_CHECKPOINT" == /* ]]; then
+        if [ -d "$RESUME_CHECKPOINT" ]; then
+            CHECKPOINT_FOUND=true
+        fi
+    fi
+    
+    # Strategy 2: Simple name (e.g., "checkpoint-5000") - check relative to output_dir
+    if [ "$CHECKPOINT_FOUND" = false ]; then
+        # Check if it's a simple name (no path separators)
+        if [[ "$RESUME_CHECKPOINT" != */* ]] && [[ "$RESUME_CHECKPOINT" != *\\* ]]; then
+            CHECKPOINT_PATH="${OUTPUT_DIR_VALIDATION}/${RESUME_CHECKPOINT}"
+            if [ -d "$CHECKPOINT_PATH" ]; then
+                CHECKPOINT_FOUND=true
+            fi
+        fi
+    fi
+    
+    # Strategy 3: Relative to current directory
+    if [ "$CHECKPOINT_FOUND" = false ]; then
+        if [ -d "$RESUME_CHECKPOINT" ]; then
+            CHECKPOINT_FOUND=true
+        fi
+    fi
+    
+    # Strategy 4: Relative to output_dir (even if it has path separators)
+    if [ "$CHECKPOINT_FOUND" = false ]; then
+        CHECKPOINT_PATH="${OUTPUT_DIR_VALIDATION}/${RESUME_CHECKPOINT}"
+        if [ -d "$CHECKPOINT_PATH" ]; then
+            CHECKPOINT_FOUND=true
+        fi
+    fi
+    
+    if [ "$CHECKPOINT_FOUND" = false ]; then
+        echo "ERROR: Resume checkpoint directory not found: $RESUME_CHECKPOINT"
+        echo "       Tried:"
+        if [[ "$RESUME_CHECKPOINT" == /* ]]; then
+            echo "         - $RESUME_CHECKPOINT (absolute path)"
+        fi
+        if [[ "$RESUME_CHECKPOINT" != */* ]] && [[ "$RESUME_CHECKPOINT" != *\\* ]]; then
+            echo "         - ${OUTPUT_DIR_VALIDATION}/${RESUME_CHECKPOINT} (relative to output_dir)"
+        fi
+        echo "         - $RESUME_CHECKPOINT (relative to current directory)"
+        echo "         - ${OUTPUT_DIR_VALIDATION}/${RESUME_CHECKPOINT} (relative to output_dir)"
+        echo ""
+        echo "       Please provide:"
+        echo "         - Simple name: checkpoint-5000 (recommended, resolved relative to ${OUTPUT_DIR_VALIDATION})"
+        echo "         - Absolute path: /full/path/to/checkpoint-5000"
+        echo "         - Relative path: models/gemma-2-9b-apptainer-fsdp/checkpoint-5000"
         ERRORS=$((ERRORS + 1))
     fi
 fi

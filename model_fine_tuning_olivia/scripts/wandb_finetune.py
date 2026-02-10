@@ -270,6 +270,10 @@ class CheckpointBackupCallback(TrainerCallback):
     def __init__(self, output_dir: str, major_checkpoint_interval: int = 500, async_backup: bool = True):
         """Initialize checkpoint backup callback.
         
+        This callback backs up checkpoints to regular_checkpoints/ and major_checkpoints/ folders.
+        Backups always overwrite existing backups for the same checkpoint step.
+        The model folder checkpoint management (save_total_limit) is handled by TrainingArguments.
+        
         Args:
             output_dir: Training output directory (where checkpoints are saved)
             major_checkpoint_interval: Every Nth step is a major checkpoint (default: 500)
@@ -285,73 +289,74 @@ class CheckpointBackupCallback(TrainerCallback):
     def _backup_checkpoint(self, checkpoint_dir: str, checkpoint_step_int: int):
         """Internal method to perform the actual backup (runs in thread or synchronously)."""
         model_dir = self.output_dir
+        regular_backup_success = False
+        major_backup_success = False
+        
+        # Check if this is a major checkpoint
+        is_major = checkpoint_step_int > 0 and checkpoint_step_int % self.major_checkpoint_interval == 0
         
         # ------------------------------------------------------------------
-        # Backup: Regular checkpoints
+        # Backup: Regular checkpoints (non-major checkpoints only)
         # ------------------------------------------------------------------
-        if checkpoint_step_int > 0:
+        if checkpoint_step_int > 0 and not is_major:
             regular_ckpt_dir = os.path.join(model_dir, "regular_checkpoints")
             os.makedirs(regular_ckpt_dir, exist_ok=True)
             regular_ckpt_name = f"regular-checkpoint-{checkpoint_step_int}"
             regular_ckpt_path = os.path.join(regular_ckpt_dir, regular_ckpt_name)
             
-            # Check if backup already exists and is complete (has adapter files)
-            backup_adapter_file = os.path.join(regular_ckpt_path, "adapter_model.safetensors")
-            if os.path.exists(regular_ckpt_path) and os.path.exists(backup_adapter_file):
-                # Backup already exists - skip to avoid unnecessary I/O
-                pass  # Don't print anything to avoid spam during training
-            else:
-                # Remove existing incomplete copy if it exists
-                if os.path.exists(regular_ckpt_path):
-                    try:
-                        shutil.rmtree(regular_ckpt_path)
-                    except Exception as e:
-                        print(f"⚠ Warning: Failed to remove incomplete regular checkpoint copy: {e}")
-                
-                print(f"\n[Checkpoint Backup] Copying checkpoint-{checkpoint_step_int} to regular_checkpoints/...")
-                start_time = time.time()
+            # Always overwrite existing backup (remove old one first)
+            if os.path.exists(regular_ckpt_path):
                 try:
-                    shutil.copytree(checkpoint_dir, regular_ckpt_path)
-                    elapsed = time.time() - start_time
-                    print(f"✓ Successfully backed up checkpoint-{checkpoint_step_int} to {regular_ckpt_path} ({elapsed:.1f}s)")
+                    shutil.rmtree(regular_ckpt_path)
                 except Exception as e:
-                    print(f"⚠ Warning: Failed to backup regular checkpoint: {e}")
-                    print("   Continuing training, but regular checkpoint backup was not created.")
+                    print(f"⚠ Warning: Failed to remove existing regular checkpoint backup: {e}")
+            
+            print(f"\n[Checkpoint Backup] Copying checkpoint-{checkpoint_step_int} to regular_checkpoints/...")
+            start_time = time.time()
+            try:
+                shutil.copytree(checkpoint_dir, regular_ckpt_path)
+                elapsed = time.time() - start_time
+                print(f"✓ Successfully backed up checkpoint-{checkpoint_step_int} to {regular_ckpt_path} ({elapsed:.1f}s)")
+                regular_backup_success = True
+            except Exception as e:
+                print(f"⚠ Warning: Failed to backup regular checkpoint: {e}")
+                print("   Continuing training, but regular checkpoint backup was not created.")
+                regular_backup_success = False
         
         # ------------------------------------------------------------------
-        # Backup: Major checkpoints (subset of regular checkpoints)
+        # Backup: Major checkpoints (only in major_checkpoints, not in regular_checkpoints)
         # ------------------------------------------------------------------
-        if checkpoint_step_int > 0 and checkpoint_step_int % self.major_checkpoint_interval == 0:
+        if is_major:
             major_ckpt_dir = os.path.join(model_dir, "major_checkpoints")
             os.makedirs(major_ckpt_dir, exist_ok=True)
             major_ckpt_name = f"major-checkpoint-{checkpoint_step_int}"
             major_ckpt_path = os.path.join(major_ckpt_dir, major_ckpt_name)
             
-            # Check if backup already exists and is complete (has adapter files)
-            backup_adapter_file = os.path.join(major_ckpt_path, "adapter_model.safetensors")
-            if os.path.exists(major_ckpt_path) and os.path.exists(backup_adapter_file):
-                # Backup already exists - skip to avoid unnecessary I/O
-                pass  # Don't print anything to avoid spam during training
-            else:
-                # Remove existing incomplete copy if it exists
-                if os.path.exists(major_ckpt_path):
-                    try:
-                        shutil.rmtree(major_ckpt_path)
-                    except Exception as e:
-                        print(f"⚠ Warning: Failed to remove incomplete major checkpoint copy: {e}")
-                
-                print(f"[Checkpoint Backup] Copying major checkpoint-{checkpoint_step_int} to major_checkpoints/...")
-                start_time = time.time()
+            # Always overwrite existing backup (remove old one first)
+            if os.path.exists(major_ckpt_path):
                 try:
-                    shutil.copytree(checkpoint_dir, major_ckpt_path)
-                    elapsed = time.time() - start_time
-                    print(f"✓ Successfully backed up major checkpoint-{checkpoint_step_int} to {major_ckpt_path} ({elapsed:.1f}s)")
+                    shutil.rmtree(major_ckpt_path)
                 except Exception as e:
-                    print(f"⚠ Warning: Failed to backup major checkpoint: {e}")
-                    print("   Continuing training, but major checkpoint backup was not created.")
+                    print(f"⚠ Warning: Failed to remove existing major checkpoint backup: {e}")
+            
+            print(f"[Checkpoint Backup] Copying major checkpoint-{checkpoint_step_int} to major_checkpoints/...")
+            start_time = time.time()
+            try:
+                shutil.copytree(checkpoint_dir, major_ckpt_path)
+                elapsed = time.time() - start_time
+                print(f"✓ Successfully backed up major checkpoint-{checkpoint_step_int} to {major_ckpt_path} ({elapsed:.1f}s)")
+                major_backup_success = True
+            except Exception as e:
+                print(f"⚠ Warning: Failed to backup major checkpoint: {e}")
+                print("   Continuing training, but major checkpoint backup was not created.")
+                major_backup_success = False
     
     def on_save(self, args, state, control, **kwargs):
-        """Backup checkpoint when it's saved (non-blocking if async_backup=True)."""
+        """Backup checkpoint when it's saved (non-blocking if async_backup=True).
+        
+        This always overwrites existing backups for the same checkpoint step.
+        The model folder checkpoint management (save_total_limit) is handled by TrainingArguments.
+        """
         # Only backup on main process (rank 0)
         if args.local_rank not in [-1, 0]:
             return
@@ -368,9 +373,13 @@ class CheckpointBackupCallback(TrainerCallback):
             # Checkpoint might still be saving, skip this time
             return
         
-        # Skip if already backed up (avoid duplicate backups)
+        # Check if already backed up in this session to avoid duplicate backups during same run
+        # Note: When resuming from a checkpoint, on_save is typically not called for that checkpoint,
+        # so it won't be re-backed up. Only new checkpoints created during this run will be backed up.
         with self._backup_lock:
             if state.global_step in self.backed_up_steps:
+                # Already backed up in this session - skip to avoid duplicate work
+                # (This can happen if checkpoint is saved multiple times in the same run)
                 return
             # Mark as being backed up immediately to prevent race conditions
             self.backed_up_steps.add(state.global_step)
@@ -1444,15 +1453,67 @@ def fine_tune_model(
                 resolved_resume_checkpoint = os.path.abspath(candidate_paths[-1])
                 print("LATEST RESUME CHECKPOINT: ", resolved_resume_checkpoint)
         else:
-            candidate_path = resume_checkpoint
-            if not os.path.isabs(candidate_path):
-                candidate_path = os.path.join(output_dir, candidate_path)
-            candidate_path = os.path.abspath(candidate_path)
-            print("NOT LATEST", candidate_path)
-            if os.path.isdir(candidate_path):
-                resolved_resume_checkpoint = candidate_path
-            else:
-                print(f"ERROR: resume checkpoint directory not found: {candidate_path}")
+            candidate_path = resume_checkpoint.strip()
+            
+            # Try multiple resolution strategies in order of preference:
+            # 1. If it's already an absolute path, use it as-is
+            # 2. If it's a simple name (no path separators, e.g., "checkpoint-5000"), resolve relative to output_dir first
+            # 3. If it's a relative path, try relative to current directory
+            # 4. As fallback, try relative to output_dir
+            
+            resolved_candidates = []
+            
+            # Strategy 1: Absolute path (use as-is)
+            if os.path.isabs(candidate_path):
+                resolved_candidates.append(candidate_path)
+            
+            # Strategy 2: Simple checkpoint name (e.g., "checkpoint-5000") - resolve relative to output_dir first
+            # This is the most common case and should be prioritized
+            is_simple_name = (os.path.basename(candidate_path) == candidate_path and 
+                            not os.path.dirname(candidate_path) and
+                            not os.sep in candidate_path and
+                            not os.altsep or (os.altsep and os.altsep not in candidate_path))
+            
+            if is_simple_name:
+                # Simple name like "checkpoint-5000" - resolve relative to output_dir
+                rel_to_output = os.path.join(output_dir, candidate_path)
+                abs_from_output = os.path.abspath(rel_to_output)
+                resolved_candidates.append(abs_from_output)
+            
+            # Strategy 3: Relative to current working directory (for full relative paths)
+            abs_from_cwd = os.path.abspath(candidate_path)
+            if abs_from_cwd not in resolved_candidates:
+                resolved_candidates.append(abs_from_cwd)
+            
+            # Strategy 4: Fallback - try relative to output_dir even if it has path separators
+            # (in case user provides something like "checkpoint-5000" from a different directory)
+            abs_output_dir = os.path.abspath(output_dir)
+            abs_candidate = os.path.abspath(candidate_path)
+            
+            # Only try joining if the candidate doesn't already contain the output_dir
+            if not abs_candidate.startswith(abs_output_dir + os.sep) and abs_candidate != abs_output_dir:
+                rel_to_output_fallback = os.path.join(output_dir, candidate_path)
+                abs_from_output_fallback = os.path.abspath(rel_to_output_fallback)
+                if abs_from_output_fallback not in resolved_candidates:
+                    resolved_candidates.append(abs_from_output_fallback)
+            
+            # Try each candidate until we find one that exists
+            resolved_resume_checkpoint = None
+            for candidate in resolved_candidates:
+                print(f"Trying checkpoint path: {candidate}")
+                if os.path.isdir(candidate):
+                    resolved_resume_checkpoint = candidate
+                    print(f"✓ Found checkpoint at: {candidate}")
+                    break
+            
+            if not resolved_resume_checkpoint:
+                print(f"ERROR: resume checkpoint directory not found. Tried:")
+                for candidate in resolved_candidates:
+                    print(f"  - {candidate}")
+                print(f"\nPlease provide:")
+                print(f"  - Simple name (recommended): checkpoint-5000 (resolved relative to output_dir: {output_dir})")
+                print(f"  - Absolute path: /full/path/to/checkpoint-5000")
+                print(f"  - Relative path: models/gemma-2-9b-apptainer-fsdp/checkpoint-5000")
                 return
         if resolved_resume_checkpoint:
             print(f"Resume checkpoint resolved to: {resolved_resume_checkpoint}")
@@ -1635,6 +1696,12 @@ def fine_tune_model(
         training_args_kwargs['local_rank'] = -1
         print("Added local_rank=-1 to TrainingArguments for single-GPU mode")
     
+    # Set resume_from_checkpoint in TrainingArguments if checkpoint is provided
+    # This is important for FSDP to properly resume training
+    if resolved_resume_checkpoint:
+        training_args_kwargs['resume_from_checkpoint'] = resolved_resume_checkpoint
+        print(f"Setting resume_from_checkpoint in TrainingArguments: {resolved_resume_checkpoint}")
+    
     training_args = TrainingArguments(**training_args_kwargs)
     
     # Only add EarlyStoppingCallback when:
@@ -1756,6 +1823,20 @@ def fine_tune_model(
                 print(f"WARNING: Failed to restore RNG state: {rng_error}")
         else:
             print("FSDP detected - skipping manual optimizer/scheduler restore. Trainer will handle resumption internally.")
+            # Even with FSDP, verify the checkpoint state can be read
+            if resolved_resume_checkpoint:
+                trainer_state_path = os.path.join(resolved_resume_checkpoint, "trainer_state.json")
+                if os.path.exists(trainer_state_path):
+                    try:
+                        import json
+                        with open(trainer_state_path, 'r') as f:
+                            trainer_state_data = json.load(f)
+                        checkpoint_step = trainer_state_data.get('global_step', 'unknown')
+                        print(f"✓ Checkpoint trainer_state.json found - will resume from step {checkpoint_step}")
+                    except Exception as e:
+                        print(f"⚠ Could not read trainer_state.json: {e}")
+                else:
+                    print(f"⚠ trainer_state.json not found at {trainer_state_path} - training may start from step 0")
 
     # Start training
     manual_resume = resolved_resume_checkpoint is not None and not use_fsdp
@@ -1763,13 +1844,15 @@ def fine_tune_model(
     if manual_resume:
         print("Continuing training with manually restored checkpoint state...")
         trainer.train()
+    elif resolved_resume_checkpoint is not None:
+        # User explicitly provided a checkpoint - always use it (even with FSDP)
+        # Note: resume_from_checkpoint is already set in TrainingArguments (line ~1692)
+        print(f"Resuming training from checkpoint path: {resolved_resume_checkpoint}")
+        trainer.train(resume_from_checkpoint=resolved_resume_checkpoint)
     elif checkpoints_exist and not force_restart:
-        resume_arg = resolved_resume_checkpoint if resolved_resume_checkpoint else True
-        if isinstance(resume_arg, str):
-            print(f"Resuming training from checkpoint path: {resume_arg}")
-        else:
-            print("Resuming training from latest checkpoint in output directory...")
-        trainer.train(resume_from_checkpoint=resume_arg)
+        # No explicit checkpoint, but checkpoints exist - resume from latest
+        print("Resuming training from latest checkpoint in output directory...")
+        trainer.train(resume_from_checkpoint=True)
     else:
         if force_restart and checkpoints_exist:
             print("Force restart enabled - ignoring existing checkpoints and starting fresh...")

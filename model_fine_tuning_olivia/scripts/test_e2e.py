@@ -214,7 +214,6 @@ def test_evaluation(model_name: str, checkpoint_dir: str, val_dataset: str):
             wandb_disabled=True,
             major_checkpoint_interval=500,
             include_nli_faithfulness=False,
-            nli_subset_size=None,  # Add missing parameter
         )
         
         # Verify results structure
@@ -448,7 +447,6 @@ def test_extended_evaluation_metrics(model_name: str, checkpoint_dir: str, val_d
             wandb_disabled=True,
             major_checkpoint_interval=500,
             include_nli_faithfulness=include_nli,
-            nli_subset_size=5 if include_nli else None,  # Small subset for testing
         )
         
         if results and isinstance(results, dict):
@@ -633,7 +631,6 @@ def test_multigpu_evaluation(model_name: str, checkpoint_dir: str, val_dataset: 
             wandb_disabled=True,
             major_checkpoint_interval=500,
             include_nli_faithfulness=False,
-            nli_subset_size=None,
         )
         
         # Verify model is split across GPUs

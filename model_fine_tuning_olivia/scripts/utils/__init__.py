@@ -24,6 +24,11 @@ from .eval_results import (
 from .dataset_loading import load_jsonl_dataset
 from .tokenization import tokenize_train_examples, tokenize_eval_examples
 from .formatting import format_train_example, format_eval_example
+from .nli_subset import (
+    get_or_create_fixed_nli_subset,
+    apply_fixed_subset,
+    NLI_FIXED_SUBSET_SIZE,
+)
 
 __all__ = [
     # Data collators
@@ -51,4 +56,8 @@ __all__ = [
     # Formatting
     'format_train_example',
     'format_eval_example',
+    # NLI subset
+    'get_or_create_fixed_nli_subset',
+    'apply_fixed_subset',
+    'NLI_FIXED_SUBSET_SIZE',
 ]

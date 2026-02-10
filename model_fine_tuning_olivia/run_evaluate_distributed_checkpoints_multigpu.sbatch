@@ -36,7 +36,6 @@ SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:-""}
 DRY_RUN=${DRY_RUN:-false}
 # NLI Faithfulness evaluation flags
 INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-false}
-NLI_SUBSET_SIZE=${NLI_SUBSET_SIZE:-""}
 
 # Parse command-line arguments if provided
 for arg in "$@"; do
@@ -65,7 +64,6 @@ for arg in "$@"; do
             INCLUDE_NLI_FAITHFULNESS=true
             ;;
         --nli_subset_size=*|--nli-subset-size=*)
-            NLI_SUBSET_SIZE="${arg#*=}"
             ;;
         --dry-run|--debug)
             DRY_RUN=true
@@ -185,8 +183,8 @@ echo "  CHECKPOINT_BASE_DIR: $CHECKPOINT_BASE_DIR"
 echo "  VAL_DATASET: $VAL_DATASET"
 echo "  SPECIFIC_CHECKPOINTS: ${SPECIFIC_CHECKPOINTS:-all}"
 echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS"
-if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ] && [ -n "$NLI_SUBSET_SIZE" ]; then
-    echo "  NLI_SUBSET_SIZE: $NLI_SUBSET_SIZE"
+if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
+    echo "  NLI: Using fixed 500-example subset (consistent across all checkpoints)"
 fi
 echo "  DRY_RUN: $DRY_RUN"
 
@@ -481,9 +479,6 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     NLI_FLAGS=""
     if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
         NLI_FLAGS="--include_nli_faithfulness"
-        if [ -n "$NLI_SUBSET_SIZE" ]; then
-            NLI_FLAGS="$NLI_FLAGS --nli_subset_size $NLI_SUBSET_SIZE"
-        fi
     fi
     
     EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu $NLI_FLAGS"
