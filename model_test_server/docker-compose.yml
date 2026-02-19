@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  model-server:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - HUGGINGFACE_TOKEN=${HUGGINGFACE_TOKEN}
+    volumes:
+      - ../checkpoint-5700:/app/checkpoint:ro
+      - ./logs:/app/logs
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: python app.py --checkpoint_path /app/checkpoint --model_name gemma-2-9b --port 8000
+    restart: unless-stopped

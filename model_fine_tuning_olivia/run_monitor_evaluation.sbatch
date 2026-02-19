@@ -38,12 +38,13 @@ fi
 
 # ===== CONFIGURATION =====
 # Parse command-line arguments or use defaults
-# Usage: sbatch run_monitor_evaluation.sbatch [--model=MODEL] [--output_dir=DIR] [--val_dataset=PATH] [--check_interval=N] [--early_stopping_patience=N] [--dry-run]
+# Usage: sbatch run_monitor_evaluation.sbatch [--model=MODEL] [--output_dir=DIR] [--val_dataset=PATH] [--check_interval=N] [--early_stopping_patience=N] [--include_nli_faithfulness] [--dry-run]
 MODEL=${MODEL:-gemma-2-9b}
 OUTPUT_DIR=${OUTPUT_DIR:-"models/${MODEL}-apptainer-fsdp"}
 VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
 CHECK_INTERVAL=${CHECK_INTERVAL:-60}  # Check every 60 seconds
 EARLY_STOPPING_PATIENCE=${EARLY_STOPPING_PATIENCE:-3}  # Stop if no improvement for 3 evaluations
+INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-false}
 DRY_RUN=${DRY_RUN:-false}
 
 # Parse command-line arguments if provided
@@ -69,6 +70,9 @@ for arg in "$@"; do
         --early_stopping_patience=*)
             EARLY_STOPPING_PATIENCE="${arg#*=}"
             ;;
+        --include_nli_faithfulness)
+            INCLUDE_NLI_FAITHFULNESS=true
+            ;;
         --dry-run|--debug)
             DRY_RUN=true
             ;;
@@ -83,6 +87,7 @@ for arg in "$@"; do
             echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
             echo "  --check_interval=N               Check for new checkpoints every N seconds (default: 60)"
             echo "  --early_stopping_patience=N      Stop if no improvement for N evaluations (default: 3)"
+            echo "  --include_nli_faithfulness        Enable NLI-based faithfulness evaluation (slow: ~37 min for 500 examples)"
             echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
             echo ""
             echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
@@ -161,6 +166,7 @@ echo "  OUTPUT_DIR: $OUTPUT_DIR"
 echo "  VAL_DATASET: $VAL_DATASET"
 echo "  CHECK_INTERVAL: $CHECK_INTERVAL seconds"
 echo "  EARLY_STOPPING_PATIENCE: $EARLY_STOPPING_PATIENCE evaluations"
+echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS"
 echo "  DRY_RUN: $DRY_RUN"
 
 # ===== DRY-RUN MODE =====
@@ -178,6 +184,7 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "  Validation dataset: $VAL_DATASET"
     echo "  Check interval: $CHECK_INTERVAL seconds"
     echo "  Early stopping patience: $EARLY_STOPPING_PATIENCE evaluations"
+    echo "  Include NLI faithfulness: $INCLUDE_NLI_FAITHFULNESS"
     echo ""
     echo "Monitoring command would be:"
     echo "  python scripts/monitor_and_evaluate_checkpoints.py"
@@ -187,6 +194,9 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "    --hf_token [REDACTED]"
     echo "    --check_interval $CHECK_INTERVAL"
     echo "    --early_stopping_patience $EARLY_STOPPING_PATIENCE"
+    if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
+        echo "    --include_nli_faithfulness"
+    fi
     echo "    --wandb_project lm-finetuning"
     echo "    --use_multi_gpu"
     echo ""
@@ -219,7 +229,13 @@ fi
 export IMAGE=/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif
 
 # Run monitoring script
-EVAL_CMD="export HF_HOME=\$HF_HOME && export HF_DATASETS_CACHE=\$HF_DATASETS_CACHE && export HF_MODULES_CACHE=\$HF_MODULES_CACHE && export HF_METRICS_CACHE=\$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login \$WANDB_API_KEY && python scripts/monitor_and_evaluate_checkpoints.py --output_dir $OUTPUT_DIR --model $MODEL --val_dataset $VAL_DATASET --hf_token \$HUGGINGFACE_TOKEN --check_interval $CHECK_INTERVAL --early_stopping_patience $EARLY_STOPPING_PATIENCE --wandb_project lm-finetuning --use_multi_gpu"
+# Build command with optional NLI faithfulness flag
+NLI_FLAG=""
+if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
+    NLI_FLAG="--include_nli_faithfulness"
+fi
+
+EVAL_CMD="export HF_HOME=\$HF_HOME && export HF_DATASETS_CACHE=\$HF_DATASETS_CACHE && export HF_MODULES_CACHE=\$HF_MODULES_CACHE && export HF_METRICS_CACHE=\$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login \$WANDB_API_KEY && python scripts/monitor_and_evaluate_checkpoints.py --output_dir $OUTPUT_DIR --model $MODEL --val_dataset $VAL_DATASET --hf_token \$HUGGINGFACE_TOKEN --check_interval $CHECK_INTERVAL --early_stopping_patience $EARLY_STOPPING_PATIENCE $NLI_FLAG --wandb_project lm-finetuning --use_multi_gpu"
 
 COMMAND="pip install --upgrade pip setuptools wheel > /dev/null 2>&1 && pip install --break-system-packages --only-binary=:all: transformers==4.45.2 tokenizers==0.20.3 datasets==3.0.0 sentencepiece==0.2.1 > /dev/null 2>&1 && pip install --break-system-packages --no-binary=rouge-score rouge-score==0.1.2 > /dev/null 2>&1 && pip install --break-system-packages --no-deps accelerate==1.0.1 peft==0.13.2 > /dev/null 2>&1 && pip install --break-system-packages --upgrade pyyaml psutil typing-extensions packaging==24.2 safetensors > /dev/null 2>&1 && pip install --break-system-packages --upgrade wandb evaluate > /dev/null 2>&1 && $EVAL_CMD"
 

@@ -333,6 +333,8 @@ def monitor_and_evaluate(
         print(f"Found {len(evaluated_steps)} already evaluated checkpoints: {sorted(evaluated_steps)}")
     
     best_rouge_lsum = None
+    consecutive_zero_rouge_count = 0  # Track consecutive checkpoints with zero ROUGE scores
+    ZERO_ROUGE_THRESHOLD = 5  # Stop training if ROUGE is zero for 5 consecutive checkpoints
     best_checkpoint_step = None
     no_improvement_count = 0
     last_checkpoint_time = None  # Track when we last saw a new checkpoint
@@ -377,10 +379,6 @@ def monitor_and_evaluate(
                 except (ValueError, IndexError):
                     continue
                 
-                # Skip if already evaluated
-                if step in evaluated_steps:
-                    continue
-                
                 # Check if evaluation results file exists (new location)
                 # Use utility function to get model_dir (handles backup directories correctly)
                 model_dir = get_model_dir_from_checkpoint(checkpoint_path)
@@ -391,10 +389,35 @@ def monitor_and_evaluate(
                 # Also check old location for backwards compatibility
                 old_eval_results_file = os.path.join(checkpoint_path, "eval_results", "eval_results.json")
                 
-                if os.path.exists(eval_results_file) or os.path.exists(old_eval_results_file):
-                    # Already evaluated - mark it and continue
-                    evaluated_steps.add(step)
-                    continue
+                # Check if evaluation results exist, and if so, verify if checkpoint is newer
+                eval_results_exist = os.path.exists(eval_results_file) or os.path.exists(old_eval_results_file)
+                if eval_results_exist:
+                    # Check if checkpoint is newer than evaluation results (re-evaluate if checkpoint was updated)
+                    try:
+                        checkpoint_mtime = os.path.getmtime(checkpoint_path)
+                        eval_file_to_check = eval_results_file if os.path.exists(eval_results_file) else old_eval_results_file
+                        eval_mtime = os.path.getmtime(eval_file_to_check)
+                        
+                        # If checkpoint is newer than evaluation results, it's a new checkpoint - re-evaluate
+                        if checkpoint_mtime > eval_mtime:
+                            print(f"Checkpoint-{step} is newer than existing evaluation results. Re-evaluating...")
+                            # Remove from evaluated_steps so it gets evaluated
+                            evaluated_steps.discard(step)
+                        else:
+                            # Already evaluated and checkpoint is not newer - skip
+                            evaluated_steps.add(step)
+                            continue
+                    except Exception as e:
+                        # If we can't compare timestamps, assume already evaluated to be safe
+                        print(f"Warning: Could not compare timestamps for checkpoint-{step}: {e}")
+                        evaluated_steps.add(step)
+                        continue
+                elif step in evaluated_steps:
+                    # No evaluation results exist, but step is in evaluated_steps (from previous run)
+                    # This means checkpoint was evaluated before but results were deleted, or it's a new checkpoint
+                    # Remove from evaluated_steps so it can be evaluated
+                    print(f"Checkpoint-{step} was previously marked as evaluated but results are missing. Re-evaluating...")
+                    evaluated_steps.discard(step)
                 
                 # Verify checkpoint is complete (must have adapter files)
                 adapter_file = os.path.join(checkpoint_path, "adapter_model.safetensors")
@@ -539,25 +562,63 @@ def monitor_and_evaluate(
                     continue
                 
                 if eval_results:
+                    # Check all ROUGE metrics to detect zero scores
+                    rouge1 = eval_results.get('eval_rouge1', eval_results.get('rouge1', 0))
+                    rouge2 = eval_results.get('eval_rouge2', eval_results.get('rouge2', 0))
+                    rougeL = eval_results.get('eval_rougeL', eval_results.get('rougeL', 0))
                     rouge_lsum = eval_results.get('eval_rougeLsum', eval_results.get('rougeLsum', 0))
-                    # Validate metric value
-                    if not isinstance(rouge_lsum, (int, float)) or rouge_lsum < 0:
-                        print(f"Warning: Invalid ROUGE-Lsum value: {rouge_lsum}")
+                    
+                    # Validate metric values
+                    rouge_metrics = [rouge1, rouge2, rougeL, rouge_lsum]
+                    if not all(isinstance(m, (int, float)) and m >= 0 for m in rouge_metrics):
+                        print(f"Warning: Invalid ROUGE values: rouge1={rouge1}, rouge2={rouge2}, rougeL={rougeL}, rougeLsum={rouge_lsum}")
                         evaluated_steps.add(checkpoint_step)
                         if checkpoint_step not in logged_to_wandb:
                             logged_to_wandb.add(checkpoint_step)
                         time.sleep(check_interval)
                         continue
                     
-                    # Skip if result is 0.00 (likely failed evaluation)
-                    if rouge_lsum == 0:
-                        print(f"Warning: ROUGE-Lsum is 0.00 for checkpoint-{checkpoint_step}. This may indicate a failed evaluation.")
+                    # Check if all ROUGE scores are zero (indicates model collapse)
+                    all_rouge_zero = all(m == 0.0 for m in rouge_metrics)
+                    
+                    if all_rouge_zero:
+                        consecutive_zero_rouge_count += 1
+                        print(f"⚠ Warning: All ROUGE scores are 0.00 for checkpoint-{checkpoint_step}")
+                        print(f"  Consecutive zero ROUGE count: {consecutive_zero_rouge_count}/{ZERO_ROUGE_THRESHOLD}")
+                        
+                        # Check if we've hit the threshold for early stopping
+                        if consecutive_zero_rouge_count >= ZERO_ROUGE_THRESHOLD:
+                            print(f"\n{'='*70}")
+                            print("⚠ CRITICAL: Early stopping triggered due to zero ROUGE scores!")
+                            print(f"ROUGE scores have been zero for {consecutive_zero_rouge_count} consecutive checkpoints.")
+                            print(f"This indicates the model has likely collapsed (e.g., outputting only EOS tokens).")
+                            print(f"Stopping training to prevent further resource waste.")
+                            print(f"{'='*70}\n")
+                            write_early_stopping_signal(output_dir)
+                            
+                            # Log to wandb
+                            if wandb.run:
+                                wandb.log({
+                                    "monitor/early_stop_reason": "zero_rouge_scores",
+                                    "monitor/consecutive_zero_rouge_count": consecutive_zero_rouge_count,
+                                }, step=checkpoint_step)
+                            
+                            print("Early stopping signal written. Training will stop on next check.")
+                            return
+                        
+                        # Continue monitoring but don't update best score
                         evaluated_steps.add(checkpoint_step)
                         if checkpoint_step not in logged_to_wandb:
                             logged_to_wandb.add(checkpoint_step)
                         time.sleep(check_interval)
                         continue
+                    else:
+                        # Reset counter if we get non-zero ROUGE scores
+                        if consecutive_zero_rouge_count > 0:
+                            print(f"✓ ROUGE scores recovered (non-zero). Resetting zero ROUGE counter.")
+                            consecutive_zero_rouge_count = 0
                     
+                    # Continue with normal evaluation flow for non-zero ROUGE scores
                     evaluated_steps.add(checkpoint_step)
                     if checkpoint_step not in logged_to_wandb:
                         logged_to_wandb.add(checkpoint_step)
@@ -566,10 +627,11 @@ def monitor_and_evaluate(
                     if wandb.run:
                         wandb.log({
                             "monitor/checkpoint_step": checkpoint_step,
-                            "monitor/rouge1": eval_results.get('eval_rouge1', eval_results.get('rouge1', 0)),
-                            "monitor/rouge2": eval_results.get('eval_rouge2', eval_results.get('rouge2', 0)),
-                            "monitor/rougeL": eval_results.get('eval_rougeL', eval_results.get('rougeL', 0)),
+                            "monitor/rouge1": rouge1,
+                            "monitor/rouge2": rouge2,
+                            "monitor/rougeL": rougeL,
                             "monitor/rougeLsum": rouge_lsum,
+                            "monitor/consecutive_zero_rouge_count": consecutive_zero_rouge_count,  # Track this metric
                         }, step=checkpoint_step)
                     
                     # Check for improvement

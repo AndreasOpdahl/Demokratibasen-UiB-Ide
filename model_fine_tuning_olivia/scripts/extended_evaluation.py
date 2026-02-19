@@ -37,6 +37,7 @@ import itertools
 import json
 import os
 import re
+import time
 
 from transformers import AutoTokenizer
 
@@ -101,18 +102,23 @@ def eval_reference(pred_summaries, ref_summaries, include_bertscore=True):
         include_bertscore: If True, compute BERTScore (slower, ~1.5-2 min for 500 examples)
     
     Returns:
-        Dictionary with ROUGE metrics and optionally BERTScore
+        Dictionary with ROUGE metrics, optionally BERTScore, and timing information
     """
+    # Track ROUGE computation time
+    rouge_start = time.time()
     r = rouge.compute(
         predictions=pred_summaries,
         references=ref_summaries,
         use_stemmer=False,  # avoid for Norwegian
         rouge_types=["rouge1", "rouge2", "rougeL", "rougeLsum"],
     )
+    rouge_time = time.time() - rouge_start
     
     result = {**r}
+    result["_timing"] = {"rouge_seconds": rouge_time}
     
     if include_bertscore:
+        bertscore_start = time.time()
         try:
             bertscore = _get_bertscore()
             # Truncate texts to avoid BERT max length errors (512 tokens)
@@ -132,6 +138,11 @@ def eval_reference(pred_summaries, ref_summaries, include_bertscore=True):
             # BERTScore not available - skip it but don't fail the whole evaluation
             print(f"Warning: BERTScore not available: {e}")
             print("Continuing without BERTScore...")
+        finally:
+            bertscore_time = time.time() - bertscore_start
+            result["_timing"]["bertscore_seconds"] = bertscore_time
+    else:
+        result["_timing"]["bertscore_seconds"] = 0.0
     
     return result
     
@@ -143,7 +154,7 @@ def eval_reference(pred_summaries, ref_summaries, include_bertscore=True):
 from collections import Counter
 
 def ngram_repetition(doc, n=3):
-    tokens = re.findall(r"\w+|[^\w\s]", doc.lower())
+    tokens = re.findall(r"\d+(?:[.,]\d+)?|[\w/-]+|[^\w\s]", doc.lower())
     if len(tokens) < n:
         return 0.0
     ngrams = [tuple(tokens[i:i+n]) for i in range(len(tokens)-n+1)]
@@ -164,6 +175,7 @@ def hygiene(doc, pred_summary):
     }
     
 def eval_hygiene(docs, pred_summaries):
+    hygiene_start = time.time()
     hygiene_out = []
     for doc, pred_summary in zip(docs, pred_summaries):
         hygiene_out.append(hygiene(doc, pred_summary))
@@ -174,16 +186,17 @@ def eval_hygiene(docs, pred_summaries):
     mean_compression_ratio = sum(compression_ratios) / len(compression_ratios) if compression_ratios else None
     mean_rep_3gram = sum(h["rep_3gram"] for h in hygiene_out) / len(hygiene_out)
     ratio_ends_with_punct = sum(h["ends_with_punct"] for h in hygiene_out) / len(hygiene_out)
+    hygiene_time = time.time() - hygiene_start
     return {
         "mean_compression_ratio": mean_compression_ratio,
         "mean_rep_3gram": mean_rep_3gram,
         "ratio_ends_with_punct": ratio_ends_with_punct,
+        "_timing": {"hygiene_seconds": hygiene_time},
     }
 
     
 # NLI-based faithfulness
 from typing import List, Dict, Any, Optional, Tuple
-import time
 import warnings
 
 # Suppress PyTorch/CUDA pynvml deprecation FutureWarning (before torch is imported)
@@ -608,6 +621,7 @@ class NLIFaithfulnessGate:
         }
         
     def eval_faithfulness(self, docs, pred_summaries):
+        faithfulness_start = time.time()
         faithfulness_out = []
         for doc, pred_summary in zip(docs, pred_summaries):
             faithfulness_out.append(self.score_and_gate(doc, pred_summary))
@@ -622,6 +636,7 @@ class NLIFaithfulnessGate:
         max_contradiction_score = max(f["faithfulness"]["contradiction_max"] for f in faithfulness_out)  # Don't divide by length - this is the maximum across all examples
         mean_ratio_high_contradiction_sentences = sum(f["faithfulness"]["high_contradiction_sentences"] for f in faithfulness_out) / len(faithfulness_out)
         mean_ratio_outliers = sum(f["faithfulness"]["outlier_rate"] for f in faithfulness_out) / len(faithfulness_out)
+        faithfulness_time = time.time() - faithfulness_start
         return {
             "mean_entailment_score": mean_entailment_score,
             "min_entailment_score": min_entailment_score,
@@ -632,6 +647,7 @@ class NLIFaithfulnessGate:
             "ratio_passed_documents": ratio_passed_documents,
             "reasons_failed": reasons_failed,
             "num_premise_sentence_pairs": num_premise_sentence_pairs,
+            "_timing": {"nli_faithfulness_seconds": faithfulness_time},
         }
 
 
@@ -648,8 +664,10 @@ def extended_evaluate(input_texts, prediction_texts, reference_texts, print_outp
         include_faithfulness: If True, compute NLI faithfulness (~37 min for 500 examples)
     
     Returns:
-        Dictionary with computed metrics
+        Dictionary with computed metrics and timing information in "_timing" key
     """
+    extended_start = time.time()
+    
     # Reference-based metrics (ROUGE always, BERTScore optional)
     reference_out = eval_reference(prediction_texts, reference_texts, include_bertscore=include_bertscore)
     if print_output:
@@ -666,6 +684,21 @@ def extended_evaluate(input_texts, prediction_texts, reference_texts, print_outp
         "reference": reference_out,
         "hygiene": hygiene_out,
     }
+    
+    # Aggregate timing from reference metrics (ROUGE + BERTScore)
+    timing = {}
+    if "_timing" in reference_out:
+        timing.update(reference_out["_timing"])
+        # Remove _timing from reference_out to keep it clean
+        reference_out_clean = {k: v for k, v in reference_out.items() if k != "_timing"}
+        result["reference"] = reference_out_clean
+    
+    # Aggregate timing from hygiene metrics
+    if "_timing" in hygiene_out:
+        timing.update(hygiene_out["_timing"])
+        # Remove _timing from hygiene_out to keep it clean
+        hygiene_out_clean = {k: v for k, v in hygiene_out.items() if k != "_timing"}
+        result["hygiene"] = hygiene_out_clean
 
     # NLI-based faithfulness metrics (very slow, optional)
     if include_faithfulness:
@@ -674,9 +707,24 @@ def extended_evaluate(input_texts, prediction_texts, reference_texts, print_outp
         if print_output:
             print("\nFAITHFULNESS:")
             print(json.dumps(faithfulness_out, indent=2, ensure_ascii=False, default=str))
-        result["faithfulness"] = faithfulness_out
+        
+        # Aggregate timing from faithfulness metrics
+        if "_timing" in faithfulness_out:
+            timing.update(faithfulness_out["_timing"])
+            # Remove _timing from faithfulness_out to keep it clean
+            faithfulness_out_clean = {k: v for k, v in faithfulness_out.items() if k != "_timing"}
+            result["faithfulness"] = faithfulness_out_clean
+        else:
+            result["faithfulness"] = faithfulness_out
     else:
         result["faithfulness"] = None
+        timing["nli_faithfulness_seconds"] = 0.0
+    
+    # Add total extended evaluation time
+    timing["extended_metrics_total_seconds"] = time.time() - extended_start
+    
+    # Add timing to result
+    result["_timing"] = timing
 
     return result
 
