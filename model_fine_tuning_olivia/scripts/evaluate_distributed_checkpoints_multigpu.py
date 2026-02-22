@@ -311,6 +311,18 @@ class CausalLMTrainer(Trainer):
         print('*** evaluation: input_ids (prompt only) ***', input_ids.shape)
         if labels is not None:
             print('*** evaluation: labels (target summary) ***', labels.shape)
+        
+        # Debug: Check input_ids content for first example
+        if input_ids.shape[0] > 0:
+            first_input = input_ids[0].cpu().tolist()
+            # Decode first input to see what we're feeding the model
+            try:
+                first_input_decoded = self._processing_class.decode(first_input, skip_special_tokens=False)
+                print(f'*** DEBUG: First input (first 200 chars): {first_input_decoded[:200]}')
+            except Exception as e:
+                print(f'*** DEBUG: Could not decode first input: {e}')
+            print(f'*** DEBUG: First input token IDs (last 10): {first_input[-10:]}')
+            print(f'*** DEBUG: Input length: {len(first_input)} tokens')
 
         # Generate with memory-efficient settings
         with torch.amp.autocast('cuda'):
@@ -322,6 +334,10 @@ class CausalLMTrainer(Trainer):
                 except:
                     pass
             
+            # Set minimum length to prevent model from outputting EOS immediately
+            # This is critical: if model learned to output EOS to minimize loss, we need to force it to generate content
+            min_new_tokens = max(10, self.generation_max_length // 10)  # At least 10 tokens or 10% of max
+            
             generation_kwargs = {
                 'input_ids': input_ids,
                 'use_cache': True,
@@ -330,19 +346,110 @@ class CausalLMTrainer(Trainer):
                 'do_sample': False,
                 'pad_token_id': self._processing_class.pad_token_id,
                 'eos_token_id': self._processing_class.eos_token_id,
+                'repetition_penalty': 1.1,  # Slight penalty to prevent repetition
             }
+            
+            # Add min_new_tokens if supported (newer transformers versions)
+            # Fallback: use min_length (total length including input) if min_new_tokens not available
+            try:
+                generation_kwargs['min_new_tokens'] = min_new_tokens
+                print(f'*** DEBUG: Using min_new_tokens={min_new_tokens}')
+            except Exception as e:
+                # Fallback: set min_length to input_length + min_new_tokens
+                generation_kwargs['min_length'] = input_ids.shape[1] + min_new_tokens
+                print(f'*** DEBUG: Using min_length fallback={generation_kwargs["min_length"]} (min_new_tokens not supported: {e})')
             
             # Add stop token if found (for chat models)
             if inst_token_id is not None:
                 # Don't stop on [/INST] during generation, but we'll clean it later
                 pass
             
-            generated_ids = model.generate(**generation_kwargs)
+            print(f'*** DEBUG: Generation kwargs: max_new_tokens={generation_kwargs["max_new_tokens"]}, '
+                  f'pad_token_id={generation_kwargs["pad_token_id"]}, eos_token_id={generation_kwargs["eos_token_id"]}')
+            
+            try:
+                generated_ids = model.generate(**generation_kwargs)
+            except Exception as e:
+                print(f'⚠ ERROR during generation: {e}')
+                print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
+                # Try with sampling as fallback
+                generation_kwargs_fallback = generation_kwargs.copy()
+                generation_kwargs_fallback['do_sample'] = True
+                generation_kwargs_fallback['temperature'] = 0.7
+                generation_kwargs_fallback['top_p'] = 0.9
+                try:
+                    generated_ids = model.generate(**generation_kwargs_fallback)
+                    print(f'  Fallback generation succeeded')
+                except Exception as e2:
+                    print(f'  Fallback also failed: {e2}')
+                    raise
         
         input_length = input_ids.shape[1]
+        print(f'*** DEBUG: Full generated_ids shape: {generated_ids.shape}, input_length: {input_length}')
+        
+        # Check if model generated anything at all (before slicing)
+        if generated_ids.shape[1] <= input_length:
+            print(f'⚠ WARNING: Model generated nothing or only input! generated_ids.shape={generated_ids.shape}, input_length={input_length}')
+            print(f'  This suggests the model is immediately outputting EOS or not generating.')
+            print(f'  Trying with more aggressive generation parameters...')
+            
+            # Try again with more permissive settings
+            with torch.amp.autocast('cuda'):
+                generation_kwargs_retry = {
+                    'input_ids': input_ids,
+                    'use_cache': True,
+                    'max_new_tokens': self.generation_max_length,
+                    'min_new_tokens': max(20, self.generation_max_length // 5),  # More aggressive minimum
+                    'do_sample': True,  # Try sampling instead of greedy
+                    'temperature': 0.8,
+                    'top_p': 0.95,
+                    'pad_token_id': self._processing_class.pad_token_id,
+                    'eos_token_id': self._processing_class.eos_token_id,
+                    'repetition_penalty': 1.05,  # Lower penalty
+                }
+                try:
+                    generated_ids_retry = model.generate(**generation_kwargs_retry)
+                    if generated_ids_retry.shape[1] > input_length:
+                        print(f'  Retry succeeded! New shape: {generated_ids_retry.shape}')
+                        generated_ids = generated_ids_retry
+                    else:
+                        print(f'  Retry also failed - model still not generating (shape: {generated_ids_retry.shape})')
+                except Exception as e:
+                    print(f'  Retry generation failed: {e}')
+        
         generated_ids = generated_ids[:, input_length:]
         
         print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
+        
+        # Debug: Check if generated_ids is empty or all padding
+        if generated_ids.numel() == 0:
+            print(f'⚠ CRITICAL: generated_ids is empty after slicing! Full shape was {generated_ids.shape if hasattr(generated_ids, "shape") else "unknown"}')
+        elif generated_ids.shape[1] == 0:
+            print(f'⚠ CRITICAL: Generated sequence length is 0! Model may have generated nothing.')
+        
+        # Debug: Check what tokens are being generated
+        if generated_ids.numel() > 0:
+            # Get pad and eos token IDs
+            pad_token_id = self._processing_class.pad_token_id
+            eos_token_id = self._processing_class.eos_token_id
+            
+            # Check if all tokens are pad/eos (indicates model is not generating)
+            non_special_mask = (generated_ids != pad_token_id) & (generated_ids != eos_token_id)
+            num_non_special = non_special_mask.sum().item()
+            total_tokens = generated_ids.numel()
+            
+            print(f'*** DEBUG: Generated tokens analysis ***')
+            print(f'  Total generated tokens: {total_tokens}')
+            print(f'  Non-pad/eos tokens: {num_non_special}')
+            print(f'  Pad token ID: {pad_token_id}, EOS token ID: {eos_token_id}')
+            
+            if num_non_special == 0 and total_tokens > 0:
+                print(f'⚠ WARNING: Model generated only pad/eos tokens! This suggests the model may have collapsed.')
+                print(f'  Sample generated token IDs (first 10): {generated_ids[0, :min(10, generated_ids.shape[1])].tolist()}')
+            
+            # Check sequence lengths (non-pad tokens per sequence)
+            seq_lengths = (generated_ids != pad_token_id).sum(dim=1).tolist()
+            print(f'  Sequence lengths (non-pad tokens): {seq_lengths[:min(5, len(seq_lengths))]}...')
         
         # Clear cache after generation
         torch.cuda.empty_cache()
@@ -350,6 +457,12 @@ class CausalLMTrainer(Trainer):
         # Store predictions for JSONL output
         # Decode predictions (generated summary only, without special tokens)
         decoded_predictions = self._processing_class.batch_decode(generated_ids, skip_special_tokens=True)
+        
+        # Debug: Check decoded predictions before cleaning
+        if len(decoded_predictions) > 0:
+            print(f'*** DEBUG: Decoded predictions (before cleaning) ***')
+            for i, pred in enumerate(decoded_predictions[:3]):  # Show first 3
+                print(f'  Prediction {i}: length={len(pred)}, preview="{pred[:100]}"')
         
         # Clean up decoded predictions - remove special tokens and backslashes (same as in compute_metrics)
         def clean_text(text):
@@ -364,6 +477,18 @@ class CausalLMTrainer(Trainer):
             return text.strip()
         
         cleaned_predictions = [clean_text(p) for p in decoded_predictions]
+        
+        # Debug: Check for empty predictions
+        empty_count = sum(1 for p in cleaned_predictions if not p)
+        if empty_count > 0:
+            print(f'⚠ WARNING: {empty_count}/{len(cleaned_predictions)} predictions are empty after cleaning!')
+            if empty_count == len(cleaned_predictions):
+                print(f'⚠ CRITICAL: ALL predictions are empty! The model may have collapsed during training.')
+                print(f'  This could indicate:')
+                print(f'    1. Model loss went to NaN or extreme values')
+                print(f'    2. Model is outputting only EOS/pad tokens immediately')
+                print(f'    3. Training for too many epochs (5000+) may have caused overfitting/collapse')
+                print(f'  Recommendation: Check training loss curves and consider early stopping.')
         
         # Store for later saving to JSONL (predictions only - inputs/references will come from original dataset)
         self._eval_predictions.extend(cleaned_predictions)
@@ -1075,7 +1200,7 @@ def evaluate_checkpoint(
     # Tiered evaluation strategy:
     #   - Normal checkpoints: ROUGE + Hygiene only (~2 min)
     #   - Major checkpoints: ROUGE + Hygiene + BERTScore (~3-4 min)
-    #   - NLI Faithfulness: Optional, controlled by include_nli_faithfulness parameter
+    #   - NLI Faithfulness: Only for major checkpoints, and only if include_nli_faithfulness is enabled
     is_major_checkpoint_bool = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
     
     # Debug: Print NLI flag status
@@ -1083,6 +1208,8 @@ def evaluate_checkpoint(
     print(f"NLI FAITHFULNESS CONFIGURATION:")
     print(f"{'='*70}")
     print(f"  include_nli_faithfulness parameter: {include_nli_faithfulness}")
+    print(f"  Is major checkpoint: {is_major_checkpoint_bool}")
+    print(f"  NLI will be computed: {include_nli_faithfulness and is_major_checkpoint_bool} (only for major checkpoints)")
     print(f"  NLI fixed subset size: {NLI_FIXED_SUBSET_SIZE} examples (consistent across all checkpoints)")
     print(f"  EXTENDED_EVAL_AVAILABLE: {EXTENDED_EVAL_AVAILABLE}")
     print(f"{'='*70}\n")
@@ -1615,7 +1742,13 @@ def evaluate_checkpoint(
         print("Running evaluation on checkpoint...")
         print("=" * 70 + "\n")
     
+    # Track total validation time
+    validation_start_time = time.time()
+    
+    # Track prediction time (model.generate() during trainer.evaluate())
+    prediction_start_time = time.time()
     eval_results = trainer.evaluate()
+    prediction_time = time.time() - prediction_start_time
     
     # Check GPU memory utilization after evaluation
     if is_main_process and torch.cuda.is_available():
@@ -1782,10 +1915,11 @@ def evaluate_checkpoint(
                     # Determine which metrics to compute based on checkpoint type and user settings
                     # Normal checkpoints: ROUGE + Hygiene only (fast, ~2 min)
                     # Major checkpoints: ROUGE + Hygiene + BERTScore (moderate, ~3-4 min)
-                    # NLI Faithfulness: Optional, can be enabled via include_nli_faithfulness parameter
+                    # NLI Faithfulness: Only for major checkpoints, and only if include_nli_faithfulness is enabled
                     is_major_extended = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
                     include_bertscore = is_major_extended
-                    include_faithfulness = include_nli_faithfulness  # User-controlled
+                    # NLI faithfulness: only compute for major checkpoints, even if flag is passed
+                    include_faithfulness = include_nli_faithfulness and is_major_extended
                     
                     # Prepare fixed subset for NLI if requested
                     # For ROUGE, Hygiene, and BERTScore: use full dataset
@@ -1843,6 +1977,8 @@ def evaluate_checkpoint(
                         nli_examples = len(nli_input_texts)
                         nli_time_estimate = (nli_examples * 4.5) / 60  # ~4.5 seconds per example
                         print(f"  → Computing: NLI Faithfulness on {nli_examples} examples (~{nli_time_estimate:.1f} min)")
+                    elif include_nli_faithfulness and not is_major_extended:
+                        print(f"  → Skipping: NLI Faithfulness (only computed for major checkpoints, even with --include_nli_faithfulness)")
                     else:
                         print(f"  → Skipping: NLI Faithfulness (enable with --include_nli_faithfulness)")
                     
@@ -1862,6 +1998,8 @@ def evaluate_checkpoint(
                         include_bertscore=include_bertscore,
                         include_faithfulness=False  # Skip NLI in first run
                     )
+                    # Extract timing from first run
+                    extended_timing = extended_results.pop("_timing", {})
                     # Initialize faithfulness to None if not present (will be set in second run if requested)
                     if "faithfulness" not in extended_results:
                         extended_results["faithfulness"] = None
@@ -1885,6 +2023,12 @@ def evaluate_checkpoint(
                                 include_bertscore=False,  # Skip BERTScore in second run (already computed)
                                 include_faithfulness=True  # Only compute NLI on fixed subset
                             )
+                            # Extract NLI timing and merge into extended_timing
+                            nli_timing = nli_results.pop("_timing", {}) if nli_results else {}
+                            if nli_timing:
+                                # Only update NLI-specific timing, not the total (which would be for the subset only)
+                                if "nli_faithfulness_seconds" in nli_timing:
+                                    extended_timing["nli_faithfulness_seconds"] = nli_timing["nli_faithfulness_seconds"]
                             # Merge NLI results into extended_results
                             faithfulness_result = nli_results.get("faithfulness") if nli_results else None
                             extended_results["faithfulness"] = faithfulness_result
@@ -1896,6 +2040,7 @@ def evaluate_checkpoint(
                             traceback.print_exc()
                             print(f"{'='*70}\n")
                             extended_results["faithfulness"] = None
+                            extended_timing["nli_faithfulness_seconds"] = 0.0
                     
                     # Note: If NLI was run on a subset, the NLI results are for that subset only
                     # The other metrics (ROUGE, Hygiene, BERTScore) are computed on the full set
@@ -1917,6 +2062,19 @@ def evaluate_checkpoint(
                         else:
                             eval_key = f"eval_{category}"
                             eval_results[eval_key] = metrics
+                    
+                    # Aggregate all timing information
+                    total_validation_time = time.time() - validation_start_time
+                    eval_timing = {
+                        "total_validation_seconds": total_validation_time,
+                        "prediction_seconds": prediction_time,
+                        "rouge_seconds": extended_timing.get("rouge_seconds", 0.0),
+                        "hygiene_seconds": extended_timing.get("hygiene_seconds", 0.0),
+                        "bertscore_seconds": extended_timing.get("bertscore_seconds", 0.0),
+                        "nli_faithfulness_seconds": extended_timing.get("nli_faithfulness_seconds", 0.0),
+                        "extended_metrics_total_seconds": extended_timing.get("extended_metrics_total_seconds", 0.0),
+                    }
+                    eval_results["eval_timing"] = eval_timing
                     
                     # Print extended metrics summary
                     print("\nExtended Evaluation Results:")

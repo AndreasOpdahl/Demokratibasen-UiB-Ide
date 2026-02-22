@@ -406,18 +406,69 @@ class CheckpointBackupCallback(TrainerCallback):
 
 
 class ExamplesTrackingCallback(TrainerCallback):
-    """Callback to track and log examples processed during training."""
-    def __init__(self, batch_size, gradient_accumulation_steps, num_gpus):
+    """Callback to track and log examples processed and training time during training."""
+    def __init__(self, batch_size, gradient_accumulation_steps, num_gpus, resume_checkpoint: Optional[str] = None):
         self.batch_size = batch_size
         self.gradient_accumulation_steps = gradient_accumulation_steps
         self.num_gpus = num_gpus
+        self.resume_checkpoint = resume_checkpoint
+        self.training_start_time = None
+        self.total_training_time_before_resume = 0.0  # Time from previous training runs
+        
+        # Try to read total training time from checkpoint if resuming
+        if resume_checkpoint:
+            self._load_total_training_time_from_checkpoint(resume_checkpoint)
+    
+    def _load_total_training_time_from_checkpoint(self, checkpoint_path: str):
+        """Load total training time from trainer_state.json if available."""
+        import json
+        import os
+        trainer_state_path = os.path.join(checkpoint_path, "trainer_state.json")
+        if os.path.exists(trainer_state_path):
+            try:
+                with open(trainer_state_path, 'r') as f:
+                    trainer_state = json.load(f)
+                # HuggingFace Trainer tracks log_history with timing info
+                # Look for the last entry with training time
+                log_history = trainer_state.get("log_history", [])
+                if log_history:
+                    # Find entries with training time
+                    for entry in reversed(log_history):
+                        if "train_runtime" in entry:
+                            self.total_training_time_before_resume = entry.get("train_runtime", 0.0)
+                            break
+                        # Also check for cumulative time if available
+                        if "total_flos" in entry and "train_runtime" in entry:
+                            self.total_training_time_before_resume = entry.get("train_runtime", 0.0)
+                            break
+            except Exception as e:
+                print(f"Warning: Could not load training time from checkpoint: {e}")
+    
+    def on_train_begin(self, args, state, control, **kwargs):
+        """Record training start time."""
+        self.training_start_time = time.time()
+        # Cache division constant to avoid repeated division in hot path
+        self._seconds_to_hours = 1.0 / 3600.0
     
     def on_log(self, args, state, control, logs=None, **kwargs):
-        """Log examples count to wandb alongside other metrics."""
+        """Log examples count and training time to wandb alongside other metrics.
+        
+        Optimized for minimal overhead: single time.time() call + arithmetic operations only.
+        """
         if logs is not None and wandb.run is not None:
             examples_seen = state.global_step * self.batch_size * self.gradient_accumulation_steps * self.num_gpus
             logs['examples_seen'] = examples_seen
             logs['examples_seen_k'] = examples_seen / 1000.0  # Also log in thousands for readability
+            
+            # Calculate training time (minimal overhead: single time.time() call + arithmetic)
+            if self.training_start_time is not None:
+                time_since_resume = time.time() - self.training_start_time
+                total_training_time = self.total_training_time_before_resume + time_since_resume
+                logs['training_time_since_resume_seconds'] = time_since_resume
+                logs['training_time_total_seconds'] = total_training_time
+                # Use cached conversion factor for efficiency (multiplication faster than division)
+                logs['training_time_since_resume_hours'] = time_since_resume * self._seconds_to_hours
+                logs['training_time_total_hours'] = total_training_time * self._seconds_to_hours
 
 def check_early_stopping_signal(output_dir: str) -> bool:
     """Check if early stopping signal exists from evaluation monitor."""
@@ -1729,7 +1780,8 @@ def fine_tune_model(
         print("Added EarlyStoppingMonitorCallback for FSDP (checks for external early stopping signal)")
     
     # Add examples tracking callback
-    examples_tracker = ExamplesTrackingCallback(train_batch_size, gradient_accumulation_steps, num_gpus)
+    examples_tracker = ExamplesTrackingCallback(train_batch_size, gradient_accumulation_steps, num_gpus, 
+                                                 resume_checkpoint=resolved_resume_checkpoint)
     callbacks.append(examples_tracker)
     print("Adding ExamplesTrackingCallback to log examples processed during training")
     

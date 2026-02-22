@@ -421,6 +421,19 @@ fi
 [ -d "$PROJECT_HF_DIR/metrics" ] && rsync -aq "$PROJECT_HF_DIR/metrics/" "$HF_METRICS_CACHE/"
 [ -d "$PROJECT_HF_DIR/modules" ] && rsync -aq "$PROJECT_HF_DIR/modules/" "$HF_MODULES_CACHE/"
 
+# Check for container command BEFORE loading modules (like the working monitor script)
+# The monitor script works without modules, so apptainer should be available in base environment
+CONTAINER_CMD=""
+if command -v apptainer &> /dev/null; then
+    CONTAINER_CMD="apptainer"
+    echo "Found apptainer command (before module load)"
+elif command -v singularity &> /dev/null; then
+    CONTAINER_CMD="singularity"
+    echo "Found singularity command (before module load)"
+else
+    echo "WARNING: Container command not found before module load. Will check again after."
+fi
+
 module --force purge
 module load BuildEnv/NeoverseV2
 module load NRIS/GPU
@@ -429,15 +442,51 @@ module load PyTorch/2.8.0
 
 source .env
 
+# Re-check container command after loading modules (in case it's provided by a module)
+if [ -z "$CONTAINER_CMD" ]; then
+    if command -v apptainer &> /dev/null; then
+        CONTAINER_CMD="apptainer"
+        echo "Found apptainer command (after module load)"
+    elif command -v singularity &> /dev/null; then
+        CONTAINER_CMD="singularity"
+        echo "Found singularity command (after module load)"
+    else
+        echo "ERROR: Neither 'apptainer' nor 'singularity' command found."
+        echo "Please check if Apptainer/Singularity is available in your environment."
+        echo "Current PATH: $PATH"
+        exit 1
+    fi
+fi
+
 export IMAGE=/cluster/work/support/container/pytorch_nvidia_25.06_arm64.sif
+export CONTAINER_CMD  # Export so it's available in the script
 export MASTER_ADDR=$(scontrol show hostnames $SLURM_NODELIST | head -n 1)
-MASTER_PORT=$(python -c 'import socket; s=socket.socket(); s.bind(("",0)); print(s.getsockname()[1]); s.close()')
+
+# Calculate MASTER_PORT after modules are loaded (modules may provide python)
+# Try python3 first, then python, then use a default
+MASTER_PORT=""
+if command -v python3 &> /dev/null; then
+    MASTER_PORT=$(python3 -c 'import socket; s=socket.socket(); s.bind(("",0)); print(s.getsockname()[1]); s.close()' 2>/dev/null)
+elif command -v python &> /dev/null; then
+    MASTER_PORT=$(python -c 'import socket; s=socket.socket(); s.bind(("",0)); print(s.getsockname()[1]); s.close()' 2>/dev/null)
+fi
+
+# Fallback: use a random port in the ephemeral range if python is not available
+if [ -z "$MASTER_PORT" ]; then
+    # Generate a random port between 29500-30000 (common range for distributed training)
+    MASTER_PORT=$((29500 + RANDOM % 500))
+    echo "WARNING: Could not use python to get available port, using random port: $MASTER_PORT"
+fi
+
+export MASTER_PORT
 
 [[ -n "$RESUME_CHECKPOINT" ]] && RESUME_ARG="--resume_checkpoint $RESUME_CHECKPOINT" || RESUME_ARG=""
 
 # Write commands to a script file on SHARED filesystem (PWD is shared)
-SCRIPT_FILE="${PWD}/logs/run_training_${SLURM_JOB_ID}.sh"
-mkdir -p "${PWD}/logs"
+# Use absolute path to ensure it's accessible from within apptainer container
+SCRIPT_DIR="${PWD}/logs"
+mkdir -p "$SCRIPT_DIR"
+SCRIPT_FILE="${SCRIPT_DIR}/run_training_${SLURM_JOB_ID}.sh"
 cat > "$SCRIPT_FILE" << 'SCRIPT_EOF'
 #!/bin/bash
 set -e
@@ -448,6 +497,9 @@ export HF_MODULES_CACHE=HF_MODULES_CACHE_PLACEHOLDER
 export HF_METRICS_CACHE=HF_METRICS_CACHE_PLACEHOLDER
 export PYTHONUSERBASE=PYTHONUSERBASE_PLACEHOLDER
 mkdir -p "$PYTHONUSERBASE"
+mkdir -p "$PYTHONUSERBASE/bin"
+# Add PYTHONUSERBASE/bin to PATH so pip-installed scripts are available
+export PATH="$PYTHONUSERBASE/bin:$PATH"
 export NCCL_DEBUG=NCCL_DEBUG_PLACEHOLDER
 export NCCL_IB_DISABLE=NCCL_IB_DISABLE_PLACEHOLDER
 export NCCL_P2P_DISABLE=NCCL_P2P_DISABLE_PLACEHOLDER
@@ -477,15 +529,20 @@ else
 fi
 
 echo "=== Step 3: Verify imports ==="
-python -c "import transformers; print('transformers:', transformers.__version__)"
-python -c "import datasets; print('datasets:', datasets.__version__)"
-python -c "import accelerate; print('accelerate:', accelerate.__version__)"
-python -c "import peft; print('peft:', peft.__version__)"
-python -c "import torch; print('torch:', torch.__version__)"
-python -c "import numpy; print('numpy:', numpy.__version__)"
+# Use python3 if available, otherwise python (after pip install, python3 should be available)
+PYTHON_CMD="python3"
+if ! command -v python3 &> /dev/null; then
+    PYTHON_CMD="python"
+fi
+$PYTHON_CMD -c "import transformers; print('transformers:', transformers.__version__)"
+$PYTHON_CMD -c "import datasets; print('datasets:', datasets.__version__)"
+$PYTHON_CMD -c "import accelerate; print('accelerate:', accelerate.__version__)"
+$PYTHON_CMD -c "import peft; print('peft:', peft.__version__)"
+$PYTHON_CMD -c "import torch; print('torch:', torch.__version__)"
+$PYTHON_CMD -c "import numpy; print('numpy:', numpy.__version__)"
 
 echo "=== Step 4: Login to wandb ==="
-python -m wandb login WANDB_API_KEY_PLACEHOLDER
+$PYTHON_CMD -m wandb login WANDB_API_KEY_PLACEHOLDER
 
 echo "=== Network interfaces ==="
 ip link show | grep -E "^[0-9]+" | cut -d: -f2
@@ -532,10 +589,61 @@ echo "=== Script to execute ==="
 cat "$SCRIPT_FILE"
 echo "========================="
 
+# Use absolute path for script file to ensure it's accessible from within apptainer
+SCRIPT_FILE_ABS=$(cd "$(dirname "$SCRIPT_FILE")" && pwd)/$(basename "$SCRIPT_FILE")
+
+# Verify script file exists and is executable
+if [ ! -f "$SCRIPT_FILE_ABS" ]; then
+    echo "ERROR: Script file not found: $SCRIPT_FILE_ABS"
+    exit 1
+fi
+
+# Verify container command is available (should be set earlier)
+if [ -z "$CONTAINER_CMD" ]; then
+    echo "ERROR: CONTAINER_CMD not set. This should not happen."
+    exit 1
+fi
+
+# Verify IMAGE exists
+if [ ! -f "$IMAGE" ]; then
+    echo "ERROR: Container image not found: $IMAGE"
+    exit 1
+fi
+
+echo "Using script file: $SCRIPT_FILE_ABS"
+echo "Using container command: $CONTAINER_CMD"
+echo "Using container image: $IMAGE"
+
+# Verify script file is readable
+if [ ! -r "$SCRIPT_FILE_ABS" ]; then
+    echo "ERROR: Script file is not readable: $SCRIPT_FILE_ABS"
+    exit 1
+fi
+
+# Test if we can at least see the container command before srun
+echo "Testing container command: $CONTAINER_CMD"
+if ! $CONTAINER_CMD --version &> /dev/null; then
+    echo "WARNING: Container command test failed, but continuing..."
+fi
+
+# Use /bin/bash explicitly to avoid PATH issues inside container
+# Also ensure the script file path is absolute and accessible
+echo "Launching training with srun..."
+echo "Command: srun --ntasks=$SLURM_NNODES --cpus-per-task=${SLURM_CPUS_PER_TASK} --gres=gpu:${NUM_GPUS} $CONTAINER_CMD exec --nv --bind \"${PWD}:${PWD}\" $IMAGE /bin/bash \"$SCRIPT_FILE_ABS\""
+
+# Ensure CONTAINER_CMD and PATH are exported for srun
+# srun needs access to the container command and the environment
+export CONTAINER_CMD
+export PATH
+
+# Launch with srun - export all environment variables to ensure apptainer is available
+# Use --export=ALL to pass all environment variables (including PATH with apptainer) to srun tasks
 srun --ntasks=$SLURM_NNODES \
      --cpus-per-task=${SLURM_CPUS_PER_TASK} \
      --gres=gpu:${NUM_GPUS} \
-    apptainer exec \
+     --export=ALL \
+    $CONTAINER_CMD exec \
         --nv \
+        --bind "${PWD}:${PWD}" \
         $IMAGE \
-        bash "$SCRIPT_FILE"
+        /bin/bash "$SCRIPT_FILE_ABS"
