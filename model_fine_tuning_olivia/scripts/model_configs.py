@@ -99,17 +99,25 @@ PROMPT_LLAMA2 = PromptConfig(
     eval_template="[INST] Oppsummer følgende {doc_type}:\n\n{input}\n\nOppsummering: [/INST]",
 )
 
+# Llama-3 chat template format
 PROMPT_LLAMA3 = PromptConfig(
     template_type='llama3',
-    train_template="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nOppsummer følgende {doc_type}:\n\n{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n{output}<|eot_id|>",
-    eval_template="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nOppsummer følgende {doc_type}:\n\n{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+    train_template="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nDu er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n{output}<|eot_id|>",
+    eval_template="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nDu er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
 )
 
-# Custom prompt for Normistral (more explicit instruction)
+# Mistral chat template for Normistral models
 PROMPT_NORMISTRAL = PromptConfig(
-    template_type='custom',
-    train_template="Du er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input}\n\nOppsummering:\n\n{output}",
-    eval_template="Du er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input}\n\nOppsummering:\n\n",
+    template_type='mistral',
+    train_template="<s>[INST] Du er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input} [/INST] {output}</s>",
+    eval_template="<s>[INST] Du er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input} [/INST]",
+)
+
+# Alpaca instruction format (for GPT-J based models)
+PROMPT_ALPACA = PromptConfig(
+    template_type='alpaca',
+    train_template="Instruction: Oppsummer følgende {doc_type} på norsk:\n\n{input}\n\nResponse: {output}",
+    eval_template="Instruction: Oppsummer følgende {doc_type} på norsk:\n\n{input}\n\nResponse:",
 )
 
 
@@ -158,8 +166,8 @@ MODEL_CONFIGS = {
         hf_name='google/gemma-2-27b',
         lora_r=16,  # Increased for larger model
         lora_alpha=32,
-        lora_target_modules=["q_proj", "v_proj"],
-        learning_rate=2e-5,  # Higher LR for larger model
+        lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],  # Expanded for better adaptation
+        learning_rate=1e-5,  # Reduced from 2e-5 for stability (large models need conservative LR)
         prompt_config=PROMPT_PLAIN,
         architecture='gemma',
         train_batch_size=2,  # Very large model - smaller batch
@@ -229,7 +237,35 @@ MODEL_CONFIGS = {
         val_batch_size=2,
     ),
     
-    # Normistral models (Mistral-based) - using custom prompt
+    # EuroLLM (Mistral-based) - using Mistral chat template
+    'eurollm-9b-instruct': ModelConfig(
+        short_name='eurollm-9b-instruct',
+        hf_name='utter-project/EuroLLM-9B-2512-instruct',
+        lora_r=16,  # Increased for better adaptation
+        lora_alpha=32,
+        lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
+        learning_rate=1.5e-5,
+        prompt_config=PROMPT_NORMISTRAL,  # Mistral chat template
+        architecture='mistral',
+        train_batch_size=4,
+        val_batch_size=8,
+    ),
+    
+    # NorwAI (Mistral-based) - using Mistral chat template
+    'norwai-mistral-7b-instruct': ModelConfig(
+        short_name='norwai-mistral-7b-instruct',
+        hf_name='NorwAI/NorwAI-Mistral-7B-instruct',
+        lora_r=16,  # Increased for better adaptation
+        lora_alpha=32,
+        lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
+        learning_rate=1.5e-5,
+        prompt_config=PROMPT_NORMISTRAL,  # Mistral chat template
+        architecture='mistral',
+        train_batch_size=4,
+        val_batch_size=16,
+    ),
+    
+    # Normistral models (Mistral-based) - using Mistral chat template
     'normistral-7b': ModelConfig(
         short_name='normistral-7b',
         hf_name='norallm/normistral-7b-warm',
@@ -237,7 +273,19 @@ MODEL_CONFIGS = {
         lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
         learning_rate=1.5e-5,
-        prompt_config=PROMPT_NORMISTRAL,  # Custom prompt
+        prompt_config=PROMPT_NORMISTRAL,  # Mistral chat template
+        architecture='mistral',
+        train_batch_size=4,
+        val_batch_size=16,
+    ),
+    'normistral-7b-instruct': ModelConfig(
+        short_name='normistral-7b-instruct',
+        hf_name='norallm/normistral-7b-warm-instruct',
+        lora_r=16,  # Increased for better adaptation
+        lora_alpha=32,
+        lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
+        learning_rate=1.5e-5,
+        prompt_config=PROMPT_NORMISTRAL,  # Note: This model has a custom chat template (role-based), but tokenizer.apply_chat_template() should handle it
         architecture='mistral',
         train_batch_size=4,
         val_batch_size=16,
@@ -249,7 +297,7 @@ MODEL_CONFIGS = {
         lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
         learning_rate=2e-5,
-        prompt_config=PROMPT_NORMISTRAL,  # Custom prompt
+        prompt_config=PROMPT_NORMISTRAL,  # Mistral chat template
         architecture='mistral',
         train_batch_size=4,
         val_batch_size=6,
@@ -259,6 +307,18 @@ MODEL_CONFIGS = {
     'norskgpt-llama3-8b': ModelConfig(
         short_name='norskgpt-llama3-8b',
         hf_name='bineric/norskgpt-llama3-8b',
+        lora_r=16,  # Increased for better adaptation
+        lora_alpha=32,
+        lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
+        learning_rate=1e-5,
+        prompt_config=PROMPT_LLAMA3,  # Llama-3 chat format
+        architecture='llama',
+        train_batch_size=4,
+        val_batch_size=16,
+    ),
+    'llama-3.1-8b-instruct': ModelConfig(
+        short_name='llama-3.1-8b-instruct',
+        hf_name='meta-llama/Llama-3.1-8B-Instruct',
         lora_r=16,  # Increased for better adaptation
         lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
@@ -293,6 +353,20 @@ MODEL_CONFIGS = {
         architecture='mt5',
         train_batch_size=4,
         val_batch_size=32,
+    ),
+    
+    # GPT-J based models (GPT-NeoX architecture)
+    'nb-gpt-j-6b': ModelConfig(
+        short_name='nb-gpt-j-6b',
+        hf_name='NbAiLab/nb-gpt-j-6B-torgersen-alpaca',
+        lora_r=16,  # Increased for better adaptation
+        lora_alpha=32,
+        lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],  # GPT-J uses similar attention structure
+        learning_rate=1e-5,
+        prompt_config=PROMPT_ALPACA,  # Alpaca instruction format
+        architecture='gptj',
+        train_batch_size=4,
+        val_batch_size=16,
     ),
 }
 

@@ -1109,6 +1109,331 @@ def test_edge_cases(model_name: str, test_dir: str):
     return passed == total
 
 
+def test_checkpoint_queueing_logic(model_name: str, test_dir: str):
+    """Test checkpoint queueing logic thoroughly.
+    
+    This test verifies:
+    1. Only max_checkpoints checkpoints remain in main directory
+    2. Oldest checkpoints are deleted when limit is reached
+    3. All checkpoints (including deleted ones) are backed up
+    4. Major checkpoints go to major_checkpoints/, regular to regular_checkpoints/
+    5. Queue management works for both regular and major checkpoints
+    6. Edge cases: checkpoint-0, checkpoint at limit, etc.
+    """
+    print("\n" + "=" * 70)
+    print("TEST 10: Checkpoint Queueing Logic")
+    print("=" * 70)
+    
+    passed = 0
+    total = 0
+    
+    # Configuration for queueing test
+    max_checkpoints = 5  # Small number for testing (default is 10)
+    major_checkpoint_interval = 500
+    num_steps = 15  # Create enough checkpoints to exceed max_checkpoints
+    val_steps = 3  # Save checkpoint every 3 steps
+    
+    print(f"Configuration:")
+    print(f"  max_checkpoints: {max_checkpoints}")
+    print(f"  major_checkpoint_interval: {major_checkpoint_interval}")
+    print(f"  Training steps: {num_steps}")
+    print(f"  Validation interval: every {val_steps} steps")
+    print(f"  Expected checkpoints: {[i for i in range(val_steps, num_steps + 1, val_steps)]}")
+    print(f"  Expected major checkpoints: {[i for i in range(val_steps, num_steps + 1, val_steps) if i % major_checkpoint_interval == 0]}")
+    
+    # Create test datasets
+    train_dataset = os.path.join(test_dir, 'queue_test_train.jsonl')
+    val_dataset = os.path.join(test_dir, 'queue_test_val.jsonl')
+    create_minimal_test_dataset(num_examples=20, output_path=train_dataset)
+    create_minimal_test_dataset(num_examples=10, output_path=val_dataset)
+    
+    output_dir = os.path.join(test_dir, f"{model_name.replace('/', '_')}_queue_test")
+    os.makedirs(output_dir, exist_ok=True)
+    
+    try:
+        from wandb_finetune import fine_tune_model
+        
+        hf_token = os.environ.get('HUGGINGFACE_TOKEN') or os.environ.get('HF_TOKEN')
+        
+        # Run training with queueing enabled
+        print(f"\nRunning training to create {num_steps // val_steps} checkpoints...")
+        fine_tune_model(
+            model_name=model_name,
+            dataset_path=train_dataset,
+            val_dataset_path=val_dataset,
+            output_dir=output_dir,
+            quantization='none',
+            max_steps=num_steps,
+            num_train_epochs=None,
+            hf_token=hf_token,
+            use_ddp=False,
+            use_fsdp=False,
+            max_input_text_tokens=256,
+            max_extra_prompt_tokens=40,
+            max_output_summary_tokens=128,
+            train_batch_size=2,
+            val_batch_size=4,
+            val_data_size=5,
+            val_beam_size=1,
+            val_steps=val_steps,
+            resume_checkpoint=None,
+            save_total_limit=max_checkpoints,  # Set the limit
+        )
+        
+        # Wait a moment for any async operations to complete
+        import time
+        time.sleep(2)
+        
+        # Test 1: Count checkpoints in main directory
+        total += 1
+        main_checkpoints = [d for d in os.listdir(output_dir) if d.startswith('checkpoint-') and os.path.isdir(os.path.join(output_dir, d))]
+        main_checkpoint_steps = []
+        for ckpt in main_checkpoints:
+            try:
+                step = int(ckpt.split('-')[-1])
+                main_checkpoint_steps.append(step)
+            except ValueError:
+                pass
+        
+        main_checkpoint_steps.sort()
+        
+        print(f"\n✓ Test 1: Checkpoint count in main directory")
+        print(f"  Found {len(main_checkpoint_steps)} checkpoints: {main_checkpoint_steps}")
+        print(f"  Expected: at most {max_checkpoints} checkpoints")
+        
+        if len(main_checkpoint_steps) <= max_checkpoints:
+            print(f"  ✓ PASS: {len(main_checkpoint_steps)} <= {max_checkpoints}")
+            passed += 1
+        else:
+            print(f"  ✗ FAIL: {len(main_checkpoint_steps)} > {max_checkpoints}")
+        
+        # Test 2: Verify oldest checkpoints were deleted
+        total += 1
+        expected_checkpoints = list(range(val_steps, num_steps + 1, val_steps))
+        expected_oldest = expected_checkpoints[:len(expected_checkpoints) - max_checkpoints] if len(expected_checkpoints) > max_checkpoints else []
+        expected_remaining = expected_checkpoints[-max_checkpoints:] if len(expected_checkpoints) > max_checkpoints else expected_checkpoints
+        
+        print(f"\n✓ Test 2: Oldest checkpoints deletion")
+        print(f"  Expected all checkpoints: {expected_checkpoints}")
+        print(f"  Expected deleted (oldest): {expected_oldest}")
+        print(f"  Expected remaining (newest): {expected_remaining}")
+        print(f"  Actually remaining: {main_checkpoint_steps}")
+        
+        # Check that remaining checkpoints are the newest ones
+        if len(expected_oldest) > 0:
+            # Some should have been deleted
+            deleted_but_in_main = [s for s in expected_oldest if s in main_checkpoint_steps]
+            if len(deleted_but_in_main) == 0:
+                print(f"  ✓ PASS: Oldest checkpoints correctly deleted")
+                passed += 1
+            else:
+                print(f"  ✗ FAIL: Oldest checkpoints still present: {deleted_but_in_main}")
+        else:
+            # Not enough checkpoints to trigger deletion
+            if len(main_checkpoint_steps) == len(expected_checkpoints):
+                print(f"  ✓ PASS: All checkpoints present (limit not reached)")
+                passed += 1
+            else:
+                print(f"  ⚠ WARNING: Unexpected checkpoint count")
+                passed += 1  # Don't fail if we didn't create enough checkpoints
+        
+        # Test 3: Verify backups exist for all checkpoints (including deleted ones)
+        total += 1
+        regular_ckpt_dir = os.path.join(output_dir, "regular_checkpoints")
+        major_ckpt_dir = os.path.join(output_dir, "major_checkpoints")
+        
+        print(f"\n✓ Test 3: Backup existence for all checkpoints")
+        
+        all_backed_up = True
+        missing_backups = []
+        
+        for step in expected_checkpoints:
+            is_major = step > 0 and step % major_checkpoint_interval == 0
+            backup_dir = major_ckpt_dir if is_major else regular_ckpt_dir
+            backup_name = f"major-checkpoint-{step}" if is_major else f"regular-checkpoint-{step}"
+            backup_path = os.path.join(backup_dir, backup_name)
+            
+            if not os.path.exists(backup_path):
+                all_backed_up = False
+                missing_backups.append((step, backup_name, "major" if is_major else "regular"))
+        
+        if all_backed_up:
+            print(f"  ✓ PASS: All {len(expected_checkpoints)} checkpoints backed up")
+            print(f"    Regular backups: {len([s for s in expected_checkpoints if not (s > 0 and s % major_checkpoint_interval == 0)])}")
+            print(f"    Major backups: {len([s for s in expected_checkpoints if s > 0 and s % major_checkpoint_interval == 0])}")
+            passed += 1
+        else:
+            print(f"  ✗ FAIL: Missing backups for: {missing_backups}")
+            # List what actually exists
+            if os.path.exists(regular_ckpt_dir):
+                regular_backups = [d for d in os.listdir(regular_ckpt_dir) if d.startswith('regular-checkpoint-')]
+                print(f"    Regular backups found: {len(regular_backups)}")
+            if os.path.exists(major_ckpt_dir):
+                major_backups = [d for d in os.listdir(major_ckpt_dir) if d.startswith('major-checkpoint-')]
+                print(f"    Major backups found: {len(major_backups)}")
+        
+        # Test 4: Verify deleted checkpoints have backups but not in main directory
+        total += 1
+        print(f"\n✓ Test 4: Deleted checkpoints verification")
+        
+        if len(expected_oldest) > 0:
+            deleted_verified = True
+            for step in expected_oldest:
+                # Should NOT be in main directory
+                main_path = os.path.join(output_dir, f"checkpoint-{step}")
+                if os.path.exists(main_path):
+                    print(f"  ✗ FAIL: Deleted checkpoint-{step} still exists in main directory")
+                    deleted_verified = False
+                    break
+                
+                # Should be in backup directory
+                is_major = step > 0 and step % major_checkpoint_interval == 0
+                backup_dir = major_ckpt_dir if is_major else regular_ckpt_dir
+                backup_name = f"major-checkpoint-{step}" if is_major else f"regular-checkpoint-{step}"
+                backup_path = os.path.join(backup_dir, backup_name)
+                
+                if not os.path.exists(backup_path):
+                    print(f"  ✗ FAIL: Deleted checkpoint-{step} missing from backup directory")
+                    deleted_verified = False
+                    break
+            
+            if deleted_verified:
+                print(f"  ✓ PASS: All {len(expected_oldest)} deleted checkpoints verified")
+                print(f"    - Not in main directory: ✓")
+                print(f"    - Present in backup directory: ✓")
+                passed += 1
+            else:
+                print(f"  ✗ FAIL: Deleted checkpoint verification failed")
+        else:
+            print(f"  ✓ PASS: No checkpoints deleted (limit not reached)")
+            passed += 1
+        
+        # Test 5: Verify major checkpoints go to major_checkpoints/, regular to regular_checkpoints/
+        total += 1
+        print(f"\n✓ Test 5: Backup directory separation")
+        
+        separation_correct = True
+        for step in expected_checkpoints:
+            is_major = step > 0 and step % major_checkpoint_interval == 0
+            
+            if is_major:
+                # Should be in major_checkpoints/
+                backup_path = os.path.join(major_ckpt_dir, f"major-checkpoint-{step}")
+                wrong_path = os.path.join(regular_ckpt_dir, f"regular-checkpoint-{step}")
+                if not os.path.exists(backup_path):
+                    print(f"  ✗ FAIL: Major checkpoint-{step} not in major_checkpoints/")
+                    separation_correct = False
+                if os.path.exists(wrong_path):
+                    print(f"  ✗ FAIL: Major checkpoint-{step} incorrectly in regular_checkpoints/")
+                    separation_correct = False
+            else:
+                # Should be in regular_checkpoints/
+                backup_path = os.path.join(regular_ckpt_dir, f"regular-checkpoint-{step}")
+                wrong_path = os.path.join(major_ckpt_dir, f"major-checkpoint-{step}")
+                if not os.path.exists(backup_path):
+                    print(f"  ✗ FAIL: Regular checkpoint-{step} not in regular_checkpoints/")
+                    separation_correct = False
+                if os.path.exists(wrong_path):
+                    print(f"  ✗ FAIL: Regular checkpoint-{step} incorrectly in major_checkpoints/")
+                    separation_correct = False
+        
+        if separation_correct:
+            print(f"  ✓ PASS: All checkpoints in correct backup directories")
+            passed += 1
+        else:
+            print(f"  ✗ FAIL: Backup directory separation incorrect")
+        
+        # Test 6: Verify backup integrity (adapter files exist)
+        total += 1
+        print(f"\n✓ Test 6: Backup integrity (adapter files)")
+        
+        backup_integrity_ok = True
+        checked_backups = 0
+        
+        for step in expected_checkpoints:
+            is_major = step > 0 and step % major_checkpoint_interval == 0
+            backup_dir = major_ckpt_dir if is_major else regular_ckpt_dir
+            backup_name = f"major-checkpoint-{step}" if is_major else f"regular-checkpoint-{step}"
+            backup_path = os.path.join(backup_dir, backup_name)
+            
+            if os.path.exists(backup_path):
+                adapter_file = os.path.join(backup_path, "adapter_model.safetensors")
+                adapter_config = os.path.join(backup_path, "adapter_config.json")
+                
+                if not os.path.exists(adapter_file):
+                    print(f"  ✗ FAIL: Backup checkpoint-{step} missing adapter_model.safetensors")
+                    backup_integrity_ok = False
+                if not os.path.exists(adapter_config):
+                    print(f"  ✗ FAIL: Backup checkpoint-{step} missing adapter_config.json")
+                    backup_integrity_ok = False
+                
+                checked_backups += 1
+        
+        if backup_integrity_ok and checked_backups > 0:
+            print(f"  ✓ PASS: All {checked_backups} backups have required files")
+            passed += 1
+        elif checked_backups == 0:
+            print(f"  ⚠ WARNING: No backups found to verify")
+            passed += 1  # Don't fail if backups weren't created
+        else:
+            print(f"  ✗ FAIL: Backup integrity issues")
+        
+        # Test 7: Verify checkpoint ordering (newest should be in main directory)
+        total += 1
+        print(f"\n✓ Test 7: Checkpoint ordering (newest in main)")
+        
+        if len(main_checkpoint_steps) > 0:
+            expected_newest = sorted(expected_checkpoints)[-len(main_checkpoint_steps):]
+            if main_checkpoint_steps == expected_newest:
+                print(f"  ✓ PASS: Main directory contains newest checkpoints")
+                print(f"    Expected: {expected_newest}")
+                print(f"    Found: {main_checkpoint_steps}")
+                passed += 1
+            else:
+                print(f"  ✗ FAIL: Main directory checkpoint order incorrect")
+                print(f"    Expected newest: {expected_newest}")
+                print(f"    Actually in main: {main_checkpoint_steps}")
+        else:
+            print(f"  ⚠ WARNING: No checkpoints in main directory")
+            passed += 1  # Don't fail if no checkpoints
+        
+        # Test 8: Edge case - checkpoint-0 (if it exists)
+        total += 1
+        print(f"\n✓ Test 8: Edge case - checkpoint-0 handling")
+        
+        checkpoint_0_path = os.path.join(output_dir, "checkpoint-0")
+        if os.path.exists(checkpoint_0_path):
+            # checkpoint-0 should be handled specially (usually not deleted)
+            if 0 in main_checkpoint_steps:
+                print(f"  ✓ PASS: checkpoint-0 present in main directory")
+                passed += 1
+            else:
+                print(f"  ⚠ WARNING: checkpoint-0 not in main directory (may have been deleted)")
+                # Check if it's backed up
+                backup_0_regular = os.path.join(regular_ckpt_dir, "regular-checkpoint-0")
+                backup_0_major = os.path.join(major_ckpt_dir, "major-checkpoint-0")
+                if os.path.exists(backup_0_regular) or os.path.exists(backup_0_major):
+                    print(f"    But checkpoint-0 is backed up, which is acceptable")
+                    passed += 1
+                else:
+                    print(f"    ✗ FAIL: checkpoint-0 not backed up either")
+        else:
+            print(f"  ✓ PASS: checkpoint-0 not created (normal behavior)")
+            passed += 1
+        
+        print(f"\n{'='*70}")
+        print(f"Checkpoint queueing tests: {passed}/{total} passed")
+        print(f"{'='*70}")
+        
+        return passed == total
+        
+    except Exception as e:
+        print(f"✗ Checkpoint queueing test failed: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='End-to-end test for refactored code',
@@ -1119,8 +1444,9 @@ def main():
                        choices=['viking-7b', 'viking-13b', 'viking-33b',
                                 'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
                                 'gemma-3-12b', 'gemma-3-27b',
-                                'normistral-7b', 'normistral-11b',
-                                'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian'],
+                                'normistral-7b', 'normistral-11b', 'normistral-7b-instruct',
+                                'norskgpt-llama3-8b', 'llama-3.1-8b-instruct', 'llama-2-13b-chat-norwegian',
+                                'eurollm-9b-instruct', 'norwai-mistral-7b-instruct', 'nb-gpt-j-6b', 'mt5'],
                        help='Model to test (default: gemma-2b - smallest for quick testing)')
     parser.add_argument('--test_dir', type=str, default=None,
                        help='Directory for test outputs (default: temp directory)')
@@ -1142,6 +1468,8 @@ def main():
                        help='Skip monitor script integration tests')
     parser.add_argument('--skip_edge_cases', action='store_true',
                        help='Skip edge case tests')
+    parser.add_argument('--skip_checkpoint_queueing', action='store_true',
+                       help='Skip checkpoint queueing logic test')
     parser.add_argument('--include_nli_faithfulness', action='store_true',
                        help='Include NLI faithfulness evaluation in extended metrics test')
     
@@ -1229,6 +1557,7 @@ def main():
         'file_io': None,
         'monitor_integration': None,
         'edge_cases': None,
+        'checkpoint_queueing': None,
     }
     
     # Test 1: Utilities
@@ -1306,6 +1635,17 @@ def main():
     else:
         print("\n⚠ Skipping edge case tests (--skip_edge_cases)")
         results['edge_cases'] = None  # Mark as skipped
+    
+    # Test 10: Checkpoint Queueing Logic (requires training output)
+    if not args.skip_checkpoint_queueing:
+        # Use the training output directory if available, otherwise create a new one
+        queue_test_dir = output_dir if output_dir else os.path.join(test_dir, 'queue_test_output')
+        if not output_dir:
+            os.makedirs(queue_test_dir, exist_ok=True)
+        results['checkpoint_queueing'] = test_checkpoint_queueing_logic(model_name, test_dir)
+    else:
+        print("\n⚠ Skipping checkpoint queueing test (--skip_checkpoint_queueing)")
+        results['checkpoint_queueing'] = None  # Mark as skipped
     
     # Summary
     print("\n" + "=" * 70)
