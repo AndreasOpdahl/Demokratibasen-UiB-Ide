@@ -258,33 +258,82 @@ class GPUMemoryCallback(TrainerCallback):
 
 
 class CheckpointBackupCallback(TrainerCallback):
-    """Callback to backup checkpoints when they're saved (runs in background to avoid blocking training).
+    """Callback to backup checkpoints when they're saved with queued management.
     
-    This ensures checkpoints are backed up to regular_checkpoints/ and major_checkpoints/
-    folders when saved, regardless of whether the monitor script is running.
-    This prevents checkpoints from being overwritten by save_total_limit before backup.
+    This callback:
+    1. Backs up checkpoints to regular_checkpoints/ and major_checkpoints/ folders
+    2. Manages checkpoint queue: when new checkpoint (regular OR major) is saved, 
+       deletes oldest checkpoint from main directory if at limit
+    3. Ensures regular_checkpoints/ and major_checkpoints/ always have the latest 
+       version of each checkpoint (overwrites old backups)
+    4. Prevents checkpoints from being overwritten by save_total_limit before backup
     
-    The backup runs in a background thread to avoid blocking training.
+    Queue management applies to ALL checkpoints in main directory, regardless of whether
+    they're regular or major checkpoints. The queue keeps the most recent N checkpoints.
+    
+    The backup runs synchronously to ensure completion before training continues.
     """
     
-    def __init__(self, output_dir: str, major_checkpoint_interval: int = 500, async_backup: bool = True):
+    def __init__(self, output_dir: str, major_checkpoint_interval: int = 500, max_checkpoints: int = 10, async_backup: bool = False):
         """Initialize checkpoint backup callback.
         
         This callback backs up checkpoints to regular_checkpoints/ and major_checkpoints/ folders.
         Backups always overwrite existing backups for the same checkpoint step.
-        The model folder checkpoint management (save_total_limit) is handled by TrainingArguments.
+        When max_checkpoints is reached, oldest checkpoints are deleted from main directory.
         
         Args:
             output_dir: Training output directory (where checkpoints are saved)
             major_checkpoint_interval: Every Nth step is a major checkpoint (default: 500)
-            async_backup: If True, backup runs in background thread (default: True). 
-                         If False, backup blocks training (faster but may slow training).
+            max_checkpoints: Maximum number of checkpoints to keep in main directory (default: 10)
+            async_backup: If True, backup runs in background thread (default: False for reliability). 
+                         If False, backup blocks training (ensures completion).
         """
         self.output_dir = output_dir
         self.major_checkpoint_interval = major_checkpoint_interval
+        self.max_checkpoints = max_checkpoints
         self.async_backup = async_backup
         self.backed_up_steps = set()  # Track which steps we've already backed up
         self._backup_lock = threading.Lock()  # Thread safety for backed_up_steps
+        self._checkpoint_queue = []  # Track checkpoints in main directory (sorted by step)
+    
+    def _get_existing_checkpoints(self):
+        """Get list of existing checkpoints in main directory, sorted by step number."""
+        checkpoint_pattern = os.path.join(self.output_dir, "checkpoint-*")
+        checkpoints = glob.glob(checkpoint_pattern)
+        checkpoint_steps = []
+        for ckpt in checkpoints:
+            basename = os.path.basename(ckpt.rstrip(os.sep))
+            if basename.startswith("checkpoint-"):
+                try:
+                    step = int(basename.split("-")[-1])
+                    checkpoint_steps.append((step, ckpt))
+                except (ValueError, IndexError):
+                    continue
+        checkpoint_steps.sort(key=lambda x: x[0])
+        return checkpoint_steps
+    
+    def _delete_oldest_checkpoint(self):
+        """Delete the oldest checkpoint from main directory if we're at the limit.
+        
+        This applies to both regular and major checkpoints - the queue management
+        works on all checkpoints in the main directory regardless of type.
+        """
+        existing_checkpoints = self._get_existing_checkpoints()
+        
+        if len(existing_checkpoints) >= self.max_checkpoints:
+            # Delete the oldest checkpoint (could be regular or major)
+            oldest_step, oldest_path = existing_checkpoints[0]
+            is_major = oldest_step > 0 and oldest_step % self.major_checkpoint_interval == 0
+            checkpoint_type = "major" if is_major else "regular"
+            print(f"[Checkpoint Queue] At limit ({self.max_checkpoints}), deleting oldest {checkpoint_type} checkpoint-{oldest_step}...")
+            try:
+                shutil.rmtree(oldest_path)
+                print(f"✓ Deleted checkpoint-{oldest_step} from main directory")
+                return True
+            except Exception as e:
+                print(f"⚠ Warning: Failed to delete oldest checkpoint-{oldest_step}: {e}")
+                return False
+        return False
     
     def _backup_checkpoint(self, checkpoint_dir: str, checkpoint_step_int: int):
         """Internal method to perform the actual backup (runs in thread or synchronously)."""
@@ -307,6 +356,7 @@ class CheckpointBackupCallback(TrainerCallback):
             # Always overwrite existing backup (remove old one first)
             if os.path.exists(regular_ckpt_path):
                 try:
+                    print(f"[Checkpoint Backup] Removing old backup: {regular_ckpt_name}")
                     shutil.rmtree(regular_ckpt_path)
                 except Exception as e:
                     print(f"⚠ Warning: Failed to remove existing regular checkpoint backup: {e}")
@@ -335,6 +385,7 @@ class CheckpointBackupCallback(TrainerCallback):
             # Always overwrite existing backup (remove old one first)
             if os.path.exists(major_ckpt_path):
                 try:
+                    print(f"[Checkpoint Backup] Removing old backup: {major_ckpt_name}")
                     shutil.rmtree(major_ckpt_path)
                 except Exception as e:
                     print(f"⚠ Warning: Failed to remove existing major checkpoint backup: {e}")
@@ -352,13 +403,16 @@ class CheckpointBackupCallback(TrainerCallback):
                 major_backup_success = False
     
     def on_save(self, args, state, control, **kwargs):
-        """Backup checkpoint when it's saved (non-blocking if async_backup=True).
+        """Backup checkpoint when it's saved with queued management.
         
-        This always overwrites existing backups for the same checkpoint step.
-        The model folder checkpoint management (save_total_limit) is handled by TrainingArguments.
+        This method:
+        1. Deletes oldest checkpoint if we're at the limit
+        2. Backs up new checkpoint to regular_checkpoints/ or major_checkpoints/
+        3. Always overwrites existing backups for the same checkpoint step
         """
-        # Only backup on main process (rank 0)
-        if args.local_rank not in [-1, 0]:
+        # Only backup on main process (use process_index for FSDP compatibility)
+        process_index = getattr(args, 'process_index', getattr(args, 'local_rank', -1))
+        if process_index not in [-1, 0]:
             return
         
         # Get current checkpoint directory
@@ -386,20 +440,29 @@ class CheckpointBackupCallback(TrainerCallback):
         
         checkpoint_step_int = state.global_step
         
-        # Run backup in background thread to avoid blocking training
+        # Step 1: Delete oldest checkpoint if we're at the limit (before backing up new one)
+        # This applies to both regular and major checkpoints - queue management works for all
+        self._delete_oldest_checkpoint()
+        
+        # Step 2: Backup the new checkpoint (regular or major)
         if self.async_backup:
             def backup_thread():
                 try:
                     self._backup_checkpoint(checkpoint_dir, checkpoint_step_int)
                 except Exception as e:
                     print(f"⚠ Error in backup thread: {e}")
+                    import traceback
+                    traceback.print_exc()
                     # Remove from backed_up_steps so it can be retried
                     with self._backup_lock:
                         self.backed_up_steps.discard(checkpoint_step_int)
             
-            thread = threading.Thread(target=backup_thread, daemon=True)
+            thread = threading.Thread(target=backup_thread, daemon=False)  # Non-daemon to ensure completion
             thread.start()
-            # Don't wait for thread - training continues immediately
+            # Wait for thread to complete to ensure backup finishes
+            thread.join(timeout=300)  # 5 minute timeout
+            if thread.is_alive():
+                print(f"⚠ Warning: Checkpoint backup thread for step {checkpoint_step_int} did not complete within timeout")
         else:
             # Synchronous backup (blocks training, but ensures backup completes)
             self._backup_checkpoint(checkpoint_dir, checkpoint_step_int)
@@ -1593,8 +1656,11 @@ def fine_tune_model(
         print(f"  4. Train on single GPU (no --ddp or --fsdp flag)")
         print("=" * 70)
         print("FORCING RESTART to avoid checkpoint loading errors...")
+        print("Note: Old checkpoints will be managed by queue system as new ones are saved.")
         print("=" * 70 + "\n")
         force_restart = True  # Force it to avoid the error
+        # Note: We don't delete old checkpoints here - the queue management system
+        # will handle deletion one at a time as new checkpoints are added and we reach the limit.
     elif checkpoints_exist and (use_ddp or use_fsdp) and resolved_resume_checkpoint:
         print("\n" + "=" * 70)
         print("Manual checkpoint resumption requested.")
@@ -1793,15 +1859,21 @@ def fine_tune_model(
     # Add checkpoint backup callback - CRITICAL: Backs up checkpoints immediately when saved
     # This ensures checkpoints are preserved even if monitor script doesn't run
     # Major checkpoint interval: every 500 steps (same as evaluation script default)
+    # Max checkpoints: matches save_total_limit to keep queue management consistent
     major_checkpoint_interval = 500
+    max_checkpoints = int(training_args_kwargs.get('save_total_limit', 10))
     checkpoint_backup_callback = CheckpointBackupCallback(
         output_dir=output_dir,
-        major_checkpoint_interval=major_checkpoint_interval
+        major_checkpoint_interval=major_checkpoint_interval,
+        max_checkpoints=max_checkpoints,
+        async_backup=False  # Synchronous for reliability
     )
     callbacks.append(checkpoint_backup_callback)
     print(f"Adding CheckpointBackupCallback to backup checkpoints immediately when saved")
     print(f"  → Regular checkpoints: all checkpoints → regular_checkpoints/")
     print(f"  → Major checkpoints: every {major_checkpoint_interval} steps → major_checkpoints/")
+    print(f"  → Queue management: keeps max {max_checkpoints} checkpoints in main directory")
+    print(f"  → Old checkpoints automatically deleted when limit reached")
 
     # Create training started signal file for monitor script (only on main process)
     if is_main_process:
@@ -1951,8 +2023,9 @@ Examples:
                     choices=['viking-7b', 'viking-13b', 'viking-33b',
                              'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
                              'gemma-3-12b', 'gemma-3-27b',
-                             'normistral-7b', 'normistral-11b',
-                             'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian', 'mt5'],
+                             'normistral-7b', 'normistral-11b', 'normistral-7b-instruct',
+                             'norskgpt-llama3-8b', 'llama-3.1-8b-instruct', 'llama-2-13b-chat-norwegian',
+                             'eurollm-9b-instruct', 'norwai-mistral-7b-instruct', 'nb-gpt-j-6b', 'mt5'],
                        help='Model to fine-tune')
     parser.add_argument('--quantization', type=str, default='none',
                        choices=['none', '4bit', '8bit'],

@@ -1078,8 +1078,13 @@ def get_model_batch_size(model_name: str, default_batch_size: int) -> int:
     elif 'normistral-11b' in model_name_lower:
         return min(6, default_batch_size)  # Increase from 4 to 6
     # Medium models (2-7B)
-    elif 'gemma-2b' in model_name_lower or 'viking-7b' in model_name_lower or 'normistral-7b' in model_name_lower:
+    elif ('gemma-2b' in model_name_lower or 'viking-7b' in model_name_lower or 
+          'normistral-7b' in model_name_lower or 'norwai-mistral-7b' in model_name_lower or
+          'nb-gpt-j-6b' in model_name_lower):
         return min(16, default_batch_size)
+    # Medium-large models (8-9B) - similar to gemma-2-9b
+    elif 'llama-3.1-8b' in model_name_lower or 'eurollm-9b' in model_name_lower or 'norskgpt-llama3-8b' in model_name_lower:
+        return min(8, default_batch_size)  # Similar to gemma-7b
     # Small models
     else:
         return default_batch_size
@@ -2292,8 +2297,9 @@ Examples:
                        choices=['viking-7b', 'viking-13b', 'viking-33b',
                                 'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
                                 'gemma-3-12b', 'gemma-3-27b',
-                                'normistral-7b', 'normistral-11b',
-                                'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian', 'mt5'],
+                                'normistral-7b', 'normistral-11b', 'normistral-7b-instruct',
+                                'norskgpt-llama3-8b', 'llama-3.1-8b-instruct', 'llama-2-13b-chat-norwegian',
+                                'eurollm-9b-instruct', 'norwai-mistral-7b-instruct', 'nb-gpt-j-6b', 'mt5'],
                        help='Base model that was fine-tuned')
     parser.add_argument('--checkpoint_dir', type=str, required=True,
                        help='Path to PEFT checkpoint directory')

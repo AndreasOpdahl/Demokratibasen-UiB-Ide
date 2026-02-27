@@ -341,6 +341,14 @@ def monitor_and_evaluate(
     timeout_seconds = timeout_minutes * 60
     logged_to_wandb = set()  # Track which checkpoints we've already logged to wandb
     
+    # BERTScore early stopping (only for major checkpoints)
+    consecutive_low_bertscore_count = 0  # Track consecutive major checkpoints with low BERTScore
+    LOW_BERTSCORE_THRESHOLD = 2  # Stop if BERTScore < 0.25 for 2 consecutive major checkpoints
+    BERTSCORE_LOW_THRESHOLD = 0.25  # BERTScore below this is considered "low"
+    BERTSCORE_DROP_THRESHOLD = 0.10  # Drop of this magnitude is considered significant
+    best_bertscore = None
+    previous_bertscore = None  # Track previous BERTScore to detect drops
+    
     print("\nStarting checkpoint monitoring...")
     print(f"Will stop if no new checkpoints appear for {timeout_minutes} minutes")
     print("Press Ctrl+C to stop monitoring (training will continue)\n")
@@ -618,21 +626,91 @@ def monitor_and_evaluate(
                             print(f"✓ ROUGE scores recovered (non-zero). Resetting zero ROUGE counter.")
                             consecutive_zero_rouge_count = 0
                     
+                    # Check BERTScore for major checkpoints (early stopping)
+                    is_major = checkpoint_step is not None and is_major_checkpoint(checkpoint_step, major_checkpoint_interval)
+                    bertscore_f1 = eval_results.get('eval_reference_bertscore_f1_mean', None)
+                    
+                    if is_major and bertscore_f1 is not None:
+                        # BERTScore is available for this major checkpoint
+                        print(f"  BERTScore F1: {bertscore_f1:.4f}")
+                        
+                        # Check for low BERTScore
+                        if bertscore_f1 < BERTSCORE_LOW_THRESHOLD:
+                            consecutive_low_bertscore_count += 1
+                            print(f"⚠ Warning: BERTScore F1 ({bertscore_f1:.4f}) is below threshold ({BERTSCORE_LOW_THRESHOLD})")
+                            print(f"  Consecutive low BERTScore count: {consecutive_low_bertscore_count}/{LOW_BERTSCORE_THRESHOLD}")
+                            
+                            # Check if we've hit the threshold for early stopping
+                            if consecutive_low_bertscore_count >= LOW_BERTSCORE_THRESHOLD:
+                                print(f"\n{'='*70}")
+                                print("⚠ CRITICAL: Early stopping triggered due to low BERTScore!")
+                                print(f"BERTScore F1 has been below {BERTSCORE_LOW_THRESHOLD} for {consecutive_low_bertscore_count} consecutive major checkpoints.")
+                                print(f"Current BERTScore: {bertscore_f1:.4f}")
+                                print(f"This indicates the model quality has degraded significantly.")
+                                print(f"Stopping training to prevent further resource waste.")
+                                print(f"{'='*70}\n")
+                                write_early_stopping_signal(output_dir)
+                                
+                                # Log to wandb
+                                if wandb.run:
+                                    wandb.log({
+                                        "monitor/early_stop_reason": "low_bertscore",
+                                        "monitor/consecutive_low_bertscore_count": consecutive_low_bertscore_count,
+                                        "monitor/bertscore_f1": bertscore_f1,
+                                    }, step=checkpoint_step)
+                                
+                                print("Early stopping signal written. Training will stop on next check.")
+                                return
+                        else:
+                            # Reset counter if BERTScore is above threshold
+                            if consecutive_low_bertscore_count > 0:
+                                print(f"✓ BERTScore recovered (above {BERTSCORE_LOW_THRESHOLD}). Resetting low BERTScore counter.")
+                                consecutive_low_bertscore_count = 0
+                        
+                        # Check for significant drop in BERTScore
+                        if previous_bertscore is not None:
+                            bertscore_drop = previous_bertscore - bertscore_f1
+                            if bertscore_drop > BERTSCORE_DROP_THRESHOLD:
+                                print(f"⚠ Warning: Significant BERTScore drop detected!")
+                                print(f"  Previous: {previous_bertscore:.4f}, Current: {bertscore_f1:.4f}, Drop: {bertscore_drop:.4f}")
+                                print(f"  This may indicate model degradation. Monitor closely.")
+                                # Log but don't stop immediately (allow recovery)
+                                if wandb.run:
+                                    wandb.log({
+                                        "monitor/bertscore_drop": bertscore_drop,
+                                        "monitor/bertscore_previous": previous_bertscore,
+                                        "monitor/bertscore_current": bertscore_f1,
+                                    }, step=checkpoint_step)
+                        
+                        # Update best and previous BERTScore
+                        if best_bertscore is None or bertscore_f1 > best_bertscore:
+                            was_str = f"{best_bertscore:.4f}" if best_bertscore is not None else "N/A"
+                            print(f"✓ New best BERTScore F1: {bertscore_f1:.4f} (was {was_str})")
+                            best_bertscore = bertscore_f1
+                        previous_bertscore = bertscore_f1
+                    elif is_major:
+                        # Major checkpoint but BERTScore not available (shouldn't happen, but handle gracefully)
+                        print(f"⚠ Warning: Major checkpoint-{checkpoint_step} but BERTScore not available in results")
+                    
                     # Continue with normal evaluation flow for non-zero ROUGE scores
                     evaluated_steps.add(checkpoint_step)
                     if checkpoint_step not in logged_to_wandb:
                         logged_to_wandb.add(checkpoint_step)
                     
                     # Log to wandb
+                    log_dict = {
+                        "monitor/checkpoint_step": checkpoint_step,
+                        "monitor/rouge1": rouge1,
+                        "monitor/rouge2": rouge2,
+                        "monitor/rougeL": rougeL,
+                        "monitor/rougeLsum": rouge_lsum,
+                        "monitor/consecutive_zero_rouge_count": consecutive_zero_rouge_count,
+                    }
+                    if is_major and bertscore_f1 is not None:
+                        log_dict["monitor/bertscore_f1"] = bertscore_f1
+                        log_dict["monitor/consecutive_low_bertscore_count"] = consecutive_low_bertscore_count
                     if wandb.run:
-                        wandb.log({
-                            "monitor/checkpoint_step": checkpoint_step,
-                            "monitor/rouge1": rouge1,
-                            "monitor/rouge2": rouge2,
-                            "monitor/rougeL": rougeL,
-                            "monitor/rougeLsum": rouge_lsum,
-                            "monitor/consecutive_zero_rouge_count": consecutive_zero_rouge_count,  # Track this metric
-                        }, step=checkpoint_step)
+                        wandb.log(log_dict, step=checkpoint_step)
                     
                     # Check for improvement
                     if best_rouge_lsum is None or rouge_lsum > best_rouge_lsum:
@@ -719,8 +797,9 @@ if __name__ == "__main__":
                        choices=['viking-7b', 'viking-13b', 'viking-33b',
                                 'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
                                 'gemma-3-12b', 'gemma-3-27b',
-                                'normistral-7b', 'normistral-11b',
-                                'norskgpt-llama3-8b', 'llama-2-13b-chat-norwegian'],
+                                'normistral-7b', 'normistral-11b', 'normistral-7b-instruct',
+                                'norskgpt-llama3-8b', 'llama-3.1-8b-instruct', 'llama-2-13b-chat-norwegian',
+                                'eurollm-9b-instruct', 'norwai-mistral-7b-instruct', 'nb-gpt-j-6b', 'mt5'],
                        help='Model short name')
     parser.add_argument('--val_dataset', type=str, required=True,
                        help='Path to validation dataset (JSONL)')
