@@ -106,9 +106,18 @@ from transformers import (
     TrainingArguments,
 )
 try:
-    TrainerState = importlib.import_module("transformers.trainer_state").TrainerState  # type: ignore[attr-defined]
-except (ImportError, AttributeError):  # pragma: no cover - environment without transformers installed
-    TrainerState = None  # type: ignore[assignment]
+    # Preferred import path in current transformers versions
+    from transformers.trainer_callback import TrainerState  # type: ignore
+except ImportError:
+    try:
+        # Compatibility fallback for environments exposing TrainerState at top-level
+        from transformers import TrainerState  # type: ignore
+    except ImportError:
+        try:
+            # Last-resort fallback for older/custom layouts
+            TrainerState = importlib.import_module("transformers.trainer_state").TrainerState  # type: ignore[attr-defined]
+        except (ImportError, AttributeError):  # pragma: no cover - environment without TrainerState
+            TrainerState = None  # type: ignore[assignment]
 
 # Optional imports for quantization
 try:
@@ -1966,8 +1975,10 @@ def fine_tune_model(
     manual_resume = resolved_resume_checkpoint is not None and not use_fsdp
 
     if manual_resume:
-        print("Continuing training with manually restored checkpoint state...")
-        trainer.train()
+        print(f"Continuing training from checkpoint path (manual non-FSDP resume): {resolved_resume_checkpoint}")
+        # Pass resume_from_checkpoint explicitly so Trainer keeps internal step accounting
+        # aligned with the restored checkpoint (prevents checkpoint numbering reset).
+        trainer.train(resume_from_checkpoint=resolved_resume_checkpoint)
     elif resolved_resume_checkpoint is not None:
         # User explicitly provided a checkpoint - always use it (even with FSDP)
         # Note: resume_from_checkpoint is already set in TrainingArguments (line ~1692)
