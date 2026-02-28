@@ -13,6 +13,7 @@ This package provides:
 from .loader import DatasetLoader
 from .dataset_adapter_202505 import DatasetAdapter202505
 from .dataset_adapter_202510 import DatasetAdapter202510
+from .dataset_adapter_202601 import DatasetAdapter202601
 from .dataset_registry import (
     DATASET_REGISTRY,
     get_dataset_path,
@@ -28,6 +29,7 @@ __all__ = [
     "DatasetLoader",
     "DatasetAdapter202505",
     "DatasetAdapter202510",
+    "DatasetAdapter202601",
     "DATASET_REGISTRY",
     "get_dataset_path",
     "get_dataset_adapter",

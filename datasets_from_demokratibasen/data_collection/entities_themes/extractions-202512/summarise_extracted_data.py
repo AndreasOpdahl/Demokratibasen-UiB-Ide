@@ -31,12 +31,19 @@ COUNT_FIELDS = [
 ]
 
 # ---------- HJELPEFUNKSJONER ----------
-def load_schema() -> Dict[str, Any]:
+def load_schema(prompt_name: str) -> Dict[str, Any]:
     """Laster schema for å få alle properties."""
-    schema_path = ROOT / "create_prompt" / "extraction-202512-schema.json"
+    schema_file = f"{prompt_name}-schema.json"
+    schema_path = ROOT / "create_prompt" / schema_file
     with schema_path.open('r', encoding='utf-8') as f:
         schema_data = json.load(f)
     return schema_data["schema"]["properties"]
+
+
+def _parse_comma_list(value: str) -> List[str]:
+    if not value:
+        return []
+    return [item.strip() for item in value.split(",") if item.strip()]
 
 def find_matching_directories_by_task(task_name: str) -> List[Path]:
     """
@@ -171,7 +178,7 @@ def clean_tidspunkt(text: str) -> str:
     # Hvis ingen mønster matcher, returner originalen
     return text.strip()
 
-def normalize_list(value: Any, field_name: str = None) -> List[str]:
+def normalize_list(value: Any, field_name: str) -> List[str]:
     """Normaliserer verdier til liste av strenger med feltspesifikk behandling."""
     if value is None:
         return []
@@ -451,10 +458,10 @@ def main():
         epilog="""
 Eksempler:
   # Bruk prompt, dataset og max-tokens:
-  %(prog)s --prompt extraction-202512 --dataset dataset-202510 --max-tokens all
+  %(prog)s --prompt structured-data-202512 --dataset dataset-202510 --max-tokens all
   
   # Bruk direkte sti:
-  %(prog)s --extracted-data extracted-data/dataset-202510-all-tokens-extraction-202512
+  %(prog)s --extracted-data extracted-data/dataset-202510-all-tokens-structured-data-202512
         """
     )
     
@@ -479,8 +486,17 @@ Eksempler:
         type=str,
         help="Max tokens (f.eks. 'all' eller '2048'). Krever også --prompt og --dataset."
     )
+    parser.add_argument(
+        "--model",
+        type=str,
+        help="Valgfritt modellnavn å filtrere ut fra hver task- eller extracted-data-mappe."
+    )
     
     args = parser.parse_args()
+    prompt_name = args.prompt or "structured-data-202512"
+
+    dataset_names = _parse_comma_list(args.dataset)
+    extracted_paths = _parse_comma_list(args.extracted_data)
     
     # Validate arguments: either --extracted-data OR (--prompt, --dataset, --max-tokens)
     if args.extracted_data:
@@ -516,17 +532,30 @@ Eksempler:
         
     else:
         # Component mode: --prompt, --dataset, --max-tokens
-        task_name = build_task_name(args.dataset, args.max_tokens, args.prompt)
-        print(f"Laster ekstraherte data for task '{task_name}'...")
+        dataset_key = "-".join(dataset_names)
+        task_name = build_task_name(dataset_key, args.max_tokens, prompt_name)
+        print(f"Laster ekstraherte data for datasets {', '.join(dataset_names)} med task-suffiks '{task_name}'...")
         
-        matching_dirs = find_matching_directories_by_task(task_name)
-        
+        matching_dirs = []
+        task_missing = []
+        for dataset_name in dataset_names:
+            task_dir = build_task_name(dataset_name, args.max_tokens, args.prompt)
+            dirs = find_matching_directories_by_task(task_dir)
+            if args.model:
+                dirs = [d for d in dirs if d.name == args.model]
+            if not dirs:
+                task_missing.append(task_dir)
+            else:
+                matching_dirs.extend(dirs)
+
+        if task_missing:
+            print(f"Ingen mapper funnet for følgende tasks: {', '.join(task_missing)}")
         if not matching_dirs:
-            print(f"Ingen mapper funnet for task '{task_name}' i {EXTRACTED_DATA_DIR}")
+            print(f"Ingen mapper funnet for de ønskede dataset-taskene i {EXTRACTED_DATA_DIR}")
             return
         
-        # For output filename, use the task name
-        output_filename = f"{task_name}.json"
+        # For output filename, use the combined key
+        output_filename = f"{dataset_key}-all-tokens-{args.prompt}.json"
     
     print(f"Fant {len(matching_dirs)} matchende mapper:")
     for dir_path in matching_dirs:
@@ -566,7 +595,7 @@ Eksempler:
             print(f"    Manglende doc IDs: {', '.join(missing_info['missing_doc_ids'])}")
     
     # Last schema
-    schema_properties = load_schema()
+    schema_properties = load_schema(prompt_name)
     
     # Analyser hver dokumentgruppe
     print("\n" + "=" * 70)
@@ -597,12 +626,15 @@ Eksempler:
     output_path = SUMMARIES_DIR / output_filename
     
     # Build metadata for output
-    if args.extracted_data:
-        metadata = {"extracted_data_path": args.extracted_data}
+    if extracted_paths:
+        metadata = {
+            "extracted_data_paths": extracted_paths,
+            "prompt": prompt_name
+        }
     else:
         metadata = {
-            "prompt": args.prompt,
-            "dataset": args.dataset,
+            "prompt": prompt_name,
+            "datasets": dataset_names,
             "max_tokens": args.max_tokens,
             "task_name": task_name
         }

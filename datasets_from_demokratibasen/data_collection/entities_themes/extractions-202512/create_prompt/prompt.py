@@ -8,12 +8,12 @@ from pathlib import Path
 class Prompt:
     """Class for creating prompts for LLM-based structured data extraction."""
     
-    def __init__(self, prompt_name: str = "OLD-structured-data-202509"):
+    def __init__(self, prompt_name: str):
         """
         Initialize the Prompt class with a specific prompt name.
         
         Args:
-            prompt_name: Name of the prompt to load (default: "OLD-structured-data-202509")
+            prompt_name: Name of the prompt to load (e.g., 'gpt-inferencing-202512')
         """
         self.prompt_name = prompt_name
         self._base_path = Path(__file__).parent
@@ -59,7 +59,7 @@ class Prompt:
                 f"Expected file: {prompt_name}-schema.json"
             )
     
-    def get_prompt(self, kommune_navn: str, include_schema: bool = False) -> str:
+    def get_prompt(self, kommune_navn: str, include_schema: bool = False, lang='no') -> str:
         """
         Get the prompt with kommune name filled in.
         
@@ -88,8 +88,11 @@ class Prompt:
             
             # Append schema to prompt
             schema_json = json.dumps(schema_to_include, ensure_ascii=False, indent=2)
-            prompt += f"\n\nJSON-skjemaet du skal følge:\n```json\n{schema_json}\n```\n"
-            prompt += "\nVIKTIG: Alle felter som er listet i 'required' må inkluderes i JSON-objektet, selv om de er tomme (bruk \"\" for strenger og [] for lister).\n"
+            if lang == 'no':
+                prompt += f"\n\nJSON-skjemaet du skal følge:\n```json\n{schema_json}\n```\n"
+                prompt += "\nVIKTIG: Alle felter som er listet i 'required' må inkluderes i JSON-objektet, selv om de er tomme (bruk \"\" for strenger og [] for lister).\n"
+            else:
+                prompt += f"\n\nJSON SCHEMA (STRICT)\n\n```json\n{schema_json}\n```\n"
         
         return prompt
     
