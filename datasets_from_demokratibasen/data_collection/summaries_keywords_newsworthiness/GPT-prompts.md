@@ -5,7 +5,7 @@
 * GPT_MODEL = os.getenv("GPT_MODEL", "gpt-3.5-turbo")  # until 2025-09-03, gpt-4-turbo-preview may also have been used...
 * GPT_MODEL = os.getenv("GPT_MODEL", "gpt-4o-mini")  # after 2025-09-03
 
-## Tokens
+## Output tokens
 
 * MAX_TOKENS = int(os.getenv("GPT_MAX_TOKENS", 1000))  # since 2024-08-29
 * Apparently no limits before that

@@ -121,11 +121,16 @@ def ngram_repetition(doc, n=3):
     tokens = re.findall(r"\d+(?:[.,]\d+)?|[\w/-]+|[^\w\s]", doc.lower())
     if len(tokens) < n:
         return 0.0
+
     ngrams = [tuple(tokens[i:i+n]) for i in range(len(tokens)-n+1)]
-    c = Counter(ngrams)
-    total = sum(c.values())
-    repeated = sum(v for v in c.values() if v > 1)
-    return repeated / total if total else 0.0
+    assert len(ngrams) > 0
+
+    total_count = len(ngrams)
+    unique_count = len(set(ngrams))
+    
+    # The repetition rate is the proportion of non-unique n-grams
+    repetition_rate = (total_count - unique_count) / total_count    
+    return repetition_rate
 
 def hygiene(doc, pred_summary):
     doc_words = len(re.findall(r"\w+", doc))

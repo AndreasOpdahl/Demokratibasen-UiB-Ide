@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, Tuple, Type, Optional
 from .dataset_adapter_202505 import DatasetAdapter202505
 from .dataset_adapter_202510 import DatasetAdapter202510
+from .dataset_adapter_202601 import DatasetAdapter202601
 from .dataset_adapter_bergen_2017_2023 import DatasetAdapterBergen2017_2023
 
 
@@ -37,6 +38,19 @@ DATASET_REGISTRY: Dict[str, Tuple[str, Type]] = {
     "dataset-Bergen-2017-2023": (
         "../Kommunebasen-Bergen/ekstraher_tekster_og_typer/dok_tekster",
         DatasetAdapterBergen2017_2023
+    ),
+    # 2026-01 cleaned text summary datasets (train/val/test splits)
+    "dataset-202601-train": (
+        "datasets_from_demokratibasen/cleaned_datasets/text_summary_dataset_202601/149978_text_summary_examples_train.jsonl",
+        DatasetAdapter202601,
+    ),
+    "dataset-202601-val": (
+        "datasets_from_demokratibasen/cleaned_datasets/text_summary_dataset_202601/149978_text_summary_examples_val.jsonl",
+        DatasetAdapter202601,
+    ),
+    "dataset-202601-test": (
+        "datasets_from_demokratibasen/cleaned_datasets/text_summary_dataset_202601/149978_text_summary_examples_test.jsonl",
+        DatasetAdapter202601,
     ),
 }
 
