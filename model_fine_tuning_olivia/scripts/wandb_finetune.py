@@ -137,6 +137,7 @@ from utils import (
     tokenize_eval_examples,
     format_train_example,
     format_eval_example,
+    extract_checkpoint_step,
 )
 
 # Default values when command-line args are not supplied
@@ -274,7 +275,7 @@ class CheckpointBackupCallback(TrainerCallback):
     The backup runs synchronously to ensure completion before training continues.
     """
     
-    def __init__(self, output_dir: str, major_checkpoint_interval: int = 500, max_checkpoints: int = 10, async_backup: bool = False):
+    def __init__(self, output_dir: str, major_checkpoint_interval: int = 500, max_checkpoints: int = 10, async_backup: bool = False, cleanup_old_checkpoints: bool = False):
         """Initialize checkpoint backup callback.
         
         This callback backs up checkpoints to regular_checkpoints/ and major_checkpoints/ folders.
@@ -287,11 +288,14 @@ class CheckpointBackupCallback(TrainerCallback):
             max_checkpoints: Maximum number of checkpoints to keep in main directory (default: 10)
             async_backup: If True, backup runs in background thread (default: False for reliability). 
                          If False, backup blocks training (ensures completion).
+            cleanup_old_checkpoints: If True, delete all old checkpoints from main directory at training start (default: False).
+                                   Useful when starting fresh training with old checkpoints present.
         """
         self.output_dir = output_dir
         self.major_checkpoint_interval = major_checkpoint_interval
         self.max_checkpoints = max_checkpoints
         self.async_backup = async_backup
+        self.cleanup_old_checkpoints = cleanup_old_checkpoints
         self.backed_up_steps = set()  # Track which steps we've already backed up
         self._backup_lock = threading.Lock()  # Thread safety for backed_up_steps
         self._checkpoint_queue = []  # Track checkpoints in main directory (sorted by step)
@@ -312,28 +316,84 @@ class CheckpointBackupCallback(TrainerCallback):
         checkpoint_steps.sort(key=lambda x: x[0])
         return checkpoint_steps
     
-    def _delete_oldest_checkpoint(self):
-        """Delete the oldest checkpoint from main directory if we're at the limit.
+    def _delete_oldest_checkpoint(self, new_checkpoint_step: Optional[int] = None):
+        """Delete the oldest checkpoint(s) from main directory to make room for a new one.
         
-        This applies to both regular and major checkpoints - the queue management
-        works on all checkpoints in the main directory regardless of type.
+        This ensures that when a new checkpoint is created, we always have space for it.
+        Deletes checkpoints until we're below the limit, so old checkpoints from previous
+        runs are naturally replaced as new ones are created.
+        
+        Args:
+            new_checkpoint_step: Step number of the checkpoint being created (for logging)
         """
         existing_checkpoints = self._get_existing_checkpoints()
         
-        if len(existing_checkpoints) >= self.max_checkpoints:
+        # We need to make room for the new checkpoint, so delete until we have space
+        # Delete one at a time until we're below the limit
+        deleted_count = 0
+        while len(existing_checkpoints) >= self.max_checkpoints:
             # Delete the oldest checkpoint (could be regular or major)
             oldest_step, oldest_path = existing_checkpoints[0]
             is_major = oldest_step > 0 and oldest_step % self.major_checkpoint_interval == 0
             checkpoint_type = "major" if is_major else "regular"
-            print(f"[Checkpoint Queue] At limit ({self.max_checkpoints}), deleting oldest {checkpoint_type} checkpoint-{oldest_step}...")
+            
+            new_msg = f" (making room for checkpoint-{new_checkpoint_step})" if new_checkpoint_step else ""
+            print(f"[Checkpoint Queue] At limit ({self.max_checkpoints}), deleting oldest {checkpoint_type} checkpoint-{oldest_step}{new_msg}...")
+            
             try:
                 shutil.rmtree(oldest_path)
                 print(f"✓ Deleted checkpoint-{oldest_step} from main directory")
-                return True
+                deleted_count += 1
+                # Remove from list and refresh to get updated list
+                existing_checkpoints = existing_checkpoints[1:]
             except Exception as e:
                 print(f"⚠ Warning: Failed to delete oldest checkpoint-{oldest_step}: {e}")
-                return False
-        return False
+                # If deletion fails, break to avoid infinite loop
+                break
+        
+        if deleted_count > 0:
+            print(f"[Checkpoint Queue] Deleted {deleted_count} old checkpoint(s) to make room for new ones")
+        
+        return deleted_count > 0
+    
+    def _cleanup_old_checkpoints_at_startup(self):
+        """Clean up old checkpoints from previous training runs at startup.
+        
+        This is called when force_restart=True or when starting fresh training.
+        Deletes all checkpoints in the main directory to make room for new ones.
+        Backups in regular_checkpoints/ and major_checkpoints/ are preserved.
+        """
+        if not self.cleanup_old_checkpoints:
+            return
+        
+        existing_checkpoints = self._get_existing_checkpoints()
+        if not existing_checkpoints:
+            return
+        
+        print(f"\n[Checkpoint Cleanup] Cleaning up {len(existing_checkpoints)} old checkpoints from previous run...")
+        deleted_count = 0
+        for step, checkpoint_path in existing_checkpoints:
+            try:
+                shutil.rmtree(checkpoint_path)
+                print(f"  ✓ Deleted checkpoint-{step}")
+                deleted_count += 1
+            except Exception as e:
+                print(f"  ⚠ Warning: Failed to delete checkpoint-{step}: {e}")
+        
+        if deleted_count > 0:
+            print(f"[Checkpoint Cleanup] Deleted {deleted_count} old checkpoint(s). New checkpoints will be saved normally.")
+        print()
+    
+    def on_train_begin(self, args, state, control, **kwargs):
+        """Clean up old checkpoints at the start of training if requested."""
+        # Only cleanup on main process
+        process_index = getattr(args, 'process_index', getattr(args, 'local_rank', -1))
+        if process_index not in [-1, 0]:
+            return
+        
+        # Cleanup old checkpoints at startup if requested
+        self._cleanup_old_checkpoints_at_startup()
+    
     
     def _backup_checkpoint(self, checkpoint_dir: str, checkpoint_step_int: int):
         """Internal method to perform the actual backup (runs in thread or synchronously)."""
@@ -440,9 +500,10 @@ class CheckpointBackupCallback(TrainerCallback):
         
         checkpoint_step_int = state.global_step
         
-        # Step 1: Delete oldest checkpoint if we're at the limit (before backing up new one)
+        # Step 1: Delete oldest checkpoint(s) if we're at the limit (before backing up new one)
+        # This ensures old checkpoints from previous runs are replaced as new ones are created
         # This applies to both regular and major checkpoints - queue management works for all
-        self._delete_oldest_checkpoint()
+        self._delete_oldest_checkpoint(new_checkpoint_step=checkpoint_step_int)
         
         # Step 2: Backup the new checkpoint (regular or major)
         if self.async_backup:
@@ -909,6 +970,7 @@ def fine_tune_model(
     val_beam_size: int = VAL_BEAM_SIZE,
     val_steps: int = VAL_STEPS,
     resume_checkpoint: Optional[str] = None,
+    save_total_limit: Optional[int] = None,  # None = use default (10)
 ):
     """Fine-tune a language model with LoRA.
     
@@ -958,7 +1020,7 @@ def fine_tune_model(
     # Define gradient accumulation steps early (used in wandb config and calculations)
     gradient_accumulation_steps = 4  # This is set in TrainingArguments below
     
-    # Resolve batch sizes from model config if not provided (must be done early)
+    # Resolve batch sizes and token limits from model config if not provided (must be done early)
     model_config_early = get_model_config_by_hf_name(model_name)
     if model_config_early:
         if train_batch_size is None:
@@ -967,6 +1029,13 @@ def fine_tune_model(
         if val_batch_size is None:
             val_batch_size = model_config_early.val_batch_size if model_config_early.val_batch_size is not None else VAL_BATCH_SIZE
             print(f"Using model config default val_batch_size: {val_batch_size}")
+        # Use model-specific token limits if defined
+        if model_config_early.max_input_text_tokens is not None:
+            max_input_text_tokens = model_config_early.max_input_text_tokens
+            print(f"Using model config max_input_text_tokens: {max_input_text_tokens}")
+        if model_config_early.max_output_summary_tokens is not None:
+            max_output_summary_tokens = model_config_early.max_output_summary_tokens
+            print(f"Using model config max_output_summary_tokens: {max_output_summary_tokens}")
     else:
         # Use global defaults if model config not found
         if train_batch_size is None:
@@ -1052,6 +1121,91 @@ def fine_tune_model(
     
     # Note: If you need left padding for generation, set it in the generation code
     # or use a separate tokenizer instance for evaluation
+    
+    # Set chat template for models that use chat templates if missing (CRITICAL: must match evaluation format)
+    # Some models don't have chat_template in their tokenizer config, but we need it for consistent formatting
+    # This ensures training and evaluation use the same prompt format
+    model_config = get_model_config_by_hf_name(model_name)
+    if model_config:
+        template_type = model_config.prompt_config.template_type
+        
+        # Only set chat template if the model uses one and it's missing
+        if template_type in ['mistral', 'llama2', 'llama3', 'llama3.1', 'chatml']:
+            if not hasattr(tokenizer, 'chat_template') or tokenizer.chat_template is None:
+                print(f"Setting chat template for {model_name} (template_type: {template_type})...")
+                
+                # Try to get template from official model first, then fallback to standard format
+                official_model_map = {
+                    'mistral': 'mistralai/Mistral-7B-Instruct-v0.2',
+                    'llama2': 'meta-llama/Llama-2-7b-chat-hf',
+                    'llama3': 'meta-llama/Meta-Llama-3-8B-Instruct',
+                    'llama3.1': 'meta-llama/Llama-3.1-8B-Instruct',
+                    'chatml': 'microsoft/DialoGPT-medium',  # ChatML format example
+                }
+                
+                template_set = False
+                if template_type in official_model_map:
+                    try:
+                        from transformers import AutoTokenizer as OfficialTokenizer
+                        official_model = official_model_map[template_type]
+                        official_tokenizer = OfficialTokenizer.from_pretrained(
+                            official_model,
+                            token=hf_token if hf_token else None
+                        )
+                        if hasattr(official_tokenizer, 'chat_template') and official_tokenizer.chat_template:
+                            tokenizer.chat_template = official_tokenizer.chat_template
+                            template_set = True
+                            print(f"✓ Set {template_type} chat template from official model: {official_model}")
+                    except Exception as e:
+                        print(f"⚠ Could not load template from {official_model_map.get(template_type, 'official model')}: {e}")
+                
+                # Fallback to standard formats if official template not available
+                if not template_set:
+                    if template_type == 'mistral':
+                        # Standard Mistral format: <s>[INST] {user_message} [/INST] {assistant_message}</s>
+                        mistral_template = (
+                            "{%- for message in messages %}"
+                            "{%- if message['role'] == 'system' %}"
+                            "{{ message['content'] }}"
+                            "{%- elif message['role'] == 'user' %}"
+                            "<s>[INST] {{ message['content'] }} [/INST]"
+                            "{%- elif message['role'] == 'assistant' %}"
+                            " {{ message['content'] }}</s>"
+                            "{%- endif %}"
+                            "{%- endfor %}"
+                        )
+                        tokenizer.chat_template = mistral_template
+                        print(f"✓ Set Mistral chat template using standard format (fallback)")
+                    elif template_type == 'llama2':
+                        # Standard Llama-2 format: [INST] {user_message} [/INST] {assistant_message}
+                        llama2_template = (
+                            "{%- for message in messages %}"
+                            "{%- if message['role'] == 'system' %}"
+                            "<<SYS>>\n{{ message['content'] }}\n<</SYS>>\n\n"
+                            "{%- elif message['role'] == 'user' %}"
+                            "[INST] {{ message['content'] }} [/INST]"
+                            "{%- elif message['role'] == 'assistant' %}"
+                            " {{ message['content'] }}"
+                            "{%- endif %}"
+                            "{%- endfor %}"
+                        )
+                        tokenizer.chat_template = llama2_template
+                        print(f"✓ Set Llama-2 chat template using standard format (fallback)")
+                    elif template_type in ['llama3', 'llama3.1']:
+                        # Standard Llama-3 format uses special tokens
+                        # Note: Llama-3 models usually have chat_template, but if missing, we use manual format
+                        # The manual format is already in PROMPT_LLAMA3, so we don't set chat_template here
+                        # This ensures we use the manual format consistently
+                        print(f"⚠ Llama-3/3.1 model missing chat_template - will use manual format from PROMPT_LLAMA3")
+                    elif template_type == 'chatml':
+                        # Standard ChatML format: <|im_start|>role\ncontent<|im_end|>\n
+                        chatml_template = (
+                            "{%- for message in messages %}"
+                            "{{ '<|im_start|>' + message['role'] + '\\n' + message['content'] + '<|im_end|>' + '\\n' }}"
+                            "{%- endfor %}"
+                        )
+                        tokenizer.chat_template = chatml_template
+                        print(f"✓ Set ChatML chat template using standard format (fallback)")
 
     # Validate DDP/FSDP flags (mutually exclusive)
     if use_ddp and use_fsdp:
@@ -1178,12 +1332,12 @@ def fine_tune_model(
 
     # Use shared formatting and tokenization functions
     def format_example_train_wrapper(example):
-        """Wrapper to call shared format_train_example with model_name."""
-        return format_train_example(example, model_name)
+        """Wrapper to call shared format_train_example with model_name and tokenizer."""
+        return format_train_example(example, model_name, tokenizer=tokenizer)
     
     def format_example_eval_wrapper(example):
-        """Wrapper to call shared format_eval_example with model_name."""
-        return format_eval_example(example, model_name)
+        """Wrapper to call shared format_eval_example with model_name and tokenizer."""
+        return format_eval_example(example, model_name, tokenizer=tokenizer)
     
     def tokenize_function_train_wrapper(examples):
         """Wrapper to call shared tokenize_train_examples with tokenizer and config."""
@@ -1749,7 +1903,7 @@ def fine_tune_model(
         eval_steps=val_steps if eval_enabled else None,
         save_strategy="steps",
         save_steps=val_steps,
-        save_total_limit=10,  # keep disk usage sane
+        save_total_limit=save_total_limit if save_total_limit is not None else 10,  # keep disk usage sane
 
         # Pick the best checkpoint and restore it at the end (only if eval enabled)
         load_best_model_at_end=eval_enabled,
@@ -1861,12 +2015,61 @@ def fine_tune_model(
     # Major checkpoint interval: every 500 steps (same as evaluation script default)
     # Max checkpoints: matches save_total_limit to keep queue management consistent
     major_checkpoint_interval = 500
-    max_checkpoints = int(training_args_kwargs.get('save_total_limit', 10))
+    save_total_limit_value = training_args_kwargs.get('save_total_limit', 10)
+    max_checkpoints = int(save_total_limit_value) if save_total_limit_value is not None else 10
+    # Determine if we should cleanup old checkpoints at startup
+    # Cleanup if: force_restart is True, OR we're starting fresh (no resume_checkpoint) and old checkpoints exist
+    should_cleanup_old = force_restart or (not resolved_resume_checkpoint and checkpoints_exist)
+    
+    # CRITICAL: Cleanup old checkpoints BEFORE creating Trainer
+    # This must happen before Trainer initialization, otherwise Trainer's save_total_limit
+    # will see old checkpoints and delete new ones immediately
+    # Only cleanup on main process to avoid race conditions in distributed training
+    if should_cleanup_old and is_main_process:
+        print(f"\n{'='*70}")
+        print(f"[Checkpoint Cleanup] Cleaning up old checkpoints from previous run...")
+        print(f"{'='*70}")
+        checkpoint_pattern = os.path.join(output_dir, "checkpoint-*")
+        old_checkpoints = glob.glob(checkpoint_pattern)
+        if old_checkpoints:
+            # Sort by step to show which ones we're deleting
+            old_checkpoints_with_steps = []
+            for ckpt_path in old_checkpoints:
+                step = extract_checkpoint_step(ckpt_path)
+                if step is not None:
+                    old_checkpoints_with_steps.append((step, ckpt_path))
+            old_checkpoints_with_steps.sort(key=lambda x: x[0])
+            
+            print(f"Found {len(old_checkpoints_with_steps)} old checkpoints: {[s for s, _ in old_checkpoints_with_steps]}")
+            deleted_count = 0
+            for step, checkpoint_path in old_checkpoints_with_steps:
+                try:
+                    shutil.rmtree(checkpoint_path)
+                    print(f"  ✓ Deleted checkpoint-{step}")
+                    deleted_count += 1
+                except Exception as e:
+                    print(f"  ⚠ Warning: Failed to delete checkpoint-{step}: {e}")
+            
+            if deleted_count > 0:
+                print(f"\n[Checkpoint Cleanup] Successfully deleted {deleted_count} old checkpoint(s).")
+                print(f"New checkpoints will be saved normally. Backups in regular_checkpoints/ and major_checkpoints/ are preserved.")
+                print(f"{'='*70}\n")
+            else:
+                print(f"[Checkpoint Cleanup] No old checkpoints were deleted (errors occurred).\n")
+        else:
+            print(f"[Checkpoint Cleanup] No old checkpoints found in main directory.\n")
+    elif should_cleanup_old and not is_main_process:
+        # In distributed training, wait for main process to cleanup
+        # Give it a moment to complete the cleanup
+        time.sleep(2)
+        print(f"[Rank {rank}] Waiting for main process to cleanup old checkpoints...")
+    
     checkpoint_backup_callback = CheckpointBackupCallback(
         output_dir=output_dir,
         major_checkpoint_interval=major_checkpoint_interval,
         max_checkpoints=max_checkpoints,
-        async_backup=False  # Synchronous for reliability
+        async_backup=False,  # Synchronous for reliability
+        cleanup_old_checkpoints=False  # Already cleaned up above, no need to do it again in callback
     )
     callbacks.append(checkpoint_backup_callback)
     print(f"Adding CheckpointBackupCallback to backup checkpoints immediately when saved")

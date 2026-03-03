@@ -25,6 +25,7 @@ import argparse
 import json
 import os
 import random
+import re
 import shutil
 import sys
 import time  # ADD THIS for staggered loading
@@ -417,6 +418,38 @@ class CausalLMTrainer(Trainer):
                 except Exception as e:
                     print(f'  Retry generation failed: {e}')
         
+        # Before slicing, check if the model might have included input tokens in generation
+        # Decode a sample of the full output to see what's happening
+        if generated_ids.shape[0] > 0:
+            sample_full = generated_ids[0].cpu().tolist()
+            sample_input = input_ids[0].cpu().tolist()
+            try:
+                full_decoded = self._processing_class.decode(sample_full, skip_special_tokens=False)
+                input_decoded = self._processing_class.decode(sample_input, skip_special_tokens=False)
+                
+                # Find where the assistant header ends in the input
+                assistant_header_end = input_decoded.rfind('<|start_header_id|>assistant<|end_header_id|>')
+                if assistant_header_end >= 0:
+                    # Find the end of the assistant header (after the newlines)
+                    header_end_pos = input_decoded.find('\n\n', assistant_header_end)
+                    if header_end_pos >= 0:
+                        expected_start_pos = header_end_pos + 2  # After "\n\n"
+                        input_after_header = input_decoded[expected_start_pos:]
+                        print(f'*** DEBUG: Input after assistant header (last 200 chars): ...{input_after_header[-200:]}')
+                
+                # Check the full output - see what comes after the input
+                if len(full_decoded) > len(input_decoded):
+                    generated_part = full_decoded[len(input_decoded):]
+                    print(f'*** DEBUG: Generated part (first 300 chars): {generated_part[:300]}')
+                    # Check if it looks like continuation of input (starts with lowercase, comma, etc.)
+                    if generated_part and generated_part[0] in [',', '.', ' ', '\n'] or (generated_part and generated_part[0].islower()):
+                        print(f'⚠ WARNING: Generated text appears to continue from input (starts with "{generated_part[:50]}"). Model may be copying input instead of summarizing.')
+                else:
+                    print(f'*** DEBUG: Full generated output (first 500 chars): {full_decoded[:500]}')
+                    print(f'*** DEBUG: Input prompt (last 300 chars): ...{input_decoded[-300:]}')
+            except Exception as e:
+                print(f'*** DEBUG: Could not decode for inspection: {e}')
+        
         generated_ids = generated_ids[:, input_length:]
         
         print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
@@ -463,20 +496,67 @@ class CausalLMTrainer(Trainer):
             print(f'*** DEBUG: Decoded predictions (before cleaning) ***')
             for i, pred in enumerate(decoded_predictions[:3]):  # Show first 3
                 print(f'  Prediction {i}: length={len(pred)}, preview="{pred[:100]}"')
+                # Check if prediction starts mid-sentence (suggests input continuation)
+                if pred and len(pred) > 0:
+                    first_char = pred.strip()[0] if pred.strip() else ''
+                    if first_char in [',', '.', ' ', '\n'] or (first_char and first_char.islower() and not pred.strip().startswith(('dette', 'dette er', 'saken', 'dokumentet', 'møtet'))):
+                        print(f'    ⚠ WARNING: Prediction {i} starts mid-sentence ("{pred[:50]}"). Model may be continuing input instead of summarizing.')
         
         # Clean up decoded predictions - remove special tokens and backslashes (same as in compute_metrics)
         def clean_text(text):
             """Clean decoded text by removing special tokens and unwanted characters."""
-            # Remove common chat format tokens
+            # Remove common chat format tokens (Llama-2)
             text = text.replace('[/INST]', '').replace('[INST]', '')
             text = text.replace('</s>', '').replace('<s>', '')
+            # Remove Llama-3 specific tokens
+            text = text.replace('<|begin_of_text|>', '')
+            text = text.replace('<|end_of_text|>', '')
+            text = text.replace('<|eot_id|>', '')
+            text = text.replace('<|start_header_id|>', '')
+            text = text.replace('<|end_header_id|>', '')
+            # Remove user/assistant header markers (with any content between)
+            text = re.sub(r'<\|start_header_id\|>.*?<\|end_header_id\|>', '', text)
             # Remove backslashes (common issue with Llama-2 chat models)
             text = text.replace('\\', '')
             # Remove multiple spaces
             text = ' '.join(text.split())
             return text.strip()
         
-        cleaned_predictions = [clean_text(p) for p in decoded_predictions]
+        def fix_mid_sentence_start(text):
+            """Try to fix predictions that start mid-sentence by finding the first complete sentence."""
+            if not text or len(text.strip()) < 10:
+                return text
+            
+            # If text starts with lowercase letter, comma, period, or space, it's likely mid-sentence
+            first_char = text.strip()[0] if text.strip() else ''
+            if first_char in [',', '.', ' ', '\n'] or (first_char and first_char.islower()):
+                # Try to find the first sentence boundary (period, exclamation, question mark followed by space and capital)
+                # Look for patterns like ". [A-Z]" or "! [A-Z]" or "? [A-Z]"
+                sentence_end_pattern = r'[.!?]\s+[A-ZÆØÅ]'
+                match = re.search(sentence_end_pattern, text)
+                if match:
+                    # Found a sentence boundary, start from there
+                    start_pos = match.end() - 1  # Position of the capital letter
+                    fixed_text = text[start_pos:].strip()
+                    print(f'    ✓ Fixed mid-sentence start: "{text[:50]}..." -> "{fixed_text[:50]}..."')
+                    return fixed_text
+                else:
+                    # No clear sentence boundary, try to find first capital letter
+                    capital_match = re.search(r'[A-ZÆØÅ]', text)
+                    if capital_match:
+                        start_pos = capital_match.start()
+                        fixed_text = text[start_pos:].strip()
+                        print(f'    ✓ Fixed mid-sentence start (found capital): "{text[:50]}..." -> "{fixed_text[:50]}..."')
+                        return fixed_text
+            
+            return text
+        
+        cleaned_predictions = []
+        for i, pred in enumerate(decoded_predictions):
+            cleaned = clean_text(pred)
+            # Try to fix mid-sentence starts
+            fixed = fix_mid_sentence_start(cleaned)
+            cleaned_predictions.append(fixed)
         
         # Debug: Check for empty predictions
         empty_count = sum(1 for p in cleaned_predictions if not p)
@@ -938,6 +1018,14 @@ def load_model_and_peft_checkpoint(
     
     print(f"Loading PEFT checkpoint from: {checkpoint_dir}")
     
+    # Clear CUDA cache before loading adapter to avoid device-side assert errors
+    # This is especially important for GPT-J models which can have CUDA state issues
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+        # Synchronize to ensure all previous operations are complete
+        torch.cuda.synchronize()
+        print("Cleared CUDA cache before loading PEFT adapter")
+    
     # Load PEFT adapter
     # Note: PEFT adapters are small, but the base model should remain split
     # We explicitly pass device_map=None to let PEFT preserve the base model's device_map
@@ -948,10 +1036,46 @@ def load_model_and_peft_checkpoint(
             checkpoint_dir,  # Now an absolute path
             is_trainable=False,
         )
-    except (ValueError, TypeError) as e:
+    except (ValueError, TypeError, RuntimeError) as e:
         error_str = str(e)
+        
+        # Handle CUDA device-side assert errors (common with GPT-J models)
+        if "CUDA error" in error_str or "device-side assert" in error_str:
+            print(f"⚠ CUDA error detected when loading PEFT adapter: {e}")
+            print("Attempting recovery by resetting CUDA state...")
+            
+            # Clear CUDA cache and reset
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+                torch.cuda.synchronize()
+                # Try to reset CUDA state by clearing all caches
+                for i in range(torch.cuda.device_count()):
+                    torch.cuda.empty_cache()
+                    torch.cuda.ipc_collect()
+            
+            # Retry loading with explicit error handling
+            try:
+                print("Retrying PEFT adapter load after CUDA reset...")
+                model = PeftModel.from_pretrained(
+                    base_model,
+                    checkpoint_dir,
+                    is_trainable=False,
+                )
+                print("✓ Successfully loaded PEFT adapter after CUDA reset")
+            except Exception as retry_error:
+                print(f"⚠ Retry also failed: {retry_error}")
+                print("This may indicate a corrupted checkpoint or model/adapter mismatch.")
+                print("Try:")
+                print("  1. Verify the checkpoint was saved correctly during training")
+                print("  2. Check if the base model matches the checkpoint's base model")
+                print("  3. Try loading with CUDA_LAUNCH_BLOCKING=1 for more detailed error info")
+                raise RuntimeError(
+                    f"Failed to load PEFT adapter after CUDA reset. "
+                    f"Original error: {e}, Retry error: {retry_error}"
+                ) from retry_error
+        
         # Handle corrupted adapter_config.json files (e.g., typos like 'corda_config' instead of 'lora_config')
-        if "Can't find 'adapter_config.json'" in error_str:
+        elif "Can't find 'adapter_config.json'" in error_str:
             raise ValueError(
                 f"Failed to load PEFT adapter from {checkpoint_dir}. "
                 f"Make sure this is a valid PEFT checkpoint directory containing adapter_config.json. "
@@ -1501,6 +1625,100 @@ def evaluate_checkpoint(
         tokenizer.pad_token = tokenizer.eos_token
     
     tokenizer.padding_side = 'left'
+    
+    # Set chat template for models that use chat templates if missing (CRITICAL: must match training format)
+    # Some models don't have chat_template in their tokenizer config, but we need it for consistent formatting
+    # This ensures training and evaluation use the same prompt format
+    model_config = get_model_config_by_hf_name(model_name)
+    if model_config:
+        template_type = model_config.prompt_config.template_type
+        
+        # Only set chat template if the model uses one and it's missing
+        if template_type in ['mistral', 'llama2', 'llama3', 'llama3.1', 'chatml']:
+            if not hasattr(tokenizer, 'chat_template') or tokenizer.chat_template is None:
+                if is_main_process:
+                    print(f"Setting chat template for {model_name} (template_type: {template_type})...")
+                
+                # Try to get template from official model first, then fallback to standard format
+                official_model_map = {
+                    'mistral': 'mistralai/Mistral-7B-Instruct-v0.2',
+                    'llama2': 'meta-llama/Llama-2-7b-chat-hf',
+                    'llama3': 'meta-llama/Meta-Llama-3-8B-Instruct',
+                    'llama3.1': 'meta-llama/Llama-3.1-8B-Instruct',
+                    'chatml': 'microsoft/DialoGPT-medium',  # ChatML format example
+                }
+                
+                template_set = False
+                if template_type in official_model_map:
+                    try:
+                        from transformers import AutoTokenizer as OfficialTokenizer
+                        official_model = official_model_map[template_type]
+                        official_tokenizer = OfficialTokenizer.from_pretrained(
+                            official_model,
+                            token=hf_token if hf_token else None
+                        )
+                        if hasattr(official_tokenizer, 'chat_template') and official_tokenizer.chat_template:
+                            tokenizer.chat_template = official_tokenizer.chat_template
+                            template_set = True
+                            if is_main_process:
+                                print(f"✓ Set {template_type} chat template from official model: {official_model}")
+                    except Exception as e:
+                        if is_main_process:
+                            print(f"⚠ Could not load template from {official_model_map.get(template_type, 'official model')}: {e}")
+                
+                # Fallback to standard formats if official template not available
+                if not template_set:
+                    if template_type == 'mistral':
+                        # Standard Mistral format: <s>[INST] {user_message} [/INST] {assistant_message}</s>
+                        mistral_template = (
+                            "{%- for message in messages %}"
+                            "{%- if message['role'] == 'system' %}"
+                            "{{ message['content'] }}"
+                            "{%- elif message['role'] == 'user' %}"
+                            "<s>[INST] {{ message['content'] }} [/INST]"
+                            "{%- elif message['role'] == 'assistant' %}"
+                            " {{ message['content'] }}</s>"
+                            "{%- endif %}"
+                            "{%- endfor %}"
+                        )
+                        tokenizer.chat_template = mistral_template
+                        if is_main_process:
+                            print(f"✓ Set Mistral chat template using standard format (fallback)")
+                    elif template_type == 'llama2':
+                        # Standard Llama-2 format: [INST] {user_message} [/INST] {assistant_message}
+                        llama2_template = (
+                            "{%- for message in messages %}"
+                            "{%- if message['role'] == 'system' %}"
+                            "<<SYS>>\n{{ message['content'] }}\n<</SYS>>\n\n"
+                            "{%- elif message['role'] == 'user' %}"
+                            "[INST] {{ message['content'] }} [/INST]"
+                            "{%- elif message['role'] == 'assistant' %}"
+                            " {{ message['content'] }}"
+                            "{%- endif %}"
+                            "{%- endfor %}"
+                        )
+                        tokenizer.chat_template = llama2_template
+                        if is_main_process:
+                            print(f"✓ Set Llama-2 chat template using standard format (fallback)")
+                    elif template_type in ['llama3', 'llama3.1']:
+                        # Standard Llama-3 format uses special tokens
+                        # Note: Llama-3 models usually have chat_template, but if missing, we use manual format
+                        # The manual format is already in PROMPT_LLAMA3, so we don't set chat_template here
+                        # This ensures we use the manual format consistently
+                        if is_main_process:
+                            print(f"⚠ Llama-3/3.1 model missing chat_template - will use manual format from PROMPT_LLAMA3")
+                    elif template_type == 'chatml':
+                        # Standard ChatML format: <|im_start|>role\ncontent<|im_end|>\n
+                        chatml_template = (
+                            "{%- for message in messages %}"
+                            "{{ '<|im_start|>' + message['role'] + '\\n' + message['content'] + '<|im_end|>' + '\\n' }}"
+                            "{%- endfor %}"
+                        )
+                        tokenizer.chat_template = chatml_template
+                        if is_main_process:
+                            print(f"✓ Set ChatML chat template using standard format (fallback)")
+                elif is_main_process:
+                    print(f"✓ Chat template already set or not needed for template_type: {template_type}")
 
     # Create a clean model name for display
     clean_model_name = model_name.split('/')[-1].replace('-', '_')
@@ -1628,8 +1846,8 @@ def evaluate_checkpoint(
 
     # Use shared formatting and tokenization functions
     def format_example_eval_wrapper(example):
-        """Wrapper to call shared format_eval_example with model_name."""
-        return format_eval_example(example, model_name)
+        """Wrapper to call shared format_eval_example with model_name and tokenizer."""
+        return format_eval_example(example, model_name, tokenizer=tokenizer)
     
     def tokenize_function_eval_wrapper(examples):
         """Wrapper to call shared tokenize_eval_examples with tokenizer and config."""

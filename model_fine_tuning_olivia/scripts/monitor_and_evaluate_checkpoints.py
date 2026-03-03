@@ -46,8 +46,54 @@ from utils import (
     get_model_dir_from_checkpoint,
 )
 
+# Module-level variables for logging state
+_last_logged_step = None
+_log_counter = 0
 
-def find_checkpoints(output_dir: str) -> List[str]:
+
+def get_current_training_step(output_dir: str) -> Optional[int]:
+    """Get the current training step from the latest checkpoint's trainer_state.json.
+    
+    This helps filter out old checkpoints from previous training runs.
+    
+    Returns:
+        Current training step (global_step) if found, None otherwise
+    """
+    # Find all checkpoints
+    checkpoint_pattern = os.path.join(output_dir, "checkpoint-*")
+    checkpoints = glob.glob(checkpoint_pattern)
+    
+    if not checkpoints:
+        return None
+    
+    # Sort by step number (get the latest)
+    def get_step(ckpt_path: str) -> int:
+        step = extract_checkpoint_step(ckpt_path)
+        return step if step is not None else -1
+    
+    checkpoints.sort(key=get_step, reverse=True)  # Latest first
+    
+    # Check the latest checkpoint for trainer_state.json
+    for checkpoint_path in checkpoints:
+        trainer_state_path = os.path.join(checkpoint_path, "trainer_state.json")
+        if os.path.exists(trainer_state_path):
+            try:
+                with open(trainer_state_path, 'r') as f:
+                    trainer_state = json.load(f)
+                current_step = trainer_state.get('global_step', None)
+                if current_step is not None:
+                    return int(current_step)
+            except (json.JSONDecodeError, ValueError, KeyError) as e:
+                # If we can't read it, try next checkpoint
+                continue
+    
+    # Fallback: use the step number from the latest checkpoint directory name
+    latest_checkpoint = checkpoints[0]
+    step = get_step(latest_checkpoint)
+    return step if step >= 0 else None
+
+
+def find_checkpoints(output_dir: str, max_step: Optional[int] = None) -> List[str]:
     """Find all checkpoint directories, sorted by step number.
     
     Checks both:
@@ -58,6 +104,10 @@ def find_checkpoints(output_dir: str) -> List[str]:
     
     Note: Major checkpoints (multiples of 500) are stored ONLY in major_checkpoints/,
     not in regular_checkpoints/, to save space and avoid redundancy.
+    
+    Args:
+        output_dir: Training output directory
+        max_step: Optional maximum step number to include (filters out old checkpoints from previous runs)
     
     Returns list of checkpoint paths, prioritizing main directories if they exist.
     """
@@ -104,6 +154,14 @@ def find_checkpoints(output_dir: str) -> List[str]:
             adapter_file = os.path.join(ckpt, "adapter_model.safetensors")
             if os.path.exists(adapter_file):
                 checkpoint_map[step] = ckpt
+    
+    # Filter by max_step if provided (to exclude old checkpoints from previous runs)
+    if max_step is not None:
+        checkpoint_map = {step: path for step, path in checkpoint_map.items() if step <= max_step}
+        if checkpoint_map:
+            print(f"Filtered checkpoints: only considering steps <= {max_step} (current training step)")
+        else:
+            print(f"Warning: No checkpoints found with step <= {max_step}. This may indicate training hasn't started yet.")
     
     # Sort by step number
     valid_checkpoints = [checkpoint_map[step] for step in sorted(checkpoint_map.keys())]
@@ -360,8 +418,19 @@ def monitor_and_evaluate(
                 print("Early stopping signal detected. Stopping monitor.")
                 break
             
-            # Find all checkpoints
-            checkpoints = find_checkpoints(output_dir)
+            # Get current training step to filter out old checkpoints from previous runs
+            current_training_step = get_current_training_step(output_dir)
+            
+            # Find all checkpoints, filtering by current training step
+            checkpoints = find_checkpoints(output_dir, max_step=current_training_step)
+            
+            if current_training_step is not None:
+                # Log current training progress periodically (every 10 iterations to avoid spam)
+                global _last_logged_step, _log_counter
+                _log_counter += 1
+                if (_last_logged_step != current_training_step or _log_counter % 10 == 0):
+                    print(f"Current training step: {current_training_step} | Found {len(checkpoints)} checkpoints to evaluate")
+                    _last_logged_step = current_training_step
             
             # Check if training has completed (with time check to avoid false positives)
             # Pass checkpoints to verify no newer checkpoints exist

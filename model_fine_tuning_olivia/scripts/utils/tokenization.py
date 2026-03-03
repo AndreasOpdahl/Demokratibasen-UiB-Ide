@@ -35,12 +35,27 @@ def tokenize_train_examples(
     """
     max_input_prompt_tokens = max_input_text_tokens + max_extra_prompt_tokens
     
-    # Tokenize full text first
+    # Get model's maximum sequence length (respect model limits)
+    model_max_length = getattr(tokenizer, 'model_max_length', None)
+    if model_max_length is None or model_max_length > 100000:  # Some tokenizers have very large defaults
+        # Try to get from tokenizer config
+        if hasattr(tokenizer, 'tokenizer') and hasattr(tokenizer.tokenizer, 'model_max_length'):
+            model_max_length = tokenizer.tokenizer.model_max_length
+        else:
+            # Default fallback - use a reasonable limit
+            model_max_length = 2048
+    
+    # Calculate desired max length, but don't exceed model's limit
+    desired_max_length = max_input_prompt_tokens + max_output_summary_tokens
+    max_length = min(desired_max_length, model_max_length)
+    
+    # Tokenize full text first with proper truncation
     tokenized = tokenizer(
         examples["text"],
         truncation=True,
-        max_length=max_input_prompt_tokens + max_output_summary_tokens,
-        padding=False  # Padding done by data collator for compatibility across tokenizer versions
+        max_length=max_length,
+        padding=False,  # Padding done by data collator for compatibility across tokenizer versions
+        return_overflowing_tokens=False  # Don't return overflow tokens
     )
     
     # Find where summary starts by looking for summary markers in the text

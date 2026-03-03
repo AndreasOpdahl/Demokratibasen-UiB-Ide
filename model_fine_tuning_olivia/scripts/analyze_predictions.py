@@ -40,6 +40,21 @@ except ImportError:
     print("Warning: matplotlib not available. Visualizations will be skipped.")
 
 
+def remove_markup(text: str) -> str:
+    """Remove markup tokens like ### and other formatting from text.
+    
+    This ensures markup doesn't affect metric calculations.
+    """
+    # Remove common markup patterns
+    text = re.sub(r'###+', '', text)  # Remove ### markers
+    text = re.sub(r'\*\*+', '', text)  # Remove ** bold markers
+    text = re.sub(r'__+', '', text)    # Remove __ underline markers
+    text = re.sub(r'~~+', '', text)    # Remove ~~ strikethrough markers
+    # Remove any remaining standalone special characters used as markup
+    text = re.sub(r'\s+', ' ', text)   # Normalize whitespace
+    return text.strip()
+
+
 def ngram_repetition(doc: str, n: int = 3) -> float:
     """Calculate n-gram repetition score.
     
@@ -57,23 +72,22 @@ def ngram_repetition(doc: str, n: int = 3) -> float:
 
 
 def find_repetitive_sequences(text: str, min_repeat: int = 3) -> List[Tuple[str, int]]:
-    """Find sequences that repeat at least min_repeat times.
+    """Find 3-gram sequences that repeat at least min_repeat times.
     
     Returns list of (sequence, count) tuples.
     """
     tokens = re.findall(r"\d+(?:[.,]\d+)?|[\w/-]+|[^\w\s]", text.lower())
-    if len(tokens) < min_repeat:
+    if len(tokens) < 3:
         return []
     
-    # Check for 2-gram, 3-gram, 4-gram repetitions
+    # Only check for 3-gram repetitions
+    ngrams = [tuple(tokens[i:i+3]) for i in range(len(tokens)-2)]
+    c = Counter(ngrams)
     repetitive_seqs = []
-    for n in [2, 3, 4]:
-        ngrams = [tuple(tokens[i:i+n]) for i in range(len(tokens)-n+1)]
-        c = Counter(ngrams)
-        for ngram, count in c.items():
-            if count >= min_repeat:
-                seq_str = " ".join(ngram)
-                repetitive_seqs.append((seq_str, count))
+    for ngram, count in c.items():
+        if count >= min_repeat:
+            seq_str = " ".join(ngram)
+            repetitive_seqs.append((seq_str, count))
     
     return repetitive_seqs
 
@@ -134,9 +148,12 @@ def analyze_predictions(
     all_repetitive_seqs = defaultdict(int)
     
     for idx, entry in enumerate(predictions_data):
-        prediction = entry.get("prediction", "").strip()
+        prediction_raw = entry.get("prediction", "").strip()
         reference = entry.get("reference", "").strip()
         input_text = entry.get("input_text", "").strip()
+        
+        # Remove markup before calculating metrics
+        prediction = remove_markup(prediction_raw)
         
         # Calculate rep_3gram
         rep_3gram = ngram_repetition(prediction, n=3)
@@ -154,11 +171,11 @@ def analyze_predictions(
         if compression_ratio is not None:
             compression_ratios.append(compression_ratio)
         
-        # Check for empty predictions
+        # Check for empty predictions (use cleaned prediction)
         if not prediction or pred_words == 0:
             empty_predictions.append({
                 "index": idx,
-                "prediction": prediction,
+                "prediction": prediction,  # Full prediction (already cleaned)
                 "rep_3gram": rep_3gram
             })
         
@@ -172,7 +189,7 @@ def analyze_predictions(
                 "index": idx,
                 "rep_3gram": rep_3gram,
                 "prediction_length": pred_words,
-                "prediction": prediction[:200] + "..." if len(prediction) > 200 else prediction,
+                "prediction": prediction,  # Always print full prediction
                 "repetitive_sequences": repetitive_seqs[:5]  # Top 5
             })
         

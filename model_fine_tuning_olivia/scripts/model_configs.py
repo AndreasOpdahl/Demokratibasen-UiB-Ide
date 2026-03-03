@@ -9,7 +9,7 @@ This module centralizes all model-specific configurations including:
 """
 
 from dataclasses import dataclass, field
-from typing import List, Optional, Callable
+from typing import List, Optional, Callable, Any
 from peft import LoraConfig
 
 
@@ -34,7 +34,7 @@ class PromptConfig:
     """Configuration for prompt formatting."""
     
     # Prompt template type
-    template_type: str  # 'plain', 'llama2', 'llama3', 'mistral', 'custom'
+    template_type: str  # 'plain', 'llama2', 'llama3', 'llama3.1', 'mistral', 'chatml', 'custom'
     
     # Template strings (use {input}, {output}, and {doc_type} placeholders)
     train_template: str
@@ -43,15 +43,102 @@ class PromptConfig:
     # Optional: custom formatting function
     format_fn: Optional[Callable] = None
     
-    def format_train(self, input_text: str, output_text: str, doc_type: Optional[str] = None) -> str:
-        """Format training example."""
+    # Optional: tokenizer for chat template (for llama3, mistral, etc.)
+    tokenizer: Optional[Any] = None
+    
+    def format_train(self, input_text: str, output_text: str, doc_type: Optional[str] = None, tokenizer: Optional[Any] = None) -> str:
+        """Format training example.
+        
+        For Llama-2, Llama-3, Mistral, and ChatML models, uses tokenizer.apply_chat_template() if available.
+        Otherwise falls back to manual template formatting.
+        """
+        # Use tokenizer's chat template if available (recommended for llama2, llama3, llama3.1, mistral, chatml)
+        use_chat_template = (
+            self.template_type in ['llama2', 'llama3', 'llama3.1', 'mistral', 'chatml'] and 
+            (tokenizer or self.tokenizer) is not None and
+            hasattr((tokenizer or self.tokenizer), 'apply_chat_template')
+        )
+        
+        if use_chat_template:
+            tok = tokenizer or self.tokenizer
+            if tok is not None:  # Explicit None check for type checker
+                # Check if tokenizer actually has a chat_template defined
+                # Some tokenizers have apply_chat_template() but no chat_template attribute
+                has_chat_template = (
+                    hasattr(tok, 'chat_template') and 
+                    tok.chat_template is not None
+                ) or (
+                    hasattr(tok, 'tokenizer') and 
+                    hasattr(tok.tokenizer, 'chat_template') and 
+                    tok.tokenizer.chat_template is not None
+                )
+                
+                if has_chat_template:
+                    doc_type_nor = get_doc_type_norwegian(doc_type)
+                    messages = [
+                        {
+                            "role": "user",
+                            "content": f"Du er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type_nor} på norsk:\n\n{input_text}"
+                        },
+                        {
+                            "role": "assistant",
+                            "content": output_text
+                        }
+                    ]
+                    try:
+                        return tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)
+                    except Exception as e:
+                        # Silently fall back to manual formatting if apply_chat_template fails
+                        pass
+                # If no chat_template, fall through to manual formatting
+        
         if self.format_fn:
             return self.format_fn(input_text, output_text, is_training=True, doc_type=doc_type)
         doc_type_nor = get_doc_type_norwegian(doc_type)
         return self.train_template.format(input=input_text, output=output_text, doc_type=doc_type_nor)
     
-    def format_eval(self, input_text: str, doc_type: Optional[str] = None) -> str:
-        """Format evaluation example."""
+    def format_eval(self, input_text: str, doc_type: Optional[str] = None, tokenizer: Optional[Any] = None) -> str:
+        """Format evaluation example.
+        
+        For Llama-2, Llama-3, Mistral, and ChatML models, uses tokenizer.apply_chat_template() if available.
+        Otherwise falls back to manual template formatting.
+        """
+        # Use tokenizer's chat template if available (recommended for llama2, llama3, llama3.1, mistral, chatml)
+        use_chat_template = (
+            self.template_type in ['llama2', 'llama3', 'llama3.1', 'mistral', 'chatml'] and 
+            (tokenizer or self.tokenizer) is not None and
+            hasattr((tokenizer or self.tokenizer), 'apply_chat_template')
+        )
+        
+        if use_chat_template:
+            tok = tokenizer or self.tokenizer
+            if tok is not None:  # Explicit None check for type checker
+                # Check if tokenizer actually has a chat_template defined
+                # Some tokenizers have apply_chat_template() but no chat_template attribute
+                has_chat_template = (
+                    hasattr(tok, 'chat_template') and 
+                    tok.chat_template is not None
+                ) or (
+                    hasattr(tok, 'tokenizer') and 
+                    hasattr(tok.tokenizer, 'chat_template') and 
+                    tok.tokenizer.chat_template is not None
+                )
+                
+                if has_chat_template:
+                    doc_type_nor = get_doc_type_norwegian(doc_type)
+                    messages = [
+                        {
+                            "role": "user",
+                            "content": f"Du er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type_nor} på norsk:\n\n{input_text}"
+                        }
+                    ]
+                    try:
+                        return tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+                    except Exception as e:
+                        # Silently fall back to manual formatting if apply_chat_template fails
+                        pass
+                # If no chat_template, fall through to manual formatting
+        
         if self.format_fn:
             return self.format_fn(input_text, None, is_training=False, doc_type=doc_type)
         doc_type_nor = get_doc_type_norwegian(doc_type)
@@ -73,6 +160,8 @@ class ModelConfig:
     learning_rate: float = 1e-5
     train_batch_size: Optional[int] = None  # Default training batch size (None = use global default)
     val_batch_size: Optional[int] = None    # Default validation batch size (None = use global default)
+    max_input_text_tokens: Optional[int] = None  # Model-specific input token limit (None = use global default)
+    max_output_summary_tokens: Optional[int] = None  # Model-specific output token limit (None = use global default)
     
     def get_lora_config(self) -> LoraConfig:
         """Get LoRA configuration for this model."""
@@ -106,11 +195,27 @@ PROMPT_LLAMA3 = PromptConfig(
     eval_template="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nDu er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
 )
 
+# Llama-3.1 chat template format (uses tokenizer.apply_chat_template when tokenizer is provided)
+# Llama-3.1 uses the same chat template format as Llama-3, but we use a separate config for clarity
+PROMPT_LLAMA3_1 = PromptConfig(
+    template_type='llama3.1',
+    train_template="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nDu er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n{output}<|eot_id|>",
+    eval_template="<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nDu er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input}<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n",
+)
+
 # Mistral chat template for Normistral models
 PROMPT_NORMISTRAL = PromptConfig(
     template_type='mistral',
     train_template="<s>[INST] Du er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input} [/INST] {output}</s>",
     eval_template="<s>[INST] Du er en ekspert på tekstoppsummering. Oppsummer følgende {doc_type} på norsk:\n\n{input} [/INST]",
+)
+
+# ChatML template format (for EuroLLM and similar models - uses tokenizer.apply_chat_template)
+# ChatML uses <|im_start|>role\ncontent<|im_end|>\n format
+PROMPT_CHATML = PromptConfig(
+    template_type='chatml',
+    train_template="<|im_start|>system\nDu er en ekspert på tekstoppsummering.<|im_end|>\n<|im_start|>user\nOppsummer følgende {doc_type} på norsk:\n\n{input}<|im_end|>\n<|im_start|>assistant\n{output}<|im_end|>\n",
+    eval_template="<|im_start|>system\nDu er en ekspert på tekstoppsummering.<|im_end|>\n<|im_start|>user\nOppsummer følgende {doc_type} på norsk:\n\n{input}<|im_end|>\n<|im_start|>assistant\n",
 )
 
 # Alpaca instruction format (for GPT-J based models)
@@ -237,15 +342,15 @@ MODEL_CONFIGS = {
         val_batch_size=2,
     ),
     
-    # EuroLLM (Mistral-based) - using Mistral chat template
+    # EuroLLM (Mistral-based) - uses ChatML template format
     'eurollm-9b-instruct': ModelConfig(
         short_name='eurollm-9b-instruct',
-        hf_name='utter-project/EuroLLM-9B-2512-instruct',
+        hf_name='utter-project/EuroLLM-9B-Instruct-2512',
         lora_r=16,  # Increased for better adaptation
         lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
         learning_rate=1.5e-5,
-        prompt_config=PROMPT_NORMISTRAL,  # Mistral chat template
+        prompt_config=PROMPT_CHATML,  # ChatML template format (uses tokenizer.apply_chat_template)
         architecture='mistral',
         train_batch_size=4,
         val_batch_size=8,
@@ -323,7 +428,7 @@ MODEL_CONFIGS = {
         lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
         learning_rate=1e-5,
-        prompt_config=PROMPT_LLAMA3,  # Llama-3 chat format
+        prompt_config=PROMPT_LLAMA3_1,  # Llama-3.1 chat format (uses tokenizer.apply_chat_template)
         architecture='llama',
         train_batch_size=4,
         val_batch_size=16,
@@ -367,6 +472,8 @@ MODEL_CONFIGS = {
         architecture='gptj',
         train_batch_size=4,
         val_batch_size=16,
+        max_input_text_tokens=1500,  # Reduced for 2048 context window (1500 + 40 prompt + 500 output = 2040)
+        max_output_summary_tokens=500,  # Reduced to fit within 2048 total context
     ),
 }
 

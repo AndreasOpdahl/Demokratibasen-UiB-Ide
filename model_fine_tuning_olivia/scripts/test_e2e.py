@@ -1118,7 +1118,7 @@ def test_checkpoint_queueing_logic(model_name: str, test_dir: str):
     3. All checkpoints (including deleted ones) are backed up
     4. Major checkpoints go to major_checkpoints/, regular to regular_checkpoints/
     5. Queue management works for both regular and major checkpoints
-    6. Edge cases: checkpoint-0, checkpoint at limit, etc.
+    6. Edge cases: checkpoint-0, checkpoint at limit, exactly at limit, etc.
     """
     print("\n" + "=" * 70)
     print("TEST 10: Checkpoint Queueing Logic")
@@ -1130,22 +1130,28 @@ def test_checkpoint_queueing_logic(model_name: str, test_dir: str):
     # Configuration for queueing test
     max_checkpoints = 5  # Small number for testing (default is 10)
     major_checkpoint_interval = 500
-    num_steps = 15  # Create enough checkpoints to exceed max_checkpoints
+    # Create enough checkpoints to exceed max_checkpoints and trigger deletion
+    # We need at least max_checkpoints + 1 checkpoints to test deletion
     val_steps = 3  # Save checkpoint every 3 steps
+    num_steps = (max_checkpoints + 2) * val_steps  # Create max_checkpoints + 2 checkpoints
+    
+    expected_checkpoints = list(range(val_steps, num_steps + 1, val_steps))
     
     print(f"Configuration:")
     print(f"  max_checkpoints: {max_checkpoints}")
     print(f"  major_checkpoint_interval: {major_checkpoint_interval}")
     print(f"  Training steps: {num_steps}")
     print(f"  Validation interval: every {val_steps} steps")
-    print(f"  Expected checkpoints: {[i for i in range(val_steps, num_steps + 1, val_steps)]}")
-    print(f"  Expected major checkpoints: {[i for i in range(val_steps, num_steps + 1, val_steps) if i % major_checkpoint_interval == 0]}")
+    print(f"  Expected checkpoints: {expected_checkpoints}")
+    print(f"  Expected checkpoints count: {len(expected_checkpoints)}")
+    print(f"  Expected major checkpoints: {[i for i in expected_checkpoints if i % major_checkpoint_interval == 0]}")
+    print(f"  Expected to trigger deletion: {len(expected_checkpoints) > max_checkpoints}")
     
     # Create test datasets
     train_dataset = os.path.join(test_dir, 'queue_test_train.jsonl')
     val_dataset = os.path.join(test_dir, 'queue_test_val.jsonl')
-    create_minimal_test_dataset(num_examples=20, output_path=train_dataset)
-    create_minimal_test_dataset(num_examples=10, output_path=val_dataset)
+    create_minimal_test_dataset(num_examples=30, output_path=train_dataset)
+    create_minimal_test_dataset(num_examples=15, output_path=val_dataset)
     
     output_dir = os.path.join(test_dir, f"{model_name.replace('/', '_')}_queue_test")
     os.makedirs(output_dir, exist_ok=True)
@@ -1156,7 +1162,8 @@ def test_checkpoint_queueing_logic(model_name: str, test_dir: str):
         hf_token = os.environ.get('HUGGINGFACE_TOKEN') or os.environ.get('HF_TOKEN')
         
         # Run training with queueing enabled
-        print(f"\nRunning training to create {num_steps // val_steps} checkpoints...")
+        print(f"\nRunning training to create {len(expected_checkpoints)} checkpoints...")
+        print(f"  This should trigger deletion when checkpoint count exceeds {max_checkpoints}")
         fine_tune_model(
             model_name=model_name,
             dataset_path=train_dataset,
@@ -1181,8 +1188,7 @@ def test_checkpoint_queueing_logic(model_name: str, test_dir: str):
         )
         
         # Wait a moment for any async operations to complete
-        import time
-        time.sleep(2)
+        time.sleep(3)  # Increased wait time for backup operations
         
         # Test 1: Count checkpoints in main directory
         total += 1
@@ -1209,15 +1215,14 @@ def test_checkpoint_queueing_logic(model_name: str, test_dir: str):
         
         # Test 2: Verify oldest checkpoints were deleted
         total += 1
-        expected_checkpoints = list(range(val_steps, num_steps + 1, val_steps))
         expected_oldest = expected_checkpoints[:len(expected_checkpoints) - max_checkpoints] if len(expected_checkpoints) > max_checkpoints else []
         expected_remaining = expected_checkpoints[-max_checkpoints:] if len(expected_checkpoints) > max_checkpoints else expected_checkpoints
         
         print(f"\n✓ Test 2: Oldest checkpoints deletion")
-        print(f"  Expected all checkpoints: {expected_checkpoints}")
+        print(f"  Expected all checkpoints created: {expected_checkpoints}")
         print(f"  Expected deleted (oldest): {expected_oldest}")
         print(f"  Expected remaining (newest): {expected_remaining}")
-        print(f"  Actually remaining: {main_checkpoint_steps}")
+        print(f"  Actually remaining in main: {main_checkpoint_steps}")
         
         # Check that remaining checkpoints are the newest ones
         if len(expected_oldest) > 0:
@@ -1225,16 +1230,30 @@ def test_checkpoint_queueing_logic(model_name: str, test_dir: str):
             deleted_but_in_main = [s for s in expected_oldest if s in main_checkpoint_steps]
             if len(deleted_but_in_main) == 0:
                 print(f"  ✓ PASS: Oldest checkpoints correctly deleted")
+                # Also verify that remaining checkpoints match expected newest
+                if set(main_checkpoint_steps) == set(expected_remaining):
+                    print(f"    ✓ Remaining checkpoints match expected newest: {expected_remaining}")
+                else:
+                    print(f"    ⚠ WARNING: Remaining checkpoints don't match expected")
+                    print(f"      Expected: {expected_remaining}")
+                    print(f"      Found: {main_checkpoint_steps}")
                 passed += 1
             else:
-                print(f"  ✗ FAIL: Oldest checkpoints still present: {deleted_but_in_main}")
+                print(f"  ✗ FAIL: Oldest checkpoints still present in main: {deleted_but_in_main}")
+                print(f"    These should have been deleted when limit was reached")
         else:
             # Not enough checkpoints to trigger deletion
             if len(main_checkpoint_steps) == len(expected_checkpoints):
                 print(f"  ✓ PASS: All checkpoints present (limit not reached)")
+                print(f"    Note: This test should create more checkpoints to trigger deletion")
                 passed += 1
             else:
                 print(f"  ⚠ WARNING: Unexpected checkpoint count")
+                print(f"    Expected {len(expected_checkpoints)} checkpoints, found {len(main_checkpoint_steps)}")
+                # Check if checkpoint-0 or other issues
+                missing = set(expected_checkpoints) - set(main_checkpoint_steps)
+                if missing:
+                    print(f"    Missing checkpoints: {sorted(missing)}")
                 passed += 1  # Don't fail if we didn't create enough checkpoints
         
         # Test 3: Verify backups exist for all checkpoints (including deleted ones)
@@ -1278,13 +1297,15 @@ def test_checkpoint_queueing_logic(model_name: str, test_dir: str):
         
         if len(expected_oldest) > 0:
             deleted_verified = True
+            missing_backups = []
+            still_in_main = []
+            
             for step in expected_oldest:
                 # Should NOT be in main directory
                 main_path = os.path.join(output_dir, f"checkpoint-{step}")
                 if os.path.exists(main_path):
-                    print(f"  ✗ FAIL: Deleted checkpoint-{step} still exists in main directory")
+                    still_in_main.append(step)
                     deleted_verified = False
-                    break
                 
                 # Should be in backup directory
                 is_major = step > 0 and step % major_checkpoint_interval == 0
@@ -1293,19 +1314,25 @@ def test_checkpoint_queueing_logic(model_name: str, test_dir: str):
                 backup_path = os.path.join(backup_dir, backup_name)
                 
                 if not os.path.exists(backup_path):
-                    print(f"  ✗ FAIL: Deleted checkpoint-{step} missing from backup directory")
+                    missing_backups.append((step, backup_name))
                     deleted_verified = False
-                    break
             
             if deleted_verified:
                 print(f"  ✓ PASS: All {len(expected_oldest)} deleted checkpoints verified")
                 print(f"    - Not in main directory: ✓")
                 print(f"    - Present in backup directory: ✓")
+                print(f"    Deleted checkpoints: {expected_oldest}")
                 passed += 1
             else:
-                print(f"  ✗ FAIL: Deleted checkpoint verification failed")
+                if still_in_main:
+                    print(f"  ✗ FAIL: Deleted checkpoints still in main: {still_in_main}")
+                if missing_backups:
+                    print(f"  ✗ FAIL: Deleted checkpoints missing from backups: {missing_backups}")
         else:
             print(f"  ✓ PASS: No checkpoints deleted (limit not reached)")
+            print(f"    Note: Created {len(expected_checkpoints)} checkpoints, limit is {max_checkpoints}")
+            if len(expected_checkpoints) <= max_checkpoints:
+                print(f"    This is expected - need more checkpoints to test deletion")
             passed += 1
         
         # Test 5: Verify major checkpoints go to major_checkpoints/, regular to regular_checkpoints/
@@ -1406,6 +1433,7 @@ def test_checkpoint_queueing_logic(model_name: str, test_dir: str):
             # checkpoint-0 should be handled specially (usually not deleted)
             if 0 in main_checkpoint_steps:
                 print(f"  ✓ PASS: checkpoint-0 present in main directory")
+                print(f"    Note: checkpoint-0 is typically kept even when limit is reached")
                 passed += 1
             else:
                 print(f"  ⚠ WARNING: checkpoint-0 not in main directory (may have been deleted)")
@@ -1420,6 +1448,77 @@ def test_checkpoint_queueing_logic(model_name: str, test_dir: str):
         else:
             print(f"  ✓ PASS: checkpoint-0 not created (normal behavior)")
             passed += 1
+        
+        # Test 9: Edge case - Exactly at limit (max_checkpoints checkpoints)
+        total += 1
+        print(f"\n✓ Test 9: Edge case - Exactly at limit")
+        
+        if len(main_checkpoint_steps) == max_checkpoints:
+            print(f"  ✓ PASS: Exactly {max_checkpoints} checkpoints in main (at limit)")
+            print(f"    Checkpoints: {main_checkpoint_steps}")
+            print(f"    Next checkpoint should trigger deletion of oldest")
+            passed += 1
+        elif len(main_checkpoint_steps) < max_checkpoints:
+            print(f"  ✓ PASS: {len(main_checkpoint_steps)} checkpoints in main (below limit)")
+            print(f"    Limit is {max_checkpoints}, so no deletion should occur yet")
+            passed += 1
+        else:
+            print(f"  ✗ FAIL: {len(main_checkpoint_steps)} checkpoints in main (exceeds limit of {max_checkpoints})")
+            print(f"    Queue management should have deleted oldest checkpoints")
+        
+        # Test 10: Edge case - Verify deletion happens when adding checkpoint at limit
+        total += 1
+        print(f"\n✓ Test 10: Edge case - Deletion when at limit")
+        
+        # Check if we actually triggered deletion
+        if len(expected_oldest) > 0:
+            # We should have triggered deletion
+            if len(main_checkpoint_steps) <= max_checkpoints:
+                print(f"  ✓ PASS: Deletion triggered correctly")
+                print(f"    Created {len(expected_checkpoints)} checkpoints")
+                print(f"    Deleted {len(expected_oldest)} oldest: {expected_oldest}")
+                print(f"    Kept {len(main_checkpoint_steps)} newest: {main_checkpoint_steps}")
+                
+                # Verify the deletion pattern: when checkpoint-N was added, checkpoint-oldest was deleted
+                if len(main_checkpoint_steps) == max_checkpoints:
+                    print(f"    ✓ Queue management working: exactly at limit after deletions")
+                passed += 1
+            else:
+                print(f"  ✗ FAIL: Deletion not working - {len(main_checkpoint_steps)} > {max_checkpoints}")
+        else:
+            print(f"  ⚠ SKIP: Deletion not triggered (only {len(expected_checkpoints)} checkpoints, limit is {max_checkpoints})")
+            print(f"    This test requires at least {max_checkpoints + 1} checkpoints to test deletion")
+            passed += 1  # Don't fail if we didn't create enough
+        
+        # Test 11: Edge case - Verify all checkpoints are accounted for
+        total += 1
+        print(f"\n✓ Test 11: Edge case - All checkpoints accounted for")
+        
+        # All checkpoints should either be in main or in backups
+        all_accounted = True
+        missing_from_both = []
+        
+        for step in expected_checkpoints:
+            in_main = step in main_checkpoint_steps
+            is_major = step > 0 and step % major_checkpoint_interval == 0
+            backup_dir = major_ckpt_dir if is_major else regular_ckpt_dir
+            backup_name = f"major-checkpoint-{step}" if is_major else f"regular-checkpoint-{step}"
+            backup_path = os.path.join(backup_dir, backup_name)
+            in_backup = os.path.exists(backup_path)
+            
+            if not in_main and not in_backup:
+                missing_from_both.append(step)
+                all_accounted = False
+        
+        if all_accounted:
+            print(f"  ✓ PASS: All {len(expected_checkpoints)} checkpoints accounted for")
+            print(f"    In main: {len(main_checkpoint_steps)} checkpoints")
+            print(f"    In backups: {len(expected_checkpoints) - len(main_checkpoint_steps)} checkpoints")
+            print(f"    Total: {len(expected_checkpoints)} checkpoints")
+            passed += 1
+        else:
+            print(f"  ✗ FAIL: Some checkpoints missing from both main and backups: {missing_from_both}")
+            print(f"    This indicates a problem with checkpoint creation or backup")
         
         print(f"\n{'='*70}")
         print(f"Checkpoint queueing tests: {passed}/{total} passed")

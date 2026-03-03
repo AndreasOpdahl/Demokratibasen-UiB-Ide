@@ -5,7 +5,7 @@ This module provides functions to format examples for training and evaluation
 using model-specific prompt configurations.
 """
 
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Any as AnyType
 import sys
 import os
 
@@ -17,12 +17,13 @@ if _script_dir not in sys.path:
 from model_configs import get_model_config_by_hf_name, get_doc_type_norwegian
 
 
-def format_train_example(example: Dict[str, Any], model_name: str) -> Dict[str, Any]:
+def format_train_example(example: Dict[str, Any], model_name: str, tokenizer: Optional[Any] = None) -> Dict[str, Any]:
     """Format a training example using model-specific prompt configuration.
     
     Args:
         example: Dictionary with 'input', 'output', and optionally 'metadata' keys
         model_name: HuggingFace model name (e.g., 'google/gemma-2b')
+        tokenizer: Optional tokenizer instance (used for chat template formatting)
     
     Returns:
         Dictionary with 'text' key containing formatted training example
@@ -44,7 +45,8 @@ def format_train_example(example: Dict[str, Any], model_name: str) -> Dict[str, 
         formatted_text = model_config.prompt_config.format_train(
             input_text=input_text,
             output_text=output_text,
-            doc_type=doc_type
+            doc_type=doc_type,
+            tokenizer=tokenizer
         )
     else:
         # Fallback to plain format if model config not found
@@ -54,12 +56,13 @@ def format_train_example(example: Dict[str, Any], model_name: str) -> Dict[str, 
     return {"text": formatted_text}
 
 
-def format_eval_example(example: Dict[str, Any], model_name: str) -> Dict[str, Any]:
+def format_eval_example(example: Dict[str, Any], model_name: str, tokenizer: Optional[Any] = None) -> Dict[str, Any]:
     """Format an evaluation example using model-specific prompt configuration.
     
     Args:
         example: Dictionary with 'input' and optionally 'metadata' keys
         model_name: HuggingFace model name (e.g., 'google/gemma-2b')
+        tokenizer: Optional tokenizer instance (used for chat template formatting)
     
     Returns:
         Dictionary with 'prompt' and 'target_summary' keys
@@ -80,7 +83,8 @@ def format_eval_example(example: Dict[str, Any], model_name: str) -> Dict[str, A
     if model_config:
         formatted_prompt = model_config.prompt_config.format_eval(
             input_text=input_text,
-            doc_type=doc_type
+            doc_type=doc_type,
+            tokenizer=tokenizer
         )
     else:
         # Fallback to plain format if model config not found
