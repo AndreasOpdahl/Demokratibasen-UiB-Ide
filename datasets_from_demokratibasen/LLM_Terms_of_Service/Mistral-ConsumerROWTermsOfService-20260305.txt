@@ -1,0 +1,222 @@
+Terms of Service for consumers outside of the European Union
+Effective:November 28, 2025
+
+Welcome to Mistral AI! We provide technology that enables access to and use of Mistral AI’s artificial intelligence models. These Terms of Service (these “Terms”) govern your personal use as a user outside of the EU of Mistral AI Studio, Le Chat, Mistral Code, and the other websites, products, services, and technologies we offer (the “Mistral AI Products”). If you reside in the European Union, please review our EU Consumer Terms of Service for the terms governing your use. If you are accessing the Mistral AI Products on behalf of a business or to integrate the Mistral AI Products with your own products or services that are distributed to third-party end users, please review our Commercial Terms of Service for the terms governing such use.
+
+Who we are and how to reach out to us. The Mistral AI Products are provided by Mistral AI, a French limited joint-stock corporation, incorporated in Paris, under number 952 418 325, with VAT number FR95952418325, having its registered offices at 15 rue des Halles, 75001 Paris, France (“Mistral AI” or “us”). You can contact us at any time by using the chatbot available on our Help Center or by writing to support@mistral.ai.
+
+Key points. Before you read our terms, here are 3 key points to have in mind:
+
+As between you and Mistral AI, you own all rights to your Outputs, but please be aware that they may sometimes be inaccurate. Always check information before using your Outputs.
+
+You must make sure you have the necessary third-party permissions before using any Input with any Mistral AI Product. 
+
+Using Mistral AI Products to generate Outputs that are illegal or that infringe or otherwise violate third-party rights is prohibited. For more details, please refer to our Usage Policy.
+
+Contract. We encourage you to read and understand these Terms and our Usage Policy. By clicking on “I agree” (or any similar button or checkbox) when you create a Mistral AI account or by accessing or using any of the Mistral AI Products, you are agreeing to these Terms and our Usage Policy, which constitute a binding agreement between you and Mistral AI. 
+
+1. Accessing the Mistral AI Products
+Age requirements. You must be at least thirteen (13) years old to use the Mistral AI Products. You must have parental or legal guardian permission if you are a minor creating a Mistral AI account. We will delete any Mistral AI account found to violate these requirements.
+
+Mistral AI accounts. Some Mistral AI Products require a Mistral AI account. You must provide complete and accurate account registration information and promptly update your account if any of your registration information changes. Your account is intended for your individual use only and you may not share your account with any other person. The creation or use of multiple Mistral AI accounts by a single individual is strictly prohibited, including to bypass rate limits or any other restrictions. You may not make your account credentials (including any API keys) available to third parties, share individual login credentials or API keys between multiple users on an account, or resell or lease access to your account or API keys. You must promptly notify us at support@mistral.ai or through the Help Center in the event you detect any unauthorized or fraudulent access or use of your account.
+
+2. Subscribing to paid Mistral AI Products
+Price. The applicable pricing (including any applicable taxes) for each paid Mistral AI Product and the accepted means of payment are indicated on our pricing page. The prices of the Mistral AI Products are exclusive of taxes and Value Added Tax (VAT) or similar sales taxes will be added at the rate in force in your billing country on the date you subscribe to a Mistral AI Product. 
+
+Subscription process. To use any paid Mistral AI Products, you must create a Mistral AI account, select your desired subscription plan, accept these Terms, and submit your order by clicking the “Subscribe”, “Pay Now”, or any similar button. Before submitting your order, you will have the opportunity to review and edit your subscription details (e.g., subscription type, API credit amount, billing information, etc.). The paid Mistral AI Products you subscribe to will be available once your order is confirmed.
+
+Subscription confirmation. You will receive automatic e-mails to the email address associated with your Mistral AI account (a) acknowledging your order once you submit it, and (b) confirming Mistral AI’s acceptance of your order (which signifies your acceptance of these Terms). We recommend printing and retaining a copy of your order and these Terms for your own records. 
+
+Payment. To pay for any Mistral AI Products, you must provide complete and accurate billing information and use a valid, accepted payment method. For paid subscriptions, we will automatically charge your payment method on each periodic renewal as set forth in your order until you cancel. You are responsible for all applicable taxes, and we will charge taxes when required. If your payment cannot be completed, we may downgrade or suspend your access to Mistral AI Products until payment is received.
+
+Cancellation. You can cancel your paid subscription at any time via your account settings or the Help Center. Payments are non-refundable except where required by applicable law. 
+
+Changes. We may change our prices from time to time, including to reflect circumstances such as changes in Mistral AI Product offerings, changes in our business, or changes in the economic environment. If we increase our prices, we will give you at least thirty (30) days’ notice and any price increase will take effect the next time your subscription renews following the notice period so that you can cancel if you do not agree to the price increase.  
+
+3. Using Mistral AI Products 
+Mistral AI Products. As between you and Mistral AI, we own all right, title, and interest in and to the Mistral AI Products. We grant you a non-exclusive right to access and use the Mistral AI Products solely in your personal capacity in compliance with these Terms, all applicable laws and regulations, and any other terms we post at http://legal.mistral.ai/terms (as may be updated from time to time). Certain Mistral AI Products are only available if you have a paid subscription. The different subscription plans applicable to the Mistral AI Products are described on our pricing page. You can find more details about each Mistral AI Product in the “Products” section of our website. 
+
+Restrictions. When accessing or using the Mistral AI Products, you will not, and will not permit any other person to:
+
+(a) Use the Mistral AI Products or Your Data in a manner that violates any applicable laws (including sanctions and export control laws), these Terms, our Usage Policy, or any of our policies (including those posted at http://legal.mistral.ai/terms, which may be updated from time to time);
+
+(b) Use the Mistral AI Products in a manner that infringes, misappropriates, or otherwise violates any third party’s rights, including intellectual property or privacy rights, including intentionally using the Mistral AI Products to generate Outputs that infringe, misappropriate, dilute or otherwise violate third party rights;
+
+(c) Send us any personal information of children under 13 or the applicable age of digital consent or allow minors to use the Mistral AI Products without consent from their parent or guardian;
+
+(d) Attempt to reverse engineer, decompile, or otherwise attempt to discover the source code or underlying components (e.g., algorithms or systems) of the Mistral AI Products, including using the Output or any modified version of the Output to do any of the foregoing (except to the extent this restriction is prohibited by applicable law);
+
+(e) Compromise the security or proper functionality of the Mistral AI Products, including interfering with, circumventing, or bypassing security or moderation mechanisms in the Mistral AI Products or performing any vulnerability, penetration, or similar testing of the Mistral AI Products;
+
+(f) Use any method to extract any content from the Mistral AI Products other than as permitted through the Mistral AI Products; 
+
+(g) Buy, sell, or transfer API keys or Mistral AI accounts from, to, or with a third party; or 
+
+(h) Integrate or combine the Mistral AI Products with your own products or any other software, hardware, or other technology, nor grant any third party access to the Mistral AI Products without our prior written authorization.
+
+Usage limitations. Your use of the Mistral AI Products may be subject to rate limits, depending on your subscription plan. Such rate limits are listed on our pricing page. If you reach these limits, your access to the Mistral AI Products will be temporarily suspended until the limits reset or you upgrade your subscription.
+
+Deactivation of features. You can deactivate certain features from the Mistral AI Products by using the settings available in your Mistral AI account. 
+
+Sharing Conversation Links. Certain Mistral AI Products provide you with the ability to share unique links to conversations with third-parties (each a “Conversation Link”). Conversations that are viewable via a Conversation Link will not include (a) your Mistral AI username (unless you expressly include it in the conversation), (b) any addition you make to the conversation after sharing it, or (c) any other conversation you may have with such Mistral AI Product. Anyone with the Conversation Link will be able to view your conversation, including any person with whom your intended recipient shares the Conversation Link. We do not monitor or control who accesses your conversations via Conversation Links that you create. As such, it is your responsibility to ensure that you are comfortable sharing, and have the right to share, all information that is shared in the Conversation Link.
+
+APIs. Certain Mistral AI Products allow you to use our APIs. Under these Terms, you may only use our APIs for your own personal needs.  
+
+Moderation. We reserve the right to monitor your use of Mistral AI Products through automated means. This monitoring is conducted to ensure compliance with our terms and policies, including our Usage Policy, and to maintain the security and integrity of Mistral AI Products.
+
+Third-Party Services. You may connect services provided by third parties (each, a “Third-Party Service”), including Model Context Protocol servers (“MCP Servers”), to Mistral AI Products. By enabling these connections, you grant us the permission to (a) access the Third-Party Services, (b) send your Input to the Third-Party Service, and (c) where applicable, retrieve, process, and store the necessary data to use as Inputs to generate Outputs. You may only connect a Third-Party Service to a Mistral AI Product if you have all necessary rights, licenses, and permissions to connect such Third-Party Service to Mistral AI Products in accordance with these Terms. You are responsible for maintaining access to the Third-Party Service for the duration of your subscription or your use of such features. Any use of a Third-Party Service is subject to the respective terms and conditions for the Third-Party Service, and you are solely responsible for complying with such terms and conditions. You acknowledge that Third-Party Services are not Mistral AI Products and Mistral AI is not responsible for any Third-Party Service or your use of any Third-Party Service, including any disruptions, data loss, or issues with Mistral AI Products arising from your use of the Third-Party Service. Furthermore, if you use a MCP Server to connect a Mistral AI Product to a Third-Party Service, you acknowledge that Mistral AI has no control over such third-party MCP Server and bears no responsibility for your use of such MCP Server or for how the MCP Server processes or interprets your Input. Third-Party Services may be incompatible with Mistral AI Products. You will find more details on the compatibility and interoperability of Mistral AI Products with Third-Party Services on our Help Center. 
+
+Updates. We may deploy updates to the Mistral AI Products (such as product enhancements or new features) from time to time. If an update materially impairs your use of the Mistral AI Products and we don’t provide an alternative, you may terminate these Terms as provided in Section 7 (Term, Suspension, Cancellation, and Termination), which is your sole remedy and ends your access to the affected Mistral AI Products.  
+
+4. Your Data
+Your Data. You may provide input to the Mistral AI Products, such as prompts, content, or fine-tuning data (“Input”), and receive output from the Mistral AI Products based on such Input (“Output”). We refer to Input and Output collectively as “Your Data”. To the extent permitted by applicable law, as between you and Mistral AI, you (i) retain all ownership rights in Input and (ii) own all Output. We assign to you all right, title, and interest, if any, in and to Output that we may have.
+
+Fine-Tuned Model. Your rights to access or use models you fine-tuned using our fine-tuning API (the “Fine-Tuned Model”) will cease upon termination of your account. For the avoidance of doubt, the Fine-Tuned Model does not constitute an Output. We will not use the Fine-Tuned Model except to provide it to you under these Terms. 
+
+Responsibility for Your Data. You are responsible for all Inputs and represent and warrant that you have all rights, licenses, and permissions required to provide Inputs to the Mistral AI Products. You are solely responsible for all use of the Outputs and evaluating the Outputs for accuracy and appropriateness for your use case. You must also not represent that any Output was generated by a human when it was generated by the Mistral AI Products. We may also provide Output filters for certain Mistral AI Products. If you deactivate these filters, you are solely responsible for the Output that is generated.
+
+Output restrictions. To the extent permitted by applicable law, you may not use image Outputs to develop or train any image generation product that competes with a Mistral AI Product.
+
+Feedback. For certain Mistral AI Products, such as Le Chat, you have the option to provide feedback, such as by selecting "thumbs up" or "thumbs down” (“Feedback”). By providing Feedback, you acknowledge and agree that Mistral AI may use your Feedback, along with the associated Input and Output data, for the purpose of training our artificial intelligence models and improving the Mistral AI Products. 
+
+How we use Your Data. We do not use Your Data to train our artificial intelligence models except (a) when you (i) use Mistral AI Products under a free subscription, or are subscribed to Le Chat Pro or Le Chat Student, and (ii) you have not opted-out of training, (b) when you provide Feedback to us, or (c) when Your Data is flagged as part of our automated moderation or reported as prohibited content, in which case we may use Your Data to improve the Mistral AI Products and enforce our Usage Policy. You grant us a worldwide, non-exclusive, non-transferable (except as permitted in Section 12 (Assignment)), royalty-free, fully-paid license (with the right to sublicense to our delegates and subcontractors) to use Your Data for the purpose of (1) providing, maintaining and optimizing the Mistral AI Products, which includes debugging, assessing, reviewing, and correcting the performance of the Mistral AI Products, but excludes model training, (2) performing our obligations under these Terms or other terms located on our website at http://legal.mistral.ai/terms, and (3) as applicable and solely in the cases provided in the previous sentence, to train our artificial intelligence models, each for the duration necessary to achieve the intended purposes.
+
+Similarity of Output. Due to the nature of the Mistral AI Products, your Output may be similar or identical to the response generated for another user of the Mistral AI Products. We provide no guarantees that your Output will be unique. Any responses generated for other users by the Mistral AI Product are not considered your Output even if similar or identical to your Output.
+
+Output Accuracy. Mistral AI Products are based on large language models (LLMs), a technology that is continually evolving. For this reason, Outputs may occasionally be inaccurate. Mistral AI Products are not authoritative or infallible sources of information. You should not rely on Output generated by Mistral AI Products as the sole source of truth or as a substitute for professional advice (e.g., legal, tax, or medical). Use the Mistral AI Products with caution: always verify the reliability, accuracy, and completeness of the Output before relying on it for personal or professional purposes or otherwise making it available to third parties (including publishing such Output).
+
+Third-Party Content. When you use certain features on a Mistral AI Product, such as web-search, you may receive (a) your Output, and (b) content provided by third-parties in the form of additional resources such as hyperlinks, images, thumbnails, or snippets from third-parties to help you further explore or understand the Output (the “Third-Party Content”). Such Third-Party Content does not constitute Your Data and we do not grant you any rights to this Third-Party Content, other than viewing it. For clarity, we do not use the Third-Party Content you provide in Your Input to train our artificial intelligence models. You may not use Third-Party Content displayed using our web-search feature to (i) copy, store, archive, cache, or create a database of the Outputs, (ii) redistribute, resell, or sublicense the Third-Party Content, (iii) as part of any machine learning or similar algorithmic activity, or (iv) to create, train, evaluate, or improve commercial products or services that you make available to third-parties.
+
+Prohibited content. You must promptly report to us any of Your Data or Third-Party Content that you identify at any time as violating our Usage Policy or which otherwise (a) incites hate, violence, or discrimination against individuals based on their origin, ethnicity, religion, gender, sexual orientation, etc., (b) glorifies sexual harassment, (c) violates human dignity (e.g., human trafficking), (d) glorifies crimes against humanity or denying their existence, (e) incites terrorism, (f) glorifies very serious crimes against individuals (e.g., murder or sexual assault), (g) glorifies crimes involving theft, extortion, or material damage posing a danger to individuals, (h) constitutes child abuse sexual material, or (i) are dangerous for minors. You can report such content by using the report feature in the Mistral AI Products and/or by sending an email at support@mistral.ai. You grant us the right to access the reported content to improve the Mistral AI Products (e.g., to help us prevent the Mistral AI Products from generating such content again). This right is granted worldwide and for the duration of the intellectual property rights under applicable law. Where applicable, you must delete such content using the applicable feature on the Mistral AI Products.
+
+5. Warranties; Disclaimer
+Our Warranties. We warrant that, when used in accordance with these Terms, the Mistral AI Products will conform in all material respects with the documentation we provide to you or otherwise make publicly available. 
+
+Your Warranties. You warrant that (a) you have the authority to enter into and accept these Terms, and (b) you will use the Mistral AI Products in accordance with the applicable laws and regulations and these Terms.
+
+Disclaimer. EXCEPT FOR THE WARRANTIES IN THIS SECTION 5 (WARRANTIES; DISCLAIMER) AND TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE MISTRAL AI PRODUCTS ARE PROVIDED “AS IS” AND WE AND OUR AFFILIATES AND LICENSORS DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND TITLE, NONINFRINGEMENT, OR QUIET ENJOYMENT, AND ANY WARRANTIES ARISING OUT OF COURSE OF DEALING OR TRADE USAGE. WE MAKE NO REPRESENTATIONS OR WARRANTIES (A) THAT USE OF THE MISTRAL AI PRODUCTS WILL BE UNINTERRUPTED, ERROR FREE, SECURE, OR BE SUITABLE FOR YOUR SPECIFIC PURPOSES OR USE-CASES, (B) THAT DEFECTS WILL BE CORRECTED, OR (C) THAT THE OUTPUTS WILL BE ACCURATE.
+
+6. Liability
+Limitation of Liability. IN NO EVENT WILL MISTRAL AI BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR EXEMPLARY DAMAGES, INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR LOSS OF PROFITS, REVENUE, DATA, OR GOODWILL, ARISING OUT OF OR IN CONNECTION WITH THE MISTRAL AI PRODUCTS, EVEN IF MISTRAL AI HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. TO THE EXTENT PERMITTED BY LAW, THE TOTAL LIABILITY OF MISTRAL AI FOR ANY CLAIMS ARISING OUT OF OR RELATING TO THIS AGREEMENT OR THE SERVICE WILL BE LIMITED TO THE GREATER OF (A) THE AMOUNT PAID BY YOU FOR THE SERVICE IN THE TWELVE (12) MONTHS PRECEDING THE DATE THE CLAIM AROSE OR (B) ONE HUNDRED US DOLLARS ($100).
+
+Jurisdictional Limitations. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF CERTAIN DAMAGES, SO THE ABOVE LIMITATIONS MAY NOT APPLY TO YOU.
+
+7. Term, Suspension, Cancellation, and Termination
+Term. These Terms will commence on the earlier of (a) the date you first use the Mistral AI Products or (b) the date you accept these Terms, and will continue until terminated.
+
+Termination or suspension. We reserve the right to immediately suspend or terminate your Mistral AI account and/or your access to all or part of the Mistral AI Products if: (a) you breach these Terms or our policies (including our Usage Policy), (b) you fail to pay any fees when due, (c) to comply with applicable law, or (d) your continued use of the Mistral AI Products could cause risk or harm to Mistral AI, our users, or anyone else. If you believe we have suspended or terminated your account in error, you can file an appeal with us by contacting us via support@mistral.ai.
+
+Requests to terminate. You can delete your account or terminate these Terms at any time by using the feature available in your account or, if unavailable, via our Help Center accessible in your account.
+
+Effects of termination. Prior to the termination of your account, you must pay all outstanding fees, including any unpaid invoices and other charges incurred up to the termination date. You may not be able to export Your Data after your account is terminated, so if you would like to export Your Data, please complete the export prior to the termination of your account. Termination or expiration will not affect any rights or obligations, including the payment of amounts due, which have accrued under these Terms up to the date of termination or expiration. Upon termination or expiration of these Terms, the provisions of these Terms that are intended by their nature to survive termination will survive and continue in full force and effect in accordance with their terms, including payment obligations and termination provisions.
+
+8. Privacy
+Privacy Policy. We process your personal data as a data controller for the purposes of (a) providing the Mistral AI Products to you and (b) managing your relationship with us in accordance with these Terms, including any billing, payment, or marketing activities. For clarity, our Privacy Policy explains how we collect and use personal information.
+
+9. Changes to these Terms 
+Updates to these Terms. We may update these Terms and our Usage Policy from time to time. Some reasons for such changes may include changes to take into account new features or functionality, or changes to applicable law or regulatory requirements governing the Mistral AI Products or your use thereof.
+
+Notice. We will give you at least thirty (30) days advance notice of changes to these Terms that are expected to materially impact you either via email or an in-product notification. All other changes will be effective as soon as we post them at http://legal.mistral.ai/terms. If you do not agree to the changes, you can terminate these Terms at any time, but you must stop using our Mistral AI Products as soon as the changes enter into force.
+
+10. Governing law and dispute resolution
+Governing law and venue. Subject to the “Agreement to Arbitrate” section below, the governing law and venue applicable to your Terms with Mistral AI depends on the jurisdiction in which you reside:
+
+If located in North America or South America (“Americas Region”), CALIFORNIA LAW WILL GOVERN ALL DISPUTES ARISING OUT OF OR RELATING TO THIS AGREEMENT, REGARDLESS OF ANY CONFLICT OF LAWS RULES. THESE DISPUTES WILL BE RESOLVED EXCLUSIVELY IN THE FEDERAL OR STATE COURTS OF SANTA CLARA COUNTY, CALIFORNIA, USA, AND THE PARTIES CONSENT TO PERSONAL JURISDICTION IN THOSE COURTS.
+
+If located in the Asia-Pacific region (such as in China, Japan, South Korea, Singapore, Thailand, Vietnam, India, Pakistan, Bangladesh, Australia, New Zealand and geographically adjacent countries) (“APAC Region”), these Terms and any dispute or claim (including non-contractual disputes or claims) arising out of or in connection with it or its subject matter or formation will be governed by and construed in accordance with the laws of the Republic of Singapore. You and Mistral AI agree that the courts of the Republic of Singapore will have exclusive jurisdiction over any disputes arising out of or in connection with these Terms or its subject matter or formation.
+
+If not located in the Americas Region or APAC Region, these Terms and any dispute or claim (including non-contractual disputes or claims) arising out of or in connection with it or its subject matter or formation will be governed by and construed in accordance with the laws of France. You and Mistral AI agree that the courts of Paris, France will have exclusive jurisdiction over any disputes arising out of or in connection with these Terms or its subject matter or formation.
+
+Agreement to Arbitrate. YOU AND MISTRAL AI AGREE THAT ANY DISPUTE, CLAIM, OR CONTROVERSY ARISING OUT OF OR RELATING TO THESE TERMS, THE MISTRAL AI PRODUCTS, OR THE RELATIONSHIP THAT RESULTS FROM YOUR USE THEREOF, WILL BE RESOLVED EXCLUSIVELY BY BINDING ARBITRATION, RATHER THAN IN COURT, EXCEPT THAT YOU MAY ASSERT CLAIMS IN SMALL CLAIMS COURT IF YOUR CLAIMS QUALIFY. This agreement to arbitrate is intended to be broadly interpreted and includes, but is not limited to, claims arising out of or relating to:
+
+The interpretation, application, or enforceability of these Terms, including this arbitration agreement;
+
+Any pre-dispute claims that arose before these Terms or any prior version of these Terms;
+
+Any statutory claims;
+
+Any claims based on past, present, or future advertising or marketing;
+
+Any claims based on unwritten industry customs or practices; and
+
+Any claims based on any other legal theory.
+
+Arbitration Rules and Location. The arbitration will be administered by the American Arbitration Association (“AAA”) under its Consumer Arbitration Rules. The AAA’s rules are available at www.adr.org or by calling 1-800-778-7879. The arbitrator’s decision will be final and binding, and judgment on the award rendered by the arbitrator may be entered in any court having jurisdiction. The arbitration will be conducted in Santa Clara County, California, United States.
+
+Opt-Out. You may opt out of this arbitration agreement by emailing us at support@mistral.ai within thirty (30) days of the date that you first accepted these Terms. Your notice must include your name, address, and a clear statement that you wish to opt out of this arbitration agreement. If you do so, neither you nor we can require the other to participate in arbitration.
+
+Class Action Waiver. YOU AND WE AGREE THAT EACH MAY BRING CLAIMS AGAINST THE OTHER ONLY IN YOUR OR OUR INDIVIDUAL CAPACITY AND NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS OR REPRESENTATIVE PROCEEDING.
+
+11. Copyright Complaints and DMCA Policy
+Designated Contact. In accordance with the Digital Millennium Copyright Act of 1998 (the “DMCA”), Mistral AI has designated a copyright agent to receive notifications of claimed infringement of third party copyright interests. Our designated agent can be contacted at:
+
+Mistral AI Inc.
+
+Attention: Legal
+
+325 Lytton Avenue, Suite 300
+
+Palo Alto, CA 94301
+
+Email: legal@mistral.ai 
+
+Note: Email notifications must include the subject line: “DMCA Copyright Infringement Notice”.
+
+Reporting Copyright Infringement. If you believe that your copyrighted work has been copied or posted in connection with a Mistral AI Product in a way that constitutes copyright infringement, please provide a written notice containing the following information:
+
+A physical or electronic signature of the copyright owner or a person authorized to act on their behalf;
+
+Identification of the copyrighted work claimed to have been infringed, or, if multiple copyrighted works are covered by a single notification, a representative list of such works;
+
+Identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material (e.g., a specific URL);
+
+Your contact information, including your name, address, telephone number, and email address;
+
+A statement that you have a good faith belief that the use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law; and
+
+A statement, under penalty of perjury, that the information in the notification is accurate and that you are authorized to act on behalf of the copyright owner.
+
+Counter-Notification. If you believe that your content was removed or disabled in error or misidentification, you may submit a counter-notification to our copyright agent. Your counter-notification must include:
+
+Your physical or electronic signature;
+
+Identification of the material that has been removed or to which access has been disabled, and the location at which the material appeared before it was removed or disabled;
+
+A statement, under penalty of perjury, that you have a good faith belief that the material was removed or disabled as a result of mistake or misidentification; and
+
+Your name, address, telephone number, and a statement that you consent to the jurisdiction of the federal court in Santa Clara County, California, USA, and that you will accept service of process from the person who provided the original notification of alleged infringement.
+
+Repeat Infringers. Mistral AI reserves the right to terminate the accounts of users who are repeat infringers of copyright.
+
+12. General
+Your rights. You will benefit from any mandatory provisions of the laws of your country of residence or domicile and nothing in these Terms will affect your rights as a consumer to rely on such mandatory provisions of the laws of your country of residence or domicile.
+
+Statistics. We may create aggregated and anonymized statistics (“Usage Data”) based on your use of the Mistral AI Products, which we use solely to conduct research or to enhance product performance, functionality, and user experience. Usage Data is the sole property of Mistral AI and does not constitute Your Data. Usage Data is not used to identify you. 
+
+Assignment. You may not assign or transfer any rights or obligations under these Terms and any attempt to do so will be void. We may assign our rights or obligations under these Terms to any affiliate, subsidiary, or successor in interest of any business associated with our Mistral AI Products, provided that such assignment does not materially affect your rights under these Terms.
+
+Force Majeure. Neither party will be liable to the other for any delay or failure to perform any obligation under these Terms (except for a failure to pay fees) if such delay or failure is due to unforeseen events beyond the reasonable control of such party.
+
+Independent Contractors. There is no relationship of partnership, joint venture, employment, franchise, or agency created between the parties under these Terms. Neither party will have the power to bind the other or incur obligations on the other party’s behalf without the other party’s prior written consent.
+
+No Third-Party Rights. Except as provided in Section 13, there are no third-party beneficiaries to these Terms.
+
+Waivers. No waiver of any term of these Terms will be deemed a further or continuing waiver of such term or of any other term, and our failure to assert any right or provision under these Terms will not constitute a waiver of such right or provision.
+
+Export/Trade Controls. In connection with your use of the Mistral AI Products, you agree to comply with all applicable export control, economic sanctions, and trade compliance laws and regulations, including but not limited to those of the European Union, the United States, and Singapore. For example, this includes regulations such as the U.S. Export Administration Regulations (EAR), the International Traffic in Arms Regulations (ITAR), and similar laws and regulations in other jurisdictions. You represent and warrant that: (a) you are not located in or a resident of any country or region subject to comprehensive sanctions or embargoes by the European Union, United States, or Singapore (including, as of the Effective Date, Cuba, Iran, North Korea, Syria, and the Crimea, Donetsk, and Luhansk regions of Ukraine); (b) you are not a person listed on any applicable government denied party, restricted party, or sanctions list, including those maintained by the U.S. Office of Foreign Assets Control (OFAC), the U.S. Department of Commerce, the European Union, or the United Nations Security Council; and (c) you will not use information governed by any of the foregoing as Inputs without first obtaining all necessary government authorizations, licenses, or approvals required for such use.
+
+Entire Agreement; Severability. Unless otherwise agreed in writing between you and Mistral AI, these Terms, including our Usage Policy, constitute the entire agreement between you and us concerning your use of the Mistral AI Products. Any statements or comments made between you and any of our employees or representatives are expressly excluded from these Terms and will not apply to you or us, or to your access to or use of the Mistral AI Products absent a separate written agreement. If any provision of these Terms is deemed invalid by a court of competent jurisdiction, the invalidity of such provision will not affect the validity of the remaining provisions of these Terms, which will remain in full force and effect.
+
+13. Mobile applications
+If you wish to access any Mistral AI Products made available as a mobile application (each, a “Mistral AI App”), you must have a compatible mobile device. Mistral AI currently makes Mistral AI Apps available for certain mobile device types in the (a) Apple App Store (each, an “iOS App”) and (b) Google Play Store (each, an “Android App”). Mistral AI does not warrant that any particular Mistral AI App will be compatible with your specific device. Use of a Mistral AI App with your mobile device may result in charges from your mobile service provider, such as for the use of wireless data. You agree that you are solely responsible for any such mobile service provider charges. Mistral AI Apps may update automatically to provide you with the latest version. Subject to your compliance with these Terms, Mistral AI hereby grants you a non-exclusive, limited, non-transferable, and revocable license to use a compiled code copy of each Mistral AI App on each personal mobile device that you own or control (or such additional shared use as permitted by Apple or Google in their terms referenced below):
+
+iOS App. The terms of this subsection apply solely to your use of any iOS App. You and Mistral AI understand and agree that these Terms are solely between you and Mistral AI, and that Apple, Inc. (“Apple”) is not a party to these Terms and bears no responsibility for the iOS App or content thereof. Your access to and use of the iOS App must comply with the usage rules set forth in Apple’s latest version of the Apple Media Services Terms and Conditions and the applicable Volume Content Terms. You agree that Apple has no obligation whatsoever to provide any maintenance or support services with respect to the iOS App. In the event of any failure of the iOS App to conform to any applicable warranty in these Terms, you may notify Apple, and Apple will refund the purchase price (if any) for the iOS App to you. To the maximum extent permitted by applicable law, other than as provided in the immediately preceding sentence, Apple will have no other warranty obligation whatsoever with respect to the iOS App, and any other claims, losses, liabilities, damages, costs, or expenses attributable to any failure to confirm to any warranty will be governed solely by these Terms and any law applicable to Mistral AI as the iOS App provider. You and Mistral AI agree that Apple is not responsible for any claims of you or any third party relating to the iOS App or your use or possession thereof, including: (a) product liability claims; (b) any claim the iOS App fails to conform to any applicable legal or regulatory requirement; and (c) claims arising under consumer protection, privacy, or similar legislation. You agree that, in the event of a third-party claim that the iOS App, or your possession or use thereof, infringes such third-party’s intellectual property rights, Mistral AI, and not Apple, will be solely responsible for the investigation, defense, settlement, and discharge of any such intellectual property infringement claim (to the extent required by these Terms). You and Mistral AI agree that Apple and Apple’s subsidiaries are third-party beneficiaries of these Terms as relates to your license of our iOS App, and that, upon your acceptance of these Terms, Apple will have the right (and will automatically be deemed to have accepted the right) to enforce these Terms as related to your license of the iOS App against you as a third-party beneficiary thereof. You represent and warrant that: (i) you are not located in a country that is subject to a United States government embargo, or that has been designated by the United States government as a “terrorist supporting” country; and (ii) you are not listed on any United States government list of prohibited or restricted parties.
+
+Android App. The terms of this subsection apply solely to your use of any Android App. You agree that: (a) these Terms are between you and Mistral AI only, and neither Google LLC nor any affiliate thereof (collectively, “Google”) are a party to the Terms; (b) your access to and use of the Android App must comply with Google’s latest Google Play Terms of Service; (c) Google is solely a provider of the Google Play Store where you obtained the Android App, meaning Mistral AI (and not Google) is solely responsible for the Android App; (d) Google has no obligation or liability to you with respect to the Android App or these Terms; and (e) Google is a third-party beneficiary to these Terms as they relate to the Android App.
+
+14. Contacting us
+Should you have any questions, comments, or feedback regarding these Terms or the Mistral AI Products, we are committed to evaluating them promptly. You may reach us at any time using the following details:
+
+Address: Mistral AI, 15 rue des Halles, 75001 Paris, France. 
+
+Email: support@mistral.ai Help Center: https://help.mistral.ai

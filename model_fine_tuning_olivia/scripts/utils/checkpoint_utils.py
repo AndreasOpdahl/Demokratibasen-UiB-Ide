@@ -48,12 +48,13 @@ def get_checkpoint_name_and_step(checkpoint_path: str) -> Tuple[str, int]:
         step_number: Integer step number, or 0 if extraction fails
     """
     checkpoint_name = os.path.basename(checkpoint_path.rstrip('/'))
-    checkpoint_step = checkpoint_name.replace('checkpoint-', '').replace('regular-checkpoint-', '').replace('major-checkpoint-', '')
-    
-    try:
-        checkpoint_step_int = int(checkpoint_step)
-    except ValueError:
-        checkpoint_step_int = 0
+    # Reuse canonical extractor to correctly handle:
+    # - checkpoint-123
+    # - regular-checkpoint-123
+    # - major-checkpoint-123
+    # and avoid brittle string-replace ordering bugs.
+    extracted_step = extract_checkpoint_step(checkpoint_name)
+    checkpoint_step_int = extracted_step if extracted_step >= 0 else 0
     
     # Normalize checkpoint name to standard format
     if checkpoint_step_int > 0:
