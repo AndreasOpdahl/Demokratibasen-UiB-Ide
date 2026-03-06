@@ -1,0 +1,40 @@
+Q: The folder datasets_from_demokratibasen/LLM_Terms_of_Service contains three Terms of Service declarations from Mistral.
+
+I have a collection of 150k Norwegian texts. I want to use an initial LLM to generate summaries of those texts. I want to use the text-summary pairs to fine-tune smaller LLMs independetly of the initial LLM and its platform. Is there anything in Mistral's three Terms of Serice documents that restrict this kind of use?
+
+I am working as a researcher currently. It is possible that the fine-tuned models will later be built into a commercial product, but doing internal summarisation in a spcialised  domain only, not for a general market.
+
+
+A: I have read all three documents. Here is my analysis of the relevant provisions for your specific use case: using Mistral's API to generate text summaries, then using those text-summary pairs to fine-tune independent smaller LLMs.
+Important disclaimer: I am not a lawyer. For a decision with commercial implications, you should get qualified legal advice. That said, here is what the documents say.
+Which terms apply to you?
+Since you are a researcher at an institution and may later commercialise, the Commercial Terms of Service are almost certainly the ones that govern your use. Both Consumer ToS documents explicitly redirect business/integration users to the Commercial Terms. The Consumer ROW terms also limit API use to "your own personal needs" (Section 3, APIs), which would be too narrow for your purpose.
+Output ownership (favourable)
+Commercial ToS, Section 3.1: You own the Output. Mistral explicitly assigns all right, title, and interest in Output to the Customer:
+> "To the extent permitted by applicable law, Customer (a) retains all ownership rights in Input and (b) owns all Output. Mistral AI hereby assigns to Customer all right, title, and interest, if any, in and to Output that Mistral AI may have."
+This is a strong starting point: the summaries Mistral generates for you are legally yours.
+Output restrictions (the critical section)
+Commercial ToS, Section 3.3 restricts Output use in exactly two cases:
+Image Outputs -- may not be used to train competing image generation products.
+Web-search Outputs -- may not be used for (i) copying/caching/databases, (ii) redistribution, (iii) any machine learning or similar algorithmic activity, or (iv) to create/train/evaluate/improve commercial products or services offered to third parties.
+The restriction on using outputs "as part of any machine learning or similar algorithmic activity" applies only to outputs generated using the web-search feature. Regular API text completions (your summaries) are not covered by this restriction.
+There is no general prohibition on using standard text outputs to train other models.
+Reverse engineering clauses (not applicable to your use case)
+Section 2.2(d)-(e) prohibit using Output to reverse engineer Mistral's own products (algorithms, weights, systems). Training a completely different model (e.g., Gemma-2B) on a different task (Norwegian text summarisation) is not reverse engineering Mistral. This clause targets model extraction/distillation attacks aimed at replicating Mistral itself.
+Training data usage by Mistral
+Section 4.2: Under the Commercial Terms, Mistral will not use your content to train their models (except for feedback, moderation flags, or if specified in an Order Form). So your 150k Norwegian texts are safe from being absorbed into Mistral's training.
+Potential concerns to be aware of
+Usage Policy: All three documents reference Mistral's Usage Policy (at legal.mistral.ai), which I have not reviewed. It may contain additional restrictions. You should read it.
+Web search: If your API calls trigger Mistral's web-search feature (e.g., through Le Chat with search enabled), the outputs would fall under the stricter Section 3.3(b) restrictions. Make sure you use plain API completions without web search.
+"Competing" interpretation: While Section 3.3 only explicitly restricts image outputs for competitive training, a very aggressive reading of Section 2.2(d)-(e) could try to characterise fine-tuning as "discovering underlying components." This is a stretch -- your use case (domain-specific summarisation fine-tuning) is clearly distinct from reverse engineering -- but it is worth flagging for legal review.
+Future terms changes: Section 13 allows Mistral to update terms with 30 days notice. If they later add a broader "no ML training on outputs" clause (like the one that currently exists only for web-search outputs), that could affect ongoing or future work.
+Summary
+Based on the current text of the Commercial Terms:
+Concern	Status
+You own the generated summaries	Yes (Section 3.1)
+Restriction on using text outputs for ML training	No (only web-search and image outputs are restricted)
+Restriction on fine-tuning non-Mistral models	No explicit restriction
+Reverse engineering concern	Not applicable -- you are training a different model for a different purpose
+Commercial use of fine-tuned model	Permitted (the output restriction for commercial products applies only to web-search outputs)
+Mistral training on your data	No (Commercial Terms, Section 4.2)
+Bottom line: Under the current Commercial Terms, your intended workflow -- generating summaries via the API (without web search), then using those to fine-tune independent models for specialised domain summarisation -- appears to be permitted. The key is to (1) use the Commercial Terms (not consumer), (2) avoid web-search-generated outputs, and (3) review the Usage Policy for any additional constraints.
