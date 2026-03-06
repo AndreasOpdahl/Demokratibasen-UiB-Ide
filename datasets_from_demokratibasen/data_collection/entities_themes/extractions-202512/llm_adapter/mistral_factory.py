@@ -43,8 +43,8 @@ JITTER_FRACTION = 0.1  # Add ±10% random jitter to prevent thundering herd
 
 # Client-side throttling configuration
 # Add a delay between requests to avoid RPM limits
-REQUEST_DELAY_MIN = 2.0  # Minimum delay between requests (seconds) - increased from 0.5
-REQUEST_DELAY_MAX = 4.0  # Maximum delay between requests (seconds) - increased from 1.0
+REQUEST_DELAY_MIN = 1.0  # Minimum delay between requests (seconds)
+REQUEST_DELAY_MAX = 2.0  # Maximum delay between requests (seconds)
 
 
 def _extract_retry_delay(error: Exception) -> Optional[float]:
