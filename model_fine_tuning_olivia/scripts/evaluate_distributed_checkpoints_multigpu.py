@@ -1183,6 +1183,7 @@ def evaluate_checkpoint(
     wandb_group: Optional[str] = None,
     major_checkpoint_interval: int = 500,  # Every Nth step is major (gets BERTScore). Default: 500 (every 500 steps = checkpoint-500, checkpoint-1000, etc.)
     include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation (uses fixed 500-example subset for consistency)
+    keep_existing: bool = False,
 ):
     """Load a PEFT checkpoint and run evaluation with model parallelism support."""
     
@@ -1190,13 +1191,8 @@ def evaluate_checkpoint(
     checkpoint_dir = os.path.abspath(checkpoint_dir)
     
     # Extract checkpoint step number early (needed for checking existing results)
-    checkpoint_name = os.path.basename(checkpoint_dir.rstrip('/'))
-    checkpoint_step = checkpoint_name.replace('checkpoint-', '') if 'checkpoint-' in checkpoint_name else 'unknown'
-    
-    try:
-        checkpoint_step_int = int(checkpoint_step)
-    except ValueError:
-        checkpoint_step_int = 0
+    # Use shared utility so regular-/major-checkpoint names are parsed correctly.
+    checkpoint_name, checkpoint_step_int = get_checkpoint_name_and_step(checkpoint_dir)
     
     # Determine if this is a "major" checkpoint for tiered evaluation
     # Major checkpoints: every Nth checkpoint (based on major_checkpoint_interval)
@@ -1248,6 +1244,18 @@ def evaluate_checkpoint(
     # If results file exists, load and log to Wandb without re-evaluating
     if os.path.exists(results_file):
         print(f"⚠ Checkpoint {checkpoint_name} already evaluated. Loading existing results...")
+        if keep_existing:
+            existing_results = load_eval_results(checkpoint_dir, model_dir_eval)
+            if existing_results is None:
+                print(f"✓ keep_existing enabled and results file exists. Skipping checkpoint {checkpoint_name} without overwriting.")
+                return {
+                    "checkpoint_name": checkpoint_name,
+                    "checkpoint_step": checkpoint_step_int,
+                    "status": "skipped_keep_existing_existing_file",
+                    "result_file": results_file,
+                }, None
+            print(f"✓ keep_existing enabled. Reusing existing results for {checkpoint_name} (no overwrite).")
+            return existing_results, None
         
         try:
             existing_results = load_eval_results(checkpoint_dir, model_dir_eval)
@@ -1307,6 +1315,9 @@ def evaluate_checkpoint(
                         print(f"   Re-evaluating checkpoint {checkpoint_name}...")
                     # Fall through to normal evaluation instead of returning
                 else:
+                    if keep_existing:
+                        print(f"✓ keep_existing enabled and existing results complete. Skipping re-evaluation for {checkpoint_name}.")
+                        return existing_results, None
                     # Initialize Wandb if needed (even for already-evaluated checkpoints)
                     is_main_process_cached = True
                     if wandb_project and not wandb_disabled and wandb.run is None and is_main_process_cached:
@@ -2329,6 +2340,8 @@ Examples:
                        help='Use greedy decoding instead of beam search for faster evaluation')
     parser.add_argument('--use_multi_gpu', action='store_true',
                        help='Use model parallelism (device_map="auto") to split model across multiple GPUs. Compatible with generation.')
+    parser.add_argument('--keep_existing', action='store_true',
+                       help='If set, do not rerun evaluation when results already exist (skips checkpoints with saved outputs).')
     
     # Wandb arguments
     parser.add_argument('--wandb_project', type=str, default='lm-evaluation',
@@ -2389,6 +2402,7 @@ Examples:
                 wandb_group=args.wandb_group,
                 major_checkpoint_interval=args.major_checkpoint_interval,
                 include_nli_faithfulness=args.include_nli_faithfulness,
+                keep_existing=args.keep_existing,
             )
         except AlreadyEvaluatedError as e:
             print(f"⚠ SKIPPING: {e}")
