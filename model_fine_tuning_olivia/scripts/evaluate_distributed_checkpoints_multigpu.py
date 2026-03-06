@@ -205,12 +205,14 @@ class CausalLMTrainer(Trainer):
                  eval_data_collator: Optional[Any] = None,
                  use_greedy: bool = True,
                  checkpoint_dir: Optional[str] = None,
+                 model_name: Optional[str] = None,  # Store model name for prompt format detection
                  **kwargs) -> None:
         self.generation_max_length = generation_max_length
         self.generation_num_beams = generation_num_beams
         self.eval_data_collator = eval_data_collator
         self.use_greedy = use_greedy
         self.checkpoint_dir = checkpoint_dir  # Store checkpoint directory
+        self.model_name = model_name  # Store model name for prompt format detection
         super().__init__(*args, **kwargs)
         self._processing_class = self.tokenizer
         # Store predictions for saving to JSONL
@@ -337,7 +339,8 @@ class CausalLMTrainer(Trainer):
             
             # Set minimum length to prevent model from outputting EOS immediately
             # This is critical: if model learned to output EOS to minimize loss, we need to force it to generate content
-            min_new_tokens = max(10, self.generation_max_length // 10)  # At least 10 tokens or 10% of max
+            gen_max_len = self.generation_max_length if self.generation_max_length is not None else 512
+            min_new_tokens = max(10, gen_max_len // 10)  # At least 10 tokens or 10% of max
             
             generation_kwargs = {
                 'input_ids': input_ids,
@@ -368,8 +371,153 @@ class CausalLMTrainer(Trainer):
             print(f'*** DEBUG: Generation kwargs: max_new_tokens={generation_kwargs["max_new_tokens"]}, '
                   f'pad_token_id={generation_kwargs["pad_token_id"]}, eos_token_id={generation_kwargs["eos_token_id"]}')
             
+            # GPT-J specific validation: Check input length and token IDs to prevent CUDA device-side asserts
+            # GPT-J has a 2048 token context window and can crash with device-side asserts if exceeded
+            input_length = input_ids.shape[1]
+            # Try to detect GPT-J model from model config or name
+            model_name_lower = ''
+            if hasattr(model, 'config') and hasattr(model.config, 'model_type'):
+                model_name_lower = model.config.model_type.lower()
+            elif hasattr(model, 'name_or_path'):
+                model_name_lower = str(model.name_or_path).lower()
+            elif hasattr(model, 'base_model') and hasattr(model.base_model, 'config'):
+                model_name_lower = getattr(model.base_model.config, 'model_type', '').lower()
+            
+            if 'gpt-j' in model_name_lower or 'gptj' in model_name_lower or 'gpt_j' in model_name_lower:
+                # Get model's max position embeddings (GPT-J typically has 2048)
+                max_pos_embeddings = getattr(model.config, 'max_position_embeddings', 2048) if hasattr(model, 'config') else 2048
+                vocab_size = getattr(self._processing_class, 'vocab_size', None) or (len(self._processing_class) if hasattr(self._processing_class, '__len__') else None)
+                
+                print(f'*** DEBUG: GPT-J model detected - validating input...')
+                print(f'  Input length: {input_length} tokens')
+                print(f'  Max position embeddings: {max_pos_embeddings}')
+                print(f'  Max new tokens: {generation_kwargs["max_new_tokens"]}')
+                print(f'  Total sequence length (input + max_new): {input_length + generation_kwargs["max_new_tokens"]}')
+                
+                # Validate input length doesn't exceed max position embeddings
+                if input_length > max_pos_embeddings:
+                    print(f'⚠ WARNING: Input length ({input_length}) exceeds max position embeddings ({max_pos_embeddings})')
+                    print(f'  Truncating input to {max_pos_embeddings} tokens to prevent CUDA error')
+                    input_ids = input_ids[:, :max_pos_embeddings]
+                    input_length = input_ids.shape[1]
+                    generation_kwargs['input_ids'] = input_ids
+                
+                # Validate total sequence length (input + generation) doesn't exceed max
+                total_sequence_length = input_length + generation_kwargs["max_new_tokens"]
+                if total_sequence_length > max_pos_embeddings:
+                    # Reduce max_new_tokens to fit within context window
+                    max_new_tokens_safe = max(1, max_pos_embeddings - input_length - 10)  # Leave 10 token buffer
+                    print(f'⚠ WARNING: Total sequence length ({total_sequence_length}) would exceed max position embeddings ({max_pos_embeddings})')
+                    print(f'  Reducing max_new_tokens from {generation_kwargs["max_new_tokens"]} to {max_new_tokens_safe}')
+                    generation_kwargs["max_new_tokens"] = max_new_tokens_safe
+                    # Update min_new_tokens if it was set
+                    if 'min_new_tokens' in generation_kwargs:
+                        generation_kwargs['min_new_tokens'] = min(generation_kwargs['min_new_tokens'], max_new_tokens_safe)
+                    elif 'min_length' in generation_kwargs:
+                        generation_kwargs['min_length'] = min(generation_kwargs['min_length'], max_pos_embeddings)
+                
+                # Validate token IDs are within valid range
+                if vocab_size is not None:
+                    # Check for invalid token IDs (outside vocab range)
+                    invalid_mask = (input_ids < 0) | (input_ids >= vocab_size)
+                    num_invalid = invalid_mask.sum().item()
+                    if num_invalid > 0:
+                        print(f'⚠ WARNING: Found {num_invalid} invalid token IDs (outside vocab range [0, {vocab_size}))')
+                        print(f'  Clamping invalid token IDs to valid range')
+                        input_ids = torch.clamp(input_ids, 0, vocab_size - 1)
+                        generation_kwargs['input_ids'] = input_ids
+                    
+                    # Check for NaN or Inf values
+                    if torch.isnan(input_ids).any() or torch.isinf(input_ids).any():
+                        print(f'⚠ WARNING: Found NaN or Inf values in input_ids')
+                        print(f'  Replacing with pad_token_id')
+                        input_ids = torch.where(torch.isnan(input_ids) | torch.isinf(input_ids), 
+                                               torch.tensor(generation_kwargs['pad_token_id'], device=input_ids.device, dtype=input_ids.dtype),
+                                               input_ids)
+                        generation_kwargs['input_ids'] = input_ids
+                
+                print(f'*** DEBUG: GPT-J validation complete - safe to generate')
+            
             try:
                 generated_ids = model.generate(**generation_kwargs)
+            except RuntimeError as e:
+                error_str = str(e)
+                # Check if this is a CUDA device-side assert (common with GPT-J)
+                if "CUDA error" in error_str or "device-side assert" in error_str:
+                    print(f'⚠ CUDA device-side assert detected during generation: {e}')
+                    print(f'  This is often caused by:')
+                    print(f'    1. Input sequence length exceeding model max position embeddings')
+                    print(f'    2. Invalid token IDs (outside vocab range)')
+                    print(f'    3. Total sequence (input + generation) exceeding context window')
+                    
+                    # For GPT-J models, try with more aggressive truncation
+                    # Re-check model type in case validation didn't run
+                    error_model_type = ''
+                    if hasattr(model, 'config') and hasattr(model.config, 'model_type'):
+                        error_model_type = model.config.model_type.lower()
+                    elif hasattr(model, 'base_model') and hasattr(model.base_model, 'config'):
+                        error_model_type = getattr(model.base_model.config, 'model_type', '').lower()
+                    
+                    if 'gpt-j' in error_model_type or 'gptj' in error_model_type or 'gpt_j' in error_model_type or 'gpt-j' in model_name_lower or 'gptj' in model_name_lower:
+                        print(f'  Attempting recovery for GPT-J model...')
+                        
+                        # Clear CUDA cache and reset state
+                        torch.cuda.empty_cache()
+                        torch.cuda.synchronize()
+                        
+                        # Further reduce input length if needed
+                        max_pos_embeddings = getattr(model.config, 'max_position_embeddings', 2048) if hasattr(model, 'config') else 2048
+                        safe_input_length = min(input_length, max_pos_embeddings - 100)  # Leave 100 token buffer
+                        
+                        if safe_input_length < input_length:
+                            print(f'  Truncating input from {input_length} to {safe_input_length} tokens')
+                            input_ids_truncated = input_ids[:, :safe_input_length]
+                            generation_kwargs['input_ids'] = input_ids_truncated
+                            generation_kwargs['max_new_tokens'] = min(generation_kwargs['max_new_tokens'], 100)  # Very conservative
+                            if 'min_new_tokens' in generation_kwargs:
+                                generation_kwargs['min_new_tokens'] = min(generation_kwargs['min_new_tokens'], 10)
+                        
+                        # Try again with truncated input
+                        try:
+                            print(f'  Retrying generation with truncated input...')
+                            generated_ids = model.generate(**generation_kwargs)
+                            print(f'  ✓ Recovery succeeded with truncated input')
+                        except Exception as recovery_error:
+                            print(f'  ✗ Recovery failed: {recovery_error}')
+                            print(f'  This checkpoint may be corrupted or incompatible with the model')
+                            raise RuntimeError(
+                                f"CUDA device-side assert for GPT-J model could not be recovered. "
+                                f"Original error: {e}\nRecovery error: {recovery_error}\n"
+                                f"Try: 1) Check if checkpoint is corrupted, 2) Verify model and checkpoint compatibility, "
+                                f"3) Run with CUDA_LAUNCH_BLOCKING=1 for detailed error info"
+                            ) from recovery_error
+                    else:
+                        # For non-GPT-J models, try standard fallback
+                        print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
+                        generation_kwargs_fallback = generation_kwargs.copy()
+                        generation_kwargs_fallback['do_sample'] = True
+                        generation_kwargs_fallback['temperature'] = 0.7
+                        generation_kwargs_fallback['top_p'] = 0.9
+                        try:
+                            generated_ids = model.generate(**generation_kwargs_fallback)
+                            print(f'  Fallback generation succeeded')
+                        except Exception as e2:
+                            print(f'  Fallback also failed: {e2}')
+                            raise
+                else:
+                    # Non-CUDA error, try standard fallback
+                    print(f'⚠ ERROR during generation: {e}')
+                    print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
+                    generation_kwargs_fallback = generation_kwargs.copy()
+                    generation_kwargs_fallback['do_sample'] = True
+                    generation_kwargs_fallback['temperature'] = 0.7
+                    generation_kwargs_fallback['top_p'] = 0.9
+                    try:
+                        generated_ids = model.generate(**generation_kwargs_fallback)
+                        print(f'  Fallback generation succeeded')
+                    except Exception as e2:
+                        print(f'  Fallback also failed: {e2}')
+                        raise
             except Exception as e:
                 print(f'⚠ ERROR during generation: {e}')
                 print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
@@ -399,8 +547,8 @@ class CausalLMTrainer(Trainer):
                 generation_kwargs_retry = {
                     'input_ids': input_ids,
                     'use_cache': True,
-                    'max_new_tokens': self.generation_max_length,
-                    'min_new_tokens': max(20, self.generation_max_length // 5),  # More aggressive minimum
+                    'max_new_tokens': self.generation_max_length if self.generation_max_length is not None else 512,
+                    'min_new_tokens': max(20, (self.generation_max_length if self.generation_max_length is not None else 512) // 5),  # More aggressive minimum
                     'do_sample': True,  # Try sampling instead of greedy
                     'temperature': 0.8,
                     'top_p': 0.95,
@@ -419,6 +567,7 @@ class CausalLMTrainer(Trainer):
                     print(f'  Retry generation failed: {e}')
         
         # Before slicing, check if the model might have included input tokens in generation
+        # For Mistral/Llama models, we need to find where [/INST] ends and extract only after that
         # Decode a sample of the full output to see what's happening
         if generated_ids.shape[0] > 0:
             sample_full = generated_ids[0].cpu().tolist()
@@ -427,30 +576,425 @@ class CausalLMTrainer(Trainer):
                 full_decoded = self._processing_class.decode(sample_full, skip_special_tokens=False)
                 input_decoded = self._processing_class.decode(sample_input, skip_special_tokens=False)
                 
-                # Find where the assistant header ends in the input
-                assistant_header_end = input_decoded.rfind('<|start_header_id|>assistant<|end_header_id|>')
-                if assistant_header_end >= 0:
-                    # Find the end of the assistant header (after the newlines)
-                    header_end_pos = input_decoded.find('\n\n', assistant_header_end)
-                    if header_end_pos >= 0:
-                        expected_start_pos = header_end_pos + 2  # After "\n\n"
-                        input_after_header = input_decoded[expected_start_pos:]
-                        print(f'*** DEBUG: Input after assistant header (last 200 chars): ...{input_after_header[-200:]}')
+                print(f'*** DEBUG: Full input prompt (first 300 chars): {input_decoded[:300]}')
+                print(f'*** DEBUG: Full input prompt (last 200 chars): ...{input_decoded[-200:]}')
                 
-                # Check the full output - see what comes after the input
-                if len(full_decoded) > len(input_decoded):
-                    generated_part = full_decoded[len(input_decoded):]
-                    print(f'*** DEBUG: Generated part (first 300 chars): {generated_part[:300]}')
-                    # Check if it looks like continuation of input (starts with lowercase, comma, etc.)
-                    if generated_part and generated_part[0] in [',', '.', ' ', '\n'] or (generated_part and generated_part[0].islower()):
-                        print(f'⚠ WARNING: Generated text appears to continue from input (starts with "{generated_part[:50]}"). Model may be copying input instead of summarizing.')
+                # For Mistral format: find where [/INST] ends
+                inst_end_marker = '[/INST]'
+                inst_end_pos = input_decoded.rfind(inst_end_marker)
+                
+                if inst_end_pos >= 0:
+                    # Find the position after [/INST] and any whitespace
+                    after_inst_pos = inst_end_pos + len(inst_end_marker)
+                    # Skip any whitespace/newlines after [/INST]
+                    while after_inst_pos < len(input_decoded) and input_decoded[after_inst_pos] in [' ', '\n', '\t']:
+                        after_inst_pos += 1
+                    
+                    input_before_generation = input_decoded[:after_inst_pos]
+                    print(f'*** DEBUG: Input ends at position {after_inst_pos} (after {inst_end_marker})')
+                    print(f'*** DEBUG: Input before generation (last 100 chars): ...{input_before_generation[-100:]}')
+                    
+                    # Check what comes after in the full output
+                    if len(full_decoded) > after_inst_pos:
+                        generated_part = full_decoded[after_inst_pos:]
+                        print(f'*** DEBUG: Generated part (first 300 chars): {generated_part[:300]}')
+                        
+                        # Check if it looks like continuation of input (starts with lowercase, comma, etc.)
+                        if generated_part and len(generated_part) > 0:
+                            first_chars = generated_part.strip()[:50]
+                            if first_chars and (first_chars[0] in [',', '.', ' ', '\n'] or first_chars[0].islower()):
+                                print(f'⚠ WARNING: Generated text appears to continue from input (starts with "{first_chars}").')
+                                print(f'  This suggests the model is copying input instead of summarizing.')
+                                print(f'  The input might not have a clear separator, or the model needs more training.')
+                                
+                                # Try to find where the actual summary might start
+                                # Look for sentence boundaries or capital letters that might indicate a new sentence
+                                sentence_pattern = r'[.!?]\s+[A-ZÆØÅ]'
+                                match = re.search(sentence_pattern, generated_part)
+                                if match:
+                                    summary_start = match.end() - 1  # Position of capital letter
+                                    potential_summary = generated_part[summary_start:]
+                                    print(f'  Found potential summary start at position {summary_start}: "{potential_summary[:100]}..."')
+                    else:
+                        print(f'*** DEBUG: Full output length ({len(full_decoded)}) <= input end position ({after_inst_pos})')
                 else:
-                    print(f'*** DEBUG: Full generated output (first 500 chars): {full_decoded[:500]}')
-                    print(f'*** DEBUG: Input prompt (last 300 chars): ...{input_decoded[-300:]}')
+                    # No [/INST] found, check if it's a different format
+                    print(f'*** DEBUG: No {inst_end_marker} found in input. Checking for other markers...')
+                    # Check for Llama-3 format
+                    if '<|eot_id|>' in input_decoded:
+                        eot_pos = input_decoded.rfind('<|eot_id|>')
+                        after_eot_pos = eot_pos + len('<|eot_id|>')
+                        while after_eot_pos < len(input_decoded) and input_decoded[after_eot_pos] in [' ', '\n', '\t']:
+                            after_eot_pos += 1
+                        if len(full_decoded) > after_eot_pos:
+                            generated_part = full_decoded[after_eot_pos:]
+                            print(f'*** DEBUG: Generated part after <|eot_id|> (first 300 chars): {generated_part[:300]}')
+                
+                # Also check the full output vs input
+                if len(full_decoded) > len(input_decoded):
+                    generated_part_simple = full_decoded[len(input_decoded):]
+                    print(f'*** DEBUG: Generated part (simple slice, first 300 chars): {generated_part_simple[:300]}')
             except Exception as e:
                 print(f'*** DEBUG: Could not decode for inspection: {e}')
+                import traceback
+                traceback.print_exc()
         
-        generated_ids = generated_ids[:, input_length:]
+        # Slice to get only generated tokens (after input)
+        # Different prompt formats use different markers:
+        # - Mistral: [/INST] (token-based)
+        # - Llama-3: <|eot_id|> or <|start_header_id|>assistant<|end_header_id|> (token-based)
+        # - Alpaca: "Response:" (text-based, need to find in decoded text)
+        # - Plain: "Oppsummering:" (text-based)
+        # - ChatML: <|im_start|>assistant (token-based)
+        
+        # Detect prompt format from model config if available
+        prompt_format_type = None
+        model_name_for_config = None
+        
+        # First try to use stored model_name
+        if hasattr(self, 'model_name') and self.model_name:
+            model_name_for_config = self.model_name
+        # Otherwise try to get from model
+        elif hasattr(self, 'model') and hasattr(self.model, 'config'):
+            if hasattr(self.model, 'name_or_path'):
+                model_name_for_config = self.model.name_or_path
+            elif hasattr(self.model, 'base_model') and hasattr(self.model.base_model, 'name_or_path'):
+                model_name_for_config = self.model.base_model.name_or_path
+        
+        if model_name_for_config:
+            try:
+                from model_configs import get_model_config_by_hf_name
+                model_config = get_model_config_by_hf_name(model_name_for_config)
+                if model_config:
+                    prompt_format_type = model_config.prompt_config.template_type
+                    print(f'*** DEBUG: Detected prompt format type: {prompt_format_type} for model: {model_name_for_config}')
+            except Exception as e:
+                print(f'*** DEBUG: Could not detect prompt format: {e}')
+        
+        # Strategy 1: Try token-based extraction for Mistral/Llama/ChatML formats
+        extraction_successful = False
+        
+        # First, try to find [/INST] token position (Mistral format)
+        inst_token_id = None
+        if hasattr(self._processing_class, 'convert_tokens_to_ids'):
+            try:
+                inst_token_id = self._processing_class.convert_tokens_to_ids('[/INST]')
+            except:
+                pass
+        
+        # If we found [/INST] token, try to extract only tokens after it
+        if inst_token_id is not None and generated_ids.shape[0] > 0 and (prompt_format_type is None or prompt_format_type == 'mistral'):
+            # Find the last occurrence of [/INST] in the input
+            input_ids_list = input_ids[0].cpu().tolist()
+            inst_positions = [i for i, token_id in enumerate(input_ids_list) if token_id == inst_token_id]
+            
+            if inst_positions:
+                last_inst_pos = inst_positions[-1]
+                # Extract only tokens after the last [/INST]
+                # But we need to account for the fact that generated_ids includes the full sequence
+                # So we need to find where [/INST] is in the full generated_ids
+                full_sequence = generated_ids[0].cpu().tolist()
+                full_inst_positions = [i for i, token_id in enumerate(full_sequence) if token_id == inst_token_id]
+                
+                if full_inst_positions:
+                    last_full_inst_pos = full_inst_positions[-1]
+                    # Extract only after the last [/INST] in the full sequence
+                    # Skip any whitespace/padding tokens immediately after
+                    start_pos = last_full_inst_pos + 1
+                    # Skip pad/eos tokens at the start
+                    while start_pos < len(full_sequence) and full_sequence[start_pos] in [self._processing_class.pad_token_id, self._processing_class.eos_token_id]:
+                        start_pos += 1
+                    
+                    if start_pos < len(full_sequence):
+                        print(f'*** DEBUG: Found [/INST] at position {last_full_inst_pos}, extracting from position {start_pos}')
+                        # Extract from start_pos for all sequences in the batch
+                        if start_pos < generated_ids.shape[1]:
+                            generated_ids = generated_ids[:, start_pos:]
+                            print(f'*** DEBUG: Extracted generated_ids shape after [/INST]: {generated_ids.shape}')
+                            extraction_successful = True
+                        else:
+                            print(f'*** DEBUG: start_pos {start_pos} >= generated_ids.shape[1] {generated_ids.shape[1]}, using original slice')
+                            generated_ids = generated_ids[:, input_length:]
+                    else:
+                        print(f'*** DEBUG: start_pos {start_pos} >= sequence length, using original slice')
+                        generated_ids = generated_ids[:, input_length:]
+                else:
+                    # No [/INST] in full sequence, use original slice
+                    generated_ids = generated_ids[:, input_length:]
+            else:
+                # No [/INST] in input, use original slice
+                generated_ids = generated_ids[:, input_length:]
+        else:
+            # No [/INST] token found or not Mistral format, try other formats
+            if not extraction_successful and generated_ids.shape[0] > 0:
+                # Strategy 2: Try Llama-3/Llama-3.1 format (<|start_header_id|>assistant<|end_header_id|>)
+                if prompt_format_type in ['llama3', 'llama3.1'] or prompt_format_type is None:
+                    # For Llama-3.1, we need to find the assistant header and extract after it
+                    # The format is: ...<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n[SUMMARY]
+                    # We should extract everything after the assistant header
+                    
+                    # First, try to find the assistant header tokens
+                    assistant_header_start_id = None
+                    assistant_header_end_id = None
+                    eot_token_id = None
+                    
+                    if hasattr(self._processing_class, 'convert_tokens_to_ids'):
+                        try:
+                            assistant_header_start_id = self._processing_class.convert_tokens_to_ids('<|start_header_id|>')
+                            assistant_header_end_id = self._processing_class.convert_tokens_to_ids('<|end_header_id|>')
+                            eot_token_id = self._processing_class.convert_tokens_to_ids('<|eot_id|>')
+                        except:
+                            pass
+                    
+                    # Try token-based extraction first (more reliable)
+                    if assistant_header_start_id is not None and assistant_header_end_id is not None:
+                        full_sequence = generated_ids[0].cpu().tolist()
+                        
+                        # Find all occurrences of <|start_header_id|>assistant<|end_header_id|>
+                        # This is a sequence: <|start_header_id|> (token) + "assistant" (token) + <|end_header_id|> (token)
+                        # We need to find where "assistant" appears between start and end header tokens
+                        assistant_token_id = None
+                        try:
+                            # Try to get the token ID for "assistant"
+                            if hasattr(self._processing_class, 'encode'):
+                                assistant_encoded = self._processing_class.encode('assistant', add_special_tokens=False)
+                                if len(assistant_encoded) > 0:
+                                    assistant_token_id = assistant_encoded[0]
+                        except:
+                            pass
+                        
+                        # Look for the pattern: <|start_header_id|> ... assistant ... <|end_header_id|>
+                        # Find the last occurrence in the input (should be right before generation)
+                        header_start_positions = [i for i, token_id in enumerate(full_sequence) if token_id == assistant_header_start_id]
+                        
+                        if header_start_positions:
+                            # Find the last header that's in the input (before generation)
+                            last_header_in_input = None
+                            for pos in reversed(header_start_positions):
+                                if pos < input_length:
+                                    # Check if this is followed by assistant token and end header
+                                    # Look ahead a few tokens to find the pattern
+                                    if pos + 2 < len(full_sequence):
+                                        # Check if next token is "assistant" (or skip to find it)
+                                        found_assistant = False
+                                        found_end = False
+                                        search_pos = pos + 1
+                                        
+                                        # Search for assistant token and end header within next 5 tokens
+                                        for i in range(min(5, len(full_sequence) - pos - 1)):
+                                            if assistant_token_id and full_sequence[search_pos + i] == assistant_token_id:
+                                                found_assistant = True
+                                            if full_sequence[search_pos + i] == assistant_header_end_id:
+                                                found_end = True
+                                                if found_assistant:
+                                                    # Found the complete pattern
+                                                    last_header_in_input = pos
+                                                    # Extract after the end header token
+                                                    start_pos = search_pos + i + 1
+                                                    # Skip any newline/whitespace tokens (usually \n\n after assistant header)
+                                                    while start_pos < len(full_sequence) and full_sequence[start_pos] in [self._processing_class.pad_token_id, self._processing_class.eos_token_id]:
+                                                        start_pos += 1
+                                                    if start_pos < generated_ids.shape[1]:
+                                                        print(f'*** DEBUG: Found assistant header at position {pos}, extracting from position {start_pos} (after <|end_header_id|>)')
+                                                        generated_ids = generated_ids[:, start_pos:]
+                                                        extraction_successful = True
+                                                        break
+                                                break
+                                        
+                                        if extraction_successful:
+                                            break
+                            
+                            # Fallback: If token-based extraction failed, try text-based
+                            if not extraction_successful:
+                                try:
+                                    # Decode the full output to find the assistant header in text
+                                    full_decoded = self._processing_class.decode(generated_ids[0].cpu().tolist(), skip_special_tokens=False)
+                                    input_decoded = self._processing_class.decode(input_ids[0].cpu().tolist(), skip_special_tokens=False)
+                                    
+                                    # Find the last occurrence of assistant header in input
+                                    assistant_header_text = '<|start_header_id|>assistant<|end_header_id|>'
+                                    header_pos_in_input = input_decoded.rfind(assistant_header_text)
+                                    
+                                    if header_pos_in_input >= 0:
+                                        # Find position after the header
+                                        after_header_pos = header_pos_in_input + len(assistant_header_text)
+                                        # Skip whitespace/newlines
+                                        while after_header_pos < len(input_decoded) and input_decoded[after_header_pos] in [' ', '\n', '\t']:
+                                            after_header_pos += 1
+                                        
+                                        # Now find this position in the full output
+                                        if len(full_decoded) > after_header_pos:
+                                            # Tokenize up to this point to find token position
+                                            text_up_to_header = full_decoded[:after_header_pos]
+                                            tokens_up_to_header = self._processing_class.encode(text_up_to_header, add_special_tokens=False)
+                                            token_start = len(tokens_up_to_header)
+                                            
+                                            if token_start < generated_ids.shape[1]:
+                                                print(f'*** DEBUG: Found assistant header in text at position {header_pos_in_input}, extracting from token position {token_start}')
+                                                generated_ids = generated_ids[:, token_start:]
+                                                extraction_successful = True
+                                except Exception as e:
+                                    print(f'*** DEBUG: Text-based extraction for assistant header failed: {e}')
+                    
+                    # Fallback to <|eot_id|> extraction if assistant header not found
+                    if not extraction_successful and eot_token_id is not None:
+                        full_sequence = generated_ids[0].cpu().tolist()
+                        eot_positions = [i for i, token_id in enumerate(full_sequence) if token_id == eot_token_id]
+                        if eot_positions:
+                            # Find the last <|eot_id|> before the generation starts (should be in input)
+                            last_eot_in_input = max([p for p in eot_positions if p < input_length], default=None)
+                            if last_eot_in_input is not None:
+                                start_pos = last_eot_in_input + 1
+                                # Skip pad/eos tokens
+                                while start_pos < len(full_sequence) and full_sequence[start_pos] in [self._processing_class.pad_token_id, self._processing_class.eos_token_id]:
+                                    start_pos += 1
+                                if start_pos < generated_ids.shape[1]:
+                                    print(f'*** DEBUG: Fallback - Found <|eot_id|> at position {last_eot_in_input}, extracting from position {start_pos}')
+                                    generated_ids = generated_ids[:, start_pos:]
+                                    extraction_successful = True
+                
+                # Strategy 3: Try Alpaca format ("Response:" text marker)
+                if not extraction_successful and (prompt_format_type == 'alpaca' or prompt_format_type is None):
+                    # Decode both input and full output to find "Response:" marker
+                    try:
+                        input_decoded = self._processing_class.decode(input_ids[0].cpu().tolist(), skip_special_tokens=False)
+                        full_output_decoded = self._processing_class.decode(generated_ids[0].cpu().tolist(), skip_special_tokens=False)
+                        
+                        response_marker = "Response:"
+                        
+                        # First, check if "Response:" exists in the input (should be at the end)
+                        response_pos_in_input = input_decoded.rfind(response_marker)
+                        
+                        # Also check if model generated "Response:" again (might happen if model is confused)
+                        response_pos_in_output = full_output_decoded.find(response_marker)
+                        
+                        # Use the last occurrence of "Response:" in the full output
+                        # This handles both cases: Response: in input, or Response: generated by model
+                        all_response_positions = []
+                        if response_pos_in_input >= 0:
+                            all_response_positions.append(response_pos_in_input)
+                        if response_pos_in_output >= 0:
+                            all_response_positions.append(response_pos_in_output)
+                        
+                        if all_response_positions:
+                            # Use the last occurrence (most likely the one after which generation should start)
+                            last_response_pos = max(all_response_positions)
+                            
+                            # Find the position after "Response:" and any whitespace
+                            after_response_pos = last_response_pos + len(response_marker)
+                            while after_response_pos < len(full_output_decoded) and full_output_decoded[after_response_pos] in [' ', '\n', '\t']:
+                                after_response_pos += 1
+                            
+                            # If the Response: is in the output (model generated it), we need to find it in token space
+                            # Tokenize the part before the Response: marker
+                            text_before_response = full_output_decoded[:after_response_pos]
+                            tokens_before_response = self._processing_class.encode(text_before_response, add_special_tokens=False)
+                            token_pos_after_response = len(tokens_before_response)
+                            
+                            # Also check if model included "Instruction:" in output (model copying input)
+                            instruction_marker = "Instruction:"
+                            if instruction_marker in full_output_decoded and instruction_marker not in input_decoded[-200:]:
+                                # Model generated "Instruction:" - this is wrong, find where actual response starts
+                                # Look for "Response:" after the generated "Instruction:"
+                                instruction_pos = full_output_decoded.find(instruction_marker)
+                                if instruction_pos >= 0:
+                                    # Find Response: after this Instruction:
+                                    response_after_instruction = full_output_decoded.find(response_marker, instruction_pos)
+                                    if response_after_instruction >= 0:
+                                        after_response_pos = response_after_instruction + len(response_marker)
+                                        while after_response_pos < len(full_output_decoded) and full_output_decoded[after_response_pos] in [' ', '\n', '\t']:
+                                            after_response_pos += 1
+                                        text_before_response = full_output_decoded[:after_response_pos]
+                                        tokens_before_response = self._processing_class.encode(text_before_response, add_special_tokens=False)
+                                        token_pos_after_response = len(tokens_before_response)
+                                        print(f'*** DEBUG: Model included "Instruction:" in output, found "Response:" after it')
+                            
+                            # Extract from this position
+                            if token_pos_after_response < generated_ids.shape[1]:
+                                print(f'*** DEBUG: Found "Response:" marker at token position {token_pos_after_response}, extracting from there')
+                                generated_ids = generated_ids[:, token_pos_after_response:]
+                                extraction_successful = True
+                            else:
+                                print(f'*** DEBUG: "Response:" found but token position {token_pos_after_response} >= generated_ids.shape[1] {generated_ids.shape[1]}')
+                        else:
+                            print(f'*** DEBUG: "Response:" marker not found in input or output for Alpaca format')
+                    except Exception as e:
+                        print(f'*** DEBUG: Could not extract using Alpaca format: {e}')
+                        import traceback
+                        traceback.print_exc()
+                
+                # Strategy 4: Try plain format ("Oppsummering:" marker)
+                if not extraction_successful and (prompt_format_type == 'plain' or prompt_format_type is None):
+                    try:
+                        input_decoded = self._processing_class.decode(input_ids[0].cpu().tolist(), skip_special_tokens=False)
+                        summary_marker = "Oppsummering:"
+                        summary_pos = input_decoded.rfind(summary_marker)
+                        
+                        if summary_pos >= 0:
+                            after_summary_pos = summary_pos + len(summary_marker)
+                            while after_summary_pos < len(input_decoded) and input_decoded[after_summary_pos] in [' ', '\n', '\t', '\n\n', '###']:
+                                after_summary_pos += 1
+                            
+                            input_before_summary = input_decoded[:after_summary_pos]
+                            tokens_before_summary = self._processing_class.encode(input_before_summary, add_special_tokens=False)
+                            token_pos_after_summary = len(tokens_before_summary)
+                            
+                            if token_pos_after_summary < generated_ids.shape[1]:
+                                print(f'*** DEBUG: Found "Oppsummering:" marker at token position {token_pos_after_summary}, extracting from there')
+                                generated_ids = generated_ids[:, token_pos_after_summary:]
+                                extraction_successful = True
+                    except Exception as e:
+                        print(f'*** DEBUG: Could not extract using plain format: {e}')
+                
+                # Fallback: Use simple input_length slice if no format-specific extraction worked
+                if not extraction_successful:
+                    print(f'*** DEBUG: No format-specific marker found, using simple input_length slice')
+                    generated_ids = generated_ids[:, input_length:]
+                    
+                    # Additional check: If model seems to be copying input (includes instruction prompt),
+                    # try to find where actual content starts by looking for repeated instruction text
+                    if generated_ids.shape[0] > 0 and generated_ids.shape[1] > 0:
+                        try:
+                            decoded_output = self._processing_class.decode(generated_ids[0].cpu().tolist(), skip_special_tokens=False)
+                            decoded_input = self._processing_class.decode(input_ids[0].cpu().tolist(), skip_special_tokens=False)
+                            
+                            # Check if output starts with instruction text (model copying input)
+                            instruction_start = "Instruction:"
+                            if decoded_output.strip().startswith(instruction_start):
+                                print(f'*** DEBUG: Model output starts with "Instruction:" - likely copying input')
+                                # Try to find "Response:" in the output
+                                response_pos = decoded_output.find("Response:")
+                                if response_pos >= 0:
+                                    after_response = decoded_output[response_pos + len("Response:"):].strip()
+                                    if after_response:
+                                        # Re-encode from Response: onwards
+                                        text_from_response = "Response:" + after_response
+                                        tokens_from_response = self._processing_class.encode(text_from_response, add_special_tokens=False)
+                                        # Find where this starts in the generated_ids
+                                        # This is approximate - we'll use the decoded approach
+                                        print(f'*** DEBUG: Found "Response:" in output, extracting content after it')
+                                        # Update generated_ids to only include content after Response:
+                                        # We'll do this by re-encoding
+                                        try:
+                                            # Find the token position of "Response:" in the full sequence
+                                            full_decoded = self._processing_class.decode(generated_ids[0].cpu().tolist(), skip_special_tokens=False)
+                                            response_token_pos = full_decoded.find("Response:")
+                                            if response_token_pos >= 0:
+                                                # Tokenize up to Response: to find token position
+                                                text_up_to_response = full_decoded[:response_token_pos + len("Response:")]
+                                                tokens_up_to_response = self._processing_class.encode(text_up_to_response, add_special_tokens=False)
+                                                token_start = len(tokens_up_to_response)
+                                                if token_start < generated_ids.shape[1]:
+                                                    generated_ids = generated_ids[:, token_start:]
+                                                    print(f'*** DEBUG: Extracted from "Response:" at token position {token_start}')
+                                                    extraction_successful = True
+                                        except Exception as e:
+                                            print(f'*** DEBUG: Could not extract from Response: in output: {e}')
+                        except Exception as e:
+                            print(f'*** DEBUG: Could not check for copied instruction text: {e}')
+            else:
+                # No sequences or already extracted, use original slice
+                generated_ids = generated_ids[:, input_length:]
         
         print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
         
@@ -489,6 +1033,58 @@ class CausalLMTrainer(Trainer):
         
         # Store predictions for JSONL output
         # Decode predictions (generated summary only, without special tokens)
+        # CRITICAL: Check if model is generating only pad tokens before decoding
+        pad_token_id = self._processing_class.pad_token_id
+        eos_token_id = self._processing_class.eos_token_id
+        
+        # Check if all generated tokens are pad/eos
+        if generated_ids.numel() > 0:
+            non_pad_eos_mask = (generated_ids != pad_token_id) & (generated_ids != eos_token_id)
+            num_valid_tokens = non_pad_eos_mask.sum().item()
+            total_tokens = generated_ids.numel()
+            
+            if num_valid_tokens == 0:
+                print(f'⚠ CRITICAL: Model generated ONLY pad/eos tokens ({total_tokens} tokens, all are pad={pad_token_id} or eos={eos_token_id})')
+                print(f'  This indicates model collapse or checkpoint too early in training.')
+                print(f'  Sample token IDs (first 20): {generated_ids[0, :min(20, generated_ids.shape[1])].cpu().tolist()}')
+                print(f'  Attempting to decode to see what pad token decodes to...')
+                # Try decoding a single pad token to see what it produces
+                test_pad = self._processing_class.decode([pad_token_id], skip_special_tokens=False)
+                print(f'  Pad token (ID {pad_token_id}) decodes to: "{test_pad}"')
+                
+                # For very early checkpoints, this might be expected - model hasn't learned yet
+                # But we should still try to generate something meaningful
+                print(f'  Trying generation with more permissive settings...')
+                
+                # Try with sampling and higher temperature to break out of pad token loop
+                with torch.no_grad():
+                    generation_kwargs_force = {
+                        'input_ids': input_ids,
+                        'use_cache': True,
+                        'max_new_tokens': min(50, self.generation_max_length or 512),  # Shorter for early checkpoints
+                        'min_new_tokens': 5,  # Force at least 5 tokens
+                        'do_sample': True,
+                        'temperature': 1.2,  # Higher temperature to encourage diversity
+                        'top_p': 0.95,
+                        'top_k': 50,
+                        'pad_token_id': pad_token_id,
+                        'eos_token_id': eos_token_id,
+                        'repetition_penalty': 1.0,  # No penalty
+                    }
+                    try:
+                        generated_ids_force = model.generate(**generation_kwargs_force)
+                        # Check if this produced better results
+                        generated_ids_force = generated_ids_force[:, input_length:]
+                        non_pad_eos_mask_force = (generated_ids_force != pad_token_id) & (generated_ids_force != eos_token_id)
+                        num_valid_force = non_pad_eos_mask_force.sum().item()
+                        if num_valid_force > 0:
+                            print(f'  ✓ Forced generation produced {num_valid_force} valid tokens! Using this instead.')
+                            generated_ids = generated_ids_force
+                        else:
+                            print(f'  ✗ Forced generation also failed - model may have collapsed or checkpoint too early.')
+                    except Exception as e:
+                        print(f'  ✗ Forced generation failed: {e}')
+        
         decoded_predictions = self._processing_class.batch_decode(generated_ids, skip_special_tokens=True)
         
         # Debug: Check decoded predictions before cleaning
@@ -515,7 +1111,11 @@ class CausalLMTrainer(Trainer):
             text = text.replace('<|start_header_id|>', '')
             text = text.replace('<|end_header_id|>', '')
             # Remove user/assistant header markers (with any content between)
+            # This regex removes patterns like <|start_header_id|>assistant<|end_header_id|>
             text = re.sub(r'<\|start_header_id\|>.*?<\|end_header_id\|>', '', text)
+            # Also remove standalone "assistant" text that might appear at the start (from header)
+            # Remove "assistant\n\n" or "assistant " at the beginning
+            text = re.sub(r'^assistant\s*\n*\s*', '', text, flags=re.IGNORECASE)
             # Remove backslashes (common issue with Llama-2 chat models)
             text = text.replace('\\', '')
             # Remove multiple spaces
@@ -1447,40 +2047,69 @@ def evaluate_checkpoint(
                         gpu_info[f"gpu_{i}_name"] = props.name
                         gpu_info[f"gpu_{i}_memory_total_gb"] = props.total_memory / 1e9
                     
-                        # Use provided run_name or create one based on model and checkpoint
-                        # Include checkpoint step and type (major/normal) in run name for better identification
-                        if wandb_run_name:
-                            run_name = wandb_run_name
-                            is_major_cached = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
-                        else:
-                            # Default: include checkpoint step and type for uniqueness
-                            is_major_cached = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
-                            checkpoint_type = "major" if is_major_cached else "normal"
-                            run_name = f"{clean_model_name}_eval_{checkpoint_type}-{checkpoint_step_int}"
-                        
-                        wandb.init(
-                        project=wandb_project,
-                        entity=wandb_entity,
-                        name=run_name,
-                        group=wandb_group or clean_model_name,
-                        tags=[
+                    # Use consistent run name and ID for combining all checkpoints
+                    # Determine consistent run name (same as in main evaluation)
+                    model_dir_eval_cached = get_model_dir_from_checkpoint(checkpoint_dir)
+                    wandb_run_id_file_cached = os.path.join(model_dir_eval_cached, "all_eval_results", ".wandb_run_id")
+                    
+                    if wandb_run_name:
+                        consistent_run_name_cached = wandb_run_name
+                    else:
+                        consistent_run_name_cached = f"{clean_model_name}_eval_all_checkpoints"
+                    
+                    # Try to load existing run ID to resume the same run
+                    wandb_run_id_cached = None
+                    if os.path.exists(wandb_run_id_file_cached):
+                        try:
+                            with open(wandb_run_id_file_cached, 'r') as f:
+                                wandb_run_id_cached = f.read().strip()
+                            if wandb_run_id_cached:
+                                print(f">>> Found existing wandb run ID: {wandb_run_id_cached} (will resume same run)")
+                        except Exception as e:
+                            print(f">>> Warning: Could not load wandb run ID: {e}")
+                    
+                    is_major_cached = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                    
+                    # Initialize wandb with consistent run name and ID
+                    wandb_kwargs_cached = {
+                        "project": wandb_project,
+                        "entity": wandb_entity,
+                        "name": consistent_run_name_cached,
+                        "group": wandb_group or clean_model_name,
+                        "tags": [
                             "evaluation",
+                            "all_checkpoints",
                             "cached",  # Indicate this was loaded from cache
-                            "major" if is_major_cached else "normal",
                         ],
-                        config={
+                        "config": {
                             "model": model_name,
-                            "checkpoint_step": checkpoint_step_int,
-                            "checkpoint_type": "major" if is_major_cached else "normal",
                             "val_dataset": val_dataset_path,
                             "val_size": val_data_size,
                             "val_batch_size": val_batch_size,
                             "max_input_tokens": max_input_text_tokens,
                             "max_output_tokens": max_output_summary_tokens,
                             "num_gpus": num_gpus,
+                            "major_checkpoint_interval": major_checkpoint_interval,
                         },
-                        reinit=True,
-                    )
+                        "reinit": True,
+                    }
+                    
+                    # If we have a run ID, use it to resume the same run
+                    if wandb_run_id_cached:
+                        wandb_kwargs_cached["id"] = wandb_run_id_cached
+                        wandb_kwargs_cached["resume"] = "allow"
+                    
+                    wandb.init(**wandb_kwargs_cached)
+                    
+                    # Save run ID for future checkpoints
+                    if wandb.run is not None:
+                        run_id_cached = wandb.run.id
+                        os.makedirs(os.path.dirname(wandb_run_id_file_cached), exist_ok=True)
+                        try:
+                            with open(wandb_run_id_file_cached, 'w') as f:
+                                f.write(run_id_cached)
+                        except Exception as e:
+                            print(f">>> Warning: Could not save wandb run ID: {e}")
                     print(f">>> wandb run initialized: {wandb.run.name}")
                     print(f">>> wandb run URL: {wandb.run.get_url()}")
                 
@@ -1723,6 +2352,29 @@ def evaluate_checkpoint(
     # Create a clean model name for display
     clean_model_name = model_name.split('/')[-1].replace('-', '_')
     
+    # Determine consistent run name and ID for combining all checkpoints
+    # Store run ID in model directory so all checkpoints use the same run
+    model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
+    wandb_run_id_file = os.path.join(model_dir_eval, "all_eval_results", ".wandb_run_id")
+    
+    # Use provided run_name or create one based on model (without checkpoint step)
+    if wandb_run_name:
+        consistent_run_name = wandb_run_name
+    else:
+        # Default: use model name only (no checkpoint step) so all checkpoints combine
+        consistent_run_name = f"{clean_model_name}_eval_all_checkpoints"
+    
+    # Try to load existing run ID to resume the same run
+    wandb_run_id = None
+    if os.path.exists(wandb_run_id_file):
+        try:
+            with open(wandb_run_id_file, 'r') as f:
+                wandb_run_id = f.read().strip()
+            if wandb_run_id:
+                print(f">>> Found existing wandb run ID: {wandb_run_id} (will resume same run)")
+        except Exception as e:
+            print(f">>> Warning: Could not load wandb run ID: {e}")
+    
     # Only initialize wandb if not disabled and not already initialized
     if wandb_project and not wandb_disabled and wandb.run is None and is_main_process:
         print(f"Initializing Weights & Biases for evaluation...")
@@ -1735,29 +2387,21 @@ def evaluate_checkpoint(
             gpu_info[f"gpu_{i}_name"] = props.name
             gpu_info[f"gpu_{i}_memory_total_gb"] = props.total_memory / 1e9
         
-        # Use provided run_name or create one based on model and checkpoint
-        # Include checkpoint step and type (major/normal) in run name for better identification
         is_major_eval = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
-        if wandb_run_name:
-            run_name = wandb_run_name
-        else:
-            # Default: include checkpoint step and type for uniqueness
-            checkpoint_type = "major" if is_major_eval else "normal"
-            run_name = f"{clean_model_name}_eval_{checkpoint_type}-{checkpoint_step_int}"
         
-        wandb.init(
-            project=wandb_project,
-            entity=wandb_entity,
-            name=run_name,
-            group=wandb_group or clean_model_name,  # Group all checkpoints together
-            tags=[
+        # Initialize wandb with consistent run name and ID
+        # If run_id exists, resume that run; otherwise create new one
+        wandb_kwargs = {
+            "project": wandb_project,
+            "entity": wandb_entity,
+            "name": consistent_run_name,
+            "group": wandb_group or clean_model_name,  # Group all checkpoints together
+            "tags": [
                 "evaluation",
-                "major" if is_major_eval else "normal",
+                "all_checkpoints",  # Tag to indicate this combines all checkpoints
             ],
-            config={
+            "config": {
                 "model": model_name,
-                "checkpoint_step": checkpoint_step_int,
-                "checkpoint_type": "major" if is_major_eval else "normal",
                 "val_dataset": val_dataset_path,
                 "val_size": val_data_size,
                 "val_batch_size": val_batch_size,
@@ -1772,10 +2416,31 @@ def evaluate_checkpoint(
                     "faithfulness": include_nli_faithfulness,
                 },
             },
-            reinit=True,
-        )
-        print(f">>> wandb run initialized: {wandb.run.name}")
-        print(f">>> wandb run URL: {wandb.run.get_url()}")
+            "reinit": True,
+        }
+        
+        # If we have a run ID, use it to resume the same run
+        if wandb_run_id:
+            wandb_kwargs["id"] = wandb_run_id
+            wandb_kwargs["resume"] = "allow"  # Resume if run exists, create if not
+        
+        wandb.init(**wandb_kwargs)
+        
+        # Save run ID for future checkpoints
+        if wandb.run is not None:
+            run_id = wandb.run.id
+            os.makedirs(os.path.dirname(wandb_run_id_file), exist_ok=True)
+            try:
+                with open(wandb_run_id_file, 'w') as f:
+                    f.write(run_id)
+                print(f">>> Saved wandb run ID to {wandb_run_id_file} for future checkpoints")
+            except Exception as e:
+                print(f">>> Warning: Could not save wandb run ID: {e}")
+        
+        print(f">>> wandb run initialized: {wandb.run.name if wandb.run else 'None'}")
+        print(f">>> wandb run ID: {wandb.run.id if wandb.run else 'None'}")
+        print(f">>> wandb run URL: {wandb.run.get_url() if wandb.run else 'None'}")
+        print(f">>> All checkpoints will be logged to this same run for time-series plots")
         
         # Display estimated examples from checkpoint step
         if estimated_examples:
@@ -1952,6 +2617,7 @@ def evaluate_checkpoint(
         eval_data_collator=eval_data_collator,
         use_greedy=use_greedy,
         checkpoint_dir=checkpoint_dir,  # Pass checkpoint directory to Trainer
+        model_name=model_name,  # Pass model name for prompt format detection
         model=model,
         args=training_args,
         eval_dataset=tokenized_val_dataset,
@@ -2449,6 +3115,8 @@ def evaluate_checkpoint(
         # DON'T call wandb.finish() here - keep the run open for multiple checkpoints
         # Only finish if explicitly requested or at the very end
         print(">>> Evaluation results logged to wandb (run kept open for additional checkpoints)")
+        print(f">>> Metrics logged with step={checkpoint_step_int} - will appear in time-series plots")
+        print(f">>> View plots at: {wandb.run.get_url() if wandb.run else 'N/A'}")
     elif wandb_disabled and is_main_process:
         print(">>> Wandb disabled - skipping wandb logging")
     
@@ -2556,7 +3224,7 @@ Examples:
     parser.add_argument('--wandb_disabled', action='store_true',
                        help='Disable wandb logging for this evaluation')
     parser.add_argument('--wandb_run_name', type=str, default=None,
-                       help='Wandb run name (if not provided, defaults to {model}_eval_{major|normal}-{step}). Use same name for all checkpoints to combine them.')
+                       help='Wandb run name (if not provided, defaults to {model}_eval_all_checkpoints). All checkpoints will be combined into a single run automatically. The run ID is saved in model_dir/all_eval_results/.wandb_run_id for automatic resumption.')
     parser.add_argument('--wandb_group', type=str, default=None,
                        help='Wandb group name to combine multiple runs (default: model name)')
     parser.add_argument('--major_checkpoint_interval', type=int, default=500,
