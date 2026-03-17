@@ -145,9 +145,11 @@ from utils import (
     tokenize_train_examples,
     tokenize_eval_examples,
     format_train_example,
+    format_train_examples_batch,
     format_eval_example,
     extract_checkpoint_step,
 )
+from model_configs import get_model_config_by_hf_name
 
 # Default values when command-line args are not supplied
 MAX_INPUT_TEXT_TOKENS = 2048  # max tokens for input to summarisation
@@ -419,7 +421,8 @@ class CheckpointBackupCallback(TrainerCallback):
         if checkpoint_step_int > 0 and not is_major:
             regular_ckpt_dir = os.path.join(model_dir, "regular_checkpoints")
             os.makedirs(regular_ckpt_dir, exist_ok=True)
-            regular_ckpt_name = f"regular-checkpoint-{checkpoint_step_int}"
+            # Unified naming: checkpoint-{step} (folder regular_checkpoints/ indicates type)
+            regular_ckpt_name = f"checkpoint-{checkpoint_step_int}"
             regular_ckpt_path = os.path.join(regular_ckpt_dir, regular_ckpt_name)
             
             # Always overwrite existing backup (remove old one first)
@@ -448,7 +451,8 @@ class CheckpointBackupCallback(TrainerCallback):
         if is_major:
             major_ckpt_dir = os.path.join(model_dir, "major_checkpoints")
             os.makedirs(major_ckpt_dir, exist_ok=True)
-            major_ckpt_name = f"major-checkpoint-{checkpoint_step_int}"
+            # Unified naming: checkpoint-{step} (folder major_checkpoints/ indicates type)
+            major_ckpt_name = f"checkpoint-{checkpoint_step_int}"
             major_ckpt_path = os.path.join(major_ckpt_dir, major_ckpt_name)
             
             # Always overwrite existing backup (remove old one first)
@@ -743,7 +747,6 @@ class CausalLMTrainer(Trainer):
             return (None, None, None)
 
         # If we are here, we are evaluating the model
-        print('*** evaluation: prediction_step ***')
         torch.cuda.empty_cache()
 
         # 2. Get Input IDs and Labels
@@ -763,10 +766,6 @@ class CausalLMTrainer(Trainer):
             labels = labels.clone()
             labels[labels == -100] = self._processing_class.pad_token_id
 
-        print('*** evaluation: input_ids (prompt only) ***', input_ids.shape)
-        if labels is not None:
-            print('*** evaluation: labels (target summary) ***', labels.shape)
-
         # 3. Autoregressive Generation (The Key Step)
         # Generate from the prompt only
         generated_ids = model.generate(
@@ -783,9 +782,7 @@ class CausalLMTrainer(Trainer):
         # model.generate() returns [input_ids + new_tokens], we only want the new tokens for ROUGE
         input_length = input_ids.shape[1]
         generated_ids = generated_ids[:, input_length:]
-        
-        print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
-        
+
         torch.cuda.empty_cache()
 
         # No loss calculation during evaluation (we can't compute it from prompt-only data)
@@ -1337,17 +1334,28 @@ def fine_tune_model(
     
     val_df = pd.DataFrame(val_data)
     val_dataset = Dataset.from_pandas(val_df)
-    print(f'*** validation dataset size: {len(val_dataset)} examples ***')
 
     # Use shared formatting and tokenization functions
+    # Pre-fetch model config once for batched formatter (avoids 135k+ lookups)
+    _model_config = get_model_config_by_hf_name(model_name)
+
+    def format_example_train_batch_wrapper(examples_batch):
+        """Batched format: processes 1000 examples per call → ~135 calls instead of 135k (much faster with num_proc)."""
+        return format_train_examples_batch(
+            examples_batch,
+            model_name,
+            tokenizer=tokenizer,
+            model_config=_model_config,
+        )
+
     def format_example_train_wrapper(example):
-        """Wrapper to call shared format_train_example with model_name and tokenizer."""
+        """Wrapper to call shared format_train_example with model_name and tokenizer (for single-example use)."""
         return format_train_example(example, model_name, tokenizer=tokenizer)
-    
+
     def format_example_eval_wrapper(example):
         """Wrapper to call shared format_eval_example with model_name and tokenizer."""
         return format_eval_example(example, model_name, tokenizer=tokenizer)
-    
+
     def tokenize_function_train_wrapper(examples):
         """Wrapper to call shared tokenize_train_examples with tokenizer and config."""
         return tokenize_train_examples(
@@ -1357,7 +1365,7 @@ def fine_tune_model(
             max_extra_prompt_tokens=max_extra_prompt_tokens,
             max_output_summary_tokens=max_output_summary_tokens
         )
-    
+
     def tokenize_function_eval_wrapper(examples):
         """Wrapper to call shared tokenize_eval_examples with tokenizer and config."""
         return tokenize_eval_examples(
@@ -1368,7 +1376,16 @@ def fine_tune_model(
             max_output_summary_tokens=max_output_summary_tokens
         )
 
-    formatted_dataset = dataset.map(format_example_train_wrapper)
+    # Batched format + num_proc: ~135 batches of 1000 instead of 135k per-example calls; parallel workers
+    _num_proc = min(8, (os.cpu_count() or 4) - 1)  # Leave one CPU for main process
+    _num_proc = max(1, _num_proc)
+    formatted_dataset = dataset.map(
+        format_example_train_batch_wrapper,
+        batched=True,
+        batch_size=1000,
+        num_proc=_num_proc,
+        desc="Formatting train",
+    )
     
     # Log example prompts to wandb (lightweight - just a few examples to verify prompt formatting)
     if is_main_process and wandb.run is not None:
@@ -1427,9 +1444,12 @@ def fine_tune_model(
         print("=" * 70 + "\n")
     
     tokenized_dataset = formatted_dataset.map(
-        tokenize_function_train_wrapper, 
+        tokenize_function_train_wrapper,
         batched=True,
-        load_from_cache_file=False,  # ADD THIS - keeps data in memory
+        batch_size=1000,
+        num_proc=_num_proc,
+        load_from_cache_file=False,
+        desc="Tokenizing train",
     )
     
     # Update wandb config with final training parameters and example calculations (after dataset is loaded)
@@ -1445,11 +1465,13 @@ def fine_tune_model(
         estimated_epochs = None
         estimated_steps = None
         
-        # Calculate total examples based on training strategy
+        # Calculate metrics based on training strategy
         if train_steps > 0:
+            # When using steps: just use steps directly, calculate examples for info only
             total_training_examples = calculate_examples_from_steps(train_steps, train_batch_size, gradient_accumulation_steps, num_gpus)
             estimated_epochs = total_training_examples / len(tokenized_dataset) if total_training_examples and len(tokenized_dataset) > 0 else None
         else:
+            # When using epochs: calculate examples and estimate steps
             total_training_examples = len(tokenized_dataset) * train_epochs
             estimated_steps = total_training_examples / examples_per_step if total_training_examples and examples_per_step > 0 else None
         
@@ -1486,8 +1508,8 @@ def fine_tune_model(
             print(f"  Epochs: {train_epochs}")
             if total_training_examples:
                 print(f"  Total examples: {total_training_examples:,} ({total_training_examples/1000:.1f}k)")
-                if estimated_steps:
-                    print(f"  Estimated steps: {int(estimated_steps):,}")
+            if estimated_steps:
+                print(f"  Estimated steps: {int(estimated_steps):,}")
         print("=" * 70 + "\n")
         
         # Check initial GPU memory utilization
@@ -1670,17 +1692,6 @@ def fine_tune_model(
     # For EVALUATION: use custom collator that pads both input_ids and labels
     eval_data_collator = EvalDataCollator(tokenizer=tokenizer)
 
-    print("--- VIKING DEBUGGING ---")
-    # Method 1: Print the model and look for the layer class names
-    print(model)
-
-    # Method 2: Check if the model has a '_no_split_modules' attribute
-    if hasattr(model, "_no_split_modules"):
-        print("_no_split_modules:", model._no_split_modules)
-
-    # Method 3: Check the model's configuration and source class
-    print("\nModel class:", model.__class__)
-    print("\nModel config:\n", model.config)
     # Prepare model for LoRA training
     use_quantization = (quantization != 'none')
     model = prepare_model_for_lora(model, use_quantization)
@@ -2035,6 +2046,14 @@ def fine_tune_model(
     # will see old checkpoints and delete new ones immediately
     # Only cleanup on main process to avoid race conditions in distributed training
     if should_cleanup_old and is_main_process:
+        # Clear stale .early_stop from previous run so this run is not stopped by the old monitor signal
+        signal_file = os.path.join(output_dir, ".early_stop")
+        if os.path.exists(signal_file):
+            try:
+                os.remove(signal_file)
+                print(f"Cleared stale .early_stop from previous run (so training runs to max_steps).")
+            except OSError as e:
+                print(f"Warning: could not remove .early_stop: {e}")
         print(f"\n{'='*70}")
         print(f"[Checkpoint Cleanup] Cleaning up old checkpoints from previous run...")
         print(f"{'='*70}")
@@ -2089,14 +2108,28 @@ def fine_tune_model(
 
     # Create training started signal file for monitor script (only on main process)
     if is_main_process:
-        training_started_file = os.path.join(output_dir, "training_started.txt")
         os.makedirs(output_dir, exist_ok=True)
-        with open(training_started_file, 'w') as f:
-            import datetime
-            f.write(f"Training started at: {datetime.datetime.now().isoformat()}\n")
-            f.write(f"Model: {model_name}\n")
-            f.write(f"Output directory: {output_dir}\n")
-        print(f"✓ Created training started signal file: {training_started_file}")
+        # When starting fresh (not resuming), clear any .early_stop from a previous run
+        if not resolved_resume_checkpoint:
+            signal_file = os.path.join(output_dir, ".early_stop")
+            if os.path.exists(signal_file):
+                try:
+                    os.remove(signal_file)
+                    print("Cleared stale .early_stop from previous run.")
+                except OSError:
+                    pass
+            # Only create/overwrite training_started.txt when starting fresh (not on resume).
+            # On resume, we keep the old timestamp so monitor/eval can distinguish "eval from
+            # previous run" (retrain-from-scratch) vs "eval from current run" (resume).
+            training_started_file = os.path.join(output_dir, "training_started.txt")
+            with open(training_started_file, 'w') as f:
+                import datetime
+                f.write(f"Training started at: {datetime.datetime.now().isoformat()}\n")
+                f.write(f"Model: {model_name}\n")
+                f.write(f"Output directory: {output_dir}\n")
+            print(f"✓ Created training started signal file: {training_started_file}")
+        else:
+            print(f"Resuming training - training_started.txt unchanged (preserves session boundary for eval)")
     
     # Initialize Trainer
     # Prepare trainer kwargs

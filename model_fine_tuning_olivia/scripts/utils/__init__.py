@@ -15,6 +15,7 @@ from .checkpoint_utils import (
 )
 from .eval_results import (
     get_eval_results_path,
+    get_predictions_file_path,
     get_old_eval_results_path,
     load_eval_results,
     save_eval_results,
@@ -23,7 +24,7 @@ from .eval_results import (
 )
 from .dataset_loading import load_jsonl_dataset
 from .tokenization import tokenize_train_examples, tokenize_eval_examples
-from .formatting import format_train_example, format_eval_example
+from .formatting import format_train_example, format_train_examples_batch, format_eval_example
 from .nli_subset import (
     get_or_create_fixed_nli_subset,
     apply_fixed_subset,
@@ -43,6 +44,7 @@ __all__ = [
     'get_model_dir_from_checkpoint',
     # Evaluation results
     'get_eval_results_path',
+    'get_predictions_file_path',
     'get_old_eval_results_path',
     'load_eval_results',
     'save_eval_results',
@@ -55,6 +57,7 @@ __all__ = [
     'tokenize_eval_examples',
     # Formatting
     'format_train_example',
+    'format_train_examples_batch',
     'format_eval_example',
     # NLI subset
     'get_or_create_fixed_nli_subset',

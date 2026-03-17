@@ -5,7 +5,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16  # Increase CPUs for multi-GPU
 #SBATCH --mem=384G  # Increase memory for multi-GPU
-#SBATCH --time=12:00:00
+#SBATCH --time=72:00:00  # 3 days - many checkpoints × ~1hr each
 # Account: REQUIRED - Pass via: sbatch --account=YOUR_ACCOUNT run_evaluate_distributed_checkpoints_multigpu.sbatch ...
 # Example: sbatch --account=YOUR_PROJECT_ID run_evaluate_distributed_checkpoints_multigpu.sbatch --model=gemma-2-9b
 #SBATCH -o logs/%x-%j.out
@@ -32,10 +32,12 @@ MODEL=${MODEL:-llama-2-13b-chat-norwegian}
 NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
 CHECKPOINT_BASE_DIR=${CHECKPOINT_BASE_DIR:-"models/${MODEL}-apptainer-fsdp"}
 VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
+VAL_DATA_SIZE=${VAL_DATA_SIZE:-500}
 SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:-""}
 DRY_RUN=${DRY_RUN:-false}
 # NLI Faithfulness evaluation flags
 INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-false}
+KEEP_EXISTING=${KEEP_EXISTING:-false}
 
 # Parse command-line arguments if provided
 for arg in "$@"; do
@@ -57,11 +59,20 @@ for arg in "$@"; do
         --val_dataset=*)
             VAL_DATASET="${arg#*=}"
             ;;
+        --val_data_size=*)
+            VAL_DATA_SIZE="${arg#*=}"
+            ;;
         --specific_checkpoints=*)
             SPECIFIC_CHECKPOINTS="${arg#*=}"
             ;;
         --include_nli_faithfulness|--include-nli-faithfulness)
             INCLUDE_NLI_FAITHFULNESS=true
+            ;;
+        --keep_existing)
+            KEEP_EXISTING=true
+            ;;
+        --no-keep_existing)
+            KEEP_EXISTING=false
             ;;
         --nli_subset_size=*|--nli-subset-size=*)
             ;;
@@ -78,6 +89,7 @@ for arg in "$@"; do
             echo "  --num_gpus=N                     Number of GPUs (default: 4)"
             echo "  --checkpoint_base_dir=DIR         Base directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
             echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
+            echo "  --val_data_size=N                 Number of validation examples (default: 500; use 1000 for extended eval)"
             echo "  --specific_checkpoints=\"N1 N2\"   Space-separated checkpoint numbers to evaluate (default: all)"
             echo "  --include_nli_faithfulness        Enable NLI-based faithfulness evaluation (slow: ~4.5s per example)"
             echo "  --nli_subset_size=N               Subset size for NLI evaluation (recommended: 50-100 for faster evaluation)"
@@ -221,18 +233,20 @@ if [ "$DRY_RUN" = "true" ]; then
         CHECKPOINTS=""
         for ckpt_num in $SPECIFIC_CHECKPOINTS; do
             ckpt_dir="$CHECKPOINT_BASE_DIR/checkpoint-$ckpt_num"
-            regular_ckpt="$CHECKPOINT_BASE_DIR/regular_checkpoints/regular-checkpoint-$ckpt_num"
-            major_ckpt="$CHECKPOINT_BASE_DIR/major_checkpoints/major-checkpoint-$ckpt_num"
+            regular_ckpt_legacy="$CHECKPOINT_BASE_DIR/regular_checkpoints/regular-checkpoint-$ckpt_num"
+            regular_ckpt_new="$CHECKPOINT_BASE_DIR/regular_checkpoints/checkpoint-$ckpt_num"
+            major_ckpt_legacy="$CHECKPOINT_BASE_DIR/major_checkpoints/major-checkpoint-$ckpt_num"
+            major_ckpt_new="$CHECKPOINT_BASE_DIR/major_checkpoints/checkpoint-$ckpt_num"
             
             if [ -d "$ckpt_dir" ]; then
                 CHECKPOINTS="$CHECKPOINTS $ckpt_dir"
                 echo "    ✓ Found: checkpoint-$ckpt_num (main)"
-            elif [ -d "$regular_ckpt" ]; then
-                CHECKPOINTS="$CHECKPOINTS $regular_ckpt"
-                echo "    ✓ Found: checkpoint-$ckpt_num (regular backup)"
-            elif [ -d "$major_ckpt" ]; then
-                CHECKPOINTS="$CHECKPOINTS $major_ckpt"
+            elif [ -d "$major_ckpt_new" ] || [ -d "$major_ckpt_legacy" ]; then
+                if [ -d "$major_ckpt_new" ]; then CHECKPOINTS="$CHECKPOINTS $major_ckpt_new"; else CHECKPOINTS="$CHECKPOINTS $major_ckpt_legacy"; fi
                 echo "    ✓ Found: checkpoint-$ckpt_num (major backup)"
+            elif [ -d "$regular_ckpt_new" ] || [ -d "$regular_ckpt_legacy" ]; then
+                if [ -d "$regular_ckpt_new" ]; then CHECKPOINTS="$CHECKPOINTS $regular_ckpt_new"; else CHECKPOINTS="$CHECKPOINTS $regular_ckpt_legacy"; fi
+                echo "    ✓ Found: checkpoint-$ckpt_num (regular backup)"
             else
                 echo "    ⚠ Not found: checkpoint-$ckpt_num (checked main and backups)"
             fi
@@ -241,8 +255,8 @@ if [ "$DRY_RUN" = "true" ]; then
         echo "  Would evaluate ALL checkpoints in: $CHECKPOINT_BASE_DIR (including backups)"
         if [ -d "$CHECKPOINT_BASE_DIR" ]; then
             MAIN_COUNT=$(find "$CHECKPOINT_BASE_DIR" -maxdepth 1 -type d -name "checkpoint-*" 2>/dev/null | wc -l)
-            REGULAR_COUNT=$(find "$CHECKPOINT_BASE_DIR/regular_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "regular-checkpoint-*" 2>/dev/null | wc -l)
-            MAJOR_COUNT=$(find "$CHECKPOINT_BASE_DIR/major_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "major-checkpoint-*" 2>/dev/null | wc -l)
+            REGULAR_COUNT=$(find "$CHECKPOINT_BASE_DIR/regular_checkpoints" -mindepth 1 -maxdepth 1 -type d \( -name "checkpoint-*" -o -name "regular-checkpoint-*" \) 2>/dev/null | wc -l)
+            MAJOR_COUNT=$(find "$CHECKPOINT_BASE_DIR/major_checkpoints" -mindepth 1 -maxdepth 1 -type d \( -name "checkpoint-*" -o -name "major-checkpoint-*" \) 2>/dev/null | wc -l)
             echo "    Main: $MAIN_COUNT, Regular backups: $REGULAR_COUNT, Major backups: $MAJOR_COUNT"
         fi
     fi
@@ -391,16 +405,29 @@ if [ -n "$SPECIFIC_CHECKPOINTS" ]; then
         if [ -d "$ckpt_dir" ]; then
             CHECKPOINTS="$CHECKPOINTS $ckpt_dir"
         else
-            # Try backup directories
-            regular_ckpt="$CHECKPOINT_BASE_DIR/regular_checkpoints/regular-checkpoint-$ckpt_num"
-            major_ckpt="$CHECKPOINT_BASE_DIR/major_checkpoints/major-checkpoint-$ckpt_num"
+            # Try backup directories. Prefer major over regular for major steps (500, 1000, ...).
+            # Support both new naming (checkpoint-X) and legacy (regular-checkpoint-X / major-checkpoint-X).
+            major_new="$CHECKPOINT_BASE_DIR/major_checkpoints/checkpoint-$ckpt_num"
+            major_legacy="$CHECKPOINT_BASE_DIR/major_checkpoints/major-checkpoint-$ckpt_num"
+            regular_new="$CHECKPOINT_BASE_DIR/regular_checkpoints/checkpoint-$ckpt_num"
+            regular_legacy="$CHECKPOINT_BASE_DIR/regular_checkpoints/regular-checkpoint-$ckpt_num"
+            major_ckpt=""
+            regular_ckpt=""
+            [ -d "$major_new" ] && major_ckpt="$major_new" || [ -d "$major_legacy" ] && major_ckpt="$major_legacy"
+            [ -d "$regular_new" ] && regular_ckpt="$regular_new" || [ -d "$regular_legacy" ] && regular_ckpt="$regular_legacy"
             
-            if [ -d "$regular_ckpt" ]; then
-                CHECKPOINTS="$CHECKPOINTS $regular_ckpt"
-                echo "Using backup checkpoint: $regular_ckpt"
-            elif [ -d "$major_ckpt" ]; then
+            if [ -n "$major_ckpt" ] && [ -f "$major_ckpt/adapter_config.json" ]; then
                 CHECKPOINTS="$CHECKPOINTS $major_ckpt"
                 echo "Using backup checkpoint: $major_ckpt"
+            elif [ -n "$regular_ckpt" ] && [ -f "$regular_ckpt/adapter_config.json" ]; then
+                CHECKPOINTS="$CHECKPOINTS $regular_ckpt"
+                echo "Using backup checkpoint: $regular_ckpt"
+            elif [ -n "$major_ckpt" ]; then
+                CHECKPOINTS="$CHECKPOINTS $major_ckpt"
+                echo "Using backup checkpoint: $major_ckpt"
+            elif [ -n "$regular_ckpt" ]; then
+                CHECKPOINTS="$CHECKPOINTS $regular_ckpt"
+                echo "Using backup checkpoint: $regular_ckpt"
             else
                 echo "WARNING: Checkpoint not found in main or backup directories: checkpoint-$ckpt_num"
             fi
@@ -410,8 +437,8 @@ else
     # Find all checkpoints: main first, then backups
     # Add error handling to prevent script exit on find errors
     MAIN_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR" -maxdepth 1 -type d -name "checkpoint-*" 2>/dev/null | sort -V || true)
-    REGULAR_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR/regular_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "regular-checkpoint-*" 2>/dev/null | sort -V || true)
-    MAJOR_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR/major_checkpoints" -mindepth 1 -maxdepth 1 -type d -name "major-checkpoint-*" 2>/dev/null | sort -V || true)
+    REGULAR_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR/regular_checkpoints" -mindepth 1 -maxdepth 1 -type d \( -name "checkpoint-*" -o -name "regular-checkpoint-*" \) 2>/dev/null | sort -V || true)
+    MAJOR_CHECKPOINTS=$(find "$CHECKPOINT_BASE_DIR/major_checkpoints" -mindepth 1 -maxdepth 1 -type d \( -name "checkpoint-*" -o -name "major-checkpoint-*" \) 2>/dev/null | sort -V || true)
     
     # Create a map to avoid duplicates (prioritize main checkpoints)
     # Check bash version for associative array support
@@ -431,11 +458,13 @@ else
     done
     echo "DEBUG: Found ${#CHECKPOINT_MAP[@]} main checkpoints"
     
-    # Add backup checkpoints only if main doesn't exist
-    echo "DEBUG: Processing backup checkpoints..."
-    for ckpt in $REGULAR_CHECKPOINTS $MAJOR_CHECKPOINTS; do
+    # Add backup checkpoints only if main doesn't exist.
+    # Process MAJOR before REGULAR so step 500 uses major-checkpoint-500 (major steps are
+    # stored only in major_checkpoints/, not regular_checkpoints/ - regular-checkpoint-500 may be empty).
+    echo "DEBUG: Processing backup checkpoints (major first, then regular)..."
+    for ckpt in $MAJOR_CHECKPOINTS $REGULAR_CHECKPOINTS; do
         if [ -n "$ckpt" ]; then
-            step=$(basename "$ckpt" | sed 's/regular-checkpoint-//' | sed 's/major-checkpoint-//')
+            step=$(basename "$ckpt" | sed 's/checkpoint-//' | sed 's/regular-checkpoint-//' | sed 's/major-checkpoint-//')
             if [ -z "${CHECKPOINT_MAP[$step]:-}" ]; then
                 CHECKPOINT_MAP[$step]="$ckpt"
             fi
@@ -483,13 +512,17 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     
     # Command to run inside apptainer - use model parallelism, not torchrun
     # Model parallelism (device_map="auto") doesn't need torchrun
-    # Build NLI flags if enabled
+    # Build NLI and keep_existing flags
     NLI_FLAGS=""
     if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
         NLI_FLAGS="--include_nli_faithfulness"
     fi
+    KEEP_FLAG=""
+    if [ "$KEEP_EXISTING" = "true" ]; then
+        KEEP_FLAG="--keep_existing"
+    fi
     
-    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu $NLI_FLAGS"
+    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu $NLI_FLAGS $KEEP_FLAG"
 
     # Apptainer commands - all on one line
     # Install bert_score for BERTScore evaluation (required by evaluate library)

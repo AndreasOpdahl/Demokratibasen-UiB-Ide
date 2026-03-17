@@ -82,6 +82,7 @@ from utils import (
     is_major_checkpoint,
     get_model_dir_from_checkpoint,
     get_eval_results_path,
+    get_predictions_file_path,
     get_old_eval_results_path,
     load_eval_results,
     save_eval_results,
@@ -118,7 +119,47 @@ MAX_INPUT_PROMPT_TOKENS = MAX_INPUT_TEXT_TOKENS + MAX_EXTRA_PROMPT_TOKENS
 MAX_OUTPUT_SUMMARY_TOKENS = 512
 VAL_BATCH_SIZE = 32
 VAL_DATA_SIZE = 500
+VAL_DATA_SEED = 42  # Fixed seed for reproducible validation sampling
 VAL_BEAM_SIZE = 4
+
+def sample_validation_data_reproducibly(
+    val_data: list,
+    val_data_size: int,
+    seed: int = VAL_DATA_SEED
+) -> list:
+    """Sample validation data with reproducible, backward-compatible selection.
+    
+    When val_data_size=500: uses first 500 from seed-based sample (canonical set).
+    When val_data_size=1000: canonical 500 + 500 more (from remaining indices).
+    This ensures the 1000-example set contains the same 500 used for 500-example runs.
+    
+    Args:
+        val_data: Full validation dataset
+        val_data_size: Number of examples to sample (500 or 1000)
+        seed: Random seed for reproducibility
+        
+    Returns:
+        Sampled validation data list
+    """
+    n = len(val_data)
+    if val_data_size >= n:
+        return val_data
+    
+    if val_data_size <= 500:
+        random.seed(seed)
+        indices = sorted(random.sample(range(n), val_data_size))
+        return [val_data[i] for i in indices]
+    
+    # val_data_size > 500 (e.g. 1000): canonical 500 + additional from remaining
+    random.seed(seed)
+    first_500_idx = set(random.sample(range(n), 500))
+    remaining = [i for i in range(n) if i not in first_500_idx]
+    random.seed(seed + 1)
+    add_count = min(val_data_size - 500, len(remaining))
+    extra_idx = sorted(random.sample(remaining, add_count))
+    all_indices = sorted(first_500_idx) + extra_idx
+    return [val_data[i] for i in all_indices]
+
 
 # Add a custom exception at the top of the file (near other imports)
 class AlreadyEvaluatedError(Exception):
@@ -217,6 +258,7 @@ class CausalLMTrainer(Trainer):
         self._processing_class = self.tokenizer
         # Store predictions for saving to JSONL
         self._eval_predictions = []
+        self._empty_warning_shown = False  # Throttle per-batch empty-prediction warning to once per eval
     
     def _move_model_to_device(self, model, device):
         """Override to prevent moving models that are already dispatched with device_map.
@@ -295,8 +337,6 @@ class CausalLMTrainer(Trainer):
         if prediction_loss_only:
             return (None, None, None)
 
-        print('*** evaluation: prediction_step ***')
-        
         # Clear cache before generation
         torch.cuda.empty_cache()
 
@@ -311,22 +351,6 @@ class CausalLMTrainer(Trainer):
             labels = labels.clone()
             labels[labels == -100] = self._processing_class.pad_token_id
 
-        print('*** evaluation: input_ids (prompt only) ***', input_ids.shape)
-        if labels is not None:
-            print('*** evaluation: labels (target summary) ***', labels.shape)
-        
-        # Debug: Check input_ids content for first example
-        if input_ids.shape[0] > 0:
-            first_input = input_ids[0].cpu().tolist()
-            # Decode first input to see what we're feeding the model
-            try:
-                first_input_decoded = self._processing_class.decode(first_input, skip_special_tokens=False)
-                print(f'*** DEBUG: First input (first 200 chars): {first_input_decoded[:200]}')
-            except Exception as e:
-                print(f'*** DEBUG: Could not decode first input: {e}')
-            print(f'*** DEBUG: First input token IDs (last 10): {first_input[-10:]}')
-            print(f'*** DEBUG: Input length: {len(first_input)} tokens')
-
         # Generate with memory-efficient settings
         with torch.amp.autocast('cuda'):
             # Get special token IDs for better stopping
@@ -337,10 +361,10 @@ class CausalLMTrainer(Trainer):
                 except:
                     pass
             
-            # Set minimum length to prevent model from outputting EOS immediately
-            # This is critical: if model learned to output EOS to minimize loss, we need to force it to generate content
+            # Set minimum length to prevent model from outputting EOS immediately.
+            # Keep it low (5–15): high min_new_tokens (e.g. 51) forces model past natural stop and causes gibberish.
             gen_max_len = self.generation_max_length if self.generation_max_length is not None else 512
-            min_new_tokens = max(10, gen_max_len // 10)  # At least 10 tokens or 10% of max
+            min_new_tokens = max(5, 15)
             
             generation_kwargs = {
                 'input_ids': input_ids,
@@ -352,24 +376,23 @@ class CausalLMTrainer(Trainer):
                 'eos_token_id': self._processing_class.eos_token_id,
                 'repetition_penalty': 1.1,  # Slight penalty to prevent repetition
             }
+            # Critical: pass attention_mask so model does not attend to left-padding.
+            # Without this, left-padded prompts cause the model to see pad tokens and often emit pad/unk.
+            if 'attention_mask' in inputs:
+                generation_kwargs['attention_mask'] = inputs['attention_mask']
             
             # Add min_new_tokens if supported (newer transformers versions)
             # Fallback: use min_length (total length including input) if min_new_tokens not available
             try:
                 generation_kwargs['min_new_tokens'] = min_new_tokens
-                print(f'*** DEBUG: Using min_new_tokens={min_new_tokens}')
             except Exception as e:
                 # Fallback: set min_length to input_length + min_new_tokens
                 generation_kwargs['min_length'] = input_ids.shape[1] + min_new_tokens
-                print(f'*** DEBUG: Using min_length fallback={generation_kwargs["min_length"]} (min_new_tokens not supported: {e})')
             
             # Add stop token if found (for chat models)
             if inst_token_id is not None:
                 # Don't stop on [/INST] during generation, but we'll clean it later
                 pass
-            
-            print(f'*** DEBUG: Generation kwargs: max_new_tokens={generation_kwargs["max_new_tokens"]}, '
-                  f'pad_token_id={generation_kwargs["pad_token_id"]}, eos_token_id={generation_kwargs["eos_token_id"]}')
             
             # GPT-J specific validation: Check input length and token IDs to prevent CUDA device-side asserts
             # GPT-J has a 2048 token context window and can crash with device-side asserts if exceeded
@@ -388,31 +411,51 @@ class CausalLMTrainer(Trainer):
                 max_pos_embeddings = getattr(model.config, 'max_position_embeddings', 2048) if hasattr(model, 'config') else 2048
                 vocab_size = getattr(self._processing_class, 'vocab_size', None) or (len(self._processing_class) if hasattr(self._processing_class, '__len__') else None)
                 
-                print(f'*** DEBUG: GPT-J model detected - validating input...')
-                print(f'  Input length: {input_length} tokens')
-                print(f'  Max position embeddings: {max_pos_embeddings}')
-                print(f'  Max new tokens: {generation_kwargs["max_new_tokens"]}')
-                print(f'  Total sequence length (input + max_new): {input_length + generation_kwargs["max_new_tokens"]}')
-                
-                # Validate input length doesn't exceed max position embeddings
+                # Validate input length and token IDs for GPT-J (2048 context)
+                # Validate input length doesn't exceed max position embeddings; leave room for generation
                 if input_length > max_pos_embeddings:
-                    print(f'⚠ WARNING: Input length ({input_length}) exceeds max position embeddings ({max_pos_embeddings})')
-                    print(f'  Truncating input to {max_pos_embeddings} tokens to prevent CUDA error')
-                    input_ids = input_ids[:, :max_pos_embeddings]
+                    room_for_new = min(256, generation_kwargs["max_new_tokens"])
+                    max_input_allowed = max_pos_embeddings - room_for_new - 10
+                    if not getattr(self, '_gptj_context_warned', False):
+                        print(f'⚠ WARNING: Input length ({input_length}) exceeds max position embeddings ({max_pos_embeddings})')
+                        print(f'  Truncating prompt to {max_input_allowed} tokens to reserve {room_for_new}+ for generation')
+                        self._gptj_context_warned = True
+                    input_ids = input_ids[:, :max_input_allowed]
                     input_length = input_ids.shape[1]
                     generation_kwargs['input_ids'] = input_ids
+                    if 'attention_mask' in generation_kwargs and generation_kwargs['attention_mask'] is not None:
+                        generation_kwargs['attention_mask'] = generation_kwargs['attention_mask'][:, :max_input_allowed]
                 
                 # Validate total sequence length (input + generation) doesn't exceed max
                 total_sequence_length = input_length + generation_kwargs["max_new_tokens"]
                 if total_sequence_length > max_pos_embeddings:
-                    # Reduce max_new_tokens to fit within context window
-                    max_new_tokens_safe = max(1, max_pos_embeddings - input_length - 10)  # Leave 10 token buffer
-                    print(f'⚠ WARNING: Total sequence length ({total_sequence_length}) would exceed max position embeddings ({max_pos_embeddings})')
-                    print(f'  Reducing max_new_tokens from {generation_kwargs["max_new_tokens"]} to {max_new_tokens_safe}')
-                    generation_kwargs["max_new_tokens"] = max_new_tokens_safe
+                    buffer = 10
+                    # Prefer truncating the prompt so we keep room for real generation (min 256 tokens)
+                    min_new_tokens_room = min(256, generation_kwargs["max_new_tokens"])
+                    max_input_allowed = max_pos_embeddings - min_new_tokens_room - buffer
+                    if input_length > max_input_allowed and max_input_allowed > 100:
+                        # Truncate input so we keep instruction + start of document; reserve room for generation
+                        if not getattr(self, '_gptj_context_warned', False):
+                            print(f'⚠ WARNING: Total sequence length ({total_sequence_length}) would exceed max position embeddings ({max_pos_embeddings})')
+                            print(f'  Truncating prompt from {input_length} to {max_input_allowed} tokens to reserve {min_new_tokens_room}+ for generation')
+                            self._gptj_context_warned = True
+                        input_ids = input_ids[:, :max_input_allowed].clone()
+                        input_length = input_ids.shape[1]
+                        generation_kwargs['input_ids'] = input_ids
+                        if 'attention_mask' in generation_kwargs and generation_kwargs['attention_mask'] is not None:
+                            generation_kwargs['attention_mask'] = generation_kwargs['attention_mask'][:, :max_input_allowed].clone()
+                        generation_kwargs["max_new_tokens"] = min(generation_kwargs["max_new_tokens"], max_pos_embeddings - input_length - buffer)
+                    else:
+                        # Prompt already short; reduce max_new_tokens to fit
+                        max_new_tokens_safe = max(1, max_pos_embeddings - input_length - buffer)
+                        if not getattr(self, '_gptj_context_warned', False):
+                            print(f'⚠ WARNING: Total sequence length ({total_sequence_length}) would exceed max position embeddings ({max_pos_embeddings})')
+                            print(f'  Reducing max_new_tokens from {generation_kwargs["max_new_tokens"]} to {max_new_tokens_safe}')
+                            self._gptj_context_warned = True
+                        generation_kwargs["max_new_tokens"] = max_new_tokens_safe
                     # Update min_new_tokens if it was set
                     if 'min_new_tokens' in generation_kwargs:
-                        generation_kwargs['min_new_tokens'] = min(generation_kwargs['min_new_tokens'], max_new_tokens_safe)
+                        generation_kwargs['min_new_tokens'] = min(generation_kwargs['min_new_tokens'], generation_kwargs["max_new_tokens"])
                     elif 'min_length' in generation_kwargs:
                         generation_kwargs['min_length'] = min(generation_kwargs['min_length'], max_pos_embeddings)
                 
@@ -435,8 +478,6 @@ class CausalLMTrainer(Trainer):
                                                torch.tensor(generation_kwargs['pad_token_id'], device=input_ids.device, dtype=input_ids.dtype),
                                                input_ids)
                         generation_kwargs['input_ids'] = input_ids
-                
-                print(f'*** DEBUG: GPT-J validation complete - safe to generate')
             
             try:
                 generated_ids = model.generate(**generation_kwargs)
@@ -534,8 +575,7 @@ class CausalLMTrainer(Trainer):
                     raise
         
         input_length = input_ids.shape[1]
-        print(f'*** DEBUG: Full generated_ids shape: {generated_ids.shape}, input_length: {input_length}')
-        
+
         # Check if model generated anything at all (before slicing)
         if generated_ids.shape[1] <= input_length:
             print(f'⚠ WARNING: Model generated nothing or only input! generated_ids.shape={generated_ids.shape}, input_length={input_length}')
@@ -566,79 +606,6 @@ class CausalLMTrainer(Trainer):
                 except Exception as e:
                     print(f'  Retry generation failed: {e}')
         
-        # Before slicing, check if the model might have included input tokens in generation
-        # For Mistral/Llama models, we need to find where [/INST] ends and extract only after that
-        # Decode a sample of the full output to see what's happening
-        if generated_ids.shape[0] > 0:
-            sample_full = generated_ids[0].cpu().tolist()
-            sample_input = input_ids[0].cpu().tolist()
-            try:
-                full_decoded = self._processing_class.decode(sample_full, skip_special_tokens=False)
-                input_decoded = self._processing_class.decode(sample_input, skip_special_tokens=False)
-                
-                print(f'*** DEBUG: Full input prompt (first 300 chars): {input_decoded[:300]}')
-                print(f'*** DEBUG: Full input prompt (last 200 chars): ...{input_decoded[-200:]}')
-                
-                # For Mistral format: find where [/INST] ends
-                inst_end_marker = '[/INST]'
-                inst_end_pos = input_decoded.rfind(inst_end_marker)
-                
-                if inst_end_pos >= 0:
-                    # Find the position after [/INST] and any whitespace
-                    after_inst_pos = inst_end_pos + len(inst_end_marker)
-                    # Skip any whitespace/newlines after [/INST]
-                    while after_inst_pos < len(input_decoded) and input_decoded[after_inst_pos] in [' ', '\n', '\t']:
-                        after_inst_pos += 1
-                    
-                    input_before_generation = input_decoded[:after_inst_pos]
-                    print(f'*** DEBUG: Input ends at position {after_inst_pos} (after {inst_end_marker})')
-                    print(f'*** DEBUG: Input before generation (last 100 chars): ...{input_before_generation[-100:]}')
-                    
-                    # Check what comes after in the full output
-                    if len(full_decoded) > after_inst_pos:
-                        generated_part = full_decoded[after_inst_pos:]
-                        print(f'*** DEBUG: Generated part (first 300 chars): {generated_part[:300]}')
-                        
-                        # Check if it looks like continuation of input (starts with lowercase, comma, etc.)
-                        if generated_part and len(generated_part) > 0:
-                            first_chars = generated_part.strip()[:50]
-                            if first_chars and (first_chars[0] in [',', '.', ' ', '\n'] or first_chars[0].islower()):
-                                print(f'⚠ WARNING: Generated text appears to continue from input (starts with "{first_chars}").')
-                                print(f'  This suggests the model is copying input instead of summarizing.')
-                                print(f'  The input might not have a clear separator, or the model needs more training.')
-                                
-                                # Try to find where the actual summary might start
-                                # Look for sentence boundaries or capital letters that might indicate a new sentence
-                                sentence_pattern = r'[.!?]\s+[A-ZÆØÅ]'
-                                match = re.search(sentence_pattern, generated_part)
-                                if match:
-                                    summary_start = match.end() - 1  # Position of capital letter
-                                    potential_summary = generated_part[summary_start:]
-                                    print(f'  Found potential summary start at position {summary_start}: "{potential_summary[:100]}..."')
-                    else:
-                        print(f'*** DEBUG: Full output length ({len(full_decoded)}) <= input end position ({after_inst_pos})')
-                else:
-                    # No [/INST] found, check if it's a different format
-                    print(f'*** DEBUG: No {inst_end_marker} found in input. Checking for other markers...')
-                    # Check for Llama-3 format
-                    if '<|eot_id|>' in input_decoded:
-                        eot_pos = input_decoded.rfind('<|eot_id|>')
-                        after_eot_pos = eot_pos + len('<|eot_id|>')
-                        while after_eot_pos < len(input_decoded) and input_decoded[after_eot_pos] in [' ', '\n', '\t']:
-                            after_eot_pos += 1
-                        if len(full_decoded) > after_eot_pos:
-                            generated_part = full_decoded[after_eot_pos:]
-                            print(f'*** DEBUG: Generated part after <|eot_id|> (first 300 chars): {generated_part[:300]}')
-                
-                # Also check the full output vs input
-                if len(full_decoded) > len(input_decoded):
-                    generated_part_simple = full_decoded[len(input_decoded):]
-                    print(f'*** DEBUG: Generated part (simple slice, first 300 chars): {generated_part_simple[:300]}')
-            except Exception as e:
-                print(f'*** DEBUG: Could not decode for inspection: {e}')
-                import traceback
-                traceback.print_exc()
-        
         # Slice to get only generated tokens (after input)
         # Different prompt formats use different markers:
         # - Mistral: [/INST] (token-based)
@@ -667,9 +634,8 @@ class CausalLMTrainer(Trainer):
                 model_config = get_model_config_by_hf_name(model_name_for_config)
                 if model_config:
                     prompt_format_type = model_config.prompt_config.template_type
-                    print(f'*** DEBUG: Detected prompt format type: {prompt_format_type} for model: {model_name_for_config}')
-            except Exception as e:
-                print(f'*** DEBUG: Could not detect prompt format: {e}')
+            except Exception:
+                pass
         
         # Strategy 1: Try token-based extraction for Mistral/Llama/ChatML formats
         extraction_successful = False
@@ -704,19 +670,12 @@ class CausalLMTrainer(Trainer):
                     # Skip pad/eos tokens at the start
                     while start_pos < len(full_sequence) and full_sequence[start_pos] in [self._processing_class.pad_token_id, self._processing_class.eos_token_id]:
                         start_pos += 1
-                    
-                    if start_pos < len(full_sequence):
-                        print(f'*** DEBUG: Found [/INST] at position {last_full_inst_pos}, extracting from position {start_pos}')
-                        # Extract from start_pos for all sequences in the batch
-                        if start_pos < generated_ids.shape[1]:
-                            generated_ids = generated_ids[:, start_pos:]
-                            print(f'*** DEBUG: Extracted generated_ids shape after [/INST]: {generated_ids.shape}')
-                            extraction_successful = True
-                        else:
-                            print(f'*** DEBUG: start_pos {start_pos} >= generated_ids.shape[1] {generated_ids.shape[1]}, using original slice')
-                            generated_ids = generated_ids[:, input_length:]
+                    # With left-padding, generated content always starts at input_length; never include prompt tokens.
+                    use_pos = max(start_pos, input_length)
+                    if use_pos < generated_ids.shape[1]:
+                        generated_ids = generated_ids[:, use_pos:]
+                        extraction_successful = True
                     else:
-                        print(f'*** DEBUG: start_pos {start_pos} >= sequence length, using original slice')
                         generated_ids = generated_ids[:, input_length:]
                 else:
                     # No [/INST] in full sequence, use original slice
@@ -795,7 +754,6 @@ class CausalLMTrainer(Trainer):
                                                     while start_pos < len(full_sequence) and full_sequence[start_pos] in [self._processing_class.pad_token_id, self._processing_class.eos_token_id]:
                                                         start_pos += 1
                                                     if start_pos < generated_ids.shape[1]:
-                                                        print(f'*** DEBUG: Found assistant header at position {pos}, extracting from position {start_pos} (after <|end_header_id|>)')
                                                         generated_ids = generated_ids[:, start_pos:]
                                                         extraction_successful = True
                                                         break
@@ -830,11 +788,10 @@ class CausalLMTrainer(Trainer):
                                             token_start = len(tokens_up_to_header)
                                             
                                             if token_start < generated_ids.shape[1]:
-                                                print(f'*** DEBUG: Found assistant header in text at position {header_pos_in_input}, extracting from token position {token_start}')
                                                 generated_ids = generated_ids[:, token_start:]
                                                 extraction_successful = True
                                 except Exception as e:
-                                    print(f'*** DEBUG: Text-based extraction for assistant header failed: {e}')
+                                    pass
                     
                     # Fallback to <|eot_id|> extraction if assistant header not found
                     if not extraction_successful and eot_token_id is not None:
@@ -849,9 +806,34 @@ class CausalLMTrainer(Trainer):
                                 while start_pos < len(full_sequence) and full_sequence[start_pos] in [self._processing_class.pad_token_id, self._processing_class.eos_token_id]:
                                     start_pos += 1
                                 if start_pos < generated_ids.shape[1]:
-                                    print(f'*** DEBUG: Fallback - Found <|eot_id|> at position {last_eot_in_input}, extracting from position {start_pos}')
                                     generated_ids = generated_ids[:, start_pos:]
                                     extraction_successful = True
+                
+                # Strategy 2.5: ChatML format (<|im_start|>assistant) - token-based so it works with left-padding
+                if not extraction_successful and (prompt_format_type == 'chatml' or prompt_format_type is None):
+                    try:
+                        marker_text = "<|im_start|>assistant\n"
+                        marker_ids = self._processing_class.encode(marker_text, add_special_tokens=False)
+                        if not marker_ids:
+                            marker_ids = self._processing_class.encode("<|im_start|>assistant", add_special_tokens=False)
+                        if marker_ids and generated_ids.shape[0] > 0:
+                            full_sequence = generated_ids[0].cpu().tolist()
+                            last_start = -1
+                            search_end = min(input_length, len(full_sequence) - len(marker_ids) + 1)
+                            for i in range(0, search_end):
+                                if i + len(marker_ids) <= len(full_sequence) and full_sequence[i:i + len(marker_ids)] == marker_ids:
+                                    last_start = i
+                            if last_start >= 0:
+                                start_pos = last_start + len(marker_ids)
+                                while start_pos < len(full_sequence) and full_sequence[start_pos] in [self._processing_class.pad_token_id, self._processing_class.eos_token_id]:
+                                    start_pos += 1
+                                # Use the later of (after assistant header) and (end of input) so we never include prompt tokens
+                                use_pos = max(start_pos, input_length)
+                                if use_pos < generated_ids.shape[1]:
+                                    generated_ids = generated_ids[:, use_pos:]
+                                    extraction_successful = True
+                    except Exception as e:
+                        pass
                 
                 # Strategy 3: Try Alpaca format ("Response:" text marker)
                 if not extraction_successful and (prompt_format_type == 'alpaca' or prompt_format_type is None):
@@ -907,23 +889,15 @@ class CausalLMTrainer(Trainer):
                                         text_before_response = full_output_decoded[:after_response_pos]
                                         tokens_before_response = self._processing_class.encode(text_before_response, add_special_tokens=False)
                                         token_pos_after_response = len(tokens_before_response)
-                                        print(f'*** DEBUG: Model included "Instruction:" in output, found "Response:" after it')
                             
                             # Extract from this position
                             if token_pos_after_response < generated_ids.shape[1]:
-                                print(f'*** DEBUG: Found "Response:" marker at token position {token_pos_after_response}, extracting from there')
                                 generated_ids = generated_ids[:, token_pos_after_response:]
                                 extraction_successful = True
-                            else:
-                                print(f'*** DEBUG: "Response:" found but token position {token_pos_after_response} >= generated_ids.shape[1] {generated_ids.shape[1]}')
-                        else:
-                            print(f'*** DEBUG: "Response:" marker not found in input or output for Alpaca format')
-                    except Exception as e:
-                        print(f'*** DEBUG: Could not extract using Alpaca format: {e}')
-                        import traceback
-                        traceback.print_exc()
+                    except Exception:
+                        pass
                 
-                # Strategy 4: Try plain format ("Oppsummering:" marker)
+                # Strategy 4: Try plain format ("Oppsummering:" marker) - Gemma uses this
                 if not extraction_successful and (prompt_format_type == 'plain' or prompt_format_type is None):
                     try:
                         input_decoded = self._processing_class.decode(input_ids[0].cpu().tolist(), skip_special_tokens=False)
@@ -938,17 +912,16 @@ class CausalLMTrainer(Trainer):
                             input_before_summary = input_decoded[:after_summary_pos]
                             tokens_before_summary = self._processing_class.encode(input_before_summary, add_special_tokens=False)
                             token_pos_after_summary = len(tokens_before_summary)
-                            
-                            if token_pos_after_summary < generated_ids.shape[1]:
-                                print(f'*** DEBUG: Found "Oppsummering:" marker at token position {token_pos_after_summary}, extracting from there')
-                                generated_ids = generated_ids[:, token_pos_after_summary:]
+                            # With left-padding, generated content starts at input_length; never include prompt tokens
+                            use_pos = max(token_pos_after_summary, input_length)
+                            if use_pos < generated_ids.shape[1]:
+                                generated_ids = generated_ids[:, use_pos:]
                                 extraction_successful = True
-                    except Exception as e:
-                        print(f'*** DEBUG: Could not extract using plain format: {e}')
+                    except Exception:
+                        pass
                 
                 # Fallback: Use simple input_length slice if no format-specific extraction worked
                 if not extraction_successful:
-                    print(f'*** DEBUG: No format-specific marker found, using simple input_length slice')
                     generated_ids = generated_ids[:, input_length:]
                     
                     # Additional check: If model seems to be copying input (includes instruction prompt),
@@ -961,7 +934,6 @@ class CausalLMTrainer(Trainer):
                             # Check if output starts with instruction text (model copying input)
                             instruction_start = "Instruction:"
                             if decoded_output.strip().startswith(instruction_start):
-                                print(f'*** DEBUG: Model output starts with "Instruction:" - likely copying input')
                                 # Try to find "Response:" in the output
                                 response_pos = decoded_output.find("Response:")
                                 if response_pos >= 0:
@@ -972,7 +944,6 @@ class CausalLMTrainer(Trainer):
                                         tokens_from_response = self._processing_class.encode(text_from_response, add_special_tokens=False)
                                         # Find where this starts in the generated_ids
                                         # This is approximate - we'll use the decoded approach
-                                        print(f'*** DEBUG: Found "Response:" in output, extracting content after it')
                                         # Update generated_ids to only include content after Response:
                                         # We'll do this by re-encoding
                                         try:
@@ -986,19 +957,16 @@ class CausalLMTrainer(Trainer):
                                                 token_start = len(tokens_up_to_response)
                                                 if token_start < generated_ids.shape[1]:
                                                     generated_ids = generated_ids[:, token_start:]
-                                                    print(f'*** DEBUG: Extracted from "Response:" at token position {token_start}')
                                                     extraction_successful = True
-                                        except Exception as e:
-                                            print(f'*** DEBUG: Could not extract from Response: in output: {e}')
-                        except Exception as e:
-                            print(f'*** DEBUG: Could not check for copied instruction text: {e}')
+                                        except Exception:
+                                            pass
+                        except Exception:
+                            pass
             else:
                 # No sequences or already extracted, use original slice
                 generated_ids = generated_ids[:, input_length:]
         
-        print('*** evaluation: generated_ids (generated summary only) ***', generated_ids.shape)
-        
-        # Debug: Check if generated_ids is empty or all padding
+        # Check if generated_ids is empty or all padding
         if generated_ids.numel() == 0:
             print(f'⚠ CRITICAL: generated_ids is empty after slicing! Full shape was {generated_ids.shape if hasattr(generated_ids, "shape") else "unknown"}')
         elif generated_ids.shape[1] == 0:
@@ -1015,19 +983,10 @@ class CausalLMTrainer(Trainer):
             num_non_special = non_special_mask.sum().item()
             total_tokens = generated_ids.numel()
             
-            print(f'*** DEBUG: Generated tokens analysis ***')
-            print(f'  Total generated tokens: {total_tokens}')
-            print(f'  Non-pad/eos tokens: {num_non_special}')
-            print(f'  Pad token ID: {pad_token_id}, EOS token ID: {eos_token_id}')
-            
             if num_non_special == 0 and total_tokens > 0:
                 print(f'⚠ WARNING: Model generated only pad/eos tokens! This suggests the model may have collapsed.')
                 print(f'  Sample generated token IDs (first 10): {generated_ids[0, :min(10, generated_ids.shape[1])].tolist()}')
             
-            # Check sequence lengths (non-pad tokens per sequence)
-            seq_lengths = (generated_ids != pad_token_id).sum(dim=1).tolist()
-            print(f'  Sequence lengths (non-pad tokens): {seq_lengths[:min(5, len(seq_lengths))]}...')
-        
         # Clear cache after generation
         torch.cuda.empty_cache()
         
@@ -1044,18 +1003,7 @@ class CausalLMTrainer(Trainer):
             total_tokens = generated_ids.numel()
             
             if num_valid_tokens == 0:
-                print(f'⚠ CRITICAL: Model generated ONLY pad/eos tokens ({total_tokens} tokens, all are pad={pad_token_id} or eos={eos_token_id})')
-                print(f'  This indicates model collapse or checkpoint too early in training.')
-                print(f'  Sample token IDs (first 20): {generated_ids[0, :min(20, generated_ids.shape[1])].cpu().tolist()}')
-                print(f'  Attempting to decode to see what pad token decodes to...')
-                # Try decoding a single pad token to see what it produces
-                test_pad = self._processing_class.decode([pad_token_id], skip_special_tokens=False)
-                print(f'  Pad token (ID {pad_token_id}) decodes to: "{test_pad}"')
-                
-                # For very early checkpoints, this might be expected - model hasn't learned yet
-                # But we should still try to generate something meaningful
-                print(f'  Trying generation with more permissive settings...')
-                
+                print(f'⚠ CRITICAL: Model generated only pad/eos tokens (model collapse or checkpoint too early). Trying permissive generation...')
                 # Try with sampling and higher temperature to break out of pad token loop
                 with torch.no_grad():
                     generation_kwargs_force = {
@@ -1085,22 +1033,41 @@ class CausalLMTrainer(Trainer):
                     except Exception as e:
                         print(f'  ✗ Forced generation failed: {e}')
         
-        decoded_predictions = self._processing_class.batch_decode(generated_ids, skip_special_tokens=True)
-        
-        # Debug: Check decoded predictions before cleaning
-        if len(decoded_predictions) > 0:
-            print(f'*** DEBUG: Decoded predictions (before cleaning) ***')
-            for i, pred in enumerate(decoded_predictions[:3]):  # Show first 3
-                print(f'  Prediction {i}: length={len(pred)}, preview="{pred[:100]}"')
-                # Check if prediction starts mid-sentence (suggests input continuation)
-                if pred and len(pred) > 0:
-                    first_char = pred.strip()[0] if pred.strip() else ''
-                    if first_char in [',', '.', ' ', '\n'] or (first_char and first_char.islower() and not pred.strip().startswith(('dette', 'dette er', 'saken', 'dokumentet', 'møtet'))):
-                        print(f'    ⚠ WARNING: Prediction {i} starts mid-sentence ("{pred[:50]}"). Model may be continuing input instead of summarizing.')
+        # Strip leading pad/eos and truncate at first EOS to avoid gibberish/hallucination.
+        # If model doesn't emit EOS, truncate at max reasonable summary length (256 tokens).
+        pad_token_id = self._processing_class.pad_token_id
+        eos_token_id = self._processing_class.eos_token_id
+        MAX_SUMMARY_TOKENS_BEFORE_TRUNCATE = 256  # Summaries rarely exceed this; cuts off runaway generation
+        stripped_list = []
+        for i in range(generated_ids.shape[0]):
+            row = generated_ids[i].cpu().tolist()
+            # Truncate at first EOS (model's natural stop); if no EOS, cap at MAX_SUMMARY_TOKENS_BEFORE_TRUNCATE
+            first_eos = next((j for j, tid in enumerate(row) if tid == eos_token_id), None)
+            if first_eos is not None:
+                row = row[:first_eos]
+            elif len(row) > MAX_SUMMARY_TOKENS_BEFORE_TRUNCATE:
+                row = row[:MAX_SUMMARY_TOKENS_BEFORE_TRUNCATE]
+            start = 0
+            while start < len(row) and row[start] in (pad_token_id, eos_token_id):
+                start += 1
+            stripped_list.append(row[start:] if start < len(row) else row)
+        max_len = max(len(r) for r in stripped_list) if stripped_list else 0
+        if max_len > 0:
+            padded = [r + [pad_token_id] * (max_len - len(r)) for r in stripped_list]
+            generated_ids = torch.tensor(padded, device=generated_ids.device, dtype=generated_ids.dtype)
+            decoded_predictions = self._processing_class.batch_decode(generated_ids, skip_special_tokens=True)
+        else:
+            decoded_predictions = [""] * generated_ids.shape[0]
         
         # Clean up decoded predictions - remove special tokens and backslashes (same as in compute_metrics)
         def clean_text(text):
             """Clean decoded text by removing special tokens and unwanted characters."""
+            # Truncate at [/SAK] - Normistral sometimes emits this instead of EOS and repeats it
+            if '[/SAK]' in text:
+                text = text.split('[/SAK]')[0].strip()
+            # Plain/Gemma format: training ends output with \n\n### - truncate at first ### to drop post-summary garbage
+            if '###' in text:
+                text = text.split('###')[0].strip()
             # Remove common chat format tokens (Llama-2)
             text = text.replace('[/INST]', '').replace('[INST]', '')
             text = text.replace('</s>', '').replace('<s>', '')
@@ -1113,14 +1080,42 @@ class CausalLMTrainer(Trainer):
             # Remove user/assistant header markers (with any content between)
             # This regex removes patterns like <|start_header_id|>assistant<|end_header_id|>
             text = re.sub(r'<\|start_header_id\|>.*?<\|end_header_id\|>', '', text)
+            # ChatML tokens (EuroLLM and similar)
+            text = text.replace('<|im_start|>', '').replace('<|im_end|>', '')
+            # Strip leading <unk> (tokenizer often decodes pad/special as <unk>)
+            while text.startswith('<unk>'):
+                text = text[5:].lstrip()
             # Also remove standalone "assistant" text that might appear at the start (from header)
             # Remove "assistant\n\n" or "assistant " at the beginning
             text = re.sub(r'^assistant\s*\n*\s*', '', text, flags=re.IGNORECASE)
+            # Plain/Gemma format: strip echoed "Oppsummering:" or "###" at start
+            if text.lstrip().startswith('Oppsummering:'):
+                text = text.lstrip()[len('Oppsummering:'):].lstrip()
+            while text.startswith('###'):
+                text = text.lstrip()[3:].lstrip()
             # Remove backslashes (common issue with Llama-2 chat models)
             text = text.replace('\\', '')
+            # Strip trailing ### or ## (Gemma/plain format end markers)
+            text = re.sub(r'\s*#+\s*$', '', text)
             # Remove multiple spaces
             text = ' '.join(text.split())
             return text.strip()
+        
+        def truncate_repeated_paragraphs(text, min_words=12):
+            """Truncate at first repeated paragraph (model sometimes repeats same content 2-4x)."""
+            if not text or len(text.split()) < min_words * 2:
+                return text
+            words = text.split()
+            # Look for a chunk of min_words that appears again later (repetition)
+            for i in range(0, len(words) - min_words):
+                chunk = ' '.join(words[i:i + min_words])
+                # Check if this chunk appears again later
+                rest = ' '.join(words[i + min_words:])
+                if len(rest) < len(chunk) * 0.5:
+                    continue
+                if chunk in rest:
+                    return ' '.join(words[:i + min_words]).strip()
+            return text
         
         def fix_mid_sentence_start(text):
             """Try to fix predictions that start mid-sentence by finding the first complete sentence."""
@@ -1138,7 +1133,6 @@ class CausalLMTrainer(Trainer):
                     # Found a sentence boundary, start from there
                     start_pos = match.end() - 1  # Position of the capital letter
                     fixed_text = text[start_pos:].strip()
-                    print(f'    ✓ Fixed mid-sentence start: "{text[:50]}..." -> "{fixed_text[:50]}..."')
                     return fixed_text
                 else:
                     # No clear sentence boundary, try to find first capital letter
@@ -1146,7 +1140,6 @@ class CausalLMTrainer(Trainer):
                     if capital_match:
                         start_pos = capital_match.start()
                         fixed_text = text[start_pos:].strip()
-                        print(f'    ✓ Fixed mid-sentence start (found capital): "{text[:50]}..." -> "{fixed_text[:50]}..."')
                         return fixed_text
             
             return text
@@ -1154,14 +1147,18 @@ class CausalLMTrainer(Trainer):
         cleaned_predictions = []
         for i, pred in enumerate(decoded_predictions):
             cleaned = clean_text(pred)
+            # Truncate at first repeated paragraph (fixes Arna-style repetition)
+            cleaned = truncate_repeated_paragraphs(cleaned)
             # Try to fix mid-sentence starts
             fixed = fix_mid_sentence_start(cleaned)
             cleaned_predictions.append(fixed)
         
-        # Debug: Check for empty predictions
+        # Check for empty predictions (warn once per eval run to avoid log spam; always warn if all empty)
         empty_count = sum(1 for p in cleaned_predictions if not p)
         if empty_count > 0:
-            print(f'⚠ WARNING: {empty_count}/{len(cleaned_predictions)} predictions are empty after cleaning!')
+            if not getattr(self, '_empty_warning_shown', False):
+                print(f'⚠ WARNING: Some predictions are empty after cleaning (model may output EOS/special only for some examples). Will report total at end.')
+                self._empty_warning_shown = True
             if empty_count == len(cleaned_predictions):
                 print(f'⚠ CRITICAL: ALL predictions are empty! The model may have collapsed during training.')
                 print(f'  This could indicate:')
@@ -1191,9 +1188,9 @@ class CausalLMTrainer(Trainer):
                 if reserved > 80:  # >80GB used out of 102GB
                     print(f"⚠ WARNING: GPU {i} using {reserved:.1f}GB / {total:.1f}GB ({reserved/total*100:.1f}%) - consider reducing batch size")
             
-            # Log peak memory to wandb (once per evaluation, not every step)
+            # Log peak memory to wandb once per evaluation (no step= to avoid "step 0 < current step" when evaluating multiple checkpoints)
             if wandb.run is not None and not hasattr(self, '_peak_memory_logged'):
-                wandb.log(peak_memory, step=0)  # Log at step 0 for this checkpoint
+                wandb.log(peak_memory)
                 self._peak_memory_logged = True
 
         loss = None
@@ -1208,6 +1205,7 @@ def load_model_and_peft_checkpoint(
     use_multi_gpu: bool = False,
     major_checkpoint_interval: int = 500,
     include_nli_faithfulness: bool = False,  # Check for missing NLI metrics if True
+    force_recompute: bool = False,  # If True, skip "already evaluated" check and load model for re-evaluation
 ):
     """Load base model and PEFT checkpoint for inference.
     
@@ -1362,7 +1360,8 @@ def load_model_and_peft_checkpoint(
     if checkpoint_step_int > 0 and not is_major:
         regular_ckpt_dir = os.path.join(model_dir, "regular_checkpoints")
         os.makedirs(regular_ckpt_dir, exist_ok=True)
-        regular_ckpt_name = f"regular-checkpoint-{checkpoint_step_int}"
+        # Unified naming: checkpoint-{step} (folder regular_checkpoints/ indicates type)
+        regular_ckpt_name = f"checkpoint-{checkpoint_step_int}"
         regular_ckpt_path = os.path.join(regular_ckpt_dir, regular_ckpt_name)
 
         # Check if backup already exists and has adapter files
@@ -1396,7 +1395,8 @@ def load_model_and_peft_checkpoint(
     if is_major:
         major_ckpt_dir = os.path.join(model_dir, "major_checkpoints")
         os.makedirs(major_ckpt_dir, exist_ok=True)
-        major_ckpt_name = f"major-checkpoint-{checkpoint_step_int}"
+        # Unified naming: checkpoint-{step} (folder major_checkpoints/ indicates type)
+        major_ckpt_name = f"checkpoint-{checkpoint_step_int}"
         major_ckpt_path = os.path.join(major_ckpt_dir, major_ckpt_name)
         
         # Check if backup already exists and has adapter files
@@ -1423,161 +1423,177 @@ def load_model_and_peft_checkpoint(
                 print("   Continuing with evaluation, but major checkpoint copy was not created.")
     
     # Check if this checkpoint was already evaluated using utility functions
+    # Skip when force_recompute=True (monitor detected checkpoint newer than stale eval)
     eval_results_file = get_eval_results_path(checkpoint_dir, model_dir)
     old_eval_results_file = get_old_eval_results_path(checkpoint_dir)
     
-    # Check if results exist in new location
-    if os.path.exists(eval_results_file):
-        # Check if extended metrics are missing (if extended evaluation is available)
-        # If extended metrics should be computed but aren't present, allow re-evaluation
-        if EXTENDED_EVAL_AVAILABLE:
+    # Retrain-from-scratch: eval results older than training_started.txt = from previous run
+    stale_eval_from_previous_run = False
+    if not force_recompute and os.path.exists(eval_results_file):
+        training_started_file = os.path.join(model_dir, "training_started.txt")
+        if os.path.exists(training_started_file):
             try:
-                existing_results = load_eval_results(checkpoint_dir, model_dir)
-                if existing_results is None:
-                    # Can't parse, allow re-evaluation
-                    print(f"⚠ Warning: Could not parse existing results file. Re-evaluating...")
-                    # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                else:
-                    # Check if this is a major checkpoint that should have BERTScore
-                    is_major = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
-                    
-                    # Check if extended metrics are missing
-                    has_extended_metrics = any(
-                        key.startswith("eval_reference_") or 
-                        key.startswith("eval_hygiene_") or 
-                        key.startswith("eval_faithfulness_") or
-                        key == "eval_faithfulness"
-                        for key in existing_results.keys()
-                    )
-                    
-                    # If it's a major checkpoint and should have BERTScore but doesn't, re-evaluate
-                    if is_major and "eval_reference_bertscore_f1_mean" not in existing_results:
-                        print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
-                        print(f"   Re-evaluating to compute extended metrics...")
+                eval_mtime = os.path.getmtime(eval_results_file)
+                training_started_mtime = os.path.getmtime(training_started_file)
+                if eval_mtime < training_started_mtime:
+                    stale_eval_from_previous_run = True
+                    print(f"ℹ Eval results from previous run (older than training_started.txt). Re-evaluating...")
+            except OSError:
+                pass
+    
+    if not force_recompute and not stale_eval_from_previous_run:
+        # Check if results exist in new location
+        if os.path.exists(eval_results_file):
+            # Check if extended metrics are missing (if extended evaluation is available)
+            # If extended metrics should be computed but aren't present, allow re-evaluation
+            if EXTENDED_EVAL_AVAILABLE:
+                try:
+                    existing_results = load_eval_results(checkpoint_dir, model_dir)
+                    if existing_results is None:
+                        # Can't parse, allow re-evaluation
+                        print(f"⚠ Warning: Could not parse existing results file. Re-evaluating...")
                         # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                    elif not has_extended_metrics:
-                        print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
-                        print(f"   Re-evaluating to compute extended metrics...")
-                        # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                    # Check if NLI faithfulness is requested but missing
-                    elif include_nli_faithfulness:
-                        has_nli_metrics = (
-                            any(key.startswith("eval_faithfulness_") for key in existing_results.keys()) or
-                            ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
+                    else:
+                        # Check if this is a major checkpoint that should have BERTScore
+                        is_major = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                        
+                        # Check if extended metrics are missing
+                        has_extended_metrics = any(
+                            key.startswith("eval_reference_") or 
+                            key.startswith("eval_hygiene_") or 
+                            key.startswith("eval_faithfulness_") or
+                            key == "eval_faithfulness"
+                            for key in existing_results.keys()
                         )
-                        # Also check for eval_faithfulness key (could be set to null)
-                        has_nli_results = (
-                            has_nli_metrics or 
-                            ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
-                        )
-                        if not has_nli_results:
-                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing NLI faithfulness metrics (--include_nli_faithfulness was requested).")
-                            print(f"   Re-evaluating to compute NLI metrics...")
+                        
+                        # If it's a major checkpoint and should have BERTScore but doesn't, re-evaluate
+                        if is_major and "eval_reference_bertscore_f1_mean" not in existing_results:
+                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
+                            print(f"   Re-evaluating to compute extended metrics...")
                             # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                        elif not has_extended_metrics:
+                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
+                            print(f"   Re-evaluating to compute extended metrics...")
+                            # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                        # Check if NLI faithfulness is requested but missing
+                        elif include_nli_faithfulness:
+                            has_nli_metrics = (
+                                any(key.startswith("eval_faithfulness_") for key in existing_results.keys()) or
+                                ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
+                            )
+                            # Also check for eval_faithfulness key (could be set to null)
+                            has_nli_results = (
+                                has_nli_metrics or 
+                                ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
+                            )
+                            if not has_nli_results:
+                                print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing NLI faithfulness metrics (--include_nli_faithfulness was requested).")
+                                print(f"   Re-evaluating to compute NLI metrics...")
+                                # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                            else:
+                                # All metrics present, skip evaluation
+                                raise AlreadyEvaluatedError(
+                                    f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                                    f"(results file exists at {eval_results_file}). "
+                                    f"Skipping evaluation."
+                                )
                         else:
-                            # All metrics present, skip evaluation
+                            # Extended metrics are present, skip evaluation
                             raise AlreadyEvaluatedError(
                                 f"Checkpoint {checkpoint_dir} appears to be already evaluated "
                                 f"(results file exists at {eval_results_file}). "
                                 f"Skipping evaluation."
                             )
-                    else:
-                        # Extended metrics are present, skip evaluation
-                        raise AlreadyEvaluatedError(
-                            f"Checkpoint {checkpoint_dir} appears to be already evaluated "
-                            f"(results file exists at {eval_results_file}). "
-                            f"Skipping evaluation."
+                except (json.JSONDecodeError, ValueError, KeyError) as e:
+                    # If we can't parse the file, allow re-evaluation
+                    print(f"⚠ Warning: Could not parse existing results file: {e}")
+                    print(f"   Re-evaluating checkpoint {checkpoint_name}...")
+                    # Don't raise AlreadyEvaluatedError - allow re-evaluation
+            else:
+                # Extended evaluation not available, skip if results exist
+                raise AlreadyEvaluatedError(
+                    f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                    f"(results file exists at {eval_results_file}). "
+                    f"Skipping evaluation."
+                )
+        
+        # Also check old location for backwards compatibility
+        if os.path.exists(old_eval_results_file):
+            # Check if extended metrics are missing (same logic as above)
+            if EXTENDED_EVAL_AVAILABLE:
+                try:
+                    existing_results_old = load_eval_results(checkpoint_dir, model_dir)
+                    if existing_results_old is not None:
+                        is_major_old = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                        has_extended_metrics_old = any(
+                            key.startswith("eval_reference_") or 
+                            key.startswith("eval_hygiene_") or 
+                            key.startswith("eval_faithfulness_") or
+                            key == "eval_faithfulness"
+                            for key in existing_results_old.keys()
                         )
-            except (json.JSONDecodeError, ValueError, KeyError) as e:
-                # If we can't parse the file, allow re-evaluation
-                print(f"⚠ Warning: Could not parse existing results file: {e}")
-                print(f"   Re-evaluating checkpoint {checkpoint_name}...")
-                # Don't raise AlreadyEvaluatedError - allow re-evaluation
-        else:
-            # Extended evaluation not available, skip if results exist
-            raise AlreadyEvaluatedError(
-                f"Checkpoint {checkpoint_dir} appears to be already evaluated "
-                f"(results file exists at {eval_results_file}). "
-                f"Skipping evaluation."
-            )
-    
-    # Also check old location for backwards compatibility
-    if os.path.exists(old_eval_results_file):
-        # Check if extended metrics are missing (same logic as above)
-        if EXTENDED_EVAL_AVAILABLE:
-            try:
-                existing_results_old = load_eval_results(checkpoint_dir, model_dir)
-                if existing_results_old is not None:
-                    is_major_old = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
-                    has_extended_metrics_old = any(
-                        key.startswith("eval_reference_") or 
-                        key.startswith("eval_hygiene_") or 
-                        key.startswith("eval_faithfulness_") or
-                        key == "eval_faithfulness"
-                        for key in existing_results_old.keys()
-                    )
-                    
-                    if is_major_old and "eval_reference_bertscore_f1_mean" not in existing_results_old:
-                        print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
-                        print(f"   Re-evaluating to compute extended metrics...")
-                        # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                    elif not has_extended_metrics_old:
-                        print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
-                        print(f"   Re-evaluating to compute extended metrics...")
-                        # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                    # Check if NLI faithfulness is requested but missing
-                    elif include_nli_faithfulness:
-                        has_nli_metrics_old = (
-                            any(key.startswith("eval_faithfulness_") for key in existing_results_old.keys()) or
-                            ("eval_faithfulness" in existing_results_old and existing_results_old.get("eval_faithfulness") is not None)
-                        )
-                        # Also check for eval_faithfulness key (could be set to null)
-                        has_nli_results_old = (
-                            has_nli_metrics_old or 
-                            ("eval_faithfulness" in existing_results_old and existing_results_old.get("eval_faithfulness") is not None)
-                        )
-                        if not has_nli_results_old:
-                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing NLI faithfulness metrics (--include_nli_faithfulness was requested).")
-                            print(f"   Re-evaluating to compute NLI metrics...")
+                        
+                        if is_major_old and "eval_reference_bertscore_f1_mean" not in existing_results_old:
+                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
+                            print(f"   Re-evaluating to compute extended metrics...")
                             # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                        elif not has_extended_metrics_old:
+                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
+                            print(f"   Re-evaluating to compute extended metrics...")
+                            # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                        # Check if NLI faithfulness is requested but missing
+                        elif include_nli_faithfulness:
+                            has_nli_metrics_old = (
+                                any(key.startswith("eval_faithfulness_") for key in existing_results_old.keys()) or
+                                ("eval_faithfulness" in existing_results_old and existing_results_old.get("eval_faithfulness") is not None)
+                            )
+                            # Also check for eval_faithfulness key (could be set to null)
+                            has_nli_results_old = (
+                                has_nli_metrics_old or 
+                                ("eval_faithfulness" in existing_results_old and existing_results_old.get("eval_faithfulness") is not None)
+                            )
+                            if not has_nli_results_old:
+                                print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing NLI faithfulness metrics (--include_nli_faithfulness was requested).")
+                                print(f"   Re-evaluating to compute NLI metrics...")
+                                # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                            else:
+                                # All metrics present, skip evaluation
+                                raise AlreadyEvaluatedError(
+                                    f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                                    f"(old results file exists at {old_eval_results_file}). "
+                                    f"Skipping evaluation."
+                                )
                         else:
-                            # All metrics present, skip evaluation
                             raise AlreadyEvaluatedError(
                                 f"Checkpoint {checkpoint_dir} appears to be already evaluated "
                                 f"(old results file exists at {old_eval_results_file}). "
                                 f"Skipping evaluation."
                             )
                     else:
-                        raise AlreadyEvaluatedError(
-                            f"Checkpoint {checkpoint_dir} appears to be already evaluated "
-                            f"(old results file exists at {old_eval_results_file}). "
-                            f"Skipping evaluation."
-                        )
-                else:
-                    # Can't parse, allow re-evaluation
+                        # Can't parse, allow re-evaluation
+                        print(f"⚠ Warning: Could not parse existing results file. Re-evaluating...")
+                        # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                except (json.JSONDecodeError, ValueError, KeyError):
+                    # If we can't parse, allow re-evaluation
                     print(f"⚠ Warning: Could not parse existing results file. Re-evaluating...")
                     # Don't raise AlreadyEvaluatedError - allow re-evaluation
-            except (json.JSONDecodeError, ValueError, KeyError):
-                # If we can't parse, allow re-evaluation
-                print(f"⚠ Warning: Could not parse existing results file. Re-evaluating...")
-                # Don't raise AlreadyEvaluatedError - allow re-evaluation
-        else:
-            raise AlreadyEvaluatedError(
-                f"Checkpoint {checkpoint_dir} appears to be already evaluated "
-                f"(old results file exists at {old_eval_results_file}). "
-                f"Skipping evaluation."
-            )
-    
-    # Also check if checkpoint directory only contains eval_results (old structure)
-    dir_contents = os.listdir(checkpoint_dir)
-    if len(dir_contents) == 1 and 'eval_results' in dir_contents:
-        eval_results_file = os.path.join(checkpoint_dir, 'eval_results', 'eval_results.json')
-        if os.path.exists(eval_results_file):
-            raise AlreadyEvaluatedError(
-                f"Checkpoint {checkpoint_dir} appears to be already evaluated "
-                f"(only contains 'eval_results' with results file). "
-                f"The adapter files may have been cleaned up. Skipping evaluation."
-            )
+            else:
+                raise AlreadyEvaluatedError(
+                    f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                    f"(old results file exists at {old_eval_results_file}). "
+                    f"Skipping evaluation."
+                )
+        
+        # Also check if checkpoint directory only contains eval_results (old structure)
+        dir_contents = os.listdir(checkpoint_dir)
+        if len(dir_contents) == 1 and 'eval_results' in dir_contents:
+            eval_results_file = os.path.join(checkpoint_dir, 'eval_results', 'eval_results.json')
+            if os.path.exists(eval_results_file):
+                raise AlreadyEvaluatedError(
+                    f"Checkpoint {checkpoint_dir} appears to be already evaluated "
+                    f"(only contains 'eval_results' with results file). "
+                    f"The adapter files may have been cleaned up. Skipping evaluation."
+                )
     
     adapter_config_path = os.path.join(checkpoint_dir, "adapter_config.json")
     adapter_model_path = os.path.join(checkpoint_dir, "adapter_model.safetensors")
@@ -1594,12 +1610,33 @@ def load_model_and_peft_checkpoint(
             adapter_config_path = parent_adapter_config
             adapter_model_path = os.path.join(parent_dir, "adapter_model.safetensors")
         else:
-            raise ValueError(
-                f"PEFT adapter config not found at {adapter_config_path}. "
-                f"This checkpoint may not be a valid PEFT checkpoint. "
-                f"Files in checkpoint directory: {dir_contents}. "
-                f"Expected files: adapter_config.json, adapter_model.safetensors (or adapter_model.bin)"
-            )
+            # Fallback: backup dir may be empty (e.g. major step only in major_checkpoints/).
+            # Try alternate locations: main, backup dirs (both new "checkpoint-X" and legacy names).
+            alt_paths = [
+                os.path.join(model_dir, f"checkpoint-{checkpoint_step_int}"),
+                os.path.join(model_dir, "major_checkpoints", f"checkpoint-{checkpoint_step_int}"),
+                os.path.join(model_dir, "major_checkpoints", f"major-checkpoint-{checkpoint_step_int}"),
+                os.path.join(model_dir, "regular_checkpoints", f"checkpoint-{checkpoint_step_int}"),
+                os.path.join(model_dir, "regular_checkpoints", f"regular-checkpoint-{checkpoint_step_int}"),
+            ]
+            for alt in alt_paths:
+                if alt != checkpoint_dir and os.path.exists(os.path.join(alt, "adapter_config.json")):
+                    print(f"Warning: {checkpoint_dir} is empty or missing adapter files.")
+                    print(f"Using alternate checkpoint: {alt}")
+                    checkpoint_dir = alt
+                    adapter_config_path = os.path.join(alt, "adapter_config.json")
+                    adapter_model_path = os.path.join(alt, "adapter_model.safetensors")
+                    if not os.path.exists(adapter_model_path):
+                        adapter_model_path = os.path.join(alt, "adapter_model.bin")
+                    dir_contents = os.listdir(checkpoint_dir)
+                    break
+            else:
+                raise ValueError(
+                    f"PEFT adapter config not found at {adapter_config_path}. "
+                    f"This checkpoint may not be a valid PEFT checkpoint. "
+                    f"Files in checkpoint directory: {dir_contents}. "
+                    f"Expected files: adapter_config.json, adapter_model.safetensors (or adapter_model.bin)"
+                )
     
     if not os.path.exists(adapter_model_path):
         # Try alternative name
@@ -1897,6 +1934,7 @@ def evaluate_checkpoint(
     max_output_summary_tokens: int = MAX_OUTPUT_SUMMARY_TOKENS,
     val_batch_size: int = VAL_BATCH_SIZE,
     val_data_size: int = VAL_DATA_SIZE,
+    val_data_seed: int = VAL_DATA_SEED,
     val_beam_size: int = VAL_BEAM_SIZE,
     use_greedy: bool = True,
     use_multi_gpu: bool = False,
@@ -1908,6 +1946,7 @@ def evaluate_checkpoint(
     major_checkpoint_interval: int = 500,  # Every Nth step is major (gets BERTScore). Default: 500 (every 500 steps = checkpoint-500, checkpoint-1000, etc.)
     include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation (uses fixed 500-example subset for consistency)
     keep_existing: bool = False,
+    force_recompute: bool = False,  # If True, skip loading existing results and re-run evaluation (for rerun with corrected prompt)
 ):
     """Load a PEFT checkpoint and run evaluation with model parallelism support."""
     
@@ -1927,17 +1966,6 @@ def evaluate_checkpoint(
     #   - Major checkpoints: ROUGE + Hygiene + BERTScore (~3-4 min)
     #   - NLI Faithfulness: Only for major checkpoints, and only if include_nli_faithfulness is enabled
     is_major_checkpoint_bool = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
-    
-    # Debug: Print NLI flag status
-    print(f"\n{'='*70}")
-    print(f"NLI FAITHFULNESS CONFIGURATION:")
-    print(f"{'='*70}")
-    print(f"  include_nli_faithfulness parameter: {include_nli_faithfulness}")
-    print(f"  Is major checkpoint: {is_major_checkpoint_bool}")
-    print(f"  NLI will be computed: {include_nli_faithfulness and is_major_checkpoint_bool} (only for major checkpoints)")
-    print(f"  NLI fixed subset size: {NLI_FIXED_SUBSET_SIZE} examples (consistent across all checkpoints)")
-    print(f"  EXTENDED_EVAL_AVAILABLE: {EXTENDED_EVAL_AVAILABLE}")
-    print(f"{'='*70}\n")
     
     # Default training parameters for example calculation (may vary - check training config for exact values)
     DEFAULT_TRAIN_BATCH_SIZE = 4
@@ -1966,7 +1994,10 @@ def evaluate_checkpoint(
     results_file = get_eval_results_path(checkpoint_dir, model_dir_eval)
     
     # If results file exists, load and log to Wandb without re-evaluating
-    if os.path.exists(results_file):
+    # Skip loading when force_recompute=True (e.g. monitor detected checkpoint newer than stale eval from previous run)
+    if force_recompute and os.path.exists(results_file):
+        print(f"ℹ force_recompute: Skipping existing results, re-running evaluation (e.g. rerun with corrected prompt)")
+    if os.path.exists(results_file) and not force_recompute:
         print(f"⚠ Checkpoint {checkpoint_name} already evaluated. Loading existing results...")
         if keep_existing:
             existing_results = load_eval_results(checkpoint_dir, model_dir_eval)
@@ -2210,26 +2241,7 @@ def evaluate_checkpoint(
         print(f"Adjusted batch size from {val_batch_size} to {adjusted_batch_size} for {model_name}")
         val_batch_size = adjusted_batch_size
     
-    # Check GPU memory utilization before evaluation
-    if is_main_process and torch.cuda.is_available():
-        print("\n" + "=" * 70)
-        print("GPU MEMORY UTILIZATION CHECK")
-        print("=" * 70)
-        memory_stats = check_gpu_memory_utilization(num_gpus)
-        for gpu_info in memory_stats.get("gpus", []):
-            print(f"GPU {gpu_info['gpu_id']}: {gpu_info['name']}")
-            print(f"  Total: {gpu_info['total_gb']:.1f} GB")
-            print(f"  Reserved: {gpu_info['reserved_gb']:.1f} GB ({gpu_info['utilization_pct']:.1f}%)")
-            print(f"  Free: {gpu_info['free_gb']:.1f} GB")
-        
-        if memory_stats.get("recommendations"):
-            print("\nRecommendations:")
-            for rec in memory_stats["recommendations"]:
-                print(f"  • {rec}")
-        
-        print(f"\nUsing batch size: {val_batch_size} for evaluation")
-        print("=" * 70 + "\n")
-    else:
+    if is_main_process:
         print(f"Using batch size: {val_batch_size} for evaluation")
 
     def compute_metrics(eval_pred):
@@ -2478,7 +2490,8 @@ def evaluate_checkpoint(
             model_name, checkpoint_dir, hf_token, 
             use_multi_gpu=use_multi_gpu,
             major_checkpoint_interval=major_checkpoint_interval,
-            include_nli_faithfulness=include_nli_faithfulness
+            include_nli_faithfulness=include_nli_faithfulness,
+            force_recompute=force_recompute,
         )
     except AlreadyEvaluatedError:
         # Re-raise to be caught by the main block
@@ -2508,17 +2521,16 @@ def evaluate_checkpoint(
     if is_main_process:
         print(f"Successfully loaded {len(val_data)} validation examples")
 
-    # Sample validation examples
-    val_data = random.sample(val_data, min(val_data_size, len(val_data)))
+    # Sample validation examples (reproducible; 1000 = canonical 500 + 500 more for comparison)
+    val_data = sample_validation_data_reproducibly(
+        val_data, min(val_data_size, len(val_data)), seed=val_data_seed
+    )
     
     # Filter out examples with missing input or output
     val_data = [ex for ex in val_data if ex.get('input') and ex.get('output')]
     
     val_df = pd.DataFrame(val_data)
     val_dataset = Dataset.from_pandas(val_df)
-    
-    if is_main_process:
-        print(f'*** validation dataset size: {len(val_dataset)} examples ***')
 
     # Use shared formatting and tokenization functions
     def format_example_eval_wrapper(example):
@@ -2577,15 +2589,7 @@ def evaluate_checkpoint(
                 "doc_types": all_doc_types,
             }, allow_val_change=True)
         
-        # Print to console (lightweight - just once)
-        print("\n" + "=" * 70)
-        print("EVALUATION PROMPT EXAMPLES (logged to wandb config):")
-        print("=" * 70)
-        for ex in example_prompts:
-            print(f"\nExample {ex['example_num']}:")
-            print(f"  Doc Type: {ex['doc_type']} -> {ex['doc_type_norwegian']}")
-            print(f"  Prompt Preview: {ex['prompt_preview']}")
-        print("=" * 70 + "\n")
+        # Example prompts are logged to wandb config above
     
     tokenized_val_dataset = formatted_val_dataset.map(tokenize_function_eval_wrapper, batched=True)
     
@@ -2618,8 +2622,6 @@ def evaluate_checkpoint(
     )
     
     # No FSDP/DDP - we use model parallelism (device_map="auto") instead
-    print("Using model parallelism (device_map='auto') for multi-GPU evaluation")
-    print("This is compatible with model.generate() unlike FSDP")
 
     # Initialize Trainer for evaluation only
     trainer = CausalLMTrainer(
@@ -2638,9 +2640,7 @@ def evaluate_checkpoint(
 
     # Run evaluation
     if is_main_process:
-        print("\n" + "=" * 70)
         print("Running evaluation on checkpoint...")
-        print("=" * 70 + "\n")
     
     # Track total validation time
     validation_start_time = time.time()
@@ -2649,24 +2649,6 @@ def evaluate_checkpoint(
     prediction_start_time = time.time()
     eval_results = trainer.evaluate()
     prediction_time = time.time() - prediction_start_time
-    
-    # Check GPU memory utilization after evaluation
-    if is_main_process and torch.cuda.is_available():
-        print("\n" + "=" * 70)
-        print("GPU MEMORY UTILIZATION AFTER EVALUATION")
-        print("=" * 70)
-        memory_stats = check_gpu_memory_utilization(num_gpus)
-        for gpu_info in memory_stats.get("gpus", []):
-            print(f"GPU {gpu_info['gpu_id']}: {gpu_info['name']}")
-            print(f"  Peak allocated: {gpu_info['allocated_gb']:.1f} GB")
-            print(f"  Reserved: {gpu_info['reserved_gb']:.1f} GB ({gpu_info['utilization_pct']:.1f}%)")
-            print(f"  Free: {gpu_info['free_gb']:.1f} GB")
-        
-        if memory_stats.get("recommendations"):
-            print("\nRecommendations:")
-            for rec in memory_stats["recommendations"]:
-                print(f"  • {rec}")
-        print("=" * 70 + "\n")
     
     # ------------------------------------------------------------------
     # Enrich eval_results with clearer runtime and cardinality metadata
@@ -2710,11 +2692,12 @@ def evaluate_checkpoint(
     eval_results.setdefault("eval_num_examples_by_doc_type", doc_type_counts)
     eval_results.setdefault("eval_num_examples_by_doc_type_norwegian", doc_type_nor_counts)
     
-    # Save inputs, references, and predictions to JSONL file
+    # Save inputs, references, and predictions to JSONL file (in all_eval_results, same as eval-results.json)
     # Only save for major checkpoints to save disk space
     predictions_file = None
     if is_main_process and is_major_checkpoint:
-        predictions_file = os.path.join(output_dir, f"{checkpoint_name}-inputs-refs-preds.jsonl")
+        predictions_file = get_predictions_file_path(checkpoint_dir, model_dir_eval)
+        os.makedirs(os.path.dirname(predictions_file), exist_ok=True)
         
         # Write to JSONL file
         # Predictions are generated in the same order as the dataset
@@ -2830,11 +2813,13 @@ def evaluate_checkpoint(
                     
                     if include_faithfulness:
                         # Get or create fixed NLI subset (500 examples, same across all checkpoints)
+                        # When val_data_size > 500, use first 500 for comparability with 500-example runs
                         model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
                         nli_indices = get_or_create_fixed_nli_subset(
                             total_examples=len(input_texts),
                             model_dir=model_dir_eval,
-                            subset_size=NLI_FIXED_SUBSET_SIZE
+                            subset_size=NLI_FIXED_SUBSET_SIZE,
+                            use_first_n_for_extended=(val_data_size > NLI_FIXED_SUBSET_SIZE)
                         )
                         
                         # Safety check: ensure subset is not empty
@@ -3123,24 +3108,27 @@ def evaluate_checkpoint(
                 "best_rougeL": eval_results.get("eval_rougeL", 0),
             })
         
-        # DON'T call wandb.finish() here - keep the run open for multiple checkpoints
-        # Only finish if explicitly requested or at the very end
-        print(">>> Evaluation results logged to wandb (run kept open for additional checkpoints)")
+        # Call wandb.finish() so wandb marks the run as "Finished" instead of "Crashed".
+        # The next checkpoint (new Python process) will resume this run via .wandb_run_id.
+        print(">>> Evaluation results logged to wandb")
         print(f">>> Metrics logged with step={checkpoint_step_int} - will appear in time-series plots")
         print(f">>> View plots at: {wandb.run.get_url() if wandb.run else 'N/A'}")
+        wandb.finish()
     elif wandb_disabled and is_main_process:
         print(">>> Wandb disabled - skipping wandb logging")
     
     # Save results to file (only on main process)
     if is_main_process:
-        # Save results using utility function (saves to both new and old locations)
-        save_eval_results(
+        # Ensure all_eval_results dir exists (handles backup checkpoint paths)
+        os.makedirs(os.path.join(model_dir_eval, "all_eval_results"), exist_ok=True)
+        # Save per-checkpoint JSON so monitor and summary can read it
+        saved_path = save_eval_results(
             results=eval_results,
             checkpoint_dir=checkpoint_dir,
             model_dir=model_dir_eval,
             save_to_old_location=True  # Keep backwards compatibility
         )
-        print(f"Results saved to: {results_file}")
+        print(f"Per-checkpoint results saved to: {saved_path}")
         
         # Update evaluation summary using utility function
         update_evaluation_summary(
@@ -3219,7 +3207,9 @@ Examples:
     parser.add_argument('--val_batch_size', type=int, default=VAL_BATCH_SIZE,
                        help=f'Validation batch size per device (default: {VAL_BATCH_SIZE}). The script will automatically adjust based on model size and provide memory utilization reports.')
     parser.add_argument('--val_data_size', type=int, default=VAL_DATA_SIZE,
-                       help=f'Number of examples to use for validation (default: {VAL_DATA_SIZE})')
+                       help=f'Number of examples to use for validation (default: {VAL_DATA_SIZE}). Use 1000 for extended eval; the 1000 contain the same 500 as used for 500-example runs.')
+    parser.add_argument('--val_data_seed', type=int, default=VAL_DATA_SEED,
+                       help=f'Random seed for reproducible validation sampling (default: {VAL_DATA_SEED})')
     parser.add_argument('--val_beam_size', type=int, default=VAL_BEAM_SIZE,
                        help=f'Beam size for validation generation (default: {VAL_BEAM_SIZE})')
     parser.add_argument('--use_greedy', action='store_true',
@@ -3228,6 +3218,8 @@ Examples:
                        help='Use model parallelism (device_map="auto") to split model across multiple GPUs. Compatible with generation.')
     parser.add_argument('--keep_existing', action='store_true',
                        help='If set, do not rerun evaluation when results already exist (skips checkpoints with saved outputs).')
+    parser.add_argument('--force_recompute', action='store_true',
+                       help='If set, re-run evaluation even when results exist (e.g. after prompt/config corrections). Overwrites existing results.')
     
     # Wandb arguments
     parser.add_argument('--wandb_project', type=str, default='lm-evaluation',
@@ -3259,6 +3251,16 @@ Examples:
         print(f"Error mapping model name: {e}")
         sys.exit(1)
 
+    # Apply model-specific max_output_summary_tokens (e.g. Normistral uses 256 to reduce gibberish)
+    max_output_summary_tokens = args.max_output_summary_tokens
+    try:
+        model_config = get_model_config_by_hf_name(model_name)
+        if model_config and model_config.max_output_summary_tokens is not None:
+            max_output_summary_tokens = model_config.max_output_summary_tokens
+            print(f"Using model-specific max_output_summary_tokens: {max_output_summary_tokens}")
+    except Exception:
+        pass
+
     if args.skip_eval:
         # Just load the model
         print("Loading model without evaluation...")
@@ -3280,6 +3282,9 @@ Examples:
                 val_dataset_path=args.val_dataset,
                 hf_token=args.hf_token,
                 output_dir=args.output_dir,  # None will trigger default: model_dir/all_eval_results
+                max_output_summary_tokens=max_output_summary_tokens,
+                val_data_size=args.val_data_size,
+                val_data_seed=args.val_data_seed,
                 use_multi_gpu=args.use_multi_gpu,
                 wandb_project=args.wandb_project if not args.wandb_disabled else None,
                 wandb_entity=args.wandb_entity,
@@ -3289,6 +3294,7 @@ Examples:
                 major_checkpoint_interval=args.major_checkpoint_interval,
                 include_nli_faithfulness=args.include_nli_faithfulness,
                 keep_existing=args.keep_existing,
+                force_recompute=args.force_recompute,
             )
         except AlreadyEvaluatedError as e:
             print(f"⚠ SKIPPING: {e}")

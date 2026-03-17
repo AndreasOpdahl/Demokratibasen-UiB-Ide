@@ -14,9 +14,9 @@ def extract_checkpoint_step(checkpoint_path: str) -> int:
     """Extract step number from checkpoint path.
     
     Handles multiple checkpoint naming formats:
-    - checkpoint-123
-    - regular-checkpoint-123
-    - major-checkpoint-123
+    - checkpoint-123 (main and backup; unified naming)
+    - regular-checkpoint-123 (legacy backup)
+    - major-checkpoint-123 (legacy backup)
     
     Args:
         checkpoint_path: Path to checkpoint directory or checkpoint name

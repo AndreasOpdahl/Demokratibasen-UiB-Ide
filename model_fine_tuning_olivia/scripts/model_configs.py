@@ -312,7 +312,7 @@ MODEL_CONFIGS = {
         val_batch_size=2,
     ),
     
-    # Viking models (Mistral-based)
+    # Viking models (Mistral-based) - base models, use plain format (no chat template)
     'viking-7b': ModelConfig(
         short_name='viking-7b',
         hf_name='LumiOpen/Viking-7B',
@@ -344,7 +344,7 @@ MODEL_CONFIGS = {
         lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
         learning_rate=2e-5,  # Higher LR for larger model
-        prompt_config=PROMPT_PLAIN,
+        prompt_config=PROMPT_NORMISTRAL,
         architecture='mistral',
         train_batch_size=2,  # Very large model - smaller batch
         val_batch_size=2,
@@ -390,6 +390,7 @@ MODEL_CONFIGS = {
         architecture='mistral',
         train_batch_size=4,
         val_batch_size=16,
+        max_output_summary_tokens=256,  # Shorter limit reduces gibberish/hallucination in generation
     ),
     'normistral-7b-instruct': ModelConfig(
         short_name='normistral-7b-instruct',
@@ -402,6 +403,7 @@ MODEL_CONFIGS = {
         architecture='mistral',
         train_batch_size=4,
         val_batch_size=16,
+        max_output_summary_tokens=256,  # Limit runway to reduce gibberish/hallucination
     ),
     'normistral-11b': ModelConfig(
         short_name='normistral-11b',
@@ -414,6 +416,7 @@ MODEL_CONFIGS = {
         architecture='mistral',
         train_batch_size=4,
         val_batch_size=6,
+        max_output_summary_tokens=256,  # Limit runway to reduce gibberish/hallucination
     ),
     
     # Llama-based models - using chat templates
@@ -507,10 +510,10 @@ def get_model_config(short_name: str) -> ModelConfig:
 
 
 def get_model_config_by_hf_name(hf_name: str) -> Optional[ModelConfig]:
-    """Get configuration by HuggingFace model name.
+    """Get configuration by HuggingFace model name or short name.
     
     Args:
-        hf_name: HuggingFace model identifier
+        hf_name: HuggingFace model identifier (e.g. 'google/gemma-2b-it') or short name (e.g. 'gemma-2b')
     
     Returns:
         ModelConfig if found, None otherwise
@@ -518,6 +521,9 @@ def get_model_config_by_hf_name(hf_name: str) -> Optional[ModelConfig]:
     for config in MODEL_CONFIGS.values():
         if config.hf_name == hf_name:
             return config
+    # Fallback: try short_name (e.g. when passed from checkpoint path or model identifier)
+    if hf_name in MODEL_CONFIGS:
+        return MODEL_CONFIGS[hf_name]
     return None
 
 

@@ -13,32 +13,56 @@ from typing import Optional, Dict, Any, Set
 from datetime import datetime
 
 
-def get_eval_results_path(checkpoint_dir: str, model_dir: Optional[str] = None) -> str:
-    """Get evaluation results file path (new centralized location).
-    
-    The new location is: model_dir/all_eval_results/checkpoint-nnn-eval-results.json
-    
-    Args:
-        checkpoint_dir: Path to checkpoint directory
-        model_dir: Model directory (parent of checkpoint_dir). If None, will be derived.
-    
-    Returns:
-        Path to evaluation results JSON file
-    """
+def _get_model_dir_and_checkpoint_name(checkpoint_dir: str, model_dir: Optional[str] = None) -> tuple:
+    """Resolve model dir and normalized checkpoint name (handles backup paths)."""
     if model_dir is None:
-        model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
-    
+        try:
+            from .checkpoint_utils import get_model_dir_from_checkpoint
+            model_dir = get_model_dir_from_checkpoint(checkpoint_dir)
+        except Exception:
+            model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
     checkpoint_name = os.path.basename(checkpoint_dir.rstrip('/'))
-    # Normalize checkpoint name (handle regular-checkpoint-* and major-checkpoint-*)
     if 'regular-checkpoint-' in checkpoint_name:
         step = checkpoint_name.replace('regular-checkpoint-', '')
         checkpoint_name = f"checkpoint-{step}"
     elif 'major-checkpoint-' in checkpoint_name:
         step = checkpoint_name.replace('major-checkpoint-', '')
         checkpoint_name = f"checkpoint-{step}"
+    return model_dir, checkpoint_name
+
+
+def get_eval_results_path(checkpoint_dir: str, model_dir: Optional[str] = None) -> str:
+    """Get evaluation results file path (new centralized location).
     
+    The new location is: model_dir/all_eval_results/checkpoint-nnn-eval-results.json
+    
+    Args:
+        checkpoint_dir: Path to checkpoint directory (may be in regular_checkpoints/ or major_checkpoints/)
+        model_dir: Model directory (parent of all checkpoints). If None, will be derived.
+    
+    Returns:
+        Path to evaluation results JSON file
+    """
+    model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
     all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
     return os.path.join(all_eval_results_dir, f"{checkpoint_name}-eval-results.json")
+
+
+def get_predictions_file_path(checkpoint_dir: str, model_dir: Optional[str] = None) -> str:
+    """Get inputs-refs-preds JSONL file path (in all_eval_results).
+    
+    The location is: model_dir/all_eval_results/checkpoint-nnn-inputs-refs-preds.jsonl
+    
+    Args:
+        checkpoint_dir: Path to checkpoint directory (may be in regular_checkpoints/ or major_checkpoints/)
+        model_dir: Model directory (parent of all checkpoints). If None, will be derived.
+    
+    Returns:
+        Path to the JSONL file
+    """
+    model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
+    all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
+    return os.path.join(all_eval_results_dir, f"{checkpoint_name}-inputs-refs-preds.jsonl")
 
 
 def get_old_eval_results_path(checkpoint_dir: str) -> str:
@@ -63,16 +87,13 @@ def load_eval_results(checkpoint_dir: str, model_dir: Optional[str] = None) -> O
     2. Old location: checkpoint_dir/eval_results/eval_results.json
     
     Args:
-        checkpoint_dir: Path to checkpoint directory
-        model_dir: Model directory (parent of checkpoint_dir). If None, will be derived.
+        checkpoint_dir: Path to checkpoint directory (may be in regular_checkpoints/ or major_checkpoints/)
+        model_dir: Model directory (parent of all checkpoints). If None, will be derived.
     
     Returns:
         Evaluation results dictionary, or None if not found
     """
-    if model_dir is None:
-        model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
-    
-    # Try new location first
+    # Try new location first (get_eval_results_path resolves model_dir when None)
     new_results_file = get_eval_results_path(checkpoint_dir, model_dir)
     if os.path.exists(new_results_file):
         try:
@@ -103,17 +124,22 @@ def save_eval_results(
     
     Args:
         results: Evaluation results dictionary
-        checkpoint_dir: Path to checkpoint directory
-        model_dir: Model directory (parent of checkpoint_dir). If None, will be derived.
+        checkpoint_dir: Path to checkpoint directory (may be in regular_checkpoints/ or major_checkpoints/)
+        model_dir: Model directory (parent of all checkpoints). If None, will be derived.
         save_to_old_location: Whether to also save to old location for backwards compatibility
     
     Returns:
         Path to the new results file
     """
     if model_dir is None:
-        model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
+        # Use shared helper so backup paths (regular_checkpoints/, major_checkpoints/) resolve to main model dir
+        try:
+            from .checkpoint_utils import get_model_dir_from_checkpoint
+            model_dir = get_model_dir_from_checkpoint(checkpoint_dir)
+        except Exception:
+            model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
     
-    # Save to new location (primary)
+    # Save to new location (primary): model_dir/all_eval_results/checkpoint-N-eval-results.json
     new_results_file = get_eval_results_path(checkpoint_dir, model_dir)
     os.makedirs(os.path.dirname(new_results_file), exist_ok=True)
     

@@ -385,7 +385,14 @@ export HF_METRICS_CACHE="$HF_HOME/metrics"
 export PYTHONUSERBASE="$SLURM_TMPDIR/.local"
 mkdir -p "$HF_HOME" "$HF_DATASETS_CACHE" "$HF_MODULES_CACHE" "$HF_METRICS_CACHE" "$PYTHONUSERBASE"
 
-PROJECT_HF_DIR=/cluster/projects/${SLURM_PROJECT_ID}/shared/.cache/huggingface
+# Project/account for shared HF cache: use whichever is set (run_multiple_models.sh exports SLURM_ACCOUNT)
+PROJECT_ID="${SLURM_JOB_ACCOUNT:-${SLURM_ACCOUNT:-${SLURM_PROJECT_ID:-}}}"
+if [ -z "$PROJECT_ID" ]; then
+    echo "ERROR: Project/account not set. Submit with: sbatch --account=YOUR_ACCOUNT run_finetune_multinode.sbatch ..."
+    echo "  Or use run_multiple_models.sh --account=YOUR_ACCOUNT (it exports SLURM_ACCOUNT)"
+    exit 1
+fi
+PROJECT_HF_DIR=/cluster/projects/${PROJECT_ID}/shared/.cache/huggingface
 mkdir -p "$HF_HOME/hub"
 
 # Convert model name to HuggingFace cache directory format

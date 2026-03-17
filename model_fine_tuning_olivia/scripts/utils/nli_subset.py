@@ -97,22 +97,46 @@ def get_or_create_fixed_nli_subset(
     total_examples: int,
     model_dir: str,
     subset_size: int = NLI_FIXED_SUBSET_SIZE,
-    seed: int = NLI_FIXED_SUBSET_SEED
+    seed: int = NLI_FIXED_SUBSET_SEED,
+    use_first_n_for_extended: bool = False
 ) -> List[int]:
     """Get existing fixed NLI subset or create a new one.
     
     This function first tries to load an existing subset from file. If it doesn't
     exist or the total_examples has changed, it creates a new one.
     
+    When use_first_n_for_extended=True and total_examples > subset_size, returns
+    indices 0..subset_size-1 (first N examples). This ensures NLI stays comparable
+    when extending eval from 500 to 1000 examples - the first 500 are the same.
+    
     Args:
         total_examples: Total number of examples available
         model_dir: Path to model directory
         subset_size: Number of examples to include in subset (default: 500)
         seed: Random seed for reproducibility (default: 42)
+        use_first_n_for_extended: If True and total > subset_size, use first N indices
+            (for backward comparability when extending eval set size)
         
     Returns:
         List of indices to use for NLI evaluation
     """
+    # When extending eval to 1000+, use first 500 for NLI comparability
+    if use_first_n_for_extended and total_examples > subset_size:
+        indices = list(range(subset_size))
+        print(f"✓ Using first {len(indices)} examples for NLI (extended eval; ensures comparability with 500-example runs)")
+        # Optionally save for consistency
+        if model_dir:
+            subset_file = get_nli_subset_file_path(model_dir)
+            os.makedirs(os.path.dirname(subset_file), exist_ok=True)
+            with open(subset_file, 'w') as f:
+                json.dump({
+                    "subset_size": len(indices),
+                    "total_examples": total_examples,
+                    "use_first_n": True,
+                    "indices": indices
+                }, f, indent=2)
+        return indices
+    
     # Try to load existing subset
     existing_indices = load_fixed_nli_subset(model_dir)
     

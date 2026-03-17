@@ -15,7 +15,7 @@ Usage:
     --val_dataset data/output/new_processed_data_val.jsonl \
     --hf_token YOUR_TOKEN \
     --check_interval 30 \
-    --early_stopping_patience 3 \
+    --early_stopping_patience 10 \
     --wandb_project lm-finetuning \
     --wandb_run_name gemma-7b-apptainer-fsdp
 
@@ -25,6 +25,7 @@ The training script will check for early stopping signals and stop if needed.
 import argparse
 import json
 import os
+import sys
 import time
 import glob
 from pathlib import Path
@@ -34,8 +35,13 @@ import wandb
 # Add torch import for device count check
 import torch
 
+# Ensure scripts directory is on path when run as python scripts/monitor_... (e.g. from sbatch)
+_script_dir = os.path.dirname(os.path.abspath(__file__))
+if _script_dir not in sys.path:
+    sys.path.insert(0, _script_dir)
+
 from model_configs import get_model_config
-from evaluate_distributed_checkpoints_multigpu import evaluate_checkpoint
+from evaluate_distributed_checkpoints_multigpu import evaluate_checkpoint, AlreadyEvaluatedError
 
 # Import shared utilities
 from utils import (
@@ -99,8 +105,8 @@ def find_checkpoints(output_dir: str, max_step: Optional[int] = None) -> List[st
     Checks both:
     1. Main checkpoint directories (checkpoint-*)
     2. Backup directories:
-       - regular_checkpoints/regular-checkpoint-* (non-major checkpoints only)
-       - major_checkpoints/major-checkpoint-* (major checkpoints only, not in regular_checkpoints)
+       - regular_checkpoints/checkpoint-* or regular-checkpoint-* (non-major checkpoints)
+       - major_checkpoints/checkpoint-* or major-checkpoint-* (major checkpoints only)
     
     Note: Major checkpoints (multiples of 500) are stored ONLY in major_checkpoints/,
     not in regular_checkpoints/, to save space and avoid redundancy.
@@ -126,11 +132,11 @@ def find_checkpoints(output_dir: str, max_step: Optional[int] = None) -> List[st
     
     backup_checkpoints = []
     if os.path.exists(regular_ckpt_dir):
-        backup_pattern = os.path.join(regular_ckpt_dir, "regular-checkpoint-*")
-        backup_checkpoints.extend(glob.glob(backup_pattern))
+        for p in ("checkpoint-*", "regular-checkpoint-*"):
+            backup_checkpoints.extend(glob.glob(os.path.join(regular_ckpt_dir, p)))
     if os.path.exists(major_ckpt_dir):
-        backup_pattern = os.path.join(major_ckpt_dir, "major-checkpoint-*")
-        backup_checkpoints.extend(glob.glob(backup_pattern))
+        for p in ("checkpoint-*", "major-checkpoint-*"):
+            backup_checkpoints.extend(glob.glob(os.path.join(major_ckpt_dir, p)))
     
     def get_step(ckpt_path: str) -> int:
         """Extract step number from checkpoint path using utility function."""
@@ -158,9 +164,7 @@ def find_checkpoints(output_dir: str, max_step: Optional[int] = None) -> List[st
     # Filter by max_step if provided (to exclude old checkpoints from previous runs)
     if max_step is not None:
         checkpoint_map = {step: path for step, path in checkpoint_map.items() if step <= max_step}
-        if checkpoint_map:
-            print(f"Filtered checkpoints: only considering steps <= {max_step} (current training step)")
-        else:
+        if not checkpoint_map:
             print(f"Warning: No checkpoints found with step <= {max_step}. This may indicate training hasn't started yet.")
     
     # Sort by step number
@@ -285,7 +289,7 @@ def monitor_and_evaluate(
     val_dataset_path: str,
     hf_token: Optional[str] = None,
     check_interval: int = 30,  # Check every 30 seconds
-    early_stopping_patience: int = 3,  # Stop if no improvement for 3 evaluations
+    early_stopping_patience: int = 10,  # Stop if no improvement for 10 evaluations
     wandb_project: Optional[str] = None,
     wandb_entity: Optional[str] = None,
     wandb_run_name: Optional[str] = None,
@@ -313,14 +317,7 @@ def monitor_and_evaluate(
         include_nli_faithfulness: Enable NLI faithfulness evaluation (slow, default: False)
         checkpoint_stability_seconds: Wait for checkpoint to be stable (not modified) for this many seconds before evaluating (default: 120)
     """
-    print("=" * 70)
-    print("Checkpoint Evaluation Monitor")
-    print("=" * 70)
-    print(f"Monitoring: {output_dir}")
-    print(f"Model: {model_name}")
-    print(f"Check interval: {check_interval} seconds")
-    print(f"Early stopping patience: {early_stopping_patience}")
-    print("=" * 70)
+    print(f"Monitor: {output_dir} (model={model_name}, check_interval={check_interval}s, early_stopping_patience={early_stopping_patience})")
     
     # Verify output directory exists
     if not os.path.exists(output_dir):
@@ -411,9 +408,19 @@ def monitor_and_evaluate(
     print(f"Will stop if no new checkpoints appear for {timeout_minutes} minutes")
     print("Press Ctrl+C to stop monitoring (training will continue)\n")
     
+    # Clear any stale .early_stop from a *previous* run so we don't exit immediately
+    # when reusing the same output_dir (e.g. new training + monitor for same model)
+    signal_file = os.path.join(output_dir, ".early_stop")
+    if os.path.exists(signal_file):
+        try:
+            os.remove(signal_file)
+            print("Cleared stale .early_stop from previous run (monitor will run for this session).\n")
+        except OSError as e:
+            print(f"Warning: could not remove stale .early_stop: {e}\n")
+    
     try:
         while True:
-            # Check if early stopping was already triggered
+            # Check if early stopping was already triggered (during this session)
             if check_early_stopping_signal(output_dir):
                 print("Early stopping signal detected. Stopping monitor.")
                 break
@@ -429,7 +436,7 @@ def monitor_and_evaluate(
                 global _last_logged_step, _log_counter
                 _log_counter += 1
                 if (_last_logged_step != current_training_step or _log_counter % 10 == 0):
-                    print(f"Current training step: {current_training_step} | Found {len(checkpoints)} checkpoints to evaluate")
+                    print(f"Step {current_training_step} | {len(checkpoints)} checkpoints to evaluate")
                     _last_logged_step = current_training_step
             
             # Check if training has completed (with time check to avoid false positives)
@@ -446,6 +453,18 @@ def monitor_and_evaluate(
             # Find the first (oldest) checkpoint that hasn't been evaluated yet
             checkpoint_to_evaluate = None
             checkpoint_step = None
+            force_recompute_checkpoint = False  # True when checkpoint is newer than stale eval (rerun scenario)
+            
+            # CONTINUE-RUN FIX: When resuming from checkpoint-N to 10000, skip re-evaluating 100..N.
+            # Training has progressed beyond max_evaluated; old checkpoints are done. Avoids false
+            # "newer than" from rsync/filesystem mtime quirks, and prevents loading stale results
+            # that trigger early stopping.
+            max_evaluated_step = max(evaluated_steps) if evaluated_steps else 0
+            is_continue_run = (
+                current_training_step is not None
+                and max_evaluated_step > 0
+                and current_training_step > max_evaluated_step
+            )
             
             for checkpoint_path in checkpoints:
                 try:
@@ -454,6 +473,11 @@ def monitor_and_evaluate(
                     if step is None:
                         continue
                 except (ValueError, IndexError):
+                    continue
+                
+                # In continue runs, skip checkpoints already fully evaluated (step <= max_evaluated)
+                if is_continue_run and step <= max_evaluated_step:
+                    evaluated_steps.add(step)
                     continue
                 
                 # Check if evaluation results file exists (new location)
@@ -466,22 +490,34 @@ def monitor_and_evaluate(
                 # Also check old location for backwards compatibility
                 old_eval_results_file = os.path.join(checkpoint_path, "eval_results", "eval_results.json")
                 
-                # Check if evaluation results exist, and if so, verify if checkpoint is newer
+                # Check if evaluation results exist, and if so, verify they're from current run
                 eval_results_exist = os.path.exists(eval_results_file) or os.path.exists(old_eval_results_file)
                 if eval_results_exist:
-                    # Check if checkpoint is newer than evaluation results (re-evaluate if checkpoint was updated)
+                    # Re-evaluate if results are stale (from previous run before retrain from scratch)
+                    # Two checks: (1) checkpoint newer than eval, (2) eval older than training_started.txt
                     try:
-                        checkpoint_mtime = os.path.getmtime(checkpoint_path)
                         eval_file_to_check = eval_results_file if os.path.exists(eval_results_file) else old_eval_results_file
                         eval_mtime = os.path.getmtime(eval_file_to_check)
+                        checkpoint_mtime = os.path.getmtime(checkpoint_path)
                         
-                        # If checkpoint is newer than evaluation results, it's a new checkpoint - re-evaluate
-                        if checkpoint_mtime > eval_mtime:
-                            print(f"Checkpoint-{step} is newer than existing evaluation results. Re-evaluating...")
-                            # Remove from evaluated_steps so it gets evaluated
+                        # Check 1: Checkpoint newer than eval (e.g. checkpoint was overwritten by new training)
+                        checkpoint_newer = checkpoint_mtime > eval_mtime
+                        
+                        # Check 2: Eval results from before current training session (retrain-from-scratch)
+                        # training_started.txt is (re)created when training starts; eval older = previous run
+                        training_started_file = os.path.join(output_dir, "training_started.txt")
+                        eval_from_previous_run = False
+                        if os.path.exists(training_started_file):
+                            training_started_mtime = os.path.getmtime(training_started_file)
+                            eval_from_previous_run = eval_mtime < training_started_mtime
+                        
+                        if checkpoint_newer or eval_from_previous_run:
+                            reason = "checkpoint newer than eval" if checkpoint_newer else "eval results from previous run (retrain from scratch)"
+                            print(f"Checkpoint-{step}: {reason}. Re-evaluating...")
                             evaluated_steps.discard(step)
+                            force_recompute_checkpoint = True
                         else:
-                            # Already evaluated and checkpoint is not newer - skip
+                            # Already evaluated in current run - skip
                             evaluated_steps.add(step)
                             continue
                     except Exception as e:
@@ -530,6 +566,8 @@ def monitor_and_evaluate(
                 # Found an unevaluated, complete, and stable checkpoint
                 checkpoint_to_evaluate = checkpoint_path
                 checkpoint_step = step
+                # Keep force_recompute_checkpoint as set above (for "newer than" case); reset for next iteration
+                # (force_recompute applies to this checkpoint only; next checkpoint gets fresh flag)
                 
                 # Log if we're using a backup checkpoint
                 if "regular_checkpoints" in checkpoint_path or "major_checkpoints" in checkpoint_path:
@@ -572,20 +610,28 @@ def monitor_and_evaluate(
             
             if not is_in_backup:
                 # Check if backup exists - prefer backup for stability
-                regular_backup = os.path.join(model_dir, "regular_checkpoints", f"regular-checkpoint-{checkpoint_step}")
-                major_backup = os.path.join(model_dir, "major_checkpoints", f"major-checkpoint-{checkpoint_step}")
+                # Support both unified naming (checkpoint-X) and legacy (regular-checkpoint-X / major-checkpoint-X)
+                major_new = os.path.join(model_dir, "major_checkpoints", f"checkpoint-{checkpoint_step}")
+                major_legacy = os.path.join(model_dir, "major_checkpoints", f"major-checkpoint-{checkpoint_step}")
+                regular_new = os.path.join(model_dir, "regular_checkpoints", f"checkpoint-{checkpoint_step}")
+                regular_legacy = os.path.join(model_dir, "regular_checkpoints", f"regular-checkpoint-{checkpoint_step}")
                 
                 backup_path = None
-                if os.path.exists(major_backup):
-                    backup_adapter = os.path.join(major_backup, "adapter_model.safetensors")
-                    if os.path.exists(backup_adapter):
-                        backup_path = major_backup
-                        print(f"ℹ Found stable backup of checkpoint-{checkpoint_step} in major_checkpoints/. Using backup for evaluation.")
-                elif os.path.exists(regular_backup):
-                    backup_adapter = os.path.join(regular_backup, "adapter_model.safetensors")
-                    if os.path.exists(backup_adapter):
-                        backup_path = regular_backup
-                        print(f"ℹ Found stable backup of checkpoint-{checkpoint_step} in regular_checkpoints/. Using backup for evaluation.")
+                for cand in (major_new, major_legacy):
+                    if os.path.exists(cand):
+                        backup_adapter = os.path.join(cand, "adapter_model.safetensors")
+                        if os.path.exists(backup_adapter):
+                            backup_path = cand
+                            print(f"ℹ Found stable backup of checkpoint-{checkpoint_step} in major_checkpoints/. Using backup for evaluation.")
+                            break
+                if backup_path is None:
+                    for cand in (regular_new, regular_legacy):
+                        if os.path.exists(cand):
+                            backup_adapter = os.path.join(cand, "adapter_model.safetensors")
+                            if os.path.exists(backup_adapter):
+                                backup_path = cand
+                                print(f"ℹ Found stable backup of checkpoint-{checkpoint_step} in regular_checkpoints/. Using backup for evaluation.")
+                                break
                 
                 if backup_path:
                     checkpoint_to_evaluate = backup_path
@@ -628,6 +674,7 @@ def monitor_and_evaluate(
                     wandb_disabled=True,
                     major_checkpoint_interval=major_checkpoint_interval,
                     include_nli_faithfulness=include_nli_faithfulness,
+                    force_recompute=force_recompute_checkpoint,  # Re-run when checkpoint newer than stale eval (rerun)
                 )
                 
                 if not eval_results:
@@ -812,6 +859,12 @@ def monitor_and_evaluate(
                         
                         break
                 
+            except AlreadyEvaluatedError as e:
+                # Checkpoint already has eval results (e.g. from previous run) - skip gracefully
+                print(f"ℹ Checkpoint-{checkpoint_step} already evaluated (results exist). Skipping.")
+                evaluated_steps.add(checkpoint_step)
+                if checkpoint_step not in logged_to_wandb:
+                    logged_to_wandb.add(checkpoint_step)
             except ValueError as e:
                 # Handle checkpoint not found errors gracefully
                 error_msg = str(e)
@@ -876,8 +929,8 @@ if __name__ == "__main__":
                        help='HuggingFace token')
     parser.add_argument('--check_interval', type=int, default=30,
                        help='How often to check for new checkpoints (seconds)')
-    parser.add_argument('--early_stopping_patience', type=int, default=3,
-                       help='Number of evaluations without improvement before stopping')
+    parser.add_argument('--early_stopping_patience', type=int, default=10,
+                       help='Number of evaluations without improvement before stopping (default: 10)')
     parser.add_argument('--wandb_project', type=str, default='lm-finetuning',
                        help='Wandb project name')
     parser.add_argument('--wandb_entity', type=str, default=None,

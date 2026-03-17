@@ -6,8 +6,71 @@ This module provides shared functions for tokenizing examples:
 - Evaluation examples (prompt + target)
 """
 
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Optional
 from transformers import AutoTokenizer
+
+
+def _compute_prompt_length_chat(input_ids: List[int], tokenizer: AutoTokenizer) -> Optional[int]:
+    """
+    Compute exact prompt length (tokens before assistant response) for chat templates.
+    Returns None if no chat marker found (caller should use heuristic).
+    """
+    if not input_ids:
+        return None
+    # Mistral / Llama-2: ... [/INST] <space> assistant_response
+    try:
+        inst_id = tokenizer.convert_tokens_to_ids("[/INST]")
+        if inst_id is not None and inst_id in input_ids:
+            positions = [i for i, tid in enumerate(input_ids) if tid == inst_id]
+            if positions:
+                # First token of assistant is after [/INST]; often one space token follows
+                last_inst = positions[-1]
+                return min(last_inst + 1, len(input_ids))
+    except Exception:
+        pass
+    # Llama-3 / 3.1: ... <|end_header_id|> \n\n assistant_response
+    try:
+        end_header_id = tokenizer.convert_tokens_to_ids("<|end_header_id|>")
+        if end_header_id is not None and end_header_id in input_ids:
+            positions = [i for i, tid in enumerate(input_ids) if tid == end_header_id]
+            if positions:
+                last_end = positions[-1]
+                return min(last_end + 1, len(input_ids))
+    except Exception:
+        pass
+    # ChatML: <|im_start|>assistant\n
+    try:
+        im_start_id = tokenizer.convert_tokens_to_ids("<|im_start|>")
+        if im_start_id is not None and im_start_id in input_ids:
+            positions = [i for i, tid in enumerate(input_ids) if tid == im_start_id]
+            if positions:
+                # Last <|im_start|> is for assistant; content starts after \n
+                last_start = positions[-1]
+                return min(last_start + 1, len(input_ids))
+    except Exception:
+        pass
+    return None
+
+
+def _compute_prompt_length_plain(input_ids: List[int], tokenizer: AutoTokenizer) -> Optional[int]:
+    """
+    Compute exact prompt length for plain/Gemma format (ends at "Oppsummering:\\n\\n###\\n\\n").
+    Returns None if marker not found (caller uses heuristic).
+    """
+    if not input_ids:
+        return None
+    try:
+        marker = "Oppsummering:\n\n###\n\n"
+        marker_ids = tokenizer.encode(marker, add_special_tokens=False)
+        if not marker_ids:
+            return None
+        # Find last occurrence of marker sequence
+        for i in range(len(input_ids) - len(marker_ids), -1, -1):
+            if input_ids[i:i + len(marker_ids)] == marker_ids:
+                return min(i + len(marker_ids), len(input_ids))
+    except Exception:
+        pass
+    return None
 
 
 def tokenize_train_examples(
@@ -89,18 +152,36 @@ def tokenize_train_examples(
     
     # Calculate desired max length, but don't exceed model's limit
     # CRITICAL: Ensure we never exceed the model's actual context window
+    # OPTIMIZATION: Cap max_length at a reasonable value (e.g., 8192) even for large context models
+    # This speeds up tokenization significantly while still allowing long sequences when needed
     desired_max_length = max_input_prompt_tokens + max_output_summary_tokens
-    max_length = min(desired_max_length, model_max_length)
+    # For very large context models (128K+), cap at 8192 for tokenization speed
+    # The model can still handle longer sequences, but tokenization is much faster with this cap
+    effective_model_max = min(model_max_length, 8192) if model_max_length > 8192 else model_max_length
+    max_length = min(desired_max_length, effective_model_max)
     
     # Additional safety check: if max_length is still too large, cap it
     if max_length > model_max_length:
         print(f"⚠ WARNING: Calculated max_length ({max_length}) exceeds model_max_length ({model_max_length}). Capping to {model_max_length}")
         max_length = model_max_length
+    elif model_max_length > 8192 and max_length == 8192:
+        # Inform user that we're capping for speed
+        print(f"ℹ INFO: Capping tokenization max_length to 8192 for speed (model supports {model_max_length}, but tokenization is faster with this cap)")
     
-    # Tokenize full text first with proper truncation
+    # OPTIMIZATION: Pre-truncate text at character level before tokenization
+    # This is much faster than letting the tokenizer process very long texts
+    # Estimate characters per token (typically 3-4 for most tokenizers)
+    # Use a conservative estimate to ensure we don't truncate too aggressively
+    chars_per_token_estimate = 3.5  # Conservative estimate (most tokenizers use 3-4 chars/token)
+    max_chars_estimate = int(max_length * chars_per_token_estimate * 1.2)  # 20% buffer for safety
+    
+    # Pre-truncate texts to speed up tokenization (list comprehension is faster)
+    truncated_texts = [text[:max_chars_estimate] if len(text) > max_chars_estimate else text for text in examples["text"]]
+    
+    # Tokenize pre-truncated text with proper truncation (as safety net)
     # CRITICAL: Use truncation=True and max_length to prevent sequences exceeding model limits
     tokenized = tokenizer(
-        examples["text"],
+        truncated_texts,
         truncation=True,
         max_length=max_length,
         padding=False,  # Padding done by data collator for compatibility across tokenizer versions
@@ -109,42 +190,37 @@ def tokenize_train_examples(
     
     # Post-processing check: Verify no sequences exceed max_length
     # This is a safety check in case truncation didn't work as expected
+    # OPTIMIZATION: Only check and truncate if needed (most sequences should already be truncated by tokenizer)
     input_ids_list = tokenized["input_ids"]
-    for idx, input_ids in enumerate(input_ids_list):
+    sequences_exceeding_limit = 0
+    
+    # Fast path: Check if any sequences exceed limit (single pass)
+    needs_truncation = False
+    for input_ids in input_ids_list:
         if len(input_ids) > max_length:
-            print(f"⚠ WARNING: Example {idx} has {len(input_ids)} tokens, exceeding max_length {max_length}. Truncating manually.")
-            tokenized["input_ids"][idx] = input_ids[:max_length]
+            needs_truncation = True
+            sequences_exceeding_limit += 1
     
-    # Find where summary starts by looking for summary markers in the text
-    # Store the prompt length for later masking in the collator
+    # Only truncate if needed (avoid creating new lists unnecessarily)
+    if needs_truncation:
+        for idx, input_ids in enumerate(input_ids_list):
+            if len(input_ids) > max_length:
+                tokenized["input_ids"][idx] = input_ids[:max_length]
+        print(f"⚠ WARNING: {sequences_exceeding_limit} example(s) exceeded max_length {max_length} and were manually truncated.")
+    
+    # Exact prompt length: chat markers ([/INST], etc.), plain "Oppsummering:", or 80% heuristic
     prompt_lengths = []
-    summary_markers = [
-        "Oppsummering:\n\n###\n\n",
-        "Oppsummering:",
-        "[/INST]",
-        "<|start_header_id|>assistant<|end_header_id|>\n\n",
-    ]
-    
-    # Get input_ids list (already tokenized)
-    input_ids_list = tokenized["input_ids"]
-    
-    for idx, text in enumerate(examples["text"]):
-        prompt_len = None
-        for marker in summary_markers:
-            if marker in text:
-                # Tokenize up to the marker to find position
-                prompt_part = text.split(marker)[0] + marker
-                prompt_tokens = tokenizer.encode(prompt_part, add_special_tokens=False)
-                prompt_len = len(prompt_tokens)
-                break
-        # If no marker found, assume first 80% is prompt (fallback)
-        if prompt_len is None:
-            # Use the actual tokenized input_ids length for this example
-            total_tokens = len(input_ids_list[idx])
-            prompt_len = int(total_tokens * 0.8)
-        prompt_lengths.append(prompt_len)
-    
-    # Store prompt length for use in collator (as a list, one per example)
+    for input_ids in input_ids_list:
+        exact = _compute_prompt_length_chat(input_ids, tokenizer)
+        if exact is not None:
+            prompt_lengths.append(exact)
+        else:
+            exact_plain = _compute_prompt_length_plain(input_ids, tokenizer)
+            if exact_plain is not None:
+                prompt_lengths.append(exact_plain)
+            else:
+                total_tokens = len(input_ids)
+                prompt_lengths.append(int(total_tokens * 0.8))
     tokenized["prompt_length"] = prompt_lengths
     
     return tokenized

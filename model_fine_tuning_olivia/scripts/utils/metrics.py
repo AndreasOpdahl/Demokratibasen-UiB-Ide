@@ -58,16 +58,10 @@ def compute_rouge_metrics(
     Returns:
         Dictionary with ROUGE metrics (rouge1, rouge2, rougeL, rougeLsum) as percentages
     """
-    if is_main_process and verbose:
-        print('*** evaluation: compute_metrics ***')
-    
     # Load ROUGE metric (lazy loading after cache paths are set)
     rouge = evaluate.load("rouge")
     
     preds, labels = eval_pred
-    if is_main_process and verbose:
-        print('*** evaluation: preds ***', preds.shape)
-        print('*** evaluation: labels ***', labels.shape)
     
     # Replace -100 (ignored tokens) with pad_token_id for decoding
     labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
@@ -75,9 +69,6 @@ def compute_rouge_metrics(
     # Fix for quantization: clip token IDs to valid vocabulary range
     # This prevents OverflowError during decoding when quantization causes out-of-range values
     vocab_size = tokenizer.vocab_size
-    if is_main_process and verbose:
-        print(f'*** Vocab size: {vocab_size} ***')
-    
     # Clip predictions to valid token ID range [0, vocab_size)
     preds = np.clip(preds, 0, vocab_size - 1)
     labels = np.clip(labels, 0, vocab_size - 1)
@@ -94,16 +85,8 @@ def compute_rouge_metrics(
     decoded_preds = [p.strip() for p in decoded_preds]
     decoded_labels = [l.strip() for l in decoded_labels]
     
-    if len(decoded_preds) > 0 and is_main_process and verbose:
-        print(f'\n*** Example 1 ***')
-        print(f'Prediction: {decoded_preds[0][:200]}...')
-        print(f'Reference:  {decoded_labels[0][:200]}...\n')
-    
     # Compute ROUGE scores
     scores = rouge.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
-    if is_main_process and verbose:
-        print('*** evaluation: computed_metrics ***', scores)
-    
     # Convert to percentages and prepare return dictionary
     result = {k: v * 100 for k, v in scores.items()}  # % values
     
