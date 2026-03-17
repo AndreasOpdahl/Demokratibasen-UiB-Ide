@@ -85,10 +85,16 @@ def compute_rouge_metrics(
     decoded_preds = [p.strip() for p in decoded_preds]
     decoded_labels = [l.strip() for l in decoded_labels]
     
-    # Compute ROUGE scores
+    if len(decoded_preds) > 0 and is_main_process and verbose:
+        print(f'\n*** Example 1 ***')
+        print(f'Prediction: {decoded_preds[0][:200]}...')
+        print(f'Reference:  {decoded_labels[0][:200]}...\n')
+    
+    # Compute ROUGE scores (evaluate returns 0–1; we return 0–100 for Trainer/wandb)
     scores = rouge.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
-    # Convert to percentages and prepare return dictionary
-    result = {k: v * 100 for k, v in scores.items()}  # % values
+    result = {k: v * 100 for k, v in scores.items()}
+    if is_main_process and verbose:
+        print('*** evaluation: computed_metrics ***', result)
     
     # Log to WandB if requested
     if log_to_wandb and wandb.run is not None and is_main_process:
