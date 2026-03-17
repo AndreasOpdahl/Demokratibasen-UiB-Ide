@@ -15,7 +15,7 @@ from pathlib import Path
 
 import tiktoken
 
-from llm_adapter import LLMAdapter, get_factory
+from llm_adapter import LLMAdapter, get_factory, detect_model_family
 from llm_adapter.gpt_factory import estimate_tokens
 from dataset_loader import DatasetLoader, list_datasets
 from create_prompt import Prompt
@@ -27,6 +27,11 @@ MAX_OUTPUT_TOKENS = 1000  # used by Demokratibasen since 2024-08-29
 MAX_INPUT_TEXT_TOKENS = 2048  # Maximum tokens for document text (prompt tokens are separate)
 
 OUTPUT_BASE_DIR = "extracted-data"
+
+# Retry handling for malformed JSON outputs from providers
+JSON_PARSE_RETRIES = 2
+JSON_PARSE_RETRY_DELAY_SECONDS = 1.5
+JSON_PARSE_RETRY_MAX_TOKENS_STEP = 500
 
 # Bad response monitoring
 BAD_RESPONSE_WINDOW = 10  # Number of documents to track in sliding window
@@ -193,15 +198,6 @@ def parse_arguments():
         description="Extract JSON-structured summaries from case documents using LLM"
     )
     parser.add_argument(
-        "--model-family",
-        type=str,
-        default="GPT",
-        help=(
-            "Model family (first part of Factory class name, e.g., 'GPT', 'Gemini', 'Claude', "
-            "'DeepSeek', 'Mistral', 'Qwen', default: GPT)"
-        ),
-    )
-    parser.add_argument(
         "--model",
         type=str,
         default="gpt-4o-mini",
@@ -272,8 +268,13 @@ def parse_arguments():
 def main():
     args = parse_arguments()
 
-    model_family = args.model_family
     model = args.model
+
+    try:
+        model_family = detect_model_family(model)
+    except ValueError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
     max_documents = args.max_documents
     dataset_name = args.dataset
     prompt_name = args.prompt
@@ -301,8 +302,7 @@ def main():
     try:
         factory = get_factory(model_family)
     except (ImportError, AttributeError) as e:
-        print(f"Error: Invalid model family '{model_family}': {e}", file=sys.stderr)
-        print("Valid model families: GPT, Gemini, Claude, DeepSeek, Mistral, Qwen", file=sys.stderr)
+        print(f"Error: Could not load factory for model family '{model_family}' (detected from '{model}'): {e}", file=sys.stderr)
         sys.exit(1)
         return
 
@@ -354,7 +354,7 @@ def main():
     print("=" * 80, file=sys.stderr)
     print("Starter prosessering (summarisation)", file=sys.stderr)
     print("-" * 80, file=sys.stderr)
-    print(f"Modell: {model}", file=sys.stderr)
+    print(f"Modell: {model} (family: {model_family})", file=sys.stderr)
     print(f"Dataset: {dataset_name}", file=sys.stderr)
     print(f"Max output tokens: {max_output_tokens_display}", file=sys.stderr)
     print(f"Max input text tokens: {max_input_text_tokens}", file=sys.stderr)
@@ -438,36 +438,62 @@ def main():
                 print("  Aborting immediately.", file=sys.stderr)
                 sys.exit(1)
 
-            response = llm_adapter.generate_text(
-                prompt=document_text,
-                system_prompt=prompt,
-                temperature=TEMPERATURE,
-                max_tokens=max_output_tokens,
-                json_schema=prompt_creator.SCHEMA,
-            )
-
-            input_tokens, output_tokens = _extract_token_usage(response)
-
-            if max_output_tokens is not None and output_tokens > max_output_tokens:
-                print(f"ERROR: Output token sanity check failed for {doc_id}", file=sys.stderr)
-                print(
-                    f"  Actual output tokens ({output_tokens}) exceed max_output_tokens ({max_output_tokens})",
-                    file=sys.stderr,
+            extracted_data = None
+            used_max_output_tokens = max_output_tokens
+            for parse_attempt in range(JSON_PARSE_RETRIES + 1):
+                retry_max_output_tokens = (
+                    None
+                    if max_output_tokens is None
+                    else max_output_tokens + (parse_attempt * JSON_PARSE_RETRY_MAX_TOKENS_STEP)
                 )
-                print("  Aborting immediately.", file=sys.stderr)
-                sys.exit(1)
+                used_max_output_tokens = retry_max_output_tokens
+                response = llm_adapter.generate_text(
+                    prompt=document_text,
+                    system_prompt=prompt,
+                    temperature=TEMPERATURE,
+                    max_tokens=retry_max_output_tokens,
+                    json_schema=prompt_creator.SCHEMA,
+                )
 
-            total_input_tokens += input_tokens
-            total_output_tokens += output_tokens
+                input_tokens, output_tokens = _extract_token_usage(response)
 
-            if hasattr(response, "choices") and len(response.choices) > 0:
-                response_content = response.choices[0].message.content
-            elif hasattr(response, "text"):
-                response_content = response.text
-            else:
-                raise ValueError(f"Unexpected response format: {type(response)}")
+                if retry_max_output_tokens is not None and output_tokens > retry_max_output_tokens:
+                    print(f"ERROR: Output token sanity check failed for {doc_id}", file=sys.stderr)
+                    print(
+                        f"  Actual output tokens ({output_tokens}) exceed max_output_tokens ({retry_max_output_tokens})",
+                        file=sys.stderr,
+                    )
+                    print("  Aborting immediately.", file=sys.stderr)
+                    sys.exit(1)
 
-            extracted_data = _extract_json_from_response(response_content)
+                total_input_tokens += input_tokens
+                total_output_tokens += output_tokens
+
+                if hasattr(response, "choices") and len(response.choices) > 0:
+                    response_content = response.choices[0].message.content
+                elif hasattr(response, "text"):
+                    response_content = response.text
+                else:
+                    raise ValueError(f"Unexpected response format: {type(response)}")
+
+                try:
+                    extracted_data = _extract_json_from_response(response_content)
+                    break
+                except ValueError as parse_error:
+                    if parse_attempt < JSON_PARSE_RETRIES:
+                        next_max_tokens = (
+                            "all"
+                            if max_output_tokens is None
+                            else str(max_output_tokens + ((parse_attempt + 1) * JSON_PARSE_RETRY_MAX_TOKENS_STEP))
+                        )
+                        print(
+                            f"JSON parse failed for {doc_id} (attempt {parse_attempt + 1}/{JSON_PARSE_RETRIES + 1}): {parse_error}. "
+                            f"Retrying in {JSON_PARSE_RETRY_DELAY_SECONDS:.1f}s with max_output_tokens={next_max_tokens}...",
+                            file=sys.stderr,
+                        )
+                        time.sleep(JSON_PARSE_RETRY_DELAY_SECONDS)
+                        continue
+                    raise
 
             # For summarisation-style prompts we typically don't have a strict JSON Schema
             # in the JSON Schema sense; we therefore store the extracted object as-is.
@@ -480,7 +506,7 @@ def main():
                 "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
                 "model": model,
                 "temperature": TEMPERATURE,
-                "max_output_tokens": max_output_tokens if max_output_tokens else "all",
+                "max_output_tokens": used_max_output_tokens if used_max_output_tokens else "all",
                 "max_input_text_tokens": max_input_text_tokens,
                 "response": extracted_data,
             }
@@ -504,7 +530,7 @@ def main():
                 avg_output_tokens_per_doc = output_tokens_since_last / status_interval
 
                 print("\n" + "=" * 80, file=sys.stderr)
-                print(f"Status etter {processed_count} vellykkede dokumenter", file=sys.stderr)
+                print(f"Status etter {processed_count} vellykkede dokumenter ({skipped_count:,} hoppet over, allerede oppsummert)", file=sys.stderr)
                 print("-" * 80, file=sys.stderr)
                 print(f"Modell: {model}", file=sys.stderr)
                 print(f"Dataset: {dataset_name}", file=sys.stderr)

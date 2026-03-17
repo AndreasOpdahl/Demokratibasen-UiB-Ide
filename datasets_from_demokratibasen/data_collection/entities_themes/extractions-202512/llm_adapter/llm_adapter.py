@@ -1,6 +1,53 @@
 import importlib
 
 
+# Prefix → model-family mapping.  Order matters: longer/more-specific
+# prefixes must come before shorter ones so that e.g. "gpt-3.5" matches
+# before a hypothetical "gpt" prefix.
+_MODEL_PREFIX_TO_FAMILY: list[tuple[str, str]] = [
+    # GPT / OpenAI
+    ("gpt-", "GPT"),
+    ("o1-", "GPT"),
+    ("o3-", "GPT"),
+    ("o4-", "GPT"),
+    ("text-davinci-", "GPT"),
+    ("text-curie-", "GPT"),
+    ("text-babbage-", "GPT"),
+    ("text-ada-", "GPT"),
+    # Gemini
+    ("gemini-", "Gemini"),
+    # Claude
+    ("claude-", "Claude"),
+    # DeepSeek
+    ("deepseek-", "DeepSeek"),
+    # Mistral
+    ("mistral-", "Mistral"),
+    ("pixtral-", "Mistral"),
+    # Qwen  (covers qwen-, qwen1.5-, qwen2-, qwen2.5-, qwen3-)
+    ("qwen", "Qwen"),
+]
+
+
+def detect_model_family(model_name: str) -> str:
+    """
+    Infer the model family from the model name.
+
+    Returns one of "GPT", "Gemini", "Claude", "DeepSeek", "Mistral", "Qwen".
+    Raises ValueError if the model name cannot be mapped to a known family.
+    """
+    lower = model_name.lower()
+    for prefix, family in _MODEL_PREFIX_TO_FAMILY:
+        if lower.startswith(prefix):
+            return family
+    known = sorted({f for _, f in _MODEL_PREFIX_TO_FAMILY})
+    raise ValueError(
+        f"Cannot detect model family for '{model_name}'. "
+        f"Known families (by prefix): {', '.join(known)}. "
+        f"If your model belongs to one of these, rename it or pass "
+        f"the correct prefix."
+    )
+
+
 def get_factory(model_family: str):
     """
     Dynamically import and instantiate the factory class based on model_family.
