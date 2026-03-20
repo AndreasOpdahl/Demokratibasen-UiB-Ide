@@ -309,4 +309,4 @@ Recommendation: Use NLI only when needed (e.g., final evaluation or major checkp
 - **Monitoring** evaluates checkpoints as they appear, tracks best metrics, and triggers early stopping when quality stops improving or when the model collapses.
 - **Evaluation** measures checkpoint quality with ROUGE, BERTScore, hygiene, and optionally NLI. It can run in training (via monitor) or afterward (via `run_evaluate_multiple.sh`).
 
-The pipeline is designed for the Olivia HPC cluster (SLURM) but can be run manually. All paths are configurable; dataset paths are not hardcoded. For timing details, see `EVALUATION_TIME_ESTIMATES.md`.
+The pipeline is designed for the Olivia HPC cluster (SLURM) but can be run manually. All paths are configurable; dataset paths are not hardcoded.
