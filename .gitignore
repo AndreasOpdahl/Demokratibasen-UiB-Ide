@@ -35,6 +35,7 @@ datasets_from_demokratibasen/cleaned_datasets/**/analysis_results/
 datasets_from_demokratibasen/cleaned_datasets/**/analysis_results/**
 datasets_from_demokratibasen/cleaned_datasets/**/*.png
 datasets_from_demokratibasen/data_collection/entities_themes/extractions-202512/extracted-data/
+datasets_from_demokratibasen/data_collection/entities_themes/extractions-202512/summaries/
 datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/202505-and-06-Demokratibasen-demo/dokument_jsons/
 datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/**/input_files/
 datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/**/output_files/

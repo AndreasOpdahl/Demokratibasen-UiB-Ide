@@ -35,7 +35,7 @@ except ImportError:
 
 
 # Exponential backoff configuration
-MAX_RETRIES = 7  # Increased from 5 to 7 as per best practices
+MAX_RETRIES = 5  # Keep retries moderate to avoid prolonged retry storms/blocks
 INITIAL_BACKOFF = 5.0  # Start with 5 seconds (increased for stronger backoff)
 MAX_BACKOFF = 120.0     # Maximum 120 seconds between retries (increased from 60)
 BACKOFF_MULTIPLIER = 2.5  # Multiply wait time by 2.5 each retry (increased from 2.0)
@@ -135,6 +135,14 @@ def _is_retryable_error(error: Exception) -> bool:
         "timeout", "connection", "network", "unavailable", 
         "service unavailable", "internal server error", "bad gateway",
         "gateway timeout", "temporarily"
+    ]):
+        return True
+    
+    # Upstream/gateway transport errors observed in long runs
+    if any(keyword in error_str for keyword in [
+        "upstream connect error",
+        "disconnect/reset before headers",
+        "reset reason: overflow",
     ]):
         return True
     
