@@ -5,7 +5,7 @@ This module provides functions to format examples for training and evaluation
 using model-specific prompt configurations.
 """
 
-from typing import Dict, Any, Optional, List, Any as AnyType
+from typing import Dict, Any, Optional, List
 import sys
 import os
 

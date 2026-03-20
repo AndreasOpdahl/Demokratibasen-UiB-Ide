@@ -4,7 +4,7 @@ Supports single-GPU, multi-GPU DDP (Distributed Data Parallel), and FSDP (Fully 
 
 Usage:
   # Single GPU with 4-bit quantization (GTX3090):
-  python finetune.py \\
+  python wandb_finetune.py \\
     --model gemma-2b \\
     --quantization 4bit \\
     --train_dataset data/train.jsonl \\
@@ -13,7 +13,7 @@ Usage:
     --hf_token YOUR_TOKEN
   
   # Single GPU without quantization with custom hyperparameters:
-  python finetune.py \\
+  python wandb_finetune.py \\
     --model gemma-7b \\
     --quantization none \\
     --train_dataset data/train.jsonl \\
@@ -25,7 +25,7 @@ Usage:
     --hf_token YOUR_TOKEN
   
   # Multi-GPU DDP training with torchrun:
-  torchrun --nproc_per_node=2 finetune.py \\
+  torchrun --nproc_per_node=2 wandb_finetune.py \\
     --model gemma-2b \\
     --quantization none \\
     --ddp \\
@@ -35,7 +35,7 @@ Usage:
     --hf_token YOUR_TOKEN
   
   # Multi-GPU FSDP training for large models:
-  torchrun --nproc_per_node=4 finetune.py \\
+  torchrun --nproc_per_node=4 wandb_finetune.py \\
     --model gemma-7b \\
     --quantization none \\
     --fsdp \\
@@ -867,9 +867,7 @@ def load_model_with_optional_quantization(
             )
         
         if use_ddp or use_fsdp:
-            print("WARNING: Quantization with DDP/FSDP is not well supported.")
-            print("Consider single-GPU training with quantization.")
-        
+            print("WARNING: Quantization with DDP/FSDP is not well supported. Consider single-GPU training.")
         print("Loading model with 4-bit quantization...")
         bnb_config = BitsAndBytesConfig(
             load_in_4bit=True,
@@ -895,9 +893,7 @@ def load_model_with_optional_quantization(
             )
         
         if use_ddp or use_fsdp:
-            print("WARNING: Quantization with DDP/FSDP is not well supported.")
-            print("Consider single-GPU training with quantization.")
-        
+            print("WARNING: Quantization with DDP/FSDP is not well supported. Consider single-GPU training.")
         print("Loading model with 8-bit quantization...")
         bnb_config = BitsAndBytesConfig(load_in_8bit=True)
         model = AutoModelForCausalLM.from_pretrained(
@@ -2256,13 +2252,13 @@ if __name__ == "__main__":
         epilog="""
 Examples:
   # GTX3090 with 4-bit quantization:
-  python finetune.py --model gemma-2b --quantization 4bit --hf_token YOUR_TOKEN
+  python wandb_finetune.py --model gemma-2b --quantization 4bit --hf_token YOUR_TOKEN
 
   # GH200/Cray without quantization, fixed steps:
-  python finetune.py --model gemma-2b --quantization none --max_steps 1200 --hf_token YOUR_TOKEN
+  python wandb_finetune.py --model gemma-2b --quantization none --max_steps 1200 --hf_token YOUR_TOKEN
 
   # Without quantization, train for epochs:
-  python finetune.py --model gemma-2b --quantization none --num_train_epochs 3 --hf_token YOUR_TOKEN
+  python wandb_finetune.py --model gemma-2b --quantization none --num_train_epochs 3 --hf_token YOUR_TOKEN
         """
     )
     

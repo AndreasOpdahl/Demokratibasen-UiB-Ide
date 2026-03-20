@@ -67,7 +67,7 @@ def create_fixed_nli_subset(
                 "seed": seed,
                 "indices": indices
             }, f, indent=2)
-        print(f"✓ Saved fixed NLI subset ({len(indices)} examples) to: {subset_file}")
+        pass  # Subset saved to file for reuse
     
     return indices
 
@@ -87,8 +87,7 @@ def load_fixed_nli_subset(model_dir: str) -> Optional[List[int]]:
             with open(subset_file, 'r') as f:
                 data = json.load(f)
                 return data.get("indices", [])
-        except (json.JSONDecodeError, IOError) as e:
-            print(f"⚠ Warning: Could not load NLI subset from {subset_file}: {e}")
+        except (json.JSONDecodeError, IOError):
             return None
     return None
 
@@ -123,7 +122,6 @@ def get_or_create_fixed_nli_subset(
     # When extending eval to 1000+, use first 500 for NLI comparability
     if use_first_n_for_extended and total_examples > subset_size:
         indices = list(range(subset_size))
-        print(f"✓ Using first {len(indices)} examples for NLI (extended eval; ensures comparability with 500-example runs)")
         # Optionally save for consistency
         if model_dir:
             subset_file = get_nli_subset_file_path(model_dir)
@@ -141,12 +139,9 @@ def get_or_create_fixed_nli_subset(
     existing_indices = load_fixed_nli_subset(model_dir)
     
     if existing_indices is not None:
-        # Verify the subset is still valid (all indices < total_examples)
         if all(idx < total_examples for idx in existing_indices):
-            print(f"✓ Using existing fixed NLI subset ({len(existing_indices)} examples)")
             return existing_indices
-        else:
-            print(f"⚠ Existing NLI subset contains invalid indices (total_examples changed). Creating new subset...")
+        # total_examples changed; create new subset
     
     # Create new subset
     return create_fixed_nli_subset(total_examples, subset_size, seed, model_dir)

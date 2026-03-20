@@ -38,6 +38,7 @@ DRY_RUN=${DRY_RUN:-false}
 # NLI Faithfulness evaluation flags
 INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-false}
 KEEP_EXISTING=${KEEP_EXISTING:-false}
+FORCE_RECOMPUTE=${FORCE_RECOMPUTE:-false}
 
 # Parse command-line arguments if provided
 for arg in "$@"; do
@@ -74,6 +75,9 @@ for arg in "$@"; do
         --no-keep_existing)
             KEEP_EXISTING=false
             ;;
+        --force_recompute)
+            FORCE_RECOMPUTE=true
+            ;;
         --nli_subset_size=*|--nli-subset-size=*)
             ;;
         --dry-run|--debug)
@@ -91,6 +95,7 @@ for arg in "$@"; do
             echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
             echo "  --val_data_size=N                 Number of validation examples (default: 500; use 1000 for extended eval)"
             echo "  --specific_checkpoints=\"N1 N2\"   Space-separated checkpoint numbers to evaluate (default: all)"
+            echo "  --force_recompute                  Re-evaluate even when results exist (e.g. backfill missed checkpoints)"
             echo "  --include_nli_faithfulness        Enable NLI-based faithfulness evaluation (slow: ~4.5s per example)"
             echo "  --nli_subset_size=N               Subset size for NLI evaluation (recommended: 50-100 for faster evaluation)"
             echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
@@ -196,6 +201,7 @@ echo "  MODEL: $MODEL"
 echo "  NUM_GPUS: $NUM_GPUS"
 echo "  CHECKPOINT_BASE_DIR: $CHECKPOINT_BASE_DIR"
 echo "  VAL_DATASET: $VAL_DATASET"
+echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (1000 → separate -examples_1000.json/.jsonl files)"
 echo "  SPECIFIC_CHECKPOINTS: ${SPECIFIC_CHECKPOINTS:-all}"
 echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS"
 if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
@@ -521,8 +527,12 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     if [ "$KEEP_EXISTING" = "true" ]; then
         KEEP_FLAG="--keep_existing"
     fi
+    FORCE_FLAG=""
+    if [ "$FORCE_RECOMPUTE" = "true" ]; then
+        FORCE_FLAG="--force_recompute"
+    fi
     
-    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu $NLI_FLAGS $KEEP_FLAG"
+    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu $NLI_FLAGS $KEEP_FLAG $FORCE_FLAG"
 
     # Apptainer commands - all on one line
     # Install bert_score for BERTScore evaluation (required by evaluate library)

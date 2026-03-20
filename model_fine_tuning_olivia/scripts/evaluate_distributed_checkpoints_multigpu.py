@@ -95,15 +95,14 @@ from utils import (
     format_eval_example,
 )
 
-# Import extended evaluation metrics
+# Import summarisation evaluation metrics
 try:
-    from extended_evaluation import extended_evaluate
+    from summarisation_evaluation import extended_evaluate
     EXTENDED_EVAL_AVAILABLE = True
 except ImportError as e:
     EXTENDED_EVAL_AVAILABLE = False
     extended_evaluate = None  # type: ignore
-    print(f"Warning: extended_evaluation.py could not be imported: {e}")
-    print("Only ROUGE metrics will be computed.")
+    print(f"Warning: summarisation_evaluation not available ({e}). Only ROUGE metrics will be computed.")
 
 # Helper function to calculate examples from steps
 def calculate_examples_from_steps(steps, batch_size, gradient_accumulation_steps, num_gpus):
@@ -1206,6 +1205,7 @@ def load_model_and_peft_checkpoint(
     major_checkpoint_interval: int = 500,
     include_nli_faithfulness: bool = False,  # Check for missing NLI metrics if True
     force_recompute: bool = False,  # If True, skip "already evaluated" check and load model for re-evaluation
+    examples_suffix: Optional[str] = None,  # e.g. "examples_1000" when val_data_size != 500
 ):
     """Load base model and PEFT checkpoint for inference.
     
@@ -1225,26 +1225,14 @@ def load_model_and_peft_checkpoint(
         AlreadyEvaluatedError: If checkpoint was already evaluated (only contains eval_results)
         ValueError: If checkpoint directory is invalid or missing adapter files
     """
-    print(f"Loading base model: {model_name}")
-    
     num_gpus = torch.cuda.device_count()
-    
-    # Use model parallelism (device_map="auto") for multi-GPU
-    # This is compatible with generation, unlike FSDP
+
+    # Use model parallelism (device_map="auto") for multi-GPU - compatible with generation, unlike FSDP
     if use_multi_gpu and num_gpus > 1:
-        print(f"Using model parallelism across {num_gpus} GPUs")
-        
-        # Print GPU info
-        for i in range(num_gpus):
-            props = torch.cuda.get_device_properties(i)
-            print(f"  GPU {i}: {props.name}, {props.total_memory / 1e9:.1f} GB")
-        
         # Try using accelerate for better device_map control
         try:
             from accelerate import infer_auto_device_map, dispatch_model
             from accelerate.utils import get_balanced_memory
-            
-            print("Using accelerate for optimized device_map...")
             
             # First load model to CPU to get its structure
             base_model = AutoModelForCausalLM.from_pretrained(
@@ -1269,16 +1257,11 @@ def load_model_and_peft_checkpoint(
                 no_split_module_classes=base_model._no_split_modules if hasattr(base_model, '_no_split_modules') else None,
             )
             
-            print(f"Device map computed: {len(device_map)} layers")
-            # Print device map summary
+            # Build device map for balanced layer distribution across GPUs
             device_summary = {}
             for layer_name, device in device_map.items():
-                if isinstance(device, (int, str)):
-                    device_str = f"cuda:{device}" if isinstance(device, int) else str(device)
-                else:
-                    device_str = str(device)
+                device_str = f"cuda:{device}" if isinstance(device, int) else str(device)
                 device_summary[device_str] = device_summary.get(device_str, 0) + 1
-            print(f"Device map distribution: {device_summary}")
             
             # Reload with device_map
             base_model = AutoModelForCausalLM.from_pretrained(
@@ -1290,7 +1273,7 @@ def load_model_and_peft_checkpoint(
             )
             
         except (ImportError, Exception) as e:
-            print(f"Accelerate not available or failed ({e}), using device_map='auto'")
+            # Fallback to simple device_map when accelerate unavailable
             device_map_strategy = "auto"
             base_model = AutoModelForCausalLM.from_pretrained(
                 model_name,
@@ -1300,7 +1283,6 @@ def load_model_and_peft_checkpoint(
                 low_cpu_mem_usage=True,
             )
     else:
-        print("Using single GPU")
         device_map_strategy = "cuda:0"
         base_model = AutoModelForCausalLM.from_pretrained(
             model_name,
@@ -1310,26 +1292,11 @@ def load_model_and_peft_checkpoint(
             low_cpu_mem_usage=True,
         )
     
-    # Verify device_map worked for base model
+    # Verify device_map split model across GPUs (multi-GPU only)
     if use_multi_gpu and num_gpus > 1:
-        print("Verifying base model is split across GPUs...")
-        device_usage = {}
-        device_param_count = {}
-        for name, param in base_model.named_parameters():
-            device = str(param.device)
-            device_usage[device] = device_usage.get(device, 0) + param.numel()
-            device_param_count[device] = device_param_count.get(device, 0) + 1
-        print(f"Base model device distribution:")
-        total_params = sum(device_usage.values())
-        for device, num_params in sorted(device_usage.items()):
-            pct = (num_params / total_params * 100) if total_params > 0 else 0
-            print(f"  {device}: {num_params:,} parameters ({pct:.1f}%), {device_param_count[device]} layers")
-        
         unique_devices = set(str(p.device) for p in base_model.parameters())
-        if len(unique_devices) > 1:
-            print(f"✓ Base model successfully split across {len(unique_devices)} devices: {unique_devices}")
-        else:
-            print(f"⚠ WARNING: Base model is only on {unique_devices} - device_map may not have worked!")
+        if len(unique_devices) <= 1:
+            print(f"Warning: Base model only on {unique_devices} - device_map may not have worked.")
     
     # Convert checkpoint_dir to absolute path to avoid PEFT interpreting it as a repo ID
     checkpoint_dir = os.path.abspath(checkpoint_dir)
@@ -1367,23 +1334,17 @@ def load_model_and_peft_checkpoint(
         # Check if backup already exists and has adapter files
         backup_adapter_file = os.path.join(regular_ckpt_path, "adapter_model.safetensors")
         if os.path.exists(regular_ckpt_path) and os.path.exists(backup_adapter_file):
-            print(f"✓ Regular checkpoint backup already exists: {regular_ckpt_path} (skipping backup)")
+            pass  # Backup exists, skip
         else:
-            # Remove existing incomplete copy if it exists
             if os.path.exists(regular_ckpt_path):
-                print(f"Removing incomplete regular checkpoint copy: {regular_ckpt_path}")
                 try:
                     shutil.rmtree(regular_ckpt_path)
                 except Exception as e:
-                    print(f"⚠ Warning: Failed to remove incomplete backup: {e}")
-
-            print(f"Copying regular checkpoint to: {regular_ckpt_path}")
+                    print(f"Warning: Failed to remove incomplete backup: {e}")
             try:
                 shutil.copytree(checkpoint_dir, regular_ckpt_path)
-                print(f"✓ Successfully copied regular checkpoint to {regular_ckpt_path}")
             except Exception as e:
-                print(f"⚠ Warning: Failed to copy regular checkpoint: {e}")
-                print("   Continuing with evaluation, but regular checkpoint copy was not created.")
+                print(f"Warning: Failed to copy regular checkpoint: {e}. Continuing with evaluation.")
 
     # ------------------------------------------------------------------
     # Backup: Major checkpoints (only in major_checkpoints, not in regular_checkpoints)
@@ -1402,29 +1363,22 @@ def load_model_and_peft_checkpoint(
         # Check if backup already exists and has adapter files
         backup_adapter_file = os.path.join(major_ckpt_path, "adapter_model.safetensors")
         if os.path.exists(major_ckpt_path) and os.path.exists(backup_adapter_file):
-            print(f"✓ Major checkpoint backup already exists: {major_ckpt_path} (skipping backup)")
+            pass  # Backup exists, skip
         else:
-            # Remove existing incomplete copy if it exists
             if os.path.exists(major_ckpt_path):
-                print(f"Removing incomplete major checkpoint copy: {major_ckpt_path}")
                 try:
                     shutil.rmtree(major_ckpt_path)
                 except Exception as e:
-                    print(f"⚠ Warning: Failed to remove incomplete backup: {e}")
-            
-            # Copy checkpoint to major_checkpoints directory
-            # This ensures major checkpoints persist even if original checkpoints are deleted
-            print(f"Copying major checkpoint to: {major_ckpt_path}")
+                    print(f"Warning: Failed to remove incomplete backup: {e}")
             try:
                 shutil.copytree(checkpoint_dir, major_ckpt_path)
-                print(f"✓ Successfully copied major checkpoint to {major_ckpt_path}")
             except Exception as e:
-                print(f"⚠ Warning: Failed to copy major checkpoint: {e}")
-                print("   Continuing with evaluation, but major checkpoint copy was not created.")
+                print(f"Warning: Failed to copy major checkpoint: {e}. Continuing with evaluation.")
     
     # Check if this checkpoint was already evaluated using utility functions
     # Skip when force_recompute=True (monitor detected checkpoint newer than stale eval)
-    eval_results_file = get_eval_results_path(checkpoint_dir, model_dir)
+    # When examples_suffix (e.g. "examples_1000"), check the suffixed file so 1000-example evals don't overwrite 500
+    eval_results_file = get_eval_results_path(checkpoint_dir, model_dir, examples_suffix=examples_suffix)
     old_eval_results_file = get_old_eval_results_path(checkpoint_dir)
     
     # Retrain-from-scratch: eval results older than training_started.txt = from previous run
@@ -1437,7 +1391,6 @@ def load_model_and_peft_checkpoint(
                 training_started_mtime = os.path.getmtime(training_started_file)
                 if eval_mtime < training_started_mtime:
                     stale_eval_from_previous_run = True
-                    print(f"ℹ Eval results from previous run (older than training_started.txt). Re-evaluating...")
             except OSError:
                 pass
     
@@ -1450,12 +1403,11 @@ def load_model_and_peft_checkpoint(
                 try:
                     existing_results = load_eval_results(checkpoint_dir, model_dir)
                     if existing_results is None:
-                        # Can't parse, allow re-evaluation
-                        print(f"⚠ Warning: Could not parse existing results file. Re-evaluating...")
+                        pass  # Can't parse, allow re-evaluation
                         # Don't raise AlreadyEvaluatedError - allow re-evaluation
                     else:
                         # Check if this is a major checkpoint that should have BERTScore
-                        is_major = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                        existing_results = load_eval_results(checkpoint_dir, model_dir, examples_suffix=examples_suffix)
                         
                         # Check if extended metrics are missing
                         has_extended_metrics = any(
@@ -1468,12 +1420,10 @@ def load_model_and_peft_checkpoint(
                         
                         # If it's a major checkpoint and should have BERTScore but doesn't, re-evaluate
                         if is_major and "eval_reference_bertscore_f1_mean" not in existing_results:
-                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
-                            print(f"   Re-evaluating to compute extended metrics...")
+                            pass  # Fall through to re-evaluate
                             # Don't raise AlreadyEvaluatedError - allow re-evaluation
                         elif not has_extended_metrics:
-                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
-                            print(f"   Re-evaluating to compute extended metrics...")
+                            pass  # Fall through to re-evaluate
                             # Don't raise AlreadyEvaluatedError - allow re-evaluation
                         # Check if NLI faithfulness is requested but missing
                         elif include_nli_faithfulness:
@@ -1487,8 +1437,7 @@ def load_model_and_peft_checkpoint(
                                 ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
                             )
                             if not has_nli_results:
-                                print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing NLI faithfulness metrics (--include_nli_faithfulness was requested).")
-                                print(f"   Re-evaluating to compute NLI metrics...")
+                                pass  # Fall through to re-evaluate
                                 # Don't raise AlreadyEvaluatedError - allow re-evaluation
                             else:
                                 # All metrics present, skip evaluation
@@ -1504,10 +1453,8 @@ def load_model_and_peft_checkpoint(
                                 f"(results file exists at {eval_results_file}). "
                                 f"Skipping evaluation."
                             )
-                except (json.JSONDecodeError, ValueError, KeyError) as e:
-                    # If we can't parse the file, allow re-evaluation
-                    print(f"⚠ Warning: Could not parse existing results file: {e}")
-                    print(f"   Re-evaluating checkpoint {checkpoint_name}...")
+                except (json.JSONDecodeError, ValueError, KeyError):
+                    pass  # Can't parse, allow re-evaluation
                     # Don't raise AlreadyEvaluatedError - allow re-evaluation
             else:
                 # Extended evaluation not available, skip if results exist
@@ -1518,7 +1465,8 @@ def load_model_and_peft_checkpoint(
                 )
         
         # Also check old location for backwards compatibility
-        if os.path.exists(old_eval_results_file):
+        # When examples_suffix is set (e.g. examples_1000), the old file is from 500-example runs - do NOT skip
+        if not examples_suffix and os.path.exists(old_eval_results_file):
             # Check if extended metrics are missing (same logic as above)
             if EXTENDED_EVAL_AVAILABLE:
                 try:
@@ -1534,14 +1482,9 @@ def load_model_and_peft_checkpoint(
                         )
                         
                         if is_major_old and "eval_reference_bertscore_f1_mean" not in existing_results_old:
-                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing BERTScore (major checkpoint).")
-                            print(f"   Re-evaluating to compute extended metrics...")
-                            # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                            pass  # Allow re-evaluation
                         elif not has_extended_metrics_old:
-                            print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing extended metrics.")
-                            print(f"   Re-evaluating to compute extended metrics...")
-                            # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                        # Check if NLI faithfulness is requested but missing
+                            pass  # Allow re-evaluation
                         elif include_nli_faithfulness:
                             has_nli_metrics_old = (
                                 any(key.startswith("eval_faithfulness_") for key in existing_results_old.keys()) or
@@ -1553,9 +1496,7 @@ def load_model_and_peft_checkpoint(
                                 ("eval_faithfulness" in existing_results_old and existing_results_old.get("eval_faithfulness") is not None)
                             )
                             if not has_nli_results_old:
-                                print(f"⚠ Checkpoint {checkpoint_name} was evaluated but missing NLI faithfulness metrics (--include_nli_faithfulness was requested).")
-                                print(f"   Re-evaluating to compute NLI metrics...")
-                                # Don't raise AlreadyEvaluatedError - allow re-evaluation
+                                pass  # Allow re-evaluation
                             else:
                                 # All metrics present, skip evaluation
                                 raise AlreadyEvaluatedError(
@@ -1990,8 +1931,11 @@ def evaluate_checkpoint(
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
     
+    # Suffix for val_data_size variants: 1000 → "examples_1000", 500 → None (default/backward compatible)
+    examples_suffix = f"examples_{val_data_size}" if val_data_size != 500 else None
+    
     # Get results file path using utility function
-    results_file = get_eval_results_path(checkpoint_dir, model_dir_eval)
+    results_file = get_eval_results_path(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
     
     # If results file exists, load and log to Wandb without re-evaluating
     # Skip loading when force_recompute=True (e.g. monitor detected checkpoint newer than stale eval from previous run)
@@ -2000,7 +1944,7 @@ def evaluate_checkpoint(
     if os.path.exists(results_file) and not force_recompute:
         print(f"⚠ Checkpoint {checkpoint_name} already evaluated. Loading existing results...")
         if keep_existing:
-            existing_results = load_eval_results(checkpoint_dir, model_dir_eval)
+            existing_results = load_eval_results(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
             if existing_results is None:
                 print(f"✓ keep_existing enabled and results file exists. Skipping checkpoint {checkpoint_name} without overwriting.")
                 return {
@@ -2013,7 +1957,7 @@ def evaluate_checkpoint(
             return existing_results, None
         
         try:
-            existing_results = load_eval_results(checkpoint_dir, model_dir_eval)
+            existing_results = load_eval_results(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
             if existing_results is None:
                 print(f"⚠ Warning: Could not load existing results from {results_file}")
                 # Fall through to normal evaluation
@@ -2089,15 +2033,16 @@ def evaluate_checkpoint(
                         gpu_info[f"gpu_{i}_name"] = props.name
                         gpu_info[f"gpu_{i}_memory_total_gb"] = props.total_memory / 1e9
                     
-                    # Use consistent run name and ID for combining all checkpoints
-                    # Determine consistent run name (same as in main evaluation)
+                    # Use consistent run name and ID for combining all checkpoints (separate per val_data_size)
+                    # 500 vs 1000 examples → separate wandb runs so metrics don't mix
                     model_dir_eval_cached = get_model_dir_from_checkpoint(checkpoint_dir)
-                    wandb_run_id_file_cached = os.path.join(model_dir_eval_cached, "all_eval_results", ".wandb_run_id")
+                    wandb_run_id_suffix_cached = f"_{examples_suffix}" if examples_suffix else ""
+                    wandb_run_id_file_cached = os.path.join(model_dir_eval_cached, "all_eval_results", f".wandb_run_id{wandb_run_id_suffix_cached}")
                     
                     if wandb_run_name:
-                        consistent_run_name_cached = wandb_run_name
+                        consistent_run_name_cached = f"{wandb_run_name}{wandb_run_id_suffix_cached}" if examples_suffix else wandb_run_name
                     else:
-                        consistent_run_name_cached = f"{clean_model_name}_eval_all_checkpoints"
+                        consistent_run_name_cached = f"{clean_model_name}_eval_all_checkpoints{wandb_run_id_suffix_cached}"
                     
                     # Try to load existing run ID to resume the same run
                     wandb_run_id_cached = None
@@ -2112,16 +2057,20 @@ def evaluate_checkpoint(
                     
                     is_major_cached = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
                     
-                    # Initialize wandb with consistent run name and ID
+                    # Initialize wandb with consistent run name and ID (separate run per val_data_size)
+                    wandb_group_cached = wandb_group or f"{clean_model_name}_eval"
+                    if examples_suffix:
+                        wandb_group_cached = f"{wandb_group_cached}_{examples_suffix}"
                     wandb_kwargs_cached = {
                         "project": wandb_project,
                         "entity": wandb_entity,
                         "name": consistent_run_name_cached,
-                        "group": wandb_group or clean_model_name,
+                        "group": wandb_group_cached,
                         "tags": [
                             "evaluation",
                             "all_checkpoints",
-                            "cached",  # Indicate this was loaded from cache
+                            "cached",
+                            f"val_{val_data_size}_examples",
                         ],
                         "config": {
                             "model": model_name,
@@ -2375,17 +2324,18 @@ def evaluate_checkpoint(
     # Create a clean model name for display
     clean_model_name = model_name.split('/')[-1].replace('-', '_')
     
-    # Determine consistent run name and ID for combining all checkpoints
-    # Store run ID in model directory so all checkpoints use the same run
+    # Determine consistent run name and ID for combining all checkpoints (separate per val_data_size)
+    # 500 vs 1000 examples → separate wandb runs so metrics don't mix
     model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
-    wandb_run_id_file = os.path.join(model_dir_eval, "all_eval_results", ".wandb_run_id")
+    wandb_run_id_suffix = f"_{examples_suffix}" if examples_suffix else ""
+    wandb_run_id_file = os.path.join(model_dir_eval, "all_eval_results", f".wandb_run_id{wandb_run_id_suffix}")
     
     # Use provided run_name or create one based on model (without checkpoint step)
     if wandb_run_name:
-        consistent_run_name = wandb_run_name
+        consistent_run_name = f"{wandb_run_name}{wandb_run_id_suffix}" if examples_suffix else wandb_run_name
     else:
         # Default: use model name only (no checkpoint step) so all checkpoints combine
-        consistent_run_name = f"{clean_model_name}_eval_all_checkpoints"
+        consistent_run_name = f"{clean_model_name}_eval_all_checkpoints{wandb_run_id_suffix}"
     
     # Try to load existing run ID to resume the same run
     wandb_run_id = None
@@ -2412,16 +2362,20 @@ def evaluate_checkpoint(
         
         is_major_eval = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
         
-        # Initialize wandb with consistent run name and ID
+        # Initialize wandb with consistent run name and ID (separate run per val_data_size)
         # If run_id exists, resume that run; otherwise create new one
+        wandb_group_val = wandb_group or f"{clean_model_name}_eval"
+        if examples_suffix:
+            wandb_group_val = f"{wandb_group_val}_{examples_suffix}"
         wandb_kwargs = {
             "project": wandb_project,
             "entity": wandb_entity,
             "name": consistent_run_name,
-            "group": wandb_group or clean_model_name,  # Group all checkpoints together
+            "group": wandb_group_val,  # Separate group per val_data_size (500 vs 1000)
             "tags": [
                 "evaluation",
-                "all_checkpoints",  # Tag to indicate this combines all checkpoints
+                "all_checkpoints",
+                f"val_{val_data_size}_examples",
             ],
             "config": {
                 "model": model_name,
@@ -2492,6 +2446,7 @@ def evaluate_checkpoint(
             major_checkpoint_interval=major_checkpoint_interval,
             include_nli_faithfulness=include_nli_faithfulness,
             force_recompute=force_recompute,
+            examples_suffix=examples_suffix,
         )
     except AlreadyEvaluatedError:
         # Re-raise to be caught by the main block
@@ -2696,7 +2651,7 @@ def evaluate_checkpoint(
     # Only save for major checkpoints to save disk space
     predictions_file = None
     if is_main_process and is_major_checkpoint:
-        predictions_file = get_predictions_file_path(checkpoint_dir, model_dir_eval)
+        predictions_file = get_predictions_file_path(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
         os.makedirs(os.path.dirname(predictions_file), exist_ok=True)
         
         # Write to JSONL file
@@ -2727,33 +2682,8 @@ def evaluate_checkpoint(
     # Run extended evaluation metrics (reference-based, hygiene, faithfulness)
     # Note: For normal checkpoints, we still run extended evaluation but use predictions from memory
     # For major checkpoints, we can load from the saved JSONL file
-    if is_main_process:
-        # Debug: Print why extended evaluation might not run
-        if not EXTENDED_EVAL_AVAILABLE:
-            print("\n" + "=" * 70)
-            print("WARNING: Extended evaluation NOT available")
-            print("=" * 70)
-            print("Reason: extended_evaluation.py could not be imported")
-            print("Only ROUGE metrics will be saved to JSON.")
-            print("=" * 70 + "\n")
-        elif not is_major_checkpoint and not predictions_file:
-            # For normal checkpoints, we'll use predictions from memory (trainer._eval_predictions)
-            # This is fine - we don't need the file for normal checkpoints
-            pass
-        elif is_major_checkpoint and not predictions_file:
-            print("\n" + "=" * 70)
-            print("WARNING: Extended evaluation may be limited")
-            print("=" * 70)
-            print("Reason: predictions_file is None for major checkpoint")
-            print("Will use predictions from memory instead.")
-            print("=" * 70 + "\n")
-        elif predictions_file and not os.path.exists(predictions_file):
-            print("\n" + "=" * 70)
-            print("WARNING: Extended evaluation may be limited")
-            print("=" * 70)
-            print(f"Reason: predictions_file does not exist: {predictions_file}")
-            print("Will use predictions from memory instead.")
-            print("=" * 70 + "\n")
+    if is_main_process and not EXTENDED_EVAL_AVAILABLE:
+        print("Warning: Extended evaluation not available. Only ROUGE metrics will be saved.")
     
     # Run extended evaluation metrics (reference-based, hygiene, faithfulness)
     # For major checkpoints: load from saved JSONL file
@@ -2761,10 +2691,6 @@ def evaluate_checkpoint(
     include_faithfulness = False  # Initialize to avoid unbound variable errors
     
     if is_main_process and EXTENDED_EVAL_AVAILABLE:
-        print("\n" + "=" * 70)
-        print("Running Extended Evaluation Metrics...")
-        print("=" * 70)
-        
         try:
             # Load texts from JSONL file if available (major checkpoints), otherwise use memory
             input_texts = []
@@ -2792,278 +2718,99 @@ def evaluate_checkpoint(
                     reference_texts.append(original_examples_for_jsonl[i].get("reference", ""))
             
             if len(input_texts) > 0 and len(prediction_texts) > 0 and len(reference_texts) > 0:
-                if not EXTENDED_EVAL_AVAILABLE:
-                    print("Warning: Extended evaluation not available (extended_evaluation.py not found). Skipping extended metrics.")
-                else:
-                    # Determine which metrics to compute based on checkpoint type and user settings
-                    # Normal checkpoints: ROUGE + Hygiene only (fast, ~2 min)
-                    # Major checkpoints: ROUGE + Hygiene + BERTScore (moderate, ~3-4 min)
-                    # NLI Faithfulness: Only for major checkpoints, and only if include_nli_faithfulness is enabled
-                    is_major_extended = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
-                    include_bertscore = is_major_extended
-                    # NLI faithfulness: only compute for major checkpoints, even if flag is passed
-                    include_faithfulness = include_nli_faithfulness and is_major_extended
-                    
-                    # Prepare fixed subset for NLI if requested
-                    # For ROUGE, Hygiene, and BERTScore: use full dataset
-                    # For NLI: use fixed 500-example subset for consistency across all checkpoints
-                    nli_input_texts = input_texts
-                    nli_prediction_texts = prediction_texts
-                    nli_reference_texts = reference_texts
-                    
-                    if include_faithfulness:
-                        # Get or create fixed NLI subset (500 examples, same across all checkpoints)
-                        # When val_data_size > 500, use first 500 for comparability with 500-example runs
-                        model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
-                        nli_indices = get_or_create_fixed_nli_subset(
-                            total_examples=len(input_texts),
-                            model_dir=model_dir_eval,
-                            subset_size=NLI_FIXED_SUBSET_SIZE,
-                            use_first_n_for_extended=(val_data_size > NLI_FIXED_SUBSET_SIZE)
-                        )
-                        
-                        # Safety check: ensure subset is not empty
-                        if not nli_indices or len(nli_indices) == 0:
-                            raise ValueError(
-                                f"Fixed NLI subset is empty! This should not happen. "
-                                f"Total examples: {len(input_texts)}, subset size: {NLI_FIXED_SUBSET_SIZE}"
-                            )
-                        
-                        nli_input_texts, nli_prediction_texts, nli_reference_texts = apply_fixed_subset(
-                            input_texts, prediction_texts, reference_texts, nli_indices
-                        )
-                        
-                        # Verify subset was applied correctly
-                        if len(nli_input_texts) == 0:
-                            raise ValueError(
-                                f"After applying fixed subset, NLI input texts are empty! "
-                                f"Indices: {len(nli_indices)}, Applied: {len(nli_input_texts)}"
-                            )
-                        
-                        # Ensure we're using the subset, not the full dataset
-                        assert len(nli_input_texts) <= len(input_texts), \
-                            "NLI subset should never be larger than full dataset"
-                        assert len(nli_input_texts) == len(nli_indices) or len(nli_input_texts) <= NLI_FIXED_SUBSET_SIZE, \
-                            f"NLI subset size ({len(nli_input_texts)}) should match expected subset size ({NLI_FIXED_SUBSET_SIZE}) or be smaller"
-                        
-                        print(f"  → NLI subset: Using fixed {len(nli_input_texts)} examples from {len(input_texts)} total (consistent across all checkpoints)")
-                        print(f"  → Subset indices saved to: {os.path.join(model_dir_eval, 'all_eval_results', 'nli_fixed_subset_indices.json')}")
-                    
-                    is_major_extended = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
-                    checkpoint_type = "MAJOR" if is_major_extended else "NORMAL"
-                    print(f"Computing extended metrics on {len(input_texts)} examples...")
-                    print(f"Checkpoint type: {checkpoint_type} (step {checkpoint_step_int})")
-                    if is_major_extended:
-                        print(f"  → Computing: ROUGE + Hygiene + BERTScore (~3-4 min)")
-                    else:
-                        print(f"  → Computing: ROUGE + Hygiene only (~2 min)")
-                    
-                    if include_faithfulness:
-                        nli_examples = len(nli_input_texts)
-                        nli_time_estimate = (nli_examples * 4.5) / 60  # ~4.5 seconds per example
-                        print(f"  → Computing: NLI Faithfulness on {nli_examples} examples (~{nli_time_estimate:.1f} min)")
-                    elif include_nli_faithfulness and not is_major_extended:
-                        print(f"  → Skipping: NLI Faithfulness (only computed for major checkpoints, even with --include_nli_faithfulness)")
-                    else:
-                        print(f"  → Skipping: NLI Faithfulness (enable with --include_nli_faithfulness)")
-                    
-                    # Run extended evaluation with selective metrics
-                    # Note: extended_evaluate computes all metrics on the same input set
-                    # For NLI, we pass the subset if specified; for other metrics, we need to handle separately
-                    # However, extended_evaluate expects all inputs to be the same length
-                    # So we'll run it twice: once for non-NLI metrics (full set), once for NLI (subset if specified)
-                    
-                    # First run: ROUGE + Hygiene + BERTScore (on full set)
-                    assert extended_evaluate is not None, "extended_evaluate should be available when EXTENDED_EVAL_AVAILABLE is True"
-                    extended_results = extended_evaluate(
-                        input_texts=input_texts,
-                        prediction_texts=prediction_texts,
-                        reference_texts=reference_texts,
-                        print_output=False,  # We'll print formatted results ourselves
-                        include_bertscore=include_bertscore,
-                        include_faithfulness=False  # Skip NLI in first run
+                # Determine which metrics to compute based on checkpoint type and user settings
+                # Normal checkpoints: ROUGE + Hygiene only; Major: + BERTScore; NLI: only if --include_nli_faithfulness
+                is_major_extended = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+                include_bertscore = is_major_extended
+                include_faithfulness = include_nli_faithfulness and is_major_extended
+
+                nli_input_texts, nli_prediction_texts, nli_reference_texts = input_texts, prediction_texts, reference_texts
+                if include_faithfulness:
+                    # Get or create fixed NLI subset (500 examples, same across all checkpoints)
+                    model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
+                    nli_indices = get_or_create_fixed_nli_subset(
+                        total_examples=len(input_texts),
+                        model_dir=model_dir_eval,
+                        subset_size=NLI_FIXED_SUBSET_SIZE,
+                        use_first_n_for_extended=(val_data_size > NLI_FIXED_SUBSET_SIZE)
                     )
-                    # Extract timing from first run
-                    extended_timing = extended_results.pop("_timing", {})
-                    # Initialize faithfulness to None if not present (will be set in second run if requested)
-                    if "faithfulness" not in extended_results:
+                    if not nli_indices or len(nli_indices) == 0:
+                        raise ValueError(f"Fixed NLI subset is empty. Total: {len(input_texts)}, subset: {NLI_FIXED_SUBSET_SIZE}")
+                    nli_input_texts, nli_prediction_texts, nli_reference_texts = apply_fixed_subset(
+                        input_texts, prediction_texts, reference_texts, nli_indices
+                    )
+                    if len(nli_input_texts) == 0:
+                        raise ValueError(f"After applying fixed subset, NLI input texts are empty.")
+
+                # Run extended evaluation: ROUGE + Hygiene + BERTScore (full set), then NLI on subset if requested
+                assert extended_evaluate is not None, "extended_evaluate should be available when EXTENDED_EVAL_AVAILABLE is True"
+                extended_results = extended_evaluate(
+                    input_texts=input_texts,
+                    prediction_texts=prediction_texts,
+                    reference_texts=reference_texts,
+                    print_output=False,
+                    include_bertscore=include_bertscore,
+                    include_faithfulness=False  # Skip NLI in first run
+                )
+                extended_timing = extended_results.pop("_timing", {})
+                if "faithfulness" not in extended_results:
+                    extended_results["faithfulness"] = None
+
+                if include_faithfulness:
+                    assert len(nli_input_texts) <= len(input_texts), "NLI evaluation must use subset"
+                    try:
+                        nli_results = extended_evaluate(
+                            input_texts=nli_input_texts,
+                            prediction_texts=nli_prediction_texts,
+                            reference_texts=nli_reference_texts,
+                            print_output=False,
+                            include_bertscore=False,
+                            include_faithfulness=True
+                        )
+                        nli_timing = nli_results.pop("_timing", {}) if nli_results else {}
+                        if "nli_faithfulness_seconds" in nli_timing:
+                            extended_timing["nli_faithfulness_seconds"] = nli_timing["nli_faithfulness_seconds"]
+                        extended_results["faithfulness"] = nli_results.get("faithfulness") if nli_results else None
+                    except Exception as nli_error:
+                        print(f"ERROR: NLI faithfulness evaluation failed: {nli_error}")
                         extended_results["faithfulness"] = None
-                    
-                    # Second run: NLI only (on fixed subset - always uses same 500 examples)
-                    if include_faithfulness:
-                        assert extended_evaluate is not None, "extended_evaluate should be available when EXTENDED_EVAL_AVAILABLE is True"
-                        
-                        # Safety check: ensure we're using the subset, not the full dataset
-                        assert len(nli_input_texts) <= len(input_texts), \
-                            "NLI evaluation must use subset, not full dataset"
-                        assert len(nli_input_texts) <= NLI_FIXED_SUBSET_SIZE, \
-                            f"NLI subset size ({len(nli_input_texts)}) exceeds fixed subset size ({NLI_FIXED_SUBSET_SIZE})"
-                        
-                        try:
-                            nli_results = extended_evaluate(
-                                input_texts=nli_input_texts,  # Fixed subset (500 examples)
-                                prediction_texts=nli_prediction_texts,  # Fixed subset
-                                reference_texts=nli_reference_texts,  # Fixed subset
-                                print_output=False,
-                                include_bertscore=False,  # Skip BERTScore in second run (already computed)
-                                include_faithfulness=True  # Only compute NLI on fixed subset
-                            )
-                            # Extract NLI timing and merge into extended_timing
-                            nli_timing = nli_results.pop("_timing", {}) if nli_results else {}
-                            if nli_timing:
-                                # Only update NLI-specific timing, not the total (which would be for the subset only)
-                                if "nli_faithfulness_seconds" in nli_timing:
-                                    extended_timing["nli_faithfulness_seconds"] = nli_timing["nli_faithfulness_seconds"]
-                            # Merge NLI results into extended_results
-                            faithfulness_result = nli_results.get("faithfulness") if nli_results else None
-                            extended_results["faithfulness"] = faithfulness_result
-                        except Exception as nli_error:
-                            print(f"\n{'='*70}")
-                            print(f"ERROR: NLI faithfulness evaluation failed: {nli_error}")
-                            print(f"{'='*70}")
-                            import traceback
-                            traceback.print_exc()
-                            print(f"{'='*70}\n")
-                            extended_results["faithfulness"] = None
-                            extended_timing["nli_faithfulness_seconds"] = 0.0
-                    
-                    # Note: If NLI was run on a subset, the NLI results are for that subset only
-                    # The other metrics (ROUGE, Hygiene, BERTScore) are computed on the full set
-                    # This is intentional - NLI is expensive, so we sample for it
-                    
-                    # Merge extended results into eval_results
-                    # Flatten nested structure for easier access
-                    for category, metrics in extended_results.items():
-                        if isinstance(metrics, dict):
-                            # For faithfulness, preserve the full dict only (nested structure is cleaner)
-                            if category == "faithfulness" and metrics is not None:
-                                # Save full faithfulness dict
-                                eval_results["eval_faithfulness"] = metrics
-                            else:
-                                # For other categories, flatten for easier access
-                                for key, value in metrics.items():
-                                    eval_key = f"eval_{category}_{key}"
-                                    eval_results[eval_key] = value
+                        extended_timing["nli_faithfulness_seconds"] = 0.0
+
+                for category, metrics in extended_results.items():
+                    if isinstance(metrics, dict):
+                        if category == "faithfulness" and metrics is not None:
+                            eval_results["eval_faithfulness"] = metrics
                         else:
-                            eval_key = f"eval_{category}"
-                            eval_results[eval_key] = metrics
-                    
-                    # Aggregate all timing information
-                    total_validation_time = time.time() - validation_start_time
-                    eval_timing = {
-                        "total_validation_seconds": total_validation_time,
-                        "prediction_seconds": prediction_time,
-                        "rouge_seconds": extended_timing.get("rouge_seconds", 0.0),
-                        "hygiene_seconds": extended_timing.get("hygiene_seconds", 0.0),
-                        "bertscore_seconds": extended_timing.get("bertscore_seconds", 0.0),
-                        "nli_faithfulness_seconds": extended_timing.get("nli_faithfulness_seconds", 0.0),
-                        "extended_metrics_total_seconds": extended_timing.get("extended_metrics_total_seconds", 0.0),
-                    }
-                    eval_results["eval_timing"] = eval_timing
-                    
-                    # Print extended metrics summary
-                    print("\nExtended Evaluation Results:")
-                    print("-" * 70)
-                    
-                    # Reference-based metrics (ROUGE always, BERTScore if major checkpoint)
-                    if "reference" in extended_results:
-                        ref_metrics = extended_results["reference"]
-                        print("Reference-based Metrics:")
-                        for key, value in ref_metrics.items():
-                            if isinstance(value, (int, float)):
-                                print(f"  {key}: {value:.4f}")
-                        if not is_major_checkpoint and "bertscore_f1_mean" not in ref_metrics:
-                            print("  (BERTScore skipped - not a major checkpoint)")
-                    
-                    # Hygiene metrics
-                    if "hygiene" in extended_results:
-                        hygiene_metrics = extended_results["hygiene"]
-                        print("\nHygiene Metrics:")
-                        for key, value in hygiene_metrics.items():
-                            if isinstance(value, (int, float)):
-                                print(f"  {key}: {value:.4f}")
-                            elif value is not None:
-                                print(f"  {key}: {value}")
-                    
-                    # Faithfulness metrics (skipped for checkpoints)
-                    if "faithfulness" in extended_results and extended_results["faithfulness"] is not None:
-                        faith_metrics = extended_results["faithfulness"]
-                        print("\nFaithfulness Metrics:")
-                        for key, value in faith_metrics.items():
-                            if isinstance(value, (int, float)):
-                                print(f"  {key}: {value:.4f}")
-                            elif isinstance(value, list):
-                                # Skip reasons_failed list (too verbose)
-                                if key != "reasons_failed":
-                                    print(f"  {key}: {len(value)} items")
-                            elif value is not None:
-                                print(f"  {key}: {value}")
-                    elif "faithfulness" in extended_results:
-                        print("\nFaithfulness Metrics: (skipped - too slow for checkpoint evaluation)")
-                    
-                    print("=" * 70 + "\n")
+                            for key, value in metrics.items():
+                                eval_results[f"eval_{category}_{key}"] = value
+                    else:
+                        eval_results[f"eval_{category}"] = metrics
+
+                total_validation_time = time.time() - validation_start_time
+                eval_results["eval_timing"] = {
+                    "total_validation_seconds": total_validation_time,
+                    "prediction_seconds": prediction_time,
+                    "rouge_seconds": extended_timing.get("rouge_seconds", 0.0),
+                    "hygiene_seconds": extended_timing.get("hygiene_seconds", 0.0),
+                    "bertscore_seconds": extended_timing.get("bertscore_seconds", 0.0),
+                    "nli_faithfulness_seconds": extended_timing.get("nli_faithfulness_seconds", 0.0),
+                    "extended_metrics_total_seconds": extended_timing.get("extended_metrics_total_seconds", 0.0),
+                }
             else:
                 print("Warning: No valid examples found in predictions file for extended evaluation")
         except Exception as e:
-            print(f"\n{'='*70}")
-            print(f"ERROR: Extended evaluation failed: {e}")
-            print(f"{'='*70}")
+            print(f"ERROR: Extended evaluation failed: {e}. Continuing with ROUGE metrics only.")
             import traceback
             traceback.print_exc()
-            print("Continuing with ROUGE metrics only...")
-            print(f"{'='*70}\n")
     # Note: Diagnostic messages for why extended evaluation didn't run are printed earlier
     
     if is_main_process:
-        print("\n" + "=" * 70)
-        print("Evaluation Results (ROUGE + Extended Metrics):")
-        print("=" * 70)
-        # Print ROUGE metrics first
         rouge_keys = [k for k in eval_results.keys() if 'rouge' in k.lower() and isinstance(eval_results[k], (int, float))]
         if rouge_keys:
-            print("ROUGE Metrics:")
+            print("\nEvaluation Results:")
             for key in sorted(rouge_keys):
-                value = eval_results[key]
-                if isinstance(value, (int, float)):
-                    print(f"  {key}: {value:.4f}")
-                else:
-                    print(f"  {key}: {value}")
-        
-        # Print extended metrics if available
-        if EXTENDED_EVAL_AVAILABLE:
-            extended_keys = [k for k in eval_results.keys() if any(prefix in k for prefix in ['reference_', 'hygiene_', 'faithfulness_'])]
-            if extended_keys:
-                print("\nExtended Metrics:")
-                # Group by category
-                reference_keys = [k for k in extended_keys if 'reference_' in k]
-                hygiene_keys = [k for k in extended_keys if 'hygiene_' in k]
-                faithfulness_keys = [k for k in extended_keys if 'faithfulness_' in k]
-                
-                if reference_keys:
-                    print("  Reference-based:")
-                    for key in sorted(reference_keys):
-                        value = eval_results[key]
-                        if isinstance(value, (int, float)):
-                            print(f"    {key}: {value:.4f}")
-                        else:
-                            print(f"    {key}: {value}")
-                if hygiene_keys:
-                    print("  Hygiene:")
-                    for key in sorted(hygiene_keys):
-                        value = eval_results[key]
-                        if isinstance(value, (int, float)):
-                            print(f"    {key}: {value:.4f}")
-                        else:
-                            print(f"    {key}: {value}")
-                if faithfulness_keys:
-                    print("  Faithfulness:")
-                    for key in sorted(faithfulness_keys):
-                        value = eval_results[key]
-                        if isinstance(value, (int, float)):
-                            print(f"    {key}: {value:.4f}")
-                        else:
-                            print(f"    {key}: {value}")
-        print("=" * 70 + "\n")
+                v = eval_results[key]
+                print(f"  {key}: {v:.4f}" if isinstance(v, (int, float)) else f"  {key}: {v}")
     
     # Log final summary to wandb if initialized and not disabled
     # Log with checkpoint step so it appears in the timeline
@@ -3126,7 +2873,8 @@ def evaluate_checkpoint(
             results=eval_results,
             checkpoint_dir=checkpoint_dir,
             model_dir=model_dir_eval,
-            save_to_old_location=True  # Keep backwards compatibility
+            save_to_old_location=True,  # Keep backwards compatibility (skipped when examples_suffix set)
+            examples_suffix=examples_suffix,
         )
         print(f"Per-checkpoint results saved to: {saved_path}")
         
@@ -3136,7 +2884,8 @@ def evaluate_checkpoint(
             checkpoint_dir=checkpoint_dir,
             model_name=model_name,
             val_dataset_path=val_dataset_path,
-            model_dir=model_dir_eval
+            model_dir=model_dir_eval,
+            examples_suffix=examples_suffix,
         )
     
     # Clean up distributed process group

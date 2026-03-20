@@ -42,6 +42,7 @@ fi
 MODEL=${MODEL:-gemma-2-9b}
 OUTPUT_DIR=${OUTPUT_DIR:-"models/${MODEL}-apptainer-fsdp"}
 VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
+VAL_DATA_SIZE=${VAL_DATA_SIZE:-500}  # 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files
 CHECK_INTERVAL=${CHECK_INTERVAL:-60}  # Check every 60 seconds
 EARLY_STOPPING_PATIENCE=${EARLY_STOPPING_PATIENCE:-3}  # Stop if no improvement for 3 evaluations
 INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-false}
@@ -64,6 +65,9 @@ for arg in "$@"; do
         --val_dataset=*)
             VAL_DATASET="${arg#*=}"
             ;;
+        --val_data_size=*)
+            VAL_DATA_SIZE="${arg#*=}"
+            ;;
         --check_interval=*)
             CHECK_INTERVAL="${arg#*=}"
             ;;
@@ -85,6 +89,7 @@ for arg in "$@"; do
             echo "  --model=MODEL                    Model short name (default: gemma-2-9b)"
             echo "  --output_dir=DIR                 Output directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
             echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
+            echo "  --val_data_size=N                 Validation examples: 500 (default) or 1000 (writes to -examples_1000.json/.jsonl)"
             echo "  --check_interval=N               Check for new checkpoints every N seconds (default: 60)"
             echo "  --early_stopping_patience=N      Stop if no improvement for N evaluations (default: 3)"
             echo "  --include_nli_faithfulness        Enable NLI-based faithfulness evaluation (slow: ~37 min for 500 examples)"
@@ -167,6 +172,7 @@ echo "Configuration:"
 echo "  MODEL: $MODEL"
 echo "  OUTPUT_DIR: $OUTPUT_DIR"
 echo "  VAL_DATASET: $VAL_DATASET"
+echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (1000 → separate -examples_1000.json/.jsonl files)"
 echo "  CHECK_INTERVAL: $CHECK_INTERVAL seconds"
 echo "  EARLY_STOPPING_PATIENCE: $EARLY_STOPPING_PATIENCE evaluations"
 echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS"
@@ -185,6 +191,7 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "Would execute with the following configuration:"
     echo "  Monitoring checkpoints in: $OUTPUT_DIR"
     echo "  Validation dataset: $VAL_DATASET"
+    echo "  Validation examples: $VAL_DATA_SIZE"
     echo "  Check interval: $CHECK_INTERVAL seconds"
     echo "  Early stopping patience: $EARLY_STOPPING_PATIENCE evaluations"
     echo "  Include NLI faithfulness: $INCLUDE_NLI_FAITHFULNESS"
@@ -194,6 +201,7 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "    --output_dir $OUTPUT_DIR"
     echo "    --model $MODEL"
     echo "    --val_dataset $VAL_DATASET"
+    echo "    --val_data_size $VAL_DATA_SIZE"
     echo "    --hf_token [REDACTED]"
     echo "    --check_interval $CHECK_INTERVAL"
     echo "    --early_stopping_patience $EARLY_STOPPING_PATIENCE"
@@ -238,7 +246,7 @@ if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
     NLI_FLAG="--include_nli_faithfulness"
 fi
 
-EVAL_CMD="export HF_HOME=\$HF_HOME && export HF_DATASETS_CACHE=\$HF_DATASETS_CACHE && export HF_MODULES_CACHE=\$HF_MODULES_CACHE && export HF_METRICS_CACHE=\$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login \$WANDB_API_KEY && python scripts/monitor_and_evaluate_checkpoints.py --output_dir $OUTPUT_DIR --model $MODEL --val_dataset $VAL_DATASET --hf_token \$HUGGINGFACE_TOKEN --check_interval $CHECK_INTERVAL --early_stopping_patience $EARLY_STOPPING_PATIENCE $NLI_FLAG --wandb_project lm-finetuning --use_multi_gpu"
+EVAL_CMD="export HF_HOME=\$HF_HOME && export HF_DATASETS_CACHE=\$HF_DATASETS_CACHE && export HF_MODULES_CACHE=\$HF_MODULES_CACHE && export HF_METRICS_CACHE=\$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login \$WANDB_API_KEY && python scripts/monitor_and_evaluate_checkpoints.py --output_dir $OUTPUT_DIR --model $MODEL --val_dataset $VAL_DATASET --val_data_size $VAL_DATA_SIZE --hf_token \$HUGGINGFACE_TOKEN --check_interval $CHECK_INTERVAL --early_stopping_patience $EARLY_STOPPING_PATIENCE $NLI_FLAG --wandb_project lm-finetuning --use_multi_gpu"
 
 # Run pip installs; hide stdout only so pip errors (stderr) appear in logs/gpu-monitor-eval-*.err
 COMMAND="pip install --upgrade pip setuptools wheel >/dev/null && pip install --break-system-packages --only-binary=:all: transformers==4.45.2 tokenizers==0.20.3 datasets==3.0.0 sentencepiece==0.2.1 >/dev/null && pip install --break-system-packages --no-binary=rouge-score rouge-score==0.1.2 >/dev/null && pip install --break-system-packages --no-deps accelerate==1.0.1 peft==0.13.2 >/dev/null && pip install --break-system-packages --upgrade pyyaml psutil typing-extensions packaging==24.2 safetensors >/dev/null && pip install --break-system-packages --upgrade wandb evaluate >/dev/null && $EVAL_CMD"

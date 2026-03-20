@@ -188,7 +188,7 @@ def write_early_stopping_signal(output_dir: str):
     signal_file = os.path.join(output_dir, ".early_stop")
     with open(signal_file, 'w') as f:
         f.write("Early stopping triggered by evaluation monitor\n")
-    print(f"✓ Early stopping signal written to {signal_file}")
+    print(f"Early stopping signal written to {signal_file}")
 
 
 def get_best_checkpoint_metric(eval_results_dir: str) -> Optional[Dict]:
@@ -298,6 +298,7 @@ def monitor_and_evaluate(
     major_checkpoint_interval: int = 500,  # Every Nth step is major (gets BERTScore). Default: 500 (every 500 steps = checkpoint-500, checkpoint-1000, etc.)
     include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation
     checkpoint_stability_seconds: int = 120,  # Wait for checkpoint to be stable (not modified) for this many seconds before evaluating
+    val_data_size: int = 500,  # Validation examples: 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files
 ):
     """Monitor checkpoints and evaluate them as they appear.
     
@@ -333,13 +334,7 @@ def monitor_and_evaluate(
     waited_time = 0
     
     if not os.path.exists(training_started_file):
-        print(f"\n{'='*70}")
-        print("WAITING FOR TRAINING TO START")
-        print(f"{'='*70}")
-        print(f"Looking for signal file: {training_started_file}")
-        print(f"Will wait up to {max_wait_time // 60} minutes...")
-        print(f"Checking every {wait_interval} seconds...")
-        print(f"{'='*70}\n")
+        print(f"Waiting for training to start (signal: {training_started_file}, max {max_wait_time // 60} min)...")
         
         while not os.path.exists(training_started_file) and waited_time < max_wait_time:
             time.sleep(wait_interval)
@@ -348,22 +343,11 @@ def monitor_and_evaluate(
                 print(f"Still waiting for training to start... ({waited_time // 60} minutes elapsed)")
         
         if not os.path.exists(training_started_file):
-            print(f"\n{'='*70}")
-            print("ERROR: Training did not start within the timeout period")
-            print(f"{'='*70}")
-            print(f"Waited {waited_time // 60} minutes for training to start.")
-            print(f"Expected signal file: {training_started_file}")
-            print("\nPossible reasons:")
-            print("  1. Training job hasn't started yet")
-            print("  2. Training job failed to start")
-            print("  3. Training script doesn't create the signal file")
-            print("\nSuggestion: Use SLURM job dependency:")
-            print("  sbatch --dependency=afterok:TRAINING_JOB_ID run_monitor_evaluation.sbatch")
-            print(f"{'='*70}\n")
+            print(f"ERROR: Training did not start within {waited_time // 60} min. Signal file: {training_started_file}")
+            print("Suggestion: Use sbatch --dependency=afterok:TRAINING_JOB_ID run_monitor_evaluation.sbatch")
             return
         else:
-            print(f"✓ Training started! Signal file found: {training_started_file}")
-            print(f"  Waited {waited_time // 60} minutes and {waited_time % 60} seconds\n")
+            print(f"Training started (waited {waited_time // 60}m {waited_time % 60}s)\n")
     
     # Initialize wandb for monitoring
     if wandb_project:
@@ -404,9 +388,7 @@ def monitor_and_evaluate(
     best_bertscore = None
     previous_bertscore = None  # Track previous BERTScore to detect drops
     
-    print("\nStarting checkpoint monitoring...")
-    print(f"Will stop if no new checkpoints appear for {timeout_minutes} minutes")
-    print("Press Ctrl+C to stop monitoring (training will continue)\n")
+    print(f"Starting checkpoint monitoring (timeout: {timeout_minutes} min, Ctrl+C to stop)\n")
     
     # Clear any stale .early_stop from a *previous* run so we don't exit immediately
     # when reusing the same output_dir (e.g. new training + monitor for same model)
@@ -591,10 +573,7 @@ def monitor_and_evaluate(
                 if last_checkpoint_time is not None:
                     time_since_last_checkpoint = current_time - last_checkpoint_time
                     if time_since_last_checkpoint > timeout_seconds:
-                        print(f"\n{'='*70}")
-                        print(f"Timeout: No new checkpoints for {timeout_minutes} minutes")
-                        print("Assuming training has completed. Stopping monitor.")
-                        print(f"{'='*70}\n")
+                        print(f"Timeout: No new checkpoints for {timeout_minutes} min. Stopping monitor.")
                         break
                 
                 time.sleep(check_interval)
@@ -656,10 +635,7 @@ def monitor_and_evaluate(
                 continue
             
             # Evaluate the checkpoint
-            print(f"\n{'='*70}")
-            print(f"Evaluating checkpoint-{checkpoint_step}")
-            print(f"Checkpoint path: {checkpoint_to_evaluate}")
-            print(f"{'='*70}")
+            print(f"Evaluating checkpoint-{checkpoint_step}...")
             
             try:
                 eval_results, _ = evaluate_checkpoint(
@@ -675,6 +651,7 @@ def monitor_and_evaluate(
                     major_checkpoint_interval=major_checkpoint_interval,
                     include_nli_faithfulness=include_nli_faithfulness,
                     force_recompute=force_recompute_checkpoint,  # Re-run when checkpoint newer than stale eval (rerun)
+                    val_data_size=val_data_size,
                 )
                 
                 if not eval_results:
@@ -712,12 +689,7 @@ def monitor_and_evaluate(
                         
                         # Check if we've hit the threshold for early stopping
                         if consecutive_zero_rouge_count >= ZERO_ROUGE_THRESHOLD:
-                            print(f"\n{'='*70}")
-                            print("⚠ CRITICAL: Early stopping triggered due to zero ROUGE scores!")
-                            print(f"ROUGE scores have been zero for {consecutive_zero_rouge_count} consecutive checkpoints.")
-                            print(f"This indicates the model has likely collapsed (e.g., outputting only EOS tokens).")
-                            print(f"Stopping training to prevent further resource waste.")
-                            print(f"{'='*70}\n")
+                            print(f"CRITICAL: Early stopping - zero ROUGE for {consecutive_zero_rouge_count} checkpoints (model likely collapsed).")
                             write_early_stopping_signal(output_dir)
                             
                             # Log to wandb
@@ -758,13 +730,7 @@ def monitor_and_evaluate(
                             
                             # Check if we've hit the threshold for early stopping
                             if consecutive_low_bertscore_count >= LOW_BERTSCORE_THRESHOLD:
-                                print(f"\n{'='*70}")
-                                print("⚠ CRITICAL: Early stopping triggered due to low BERTScore!")
-                                print(f"BERTScore F1 has been below {BERTSCORE_LOW_THRESHOLD} for {consecutive_low_bertscore_count} consecutive major checkpoints.")
-                                print(f"Current BERTScore: {bertscore_f1:.4f}")
-                                print(f"This indicates the model quality has degraded significantly.")
-                                print(f"Stopping training to prevent further resource waste.")
-                                print(f"{'='*70}\n")
+                                print(f"CRITICAL: Early stopping - BERTScore below {BERTSCORE_LOW_THRESHOLD} for {consecutive_low_bertscore_count} checkpoints (current: {bertscore_f1:.4f}).")
                                 write_early_stopping_signal(output_dir)
                                 
                                 # Log to wandb
@@ -842,11 +808,7 @@ def monitor_and_evaluate(
                     
                     # Check early stopping
                     if no_improvement_count >= early_stopping_patience:
-                        print(f"\n{'='*70}")
-                        print("Early stopping triggered!")
-                        print(f"No improvement for {early_stopping_patience} evaluations")
-                        print(f"Best checkpoint: checkpoint-{best_checkpoint_step} (ROUGE-Lsum: {best_rouge_lsum:.2f})")
-                        print(f"{'='*70}\n")
+                        print(f"Early stopping: No improvement for {early_stopping_patience} evaluations. Best: checkpoint-{best_checkpoint_step} (ROUGE-Lsum: {best_rouge_lsum:.2f})")
                         write_early_stopping_signal(output_dir)
                         
                         # Log best checkpoint info
@@ -945,6 +907,8 @@ if __name__ == "__main__":
                        help='Every Nth step is considered "major" for BERTScore evaluation (default: 500). Major checkpoints: checkpoint-500, checkpoint-1000, checkpoint-1500, etc.')
     parser.add_argument('--include_nli_faithfulness', action='store_true',
                        help='Enable NLI-based faithfulness evaluation (slow: ~4.5s per example, ~37 min for 500 examples)')
+    parser.add_argument('--val_data_size', type=int, default=500,
+                       help='Validation examples: 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files')
     parser.add_argument('--checkpoint_stability_seconds', type=int, default=120,
                        help='Wait for checkpoint to be stable (not modified) for this many seconds before evaluating (default: 120). Prevents evaluating checkpoints that are still being written.')
     
@@ -969,4 +933,5 @@ if __name__ == "__main__":
         major_checkpoint_interval=args.major_checkpoint_interval,
         include_nli_faithfulness=args.include_nli_faithfulness,
         checkpoint_stability_seconds=args.checkpoint_stability_seconds,
+        val_data_size=args.val_data_size,
     )

@@ -1,30 +1,35 @@
 """
-Metrics for in-training validation and final evaluation of summarisation models for 
+Metrics for in-training validation and final evaluation of summarisation models for
 Norwegian public documents, assuming that LLM-generated reference summaries are available.
 
+TODO: Do not run NLI-based faithfulness metrics on the whole validation set for every checkpoint.
+      Either:
+      - Run only on a subset of the validation set for every checkpoint.
+      - Run on the full validation set only for every N checkpoints.
+      The full set can be used for final model evaluation, and a subset for validation to monitor training progress.
+
 Types of metrics:
-- eval_reference(predictions, references): Reference-based metrics (weak signals, used for monitoring)
+- Reference-based metrics (weak signals, used for monitoring)
     - ROUGE without lemmatisation (mean Lsum)
     - BERTScore with Norwegian encoder (f1_mean)
-- eval_hygiene(documents, predictions): Hygiene metrics (strong signals, used for alarm)
+- Hygiene metrics (strong signals, used for alarm)
     - Mean repetition of n-grams (n=3)
     - Mean compression ratio
     - Ratio of endings with punctuation (to avoid truncation)
-- eval_faithfulness(documents, predictions): NLI-based faithfulness metrics (strong signals, used for alarm)
+- NLI-based faithfulness metrics (strong signals, used for alarm)
     - Mean entailment score (NLI entailment aggregate mean)
     - Mean contradiction score (NLI contradiction aggregatemean)
     - Mean outlier rate (NLI outlier mean - either low entailment or high contradiction)
 - TODO: QA-based faithfulness metrics (strong signals, used for alarm)
 - TODO: Language-quality based metrics (weak signals)
 
-Suggested “dashboard” fields:
+Suggested "dashboard" fields:
 - faithfulness_mean + % below threshold (every N*M steps, primary gate):
   check on a small fixed subset (e.g., 50–100 docs)
 - rougeLsum, bertscore_f1_mean (every N steps, secondary monitors)
 - rep_3gram, compression_ratio statistics (every N steps, tertiary alarms)
 """
 
-import itertools
 import json
 import os
 import re
@@ -35,13 +40,19 @@ import unicodedata
 from transformers import AutoTokenizer
 
 
-# the checkpoint data to evaluate   
-TEST_DATA_DIR = "small_eval_results/"  # test_eval_results/ contains a larger dataset
-TEST_FILE_MASK = r"^checkpoint-(\d+)-inputs-refs-preds.jsonl$"
+# the checkpoint data to evaluate
+DATA_DIR = "small_eval_results/"  # test_eval_results/ contains a larger dataset
+FILE_MASK = r"^checkpoint-(\d+)-inputs-refs-preds.jsonl$"
 
 # the tokenizer to use
-TEST_MODEL = "RuterNorway/Llama-2-13b-chat-norwegian"
-TEST_TOKENIZER = AutoTokenizer.from_pretrained(TEST_MODEL)
+MODEL = "RuterNorway/Llama-2-13b-chat-norwegian"
+TOKENIZER = AutoTokenizer.from_pretrained(MODEL)
+
+# Backward compatibility aliases
+TEST_DATA_DIR = DATA_DIR
+TEST_FILE_MASK = FILE_MASK
+TEST_MODEL = MODEL
+TEST_TOKENIZER = TOKENIZER
 
 
 # Reference-based
@@ -49,10 +60,28 @@ TEST_TOKENIZER = AutoTokenizer.from_pretrained(TEST_MODEL)
 import evaluate
 
 rouge = evaluate.load("rouge")
-bertscore = evaluate.load("bertscore")
+
+# Load BERTScore lazily - it requires bert_score package which may not be installed
+_bertscore = None
+
+
+def _get_bertscore():
+    """Lazy load BERTScore metric."""
+    global _bertscore
+    if _bertscore is None:
+        try:
+            _bertscore = evaluate.load("bertscore")
+        except Exception as e:
+            raise ImportError(
+                f"BERTScore could not be loaded. Install with: pip install bert_score. "
+                f"Original error: {e}"
+            )
+    return _bertscore
+
 
 # Load BERT tokenizer for truncation (same model as used in BERTScore)
 _bert_tokenizer = None
+
 
 def _get_bert_tokenizer():
     """Lazy load BERT tokenizer for truncation."""
@@ -61,9 +90,10 @@ def _get_bert_tokenizer():
         _bert_tokenizer = AutoTokenizer.from_pretrained("NbAiLab/nb-bert-large")
     return _bert_tokenizer
 
+
 def _truncate_text_for_bert(text, max_tokens=510):
     """Truncate text to fit within BERT's max sequence length (512 tokens).
-    
+
     Uses 510 to leave room for [CLS] and [SEP] tokens.
     """
     tokenizer = _get_bert_tokenizer()
@@ -72,65 +102,81 @@ def _truncate_text_for_bert(text, max_tokens=510):
     # Decode back to text
     return tokenizer.decode(tokens, skip_special_tokens=True)
 
-def eval_reference(pred_summaries, ref_summaries):
-    
-    # Rouge scores
+
+def eval_reference(pred_summaries, ref_summaries, include_bertscore=True):
+    """Compute reference-based metrics (ROUGE + optionally BERTScore).
+
+    Args:
+        pred_summaries: List of predicted summaries
+        ref_summaries: List of reference summaries
+        include_bertscore: If True, compute BERTScore (slower, ~1.5-2 min for 500 examples)
+
+    Returns:
+        Dictionary with ROUGE metrics, optionally BERTScore, and timing information
+    """
+    # Track ROUGE computation time
+    rouge_start = time.time()
     r = rouge.compute(
         predictions=pred_summaries,
         references=ref_summaries,
         use_stemmer=False,  # avoid for Norwegian
         rouge_types=["rouge1", "rouge2", "rougeL", "rougeLsum"],
     )
-    
-    # Truncate texts to avoid BERT max length errors (512 tokens)
-    # BERTScore will handle this internally, but we need to ensure texts aren't too long
-    pred_summaries_truncated = [_truncate_text_for_bert(text) for text in pred_summaries]
-    ref_summaries_truncated = [_truncate_text_for_bert(text) for text in ref_summaries]
-    
-    b = bertscore.compute(
-        predictions=pred_summaries_truncated,
-        references=ref_summaries_truncated,
-        model_type="NbAiLab/nb-bert-large",  # Norwegian encoder
-        num_layers=24,  # BERT-large has 24 layers (must specify manually as model not in BERTScore registry)
-        rescale_with_baseline=False  # Baseline not available for this model
-    )
-    rouge_failed = r is None
-    bertscore_failed = b is None
-    if rouge_failed:
-        print("Warning: ROUGE compute returned None.", file=sys.stderr)
-    if bertscore_failed:
-        print("Warning: BERTScore compute returned None.", file=sys.stderr)
+    rouge_time = time.time() - rouge_start
 
-    rouge_scores = dict(r or {})
-    f1_scores = (b or {}).get("f1") or []
-    bertscore_f1_mean = (sum(f1_scores) / len(f1_scores)) if f1_scores else None
-    return {
-        **rouge_scores,
-        "bertscore_f1_mean": bertscore_f1_mean,
-        "reference_metrics_failed": rouge_failed or bertscore_failed,
-    }
-    
+    result = {**r}
+    result["_timing"] = {"rouge_seconds": rouge_time}
+
+    if include_bertscore:
+        bertscore_start = time.time()
+        try:
+            bertscore = _get_bertscore()
+            # Truncate texts to avoid BERT max length errors (512 tokens)
+            pred_summaries_truncated = [_truncate_text_for_bert(text) for text in pred_summaries]
+            ref_summaries_truncated = [_truncate_text_for_bert(text) for text in ref_summaries]
+
+            b = bertscore.compute(
+                predictions=pred_summaries_truncated,
+                references=ref_summaries_truncated,
+                model_type="NbAiLab/nb-bert-large",  # Norwegian encoder
+                num_layers=24,  # BERT-large has 24 layers (must specify manually as model not in BERTScore registry)
+                rescale_with_baseline=False,  # Baseline not available for this model
+            )
+            result["bertscore_f1_mean"] = sum(b["f1"]) / len(b["f1"])
+        except ImportError as e:
+            print(f"Warning: BERTScore not available ({e}). Continuing without BERTScore.", file=sys.stderr)
+        finally:
+            bertscore_time = time.time() - bertscore_start
+            result["_timing"]["bertscore_seconds"] = bertscore_time
+    else:
+        result["_timing"]["bertscore_seconds"] = 0.0
+
+    return result
+
+
 # TODO: also bleurt
 
-    
+
 # Hygiene metrics
-    
+
 from collections import Counter
+
 
 def ngram_repetition(doc, n=3):
     tokens = re.findall(r"\d+(?:[.,]\d+)?|[\w/-]+|[^\w\s]", doc.lower())
     if len(tokens) < n:
         return 0.0
 
-    ngrams = [tuple(tokens[i:i+n]) for i in range(len(tokens)-n+1)]
+    ngrams = [tuple(tokens[i : i + n]) for i in range(len(tokens) - n + 1)]
     assert len(ngrams) > 0
 
     total_count = len(ngrams)
     unique_count = len(set(ngrams))
-    
+
     # The repetition rate is the proportion of non-unique n-grams
-    repetition_rate = (total_count - unique_count) / total_count    
+    repetition_rate = (total_count - unique_count) / total_count
     return repetition_rate
+
 
 def hygiene(doc, pred_summary):
     doc_words = len(re.findall(r"\w+", doc))
@@ -144,27 +190,28 @@ def hygiene(doc, pred_summary):
         "rep_3gram": ngram_repetition(pred_summary, n=3),
         "ends_with_punct": ends_with_punct,
     }
-    
+
+
 def eval_hygiene(docs, pred_summaries):
+    hygiene_start = time.time()
     hygiene_out = []
     for doc, pred_summary in zip(docs, pred_summaries):
         hygiene_out.append(hygiene(doc, pred_summary))
-    # return mean compression ratio and mean repetition of n-grams (n=3)
-    # and ratio of endings with punctuation
-    # Filter out None values for compression_ratio (in case doc_words is 0)
     compression_ratios = [h["compression_ratio"] for h in hygiene_out if h["compression_ratio"] is not None]
     mean_compression_ratio = sum(compression_ratios) / len(compression_ratios) if compression_ratios else None
     mean_rep_3gram = sum(h["rep_3gram"] for h in hygiene_out) / len(hygiene_out)
     ratio_ends_with_punct = sum(h["ends_with_punct"] for h in hygiene_out) / len(hygiene_out)
+    hygiene_time = time.time() - hygiene_start
     return {
         "mean_compression_ratio": mean_compression_ratio,
         "mean_rep_3gram": mean_rep_3gram,
         "ratio_ends_with_punct": ratio_ends_with_punct,
+        "_timing": {"hygiene_seconds": hygiene_time},
     }
 
-    
+
 # NLI-based faithfulness
-from typing import List, Dict, Any, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import warnings
 
@@ -172,7 +219,7 @@ import warnings
 warnings.filterwarnings("ignore", category=FutureWarning, module="torch.cuda")
 
 import torch
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from transformers.utils import logging as hf_logging
 
 # Suppress "overflowing tokens are not returned..." and similar tokenizer warnings
@@ -247,14 +294,12 @@ def _build_sentence_aligned_chunks(text: str, tokenizer, max_tokens: int, overla
             current.extend(ids)
         else:
             chunks.append(current)
-            # Carry over last overlap tokens as a minimum requirement
             if overlap > 0:
                 current = current[-overlap:] + ids
             else:
                 current = ids[:]
 
         if len(current) > max_tokens:
-            # If a single sentence is too long, split it with overlap
             overflow_chunks = _build_overlapping_chunks(current, max_tokens, overlap)
             chunks.extend(overflow_chunks[:-1])
             current = overflow_chunks[-1] if overflow_chunks else []
@@ -279,7 +324,6 @@ def _build_paragraph_aware_chunks(text: str, tokenizer, max_tokens: int, overlap
 
     chunks: List[List[int]] = []
     for paragraph in paragraphs:
-        # Normalize whitespace inside paragraph for tokenization stability
         para_text = re.sub(r"\s+", " ", paragraph).strip()
         if not para_text:
             continue
@@ -306,10 +350,11 @@ def _build_paragraph_aware_chunks(text: str, tokenizer, max_tokens: int, overlap
 def chunk_document(
     doc: str,
     tokenizer,
-    max_tokens: int,
+    max_tokens: int = 350,
     overlap: int = PREMISE_CHUNK_OVERLAP,
     prefer_sentence_boundaries: bool = True,
 ) -> List[str]:
+    """Chunk document for NLI premise-hypothesis evaluation."""
     doc = doc.strip()
     if not doc:
         return [""]
@@ -352,8 +397,6 @@ class NLIFaithfulnessGate:
 
         assert torch.cuda.is_available(), "CUDA is not available"
         device = "cuda"
-        # if device is None:
-        #     device = "cuda" if torch.cuda.is_available() else "cpu"
         self.device = torch.device(device)
         self.model.to(self.device)
 
@@ -385,7 +428,6 @@ class NLIFaithfulnessGate:
         summary: str,
         doc_chunk_tokens: int = 350,
         batch_size: int = 4,
-        # --- Suggested starting thresholds for CI (tune with a small human-audited set) ---
         entailment_mean_min: float = 0.6,
         entailment_sentence_min: float = 0.50,
         max_low_entailment_sentences: int = 1,
@@ -417,7 +459,6 @@ class NLIFaithfulnessGate:
 
         special_tokens = self.tokenizer.num_special_tokens_to_add(pair=True)
 
-        # Build all pair inputs once (tokenized), then batch
         pair_inputs: List[Tuple[int, int, List[int], List[int]]] = []
         for s_idx, hyp_ids in enumerate(hyp_ids_list):
             for c_idx, prem_ids in enumerate(chunk_ids_list):
@@ -440,7 +481,6 @@ class NLIFaithfulnessGate:
                 token_type_ids = self.tokenizer.create_token_type_ids_from_sequences(prem_ids_use, hyp_ids_use)
                 pair_inputs.append((s_idx, c_idx, input_ids, token_type_ids))
 
-        # Sort by sequence length to reduce padding overhead
         pair_inputs.sort(key=lambda x: len(x[2]), reverse=True)
         num_premise_sentence_pairs = len(pair_inputs)
 
@@ -448,7 +488,7 @@ class NLIFaithfulnessGate:
         while start < len(pair_inputs):
             cur_batch_size = batch_size
             while True:
-                batch = pair_inputs[start:start + cur_batch_size]
+                batch = pair_inputs[start : start + cur_batch_size]
                 if not batch:
                     break
                 max_len = max(len(x[2]) for x in batch)
@@ -506,29 +546,6 @@ class NLIFaithfulnessGate:
                 }
             )
 
-        # Failing pairs: premise-hypothesis pairs that cause failure (low entailment or high contradiction)
-        failing_pairs: List[Dict[str, Any]] = []
-        for idx, sent in enumerate(sents):
-            prem_low = doc_chunks[best_ent_chunk_idx[idx]] if 0 <= best_ent_chunk_idx[idx] < len(doc_chunks) else None
-            prem_high = doc_chunks[worst_con_chunk_idx[idx]] if 0 <= worst_con_chunk_idx[idx] < len(doc_chunks) else None
-            if best_entailments[idx] < entailment_sentence_min:
-                failing_pairs.append({
-                    "premise": prem_low or prem_high,
-                    "hypothesis": sent,
-                    "entailment": best_entailments[idx],
-                    "contradiction": worst_contradictions[idx],
-                    "reason": "low_entailment",
-                })
-            if worst_contradictions[idx] > contradiction_sentence_max:
-                failing_pairs.append({
-                    "premise": prem_high or prem_low,
-                    "hypothesis": sent,
-                    "entailment": best_entailments[idx],
-                    "contradiction": worst_contradictions[idx],
-                    "reason": "high_contradiction",
-                })
-
-        # Aggregates
         if best_entailments:
             entail_mean = sum(best_entailments) / len(best_entailments)
             entail_min = min(best_entailments)
@@ -541,25 +558,48 @@ class NLIFaithfulnessGate:
             high_con_count = sum(1 for x in worst_contradictions if x > contradiction_sentence_max)
         else:
             con_max, high_con_count = 0.0, 0
-        
-        # Calculate outlier rate: proportion of sentences that fail at least one threshold
-        # (low entailment OR high contradiction)
+
         if len(best_entailments) > 0:
             outlier_count = sum(
-                1 for i in range(len(best_entailments))
-                if (best_entailments[i] < entailment_sentence_min or 
-                    worst_contradictions[i] > contradiction_sentence_max)
+                1
+                for i in range(len(best_entailments))
+                if (
+                    best_entailments[i] < entailment_sentence_min
+                    or worst_contradictions[i] > contradiction_sentence_max
+                )
             )
             outlier_rate = outlier_count / len(best_entailments)
         else:
             outlier_rate = 0.0
 
-        # Gate logic
+        failing_pairs: List[Dict[str, Any]] = []
+        for idx, sent in enumerate(sents):
+            prem_low = doc_chunks[best_ent_chunk_idx[idx]] if 0 <= best_ent_chunk_idx[idx] < len(doc_chunks) else None
+            prem_high = doc_chunks[worst_con_chunk_idx[idx]] if 0 <= worst_con_chunk_idx[idx] < len(doc_chunks) else None
+            if best_entailments[idx] < entailment_sentence_min:
+                failing_pairs.append(
+                    {
+                        "premise": prem_low or prem_high,
+                        "hypothesis": sent,
+                        "entailment": best_entailments[idx],
+                        "contradiction": worst_contradictions[idx],
+                        "reason": "low_entailment",
+                    }
+                )
+            if worst_contradictions[idx] > contradiction_sentence_max:
+                failing_pairs.append(
+                    {
+                        "premise": prem_high or prem_low,
+                        "hypothesis": sent,
+                        "entailment": best_entailments[idx],
+                        "contradiction": worst_contradictions[idx],
+                        "reason": "high_contradiction",
+                    }
+                )
+
         reasons = []
         if entail_mean < entailment_mean_min:
-            reasons.append(
-                f"low_mean_entailment {entail_mean:.3f} < {entailment_mean_min:.3f}"
-            )
+            reasons.append(f"low_mean_entailment {entail_mean:.3f} < {entailment_mean_min:.3f}")
         if low_entail_count > max_low_entailment_sentences:
             reasons.append(
                 f"low_entailment_sentences {low_entail_count} > {max_low_entailment_sentences} "
@@ -571,7 +611,7 @@ class NLIFaithfulnessGate:
                 f"(threshold {contradiction_sentence_max:.2f})"
             )
 
-        passed = (len(reasons) == 0)
+        passed = len(reasons) == 0
 
         runtime_seconds = time.perf_counter() - start_time
         premise_sentence_pairs_per_second = num_premise_sentence_pairs / runtime_seconds if runtime_seconds > 0 else 0.0
@@ -594,22 +634,22 @@ class NLIFaithfulnessGate:
             "num_premise_sentence_pairs": num_premise_sentence_pairs,
             "premise_sentence_pairs_per_second": premise_sentence_pairs_per_second,
         }
-        
+
     def eval_faithfulness(self, docs, pred_summaries):
+        faithfulness_start = time.time()
         faithfulness_out = []
         for doc, pred_summary in zip(docs, pred_summaries):
             faithfulness_out.append(self.score_and_gate(doc, pred_summary))
-        # return ratio of that passed the gate and list of reasons for failure
         ratio_passed_documents = sum(1 for f in faithfulness_out if f["passed"]) / len(faithfulness_out)
         reasons_failed = [f["reasons"] for f in faithfulness_out if not f["passed"]]
         num_premise_sentence_pairs = sum(f["num_premise_sentence_pairs"] for f in faithfulness_out)
-        # return mean entailment score, mean contradiction score, and mean outlier rate
         mean_entailment_score = sum(f["faithfulness"]["entailment_mean"] for f in faithfulness_out) / len(faithfulness_out)
-        min_entailment_score = min(f["faithfulness"]["entailment_min"] for f in faithfulness_out)  # Don't divide by length - this is the minimum across all examples
+        min_entailment_score = min(f["faithfulness"]["entailment_min"] for f in faithfulness_out)
         mean_ratio_low_entailment_sentences = sum(f["faithfulness"]["low_entailment_sentences"] for f in faithfulness_out) / len(faithfulness_out)
-        max_contradiction_score = max(f["faithfulness"]["contradiction_max"] for f in faithfulness_out)  # Don't divide by length - this is the maximum across all examples
+        max_contradiction_score = max(f["faithfulness"]["contradiction_max"] for f in faithfulness_out)
         mean_ratio_high_contradiction_sentences = sum(f["faithfulness"]["high_contradiction_sentences"] for f in faithfulness_out) / len(faithfulness_out)
         mean_ratio_outliers = sum(f["faithfulness"]["outlier_rate"] for f in faithfulness_out) / len(faithfulness_out)
+        faithfulness_time = time.time() - faithfulness_start
         return {
             "mean_entailment_score": mean_entailment_score,
             "min_entailment_score": min_entailment_score,
@@ -620,34 +660,92 @@ class NLIFaithfulnessGate:
             "ratio_passed_documents": ratio_passed_documents,
             "reasons_failed": reasons_failed,
             "num_premise_sentence_pairs": num_premise_sentence_pairs,
+            "_timing": {"nli_faithfulness_seconds": faithfulness_time},
         }
 
 
-def evaluate_summaries(input_texts, prediction_texts, reference_texts, print_output=False):
-    # Reference-based metrics
-    reference_out = eval_reference(prediction_texts, reference_texts)
+def extended_evaluate(
+    input_texts,
+    prediction_texts,
+    reference_texts,
+    print_output=False,
+    include_bertscore=True,
+    include_faithfulness=False,
+):
+    """Compute evaluation metrics with selective inclusion of expensive metrics.
+
+    Args:
+        input_texts: List of input documents
+        prediction_texts: List of predicted summaries
+        reference_texts: List of reference summaries
+        print_output: If True, print detailed results
+        include_bertscore: If True, compute BERTScore (~1.5-2 min for 500 examples)
+        include_faithfulness: If True, compute NLI faithfulness (~37 min for 500 examples)
+
+    Returns:
+        Dictionary with computed metrics and timing information in "_timing" key
+    """
+    extended_start = time.time()
+
+    reference_out = eval_reference(prediction_texts, reference_texts, include_bertscore=include_bertscore)
     if print_output:
         print("REFERENCE:")
         print(json.dumps(reference_out, indent=2, ensure_ascii=False, default=str))
 
-    # Hygiene metrics
     hygiene_out = eval_hygiene(input_texts, prediction_texts)
     if print_output:
         print("\nHYGIENE:")
         print(json.dumps(hygiene_out, indent=2, ensure_ascii=False, default=str))
 
-    # NLI-based faithfulness metrics
-    gate = NLIFaithfulnessGate()
-    faithfulness_out = gate.eval_faithfulness(input_texts, prediction_texts)
-    if print_output:
-        print("\nFAITHFULNESS:")
-        print(json.dumps(faithfulness_out, indent=2, ensure_ascii=False, default=str))
-
-    return {
+    result = {
         "reference": reference_out,
         "hygiene": hygiene_out,
-        "faithfulness": faithfulness_out,
     }
+
+    timing = {}
+    if "_timing" in reference_out:
+        timing.update(reference_out["_timing"])
+        reference_out_clean = {k: v for k, v in reference_out.items() if k != "_timing"}
+        result["reference"] = reference_out_clean
+
+    if "_timing" in hygiene_out:
+        timing.update(hygiene_out["_timing"])
+        hygiene_out_clean = {k: v for k, v in hygiene_out.items() if k != "_timing"}
+        result["hygiene"] = hygiene_out_clean
+
+    if include_faithfulness:
+        gate = NLIFaithfulnessGate()
+        faithfulness_out = gate.eval_faithfulness(input_texts, prediction_texts)
+        if print_output:
+            print("\nFAITHFULNESS:")
+            print(json.dumps(faithfulness_out, indent=2, ensure_ascii=False, default=str))
+
+        if "_timing" in faithfulness_out:
+            timing.update(faithfulness_out["_timing"])
+            faithfulness_out_clean = {k: v for k, v in faithfulness_out.items() if k != "_timing"}
+            result["faithfulness"] = faithfulness_out_clean
+        else:
+            result["faithfulness"] = faithfulness_out
+    else:
+        result["faithfulness"] = None
+        timing["nli_faithfulness_seconds"] = 0.0
+
+    timing["extended_metrics_total_seconds"] = time.time() - extended_start
+    result["_timing"] = timing
+
+    return result
+
+
+def evaluate_summaries(input_texts, prediction_texts, reference_texts, print_output=False):
+    """Run full evaluation with all metrics (BERTScore + NLI faithfulness)."""
+    return extended_evaluate(
+        input_texts,
+        prediction_texts,
+        reference_texts,
+        print_output=print_output,
+        include_bertscore=True,
+        include_faithfulness=True,
+    )
 
 
 def dummy_data_test():
@@ -658,55 +756,49 @@ def dummy_data_test():
     pred_summ = "Budsjettet i Oslo øker i 2026, mens eiendomsskatten forblir uendret."
     ref_summ = "Oslo kommune øker budsjettet med 3 prosent i 2026, uten å heve eiendomsskatten."
 
-    evaluate_summaries([doc], [pred_summ], [ref_summ])
+    extended_evaluate([doc], [pred_summ], [ref_summ], include_bertscore=True, include_faithfulness=False)
 
 
 def detokenize_data(data):
-    return TEST_TOKENIZER.batch_decode(data, skip_special_tokens=True)
+    return TOKENIZER.batch_decode(data, skip_special_tokens=True)
 
 
-def find_files(data_dir=TEST_DATA_DIR, file_mask=TEST_FILE_MASK):
-    data_files = sorted(
-        f for f in os.listdir(data_dir) 
-        if re.match(file_mask, f)
-    )
+def find_files(data_dir=DATA_DIR, file_mask=FILE_MASK):
+    data_files = sorted(f for f in os.listdir(data_dir) if re.match(file_mask, f))
     return data_files
 
 
 def load_texts(input_file):
-    
     def collect(data, key):
         fields = []
         for d in data:
             fields.extend(d[key])
         return fields
-    
+
     data = []
-    with open(os.path.join(TEST_DATA_DIR, input_file), "r") as f:
+    with open(os.path.join(DATA_DIR, input_file), "r") as f:
         for line in f:
             data.append(json.loads(line))
 
     inputs = collect(data, "input")
     predictions = collect(data, "prediction")
     references = collect(data, "reference")
-    
+
     assert len(inputs) == len(references) == len(predictions)
     print(f"Loaded {len(inputs)} input-reference-prediction examples from {input_file}")
-    
+
     input_texts = detokenize_data(inputs)
     prediction_texts = detokenize_data(predictions)
     reference_texts = detokenize_data(references)
-    
-    # remove the prompt from the input text
-    # TODO: the prompt should not have been saved in the first place
-    input_texts = [text.replace('[INST] Oppsummer følgende tekst:\n\nDokument: ', '') for text in input_texts]
+
+    input_texts = [text.replace("[INST] Oppsummer følgende tekst:\n\nDokument: ", "") for text in input_texts]
 
     return input_texts, prediction_texts, reference_texts
 
 
-def save_results(eval_results, input_file, data_dir=TEST_DATA_DIR, file_mask=TEST_FILE_MASK):
+def save_results(eval_results, input_file, data_dir=DATA_DIR, file_mask=FILE_MASK):
     match = re.match(file_mask, input_file)
-    checkpoint_id = match.group(1) if match and match.group(1) else 'UNKNOWN'
+    checkpoint_id = match.group(1) if match and match.group(1) else "UNKNOWN"
     output_file = os.path.join(data_dir, f"checkpoint-{checkpoint_id}-eval-results.json")
     with open(output_file, "w") as f:
         json.dump(eval_results, f, indent=2, ensure_ascii=False, default=str)
@@ -714,11 +806,8 @@ def save_results(eval_results, input_file, data_dir=TEST_DATA_DIR, file_mask=TES
 
 
 if __name__ == "__main__":
-
-    data_files = find_files(TEST_DATA_DIR, TEST_FILE_MASK)    
+    data_files = find_files(DATA_DIR, FILE_MASK)
     for input_file in data_files:
-
         input_texts, prediction_texts, reference_texts = load_texts(input_file)
-        eval_results = evaluate_summaries(input_texts, prediction_texts, reference_texts)
+        eval_results = extended_evaluate(input_texts, prediction_texts, reference_texts)
         save_results(eval_results, input_file)
-        

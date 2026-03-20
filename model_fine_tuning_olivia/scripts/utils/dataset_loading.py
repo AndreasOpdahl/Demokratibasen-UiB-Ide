@@ -44,8 +44,7 @@ def load_jsonl_dataset(
     # Check file size (Git LFS pointers are typically < 200 bytes)
     file_size = os.path.getsize(file_path)
     if file_size < 200:
-        print(f"WARNING: {dataset_type.capitalize()} dataset file is very small ({file_size} bytes).")
-        print(f"         This might be a Git LFS pointer file. Please ensure the actual file is downloaded.")
+        print(f"Warning: {dataset_type} file very small ({file_size} bytes) - may be Git LFS pointer. Run: git lfs pull")
     
     # Read and parse JSONL file
     data = []

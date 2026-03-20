@@ -136,15 +136,12 @@ class PromptConfig:
                         # Use apply_chat_template with add_generation_prompt=True
                         # This should add the assistant prompt after [/INST] for Mistral models
                         formatted = tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-                        # Debug: Check if the template added extra <s> tokens
+                        # Fix double <s> token from some chat templates (e.g. Mistral)
                         if formatted.startswith('<s><s>'):
-                            print(f'⚠ WARNING: Chat template produced double <s> token. This may confuse the model.')
-                            # Remove the extra <s> if present
-                            formatted = '<s>' + formatted[4:]  # Remove one <s>
+                            formatted = '<s>' + formatted[4:]
                         return formatted
-                    except Exception as e:
-                        # Silently fall back to manual formatting if apply_chat_template fails
-                        pass
+                    except Exception:
+                        pass  # Fall back to manual formatting
                 # If no chat_template, fall through to manual formatting
         
         if self.format_fn:

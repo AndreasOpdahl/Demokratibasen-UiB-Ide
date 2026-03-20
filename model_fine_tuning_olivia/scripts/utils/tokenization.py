@@ -165,8 +165,7 @@ def tokenize_train_examples(
         print(f"⚠ WARNING: Calculated max_length ({max_length}) exceeds model_max_length ({model_max_length}). Capping to {model_max_length}")
         max_length = model_max_length
     elif model_max_length > 8192 and max_length == 8192:
-        # Inform user that we're capping for speed
-        print(f"ℹ INFO: Capping tokenization max_length to 8192 for speed (model supports {model_max_length}, but tokenization is faster with this cap)")
+        pass  # Capped to 8192 for tokenization speed
     
     # OPTIMIZATION: Pre-truncate text at character level before tokenization
     # This is much faster than letting the tokenizer process very long texts
