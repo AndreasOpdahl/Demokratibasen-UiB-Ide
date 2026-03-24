@@ -46,6 +46,8 @@ VAL_DATA_SIZE=${VAL_DATA_SIZE:-500}  # 500 (default) or 1000; 1000 → separate 
 CHECK_INTERVAL=${CHECK_INTERVAL:-60}  # Check every 60 seconds
 EARLY_STOPPING_PATIENCE=${EARLY_STOPPING_PATIENCE:-3}  # Stop if no improvement for 3 evaluations
 INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-false}
+# Empty = Python default (100 NLI examples). Set equal to VAL_DATA_SIZE for full-val NLI.
+NLI_SUBSET_SIZE=${NLI_SUBSET_SIZE:-}
 DRY_RUN=${DRY_RUN:-false}
 
 # Parse command-line arguments if provided
@@ -77,6 +79,9 @@ for arg in "$@"; do
         --include_nli_faithfulness)
             INCLUDE_NLI_FAITHFULNESS=true
             ;;
+        --nli_subset_size=*|--nli-subset-size=*)
+            NLI_SUBSET_SIZE="${arg#*=}"
+            ;;
         --dry-run|--debug)
             DRY_RUN=true
             ;;
@@ -92,7 +97,8 @@ for arg in "$@"; do
             echo "  --val_data_size=N                 Validation examples: 500 (default) or 1000 (writes to -examples_1000.json/.jsonl)"
             echo "  --check_interval=N               Check for new checkpoints every N seconds (default: 60)"
             echo "  --early_stopping_patience=N      Stop if no improvement for N evaluations (default: 3)"
-            echo "  --include_nli_faithfulness        Enable NLI-based faithfulness evaluation (slow: ~37 min for 500 examples)"
+            echo "  --include_nli_faithfulness        Enable NLI-based faithfulness evaluation"
+            echo "  --nli_subset_size=N               NLI examples (default 100 in Python if omitted); set N = val_data_size for full val NLI"
             echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
             echo ""
             echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
@@ -162,6 +168,13 @@ if [ ! -d "$OUTPUT_DIR" ]; then
     echo "         It will be created when training starts"
 fi
 
+if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+    if ! [[ "$NLI_SUBSET_SIZE" =~ ^[0-9]+$ ]] || [ "$NLI_SUBSET_SIZE" -lt 1 ]; then
+        echo "ERROR: nli_subset_size must be a positive integer (got: $NLI_SUBSET_SIZE)"
+        ERRORS=$((ERRORS + 1))
+    fi
+fi
+
 if [ $ERRORS -gt 0 ]; then
     echo ""
     echo "Validation failed with $ERRORS error(s). Please fix the errors above and try again."
@@ -176,6 +189,13 @@ echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (1000 → separate -examples_1000.json/.js
 echo "  CHECK_INTERVAL: $CHECK_INTERVAL seconds"
 echo "  EARLY_STOPPING_PATIENCE: $EARLY_STOPPING_PATIENCE evaluations"
 echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS"
+if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
+    if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+        echo "  NLI_SUBSET_SIZE: $NLI_SUBSET_SIZE"
+    else
+        echo "  NLI_SUBSET_SIZE: (unset → Python default 100; use same value as VAL_DATA_SIZE for full val NLI)"
+    fi
+fi
 echo "  DRY_RUN: $DRY_RUN"
 
 # ===== DRY-RUN MODE =====
@@ -207,6 +227,11 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "    --early_stopping_patience $EARLY_STOPPING_PATIENCE"
     if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
         echo "    --include_nli_faithfulness"
+        if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+            echo "    --nli_subset_size $NLI_SUBSET_SIZE"
+        else
+            echo "    --nli_subset_size 100   # Python default; set = VAL_DATA_SIZE for full val NLI"
+        fi
     fi
     echo "    --wandb_project lm-finetuning"
     echo "    --use_multi_gpu"
@@ -245,8 +270,12 @@ NLI_FLAG=""
 if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
     NLI_FLAG="--include_nli_faithfulness"
 fi
+NLI_SUBSET_FLAG=""
+if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ] && [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+    NLI_SUBSET_FLAG=" --nli_subset_size $NLI_SUBSET_SIZE"
+fi
 
-EVAL_CMD="export HF_HOME=\$HF_HOME && export HF_DATASETS_CACHE=\$HF_DATASETS_CACHE && export HF_MODULES_CACHE=\$HF_MODULES_CACHE && export HF_METRICS_CACHE=\$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login \$WANDB_API_KEY && python scripts/monitor_and_evaluate_checkpoints.py --output_dir $OUTPUT_DIR --model $MODEL --val_dataset $VAL_DATASET --val_data_size $VAL_DATA_SIZE --hf_token \$HUGGINGFACE_TOKEN --check_interval $CHECK_INTERVAL --early_stopping_patience $EARLY_STOPPING_PATIENCE $NLI_FLAG --wandb_project lm-finetuning --use_multi_gpu"
+EVAL_CMD="export HF_HOME=\$HF_HOME && export HF_DATASETS_CACHE=\$HF_DATASETS_CACHE && export HF_MODULES_CACHE=\$HF_MODULES_CACHE && export HF_METRICS_CACHE=\$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login \$WANDB_API_KEY && python scripts/monitor_and_evaluate_checkpoints.py --output_dir $OUTPUT_DIR --model $MODEL --val_dataset $VAL_DATASET --val_data_size $VAL_DATA_SIZE --hf_token \$HUGGINGFACE_TOKEN --check_interval $CHECK_INTERVAL --early_stopping_patience $EARLY_STOPPING_PATIENCE $NLI_FLAG$NLI_SUBSET_FLAG --wandb_project lm-finetuning --use_multi_gpu"
 
 # Run pip installs; hide stdout only so pip errors (stderr) appear in logs/gpu-monitor-eval-*.err
 COMMAND="pip install --upgrade pip setuptools wheel >/dev/null && pip install --break-system-packages --only-binary=:all: transformers==4.45.2 tokenizers==0.20.3 datasets==3.0.0 sentencepiece==0.2.1 >/dev/null && pip install --break-system-packages --no-binary=rouge-score rouge-score==0.1.2 >/dev/null && pip install --break-system-packages --no-deps accelerate==1.0.1 peft==0.13.2 >/dev/null && pip install --break-system-packages --upgrade pyyaml psutil typing-extensions packaging==24.2 safetensors >/dev/null && pip install --break-system-packages --upgrade wandb evaluate >/dev/null && $EVAL_CMD"
