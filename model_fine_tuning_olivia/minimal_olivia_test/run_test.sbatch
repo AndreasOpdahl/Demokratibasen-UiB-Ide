@@ -11,6 +11,12 @@
 
 set -euo pipefail
 
+# Run from this script's directory so `logs/` and `test_gpu.py` resolve correctly
+# regardless of Slurm submission cwd.
+SBATCH_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SBATCH_DIR" || { echo "ERROR: Cannot cd to $SBATCH_DIR"; exit 1; }
+echo "Working directory for this job: $SBATCH_DIR"
+
 # env setup
 module load CrayEnv
 module load cuda/12.6

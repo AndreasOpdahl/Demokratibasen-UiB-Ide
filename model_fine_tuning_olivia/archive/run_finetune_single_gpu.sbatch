@@ -22,6 +22,11 @@ MODEL="gemma-2b"
 # fail on error
 set -euo pipefail
 
+# Run from this script's directory so `scripts/`, `logs/` resolve regardless of submission cwd
+SBATCH_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SBATCH_DIR" || { echo "ERROR: Cannot cd to $SBATCH_DIR"; exit 1; }
+echo "Working directory for this job: $SBATCH_DIR"
+
 # debug
 python -V
 

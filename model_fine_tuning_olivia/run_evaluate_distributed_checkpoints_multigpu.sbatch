@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #SBATCH -J gpu-eval-checkpoints-multigpu
 #SBATCH -p accel
-#SBATCH --gres=gpu:2  # Request 2 GPUs (adjust if needed)
+#SBATCH --gres=gpu:4  # Request 2 GPUs (adjust if needed)
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16  # Increase CPUs for multi-GPU
 #SBATCH --mem=384G  # Increase memory for multi-GPU
@@ -12,6 +12,12 @@
 #SBATCH -e logs/%x-%j.err
 
 set -euo pipefail
+
+# Run from this script's directory so `scripts/`, `data/`, `models/`, `logs/` resolve correctly
+# regardless of Slurm submission cwd (e.g. sbatch from ./finetunes or another folder).
+SBATCH_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SBATCH_DIR" || { echo "ERROR: Cannot cd to $SBATCH_DIR"; exit 1; }
+echo "Working directory (repo root for this job): $SBATCH_DIR"
 
 # Load environment variables from .env file
 # .env should contain: SLURM_ACCOUNT, WANDB_API_KEY, HUGGINGFACE_TOKEN

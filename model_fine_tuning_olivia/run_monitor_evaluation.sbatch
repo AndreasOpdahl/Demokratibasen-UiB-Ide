@@ -20,6 +20,12 @@
 
 set -euo pipefail
 
+# Run from this script's directory so `scripts/`, `data/`, `models/`, `logs/` resolve correctly
+# regardless of Slurm submission cwd (e.g. sbatch from ./finetunes or another folder).
+SBATCH_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SBATCH_DIR" || { echo "ERROR: Cannot cd to $SBATCH_DIR"; exit 1; }
+echo "Working directory (repo root for this job): $SBATCH_DIR"
+
 # Load environment variables from .env file
 # .env should contain: WANDB_API_KEY, HUGGINGFACE_TOKEN
 if [ -f .env ]; then
