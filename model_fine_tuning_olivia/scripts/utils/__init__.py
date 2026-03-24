@@ -28,6 +28,8 @@ from .formatting import format_train_example, format_train_examples_batch, forma
 from .nli_subset import (
     get_or_create_fixed_nli_subset,
     apply_fixed_subset,
+    NLI_DEFAULT_SUBSET_SIZE,
+    NLI_FIXED_SUBSET_SEED,
     NLI_FIXED_SUBSET_SIZE,
 )
 
@@ -62,5 +64,7 @@ __all__ = [
     # NLI subset
     'get_or_create_fixed_nli_subset',
     'apply_fixed_subset',
+    'NLI_DEFAULT_SUBSET_SIZE',
+    'NLI_FIXED_SUBSET_SEED',
     'NLI_FIXED_SUBSET_SIZE',
 ]

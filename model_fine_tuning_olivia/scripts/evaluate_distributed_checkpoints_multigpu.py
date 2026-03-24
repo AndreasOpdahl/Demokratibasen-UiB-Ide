@@ -91,7 +91,7 @@ from utils import (
     tokenize_eval_examples,
     get_or_create_fixed_nli_subset,
     apply_fixed_subset,
-    NLI_FIXED_SUBSET_SIZE,
+    NLI_DEFAULT_SUBSET_SIZE,
     format_eval_example,
 )
 
@@ -1885,7 +1885,8 @@ def evaluate_checkpoint(
     wandb_run_name: Optional[str] = None,
     wandb_group: Optional[str] = None,
     major_checkpoint_interval: int = 500,  # Every Nth step is major (gets BERTScore). Default: 500 (every 500 steps = checkpoint-500, checkpoint-1000, etc.)
-    include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation (uses fixed 500-example subset for consistency)
+    include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation (subset: see nli_subset_size)
+    nli_subset_size: int = NLI_DEFAULT_SUBSET_SIZE,  # default 100; set == val_data_size for full-set NLI
     keep_existing: bool = False,
     force_recompute: bool = False,  # If True, skip loading existing results and re-run evaluation (for rerun with corrected prompt)
 ):
@@ -2381,6 +2382,7 @@ def evaluate_checkpoint(
                 "model": model_name,
                 "val_dataset": val_dataset_path,
                 "val_size": val_data_size,
+                "nli_subset_size": nli_subset_size,
                 "val_batch_size": val_batch_size,
                 "max_input_tokens": max_input_text_tokens,
                 "max_output_tokens": max_output_summary_tokens,
@@ -2726,16 +2728,20 @@ def evaluate_checkpoint(
 
                 nli_input_texts, nli_prediction_texts, nli_reference_texts = input_texts, prediction_texts, reference_texts
                 if include_faithfulness:
-                    # Get or create fixed NLI subset (500 examples, same across all checkpoints)
+                    # Fixed NLI indices (saved under all_eval_results/) so all checkpoints stay comparable.
                     model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
+                    use_first_n = val_data_size > nli_subset_size
                     nli_indices = get_or_create_fixed_nli_subset(
                         total_examples=len(input_texts),
                         model_dir=model_dir_eval,
-                        subset_size=NLI_FIXED_SUBSET_SIZE,
-                        use_first_n_for_extended=(val_data_size > NLI_FIXED_SUBSET_SIZE)
+                        subset_size=nli_subset_size,
+                        use_first_n_for_extended=use_first_n,
                     )
                     if not nli_indices or len(nli_indices) == 0:
-                        raise ValueError(f"Fixed NLI subset is empty. Total: {len(input_texts)}, subset: {NLI_FIXED_SUBSET_SIZE}")
+                        raise ValueError(
+                            f"Fixed NLI subset is empty. Total: {len(input_texts)}, "
+                            f"nli_subset_size={nli_subset_size!r}"
+                        )
                     nli_input_texts, nli_prediction_texts, nli_reference_texts = apply_fixed_subset(
                         input_texts, prediction_texts, reference_texts, nli_indices
                     )
@@ -2917,13 +2923,15 @@ Examples:
     --val_dataset data/output/processed_data_val.jsonl \\
     --hf_token YOUR_TOKEN
 
-  # With NLI faithfulness evaluation on a subset:
+  # With NLI faithfulness (default 100 examples; use --nli_subset_size == --val_data_size for full val NLI):
   python evaluate_distributed_checkpoints_multigpu.py \\
     --model gemma-7b \\
     --checkpoint_dir models/gemma-7b_fsdp/checkpoint-100 \\
     --val_dataset data/output/processed_data_val.jsonl \\
     --hf_token YOUR_TOKEN \\
-    --include_nli_faithfulness
+    --include_nli_faithfulness \\
+    --val_data_size 500 \\
+    --nli_subset_size 500
         """
     )
     
@@ -2984,13 +2992,26 @@ Examples:
     parser.add_argument('--major_checkpoint_interval', type=int, default=500,
                        help='Every Nth step is considered "major" for BERTScore evaluation (default: 500). Major checkpoints: checkpoint-500, checkpoint-1000, checkpoint-1500, etc.')
     parser.add_argument('--include_nli_faithfulness', action='store_true',
-                       help='Enable NLI-based faithfulness evaluation using fixed 500-example subset (slow: ~4.5s per example, ~37 min for 500 examples). The same 500 examples are used for all checkpoints for consistency.')
+                       help='Enable NLI-based faithfulness evaluation on a fixed subset of examples (same indices across checkpoints; see --nli_subset_size).')
+    parser.add_argument(
+        '--nli_subset_size',
+        type=int,
+        default=NLI_DEFAULT_SUBSET_SIZE,
+        metavar='N',
+        help='With --include_nli_faithfulness: number of examples for NLI (default: %(default)s). '
+        'For NLI on the full eval set, set this equal to --val_data_size. '
+        'If N is smaller than the eval set, use a reproducible random subset (seed 42), or the first N examples when '
+        '--val_data_size is larger than N.',
+    )
 
     args = parser.parse_args()
     
     # Validate arguments
     if not args.skip_eval and args.val_dataset is None:
         parser.error("--val_dataset is required when evaluation is enabled (use --skip_eval to skip evaluation)")
+
+    if args.nli_subset_size < 1:
+        parser.error("--nli_subset_size must be a positive integer")
 
     # Model mapping from configs
     model_mapping = get_model_name_mapping()
@@ -3042,6 +3063,7 @@ Examples:
                 wandb_group=args.wandb_group,
                 major_checkpoint_interval=args.major_checkpoint_interval,
                 include_nli_faithfulness=args.include_nli_faithfulness,
+                nli_subset_size=args.nli_subset_size,
                 keep_existing=args.keep_existing,
                 force_recompute=args.force_recompute,
             )

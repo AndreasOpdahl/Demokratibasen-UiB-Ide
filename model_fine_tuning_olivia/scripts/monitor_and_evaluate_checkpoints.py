@@ -42,6 +42,7 @@ if _script_dir not in sys.path:
 
 from model_configs import get_model_config
 from evaluate_distributed_checkpoints_multigpu import evaluate_checkpoint, AlreadyEvaluatedError
+from utils.nli_subset import NLI_DEFAULT_SUBSET_SIZE
 
 # Import shared utilities
 from utils import (
@@ -297,6 +298,7 @@ def monitor_and_evaluate(
     timeout_minutes: int = 30,  # Stop if no new checkpoints for X minutes
     major_checkpoint_interval: int = 500,  # Every Nth step is major (gets BERTScore). Default: 500 (every 500 steps = checkpoint-500, checkpoint-1000, etc.)
     include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation
+    nli_subset_size: int = NLI_DEFAULT_SUBSET_SIZE,  # passed to evaluate_checkpoint; use == val_data_size for full val NLI
     checkpoint_stability_seconds: int = 120,  # Wait for checkpoint to be stable (not modified) for this many seconds before evaluating
     val_data_size: int = 500,  # Validation examples: 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files
 ):
@@ -316,6 +318,7 @@ def monitor_and_evaluate(
         timeout_minutes: Stop monitoring if no new checkpoints appear for this many minutes
         major_checkpoint_interval: Every Nth checkpoint is major (gets BERTScore, default: 5)
         include_nli_faithfulness: Enable NLI faithfulness evaluation (slow, default: False)
+        nli_subset_size: NLI example count (default 100; set equal to val_data_size for full val NLI)
         checkpoint_stability_seconds: Wait for checkpoint to be stable (not modified) for this many seconds before evaluating (default: 120)
     """
     print(f"Monitor: {output_dir} (model={model_name}, check_interval={check_interval}s, early_stopping_patience={early_stopping_patience})")
@@ -650,6 +653,7 @@ def monitor_and_evaluate(
                     wandb_disabled=True,
                     major_checkpoint_interval=major_checkpoint_interval,
                     include_nli_faithfulness=include_nli_faithfulness,
+                    nli_subset_size=nli_subset_size,
                     force_recompute=force_recompute_checkpoint,  # Re-run when checkpoint newer than stale eval (rerun)
                     val_data_size=val_data_size,
                 )
@@ -906,13 +910,23 @@ if __name__ == "__main__":
     parser.add_argument('--major_checkpoint_interval', type=int, default=500,
                        help='Every Nth step is considered "major" for BERTScore evaluation (default: 500). Major checkpoints: checkpoint-500, checkpoint-1000, checkpoint-1500, etc.')
     parser.add_argument('--include_nli_faithfulness', action='store_true',
-                       help='Enable NLI-based faithfulness evaluation (slow: ~4.5s per example, ~37 min for 500 examples)')
+                       help='Enable NLI-based faithfulness evaluation (see evaluate_distributed_checkpoints_multigpu --nli_subset_size)')
+    parser.add_argument(
+        '--nli_subset_size',
+        type=int,
+        default=NLI_DEFAULT_SUBSET_SIZE,
+        metavar='N',
+        help='With --include_nli_faithfulness: NLI example count (default: %(default)s; set equal to --val_data_size for full val NLI)',
+    )
     parser.add_argument('--val_data_size', type=int, default=500,
                        help='Validation examples: 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files')
     parser.add_argument('--checkpoint_stability_seconds', type=int, default=120,
                        help='Wait for checkpoint to be stable (not modified) for this many seconds before evaluating (default: 120). Prevents evaluating checkpoints that are still being written.')
     
     args = parser.parse_args()
+
+    if args.nli_subset_size < 1:
+        parser.error("--nli_subset_size must be a positive integer")
     
     # Get full model name
     model_config = get_model_config(args.model)
@@ -932,6 +946,7 @@ if __name__ == "__main__":
         timeout_minutes=args.timeout_minutes,
         major_checkpoint_interval=args.major_checkpoint_interval,
         include_nli_faithfulness=args.include_nli_faithfulness,
+        nli_subset_size=args.nli_subset_size,
         checkpoint_stability_seconds=args.checkpoint_stability_seconds,
         val_data_size=args.val_data_size,
     )

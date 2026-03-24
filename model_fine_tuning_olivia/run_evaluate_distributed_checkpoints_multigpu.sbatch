@@ -32,11 +32,14 @@ MODEL=${MODEL:-llama-2-13b-chat-norwegian}
 NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
 CHECKPOINT_BASE_DIR=${CHECKPOINT_BASE_DIR:-"models/${MODEL}-apptainer-fsdp"}
 VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
+VAL_BATCH_SIZE=${VAL_BATCH_SIZE:-32}
 VAL_DATA_SIZE=${VAL_DATA_SIZE:-500}
 SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:-""}
 DRY_RUN=${DRY_RUN:-false}
 # NLI Faithfulness evaluation flags
 INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-false}
+# Empty = Python default (100 NLI examples). Set equal to VAL_DATA_SIZE for full-val NLI.
+NLI_SUBSET_SIZE=${NLI_SUBSET_SIZE:-}
 KEEP_EXISTING=${KEEP_EXISTING:-false}
 FORCE_RECOMPUTE=${FORCE_RECOMPUTE:-false}
 
@@ -60,6 +63,9 @@ for arg in "$@"; do
         --val_dataset=*)
             VAL_DATASET="${arg#*=}"
             ;;
+        --val_batch_size=*)
+            VAL_BATCH_SIZE="${arg#*=}"
+            ;;
         --val_data_size=*)
             VAL_DATA_SIZE="${arg#*=}"
             ;;
@@ -79,6 +85,7 @@ for arg in "$@"; do
             FORCE_RECOMPUTE=true
             ;;
         --nli_subset_size=*|--nli-subset-size=*)
+            NLI_SUBSET_SIZE="${arg#*=}"
             ;;
         --dry-run|--debug)
             DRY_RUN=true
@@ -93,11 +100,12 @@ for arg in "$@"; do
             echo "  --num_gpus=N                     Number of GPUs (default: 4)"
             echo "  --checkpoint_base_dir=DIR         Base directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
             echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
+            echo "  --val_batch_size=N                Validation batch size per device (default: 32; auto-adjusted by Python script based on model size)"
             echo "  --val_data_size=N                 Number of validation examples (default: 500; use 1000 for extended eval)"
             echo "  --specific_checkpoints=\"N1 N2\"   Space-separated checkpoint numbers to evaluate (default: all)"
             echo "  --force_recompute                  Re-evaluate even when results exist (e.g. backfill missed checkpoints)"
             echo "  --include_nli_faithfulness        Enable NLI-based faithfulness evaluation (slow: ~4.5s per example)"
-            echo "  --nli_subset_size=N               Subset size for NLI evaluation (recommended: 50-100 for faster evaluation)"
+            echo "  --nli_subset_size=N               NLI examples (default 100 in Python if omitted); set N = val_data_size for full val NLI"
             echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
             echo ""
             echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
@@ -181,6 +189,13 @@ if ! validate_checkpoint_numbers "$SPECIFIC_CHECKPOINTS"; then
     ERRORS=$((ERRORS + 1))
 fi
 
+if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+    if ! [[ "$NLI_SUBSET_SIZE" =~ ^[0-9]+$ ]] || [ "$NLI_SUBSET_SIZE" -lt 1 ]; then
+        echo "ERROR: nli_subset_size must be a positive integer (got: $NLI_SUBSET_SIZE)"
+        ERRORS=$((ERRORS + 1))
+    fi
+fi
+
 # Check if NUM_GPUS matches #SBATCH --gres (warning only, skip in dry-run)
 if [ "$DRY_RUN" != "true" ]; then
     SBATCH_GPUS=$(grep "^#SBATCH --gres=gpu:" "$0" | sed 's/.*gpu:\([0-9]*\).*/\1/' | head -1)
@@ -201,11 +216,16 @@ echo "  MODEL: $MODEL"
 echo "  NUM_GPUS: $NUM_GPUS"
 echo "  CHECKPOINT_BASE_DIR: $CHECKPOINT_BASE_DIR"
 echo "  VAL_DATASET: $VAL_DATASET"
+echo "  VAL_BATCH_SIZE: $VAL_BATCH_SIZE"
 echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (1000 → separate -examples_1000.json/.jsonl files)"
 echo "  SPECIFIC_CHECKPOINTS: ${SPECIFIC_CHECKPOINTS:-all}"
 echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS"
 if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
-    echo "  NLI: Using fixed 500-example subset (consistent across all checkpoints)"
+    if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+        echo "  NLI_SUBSET_SIZE: $NLI_SUBSET_SIZE"
+    else
+        echo "  NLI_SUBSET_SIZE: (unset → Python default 100; use same value as VAL_DATA_SIZE for full val NLI)"
+    fi
 fi
 echo "  DRY_RUN: $DRY_RUN"
 
@@ -296,6 +316,14 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "    --output_dir [optional, defaults to model_dir/all_eval_results]"
     echo "    --wandb_project lm-evaluation"
     echo "    --use_greedy --use_multi_gpu"
+    if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
+        echo "    --include_nli_faithfulness"
+        if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+            echo "    --nli_subset_size $NLI_SUBSET_SIZE"
+        else
+            echo "    --nli_subset_size 100   # Python default; set = VAL_DATA_SIZE for full val NLI"
+        fi
+    fi
     echo ""
     echo "==================================================================="
     echo "Dry-run complete. No job was submitted."
@@ -523,6 +551,10 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
         NLI_FLAGS="--include_nli_faithfulness"
     fi
+    NLI_SUBSET_FLAG=""
+    if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ] && [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+        NLI_SUBSET_FLAG=" --nli_subset_size $NLI_SUBSET_SIZE"
+    fi
     KEEP_FLAG=""
     if [ "$KEEP_EXISTING" = "true" ]; then
         KEEP_FLAG="--keep_existing"
@@ -532,7 +564,7 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
         FORCE_FLAG="--force_recompute"
     fi
     
-    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu $NLI_FLAGS $KEEP_FLAG $FORCE_FLAG"
+    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_batch_size $VAL_BATCH_SIZE --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu $NLI_FLAGS $KEEP_FLAG $FORCE_FLAG$NLI_SUBSET_FLAG"
 
     # Apptainer commands - all on one line
     # Install bert_score for BERTScore evaluation (required by evaluate library)

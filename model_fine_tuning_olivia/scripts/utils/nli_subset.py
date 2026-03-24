@@ -1,169 +1,191 @@
 """
 Utility functions for managing fixed NLI faithfulness evaluation subset.
 
-This module provides functions to create, save, and load a fixed subset of examples
-for NLI faithfulness evaluation. Using a fixed subset ensures consistency across
-all checkpoint evaluations and enables fair comparison.
+Creates or loads a fixed subset of example indices so NLI scores are comparable
+across checkpoint runs. Default subset size is 100. Use ``subset_size >= total_examples``
+(typically ``subset_size == val_data_size``) to run NLI on the full eval set.
+Smaller subsets use a seeded random draw (seed 42) or the first N rows when
+extending eval size (use_first_n_for_extended).
 """
 
 import json
 import os
 import random
-from typing import List, Tuple, Optional
+from typing import List, Optional, Tuple
 
-
+NLI_FIXED_SUBSET_SEED = 42  # Fixed seed for reproducible random subsets
+NLI_DEFAULT_SUBSET_SIZE = 100
+# Legacy name; kept for imports expecting the old constant (was 500).
 NLI_FIXED_SUBSET_SIZE = 500
-NLI_FIXED_SUBSET_SEED = 42  # Fixed seed for reproducibility
 
 
 def get_nli_subset_file_path(model_dir: str) -> str:
-    """Get the path to the fixed NLI subset indices file.
-    
-    Args:
-        model_dir: Path to model directory
-        
-    Returns:
-        Path to the subset indices JSON file
-    """
+    """Path to `all_eval_results/nli_fixed_subset_indices.json` under model_dir."""
     return os.path.join(model_dir, "all_eval_results", "nli_fixed_subset_indices.json")
+
+
+def _load_nli_subset_json(model_dir: str) -> Optional[dict]:
+    subset_file = get_nli_subset_file_path(model_dir)
+    if not os.path.exists(subset_file):
+        return None
+    try:
+        with open(subset_file, "r") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, IOError):
+        return None
+
+
+def _compute_nli_indices(
+    total_examples: int,
+    nli_subset_size: Optional[int],
+    seed: int,
+    use_first_n_for_extended: bool,
+) -> List[int]:
+    """Deterministic indices for NLI (full set, first N, or seeded random sample)."""
+    if nli_subset_size is None:
+        nli_subset_size = NLI_DEFAULT_SUBSET_SIZE
+    if use_first_n_for_extended and total_examples > nli_subset_size:
+        return list(range(min(nli_subset_size, total_examples)))
+    if nli_subset_size >= total_examples:
+        return list(range(total_examples))
+    rng = random.Random(seed)
+    return sorted(rng.sample(range(total_examples), nli_subset_size))
+
+
+def _stored_subset_matches(
+    data: dict,
+    total_examples: int,
+    nli_subset_size: int,
+    use_first_n_for_extended: bool,
+    seed: int,
+) -> bool:
+    if data.get("total_examples") != total_examples:
+        return False
+    indices = data.get("indices")
+    if not indices or not isinstance(indices, list):
+        return False
+    if not all(isinstance(i, int) and 0 <= i < total_examples for i in indices):
+        return False
+
+    if "nli_subset_size" in data:
+        stored = data.get("nli_subset_size")
+        if stored is not None:
+            if stored != nli_subset_size:
+                return False
+            if data.get("use_first_n_for_extended", False) != use_first_n_for_extended:
+                return False
+            if data.get("seed", seed) != seed:
+                return False
+            return True
+        # Key present, value null: legacy "full val" save
+        if len(indices) == total_examples:
+            return (
+                nli_subset_size >= total_examples
+                and indices == list(range(total_examples))
+            )
+        expected = _compute_nli_indices(
+            total_examples, nli_subset_size, seed, use_first_n_for_extended
+        )
+        return indices == expected
+
+    expected = _compute_nli_indices(
+        total_examples, nli_subset_size, seed, use_first_n_for_extended
+    )
+    return indices == expected
+
+
+def _save_nli_subset_file(
+    model_dir: str,
+    indices: List[int],
+    total_examples: int,
+    nli_subset_size: int,
+    use_first_n_for_extended: bool,
+    seed: int,
+) -> None:
+    subset_file = get_nli_subset_file_path(model_dir)
+    os.makedirs(os.path.dirname(subset_file), exist_ok=True)
+    with open(subset_file, "w") as f:
+        json.dump(
+            {
+                "nli_subset_size": nli_subset_size,
+                "use_first_n_for_extended": use_first_n_for_extended,
+                "total_examples": total_examples,
+                "seed": seed,
+                "subset_size": len(indices),
+                "indices": indices,
+            },
+            f,
+            indent=2,
+        )
 
 
 def create_fixed_nli_subset(
     total_examples: int,
-    subset_size: int = NLI_FIXED_SUBSET_SIZE,
+    subset_size: Optional[int] = None,
     seed: int = NLI_FIXED_SUBSET_SEED,
-    model_dir: Optional[str] = None
+    model_dir: Optional[str] = None,
 ) -> List[int]:
-    """Create a fixed subset of indices for NLI evaluation.
-    
-    This function creates a deterministic subset of indices that will be reused
-    across all checkpoint evaluations for consistency.
-    
-    Args:
-        total_examples: Total number of examples available
-        subset_size: Number of examples to include in subset (default: 500)
-        seed: Random seed for reproducibility (default: 42)
-        model_dir: Optional model directory to save the subset indices
-        
-    Returns:
-        List of indices to use for NLI evaluation
-    """
-    if total_examples <= subset_size:
-        # If we have fewer examples than the subset size, use all
-        indices = list(range(total_examples))
-    else:
-        # Use fixed seed for reproducibility
-        random.seed(seed)
-        indices = sorted(random.sample(range(total_examples), subset_size))
-    
-    # Save to file if model_dir is provided
+    """Create indices (subset_size None → default 100). Full set when subset_size >= total."""
+    eff = NLI_DEFAULT_SUBSET_SIZE if subset_size is None else subset_size
+    indices = _compute_nli_indices(
+        total_examples, eff, seed, use_first_n_for_extended=False
+    )
     if model_dir:
-        subset_file = get_nli_subset_file_path(model_dir)
-        os.makedirs(os.path.dirname(subset_file), exist_ok=True)
-        with open(subset_file, 'w') as f:
-            json.dump({
-                "subset_size": len(indices),
-                "total_examples": total_examples,
-                "seed": seed,
-                "indices": indices
-            }, f, indent=2)
-        pass  # Subset saved to file for reuse
-    
+        _save_nli_subset_file(
+            model_dir,
+            indices,
+            total_examples,
+            eff,
+            False,
+            seed,
+        )
     return indices
 
 
 def load_fixed_nli_subset(model_dir: str) -> Optional[List[int]]:
-    """Load the fixed NLI subset indices from file.
-    
-    Args:
-        model_dir: Path to model directory
-        
-    Returns:
-        List of indices if file exists, None otherwise
-    """
-    subset_file = get_nli_subset_file_path(model_dir)
-    if os.path.exists(subset_file):
-        try:
-            with open(subset_file, 'r') as f:
-                data = json.load(f)
-                return data.get("indices", [])
-        except (json.JSONDecodeError, IOError):
-            return None
-    return None
+    data = _load_nli_subset_json(model_dir)
+    if data is None:
+        return None
+    return data.get("indices")
 
 
 def get_or_create_fixed_nli_subset(
     total_examples: int,
     model_dir: str,
-    subset_size: int = NLI_FIXED_SUBSET_SIZE,
+    subset_size: Optional[int] = None,
     seed: int = NLI_FIXED_SUBSET_SEED,
-    use_first_n_for_extended: bool = False
+    use_first_n_for_extended: bool = False,
 ) -> List[int]:
-    """Get existing fixed NLI subset or create a new one.
-    
-    This function first tries to load an existing subset from file. If it doesn't
-    exist or the total_examples has changed, it creates a new one.
-    
-    When use_first_n_for_extended=True and total_examples > subset_size, returns
-    indices 0..subset_size-1 (first N examples). This ensures NLI stays comparable
-    when extending eval from 500 to 1000 examples - the first 500 are the same.
-    
-    Args:
-        total_examples: Total number of examples available
-        model_dir: Path to model directory
-        subset_size: Number of examples to include in subset (default: 500)
-        seed: Random seed for reproducibility (default: 42)
-        use_first_n_for_extended: If True and total > subset_size, use first N indices
-            (for backward comparability when extending eval set size)
-        
-    Returns:
-        List of indices to use for NLI evaluation
+    """Load existing NLI indices or create and save them.
+
+    subset_size:
+        None — use ``NLI_DEFAULT_SUBSET_SIZE`` (100).
+        int — at most this many rows; use ``subset_size >= total_examples`` (typically
+        equal to ``val_data_size``) to include the full eval set.
     """
-    # When extending eval to 1000+, use first 500 for NLI comparability
-    if use_first_n_for_extended and total_examples > subset_size:
-        indices = list(range(subset_size))
-        # Optionally save for consistency
-        if model_dir:
-            subset_file = get_nli_subset_file_path(model_dir)
-            os.makedirs(os.path.dirname(subset_file), exist_ok=True)
-            with open(subset_file, 'w') as f:
-                json.dump({
-                    "subset_size": len(indices),
-                    "total_examples": total_examples,
-                    "use_first_n": True,
-                    "indices": indices
-                }, f, indent=2)
-        return indices
-    
-    # Try to load existing subset
-    existing_indices = load_fixed_nli_subset(model_dir)
-    
-    if existing_indices is not None:
-        if all(idx < total_examples for idx in existing_indices):
-            return existing_indices
-        # total_examples changed; create new subset
-    
-    # Create new subset
-    return create_fixed_nli_subset(total_examples, subset_size, seed, model_dir)
+    eff = NLI_DEFAULT_SUBSET_SIZE if subset_size is None else subset_size
+    data = _load_nli_subset_json(model_dir)
+    if data and _stored_subset_matches(
+        data, total_examples, eff, use_first_n_for_extended, seed
+    ):
+        return data["indices"]
+
+    indices = _compute_nli_indices(
+        total_examples, eff, seed, use_first_n_for_extended
+    )
+    _save_nli_subset_file(
+        model_dir, indices, total_examples, eff, use_first_n_for_extended, seed
+    )
+    return indices
 
 
 def apply_fixed_subset(
     input_texts: List[str],
     prediction_texts: List[str],
     reference_texts: List[str],
-    indices: List[int]
+    indices: List[int],
 ) -> Tuple[List[str], List[str], List[str]]:
-    """Apply fixed subset indices to filter examples.
-    
-    Args:
-        input_texts: List of input texts
-        prediction_texts: List of prediction texts
-        reference_texts: List of reference texts
-        indices: List of indices to select
-        
-    Returns:
-        Tuple of (filtered_input_texts, filtered_prediction_texts, filtered_reference_texts)
-    """
+    """Filter parallel lists to the given indices (bounds-checked)."""
     nli_input_texts = [input_texts[i] for i in indices if i < len(input_texts)]
     nli_prediction_texts = [prediction_texts[i] for i in indices if i < len(prediction_texts)]
     nli_reference_texts = [reference_texts[i] for i in indices if i < len(reference_texts)]
