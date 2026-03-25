@@ -75,7 +75,7 @@ Multi-GPU evaluation of PEFT checkpoints using model parallelism (`device_map="a
 - `check_gpu_memory_utilization()` — Reports GPU memory before/after load
 - `AlreadyEvaluatedError` — Raised when checkpoint already has eval results (skip re-eval)
 
-**Local dependencies:** `model_configs`, `utils`, `summarisation_evaluation`
+**Local dependencies:** `model_configs`, `utils`
 
 **Example:**
 ```bash
@@ -105,28 +105,6 @@ python monitor_and_evaluate_checkpoints.py --output_dir models/gemma-7b-apptaine
 
 ---
 
-### summarisation_evaluation.py
-
-Extended evaluation metrics for Norwegian summarisation: ROUGE, BERTScore, hygiene (repetition, compression ratio, punctuation), and NLI-based faithfulness. Used by the evaluation script for checkpoint scoring.
-
-**Important functions/classes:**
-- `extended_evaluate()` — Main entry; computes reference, hygiene, and optionally faithfulness metrics
-- `evaluate_summaries()` — Wrapper that runs full evaluation (BERTScore + NLI)
-- `eval_reference()` — ROUGE (Lsum) and BERTScore
-- `eval_hygiene()` — 3-gram repetition, compression ratio, punctuation endings
-- `NLIFaithfulnessGate` — NLI-based faithfulness: chunks document, runs entailment/contradiction, aggregates
-- `chunk_document()` — Splits long documents for NLI (sentence/paragraph-aware)
-- `find_files()`, `load_texts()`, `save_results()` — Batch eval from `inputs-refs-preds` JSONL files
-
-**Local dependencies:** `utils.metrics`
-
-**Example:**
-```python
-from summarisation_evaluation import extended_evaluate, evaluate_summaries
-```
-
----
-
 ## Evaluation & Analysis
 
 ### run_nli_faithfulness_subset.py
@@ -137,7 +115,7 @@ Run NLI faithfulness evaluation on a subset of predictions from a JSONL file. Us
 - `load_predictions_from_jsonl()` — Loads input/prediction pairs, optionally samples subset
 - `main()` — CLI entry; loads predictions, runs `NLIFaithfulnessGate.eval_faithfulness()`, saves JSON
 
-**Local dependencies:** `summarisation_evaluation`
+**Local dependencies:** `utils.faithfulness`
 
 **Example:**
 ```bash

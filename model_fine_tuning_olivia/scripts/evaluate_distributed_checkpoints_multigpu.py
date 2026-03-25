@@ -30,7 +30,7 @@ import shutil
 import sys
 import time  # ADD THIS for staggered loading
 from datetime import datetime
-from typing import Any, Dict, Optional, Tuple, Union, List
+from typing import Any, Dict, List, Optional, Set, Tuple, Union
 
 # Disable tokenizer parallelism to avoid fork warnings in multi-process environment
 os.environ['TOKENIZERS_PARALLELISM'] = 'false'
@@ -95,14 +95,14 @@ from utils import (
     format_eval_example,
 )
 
-# Import summarisation evaluation metrics
+# Import extended evaluation metrics (hygiene, BERTScore, NLI faithfulness)
 try:
-    from summarisation_evaluation import extended_evaluate
+    from utils.metrics import extended_evaluate
     EXTENDED_EVAL_AVAILABLE = True
 except ImportError as e:
     EXTENDED_EVAL_AVAILABLE = False
     extended_evaluate = None  # type: ignore
-    print(f"Warning: summarisation_evaluation not available ({e}). Only ROUGE metrics will be computed.")
+    print(f"Warning: utils.metrics.extended_evaluate not available ({e}). Only ROUGE metrics will be computed.")
 
 # Helper function to calculate examples from steps
 def calculate_examples_from_steps(steps, batch_size, gradient_accumulation_steps, num_gpus):
@@ -110,6 +110,22 @@ def calculate_examples_from_steps(steps, batch_size, gradient_accumulation_steps
     if steps is None or steps <= 0:
         return None
     return steps * batch_size * gradient_accumulation_steps * num_gpus
+
+def load_predictions_jsonl(predictions_file: str):
+    """Load input_texts, prediction_texts, reference_texts from a predictions JSONL file.
+
+    Returns:
+        Tuple of (input_texts, prediction_texts, reference_texts) as lists of strings.
+    """
+    input_texts, prediction_texts, reference_texts = [], [], []
+    with open(predictions_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            entry = json.loads(line)
+            input_texts.append(entry.get("input_text", ""))
+            prediction_texts.append(entry.get("prediction", ""))
+            reference_texts.append(entry.get("reference", ""))
+    return input_texts, prediction_texts, reference_texts
+
 
 # Evaluation parameters
 MAX_INPUT_TEXT_TOKENS = 2048
@@ -1525,17 +1541,21 @@ def load_model_and_peft_checkpoint(
                     f"Skipping evaluation."
                 )
         
-        # Also check if checkpoint directory only contains eval_results (old structure)
-        dir_contents = os.listdir(checkpoint_dir)
-        if len(dir_contents) == 1 and 'eval_results' in dir_contents:
-            eval_results_file = os.path.join(checkpoint_dir, 'eval_results', 'eval_results.json')
-            if os.path.exists(eval_results_file):
-                raise AlreadyEvaluatedError(
-                    f"Checkpoint {checkpoint_dir} appears to be already evaluated "
-                    f"(only contains 'eval_results' with results file). "
-                    f"The adapter files may have been cleaned up. Skipping evaluation."
-                )
     
+    # Check if checkpoint directory is empty or only contains eval_results (no adapter files).
+    # This must be outside the force_recompute block — can't re-evaluate without adapter weights.
+    dir_contents = os.listdir(checkpoint_dir)
+    if len(dir_contents) == 0:
+        raise AlreadyEvaluatedError(
+            f"Checkpoint {checkpoint_dir} is an empty directory "
+            f"(adapter files may have been cleaned up). Skipping."
+        )
+    if len(dir_contents) == 1 and 'eval_results' in dir_contents:
+        raise AlreadyEvaluatedError(
+            f"Checkpoint {checkpoint_dir} only contains 'eval_results' "
+            f"(adapter files have been cleaned up). Skipping."
+        )
+
     adapter_config_path = os.path.join(checkpoint_dir, "adapter_config.json")
     adapter_model_path = os.path.join(checkpoint_dir, "adapter_model.safetensors")
     
@@ -1889,8 +1909,18 @@ def evaluate_checkpoint(
     nli_subset_size: int = NLI_DEFAULT_SUBSET_SIZE,  # default 100; set == val_data_size for full-set NLI
     keep_existing: bool = False,
     force_recompute: bool = False,  # If True, skip loading existing results and re-run evaluation (for rerun with corrected prompt)
+    predict_only: bool = False,
+    metrics_only: bool = False,
+    update_metrics: Optional[Set[str]] = None,  # e.g. {"rouge", "hygiene", "bertscore", "faithfulness"}
 ):
-    """Load a PEFT checkpoint and run evaluation with model parallelism support."""
+    """Load a PEFT checkpoint and run evaluation with model parallelism support.
+
+    Modes (mutually exclusive):
+        default         — generate predictions + compute all metrics
+        predict_only    — generate predictions, save JSONL, skip metrics
+        metrics_only    — load JSONL, compute all applicable metrics (no model loading)
+        update_metrics  — load JSONL + existing results, recompute selected metrics, merge
+    """
     
     # Convert checkpoint_dir to absolute path
     checkpoint_dir = os.path.abspath(checkpoint_dir)
@@ -1937,6 +1967,92 @@ def evaluate_checkpoint(
     
     # Get results file path using utility function
     results_file = get_eval_results_path(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
+    predictions_file = get_predictions_file_path(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
+
+    # ---------------------------------------------------------------
+    # Early-return paths for --metrics-only and --update-* modes
+    # (no model loading, no prediction generation)
+    # ---------------------------------------------------------------
+    if metrics_only or update_metrics:
+        if not os.path.exists(predictions_file):
+            raise FileNotFoundError(
+                f"JSONL predictions file not found: {predictions_file}\n"
+                f"Run --predict_only first to generate predictions."
+            )
+        input_texts, prediction_texts, reference_texts = load_predictions_jsonl(predictions_file)
+        print(f"Loaded {len(prediction_texts)} predictions from {predictions_file}")
+
+        from utils.metrics import compute_metrics_from_texts
+
+        if update_metrics:
+            # Selective update: load existing results, recompute requested metrics, merge
+            existing_results = {}
+            if os.path.exists(results_file):
+                with open(results_file, 'r', encoding='utf-8') as f:
+                    existing_results = json.load(f)
+            include_flags = {
+                "include_rouge": "rouge" in update_metrics,
+                "include_hygiene": "hygiene" in update_metrics,
+                "include_bertscore": "bertscore" in update_metrics,
+                "include_faithfulness": "faithfulness" in update_metrics,
+            }
+            # Build NLI subset texts if needed
+            nli_in = nli_pred = None
+            if "faithfulness" in update_metrics:
+                use_first_n = val_data_size > nli_subset_size
+                nli_indices = get_or_create_fixed_nli_subset(
+                    total_examples=len(input_texts),
+                    model_dir=model_dir_eval,
+                    subset_size=nli_subset_size,
+                    use_first_n_for_extended=use_first_n,
+                )
+                nli_in = [input_texts[i] for i in nli_indices]
+                nli_pred = [prediction_texts[i] for i in nli_indices]
+            result = compute_metrics_from_texts(
+                input_texts, prediction_texts, reference_texts,
+                nli_input_texts=nli_in, nli_prediction_texts=nli_pred,
+                **include_flags,
+            )
+            existing_results.update(result["metrics"])
+            existing_results.setdefault("_timing", {}).update(result["timing"])
+            existing_results["checkpoint_name"] = checkpoint_name
+            existing_results["checkpoint_step"] = checkpoint_step_int
+            with open(results_file, 'w', encoding='utf-8') as f:
+                json.dump(existing_results, f, indent=2, ensure_ascii=False, default=str)
+            print(f"Updated metrics {update_metrics} in {results_file}")
+            return existing_results, None
+
+        else:
+            # metrics_only: compute all applicable metrics from JSONL
+            is_major = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+            nli_in = nli_pred = None
+            if include_nli_faithfulness and is_major:
+                use_first_n = val_data_size > nli_subset_size
+                nli_indices = get_or_create_fixed_nli_subset(
+                    total_examples=len(input_texts),
+                    model_dir=model_dir_eval,
+                    subset_size=nli_subset_size,
+                    use_first_n_for_extended=use_first_n,
+                )
+                nli_in = [input_texts[i] for i in nli_indices]
+                nli_pred = [prediction_texts[i] for i in nli_indices]
+            result = compute_metrics_from_texts(
+                input_texts, prediction_texts, reference_texts,
+                include_rouge=True,
+                include_hygiene=True,
+                include_bertscore=is_major,
+                include_faithfulness=include_nli_faithfulness and is_major,
+                nli_input_texts=nli_in, nli_prediction_texts=nli_pred,
+            )
+            all_results = result["metrics"]
+            all_results["_timing"] = result["timing"]
+            all_results["checkpoint_name"] = checkpoint_name
+            all_results["checkpoint_step"] = checkpoint_step_int
+            all_results["is_major_checkpoint"] = is_major
+            with open(results_file, 'w', encoding='utf-8') as f:
+                json.dump(all_results, f, indent=2, ensure_ascii=False, default=str)
+            print(f"Saved metrics-only results to {results_file}")
+            return all_results, None
     
     # If results file exists, load and log to Wandb without re-evaluating
     # Skip loading when force_recompute=True (e.g. monitor detected checkpoint newer than stale eval from previous run)
@@ -2196,11 +2312,13 @@ def evaluate_checkpoint(
 
     def compute_metrics(eval_pred):
         """Compute ROUGE metrics using shared utility function."""
+        if predict_only:
+            return {}
         return compute_rouge_metrics(
             eval_pred=eval_pred,
             tokenizer=tokenizer,
             log_to_wandb=True,
-            step=checkpoint_step_int,  # Use checkpoint step as x-axis
+            step=checkpoint_step_int,
             is_main_process=is_main_process,
             verbose=True
         )
@@ -2649,75 +2767,45 @@ def evaluate_checkpoint(
     eval_results.setdefault("eval_num_examples_by_doc_type", doc_type_counts)
     eval_results.setdefault("eval_num_examples_by_doc_type_norwegian", doc_type_nor_counts)
     
-    # Save inputs, references, and predictions to JSONL file (in all_eval_results, same as eval-results.json)
-    # Only save for major checkpoints to save disk space
+    # Save inputs, references, and predictions to JSONL file for ALL checkpoints.
+    # Required for --metrics-only and --update-* modes to work on any checkpoint.
     predictions_file = None
-    if is_main_process and is_major_checkpoint:
+    if is_main_process:
         predictions_file = get_predictions_file_path(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
         os.makedirs(os.path.dirname(predictions_file), exist_ok=True)
         
-        # Write to JSONL file
-        # Predictions are generated in the same order as the dataset
         with open(predictions_file, 'w', encoding='utf-8') as f:
             num_examples = len(original_examples_for_jsonl)
             num_predictions = len(trainer._eval_predictions)
-            
-            # If counts don't match, use the minimum (shouldn't happen, but safety check)
             num_to_save = min(num_examples, num_predictions)
             
             for i in range(num_to_save):
-                # Match predictions with original examples (same order)
-                # All fields are human-readable text
                 entry = {
-                    "input_text": original_examples_for_jsonl[i].get("input_text", ""),  # Raw input text
-                    "prompt": original_examples_for_jsonl[i].get("prompt", ""),  # Formatted prompt with template
-                    "reference": original_examples_for_jsonl[i].get("reference", ""),  # Target summary (ground truth)
-                    "prediction": trainer._eval_predictions[i] if i < len(trainer._eval_predictions) else ""  # Model prediction (cleaned)
+                    "input_text": original_examples_for_jsonl[i].get("input_text", ""),
+                    "prompt": original_examples_for_jsonl[i].get("prompt", ""),
+                    "reference": original_examples_for_jsonl[i].get("reference", ""),
+                    "prediction": trainer._eval_predictions[i] if i < len(trainer._eval_predictions) else "",
                 }
                 f.write(json.dumps(entry, ensure_ascii=False) + '\n')
         
         print(f"Saved predictions to: {predictions_file}")
         print(f"  - {num_to_save} examples saved")
-    elif is_main_process and not is_major_checkpoint:
-        print(f"Skipping predictions file (not a major checkpoint - only saved for major checkpoints to save disk space)")
+
+    if predict_only:
+        print("--predict_only: skipping metrics computation.")
+        return {"checkpoint_name": checkpoint_name, "checkpoint_step": checkpoint_step_int, "status": "predict_only"}, None
     
-    # Run extended evaluation metrics (reference-based, hygiene, faithfulness)
-    # Note: For normal checkpoints, we still run extended evaluation but use predictions from memory
-    # For major checkpoints, we can load from the saved JSONL file
+    # Run extended evaluation metrics (hygiene, BERTScore, NLI faithfulness)
     if is_main_process and not EXTENDED_EVAL_AVAILABLE:
         print("Warning: Extended evaluation not available. Only ROUGE metrics will be saved.")
     
-    # Run extended evaluation metrics (reference-based, hygiene, faithfulness)
-    # For major checkpoints: load from saved JSONL file
-    # For normal checkpoints: use predictions from memory (trainer._eval_predictions)
-    include_faithfulness = False  # Initialize to avoid unbound variable errors
+    # Run extended evaluation metrics (hygiene, BERTScore, NLI faithfulness)
+    include_faithfulness = False
     
     if is_main_process and EXTENDED_EVAL_AVAILABLE:
         try:
-            # Load texts from JSONL file if available (major checkpoints), otherwise use memory
-            input_texts = []
-            prediction_texts = []
-            reference_texts = []
-            
-            if predictions_file and os.path.exists(predictions_file):
-                # Major checkpoint: load from saved file
-                with open(predictions_file, 'r', encoding='utf-8') as f:
-                    for line in f:
-                        entry = json.loads(line)
-                        input_texts.append(entry.get("input_text", ""))
-                        prediction_texts.append(entry.get("prediction", ""))
-                        reference_texts.append(entry.get("reference", ""))
-            else:
-                # Normal checkpoint: use predictions from memory
-                # We have original_examples_for_jsonl and trainer._eval_predictions in memory
-                num_examples = len(original_examples_for_jsonl)
-                num_predictions = len(trainer._eval_predictions)
-                num_to_use = min(num_examples, num_predictions)
-                
-                for i in range(num_to_use):
-                    input_texts.append(original_examples_for_jsonl[i].get("input_text", ""))
-                    prediction_texts.append(trainer._eval_predictions[i] if i < len(trainer._eval_predictions) else "")
-                    reference_texts.append(original_examples_for_jsonl[i].get("reference", ""))
+            # Load texts from saved JSONL (always available since we save for all checkpoints)
+            input_texts, prediction_texts, reference_texts = load_predictions_jsonl(predictions_file)
             
             if len(input_texts) > 0 and len(prediction_texts) > 0 and len(reference_texts) > 0:
                 # Determine which metrics to compute based on checkpoint type and user settings
@@ -2748,7 +2836,7 @@ def evaluate_checkpoint(
                     if len(nli_input_texts) == 0:
                         raise ValueError(f"After applying fixed subset, NLI input texts are empty.")
 
-                # Run extended evaluation: ROUGE + Hygiene + BERTScore (full set), then NLI on subset if requested
+                # Run extended evaluation: Hygiene + optionally BERTScore (full set)
                 assert extended_evaluate is not None, "extended_evaluate should be available when EXTENDED_EVAL_AVAILABLE is True"
                 extended_results = extended_evaluate(
                     input_texts=input_texts,
@@ -2756,27 +2844,20 @@ def evaluate_checkpoint(
                     reference_texts=reference_texts,
                     print_output=False,
                     include_bertscore=include_bertscore,
-                    include_faithfulness=False  # Skip NLI in first run
                 )
                 extended_timing = extended_results.pop("_timing", {})
-                if "faithfulness" not in extended_results:
-                    extended_results["faithfulness"] = None
+                extended_results["faithfulness"] = None
 
+                # NLI faithfulness on subset (separate from extended_evaluate)
                 if include_faithfulness:
                     assert len(nli_input_texts) <= len(input_texts), "NLI evaluation must use subset"
                     try:
-                        nli_results = extended_evaluate(
-                            input_texts=nli_input_texts,
-                            prediction_texts=nli_prediction_texts,
-                            reference_texts=nli_reference_texts,
-                            print_output=False,
-                            include_bertscore=False,
-                            include_faithfulness=True
-                        )
-                        nli_timing = nli_results.pop("_timing", {}) if nli_results else {}
-                        if "nli_faithfulness_seconds" in nli_timing:
-                            extended_timing["nli_faithfulness_seconds"] = nli_timing["nli_faithfulness_seconds"]
-                        extended_results["faithfulness"] = nli_results.get("faithfulness") if nli_results else None
+                        from utils.faithfulness import NLIFaithfulnessGate
+                        gate = NLIFaithfulnessGate()
+                        faithfulness_out = gate.eval_faithfulness(nli_input_texts, nli_prediction_texts)
+                        if "_timing" in faithfulness_out:
+                            extended_timing["nli_faithfulness_seconds"] = faithfulness_out.pop("_timing").get("nli_faithfulness_seconds", 0.0)
+                        extended_results["faithfulness"] = faithfulness_out
                     except Exception as nli_error:
                         print(f"ERROR: NLI faithfulness evaluation failed: {nli_error}")
                         extended_results["faithfulness"] = None
@@ -3004,11 +3085,38 @@ Examples:
         '--val_data_size is larger than N.',
     )
 
+    # --- Evaluation mode flags ---
+    mode_group = parser.add_mutually_exclusive_group()
+    mode_group.add_argument('--predict_only', action='store_true',
+                           help='Generate predictions and save JSONL only; skip all metrics computation.')
+    mode_group.add_argument('--metrics_only', action='store_true',
+                           help='Compute all metrics from an existing JSONL predictions file; no model loading needed.')
+
+    parser.add_argument('--update_rouge', action='store_true',
+                       help='Recompute ROUGE from existing JSONL and merge into eval results.')
+    parser.add_argument('--update_hygiene', action='store_true',
+                       help='Recompute hygiene from existing JSONL and merge into eval results.')
+    parser.add_argument('--update_bertscore', action='store_true',
+                       help='Recompute BERTScore from existing JSONL and merge into eval results.')
+    parser.add_argument('--update_faithfulness', action='store_true',
+                       help='Recompute NLI faithfulness from existing JSONL and merge into eval results.')
+
     args = parser.parse_args()
-    
+
+    # Build update_metrics set (empty set means not in update mode)
+    update_metrics = {name for name in ("rouge", "hygiene", "bertscore", "faithfulness")
+                      if getattr(args, f"update_{name}", False)}
+
+    # Validate mode mutual exclusivity
+    if update_metrics and (args.predict_only or args.metrics_only):
+        parser.error("--update_* flags cannot be combined with --predict_only or --metrics_only.")
+
+    # --metrics_only and --update_* do not need --val_dataset or model loading
+    needs_prediction = not args.metrics_only and not update_metrics and not args.skip_eval
+
     # Validate arguments
-    if not args.skip_eval and args.val_dataset is None:
-        parser.error("--val_dataset is required when evaluation is enabled (use --skip_eval to skip evaluation)")
+    if needs_prediction and args.val_dataset is None:
+        parser.error("--val_dataset is required for prediction (use --metrics_only, --update_*, or --skip_eval to skip)")
 
     if args.nli_subset_size < 1:
         parser.error("--nli_subset_size must be a positive integer")
@@ -3051,7 +3159,7 @@ Examples:
                 checkpoint_dir=args.checkpoint_dir,
                 val_dataset_path=args.val_dataset,
                 hf_token=args.hf_token,
-                output_dir=args.output_dir,  # None will trigger default: model_dir/all_eval_results
+                output_dir=args.output_dir,
                 max_output_summary_tokens=max_output_summary_tokens,
                 val_data_size=args.val_data_size,
                 val_data_seed=args.val_data_seed,
@@ -3066,8 +3174,11 @@ Examples:
                 nli_subset_size=args.nli_subset_size,
                 keep_existing=args.keep_existing,
                 force_recompute=args.force_recompute,
+                predict_only=args.predict_only,
+                metrics_only=args.metrics_only,
+                update_metrics=update_metrics or None,
             )
         except AlreadyEvaluatedError as e:
             print(f"⚠ SKIPPING: {e}")
             print(f"Checkpoint {args.checkpoint_dir} was already evaluated. Moving to next checkpoint.")
-            sys.exit(0)  # Exit with success code so bash loop continues
+            sys.exit(0)

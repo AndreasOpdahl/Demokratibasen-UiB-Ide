@@ -24,7 +24,7 @@ import os
 import random
 from pathlib import Path
 
-from summarisation_evaluation import NLIFaithfulnessGate
+from utils.faithfulness import NLIFaithfulnessGate
 
 
 def load_predictions_from_jsonl(predictions_file: str, subset_size: int = None, random_seed: int = 42):

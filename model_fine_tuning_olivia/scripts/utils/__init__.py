@@ -6,7 +6,17 @@ code duplication and improve maintainability.
 """
 
 from .data_collators import EvalDataCollator
-from .metrics import compute_rouge_metrics, clean_decoded_text
+from .metrics import (
+    compute_rouge_metrics,
+    clean_decoded_text,
+    compute_rouge,
+    compute_bertscore,
+    eval_hygiene,
+    hygiene,
+    ngram_repetition,
+    extended_evaluate,
+    compute_metrics_from_texts,
+)
 from .checkpoint_utils import (
     extract_checkpoint_step,
     get_checkpoint_name_and_step,
@@ -32,13 +42,21 @@ from .nli_subset import (
     NLI_FIXED_SUBSET_SEED,
     NLI_FIXED_SUBSET_SIZE,
 )
+from .rouge_tokenizer import norwegian_tokenize, get_backend_name as get_rouge_tokenizer_backend
 
 __all__ = [
     # Data collators
     'EvalDataCollator',
-    # Metrics
+    # Metrics — ROUGE, hygiene, BERTScore, orchestrator
     'compute_rouge_metrics',
     'clean_decoded_text',
+    'compute_rouge',
+    'compute_bertscore',
+    'eval_hygiene',
+    'hygiene',
+    'ngram_repetition',
+    'extended_evaluate',
+    'compute_metrics_from_texts',
     # Checkpoint utilities
     'extract_checkpoint_step',
     'get_checkpoint_name_and_step',
@@ -67,4 +85,7 @@ __all__ = [
     'NLI_DEFAULT_SUBSET_SIZE',
     'NLI_FIXED_SUBSET_SEED',
     'NLI_FIXED_SUBSET_SIZE',
+    # ROUGE tokenizer
+    'norwegian_tokenize',
+    'get_rouge_tokenizer_backend',
 ]

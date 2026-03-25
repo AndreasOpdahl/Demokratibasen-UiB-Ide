@@ -1,219 +1,19 @@
 """
-Metrics for in-training validation and final evaluation of summarisation models for
-Norwegian public documents, assuming that LLM-generated reference summaries are available.
+NLI-based faithfulness evaluation for summarisation.
 
-TODO: Do not run NLI-based faithfulness metrics on the whole validation set for every checkpoint.
-      Either:
-      - Run only on a subset of the validation set for every checkpoint.
-      - Run on the full validation set only for every N checkpoints.
-      The full set can be used for final model evaluation, and a subset for validation to monitor training progress.
+For each summary sentence the model checks entailment/contradiction against
+overlapping chunks of the source document, using an XNLI model.
 
-Types of metrics:
-- Reference-based metrics (weak signals, used for monitoring)
-    - ROUGE without lemmatisation (mean Lsum)
-    - BERTScore with Norwegian encoder (f1_mean)
-- Hygiene metrics (strong signals, used for alarm)
-    - Mean repetition of n-grams (n=3)
-    - Mean compression ratio
-    - Ratio of endings with punctuation (to avoid truncation)
-- NLI-based faithfulness metrics (strong signals, used for alarm)
-    - Mean entailment score (NLI entailment aggregate mean)
-    - Mean contradiction score (NLI contradiction aggregatemean)
-    - Mean outlier rate (NLI outlier mean - either low entailment or high contradiction)
-- TODO: QA-based faithfulness metrics (strong signals, used for alarm)
-- TODO: Language-quality based metrics (weak signals)
-
-Suggested "dashboard" fields:
-- faithfulness_mean + % below threshold (every N*M steps, primary gate):
-  check on a small fixed subset (e.g., 50–100 docs)
-- rougeLsum, bertscore_f1_mean (every N steps, secondary monitors)
-- rep_3gram, compression_ratio statistics (every N steps, tertiary alarms)
+Gate fails if:
+  - too many sentences have low best-entailment
+  - OR any sentence has high contradiction
+  - OR mean entailment is below a threshold
 """
 
-import json
-import os
 import re
-import sys
 import time
-import unicodedata
-
-from transformers import AutoTokenizer
-
-
-# the checkpoint data to evaluate
-DATA_DIR = "small_eval_results/"  # test_eval_results/ contains a larger dataset
-FILE_MASK = r"^checkpoint-(\d+)-inputs-refs-preds.jsonl$"
-
-# the tokenizer to use
-MODEL = "RuterNorway/Llama-2-13b-chat-norwegian"
-TOKENIZER = AutoTokenizer.from_pretrained(MODEL)
-
-# Backward compatibility aliases
-TEST_DATA_DIR = DATA_DIR
-TEST_FILE_MASK = FILE_MASK
-TEST_MODEL = MODEL
-TEST_TOKENIZER = TOKENIZER
-
-
-# Reference-based
-
-import evaluate
-
-rouge = evaluate.load("rouge")
-
-# Load BERTScore lazily - it requires bert_score package which may not be installed
-_bertscore = None
-
-
-def _get_bertscore():
-    """Lazy load BERTScore metric."""
-    global _bertscore
-    if _bertscore is None:
-        try:
-            _bertscore = evaluate.load("bertscore")
-        except Exception as e:
-            raise ImportError(
-                f"BERTScore could not be loaded. Install with: pip install bert_score. "
-                f"Original error: {e}"
-            )
-    return _bertscore
-
-
-# Load BERT tokenizer for truncation (same model as used in BERTScore)
-_bert_tokenizer = None
-
-
-def _get_bert_tokenizer():
-    """Lazy load BERT tokenizer for truncation."""
-    global _bert_tokenizer
-    if _bert_tokenizer is None:
-        _bert_tokenizer = AutoTokenizer.from_pretrained("NbAiLab/nb-bert-large")
-    return _bert_tokenizer
-
-
-def _truncate_text_for_bert(text, max_tokens=510):
-    """Truncate text to fit within BERT's max sequence length (512 tokens).
-
-    Uses 510 to leave room for [CLS] and [SEP] tokens.
-    """
-    tokenizer = _get_bert_tokenizer()
-    # Tokenize and truncate
-    tokens = tokenizer.encode(text, add_special_tokens=False, max_length=max_tokens, truncation=True)
-    # Decode back to text
-    return tokenizer.decode(tokens, skip_special_tokens=True)
-
-
-def eval_reference(pred_summaries, ref_summaries, include_bertscore=True):
-    """Compute reference-based metrics (ROUGE + optionally BERTScore).
-
-    Args:
-        pred_summaries: List of predicted summaries
-        ref_summaries: List of reference summaries
-        include_bertscore: If True, compute BERTScore (slower, ~1.5-2 min for 500 examples)
-
-    Returns:
-        Dictionary with ROUGE metrics, optionally BERTScore, and timing information
-    """
-    # Track ROUGE computation time
-    rouge_start = time.time()
-    r = rouge.compute(
-        predictions=pred_summaries,
-        references=ref_summaries,
-        use_stemmer=False,  # avoid for Norwegian
-        rouge_types=["rouge1", "rouge2", "rougeL", "rougeLsum"],
-    )
-    rouge_time = time.time() - rouge_start
-
-    result = {**r}
-    result["_timing"] = {"rouge_seconds": rouge_time}
-
-    if include_bertscore:
-        bertscore_start = time.time()
-        try:
-            bertscore = _get_bertscore()
-            # Truncate texts to avoid BERT max length errors (512 tokens)
-            pred_summaries_truncated = [_truncate_text_for_bert(text) for text in pred_summaries]
-            ref_summaries_truncated = [_truncate_text_for_bert(text) for text in ref_summaries]
-
-            b = bertscore.compute(
-                predictions=pred_summaries_truncated,
-                references=ref_summaries_truncated,
-                model_type="NbAiLab/nb-bert-large",  # Norwegian encoder
-                num_layers=24,  # BERT-large has 24 layers (must specify manually as model not in BERTScore registry)
-                rescale_with_baseline=False,  # Baseline not available for this model
-            )
-            result["bertscore_f1_mean"] = sum(b["f1"]) / len(b["f1"])
-        except ImportError as e:
-            print(f"Warning: BERTScore not available ({e}). Continuing without BERTScore.", file=sys.stderr)
-        finally:
-            bertscore_time = time.time() - bertscore_start
-            result["_timing"]["bertscore_seconds"] = bertscore_time
-    else:
-        result["_timing"]["bertscore_seconds"] = 0.0
-
-    return result
-
-
-# TODO: also bleurt
-
-
-# Hygiene metrics
-
-from collections import Counter
-
-
-def ngram_repetition(doc, n=3):
-    tokens = re.findall(r"\d+(?:[.,]\d+)?|[\w/-]+|[^\w\s]", doc.lower())
-    if len(tokens) < n:
-        return 0.0
-
-    ngrams = [tuple(tokens[i : i + n]) for i in range(len(tokens) - n + 1)]
-    assert len(ngrams) > 0
-
-    total_count = len(ngrams)
-    unique_count = len(set(ngrams))
-
-    # The repetition rate is the proportion of non-unique n-grams
-    repetition_rate = (total_count - unique_count) / total_count
-    return repetition_rate
-
-
-def hygiene(doc, pred_summary):
-    doc_words = len(re.findall(r"\w+", doc))
-    pred_sum_words = len(re.findall(r"\w+", pred_summary))
-    summary_stripped = pred_summary.strip()
-    ends_with_punct = bool(summary_stripped) and unicodedata.category(summary_stripped[-1]).startswith("P")
-    return {
-        "pred_summary_words": pred_sum_words,
-        "doc_words": doc_words,
-        "compression_ratio": (pred_sum_words / doc_words) if doc_words else None,
-        "rep_3gram": ngram_repetition(pred_summary, n=3),
-        "ends_with_punct": ends_with_punct,
-    }
-
-
-def eval_hygiene(docs, pred_summaries):
-    hygiene_start = time.time()
-    hygiene_out = []
-    for doc, pred_summary in zip(docs, pred_summaries):
-        hygiene_out.append(hygiene(doc, pred_summary))
-    compression_ratios = [h["compression_ratio"] for h in hygiene_out if h["compression_ratio"] is not None]
-    mean_compression_ratio = sum(compression_ratios) / len(compression_ratios) if compression_ratios else None
-    mean_rep_3gram = sum(h["rep_3gram"] for h in hygiene_out) / len(hygiene_out)
-    ratio_ends_with_punct = sum(h["ends_with_punct"] for h in hygiene_out) / len(hygiene_out)
-    hygiene_time = time.time() - hygiene_start
-    return {
-        "mean_compression_ratio": mean_compression_ratio,
-        "mean_rep_3gram": mean_rep_3gram,
-        "ratio_ends_with_punct": ratio_ends_with_punct,
-        "_timing": {"hygiene_seconds": hygiene_time},
-    }
-
-
-# NLI-based faithfulness
-from typing import Any, Dict, List, Optional, Tuple
-
 import warnings
+from typing import Any, Dict, List, Optional, Tuple
 
 # Suppress PyTorch/CUDA pynvml deprecation FutureWarning (before torch is imported)
 warnings.filterwarnings("ignore", category=FutureWarning, module="torch.cuda")
@@ -222,9 +22,12 @@ import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from transformers.utils import logging as hf_logging
 
-# Suppress "overflowing tokens are not returned..." and similar tokenizer warnings
 hf_logging.set_verbosity_error()
 
+
+# ---------------------------------------------------------------------------
+# Sentence / paragraph splitting
+# ---------------------------------------------------------------------------
 
 def split_sentences(text: str) -> List[str]:
     text = re.sub(r"\s+", " ", text).strip()
@@ -234,6 +37,10 @@ def split_sentences(text: str) -> List[str]:
     return [s.strip() for s in sents if s.strip()]
 
 
+# ---------------------------------------------------------------------------
+# Document chunking
+# ---------------------------------------------------------------------------
+
 MAX_NLI_TOKENS = 512
 PREMISE_CHUNK_OVERLAP = 96
 PREMISE_SENT_MAX_TOKENS = 96
@@ -242,7 +49,6 @@ PREMISE_SENT_PART_OVERLAP = 24
 
 
 def _build_overlapping_chunks(token_ids: List[int], max_tokens: int, overlap: int) -> List[List[int]]:
-    """Build overlapping chunks in a single forward pass."""
     if max_tokens <= 0:
         return []
     if len(token_ids) <= max_tokens:
@@ -259,7 +65,6 @@ def _build_overlapping_chunks(token_ids: List[int], max_tokens: int, overlap: in
 
 
 def _split_long_sentence_ids(ids: List[int]) -> List[List[int]]:
-    """Split over-long sentence token IDs into overlapping parts."""
     if len(ids) <= PREMISE_SENT_MAX_TOKENS:
         return [ids]
     step = max(1, PREMISE_SENT_PART_TOKENS - PREMISE_SENT_PART_OVERLAP)
@@ -273,7 +78,6 @@ def _split_long_sentence_ids(ids: List[int]) -> List[List[int]]:
 
 
 def _build_sentence_aligned_chunks(text: str, tokenizer, max_tokens: int, overlap: int) -> List[List[int]]:
-    """Chunk by sentences while ensuring at least overlap tokens between chunks."""
     sentences = split_sentences(text)
     if not sentences:
         return []
@@ -282,6 +86,7 @@ def _build_sentence_aligned_chunks(text: str, tokenizer, max_tokens: int, overla
     for s in sentences:
         ids = tokenizer.encode(s, add_special_tokens=False)
         sent_ids.extend(_split_long_sentence_ids(ids))
+
     chunks: List[List[int]] = []
     current: List[int] = []
 
@@ -306,18 +111,15 @@ def _build_sentence_aligned_chunks(text: str, tokenizer, max_tokens: int, overla
 
     if current:
         chunks.append(current)
-
     return chunks
 
 
 def _split_paragraphs(text: str) -> List[str]:
-    """Split text into paragraphs based on blank lines."""
     paragraphs = re.split(r"\n\s*\n+", text.strip())
     return [p.strip() for p in paragraphs if p.strip()]
 
 
 def _build_paragraph_aware_chunks(text: str, tokenizer, max_tokens: int, overlap: int) -> List[List[int]]:
-    """Chunk by paragraphs, using sentence-aware chunking inside long paragraphs."""
     paragraphs = _split_paragraphs(text)
     if not paragraphs:
         return []
@@ -354,7 +156,7 @@ def chunk_document(
     overlap: int = PREMISE_CHUNK_OVERLAP,
     prefer_sentence_boundaries: bool = True,
 ) -> List[str]:
-    """Chunk document for NLI premise-hypothesis evaluation."""
+    """Chunk document for NLI premise–hypothesis evaluation."""
     doc = doc.strip()
     if not doc:
         return [""]
@@ -367,9 +169,14 @@ def chunk_document(
     else:
         ids = tokenizer.encode(doc, add_special_tokens=False)
         chunk_ids_list = _build_overlapping_chunks(ids, max_tokens=max_tokens, overlap=overlap)
+
     chunks = [tokenizer.decode(chunk_ids, skip_special_tokens=True) for chunk_ids in chunk_ids_list]
     return chunks if chunks else [""]
 
+
+# ---------------------------------------------------------------------------
+# NLI faithfulness scorer + gate
+# ---------------------------------------------------------------------------
 
 class NLIFaithfulnessGate:
     """
@@ -635,7 +442,8 @@ class NLIFaithfulnessGate:
             "premise_sentence_pairs_per_second": premise_sentence_pairs_per_second,
         }
 
-    def eval_faithfulness(self, docs, pred_summaries):
+    def eval_faithfulness(self, docs: List[str], pred_summaries: List[str]) -> Dict[str, Any]:
+        """Aggregate NLI faithfulness over a batch of documents."""
         faithfulness_start = time.time()
         faithfulness_out = []
         for doc, pred_summary in zip(docs, pred_summaries):
@@ -662,152 +470,3 @@ class NLIFaithfulnessGate:
             "num_premise_sentence_pairs": num_premise_sentence_pairs,
             "_timing": {"nli_faithfulness_seconds": faithfulness_time},
         }
-
-
-def extended_evaluate(
-    input_texts,
-    prediction_texts,
-    reference_texts,
-    print_output=False,
-    include_bertscore=True,
-    include_faithfulness=False,
-):
-    """Compute evaluation metrics with selective inclusion of expensive metrics.
-
-    Args:
-        input_texts: List of input documents
-        prediction_texts: List of predicted summaries
-        reference_texts: List of reference summaries
-        print_output: If True, print detailed results
-        include_bertscore: If True, compute BERTScore (~1.5-2 min for 500 examples)
-        include_faithfulness: If True, compute NLI faithfulness (~37 min for 500 examples)
-
-    Returns:
-        Dictionary with computed metrics and timing information in "_timing" key
-    """
-    extended_start = time.time()
-
-    reference_out = eval_reference(prediction_texts, reference_texts, include_bertscore=include_bertscore)
-    if print_output:
-        print("REFERENCE:")
-        print(json.dumps(reference_out, indent=2, ensure_ascii=False, default=str))
-
-    hygiene_out = eval_hygiene(input_texts, prediction_texts)
-    if print_output:
-        print("\nHYGIENE:")
-        print(json.dumps(hygiene_out, indent=2, ensure_ascii=False, default=str))
-
-    result = {
-        "reference": reference_out,
-        "hygiene": hygiene_out,
-    }
-
-    timing = {}
-    if "_timing" in reference_out:
-        timing.update(reference_out["_timing"])
-        reference_out_clean = {k: v for k, v in reference_out.items() if k != "_timing"}
-        result["reference"] = reference_out_clean
-
-    if "_timing" in hygiene_out:
-        timing.update(hygiene_out["_timing"])
-        hygiene_out_clean = {k: v for k, v in hygiene_out.items() if k != "_timing"}
-        result["hygiene"] = hygiene_out_clean
-
-    if include_faithfulness:
-        gate = NLIFaithfulnessGate()
-        faithfulness_out = gate.eval_faithfulness(input_texts, prediction_texts)
-        if print_output:
-            print("\nFAITHFULNESS:")
-            print(json.dumps(faithfulness_out, indent=2, ensure_ascii=False, default=str))
-
-        if "_timing" in faithfulness_out:
-            timing.update(faithfulness_out["_timing"])
-            faithfulness_out_clean = {k: v for k, v in faithfulness_out.items() if k != "_timing"}
-            result["faithfulness"] = faithfulness_out_clean
-        else:
-            result["faithfulness"] = faithfulness_out
-    else:
-        result["faithfulness"] = None
-        timing["nli_faithfulness_seconds"] = 0.0
-
-    timing["extended_metrics_total_seconds"] = time.time() - extended_start
-    result["_timing"] = timing
-
-    return result
-
-
-def evaluate_summaries(input_texts, prediction_texts, reference_texts, print_output=False):
-    """Run full evaluation with all metrics (BERTScore + NLI faithfulness)."""
-    return extended_evaluate(
-        input_texts,
-        prediction_texts,
-        reference_texts,
-        print_output=print_output,
-        include_bertscore=True,
-        include_faithfulness=True,
-    )
-
-
-def dummy_data_test():
-    doc = (
-        "Oslo kommune opplyser at budsjettet for 2026 øker med 3 prosent. "
-        "Samtidig varsles det ingen økning i eiendomsskatten."
-    )
-    pred_summ = "Budsjettet i Oslo øker i 2026, mens eiendomsskatten forblir uendret."
-    ref_summ = "Oslo kommune øker budsjettet med 3 prosent i 2026, uten å heve eiendomsskatten."
-
-    extended_evaluate([doc], [pred_summ], [ref_summ], include_bertscore=True, include_faithfulness=False)
-
-
-def detokenize_data(data):
-    return TOKENIZER.batch_decode(data, skip_special_tokens=True)
-
-
-def find_files(data_dir=DATA_DIR, file_mask=FILE_MASK):
-    data_files = sorted(f for f in os.listdir(data_dir) if re.match(file_mask, f))
-    return data_files
-
-
-def load_texts(input_file):
-    def collect(data, key):
-        fields = []
-        for d in data:
-            fields.extend(d[key])
-        return fields
-
-    data = []
-    with open(os.path.join(DATA_DIR, input_file), "r") as f:
-        for line in f:
-            data.append(json.loads(line))
-
-    inputs = collect(data, "input")
-    predictions = collect(data, "prediction")
-    references = collect(data, "reference")
-
-    assert len(inputs) == len(references) == len(predictions)
-    print(f"Loaded {len(inputs)} input-reference-prediction examples from {input_file}")
-
-    input_texts = detokenize_data(inputs)
-    prediction_texts = detokenize_data(predictions)
-    reference_texts = detokenize_data(references)
-
-    input_texts = [text.replace("[INST] Oppsummer følgende tekst:\n\nDokument: ", "") for text in input_texts]
-
-    return input_texts, prediction_texts, reference_texts
-
-
-def save_results(eval_results, input_file, data_dir=DATA_DIR, file_mask=FILE_MASK):
-    match = re.match(file_mask, input_file)
-    checkpoint_id = match.group(1) if match and match.group(1) else "UNKNOWN"
-    output_file = os.path.join(data_dir, f"checkpoint-{checkpoint_id}-eval-results.json")
-    with open(output_file, "w") as f:
-        json.dump(eval_results, f, indent=2, ensure_ascii=False, default=str)
-        print(f"Saved evaluation results to {output_file}")
-
-
-if __name__ == "__main__":
-    data_files = find_files(DATA_DIR, FILE_MASK)
-    for input_file in data_files:
-        input_texts, prediction_texts, reference_texts = load_texts(input_file)
-        eval_results = extended_evaluate(input_texts, prediction_texts, reference_texts)
-        save_results(eval_results, input_file)
