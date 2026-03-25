@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-#SBATCH -J gpu-eval-checkpoints-multigpu
+#SBATCH -J eval-checkpoints-singlegpu
 #SBATCH -p accel
-#SBATCH --gres=gpu:4  # Request 2 GPUs (adjust if needed)
+#SBATCH --gres=gpu:1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=16  # Increase CPUs for multi-GPU
-#SBATCH --mem=384G  # Increase memory for multi-GPU
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=96G  # Some nodes have 120G available, but queueing could take longer
 #SBATCH --time=72:00:00  # 3 days - many checkpoints × ~1hr each
-# Account: REQUIRED - Pass via: sbatch --account=YOUR_ACCOUNT run_evaluate_distributed_checkpoints_multigpu.sbatch ...
-# Example: sbatch --account=YOUR_PROJECT_ID run_evaluate_distributed_checkpoints_multigpu.sbatch --model=gemma-2-9b
+# Account: REQUIRED - Pass via: sbatch --account=YOUR_ACCOUNT run_evaluate_distributed_checkpoints_singlegpu.sbatch ...
+# Example: sbatch --account=YOUR_PROJECT_ID run_evaluate_distributed_checkpoints_singlegpu.sbatch --model=normistral-7b-instruct
 #SBATCH -o logs/%x-%j.out
 #SBATCH -e logs/%x-%j.err
 
@@ -38,9 +38,9 @@ fi
 
 # ===== CONFIGURATION =====
 # Parse command-line arguments or use defaults
-# Usage: sbatch --export=SLURM_ACCOUNT=YOUR_PROJECT_ID run_evaluate_distributed_checkpoints_multigpu.sbatch [--model=MODEL] [--num_gpus=N] [--checkpoint_base_dir=DIR] [--val_dataset=PATH] [--specific_checkpoints="100 200 300"]
+# Usage: sbatch --account=YOUR_PROJECT_ID run_evaluate_distributed_checkpoints_singlegpu.sbatch [--model=MODEL] [--checkpoint_base_dir=DIR] [--val_dataset=PATH] [--specific_checkpoints="100 200 300"]
 MODEL=${MODEL:-llama-2-13b-chat-norwegian}
-NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
+NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-1}}
 CHECKPOINT_BASE_DIR=${CHECKPOINT_BASE_DIR:-"models/${MODEL}-apptainer-fsdp"}
 VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
 VAL_BATCH_SIZE=${VAL_BATCH_SIZE:-32}
@@ -137,11 +137,11 @@ for arg in "$@"; do
         *)
             echo "ERROR: Unknown argument: $arg"
             echo ""
-            echo "Usage: sbatch --export=SLURM_ACCOUNT=YOUR_PROJECT_ID run_evaluate_distributed_checkpoints_multigpu.sbatch [OPTIONS]"
+            echo "Usage: sbatch --account=YOUR_PROJECT_ID run_evaluate_distributed_checkpoints_singlegpu.sbatch [OPTIONS]"
             echo ""
             echo "Options:"
             echo "  --model=MODEL                    Model short name (default: llama-2-13b-chat-norwegian)"
-            echo "  --num_gpus=N                     Number of GPUs (default: 4)"
+            echo "  --num_gpus=N                     Number of GPUs (default: 1)"
             echo "  --checkpoint_base_dir=DIR         Base directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
             echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
             echo "  --val_batch_size=N                Validation batch size per device (default: 32; auto-adjusted by Python script based on model size)"
@@ -368,7 +368,7 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "    --hf_token [REDACTED]"
     echo "    --output_dir [optional, defaults to model_dir/all_eval_results]"
     echo "    --wandb_project lm-evaluation"
-    echo "    --use_greedy --use_multi_gpu"
+    echo "    --use_greedy"
     if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
         echo "    --include_nli_faithfulness"
         if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
@@ -386,7 +386,7 @@ if [ "$DRY_RUN" = "true" ]; then
 fi
 
 echo "==================================================================="
-echo "Multi-GPU Evaluation: $NUM_GPUS GPUs"
+echo "Single-GPU Evaluation"
 echo "Evaluating checkpoints from: $CHECKPOINT_BASE_DIR"
 echo "Model: $MODEL"
 echo "==================================================================="
@@ -610,12 +610,11 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     
     STARTED_AT=$(date '+%Y-%m-%d %H:%M:%S')
     echo "==================================================================="
-    echo "[$CHECKPOINT_NUM/$NUM_CHECKPOINTS] Evaluating: $CHECKPOINT_NAME | model=$MODEL | gpus=$NUM_GPUS | val_size=$VAL_DATA_SIZE | batch=$VAL_BATCH_SIZE | started=$STARTED_AT"
+    echo "[$CHECKPOINT_NUM/$NUM_CHECKPOINTS] Evaluating: $CHECKPOINT_NAME | model=$MODEL | gpu=single | val_size=$VAL_DATA_SIZE | batch=$VAL_BATCH_SIZE | started=$STARTED_AT"
     echo "  dir: $CHECKPOINT_DIR"
     echo "==================================================================="
     
-    # Command to run inside apptainer - use model parallelism, not torchrun
-    # Model parallelism (device_map="auto") doesn't need torchrun
+    # Command to run inside apptainer - single GPU, no model parallelism needed
     # Build NLI and keep_existing flags
     NLI_FLAGS=""
     if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
@@ -648,8 +647,8 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
             MODE_FLAGS="$MODE_FLAGS --update_$m"
         done
     fi
-    
-    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_batch_size $VAL_BATCH_SIZE --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu --major_checkpoint_interval $MAJOR_CHECKPOINT_INTERVAL $NLI_FLAGS $KEEP_FLAG $FORCE_FLAG$NLI_SUBSET_FLAG $MODE_FLAGS"
+
+    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_batch_size $VAL_BATCH_SIZE --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --major_checkpoint_interval $MAJOR_CHECKPOINT_INTERVAL $NLI_FLAGS $KEEP_FLAG $FORCE_FLAG$NLI_SUBSET_FLAG $MODE_FLAGS"
 
     # Apptainer commands - all on one line
     # Install bert_score for BERTScore evaluation (required by evaluate library)
