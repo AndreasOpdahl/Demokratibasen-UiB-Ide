@@ -47,8 +47,9 @@ VAL_BATCH_SIZE=${VAL_BATCH_SIZE:-32}
 VAL_DATA_SIZE=${VAL_DATA_SIZE:-500}
 SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:-""}
 DRY_RUN=${DRY_RUN:-false}
-# NLI Faithfulness evaluation flags
-INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-false}
+# NLI Faithfulness evaluation flags: "auto" (default) = on for major checkpoints only,
+# "true" = on for all checkpoints, "false" = off for all checkpoints
+INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-auto}
 # Empty = Python default (100 NLI examples). Set equal to VAL_DATA_SIZE for full-val NLI.
 NLI_SUBSET_SIZE=${NLI_SUBSET_SIZE:-}
 KEEP_EXISTING=${KEEP_EXISTING:-false}
@@ -91,6 +92,9 @@ for arg in "$@"; do
             ;;
         --include_nli_faithfulness|--include-nli-faithfulness)
             INCLUDE_NLI_FAITHFULNESS=true
+            ;;
+        --no_nli_faithfulness|--no-nli-faithfulness)
+            INCLUDE_NLI_FAITHFULNESS=false
             ;;
         --keep_existing)
             KEEP_EXISTING=true
@@ -148,7 +152,8 @@ for arg in "$@"; do
             echo "  --val_data_size=N                 Number of validation examples (default: 500; use 1000 for extended eval)"
             echo "  --specific_checkpoints=\"N1 N2\"   Space-separated checkpoint numbers to evaluate (default: all)"
             echo "  --force_recompute                  Re-evaluate even when results exist (e.g. backfill missed checkpoints)"
-            echo "  --include_nli_faithfulness        Enable NLI-based faithfulness evaluation (slow: ~4.5s per example)"
+            echo "  --include_nli_faithfulness        Enable NLI-based faithfulness for ALL checkpoints (default: auto = major only)"
+            echo "  --no_nli_faithfulness             Disable NLI-based faithfulness for all checkpoints (override auto)"
             echo "  --nli_subset_size=N               NLI examples (default 100 in Python if omitted); set N = val_data_size for full val NLI"
             echo "  --major-only                      Only evaluate major checkpoints (every Nth step)"
             echo "  --minor-only                      Only evaluate minor checkpoints (not every Nth step)"
@@ -272,8 +277,8 @@ echo "  VAL_DATASET: $VAL_DATASET"
 echo "  VAL_BATCH_SIZE: $VAL_BATCH_SIZE"
 echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (1000 → separate -examples_1000.json/.jsonl files)"
 echo "  SPECIFIC_CHECKPOINTS: ${SPECIFIC_CHECKPOINTS:-all}"
-echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS"
-if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
+echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS (auto = major checkpoints only)"
+if [ "$INCLUDE_NLI_FAITHFULNESS" != "false" ]; then
     if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
         echo "  NLI_SUBSET_SIZE: $NLI_SUBSET_SIZE"
     else
@@ -370,7 +375,11 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "    --wandb_project lm-evaluation"
     echo "    --use_greedy --use_multi_gpu"
     if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
-        echo "    --include_nli_faithfulness"
+        echo "    --include_nli_faithfulness  (all checkpoints)"
+    elif [ "$INCLUDE_NLI_FAITHFULNESS" = "auto" ]; then
+        echo "    --include_nli_faithfulness  (auto: major checkpoints only)"
+    fi
+    if [ "$INCLUDE_NLI_FAITHFULNESS" != "false" ]; then
         if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
             echo "    --nli_subset_size $NLI_SUBSET_SIZE"
         else
@@ -534,7 +543,11 @@ else
         exit 1
     fi
     declare -A CHECKPOINT_MAP
-    
+
+    # Bash < 4.4 treats empty associative arrays as unbound under set -u;
+    # disable -u for the map-building section.
+    set +u
+
     # Add main checkpoints first
     echo "DEBUG: Processing main checkpoints..."
     for ckpt in $MAIN_CHECKPOINTS; do
@@ -544,27 +557,29 @@ else
         fi
     done
     echo "DEBUG: Found ${#CHECKPOINT_MAP[@]} main checkpoints"
-    
+
     # Add backup checkpoints only if main doesn't exist.
     # Process MAJOR before REGULAR so step 500 uses major-checkpoint-500 (major steps are
     # stored only in major_checkpoints/, not regular_checkpoints/ - regular-checkpoint-500 may be empty).
     echo "DEBUG: Processing backup checkpoints (major first, then regular)..."
     for ckpt in $MAJOR_CHECKPOINTS $REGULAR_CHECKPOINTS; do
         if [ -n "$ckpt" ]; then
-            step=$(basename "$ckpt" | sed 's/checkpoint-//' | sed 's/regular-checkpoint-//' | sed 's/major-checkpoint-//')
+            step=$(basename "$ckpt" | sed -E 's/^(regular-checkpoint-|major-checkpoint-|checkpoint-)//')
             if [ -z "${CHECKPOINT_MAP[$step]:-}" ]; then
                 CHECKPOINT_MAP[$step]="$ckpt"
             fi
         fi
     done
     echo "DEBUG: Total checkpoints after adding backups: ${#CHECKPOINT_MAP[@]}"
-    
+
     # Sort by step number and build CHECKPOINTS string
     CHECKPOINTS=""
     for step in $(printf '%s\n' "${!CHECKPOINT_MAP[@]}" | sort -n); do
         CHECKPOINTS="$CHECKPOINTS ${CHECKPOINT_MAP[$step]}"
     done
     CHECKPOINTS=$(echo $CHECKPOINTS | xargs)  # Trim leading/trailing spaces
+
+    set -u
     echo "DEBUG: Checkpoint discovery complete (all checkpoints mode)"
 fi
 
@@ -616,13 +631,19 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     
     # Command to run inside apptainer - use model parallelism, not torchrun
     # Model parallelism (device_map="auto") doesn't need torchrun
-    # Build NLI and keep_existing flags
+    # Build NLI flags (per-checkpoint: "auto" enables NLI only for major checkpoints)
     NLI_FLAGS=""
+    NLI_SUBSET_FLAG=""
+    CKPT_STEP=$(basename "$CHECKPOINT_DIR" | sed -E 's/^(regular-checkpoint-|major-checkpoint-|checkpoint-)//')
     if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
         NLI_FLAGS="--include_nli_faithfulness"
+    elif [ "$INCLUDE_NLI_FAITHFULNESS" = "auto" ]; then
+        CKPT_REMAINDER=$((CKPT_STEP % MAJOR_CHECKPOINT_INTERVAL))
+        if [ "$CKPT_REMAINDER" -eq 0 ]; then
+            NLI_FLAGS="--include_nli_faithfulness"
+        fi
     fi
-    NLI_SUBSET_FLAG=""
-    if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ] && [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+    if [ -n "$NLI_FLAGS" ] && [ -n "${NLI_SUBSET_SIZE:-}" ]; then
         NLI_SUBSET_FLAG=" --nli_subset_size $NLI_SUBSET_SIZE"
     fi
     KEEP_FLAG=""

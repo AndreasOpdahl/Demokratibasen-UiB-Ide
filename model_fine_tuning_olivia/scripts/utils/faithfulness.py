@@ -8,8 +8,15 @@ Gate fails if:
   - too many sentences have low best-entailment
   - OR any sentence has high contradiction
   - OR mean entailment is below a threshold
+
+Per-example NLI results are persisted to a JSONL *details file* so that
+expanding the NLI subset size (e.g. 100 → 200) only requires running NLI
+on the *new* examples; previously computed results are reused and the
+aggregate is recalculated over the full set.
 """
 
+import json
+import os
 import re
 import time
 import warnings
@@ -442,31 +449,141 @@ class NLIFaithfulnessGate:
             "premise_sentence_pairs_per_second": premise_sentence_pairs_per_second,
         }
 
+    # ------------------------------------------------------------------
+    # Aggregation
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def aggregate_faithfulness_results(
+        per_example_results: List[Dict[str, Any]],
+        total_time: Optional[float] = None,
+        num_reused: int = 0,
+        num_computed: int = 0,
+    ) -> Dict[str, Any]:
+        """Compute aggregate faithfulness metrics from per-example ``score_and_gate`` results."""
+        n = len(per_example_results)
+        if n == 0:
+            return {"error": "no examples to aggregate"}
+
+        ratio_passed = sum(1 for f in per_example_results if f["passed"]) / n
+        reasons_failed = [f["reasons"] for f in per_example_results if not f["passed"]]
+        total_pairs = sum(f["num_premise_sentence_pairs"] for f in per_example_results)
+        mean_ent = sum(f["faithfulness"]["entailment_mean"] for f in per_example_results) / n
+        min_ent = min(f["faithfulness"]["entailment_min"] for f in per_example_results)
+        mean_low_ent = sum(f["faithfulness"]["low_entailment_sentences"] for f in per_example_results) / n
+        max_con = max(f["faithfulness"]["contradiction_max"] for f in per_example_results)
+        mean_high_con = sum(f["faithfulness"]["high_contradiction_sentences"] for f in per_example_results) / n
+        mean_outliers = sum(f["faithfulness"]["outlier_rate"] for f in per_example_results) / n
+
+        result: Dict[str, Any] = {
+            "mean_entailment_score": mean_ent,
+            "min_entailment_score": min_ent,
+            "mean_ratio_low_entailment_sentences": mean_low_ent,
+            "max_contradiction_score": max_con,
+            "mean_ratio_high_contradiction_sentences": mean_high_con,
+            "mean_ratio_outliers": mean_outliers,
+            "ratio_passed_documents": ratio_passed,
+            "reasons_failed": reasons_failed,
+            "num_premise_sentence_pairs": total_pairs,
+            "nli_subset_size": n,
+        }
+        if num_reused or num_computed:
+            result["num_reused"] = num_reused
+            result["num_computed"] = num_computed
+        if total_time is not None:
+            result["_timing"] = {"nli_faithfulness_seconds": total_time}
+        return result
+
+    # ------------------------------------------------------------------
+    # Batch evaluation (original non-incremental API — kept for compat)
+    # ------------------------------------------------------------------
+
     def eval_faithfulness(self, docs: List[str], pred_summaries: List[str]) -> Dict[str, Any]:
         """Aggregate NLI faithfulness over a batch of documents."""
-        faithfulness_start = time.time()
-        faithfulness_out = []
-        for doc, pred_summary in zip(docs, pred_summaries):
-            faithfulness_out.append(self.score_and_gate(doc, pred_summary))
-        ratio_passed_documents = sum(1 for f in faithfulness_out if f["passed"]) / len(faithfulness_out)
-        reasons_failed = [f["reasons"] for f in faithfulness_out if not f["passed"]]
-        num_premise_sentence_pairs = sum(f["num_premise_sentence_pairs"] for f in faithfulness_out)
-        mean_entailment_score = sum(f["faithfulness"]["entailment_mean"] for f in faithfulness_out) / len(faithfulness_out)
-        min_entailment_score = min(f["faithfulness"]["entailment_min"] for f in faithfulness_out)
-        mean_ratio_low_entailment_sentences = sum(f["faithfulness"]["low_entailment_sentences"] for f in faithfulness_out) / len(faithfulness_out)
-        max_contradiction_score = max(f["faithfulness"]["contradiction_max"] for f in faithfulness_out)
-        mean_ratio_high_contradiction_sentences = sum(f["faithfulness"]["high_contradiction_sentences"] for f in faithfulness_out) / len(faithfulness_out)
-        mean_ratio_outliers = sum(f["faithfulness"]["outlier_rate"] for f in faithfulness_out) / len(faithfulness_out)
-        faithfulness_time = time.time() - faithfulness_start
-        return {
-            "mean_entailment_score": mean_entailment_score,
-            "min_entailment_score": min_entailment_score,
-            "mean_ratio_low_entailment_sentences": mean_ratio_low_entailment_sentences,
-            "max_contradiction_score": max_contradiction_score,
-            "mean_ratio_high_contradiction_sentences": mean_ratio_high_contradiction_sentences,
-            "mean_ratio_outliers": mean_ratio_outliers,
-            "ratio_passed_documents": ratio_passed_documents,
-            "reasons_failed": reasons_failed,
-            "num_premise_sentence_pairs": num_premise_sentence_pairs,
-            "_timing": {"nli_faithfulness_seconds": faithfulness_time},
-        }
+        t0 = time.time()
+        per_example = [self.score_and_gate(doc, pred) for doc, pred in zip(docs, pred_summaries)]
+        return self.aggregate_faithfulness_results(
+            per_example,
+            total_time=time.time() - t0,
+            num_computed=len(per_example),
+        )
+
+    # ------------------------------------------------------------------
+    # Incremental evaluation with per-example caching
+    # ------------------------------------------------------------------
+
+    def eval_faithfulness_incremental(
+        self,
+        docs: List[str],
+        pred_summaries: List[str],
+        example_indices: List[int],
+        details_file: str,
+    ) -> Dict[str, Any]:
+        """Incremental NLI faithfulness with per-example result caching.
+
+        Previously computed results (keyed by ``example_index``) are loaded from
+        *details_file*.  Only examples absent from the cache are evaluated via
+        ``score_and_gate``.  All results (old + new) are then saved back, and
+        aggregate metrics are computed over the requested subset.
+
+        Returns the same dict shape as ``eval_faithfulness`` so callers need not
+        distinguish between the two APIs.
+        """
+        t0 = time.time()
+        cached = load_faithfulness_details(details_file)
+
+        to_compute: List[int] = []  # positions in docs/pred_summaries
+        for pos, idx in enumerate(example_indices):
+            if idx not in cached:
+                to_compute.append(pos)
+
+        num_reused = len(example_indices) - len(to_compute)
+        num_computed = len(to_compute)
+
+        if to_compute:
+            print(f"  NLI faithfulness: {num_reused} cached, {num_computed} to compute …")
+            for pos in to_compute:
+                idx = example_indices[pos]
+                result = self.score_and_gate(docs[pos], pred_summaries[pos])
+                cached[idx] = {"example_index": idx, **result}
+            save_faithfulness_details(details_file, cached)
+        else:
+            print(f"  NLI faithfulness: all {num_reused} examples cached — skipping NLI inference")
+
+        ordered = [cached[idx] for idx in example_indices if idx in cached]
+        return self.aggregate_faithfulness_results(
+            ordered,
+            total_time=time.time() - t0,
+            num_reused=num_reused,
+            num_computed=num_computed,
+        )
+
+
+# ---------------------------------------------------------------------------
+# Faithfulness detail file I/O  (module-level so they can be imported directly)
+# ---------------------------------------------------------------------------
+
+def load_faithfulness_details(details_file: str) -> Dict[int, Dict[str, Any]]:
+    """Load per-example NLI results from a JSONL file, keyed by ``example_index``."""
+    results: Dict[int, Dict[str, Any]] = {}
+    if not os.path.exists(details_file):
+        return results
+    try:
+        with open(details_file, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                entry = json.loads(line)
+                results[entry["example_index"]] = entry
+    except (json.JSONDecodeError, IOError, KeyError) as exc:
+        warnings.warn(f"Could not fully load {details_file}: {exc}")
+    return results
+
+
+def save_faithfulness_details(details_file: str, results: Dict[int, Dict[str, Any]]) -> None:
+    """Save per-example NLI results to a JSONL file (sorted by ``example_index``)."""
+    os.makedirs(os.path.dirname(details_file), exist_ok=True)
+    with open(details_file, "w", encoding="utf-8") as f:
+        for idx in sorted(results.keys()):
+            f.write(json.dumps(results[idx], ensure_ascii=False) + "\n")

@@ -83,6 +83,7 @@ from utils import (
     get_model_dir_from_checkpoint,
     get_eval_results_path,
     get_predictions_file_path,
+    get_faithfulness_details_path,
     get_old_eval_results_path,
     load_eval_results,
     save_eval_results,
@@ -372,7 +373,12 @@ class CausalLMTrainer(Trainer):
             inst_token_id = None
             if hasattr(self._processing_class, 'convert_tokens_to_ids'):
                 try:
-                    inst_token_id = self._processing_class.convert_tokens_to_ids('[/INST]')
+                    candidate_inst_id = self._processing_class.convert_tokens_to_ids('[/INST]')
+                    unk_token_id = getattr(self._processing_class, 'unk_token_id', None)
+                    # Some tokenizers map unknown strings to unk_token_id (often 0).
+                    # Treat that as "not found" so we don't mis-handle generation boundaries.
+                    if candidate_inst_id is not None and candidate_inst_id != unk_token_id:
+                        inst_token_id = candidate_inst_id
                 except:
                     pass
             
@@ -659,7 +665,11 @@ class CausalLMTrainer(Trainer):
         inst_token_id = None
         if hasattr(self._processing_class, 'convert_tokens_to_ids'):
             try:
-                inst_token_id = self._processing_class.convert_tokens_to_ids('[/INST]')
+                candidate_inst_id = self._processing_class.convert_tokens_to_ids('[/INST]')
+                unk_token_id = getattr(self._processing_class, 'unk_token_id', None)
+                # If [/INST] resolves to UNK, token-based [/INST] extraction is unsafe.
+                if candidate_inst_id is not None and candidate_inst_id != unk_token_id:
+                    inst_token_id = candidate_inst_id
             except:
                 pass
         
@@ -1253,7 +1263,7 @@ def load_model_and_peft_checkpoint(
             # First load model to CPU to get its structure
             base_model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                torch_dtype=torch.float16,
+                torch_dtype=torch.bfloat16,
                 device_map="cpu",  # Load to CPU first
                 token=hf_token,
                 low_cpu_mem_usage=True,
@@ -1282,7 +1292,7 @@ def load_model_and_peft_checkpoint(
             # Reload with device_map
             base_model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                torch_dtype=torch.float16,
+                torch_dtype=torch.bfloat16,
                 device_map=device_map,  # Use accelerate's device_map
                 token=hf_token,
                 low_cpu_mem_usage=True,
@@ -1293,7 +1303,7 @@ def load_model_and_peft_checkpoint(
             device_map_strategy = "auto"
             base_model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                torch_dtype=torch.float16,
+                torch_dtype=torch.bfloat16,
                 device_map=device_map_strategy,
                 token=hf_token,
                 low_cpu_mem_usage=True,
@@ -1302,7 +1312,7 @@ def load_model_and_peft_checkpoint(
         device_map_strategy = "cuda:0"
         base_model = AutoModelForCausalLM.from_pretrained(
             model_name,
-            torch_dtype=torch.float16,
+            torch_dtype=torch.bfloat16,
             device_map=device_map_strategy,
             token=hf_token,
             low_cpu_mem_usage=True,
@@ -1990,15 +2000,37 @@ def evaluate_checkpoint(
             if os.path.exists(results_file):
                 with open(results_file, 'r', encoding='utf-8') as f:
                     existing_results = json.load(f)
-            include_flags = {
-                "include_rouge": "rouge" in update_metrics,
-                "include_hygiene": "hygiene" in update_metrics,
-                "include_bertscore": "bertscore" in update_metrics,
-                "include_faithfulness": "faithfulness" in update_metrics,
+
+            # Unless force_recompute, skip metrics that already exist in the results
+            _METRIC_PRESENCE_KEYS = {
+                "rouge": "eval_rouge1",
+                "hygiene": "eval_hygiene_mean_compression_ratio",
+                "bertscore": "eval_reference_bertscore_f1_mean",
+                "faithfulness": "eval_faithfulness",
             }
-            # Build NLI subset texts if needed
+            actually_update = set(update_metrics)
+            if not force_recompute:
+                for metric_name in list(actually_update):
+                    presence_key = _METRIC_PRESENCE_KEYS.get(metric_name)
+                    if presence_key and presence_key in existing_results and existing_results[presence_key] is not None:
+                        print(f"⚠ Skipping {metric_name}: already present in {os.path.basename(results_file)} "
+                              f"(use --force_recompute to overwrite)")
+                        actually_update.discard(metric_name)
+                if not actually_update:
+                    print(f"All requested metrics already present for {checkpoint_name}. Nothing to update.")
+                    return existing_results, None
+
+            include_flags = {
+                "include_rouge": "rouge" in actually_update,
+                "include_hygiene": "hygiene" in actually_update,
+                "include_bertscore": "bertscore" in actually_update,
+                "include_faithfulness": "faithfulness" in actually_update,
+            }
+            # Build NLI subset texts + incremental details file path
             nli_in = nli_pred = None
-            if "faithfulness" in update_metrics:
+            nli_indices = None
+            faith_details = None
+            if "faithfulness" in actually_update:
                 use_first_n = val_data_size > nli_subset_size
                 nli_indices = get_or_create_fixed_nli_subset(
                     total_examples=len(input_texts),
@@ -2008,24 +2040,37 @@ def evaluate_checkpoint(
                 )
                 nli_in = [input_texts[i] for i in nli_indices]
                 nli_pred = [prediction_texts[i] for i in nli_indices]
+                faith_details = get_faithfulness_details_path(
+                    checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix,
+                )
             result = compute_metrics_from_texts(
                 input_texts, prediction_texts, reference_texts,
                 nli_input_texts=nli_in, nli_prediction_texts=nli_pred,
+                nli_example_indices=nli_indices,
+                faithfulness_details_file=faith_details,
                 **include_flags,
             )
+            # Re-read the results file right before merging to minimise the
+            # race window when parallel jobs update different metrics on the
+            # same checkpoint (e.g. --update-rouge and --update-faithfulness).
+            if os.path.exists(results_file):
+                with open(results_file, 'r', encoding='utf-8') as f:
+                    existing_results = json.load(f)
             existing_results.update(result["metrics"])
             existing_results.setdefault("_timing", {}).update(result["timing"])
             existing_results["checkpoint_name"] = checkpoint_name
             existing_results["checkpoint_step"] = checkpoint_step_int
             with open(results_file, 'w', encoding='utf-8') as f:
                 json.dump(existing_results, f, indent=2, ensure_ascii=False, default=str)
-            print(f"Updated metrics {update_metrics} in {results_file}")
+            print(f"Updated metrics {actually_update} in {results_file}")
             return existing_results, None
 
         else:
             # metrics_only: compute all applicable metrics from JSONL
             is_major = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
             nli_in = nli_pred = None
+            nli_indices = None
+            faith_details = None
             if include_nli_faithfulness and is_major:
                 use_first_n = val_data_size > nli_subset_size
                 nli_indices = get_or_create_fixed_nli_subset(
@@ -2036,6 +2081,9 @@ def evaluate_checkpoint(
                 )
                 nli_in = [input_texts[i] for i in nli_indices]
                 nli_pred = [prediction_texts[i] for i in nli_indices]
+                faith_details = get_faithfulness_details_path(
+                    checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix,
+                )
             result = compute_metrics_from_texts(
                 input_texts, prediction_texts, reference_texts,
                 include_rouge=True,
@@ -2043,6 +2091,8 @@ def evaluate_checkpoint(
                 include_bertscore=is_major,
                 include_faithfulness=include_nli_faithfulness and is_major,
                 nli_input_texts=nli_in, nli_prediction_texts=nli_pred,
+                nli_example_indices=nli_indices,
+                faithfulness_details_file=faith_details,
             )
             all_results = result["metrics"]
             all_results["_timing"] = result["timing"]
@@ -2854,7 +2904,13 @@ def evaluate_checkpoint(
                     try:
                         from utils.faithfulness import NLIFaithfulnessGate
                         gate = NLIFaithfulnessGate()
-                        faithfulness_out = gate.eval_faithfulness(nli_input_texts, nli_prediction_texts)
+                        faith_details_file = get_faithfulness_details_path(
+                            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix,
+                        )
+                        faithfulness_out = gate.eval_faithfulness_incremental(
+                            nli_input_texts, nli_prediction_texts,
+                            nli_indices, faith_details_file,
+                        )
                         if "_timing" in faithfulness_out:
                             extended_timing["nli_faithfulness_seconds"] = faithfulness_out.pop("_timing").get("nli_faithfulness_seconds", 0.0)
                         extended_results["faithfulness"] = faithfulness_out
@@ -3181,4 +3237,7 @@ Examples:
         except AlreadyEvaluatedError as e:
             print(f"⚠ SKIPPING: {e}")
             print(f"Checkpoint {args.checkpoint_dir} was already evaluated. Moving to next checkpoint.")
+            sys.exit(0)
+        except FileNotFoundError as e:
+            print(f"⚠ SKIPPING: {e}")
             sys.exit(0)

@@ -396,7 +396,9 @@ MODEL_CONFIGS = {
         lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
         learning_rate=1.5e-5,
-        prompt_config=PROMPT_NORMISTRAL,  # Note: This model has a custom chat template (role-based), but tokenizer.apply_chat_template() should handle it
+        # This tokenizer uses a ChatML-style role template (<|im_start|> ... <|im_end|>).
+        # Keep config aligned with that format for fallback/manual paths.
+        prompt_config=PROMPT_CHATML,
         architecture='mistral',
         train_batch_size=4,
         val_batch_size=16,

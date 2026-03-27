@@ -41,15 +41,24 @@ def _compute_nli_indices(
     seed: int,
     use_first_n_for_extended: bool,
 ) -> List[int]:
-    """Deterministic indices for NLI (full set, first N, or seeded random sample)."""
+    """Deterministic indices for NLI with monotonic nesting guarantee.
+
+    Uses a seeded permutation of [0..total_examples): the first *k* elements of
+    the permutation form the subset of size *k*.  Because the permutation is
+    fixed, ``indices(k1) ⊂ indices(k2)`` for any ``k1 < k2``, which allows
+    incremental faithfulness evaluation — results computed for a smaller subset
+    are always reusable when expanding to a larger one.
+    """
     if nli_subset_size is None:
         nli_subset_size = NLI_DEFAULT_SUBSET_SIZE
     if use_first_n_for_extended and total_examples > nli_subset_size:
         return list(range(min(nli_subset_size, total_examples)))
     if nli_subset_size >= total_examples:
         return list(range(total_examples))
+    pool = list(range(total_examples))
     rng = random.Random(seed)
-    return sorted(rng.sample(range(total_examples), nli_subset_size))
+    rng.shuffle(pool)
+    return sorted(pool[:nli_subset_size])
 
 
 def _stored_subset_matches(
@@ -76,17 +85,18 @@ def _stored_subset_matches(
                 return False
             if data.get("seed", seed) != seed:
                 return False
-            return True
+            # Metadata matches — verify actual indices against current algorithm
+            # (guards against algorithm changes, e.g. sample → shuffle-permutation)
+            expected = _compute_nli_indices(
+                total_examples, nli_subset_size, seed, use_first_n_for_extended
+            )
+            return indices == expected
         # Key present, value null: legacy "full val" save
         if len(indices) == total_examples:
             return (
                 nli_subset_size >= total_examples
                 and indices == list(range(total_examples))
             )
-        expected = _compute_nli_indices(
-            total_examples, nli_subset_size, seed, use_first_n_for_extended
-        )
-        return indices == expected
 
     expected = _compute_nli_indices(
         total_examples, nli_subset_size, seed, use_first_n_for_extended

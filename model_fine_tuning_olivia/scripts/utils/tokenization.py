@@ -10,6 +10,19 @@ from typing import Dict, List, Any, Optional
 from transformers import AutoTokenizer
 
 
+def _find_last_subsequence(haystack: List[int], needle: List[int]) -> Optional[int]:
+    """
+    Return start index of the last occurrence of `needle` in `haystack`,
+    or None if not found.
+    """
+    if not haystack or not needle or len(needle) > len(haystack):
+        return None
+    for i in range(len(haystack) - len(needle), -1, -1):
+        if haystack[i:i + len(needle)] == needle:
+            return i
+    return None
+
+
 def _compute_prompt_length_chat(input_ids: List[int], tokenizer: AutoTokenizer) -> Optional[int]:
     """
     Compute exact prompt length (tokens before assistant response) for chat templates.
@@ -20,7 +33,8 @@ def _compute_prompt_length_chat(input_ids: List[int], tokenizer: AutoTokenizer) 
     # Mistral / Llama-2: ... [/INST] <space> assistant_response
     try:
         inst_id = tokenizer.convert_tokens_to_ids("[/INST]")
-        if inst_id is not None and inst_id in input_ids:
+        unk_id = getattr(tokenizer, "unk_token_id", None)
+        if inst_id is not None and inst_id != unk_id and inst_id in input_ids:
             positions = [i for i, tid in enumerate(input_ids) if tid == inst_id]
             if positions:
                 # First token of assistant is after [/INST]; often one space token follows
@@ -28,20 +42,46 @@ def _compute_prompt_length_chat(input_ids: List[int], tokenizer: AutoTokenizer) 
                 return min(last_inst + 1, len(input_ids))
     except Exception:
         pass
+    # Fallback: [/INST] is often not a single token (SentencePiece split),
+    # so detect it as an encoded token sequence.
+    try:
+        inst_marker_ids = tokenizer.encode("[/INST]", add_special_tokens=False)
+        pos = _find_last_subsequence(input_ids, inst_marker_ids)
+        if pos is not None:
+            return min(pos + len(inst_marker_ids), len(input_ids))
+    except Exception:
+        pass
     # Llama-3 / 3.1: ... <|end_header_id|> \n\n assistant_response
     try:
         end_header_id = tokenizer.convert_tokens_to_ids("<|end_header_id|>")
-        if end_header_id is not None and end_header_id in input_ids:
+        unk_id = getattr(tokenizer, "unk_token_id", None)
+        if end_header_id is not None and end_header_id != unk_id and end_header_id in input_ids:
             positions = [i for i, tid in enumerate(input_ids) if tid == end_header_id]
             if positions:
                 last_end = positions[-1]
                 return min(last_end + 1, len(input_ids))
     except Exception:
         pass
+    try:
+        end_header_ids = tokenizer.encode("<|end_header_id|>", add_special_tokens=False)
+        pos = _find_last_subsequence(input_ids, end_header_ids)
+        if pos is not None:
+            return min(pos + len(end_header_ids), len(input_ids))
+    except Exception:
+        pass
     # ChatML: <|im_start|>assistant\n
+    # Prefer matching the full assistant marker to avoid masking too little.
+    try:
+        assistant_marker_ids = tokenizer.encode("<|im_start|> assistant\n", add_special_tokens=False)
+        pos = _find_last_subsequence(input_ids, assistant_marker_ids)
+        if pos is not None:
+            return min(pos + len(assistant_marker_ids), len(input_ids))
+    except Exception:
+        pass
     try:
         im_start_id = tokenizer.convert_tokens_to_ids("<|im_start|>")
-        if im_start_id is not None and im_start_id in input_ids:
+        unk_id = getattr(tokenizer, "unk_token_id", None)
+        if im_start_id is not None and im_start_id != unk_id and im_start_id in input_ids:
             positions = [i for i, tid in enumerate(input_ids) if tid == im_start_id]
             if positions:
                 # Last <|im_start|> is for assistant; content starts after \n

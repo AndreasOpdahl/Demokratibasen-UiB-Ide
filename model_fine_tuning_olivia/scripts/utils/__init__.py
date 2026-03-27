@@ -26,6 +26,7 @@ from .checkpoint_utils import (
 from .eval_results import (
     get_eval_results_path,
     get_predictions_file_path,
+    get_faithfulness_details_path,
     get_old_eval_results_path,
     load_eval_results,
     save_eval_results,
@@ -65,6 +66,7 @@ __all__ = [
     # Evaluation results
     'get_eval_results_path',
     'get_predictions_file_path',
+    'get_faithfulness_details_path',
     'get_old_eval_results_path',
     'load_eval_results',
     'save_eval_results',

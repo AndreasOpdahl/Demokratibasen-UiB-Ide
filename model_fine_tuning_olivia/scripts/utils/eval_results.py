@@ -81,6 +81,28 @@ def get_predictions_file_path(
     return os.path.join(all_eval_results_dir, f"{base}{suffix}.jsonl")
 
 
+def get_faithfulness_details_path(
+    checkpoint_dir: str,
+    model_dir: Optional[str] = None,
+    examples_suffix: Optional[str] = None
+) -> str:
+    """Get per-example NLI faithfulness details JSONL path (in all_eval_results).
+
+    The location is: model_dir/all_eval_results/checkpoint-nnn-faithfulness-details.jsonl
+    With examples_suffix: checkpoint-nnn-faithfulness-details-examples_1000.jsonl
+
+    Each line in the JSONL contains the full score_and_gate output for one
+    example, keyed by ``example_index``.  This file enables incremental
+    faithfulness evaluation: when the NLI subset size grows, only the new
+    examples need to be analysed.
+    """
+    model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
+    all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
+    base = f"{checkpoint_name}-faithfulness-details"
+    suffix = f"-{examples_suffix}" if examples_suffix else ""
+    return os.path.join(all_eval_results_dir, f"{base}{suffix}.jsonl")
+
+
 def get_old_eval_results_path(checkpoint_dir: str) -> str:
     """Get old evaluation results file path (per-checkpoint location).
     

@@ -296,6 +296,8 @@ def compute_metrics_from_texts(
     include_faithfulness: bool = False,
     nli_input_texts: Optional[List[str]] = None,
     nli_prediction_texts: Optional[List[str]] = None,
+    nli_example_indices: Optional[List[int]] = None,
+    faithfulness_details_file: Optional[str] = None,
 ) -> Dict[str, Any]:
     """Compute selected metrics from text strings.
 
@@ -304,6 +306,11 @@ def compute_metrics_from_texts(
                     (e.g. "eval_rouge1", "eval_hygiene_mean_rep_3gram",
                      "eval_reference_bertscore_f1_mean", "eval_faithfulness")
         "timing"  — per-metric timing information
+
+    When *faithfulness_details_file* and *nli_example_indices* are provided,
+    faithfulness evaluation is **incremental**: per-example NLI results are
+    loaded from / saved to the details file and only missing examples are
+    computed.
     """
     metrics: Dict[str, Any] = {}
     timing: Dict[str, float] = {}
@@ -336,7 +343,14 @@ def compute_metrics_from_texts(
         docs = nli_input_texts if nli_input_texts is not None else input_texts
         preds = nli_prediction_texts if nli_prediction_texts is not None else prediction_texts
         gate = NLIFaithfulnessGate()
-        faithfulness_out = gate.eval_faithfulness(docs, preds)
+
+        if faithfulness_details_file and nli_example_indices is not None:
+            faithfulness_out = gate.eval_faithfulness_incremental(
+                docs, preds, nli_example_indices, faithfulness_details_file,
+            )
+        else:
+            faithfulness_out = gate.eval_faithfulness(docs, preds)
+
         if "_timing" in faithfulness_out:
             timing.update(faithfulness_out.pop("_timing"))
         metrics["eval_faithfulness"] = faithfulness_out

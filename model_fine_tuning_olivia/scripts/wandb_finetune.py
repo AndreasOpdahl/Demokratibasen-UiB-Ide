@@ -818,8 +818,12 @@ def load_model_with_optional_quantization(
         return MT5ForConditionalGeneration.from_pretrained(model_name)
     
     if quantization == 'none':
-        # No quantization (GH200/Cray path)
-        print("Loading model without quantization (FP16)...")
+        # No quantization — use model's native dtype (BF16 preferred, FP16 fallback)
+        # Many models (Viking, Llama, Mistral) are pretrained in BF16. Loading in FP16
+        # can cause NaN gradients because intermediate activations overflow FP16's max (~65504).
+        # BF16 shares Float32's exponent range (~3.4e38) and matches bf16=True training.
+        load_dtype = torch.bfloat16
+        print(f"Loading model without quantization (dtype={load_dtype})...")
         
         # For DDP/FSDP training, we must NOT use device_map="auto"
         # The DDP/FSDP launcher will handle device placement
@@ -830,7 +834,7 @@ def load_model_with_optional_quantization(
             print(f"{mode_str} enabled - loading model without device_map (keeping on CPU)")
             model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                torch_dtype=torch.float16,
+                torch_dtype=load_dtype,
                 token=hf_token,
                 # DO NOT use device_map for distributed training
                 # Let torchrun/FSDP handle device placement
@@ -844,7 +848,7 @@ def load_model_with_optional_quantization(
             try:
                 model = AutoModelForCausalLM.from_pretrained(
                     model_name,
-                    torch_dtype=torch.float16,
+                    torch_dtype=load_dtype,
                     device_map="auto",
                     token=hf_token
                 )
@@ -853,7 +857,7 @@ def load_model_with_optional_quantization(
                 print("Trying fallback without device_map...")
                 model = AutoModelForCausalLM.from_pretrained(
                     model_name,
-                    torch_dtype=torch.float16,
+                    torch_dtype=load_dtype,
                     token=hf_token
                 ).cuda()
         return model
@@ -872,13 +876,13 @@ def load_model_with_optional_quantization(
         bnb_config = BitsAndBytesConfig(
             load_in_4bit=True,
             bnb_4bit_quant_type="nf4",
-            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_compute_dtype=torch.bfloat16,
             bnb_4bit_use_double_quant=True,
         )
         model = AutoModelForCausalLM.from_pretrained(
             model_name,
             quantization_config=bnb_config,
-            torch_dtype=torch.float16,
+            torch_dtype=torch.bfloat16,
             device_map="auto" if not (use_ddp or use_fsdp) else None,
             token=hf_token
         )
@@ -899,7 +903,7 @@ def load_model_with_optional_quantization(
         model = AutoModelForCausalLM.from_pretrained(
             model_name,
             quantization_config=bnb_config,
-            torch_dtype=torch.float16,
+            torch_dtype=torch.bfloat16,
             device_map="auto" if not (use_ddp or use_fsdp) else None,
             token=hf_token
         )
@@ -1334,6 +1338,29 @@ def fine_tune_model(
     # Use shared formatting and tokenization functions
     # Pre-fetch model config once for batched formatter (avoids 135k+ lookups)
     _model_config = get_model_config_by_hf_name(model_name)
+    # Safeguard: if a model is chat-template based and tokenizer exposes a native chat_template,
+    # use tokenizer-driven formatting during training to avoid train/eval prompt mismatches.
+    chat_template_types = {"mistral", "llama2", "llama3", "llama3.1", "chatml"}
+    model_uses_chat_template = (
+        _model_config is not None and
+        _model_config.prompt_config.template_type in chat_template_types
+    )
+    tokenizer_has_native_chat_template = (
+        hasattr(tokenizer, "chat_template") and
+        tokenizer.chat_template is not None and
+        str(tokenizer.chat_template).strip() != ""
+    )
+    use_fast_train_format = not (model_uses_chat_template and tokenizer_has_native_chat_template)
+    if not use_fast_train_format:
+        print(
+            f"Using tokenizer chat template for training format "
+            f"({model_name}, template_type={_model_config.prompt_config.template_type if _model_config else 'unknown'})."
+        )
+    elif model_uses_chat_template:
+        print(
+            f"Tokenizer has no native chat_template for {model_name}; "
+            f"using fast/manual training formatting fallback."
+        )
 
     def format_example_train_batch_wrapper(examples_batch):
         """Batched format: processes 1000 examples per call → ~135 calls instead of 135k (much faster with num_proc)."""
@@ -1342,6 +1369,7 @@ def fine_tune_model(
             model_name,
             tokenizer=tokenizer,
             model_config=_model_config,
+            use_fast_format=use_fast_train_format,
         )
 
     def format_example_train_wrapper(example):
