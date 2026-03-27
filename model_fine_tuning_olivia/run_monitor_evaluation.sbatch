@@ -113,7 +113,7 @@ for arg in "$@"; do
             echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
             echo ""
             echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
-            echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-7b-instruct,"
+            echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
             echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
             echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"
             exit 1
@@ -127,7 +127,7 @@ validate_model() {
     case "$model" in
         gemma-2b|gemma-7b|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
         viking-7b|viking-13b|viking-33b| \
-        normistral-7b|normistral-11b|normistral-7b-instruct| \
+        normistral-7b|normistral-11b|normistral-11b-long|normistral-7b-instruct| \
         norskgpt-llama3-8b|llama-3.1-8b-instruct|llama-2-13b-chat-norwegian| \
         eurollm-9b-instruct|norwai-mistral-7b-instruct|nb-gpt-j-6b|mt5)
             return 0
@@ -155,7 +155,7 @@ ERRORS=0
 if ! validate_model "$MODEL"; then
     echo "ERROR: Invalid model name: $MODEL"
     echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
-    echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-7b-instruct,"
+    echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
     echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
     echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"
     ERRORS=$((ERRORS + 1))

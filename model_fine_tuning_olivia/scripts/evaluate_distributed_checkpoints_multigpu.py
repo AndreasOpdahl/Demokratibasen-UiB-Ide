@@ -1807,6 +1807,8 @@ def get_model_batch_size(model_name: str, default_batch_size: int) -> int:
     # Large models (7B-11B)
     elif 'gemma-7b' in model_name_lower:
         return min(8, default_batch_size)
+    elif 'normistral-11b-long' in model_name_lower:
+        return min(4, default_batch_size)  # Wider context variant: keep more headroom
     elif 'normistral-11b' in model_name_lower:
         return min(6, default_batch_size)  # Increase from 4 to 6
     # Medium models (2-7B)
@@ -3076,7 +3078,7 @@ Examples:
                        choices=['viking-7b', 'viking-13b', 'viking-33b',
                                 'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
                                 'gemma-3-12b', 'gemma-3-27b',
-                                'normistral-7b', 'normistral-11b', 'normistral-7b-instruct',
+                               'normistral-7b', 'normistral-11b', 'normistral-11b-long', 'normistral-7b-instruct',
                                 'norskgpt-llama3-8b', 'llama-3.1-8b-instruct', 'llama-2-13b-chat-norwegian',
                                 'eurollm-9b-instruct', 'norwai-mistral-7b-instruct', 'nb-gpt-j-6b', 'mt5'],
                        help='Base model that was fine-tuned')

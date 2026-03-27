@@ -192,20 +192,21 @@ def tokenize_train_examples(
     
     # Calculate desired max length, but don't exceed model's limit
     # CRITICAL: Ensure we never exceed the model's actual context window
-    # OPTIMIZATION: Cap max_length at a reasonable value (e.g., 8192) even for large context models
+    # OPTIMIZATION: Cap max_length at a reasonable value even for large context models
     # This speeds up tokenization significantly while still allowing long sequences when needed
     desired_max_length = max_input_prompt_tokens + max_output_summary_tokens
-    # For very large context models (128K+), cap at 8192 for tokenization speed
+    # For very large context models (128K+), cap at 16384 for tokenization speed.
+    # This still supports wider-window model variants (e.g., long-context 11B models).
     # The model can still handle longer sequences, but tokenization is much faster with this cap
-    effective_model_max = min(model_max_length, 8192) if model_max_length > 8192 else model_max_length
+    effective_model_max = min(model_max_length, 16384) if model_max_length > 16384 else model_max_length
     max_length = min(desired_max_length, effective_model_max)
     
     # Additional safety check: if max_length is still too large, cap it
     if max_length > model_max_length:
         print(f"⚠ WARNING: Calculated max_length ({max_length}) exceeds model_max_length ({model_max_length}). Capping to {model_max_length}")
         max_length = model_max_length
-    elif model_max_length > 8192 and max_length == 8192:
-        pass  # Capped to 8192 for tokenization speed
+    elif model_max_length > 16384 and max_length == 16384:
+        pass  # Capped to 16384 for tokenization speed
     
     # OPTIMIZATION: Pre-truncate text at character level before tokenization
     # This is much faster than letting the tokenizer process very long texts

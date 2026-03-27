@@ -58,7 +58,7 @@ Optional:
   --dry-run                  Show what would be submitted without submitting
 
 Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,
-              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b,
+              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long,
               normistral-7b-instruct, norskgpt-llama3-8b, llama-3.1-8b-instruct,
               llama-2-13b-chat-norwegian, eurollm-9b-instruct, norwai-mistral-7b-instruct,
               nb-gpt-j-6b, mt5

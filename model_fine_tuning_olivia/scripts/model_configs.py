@@ -417,6 +417,22 @@ MODEL_CONFIGS = {
         val_batch_size=6,
         max_output_summary_tokens=256,  # Limit runway to reduce gibberish/hallucination
     ),
+    'normistral-11b-long': ModelConfig(
+        short_name='normistral-11b-long',
+        hf_name='norallm/normistral-11b-long',
+        lora_r=16,
+        lora_alpha=32,
+        lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
+        learning_rate=2e-5,
+        prompt_config=PROMPT_NORMISTRAL,
+        architecture='mistral',
+        # Wider-context variant: keep per-device batch conservative to avoid OOM
+        # when longer sequences are used.
+        train_batch_size=2,
+        val_batch_size=4,
+        max_input_text_tokens=12000,
+        max_output_summary_tokens=256,
+    ),
     
     # Llama-based models - using chat templates
     'norskgpt-llama3-8b': ModelConfig(
