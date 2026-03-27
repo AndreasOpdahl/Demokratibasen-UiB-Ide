@@ -40,22 +40,22 @@ from visualise_checkpoint_results import (
 
 METRIC_GROUPS = {
     "ROUGE": {
-        "rouge1": {"label": "ROUGE-1", "color": "#1f77b4"},
-        "rouge2": {"label": "ROUGE-2", "color": "#2ca02c"},
-        "rougeL": {"label": "ROUGE-L", "color": "#ff7f0e"},
-        "rougeLsum": {"label": "ROUGE-Lsum", "color": "#d62728"},
+        "rouge1": {"label": "ROUGE-1", "color": "#1f77b4", "dash": "dashdot"},
+        "rouge2": {"label": "ROUGE-2", "color": "#2ca02c", "dash": "dashdot"},
+        "rougeL": {"label": "ROUGE-L", "color": "#ff7f0e", "dash": "dashdot"},
+        "rougeLsum": {"label": "ROUGE-Lsum", "color": "#d62728", "dash": "dot"},
     },
     "Reference": {
-        "bertscore_f1": {"label": "BERTScore F1", "color": "#9467bd"},
+        "bertscore_f1": {"label": "BERTScore F1", "color": "#9467bd", "dash": "longdash"},
     },
     "Hygiene": {
-        "compression_ratio": {"label": "Compression Ratio", "color": "#8c564b"},
-        "repetition_3gram": {"label": "3-gram Repetition", "color": "#e377c2"},
-        "ends_with_punct": {"label": "Ends w/ Punct", "color": "#7f7f7f"},
+        "compression_ratio": {"label": "Compression Ratio", "color": "#8c564b", "dash": "longdashdot"},
+        "repetition_3gram": {"label": "3-gram Repetition", "color": "#e377c2", "dash": "longdashdot"},
+        "ends_with_punct": {"label": "Ends w/ Punct", "color": "#7f7f7f", "dash": "longdashdot"},
     },
     "Faithfulness": {
-        "entailment_score": {"label": "Entailment Score", "color": "#17becf"},
-        "outlier_rate": {"label": "Outlier Rate", "color": "#bcbd22"},
+        "entailment_score": {"label": "Entailment Score", "color": "#17becf", "dash": "solid"},
+        "outlier_rate": {"label": "Outlier Rate", "color": "#bcbd22", "dash": "solid"},
     },
 }
 
@@ -127,6 +127,9 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .variant-toggle { padding: 4px 12px; background: #fff; border-bottom: 1px solid #ddd;
                     display: flex; gap: 16px; align-items: center; font-size: 13px; }
   .variant-toggle label { cursor: pointer; display: flex; align-items: center; gap: 4px; }
+  .bulk-btn { font-size: 11px; cursor: pointer; background: #eee; border: 1px solid #ccc;
+              border-radius: 3px; padding: 1px 6px; color: #555; }
+  .bulk-btn:hover { background: #ddd; }
 </style>
 </head>
 <body>
@@ -167,8 +170,24 @@ let show500 = true;
 let show1000 = true;
 let normalizeMetrics = false;
 
+// Helper: bulk-select buttons
+function makeBulkButtons(setAll, clearAll) {
+  const wrap = document.createElement("span");
+  wrap.style.cssText = "display:inline-flex;gap:4px;margin-left:6px;";
+  const btnAll = document.createElement("button");
+  btnAll.className = "bulk-btn"; btnAll.textContent = "Select all";
+  btnAll.addEventListener("click", setAll);
+  const btnNone = document.createElement("button");
+  btnNone.className = "bulk-btn"; btnNone.textContent = "Unselect all";
+  btnNone.addEventListener("click", clearAll);
+  wrap.appendChild(btnAll);
+  wrap.appendChild(btnNone);
+  return wrap;
+}
+
 // Build model checkboxes
 const modelBar = document.getElementById("model-bar");
+const modelCheckboxes = [];
 modelNames.forEach(m => {
   const lbl = document.createElement("label");
   const cb = document.createElement("input");
@@ -183,17 +202,32 @@ modelNames.forEach(m => {
   lbl.appendChild(sw);
   lbl.appendChild(document.createTextNode(" " + shortName));
   modelBar.appendChild(lbl);
+  modelCheckboxes.push({ cb, key: m });
 });
+modelBar.appendChild(makeBulkButtons(
+  () => { modelCheckboxes.forEach(({cb, key}) => { cb.checked = true; selectedModels.add(key); }); render(); },
+  () => { modelCheckboxes.forEach(({cb, key}) => { cb.checked = false; selectedModels.delete(key); }); render(); }
+));
 
 // Build metric checkboxes grouped
 const sidebar = document.getElementById("sidebar");
-const groupOrder = ["ROUGE", "Reference", "Hygiene", "Faithfulness"];
+const metricCheckboxes = [];
+const groupOrder = ["Faithfulness", "Reference", "ROUGE", "Hygiene"];
 const metricsByGroup = {};
 for (const [key, meta] of Object.entries(metricCatalog)) {
   const g = meta.group;
   if (!metricsByGroup[g]) metricsByGroup[g] = [];
   metricsByGroup[g].push([key, meta]);
 }
+
+const metricBulkWrap = document.createElement("div");
+metricBulkWrap.style.cssText = "margin-bottom:8px;";
+metricBulkWrap.appendChild(makeBulkButtons(
+  () => { metricCheckboxes.forEach(({cb, key}) => { cb.checked = true; selectedMetrics.add(key); }); render(); },
+  () => { metricCheckboxes.forEach(({cb, key}) => { cb.checked = false; selectedMetrics.delete(key); }); render(); }
+));
+sidebar.appendChild(metricBulkWrap);
+
 groupOrder.forEach(g => {
   if (!metricsByGroup[g]) return;
   const h = document.createElement("h2");
@@ -212,6 +246,7 @@ groupOrder.forEach(g => {
     lbl.appendChild(sw);
     lbl.appendChild(document.createTextNode(" " + meta.label));
     sidebar.appendChild(lbl);
+    metricCheckboxes.push({ cb, key });
   });
 });
 
@@ -265,10 +300,12 @@ function render() {
 
     for (const metricKey of Object.keys(metricCatalog)) {
       if (!selectedMetrics.has(metricKey)) continue;
-      const metaLabel = metricCatalog[metricKey].label;
+      const meta = metricCatalog[metricKey];
+      const metaLabel = meta.label;
+      const metricDash = meta.dash || "solid";
       const range = ranges[metricKey];
 
-      // 500-example trace (faded)
+      // 500-example trace (faded) -- always dotted regardless of metric dash
       if (show500 && mdata.metrics_500[metricKey]) {
         const d = mdata.metrics_500[metricKey];
         const yVals = normalizeMetrics ? normalise(d.values, range) : d.values;
@@ -288,7 +325,7 @@ function render() {
         });
       }
 
-      // 1000-example trace (solid)
+      // 1000-example trace (solid) -- uses the metric-specific dash style
       if (show1000 && mdata.metrics_1000[metricKey]) {
         const d = mdata.metrics_1000[metricKey];
         const yVals = normalizeMetrics ? normalise(d.values, range) : d.values;
@@ -299,7 +336,7 @@ function render() {
           x: d.steps, y: yVals,
           mode: "lines+markers",
           name: shortName + " / " + metaLabel + " (1000)",
-          line: { color: baseColor, width: 2.5 },
+          line: { color: baseColor, width: 2.5, dash: metricDash },
           marker: { size: 6 },
           opacity: 1.0,
           legendgroup: model + "_" + metricKey,
