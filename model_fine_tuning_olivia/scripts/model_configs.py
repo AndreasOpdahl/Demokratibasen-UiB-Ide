@@ -387,7 +387,8 @@ MODEL_CONFIGS = {
         architecture='mistral',
         train_batch_size=4,
         val_batch_size=16,
-        max_output_summary_tokens=256,  # Shorter limit reduces gibberish/hallucination in generation
+        max_input_text_tokens=1700,  # Model has max_position_embeddings=2048; must fit prompt+input+output within that
+        max_output_summary_tokens=256,
     ),
     'normistral-7b-instruct': ModelConfig(
         short_name='normistral-7b-instruct',
@@ -396,13 +397,12 @@ MODEL_CONFIGS = {
         lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
         learning_rate=1.5e-5,
-        # This tokenizer uses a ChatML-style role template (<|im_start|> ... <|im_end|>).
-        # Keep config aligned with that format for fallback/manual paths.
         prompt_config=PROMPT_CHATML,
         architecture='mistral',
         train_batch_size=4,
         val_batch_size=16,
-        max_output_summary_tokens=256,  # Limit runway to reduce gibberish/hallucination
+        max_input_text_tokens=1700,  # Model has max_position_embeddings=2048; must fit prompt+input+output within that
+        max_output_summary_tokens=256,
     ),
     'normistral-11b': ModelConfig(
         short_name='normistral-11b',

@@ -478,6 +478,14 @@ module load PyTorch/2.8.0
 
 source .env
 
+# NCCL settings for multi-node training.  Exported here (after module purge)
+# rather than earlier, because module --force purge can clear env vars on some nodes.
+export NCCL_SOCKET_IFNAME="${NCCL_SOCKET_IFNAME:-eth0}"
+export NCCL_DEBUG="${NCCL_DEBUG:-INFO}"
+export NCCL_IB_DISABLE="${NCCL_IB_DISABLE:-1}"
+export NCCL_P2P_DISABLE="${NCCL_P2P_DISABLE:-1}"
+export TORCH_NCCL_ASYNC_ERROR_HANDLING="${TORCH_NCCL_ASYNC_ERROR_HANDLING:-1}"
+
 # Re-check container command after loading modules (in case it's provided by a module)
 if [ -z "$CONTAINER_CMD" ]; then
     if command -v apptainer &> /dev/null; then
@@ -587,7 +595,10 @@ echo "=== Step 5: Launch training ==="
 torchrun --nnodes=SLURM_NNODES_PLACEHOLDER --nproc_per_node=SLURM_GPUS_ON_NODE_PLACEHOLDER --node_rank=$SLURM_NODEID --rdzv_backend=c10d --rdzv_endpoint=MASTER_ADDR_PLACEHOLDER:MASTER_PORT_PLACEHOLDER scripts/wandb_finetune.py --model MODEL_PLACEHOLDER --quantization none DISTRIBUTION_FLAG_PLACEHOLDER --hf_token HUGGINGFACE_TOKEN_PLACEHOLDER --train_dataset TRAIN_DATASET_PLACEHOLDER --val_dataset VAL_DATASET_PLACEHOLDER TRAIN_BATCH_SIZE_PLACEHOLDER VAL_BATCH_SIZE_PLACEHOLDER TASK_LIMIT_PLACEHOLDER --output_dir models/MODEL_PLACEHOLDER-apptainer-fsdp RESUME_ARG_PLACEHOLDER
 SCRIPT_EOF
 
-# Replace placeholders with actual values
+# Replace placeholders with actual values.
+# Temporarily disable set -u: some variables (NCCL_*, batch sizes) may legitimately
+# be empty or unset on certain nodes/configurations after module purge.
+set +u
 sed -i "s|HF_HOME_PLACEHOLDER|$HF_HOME|g" "$SCRIPT_FILE"
 sed -i "s|HF_DATASETS_CACHE_PLACEHOLDER|$HF_DATASETS_CACHE|g" "$SCRIPT_FILE"
 sed -i "s|HF_MODULES_CACHE_PLACEHOLDER|$HF_MODULES_CACHE|g" "$SCRIPT_FILE"
@@ -617,6 +628,7 @@ VAL_BATCH_SIZE_ARG=""
 sed -i "s|TRAIN_BATCH_SIZE_PLACEHOLDER|$TRAIN_BATCH_SIZE_ARG|g" "$SCRIPT_FILE"
 sed -i "s|VAL_BATCH_SIZE_PLACEHOLDER|$VAL_BATCH_SIZE_ARG|g" "$SCRIPT_FILE"
 sed -i "s|RESUME_ARG_PLACEHOLDER|$RESUME_ARG|g" "$SCRIPT_FILE"
+set -u
 sed -i "s|INSTALL_FLAG_PLACEHOLDER|${PWD}/logs/install_done_${SLURM_JOB_ID}|g" "$SCRIPT_FILE"
 
 chmod +x "$SCRIPT_FILE"

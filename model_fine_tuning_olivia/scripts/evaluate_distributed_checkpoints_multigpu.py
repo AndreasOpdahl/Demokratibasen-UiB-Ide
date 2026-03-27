@@ -367,8 +367,8 @@ class CausalLMTrainer(Trainer):
             labels = labels.clone()
             labels[labels == -100] = self._processing_class.pad_token_id
 
-        # Generate with memory-efficient settings
-        with torch.amp.autocast('cuda'):
+        # Generate with memory-efficient settings (use BF16 to match model's native dtype)
+        with torch.amp.autocast('cuda', dtype=torch.bfloat16):
             # Get special token IDs for better stopping
             inst_token_id = None
             if hasattr(self._processing_class, 'convert_tokens_to_ids'):
@@ -604,7 +604,7 @@ class CausalLMTrainer(Trainer):
             print(f'  Trying with more aggressive generation parameters...')
             
             # Try again with more permissive settings
-            with torch.amp.autocast('cuda'):
+            with torch.amp.autocast('cuda', dtype=torch.bfloat16):
                 generation_kwargs_retry = {
                     'input_ids': input_ids,
                     'use_cache': True,
@@ -3185,10 +3185,14 @@ Examples:
         print(f"Error mapping model name: {e}")
         sys.exit(1)
 
-    # Apply model-specific max_output_summary_tokens (e.g. Normistral uses 256 to reduce gibberish)
+    # Apply model-specific token limits (e.g. Normistral-7b has 2048 context window)
+    max_input_text_tokens = args.max_input_text_tokens
     max_output_summary_tokens = args.max_output_summary_tokens
     try:
         model_config = get_model_config_by_hf_name(model_name)
+        if model_config and model_config.max_input_text_tokens is not None:
+            max_input_text_tokens = model_config.max_input_text_tokens
+            print(f"Using model-specific max_input_text_tokens: {max_input_text_tokens}")
         if model_config and model_config.max_output_summary_tokens is not None:
             max_output_summary_tokens = model_config.max_output_summary_tokens
             print(f"Using model-specific max_output_summary_tokens: {max_output_summary_tokens}")
@@ -3216,6 +3220,7 @@ Examples:
                 val_dataset_path=args.val_dataset,
                 hf_token=args.hf_token,
                 output_dir=args.output_dir,
+                max_input_text_tokens=max_input_text_tokens,
                 max_output_summary_tokens=max_output_summary_tokens,
                 val_data_size=args.val_data_size,
                 val_data_seed=args.val_data_seed,
