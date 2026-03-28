@@ -149,33 +149,46 @@ def extract_metrics(results: Dict[int, Dict]) -> Dict[str, List[Tuple[int, float
                 metrics['ends_with_punct'] = []
             metrics['ends_with_punct'].append((step, data['eval_hygiene_ratio_ends_with_punct']))
         
-        # Extended metrics - Faithfulness (nested dict)
-        # Support both nested dict (new format) and flattened keys (backward compatibility)
-        if 'eval_faithfulness' in data and isinstance(data['eval_faithfulness'], dict):
-            faithfulness = data['eval_faithfulness']
-            if 'mean_entailment_score' in faithfulness:
-                if 'entailment_score' not in metrics:
-                    metrics['entailment_score'] = []
-                metrics['entailment_score'].append((step, faithfulness['mean_entailment_score']))
-            
-            if 'mean_ratio_outliers' in faithfulness:
-                if 'outlier_rate' not in metrics:
-                    metrics['outlier_rate'] = []
-                metrics['outlier_rate'].append((step, faithfulness['mean_ratio_outliers']))
-        # Backward compatibility: check for flattened keys
-        elif 'eval_faithfulness_mean_entailment_score' in data:
-            if 'entailment_score' not in metrics:
-                metrics['entailment_score'] = []
-            metrics['entailment_score'].append((step, data['eval_faithfulness_mean_entailment_score']))
-        
-        if 'eval_faithfulness_mean_ratio_outliers' in data:
-            if 'outlier_rate' not in metrics:
-                metrics['outlier_rate'] = []
-            metrics['outlier_rate'].append((step, data['eval_faithfulness_mean_ratio_outliers']))
-        elif 'eval_faithfulness_mean_outlier_rate' in data:  # Legacy key name
-            if 'outlier_rate' not in metrics:
-                metrics['outlier_rate'] = []
-            metrics['outlier_rate'].append((step, data['eval_faithfulness_mean_outlier_rate']))
+        # Extended metrics - Faithfulness / NLI
+        # Primary: eval_faithfulness (saved by evaluate_distributed_checkpoints_multigpu).
+        # Alternate: top-level "faithfulness" (same inner keys; some pipelines omit the eval_ prefix).
+        # Outliers: mean_ratio_outliers (aggregate API) or mean_outlier_rate (older / subset exports).
+        faith_block = None
+        if isinstance(data.get("eval_faithfulness"), dict):
+            faith_block = data["eval_faithfulness"]
+        elif isinstance(data.get("faithfulness"), dict):
+            faith_block = data["faithfulness"]
+
+        got_entailment = False
+        got_outlier = False
+        if faith_block:
+            if "mean_entailment_score" in faith_block:
+                if "entailment_score" not in metrics:
+                    metrics["entailment_score"] = []
+                metrics["entailment_score"].append((step, faith_block["mean_entailment_score"]))
+                got_entailment = True
+            out_val = faith_block.get("mean_ratio_outliers")
+            if out_val is None:
+                out_val = faith_block.get("mean_outlier_rate")
+            if out_val is not None:
+                if "outlier_rate" not in metrics:
+                    metrics["outlier_rate"] = []
+                metrics["outlier_rate"].append((step, out_val))
+                got_outlier = True
+
+        if not got_entailment and "eval_faithfulness_mean_entailment_score" in data:
+            if "entailment_score" not in metrics:
+                metrics["entailment_score"] = []
+            metrics["entailment_score"].append((step, data["eval_faithfulness_mean_entailment_score"]))
+
+        if not got_outlier and "eval_faithfulness_mean_ratio_outliers" in data:
+            if "outlier_rate" not in metrics:
+                metrics["outlier_rate"] = []
+            metrics["outlier_rate"].append((step, data["eval_faithfulness_mean_ratio_outliers"]))
+        elif not got_outlier and "eval_faithfulness_mean_outlier_rate" in data:
+            if "outlier_rate" not in metrics:
+                metrics["outlier_rate"] = []
+            metrics["outlier_rate"].append((step, data["eval_faithfulness_mean_outlier_rate"]))
     
     return metrics
 
