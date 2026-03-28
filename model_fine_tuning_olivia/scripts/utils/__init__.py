@@ -32,6 +32,8 @@ from .eval_results import (
     save_eval_results,
     get_evaluated_checkpoint_steps,
     update_evaluation_summary,
+    nli_faithfulness_aggregate_present,
+    should_skip_faithfulness_update,
 )
 from .dataset_loading import load_jsonl_dataset
 from .tokenization import tokenize_train_examples, tokenize_eval_examples
@@ -72,6 +74,8 @@ __all__ = [
     'save_eval_results',
     'get_evaluated_checkpoint_steps',
     'update_evaluation_summary',
+    'nli_faithfulness_aggregate_present',
+    'should_skip_faithfulness_update',
     # Dataset loading
     'load_jsonl_dataset',
     # Tokenization

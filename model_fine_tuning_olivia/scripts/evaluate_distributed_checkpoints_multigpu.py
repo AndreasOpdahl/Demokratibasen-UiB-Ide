@@ -87,6 +87,8 @@ from utils import (
     get_old_eval_results_path,
     load_eval_results,
     save_eval_results,
+    should_skip_faithfulness_update,
+    nli_faithfulness_aggregate_present,
     update_evaluation_summary,
     load_jsonl_dataset,
     tokenize_eval_examples,
@@ -1451,27 +1453,18 @@ def load_model_and_peft_checkpoint(
                         elif not has_extended_metrics:
                             pass  # Fall through to re-evaluate
                             # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                        # Check if NLI faithfulness is requested but missing
+                        # Check if NLI faithfulness is requested but missing (or details JSONL absent)
                         elif include_nli_faithfulness:
-                            has_nli_metrics = (
-                                any(key.startswith("eval_faithfulness_") for key in existing_results.keys()) or
-                                ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
-                            )
-                            # Also check for eval_faithfulness key (could be set to null)
-                            has_nli_results = (
-                                has_nli_metrics or 
-                                ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
-                            )
-                            if not has_nli_results:
-                                pass  # Fall through to re-evaluate
-                                # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                            else:
-                                # All metrics present, skip evaluation
+                            if should_skip_faithfulness_update(
+                                existing_results, checkpoint_dir, model_dir,
+                                examples_suffix=examples_suffix,
+                            ):
                                 raise AlreadyEvaluatedError(
                                     f"Checkpoint {checkpoint_dir} appears to be already evaluated "
                                     f"(results file exists at {eval_results_file}). "
                                     f"Skipping evaluation."
                                 )
+                            # Fall through: missing aggregates or missing *-faithfulness-details-*.jsonl
                         else:
                             # Extended metrics are present, skip evaluation
                             raise AlreadyEvaluatedError(
@@ -1512,24 +1505,16 @@ def load_model_and_peft_checkpoint(
                         elif not has_extended_metrics_old:
                             pass  # Allow re-evaluation
                         elif include_nli_faithfulness:
-                            has_nli_metrics_old = (
-                                any(key.startswith("eval_faithfulness_") for key in existing_results_old.keys()) or
-                                ("eval_faithfulness" in existing_results_old and existing_results_old.get("eval_faithfulness") is not None)
-                            )
-                            # Also check for eval_faithfulness key (could be set to null)
-                            has_nli_results_old = (
-                                has_nli_metrics_old or 
-                                ("eval_faithfulness" in existing_results_old and existing_results_old.get("eval_faithfulness") is not None)
-                            )
-                            if not has_nli_results_old:
-                                pass  # Allow re-evaluation
-                            else:
-                                # All metrics present, skip evaluation
+                            if should_skip_faithfulness_update(
+                                existing_results_old, checkpoint_dir, model_dir,
+                                examples_suffix=examples_suffix,
+                            ):
                                 raise AlreadyEvaluatedError(
                                     f"Checkpoint {checkpoint_dir} appears to be already evaluated "
                                     f"(old results file exists at {old_eval_results_file}). "
                                     f"Skipping evaluation."
                                 )
+                            # Allow re-evaluation: missing aggregates or missing details JSONL
                         else:
                             raise AlreadyEvaluatedError(
                                 f"Checkpoint {checkpoint_dir} appears to be already evaluated "
@@ -2013,6 +1998,26 @@ def evaluate_checkpoint(
             actually_update = set(update_metrics)
             if not force_recompute:
                 for metric_name in list(actually_update):
+                    if metric_name == "faithfulness":
+                        details_path = get_faithfulness_details_path(
+                            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix,
+                        )
+                        if should_skip_faithfulness_update(
+                            existing_results, checkpoint_dir, model_dir_eval,
+                            examples_suffix=examples_suffix,
+                        ):
+                            print(
+                                f"⚠ Skipping faithfulness: aggregates and details file already present "
+                                f"({os.path.basename(results_file)}; {os.path.basename(details_path)}) "
+                                f"(use --force_recompute to overwrite)"
+                            )
+                            actually_update.discard(metric_name)
+                        elif nli_faithfulness_aggregate_present(existing_results):
+                            print(
+                                f"⚠ Recomputing faithfulness: details file missing "
+                                f"({os.path.basename(details_path)}); aggregates will be refreshed."
+                            )
+                        continue
                     presence_key = _METRIC_PRESENCE_KEYS.get(metric_name)
                     if presence_key and presence_key in existing_results and existing_results[presence_key] is not None:
                         print(f"⚠ Skipping {metric_name}: already present in {os.path.basename(results_file)} "
@@ -2164,18 +2169,15 @@ def evaluate_checkpoint(
                     # Check if NLI faithfulness is requested but missing (separate check, not elif)
                     # Always check NLI if requested, regardless of other extended metrics status
                     if include_nli_faithfulness:
-                        has_nli_metrics = (
-                            any(key.startswith("eval_faithfulness_") for key in existing_results.keys()) or
-                            ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
-                        )
-                        # Also check for eval_faithfulness key (could be set to null)
-                        has_nli_results = (
-                            has_nli_metrics or 
-                            ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
-                        )
-                        if not has_nli_results:
+                        if not should_skip_faithfulness_update(
+                            existing_results, checkpoint_dir, model_dir_eval,
+                            examples_suffix=examples_suffix,
+                        ):
                             missing_extended_metrics = True
-                            print(f"⚠ Checkpoint {checkpoint_name} missing NLI faithfulness metrics (--include_nli_faithfulness was requested). Re-evaluating...")
+                            print(
+                                f"⚠ Checkpoint {checkpoint_name} missing NLI faithfulness or "
+                                f"faithfulness-details file (--include_nli_faithfulness). Re-evaluating..."
+                            )
                 
                 if all_zeros or missing_extended_metrics:
                     if all_zeros:
@@ -3157,7 +3159,8 @@ Examples:
     parser.add_argument('--update_bertscore', action='store_true',
                        help='Recompute BERTScore from existing JSONL and merge into eval results.')
     parser.add_argument('--update_faithfulness', action='store_true',
-                       help='Recompute NLI faithfulness from existing JSONL and merge into eval results.')
+                       help='Recompute NLI faithfulness from existing JSONL and merge into eval results '
+                            'when eval_faithfulness is missing/null or the *-faithfulness-details-*.jsonl file is absent.')
 
     args = parser.parse_args()
 

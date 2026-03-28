@@ -9,7 +9,7 @@ and the old per-checkpoint location for backwards compatibility.
 import json
 import os
 import glob
-from typing import Optional, Dict, Any, Set
+from typing import Any, Dict, Optional, Set
 from datetime import datetime
 
 
@@ -101,6 +101,34 @@ def get_faithfulness_details_path(
     base = f"{checkpoint_name}-faithfulness-details"
     suffix = f"-{examples_suffix}" if examples_suffix else ""
     return os.path.join(all_eval_results_dir, f"{base}{suffix}.jsonl")
+
+
+def nli_faithfulness_aggregate_present(existing_results: Dict[str, Any]) -> bool:
+    """True if eval JSON already has non-null NLI faithfulness aggregates (legacy layouts included)."""
+    return (
+        any(key.startswith("eval_faithfulness_") for key in existing_results.keys())
+        or existing_results.get("eval_faithfulness") is not None
+    )
+
+
+def should_skip_faithfulness_update(
+    existing_results: Dict[str, Any],
+    checkpoint_dir: str,
+    model_dir: Optional[str] = None,
+    examples_suffix: Optional[str] = None,
+) -> bool:
+    """Skip --update-faithfulness only when aggregates exist and the details JSONL is on disk.
+
+    Older runs may have written eval_faithfulness without a *-faithfulness-details-*.jsonl file.
+    Those aggregates remain valid, but we re-run NLI when the details file is absent so
+    per-example caches exist for incremental subset expansion.
+    """
+    if not nli_faithfulness_aggregate_present(existing_results):
+        return False
+    details_path = get_faithfulness_details_path(
+        checkpoint_dir, model_dir, examples_suffix=examples_suffix
+    )
+    return os.path.isfile(details_path)
 
 
 def get_old_eval_results_path(checkpoint_dir: str) -> str:
