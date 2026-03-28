@@ -143,7 +143,6 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   <strong>Data variant:</strong>
   <label><input type="checkbox" id="show500"> 500-example (faded)</label>
   <label><input type="checkbox" id="show1000" checked> 1000-example (solid)</label>
-  <span style="color:#666;font-size:12px;margin-left:8px">If only 1000 is checked, steps without a <code>*-examples_1000.json</code> file use the 500-example result file for that checkpoint.</span>
   <span style="margin-left:18px"><strong>Scale:</strong></span>
   <label><input type="checkbox" id="normalize"> Normalise per metric (0-1)</label>
 </div>
@@ -164,7 +163,7 @@ const MODEL_PALETTE = __PALETTE_PLACEHOLDER__;
 const modelColors = {};
 modelNames.forEach((m, i) => { modelColors[m] = MODEL_PALETTE[i % MODEL_PALETTE.length]; });
 
-// State: no models/metrics pre-selected; only 1000-example variant on (500 uses 500-file fallback when 1000-only)
+// State: no models/metrics pre-selected; only 1000-example variant on by default
 let selectedModels = new Set();
 let selectedMetrics = new Set();
 let show500 = false;
@@ -258,21 +257,6 @@ document.getElementById("normalize").addEventListener("change", e => { normalize
 
 function toggle(set, val, on) { if (on) set.add(val); else set.delete(val); }
 
-/** Prefer 1000-file values per step; fill missing steps from 500-file (same metric). */
-function mergePrefer1000(d1000, d500) {
-  const byStep = new Map();
-  if (d500 && d500.steps && d500.steps.length) {
-    for (let i = 0; i < d500.steps.length; i++) byStep.set(d500.steps[i], d500.values[i]);
-  }
-  if (d1000 && d1000.steps && d1000.steps.length) {
-    for (let i = 0; i < d1000.steps.length; i++) byStep.set(d1000.steps[i], d1000.values[i]);
-  }
-  if (byStep.size === 0) return null;
-  const steps = [...byStep.keys()].sort((a, b) => a - b);
-  const values = steps.map(s => byStep.get(s));
-  return { steps, values };
-}
-
 function getMetricRange(metricKey) {
   let min = Infinity, max = -Infinity;
   for (const model of modelNames) {
@@ -341,32 +325,24 @@ function render() {
         });
       }
 
-      // 1000-example trace (solid). If only 1000 is checked, merge in 500-file points for checkpoints
-      // that have no *-examples_1000.json (e.g. NLI only written to the default eval JSON).
-      if (show1000) {
-        const dRaw1000 = mdata.metrics_1000[metricKey];
-        const dRaw500 = mdata.metrics_500[metricKey];
-        const d = show500
-          ? (dRaw1000 && dRaw1000.steps && dRaw1000.steps.length ? dRaw1000 : null)
-          : mergePrefer1000(dRaw1000, dRaw500);
-        if (d && d.steps.length) {
-          const yVals = normalizeMetrics ? normalise(d.values, range) : d.values;
-          const hoverText = normalizeMetrics
-            ? d.values.map((v, i) => `${metaLabel}: ${v.toFixed(4)}<br>normalised: ${yVals[i].toFixed(3)}`)
-            : undefined;
-          const suffix = show500 ? " (1000)" : " (1000, else 500 file)";
-          traces.push({
-            x: d.steps, y: yVals,
-            mode: "lines+markers",
-            name: shortName + " / " + metaLabel + suffix,
-            line: { color: baseColor, width: 2.5, dash: metricDash },
-            marker: { size: 6 },
-            opacity: 1.0,
-            legendgroup: model + "_" + metricKey,
-            showlegend: true,
-            ...(hoverText ? { text: hoverText, hoverinfo: "x+text+name" } : {}),
-          });
-        }
+      // 1000-example trace (solid) — only from *-eval-results-examples_1000.json
+      if (show1000 && mdata.metrics_1000[metricKey]) {
+        const d = mdata.metrics_1000[metricKey];
+        const yVals = normalizeMetrics ? normalise(d.values, range) : d.values;
+        const hoverText = normalizeMetrics
+          ? d.values.map((v, i) => `${metaLabel}: ${v.toFixed(4)}<br>normalised: ${yVals[i].toFixed(3)}`)
+          : undefined;
+        traces.push({
+          x: d.steps, y: yVals,
+          mode: "lines+markers",
+          name: shortName + " / " + metaLabel + " (1000)",
+          line: { color: baseColor, width: 2.5, dash: metricDash },
+          marker: { size: 6 },
+          opacity: 1.0,
+          legendgroup: model + "_" + metricKey,
+          showlegend: true,
+          ...(hoverText ? { text: hoverText, hoverinfo: "x+text+name" } : {}),
+        });
       }
     }
   }
