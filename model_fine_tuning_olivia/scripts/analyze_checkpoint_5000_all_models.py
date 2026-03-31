@@ -32,7 +32,7 @@ MODEL_PROMPT_EXPECTATIONS = {
     "eurollm-9b-instruct": ("chatml", "apply_chat_template"),
     "nb-gpt-j-6b": ("alpaca", "manual"),
     "gemma-2b": ("plain", "manual"),
-    "gemma-7b": ("plain", "manual"),
+    "gemma-7b-it": ("chatml", "apply_chat_template"),
     "gemma-2-9b": ("plain", "manual"),
     "viking-7b": ("plain", "manual"),
     "viking-13b": ("plain", "manual"),

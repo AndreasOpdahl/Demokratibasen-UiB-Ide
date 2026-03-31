@@ -16,7 +16,7 @@ Usage:
     
     # Compare multiple models
     python visualise_checkpoint_results.py \
-        --model_dir models/gemma-2-9b-apptainer-fsdp models/gemma-7b-apptainer-fsdp \
+        --model_dir models/gemma-2-9b-apptainer-fsdp models/gemma-7b-it-apptainer-fsdp \
         --compare_models
 """
 

@@ -38,7 +38,7 @@ fi
 # SLURM_ACCOUNT from .env is still used for informational purposes
 
 # Parse command-line arguments or use defaults
-# Usage: sbatch --export=SLURM_ACCOUNT=nnXDXFWF run_finetune_multinode.sbatch [--model=MODEL] [--num_gpus=N] [--train_dataset=PATH] [--val_dataset=PATH] [--train_batch_size=N] [--val_batch_size=N] [--resume_checkpoint=CHECKPOINT] [--task_limit="--max_steps N"] [--distribution_flag="--fsdp"] [--dry-run]
+# Usage: sbatch --export=SLURM_ACCOUNT=nnXDXFWF run_finetune_multinode.sbatch [--model=MODEL] [--num_gpus=N] [--train_dataset=PATH] [--val_dataset=PATH] [--train_batch_size=N] [--val_batch_size=N] [--resume_checkpoint=CHECKPOINT] [--output_dir=DIR] [--task_limit="--max_steps N"] [--distribution_flag="--fsdp"] [--dry-run]
 MODEL=${MODEL:-gemma-2-9b}
 NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
 TRAIN_DATASET=${TRAIN_DATASET:-"data/output/new_processed_data_train.jsonl"}
@@ -48,6 +48,7 @@ VAL_BATCH_SIZE=${VAL_BATCH_SIZE:-""}      # Empty = use model config default
 RESUME_CHECKPOINT=${RESUME_CHECKPOINT:-""}
 TASK_LIMIT=${TASK_LIMIT:-"--max_steps 10000"}
 DISTRIBUTION_FLAG=${DISTRIBUTION_FLAG:-"--fsdp"}
+OUTPUT_DIR=${OUTPUT_DIR:-"models/${MODEL}-apptainer-fsdp"}
 DRY_RUN=${DRY_RUN:-false}
 
 # Parse command-line arguments if provided
@@ -55,12 +56,19 @@ for arg in "$@"; do
     case $arg in
         --model=*)
             MODEL="${arg#*=}"
+            if [ -z "${OUTPUT_DIR_SET:-}" ]; then
+                OUTPUT_DIR="models/${MODEL}-apptainer-fsdp"
+            fi
             ;;
         --num_gpus=*)
             NUM_GPUS="${arg#*=}"
             ;;
         --resume_checkpoint=*)
             RESUME_CHECKPOINT="${arg#*=}"
+            ;;
+        --output_dir=*)
+            OUTPUT_DIR="${arg#*=}"
+            OUTPUT_DIR_SET=1
             ;;
         --task_limit=*)
             TASK_LIMIT="${arg#*=}"
@@ -96,11 +104,12 @@ for arg in "$@"; do
             echo "  --train_batch_size=N       Training batch size per device (default: use model config default)"
             echo "  --val_batch_size=N         Validation batch size per device (default: use model config default)"
             echo "  --resume_checkpoint=DIR    Checkpoint directory to resume from (default: none)"
+            echo "  --output_dir=DIR           Output directory for model/checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
             echo "  --task_limit=\"OPTIONS\"     Task limit, e.g. \"--max_steps 10000\" (default: --max_steps 10000)"
             echo "  --distribution_flag=FLAG   Distribution flag: --fsdp or --ddp (default: --fsdp)"
             echo "  --dry-run|--debug          Debug mode: validate inputs and show what would run (no job submission)"
             echo ""
-            echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+            echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
             echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
             echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
             echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"
@@ -113,7 +122,7 @@ done
 validate_model() {
     local model=$1
     case "$model" in
-        gemma-2b|gemma-7b|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
+        gemma-2b|gemma-7b-it|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
         viking-7b|viking-13b|viking-33b| \
         normistral-7b|normistral-11b|normistral-11b-long|normistral-7b-instruct| \
         norskgpt-llama3-8b|llama-3.1-8b-instruct|llama-2-13b-chat-norwegian| \
@@ -159,7 +168,7 @@ ERRORS=0
 
 if ! validate_model "$MODEL"; then
     echo "ERROR: Invalid model name: $MODEL"
-    echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+    echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
     echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
     echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
     echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"
@@ -188,7 +197,7 @@ if [ -n "$RESUME_CHECKPOINT" ]; then
     # Determine output_dir for validation (same logic as later in script)
     case "$MODEL" in
         gemma-2b) FULL_MODEL_NAME="google/gemma-2b" ;;
-        gemma-7b) FULL_MODEL_NAME="google/gemma-7b" ;;
+        gemma-7b-it) FULL_MODEL_NAME="google/gemma-7b-it" ;;
         gemma-2-9b) FULL_MODEL_NAME="google/gemma-2-9b" ;;
         gemma-2-27b) FULL_MODEL_NAME="google/gemma-2-27b" ;;
         gemma-3-12b) FULL_MODEL_NAME="google/gemma-3-12b-pt" ;;
@@ -208,7 +217,7 @@ if [ -n "$RESUME_CHECKPOINT" ]; then
         nb-gpt-j-6b) FULL_MODEL_NAME="NbAiLab/nb-gpt-j-6B-torgersen-alpaca" ;;
         *) FULL_MODEL_NAME="$MODEL" ;;
     esac
-    OUTPUT_DIR_VALIDATION="models/${MODEL}-apptainer-fsdp"
+    OUTPUT_DIR_VALIDATION="$OUTPUT_DIR"
     
     # Try multiple resolution strategies (same as Python script)
     CHECKPOINT_FOUND=false
@@ -313,7 +322,7 @@ if [ "$DRY_RUN" = "true" ]; then
     # Compute model info (functions defined later, but we can compute manually for preview)
     case "$MODEL" in
         gemma-2b) FULL_MODEL_NAME="google/gemma-2b" ;;
-        gemma-7b) FULL_MODEL_NAME="google/gemma-7b" ;;
+        gemma-7b-it) FULL_MODEL_NAME="google/gemma-7b-it" ;;
         gemma-2-9b) FULL_MODEL_NAME="google/gemma-2-9b" ;;
         gemma-2-27b) FULL_MODEL_NAME="google/gemma-2-27b" ;;
         gemma-3-12b) FULL_MODEL_NAME="google/gemma-3-12b-pt" ;;
@@ -334,7 +343,7 @@ if [ "$DRY_RUN" = "true" ]; then
         *) FULL_MODEL_NAME="$MODEL" ;;
     esac
     MODEL_CACHE_DIR="models--${FULL_MODEL_NAME//\//--}"
-    OUTPUT_DIR="models/${MODEL}-apptainer-fsdp"
+    OUTPUT_DIR="$OUTPUT_DIR"
     
     echo "✓ All validations passed!"
     echo ""
@@ -409,7 +418,7 @@ PROJECT_HF_DIR=/cluster/projects/${PROJECT_ID}/shared/.cache/huggingface
 mkdir -p "$HF_HOME/hub"
 
 # Convert model name to HuggingFace cache directory format
-# e.g., "google/gemma-7b" -> "models--google--gemma-7b"
+# e.g., "google/gemma-7b-it" -> "models--google--gemma-7b-it"
 # e.g., "NorwAI/NorMistral-7B-warm-IT" -> "models--NorwAI--NorMistral-7B-warm-IT"
 convert_model_to_cache_dir() {
     local model=$1
@@ -421,7 +430,7 @@ get_full_model_name() {
     local short_name=$1
     case "$short_name" in
         gemma-2b) echo "google/gemma-2b" ;;
-        gemma-7b) echo "google/gemma-7b" ;;
+        gemma-7b-it) echo "google/gemma-7b-it" ;;
         viking-7b) echo "LumiOpen/Viking-7B" ;;
         viking-13b) echo "LumiOpen/Viking-13B" ;;
         normistral-7b) echo "norallm/normistral-7b-warm" ;;
@@ -595,7 +604,7 @@ echo "=== Network interfaces ==="
 ip link show | grep -E "^[0-9]+" | cut -d: -f2
 
 echo "=== Step 5: Launch training ==="
-torchrun --nnodes=SLURM_NNODES_PLACEHOLDER --nproc_per_node=SLURM_GPUS_ON_NODE_PLACEHOLDER --node_rank=$SLURM_NODEID --rdzv_backend=c10d --rdzv_endpoint=MASTER_ADDR_PLACEHOLDER:MASTER_PORT_PLACEHOLDER scripts/wandb_finetune.py --model MODEL_PLACEHOLDER --quantization none DISTRIBUTION_FLAG_PLACEHOLDER --hf_token HUGGINGFACE_TOKEN_PLACEHOLDER --train_dataset TRAIN_DATASET_PLACEHOLDER --val_dataset VAL_DATASET_PLACEHOLDER TRAIN_BATCH_SIZE_PLACEHOLDER VAL_BATCH_SIZE_PLACEHOLDER TASK_LIMIT_PLACEHOLDER --output_dir models/MODEL_PLACEHOLDER-apptainer-fsdp RESUME_ARG_PLACEHOLDER
+torchrun --nnodes=SLURM_NNODES_PLACEHOLDER --nproc_per_node=SLURM_GPUS_ON_NODE_PLACEHOLDER --node_rank=$SLURM_NODEID --rdzv_backend=c10d --rdzv_endpoint=MASTER_ADDR_PLACEHOLDER:MASTER_PORT_PLACEHOLDER scripts/wandb_finetune.py --model MODEL_PLACEHOLDER --quantization none DISTRIBUTION_FLAG_PLACEHOLDER --hf_token HUGGINGFACE_TOKEN_PLACEHOLDER --train_dataset TRAIN_DATASET_PLACEHOLDER --val_dataset VAL_DATASET_PLACEHOLDER TRAIN_BATCH_SIZE_PLACEHOLDER VAL_BATCH_SIZE_PLACEHOLDER TASK_LIMIT_PLACEHOLDER --output_dir OUTPUT_DIR_PLACEHOLDER RESUME_ARG_PLACEHOLDER
 SCRIPT_EOF
 
 # Replace placeholders with actual values.
@@ -618,6 +627,7 @@ sed -i "s|WANDB_API_KEY_PLACEHOLDER|$WANDB_API_KEY|g" "$SCRIPT_FILE"
 sed -i "s|SLURM_NNODES_PLACEHOLDER|$SLURM_NNODES|g" "$SCRIPT_FILE"
 sed -i "s|SLURM_GPUS_ON_NODE_PLACEHOLDER|$SLURM_GPUS_ON_NODE|g" "$SCRIPT_FILE"
 sed -i "s|MODEL_PLACEHOLDER|$MODEL|g" "$SCRIPT_FILE"
+sed -i "s|OUTPUT_DIR_PLACEHOLDER|$OUTPUT_DIR|g" "$SCRIPT_FILE"
 sed -i "s|DISTRIBUTION_FLAG_PLACEHOLDER|$DISTRIBUTION_FLAG|g" "$SCRIPT_FILE"
 sed -i "s|HUGGINGFACE_TOKEN_PLACEHOLDER|$HUGGINGFACE_TOKEN|g" "$SCRIPT_FILE"
 sed -i "s|TASK_LIMIT_PLACEHOLDER|$TASK_LIMIT|g" "$SCRIPT_FILE"

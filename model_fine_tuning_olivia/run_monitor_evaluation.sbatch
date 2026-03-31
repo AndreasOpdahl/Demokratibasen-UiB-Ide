@@ -112,7 +112,7 @@ for arg in "$@"; do
             echo "  --nli_subset_size=N               NLI examples (default 100 in Python if omitted); set N = val_data_size for full val NLI"
             echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
             echo ""
-            echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+            echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
             echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
             echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
             echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"
@@ -125,7 +125,7 @@ done
 validate_model() {
     local model=$1
     case "$model" in
-        gemma-2b|gemma-7b|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
+        gemma-2b|gemma-7b-it|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
         viking-7b|viking-13b|viking-33b| \
         normistral-7b|normistral-11b|normistral-11b-long|normistral-7b-instruct| \
         norskgpt-llama3-8b|llama-3.1-8b-instruct|llama-2-13b-chat-norwegian| \
@@ -154,7 +154,7 @@ ERRORS=0
 
 if ! validate_model "$MODEL"; then
     echo "ERROR: Invalid model name: $MODEL"
-    echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+    echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
     echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
     echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
     echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"

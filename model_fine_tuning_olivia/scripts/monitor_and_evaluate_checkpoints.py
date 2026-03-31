@@ -10,14 +10,14 @@ This script runs in parallel with FSDP training and:
 Usage:
   # Run in parallel with training (in a separate terminal/sbatch job):
   python monitor_and_evaluate_checkpoints.py \
-    --output_dir models/gemma-7b-apptainer-fsdp \
-    --model gemma-7b \
+    --output_dir models/gemma-7b-it-apptainer-fsdp \
+    --model gemma-7b-it \
     --val_dataset data/output/new_processed_data_val.jsonl \
     --hf_token YOUR_TOKEN \
     --check_interval 30 \
     --early_stopping_patience 10 \
     --wandb_project lm-finetuning \
-    --wandb_run_name gemma-7b-apptainer-fsdp
+    --wandb_run_name gemma-7b-it-apptainer-fsdp
 
 The training script will check for early stopping signals and stop if needed.
 """
@@ -883,7 +883,7 @@ if __name__ == "__main__":
                        help='Training output directory (where checkpoints are saved)')
     parser.add_argument('--model', type=str, required=True,
                        choices=['viking-7b', 'viking-13b', 'viking-33b',
-                                'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
+                                'gemma-2b', 'gemma-7b-it', 'gemma-2-9b', 'gemma-2-27b',
                                 'gemma-3-12b', 'gemma-3-27b',
                                'normistral-7b', 'normistral-11b', 'normistral-11b-long', 'normistral-7b-instruct',
                                 'norskgpt-llama3-8b', 'llama-3.1-8b-instruct', 'llama-2-13b-chat-norwegian',

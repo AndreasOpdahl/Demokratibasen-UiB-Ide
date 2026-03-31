@@ -246,14 +246,14 @@ MODEL_CONFIGS = {
         train_batch_size=4,
         val_batch_size=16,
     ),
-    'gemma-7b': ModelConfig(
-        short_name='gemma-7b',
-        hf_name='google/gemma-7b',
+    'gemma-7b-it': ModelConfig(
+        short_name='gemma-7b-it',
+        hf_name='google/gemma-7b-it',
         lora_r=8,
         lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj"],
-        learning_rate=1e-5,
-        prompt_config=PROMPT_PLAIN,
+        learning_rate=3e-6,
+        prompt_config=PROMPT_CHATML,
         architecture='gemma',
         train_batch_size=4,
         val_batch_size=8,
@@ -316,10 +316,10 @@ MODEL_CONFIGS = {
         lora_r=8,
         lora_alpha=16,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
-        learning_rate=1e-5,
+        learning_rate=2e-6,
         prompt_config=PROMPT_PLAIN,
         architecture='mistral',
-        train_batch_size=4,
+        train_batch_size=2,
         val_batch_size=16,
     ),
     'viking-13b': ModelConfig(
@@ -508,7 +508,7 @@ def get_model_config(short_name: str) -> ModelConfig:
     """Get configuration for a model by short name.
     
     Args:
-        short_name: Short model name (e.g., 'gemma-7b')
+        short_name: Short model name (e.g., 'gemma-7b-it')
     
     Returns:
         ModelConfig for the model

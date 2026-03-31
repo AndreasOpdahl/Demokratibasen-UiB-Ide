@@ -10,8 +10,8 @@ evaluation when using FSDP for this reason. This script uses model parallelism i
 Usage:
   # Multi-GPU evaluation with model parallelism:
   python evaluate_distributed_checkpoints_multigpu.py \
-    --model gemma-7b \
-    --checkpoint_dir models/gemma-7b_fsdp/checkpoint-100 \
+    --model gemma-7b-it \
+    --checkpoint_dir models/gemma-7b-it_fsdp/checkpoint-100 \
     --val_dataset data/output/processed_data_val.jsonl \
     --hf_token YOUR_TOKEN \
     --wandb_project lm-evaluation \
@@ -1790,7 +1790,7 @@ def get_model_batch_size(model_name: str, default_batch_size: int) -> int:
     elif 'viking-13b' in model_name_lower or 'llama-2-13b' in model_name_lower:
         return min(8, default_batch_size)  # Increase from 4 to 8 (2x faster)
     # Large models (7B-11B)
-    elif 'gemma-7b' in model_name_lower:
+    elif 'gemma-7b-it' in model_name_lower:
         return min(8, default_batch_size)
     elif 'normistral-11b-long' in model_name_lower:
         return min(4, default_batch_size)  # Wider context variant: keep more headroom
@@ -3050,8 +3050,8 @@ if __name__ == "__main__":
 Examples:
   # Multi-GPU evaluation with model parallelism:
   python evaluate_distributed_checkpoints_multigpu.py \\
-    --model gemma-7b \\
-    --checkpoint_dir models/gemma-7b_fsdp/checkpoint-100 \\
+    --model gemma-7b-it \\
+    --checkpoint_dir models/gemma-7b-it_fsdp/checkpoint-100 \\
     --val_dataset data/output/processed_data_val.jsonl \\
     --hf_token YOUR_TOKEN \\
     --wandb_project lm-evaluation \\
@@ -3059,15 +3059,15 @@ Examples:
 
   # Single-GPU fallback:
   python evaluate_distributed_checkpoints_multigpu.py \\
-    --model gemma-7b \\
-    --checkpoint_dir models/gemma-7b_fsdp/checkpoint-100 \\
+    --model gemma-7b-it \\
+    --checkpoint_dir models/gemma-7b-it_fsdp/checkpoint-100 \\
     --val_dataset data/output/processed_data_val.jsonl \\
     --hf_token YOUR_TOKEN
 
   # With NLI faithfulness (default 100 examples; use --nli_subset_size == --val_data_size for full val NLI):
   python evaluate_distributed_checkpoints_multigpu.py \\
-    --model gemma-7b \\
-    --checkpoint_dir models/gemma-7b_fsdp/checkpoint-100 \\
+    --model gemma-7b-it \\
+    --checkpoint_dir models/gemma-7b-it_fsdp/checkpoint-100 \\
     --val_dataset data/output/processed_data_val.jsonl \\
     --hf_token YOUR_TOKEN \\
     --include_nli_faithfulness \\
@@ -3078,7 +3078,7 @@ Examples:
     
     parser.add_argument('--model', type=str, required=True,
                        choices=['viking-7b', 'viking-13b', 'viking-33b',
-                                'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
+                                'gemma-2b', 'gemma-7b-it', 'gemma-2-9b', 'gemma-2-27b',
                                 'gemma-3-12b', 'gemma-3-27b',
                                'normistral-7b', 'normistral-11b', 'normistral-11b-long', 'normistral-7b-instruct',
                                 'norskgpt-llama3-8b', 'llama-3.1-8b-instruct', 'llama-2-13b-chat-norwegian',

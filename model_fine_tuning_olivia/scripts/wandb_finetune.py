@@ -14,7 +14,7 @@ Usage:
   
   # Single GPU without quantization with custom hyperparameters:
   python wandb_finetune.py \\
-    --model gemma-7b \\
+    --model gemma-7b-it \\
     --quantization none \\
     --train_dataset data/train.jsonl \\
     --val_dataset data/val.jsonl \\
@@ -36,7 +36,7 @@ Usage:
   
   # Multi-GPU FSDP training for large models:
   torchrun --nproc_per_node=4 wandb_finetune.py \\
-    --model gemma-7b \\
+    --model gemma-7b-it \\
     --quantization none \\
     --fsdp \\
     --train_dataset data/train.jsonl \\
@@ -1929,6 +1929,11 @@ def fine_tune_model(
         model_config = get_model_config_by_hf_name(model_name)
     
     # gradient_accumulation_steps already defined earlier
+    # Gemma-7b (now mapped to instruction-tuned variant) has shown better
+    # generation quality with no label smoothing on this summarisation setup.
+    model_name_lower = model_name.lower()
+    label_smoothing_factor = 0.0 if "gemma-7b-it" in model_name_lower else 0.1
+
     training_args_kwargs = dict(
         output_dir=output_dir,
         per_device_train_batch_size=train_batch_size,
@@ -1967,7 +1972,7 @@ def fine_tune_model(
         report_to="wandb" if (is_main_process and not wandb_disabled) else "none",
         run_name=wandb_run_name,  # ADD THIS - link to manually initialized wandb run
         gradient_checkpointing=not use_fsdp,  # Disable for FSDP, use activation_checkpointing instead
-        label_smoothing_factor=0.1,  # Add label smoothing to improve generalization
+        label_smoothing_factor=label_smoothing_factor,
         dataloader_num_workers=4,
         dataloader_pin_memory=True,
         dataloader_prefetch_factor=2,
@@ -2292,7 +2297,7 @@ Examples:
     
     parser.add_argument('--model', type=str, required=True,
                     choices=['viking-7b', 'viking-13b', 'viking-33b',
-                             'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
+                             'gemma-2b', 'gemma-7b-it', 'gemma-2-9b', 'gemma-2-27b',
                              'gemma-3-12b', 'gemma-3-27b',
                              'normistral-7b', 'normistral-11b', 'normistral-11b-long', 'normistral-7b-instruct',
                              'norskgpt-llama3-8b', 'llama-3.1-8b-instruct', 'llama-2-13b-chat-norwegian',
