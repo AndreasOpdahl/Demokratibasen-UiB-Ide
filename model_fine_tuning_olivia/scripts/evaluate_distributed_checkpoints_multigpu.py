@@ -263,6 +263,7 @@ class CausalLMTrainer(Trainer):
                  generation_num_beams: Optional[int] = None,
                  eval_data_collator: Optional[Any] = None,
                  use_greedy: bool = True,
+                 allow_sampling_fallback: bool = False,
                  checkpoint_dir: Optional[str] = None,
                  model_name: Optional[str] = None,  # Store model name for prompt format detection
                  **kwargs) -> None:
@@ -270,6 +271,7 @@ class CausalLMTrainer(Trainer):
         self.generation_num_beams = generation_num_beams
         self.eval_data_collator = eval_data_collator
         self.use_greedy = use_greedy
+        self.allow_sampling_fallback = allow_sampling_fallback
         self.checkpoint_dir = checkpoint_dir  # Store checkpoint directory
         self.model_name = model_name  # Store model name for prompt format detection
         super().__init__(*args, **kwargs)
@@ -557,6 +559,25 @@ class CausalLMTrainer(Trainer):
                             ) from recovery_error
                     else:
                         # For non-GPT-J models, try standard fallback
+                        if self.allow_sampling_fallback:
+                            print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
+                            generation_kwargs_fallback = generation_kwargs.copy()
+                            generation_kwargs_fallback['do_sample'] = True
+                            generation_kwargs_fallback['temperature'] = 0.7
+                            generation_kwargs_fallback['top_p'] = 0.9
+                            try:
+                                generated_ids = model.generate(**generation_kwargs_fallback)
+                                print(f'  Fallback generation succeeded')
+                            except Exception as e2:
+                                print(f'  Fallback also failed: {e2}')
+                                raise
+                        else:
+                            print("  Deterministic mode: sampling fallback disabled (use --allow_sampling_fallback to enable).")
+                            raise
+                else:
+                    # Non-CUDA error, try standard fallback
+                    print(f'⚠ ERROR during generation: {e}')
+                    if self.allow_sampling_fallback:
                         print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
                         generation_kwargs_fallback = generation_kwargs.copy()
                         generation_kwargs_fallback['do_sample'] = True
@@ -568,10 +589,14 @@ class CausalLMTrainer(Trainer):
                         except Exception as e2:
                             print(f'  Fallback also failed: {e2}')
                             raise
-                else:
-                    # Non-CUDA error, try standard fallback
-                    print(f'⚠ ERROR during generation: {e}')
+                    else:
+                        print("  Deterministic mode: sampling fallback disabled (use --allow_sampling_fallback to enable).")
+                        raise
+            except Exception as e:
+                print(f'⚠ ERROR during generation: {e}')
+                if self.allow_sampling_fallback:
                     print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
+                    # Try with sampling as fallback
                     generation_kwargs_fallback = generation_kwargs.copy()
                     generation_kwargs_fallback['do_sample'] = True
                     generation_kwargs_fallback['temperature'] = 0.7
@@ -582,19 +607,8 @@ class CausalLMTrainer(Trainer):
                     except Exception as e2:
                         print(f'  Fallback also failed: {e2}')
                         raise
-            except Exception as e:
-                print(f'⚠ ERROR during generation: {e}')
-                print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
-                # Try with sampling as fallback
-                generation_kwargs_fallback = generation_kwargs.copy()
-                generation_kwargs_fallback['do_sample'] = True
-                generation_kwargs_fallback['temperature'] = 0.7
-                generation_kwargs_fallback['top_p'] = 0.9
-                try:
-                    generated_ids = model.generate(**generation_kwargs_fallback)
-                    print(f'  Fallback generation succeeded')
-                except Exception as e2:
-                    print(f'  Fallback also failed: {e2}')
+                else:
+                    print("  Deterministic mode: sampling fallback disabled (use --allow_sampling_fallback to enable).")
                     raise
         
         input_length = input_ids.shape[1]
@@ -603,31 +617,33 @@ class CausalLMTrainer(Trainer):
         if generated_ids.shape[1] <= input_length:
             print(f'⚠ WARNING: Model generated nothing or only input! generated_ids.shape={generated_ids.shape}, input_length={input_length}')
             print(f'  This suggests the model is immediately outputting EOS or not generating.')
-            print(f'  Trying with more aggressive generation parameters...')
-            
-            # Try again with more permissive settings
-            with torch.amp.autocast('cuda', dtype=torch.bfloat16):
-                generation_kwargs_retry = {
-                    'input_ids': input_ids,
-                    'use_cache': True,
-                    'max_new_tokens': self.generation_max_length if self.generation_max_length is not None else 512,
-                    'min_new_tokens': max(20, (self.generation_max_length if self.generation_max_length is not None else 512) // 5),  # More aggressive minimum
-                    'do_sample': True,  # Try sampling instead of greedy
-                    'temperature': 0.8,
-                    'top_p': 0.95,
-                    'pad_token_id': self._processing_class.pad_token_id,
-                    'eos_token_id': self._processing_class.eos_token_id,
-                    'repetition_penalty': 1.05,  # Lower penalty
-                }
-                try:
-                    generated_ids_retry = model.generate(**generation_kwargs_retry)
-                    if generated_ids_retry.shape[1] > input_length:
-                        print(f'  Retry succeeded! New shape: {generated_ids_retry.shape}')
-                        generated_ids = generated_ids_retry
-                    else:
-                        print(f'  Retry also failed - model still not generating (shape: {generated_ids_retry.shape})')
-                except Exception as e:
-                    print(f'  Retry generation failed: {e}')
+            if self.allow_sampling_fallback:
+                print(f'  Trying with more aggressive generation parameters...')
+                # Try again with more permissive settings
+                with torch.amp.autocast('cuda', dtype=torch.bfloat16):
+                    generation_kwargs_retry = {
+                        'input_ids': input_ids,
+                        'use_cache': True,
+                        'max_new_tokens': self.generation_max_length if self.generation_max_length is not None else 512,
+                        'min_new_tokens': max(20, (self.generation_max_length if self.generation_max_length is not None else 512) // 5),  # More aggressive minimum
+                        'do_sample': True,  # Try sampling instead of greedy
+                        'temperature': 0.8,
+                        'top_p': 0.95,
+                        'pad_token_id': self._processing_class.pad_token_id,
+                        'eos_token_id': self._processing_class.eos_token_id,
+                        'repetition_penalty': 1.05,  # Lower penalty
+                    }
+                    try:
+                        generated_ids_retry = model.generate(**generation_kwargs_retry)
+                        if generated_ids_retry.shape[1] > input_length:
+                            print(f'  Retry succeeded! New shape: {generated_ids_retry.shape}')
+                            generated_ids = generated_ids_retry
+                        else:
+                            print(f'  Retry also failed - model still not generating (shape: {generated_ids_retry.shape})')
+                    except Exception as e:
+                        print(f'  Retry generation failed: {e}')
+            else:
+                print("  Deterministic mode: sampling fallback disabled (use --allow_sampling_fallback to enable).")
         
         # Slice to get only generated tokens (after input)
         # Different prompt formats use different markers:
@@ -662,6 +678,11 @@ class CausalLMTrainer(Trainer):
         
         # Strategy 1: Try token-based extraction for Mistral/Llama/ChatML formats
         extraction_successful = False
+        if generated_ids.shape[0] > 1:
+            # Batch-safe boundary: generated sequence starts after input_length for every row.
+            # Format-specific extraction below relies on row 0 tokens and is unsafe for mixed batches.
+            generated_ids = generated_ids[:, input_length:]
+            extraction_successful = True
         
         # First, try to find [/INST] token position (Mistral format)
         inst_token_id = None
@@ -676,7 +697,7 @@ class CausalLMTrainer(Trainer):
                 pass
         
         # If we found [/INST] token, try to extract only tokens after it
-        if inst_token_id is not None and generated_ids.shape[0] > 0 and (prompt_format_type is None or prompt_format_type == 'mistral'):
+        if (not extraction_successful) and inst_token_id is not None and generated_ids.shape[0] > 0 and (prompt_format_type is None or prompt_format_type == 'mistral'):
             # Find the last occurrence of [/INST] in the input
             input_ids_list = input_ids[0].cpu().tolist()
             inst_positions = [i for i, token_id in enumerate(input_ids_list) if token_id == inst_token_id]
@@ -1031,34 +1052,37 @@ class CausalLMTrainer(Trainer):
             
             if num_valid_tokens == 0:
                 print(f'⚠ CRITICAL: Model generated only pad/eos tokens (model collapse or checkpoint too early). Trying permissive generation...')
-                # Try with sampling and higher temperature to break out of pad token loop
-                with torch.no_grad():
-                    generation_kwargs_force = {
-                        'input_ids': input_ids,
-                        'use_cache': True,
-                        'max_new_tokens': min(50, self.generation_max_length or 512),  # Shorter for early checkpoints
-                        'min_new_tokens': 5,  # Force at least 5 tokens
-                        'do_sample': True,
-                        'temperature': 1.2,  # Higher temperature to encourage diversity
-                        'top_p': 0.95,
-                        'top_k': 50,
-                        'pad_token_id': pad_token_id,
-                        'eos_token_id': eos_token_id,
-                        'repetition_penalty': 1.0,  # No penalty
-                    }
-                    try:
-                        generated_ids_force = model.generate(**generation_kwargs_force)
-                        # Check if this produced better results
-                        generated_ids_force = generated_ids_force[:, input_length:]
-                        non_pad_eos_mask_force = (generated_ids_force != pad_token_id) & (generated_ids_force != eos_token_id)
-                        num_valid_force = non_pad_eos_mask_force.sum().item()
-                        if num_valid_force > 0:
-                            print(f'  ✓ Forced generation produced {num_valid_force} valid tokens! Using this instead.')
-                            generated_ids = generated_ids_force
-                        else:
-                            print(f'  ✗ Forced generation also failed - model may have collapsed or checkpoint too early.')
-                    except Exception as e:
-                        print(f'  ✗ Forced generation failed: {e}')
+                if self.allow_sampling_fallback:
+                    # Try with sampling and higher temperature to break out of pad token loop
+                    with torch.no_grad():
+                        generation_kwargs_force = {
+                            'input_ids': input_ids,
+                            'use_cache': True,
+                            'max_new_tokens': min(50, self.generation_max_length or 512),  # Shorter for early checkpoints
+                            'min_new_tokens': 5,  # Force at least 5 tokens
+                            'do_sample': True,
+                            'temperature': 1.2,  # Higher temperature to encourage diversity
+                            'top_p': 0.95,
+                            'top_k': 50,
+                            'pad_token_id': pad_token_id,
+                            'eos_token_id': eos_token_id,
+                            'repetition_penalty': 1.0,  # No penalty
+                        }
+                        try:
+                            generated_ids_force = model.generate(**generation_kwargs_force)
+                            # Check if this produced better results
+                            generated_ids_force = generated_ids_force[:, input_length:]
+                            non_pad_eos_mask_force = (generated_ids_force != pad_token_id) & (generated_ids_force != eos_token_id)
+                            num_valid_force = non_pad_eos_mask_force.sum().item()
+                            if num_valid_force > 0:
+                                print(f'  ✓ Forced generation produced {num_valid_force} valid tokens! Using this instead.')
+                                generated_ids = generated_ids_force
+                            else:
+                                print(f'  ✗ Forced generation also failed - model may have collapsed or checkpoint too early.')
+                        except Exception as e:
+                            print(f'  ✗ Forced generation failed: {e}')
+                else:
+                    print("  Deterministic mode: sampling fallback disabled (use --allow_sampling_fallback to enable).")
         
         # Strip leading pad/eos and truncate at first EOS to avoid gibberish/hallucination.
         # If model doesn't emit EOS, truncate at max reasonable summary length (256 tokens).
@@ -1895,6 +1919,7 @@ def evaluate_checkpoint(
     val_data_seed: int = VAL_DATA_SEED,
     val_beam_size: int = VAL_BEAM_SIZE,
     use_greedy: bool = True,
+    allow_sampling_fallback: bool = False,
     use_multi_gpu: bool = False,
     wandb_project: Optional[str] = "lm-evaluation",
     wandb_entity: Optional[str] = None,
@@ -2758,6 +2783,7 @@ def evaluate_checkpoint(
         generation_num_beams=val_beam_size,
         eval_data_collator=eval_data_collator,
         use_greedy=use_greedy,
+        allow_sampling_fallback=allow_sampling_fallback,
         checkpoint_dir=checkpoint_dir,  # Pass checkpoint directory to Trainer
         model_name=model_name,  # Pass model name for prompt format detection
         model=model,
@@ -3112,6 +3138,8 @@ Examples:
                        help=f'Beam size for validation generation (default: {VAL_BEAM_SIZE})')
     parser.add_argument('--use_greedy', action='store_true',
                        help='Use greedy decoding instead of beam search for faster evaluation')
+    parser.add_argument('--allow_sampling_fallback', action='store_true',
+                       help='Allow non-deterministic sampling retries when deterministic generation fails.')
     parser.add_argument('--use_multi_gpu', action='store_true',
                        help='Use model parallelism (device_map="auto") to split model across multiple GPUs. Compatible with generation.')
     parser.add_argument('--keep_existing', action='store_true',
@@ -3229,6 +3257,7 @@ Examples:
                 max_output_summary_tokens=max_output_summary_tokens,
                 val_data_size=args.val_data_size,
                 val_data_seed=args.val_data_seed,
+                allow_sampling_fallback=args.allow_sampling_fallback,
                 use_multi_gpu=args.use_multi_gpu,
                 wandb_project=args.wandb_project if not args.wandb_disabled else None,
                 wandb_entity=args.wandb_entity,

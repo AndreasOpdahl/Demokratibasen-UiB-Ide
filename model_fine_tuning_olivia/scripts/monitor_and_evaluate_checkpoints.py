@@ -12,7 +12,7 @@ Usage:
   python monitor_and_evaluate_checkpoints.py \
     --output_dir models/gemma-7b-it-apptainer-fsdp \
     --model gemma-7b-it \
-    --val_dataset data/output/new_processed_data_val.jsonl \
+    --val_dataset data/dataset_149978_examples/149978_text_summary_examples_val.jsonl \
     --hf_token YOUR_TOKEN \
     --check_interval 30 \
     --early_stopping_patience 10 \

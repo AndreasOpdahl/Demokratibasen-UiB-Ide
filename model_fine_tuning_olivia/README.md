@@ -52,7 +52,7 @@ Example:
 {"input": "Dette er dokumentteksten...", "output": "Dette er oppsummeringen...", "metadata": {"doc_type": "vedtak"}}
 ```
 
-Dataset paths are passed via `--train_dataset` and `--val_dataset` (or `TRAIN_DATASET` / `VAL_DATASET` in sbatch). Defaults vary by script; common examples are `data/output/new_processed_data_train.jsonl` and `data/output/new_processed_data_val.jsonl`, but any path can be used.
+Dataset paths are passed via `--train_dataset` and `--val_dataset` (or `TRAIN_DATASET` / `VAL_DATASET` in sbatch). Current defaults are `data/dataset_149978_examples/149978_text_summary_examples_train.jsonl` and `data/dataset_149978_examples/149978_text_summary_examples_val.jsonl`, but any path can be used.
 
 ## Further Documentation
 

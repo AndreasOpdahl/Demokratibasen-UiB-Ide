@@ -69,15 +69,15 @@ def _compute_prompt_length_chat(input_ids: List[int], tokenizer: AutoTokenizer) 
             return min(pos + len(end_header_ids), len(input_ids))
     except Exception:
         pass
-    # ChatML: <|im_start|>assistant\n
-    # Prefer matching the full assistant marker to avoid masking too little.
-    try:
-        assistant_marker_ids = tokenizer.encode("<|im_start|> assistant\n", add_special_tokens=False)
-        pos = _find_last_subsequence(input_ids, assistant_marker_ids)
-        if pos is not None:
-            return min(pos + len(assistant_marker_ids), len(input_ids))
-    except Exception:
-        pass
+    # ChatML: support both "<|im_start|>assistant\n" and "<|im_start|> assistant\n"
+    for marker in ("<|im_start|>assistant\n", "<|im_start|> assistant\n", "<|im_start|>assistant", "<|im_start|> assistant"):
+        try:
+            assistant_marker_ids = tokenizer.encode(marker, add_special_tokens=False)
+            pos = _find_last_subsequence(input_ids, assistant_marker_ids)
+            if pos is not None:
+                return min(pos + len(assistant_marker_ids), len(input_ids))
+        except Exception:
+            pass
     try:
         im_start_id = tokenizer.convert_tokens_to_ids("<|im_start|>")
         unk_id = getattr(tokenizer, "unk_token_id", None)
@@ -99,17 +99,36 @@ def _compute_prompt_length_plain(input_ids: List[int], tokenizer: AutoTokenizer)
     """
     if not input_ids:
         return None
-    try:
-        marker = "Oppsummering:\n\n###\n\n"
-        marker_ids = tokenizer.encode(marker, add_special_tokens=False)
-        if not marker_ids:
-            return None
-        # Find last occurrence of marker sequence
-        for i in range(len(input_ids) - len(marker_ids), -1, -1):
-            if input_ids[i:i + len(marker_ids)] == marker_ids:
-                return min(i + len(marker_ids), len(input_ids))
-    except Exception:
-        pass
+    # Accept a few plain-format variants to avoid falling back when separators differ.
+    for marker in ("Oppsummering:\n\n###\n\n", "Oppsummering:\n\n", "Oppsummering:"):
+        try:
+            marker_ids = tokenizer.encode(marker, add_special_tokens=False)
+            if not marker_ids:
+                continue
+            pos = _find_last_subsequence(input_ids, marker_ids)
+            if pos is not None:
+                return min(pos + len(marker_ids), len(input_ids))
+        except Exception:
+            continue
+    return None
+
+
+def _compute_prompt_length_alpaca(input_ids: List[int], tokenizer: AutoTokenizer) -> Optional[int]:
+    """
+    Compute prompt length for Alpaca-style prompts ending with "Response:".
+    """
+    if not input_ids:
+        return None
+    for marker in ("Response:\n", "Response: ", "Response:"):
+        try:
+            marker_ids = tokenizer.encode(marker, add_special_tokens=False)
+            if not marker_ids:
+                continue
+            pos = _find_last_subsequence(input_ids, marker_ids)
+            if pos is not None:
+                return min(pos + len(marker_ids), len(input_ids))
+        except Exception:
+            continue
     return None
 
 
@@ -248,8 +267,10 @@ def tokenize_train_examples(
                 tokenized["input_ids"][idx] = input_ids[:max_length]
         print(f"⚠ WARNING: {sequences_exceeding_limit} example(s) exceeded max_length {max_length} and were manually truncated.")
     
-    # Exact prompt length: chat markers ([/INST], etc.), plain "Oppsummering:", or 80% heuristic
+    # Exact prompt length from known markers. If not found, fall back to 0
+    # (no masking) instead of a fixed-ratio guess.
     prompt_lengths = []
+    unresolved_count = 0
     for input_ids in input_ids_list:
         exact = _compute_prompt_length_chat(input_ids, tokenizer)
         if exact is not None:
@@ -259,8 +280,17 @@ def tokenize_train_examples(
             if exact_plain is not None:
                 prompt_lengths.append(exact_plain)
             else:
-                total_tokens = len(input_ids)
-                prompt_lengths.append(int(total_tokens * 0.8))
+                exact_alpaca = _compute_prompt_length_alpaca(input_ids, tokenizer)
+                if exact_alpaca is not None:
+                    prompt_lengths.append(exact_alpaca)
+                else:
+                    unresolved_count += 1
+                    prompt_lengths.append(0)
+    if unresolved_count:
+        print(
+            f"⚠ WARNING: Could not detect prompt boundary for {unresolved_count} training example(s); "
+            "using prompt_length=0 (no masking) for those examples."
+        )
     tokenized["prompt_length"] = prompt_lengths
     
     return tokenized

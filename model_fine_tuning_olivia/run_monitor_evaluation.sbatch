@@ -52,7 +52,7 @@ fi
 # Usage: sbatch run_monitor_evaluation.sbatch [--model=MODEL] [--output_dir=DIR] [--val_dataset=PATH] [--check_interval=N] [--early_stopping_patience=N] [--include_nli_faithfulness] [--dry-run]
 MODEL=${MODEL:-gemma-2-9b}
 OUTPUT_DIR=${OUTPUT_DIR:-"models/${MODEL}-apptainer-fsdp"}
-VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
+VAL_DATASET=${VAL_DATASET:-"data/dataset_149978_examples/149978_text_summary_examples_val.jsonl"}
 VAL_DATA_SIZE=${VAL_DATA_SIZE:-500}  # 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files
 CHECK_INTERVAL=${CHECK_INTERVAL:-60}  # Check every 60 seconds
 EARLY_STOPPING_PATIENCE=${EARLY_STOPPING_PATIENCE:-3}  # Stop if no improvement for 3 evaluations
@@ -104,7 +104,7 @@ for arg in "$@"; do
             echo "Options:"
             echo "  --model=MODEL                    Model short name (default: gemma-2-9b)"
             echo "  --output_dir=DIR                 Output directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
-            echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
+            echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/dataset_149978_examples/149978_text_summary_examples_val.jsonl)"
             echo "  --val_data_size=N                 Validation examples: 500 (default) or 1000 (writes to -examples_1000.json/.jsonl)"
             echo "  --check_interval=N               Check for new checkpoints every N seconds (default: 60)"
             echo "  --early_stopping_patience=N      Stop if no improvement for N evaluations (default: 3)"

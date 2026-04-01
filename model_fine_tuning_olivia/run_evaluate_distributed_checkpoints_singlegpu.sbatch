@@ -42,7 +42,7 @@ fi
 MODEL=${MODEL:-llama-2-13b-chat-norwegian}
 NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-1}}
 CHECKPOINT_BASE_DIR=${CHECKPOINT_BASE_DIR:-"models/${MODEL}-apptainer-fsdp"}
-VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
+VAL_DATASET=${VAL_DATASET:-"data/dataset_149978_examples/149978_text_summary_examples_val.jsonl"}
 VAL_BATCH_SIZE=${VAL_BATCH_SIZE:-32}
 VAL_DATA_SIZE=${VAL_DATA_SIZE:-500}
 SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:-""}
@@ -147,7 +147,7 @@ for arg in "$@"; do
             echo "  --model=MODEL                    Model short name (default: llama-2-13b-chat-norwegian)"
             echo "  --num_gpus=N                     Number of GPUs (default: 1)"
             echo "  --checkpoint_base_dir=DIR         Base directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
-            echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
+            echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/dataset_149978_examples/149978_text_summary_examples_val.jsonl)"
             echo "  --val_batch_size=N                Validation batch size per device (default: 32; auto-adjusted by Python script based on model size)"
             echo "  --val_data_size=N                 Number of validation examples (default: 500; use 1000 for extended eval)"
             echo "  --specific_checkpoints=\"N1 N2\"   Space-separated checkpoint numbers to evaluate (default: all)"
@@ -443,7 +443,7 @@ get_full_model_name() {
         norskgpt-llama3-8b) echo "bineric/norskgpt-llama3-8b" ;;
         llama-3.1-8b-instruct) echo "meta-llama/Llama-3.1-8B-Instruct" ;;
         llama-2-13b-chat-norwegian) echo "ruternorway/llama-2-13b-chat-norwegian" ;;
-        eurollm-9b-instruct) echo "utter-project/EuroLLM-9B-2512-instruct" ;;
+        eurollm-9b-instruct) echo "utter-project/EuroLLM-9B-Instruct-2512" ;;
         norwai-mistral-7b-instruct) echo "NorwAI/NorwAI-Mistral-7B-instruct" ;;
         nb-gpt-j-6b) echo "NbAiLab/nb-gpt-j-6B-torgersen-alpaca" ;;
         *) echo "$short_name" ;;

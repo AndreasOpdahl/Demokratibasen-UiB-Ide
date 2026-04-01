@@ -252,7 +252,7 @@ convert_model_to_cache_dir() {
         norskgpt-llama3-8b) echo "models--bineric--norskgpt-llama3-8b" ;;
         llama-3.1-8b-instruct) echo "models--meta-llama--Llama-3.1-8B-Instruct" ;;
         llama-2-13b-chat-norwegian) echo "models--ruternorway--llama-2-13b-chat-norwegian" ;;
-        eurollm-9b-instruct) echo "models--utter-project--EuroLLM-9B-2512-instruct" ;;
+        eurollm-9b-instruct) echo "models--utter-project--EuroLLM-9B-Instruct-2512" ;;
         norwai-mistral-7b-instruct) echo "models--NorwAI--NorwAI-Mistral-7B-instruct" ;;
         nb-gpt-j-6b) echo "models--NbAiLab--nb-gpt-j-6B-torgersen-alpaca" ;;
         *) echo "models--${model//\//--}" ;;
