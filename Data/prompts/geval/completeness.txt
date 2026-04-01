@@ -1,0 +1,27 @@
+You are evaluating two summaries of the same document for COMPLETENESS.
+
+Completeness means:
+- The summary should include the main points and key information from the document
+- It should not omit important facts or central ideas
+- Minor details are not required
+
+Important:
+- Prefer the summary that captures more of the important information
+- Do NOT reward unnecessary details that are not central to the document
+- If a summary includes more information but contains factual errors, do NOT prefer it for that reason
+
+Document:
+{{DOCUMENT}}
+
+Summary A:
+{{SUMMARY_A}}
+
+Summary B:
+{{SUMMARY_B}}
+
+Which summary is more complete?
+
+Reply with exactly one word:
+A
+B
+Tie (if both cover the important information equally well or equally poorly)

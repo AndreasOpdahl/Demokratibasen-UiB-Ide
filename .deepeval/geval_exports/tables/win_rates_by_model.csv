@@ -1,0 +1,13 @@
+model,n_pairwise_human,win_rate_human,n_pairwise_llm,win_rate_llm_pooled
+GPT4o-mini,0,,1221,0.6527436527436528
+eurollm-9B-Instruct-checkpoint-5000-inputs-refs-preds-examples_1000,0,,1260,0.38492063492063494
+gemma-2-9b-checkpoint-5000-inputs-refs-preds-examples_1000,0,,1308,0.5921253822629969
+gemma-2b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0,,1170,0.5405982905982906
+gemma-7b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0,,1281,0.3708040593286495
+llama-2-13b-chat-norwegian-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0,,1191,0.5659109991603695
+llama-3.1-8b-instruct-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0,,1212,0.6117986798679867
+nb-gpt-j-6b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0,,1197,0.3483709273182957
+normistral-11b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0,,1077,0.5891364902506964
+normistral-7b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0,,1119,0.4642537980339589
+normistral-7b-instruct-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0,,1278,0.46674491392801254
+norskgpt-llama3-8b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0,,1110,0.4189189189189189

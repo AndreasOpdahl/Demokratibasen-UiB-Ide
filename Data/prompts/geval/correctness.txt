@@ -1,0 +1,27 @@
+You are evaluating two summaries of the same document for CORRECTNESS.
+
+Correctness means:
+- Statements must be factually accurate and not misleading
+- Information should not distort, exaggerate, or misinterpret what the document says
+- Minor wording differences are acceptable, but factual errors are not
+
+Important:
+- A single clear factual error or misleading statement outweighs differences in style or detail
+- Prefer the summary with fewer inaccuracies or distortions
+- Do NOT prefer a summary just because it is longer or more fluent
+
+Document:
+{{DOCUMENT}}
+
+Summary A:
+{{SUMMARY_A}}
+
+Summary B:
+{{SUMMARY_B}}
+
+Which summary is more correct?
+
+Reply with exactly one word:
+A
+B
+Tie (if both are equally correct or equally incorrect)

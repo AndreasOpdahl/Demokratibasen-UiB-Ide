@@ -1,0 +1,13 @@
+model,google/gemma-3-4b_theta
+GPT4o-mini,1.4890321977829057
+eurollm-9B-Instruct-checkpoint-5000-inputs-refs-preds-examples_1000,0.7304650268517001
+gemma-2-9b-checkpoint-5000-inputs-refs-preds-examples_1000,1.1161568286568797
+gemma-2b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,1.387439183819356
+gemma-7b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0.7127941401543375
+llama-2-13b-chat-norwegian-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,1.1781608946694435
+llama-3.1-8b-instruct-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,1.2883218820098161
+nb-gpt-j-6b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0.7479229985647629
+normistral-11b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,1.2139425702625144
+normistral-7b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0.7770018229561217
+normistral-7b-instruct-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0.9817739114578431
+norskgpt-llama3-8b-apptainer-checkpoint-5000-inputs-refs-preds-examples_1000,0.7922744401017172
