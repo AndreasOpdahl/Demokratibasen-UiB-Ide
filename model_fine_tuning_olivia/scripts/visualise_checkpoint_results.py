@@ -68,6 +68,11 @@ def load_checkpoint_results(model_dir: str) -> Dict[int, Dict]:
     Returns:
         Dictionary mapping checkpoint step -> evaluation results
     """
+    # Canonical 500-example filenames: checkpoint-N-eval-results-500-examples.json
+    results = _load_results_by_pattern(model_dir, "checkpoint-*-eval-results-500-examples.json")
+    if results:
+        return results
+    # Backward compatibility: unsuffixed files were commonly 500-example outputs.
     return _load_results_by_pattern(model_dir, "checkpoint-*-eval-results.json",
                                     exclude_pattern="examples_")
 
@@ -78,6 +83,11 @@ def load_checkpoint_results_1000(model_dir: str) -> Dict[int, Dict]:
     Returns:
         Dictionary mapping checkpoint step -> evaluation results
     """
+    # Canonical 1000-example filenames: checkpoint-N-eval-results-1000-examples.json
+    results = _load_results_by_pattern(model_dir, "checkpoint-*-eval-results-1000-examples.json")
+    if results:
+        return results
+    # Backward compatibility with legacy suffix.
     return _load_results_by_pattern(model_dir, "checkpoint-*-eval-results-examples_1000.json")
 
 

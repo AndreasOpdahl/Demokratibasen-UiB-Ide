@@ -44,7 +44,7 @@ NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
 CHECKPOINT_BASE_DIR=${CHECKPOINT_BASE_DIR:-"models/${MODEL}-apptainer-fsdp"}
 VAL_DATASET=${VAL_DATASET:-"data/dataset_149978_examples/149978_text_summary_examples_val.jsonl"}
 VAL_BATCH_SIZE=${VAL_BATCH_SIZE:-32}
-VAL_DATA_SIZE=${VAL_DATA_SIZE:-500}
+VAL_DATA_SIZE=${VAL_DATA_SIZE:-1000}
 SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:-""}
 DRY_RUN=${DRY_RUN:-false}
 # NLI Faithfulness evaluation flags: "auto" (default) = on for major checkpoints only,
@@ -60,6 +60,13 @@ MAJOR_CHECKPOINT_INTERVAL=${MAJOR_CHECKPOINT_INTERVAL:-500}
 # Python evaluation mode flags
 EVAL_MODE=${EVAL_MODE:-""}        # "", "predict_only", "metrics_only"
 UPDATE_METRICS=${UPDATE_METRICS:-""}  # comma-separated: "rouge", "rouge,hygiene", etc.
+# Length-control options (disabled by default to preserve current behavior)
+LENGTH_CONTROLLED=${LENGTH_CONTROLLED:-false}
+MIN_NEW_TOKENS=${MIN_NEW_TOKENS:-40}
+MAX_NEW_TOKENS=${MAX_NEW_TOKENS:-180}
+USE_BEAM_LENGTH_CONTROL=${USE_BEAM_LENGTH_CONTROL:-false}
+VAL_BEAM_SIZE=${VAL_BEAM_SIZE:-4}
+LENGTH_PENALTY=${LENGTH_PENALTY:-1.05}
 
 # Parse command-line arguments if provided
 for arg in "$@"; do
@@ -138,6 +145,27 @@ for arg in "$@"; do
         --dry-run|--debug)
             DRY_RUN=true
             ;;
+        --length_controlled|--length-controlled)
+            LENGTH_CONTROLLED=true
+            ;;
+        --no_length_controlled|--no-length-controlled)
+            LENGTH_CONTROLLED=false
+            ;;
+        --min_new_tokens=*)
+            MIN_NEW_TOKENS="${arg#*=}"
+            ;;
+        --max_new_tokens=*)
+            MAX_NEW_TOKENS="${arg#*=}"
+            ;;
+        --use_beam_length_control|--use-beam-length-control)
+            USE_BEAM_LENGTH_CONTROL=true
+            ;;
+        --val_beam_size=*)
+            VAL_BEAM_SIZE="${arg#*=}"
+            ;;
+        --length_penalty=*)
+            LENGTH_PENALTY="${arg#*=}"
+            ;;
         *)
             echo "ERROR: Unknown argument: $arg"
             echo ""
@@ -149,7 +177,7 @@ for arg in "$@"; do
             echo "  --checkpoint_base_dir=DIR         Base directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
             echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/dataset_149978_examples/149978_text_summary_examples_val.jsonl)"
             echo "  --val_batch_size=N                Validation batch size per device (default: 32; auto-adjusted by Python script based on model size)"
-            echo "  --val_data_size=N                 Number of validation examples (default: 500; use 1000 for extended eval)"
+            echo "  --val_data_size=N                 Number of validation examples (default: 1000; output files end with -N-examples)"
             echo "  --specific_checkpoints=\"N1 N2\"   Space-separated checkpoint numbers to evaluate (default: all)"
             echo "  --force_recompute                  Re-evaluate even when results exist (e.g. backfill missed checkpoints)"
             echo "  --include_nli_faithfulness        Enable NLI-based faithfulness for ALL checkpoints (default: auto = major only)"
@@ -164,6 +192,12 @@ for arg in "$@"; do
             echo "  --update-hygiene                  Recompute hygiene from existing JSONL (combinable)"
             echo "  --update-bertscore                Recompute BERTScore from existing JSONL (combinable)"
             echo "  --update-faithfulness             Recompute NLI faithfulness from existing JSONL (combinable)"
+            echo "  --length_controlled               Write results to length_controlled_eval_results and apply length controls"
+            echo "  --min_new_tokens=N                Minimum generated tokens for length-controlled runs (default: 40)"
+            echo "  --max_new_tokens=N                Maximum generated tokens for length-controlled runs (default: 180)"
+            echo "  --use_beam_length_control         Use beam decoding with length_penalty for length-controlled runs"
+            echo "  --val_beam_size=N                 Beam size when --use_beam_length_control is enabled (default: 4)"
+            echo "  --length_penalty=F                Length penalty when --use_beam_length_control is enabled (default: 1.05)"
             echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
             echo ""
             echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
@@ -275,9 +309,19 @@ echo "  NUM_GPUS: $NUM_GPUS"
 echo "  CHECKPOINT_BASE_DIR: $CHECKPOINT_BASE_DIR"
 echo "  VAL_DATASET: $VAL_DATASET"
 echo "  VAL_BATCH_SIZE: $VAL_BATCH_SIZE"
-echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (1000 → separate -examples_1000.json/.jsonl files)"
+echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (output files end with -${VAL_DATA_SIZE}-examples.json/.jsonl)"
 echo "  SPECIFIC_CHECKPOINTS: ${SPECIFIC_CHECKPOINTS:-all}"
 echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS (auto = major checkpoints only)"
+echo "  LENGTH_CONTROLLED: $LENGTH_CONTROLLED"
+if [ "$LENGTH_CONTROLLED" = "true" ]; then
+    echo "  MIN_NEW_TOKENS: $MIN_NEW_TOKENS"
+    echo "  MAX_NEW_TOKENS: $MAX_NEW_TOKENS"
+    echo "  USE_BEAM_LENGTH_CONTROL: $USE_BEAM_LENGTH_CONTROL"
+    if [ "$USE_BEAM_LENGTH_CONTROL" = "true" ]; then
+        echo "  VAL_BEAM_SIZE: $VAL_BEAM_SIZE"
+        echo "  LENGTH_PENALTY: $LENGTH_PENALTY"
+    fi
+fi
 if [ "$INCLUDE_NLI_FAITHFULNESS" != "false" ]; then
     if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
         echo "  NLI_SUBSET_SIZE: $NLI_SUBSET_SIZE"
@@ -670,8 +714,17 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
             MODE_FLAGS="$MODE_FLAGS --update_$m"
         done
     fi
+    # Decode strategy + optional length-control flags
+    DECODE_FLAGS="--use_greedy"
+    LENGTH_FLAGS=""
+    if [ "$LENGTH_CONTROLLED" = "true" ]; then
+        LENGTH_FLAGS="--length_controlled --min_new_tokens $MIN_NEW_TOKENS --max_output_summary_tokens $MAX_NEW_TOKENS"
+        if [ "$USE_BEAM_LENGTH_CONTROL" = "true" ]; then
+            DECODE_FLAGS="--val_beam_size $VAL_BEAM_SIZE --length_penalty $LENGTH_PENALTY"
+        fi
+    fi
     
-    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_batch_size $VAL_BATCH_SIZE --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu --major_checkpoint_interval $MAJOR_CHECKPOINT_INTERVAL $NLI_FLAGS $KEEP_FLAG $FORCE_FLAG$NLI_SUBSET_FLAG $MODE_FLAGS"
+    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_batch_size $VAL_BATCH_SIZE --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation $DECODE_FLAGS --use_multi_gpu $LENGTH_FLAGS --major_checkpoint_interval $MAJOR_CHECKPOINT_INTERVAL $NLI_FLAGS $KEEP_FLAG $FORCE_FLAG$NLI_SUBSET_FLAG $MODE_FLAGS"
 
     # Apptainer commands - all on one line
     # Install bert_score for BERTScore evaluation (required by evaluate library)

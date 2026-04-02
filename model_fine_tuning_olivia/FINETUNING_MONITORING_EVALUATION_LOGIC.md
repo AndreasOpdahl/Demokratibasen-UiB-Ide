@@ -298,8 +298,7 @@ Recommendation: Use NLI only when needed (e.g., final evaluation or major checkp
 | `run_evaluate_multiple.sh` | Batch evaluation of multiple models; submits one job per model. |
 | `run_evaluate_distributed_checkpoints_multigpu.sbatch` | SLURM job script for evaluation. |
 | `scripts/model_configs.py` | Model-specific settings (LoRA, prompts, batch sizes). |
-| `scripts/summarisation_evaluation.py` | Metric implementations (ROUGE, BERTScore, hygiene, NLI). |
-| `scripts/utils/` | Shared utilities (formatting, tokenization, checkpoint paths, etc.). |
+| `scripts/utils/` | Shared utilities: metrics (ROUGE, BERTScore, hygiene), NLI faithfulness, formatting, tokenization, checkpoint paths, etc. |
 
 ---
 

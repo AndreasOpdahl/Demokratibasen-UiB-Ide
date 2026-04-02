@@ -9,7 +9,7 @@ and the old per-checkpoint location for backwards compatibility.
 import json
 import os
 import glob
-from typing import Any, Dict, Optional, Set
+from typing import Any, Dict, List, Optional, Set
 from datetime import datetime
 
 
@@ -31,6 +31,35 @@ def _get_model_dir_and_checkpoint_name(checkpoint_dir: str, model_dir: Optional[
     return model_dir, checkpoint_name
 
 
+def _normalize_examples_suffix(examples_suffix: Optional[str]) -> Optional[str]:
+    """Normalize examples suffix to the canonical '<N>-examples' format."""
+    if not examples_suffix:
+        return None
+    # Backward compatibility: examples_1000 -> 1000-examples
+    if examples_suffix.startswith("examples_"):
+        count = examples_suffix.replace("examples_", "", 1)
+        if count.isdigit():
+            return f"{count}-examples"
+    return examples_suffix
+
+
+def _legacy_examples_suffixes(examples_suffix: Optional[str]) -> List[str]:
+    """Return legacy suffix variants that should be checked for reads."""
+    if not examples_suffix:
+        # Legacy 500-example files were often unsuffixed.
+        return []
+    suffix = _normalize_examples_suffix(examples_suffix)
+    legacy: List[str] = []
+    if suffix and suffix.endswith("-examples"):
+        count = suffix.replace("-examples", "")
+        if count.isdigit():
+            legacy.append(f"examples_{count}")
+            if count == "500":
+                # Legacy default 500 often had no suffix.
+                legacy.append("")
+    return legacy
+
+
 def get_eval_results_path(
     checkpoint_dir: str,
     model_dir: Optional[str] = None,
@@ -38,13 +67,13 @@ def get_eval_results_path(
 ) -> str:
     """Get evaluation results file path (new centralized location).
     
-    The new location is: model_dir/all_eval_results/checkpoint-nnn-eval-results.json
-    With examples_suffix (e.g. "examples_1000"): checkpoint-nnn-eval-results-examples_1000.json
+    The new location is: model_dir/all_eval_results/checkpoint-nnn-eval-results-<N>-examples.json
     
     Args:
         checkpoint_dir: Path to checkpoint directory (may be in regular_checkpoints/ or major_checkpoints/)
         model_dir: Model directory (parent of all checkpoints). If None, will be derived.
-        examples_suffix: Optional suffix for val_data_size variants (e.g. "examples_1000" for 1000-example evals)
+        examples_suffix: Optional suffix for val_data_size variants (canonical: "1000-examples").
+            Legacy "examples_1000" is accepted and normalized.
     
     Returns:
         Path to evaluation results JSON file
@@ -52,7 +81,8 @@ def get_eval_results_path(
     model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
     all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
     base = f"{checkpoint_name}-eval-results"
-    suffix = f"-{examples_suffix}" if examples_suffix else ""
+    suffix = _normalize_examples_suffix(examples_suffix)
+    suffix = f"-{suffix}" if suffix else ""
     return os.path.join(all_eval_results_dir, f"{base}{suffix}.json")
 
 
@@ -63,13 +93,13 @@ def get_predictions_file_path(
 ) -> str:
     """Get inputs-refs-preds JSONL file path (in all_eval_results).
     
-    The location is: model_dir/all_eval_results/checkpoint-nnn-inputs-refs-preds.jsonl
-    With examples_suffix (e.g. "examples_1000"): checkpoint-nnn-inputs-refs-preds-examples_1000.jsonl
+    The location is: model_dir/all_eval_results/checkpoint-nnn-inputs-refs-preds-<N>-examples.jsonl
     
     Args:
         checkpoint_dir: Path to checkpoint directory (may be in regular_checkpoints/ or major_checkpoints/)
         model_dir: Model directory (parent of all checkpoints). If None, will be derived.
-        examples_suffix: Optional suffix for val_data_size variants (e.g. "examples_1000")
+        examples_suffix: Optional suffix for val_data_size variants (canonical: "1000-examples").
+            Legacy "examples_1000" is accepted and normalized.
     
     Returns:
         Path to the JSONL file
@@ -77,7 +107,8 @@ def get_predictions_file_path(
     model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
     all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
     base = f"{checkpoint_name}-inputs-refs-preds"
-    suffix = f"-{examples_suffix}" if examples_suffix else ""
+    suffix = _normalize_examples_suffix(examples_suffix)
+    suffix = f"-{suffix}" if suffix else ""
     return os.path.join(all_eval_results_dir, f"{base}{suffix}.jsonl")
 
 
@@ -88,8 +119,7 @@ def get_faithfulness_details_path(
 ) -> str:
     """Get per-example NLI faithfulness details JSONL path (in all_eval_results).
 
-    The location is: model_dir/all_eval_results/checkpoint-nnn-faithfulness-details.jsonl
-    With examples_suffix: checkpoint-nnn-faithfulness-details-examples_1000.jsonl
+    The location is: model_dir/all_eval_results/checkpoint-nnn-faithfulness-details-<N>-examples.jsonl
 
     Each line in the JSONL contains the full score_and_gate output for one
     example, keyed by ``example_index``.  This file enables incremental
@@ -99,7 +129,8 @@ def get_faithfulness_details_path(
     model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
     all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
     base = f"{checkpoint_name}-faithfulness-details"
-    suffix = f"-{examples_suffix}" if examples_suffix else ""
+    suffix = _normalize_examples_suffix(examples_suffix)
+    suffix = f"-{suffix}" if suffix else ""
     return os.path.join(all_eval_results_dir, f"{base}{suffix}.jsonl")
 
 
@@ -153,17 +184,20 @@ def load_eval_results(
     """Load evaluation results from new or old location.
     
     Checks both locations for backwards compatibility:
-    1. New location: model_dir/all_eval_results/checkpoint-nnn-eval-results.json (or -examples_1000.json)
+    1. New location: model_dir/all_eval_results/checkpoint-nnn-eval-results-<N>-examples.json
+       (also checks legacy suffix variants when present)
     2. Old location: checkpoint_dir/eval_results/eval_results.json
     
     Args:
         checkpoint_dir: Path to checkpoint directory (may be in regular_checkpoints/ or major_checkpoints/)
         model_dir: Model directory (parent of all checkpoints). If None, will be derived.
-        examples_suffix: Optional suffix for val_data_size variants (e.g. "examples_1000")
+        examples_suffix: Optional suffix for val_data_size variants (canonical: "1000-examples").
     
     Returns:
         Evaluation results dictionary, or None if not found
     """
+    examples_suffix = _normalize_examples_suffix(examples_suffix)
+
     # Try new location first (get_eval_results_path resolves model_dir when None)
     new_results_file = get_eval_results_path(checkpoint_dir, model_dir, examples_suffix=examples_suffix)
     if os.path.exists(new_results_file):
@@ -172,9 +206,21 @@ def load_eval_results(
                 return json.load(f)
         except (json.JSONDecodeError, IOError) as e:
             print(f"Error reading {new_results_file}: {e}")
+
+    # Try known legacy suffixed paths if canonical path is missing
+    for legacy_suffix in _legacy_examples_suffixes(examples_suffix):
+        legacy_results_file = get_eval_results_path(
+            checkpoint_dir, model_dir, examples_suffix=legacy_suffix if legacy_suffix else None
+        )
+        if os.path.exists(legacy_results_file):
+            try:
+                with open(legacy_results_file, 'r') as f:
+                    return json.load(f)
+            except (json.JSONDecodeError, IOError) as e:
+                print(f"Error reading {legacy_results_file}: {e}")
     
     # Try old location for backwards compatibility
-    # When examples_suffix is set (e.g. examples_1000), the old file is 500-example results - do NOT use it
+    # When examples_suffix is set, the old file is a legacy 500-example file - do NOT use it.
     if examples_suffix:
         return None
     old_results_file = get_old_eval_results_path(checkpoint_dir)
@@ -203,8 +249,8 @@ def save_eval_results(
         model_dir: Model directory (parent of all checkpoints). If None, will be derived.
         save_to_old_location: Whether to also save to old location for backwards compatibility.
             Ignored when examples_suffix is set (suffixed variants are only saved to new location).
-        examples_suffix: Optional suffix for val_data_size variants (e.g. "examples_1000").
-            When set, results go to checkpoint-N-eval-results-examples_1000.json and old location is skipped.
+        examples_suffix: Optional suffix for val_data_size variants (canonical: "1000-examples").
+            When set, results go to checkpoint-N-eval-results-<N>-examples.json and old location is skipped.
     
     Returns:
         Path to the new results file
@@ -217,7 +263,9 @@ def save_eval_results(
         except Exception:
             model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
     
-    # Save to new location (primary): model_dir/all_eval_results/checkpoint-N-eval-results.json (or -examples_1000.json)
+    examples_suffix = _normalize_examples_suffix(examples_suffix)
+
+    # Save to new location (primary): model_dir/all_eval_results/checkpoint-N-eval-results-<N>-examples.json
     new_results_file = get_eval_results_path(checkpoint_dir, model_dir, examples_suffix=examples_suffix)
     os.makedirs(os.path.dirname(new_results_file), exist_ok=True)
     
@@ -249,14 +297,22 @@ def get_evaluated_checkpoint_steps(model_dir: str) -> Set[int]:
     if not os.path.exists(model_dir):
         return evaluated
     
-    # Check new location: all_eval_results/checkpoint-*-eval-results.json
+    # Check new location:
+    # - checkpoint-*-eval-results-<N>-examples.json (canonical)
+    # - checkpoint-*-eval-results.json (legacy)
     all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
     if os.path.exists(all_eval_results_dir):
-        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results.json")):
+        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results*.json")):
             try:
-                # Extract step from filename: checkpoint-123-eval-results.json -> 123
+                # Extract step from filename prefixes like:
+                # checkpoint-123-eval-results.json
+                # checkpoint-123-eval-results-500-examples.json
                 filename = os.path.basename(eval_file)
-                step = int(filename.replace("checkpoint-", "").replace("-eval-results.json", ""))
+                prefix = "checkpoint-"
+                marker = "-eval-results"
+                if not filename.startswith(prefix) or marker not in filename:
+                    continue
+                step = int(filename[len(prefix):].split(marker, 1)[0])
                 evaluated.add(step)
             except (ValueError, IndexError):
                 pass

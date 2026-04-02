@@ -25,6 +25,7 @@ The training script will check for early stopping signals and stop if needed.
 import argparse
 import json
 import os
+import re
 import sys
 import time
 import glob
@@ -197,10 +198,10 @@ def get_best_checkpoint_metric(eval_results_dir: str) -> Optional[Dict]:
     best_metric = None
     best_checkpoint = None
     
-    # Check new location: all_eval_results/checkpoint-nnn-eval-results.json
+    # Check new location: all_eval_results/checkpoint-nnn-eval-results-<N>-examples.json
     all_eval_results_dir = os.path.join(eval_results_dir, "all_eval_results")
     if os.path.exists(all_eval_results_dir):
-        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results.json")):
+        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results*.json")):
             try:
                 with open(eval_file, 'r') as f:
                     results = json.load(f)
@@ -212,8 +213,10 @@ def get_best_checkpoint_metric(eval_results_dir: str) -> Optional[Dict]:
                         best_metric = metric_value
                         # Extract checkpoint step from filename
                         filename = os.path.basename(eval_file)
-                        checkpoint_step = filename.replace("checkpoint-", "").replace("-eval-results.json", "")
-                        best_checkpoint = f"checkpoint-{checkpoint_step}"
+                        match = re.match(r"checkpoint-(\d+)-eval-results", filename)
+                        if not match:
+                            continue
+                        best_checkpoint = f"checkpoint-{match.group(1)}"
             except (json.JSONDecodeError, ValueError, IndexError) as e:
                 print(f"Error reading {eval_file}: {e}")
                 continue
@@ -300,7 +303,7 @@ def monitor_and_evaluate(
     include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation
     nli_subset_size: int = NLI_DEFAULT_SUBSET_SIZE,  # passed to evaluate_checkpoint; use == val_data_size for full val NLI
     checkpoint_stability_seconds: int = 120,  # Wait for checkpoint to be stable (not modified) for this many seconds before evaluating
-    val_data_size: int = 500,  # Validation examples: 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files
+    val_data_size: int = 1000,  # Validation examples (default: 1000). Files are suffixed as -<N>-examples.json/.jsonl
 ):
     """Monitor checkpoints and evaluate them as they appear.
     
@@ -918,8 +921,8 @@ if __name__ == "__main__":
         metavar='N',
         help='With --include_nli_faithfulness: NLI example count (default: %(default)s; set equal to --val_data_size for full val NLI)',
     )
-    parser.add_argument('--val_data_size', type=int, default=500,
-                       help='Validation examples: 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files')
+    parser.add_argument('--val_data_size', type=int, default=1000,
+                       help='Validation examples (default: 1000). Output files are suffixed as -<val_data_size>-examples.json/.jsonl')
     parser.add_argument('--checkpoint_stability_seconds', type=int, default=120,
                        help='Wait for checkpoint to be stable (not modified) for this many seconds before evaluating (default: 120). Prevents evaluating checkpoints that are still being written.')
     

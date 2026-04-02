@@ -53,7 +53,7 @@ fi
 MODEL=${MODEL:-gemma-2-9b}
 OUTPUT_DIR=${OUTPUT_DIR:-"models/${MODEL}-apptainer-fsdp"}
 VAL_DATASET=${VAL_DATASET:-"data/dataset_149978_examples/149978_text_summary_examples_val.jsonl"}
-VAL_DATA_SIZE=${VAL_DATA_SIZE:-500}  # 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files
+VAL_DATA_SIZE=${VAL_DATA_SIZE:-1000}  # Default 1000; output files use -<N>-examples.json/.jsonl suffixes
 CHECK_INTERVAL=${CHECK_INTERVAL:-60}  # Check every 60 seconds
 EARLY_STOPPING_PATIENCE=${EARLY_STOPPING_PATIENCE:-3}  # Stop if no improvement for 3 evaluations
 INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-false}
@@ -105,7 +105,7 @@ for arg in "$@"; do
             echo "  --model=MODEL                    Model short name (default: gemma-2-9b)"
             echo "  --output_dir=DIR                 Output directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
             echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/dataset_149978_examples/149978_text_summary_examples_val.jsonl)"
-            echo "  --val_data_size=N                 Validation examples: 500 (default) or 1000 (writes to -examples_1000.json/.jsonl)"
+            echo "  --val_data_size=N                 Validation examples (default: 1000; writes to -N-examples.json/.jsonl)"
             echo "  --check_interval=N               Check for new checkpoints every N seconds (default: 60)"
             echo "  --early_stopping_patience=N      Stop if no improvement for N evaluations (default: 3)"
             echo "  --include_nli_faithfulness        Enable NLI-based faithfulness evaluation"
@@ -196,7 +196,7 @@ echo "Configuration:"
 echo "  MODEL: $MODEL"
 echo "  OUTPUT_DIR: $OUTPUT_DIR"
 echo "  VAL_DATASET: $VAL_DATASET"
-echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (1000 → separate -examples_1000.json/.jsonl files)"
+echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (output files end with -${VAL_DATA_SIZE}-examples.json/.jsonl)"
 echo "  CHECK_INTERVAL: $CHECK_INTERVAL seconds"
 echo "  EARLY_STOPPING_PATIENCE: $EARLY_STOPPING_PATIENCE evaluations"
 echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS"

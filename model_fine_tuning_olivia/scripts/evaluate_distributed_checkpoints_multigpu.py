@@ -136,7 +136,7 @@ MAX_EXTRA_PROMPT_TOKENS = 40
 MAX_INPUT_PROMPT_TOKENS = MAX_INPUT_TEXT_TOKENS + MAX_EXTRA_PROMPT_TOKENS
 MAX_OUTPUT_SUMMARY_TOKENS = 512
 VAL_BATCH_SIZE = 32
-VAL_DATA_SIZE = 500
+VAL_DATA_SIZE = 1000
 VAL_DATA_SEED = 42  # Fixed seed for reproducible validation sampling
 VAL_BEAM_SIZE = 4
 
@@ -260,7 +260,9 @@ def setup_distributed_evaluation():
 class CausalLMTrainer(Trainer):
     def __init__(self, *args, 
                  generation_max_length: Optional[int] = None,
+                 generation_min_new_tokens: int = 15,
                  generation_num_beams: Optional[int] = None,
+                 generation_length_penalty: float = 1.0,
                  eval_data_collator: Optional[Any] = None,
                  use_greedy: bool = True,
                  allow_sampling_fallback: bool = False,
@@ -268,7 +270,9 @@ class CausalLMTrainer(Trainer):
                  model_name: Optional[str] = None,  # Store model name for prompt format detection
                  **kwargs) -> None:
         self.generation_max_length = generation_max_length
+        self.generation_min_new_tokens = max(1, int(generation_min_new_tokens))
         self.generation_num_beams = generation_num_beams
+        self.generation_length_penalty = generation_length_penalty
         self.eval_data_collator = eval_data_collator
         self.use_greedy = use_greedy
         self.allow_sampling_fallback = allow_sampling_fallback
@@ -386,10 +390,9 @@ class CausalLMTrainer(Trainer):
                 except:
                     pass
             
-            # Set minimum length to prevent model from outputting EOS immediately.
-            # Keep it low (5–15): high min_new_tokens (e.g. 51) forces model past natural stop and causes gibberish.
+            # Keep min_new_tokens configurable for length-controlled evaluation runs.
             gen_max_len = self.generation_max_length if self.generation_max_length is not None else 512
-            min_new_tokens = max(5, 15)
+            min_new_tokens = max(1, int(self.generation_min_new_tokens))
             
             generation_kwargs = {
                 'input_ids': input_ids,
@@ -399,6 +402,7 @@ class CausalLMTrainer(Trainer):
                 'do_sample': False,
                 'pad_token_id': self._processing_class.pad_token_id,
                 'eos_token_id': self._processing_class.eos_token_id,
+                'length_penalty': self.generation_length_penalty,
                 'repetition_penalty': 1.1,  # Slight penalty to prevent repetition
             }
             # Critical: pass attention_mask so model does not attend to left-padding.
@@ -1257,7 +1261,7 @@ def load_model_and_peft_checkpoint(
     major_checkpoint_interval: int = 500,
     include_nli_faithfulness: bool = False,  # Check for missing NLI metrics if True
     force_recompute: bool = False,  # If True, skip "already evaluated" check and load model for re-evaluation
-    examples_suffix: Optional[str] = None,  # e.g. "examples_1000" when val_data_size != 500
+    examples_suffix: Optional[str] = None,  # canonical: "<N>-examples" (e.g. "1000-examples")
 ):
     """Load base model and PEFT checkpoint for inference.
     
@@ -1429,7 +1433,7 @@ def load_model_and_peft_checkpoint(
     
     # Check if this checkpoint was already evaluated using utility functions
     # Skip when force_recompute=True (monitor detected checkpoint newer than stale eval)
-    # When examples_suffix (e.g. "examples_1000"), check the suffixed file so 1000-example evals don't overwrite 500
+    # When examples_suffix is set, check the suffixed file so different val_data_size runs do not overwrite each other.
     eval_results_file = get_eval_results_path(checkpoint_dir, model_dir, examples_suffix=examples_suffix)
     old_eval_results_file = get_old_eval_results_path(checkpoint_dir)
     
@@ -1508,7 +1512,7 @@ def load_model_and_peft_checkpoint(
                 )
         
         # Also check old location for backwards compatibility
-        # When examples_suffix is set (e.g. examples_1000), the old file is from 500-example runs - do NOT skip
+        # When examples_suffix is set, the old file is from legacy unsuffixed 500-example runs - do NOT skip
         if not examples_suffix and os.path.exists(old_eval_results_file):
             # Check if extended metrics are missing (same logic as above)
             if EXTENDED_EVAL_AVAILABLE:
@@ -1914,10 +1918,13 @@ def evaluate_checkpoint(
     max_input_text_tokens: int = MAX_INPUT_TEXT_TOKENS,
     max_extra_prompt_tokens: int = MAX_EXTRA_PROMPT_TOKENS,
     max_output_summary_tokens: int = MAX_OUTPUT_SUMMARY_TOKENS,
+    min_new_tokens: int = 15,
     val_batch_size: int = VAL_BATCH_SIZE,
     val_data_size: int = VAL_DATA_SIZE,
     val_data_seed: int = VAL_DATA_SEED,
     val_beam_size: int = VAL_BEAM_SIZE,
+    length_penalty: float = 1.0,
+    length_controlled: bool = False,
     use_greedy: bool = True,
     allow_sampling_fallback: bool = False,
     use_multi_gpu: bool = False,
@@ -1976,16 +1983,17 @@ def evaluate_checkpoint(
     model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
     
     if output_dir is None:
-        # Create all_eval_results directory in model directory
-        output_dir = os.path.join(model_dir_eval, "all_eval_results")
+        # Default output dir can be switched for explicit length-controlled runs.
+        default_eval_dir = "length_controlled_eval_results" if length_controlled else "all_eval_results"
+        output_dir = os.path.join(model_dir_eval, default_eval_dir)
     else:
         output_dir = os.path.abspath(output_dir)
     
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
     
-    # Suffix for val_data_size variants: 1000 → "examples_1000", 500 → None (default/backward compatible)
-    examples_suffix = f"examples_{val_data_size}" if val_data_size != 500 else None
+    # Always include val_data_size suffix in filenames (e.g. "500-examples", "1000-examples").
+    examples_suffix = f"{val_data_size}-examples"
     
     # Get results file path using utility function
     results_file = get_eval_results_path(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
@@ -2780,7 +2788,9 @@ def evaluate_checkpoint(
     # Initialize Trainer for evaluation only
     trainer = CausalLMTrainer(
         generation_max_length=max_output_summary_tokens,
+        generation_min_new_tokens=min_new_tokens,
         generation_num_beams=val_beam_size,
+        generation_length_penalty=length_penalty,
         eval_data_collator=eval_data_collator,
         use_greedy=use_greedy,
         allow_sampling_fallback=allow_sampling_fallback,
@@ -3128,14 +3138,20 @@ Examples:
                        help=f'Maximum extra tokens for input prompt (default: {MAX_EXTRA_PROMPT_TOKENS})')
     parser.add_argument('--max_output_summary_tokens', type=int, default=MAX_OUTPUT_SUMMARY_TOKENS,
                        help=f'Maximum tokens for output summary (default: {MAX_OUTPUT_SUMMARY_TOKENS})')
+    parser.add_argument('--min_new_tokens', type=int, default=15,
+                       help='Minimum number of generated tokens (default: 15).')
     parser.add_argument('--val_batch_size', type=int, default=VAL_BATCH_SIZE,
                        help=f'Validation batch size per device (default: {VAL_BATCH_SIZE}). The script will automatically adjust based on model size and provide memory utilization reports.')
     parser.add_argument('--val_data_size', type=int, default=VAL_DATA_SIZE,
-                       help=f'Number of examples to use for validation (default: {VAL_DATA_SIZE}). Use 1000 for extended eval; the 1000 contain the same 500 as used for 500-example runs.')
+                       help=f'Number of examples to use for validation (default: {VAL_DATA_SIZE}). Output files are suffixed as -<val_data_size>-examples; 1000-example sets contain the same 500 used by 500-example runs.')
     parser.add_argument('--val_data_seed', type=int, default=VAL_DATA_SEED,
                        help=f'Random seed for reproducible validation sampling (default: {VAL_DATA_SEED})')
     parser.add_argument('--val_beam_size', type=int, default=VAL_BEAM_SIZE,
                        help=f'Beam size for validation generation (default: {VAL_BEAM_SIZE})')
+    parser.add_argument('--length_penalty', type=float, default=1.0,
+                       help='Beam-search length penalty (default: 1.0). Ignored with --use_greedy.')
+    parser.add_argument('--length_controlled', action='store_true',
+                       help='Store results under model_dir/length_controlled_eval_results by default.')
     parser.add_argument('--use_greedy', action='store_true',
                        help='Use greedy decoding instead of beam search for faster evaluation')
     parser.add_argument('--allow_sampling_fallback', action='store_true',
@@ -3209,6 +3225,8 @@ Examples:
 
     if args.nli_subset_size < 1:
         parser.error("--nli_subset_size must be a positive integer")
+    if args.min_new_tokens < 1:
+        parser.error("--min_new_tokens must be >= 1")
 
     # Model mapping from configs
     model_mapping = get_model_name_mapping()
@@ -3255,8 +3273,11 @@ Examples:
                 output_dir=args.output_dir,
                 max_input_text_tokens=max_input_text_tokens,
                 max_output_summary_tokens=max_output_summary_tokens,
+                min_new_tokens=args.min_new_tokens,
                 val_data_size=args.val_data_size,
                 val_data_seed=args.val_data_seed,
+                length_penalty=args.length_penalty,
+                length_controlled=args.length_controlled,
                 allow_sampling_fallback=args.allow_sampling_fallback,
                 use_multi_gpu=args.use_multi_gpu,
                 wandb_project=args.wandb_project if not args.wandb_disabled else None,
