@@ -41,6 +41,14 @@ device = None
 adapter_dir = None
 
 
+def normalize_hf_token(raw_token: Optional[str]) -> Optional[str]:
+    """Normalize HF token values so empty strings are treated as missing."""
+    if raw_token is None:
+        return None
+    token = raw_token.strip()
+    return token if token else None
+
+
 def validate_adapter_dir(path: str) -> None:
     """Validate that adapter directory contains PEFT adapter artifacts."""
     adapter_path = Path(path).expanduser().resolve()
@@ -86,6 +94,8 @@ def load_model(adapter_dir: str, model_name: str = "gemma-2-9b", hf_token: Optio
     """Load the base model and PEFT adapter."""
     global model, tokenizer, model_config, device
     
+    hf_token = normalize_hf_token(hf_token)
+
     print(f"Loading model: {model_name}")
     print(f"Adapter directory: {adapter_dir}")
     validate_adapter_dir(adapter_dir)
@@ -414,8 +424,11 @@ def main():
     
     args = parser.parse_args()
     
-    # Get HF token from env if not provided
-    hf_token = args.hf_token or os.getenv("HUGGINGFACE_TOKEN")
+    # Get HF token from CLI/env and treat blank values as missing.
+    # Supports both HUGGINGFACE_TOKEN and HF_TOKEN naming.
+    hf_token = normalize_hf_token(
+        args.hf_token or os.getenv("HUGGINGFACE_TOKEN") or os.getenv("HF_TOKEN")
+    )
     
     # Load model
     print("=" * 70)
