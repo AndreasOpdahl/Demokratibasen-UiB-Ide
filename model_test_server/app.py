@@ -9,6 +9,7 @@ import argparse
 import os
 import sys
 import time
+from pathlib import Path
 from typing import Optional
 import torch
 from fastapi import FastAPI, HTTPException
@@ -40,6 +41,28 @@ device = None
 checkpoint_path = None
 
 
+def validate_adapter_checkpoint(path: str) -> None:
+    """Validate that checkpoint path contains PEFT adapter artifacts."""
+    checkpoint_dir = Path(path).expanduser().resolve()
+    if not checkpoint_dir.exists() or not checkpoint_dir.is_dir():
+        raise ValueError(f"Checkpoint path does not exist or is not a directory: {checkpoint_dir}")
+
+    config_file = checkpoint_dir / "adapter_config.json"
+    safetensors_file = checkpoint_dir / "adapter_model.safetensors"
+    bin_file = checkpoint_dir / "adapter_model.bin"
+
+    if not config_file.exists():
+        raise ValueError(
+            f"Missing adapter_config.json in checkpoint directory: {checkpoint_dir}"
+        )
+
+    if not safetensors_file.exists() and not bin_file.exists():
+        raise ValueError(
+            "Missing adapter weights. Expected one of "
+            f"{safetensors_file.name} or {bin_file.name} in {checkpoint_dir}"
+        )
+
+
 class SummaryRequest(BaseModel):
     """Request model for summary generation."""
     text: str
@@ -65,6 +88,7 @@ def load_model(checkpoint_path: str, model_name: str = "gemma-2-9b", hf_token: O
     
     print(f"Loading model: {model_name}")
     print(f"Checkpoint path: {checkpoint_path}")
+    validate_adapter_checkpoint(checkpoint_path)
     
     # Get model configuration
     try:

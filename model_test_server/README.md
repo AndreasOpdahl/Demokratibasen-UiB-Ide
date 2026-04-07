@@ -10,6 +10,7 @@ A FastAPI-based HTTP server for serving model summaries using fine-tuned checkpo
 - Configurable generation parameters
 - Health check endpoint
 - CORS enabled for web applications
+- Docker-first deployment with GPU support
 
 ## Installation
 
@@ -42,6 +43,24 @@ python app.py \
     --model_name gemma-2-9b \
     --use_multi_gpu \
     --port 8000
+```
+
+### Docker (portable across machines)
+
+```bash
+cd model_test_server
+cp .env.example .env
+# Edit .env and set ADAPTER_DIR (and HUGGINGFACE_TOKEN if required)
+docker compose up -d --build
+```
+
+Or with the helper script:
+
+```bash
+cd model_test_server
+export ADAPTER_DIR="$HOME/OneDrive/Shared/Demokratibasen-UiB-Ide/TrainingRuns/olivia/winners/checkpoint-5000"
+export MODEL_NAME="gemma-2-9b"
+./build_and_run.sh
 ```
 
 ### Command Line Arguments
@@ -228,7 +247,7 @@ If you're running in a Docker container and GPU is not detected:
 ### Model not loading
 
 - Check that the checkpoint path is correct
-- Verify that the checkpoint contains `adapter_config.json` and `adapter_model.safetensors`
+- Verify that the checkpoint contains `adapter_config.json` and `adapter_model.safetensors` (or `adapter_model.bin`)
 - Ensure you have sufficient GPU memory
 - Check that the Hugging Face token is set correctly
 

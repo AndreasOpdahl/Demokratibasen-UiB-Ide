@@ -1,41 +1,39 @@
 # Running Model Server in Docker
 
-## Quick Start
+## Goal
 
-### Using Docker Run
+Run the same Docker image on different machines with GPU acceleration by only changing:
+- where the adapter checkpoint is mounted from
+- optional Hugging Face token
+
+The adapter directory must contain:
+- `adapter_config.json`
+- `adapter_model.safetensors` (or `adapter_model.bin`)
+
+## Quick Start (Recommended)
+
+### Option A: Single command script
 
 ```bash
-# Step 1: Build the image (name it whatever you want)
-docker build -t test-checkpoint .
+cd model_test_server
 
-# Step 2: Run with GPU access
-docker run --gpus all \
-  -p 8000:8000 \
-  -v $(pwd)/../checkpoint-5700:/app/checkpoint:ro \
-  -e HUGGINGFACE_TOKEN=$HUGGINGFACE_TOKEN \
-  test-checkpoint \
-  python app.py --checkpoint_path /app/checkpoint --model_name gemma-2-9b --port 8000
+export ADAPTER_DIR="$HOME/OneDrive/Shared/Demokratibasen-UiB-Ide/TrainingRuns/olivia/winners/checkpoint-5000"
+export MODEL_NAME="gemma-2-9b"
+export HUGGINGFACE_TOKEN="your_token_if_needed"
+
+./build_and_run.sh
 ```
 
-**Note:** Make sure to:
-- Build the image first with `docker build -t test-checkpoint .`
-- Use the correct checkpoint path (mounted at `/app/checkpoint` in container)
-- Set `HUGGINGFACE_TOKEN` environment variable before running
-
-### Using Docker Compose
+### Option B: Docker Compose
 
 ```bash
-# Set your Hugging Face token
-export HUGGINGFACE_TOKEN=your_token_here
+cd model_test_server
+cp .env.example .env
+# Edit .env and set ADAPTER_DIR (+ optional HUGGINGFACE_TOKEN)
 
-# Start the service
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-
-# Stop the service
-docker-compose down
+docker compose up -d --build
+docker compose logs -f
+docker compose down
 ```
 
 ## GPU Access
@@ -63,7 +61,7 @@ docker-compose down
    sudo systemctl restart docker
    ```
 
-2. **Verify GPU access:**
+3. **Verify GPU access:**
    ```bash
    docker run --rm --gpus all nvidia/cuda:12.2.0-base-ubuntu22.04 nvidia-smi
    ```
@@ -98,10 +96,26 @@ If GPU is not detected inside the container:
    ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
    ```
 
-## Building the Image
+## Building and pushing for reuse on other machines
 
 ```bash
-docker build -t model-server .
+# Example with Docker Hub (replace with your registry/tag)
+docker build -t your-user/model-test-server:latest .
+docker push your-user/model-test-server:latest
+```
+
+On another machine:
+```bash
+docker pull your-user/model-test-server:latest
+docker run --gpus all \
+  -p 8000:8000 \
+  -v "$ADAPTER_DIR:/app/checkpoint:ro" \
+  -v "$PWD/cache/huggingface:/cache/huggingface" \
+  -e HUGGINGFACE_TOKEN="$HUGGINGFACE_TOKEN" \
+  -e HF_HOME=/cache/huggingface \
+  -e TRANSFORMERS_CACHE=/cache/huggingface/transformers \
+  your-user/model-test-server:latest \
+  python app.py --checkpoint_path /app/checkpoint --model_name gemma-2-9b --port 8000 --use_multi_gpu
 ```
 
 ## Environment Variables
@@ -110,8 +124,9 @@ docker build -t model-server .
 
 ## Volume Mounts
 
-- Checkpoint directory: Mount your checkpoint to `/app/checkpoint`
-- Logs: Optional, mount a logs directory to `/app/logs`
+- Adapter checkpoint: mount to `/app/checkpoint` (read-only recommended)
+- Hugging Face cache: mount to `/cache/huggingface` for faster restarts
+- Logs (optional): mount to `/app/logs`
 
 ## Ports
 
@@ -119,7 +134,10 @@ docker build -t model-server .
 
 ## Example docker-compose.yml
 
-See `docker-compose.yml` in this directory for a complete example.
+See `docker-compose.yml` in this directory. It uses:
+- `gpus: all`
+- env-driven adapter path (`ADAPTER_DIR`)
+- env-driven model name (`MODEL_NAME`)
 
 ## Notes
 
