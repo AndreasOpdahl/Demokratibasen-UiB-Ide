@@ -60,13 +60,15 @@ MAJOR_CHECKPOINT_INTERVAL=${MAJOR_CHECKPOINT_INTERVAL:-500}
 # Python evaluation mode flags
 EVAL_MODE=${EVAL_MODE:-""}        # "", "predict_only", "metrics_only"
 UPDATE_METRICS=${UPDATE_METRICS:-""}  # comma-separated: "rouge", "rouge,hygiene", etc.
-# Length-control options (disabled by default to preserve current behavior)
-LENGTH_CONTROLLED=${LENGTH_CONTROLLED:-false}
+# Length-control options (enabled when both c200k limits are provided)
 MIN_NEW_TOKENS=${MIN_NEW_TOKENS:-40}
 MAX_NEW_TOKENS=${MAX_NEW_TOKENS:-180}
 USE_BEAM_LENGTH_CONTROL=${USE_BEAM_LENGTH_CONTROL:-false}
 VAL_BEAM_SIZE=${VAL_BEAM_SIZE:-4}
 LENGTH_PENALTY=${LENGTH_PENALTY:-1.05}
+C200K_MIN_NEW_TOKENS=${C200K_MIN_NEW_TOKENS:-}
+C200K_MAX_NEW_TOKENS=${C200K_MAX_NEW_TOKENS:-}
+C200K_FLAGS_FROM_ARGS=false
 
 # Parse command-line arguments if provided
 for arg in "$@"; do
@@ -145,12 +147,6 @@ for arg in "$@"; do
         --dry-run|--debug)
             DRY_RUN=true
             ;;
-        --length_controlled|--length-controlled)
-            LENGTH_CONTROLLED=true
-            ;;
-        --no_length_controlled|--no-length-controlled)
-            LENGTH_CONTROLLED=false
-            ;;
         --min_new_tokens=*)
             MIN_NEW_TOKENS="${arg#*=}"
             ;;
@@ -165,6 +161,14 @@ for arg in "$@"; do
             ;;
         --length_penalty=*)
             LENGTH_PENALTY="${arg#*=}"
+            ;;
+        --c200k_min_new_tokens=*)
+            C200K_MIN_NEW_TOKENS="${arg#*=}"
+            C200K_FLAGS_FROM_ARGS=true
+            ;;
+        --c200k_max_new_tokens=*)
+            C200K_MAX_NEW_TOKENS="${arg#*=}"
+            C200K_FLAGS_FROM_ARGS=true
             ;;
         *)
             echo "ERROR: Unknown argument: $arg"
@@ -192,12 +196,13 @@ for arg in "$@"; do
             echo "  --update-hygiene                  Recompute hygiene from existing JSONL (combinable)"
             echo "  --update-bertscore                Recompute BERTScore from existing JSONL (combinable)"
             echo "  --update-faithfulness             Recompute NLI faithfulness from existing JSONL (combinable)"
-            echo "  --length_controlled               Write results to length_controlled_eval_results and apply length controls"
             echo "  --min_new_tokens=N                Minimum generated tokens for length-controlled runs (default: 40)"
             echo "  --max_new_tokens=N                Maximum generated tokens for length-controlled runs (default: 180)"
             echo "  --use_beam_length_control         Use beam decoding with length_penalty for length-controlled runs"
             echo "  --val_beam_size=N                 Beam size when --use_beam_length_control is enabled (default: 4)"
             echo "  --length_penalty=F                Length penalty when --use_beam_length_control is enabled (default: 1.05)"
+            echo "  --c200k_min_new_tokens=N          Min length goal in c200k token space (auto-converted per model)"
+            echo "  --c200k_max_new_tokens=N          Max length goal in c200k token space (auto-converted per model)"
             echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
             echo ""
             echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
@@ -288,6 +293,17 @@ if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
     fi
 fi
 
+if [ "$C200K_FLAGS_FROM_ARGS" = "true" ]; then
+    if [ -n "$C200K_MIN_NEW_TOKENS" ] && [ -z "$C200K_MAX_NEW_TOKENS" ]; then
+        echo "ERROR: --c200k_min_new_tokens requires --c200k_max_new_tokens"
+        ERRORS=$((ERRORS + 1))
+    fi
+    if [ -z "$C200K_MIN_NEW_TOKENS" ] && [ -n "$C200K_MAX_NEW_TOKENS" ]; then
+        echo "ERROR: --c200k_max_new_tokens requires --c200k_min_new_tokens"
+        ERRORS=$((ERRORS + 1))
+    fi
+fi
+
 # Check if NUM_GPUS matches #SBATCH --gres (warning only, skip in dry-run)
 if [ "$DRY_RUN" != "true" ]; then
     SBATCH_GPUS=$(grep "^#SBATCH --gres=gpu:" "$0" | sed 's/.*gpu:\([0-9]*\).*/\1/' | head -1)
@@ -312,14 +328,22 @@ echo "  VAL_BATCH_SIZE: $VAL_BATCH_SIZE"
 echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (output files end with -${VAL_DATA_SIZE}-examples.json/.jsonl)"
 echo "  SPECIFIC_CHECKPOINTS: ${SPECIFIC_CHECKPOINTS:-all}"
 echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS (auto = major checkpoints only)"
-echo "  LENGTH_CONTROLLED: $LENGTH_CONTROLLED"
-if [ "$LENGTH_CONTROLLED" = "true" ]; then
+LENGTH_MODE=false
+if [ "$C200K_FLAGS_FROM_ARGS" = "true" ] && [ -n "$C200K_MIN_NEW_TOKENS" ] && [ -n "$C200K_MAX_NEW_TOKENS" ]; then
+    LENGTH_MODE=true
+fi
+echo "  LENGTH_CONTROLLED_BY_C200K_PAIR: $LENGTH_MODE"
+if [ "$LENGTH_MODE" = "true" ]; then
     echo "  MIN_NEW_TOKENS: $MIN_NEW_TOKENS"
     echo "  MAX_NEW_TOKENS: $MAX_NEW_TOKENS"
     echo "  USE_BEAM_LENGTH_CONTROL: $USE_BEAM_LENGTH_CONTROL"
     if [ "$USE_BEAM_LENGTH_CONTROL" = "true" ]; then
         echo "  VAL_BEAM_SIZE: $VAL_BEAM_SIZE"
         echo "  LENGTH_PENALTY: $LENGTH_PENALTY"
+    fi
+    if [ -n "$C200K_MIN_NEW_TOKENS" ] || [ -n "$C200K_MAX_NEW_TOKENS" ]; then
+        echo "  C200K_MIN_NEW_TOKENS: ${C200K_MIN_NEW_TOKENS:-unset}"
+        echo "  C200K_MAX_NEW_TOKENS: ${C200K_MAX_NEW_TOKENS:-unset}"
     fi
 fi
 if [ "$INCLUDE_NLI_FAITHFULNESS" != "false" ]; then
@@ -554,8 +578,16 @@ if [ -n "$SPECIFIC_CHECKPOINTS" ]; then
             regular_legacy="$CHECKPOINT_BASE_DIR/regular_checkpoints/regular-checkpoint-$ckpt_num"
             major_ckpt=""
             regular_ckpt=""
-            [ -d "$major_new" ] && major_ckpt="$major_new" || [ -d "$major_legacy" ] && major_ckpt="$major_legacy"
-            [ -d "$regular_new" ] && regular_ckpt="$regular_new" || [ -d "$regular_legacy" ] && regular_ckpt="$regular_legacy"
+            if [ -d "$major_new" ]; then
+                major_ckpt="$major_new"
+            elif [ -d "$major_legacy" ]; then
+                major_ckpt="$major_legacy"
+            fi
+            if [ -d "$regular_new" ]; then
+                regular_ckpt="$regular_new"
+            elif [ -d "$regular_legacy" ]; then
+                regular_ckpt="$regular_legacy"
+            fi
             
             if [ -n "$major_ckpt" ] && [ -f "$major_ckpt/adapter_config.json" ]; then
                 CHECKPOINTS="$CHECKPOINTS $major_ckpt"
@@ -655,7 +687,11 @@ if [ $NUM_CHECKPOINTS -eq 0 ]; then
 fi
 
 # Create results directory
-RESULTS_DIR="$CHECKPOINT_BASE_DIR/all_eval_results"
+if [ "$LENGTH_MODE" = "true" ]; then
+    RESULTS_DIR="$CHECKPOINT_BASE_DIR/eval_results_min${C200K_MIN_NEW_TOKENS}_max${C200K_MAX_NEW_TOKENS}_tokens"
+else
+    RESULTS_DIR="$CHECKPOINT_BASE_DIR/all_eval_results"
+fi
 mkdir -p "$RESULTS_DIR"
 
 echo "Results will be saved to: $RESULTS_DIR"
@@ -717,8 +753,9 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     # Decode strategy + optional length-control flags
     DECODE_FLAGS="--use_greedy"
     LENGTH_FLAGS=""
-    if [ "$LENGTH_CONTROLLED" = "true" ]; then
-        LENGTH_FLAGS="--length_controlled --min_new_tokens $MIN_NEW_TOKENS --max_output_summary_tokens $MAX_NEW_TOKENS"
+    if [ "$LENGTH_MODE" = "true" ]; then
+        LENGTH_FLAGS="--min_new_tokens $MIN_NEW_TOKENS --max_output_summary_tokens $MAX_NEW_TOKENS"
+        LENGTH_FLAGS="$LENGTH_FLAGS --c200k_min_new_tokens $C200K_MIN_NEW_TOKENS --c200k_max_new_tokens $C200K_MAX_NEW_TOKENS"
         if [ "$USE_BEAM_LENGTH_CONTROL" = "true" ]; then
             DECODE_FLAGS="--val_beam_size $VAL_BEAM_SIZE --length_penalty $LENGTH_PENALTY"
         fi

@@ -19,13 +19,13 @@ NLI_DEFAULT_SUBSET_SIZE = 100
 NLI_FIXED_SUBSET_SIZE = 500
 
 
-def get_nli_subset_file_path(model_dir: str) -> str:
+def get_nli_subset_file_path(model_dir: str, results_subdir: str = "all_eval_results") -> str:
     """Path to `all_eval_results/nli_fixed_subset_indices.json` under model_dir."""
-    return os.path.join(model_dir, "all_eval_results", "nli_fixed_subset_indices.json")
+    return os.path.join(model_dir, results_subdir, "nli_fixed_subset_indices.json")
 
 
-def _load_nli_subset_json(model_dir: str) -> Optional[dict]:
-    subset_file = get_nli_subset_file_path(model_dir)
+def _load_nli_subset_json(model_dir: str, results_subdir: str = "all_eval_results") -> Optional[dict]:
+    subset_file = get_nli_subset_file_path(model_dir, results_subdir=results_subdir)
     if not os.path.exists(subset_file):
         return None
     try:
@@ -111,8 +111,9 @@ def _save_nli_subset_file(
     nli_subset_size: int,
     use_first_n_for_extended: bool,
     seed: int,
+    results_subdir: str = "all_eval_results",
 ) -> None:
-    subset_file = get_nli_subset_file_path(model_dir)
+    subset_file = get_nli_subset_file_path(model_dir, results_subdir=results_subdir)
     os.makedirs(os.path.dirname(subset_file), exist_ok=True)
     with open(subset_file, "w") as f:
         json.dump(
@@ -134,6 +135,7 @@ def create_fixed_nli_subset(
     subset_size: Optional[int] = None,
     seed: int = NLI_FIXED_SUBSET_SEED,
     model_dir: Optional[str] = None,
+    results_subdir: str = "all_eval_results",
 ) -> List[int]:
     """Create indices (subset_size None → default 100). Full set when subset_size >= total."""
     eff = NLI_DEFAULT_SUBSET_SIZE if subset_size is None else subset_size
@@ -148,12 +150,13 @@ def create_fixed_nli_subset(
             eff,
             False,
             seed,
+            results_subdir=results_subdir,
         )
     return indices
 
 
-def load_fixed_nli_subset(model_dir: str) -> Optional[List[int]]:
-    data = _load_nli_subset_json(model_dir)
+def load_fixed_nli_subset(model_dir: str, results_subdir: str = "all_eval_results") -> Optional[List[int]]:
+    data = _load_nli_subset_json(model_dir, results_subdir=results_subdir)
     if data is None:
         return None
     return data.get("indices")
@@ -165,6 +168,7 @@ def get_or_create_fixed_nli_subset(
     subset_size: Optional[int] = None,
     seed: int = NLI_FIXED_SUBSET_SEED,
     use_first_n_for_extended: bool = False,
+    results_subdir: str = "all_eval_results",
 ) -> List[int]:
     """Load existing NLI indices or create and save them.
 
@@ -174,7 +178,7 @@ def get_or_create_fixed_nli_subset(
         equal to ``val_data_size``) to include the full eval set.
     """
     eff = NLI_DEFAULT_SUBSET_SIZE if subset_size is None else subset_size
-    data = _load_nli_subset_json(model_dir)
+    data = _load_nli_subset_json(model_dir, results_subdir=results_subdir)
     if data and _stored_subset_matches(
         data, total_examples, eff, use_first_n_for_extended, seed
     ):
@@ -184,7 +188,7 @@ def get_or_create_fixed_nli_subset(
         total_examples, eff, seed, use_first_n_for_extended
     )
     _save_nli_subset_file(
-        model_dir, indices, total_examples, eff, use_first_n_for_extended, seed
+        model_dir, indices, total_examples, eff, use_first_n_for_extended, seed, results_subdir=results_subdir
     )
     return indices
 

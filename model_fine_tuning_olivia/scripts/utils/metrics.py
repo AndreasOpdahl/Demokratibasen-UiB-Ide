@@ -38,6 +38,14 @@ def clean_decoded_text(text: str) -> str:
     return text.strip()
 
 
+def _tokenizer_max_valid_token_id(tokenizer: PreTrainedTokenizer) -> int:
+    """Upper bound for clipping token IDs before decode (includes added tokens)."""
+    try:
+        return max(len(tokenizer) - 1, tokenizer.vocab_size - 1)
+    except Exception:
+        return max(0, int(tokenizer.vocab_size) - 1)
+
+
 # ---------------------------------------------------------------------------
 # ROUGE
 # ---------------------------------------------------------------------------
@@ -79,14 +87,27 @@ def compute_rouge_metrics(
     preds, labels = eval_pred
 
     labels = np.where(labels != -100, labels, tokenizer.pad_token_id)
-    vocab_size = tokenizer.vocab_size
-    preds = np.clip(preds, 0, vocab_size - 1)
-    labels = np.clip(labels, 0, vocab_size - 1)
+    max_id = _tokenizer_max_valid_token_id(tokenizer)
+    preds = np.clip(preds, 0, max_id)
+    labels = np.clip(labels, 0, max_id)
 
     decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
     decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
 
     decoded_preds = [clean_decoded_text(p).strip() for p in decoded_preds]
+    # If clipping/skip_special_tokens yielded empty strings but IDs were non-padding, retry decode.
+    pad_id = tokenizer.pad_token_id
+    for i, text in enumerate(decoded_preds):
+        if text:
+            continue
+        row = preds[i] if preds.ndim == 2 else preds
+        non_pad = np.sum(row != pad_id) if pad_id is not None else np.sum(row != 0)
+        if non_pad == 0:
+            continue
+        raw = tokenizer.decode(row.tolist(), skip_special_tokens=False)
+        alt = clean_decoded_text(raw).strip()
+        if alt:
+            decoded_preds[i] = alt
     decoded_labels = [clean_decoded_text(l).strip() for l in decoded_labels]
 
     if len(decoded_preds) > 0 and is_main_process and verbose:

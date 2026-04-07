@@ -54,6 +54,10 @@ except ImportError:
     print("Warning: wandb not available. Install with: pip install wandb")
 
 
+# Matches evaluate_distributed_checkpoints_multigpu.get_eval_results_subdir_name()
+EVAL_RESULTS_TOKEN_SUBDIR_RE = re.compile(r"^eval_results_min\d+_max\d+_tokens$")
+
+
 def extract_checkpoint_step(filename: str) -> Optional[int]:
     """Extract checkpoint step number from filename."""
     match = re.search(r'checkpoint-(\d+)-eval-results', filename)
@@ -62,44 +66,97 @@ def extract_checkpoint_step(filename: str) -> Optional[int]:
     return None
 
 
-def load_checkpoint_results(model_dir: str) -> Dict[int, Dict]:
-    """Load 500-example checkpoint evaluation results from all_eval_results/.
-    
+def discover_eval_result_subdirs(model_dir: str) -> List[str]:
+    """List subdirs under *model_dir* that use the same checkpoint-eval JSON layout as all_eval_results.
+
+    Includes ``all_eval_results`` and ``eval_results_min*_*max*_tokens`` (token generation bounds).
+    """
+    if not os.path.isdir(model_dir):
+        return []
+    out: List[str] = []
+    try:
+        names = sorted(os.listdir(model_dir))
+    except OSError:
+        return []
+    for name in names:
+        path = os.path.join(model_dir, name)
+        if not os.path.isdir(path):
+            continue
+        if name == "all_eval_results" or EVAL_RESULTS_TOKEN_SUBDIR_RE.match(name):
+            out.append(name)
+    out.sort(key=lambda n: (0 if n == "all_eval_results" else 1, n))
+    return out
+
+
+def discover_all_eval_run_ids(model_dirs: List[str]) -> List[str]:
+    """Sorted union of evaluation run folder names across *model_dirs* (default folder first)."""
+    found = set()
+    for md in model_dirs:
+        found.update(discover_eval_result_subdirs(md))
+    return sorted(found, key=lambda n: (0 if n == "all_eval_results" else 1, n))
+
+
+def eval_run_display_label(run_id: str) -> str:
+    """Short label for UI / legend."""
+    if run_id == "all_eval_results":
+        return "all_eval_results"
+    m = re.match(r"^eval_results_min(\d+)_max(\d+)_tokens$", run_id)
+    if m:
+        return f"min {m.group(1)} / max {m.group(2)} tokens"
+    return run_id
+
+
+def load_checkpoint_results(model_dir: str, results_subdir: str = "all_eval_results") -> Dict[int, Dict]:
+    """Load 500-example checkpoint evaluation results from *model_dir* / *results_subdir* /.
+
     Returns:
         Dictionary mapping checkpoint step -> evaluation results
     """
+    results_dir = os.path.join(model_dir, results_subdir)
+    warn_missing = results_subdir == "all_eval_results"
     # Canonical 500-example filenames: checkpoint-N-eval-results-500-examples.json
-    results = _load_results_by_pattern(model_dir, "checkpoint-*-eval-results-500-examples.json")
+    results = _load_results_by_pattern(
+        results_dir, "checkpoint-*-eval-results-500-examples.json", warn_if_missing_dir=warn_missing
+    )
     if results:
         return results
     # Backward compatibility: unsuffixed files were commonly 500-example outputs.
-    return _load_results_by_pattern(model_dir, "checkpoint-*-eval-results.json",
-                                    exclude_pattern="examples_")
+    return _load_results_by_pattern(
+        results_dir, "checkpoint-*-eval-results.json",
+        exclude_pattern="examples_", warn_if_missing_dir=False,
+    )
 
 
-def load_checkpoint_results_1000(model_dir: str) -> Dict[int, Dict]:
-    """Load 1000-example checkpoint evaluation results from all_eval_results/.
-    
+def load_checkpoint_results_1000(model_dir: str, results_subdir: str = "all_eval_results") -> Dict[int, Dict]:
+    """Load 1000-example checkpoint evaluation results from *model_dir* / *results_subdir* /.
+
     Returns:
         Dictionary mapping checkpoint step -> evaluation results
     """
+    results_dir = os.path.join(model_dir, results_subdir)
+    warn_missing = results_subdir == "all_eval_results"
     # Canonical 1000-example filenames: checkpoint-N-eval-results-1000-examples.json
-    results = _load_results_by_pattern(model_dir, "checkpoint-*-eval-results-1000-examples.json")
+    results = _load_results_by_pattern(
+        results_dir, "checkpoint-*-eval-results-1000-examples.json", warn_if_missing_dir=warn_missing
+    )
     if results:
         return results
     # Backward compatibility with legacy suffix.
-    return _load_results_by_pattern(model_dir, "checkpoint-*-eval-results-examples_1000.json")
+    return _load_results_by_pattern(
+        results_dir, "checkpoint-*-eval-results-examples_1000.json", warn_if_missing_dir=False,
+    )
 
 
-def _load_results_by_pattern(model_dir: str, file_pattern: str,
-                             exclude_pattern: Optional[str] = None) -> Dict[int, Dict]:
-    all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
-    if not os.path.exists(all_eval_results_dir):
-        print(f"Warning: all_eval_results directory not found: {all_eval_results_dir}")
+def _load_results_by_pattern(results_dir: str, file_pattern: str,
+                             exclude_pattern: Optional[str] = None,
+                             warn_if_missing_dir: bool = False) -> Dict[int, Dict]:
+    if not os.path.exists(results_dir):
+        if warn_if_missing_dir:
+            print(f"Warning: evaluation results directory not found: {results_dir}")
         return {}
-    
+
     results = {}
-    pattern = os.path.join(all_eval_results_dir, file_pattern)
+    pattern = os.path.join(results_dir, file_pattern)
     
     for filepath in glob.glob(pattern):
         basename = os.path.basename(filepath)
@@ -158,6 +215,38 @@ def extract_metrics(results: Dict[int, Dict]) -> Dict[str, List[Tuple[int, float
             if 'ends_with_punct' not in metrics:
                 metrics['ends_with_punct'] = []
             metrics['ends_with_punct'].append((step, data['eval_hygiene_ratio_ends_with_punct']))
+
+        # Derived hygiene: mean prediction length vs reference (when backfilled token stats exist)
+        pred_tok = data.get("eval_mean_pred_tokens")
+        ref_tok = data.get("eval_mean_ref_tokens")
+        if pred_tok is not None and ref_tok is not None:
+            try:
+                pred_f = float(pred_tok)
+                ref_f = float(ref_tok)
+                if ref_f != 0.0 and pred_f == pred_f and ref_f == ref_f:  # not NaN
+                    ratio = pred_f / ref_f
+                    if ratio == ratio:  # not NaN
+                        if "pred_ref_tokens_ratio" not in metrics:
+                            metrics["pred_ref_tokens_ratio"] = []
+                        metrics["pred_ref_tokens_ratio"].append((step, ratio))
+            except (TypeError, ValueError):
+                pass
+
+        # Mean token counts (summaries), when backfilled / logged on eval JSON
+        for eval_key, mkey in (
+            ("eval_mean_pred_tokens", "mean_pred_tokens"),
+            ("eval_mean_ref_tokens", "mean_ref_tokens"),
+        ):
+            raw = data.get(eval_key)
+            if raw is not None:
+                try:
+                    v = float(raw)
+                    if v == v:  # not NaN
+                        if mkey not in metrics:
+                            metrics[mkey] = []
+                        metrics[mkey].append((step, v))
+                except (TypeError, ValueError):
+                    pass
         
         # Extended metrics - Faithfulness / NLI
         # Primary: eval_faithfulness (saved by evaluate_distributed_checkpoints_multigpu).
@@ -296,28 +385,44 @@ def create_matplotlib_plots(metrics_500: Dict[str, List[Tuple[int, float]]],
         print(f"Saved: {output_dir}/bertscore.png")
     
     # Extended metrics - Hygiene
-    hygiene_metrics = ['compression_ratio', 'repetition_3gram', 'ends_with_punct']
-    hygiene_colors = {'compression_ratio': '#1f77b4', 'repetition_3gram': '#ff7f0e', 'ends_with_punct': '#2ca02c'}
-    if any(m in metrics_500 or m in metrics_1000 for m in hygiene_metrics):
-        fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+    hygiene_defs = [
+        ('compression_ratio', 'Compression ratio', '#1f77b4', False, False),
+        ('repetition_3gram', '3-gram repetition', '#ff7f0e', False, False),
+        ('ends_with_punct', 'Ends with punct', '#2ca02c', True, True),
+        ('pred_ref_tokens_ratio', 'Pred / ref tokens', '#d62728', False, False),
+        ('mean_pred_tokens', 'Predicted summary tokens', '#3182bd', False, False),
+        ('mean_ref_tokens', 'Reference summary tokens', '#31a354', False, False),
+    ]
+    hygiene_present = [
+        (mid, title, color, y0, y1)
+        for mid, title, color, y0, y1 in hygiene_defs
+        if mid in metrics_500 or mid in metrics_1000
+    ]
+    if hygiene_present:
+        n = len(hygiene_present)
+        fig, axes = plt.subplots(1, n, figsize=(5.5 * n, 5))
+        if n == 1:
+            axes = [axes]
         fig.suptitle(f'Hygiene Metrics - {model_name}{legend_note}',
                      fontsize=16, fontweight='bold')
-        
-        for idx, metric in enumerate(hygiene_metrics):
-            ax = axes[idx]
+
+        for ax, (metric, plot_title, color, use_ylim_0, use_ylim_1) in zip(axes, hygiene_present):
             has_data = _plot_metric_dual(
                 ax, metric, metrics_500, metrics_1000,
-                color=hygiene_colors[metric],
-                ylim_bottom=0 if metric == 'ends_with_punct' else None,
-                ylim_top=1 if metric == 'ends_with_punct' else None,
+                color=color,
+                ylim_bottom=0 if use_ylim_0 else None,
+                ylim_top=1 if use_ylim_1 else None,
             )
-            ax.set_title(metric.replace('_', ' ').title(), fontweight='bold')
+            ax.set_title(plot_title, fontweight='bold')
             ax.set_xlabel('Checkpoint Step')
-            ax.set_ylabel('Value')
+            if metric in ("mean_pred_tokens", "mean_ref_tokens"):
+                ax.set_ylabel("Tokens")
+            else:
+                ax.set_ylabel("Value")
             ax.grid(True, alpha=0.3)
             if not has_data:
                 ax.text(0.5, 0.5, 'No data', ha='center', va='center', transform=ax.transAxes)
-        
+
         plt.tight_layout()
         plt.savefig(os.path.join(output_dir, 'hygiene_metrics.png'), dpi=150, bbox_inches='tight')
         plt.close()

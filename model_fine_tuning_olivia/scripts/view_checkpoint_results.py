@@ -4,6 +4,7 @@ Interactive HTML viewer for checkpoint evaluation results.
 Generates a self-contained HTML file with:
 - A large interactive Plotly chart in the centre
 - Model checkboxes along the top
+- Evaluation run checkboxes (``all_eval_results/`` vs ``eval_results_min*_max*_tokens/``)
 - Metric checkboxes on the right
 
 Reuses data loading from visualise_checkpoint_results.py.
@@ -34,7 +35,10 @@ if _script_dir not in sys.path:
     sys.path.insert(0, _script_dir)
 
 from visualise_checkpoint_results import (
-    load_all_model_data,
+    discover_all_eval_run_ids,
+    eval_run_display_label,
+    load_checkpoint_results,
+    load_checkpoint_results_1000,
     extract_metrics,
 )
 
@@ -52,6 +56,9 @@ METRIC_GROUPS = {
         "compression_ratio": {"label": "Compression Ratio", "color": "#8c564b", "dash": "longdashdot"},
         "repetition_3gram": {"label": "3-gram Repetition", "color": "#e377c2", "dash": "longdashdot"},
         "ends_with_punct": {"label": "Ends w/ Punct", "color": "#7f7f7f", "dash": "longdashdot"},
+        "pred_ref_tokens_ratio": {"label": "Pred/ref tokens", "color": "#d62728", "dash": "dash"},
+        "mean_pred_tokens": {"label": "Predicted summary tokens", "color": "#3182bd", "dash": "dot"},
+        "mean_ref_tokens": {"label": "Reference summary tokens", "color": "#31a354", "dash": "longdash"},
     },
     "Faithfulness": {
         "entailment_score": {"label": "Entailment Score", "color": "#17becf", "dash": "solid"},
@@ -68,27 +75,59 @@ MODEL_PALETTE = [
 
 
 def build_chart_data(model_dirs: List[str]) -> dict:
-    """Load all models and return a JSON-serialisable structure for the HTML viewer."""
-    all_500, all_1000 = load_all_model_data(model_dirs)
+    """Load all models and evaluation runs; return JSON for the HTML viewer.
 
-    models = {}
+    Each model may have several folders: ``all_eval_results/`` and
+    ``eval_results_min*_*max*_tokens/`` (same JSON layout). The viewer exposes
+    one checkbox per distinct folder name found across the given model dirs.
+    """
+    eval_run_ids = discover_all_eval_run_ids(model_dirs)
+    if not eval_run_ids:
+        eval_run_ids = ["all_eval_results"]
+
+    models: Dict[str, dict] = {}
     all_metric_keys = set()
 
-    for model_name in sorted(set(all_500.keys()) | set(all_1000.keys())):
-        m500 = extract_metrics(all_500.get(model_name, {}))
-        m1000 = extract_metrics(all_1000.get(model_name, {}))
+    for model_dir in model_dirs:
+        model_name = os.path.basename(model_dir.rstrip("/"))
+        runs_out: Dict[str, dict] = {}
 
-        model_entry = {"metrics_500": {}, "metrics_1000": {}}
-        for key, pts in m500.items():
-            steps, vals = zip(*pts) if pts else ([], [])
-            model_entry["metrics_500"][key] = {"steps": list(steps), "values": list(vals)}
-            all_metric_keys.add(key)
-        for key, pts in m1000.items():
-            steps, vals = zip(*pts) if pts else ([], [])
-            model_entry["metrics_1000"][key] = {"steps": list(steps), "values": list(vals)}
-            all_metric_keys.add(key)
+        for run_id in eval_run_ids:
+            results_dir = os.path.join(model_dir, run_id)
+            if not os.path.isdir(results_dir):
+                continue
 
-        models[model_name] = model_entry
+            r500 = load_checkpoint_results(model_dir, run_id)
+            r1000 = load_checkpoint_results_1000(model_dir, run_id)
+            if not r500 and not r1000:
+                continue
+
+            m500 = extract_metrics(r500) if r500 else {}
+            m1000 = extract_metrics(r1000) if r1000 else {}
+
+            entry = {"metrics_500": {}, "metrics_1000": {}}
+            for key, pts in m500.items():
+                steps, vals = zip(*pts) if pts else ([], [])
+                entry["metrics_500"][key] = {"steps": list(steps), "values": list(vals)}
+                all_metric_keys.add(key)
+            for key, pts in m1000.items():
+                steps, vals = zip(*pts) if pts else ([], [])
+                entry["metrics_1000"][key] = {"steps": list(steps), "values": list(vals)}
+                all_metric_keys.add(key)
+
+            runs_out[run_id] = entry
+
+        if runs_out:
+            models[model_name] = {"runs": runs_out}
+
+    present_run_ids = set()
+    for mentry in models.values():
+        present_run_ids.update(mentry["runs"].keys())
+
+    eval_runs = [
+        {"id": rid, "label": eval_run_display_label(rid)}
+        for rid in sorted(present_run_ids, key=lambda n: (0 if n == "all_eval_results" else 1, n))
+    ]
 
     metric_catalog = {}
     for group_name, group_metrics in METRIC_GROUPS.items():
@@ -96,7 +135,7 @@ def build_chart_data(model_dirs: List[str]) -> dict:
             if key in all_metric_keys:
                 metric_catalog[key] = {**meta, "group": group_name}
 
-    return {"models": models, "metric_catalog": metric_catalog}
+    return {"models": models, "metric_catalog": metric_catalog, "eval_runs": eval_runs}
 
 
 HTML_TEMPLATE = r"""<!DOCTYPE html>
@@ -147,6 +186,11 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   <label><input type="checkbox" id="normalize"> Normalise per metric (0-1)</label>
 </div>
 
+<div class="variant-toggle" id="eval-run-row">
+  <strong>Evaluation run:</strong>
+  <div class="model-bar" id="eval-run-bar" style="flex:1"></div>
+</div>
+
 <div class="main">
   <div id="chart"></div>
   <div class="sidebar" id="sidebar"></div>
@@ -157,15 +201,25 @@ const DATA = __DATA_PLACEHOLDER__;
 
 const modelNames = Object.keys(DATA.models).sort();
 const metricCatalog = DATA.metric_catalog;
+const evalRuns = DATA.eval_runs || [];
+const evalRunIds = evalRuns.map(r => r.id);
 
 const MODEL_PALETTE = __PALETTE_PLACEHOLDER__;
 
 const modelColors = {};
 modelNames.forEach((m, i) => { modelColors[m] = MODEL_PALETTE[i % MODEL_PALETTE.length]; });
 
+function evalRunLabel(runId) {
+  const r = evalRuns.find(x => x.id === runId);
+  return r ? r.label : runId;
+}
+
 // State: no models/metrics pre-selected; only 1000-example variant on by default
 let selectedModels = new Set();
 let selectedMetrics = new Set();
+let selectedEvalRuns = new Set();
+if (evalRunIds.includes("all_eval_results")) selectedEvalRuns.add("all_eval_results");
+else if (evalRunIds.length) selectedEvalRuns.add(evalRunIds[0]);
 let show500 = false;
 let show1000 = true;
 let normalizeMetrics = false;
@@ -208,6 +262,30 @@ modelBar.appendChild(makeBulkButtons(
   () => { modelCheckboxes.forEach(({cb, key}) => { cb.checked = true; selectedModels.add(key); }); render(); },
   () => { modelCheckboxes.forEach(({cb, key}) => { cb.checked = false; selectedModels.delete(key); }); render(); }
 ));
+
+// Evaluation run checkboxes (all_eval_results / eval_results_min*_max*_tokens / …)
+const evalRunBar = document.getElementById("eval-run-bar");
+const evalRunRow = document.getElementById("eval-run-row");
+const evalRunCheckboxes = [];
+if (evalRuns.length === 0) {
+  evalRunRow.style.display = "none";
+} else {
+  evalRuns.forEach(run => {
+    const lbl = document.createElement("label");
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = selectedEvalRuns.has(run.id);
+    cb.addEventListener("change", () => { toggle(selectedEvalRuns, run.id, cb.checked); render(); });
+    lbl.appendChild(cb);
+    lbl.appendChild(document.createTextNode(" " + run.label));
+    evalRunBar.appendChild(lbl);
+    evalRunCheckboxes.push({ cb, key: run.id });
+  });
+  evalRunBar.appendChild(makeBulkButtons(
+    () => { evalRunCheckboxes.forEach(({cb, key}) => { cb.checked = true; selectedEvalRuns.add(key); }); render(); },
+    () => { evalRunCheckboxes.forEach(({cb, key}) => { cb.checked = false; selectedEvalRuns.delete(key); }); render(); }
+  ));
+}
 
 // Build metric checkboxes grouped
 const sidebar = document.getElementById("sidebar");
@@ -261,13 +339,17 @@ function getMetricRange(metricKey) {
   let min = Infinity, max = -Infinity;
   for (const model of modelNames) {
     if (!selectedModels.has(model)) continue;
-    const mdata = DATA.models[model];
-    for (const variant of ["metrics_500", "metrics_1000"]) {
-      const d = mdata[variant][metricKey];
-      if (!d) continue;
-      for (const v of d.values) {
-        if (v < min) min = v;
-        if (v > max) max = v;
+    const runs = DATA.models[model].runs || {};
+    for (const runId of selectedEvalRuns) {
+      const runData = runs[runId];
+      if (!runData) continue;
+      for (const variant of ["metrics_500", "metrics_1000"]) {
+        const d = runData[variant][metricKey];
+        if (!d) continue;
+        for (const v of d.values) {
+          if (v < min) min = v;
+          if (v > max) max = v;
+        }
       }
     }
   }
@@ -294,55 +376,61 @@ function render() {
 
   for (const model of modelNames) {
     if (!selectedModels.has(model)) continue;
-    const mdata = DATA.models[model];
+    const runs = DATA.models[model].runs || {};
     const baseColor = modelColors[model];
     const shortName = model.replace(/-apptainer-fsdp$/, "");
 
-    for (const metricKey of Object.keys(metricCatalog)) {
-      if (!selectedMetrics.has(metricKey)) continue;
-      const meta = metricCatalog[metricKey];
-      const metaLabel = meta.label;
-      const metricDash = meta.dash || "solid";
-      const range = ranges[metricKey];
+    for (const runId of selectedEvalRuns) {
+      const runData = runs[runId];
+      if (!runData) continue;
+      const runTag = evalRunLabel(runId);
 
-      // 500-example trace (faded) -- always dotted regardless of metric dash
-      if (show500 && mdata.metrics_500[metricKey]) {
-        const d = mdata.metrics_500[metricKey];
-        const yVals = normalizeMetrics ? normalise(d.values, range) : d.values;
-        const hoverText = normalizeMetrics
-          ? d.values.map((v, i) => `${metaLabel}: ${v.toFixed(4)}<br>normalised: ${yVals[i].toFixed(3)}`)
-          : undefined;
-        traces.push({
-          x: d.steps, y: yVals,
-          mode: "lines+markers",
-          name: shortName + " / " + metaLabel + " (500)",
-          line: { color: baseColor, width: 1.2, dash: "dot" },
-          marker: { size: 4 },
-          opacity: 0.30,
-          legendgroup: model + "_" + metricKey,
-          showlegend: true,
-          ...(hoverText ? { text: hoverText, hoverinfo: "x+text+name" } : {}),
-        });
-      }
+      for (const metricKey of Object.keys(metricCatalog)) {
+        if (!selectedMetrics.has(metricKey)) continue;
+        const meta = metricCatalog[metricKey];
+        const metaLabel = meta.label;
+        const metricDash = meta.dash || "solid";
+        const range = ranges[metricKey];
 
-      // 1000-example trace (solid) — only from *-eval-results-examples_1000.json
-      if (show1000 && mdata.metrics_1000[metricKey]) {
-        const d = mdata.metrics_1000[metricKey];
-        const yVals = normalizeMetrics ? normalise(d.values, range) : d.values;
-        const hoverText = normalizeMetrics
-          ? d.values.map((v, i) => `${metaLabel}: ${v.toFixed(4)}<br>normalised: ${yVals[i].toFixed(3)}`)
-          : undefined;
-        traces.push({
-          x: d.steps, y: yVals,
-          mode: "lines+markers",
-          name: shortName + " / " + metaLabel + " (1000)",
-          line: { color: baseColor, width: 2.5, dash: metricDash },
-          marker: { size: 6 },
-          opacity: 1.0,
-          legendgroup: model + "_" + metricKey,
-          showlegend: true,
-          ...(hoverText ? { text: hoverText, hoverinfo: "x+text+name" } : {}),
-        });
+        // 500-example trace (faded) -- always dotted regardless of run
+        if (show500 && runData.metrics_500[metricKey]) {
+          const d = runData.metrics_500[metricKey];
+          const yVals = normalizeMetrics ? normalise(d.values, range) : d.values;
+          const hoverText = normalizeMetrics
+            ? d.values.map((v, i) => `${metaLabel}: ${v.toFixed(4)}<br>normalised: ${yVals[i].toFixed(3)}`)
+            : undefined;
+          traces.push({
+            x: d.steps, y: yVals,
+            mode: "lines+markers",
+            name: shortName + " / " + metaLabel + " (500) [" + runTag + "]",
+            line: { color: baseColor, width: 1.2, dash: "dot" },
+            marker: { size: 4 },
+            opacity: 0.30,
+            legendgroup: model + "_" + runId + "_" + metricKey,
+            showlegend: true,
+            ...(hoverText ? { text: hoverText, hoverinfo: "x+text+name" } : {}),
+          });
+        }
+
+        // 1000-example trace (solid) — dash style follows metric type (catalog)
+        if (show1000 && runData.metrics_1000[metricKey]) {
+          const d = runData.metrics_1000[metricKey];
+          const yVals = normalizeMetrics ? normalise(d.values, range) : d.values;
+          const hoverText = normalizeMetrics
+            ? d.values.map((v, i) => `${metaLabel}: ${v.toFixed(4)}<br>normalised: ${yVals[i].toFixed(3)}`)
+            : undefined;
+          traces.push({
+            x: d.steps, y: yVals,
+            mode: "lines+markers",
+            name: shortName + " / " + metaLabel + " (1000) [" + runTag + "]",
+            line: { color: baseColor, width: 2.5, dash: metricDash },
+            marker: { size: 6 },
+            opacity: 1.0,
+            legendgroup: model + "_" + runId + "_" + metricKey,
+            showlegend: true,
+            ...(hoverText ? { text: hoverText, hoverinfo: "x+text+name" } : {}),
+          });
+        }
       }
     }
   }
@@ -385,7 +473,7 @@ def main():
     )
     parser.add_argument(
         "--model_dir", type=str, nargs="+", required=True,
-        help="Model directory(ies) containing all_eval_results/",
+        help="Model directory(ies); each may contain all_eval_results/ and eval_results_min*_max*_tokens/",
     )
     parser.add_argument(
         "--output", type=str, default=None,
@@ -408,8 +496,9 @@ def main():
 
     n_models = len(chart_data["models"])
     n_metrics = len(chart_data["metric_catalog"])
+    n_runs = len(chart_data.get("eval_runs") or [])
     print(f"\nViewer written to: {output_path}")
-    print(f"  {n_models} model(s), {n_metrics} metric(s)")
+    print(f"  {n_models} model(s), {n_metrics} metric(s), {n_runs} evaluation run folder(s)")
     print(f"  Open in a browser or use Cursor's Simple Browser (Ctrl+Shift+P > Simple Browser)")
 
 

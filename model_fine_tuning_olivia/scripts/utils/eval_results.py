@@ -9,18 +9,22 @@ and the old per-checkpoint location for backwards compatibility.
 import json
 import os
 import glob
-from typing import Any, Dict, List, Optional, Set
+from typing import Any, Dict, List, Optional, Set, Tuple
 from datetime import datetime
 
 
-def _get_model_dir_and_checkpoint_name(checkpoint_dir: str, model_dir: Optional[str] = None) -> tuple:
+def _get_model_dir_and_checkpoint_name(
+    checkpoint_dir: str, model_dir: Optional[str] = None
+) -> Tuple[str, str]:
     """Resolve model dir and normalized checkpoint name (handles backup paths)."""
     if model_dir is None:
         try:
             from .checkpoint_utils import get_model_dir_from_checkpoint
-            model_dir = get_model_dir_from_checkpoint(checkpoint_dir)
+            resolved_model_dir = get_model_dir_from_checkpoint(checkpoint_dir)
         except Exception:
-            model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
+            resolved_model_dir = os.path.dirname(checkpoint_dir.rstrip('/'))
+    else:
+        resolved_model_dir = model_dir
     checkpoint_name = os.path.basename(checkpoint_dir.rstrip('/'))
     if 'regular-checkpoint-' in checkpoint_name:
         step = checkpoint_name.replace('regular-checkpoint-', '')
@@ -28,7 +32,7 @@ def _get_model_dir_and_checkpoint_name(checkpoint_dir: str, model_dir: Optional[
     elif 'major-checkpoint-' in checkpoint_name:
         step = checkpoint_name.replace('major-checkpoint-', '')
         checkpoint_name = f"checkpoint-{step}"
-    return model_dir, checkpoint_name
+    return resolved_model_dir, checkpoint_name
 
 
 def _normalize_examples_suffix(examples_suffix: Optional[str]) -> Optional[str]:
@@ -63,7 +67,8 @@ def _legacy_examples_suffixes(examples_suffix: Optional[str]) -> List[str]:
 def get_eval_results_path(
     checkpoint_dir: str,
     model_dir: Optional[str] = None,
-    examples_suffix: Optional[str] = None
+    examples_suffix: Optional[str] = None,
+    results_subdir: str = "all_eval_results",
 ) -> str:
     """Get evaluation results file path (new centralized location).
     
@@ -79,7 +84,7 @@ def get_eval_results_path(
         Path to evaluation results JSON file
     """
     model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
-    all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
+    all_eval_results_dir = os.path.join(model_dir, results_subdir)
     base = f"{checkpoint_name}-eval-results"
     suffix = _normalize_examples_suffix(examples_suffix)
     suffix = f"-{suffix}" if suffix else ""
@@ -89,7 +94,8 @@ def get_eval_results_path(
 def get_predictions_file_path(
     checkpoint_dir: str,
     model_dir: Optional[str] = None,
-    examples_suffix: Optional[str] = None
+    examples_suffix: Optional[str] = None,
+    results_subdir: str = "all_eval_results",
 ) -> str:
     """Get inputs-refs-preds JSONL file path (in all_eval_results).
     
@@ -105,7 +111,7 @@ def get_predictions_file_path(
         Path to the JSONL file
     """
     model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
-    all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
+    all_eval_results_dir = os.path.join(model_dir, results_subdir)
     base = f"{checkpoint_name}-inputs-refs-preds"
     suffix = _normalize_examples_suffix(examples_suffix)
     suffix = f"-{suffix}" if suffix else ""
@@ -115,7 +121,8 @@ def get_predictions_file_path(
 def get_faithfulness_details_path(
     checkpoint_dir: str,
     model_dir: Optional[str] = None,
-    examples_suffix: Optional[str] = None
+    examples_suffix: Optional[str] = None,
+    results_subdir: str = "all_eval_results",
 ) -> str:
     """Get per-example NLI faithfulness details JSONL path (in all_eval_results).
 
@@ -127,7 +134,7 @@ def get_faithfulness_details_path(
     examples need to be analysed.
     """
     model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
-    all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
+    all_eval_results_dir = os.path.join(model_dir, results_subdir)
     base = f"{checkpoint_name}-faithfulness-details"
     suffix = _normalize_examples_suffix(examples_suffix)
     suffix = f"-{suffix}" if suffix else ""
@@ -147,6 +154,7 @@ def should_skip_faithfulness_update(
     checkpoint_dir: str,
     model_dir: Optional[str] = None,
     examples_suffix: Optional[str] = None,
+    results_subdir: str = "all_eval_results",
 ) -> bool:
     """Skip --update-faithfulness only when aggregates exist and the details JSONL is on disk.
 
@@ -157,7 +165,7 @@ def should_skip_faithfulness_update(
     if not nli_faithfulness_aggregate_present(existing_results):
         return False
     details_path = get_faithfulness_details_path(
-        checkpoint_dir, model_dir, examples_suffix=examples_suffix
+        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
     )
     return os.path.isfile(details_path)
 
@@ -179,7 +187,8 @@ def get_old_eval_results_path(checkpoint_dir: str) -> str:
 def load_eval_results(
     checkpoint_dir: str,
     model_dir: Optional[str] = None,
-    examples_suffix: Optional[str] = None
+    examples_suffix: Optional[str] = None,
+    results_subdir: str = "all_eval_results",
 ) -> Optional[Dict[str, Any]]:
     """Load evaluation results from new or old location.
     
@@ -199,7 +208,9 @@ def load_eval_results(
     examples_suffix = _normalize_examples_suffix(examples_suffix)
 
     # Try new location first (get_eval_results_path resolves model_dir when None)
-    new_results_file = get_eval_results_path(checkpoint_dir, model_dir, examples_suffix=examples_suffix)
+    new_results_file = get_eval_results_path(
+        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+    )
     if os.path.exists(new_results_file):
         try:
             with open(new_results_file, 'r') as f:
@@ -210,7 +221,7 @@ def load_eval_results(
     # Try known legacy suffixed paths if canonical path is missing
     for legacy_suffix in _legacy_examples_suffixes(examples_suffix):
         legacy_results_file = get_eval_results_path(
-            checkpoint_dir, model_dir, examples_suffix=legacy_suffix if legacy_suffix else None
+            checkpoint_dir, model_dir, examples_suffix=legacy_suffix if legacy_suffix else None, results_subdir=results_subdir
         )
         if os.path.exists(legacy_results_file):
             try:
@@ -239,7 +250,8 @@ def save_eval_results(
     checkpoint_dir: str,
     model_dir: Optional[str] = None,
     save_to_old_location: bool = True,
-    examples_suffix: Optional[str] = None
+    examples_suffix: Optional[str] = None,
+    results_subdir: str = "all_eval_results",
 ) -> str:
     """Save evaluation results to new location (and optionally old location).
     
@@ -266,7 +278,9 @@ def save_eval_results(
     examples_suffix = _normalize_examples_suffix(examples_suffix)
 
     # Save to new location (primary): model_dir/all_eval_results/checkpoint-N-eval-results-<N>-examples.json
-    new_results_file = get_eval_results_path(checkpoint_dir, model_dir, examples_suffix=examples_suffix)
+    new_results_file = get_eval_results_path(
+        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+    )
     os.makedirs(os.path.dirname(new_results_file), exist_ok=True)
     
     with open(new_results_file, 'w') as f:
@@ -282,13 +296,17 @@ def save_eval_results(
     return new_results_file
 
 
-def get_evaluated_checkpoint_steps(model_dir: str) -> Set[int]:
+def get_evaluated_checkpoint_steps(
+    model_dir: str, examples_suffix: Optional[str] = None, results_subdir: str = "all_eval_results"
+) -> Set[int]:
     """Get set of already evaluated checkpoint steps.
     
     Checks both new and old locations for backwards compatibility.
     
     Args:
         model_dir: Path to model directory
+        examples_suffix: Optional suffix filter (canonical "<N>-examples").
+            When provided, only matching result-file variants are considered.
     
     Returns:
         Set of evaluated checkpoint step numbers
@@ -297,35 +315,53 @@ def get_evaluated_checkpoint_steps(model_dir: str) -> Set[int]:
     if not os.path.exists(model_dir):
         return evaluated
     
+    normalized_suffix = _normalize_examples_suffix(examples_suffix)
+
     # Check new location:
     # - checkpoint-*-eval-results-<N>-examples.json (canonical)
     # - checkpoint-*-eval-results.json (legacy)
-    all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
+    all_eval_results_dir = os.path.join(model_dir, results_subdir)
     if os.path.exists(all_eval_results_dir):
-        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results*.json")):
-            try:
-                # Extract step from filename prefixes like:
-                # checkpoint-123-eval-results.json
-                # checkpoint-123-eval-results-500-examples.json
-                filename = os.path.basename(eval_file)
-                prefix = "checkpoint-"
-                marker = "-eval-results"
-                if not filename.startswith(prefix) or marker not in filename:
-                    continue
-                step = int(filename[len(prefix):].split(marker, 1)[0])
-                evaluated.add(step)
-            except (ValueError, IndexError):
-                pass
+        if normalized_suffix:
+            patterns = [
+                os.path.join(all_eval_results_dir, f"checkpoint-*-eval-results-{normalized_suffix}.json"),
+            ]
+            for legacy_suffix in _legacy_examples_suffixes(normalized_suffix):
+                if legacy_suffix:
+                    patterns.append(
+                        os.path.join(all_eval_results_dir, f"checkpoint-*-eval-results-{legacy_suffix}.json")
+                    )
+                else:
+                    patterns.append(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results.json"))
+        else:
+            patterns = [os.path.join(all_eval_results_dir, "checkpoint-*-eval-results*.json")]
+
+        for pattern in patterns:
+            for eval_file in glob.glob(pattern):
+                try:
+                    # Extract step from filename prefixes like:
+                    # checkpoint-123-eval-results.json
+                    # checkpoint-123-eval-results-500-examples.json
+                    filename = os.path.basename(eval_file)
+                    prefix = "checkpoint-"
+                    marker = "-eval-results"
+                    if not filename.startswith(prefix) or marker not in filename:
+                        continue
+                    step = int(filename[len(prefix):].split(marker, 1)[0])
+                    evaluated.add(step)
+                except (ValueError, IndexError):
+                    pass
     
     # Also check old location for backwards compatibility
-    for ckpt_dir in glob.glob(os.path.join(model_dir, "checkpoint-*")):
-        old_eval_results_file = get_old_eval_results_path(ckpt_dir)
-        if os.path.exists(old_eval_results_file):
-            try:
-                step = int(os.path.basename(ckpt_dir).split("-")[-1])
-                evaluated.add(step)
-            except (ValueError, IndexError):
-                pass
+    if not normalized_suffix:
+        for ckpt_dir in glob.glob(os.path.join(model_dir, "checkpoint-*")):
+            old_eval_results_file = get_old_eval_results_path(ckpt_dir)
+            if os.path.exists(old_eval_results_file):
+                try:
+                    step = int(os.path.basename(ckpt_dir).split("-")[-1])
+                    evaluated.add(step)
+                except (ValueError, IndexError):
+                    pass
     
     return evaluated
 
@@ -336,7 +372,8 @@ def update_evaluation_summary(
     model_dir: Optional[str] = None,
     model_name: Optional[str] = None,
     val_dataset_path: Optional[str] = None,
-    examples_suffix: Optional[str] = None
+    examples_suffix: Optional[str] = None,
+    results_subdir: str = "all_eval_results",
 ) -> str:
     """Update evaluation_summary.json file.
     
@@ -356,7 +393,7 @@ def update_evaluation_summary(
     from .checkpoint_utils import get_checkpoint_name_and_step
     checkpoint_name, checkpoint_step = get_checkpoint_name_and_step(checkpoint_dir)
     
-    summary_file = os.path.join(model_dir, "all_eval_results", "evaluation_summary.json")
+    summary_file = os.path.join(model_dir, results_subdir, "evaluation_summary.json")
     os.makedirs(os.path.dirname(summary_file), exist_ok=True)
     
     # Load existing summary or create new one
@@ -380,7 +417,9 @@ def update_evaluation_summary(
         "checkpoint_number": checkpoint_step,
         "status": "success",
         "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "result_file": get_eval_results_path(checkpoint_dir, model_dir, examples_suffix=examples_suffix),
+        "result_file": get_eval_results_path(
+            checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+        ),
     }
     
     # Add all metrics from results

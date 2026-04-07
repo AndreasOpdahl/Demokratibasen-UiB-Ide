@@ -76,6 +76,8 @@ from model_configs import get_model_config_by_hf_name, get_model_name_mapping, g
 # Import shared utilities
 from utils import (
     EvalDataCollator,
+    clean_decoded_text,
+    compute_rouge,
     compute_rouge_metrics,
     extract_checkpoint_step,
     get_checkpoint_name_and_step,
@@ -139,6 +141,130 @@ VAL_BATCH_SIZE = 32
 VAL_DATA_SIZE = 1000
 VAL_DATA_SEED = 42  # Fixed seed for reproducible validation sampling
 VAL_BEAM_SIZE = 4
+
+DEFAULT_C200K_TO_MODEL_RATIO = 1.0
+C200K_CONVERSION_TABLE_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "utils",
+    "c200k_length_conversion_table.json",
+)
+
+
+def _load_c200k_conversion_table(path: str = C200K_CONVERSION_TABLE_PATH) -> Dict[str, Any]:
+    """Load c200k->model conversion table if available."""
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def _resolve_c200k_to_model_ratio(
+    model_name: str,
+    model_config: Optional[Any],
+    table: Dict[str, Any],
+) -> float:
+    """Resolve c200k->model ratio from short name, HF name, architecture, or default."""
+    by_short = table.get("by_short_name", {}) if isinstance(table, dict) else {}
+    by_hf = table.get("by_hf_name", {}) if isinstance(table, dict) else {}
+    by_arch = table.get("by_architecture", {}) if isinstance(table, dict) else {}
+    default_ratio = float(table.get("default_ratio", DEFAULT_C200K_TO_MODEL_RATIO)) if isinstance(table, dict) else DEFAULT_C200K_TO_MODEL_RATIO
+
+    if model_config is not None:
+        short_name = getattr(model_config, "short_name", None)
+        if short_name and short_name in by_short:
+            return float(by_short[short_name])
+
+    if model_name in by_hf:
+        return float(by_hf[model_name])
+
+    if model_config is not None:
+        arch = getattr(model_config, "architecture", None)
+        if arch and arch in by_arch:
+            return float(by_arch[arch])
+
+    return default_ratio
+
+
+def _convert_c200k_goal_to_model_tokens(
+    model_name: str,
+    model_config: Optional[Any],
+    c200k_min_new_tokens: Optional[int],
+    c200k_max_new_tokens: Optional[int],
+) -> Tuple[Optional[int], Optional[int], Optional[float]]:
+    """Convert c200k min/max token goals to model-tokenizer min/max."""
+    if c200k_min_new_tokens is None and c200k_max_new_tokens is None:
+        return None, None, None
+
+    table = _load_c200k_conversion_table()
+    ratio = _resolve_c200k_to_model_ratio(model_name, model_config, table)
+    ratio = max(0.1, ratio)
+
+    min_tokens = round(c200k_min_new_tokens * ratio) if c200k_min_new_tokens is not None else None
+    max_tokens = round(c200k_max_new_tokens * ratio) if c200k_max_new_tokens is not None else None
+
+    if min_tokens is not None:
+        min_tokens = max(1, min_tokens)
+    if max_tokens is not None:
+        max_tokens = max(1, max_tokens)
+    if min_tokens is not None and max_tokens is not None and min_tokens > max_tokens:
+        min_tokens = max_tokens
+
+    return min_tokens, max_tokens, ratio
+
+
+def _build_results_subdir_name(
+    c200k_min_new_tokens: Optional[int],
+    c200k_max_new_tokens: Optional[int],
+) -> str:
+    """Return the result subdirectory for this run."""
+    if c200k_min_new_tokens is not None and c200k_max_new_tokens is not None:
+        return f"eval_results_min{c200k_min_new_tokens}_max{c200k_max_new_tokens}_tokens"
+    return "all_eval_results"
+
+
+def _sync_model_tokenizer_special_tokens(model: torch.nn.Module, tokenizer) -> None:
+    """Align pad/eos on model config + generation_config with the tokenizer.
+
+    Gemma and several other families set pad_token == eos_token; HF generate relies on
+    config.pad_token_id matching the tokenizer when batching with left padding.
+    """
+    pad_id = getattr(tokenizer, "pad_token_id", None)
+    eos_id = getattr(tokenizer, "eos_token_id", None)
+    if pad_id is None and eos_id is not None:
+        pad_id = eos_id
+    candidates: List[torch.nn.Module] = [model]
+    try:
+        if hasattr(model, "get_base_model"):
+            bm = model.get_base_model()
+            if bm is not None:
+                candidates.append(bm)
+    except Exception:
+        pass
+    inner = getattr(model, "base_model", None)
+    if inner is not None:
+        candidates.append(inner)
+        nested = getattr(inner, "model", None)
+        if nested is not None:
+            candidates.append(nested)
+    seen: Set[int] = set()
+    for m in candidates:
+        if m is None or id(m) in seen:
+            continue
+        seen.add(id(m))
+        cfg = getattr(m, "config", None)
+        if cfg is not None:
+            if pad_id is not None:
+                cfg.pad_token_id = pad_id
+            if eos_id is not None:
+                cfg.eos_token_id = eos_id
+        gen_cfg = getattr(m, "generation_config", None)
+        if gen_cfg is not None:
+            if pad_id is not None:
+                gen_cfg.pad_token_id = pad_id
+            if eos_id is not None:
+                gen_cfg.eos_token_id = eos_id
+
 
 def sample_validation_data_reproducibly(
     val_data: list,
@@ -349,6 +475,12 @@ class CausalLMTrainer(Trainer):
         self.data_collator = original_collator
         
         return dataloader
+
+    def evaluate(self, eval_dataset=None, ignore_keys=None, metric_key_prefix="eval"):
+        """Clear per-run buffers so `evaluate()` can be called multiple times safely."""
+        self._eval_predictions = []
+        self._empty_warning_shown = False
+        return super().evaluate(eval_dataset, ignore_keys, metric_key_prefix)
 
     def prediction_step(
         self,
@@ -1015,8 +1147,9 @@ class CausalLMTrainer(Trainer):
                         except Exception:
                             pass
             else:
-                # No sequences or already extracted, use original slice
-                generated_ids = generated_ids[:, input_length:]
+                # Already extracted in the batched fast-path above.
+                # Do NOT slice by input_length again, or generation becomes empty.
+                pass
         
         # Check if generated_ids is empty or all padding
         if generated_ids.numel() == 0:
@@ -1096,8 +1229,14 @@ class CausalLMTrainer(Trainer):
         stripped_list = []
         for i in range(generated_ids.shape[0]):
             row = generated_ids[i].cpu().tolist()
-            # Truncate at first EOS (model's natural stop); if no EOS, cap at MAX_SUMMARY_TOKENS_BEFORE_TRUNCATE
-            first_eos = next((j for j, tid in enumerate(row) if tid == eos_token_id), None)
+            # Drop leading padding first. If pad_token_id == eos_token_id, scanning for "first EOS"
+            # before stripping pads can wipe the whole sequence incorrectly.
+            if pad_token_id is not None:
+                while row and row[0] == pad_token_id:
+                    row.pop(0)
+            first_eos = None
+            if eos_token_id is not None:
+                first_eos = next((j for j, tid in enumerate(row) if tid == eos_token_id), None)
             if first_eos is not None:
                 row = row[:first_eos]
             elif len(row) > MAX_SUMMARY_TOKENS_BEFORE_TRUNCATE:
@@ -1111,6 +1250,16 @@ class CausalLMTrainer(Trainer):
             padded = [r + [pad_token_id] * (max_len - len(r)) for r in stripped_list]
             generated_ids = torch.tensor(padded, device=generated_ids.device, dtype=generated_ids.dtype)
             decoded_predictions = self._processing_class.batch_decode(generated_ids, skip_special_tokens=True)
+            # Gemma/some tokenizers: skip_special_tokens=True can yield "" even when logits were non-trivial.
+            for bi, text in enumerate(decoded_predictions):
+                if text or bi >= len(stripped_list):
+                    continue
+                row_ids = stripped_list[bi]
+                if not row_ids:
+                    continue
+                raw = self._processing_class.decode(row_ids, skip_special_tokens=False)
+                if raw.strip():
+                    decoded_predictions[bi] = raw
         else:
             decoded_predictions = [""] * generated_ids.shape[0]
         
@@ -1120,9 +1269,10 @@ class CausalLMTrainer(Trainer):
             # Truncate at [/SAK] - Normistral sometimes emits this instead of EOS and repeats it
             if '[/SAK]' in text:
                 text = text.split('[/SAK]')[0].strip()
-            # Plain/Gemma format: training ends output with \n\n### - truncate at first ### to drop post-summary garbage
-            if '###' in text:
-                text = text.split('###')[0].strip()
+            # Plain/Gemma format sometimes has trailing separator blocks.
+            # Only trim explicit trailing separator patterns; never split at the first "###"
+            # because many valid generations can begin with markdown headings.
+            text = re.sub(r'(\n\s*)#{3,}\s*$', '', text).strip()
             # Remove common chat format tokens (Llama-2)
             text = text.replace('[/INST]', '').replace('[INST]', '')
             text = text.replace('</s>', '').replace('<s>', '')
@@ -1146,8 +1296,12 @@ class CausalLMTrainer(Trainer):
             # Plain/Gemma format: strip echoed "Oppsummering:" or "###" at start
             if text.lstrip().startswith('Oppsummering:'):
                 text = text.lstrip()[len('Oppsummering:'):].lstrip()
-            while text.startswith('###'):
-                text = text.lstrip()[3:].lstrip()
+            # Plain template ends with "###" delimiters; models often echo 1–3 of them. Cap iterations
+            # so markdown summaries that start with "### Title" are not consumed as repeated strips.
+            for _ in range(6):
+                if not text.startswith('###'):
+                    break
+                text = text[3:].lstrip()
             # Remove backslashes (common issue with Llama-2 chat models)
             text = text.replace('\\', '')
             # Strip trailing ### or ## (Gemma/plain format end markers)
@@ -1202,6 +1356,16 @@ class CausalLMTrainer(Trainer):
         cleaned_predictions = []
         for i, pred in enumerate(decoded_predictions):
             cleaned = clean_text(pred)
+            # Fallback: if aggressive cleaning dropped everything, keep minimally-cleaned text.
+            if not cleaned and pred and pred.strip():
+                fallback = pred.replace('[/INST]', '').replace('[INST]', '')
+                fallback = fallback.replace('</s>', '').replace('<s>', '')
+                fallback = fallback.replace('<|begin_of_text|>', '').replace('<|end_of_text|>', '').replace('<|eot_id|>', '')
+                fallback = re.sub(r'<\|start_header_id\|>.*?<\|end_header_id\|>', '', fallback)
+                fallback = fallback.replace('<|im_start|>', '').replace('<|im_end|>', '')
+                fallback = fallback.replace('\\', '')
+                fallback = ' '.join(fallback.split()).strip()
+                cleaned = fallback
             # Truncate at first repeated paragraph (fixes Arna-style repetition)
             cleaned = truncate_repeated_paragraphs(cleaned)
             # Try to fix mid-sentence starts
@@ -1262,6 +1426,7 @@ def load_model_and_peft_checkpoint(
     include_nli_faithfulness: bool = False,  # Check for missing NLI metrics if True
     force_recompute: bool = False,  # If True, skip "already evaluated" check and load model for re-evaluation
     examples_suffix: Optional[str] = None,  # canonical: "<N>-examples" (e.g. "1000-examples")
+    results_subdir: str = "all_eval_results",
 ):
     """Load base model and PEFT checkpoint for inference.
     
@@ -1434,7 +1599,9 @@ def load_model_and_peft_checkpoint(
     # Check if this checkpoint was already evaluated using utility functions
     # Skip when force_recompute=True (monitor detected checkpoint newer than stale eval)
     # When examples_suffix is set, check the suffixed file so different val_data_size runs do not overwrite each other.
-    eval_results_file = get_eval_results_path(checkpoint_dir, model_dir, examples_suffix=examples_suffix)
+    eval_results_file = get_eval_results_path(
+        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+    )
     old_eval_results_file = get_old_eval_results_path(checkpoint_dir)
     
     # Retrain-from-scratch: eval results older than training_started.txt = from previous run
@@ -1457,13 +1624,17 @@ def load_model_and_peft_checkpoint(
             # If extended metrics should be computed but aren't present, allow re-evaluation
             if EXTENDED_EVAL_AVAILABLE:
                 try:
-                    existing_results = load_eval_results(checkpoint_dir, model_dir)
+                    existing_results = load_eval_results(
+                        checkpoint_dir, model_dir, results_subdir=results_subdir
+                    )
                     if existing_results is None:
                         pass  # Can't parse, allow re-evaluation
                         # Don't raise AlreadyEvaluatedError - allow re-evaluation
                     else:
                         # Check if this is a major checkpoint that should have BERTScore
-                        existing_results = load_eval_results(checkpoint_dir, model_dir, examples_suffix=examples_suffix)
+                        existing_results = load_eval_results(
+                            checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+                        )
                         
                         # Check if extended metrics are missing
                         has_extended_metrics = any(
@@ -1486,6 +1657,7 @@ def load_model_and_peft_checkpoint(
                             if should_skip_faithfulness_update(
                                 existing_results, checkpoint_dir, model_dir,
                                 examples_suffix=examples_suffix,
+                                results_subdir=results_subdir,
                             ):
                                 raise AlreadyEvaluatedError(
                                     f"Checkpoint {checkpoint_dir} appears to be already evaluated "
@@ -1517,7 +1689,9 @@ def load_model_and_peft_checkpoint(
             # Check if extended metrics are missing (same logic as above)
             if EXTENDED_EVAL_AVAILABLE:
                 try:
-                    existing_results_old = load_eval_results(checkpoint_dir, model_dir)
+                    existing_results_old = load_eval_results(
+                        checkpoint_dir, model_dir, results_subdir=results_subdir
+                    )
                     if existing_results_old is not None:
                         is_major_old = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
                         has_extended_metrics_old = any(
@@ -1536,6 +1710,7 @@ def load_model_and_peft_checkpoint(
                             if should_skip_faithfulness_update(
                                 existing_results_old, checkpoint_dir, model_dir,
                                 examples_suffix=examples_suffix,
+                                results_subdir=results_subdir,
                             ):
                                 raise AlreadyEvaluatedError(
                                     f"Checkpoint {checkpoint_dir} appears to be already evaluated "
@@ -1919,12 +2094,13 @@ def evaluate_checkpoint(
     max_extra_prompt_tokens: int = MAX_EXTRA_PROMPT_TOKENS,
     max_output_summary_tokens: int = MAX_OUTPUT_SUMMARY_TOKENS,
     min_new_tokens: int = 15,
+    c200k_min_new_tokens: Optional[int] = None,
+    c200k_max_new_tokens: Optional[int] = None,
     val_batch_size: int = VAL_BATCH_SIZE,
     val_data_size: int = VAL_DATA_SIZE,
     val_data_seed: int = VAL_DATA_SEED,
     val_beam_size: int = VAL_BEAM_SIZE,
     length_penalty: float = 1.0,
-    length_controlled: bool = False,
     use_greedy: bool = True,
     allow_sampling_fallback: bool = False,
     use_multi_gpu: bool = False,
@@ -1978,14 +2154,16 @@ def evaluate_checkpoint(
         checkpoint_step_int, DEFAULT_TRAIN_BATCH_SIZE, DEFAULT_GRADIENT_ACCUMULATION, DEFAULT_TRAIN_NUM_GPUS
     ) if checkpoint_step_int > 0 else None
     
-    # Determine output directory: save to model/all_eval_results/checkpoint-nnn-eval-results.json
+    # Determine output directory/subdir and isolate length-controlled result families.
     # Get model directory first (needed for results_file path)
     model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
+    results_subdir = _build_results_subdir_name(
+        c200k_min_new_tokens=c200k_min_new_tokens,
+        c200k_max_new_tokens=c200k_max_new_tokens,
+    )
     
     if output_dir is None:
-        # Default output dir can be switched for explicit length-controlled runs.
-        default_eval_dir = "length_controlled_eval_results" if length_controlled else "all_eval_results"
-        output_dir = os.path.join(model_dir_eval, default_eval_dir)
+        output_dir = os.path.join(model_dir_eval, results_subdir)
     else:
         output_dir = os.path.abspath(output_dir)
     
@@ -1996,8 +2174,12 @@ def evaluate_checkpoint(
     examples_suffix = f"{val_data_size}-examples"
     
     # Get results file path using utility function
-    results_file = get_eval_results_path(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
-    predictions_file = get_predictions_file_path(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
+    results_file = get_eval_results_path(
+        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+    )
+    predictions_file = get_predictions_file_path(
+        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+    )
 
     # ---------------------------------------------------------------
     # Early-return paths for --metrics-only and --update-* modes
@@ -2033,11 +2215,12 @@ def evaluate_checkpoint(
                 for metric_name in list(actually_update):
                     if metric_name == "faithfulness":
                         details_path = get_faithfulness_details_path(
-                            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix,
+                            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
                         )
                         if should_skip_faithfulness_update(
                             existing_results, checkpoint_dir, model_dir_eval,
                             examples_suffix=examples_suffix,
+                            results_subdir=results_subdir,
                         ):
                             print(
                                 f"⚠ Skipping faithfulness: aggregates and details file already present "
@@ -2077,12 +2260,19 @@ def evaluate_checkpoint(
                     model_dir=model_dir_eval,
                     subset_size=nli_subset_size,
                     use_first_n_for_extended=use_first_n,
+                    results_subdir=results_subdir,
                 )
                 nli_in = [input_texts[i] for i in nli_indices]
                 nli_pred = [prediction_texts[i] for i in nli_indices]
                 faith_details = get_faithfulness_details_path(
-                    checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix,
+                    checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
                 )
+                if force_recompute and os.path.exists(faith_details):
+                    try:
+                        os.remove(faith_details)
+                        print(f"force_recompute=True: removed stale faithfulness cache {faith_details}")
+                    except Exception as cache_rm_error:
+                        print(f"Warning: could not remove stale faithfulness cache {faith_details}: {cache_rm_error}")
             result = compute_metrics_from_texts(
                 input_texts, prediction_texts, reference_texts,
                 nli_input_texts=nli_in, nli_prediction_texts=nli_pred,
@@ -2118,12 +2308,19 @@ def evaluate_checkpoint(
                     model_dir=model_dir_eval,
                     subset_size=nli_subset_size,
                     use_first_n_for_extended=use_first_n,
+                    results_subdir=results_subdir,
                 )
                 nli_in = [input_texts[i] for i in nli_indices]
                 nli_pred = [prediction_texts[i] for i in nli_indices]
                 faith_details = get_faithfulness_details_path(
-                    checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix,
+                    checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
                 )
+                if force_recompute and os.path.exists(faith_details):
+                    try:
+                        os.remove(faith_details)
+                        print(f"force_recompute=True: removed stale faithfulness cache {faith_details}")
+                    except Exception as cache_rm_error:
+                        print(f"Warning: could not remove stale faithfulness cache {faith_details}: {cache_rm_error}")
             result = compute_metrics_from_texts(
                 input_texts, prediction_texts, reference_texts,
                 include_rouge=True,
@@ -2151,7 +2348,9 @@ def evaluate_checkpoint(
     if os.path.exists(results_file) and not force_recompute:
         print(f"⚠ Checkpoint {checkpoint_name} already evaluated. Loading existing results...")
         if keep_existing:
-            existing_results = load_eval_results(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
+            existing_results = load_eval_results(
+                checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+            )
             if existing_results is None:
                 print(f"✓ keep_existing enabled and results file exists. Skipping checkpoint {checkpoint_name} without overwriting.")
                 return {
@@ -2160,11 +2359,30 @@ def evaluate_checkpoint(
                     "status": "skipped_keep_existing_existing_file",
                     "result_file": results_file,
                 }, None
-            print(f"✓ keep_existing enabled. Reusing existing results for {checkpoint_name} (no overwrite).")
-            return existing_results, None
+            # keep_existing should not block creation/backfill of per-example NLI caches.
+            # If faithfulness is requested and details JSONL is missing, continue evaluation.
+            if include_nli_faithfulness and is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval):
+                if not should_skip_faithfulness_update(
+                    existing_results, checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+                ):
+                    details_path = get_faithfulness_details_path(
+                        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+                    )
+                    print(
+                        "⚠ keep_existing override: faithfulness details missing; "
+                        f"re-evaluating to create {os.path.basename(details_path)}"
+                    )
+                else:
+                    print(f"✓ keep_existing enabled. Reusing existing results for {checkpoint_name} (no overwrite).")
+                    return existing_results, None
+            else:
+                print(f"✓ keep_existing enabled. Reusing existing results for {checkpoint_name} (no overwrite).")
+                return existing_results, None
         
         try:
-            existing_results = load_eval_results(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
+            existing_results = load_eval_results(
+                checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+            )
             if existing_results is None:
                 print(f"⚠ Warning: Could not load existing results from {results_file}")
                 # Fall through to normal evaluation
@@ -2205,6 +2423,7 @@ def evaluate_checkpoint(
                         if not should_skip_faithfulness_update(
                             existing_results, checkpoint_dir, model_dir_eval,
                             examples_suffix=examples_suffix,
+                            results_subdir=results_subdir,
                         ):
                             missing_extended_metrics = True
                             print(
@@ -2241,7 +2460,9 @@ def evaluate_checkpoint(
                     # 500 vs 1000 examples → separate wandb runs so metrics don't mix
                     model_dir_eval_cached = get_model_dir_from_checkpoint(checkpoint_dir)
                     wandb_run_id_suffix_cached = f"_{examples_suffix}" if examples_suffix else ""
-                    wandb_run_id_file_cached = os.path.join(model_dir_eval_cached, "all_eval_results", f".wandb_run_id{wandb_run_id_suffix_cached}")
+                    wandb_run_id_file_cached = os.path.join(
+                        model_dir_eval_cached, results_subdir, f".wandb_run_id{wandb_run_id_suffix_cached}"
+                    )
                     
                     if wandb_run_name:
                         consistent_run_name_cached = f"{wandb_run_name}{wandb_run_id_suffix_cached}" if examples_suffix else wandb_run_name
@@ -2397,17 +2618,53 @@ def evaluate_checkpoint(
     if is_main_process:
         print(f"Using batch size: {val_batch_size} for evaluation")
 
+    # Populated after `trainer` is constructed so ROUGE can use the same cleaned strings as JSONL.
+    trainer_for_rouge = [None]
+
     def compute_metrics(eval_pred):
-        """Compute ROUGE metrics using shared utility function."""
+        """ROUGE from cleaned predictions when available (matches saved JSONL), else token-decode path."""
         if predict_only:
             return {}
+        tr = trainer_for_rouge[0]
+        _, labels_arr = eval_pred
+        labels_proc = np.where(labels_arr != -100, labels_arr, tokenizer.pad_token_id)
+        try:
+            max_tid = max(len(tokenizer) - 1, tokenizer.vocab_size - 1)
+        except Exception:
+            max_tid = tokenizer.vocab_size - 1
+        labels_proc = np.clip(labels_proc, 0, max_tid)
+        decoded_labels = tokenizer.batch_decode(labels_proc, skip_special_tokens=True)
+        decoded_labels = [clean_decoded_text(l).strip() for l in decoded_labels]
+
+        if tr is not None and len(tr._eval_predictions) == len(decoded_labels):
+            decoded_preds = list(tr._eval_predictions)
+            if len(decoded_preds) > 0 and is_main_process:
+                print("\n*** Example 1 (same cleaning as saved JSONL) ***")
+                print(f"Prediction: {decoded_preds[0][:200]}...")
+                print(f"Reference:  {decoded_labels[0][:200]}...\n")
+            scores = compute_rouge(decoded_preds, decoded_labels)
+            result = {k: v * 100 for k, v in scores.items()}
+            if is_main_process:
+                print("*** evaluation: computed_metrics ***", result)
+            if wandb_project and wandb.run is not None and is_main_process:
+                wandb.log(
+                    {
+                        "eval/rouge1": result["rouge1"],
+                        "eval/rouge2": result["rouge2"],
+                        "eval/rougeL": result["rougeL"],
+                        "eval/rougeLsum": result["rougeLsum"],
+                    },
+                    step=checkpoint_step_int,
+                )
+            return result
+
         return compute_rouge_metrics(
             eval_pred=eval_pred,
             tokenizer=tokenizer,
             log_to_wandb=True,
             step=checkpoint_step_int,
             is_main_process=is_main_process,
-            verbose=True
+            verbose=True,
         )
 
     
@@ -2437,6 +2694,22 @@ def evaluate_checkpoint(
     # Some models don't have chat_template in their tokenizer config, but we need it for consistent formatting
     # This ensures training and evaluation use the same prompt format
     model_config = get_model_config_by_hf_name(model_name)
+    if c200k_min_new_tokens is not None or c200k_max_new_tokens is not None:
+        converted_min, converted_max, ratio = _convert_c200k_goal_to_model_tokens(
+            model_name=model_name,
+            model_config=model_config,
+            c200k_min_new_tokens=c200k_min_new_tokens,
+            c200k_max_new_tokens=c200k_max_new_tokens,
+        )
+        if converted_min is not None:
+            min_new_tokens = converted_min
+        if converted_max is not None:
+            max_output_summary_tokens = converted_max
+        if is_main_process and ratio is not None:
+            print(
+                f"Converted c200k length goals using ratio {ratio:.4f}: "
+                f"min_new_tokens={min_new_tokens}, max_output_summary_tokens={max_output_summary_tokens}"
+            )
     if model_config:
         template_type = model_config.prompt_config.template_type
         
@@ -2534,7 +2807,7 @@ def evaluate_checkpoint(
     # 500 vs 1000 examples → separate wandb runs so metrics don't mix
     model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
     wandb_run_id_suffix = f"_{examples_suffix}" if examples_suffix else ""
-    wandb_run_id_file = os.path.join(model_dir_eval, "all_eval_results", f".wandb_run_id{wandb_run_id_suffix}")
+    wandb_run_id_file = os.path.join(model_dir_eval, results_subdir, f".wandb_run_id{wandb_run_id_suffix}")
     
     # Use provided run_name or create one based on model (without checkpoint step)
     if wandb_run_name:
@@ -2654,10 +2927,18 @@ def evaluate_checkpoint(
             include_nli_faithfulness=include_nli_faithfulness,
             force_recompute=force_recompute,
             examples_suffix=examples_suffix,
+            results_subdir=results_subdir,
         )
     except AlreadyEvaluatedError:
         # Re-raise to be caught by the main block
         raise
+
+    _sync_model_tokenizer_special_tokens(model, tokenizer)
+    if is_main_process:
+        print(
+            f"Synced pad_token_id={tokenizer.pad_token_id} eos_token_id={tokenizer.eos_token_id} "
+            "into model config / generation_config for generate()."
+        )
     
     # DISABLE gradient checkpointing for evaluation - it's only for training
     # It trades speed for memory, but during inference we want speed
@@ -2770,7 +3051,7 @@ def evaluate_checkpoint(
     eval_data_collator = EvalDataCollator(tokenizer=tokenizer)
 
     # Set up evaluation-only training args
-    # Note: output_dir was already set earlier to model_dir/all_eval_results
+    # Note: output_dir was already set earlier to model_dir/<results_subdir>
     training_args = TrainingArguments(
         output_dir=output_dir,
         per_device_eval_batch_size=val_batch_size,
@@ -2802,6 +3083,7 @@ def evaluate_checkpoint(
         tokenizer=tokenizer,
         compute_metrics=compute_metrics,
     )
+    trainer_for_rouge[0] = trainer
 
     # Run evaluation
     if is_main_process:
@@ -2834,6 +3116,67 @@ def evaluate_checkpoint(
         eval_results.setdefault("eval_wall_steps_per_second", eval_results["eval_steps_per_second"])
 
     # ------------------------------------------------------------------
+    # Token-length stats (input/reference/prediction)
+    # ------------------------------------------------------------------
+    # Use the same tokenizer-based counting style as eval payload JSONL strings.
+    def _to_text(value: object) -> str:
+        if isinstance(value, str):
+            return value
+        return str(value) if value is not None else ""
+
+    def _token_len(text: str) -> int:
+        try:
+            return len(tokenizer.encode(text, add_special_tokens=False))
+        except Exception:
+            return 0
+
+    def _stats(values: List[int]) -> Tuple[float, int, int]:
+        if not values:
+            return (0.0, 0, 0)
+        return (sum(values) / len(values), min(values), max(values))
+
+    num_examples = len(original_examples_for_jsonl)
+    num_predictions = len(trainer._eval_predictions)
+    num_aligned = min(num_examples, num_predictions)
+
+    input_token_counts: List[int] = []
+    ref_token_counts: List[int] = []
+    pred_token_counts: List[int] = []
+    for i in range(num_aligned):
+        example = original_examples_for_jsonl[i]
+        input_token_counts.append(_token_len(_to_text(example.get("input_text", ""))))
+        ref_token_counts.append(_token_len(_to_text(example.get("reference", ""))))
+        pred_token_counts.append(_token_len(_to_text(trainer._eval_predictions[i])))
+
+    input_mean, input_min, input_max = _stats(input_token_counts)
+    ref_mean, ref_min, ref_max = _stats(ref_token_counts)
+    pred_mean, pred_min, pred_max = _stats(pred_token_counts)
+
+    token_fields = {
+        "eval_mean_input_tokens": input_mean,
+        "eval_min_input_tokens": input_min,
+        "eval_max_input_tokens": input_max,
+        "eval_mean_ref_tokens": ref_mean,
+        "eval_min_ref_tokens": ref_min,
+        "eval_max_ref_tokens": ref_max,
+        "eval_mean_pred_tokens": pred_mean,
+        "eval_min_pred_tokens": pred_min,
+        "eval_max_pred_tokens": pred_max,
+    }
+
+    # Insert immediately after eval_rougeLsum for readability in JSON output.
+    if "eval_rougeLsum" in eval_results:
+        reordered_results = {}
+        for k, v in eval_results.items():
+            reordered_results[k] = v
+            if k == "eval_rougeLsum":
+                for field_key, field_value in token_fields.items():
+                    reordered_results[field_key] = field_value
+        eval_results = reordered_results
+    else:
+        eval_results.update(token_fields)
+
+    # ------------------------------------------------------------------
     # Doc-type distribution for evaluated examples
     # ------------------------------------------------------------------
     # Summarise how many examples of each doc_type were used in this evaluation.
@@ -2861,7 +3204,9 @@ def evaluate_checkpoint(
     # Required for --metrics-only and --update-* modes to work on any checkpoint.
     predictions_file = None
     if is_main_process:
-        predictions_file = get_predictions_file_path(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
+        predictions_file = get_predictions_file_path(
+            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+        )
         os.makedirs(os.path.dirname(predictions_file), exist_ok=True)
         
         with open(predictions_file, 'w', encoding='utf-8') as f:
@@ -2894,6 +3239,26 @@ def evaluate_checkpoint(
     
     if is_main_process and EXTENDED_EVAL_AVAILABLE:
         try:
+            # Critical cache invalidation: when force_recompute is requested, predictions may differ
+            # from earlier runs (e.g. decoder/cleaning fixes). Reusing old per-example NLI cache
+            # would silently keep stale 0.0 faithfulness scores.
+            if force_recompute and include_nli_faithfulness:
+                faith_details_file = get_faithfulness_details_path(
+                    checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                )
+                if os.path.exists(faith_details_file):
+                    try:
+                        os.remove(faith_details_file)
+                        print(
+                            f"force_recompute=True: removed stale faithfulness cache "
+                            f"for this checkpoint: {faith_details_file}"
+                        )
+                    except Exception as cache_rm_error:
+                        print(
+                            f"Warning: could not remove stale faithfulness cache "
+                            f"{faith_details_file}: {cache_rm_error}"
+                        )
+
             # Load texts from saved JSONL (always available since we save for all checkpoints)
             input_texts, prediction_texts, reference_texts = load_predictions_jsonl(predictions_file)
             
@@ -2906,7 +3271,7 @@ def evaluate_checkpoint(
 
                 nli_input_texts, nli_prediction_texts, nli_reference_texts = input_texts, prediction_texts, reference_texts
                 if include_faithfulness:
-                    # Fixed NLI indices (saved under all_eval_results/) so all checkpoints stay comparable.
+                    # Fixed NLI indices are stored in the active results subdir.
                     model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
                     use_first_n = val_data_size > nli_subset_size
                     nli_indices = get_or_create_fixed_nli_subset(
@@ -2914,6 +3279,7 @@ def evaluate_checkpoint(
                         model_dir=model_dir_eval,
                         subset_size=nli_subset_size,
                         use_first_n_for_extended=use_first_n,
+                        results_subdir=results_subdir,
                     )
                     if not nli_indices or len(nli_indices) == 0:
                         raise ValueError(
@@ -2945,7 +3311,7 @@ def evaluate_checkpoint(
                         from utils.faithfulness import NLIFaithfulnessGate
                         gate = NLIFaithfulnessGate()
                         faith_details_file = get_faithfulness_details_path(
-                            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix,
+                            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
                         )
                         faithfulness_out = gate.eval_faithfulness_incremental(
                             nli_input_texts, nli_prediction_texts,
@@ -3049,15 +3415,16 @@ def evaluate_checkpoint(
     
     # Save results to file (only on main process)
     if is_main_process:
-        # Ensure all_eval_results dir exists (handles backup checkpoint paths)
-        os.makedirs(os.path.join(model_dir_eval, "all_eval_results"), exist_ok=True)
+        # Ensure target results directory exists (handles backup checkpoint paths)
+        os.makedirs(os.path.join(model_dir_eval, results_subdir), exist_ok=True)
         # Save per-checkpoint JSON so monitor and summary can read it
         saved_path = save_eval_results(
             results=eval_results,
             checkpoint_dir=checkpoint_dir,
             model_dir=model_dir_eval,
-            save_to_old_location=True,  # Keep backwards compatibility (skipped when examples_suffix set)
+            save_to_old_location=not (c200k_min_new_tokens is not None and c200k_max_new_tokens is not None),
             examples_suffix=examples_suffix,
+            results_subdir=results_subdir,
         )
         print(f"Per-checkpoint results saved to: {saved_path}")
         
@@ -3069,6 +3436,7 @@ def evaluate_checkpoint(
             val_dataset_path=val_dataset_path,
             model_dir=model_dir_eval,
             examples_suffix=examples_suffix,
+            results_subdir=results_subdir,
         )
     
     # Clean up distributed process group
@@ -3140,6 +3508,10 @@ Examples:
                        help=f'Maximum tokens for output summary (default: {MAX_OUTPUT_SUMMARY_TOKENS})')
     parser.add_argument('--min_new_tokens', type=int, default=15,
                        help='Minimum number of generated tokens (default: 15).')
+    parser.add_argument('--c200k_min_new_tokens', type=int, default=None,
+                       help='Minimum generated tokens in c200k space; converted per model tokenizer.')
+    parser.add_argument('--c200k_max_new_tokens', type=int, default=None,
+                       help='Maximum generated tokens in c200k space; converted per model tokenizer.')
     parser.add_argument('--val_batch_size', type=int, default=VAL_BATCH_SIZE,
                        help=f'Validation batch size per device (default: {VAL_BATCH_SIZE}). The script will automatically adjust based on model size and provide memory utilization reports.')
     parser.add_argument('--val_data_size', type=int, default=VAL_DATA_SIZE,
@@ -3150,8 +3522,6 @@ Examples:
                        help=f'Beam size for validation generation (default: {VAL_BEAM_SIZE})')
     parser.add_argument('--length_penalty', type=float, default=1.0,
                        help='Beam-search length penalty (default: 1.0). Ignored with --use_greedy.')
-    parser.add_argument('--length_controlled', action='store_true',
-                       help='Store results under model_dir/length_controlled_eval_results by default.')
     parser.add_argument('--use_greedy', action='store_true',
                        help='Use greedy decoding instead of beam search for faster evaluation')
     parser.add_argument('--allow_sampling_fallback', action='store_true',
@@ -3171,7 +3541,7 @@ Examples:
     parser.add_argument('--wandb_disabled', action='store_true',
                        help='Disable wandb logging for this evaluation')
     parser.add_argument('--wandb_run_name', type=str, default=None,
-                       help='Wandb run name (if not provided, defaults to {model}_eval_all_checkpoints). All checkpoints will be combined into a single run automatically. The run ID is saved in model_dir/all_eval_results/.wandb_run_id for automatic resumption.')
+                       help='Wandb run name (if not provided, defaults to {model}_eval_all_checkpoints). All checkpoints are combined into one run per result directory. Run ID is stored in that directory as .wandb_run_id.')
     parser.add_argument('--wandb_group', type=str, default=None,
                        help='Wandb group name to combine multiple runs (default: model name)')
     parser.add_argument('--major_checkpoint_interval', type=int, default=500,
@@ -3227,6 +3597,12 @@ Examples:
         parser.error("--nli_subset_size must be a positive integer")
     if args.min_new_tokens < 1:
         parser.error("--min_new_tokens must be >= 1")
+    if args.c200k_min_new_tokens is not None and args.c200k_min_new_tokens < 1:
+        parser.error("--c200k_min_new_tokens must be >= 1")
+    if args.c200k_max_new_tokens is not None and args.c200k_max_new_tokens < 1:
+        parser.error("--c200k_max_new_tokens must be >= 1")
+    if (args.c200k_min_new_tokens is None) != (args.c200k_max_new_tokens is None):
+        parser.error("--c200k_min_new_tokens and --c200k_max_new_tokens must either both be set or both be omitted")
 
     # Model mapping from configs
     model_mapping = get_model_name_mapping()
@@ -3274,10 +3650,11 @@ Examples:
                 max_input_text_tokens=max_input_text_tokens,
                 max_output_summary_tokens=max_output_summary_tokens,
                 min_new_tokens=args.min_new_tokens,
+                c200k_min_new_tokens=args.c200k_min_new_tokens,
+                c200k_max_new_tokens=args.c200k_max_new_tokens,
                 val_data_size=args.val_data_size,
                 val_data_seed=args.val_data_seed,
                 length_penalty=args.length_penalty,
-                length_controlled=args.length_controlled,
                 allow_sampling_fallback=args.allow_sampling_fallback,
                 use_multi_gpu=args.use_multi_gpu,
                 wandb_project=args.wandb_project if not args.wandb_disabled else None,

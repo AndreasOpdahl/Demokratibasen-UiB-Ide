@@ -13,7 +13,7 @@ set -euo pipefail
 MODELS=""
 SLURM_ACCOUNT=""
 VAL_DATASET="${VAL_DATASET:-data/dataset_149978_examples/149978_text_summary_examples_val.jsonl}"
-VAL_DATA_SIZE="${VAL_DATA_SIZE:-500}"  # 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files
+VAL_DATA_SIZE="${VAL_DATA_SIZE:-1000}"  # Default 1000; output files use -<N>-examples.json/.jsonl suffixes
 INCLUDE_NLI_FAITHFULNESS="${INCLUDE_NLI_FAITHFULNESS:-false}"
 KEEP_EXISTING="${KEEP_EXISTING:-true}"  # Skip already-evaluated checkpoints
 FORCE_RECOMPUTE="${FORCE_RECOMPUTE:-false}"  # Re-evaluate even when results exist (overwrites)
@@ -49,7 +49,7 @@ Required:
 
 Optional:
   --val_dataset=PATH         Validation dataset (default: data/dataset_149978_examples/149978_text_summary_examples_val.jsonl)
-  --val_data_size=N          Validation examples: 500 (default) or 1000 (writes to -examples_1000.json/.jsonl)
+  --val_data_size=N          Validation examples (default: 1000; writes to -N-examples.json/.jsonl)
   --specific_checkpoints=LIST  Space-separated checkpoint numbers (e.g. "100 200 300"); default: all
   --include_nli_faithfulness  Enable NLI faithfulness evaluation (slow)
   --no-keep_existing         Re-evaluate checkpoints that already have results (default: skip them)

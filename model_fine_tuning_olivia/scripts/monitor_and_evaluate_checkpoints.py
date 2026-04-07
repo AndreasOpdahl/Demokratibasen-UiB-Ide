@@ -52,11 +52,60 @@ from utils import (
     is_major_checkpoint,
     get_evaluated_checkpoint_steps,
     get_model_dir_from_checkpoint,
+    get_predictions_file_path,
 )
 
 # Module-level variables for logging state
 _last_logged_step = None
 _log_counter = 0
+
+
+def _strip_generated_markers(text: str) -> str:
+    """Remove common prompt/format markers and keep only substantive output text."""
+    if not isinstance(text, str):
+        return ""
+    t = text
+    t = re.sub(r'<\|start_header_id\|>.*?<\|end_header_id\|>', '', t)
+    for tok in (
+        "[/INST]", "[INST]", "</s>", "<s>",
+        "<|begin_of_text|>", "<|end_of_text|>", "<|eot_id|>",
+        "<|im_start|>", "<|im_end|>",
+    ):
+        t = t.replace(tok, "")
+    t = re.sub(r'^\s*assistant\s*', '', t, flags=re.IGNORECASE)
+    t = re.sub(r'^\s*Oppsummering:\s*', '', t, flags=re.IGNORECASE)
+    t = re.sub(r'^\s*Response:\s*', '', t, flags=re.IGNORECASE)
+    t = re.sub(r'^\s*#+\s*', '', t)
+    t = t.replace("\\", "")
+    return " ".join(t.split()).strip()
+
+
+def _all_real_outputs_empty(predictions_file: str) -> Optional[bool]:
+    """Return True if all predictions are empty after marker stripping."""
+    if not os.path.exists(predictions_file):
+        return None
+    total = 0
+    empty = 0
+    try:
+        with open(predictions_file, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                total += 1
+                try:
+                    row = json.loads(line)
+                except json.JSONDecodeError:
+                    empty += 1
+                    continue
+                pred = row.get("prediction", "")
+                if not _strip_generated_markers(pred):
+                    empty += 1
+        if total == 0:
+            return None
+        return empty == total
+    except Exception:
+        return None
 
 
 def get_current_training_step(output_dir: str) -> Optional[int]:
@@ -174,9 +223,9 @@ def find_checkpoints(output_dir: str, max_step: Optional[int] = None) -> List[st
     return valid_checkpoints
 
 
-def get_evaluated_checkpoints_from_files(output_dir: str) -> set:
-    """Get set of already evaluated checkpoint steps using utility function."""
-    return get_evaluated_checkpoint_steps(output_dir)
+def get_evaluated_checkpoints_from_files(output_dir: str, val_data_size: int = 1000) -> set:
+    """Get set of already evaluated checkpoint steps for a specific validation size."""
+    return get_evaluated_checkpoint_steps(output_dir, examples_suffix=f"{val_data_size}-examples")
 
 
 def check_early_stopping_signal(output_dir: str) -> bool:
@@ -373,13 +422,17 @@ def monitor_and_evaluate(
         print(f">>> wandb run initialized: {wandb.run.name}")
     
     # Load already evaluated checkpoints from disk (persists across restarts)
-    evaluated_steps = get_evaluated_checkpoints_from_files(output_dir)
+    evaluated_steps = get_evaluated_checkpoints_from_files(output_dir, val_data_size=val_data_size)
     if evaluated_steps:
         print(f"Found {len(evaluated_steps)} already evaluated checkpoints: {sorted(evaluated_steps)}")
     
     best_rouge_lsum = None
     consecutive_zero_rouge_count = 0  # Track consecutive checkpoints with zero ROUGE scores
-    ZERO_ROUGE_THRESHOLD = 5  # Stop training if ROUGE is zero for 5 consecutive checkpoints
+    ZERO_ROUGE_THRESHOLD = 3  # Stop training if ROUGE is zero for 3 consecutive checkpoints
+    consecutive_empty_output_count = 0
+    consecutive_zero_bertscore_count = 0
+    consecutive_zero_faithfulness_count = 0
+    DEGENERATE_THRESHOLD = 3
     best_checkpoint_step = None
     no_improvement_count = 0
     last_checkpoint_time = None  # Track when we last saw a new checkpoint
@@ -670,6 +723,40 @@ def monitor_and_evaluate(
                     continue
                 
                 if eval_results:
+                    # Detect collapsed generation: all real outputs empty after stripping known markers.
+                    examples_suffix = f"{val_data_size}-examples"
+                    preds_file = get_predictions_file_path(
+                        checkpoint_to_evaluate,
+                        model_dir=get_model_dir_from_checkpoint(checkpoint_to_evaluate),
+                        examples_suffix=examples_suffix,
+                    )
+                    all_real_empty = _all_real_outputs_empty(preds_file)
+                    if all_real_empty is True:
+                        consecutive_empty_output_count += 1
+                        print(f"⚠ Warning: all real outputs empty for checkpoint-{checkpoint_step}")
+                        print(
+                            f"  Consecutive empty-output checkpoints: "
+                            f"{consecutive_empty_output_count}/{DEGENERATE_THRESHOLD}"
+                        )
+                    else:
+                        if consecutive_empty_output_count > 0:
+                            print("✓ Real outputs non-empty again. Resetting empty-output counter.")
+                        consecutive_empty_output_count = 0
+
+                    if consecutive_empty_output_count >= DEGENERATE_THRESHOLD:
+                        print(
+                            f"CRITICAL: Early stopping - all real outputs empty for "
+                            f"{consecutive_empty_output_count} checkpoints in a row."
+                        )
+                        write_early_stopping_signal(output_dir)
+                        if wandb.run:
+                            wandb.log({
+                                "monitor/early_stop_reason": "empty_real_outputs",
+                                "monitor/consecutive_empty_output_count": consecutive_empty_output_count,
+                            }, step=checkpoint_step)
+                        print("Early stopping signal written. Training will stop on next check.")
+                        return
+
                     # Check all ROUGE metrics to detect zero scores
                     rouge1 = eval_results.get('eval_rouge1', eval_results.get('rouge1', 0))
                     rouge2 = eval_results.get('eval_rouge2', eval_results.get('rouge2', 0))
@@ -777,9 +864,81 @@ def monitor_and_evaluate(
                             print(f"✓ New best BERTScore F1: {bertscore_f1:.4f} (was {was_str})")
                             best_bertscore = bertscore_f1
                         previous_bertscore = bertscore_f1
+                        
+                        # Zero-BERTScore guard (requested): stop after 3 consecutive major evals at 0.0
+                        if isinstance(bertscore_f1, (int, float)) and bertscore_f1 == 0.0:
+                            consecutive_zero_bertscore_count += 1
+                            print(
+                                f"⚠ Warning: BERTScore is 0.0 for major checkpoint-{checkpoint_step} "
+                                f"({consecutive_zero_bertscore_count}/{DEGENERATE_THRESHOLD})"
+                            )
+                        else:
+                            if consecutive_zero_bertscore_count > 0:
+                                print("✓ BERTScore non-zero again. Resetting zero-BERTScore counter.")
+                            consecutive_zero_bertscore_count = 0
+                        
+                        if consecutive_zero_bertscore_count >= DEGENERATE_THRESHOLD:
+                            print(
+                                f"CRITICAL: Early stopping - BERTScore == 0.0 for "
+                                f"{consecutive_zero_bertscore_count} major checkpoints in a row."
+                            )
+                            write_early_stopping_signal(output_dir)
+                            if wandb.run:
+                                wandb.log({
+                                    "monitor/early_stop_reason": "zero_bertscore",
+                                    "monitor/consecutive_zero_bertscore_count": consecutive_zero_bertscore_count,
+                                }, step=checkpoint_step)
+                            print("Early stopping signal written. Training will stop on next check.")
+                            return
                     elif is_major:
                         # Major checkpoint but BERTScore not available (shouldn't happen, but handle gracefully)
                         print(f"⚠ Warning: Major checkpoint-{checkpoint_step} but BERTScore not available in results")
+                        if consecutive_zero_bertscore_count > 0:
+                            print("✓ Resetting zero-BERTScore counter (metric missing).")
+                        consecutive_zero_bertscore_count = 0
+                    else:
+                        # Non-major checkpoints don't carry BERTScore in this setup.
+                        if consecutive_zero_bertscore_count > 0:
+                            print("✓ Resetting zero-BERTScore counter (non-major checkpoint).")
+                        consecutive_zero_bertscore_count = 0
+
+                    # Zero-faithfulness guard (requested): stop if NLI aggregates are 0.0 for 3 evals in a row.
+                    faith = eval_results.get("eval_faithfulness")
+                    faith_values = []
+                    if isinstance(faith, dict):
+                        for key in ("ratio_passed_documents", "mean_entailment_score"):
+                            val = faith.get(key)
+                            if isinstance(val, (int, float)):
+                                faith_values.append(float(val))
+                    if faith_values:
+                        faith_zero = all(v == 0.0 for v in faith_values)
+                        if faith_zero:
+                            consecutive_zero_faithfulness_count += 1
+                            print(
+                                f"⚠ Warning: NLI faithfulness is 0.0 for checkpoint-{checkpoint_step} "
+                                f"({consecutive_zero_faithfulness_count}/{DEGENERATE_THRESHOLD})"
+                            )
+                        else:
+                            if consecutive_zero_faithfulness_count > 0:
+                                print("✓ NLI faithfulness non-zero again. Resetting zero-faithfulness counter.")
+                            consecutive_zero_faithfulness_count = 0
+                        if consecutive_zero_faithfulness_count >= DEGENERATE_THRESHOLD:
+                            print(
+                                f"CRITICAL: Early stopping - NLI faithfulness == 0.0 for "
+                                f"{consecutive_zero_faithfulness_count} checkpoints in a row."
+                            )
+                            write_early_stopping_signal(output_dir)
+                            if wandb.run:
+                                wandb.log({
+                                    "monitor/early_stop_reason": "zero_nli_faithfulness",
+                                    "monitor/consecutive_zero_faithfulness_count": consecutive_zero_faithfulness_count,
+                                }, step=checkpoint_step)
+                            print("Early stopping signal written. Training will stop on next check.")
+                            return
+                    else:
+                        if consecutive_zero_faithfulness_count > 0:
+                            print("✓ Resetting zero-faithfulness counter (metric missing).")
+                        consecutive_zero_faithfulness_count = 0
                     
                     # Continue with normal evaluation flow for non-zero ROUGE scores
                     evaluated_steps.add(checkpoint_step)
