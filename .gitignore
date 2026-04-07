@@ -76,3 +76,9 @@ model_fine_tuning_olivia/visualizations/
 model_fine_tuning_olivia/**/*.png
 model_fine_tuning_olivia/**/*.html
 model_fine_tuning_olivia/**/checkpoint_visualization.html
+model_fine_tuning_olivia/BEST_CHECKPOINTS.md
+.gitignore
+folders_modified_since_2025-07-01.txt
+model_fine_tuning_olivia/FINETUNING_MONITORING_EVALUATION_LOGIC.md
+model_fine_tuning_olivia/COMPARABLE_VALIDATION_DATA.md
+model_fine_tuning_olivia/FINETUNING_MONITORING_EVALUATION_LOGIC.md
