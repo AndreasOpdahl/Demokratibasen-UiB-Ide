@@ -2,7 +2,7 @@
 # Simple startup script for the model summary server
 
 # Default values
-CHECKPOINT_PATH=""
+ADAPTER_DIR=""
 MODEL_NAME="gemma-2-9b"
 PORT=8000
 HOST="0.0.0.0"
@@ -11,8 +11,8 @@ USE_MULTI_GPU=false
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --checkpoint_path)
-            CHECKPOINT_PATH="$2"
+        --adapter_dir)
+            ADAPTER_DIR="$2"
             shift 2
             ;;
         --model_name)
@@ -32,10 +32,10 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         --help)
-            echo "Usage: $0 --checkpoint_path PATH [OPTIONS]"
+            echo "Usage: $0 --adapter_dir PATH [OPTIONS]"
             echo ""
             echo "Options:"
-            echo "  --checkpoint_path PATH    Path to checkpoint directory (required)"
+            echo "  --adapter_dir PATH        Path to adapter directory (required)"
             echo "  --model_name NAME         Model name (default: gemma-2-9b)"
             echo "  --port PORT               Port to run server on (default: 8000)"
             echo "  --host HOST               Host to bind to (default: 0.0.0.0)"
@@ -52,20 +52,20 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Check required arguments
-if [ -z "$CHECKPOINT_PATH" ]; then
-    echo "Error: --checkpoint_path is required"
+if [ -z "$ADAPTER_DIR" ]; then
+    echo "Error: --adapter_dir is required"
     echo "Use --help for usage information"
     exit 1
 fi
 
-# Check if checkpoint path exists
-if [ ! -d "$CHECKPOINT_PATH" ]; then
-    echo "Error: Checkpoint path does not exist: $CHECKPOINT_PATH"
+# Check if adapter directory exists
+if [ ! -d "$ADAPTER_DIR" ]; then
+    echo "Error: Adapter directory does not exist: $ADAPTER_DIR"
     exit 1
 fi
 
 # Build command
-CMD="python app.py --checkpoint_path \"$CHECKPOINT_PATH\" --model_name \"$MODEL_NAME\" --port $PORT --host \"$HOST\""
+CMD="python app.py --adapter_dir \"$ADAPTER_DIR\" --model_name \"$MODEL_NAME\" --port $PORT --host \"$HOST\""
 
 if [ "$USE_MULTI_GPU" = true ]; then
     CMD="$CMD --use_multi_gpu"
@@ -73,7 +73,7 @@ fi
 
 # Run the server
 echo "Starting model summary server..."
-echo "Checkpoint: $CHECKPOINT_PATH"
+echo "Adapter directory: $ADAPTER_DIR"
 echo "Model: $MODEL_NAME"
 echo "Server: $HOST:$PORT"
 echo ""

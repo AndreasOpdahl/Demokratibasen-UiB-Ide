@@ -1,6 +1,6 @@
-# Model Summary Server
+# Summarisarion Modl Server
 
-A FastAPI-based HTTP server for serving model summaries using fine-tuned checkpoints.
+A FastAPI-based HTTP server for summarising public documents using fine-tuned adapters.
 
 ## Features
 
@@ -19,7 +19,7 @@ A FastAPI-based HTTP server for serving model summaries using fine-tuned checkpo
 pip install -r requirements.txt
 ```
 
-2. Set your Hugging Face token (if needed):
+2. Set your Hugging Face token (if needed by the base model):
 ```bash
 export HUGGINGFACE_TOKEN=your_token_here
 ```
@@ -30,7 +30,7 @@ export HUGGINGFACE_TOKEN=your_token_here
 
 ```bash
 python app.py \
-    --checkpoint_path ../model_fine_tuning_olivia/models/gemma-2-9b-apptainer-fsdp/checkpoint-5000 \
+    --adapter_dir ../model_fine_tuning_olivia/models/gemma-2-9b-apptainer-fsdp/checkpoint-5000 \
     --model_name gemma-2-9b \
     --port 8000
 ```
@@ -39,7 +39,7 @@ python app.py \
 
 ```bash
 python app.py \
-    --checkpoint_path ../model_fine_tuning_olivia/models/gemma-2-9b-apptainer-fsdp/checkpoint-5000 \
+    --adapter_dir ../model_fine_tuning_olivia/models/gemma-2-9b-apptainer-fsdp/checkpoint-5000 \
     --model_name gemma-2-9b \
     --use_multi_gpu \
     --port 8000
@@ -50,7 +50,7 @@ python app.py \
 ```bash
 cd model_test_server
 cp .env.example .env
-# Edit .env and set ADAPTER_DIR (and HUGGINGFACE_TOKEN if required)
+# Edit .env and set ADAPTER_DIR, MODEL_NAME (and HUGGINGFACE_TOKEN if required)
 docker compose up -d --build
 ```
 
@@ -65,7 +65,7 @@ export MODEL_NAME="gemma-2-9b"
 
 ### Command Line Arguments
 
-- `--checkpoint_path`: Path to the checkpoint directory (required)
+- `--adapter_dir`: Path to the adapter directory (required)
 - `--model_name`: Model name (default: `gemma-2-9b`)
 - `--hf_token`: Hugging Face token (or set `HUGGINGFACE_TOKEN` env var)
 - `--port`: Port to run the server on (default: 8000)
@@ -122,7 +122,7 @@ Generate a summary for the given text.
   "summary": "Generated summary text...",
   "processing_time": 2.34,
   "model_name": "gemma-2-9b",
-  "checkpoint_path": "checkpoint-5000"
+  "adapter_dir": "checkpoint-5000"
 }
 ```
 
@@ -246,8 +246,8 @@ If you're running in a Docker container and GPU is not detected:
 
 ### Model not loading
 
-- Check that the checkpoint path is correct
-- Verify that the checkpoint contains `adapter_config.json` and `adapter_model.safetensors` (or `adapter_model.bin`)
+- Check that the adapter directory path is correct
+- Verify that the adapter directory contains `adapter_config.json` and `adapter_model.safetensors` (or `adapter_model.bin`)
 - Ensure you have sufficient GPU memory
 - Check that the Hugging Face token is set correctly
 
@@ -255,7 +255,7 @@ If you're running in a Docker container and GPU is not detected:
 
 - Reduce `max_length` parameter
 - Use CPU instead of GPU (remove `--use_multi_gpu`)
-- Use a smaller model or checkpoint
+- Use a smaller model or adapter
 
 ### Slow inference
 

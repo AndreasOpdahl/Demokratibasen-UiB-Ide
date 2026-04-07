@@ -78,20 +78,20 @@ cd ~/model_test_server  # or wherever you synced it
 # Install dependencies
 pip install -r requirements.txt
 
-# Make sure the checkpoint path exists or update it
-# The checkpoint should be synced separately or already exist on the server
+# Make sure the adapter directory path exists or update it
+# The adapter directory should be synced separately or already exist on the server
 ```
 
-## Syncing Checkpoints
+## Syncing Adapter Directories
 
-If you need to sync the model checkpoint as well:
+If you need to sync the model adapter directory as well:
 
 ```bash
-# Sync checkpoint (this might be large, so use compression)
+# Sync adapter directory (this might be large, so use compression)
 rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
   --progress \
   model_fine_tuning_olivia/models/gemma-2-9b-apptainer-fsdp/checkpoint-5000/ \
-  ubuntu@192.168.1.100:~/checkpoints/checkpoint-5000/
+  ubuntu@192.168.1.100:~/adapters/checkpoint-5000/
 ```
 
 ## Security Notes

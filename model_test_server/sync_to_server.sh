@@ -15,8 +15,8 @@ REMOTE_USER=""
 REMOTE_IP=""
 REMOTE_PATH="~/model_test_server"
 DRY_RUN=false
-SYNC_CHECKPOINT=false
-CHECKPOINT_PATH=""
+SYNC_ADAPTER=false
+ADAPTER_DIR=""
 
 # Function to print usage
 usage() {
@@ -30,8 +30,8 @@ usage() {
     echo "Options:"
     echo "  --remote-path PATH     Remote destination path (default: ~/model_test_server)"
     echo "  --dry-run               Show what would be synced without actually syncing"
-    echo "  --sync-checkpoint      Also sync the model checkpoint"
-    echo "  --checkpoint-path PATH  Path to checkpoint (required if --sync-checkpoint)"
+    echo "  --sync-adapter         Also sync the model adapter directory"
+    echo "  --adapter-dir PATH     Path to adapter directory (required if --sync-adapter)"
     echo "  --help                  Show this help message"
     echo ""
     echo "Example:"
@@ -62,12 +62,12 @@ while [[ $# -gt 0 ]]; do
             DRY_RUN=true
             shift
             ;;
-        --sync-checkpoint)
-            SYNC_CHECKPOINT=true
+        --sync-adapter)
+            SYNC_ADAPTER=true
             shift
             ;;
-        --checkpoint-path)
-            CHECKPOINT_PATH="$2"
+        --adapter-dir)
+            ADAPTER_DIR="$2"
             shift 2
             ;;
         --help)
@@ -122,35 +122,35 @@ if [ "$DRY_RUN" = false ]; then
     echo -e "${GREEN}✓ model_test_server synced successfully!${NC}"
 fi
 
-# Sync checkpoint if requested
-if [ "$SYNC_CHECKPOINT" = true ]; then
-    if [ -z "$CHECKPOINT_PATH" ]; then
-        echo -e "${RED}Error: --checkpoint-path is required when using --sync-checkpoint${NC}"
+# Sync adapter directory if requested
+if [ "$SYNC_ADAPTER" = true ]; then
+    if [ -z "$ADAPTER_DIR" ]; then
+        echo -e "${RED}Error: --adapter-dir is required when using --sync-adapter${NC}"
         exit 1
     fi
     
-    if [ ! -d "$CHECKPOINT_PATH" ]; then
-        echo -e "${RED}Error: Checkpoint path does not exist: $CHECKPOINT_PATH${NC}"
+    if [ ! -d "$ADAPTER_DIR" ]; then
+        echo -e "${RED}Error: Adapter directory does not exist: $ADAPTER_DIR${NC}"
         exit 1
     fi
     
-    CHECKPOINT_NAME=$(basename "$CHECKPOINT_PATH")
-    REMOTE_CHECKPOINT_PATH="~/checkpoints/$CHECKPOINT_NAME"
+    ADAPTER_NAME=$(basename "$ADAPTER_DIR")
+    REMOTE_ADAPTER_PATH="~/adapters/$ADAPTER_NAME"
     
     echo ""
-    echo -e "${GREEN}Syncing checkpoint...${NC}"
-    echo "Source: $CHECKPOINT_PATH/"
-    echo "Destination: $REMOTE_USER@$REMOTE_IP:$REMOTE_CHECKPOINT_PATH/"
-    echo -e "${YELLOW}Note: This may take a while depending on checkpoint size...${NC}"
+    echo -e "${GREEN}Syncing adapter directory...${NC}"
+    echo "Source: $ADAPTER_DIR/"
+    echo "Destination: $REMOTE_USER@$REMOTE_IP:$REMOTE_ADAPTER_PATH/"
+    echo -e "${YELLOW}Note: This may take a while depending on adapter size...${NC}"
     echo ""
     
-    eval "$RSYNC_CMD --progress $CHECKPOINT_PATH/ $REMOTE_USER@$REMOTE_IP:$REMOTE_CHECKPOINT_PATH/"
+    eval "$RSYNC_CMD --progress $ADAPTER_DIR/ $REMOTE_USER@$REMOTE_IP:$REMOTE_ADAPTER_PATH/"
     
     if [ "$DRY_RUN" = false ]; then
-        echo -e "${GREEN}✓ Checkpoint synced successfully!${NC}"
+        echo -e "${GREEN}✓ Adapter directory synced successfully!${NC}"
         echo ""
-        echo -e "${YELLOW}Note: Update the checkpoint path in your server startup command:${NC}"
-        echo "  --checkpoint_path $REMOTE_CHECKPOINT_PATH"
+        echo -e "${YELLOW}Note: Update the adapter dir in your server startup command:${NC}"
+        echo "  --adapter_dir $REMOTE_ADAPTER_PATH"
     fi
 fi
 
@@ -167,10 +167,10 @@ echo ""
 echo "  3. Install dependencies:"
 echo "     pip install -r requirements.txt"
 echo ""
-if [ "$SYNC_CHECKPOINT" = true ]; then
+if [ "$SYNC_ADAPTER" = true ]; then
     echo "  4. Start the server:"
-    echo "     python app.py --checkpoint_path $REMOTE_CHECKPOINT_PATH --model_name gemma-2-9b"
+    echo "     python app.py --adapter_dir $REMOTE_ADAPTER_PATH --model_name gemma-2-9b"
 else
-    echo "  4. Start the server (update checkpoint path as needed):"
-    echo "     python app.py --checkpoint_path /path/to/checkpoint --model_name gemma-2-9b"
+    echo "  4. Start the server (update adapter dir as needed):"
+    echo "     python app.py --adapter_dir /path/to/adapter --model_name gemma-2-9b"
 fi

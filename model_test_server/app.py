@@ -2,7 +2,7 @@
 FastAPI server for serving model summaries.
 
 Usage:
-    python app.py --checkpoint_path path/to/checkpoint --port 8000
+    python app.py --adapter_dir path/to/adapter --port 8000
 """
 
 import argparse
@@ -38,28 +38,28 @@ model = None
 tokenizer = None
 model_config = None
 device = None
-checkpoint_path = None
+adapter_dir = None
 
 
-def validate_adapter_checkpoint(path: str) -> None:
-    """Validate that checkpoint path contains PEFT adapter artifacts."""
-    checkpoint_dir = Path(path).expanduser().resolve()
-    if not checkpoint_dir.exists() or not checkpoint_dir.is_dir():
-        raise ValueError(f"Checkpoint path does not exist or is not a directory: {checkpoint_dir}")
+def validate_adapter_dir(path: str) -> None:
+    """Validate that adapter directory contains PEFT adapter artifacts."""
+    adapter_path = Path(path).expanduser().resolve()
+    if not adapter_path.exists() or not adapter_path.is_dir():
+        raise ValueError(f"Adapter directory does not exist or is not a directory: {adapter_path}")
 
-    config_file = checkpoint_dir / "adapter_config.json"
-    safetensors_file = checkpoint_dir / "adapter_model.safetensors"
-    bin_file = checkpoint_dir / "adapter_model.bin"
+    config_file = adapter_path / "adapter_config.json"
+    safetensors_file = adapter_path / "adapter_model.safetensors"
+    bin_file = adapter_path / "adapter_model.bin"
 
     if not config_file.exists():
         raise ValueError(
-            f"Missing adapter_config.json in checkpoint directory: {checkpoint_dir}"
+            f"Missing adapter_config.json in adapter directory: {adapter_path}"
         )
 
     if not safetensors_file.exists() and not bin_file.exists():
         raise ValueError(
             "Missing adapter weights. Expected one of "
-            f"{safetensors_file.name} or {bin_file.name} in {checkpoint_dir}"
+            f"{safetensors_file.name} or {bin_file.name} in {adapter_path}"
         )
 
 
@@ -79,16 +79,16 @@ class SummaryResponse(BaseModel):
     summary: str
     processing_time: float
     model_name: str
-    checkpoint_path: str
+    adapter_dir: str
 
 
-def load_model(checkpoint_path: str, model_name: str = "gemma-2-9b", hf_token: Optional[str] = None, use_multi_gpu: bool = False):
-    """Load the base model and PEFT checkpoint."""
+def load_model(adapter_dir: str, model_name: str = "gemma-2-9b", hf_token: Optional[str] = None, use_multi_gpu: bool = False):
+    """Load the base model and PEFT adapter."""
     global model, tokenizer, model_config, device
     
     print(f"Loading model: {model_name}")
-    print(f"Checkpoint path: {checkpoint_path}")
-    validate_adapter_checkpoint(checkpoint_path)
+    print(f"Adapter directory: {adapter_dir}")
+    validate_adapter_dir(adapter_dir)
     
     # Get model configuration
     try:
@@ -176,8 +176,8 @@ def load_model(checkpoint_path: str, model_name: str = "gemma-2-9b", hf_token: O
             model = model.to(device)
     
     # Load PEFT adapter
-    print(f"Loading PEFT adapter from: {checkpoint_path}")
-    model = PeftModel.from_pretrained(model, checkpoint_path, is_trainable=False)
+    print(f"Loading PEFT adapter from: {adapter_dir}")
+    model = PeftModel.from_pretrained(model, adapter_dir, is_trainable=False)
     model.eval()
     
     print("Model loaded successfully!")
@@ -367,7 +367,7 @@ async def summarize(request: SummaryRequest):
             summary=summary,
             processing_time=processing_time,
             model_name=model_config.short_name if model_config else "unknown",
-            checkpoint_path=os.path.basename(checkpoint_path) if checkpoint_path else "unknown",
+            adapter_dir=os.path.basename(adapter_dir) if adapter_dir else "unknown",
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error generating summary: {str(e)}")
@@ -377,10 +377,10 @@ def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(description="Model Summary Server")
     parser.add_argument(
-        "--checkpoint_path",
+        "--adapter_dir",
         type=str,
         required=True,
-        help="Path to the model checkpoint directory",
+        help="Path to the model adapter directory",
     )
     parser.add_argument(
         "--model_name",
@@ -422,15 +422,15 @@ def main():
     print("Loading model...")
     print("=" * 70)
     load_model(
-        checkpoint_path=args.checkpoint_path,
+        adapter_dir=args.adapter_dir,
         model_name=args.model_name,
         hf_token=hf_token,
         use_multi_gpu=args.use_multi_gpu,
     )
     
-    # Store checkpoint_path globally for response
-    global checkpoint_path
-    checkpoint_path = args.checkpoint_path
+    # Store adapter_dir globally for response
+    global adapter_dir
+    adapter_dir = args.adapter_dir
     
     print("=" * 70)
     print(f"Server starting on {args.host}:{args.port}")

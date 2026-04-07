@@ -69,11 +69,11 @@ echo "  Port:    ${PORT}"
 docker run --gpus all \
   --name "${CONTAINER_NAME}" \
   -p "${PORT}:8000" \
-  -v "${ADAPTER_DIR_ABS}:/app/checkpoint:ro" \
+  -v "${ADAPTER_DIR_ABS}:/app/adapter:ro" \
   -v "${HF_CACHE_DIR}:/cache/huggingface" \
   -v "$PWD/logs:/app/logs" \
   -e HUGGINGFACE_TOKEN="${HUGGINGFACE_TOKEN:-}" \
   -e HF_HOME="/cache/huggingface" \
   -e TRANSFORMERS_CACHE="/cache/huggingface/transformers" \
   "${IMAGE_NAME}" \
-  python app.py --checkpoint_path /app/checkpoint --model_name "${MODEL_NAME}" --port 8000 "${EXTRA_ARGS[@]}"
+  python app.py --adapter_dir /app/adapter --model_name "${MODEL_NAME}" --port 8000 "${EXTRA_ARGS[@]}"

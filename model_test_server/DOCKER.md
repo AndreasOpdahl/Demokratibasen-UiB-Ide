@@ -3,7 +3,7 @@
 ## Goal
 
 Run the same Docker image on different machines with GPU acceleration by only changing:
-- where the adapter checkpoint is mounted from
+- where the adapter directory is mounted from
 - optional Hugging Face token
 
 The adapter directory must contain:
@@ -109,13 +109,13 @@ On another machine:
 docker pull your-user/model-test-server:latest
 docker run --gpus all \
   -p 8000:8000 \
-  -v "$ADAPTER_DIR:/app/checkpoint:ro" \
+  -v "$ADAPTER_DIR:/app/adapter:ro" \
   -v "$PWD/cache/huggingface:/cache/huggingface" \
   -e HUGGINGFACE_TOKEN="$HUGGINGFACE_TOKEN" \
   -e HF_HOME=/cache/huggingface \
   -e TRANSFORMERS_CACHE=/cache/huggingface/transformers \
   your-user/model-test-server:latest \
-  python app.py --checkpoint_path /app/checkpoint --model_name gemma-2-9b --port 8000 --use_multi_gpu
+  python app.py --adapter_dir /app/adapter --model_name gemma-2-9b --port 8000 --use_multi_gpu
 ```
 
 ## Environment Variables
@@ -124,7 +124,7 @@ docker run --gpus all \
 
 ## Volume Mounts
 
-- Adapter checkpoint: mount to `/app/checkpoint` (read-only recommended)
+- Adapter directory: mount to `/app/adapter` (read-only recommended)
 - Hugging Face cache: mount to `/cache/huggingface` for faster restarts
 - Logs (optional): mount to `/app/logs`
 
