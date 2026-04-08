@@ -10,7 +10,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Default values
-PEM_KEY=""
+SSH_KEY=""
 REMOTE_USER=""
 REMOTE_IP=""
 REMOTE_PATH="~/model_test_server"
@@ -20,10 +20,10 @@ ADAPTER_DIR=""
 
 # Function to print usage
 usage() {
-    echo "Usage: $0 --pem-key KEY --user USER --ip IP [OPTIONS]"
+    echo "Usage: $0 --ssh-key KEY --user USER --ip IP [OPTIONS]"
     echo ""
     echo "Required:"
-    echo "  --pem-key KEY          Path to PEM key file"
+    echo "  --ssh-key KEY          Path to SSH private key"
     echo "  --user USER            Remote server username"
     echo "  --ip IP                Remote server IP address or hostname"
     echo ""
@@ -35,15 +35,15 @@ usage() {
     echo "  --help                  Show this help message"
     echo ""
     echo "Example:"
-    echo "  $0 --pem-key ~/.ssh/my-key.pem --user ubuntu --ip 192.168.1.100"
+    echo "  $0 --ssh-key ~/.ssh/my-key --user ubuntu --ip 192.168.1.100"
     exit 1
 }
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
-        --pem-key)
-            PEM_KEY="$2"
+        --ssh-key)
+            SSH_KEY="$2"
             shift 2
             ;;
         --user)
@@ -81,26 +81,26 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Validate required arguments
-if [ -z "$PEM_KEY" ] || [ -z "$REMOTE_USER" ] || [ -z "$REMOTE_IP" ]; then
-    echo -e "${RED}Error: --pem-key, --user, and --ip are required${NC}"
+if [ -z "$SSH_KEY" ] || [ -z "$REMOTE_USER" ] || [ -z "$REMOTE_IP" ]; then
+    echo -e "${RED}Error: --ssh-key, --user, and --ip are required${NC}"
     usage
 fi
 
-# Check if PEM key exists
-if [ ! -f "$PEM_KEY" ]; then
-    echo -e "${RED}Error: PEM key file not found: $PEM_KEY${NC}"
+# Check if SSH key exists
+if [ ! -f "$SSH_KEY" ]; then
+    echo -e "${RED}Error: SSH key file not found: $SSH_KEY${NC}"
     exit 1
 fi
 
-# Set proper permissions on PEM key
-chmod 400 "$PEM_KEY" 2>/dev/null || echo -e "${YELLOW}Warning: Could not set permissions on PEM key${NC}"
+# Set proper permissions on SSH key
+chmod 400 "$SSH_KEY" 2>/dev/null || echo -e "${YELLOW}Warning: Could not set permissions on SSH key${NC}"
 
 # Get the directory where this script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SOURCE_DIR="$SCRIPT_DIR"
 
 # Build rsync command
-RSYNC_CMD="rsync -avz -e \"ssh -i $PEM_KEY\""
+RSYNC_CMD="rsync -avz -e \"ssh -i $SSH_KEY\""
 
 if [ "$DRY_RUN" = true ]; then
     RSYNC_CMD="$RSYNC_CMD --dry-run"
@@ -159,7 +159,7 @@ echo -e "${GREEN}Sync complete!${NC}"
 echo ""
 echo "Next steps on remote server:"
 echo "  1. SSH into the server:"
-echo "     ssh -i $PEM_KEY $REMOTE_USER@$REMOTE_IP"
+echo "     ssh -i $SSH_KEY $REMOTE_USER@$REMOTE_IP"
 echo ""
 echo "  2. Navigate to the directory:"
 echo "     cd $REMOTE_PATH"

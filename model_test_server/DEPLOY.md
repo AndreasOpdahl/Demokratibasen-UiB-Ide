@@ -5,14 +5,14 @@ This guide explains how to sync the model_test_server to a remote server using r
 ## Prerequisites
 
 - SSH access to the remote server
-- `.pem` key file for authentication
+- SSH private key for authentication
 - IP address or hostname of the remote server
 - rsync installed on both local and remote machines
 
 ## Basic rsync Command
 
 ```bash
-rsync -avz -e "ssh -i /path/to/your-key.pem" \
+rsync -avz -e "ssh -i /path/to/your-key" \
   model_test_server/ \
   user@ip-address:/path/to/destination/
 ```
@@ -22,7 +22,7 @@ rsync -avz -e "ssh -i /path/to/your-key.pem" \
 - `-a`: Archive mode (preserves permissions, timestamps, etc.)
 - `-v`: Verbose output
 - `-z`: Compress data during transfer
-- `-e "ssh -i /path/to/your-key.pem"`: Use SSH with your PEM key
+- `-e "ssh -i /path/to/your-key"`: Use SSH with your private key
 - `model_test_server/`: Source directory (trailing slash means contents, not the folder itself)
 - `user@ip-address:/path/to/destination/`: Remote destination
 
@@ -31,7 +31,7 @@ rsync -avz -e "ssh -i /path/to/your-key.pem" \
 ### Example 1: Sync to home directory
 
 ```bash
-rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
+rsync -avz -e "ssh -i ~/.ssh/my-key" \
   model_test_server/ \
   ubuntu@192.168.1.100:~/model_test_server/
 ```
@@ -39,7 +39,7 @@ rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
 ### Example 2: Sync to specific directory
 
 ```bash
-rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
+rsync -avz -e "ssh -i ~/.ssh/my-key" \
   model_test_server/ \
   ubuntu@192.168.1.100:/opt/model_test_server/
 ```
@@ -47,7 +47,7 @@ rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
 ### Example 3: Exclude certain files (like __pycache__)
 
 ```bash
-rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
+rsync -avz -e "ssh -i ~/.ssh/my-key" \
   --exclude '__pycache__' \
   --exclude '*.pyc' \
   --exclude '.git' \
@@ -58,7 +58,7 @@ rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
 ### Example 4: Dry run (see what would be synced)
 
 ```bash
-rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
+rsync -avz -e "ssh -i ~/.ssh/my-key" \
   --dry-run \
   model_test_server/ \
   ubuntu@192.168.1.100:~/model_test_server/
@@ -70,7 +70,7 @@ After syncing, SSH into the remote server and set up:
 
 ```bash
 # SSH into the server
-ssh -i /path/to/your-key.pem user@ip-address
+ssh -i /path/to/your-key user@ip-address
 
 # Navigate to the directory
 cd ~/model_test_server  # or wherever you synced it
@@ -88,7 +88,7 @@ If you need to sync the model adapter directory as well:
 
 ```bash
 # Sync adapter directory (this might be large, so use compression)
-rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
+rsync -avz -e "ssh -i ~/.ssh/my-key" \
   --progress \
   model_fine_tuning_olivia/models/gemma-2-9b-apptainer-fsdp/checkpoint-5000/ \
   ubuntu@192.168.1.100:~/adapters/checkpoint-5000/
@@ -96,9 +96,9 @@ rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
 
 ## Security Notes
 
-1. **Protect your PEM key**: Set proper permissions
+1. **Protect your private key**: Set proper permissions
    ```bash
-   chmod 400 /path/to/your-key.pem
+   chmod 400 /path/to/your-key
    ```
 
 2. **Use SSH config**: Create `~/.ssh/config` for easier access
@@ -106,7 +106,7 @@ rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
    Host myserver
        HostName 192.168.1.100
        User ubuntu
-       IdentityFile ~/.ssh/my-key.pem
+       IdentityFile ~/.ssh/my-key
    ```
    
    Then use:
@@ -119,7 +119,7 @@ rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
 ## Troubleshooting
 
 ### Permission denied
-- Check PEM key permissions: `chmod 400 your-key.pem`
+- Check key permissions: `chmod 400 your-key`
 - Verify the key is correct for the server
 
 ### Connection timeout
@@ -128,4 +128,4 @@ rsync -avz -e "ssh -i ~/.ssh/my-key.pem" \
 - Check firewall settings
 
 ### Destination path doesn't exist
-- Create the directory first: `ssh -i key.pem user@ip "mkdir -p /path/to/destination"`
+- Create the directory first: `ssh -i ~/.ssh/my-key user@ip "mkdir -p /path/to/destination"`
