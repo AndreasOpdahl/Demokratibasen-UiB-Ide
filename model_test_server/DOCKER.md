@@ -19,7 +19,7 @@ cd model_test_server
 
 export ADAPTER_DIR="$HOME/OneDrive/Shared/Demokratibasen-UiB-Ide/TrainingRuns/olivia/winners/checkpoint-5000"
 export MODEL_NAME="gemma-2-9b"
-export HUGGINGFACE_TOKEN="your_token_if_needed"
+export HF_TOKEN="your_token_if_needed"
 
 ./build_and_run.sh
 ```
@@ -29,7 +29,7 @@ export HUGGINGFACE_TOKEN="your_token_if_needed"
 ```bash
 cd model_test_server
 cp .env.example .env
-# Edit .env and set ADAPTER_DIR (+ optional HUGGINGFACE_TOKEN)
+# Edit .env and set ADAPTER_DIR (+ optional HF_TOKEN)
 
 docker compose up -d --build
 docker compose logs -f
@@ -111,7 +111,7 @@ docker run --gpus all \
   -p 8000:8000 \
   -v "$ADAPTER_DIR:/app/adapter:ro" \
   -v "$PWD/cache/huggingface:/cache/huggingface" \
-  -e HUGGINGFACE_TOKEN="$HUGGINGFACE_TOKEN" \
+  -e HF_TOKEN="$HF_TOKEN" \
   -e HF_HOME=/cache/huggingface \
   your-user/demokratibasen-oppsummering:latest \
   python app.py --adapter_dir /app/adapter --model_name gemma-2-9b --port 8000 --use_multi_gpu
@@ -119,7 +119,7 @@ docker run --gpus all \
 
 ## Environment Variables
 
-- `HUGGINGFACE_TOKEN`: Your Hugging Face token (required for private models)
+- `HF_TOKEN`: Your Hugging Face token (required for gated/private models)
 
 ## Volume Mounts
 

@@ -72,7 +72,7 @@ docker run --gpus all \
   -v "${ADAPTER_DIR_ABS}:/app/adapter:ro" \
   -v "${HF_HOME}:/cache/huggingface" \
   -v "$PWD/logs:/app/logs" \
-  -e HUGGINGFACE_TOKEN="${HUGGINGFACE_TOKEN:-}" \
+  -e HF_TOKEN="${HF_TOKEN:-}" \
   -e HF_HOME="/cache/huggingface" \
   "${IMAGE_NAME}" \
   python app.py --adapter_dir /app/adapter --model_name "${MODEL_NAME}" --port 8000 "${EXTRA_ARGS[@]}"

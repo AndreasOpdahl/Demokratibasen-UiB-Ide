@@ -402,7 +402,7 @@ def main():
         "--hf_token",
         type=str,
         default=None,
-        help="Hugging Face token (or set HUGGINGFACE_TOKEN env var)",
+        help="Hugging Face token (or set HF_TOKEN env var)",
     )
     parser.add_argument(
         "--port",
@@ -425,9 +425,8 @@ def main():
     args = parser.parse_args()
     
     # Get HF token from CLI/env and treat blank values as missing.
-    # Supports both HUGGINGFACE_TOKEN and HF_TOKEN naming.
     hf_token = normalize_hf_token(
-        args.hf_token or os.getenv("HUGGINGFACE_TOKEN") or os.getenv("HF_TOKEN")
+        args.hf_token or os.getenv("HF_TOKEN")
     )
     
     # Load model

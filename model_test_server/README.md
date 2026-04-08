@@ -1,4 +1,4 @@
-# Summarisarion Modl Server
+# Summarisarion Model Server
 
 A FastAPI-based HTTP server for summarising public documents using fine-tuned adapters.
 
@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 2. Set your Hugging Face token (if needed by the base model):
 ```bash
-export HUGGINGFACE_TOKEN=your_token_here
+export HF_TOKEN=your_token_here
 ```
 
 ## Usage
@@ -50,7 +50,7 @@ python app.py \
 ```bash
 cd model_test_server
 cp .env.example .env
-# Edit .env and set ADAPTER_DIR, MODEL_NAME (and HUGGINGFACE_TOKEN if required)
+# Edit .env and set ADAPTER_DIR, MODEL_NAME (and HF_TOKEN if required)
 docker compose up -d --build
 ```
 
@@ -67,7 +67,7 @@ export MODEL_NAME="gemma-2-9b"
 
 - `--adapter_dir`: Path to the adapter directory (required)
 - `--model_name`: Model name (default: `gemma-2-9b`)
-- `--hf_token`: Hugging Face token (or set `HUGGINGFACE_TOKEN` env var)
+- `--hf_token`: Hugging Face token (or set `HF_TOKEN` env var)
 - `--port`: Port to run the server on (default: 8000)
 - `--host`: Host to bind to (default: `0.0.0.0`)
 - `--use_multi_gpu`: Use multiple GPUs if available

@@ -7,7 +7,7 @@ services:
     ports:
       - "${MODEL_SERVER_PORT:-8000}:8000"
     environment:
-      - HUGGINGFACE_TOKEN=${HUGGINGFACE_TOKEN}
+      - HF_TOKEN
       - HF_HOME=/cache/huggingface
     volumes:
       - ${ADAPTER_DIR:?Set ADAPTER_DIR in .env or environment}:/app/adapter:ro
