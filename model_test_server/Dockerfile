@@ -4,8 +4,7 @@ ARG TORCH_INDEX_URL=https://download.pytorch.org/whl/cu121
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    HF_HOME=/cache/huggingface \
-    TRANSFORMERS_CACHE=/cache/huggingface/transformers
+    HF_HOME=/cache/huggingface
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \

@@ -3,12 +3,12 @@
 
 set -euo pipefail
 
-IMAGE_NAME="${IMAGE_NAME:-model-test-server:latest}"
-CONTAINER_NAME="${CONTAINER_NAME:-model-test-server}"
-ADAPTER_DIR="${ADAPTER_DIR:-}"
-MODEL_NAME="${MODEL_NAME:-gemma-2-9b}"
+IMAGE_NAME="${IMAGE_NAME:-demokratibasen-oppsummering:latest}"
+CONTAINER_NAME="${CONTAINER_NAME:-demokratibasen-oppsummering}"
+ADAPTER_DIR="${ADAPTER_DIR:?Need path to the adapter folder}"
+MODEL_NAME="${MODEL_NAME:?Need name of the base model}"
 PORT="${PORT:-8000}"
-HF_CACHE_DIR="${HF_CACHE_DIR:-$PWD/cache/huggingface}"
+HF_HOME="${HF_HOME:?Need HF_HOME pointing to the HuggingFace cache folder}"
 ENABLE_MULTI_GPU="${ENABLE_MULTI_GPU:-true}"
 SKIP_GPU_CHECK="${SKIP_GPU_CHECK:-false}"
 
@@ -41,7 +41,7 @@ if [[ ! -f "${ADAPTER_DIR_ABS}/adapter_model.safetensors" && ! -f "${ADAPTER_DIR
   exit 1
 fi
 
-mkdir -p "${HF_CACHE_DIR}" "$PWD/logs"
+mkdir -p "${HF_HOME}" "$PWD/logs"
 
 if [[ "${SKIP_GPU_CHECK}" != "true" ]]; then
   echo "Checking Docker GPU runtime..."
@@ -51,7 +51,7 @@ fi
 echo "Building image: ${IMAGE_NAME}"
 docker build -t "${IMAGE_NAME}" .
 
-if docker ps -a --format "{{.Names}}" | rg -x "${CONTAINER_NAME}" >/dev/null; then
+if docker ps -a --format "{{.Names}}" | grep -qx "${CONTAINER_NAME}"; then
   echo "Removing existing container: ${CONTAINER_NAME}"
   docker rm -f "${CONTAINER_NAME}" >/dev/null
 fi
@@ -70,10 +70,9 @@ docker run --gpus all \
   --name "${CONTAINER_NAME}" \
   -p "${PORT}:8000" \
   -v "${ADAPTER_DIR_ABS}:/app/adapter:ro" \
-  -v "${HF_CACHE_DIR}:/cache/huggingface" \
+  -v "${HF_HOME}:/cache/huggingface" \
   -v "$PWD/logs:/app/logs" \
   -e HUGGINGFACE_TOKEN="${HUGGINGFACE_TOKEN:-}" \
   -e HF_HOME="/cache/huggingface" \
-  -e TRANSFORMERS_CACHE="/cache/huggingface/transformers" \
   "${IMAGE_NAME}" \
   python app.py --adapter_dir /app/adapter --model_name "${MODEL_NAME}" --port 8000 "${EXTRA_ARGS[@]}"
