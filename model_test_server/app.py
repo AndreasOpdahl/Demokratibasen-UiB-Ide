@@ -15,12 +15,12 @@ warnings.filterwarnings("ignore", message="MatMul8bitLt: inputs will be cast fro
 from pathlib import Path
 from typing import Optional
 import torch
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, HTTPException  # type: ignore[import-untyped]
+from fastapi.middleware.cors import CORSMiddleware  # type: ignore[import-untyped]
 from pydantic import BaseModel
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from peft import PeftModel
-import uvicorn
+import uvicorn  # type: ignore[import-untyped]
 
 # Import model configs from local file
 from model_configs import get_model_config, PROMPT_PLAIN
@@ -77,12 +77,12 @@ def validate_adapter_dir(path: str) -> None:
 class SummaryRequest(BaseModel):
     """Request model for summary generation."""
     text: str
-    doc_type: Optional[str] = "tekst"  # Default document type
-    max_length: Optional[int] = 150  # Maximum tokens for summary (reduced for speed)
-    min_length: Optional[int] = 20  # Minimum tokens for summary (reduced for speed)
-    temperature: Optional[float] = 0.3  # Lower default for faster generation
-    top_p: Optional[float] = 0.9
-    do_sample: Optional[bool] = False  # Default to greedy for speed
+    doc_type: str = "tekst"
+    max_length: int = 150
+    min_length: int = 20
+    temperature: float = 0.3
+    top_p: float = 0.9
+    do_sample: bool = False
 
 
 class SummaryResponse(BaseModel):
@@ -206,7 +206,7 @@ def load_model(adapter_dir: str, model_name: str = "gemma-2-9b", hf_token: Optio
             torch_dtype=torch.float32,
             **common_kwargs,
         )
-        model = model.to(device)
+        model = model.to(torch.device(device))  # type: ignore[arg-type]
     
     # Load PEFT adapter
     print(f"Loading PEFT adapter from: {adapter_dir}")
@@ -336,19 +336,15 @@ async def root():
 @app.get("/health")
 async def health():
     """Health check endpoint."""
-    gpu_info = {}
+    gpus: list[dict[str, object]] = []
+    gpu_info: dict[str, object] = {}
     if torch.cuda.is_available():
-        gpu_info = {
-            "cuda_available": True,
-            "gpu_count": torch.cuda.device_count(),
-            "gpus": []
-        }
         for i in range(torch.cuda.device_count()):
             props = torch.cuda.get_device_properties(i)
             memory_allocated = torch.cuda.memory_allocated(i) / 1e9  # GB
             memory_reserved = torch.cuda.memory_reserved(i) / 1e9  # GB
             memory_total = props.total_memory / 1e9  # GB
-            gpu_info["gpus"].append({
+            gpus.append({
                 "index": i,
                 "name": props.name,
                 "memory_allocated_gb": round(memory_allocated, 2),
@@ -356,6 +352,11 @@ async def health():
                 "memory_total_gb": round(memory_total, 2),
                 "memory_usage_percent": round((memory_reserved / memory_total) * 100, 1) if memory_total > 0 else 0
             })
+        gpu_info = {
+            "cuda_available": True,
+            "gpu_count": torch.cuda.device_count(),
+            "gpus": gpus,
+        }
     else:
         gpu_info = {"cuda_available": False}
     
