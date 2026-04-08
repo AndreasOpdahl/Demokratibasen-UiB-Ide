@@ -10,6 +10,7 @@ ADAPTER_DIR="${ADAPTER_DIR:?Need path to the adapter folder}"
 PORT="${PORT:-8000}"
 HF_HOME="${HF_HOME:?Need HF_HOME pointing to the HuggingFace cache folder}"
 ENABLE_MULTI_GPU="${ENABLE_MULTI_GPU:-true}"
+QUANTIZE="${QUANTIZE:-none}"
 SKIP_GPU_CHECK="${SKIP_GPU_CHECK:-false}"
 
 if [[ -z "${ADAPTER_DIR}" ]]; then
@@ -59,6 +60,9 @@ fi
 EXTRA_ARGS=()
 if [[ "${ENABLE_MULTI_GPU}" == "true" ]]; then
   EXTRA_ARGS+=(--use_multi_gpu)
+fi
+if [[ "${QUANTIZE}" != "none" ]]; then
+  EXTRA_ARGS+=(--quantize "${QUANTIZE}")
 fi
 
 echo "Starting container: ${CONTAINER_NAME}"

@@ -9,13 +9,16 @@ import argparse
 import os
 import sys
 import time
+import warnings
+
+warnings.filterwarnings("ignore", message="MatMul8bitLt: inputs will be cast from")
 from pathlib import Path
 from typing import Optional
 import torch
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from peft import PeftModel
 import uvicorn
 
@@ -90,7 +93,7 @@ class SummaryResponse(BaseModel):
     adapter_dir: str
 
 
-def load_model(adapter_dir: str, model_name: str = "gemma-2-9b", hf_token: Optional[str] = None, use_multi_gpu: bool = False):
+def load_model(adapter_dir: str, model_name: str = "gemma-2-9b", hf_token: Optional[str] = None, use_multi_gpu: bool = False, quantize: str = "none"):
     """Load the base model and PEFT adapter."""
     global model, tokenizer, model_config, device
     
@@ -152,38 +155,58 @@ def load_model(adapter_dir: str, model_name: str = "gemma-2-9b", hf_token: Optio
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     
+    # Build quantization config
+    quantization_config = None
+    if quantize == "4bit":
+        print("Using 4-bit quantization (QLoRA-style)")
+        quantization_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+        )
+    elif quantize == "8bit":
+        print("Using 8-bit quantization")
+        quantization_config = BitsAndBytesConfig(load_in_8bit=True)
+
     # Load base model
     print("Loading base model...")
-    if use_multi_gpu and torch.cuda.device_count() > 1:
+    hf_name = model_config.hf_name if model_config else f"google/{model_name}"
+    common_kwargs = dict(
+        token=hf_token,
+        low_cpu_mem_usage=True,
+        trust_remote_code=True,
+    )
+
+    if quantization_config is not None:
+        model = AutoModelForCausalLM.from_pretrained(
+            hf_name,
+            quantization_config=quantization_config,
+            device_map="auto",
+            **common_kwargs,
+        )
+    elif use_multi_gpu and torch.cuda.device_count() > 1:
         print(f"Using model parallelism across {torch.cuda.device_count()} GPUs")
         model = AutoModelForCausalLM.from_pretrained(
-            model_config.hf_name if model_config else f"google/{model_name}",
+            hf_name,
             torch_dtype=torch.float16,
             device_map="auto",
-            token=hf_token,
-            low_cpu_mem_usage=True,
-            trust_remote_code=True,
+            **common_kwargs,
+        )
+    elif device == "cuda":
+        model = AutoModelForCausalLM.from_pretrained(
+            hf_name,
+            torch_dtype=torch.float16,
+            device_map="cuda:0",
+            **common_kwargs,
         )
     else:
-        # Single GPU or CPU
-        if device == "cuda":
-            model = AutoModelForCausalLM.from_pretrained(
-                model_config.hf_name if model_config else f"google/{model_name}",
-                torch_dtype=torch.float16,
-                device_map="cuda:0",
-                token=hf_token,
-                low_cpu_mem_usage=True,
-                trust_remote_code=True,
-            )
-        else:
-            model = AutoModelForCausalLM.from_pretrained(
-                model_config.hf_name if model_config else f"google/{model_name}",
-                torch_dtype=torch.float32,  # CPU typically uses float32
-                token=hf_token,
-                low_cpu_mem_usage=True,
-                trust_remote_code=True,
-            )
-            model = model.to(device)
+        model = AutoModelForCausalLM.from_pretrained(
+            hf_name,
+            torch_dtype=torch.float32,
+            **common_kwargs,
+        )
+        model = model.to(device)
     
     # Load PEFT adapter
     print(f"Loading PEFT adapter from: {adapter_dir}")
@@ -421,6 +444,13 @@ def main():
         action="store_true",
         help="Use multiple GPUs if available",
     )
+    parser.add_argument(
+        "--quantize",
+        type=str,
+        choices=["none", "4bit", "8bit"],
+        default="none",
+        help="Quantize model to reduce VRAM usage (default: none)",
+    )
     
     args = parser.parse_args()
     
@@ -437,6 +467,7 @@ def main():
     print(f"  ADAPTER_DIR:  {args.adapter_dir}")
     print(f"  HF_HOME:      {os.getenv('HF_HOME', '(not set)')}")
     print(f"  HF_TOKEN:     {'(set)' if hf_token else '(not set)'}")
+    print(f"  Quantize:     {args.quantize}")
     print(f"  Multi-GPU:    {args.use_multi_gpu}")
     print(f"  Host:Port:    {args.host}:{args.port}")
     print("=" * 70)
@@ -449,6 +480,7 @@ def main():
         model_name=args.model_name,
         hf_token=hf_token,
         use_multi_gpu=args.use_multi_gpu,
+        quantize=args.quantize,
     )
     
     # Store adapter_dir globally for response
