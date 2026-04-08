@@ -429,8 +429,19 @@ def main():
         args.hf_token or os.getenv("HF_TOKEN")
     )
     
-    # Load model
+    # Print runtime configuration
     print("=" * 70)
+    print("Runtime configuration")
+    print("-" * 70)
+    print(f"  MODEL_NAME:   {args.model_name}")
+    print(f"  ADAPTER_DIR:  {args.adapter_dir}")
+    print(f"  HF_HOME:      {os.getenv('HF_HOME', '(not set)')}")
+    print(f"  HF_TOKEN:     {'(set)' if hf_token else '(not set)'}")
+    print(f"  Multi-GPU:    {args.use_multi_gpu}")
+    print(f"  Host:Port:    {args.host}:{args.port}")
+    print("=" * 70)
+
+    # Load model
     print("Loading model...")
     print("=" * 70)
     load_model(
