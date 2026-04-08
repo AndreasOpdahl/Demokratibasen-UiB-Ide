@@ -100,20 +100,20 @@ If GPU is not detected inside the container:
 
 ```bash
 # Example with Docker Hub (replace with your registry/tag)
-docker build -t your-user/demokratibasen-oppsummering:latest .
-docker push your-user/demokratibasen-oppsummering:latest
+docker build -t your-user/oppsummering-gemma-2b:latest .
+docker push your-user/oppsummering-gemma-2b:latest
 ```
 
 On another machine:
 ```bash
-docker pull your-user/demokratibasen-oppsummering:latest
+docker pull your-user/oppsummering-gemma-2b:latest
 docker run --gpus all \
   -p 8000:8000 \
   -v "$ADAPTER_DIR:/app/adapter:ro" \
-  -v "$PWD/cache/huggingface:/cache/huggingface" \
+  -v "$HF_HOME:/cache/huggingface" \
   -e HF_TOKEN="$HF_TOKEN" \
   -e HF_HOME=/cache/huggingface \
-  your-user/demokratibasen-oppsummering:latest \
+  your-user/oppsummering-gemma-2b:latest \
   python app.py --adapter_dir /app/adapter --model_name gemma-2-9b --port 8000 --use_multi_gpu
 ```
 

@@ -3,10 +3,10 @@
 
 set -euo pipefail
 
-IMAGE_NAME="${IMAGE_NAME:-demokratibasen-oppsummering:latest}"
-CONTAINER_NAME="${CONTAINER_NAME:-demokratibasen-oppsummering}"
-ADAPTER_DIR="${ADAPTER_DIR:?Need path to the adapter folder}"
 MODEL_NAME="${MODEL_NAME:?Need name of the base model}"
+IMAGE_NAME="${IMAGE_NAME:-oppsummering-${MODEL_NAME}:latest}"
+CONTAINER_NAME="${CONTAINER_NAME:-oppsummering-${MODEL_NAME}}"
+ADAPTER_DIR="${ADAPTER_DIR:?Need path to the adapter folder}"
 PORT="${PORT:-8000}"
 HF_HOME="${HF_HOME:?Need HF_HOME pointing to the HuggingFace cache folder}"
 ENABLE_MULTI_GPU="${ENABLE_MULTI_GPU:-true}"
