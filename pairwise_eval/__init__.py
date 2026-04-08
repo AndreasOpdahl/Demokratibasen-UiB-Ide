@@ -14,7 +14,7 @@ Example::
 
     long_df = build_toy_long_df()  # checkpoints + gold model REFERENCE_SUMMARY_MODEL_ID
     models = sorted(long_df["model_id"].unique())
-    pairs = build_pairs_table(long_df, n_pairs=4)
+    pairs = build_pairs_table(long_df)  # ``N_PAIRS_PER_DOCUMENT`` from :mod:`pairwise_eval.config`
     geval = build_geval_tables(pairs, long_df)
     export_full_run(geval, pairs, long_df, models, ref_model=REFERENCE_SUMMARY_MODEL_ID)
 """
@@ -27,8 +27,10 @@ from pairwise_eval.bradley_terry import (
     win_matrix_from_geval,
 )
 from pairwise_eval.config import (
+    EVAL_DATA_DIR,
     EVAL_DIMENSIONS,
     GEVAL_CHECKPOINT_DIR,
+    GEVAL_EXPORT_DIRNAME,
     HUMAN_JUDGES,
     JUDGES,
     LLM_JUDGES,
@@ -36,6 +38,7 @@ from pairwise_eval.config import (
     LOCAL_LLM_TIMEOUT_S,
     MAX_DOCUMENTS,
     MOCK_TIE_PROB,
+    N_PAIRS_PER_DOCUMENT,
     REFERENCE_SUMMARY_MODEL_ID,
     REPO_ROOT,
 )
@@ -82,8 +85,10 @@ from pairwise_eval.win_rates import (
 )
 
 __all__ = [
+    "EVAL_DATA_DIR",
     "EVAL_DIMENSIONS",
     "GEVAL_CHECKPOINT_DIR",
+    "GEVAL_EXPORT_DIRNAME",
     "HUMAN_JUDGES",
     "JUDGES",
     "LLM_JUDGES",
@@ -91,6 +96,7 @@ __all__ = [
     "LOCAL_LLM_TIMEOUT_S",
     "MAX_DOCUMENTS",
     "MOCK_TIE_PROB",
+    "N_PAIRS_PER_DOCUMENT",
     "REFERENCE_SUMMARY_MODEL_ID",
     "REPO_ROOT",
     "EvaluateFn",

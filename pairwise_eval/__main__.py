@@ -1,4 +1,4 @@
-"""Run the pairwise G-Eval pipeline and write exports (``.deepeval/geval_exports``)."""
+"""Run the pairwise G-Eval pipeline and write exports under ``.deepeval/<GEVAL_EXPORT_DIRNAME>/``."""
 
 from __future__ import annotations
 
@@ -17,11 +17,15 @@ from pairwise_eval import (
     load_eval_jsonl_long_df,
     mock_evaluate_pair,
     resolve_eval_data_dir,
+    resolve_geval_export_dir,
 )
 from pairwise_eval.config import (
+    GEMINI_JUDGE_IDS,
+    GOOGLE_API_KEY,
     GEVAL_CHECKPOINT_DIR,
     JUDGES,
     MAX_DOCUMENTS,
+    N_PAIRS_PER_DOCUMENT,
     OPENAI_API_KEY,
     OPENAI_JUDGE_IDS,
     REFERENCE_SUMMARY_MODEL_ID,
@@ -43,6 +47,12 @@ def main() -> None:
             "those judgments will be [api_error] ties.",
             file=sys.stderr,
         )
+    if any(j in GEMINI_JUDGE_IDS for j in JUDGES) and not GOOGLE_API_KEY:
+        print(
+            "Warning: Gemini judge(s) in JUDGES but GOOGLE_API_KEY (or GEMINI_API_KEY) is unset — "
+            "those judgments will be [api_error] ties.",
+            file=sys.stderr,
+        )
 
     if USE_TOY_DATA:
         long_df = build_toy_long_df()
@@ -57,7 +67,7 @@ def main() -> None:
         print(f"Subset: first {MAX_DOCUMENTS} document(s)", f"({len(long_df)} rows)")
 
     models = sorted(long_df["model_id"].unique())
-    pairs = build_pairs_table(long_df, n_pairs=4)
+    pairs = build_pairs_table(long_df, n_pairs=N_PAIRS_PER_DOCUMENT)
 
     ck = GEVAL_CHECKPOINT_DIR
     if ck is not None:
@@ -72,7 +82,7 @@ def main() -> None:
         pairs, long_df, evaluate_fn=evaluate_fn, checkpoint_dir=ck
     )
 
-    export_dir = _repo_root / ".deepeval" / "geval_exports"
+    export_dir = resolve_geval_export_dir()
     out = export_full_run(
         geval,
         pairs,

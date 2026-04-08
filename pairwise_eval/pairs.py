@@ -7,12 +7,12 @@ import itertools
 import numpy as np
 import pandas as pd
 
-from pairwise_eval.config import DEFAULT_PAIR_SEED
+from pairwise_eval.config import DEFAULT_PAIR_SEED, N_PAIRS_PER_DOCUMENT
 
 
 def build_pairs_table(
     long_df: pd.DataFrame,
-    n_pairs: int = 4,
+    n_pairs: int = N_PAIRS_PER_DOCUMENT,
     *,
     rng: np.random.Generator | None = None,
     seed: int = DEFAULT_PAIR_SEED,

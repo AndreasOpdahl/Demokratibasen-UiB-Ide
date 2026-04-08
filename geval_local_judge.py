@@ -21,21 +21,16 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
-from typing import Any, Callable, Dict, Literal, Optional, Union
+from typing import Any, Callable, Dict, Optional, Union
 
 import requests
-
-JudgeName = Literal["faithfulness", "correctness", "completeness"]
 
 _REPO_ROOT = Path(__file__).resolve().parent
 _DEFAULT_PROMPTS_DIR = _REPO_ROOT / "Data" / "prompts" / "geval"
 _DEFAULT_CHAT_URL = "http://localhost:1234/api/v1/chat"
 
-_JUDGE_FILES: Dict[str, str] = {
-    "faithfulness": "faithfulness.txt",
-    "correctness": "correctness.txt",
-    "completeness": "completeness.txt",
-}
+# Optional: dimension slug → filename under ``prompts_dir`` when it is not ``{slug}.txt``.
+_GEVAL_PROMPT_FILE_OVERRIDES: Dict[str, str] = {}
 
 
 def fill_geval_prompt(
@@ -56,25 +51,35 @@ def fill_geval_prompt(
 
 
 def load_geval_template(
-    judge: Union[JudgeName, str, Path],
+    judge: Union[str, Path],
     *,
     prompts_dir: Optional[Path] = None,
 ) -> str:
-    """Load a ``.txt`` prompt from ``prompts_dir`` (default ``Data/prompts/geval``).
+    """Load a G-Eval prompt from ``prompts_dir`` (default ``Data/prompts/geval``).
 
-    Input: dimension key (e.g. ``faithfulness``), filename, or absolute path; optional base dir.
-    Output: template file contents as a string.
+    A dimension string ``d`` resolves to ``<prompts_dir>/{d}.txt`` (same names as
+    :data:`pairwise_eval.config.EVAL_DIMENSIONS`). Absolute paths are used as-is; a relative
+    path with ``/`` or ``\\\\`` is resolved under ``prompts_dir``; an explicit ``*.txt`` /
+    ``*.md`` basename uses ``prompts_dir / key``. Override nonstandard filenames via
+    :data:`_GEVAL_PROMPT_FILE_OVERRIDES`.
     """
     base = prompts_dir if prompts_dir is not None else _DEFAULT_PROMPTS_DIR
     if isinstance(judge, Path):
         path = judge
     else:
         key = str(judge)
-        if key in _JUDGE_FILES:
-            path = base / _JUDGE_FILES[key]
+        if key in _GEVAL_PROMPT_FILE_OVERRIDES:
+            path = base / _GEVAL_PROMPT_FILE_OVERRIDES[key]
         else:
             p = Path(key)
-            path = p if p.is_absolute() else base / p
+            if p.is_absolute():
+                path = p
+            elif "/" in key or "\\" in key:
+                path = base / key
+            elif key.endswith((".txt", ".md")):
+                path = base / key
+            else:
+                path = base / f"{key}.txt"
     return path.read_text(encoding="utf-8")
 
 
@@ -135,7 +140,7 @@ def local_llm_geval_judge(
     summary_a: str,
     summary_b: str,
     *,
-    judge: Union[JudgeName, str, Path] = "faithfulness",
+    judge: Union[str, Path] = "faithfulness",
     model: str,
     base_url: str = _DEFAULT_CHAT_URL,
     prompts_dir: Optional[Path] = None,
@@ -152,7 +157,9 @@ def local_llm_geval_judge(
     user_message = fill_geval_prompt(template, document, summary_a, summary_b)
     sys_msg = system_prompt or (
         "You are an evaluator. Follow the user instructions exactly. "
-        "If asked for one word (A, B, or Tie), reply with only that word."
+        "When the prompt asks for JSON, reply with only a valid JSON object "
+        'with \"decision\" (A, B, or Tie) and \"rationale\" (string). '
+        "Otherwise, if asked for one word (A, B, or Tie), reply with only that word."
     )
     data = local_llm_chat(
         user_message,
@@ -167,7 +174,7 @@ def local_llm_geval_judge(
 
 def make_model_judge(
     model: str,
-    judge: JudgeName,
+    judge: str,
     *,
     base_url: str = _DEFAULT_CHAT_URL,
     prompts_dir: Optional[Path] = None,

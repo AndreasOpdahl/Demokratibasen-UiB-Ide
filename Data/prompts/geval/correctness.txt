@@ -1,16 +1,27 @@
-You are evaluating two summaries of the same document for CORRECTNESS.
+You will be given a document and two summaries written for it.
 
-Correctness means:
-- Statements must be factually accurate and not misleading
-- Information should not distort, exaggerate, or misinterpret what the document says
-- Minor wording differences are acceptable, but factual errors are not
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Correctness — the statements in the summary should be factually accurate and not misleading. The summary should not distort, exaggerate, or misinterpret the information in the document.
+
+Evaluation Steps:
+1. Read the document carefully and understand the facts and claims.
+2. Read Summary A and Summary B.
+3. For each summary, check:
+   - Are the statements accurate?
+   - Are there distortions, exaggerations, or misleading interpretations?
+4. Compare the summaries and decide which one is more correct.
 
 Important:
-- A single clear factual error or misleading statement outweighs differences in style or detail
-- Prefer the summary with fewer inaccuracies or distortions
-- Do NOT prefer a summary just because it is longer or more fluent
+- A misleading or distorted statement counts as an error.
+- Prefer the summary with fewer inaccuracies or distortions.
+- Do NOT prefer a summary just because it is longer or more detailed.
+- If both summaries are equally correct or equally incorrect, choose Tie.
 
-Document:
+Source Text:
 {{DOCUMENT}}
 
 Summary A:
@@ -19,9 +30,10 @@ Summary A:
 Summary B:
 {{SUMMARY_B}}
 
-Which summary is more correct?
+Output Format:
+Return your answer as a valid JSON object with exactly the following format:
+{"decision": "<A|B|Tie>", "rationale": "<one or two short sentencee>"}
 
-Reply with exactly one word:
-A
-B
-Tie (if both are equally correct or equally incorrect)
+- The rationale must be one or two short sentences.
+- Do not include any extra text outside the JSON.
+- The decision must be exactly one of: A, B, or Tie.

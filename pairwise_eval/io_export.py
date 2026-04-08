@@ -1,4 +1,4 @@
-"""Write JSON/CSV/Markdown/LaTeX artifacts under ``geval_exports``."""
+"""Write JSON/CSV/Markdown/LaTeX artifacts under ``.deepeval/<GEVAL_EXPORT_DIRNAME>/``."""
 
 from __future__ import annotations
 
@@ -9,6 +9,13 @@ from typing import Dict, Tuple
 import pandas as pd
 
 from pairwise_eval.bradley_terry import bradley_terry_long_table, bradley_terry_theta_wide, markdown_bradley_terry_theta
+from pairwise_eval.config import (
+    EVAL_DIMENSIONS,
+    GEVAL_EXPORT_DIRNAME,
+    HUMAN_JUDGES,
+    JUDGES,
+    LLM_JUDGES,
+)
 from pairwise_eval.win_rates import markdown_win_rate_tables_by_dimension, win_rate_table_paper
 
 # Subfolders under the export root (keeps one flat directory from getting cluttered)
@@ -23,8 +30,11 @@ def _results_summary_preamble(
     long_df: pd.DataFrame | None,
 ) -> str:
     """Build judges, dimensions, scope, and datapoint counts for the top of ``results_summary.md``."""
-    judges = sorted({j for j, _ in geval_tables.keys()})
-    dimensions = sorted({d for _, d in geval_tables.keys()})
+    _judge_set = {j for j, _ in geval_tables.keys()}
+    # Match column order in win-rate tables (:data:`JUDGES`), then any extra keys lexicographically.
+    judges = [j for j in JUDGES if j in _judge_set] + sorted(_judge_set - set(JUDGES))
+    _dim_set = {d for _, d in geval_tables.keys()}
+    dimensions = [d for d in EVAL_DIMENSIONS if d in _dim_set] + sorted(_dim_set - set(EVAL_DIMENSIONS))
     judge_line = ", ".join(f"`{j}`" for j in judges) if judges else "_(none)_"
     dim_line = ", ".join(f"`{d}`" for d in dimensions) if dimensions else "_(none)_"
     lines = [
@@ -79,14 +89,21 @@ def _json_stem_fragment(s: str) -> str:
 
 
 def resolve_geval_export_dir() -> Path:
-    """Default export root: ``.deepeval/geval_exports`` (or ``geval_exports`` if cwd is ``.deepeval``).
+    """Export root: ``.deepeval/<GEVAL_EXPORT_DIRNAME>`` (or same name under cwd if cwd is ``.deepeval``).
 
-    Input: none. Output: Path (may not exist yet).
+    Input: none. Output: Path (may not exist yet). Directory name comes from
+    :data:`pairwise_eval.config.GEVAL_EXPORT_DIRNAME`.
     """
+    leaf = GEVAL_EXPORT_DIRNAME.strip()
+    if not leaf or "/" in leaf or "\\" in leaf or leaf in (".", ".."):
+        raise ValueError(
+            "GEVAL_EXPORT_DIRNAME must be a single folder name (no path separators), "
+            "e.g. geval_exports or geval_winners_exports."
+        )
     cwd = Path.cwd()
     if cwd.name == ".deepeval":
-        return cwd / "geval_exports"
-    return cwd / ".deepeval" / "geval_exports"
+        return cwd / leaf
+    return cwd / ".deepeval" / leaf
 
 
 def _ensure_export_layout(root: Path) -> tuple[Path, Path, Path]:
@@ -163,10 +180,12 @@ def export_win_rates_paper(
     for c in ("win_rate_human", "win_rate_llm_pooled"):
         w2[c] = w2[c].map(lambda x: f"{x:.3f}" if pd.notna(x) else "—")
     cols = list(w2.columns)
+    human_note = ", ".join(f"`{j}`" for j in HUMAN_JUDGES) if HUMAN_JUDGES else "_(none)_"
+    llm_judge_note = ", ".join(f"`{j}`" for j in LLM_JUDGES) if LLM_JUDGES else "_(none)_"
     lines = [
         "# Pairwise win rates by model",
         "",
-        "Human: all dimensions pooled. LLM: pooled over llm_1, llm_2, llm_3.",
+        f"Human judges (all dimensions pooled): {human_note}. LLM judges (all dimensions pooled): {llm_judge_note}.",
         "",
         "| " + " | ".join(cols) + " |",
         "| " + " | ".join("---" for _ in cols) + " |",

@@ -1,0 +1,30 @@
+{
+  "export_dir": "/Users/baharehfatemi/Desktop/demokratibasen/.deepeval/geval_exports",
+  "layout": {
+    "json": "json/",
+    "tables": "tables/",
+    "reports": "reports/"
+  },
+  "files": [
+    {
+      "path": "json/pairs_table.json",
+      "rows": 2412
+    },
+    {
+      "path": "json/summarization_long.json",
+      "rows": 7236
+    },
+    {
+      "path": "json/geval__google__gemma-3-4b__faithfulness.json",
+      "rows": 2412
+    },
+    {
+      "path": "json/geval__google__gemma-3-4b__correctness.json",
+      "rows": 2412
+    },
+    {
+      "path": "json/geval__google__gemma-3-4b__completeness.json",
+      "rows": 2412
+    }
+  ]
+}

@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from pairwise_eval.config import REFERENCE_SUMMARY_MODEL_ID, REPO_ROOT
+from pairwise_eval.config import EVAL_DATA_DIR, REFERENCE_SUMMARY_MODEL_ID, REPO_ROOT
 
 
 def append_gold_summary_as_model_rows(checkpoint_long_df: pd.DataFrame) -> pd.DataFrame:
@@ -86,8 +86,19 @@ def build_toy_long_df() -> pd.DataFrame:
 def resolve_eval_data_dir() -> Path:
     """Locate the eval JSONL directory.
 
-    Input: none (uses ``REPO_ROOT`` and ``Path.cwd()``). Output: existing path to ``Data/eval``.
+    Uses :data:`pairwise_eval.config.EVAL_DATA_DIR` when set; otherwise ``REPO_ROOT / "Data" / "eval"``
+    or cwd fallbacks. Output: existing directory path.
     """
+    if EVAL_DATA_DIR is not None:
+        p = Path(EVAL_DATA_DIR)
+        if not p.is_absolute():
+            p = REPO_ROOT / p
+        p = p.resolve()
+        if not p.is_dir():
+            raise FileNotFoundError(
+                f"EVAL_DATA_DIR is set to {p} but that path is not an existing directory."
+            )
+        return p
     repo_eval = REPO_ROOT / "Data" / "eval"
     if repo_eval.is_dir():
         return repo_eval

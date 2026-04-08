@@ -1,0 +1,52 @@
+You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.
+
+Source Text:
+{{DOCUMENT}}
+
+Summary A:
+{{SUMMARY_A}}
+
+Summary B:
+{{SUMMARY_B}}
+
+Think carefully and make your decision based only on the specified criterion.
+
+Output Format:
+Return your answer as a valid JSON object with exactly the following format:
+{"decision": "<A|B|Tie>", "rationale": "<one or two short sentence>"}
+
+- The rationale must be one or two short sentences.
+- Do not include any extra text outside the JSON.
+- The decision must be exactly one of: A, B, or Tie.

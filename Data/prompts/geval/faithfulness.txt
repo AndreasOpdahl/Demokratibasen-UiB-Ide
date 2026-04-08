@@ -1,16 +1,27 @@
-You are evaluating two summaries of the same document for FAITHFULNESS.
+You will be given a document and two summaries written for it.
 
-Faithfulness means:
-- All information in the summary must be supported by the document
-- No invented facts, exaggerations, or unsupported details
-- No contradictions or misleading implications
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Faithfulness — the summary should only contain information that is supported by the document. It should not include any invented facts, contradictions, or misleading implications.
+
+Evaluation Steps:
+1. Read the document carefully and identify the main facts and statements.
+2. Read Summary A and Summary B.
+3. For each summary, check:
+   - Are all statements supported by the document?
+   - Are there any hallucinations, distortions, or contradictions?
+4. Compare the summaries and decide which one is more faithful.
 
 Important:
-- A single factual error is more important than style or completeness
-- Prefer the summary with fewer or no factual errors, even if it is shorter or less detailed
-- Do NOT prefer a summary just because it is longer or more fluent
+- A single factual error outweighs differences in style or detail.
+- Prefer the summary with fewer or no factual errors.
+- Do NOT prefer a summary just because it is longer or more detailed.
+- If both summaries are equally faithful or equally flawed, choose Tie.
 
-Document:
+Source Text:
 {{DOCUMENT}}
 
 Summary A:
@@ -19,9 +30,10 @@ Summary A:
 Summary B:
 {{SUMMARY_B}}
 
-Which summary is more faithful to the document?
+Output Format:
+Return your answer as a valid JSON object with exactly the following format:
+{"decision": "<A|B|Tie>", "rationale": "<one or two short sentence>"}
 
-Reply with exactly one word:
-A  
-B  
-Tie (if both are equally faithful or equally flawed)
+- The rationale must be one or two short sentences.
+- Do not include any extra text outside the JSON.
+- The decision must be exactly one of: A, B, or Tie.
