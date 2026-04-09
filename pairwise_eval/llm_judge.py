@@ -13,6 +13,8 @@ import numpy as np
 import pandas as pd
 import requests
 
+from pairwise_eval.llm_http_retry import LLMHttpRetryPolicy, request_with_retry
+
 _REPO_ROOT = Path(__file__).resolve().parent.parent
 
 
@@ -157,27 +159,38 @@ def _openai_chat_completion(
     api_key: str,
     url: str,
     timeout_s: float,
+    http_retry_policy: LLMHttpRetryPolicy | None = None,
 ) -> str:
     """POST OpenAI Chat Completions (``/v1/chat/completions``); return assistant message text."""
     key = api_key.strip()
     if not key:
         raise RuntimeError("OpenAI API key is empty after strip()")
 
-    r = requests.post(
-        url.strip(),
-        headers={
-            "Authorization": f"Bearer {key}",
-            "Content-Type": "application/json",
-        },
-        json={
-            "model": model,
-            "messages": [
-                {"role": "system", "content": system_content},
-                {"role": "user", "content": user_content},
-            ],
-            "temperature": 0,
-        },
-        timeout=timeout_s,
+    policy = http_retry_policy or LLMHttpRetryPolicy.for_provider("openai", model=model)
+
+    def _send() -> requests.Response:
+        return requests.post(
+            url.strip(),
+            headers={
+                "Authorization": f"Bearer {key}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": model,
+                "messages": [
+                    {"role": "system", "content": system_content},
+                    {"role": "user", "content": user_content},
+                ],
+                "temperature": 0,
+            },
+            timeout=timeout_s,
+        )
+
+    r = request_with_retry(
+        _send,
+        policy=policy,
+        get_status=lambda resp: resp.status_code,
+        get_retry_after=lambda resp: resp.headers.get("Retry-After"),
     )
 
     try:
@@ -233,6 +246,7 @@ def _gemini_generate_content(
     api_key: str,
     api_base: str,
     timeout_s: float,
+    http_retry_policy: LLMHttpRetryPolicy | None = None,
 ) -> str:
     """POST Gemini ``generateContent``; return model text."""
     key = api_key.strip()
@@ -241,16 +255,26 @@ def _gemini_generate_content(
 
     base = api_base.strip().rstrip("/")
     url = f"{base}/models/{model}:generateContent"
-    r = requests.post(
-        url,
-        params={"key": key},
-        headers={"Content-Type": "application/json"},
-        json={
-            "systemInstruction": {"parts": [{"text": system_content}]},
-            "contents": [{"role": "user", "parts": [{"text": user_content}]}],
-            "generationConfig": {"temperature": 0},
-        },
-        timeout=timeout_s,
+    policy = http_retry_policy or LLMHttpRetryPolicy.for_provider("gemini", model=model)
+
+    def _send() -> requests.Response:
+        return requests.post(
+            url,
+            params={"key": key},
+            headers={"Content-Type": "application/json"},
+            json={
+                "systemInstruction": {"parts": [{"text": system_content}]},
+                "contents": [{"role": "user", "parts": [{"text": user_content}]}],
+                "generationConfig": {"temperature": 0},
+            },
+            timeout=timeout_s,
+        )
+
+    r = request_with_retry(
+        _send,
+        policy=policy,
+        get_status=lambda resp: resp.status_code,
+        get_retry_after=lambda resp: resp.headers.get("Retry-After"),
     )
 
     try:
@@ -289,6 +313,7 @@ def openai_llm_geval_judge(
     prompts_dir: Optional[Path] = None,
     system_prompt: Optional[str] = None,
     timeout_s: float = 300.0,
+    http_retry_policy: LLMHttpRetryPolicy | None = None,
 ) -> str:
     """Same templates as local G-Eval; send via OpenAI Chat Completions."""
     _ensure_repo_on_path()
@@ -309,6 +334,7 @@ def openai_llm_geval_judge(
         api_key=api_key,
         url=completions_url,
         timeout_s=timeout_s,
+        http_retry_policy=http_retry_policy,
     )
 
 
@@ -324,6 +350,7 @@ def gemini_llm_geval_judge(
     prompts_dir: Optional[Path] = None,
     system_prompt: Optional[str] = None,
     timeout_s: float = 300.0,
+    http_retry_policy: LLMHttpRetryPolicy | None = None,
 ) -> str:
     """Same templates as local G-Eval; send via Gemini ``generateContent`` (``model`` = API id, no ``google/``)."""
     _ensure_repo_on_path()
@@ -344,6 +371,7 @@ def gemini_llm_geval_judge(
         api_key=api_key,
         api_base=api_base,
         timeout_s=timeout_s,
+        http_retry_policy=http_retry_policy,
     )
 
 
@@ -361,13 +389,17 @@ def make_local_llm_evaluate_fn(
     gemini_api_base: Optional[str] = None,
     gemini_judges: Optional[frozenset[str]] = None,
     gemini_max_requests_per_minute: Optional[float] = None,
+    openai_http_retry_policy: LLMHttpRetryPolicy | None = None,
+    gemini_http_retry_policy: LLMHttpRetryPolicy | None = None,
 ):
     """Factory: return an ``evaluate_pair`` for local, OpenAI, and/or Gemini judges.
 
     Judges listed in ``openai_judges`` (default: :data:`pairwise_eval.config.OPENAI_JUDGE_IDS`)
     use OpenAI Chat Completions and require ``openai_api_key``. Judges in ``gemini_judges``
     (default: :data:`pairwise_eval.config.GEMINI_JUDGE_IDS`) use Gemini ``generateContent`` and
-    require ``google_api_key`` (or env ``GOOGLE_API_KEY`` / ``GEMINI_API_KEY``). Consecutive Gemini
+    require ``google_api_key`` (or env ``GOOGLE_API_KEY`` / ``GEMINI_API_KEY``). OpenAI and Gemini
+    HTTP calls retry on 429/503 with backoff from :class:`pairwise_eval.llm_http_retry.LLMHttpRetryPolicy`
+    (override with ``openai_http_retry_policy`` / ``gemini_http_retry_policy``). Consecutive Gemini
     calls are spaced using :data:`pairwise_eval.config.GEMINI_MAX_REQUESTS_PER_MINUTE` (or
     ``gemini_max_requests_per_minute=`` here) to stay under per-minute quotas. All other judges
     use the local LM Studio–style endpoint (``LOCAL_LLM_CHAT_URL``).
@@ -453,6 +485,7 @@ def make_local_llm_evaluate_fn(
                     prompts_dir=prompts_dir,
                     system_prompt=system_prompt,
                     timeout_s=t_out,
+                    http_retry_policy=openai_http_retry_policy,
                 )
             elif judge_id in gem_j:
                 if not g_key:
@@ -477,6 +510,7 @@ def make_local_llm_evaluate_fn(
                     prompts_dir=prompts_dir,
                     system_prompt=system_prompt,
                     timeout_s=t_out,
+                    http_retry_policy=gemini_http_retry_policy,
                 )
             else:
                 from geval_local_judge import local_llm_geval_judge

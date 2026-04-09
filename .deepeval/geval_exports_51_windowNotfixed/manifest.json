@@ -1,0 +1,66 @@
+{
+  "export_dir": "/Users/baharehfatemi/Desktop/demokratibasen/.deepeval/geval_exports",
+  "layout": {
+    "json": "json/",
+    "tables": "tables/",
+    "reports": "reports/"
+  },
+  "files": [
+    {
+      "path": "json/pairs_table.json",
+      "rows": 408
+    },
+    {
+      "path": "json/summarization_long.json",
+      "rows": 510
+    },
+    {
+      "path": "json/geval__google__gemma-3-4b__faithfulness.json",
+      "rows": 408
+    },
+    {
+      "path": "json/geval__google__gemma-3-4b__correctness.json",
+      "rows": 408
+    },
+    {
+      "path": "json/geval__google__gemma-3-4b__completeness.json",
+      "rows": 408
+    },
+    {
+      "path": "json/geval__google__gemma-3-4b__newsworthiness.json",
+      "rows": 408
+    },
+    {
+      "path": "json/geval__gpt-3.5-turbo__faithfulness.json",
+      "rows": 408
+    },
+    {
+      "path": "json/geval__gpt-3.5-turbo__correctness.json",
+      "rows": 408
+    },
+    {
+      "path": "json/geval__gpt-3.5-turbo__completeness.json",
+      "rows": 408
+    },
+    {
+      "path": "json/geval__gpt-3.5-turbo__newsworthiness.json",
+      "rows": 408
+    },
+    {
+      "path": "json/geval__google__gemini-2.5-flash-preview-05-20__faithfulness.json",
+      "rows": 408
+    },
+    {
+      "path": "json/geval__google__gemini-2.5-flash-preview-05-20__correctness.json",
+      "rows": 408
+    },
+    {
+      "path": "json/geval__google__gemini-2.5-flash-preview-05-20__completeness.json",
+      "rows": 408
+    },
+    {
+      "path": "json/geval__google__gemini-2.5-flash-preview-05-20__newsworthiness.json",
+      "rows": 408
+    }
+  ]
+}

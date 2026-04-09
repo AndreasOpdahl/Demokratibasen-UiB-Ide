@@ -98,10 +98,10 @@ LOCAL_LLM_CHAT_URL = "http://localhost:1234/api/v1/chat"
 LOCAL_LLM_TIMEOUT_S = 300.0
 
 # First N documents (by first-seen ``doc_id`` order). None = use the full loaded corpus.
-MAX_DOCUMENTS: int | None = 51 #603
+MAX_DOCUMENTS: int | None = 6 #603
 
 # Random model pairs sampled per document (capped by available combinations); see :func:`pairwise_eval.pairs.build_pairs_table`.
-N_PAIRS_PER_DOCUMENT: int = 8
+N_PAIRS_PER_DOCUMENT: int = 4
 
 # --- Eval JSONL directory ---
 # ``None`` → auto-detect ``REPO_ROOT / "Data" / "eval"`` (with cwd fallbacks in
