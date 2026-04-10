@@ -558,5 +558,33 @@
     "right":"norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500",
     "sumleft":"Den siste delen av adkomstveien er privat. Adkomstveien er uten fortau, og har bratte stigningsforhold på deler av vegen. Det er derfor foreslått å legge varmekabler i den bratteste delen av vegen. Fagetaten mener at det er viktig å få sikret god standard på adkomstveien, både for sikkerhet og komfort. Vegen må ha gode kjøreforhold hele året, og bør kunne brukes av skolebarn og andre gående. Vegen må også tåle tungtrafikk knyttet til transport av materialer og ferdigvarer. Trafikksikkerhet På grunn av stigningen på adkomstveien anbefales det å redusere hastigheten til 30 km\/t. Kommunedirektøren har bedt om at det legges fram en konkret løsning for å sikre bedre trafikksikkerhet på adkomstveien. Forslagsstiller har lagt fram en detaljert beskrivelse av hva som kreves for å sikre godt kjøreforhold på vegen. Fagetaten ser positivt på at det nå er fores",
     "sumright":"Figur 1: Utsnitt av plankart som viser eiendomsgrenser og forslag til ny avkjørsel. Figur"
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
+    "right":"norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500",
+    "sumleft":"Videre går det fram av samme lovs § 12-, første ledd; «Kommunestyret skal sørge for at det blir utarbeidet reguleringsplan for de områdene i kommunen hvor dette følger av loven eller av kommuneplanens arealdel, samt der det ellers er behov for å sikre forsvarlig planavklaring og gjennomføring av bygge- og anleggstiltak, flerbruk og vern i forhold til berørte private og offentlige interesser.» 4 Vedtakskompetanse: I henhold til bystyresak , 10.april 2003 pkt a nr. 1, jfr. reglement vedtatt av bystyret 22.mai 2007 - Bystyrets forretningsorden § 11 siste ledd, tilligger myndigheten til å fatte vedtak i plansaker bystyret. Byrådet innstiller til bystyret å fatte følgende vedtak: I medhold av plan og bygningsloven § 12-.1 vedtas følgende forslag til reguleringsplan r. 62010000; Ytrebygda gnr\/bnr 102 \/2 mfl.; Mildevegen, gang- og sykkelveg, Reguleringsplan, vist på kart sist datert 07.07.16, tilhørende bestemmelser rev.",
+    "sumright":"Det er imidlertid viktig å merke seg at planen inneholder tiltak som kan ha betydelige miljømessige konsekvenser. Disse tiltakene er beskrevet i fagetatens planbeskrivelse. Planens forhold til kommunereglementet § 9 Kommunereglementet § 9 krever at planen skal være i tråd med kommunens plan- og bygningslov."
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500",
+    "right":"norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500",
+    "sumleft":"Byrådet innstiller til bystyret å fatte følgende vedtak: I medhold av plan- og bygningsloven § 12-12 vedtas følgende forslag til reguleringsplan: a) Gang- og sykkelveg langs Mildevegen, gnr. 102, bnr. 2 m.fl., Mildevågen, vist på plankart sist datert 07.07.16, datert 10.02.16, revidert 07.07.16, med tilhørende bestemmelser datert 07.07.16. 4 b) Tilhørende reguleringsbestemmelser datert 07.07.16, datert 10.02.16, revidert 07.07.16. c) Tilhørende illustrasjoner datert 07.07.16, datert 10.02.16, revidert 07.07.16. Dato: 19. september 2016 Dette dokumentet er godkjent elektronisk. Harald Schjelderup",
+    "sumright":"Det er imidlertid viktig å merke seg at planen inneholder tiltak som kan ha betydelige miljømessige konsekvenser. Disse tiltakene er beskrevet i fagetatens planbeskrivelse. Planens forhold til kommunereglementet § 9 Kommunereglementet § 9 krever at planen skal være i tråd med kommunens plan- og bygningslov."
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500",
+    "right":"viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500",
+    "sumleft":"Det er derfor viktig å utvikle nye og effektive transportmidler som sikrer en god tilgang til rekreasjonsområder ved sjø. Mildevegen er en viktig rute for alle typer rekreative formål, og vil bli brukt mye av befolkningen i Ytrebygda. Det er viktig å sikre at det er mulig å bruke vegen",
+    "sumright":"Byrådet innstiller til bystyret å fatte følgende vedtak: I medhold av plan- og bygningsloven § 12-12 vedtas følgende forslag til reguleringsplan: a) Gang- og sykkelveg langs Mildevegen, gnr. 102, bnr. 2 m.fl., Mildevågen, vist på plankart sist datert 07.07.16, datert 10.02.16, revidert 07.07.16, med tilhørende bestemmelser datert 07.07.16. 4 b) Tilhørende reguleringsbestemmelser datert 07.07.16, datert 10.02.16, revidert 07.07.16. c) Tilhørende illustrasjoner datert 07.07.16, datert 10.02.16, revidert 07.07.16. Dato: 19. september 2016 Dette dokumentet er godkjent elektronisk. Harald Schjelderup"
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500",
+    "right":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
+    "sumleft":"Det er derfor viktig å utvikle nye og effektive transportmidler som sikrer en god tilgang til rekreasjonsområder ved sjø. Mildevegen er en viktig rute for alle typer rekreative formål, og vil bli brukt mye av befolkningen i Ytrebygda. Det er viktig å sikre at det er mulig å bruke vegen",
+    "sumright":"Bergen kommune har satt seg som mål å redusere andelen biler i sentrum med 20 % innen 2020. En sentral del av dette arbeidet er å legge til rette for trygge og attraktive alternativer til bilbruk. Gang- og sykkelvegene langs Mildevegen bidrar til å styrke kommunens satsing på miljøvennlig mobilitet. Statens vegvesen har gitt sin godkjennelse av planforslaget, under forutsetning av at det legges til rette for riggområde og annen veggrunn på begge sider av vegen. Fagetaten mener at det er behov for å etablere gang- og sykkelveg på begge sider av vegen, siden det er mye fotgjengere og syklende i området. Vegen brukes blant annet av elever fra Krokkusbakken barnehage og Skjold skole. På enkelte steder er det nødvendig å bygge bro over bekker og grøfter. Disse bygges i betong, noe som kan føre til at vegetasjonen"
   }
 ]

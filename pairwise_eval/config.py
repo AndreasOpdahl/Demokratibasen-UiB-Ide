@@ -120,7 +120,7 @@ LOCAL_LLM_CHAT_URL = "http://localhost:1234/api/v1/chat"
 LOCAL_LLM_TIMEOUT_S = 300.0
 
 # First N documents (by first-seen ``doc_id`` order). None = use the full loaded corpus.
-MAX_DOCUMENTS: int | None = 20 #603
+MAX_DOCUMENTS: int | None = 21 #603
 
 # Random model pairs sampled per document (capped by available combinations); see :func:`pairwise_eval.pairs.build_pairs_table`.
 N_PAIRS_PER_DOCUMENT: int = 4

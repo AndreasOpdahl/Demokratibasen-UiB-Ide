@@ -8,91 +8,91 @@
   "files": [
     {
       "path": "json/pairs_table.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/summarization_long.json",
-      "rows": 200
+      "rows": 210
     },
     {
       "path": "json/geval__google__gemma-3-4b__faithfulness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__google__gemma-3-4b__correctness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__google__gemma-3-4b__completeness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__google__gemma-3-4b__newsworthiness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__gpt-3.5-turbo__faithfulness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__gpt-3.5-turbo__correctness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__gpt-3.5-turbo__completeness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__gpt-3.5-turbo__newsworthiness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__google__gemini-2.5-flash-preview-05-20__faithfulness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__google__gemini-2.5-flash-preview-05-20__correctness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__google__gemini-2.5-flash-preview-05-20__completeness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__google__gemini-2.5-flash-preview-05-20__newsworthiness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__anthropic__claude-3-5-haiku-20241022__faithfulness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__anthropic__claude-3-5-haiku-20241022__correctness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__anthropic__claude-3-5-haiku-20241022__completeness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__anthropic__claude-3-5-haiku-20241022__newsworthiness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__mistral-medium-latest__faithfulness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__mistral-medium-latest__correctness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__mistral-medium-latest__completeness.json",
-      "rows": 80
+      "rows": 84
     },
     {
       "path": "json/geval__mistral-medium-latest__newsworthiness.json",
-      "rows": 80
+      "rows": 84
     }
   ]
 }
