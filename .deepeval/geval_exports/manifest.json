@@ -77,6 +77,22 @@
     {
       "path": "json/geval__anthropic__claude-3-5-haiku-20241022__newsworthiness.json",
       "rows": 80
+    },
+    {
+      "path": "json/geval__mistral-medium-latest__faithfulness.json",
+      "rows": 80
+    },
+    {
+      "path": "json/geval__mistral-medium-latest__correctness.json",
+      "rows": 80
+    },
+    {
+      "path": "json/geval__mistral-medium-latest__completeness.json",
+      "rows": 80
+    },
+    {
+      "path": "json/geval__mistral-medium-latest__newsworthiness.json",
+      "rows": 80
     }
   ]
 }

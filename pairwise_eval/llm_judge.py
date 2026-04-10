@@ -1,4 +1,4 @@
-"""Pairwise row evaluator: local LM Studio chat, OpenAI, Gemini, and Anthropic."""
+"""Pairwise row evaluator: local LM Studio chat, OpenAI, Mistral, Gemini, and Anthropic."""
 
 from __future__ import annotations
 
@@ -521,16 +521,22 @@ def make_local_llm_evaluate_fn(
     anthropic_version: Optional[str] = None,
     anthropic_judges: Optional[frozenset[str]] = None,
     anthropic_http_retry_policy: LLMHttpRetryPolicy | None = None,
+    mistral_api_key: Optional[str] = None,
+    mistral_chat_completions_url: Optional[str] = None,
+    mistral_judges: Optional[frozenset[str]] = None,
+    mistral_http_retry_policy: LLMHttpRetryPolicy | None = None,
 ):
-    """Factory: return an ``evaluate_pair`` for local, OpenAI, Gemini, and/or Anthropic judges.
+    """Factory: return an ``evaluate_pair`` for local, OpenAI, Mistral, Gemini, and/or Anthropic judges.
 
     Judges listed in ``openai_judges`` (default: :data:`pairwise_eval.config.OPENAI_JUDGE_IDS`)
-    use OpenAI Chat Completions and require ``openai_api_key``. Judges in ``gemini_judges``
+    use OpenAI Chat Completions and require ``openai_api_key``. Judges in ``mistral_judges``
+    (default: :data:`pairwise_eval.config.MISTRAL_JUDGE_IDS`) use the same request shape against
+    ``MISTRAL_CHAT_COMPLETIONS_URL`` with ``MISTRAL_API_KEY``. Judges in ``gemini_judges``
     (default: :data:`pairwise_eval.config.GEMINI_JUDGE_IDS`) use Gemini ``generateContent`` and
     require ``google_api_key`` (or env ``GOOGLE_API_KEY`` / ``GEMINI_API_KEY``). Judges in
     ``anthropic_judges`` (default: :data:`pairwise_eval.config.ANTHROPIC_JUDGE_IDS`) use the
     Anthropic Messages API and require ``anthropic_api_key`` (or env ``ANTHROPIC_API_KEY``).
-    OpenAI, Gemini, and Anthropic HTTP calls retry on 429/503 with backoff from
+    OpenAI, Mistral, Gemini, and Anthropic HTTP calls retry on 429/503 with backoff from
     :class:`pairwise_eval.llm_http_retry.LLMHttpRetryPolicy` (override with the corresponding
     ``*_http_retry_policy`` arguments). Consecutive Gemini
     calls are spaced using :data:`pairwise_eval.config.GEMINI_MAX_REQUESTS_PER_MINUTE` (or
@@ -553,6 +559,9 @@ def make_local_llm_evaluate_fn(
         GOOGLE_API_KEY as _cfg_google_key,
         LOCAL_LLM_CHAT_URL,
         LOCAL_LLM_TIMEOUT_S,
+        MISTRAL_API_KEY as _cfg_mistral_key,
+        MISTRAL_CHAT_COMPLETIONS_URL,
+        MISTRAL_JUDGE_IDS,
         OPENAI_API_KEY as _cfg_openai_key,
         OPENAI_CHAT_COMPLETIONS_URL,
         OPENAI_JUDGE_IDS,
@@ -563,6 +572,9 @@ def make_local_llm_evaluate_fn(
     oai_url = openai_completions_url or OPENAI_CHAT_COMPLETIONS_URL
     oai_j = openai_judges if openai_judges is not None else OPENAI_JUDGE_IDS
     oai_key = openai_api_key if openai_api_key is not None else _cfg_openai_key
+    mist_j = mistral_judges if mistral_judges is not None else MISTRAL_JUDGE_IDS
+    m_key = mistral_api_key if mistral_api_key is not None else _cfg_mistral_key
+    mist_url = mistral_chat_completions_url or MISTRAL_CHAT_COMPLETIONS_URL
     gem_j = gemini_judges if gemini_judges is not None else GEMINI_JUDGE_IDS
     ant_j = anthropic_judges if anthropic_judges is not None else ANTHROPIC_JUDGE_IDS
     g_key = google_api_key if google_api_key is not None else _cfg_google_key
@@ -601,6 +613,8 @@ def make_local_llm_evaluate_fn(
         if verbose:
             if judge_id in oai_j:
                 backend = "openai"
+            elif judge_id in mist_j:
+                backend = "mistral"
             elif judge_id in gem_j:
                 backend = "gemini"
             elif judge_id in ant_j:
@@ -630,6 +644,25 @@ def make_local_llm_evaluate_fn(
                     system_prompt=system_prompt,
                     timeout_s=t_out,
                     http_retry_policy=openai_http_retry_policy,
+                )
+            elif judge_id in mist_j:
+                if not m_key:
+                    raise RuntimeError(
+                        "MISTRAL_API_KEY is not set (or pass mistral_api_key=...) for Mistral judges"
+                    )
+                assistant = openai_llm_geval_judge(
+                    str(row["source_text"]),
+                    str(row["sumleft"]),
+                    str(row["sumright"]),
+                    judge=dimension,
+                    model=judge_id,
+                    api_key=m_key,
+                    completions_url=mist_url,
+                    prompts_dir=prompts_dir,
+                    system_prompt=system_prompt,
+                    timeout_s=t_out,
+                    http_retry_policy=mistral_http_retry_policy
+                    or LLMHttpRetryPolicy.for_provider("mistral", model=judge_id),
                 )
             elif judge_id in gem_j:
                 if not g_key:

@@ -57,19 +57,27 @@ EVAL_DIMENSIONS: tuple[str, ...] = (
 # ``GEMINI_API_KEY``); the judge id is ``google/<gemini-model-id>`` and the API model id is the
 # part after ``google/``. Ids in ``ANTHROPIC_JUDGE_IDS`` use the Messages API
 # (``ANTHROPIC_MESSAGES_URL`` + ``ANTHROPIC_API_KEY``); judge id is ``anthropic/<model-id>``.
+# Ids in ``MISTRAL_JUDGE_IDS`` use Mistral Chat Completions (same JSON shape as OpenAI;
+# ``MISTRAL_CHAT_COMPLETIONS_URL`` + ``MISTRAL_API_KEY``).
 JUDGES: tuple[str, ...] = (
     "google/gemma-3-4b",
     "gpt-3.5-turbo",
     "google/gemini-2.5-flash-preview-05-20",
     "anthropic/claude-3-5-haiku-20241022",
-    # "mistral-medium-latest",
+    "mistral-medium-latest",
 )
 
-# Subset of ``JUDGES`` that call OpenAI-compatible ``/v1/chat/completions`` (not the local server).
+# Subset of ``JUDGES`` that call OpenAI's Chat Completions (not Mistral, not the local server).
 OPENAI_JUDGE_IDS: frozenset[str] = frozenset({"gpt-3.5-turbo"})
 OPENAI_API_KEY: str | None = os.environ.get("OPENAI_API_KEY")
 OPENAI_CHAT_COMPLETIONS_URL: str = os.environ.get(
     "OPENAI_CHAT_COMPLETIONS_URL", "https://api.openai.com/v1/chat/completions"
+)
+
+MISTRAL_JUDGE_IDS: frozenset[str] = frozenset({"mistral-medium-latest"})
+MISTRAL_API_KEY: str | None = os.environ.get("MISTRAL_API_KEY")
+MISTRAL_CHAT_COMPLETIONS_URL: str = os.environ.get(
+    "MISTRAL_CHAT_COMPLETIONS_URL", "https://api.mistral.ai/v1/chat/completions"
 )
 
 # Gemini generateContent (Google AI); judge keys look like ``google/gemini-…``.

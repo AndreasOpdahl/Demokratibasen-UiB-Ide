@@ -27,6 +27,8 @@ from pairwise_eval.config import (
     GEVAL_CHECKPOINT_DIR,
     JUDGES,
     MAX_DOCUMENTS,
+    MISTRAL_API_KEY,
+    MISTRAL_JUDGE_IDS,
     N_PAIRS_PER_DOCUMENT,
     OPENAI_API_KEY,
     OPENAI_JUDGE_IDS,
@@ -58,6 +60,12 @@ def main() -> None:
     if any(j in ANTHROPIC_JUDGE_IDS for j in JUDGES) and not ANTHROPIC_API_KEY:
         print(
             "Warning: Anthropic judge(s) in JUDGES but ANTHROPIC_API_KEY is unset — "
+            "those judgments will be [api_error] ties.",
+            file=sys.stderr,
+        )
+    if any(j in MISTRAL_JUDGE_IDS for j in JUDGES) and not MISTRAL_API_KEY:
+        print(
+            "Warning: Mistral judge(s) in JUDGES but MISTRAL_API_KEY is unset — "
             "those judgments will be [api_error] ties.",
             file=sys.stderr,
         )
