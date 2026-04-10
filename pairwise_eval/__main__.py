@@ -20,6 +20,8 @@ from pairwise_eval import (
     resolve_geval_export_dir,
 )
 from pairwise_eval.config import (
+    ANTHROPIC_API_KEY,
+    ANTHROPIC_JUDGE_IDS,
     GEMINI_JUDGE_IDS,
     GOOGLE_API_KEY,
     GEVAL_CHECKPOINT_DIR,
@@ -50,6 +52,12 @@ def main() -> None:
     if any(j in GEMINI_JUDGE_IDS for j in JUDGES) and not GOOGLE_API_KEY:
         print(
             "Warning: Gemini judge(s) in JUDGES but GOOGLE_API_KEY (or GEMINI_API_KEY) is unset — "
+            "those judgments will be [api_error] ties.",
+            file=sys.stderr,
+        )
+    if any(j in ANTHROPIC_JUDGE_IDS for j in JUDGES) and not ANTHROPIC_API_KEY:
+        print(
+            "Warning: Anthropic judge(s) in JUDGES but ANTHROPIC_API_KEY is unset — "
             "those judgments will be [api_error] ties.",
             file=sys.stderr,
         )

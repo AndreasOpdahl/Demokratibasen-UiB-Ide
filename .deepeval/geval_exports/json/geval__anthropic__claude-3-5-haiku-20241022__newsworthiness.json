@@ -9,7 +9,7 @@
     "reference_summary":"I behandlingen av kommunedirektørens framlegg i valnemnda fikk forslaget kun støtte fra to medlemmer, mens fem stemte imot. Dette markerer en klar ulikhet i synet på forslaget fra de ulike politiske partiene.",
     "choice_side":"left",
     "chosen":"llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more details including the specific votes cast and the proposal for Marie Mostraum's leave from political duties."
+    "rationale":"Summary A provides more complete newsworthy information by identifying the key actors (Marie Mostraum, specific council members), the decision outcome, and the vote breakdown, which surfaces accountability and conflict elements. Summary B is incomplete and cuts off mid-sentence, failing to convey essential details about who, what, and the voting result."
   },
   {
     "doc_id":"doc_1",
@@ -21,7 +21,7 @@
     "reference_summary":"I behandlingen av kommunedirektørens framlegg i valnemnda fikk forslaget kun støtte fra to medlemmer, mens fem stemte imot. Dette markerer en klar ulikhet i synet på forslaget fra de ulike politiske partiene.",
     "choice_side":"right",
     "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B is more complete as it directly states the outcome of the decision regarding Marie Mostraum's leave of absence from political duties."
+    "rationale":"Summary B is more newsworthy because it clearly states the concrete outcome (the director's proposal was rejected 2-5) with direct accountability information about which parties voted against it, making the local political conflict and decision transparent. Summary A is confusing and contradictory, stating both that permission 'will not be granted' and that 'it is unclear what the outcome will be,' which undermines its newsworthy clarity."
   },
   {
     "doc_id":"doc_1",
@@ -33,7 +33,7 @@
     "reference_summary":"I behandlingen av kommunedirektørens framlegg i valnemnda fikk forslaget kun støtte fra to medlemmer, mens fem stemte imot. Dette markerer en klar ulikhet i synet på forslaget fra de ulike politiske partiene.",
     "choice_side":"right",
     "chosen":"llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a more complete overview by including details about the approval of Marie Mostraum's leave application and the rejection of the municipal director's proposal."
+    "rationale":"Summary B better captures the newsworthy core of the story by clearly identifying the subject (Marie Mostraum's leave request), the decision outcome (approval), and the conflict\/accountability element (the director's recommendation was rejected). Summary A contains a factual error and fails to explain what the vote was actually about, making it less informative for local journalism."
   },
   {
     "doc_id":"doc_1",
@@ -43,9 +43,9 @@
     "sumright":"Dette betyr at hun ikke vil bli innvilget permisjonen. Kommunedirektørens forslag fikk støtte av Høyre og Kristelig Folkeparti, men ble nedstemt av Arbeiderpartiet, Senterpartiet, Venstre og Sosialistisk Venstreparti. Dermed er det usannsynlig at hun vil få innvilget sin søknad. Response: Marie Mostraum har blitt foreslått innvilget permisjon fra sine politiske verv, men dette ble nedstemt under et møte den 19. juni 2025. Det er uklart hva utfallet vil bli da kommunedirektørens forslag fikk støtte fra Høyre og Kristelig Folkepart",
     "source_text":"Dokument: Søknad om permisjon frå politiske verv - Marie Mostraum\n\nHandsaming i Valnemnd - 19.06.2025:\nKommunedirektøren sitt framlegg fekk 2 røyster og fall (I.Fjeldsbø-H og S.Lavik-KRF)mot 5\nrøyster (R, AP, SP, VIP og SV).",
     "reference_summary":"I behandlingen av kommunedirektørens framlegg i valnemnda fikk forslaget kun støtte fra to medlemmer, mens fem stemte imot. Dette markerer en klar ulikhet i synet på forslaget fra de ulike politiske partiene.",
-    "choice_side":"left",
-    "chosen":"viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more complete overview of the voting outcome and the parties involved, while Summary B focuses more on the potential outcome for Marie Mostraum."
+    "choice_side":"right",
+    "chosen":"nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500",
+    "rationale":"Summary B better surfaces newsworthy elements by identifying the specific political conflict (which parties supported vs. opposed the proposal) and clarifying the consequence (the permission was denied), making the accountability and political disagreement more explicit for local readers. Summary A contains a factual error (stating 5 other parties voted against when only 5 total voted against) and fails to clearly explain the outcome or the political stakes involved."
   },
   {
     "doc_id":"doc_2",
@@ -57,7 +57,7 @@
     "reference_summary":"Gloppen kommune legger frem sitt årsbudsjett for 2026, preget av en vanskelig økonomisk situasjon som har rådet i kommunene de siste årene. Kommunen opplever behov for innsparinger på rundt 14 millioner kroner for å balansere budsjettet uten å bruke midler fra disposisjonsfondet. Multiple tiltak vil redusere tjenestetilbudet, særlig innen oppvekst og helse, som må tilpasse seg nye demografiske realiteter og økte kostnader. Samtidig legges det opp til mottak av flyktninger og fortsatt eiendomsskatt med tilhørende taksering av næringseiendom.",
     "choice_side":"tie",
     "chosen":null,
-    "rationale":"Both summaries focus on reducing service offerings in various areas, but neither covers the main points or important details from the document."
+    "rationale":"Both summaries appear to be incomplete fragments from the budget document's tables rather than actual summaries. Neither Summary A nor Summary B presents a coherent narrative that highlights newsworthy elements such as proximity, impact, conflict, money, accountability, timeliness, novelty, or human interest for local journalism."
   },
   {
     "doc_id":"doc_2",
@@ -67,9 +67,9 @@
     "sumright":"Barnehage (25100) -1 300 -1 300 -1 300 -1 300 POL - Redusere tenestetilbod",
     "source_text":"Dokument: Årsbudsjett 2026 - Økonomiplan 2026 - 2029\n\nArkiv: FE-151\n\n JournalpostID: 25\/21848\n\n Benedicte Moritsgård\n Saksbehandlar:\n Refvik\n\n Vedtaksorgan Kommunestyret\n\nSaksnr. Utval Møtedato\n\n Formannskapet 12.11.2025\n\n Ungdomsrådet\n\n Rådet for menneske med nedsett funksjonsevne\n\n Eldrerådet\n\n Helse- og oppvekstutvalet\n\n Samfunnsutvalet\n\n Formannskapet\n\n Kommunestyret\n\nÅrsbudsjett 2026 - Økonomiplan 2026 - 2029\nVedlegg\n\n04.11.2025 Budsjettframlegg 2026 - Gloppen kyrkjelege fellesråd\n\n04.11.2025 Fra 2026 endres overføringene av skatteinntektene betydelig\n\n04.11.2025 Statsforvaltaren i Vestland - Statsbudsjettet for 2026 - kommuneopplegget\n\n04.11.2025 Momentum Budsjettnotat - Gloppen kommune 2026\n\n05.11.2025 SEKOM sekreteriat - Budsjett 2026\n\n05.11.2025 Kontrollutvalet - Budsjett 2026\n Vedlegg\n\n 06.11.2025 Handlings- og økonomiplan 2026 - 2029 (pdf versjon)\n\nKommunedirektøren si tilråding\n\nKommunestyret vedtek hovudpremissane slik dei framgår av denne saka. Dette inkluderer:\n\n - Mottak av flyktningar: Kommunestyret vedtek at Gloppen kommune skal busette inn til 25\n flyktningar i 2026\n\n - Eigedomsskatt: Med heimel i Eigedomsskattelova §3 a), vedtek kommunestyret at det vert\n skrive ut eigedomsskatt på alle faste eigedomar i kommunen:\n o Den generelle skattesatsen for skattepliktige eigedomar vert 7 promille\n o Gloppen kommune har differensiert eigedomskatt for bustader, våningshus og\n fritidsbustader i høve til §12 a) på 4 promille\n o Skatteetaten sin likningsverdi skal nyttast der denne er tilgjengeleg. Taksten på\n næringseigedomar vert uendra i 2026.\n o Fritak frå eigedomsskatt i høve til Eigedomsskattelova §7 a) og b)\n ▪ Eigedomar til stiftingar eller institusjonar som tek sikte på å gagne ein\n kommune, eit fylke eller staten\n ▪ Bygningar som har historisk verdi\n\n - Sjølvkost: Kommunestyret vedtek følgjande dekning av sjølvkostområda:\n Vatn og avløp Feiing Byggesak Oppmåling\n 100 % 100 % 100 % 60 %\n\nKommunestyret vedtek økonomiplanen for 2026 til 2029 i tråd med kommunedirektøren sitt\nframlegg i «Løyvingsoversikt drift etter §5-4 første ledd» og «Løyvingsoversikt drift etter §5-4\nandre ledd». Dette inkluderer følgande driftstiltak (tal i 1000 kr):\n\fØkonomiplan - drift - 2026 til 2029 2026 2027 2028 2029\n Konsekvensjustert økonomiplan 14 857 13 357 8 107 10 707\n KONS- 2026 framskrevet 15 032 15 032 15 032 15 032\n KONS- Havbruksfondet (4 \/ 1.5 \/ 4 \/ 1.5) 2 500 2 500\n KONS- Utbyte Gloppen Energi (2 \/ 3.8 \/ 4.6 \/4.6) -1 800 -2 600 -2 600\n KONS- Eigeninnsats i forbindelse med innføring av nytt pasientjournalsystem 2 000\n KONS- Auka eigedomsskatt næring etter retaksering 2026 ved å halde fram med 7 promiiller i skattesats -4 200 -4 200 -4 200\n KONS- Nedskalere tenestetilbod - Vaksenopplæring -175 -425 -425 -425\n KONS- Netto finans (80 % inv grad, likv effekt skatt, rentebane til KBN) 750 800 900\n KONS- Planlagt netto bruk\/avsetning til bundne driftsfond (år 2-4) - Oppvekst -500 -500 -500\n Administrative innsparingstiltak -650 -2 900 -5 700 -6 500\n ADM - Innsparingstiltak - Formannskapet (år 1-4) -200 -1 000 -1 500 -1 750\n ADM - Innsparingstiltak - Oppvekst (år 2-4) -500 -600 -600\n ADM - Innsparingstiltak - Helse og velferd (år 2-4) -500 -500 -500\n ADM - Innsparingstiltak - Samfunn og berekraft (år 1-4) -200 -550 -700 -700\n ADM - Innsparingstiltak - Fellesrådet -100 -150 -200 -250\n ADM - Innsparing bilhald ved utskifting av bilar - Samfunn og berekraft -100 -150 -150 -150\n ADM - Innsparing bilhald ved utskifting av bilar - Helse og velferd -50 -50 -50 -50\n ADM - Forventa administrativ innsparing Nordfjordnett (år 2-4) -2 000 -2 500\n Politiske tiltak\/innsparingstiltak -8 170 -12 765 -12 820 -12 640\n POL\/KONS- Endre politisk organisering -55 -110 -110\n POL - Redusere medlemskap\/tilskot - Inviro AS -30 -30 -30 -30\n POL - Redusere medlemskap\/tilskot - Midtvegen 615 AS -20 -20 -20 -20\n POL - Redusere medlemskap\/tilskot - Nordfjordakademiet -200 -200 -200 -200\n POL - Redusere medlemskap\/tilskot - Studentstove, tilskot gjennom GN -40 -40 -40 -40\n POL - Redusere medlemskap\/tilskot - Visit Nordfjord AS -280 -280 -280 -280\n POL\/KONS- Redusere medlemsskap\/tilskot - Samarbeid i Nordfjord og IPR -150 -150 -150 -150\n POL - Redusere tenestenivå midlertidig - Vakant stilling PPT -265\n POL - Redusere tenestetilbod - fysioterapi -205 -500 -500 -500\n POL - Redusere tenestetilbod - helsestasjonen -200 -230 -230 -230\n POL\/KONS- Redusere tenestetilbod - Kulturskulen -500 -500 -500 -500\n POL - Redusere tenestetilbod - Grunnskule, pedagog -1 400 -3 400 -3 400 -3 400\n POL - Redusere tenestetilbod - Grunnskule, assistent -290 -700 -700 -700\n POL - Redusere grunnbemanning i barnehage -800 -1 700 -1 700 -1 700\n POL - Felles stenging av alle barnehagane i Gloppen 3 veker på sommar -120 -120 -120 -120\n POL - Avslutte kjøp av barnehageplassar i andre kommunar -290 -180 -180\n POL - Redusere mottak av flyktningar (år 2-4) 0 -500 -500 -500\n POL - Redusere tenestetilbod - Pleie og omsorg, institusjon (25300) -200 -200 -200 -200\n POL - Redusere tenestetilbod - Pleie og omsorg, bufellesskap\/samlokaliserte omsorgsbustadar (25700) -1 500 -1 500 -1 500 -1 500\n POL - Redusere tenestetilbod - Pleie og omsorg, ambulerande verksemd (25800) -1 500 -1 500 -1 500 -1 500\n POL - Ta ned kapasitet på planarbeid - 1 årsverk står vakant\/fylt av vikar -480 -960 -960 -960\n POL - Kjøp av plan - Lokal transportplan - vegteknisk plan 300\nBruk\/avsetning til disposisjonsfond 6 037 -2 308 -10 413 -8 433\n\nKommunestyret vedtek følgande bruk\/avsetning til disposisjonsfondet (tal i 1000 kr):\n\nKommunestyret vedtek økonomiplanen for 2026 til 2029 i samsvar med kommunedirektøren sitt\nframlegg i «Løyvingsoversikt investering etter §5-5 første ledd». Dette inkluderer løyvingar til\nfølgande investeringsprosjekt (inkl. mva) (tal i 1000 kr):\n\fInvesteringar inkl. mva B 2026 B 2027 B 2028 B 2029 Sum\nL - Sjølvkost - Vatn 8 000 8 125 8 750 6 250 31 125\nL - Sjølvkost - Avløp 7 500 8 000 8 750 11 875 36 125\nL - Veginnvesteringar vedteke i KDP for veg og trafikktrygging 3 750 3 750 3 750 3 750 15 000\nP - Ny taktekking på Gloppen omsorgssenter 3 750 0 0 0 3 750\nL - Investeringar Nordfjordnett 3 130 1 000 1 000 1 000 6 130\nL - Vegutbetring - Sikringstiltak, bruer, rekkverk, asfaltering 2 500 2 500 2 500 2 500 10 000\nL - Køyretøy og ladepunkt 2 500 2 500 2 500 2 500 10 000\nL - IT og datautstyr 2 000 2 000 2 000 2 000 8 000\nL - Oppgradering av tekniske anlegg etter EL- og branntilsyn 2 000 2 000 2 000 2 000 8 000\nL - Energibesparande tiltak - Formålsbygg 2 000 2 000 2 000 2 000 8 000\nL - Eigenkapitalinnskot KLP 1 700 1 700 1 700 1 700 6 800\nP - Utbetring av veg i Kandal som står i fare for å rase ut 1 250 0 0 0 1 250\nL - Investeringar i inventar og utstyr - Samfunn og berekraft 1 200 1 200 1 200 1 200 4 800\nP - Prosjektutgreiing - Kommunalt butilbod med bemanning 1 000 1 000 0 0 2 000\nL - Ombyggingar og investeringar i bygg - Helse og oppvekst 1 000 1 000 1 000 1 000 4 000\nL - Digitalisering av eigedomsarkivet 800 800 0 0 1 600\nL - Investeringar i inventar og utstyr - Helse 700 700 700 700 2 800\nP - Full avfalssortering i kommunale foremålsbygg 650 500 0 0 1 150\nL - Gatelys - Utskifting og energibesparande tiltak 625 625 625 625 2 500\nL - Trafikktryggingstiltak (eigenandel til søknad om midlar) 625 625 625 625 2 500\nP - Nytt bygg til Heimetenesta (forprosjekt 2026) 500 500 0 0 1 000\nL - Uteanlegg oppvekst 500 500 500 500 2 000\nL - Investeringar i inventar og utstyr - Oppvekst 500 500 500 500 2 000\nL - Brannbilar og utstyr 400 0 4 000 0 4 400\nP - Innreiing av 2. etg på Blålysbygget til kontor 200 2 000 800 0 3 000\nP - Forprosjekt og prosjektering av flaumsikring på Byrkjelo (KOM-021\/25) 150 150\nP - Moglegheitsstudie Sandane og Nordstranda skule 0 500 500 0 1 000\nP - Nytt brannvarslingsanlegg - Sandane skule 0 0 765 0 765\nP - Vegutbetring - Firdavegen 0 0 500 0 500\nTotalsum 48 930 44 025 46 665 40 725 180 345\n\nKommunestyret vedtek følgande finansiering av investeringar for 2026:\n - Kompensasjon for mva: 3 040 000 kr\n - Lån til investeringar: 44 040 000 kr\n - Bruk av ubundne investeringsfond: 1 850 000 kr\n - Totalt: 48 930 000 kr\n\nKommunestyret vedtek følgande knytt til startlån for 2026:\n - Lån til vidareformidling: 20 000 000 kr\n - Utlån: 20 000 000 kr\n - Totalt: 0 kr\n\nKort samandrag av saka\nKommunane har ikkje opplevd strammare økonomi på 40 år. I 2024 leverte 62 % av\nkommunane negativt netto driftsresultat. Gloppen kommune er ikkje unnateke denne\nstatistikken, og har hatt utfordrande kommuneøkonomi gjennom fleire år. Kommunestyret\nhar vore tydelege på at administrasjonen skal legge fram ein økonomiplan i balanse, og\nkommunedirektøren la i juni 2025 fram ei sak som syner at den konsekvensjusterte\nøkonomiplanen ville føre oss inn på ROBEK innan få år. Det betyr at der er behov for\nomstilling og innsparingstiltak for å imøtekome dei politiske forventningane.\n\fI mange kommunar vert det no planlagt omfattande kutt i tenestene til innbyggjarane for å\nkunne levere budsjett og økonomiplan i balanse. Gloppen kommune står i mykje av dei same\nutfordringane som kommunane rundt oss. Nokre sentrale tema er demografi («eldrebølgje»\nog «yngrebølgje»), rekruttering og halde på tilsett. Ei av utfordringane er at samtidig som\nkommunen kuttar og omstiller, oppstår det nye behov i skule, barnehage og pleie- og\nomsorg, slik at utgiftene i desse tenestene veks. Det medfører at kommunen har tilsette og\nleiarar som står ovanfor krevjande situasjonar med oppgåver som veks både i omfang og\nkompleksitet, medan dei økonomiske rammene og tilgjengelege tilsette for å løyse\noppgåvene relativt sett blir mindre. Samstundes held forventingane frå innbyggjarane seg\nhøge.\n\nGloppen kommune må kutte og omprioritere ressursar for å skape berekraft i økonomien.\nDei seinare åra har Gloppen kommune måtte bruke midlar frå disposisjonsfondet for å\nbalansere budsjettet, og prognosen er at disposisjonsfondet vil vere nede i om lag 25 mnok\nved utgangen av 2025. Dette er betydeleg lågare enn vedtatt finansielt måltal. Den\nkonsekvensjusterte økonomiplanen syner at innsparingsbehovet til Gloppen kommune er om\nlag 14 mnok. Ein god del administrative innsparingar er då allereie innarbeidd i dette (tiltak\nmed forventa verknad i 2026), og vil også verte krevjande å gjennomføre. Det er lagt inn ein\nambisiøs målsetnad for ytterlegare administrative innsparingar for alle sektorane gjennom\nøkonomiplanperioden. I tillegg til dette, er det behov for å gjennomføre politiske vedtak som\nvil påverke tenestetilbodet. Dette vil opplevast som vanskeleg, og medføre reduserte\ntenestetilbod til innbyggjarane våre på fleire område.\n\nI eit langsiktige perspektiv (utover økonomiplanperioden) vil det vere behov for å løfte\nblikket, og gjennomføre tiltak som først vil gje effekt om fleire år. Særskilt innanfor helse og\nomsorg veit vi at det ikkje berre er økonomiske rammer som vert utfordrande. Fleire eldre\nsom treng kommunale teneste, kombinert med aukande vanskar med å rekruttere naudsynt\npersonell med rett kompetanse, gjer at vi med stort sannsyn ikkje kjem unna ein\nkonsentrasjon av omsorgstenestene våre. Derfor har kommunedirektøren gjort framlegg om\nå sette av midlar til å utgreie og lande på modell for dette i løpet av 2026. Formålet er å løfte\nblikket, og sjå på om dagens kommunale bygg er tenelege for å imøtekome framtidig behov\nog utfordringar i helse og velferd. Meir detaljert informasjon om tiltaket kjem fram i\nøkonomiplanen.\n\nI tillegg til dei langsiktige tiltaka, er Gloppen kommune i ein situasjon som også tvingar fram\ntiltak som gjev effekt dei første åra i økonomiplanperioden. Då kjem vi ikkje utanom å måtte\nsjå på både struktur og tenestenivå. I framlegg til økonomiplan legg administrasjonen ikkje\nopp til strukturelle tiltak. Denne hausten har vi lagt fram ein revidert barnehage- og\nskulebruksplan. Førebels konklusjon er at den noverande strukturen skal haldast uendra.\nFærre barn - særskilt i bygdene, vil gjere det naudsynt med endringar. Dette må vi bu oss på\nmed grundig planlegging.\n\nI framlegget til økonomiplan er der fleire tiltak som reduserer tenestetilbodet. Tiltaka er\nforsøkt greia ut (etter «godt nok»-prinsippet), men risiko og konsekvensar er stor sett\nlikelydande for alle tiltak som reduserer tenestetilbodet. Dette handlar om:\n\n • Misnøgde brukarar, klager og klagehandsaming\n • Auka sjukefråvær\/auka kostnader, kompetansetap\/auka turnover\n • Dårlegare arbeidsmiljøforhold\n • Auka risiko for at det vert gjeve uforsvarlege tenester\n\fMange av tiltaka som vert løfta av administrasjonen, er ikkje ønskelege, og dei vil vere\nupopulære. Når dette vert «lagt på bordet», er dette dessverre i mangel på betre alternativ.\nManglande handlekraft vil i så fall innebere å vedta ein økonomiplan i ubalanse, og verte\ninnmeldt i ROBEK som ein konsekvens av underdekninga i økonomiplanen.\n\nKommunedirektøren sitt framlegg til årsbudsjett 2026 og økonomiplan 2026 – 2029 er lagt ut\npå heimesida til Gloppen kommune. Den følgjer også som vedlegg i pdf-versjon til denne\nsaka.\n\nLenke til digital versjon:\n\nhttps:\/\/pub.framsikt.net\/2026\/gloppen\/bm-2026-test_kom_dir_forslag_26_til_29\n\nSaksutgreiing\n\nBakgrunn for saka\nJf. kommunelova §14-3 legg kommunedirektøren fram sak om årsbudsjett 2026 og\nøkonomiplan 2026 – 2029 til kommunestyret.\n\nFakta i saka\nÅrsbudsjett for 2026 og økonomiplanen for 2026 – 2029 vert lagt fram i tråd med\norienteringa som vart gitt kommunestyret i saka «Budsjettprosess for økonomiplanperioden\n2026 til 2029 – status og avklaringar» (KOM-076\/25). Vedtaket frå denne saka er etter beste\nevne freista innarbeidd i årsbudsjettet og økonomiplanen:\n\n«Kommunestyret tek saka til orientering.\n\nKommunestyret vil komme med følgjande innspel som administrasjonen kan ta med seg inn i\ndet vidare budsjettarbeidet:\n\n • Kommunestyret ynskjer eit forslag til budsjett og økonomiplan i balanse\n • Ein ynskjer å få framlagt fleire typar innsparingstiltak slik at kommunestyret kan\n prioritere retningsval\n • Kommunestyret er innforstått med at vi må redusere tenesteytingane i dei mest\n økonomisk tunge sektorane .\n • Grunngjeving for at innsparingstiltak som vart vedtekne for 2025 ikkje er gjennomførte\n • Rammebudsjettering kan føre til nedtrekk på ramma som administrasjonen må følgje\n opp.\n\nVedtaket var samrøystes.»\n\nBudsjettarbeidet er gjennomført i følgande hovudsteg:\n\n 1. Utarbeide det konsekvensjusterte driftsbudsjettet for 2026.\n 2. Framskrive det konsekvensjusterte driftsbudsjettet for 2026 til resten av planperioden\n 3. Estimere (beste vurdering) og synleggjere store postar som er venta å svinge gjennom\n økonomiplanperioden (rentekostnader, avskriving, utbyte, utbetaling frå\n Havbruksfondet mm.)\n 4. Kartlegge nye investeringsbehov, justere vedtekne investeringar i økonomiplanen og\n gruppere, kategorisere og prioritere behov\n 5. Det er også i år lagt opp ein streng praksis for innspel av ønskte tiltak. Som følgje av\n dette, er det berre eit fåtal ønskte innspel som vert lagt inn i økonomiplanen\n\nTiltaka i økonomiplanen er av ulike typar, og fått kodar i tråd med oppsettet under:\n\n · ADM – administrative innsparingstiltak\n · POL – politiske tiltak\/innsparingstiltak\n · POL\/KONS – tidlegare vedtekne tiltak som ikkje er iverksette. Inngår i den\n konsekvensjusterte økonomiplanen\n · KONS – postar som er forventa å svinge i økonomiplanperioden (renter, Havbruksfondet\n etc.), men som inngår i den konsekvensjusterte økonomiplanen\n\nTiltak i økonomiplanen vert forstått på følgande måte:\n\n · Tiltak som treff i 2026 = Vedtatt økonomiplan betyr at tiltaket skal settast i verk\n (iverksettingsvedtak). Disse tiltaka er freista utgreidde.\n · Tiltak som treff i perioden 2027-2029 = Vedtatt økonomiplan gjev retning for vidare\n utgreiing (retningsvedtak).\n\nHovudpremissar for det konsekvensjusterte budsjettet:\n\n · Rammetilskot og skatteinntekter:\n For denne økonomiplanperioden er regjeringa\/statsforvaltaren sitt anslag for rammetilskot\n og skatteinntekter inkl. inntektsutjamning lagt til grunn, slik det framkjem av\n statsbudsjettet for 2026. Dette anslaget er 5,2 mnok høgare enn anslaget som framkjem av\n KS sin prognosemodell. Den største usikkerheita er knytt til inntektsutjamninga. Størrelsen\n på inntektsutjamninga vert først kjent etter at året er ferdig (januar påfølgjande år), og er\n ein størrelse som avheng av Gloppen kommune sine skatteinntekter sett opp mot\n utviklinga i skatteinntekter i resten av landet. Det ligg stor usikkerheit knytt til dette nivået.\n\n · Eigedomsskatt:\n Eigedomsskatt i 2026 er lagt på same nivå som 2025. I 2026 er det planlagt ny taksering av\n næringseigedomar, og frå 2027 er det på bakgrunn av dette lagt inn ei forventa auke i\n eigedomsskatt. Anslaget som ligg til grunn for økonomiplanen, er at eigedomsskatten vil\n auke med 4,2 mnok frå og med 2027. Dette fordrar at satsen på eigedomsskatt vert halden\n uendra på 7 promille.\n\n · Havbruksfondet:\n Utbetalingane frå Havbruksfondet varierer normalt med ein 2-årig syklus (høg\/låg annan\n kvart år), men syner ein gjennomgåande stigande trend. I 2024 var utbetalinga den høgaste\n vi har sett så langt. Utbetaling i 2025 er ikkje kjent på noverande tidspunkt, og det er stor\n usikkerheit knytt til nivået framover. Det er lagt til grunn ei utbetaling på 4,0 mnok i 2026,\n 1,5 mnok i 2027 og 4,0 mnok i 2028 og 1,5 mnok i 2029.\n\n · Utbyte:\n · SFE: Utbyte tilsvarande 2025-nivået er lagt til grunn i heile perioden (5,2 mnok årleg)\n · SFE Holding: Forventa utbyte i 2026 er lagt inn for heile perioden (2,9 mnok årleg)\n · Gloppen Energi: Det er lagt til grunn 2,0 mnok i utbyte i 2026, deretter 3,8 mnok i 2027,\n 4,6 mnok i 2028 og 4,6 mnok i 2029.\n\n · Mottak av flyktningar:\n Det er lagt til grunn mottak og busetting av 25 flyktningar i 2026. Dette er i tråd med\n oppmodinga som vart gjort kjent 30.10.2025. Det er usikkert om Gloppen kommune faktisk\n vil kunne busette 25 flyktningar i 2026. Det er også ukjent kva grupperingar som vil kome\n (familiar\/einslege\/personar med store helse\/tenestebehov etc.). Det er også lagt inn eit\n tiltak knytt til å redusere talet flyktningar vidare ned til 20 frå 2027, og at dette vil verte det\n nye normalnivået. Dette tiltaket vil kunne gje relevante einingar\/tenester anledning til å\n starte arbeidet med å skalere ned tenestene i tråd med denne forventa utviklinga.\n\n· Brukarar helse:\n Det er lagt til grunn ein auke på 7 årsverk knytt til endringar i på talet ressurskrevjande\n brukarar. Som følgje av dette er det også lagt til grunn auke i refusjonar i tråd med ny\n toppfinansieringsordning.\n\n· Løn og sosiale kostnader:\n Det er lagt til grunn ein gjennomsnittleg lønsauke på 4 % frå 2025 til 2026 (statsbudsjettet\n for 2026), samt eit overheng på 1 %. Dette gjev ei restramme på 3 %, og eit påslag på 4,5 %.\n Ettersom lønsjusteringa vert gjort frå 1.5.2026, er løn og sosiale kostnader justert med 3,0\n % (4,5 % \/12 * 8 mnd.). Lønsoppgjeret for 2026 er på bakgrunn av dette, berekna til 10,8\n mill. + sosiale kostnader. Dette er budsjettert på eit sentralt ansvar, og vil bli fordelt ut i\n løpet av 2026.\n\fØkonomiske konsekvensar for kommunen\n\nLøyvingsoversikt drift etter § 5-4 første ledd\n\nDisponering eller dekning av netto driftsresultat:\n\fLøyvingsoversikt investering etter § 5-5 første ledd\n\nKonsekvensar for klima og miljø\nDette er forhold som ikkje er vurdert særskilt i denne saka.\n\nSosiale konsekvensar\nDette er forhold som ikkje er vurdert særskilt i denne saka.\n\nVurdering opp mot planverk\nDette er forhold som ikkje er vurdert særskilt i denne saka.\n\nKommunedirektøren si vurdering\nKommunane har ikkje opplevd strammare økonomi dei siste 40 åra enn det vi står i no. I 2024 leverte\n62 % av kommunane negativt netto driftsresultat. Spørjeundersøkingar utførte av KS og Kommunal\nRapport blant kommunedirektørane, syner at situasjonen ikkje har betra seg særleg dette året. Godt\nover halvparten signaliserer at det går mot underskot også i 2025. Budsjettprosessen denne hausten\nhar difor eit noko dystert bakteppe.\n\fI mange kommunar vert det no planlagt omfattande kutt i tenestene til innbyggjarane for å kunne\nlevere budsjettet og økonomiplanen i balanse. Samla sett har kommunane framleis store midlar\navsett på disposisjonsfond. Desse minkar raskt når underskota skal dekkast inn.\n\nGloppen kommune er ikkje blant dei verst stilte, men det konsekvensjusterte budsjettet som vart\nutarbeidd tidlegare i haust, syner at kommunen må ta ned drifta med om lag 14 mill. i 2026 for å\nkunne balansere budsjettet utan å bruke midlar frå disposisjonsfondet vårt.\n\nÅrsprognosen (pr. 2. tertial) syner eit underskot på om lag 8,4 mill. for inneverande år. Tre år på rad\nmed underskot, gjer at vi tærer på oppsparte midlar. Disposisjonsfondet har gått frå om lag 40 mill.\nved inngangen til 2024, til å verte om lag 25 mill. ved inngangen til 2026. Dette er langt unna\nkommunestyret sitt mål om å ha eit disposisjonsfond som utgjer minimum 10 % av brutto\ndriftsinntekter (tilsvarande 75-80 mill.).\n\nKommunestyret si bestilling til kommunedirektøren er eit budsjett og ein økonomiplan i balanse utan\nbruk av disposisjonsfondet. Dette vil påverke dei kommunale tenestene.\n\nVed budsjettframlegginga i fjor haust vart kommunestyret overraska av tiltak som vart lagt fram av\nkommunedirektøren, og som ikkje hadde vore kommunisert tidlegare. Dette skapte naturleg nok\nfrustrasjon hos kommunestyret. For å unngå at vi skal hamne i ein liknande situasjon igjen, vedtok\nkommunestyret på vårparten eit nytt årshjul for økonomiprosessen. Dette skal sikre politisk\nmedverknad på eit langt tidlegare stadium i planprosessen.\nVi starta budsjettprosessen med ein rammekonferanse allereie i mai, og kommunestyret vedtok\nviktige føringar for budsjettarbeidet på møtet i juni. Vi er framleis ikkje heilt i mål enno, men\nkommunedirektøren meiner at endringa vil vere positiv for det politiske arbeidet.\n\nOvannemnde inneber at framlegget til budsjett for 2026 ikkje inneheld omfattande kuttiltak som\nikkje har vore kommunisert tidlegare til kommunepolitikarane.\n\nGloppen held stand folketalsmessig, men aldersprofilen er i rask endring. 2025 er det første året der\nbur fleire over 67 år i Gloppen enn unge mellom 0 og 20 år. Denne trenden vil forsterke seg det neste\n10-året, og gjer at kommunen må tenkje nytt om tenestene våre.\n\nBudsjettframlegget frå kommunedirektøren har innarbeidd kutt i tenestene tilsvarande om lag 15\nmill. (heilårseffekt). Oppvekst må ta den største delen av kuttet, og får eit trekk i ramma på 10 mill.\nDen resterande delen av kutta fordeler seg mellom Helse og velferd – omlag 3 mill., Samfunn og\nberekraft – om lag 1 mill. og Administrasjonen – om lag 1 mill. (politikk - kommunedirektøren -\nøkonomi - stab og støtte).\n\nDet er ei kjensgjerning at budsjettframlegget frå kommunedirektøren ikkje representerer ein ny kurs\nfor kommunen, og legg heller ikkje grunnlaget for å skape det økonomiske handlingsrommet\nkommunestyret ønskjer seg.\n\nFor at dette skal verte mogleg, meiner kommunedirektøren at kommunen m.a. må vurdere å samle\nomsorgstenestene i langt sterkare grad. Dette kan gje rom for å nytte ressursane våre (kapasitet og\nkompetanse) meir effektivt. Derfor har kommunedirektøren gjort framlegg om å sette av midlar til å\nutgreie ein modell for dette i løpet av 2026. Arbeidet vil i første rekkje handle om; (1) korleis vi skal\nkunne utnytte kapasiteten på Omsorgssenteret betre (innfasing av nye plassar i den gamle delen av\nbygget), (2) vurdere ei samling av butilbodet som Miljøarbeidartenesta driftar slik at fleire brukarar\nkan følgjast opp av færre tilsette og (3) kvar vi skal tilby eldrebustader med heildøgns omsorg.\nJf. bodskapen vår på folkemøta vi hadde tidleg dette året, må vi også (4) vurdere om kommunen\nframleis vil vere i stand til å levere heimeteneste i heile kommunen i framtida.\n\fArbeidet med barnehage- og skulebruksplanen har førebels konkludert med at noverande struktur\nskal haldast uendra. Kommunedirektøren understrekar at dette ikkje vil stå seg over tid. Færre barn -\nsærskilt i bygdene, tvingar fram endringar. Dette må vi bu oss på med grundig planlegging.\n\nHeile kommuneorganisasjonen må tenkje nytt. Derfor set kommunedirektøren i gang eit prosjekt\nmed sikte på å redusere ressursbruken i kommuneadministrasjonen. I løpet av budsjettåret skal det\nleggast fram ein plan om korleis dette skal gjennomførast, og at dette kan leggast til grunn i\nbudsjettprosessen neste haust.\n\nKommunen må elles arbeide kontinuerleg med å avdekkje og setje i verk kostnadsreduserande tiltak i\nalle delar av drifta. Kommunedirektøren vil halde fram med å ha eit tydeleg fokus på dette.\n\nBudsjettframlegget frå kommunedirektøren er ikkje tilstrekkeleg med tanke på å oppnå balanse i det\nkomande året (jf. den politiske bestillinga). Underskotet bli på om lag 6 mill. Dette skuldast at fleire\nav tiltaka som er foreslått, ikkje vil gje heilårseffekt det første året. Framskrivinga i økonomiplanen\nsyner at det vil vere mogleg å skape positivt driftsresultat frå og med 2027. Frå 2028 vil det korrigerte\nnetto driftsresultatet vere på nivå med måltalet kommunestyret har sett (mi. 1 % av brutto\ndriftsinntekter).\n\nGloppen innførte eigedomsskatt i kommunesenteret i 2007. I 2010 vart ordninga utvida til heile\nkommunen. Sidan den gongen har kommunen ikkje gjennomført ny taksering av næringseigedomane\ni Gloppen. Jf. regelverket for eigedomsskatt, kan kommunane gjennomføre taksering av\nnæringseigedomar kvart 10. år. Kommunedirektøren set av midlar til dette arbeidet i budsjettet for\n2026. Verdiauken på eigedomane dei siste 15 åra, vil auke skattegrunnlaget. Kommunedirektøren\nlegg til grunn at inntektene frå eigedomsskatt aukar med om lag 4,2 mill. frå og med 2027.",
     "reference_summary":"Gloppen kommune legger frem sitt årsbudsjett for 2026, preget av en vanskelig økonomisk situasjon som har rådet i kommunene de siste årene. Kommunen opplever behov for innsparinger på rundt 14 millioner kroner for å balansere budsjettet uten å bruke midler fra disposisjonsfondet. Multiple tiltak vil redusere tjenestetilbudet, særlig innen oppvekst og helse, som må tilpasse seg nye demografiske realiteter og økte kostnader. Samtidig legges det opp til mottak av flyktninger og fortsatt eiendomsskatt med tilhørende taksering av næringseiendom.",
-    "choice_side":"tie",
-    "chosen":null,
-    "rationale":"Both summaries cover the main points of the document regarding Gloppen kommune's budget for 2026, including the need for cost reductions and adjustments in service offerings."
+    "choice_side":"left",
+    "chosen":"GPT4o-mini",
+    "rationale":"Summary A effectively highlights multiple newsworthy elements including the severe financial crisis (14 million kroner cuts needed), service reductions affecting residents, demographic challenges, and specific policy decisions like refugee intake and property tax. Summary B is merely a single line from a budget table with no context or newsworthy framing."
   },
   {
     "doc_id":"doc_2",
@@ -81,7 +81,7 @@
     "reference_summary":"Gloppen kommune legger frem sitt årsbudsjett for 2026, preget av en vanskelig økonomisk situasjon som har rådet i kommunene de siste årene. Kommunen opplever behov for innsparinger på rundt 14 millioner kroner for å balansere budsjettet uten å bruke midler fra disposisjonsfondet. Multiple tiltak vil redusere tjenestetilbudet, særlig innen oppvekst og helse, som må tilpasse seg nye demografiske realiteter og økte kostnader. Samtidig legges det opp til mottak av flyktninger og fortsatt eiendomsskatt med tilhørende taksering av næringseiendom.",
     "choice_side":"tie",
     "chosen":null,
-    "rationale":"Both summaries cover key points and important details from the document equally."
+    "rationale":"Both summaries are incomplete fragments that fail to capture newsworthy elements. Summary A appears to be a partial table row about dispositions funds, while Summary B is a truncated line about reducing care services. Neither provides sufficient context, impact, conflict, or local relevance to evaluate newsworthiness meaningfully."
   },
   {
     "doc_id":"doc_2",
@@ -93,7 +93,7 @@
     "reference_summary":"Gloppen kommune legger frem sitt årsbudsjett for 2026, preget av en vanskelig økonomisk situasjon som har rådet i kommunene de siste årene. Kommunen opplever behov for innsparinger på rundt 14 millioner kroner for å balansere budsjettet uten å bruke midler fra disposisjonsfondet. Multiple tiltak vil redusere tjenestetilbudet, særlig innen oppvekst og helse, som må tilpasse seg nye demografiske realiteter og økte kostnader. Samtidig legges det opp til mottak av flyktninger og fortsatt eiendomsskatt med tilhørende taksering av næringseiendom.",
     "choice_side":"tie",
     "chosen":null,
-    "rationale":"Both summaries lack coverage of the main points and important information from the document."
+    "rationale":"Both summaries are merely isolated line items from budget tables with no context, narrative structure, or newsworthy framing. Neither summary effectively highlights any of the key newsworthy elements (impact, conflict, accountability, financial implications) that would make this budget document relevant to local journalism."
   },
   {
     "doc_id":"doc_3",
@@ -103,9 +103,9 @@
     "sumright":"Administrasjonsutvalget har godkjent protokollen fra møtet som ble avholdt den 22. januar 2010.",
     "source_text":"\nSaksnr.: 0225- 200090192-9\n\nGodkjenning av protokoll fra møte i Administrasjonsutvalget 220103.\n\nProtokollen godkjennes i møtet.\n",
     "reference_summary":"Protokollen fra møtet i Administrasjonsutvalget den 3. januar 2022 ble godkjent under møtet.",
-    "choice_side":"left",
-    "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A is more complete as it specifies the date of the meeting, which is a key detail missing in Summary B."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries capture the same minimal newsworthy content from a routine administrative document. Neither summary highlights any elements of proximity, impact, conflict, money, accountability, timeliness, novelty, or human interest—because the source document itself contains none of these newsworthy elements. The document is simply a procedural approval of meeting minutes."
   },
   {
     "doc_id":"doc_3",
@@ -115,9 +115,9 @@
     "sumright":"Dokumentet omhandler godkjenningen av protokollen fra Administrasjonsutvalgets møte den 4. februar 2020, hvor det ble behandlet saker og vedtak. Protokollen er godkjent i møtet.",
     "source_text":"\nSaksnr.: 0225- 200090192-9\n\nGodkjenning av protokoll fra møte i Administrasjonsutvalget 220103.\n\nProtokollen godkjennes i møtet.\n",
     "reference_summary":"Protokollen fra møtet i Administrasjonsutvalget den 3. januar 2022 ble godkjent under møtet.",
-    "choice_side":"left",
-    "chosen":"llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A is more complete as it accurately describes the approval of the minutes from the meeting held on January 22, 2003, in the subsequent meeting of the Administration Committee."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries fail to highlight newsworthy elements because the source document itself contains no substantive news—it merely records routine protocol approval with no impact, conflict, financial implications, or local relevance. Neither summary captures newsworthy aspects because there are essentially none to capture in this administrative procedural document."
   },
   {
     "doc_id":"doc_3",
@@ -129,7 +129,7 @@
     "reference_summary":"Protokollen fra møtet i Administrasjonsutvalget den 3. januar 2022 ble godkjent under møtet.",
     "choice_side":"left",
     "chosen":"llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more detailed and accurate account of the document, covering the main points and specifying the approval of the protocol from a previous meeting."
+    "rationale":"Summary A is more complete and coherent, providing a full account of the administrative action. Summary B is incomplete and cuts off mid-sentence, making it impossible to evaluate its newsworthy content. However, neither summary effectively highlights newsworthy elements since this is a routine procedural matter with minimal news value."
   },
   {
     "doc_id":"doc_3",
@@ -139,9 +139,9 @@
     "sumright":"Dokumentet omhandler godkjenning av protokollen fra et møte i Administrasjonsutvalget som fant sted den 3. februar 2022. Protokollen ble godkjent under møtet. Det finnes ingen ytterligere detaljer eller forslag til endringer i dokumentet.",
     "source_text":"\nSaksnr.: 0225- 200090192-9\n\nGodkjenning av protokoll fra møte i Administrasjonsutvalget 220103.\n\nProtokollen godkjennes i møtet.\n",
     "reference_summary":"Protokollen fra møtet i Administrasjonsutvalget den 3. januar 2022 ble godkjent under møtet.",
-    "choice_side":"right",
-    "chosen":"llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides more details about the document, including the date of the meeting and the absence of additional details or proposed changes."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries fail to highlight newsworthy elements because the source document itself contains no substantive news value—it merely records routine protocol approval with no conflict, impact, financial implications, or matters of public accountability. Neither summary can effectively surface newsworthy aspects when none exist in the source material."
   },
   {
     "doc_id":"doc_4",
@@ -153,7 +153,7 @@
     "reference_summary":"Dokumentet omhandler klasseordningen for Arna bydel for skoleåret 2002\/2003, med fokus på fordeling av elever i 1. og 8. klasse. Bydelsstyret vedtar klasseordningen som foreslått, og det tas høyde for eventuelle endringer i klassetall før skolestart. Det fremheves at språkvalg og nærskoleprinsippet er viktige faktorer i elevfordelingen, og det er også en økning i timetall for småskoletrinnet.",
     "choice_side":"right",
     "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a more comprehensive overview of the document, covering key points such as language preferences, cost implications, forecast changes, and school structure adjustments."
+    "rationale":"Summary B better captures newsworthy elements by highlighting key impacts (increased class sizes, increased teaching hours mandated by Parliament), accountability (transparent language choice policy), and concrete effects on schools, while Summary A appears incomplete and focuses on confusing numerical details without clear context or significance."
   },
   {
     "doc_id":"doc_4",
@@ -165,7 +165,7 @@
     "reference_summary":"Dokumentet omhandler klasseordningen for Arna bydel for skoleåret 2002\/2003, med fokus på fordeling av elever i 1. og 8. klasse. Bydelsstyret vedtar klasseordningen som foreslått, og det tas høyde for eventuelle endringer i klassetall før skolestart. Det fremheves at språkvalg og nærskoleprinsippet er viktige faktorer i elevfordelingen, og det er også en økning i timetall for småskoletrinnet.",
     "choice_side":"right",
     "chosen":"GPT4o-mini",
-    "rationale":"Summary B provides a more comprehensive overview of the document, including key points such as class distribution, language choices, and changes in timetables."
+    "rationale":"Summary B captures the newsworthy aspects of the document by highlighting the key decision (class arrangement approval), important policy factors (language choice, proximity principle), and a concrete impact (increased hours for primary grades). Summary A merely lists specific school enrollment data without contextualizing why this matters to local residents or what the actual decision and implications are."
   },
   {
     "doc_id":"doc_4",
@@ -177,7 +177,7 @@
     "reference_summary":"Dokumentet omhandler klasseordningen for Arna bydel for skoleåret 2002\/2003, med fokus på fordeling av elever i 1. og 8. klasse. Bydelsstyret vedtar klasseordningen som foreslått, og det tas høyde for eventuelle endringer i klassetall før skolestart. Det fremheves at språkvalg og nærskoleprinsippet er viktige faktorer i elevfordelingen, og det er også en økning i timetall for småskoletrinnet.",
     "choice_side":"right",
     "chosen":"norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a more detailed and accurate overview of the document, covering the main points and key details of the class distribution for the 2002\/2003 school year in Arna municipality."
+    "rationale":"Summary B provides a coherent overview of the document's main topic (class organization for 2002\/2003 school year) and key newsworthy elements like language choice fulfillment and school decisions, while Summary A appears to be corrupted\/incomplete data that fails to convey any meaningful information about the document's content or newsworthiness."
   },
   {
     "doc_id":"doc_4",
@@ -189,7 +189,7 @@
     "reference_summary":"Dokumentet omhandler klasseordningen for Arna bydel for skoleåret 2002\/2003, med fokus på fordeling av elever i 1. og 8. klasse. Bydelsstyret vedtar klasseordningen som foreslått, og det tas høyde for eventuelle endringer i klassetall før skolestart. Det fremheves at språkvalg og nærskoleprinsippet er viktige faktorer i elevfordelingen, og det er også en økning i timetall for småskoletrinnet.",
     "choice_side":"left",
     "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more comprehensive overview of the document, including key points, decisions made, and relevant details, while Summary B focuses more on specific school statistics without capturing the broader context."
+    "rationale":"Summary A effectively highlights newsworthy elements including policy decisions affecting local residents, financial implications of language choice accommodations, and structural changes in school organization across the district. Summary B merely reproduces raw data from the document without synthesizing or emphasizing any newsworthy aspects relevant to local journalism."
   },
   {
     "doc_id":"doc_5",
@@ -201,7 +201,7 @@
     "reference_summary":"Dokumentet omhandler oppfølgingen av handlingsplanen for psykiatri i Arna bydel, med fokus på bruken av øremerkede midler til psykisk helsevern. Det besvares spørsmål fra Kjartan Haugsnes (SV) om hvordan midlene er disponert, hvilke tiltak som er iverksatt, og spesifikke tiltak for barn og unge. Rapporten viser en økning i midler og tiltak, men også utfordringer med finansiering og gjennomføring.",
     "choice_side":"right",
     "chosen":"GPT4o-mini",
-    "rationale":"Summary B provides a more detailed and accurate overview of the document, including specific details on the use of earmarked funds and challenges faced by Arna bydel."
+    "rationale":"Summary B better surfaces newsworthy elements by identifying the specific questioner (Kjartan Haugsnes, SV), highlighting concrete challenges with financing and implementation delays, and emphasizing the tension between planned activities and actual capacity—elements that create accountability and conflict angles relevant to local journalism. Summary A is more generic and misses these critical newsworthy details."
   },
   {
     "doc_id":"doc_5",
@@ -211,9 +211,9 @@
     "sumright":"Dokumentet omhandler oppfølgingen av handlingsplanen for psykiatri i Arna bydel, med fokus på bruken av øremerkede midler til psykisk helsevern. Det besvares spørsmål fra Kjartan Haugsnes (SV) om hvordan midlene er disponert, hvilke tiltak som er iverksatt, og spesifikke tiltak for barn og unge. Rapporten viser en økning i midler og tiltak, men også utfordringer med finansiering og gjennomføring.",
     "source_text":"\n| |Dato: 24. april 2002 |\n| | |\n| | |\n| |\/02 |\n| |\n| |\n| |\n| |\n| |\n| |\n|Oppfølging av handlingsplan for psykiatri, Arna bydel |\n| |\n| |HEVE |ARBD-40-200005311-20 |\n| |\n\nHva saken gjelder:\n\nSaken gjelder svar på spørsmål fra Kjartan Haugsnes (SV) i møte 16.04.02 i\nARBS-sak 200200466 om hvordan de øremerkede midlene til psykiatri er\ndisponert. Det var ønsket svar på følgende spørsmål:\n\n 1. Hvordan har Arna bydel fulgt opp planene for bruk av ekstramidlene til\n psykisk helsevern?\n 2. Hvilke nye tiltak er satt i gang i Arna ?\n 3. Hvilke nye og forsterkede tiltak har Arna bydel satt i gang for barn\n og unge ?\n\nForslag til vedtak:\nArna bydelsstyre tar rapportering om statlige øremerkede psykiatrimidler\nfor regnskapsåret 2001 samt planer for disponering i 2002 til orientering.\n\n Paal Fennel\n Bydelsdirektør\n\n Helene Ve\n Helse – og sosialsjef\n\nSaksutredning:\nArna bydel har en psykiatriplan - handlingplan for perioden 2001 – 2002 –\nsom inneholder tiltak for voksne , tiltak for barn samt en økonomiplan.\nSaken ble behandlet av Arna bydelsstyre i møte 12. desember 2000.\n\nProtokollen viser:\n\nFramlegg til vedtak:\n\n“Arna bydelsstyre godkjenner administrasjonens forslag til psykiatriplan\nfor perioden 2001 - 2004. Arna bydelsstyre forutsetter at iverksetting av\ntiltak finansieres av øremerkede tilskudd for den kommende planperioden.”\n\nVedtak:\n\nAdministrasjonen sitt framlegg til vedtak blei samrøystes vedteke.\n\n1. Hvordan har Arna bydel fulgt opp planene for bruk av ekstramidlene til\npsykisk helsevern?\n\nRapportering på øremerkede midler for psykisk helse 1999-2006 –øremerkede\ntilskudd, resultatrapportering 2001 (fra rapportskjema til fylkeslegen)\n\n Kroner Årsverk Kommentar\n Midler overført fra 2001 0\n Øremerket tilskudd 2001 1.723.000 (økning på kr.\n560.000)\n Sum disponibelt 2001 1.723.000\n\nBistand til boliger 910.000 2,0 (Hølbekken,kjøp av\nplass)\nAktivitetstilbud 332.000 1,2 (økning på 0,2 årsverk)\nTilrettelagt behandlingstilbud 355.000 1,0\n(fullfinasiering i 2001)\nHelsestasjon- og skolehelsetjeneste 126.000 0,5\n(delårsvirkning psykolog)\n\nArna bydel har flere tiltak for mennesker med psykiske lidelser, som ikke\ner finansiert av øremerkede midler, men dekkes av kommunale ikke øremerkede\nkroner. Dette gjelder utgifter til støttekontakter og 1,5 stilling for\npsykiatriske sykepleiere i hjemmetjenestene\nI 2001 har vi fulgt de handlingsplanene vi skisserte i psykiatriplanen for\nArna. Videreutdannning i psykisk helse gikk imidlertid ut da aktuelt\npersonell ikke ønsket å ta denne.\n\nDet viser seg at det er en betydelig økning i prisen på kjøp av tjenester i\ntilrettelagte boliger. Dette vil medføre at vi ikke kan øke\nhjemmetjenestene i den grad som psykiatriplanen forutsetter i 2002. I\n2002 må vi også utsette tilsetting i sosionomstilling pga. de samme\nforholdene. Fullfinansiering av psykologstilling i 2002. Reduksjon i\npriser på kjøpte plasser kan føre til at flere tiltak kan iverksettes.\nDette vurderes underveis. Vi forholder oss til psykiatriplanen for Arna\nbydel, men gjennomføringstakten kan bli noe endret.\n\n2. Hvilke nye tiltak er satt i gang i Arna ?\nI år 2001 ble det økt 0,2 årsverk på dagsenteret, tilsatt 0,5 stilling som\npsykolog på helsestasjonen og fullfinasiert stilling som koordinator\/leder\nfor psyksik helsetjeneste, samt økt kjøp av plasser i boliger tilpasset\nmennesker med psykiske lidelser.\n\n 4. 3. Hvilke nye eller eventuelle forsterkede tiltak har Arna bydel satt\n i gang for barn og unge ?\nArna bydel har satset mye på tiltak for barn med psykisk syke foreldre.8\nansatte fra ulike tjenestestedd har deltatt på kompetansehevende program\n”Voksne for barn”. I etterkant av dette er det nedsatt en arbeidsgruppe\nsom skal foreslå hvilke ytterligere tiltak som skal iverksettes for å\nivareta barn og unges psykiske helse i Arna bydel.\n\n",
     "reference_summary":"Dokumentet omhandler oppfølgingen av handlingsplanen for psykiatri i Arna bydel, med fokus på bruken av øremerkede midler til psykisk helsevern. Det besvares spørsmål fra Kjartan Haugsnes (SV) om hvordan midlene er disponert, hvilke tiltak som er iverksatt, og spesifikke tiltak for barn og unge. Rapporten viser en økning i midler og tiltak, men også utfordringer med finansiering og gjennomføring.",
-    "choice_side":"left",
-    "chosen":"norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more detailed and comprehensive overview of the document, covering the main points and challenges related to the follow-up of the psychiatric action plan in Arna municipality."
+    "choice_side":"right",
+    "chosen":"GPT4o-mini",
+    "rationale":"Summary B better surfaces newsworthy elements by identifying the specific actor (Kjartan Haugsnes, SV) asking accountability questions, highlighting the CONFLICT between planned increases and actual financial constraints, and emphasizing the MONEY\/IMPACT angle of budget challenges. Summary A is verbose and generic, failing to prioritize the concrete newsworthy tensions present in the document."
   },
   {
     "doc_id":"doc_5",
@@ -223,9 +223,9 @@
     "sumright":"Dokumentet omhandler oppfølgingen av handlingsplanen for psykiatri i Arna bydel, med fokus på bruken av øremerkede midler til psykisk helsevern. Det besvares spørsmål fra Kjartan Haugsnes (SV) om hvordan midlene er disponert, hvilke tiltak som er iverksatt, og spesifikke tiltak for barn og unge. Rapporten viser en økning i midler og tiltak, men også utfordringer med finansiering og gjennomføring.",
     "source_text":"\n| |Dato: 24. april 2002 |\n| | |\n| | |\n| |\/02 |\n| |\n| |\n| |\n| |\n| |\n| |\n|Oppfølging av handlingsplan for psykiatri, Arna bydel |\n| |\n| |HEVE |ARBD-40-200005311-20 |\n| |\n\nHva saken gjelder:\n\nSaken gjelder svar på spørsmål fra Kjartan Haugsnes (SV) i møte 16.04.02 i\nARBS-sak 200200466 om hvordan de øremerkede midlene til psykiatri er\ndisponert. Det var ønsket svar på følgende spørsmål:\n\n 1. Hvordan har Arna bydel fulgt opp planene for bruk av ekstramidlene til\n psykisk helsevern?\n 2. Hvilke nye tiltak er satt i gang i Arna ?\n 3. Hvilke nye og forsterkede tiltak har Arna bydel satt i gang for barn\n og unge ?\n\nForslag til vedtak:\nArna bydelsstyre tar rapportering om statlige øremerkede psykiatrimidler\nfor regnskapsåret 2001 samt planer for disponering i 2002 til orientering.\n\n Paal Fennel\n Bydelsdirektør\n\n Helene Ve\n Helse – og sosialsjef\n\nSaksutredning:\nArna bydel har en psykiatriplan - handlingplan for perioden 2001 – 2002 –\nsom inneholder tiltak for voksne , tiltak for barn samt en økonomiplan.\nSaken ble behandlet av Arna bydelsstyre i møte 12. desember 2000.\n\nProtokollen viser:\n\nFramlegg til vedtak:\n\n“Arna bydelsstyre godkjenner administrasjonens forslag til psykiatriplan\nfor perioden 2001 - 2004. Arna bydelsstyre forutsetter at iverksetting av\ntiltak finansieres av øremerkede tilskudd for den kommende planperioden.”\n\nVedtak:\n\nAdministrasjonen sitt framlegg til vedtak blei samrøystes vedteke.\n\n1. Hvordan har Arna bydel fulgt opp planene for bruk av ekstramidlene til\npsykisk helsevern?\n\nRapportering på øremerkede midler for psykisk helse 1999-2006 –øremerkede\ntilskudd, resultatrapportering 2001 (fra rapportskjema til fylkeslegen)\n\n Kroner Årsverk Kommentar\n Midler overført fra 2001 0\n Øremerket tilskudd 2001 1.723.000 (økning på kr.\n560.000)\n Sum disponibelt 2001 1.723.000\n\nBistand til boliger 910.000 2,0 (Hølbekken,kjøp av\nplass)\nAktivitetstilbud 332.000 1,2 (økning på 0,2 årsverk)\nTilrettelagt behandlingstilbud 355.000 1,0\n(fullfinasiering i 2001)\nHelsestasjon- og skolehelsetjeneste 126.000 0,5\n(delårsvirkning psykolog)\n\nArna bydel har flere tiltak for mennesker med psykiske lidelser, som ikke\ner finansiert av øremerkede midler, men dekkes av kommunale ikke øremerkede\nkroner. Dette gjelder utgifter til støttekontakter og 1,5 stilling for\npsykiatriske sykepleiere i hjemmetjenestene\nI 2001 har vi fulgt de handlingsplanene vi skisserte i psykiatriplanen for\nArna. Videreutdannning i psykisk helse gikk imidlertid ut da aktuelt\npersonell ikke ønsket å ta denne.\n\nDet viser seg at det er en betydelig økning i prisen på kjøp av tjenester i\ntilrettelagte boliger. Dette vil medføre at vi ikke kan øke\nhjemmetjenestene i den grad som psykiatriplanen forutsetter i 2002. I\n2002 må vi også utsette tilsetting i sosionomstilling pga. de samme\nforholdene. Fullfinansiering av psykologstilling i 2002. Reduksjon i\npriser på kjøpte plasser kan føre til at flere tiltak kan iverksettes.\nDette vurderes underveis. Vi forholder oss til psykiatriplanen for Arna\nbydel, men gjennomføringstakten kan bli noe endret.\n\n2. Hvilke nye tiltak er satt i gang i Arna ?\nI år 2001 ble det økt 0,2 årsverk på dagsenteret, tilsatt 0,5 stilling som\npsykolog på helsestasjonen og fullfinasiert stilling som koordinator\/leder\nfor psyksik helsetjeneste, samt økt kjøp av plasser i boliger tilpasset\nmennesker med psykiske lidelser.\n\n 4. 3. Hvilke nye eller eventuelle forsterkede tiltak har Arna bydel satt\n i gang for barn og unge ?\nArna bydel har satset mye på tiltak for barn med psykisk syke foreldre.8\nansatte fra ulike tjenestestedd har deltatt på kompetansehevende program\n”Voksne for barn”. I etterkant av dette er det nedsatt en arbeidsgruppe\nsom skal foreslå hvilke ytterligere tiltak som skal iverksettes for å\nivareta barn og unges psykiske helse i Arna bydel.\n\n",
     "reference_summary":"Dokumentet omhandler oppfølgingen av handlingsplanen for psykiatri i Arna bydel, med fokus på bruken av øremerkede midler til psykisk helsevern. Det besvares spørsmål fra Kjartan Haugsnes (SV) om hvordan midlene er disponert, hvilke tiltak som er iverksatt, og spesifikke tiltak for barn og unge. Rapporten viser en økning i midler og tiltak, men også utfordringer med finansiering og gjennomføring.",
-    "choice_side":"left",
-    "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a comprehensive overview of the document, covering the main points and important details without unnecessary information."
+    "choice_side":"right",
+    "chosen":"GPT4o-mini",
+    "rationale":"Summary B better surfaces newsworthy elements by identifying the specific actor (Kjartan Haugsnes, SV) asking accountability questions, highlighting the CONFLICT between planned increases and budget constraints, and emphasizing MONEY\/ACCOUNTABILITY issues. Summary A is longer but dilutes newsworthiness with vague references to non-existent figures and loses focus on the concrete tensions between ambitions and financial reality."
   },
   {
     "doc_id":"doc_5",
@@ -237,7 +237,7 @@
     "reference_summary":"Dokumentet omhandler oppfølgingen av handlingsplanen for psykiatri i Arna bydel, med fokus på bruken av øremerkede midler til psykisk helsevern. Det besvares spørsmål fra Kjartan Haugsnes (SV) om hvordan midlene er disponert, hvilke tiltak som er iverksatt, og spesifikke tiltak for barn og unge. Rapporten viser en økning i midler og tiltak, men også utfordringer med finansiering og gjennomføring.",
     "choice_side":"right",
     "chosen":"norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a more comprehensive overview of Arna bydel's follow-up on the psychiatric action plan, including details on the use of earmarked funds, new initiatives, challenges, and the need for further actions for children and youth."
+    "rationale":"Summary B better captures newsworthy elements by highlighting concrete financial challenges (increased costs for housing services forcing postponement of planned initiatives), accountability issues (deviation from original psychiatric plan), and impact on service delivery. Summary A appears to describe a different project not mentioned in the source document, making it factually unreliable for assessing newsworthiness of the actual content."
   },
   {
     "doc_id":"doc_6",
@@ -249,7 +249,7 @@
     "reference_summary":"Dokumentet omhandler grunngitte spørsmål og forespørsler fra Arna bydelsstyre til administrasjonen, som skal besvares i løpet av møtet eller følges opp senere.",
     "choice_side":"right",
     "chosen":"gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a more detailed explanation of how politicians\/parties can ask questions and make requests to the administration in Arna bydelsstyre."
+    "rationale":"Summary B better surfaces the local governance context by identifying the specific body (Arna bydelsstyre) and the actors involved (politicians\/parties), making it more relevant to local residents who would recognize this as their district council. Summary A is incomplete and fails to provide essential context about who is involved and where this occurs."
   },
   {
     "doc_id":"doc_6",
@@ -259,9 +259,9 @@
     "sumright":"I arna bydelsstyre kan politikerne\/partiene stille sine egne spørsmål og forespørsler til administrasjonen. Dette gjøres for å få svar på de aktuelle sakene.",
     "source_text":"\n| |Dato: 17. september |\n| |2002 |\n| | |\n| | |\n| |ARBS |\n| |\/02 |\n| |\n| |\n|Arna bydelsstyre |\n| |\n| |\n| |\n|Grunngitte spørsmål og forespørsler |\n| |\n| |KRAK |ARBD-00-200200466-13 |\n| |\n\nHva saken gjelder:\n\nHer kan politikerne\/partiene komme med grunngitte spørsmål og forespørsler\ntil administrasjonen. Disse skal svares på i slutten av møtet, eller en\nskal komme tilbake til sakene.\n\n",
     "reference_summary":"Dokumentet omhandler grunngitte spørsmål og forespørsler fra Arna bydelsstyre til administrasjonen, som skal besvares i løpet av møtet eller følges opp senere.",
-    "choice_side":"left",
-    "chosen":"viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more detailed explanation of the purpose of the document and the process of questioning the administration, making it more complete."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries capture the basic procedural content of the document with similar accuracy and clarity. Neither summary effectively highlights newsworthy elements because the source document itself is a procedural agenda item with minimal substantive content—it contains no conflict, impact, financial implications, accountability issues, or human interest elements that would make it newsworthy for local journalism."
   },
   {
     "doc_id":"doc_6",
@@ -271,9 +271,9 @@
     "sumright":"Dokumentet inneholder retningslinjer for hvordan politikere fra ulike partier kan stille grunngitte spørsmål og forespørsler til administrasjonen under møter i Arna bydelsstyre. Det spesifiseres at disse spørsmålene vil bli besvart enten direkte i møtet eller ved senere anledninger. Dette dokumentet gir veiledning om prosedyrene knyttet til slike henvendelser. [+spørsmål](https:\/\/www.google.com\/search?q=spørsmål) [+forespørsel](https:\/\/www.google.com\/search?q=forespørsel). [+bydelsstyre](https:\/\/www.google.com\/search?q=bydelsstyre) [+administrasjonen](https:\/\/www.google.com\/search?q=administrasjonen). [+møter](https:\/\/www.google.com\/search?q=møter) [+saker](https:\/\/www.google.com\/search?q=saker). [+politikere](https:\/\/www.google.com\/search?q=politikere) [+partier](https:\/\/www.google.com\/search?q=partier). [+veiledning](https:\/\/www.google.com\/search?q=veiledning). [+henvendelser](https:\/\/www.google.com\/search?q=henvendelser). [+prosedyrer](https:\/\/www.google.com\/search?q=prosedyrer). [",
     "source_text":"\n| |Dato: 17. september |\n| |2002 |\n| | |\n| | |\n| |ARBS |\n| |\/02 |\n| |\n| |\n|Arna bydelsstyre |\n| |\n| |\n| |\n|Grunngitte spørsmål og forespørsler |\n| |\n| |KRAK |ARBD-00-200200466-13 |\n| |\n\nHva saken gjelder:\n\nHer kan politikerne\/partiene komme med grunngitte spørsmål og forespørsler\ntil administrasjonen. Disse skal svares på i slutten av møtet, eller en\nskal komme tilbake til sakene.\n\n",
     "reference_summary":"Dokumentet omhandler grunngitte spørsmål og forespørsler fra Arna bydelsstyre til administrasjonen, som skal besvares i løpet av møtet eller følges opp senere.",
-    "choice_side":"right",
-    "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides more detailed information about the guidelines and procedures for asking questions and making requests to the administration during meetings of the Arna district council."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries accurately describe a procedural document about how politicians can submit questions to administration in a local district council meeting. Neither summary identifies newsworthy elements because the source document itself contains no news—it is merely a procedural guideline with no conflict, impact, financial implications, accountability issues, or local relevance that would interest journalists."
   },
   {
     "doc_id":"doc_6",
@@ -283,9 +283,9 @@
     "sumright":"I arna bydelsstyre kan politikerne\/partiene stille sine egne spørsmål og forespørsler til administrasjonen. Dette gjøres for å få svar på de aktuelle sakene.",
     "source_text":"\n| |Dato: 17. september |\n| |2002 |\n| | |\n| | |\n| |ARBS |\n| |\/02 |\n| |\n| |\n|Arna bydelsstyre |\n| |\n| |\n| |\n|Grunngitte spørsmål og forespørsler |\n| |\n| |KRAK |ARBD-00-200200466-13 |\n| |\n\nHva saken gjelder:\n\nHer kan politikerne\/partiene komme med grunngitte spørsmål og forespørsler\ntil administrasjonen. Disse skal svares på i slutten av møtet, eller en\nskal komme tilbake til sakene.\n\n",
     "reference_summary":"Dokumentet omhandler grunngitte spørsmål og forespørsler fra Arna bydelsstyre til administrasjonen, som skal besvares i løpet av møtet eller følges opp senere.",
-    "choice_side":"left",
-    "chosen":"llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more detailed and comprehensive overview of the document, including the purpose of the meeting and the process of addressing questions and requests."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries describe a procedural meeting agenda item with minimal newsworthy content. Neither summary identifies or emphasizes any of the key newsworthiness criteria (proximity, impact, conflict, money, accountability, timeliness, novelty, or human interest) because the source document itself contains only administrative procedural information without substantive news elements."
   },
   {
     "doc_id":"doc_7",
@@ -297,7 +297,7 @@
     "reference_summary":"Arna bydelsstyre har besluttet å overføre 20.000 kroner fra dugnadsmidler til midler for Lokal Agenda 21, noe som øker totalbeløpet til 56.000 kroner. Vedtaket ble fattet med én stemme imot fra SV. I tillegg ble det oppfordret til å stemme på lokale kandidater i det kommende valget.",
     "choice_side":"right",
     "chosen":"GPT4o-mini",
-    "rationale":"Summary B is more complete as it accurately details the decision made by Arna bydelsstyre and includes information about the vote outcome and the call to vote for local candidates."
+    "rationale":"Summary B accurately reports that the proposal was approved (not rejected as Summary A incorrectly states), which is crucial for newsworthiness as it concerns actual public spending decisions and resource allocation. Summary B also clearly highlights the MONEY element (20,000 kroner transfer) and ACCOUNTABILITY (local governance decision), while Summary A contains a factual error that undermines its credibility and newsworthiness."
   },
   {
     "doc_id":"doc_7",
@@ -309,7 +309,7 @@
     "reference_summary":"Arna bydelsstyre har besluttet å overføre 20.000 kroner fra dugnadsmidler til midler for Lokal Agenda 21, noe som øker totalbeløpet til 56.000 kroner. Vedtaket ble fattet med én stemme imot fra SV. I tillegg ble det oppfordret til å stemme på lokale kandidater i det kommende valget.",
     "choice_side":"right",
     "chosen":"viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B covers the main points of the document by mentioning the transfer of funds to Local Agenda 21 and the encouragement to vote for candidates from Arna, while avoiding unnecessary details present in Summary A."
+    "rationale":"Summary B is more newsworthy because it clearly and concisely surfaces the key facts (specific amounts, decision, and actors) without unnecessary filler, making it more suitable for local journalism. Summary A dilutes newsworthiness with lengthy philosophical commentary about transparency and democracy that obscures rather than highlights the concrete, actionable information that would interest local residents."
   },
   {
     "doc_id":"doc_7",
@@ -321,7 +321,7 @@
     "reference_summary":"Arna bydelsstyre har besluttet å overføre 20.000 kroner fra dugnadsmidler til midler for Lokal Agenda 21, noe som øker totalbeløpet til 56.000 kroner. Vedtaket ble fattet med én stemme imot fra SV. I tillegg ble det oppfordret til å stemme på lokale kandidater i det kommende valget.",
     "choice_side":"left",
     "chosen":"llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more detailed and accurate account of the decision made by Arna bydelsstyre, including the specific amount of money transferred and the voting outcome, while also mentioning the encouragement to support local candidates."
+    "rationale":"Summary A accurately reports the voting outcome (proposal passed with 1 vote against from SV) and clearly presents both newsworthy elements: the budget reallocation decision and the electoral encouragement. Summary B contains a critical factual error, stating the proposal was voted down when it actually passed, which undermines its credibility and newsworthiness as a local news summary."
   },
   {
     "doc_id":"doc_7",
@@ -333,7 +333,7 @@
     "reference_summary":"Arna bydelsstyre har besluttet å overføre 20.000 kroner fra dugnadsmidler til midler for Lokal Agenda 21, noe som øker totalbeløpet til 56.000 kroner. Vedtaket ble fattet med én stemme imot fra SV. I tillegg ble det oppfordret til å stemme på lokale kandidater i det kommende valget.",
     "choice_side":"right",
     "chosen":"llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides more detailed information about the allocation of funds and the voting outcome, making it more complete than Summary A."
+    "rationale":"Summary B better highlights the financial impact by specifying the resulting total amount (56,000 kroner), which is more newsworthy for local residents interested in public spending. Summary B also more clearly presents the voting outcome and the electoral context, making the accountability and timeliness aspects more transparent."
   },
   {
     "doc_id":"doc_8",
@@ -343,9 +343,9 @@
     "sumright":"Protokollen fra Arna bydelsstyres møte den 16. juni 2010 ble godkjent under møtet. Dette bekrefter at alle medlemmene var enige om innholdet i protokollen. Det er vanlig praksis at protokoller godkjennes i møtene, slik at det ikke er behov for ytterligere behandling eller godkjenning i etterkant. Arna bydelsstyre godkjente protokollen fra sitt møte den 16.",
     "source_text":" \nSaksnr.: 0239- 200801582-45 \n\n \n\nGodkjenning av protokoll fra Arna bydelsstyre sitt møte 16. juni 2010 \nProtokollen blir godkjent i møtet. ",
     "reference_summary":"Protokollen fra Arna bydelsstyres møte den 16. juni 2010 ble godkjent i det påfølgende møtet.",
-    "choice_side":"right",
-    "chosen":"norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides more details about the approval process and the unanimous agreement of all members, making it more complete than Summary A."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries describe a routine administrative procedure (protocol approval) with minimal newsworthy elements. Neither summary highlights any of the key newsworthiness criteria (proximity, impact, conflict, money, accountability, timeliness, novelty, or human interest) because the source document itself contains no substantive newsworthy information—it is merely a procedural record of protocol approval."
   },
   {
     "doc_id":"doc_8",
@@ -357,7 +357,7 @@
     "reference_summary":"Protokollen fra Arna bydelsstyres møte den 16. juni 2010 ble godkjent i det påfølgende møtet.",
     "choice_side":"left",
     "chosen":"viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A covers the main point of the document by stating that the minutes from the meeting were approved, which is the key information."
+    "rationale":"Summary A accurately captures the actual newsworthy content of the document (protocol approval), while Summary B introduces information not present in the source text and fails to convey any substantive information about what occurred."
   },
   {
     "doc_id":"doc_8",
@@ -367,9 +367,9 @@
     "sumright":"Protokollen fra Arna bydelsstyres møte den 16. juni 2010 ble godkjent i det påfølgende møtet.",
     "source_text":" \nSaksnr.: 0239- 200801582-45 \n\n \n\nGodkjenning av protokoll fra Arna bydelsstyre sitt møte 16. juni 2010 \nProtokollen blir godkjent i møtet. ",
     "reference_summary":"Protokollen fra Arna bydelsstyres møte den 16. juni 2010 ble godkjent i det påfølgende møtet.",
-    "choice_side":"right",
-    "chosen":"viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B is more complete as it specifies that the approval of the protocol took place in the subsequent meeting."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries convey the same basic factual content about protocol approval with minimal newsworthy elements. Neither summary highlights any of the key newsworthiness criteria (proximity, impact, conflict, money, accountability, timeliness, novelty, or human interest), as the source document itself contains no such elements—it is merely a procedural administrative record."
   },
   {
     "doc_id":"doc_8",
@@ -379,9 +379,9 @@
     "sumright":"Protokollen fra Arna bydelsstyres møte den 16. juni 2010 ble godkjent i det påfølgende møtet.",
     "source_text":" \nSaksnr.: 0239- 200801582-45 \n\n \n\nGodkjenning av protokoll fra Arna bydelsstyre sitt møte 16. juni 2010 \nProtokollen blir godkjent i møtet. ",
     "reference_summary":"Protokollen fra Arna bydelsstyres møte den 16. juni 2010 ble godkjent i det påfølgende møtet.",
-    "choice_side":"right",
-    "chosen":"GPT4o-mini",
-    "rationale":"Summary B is more concise and accurately states that the protocol was approved in the subsequent meeting."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries convey the same basic factual content about protocol approval with minimal newsworthy elements. Neither summary highlights any aspects that would make this relevant to local journalism (proximity, impact, conflict, money, accountability, timeliness, novelty, or human interest), as the source document itself contains no such elements."
   },
   {
     "doc_id":"doc_9",
@@ -391,9 +391,9 @@
     "sumright":"Dokumentet omhandler saker som skal tas opp under møtet den 7. desember",
     "source_text":" \n1 \nDato: 30. november 2010 \n \/10\n\n \n\n \n\n \nEventuelt til møte 7 desember 2010 \n\n MORO BBB-0256-200800956-166 \n\n \n\nForslag til vedtak: \nSaker til eventuelt legges fram i møte \n\n \n\n \n\n \n\n \n\n \n\n \n\n2 \nSaksutredning: \n ",
     "reference_summary":"Dokumentet inneholder et forslag til vedtak om at saker til eventuelt skal legges fram i møtet den 7. desember 2010. Det er ingen spesifikke saker nevnt, og det er en kortfattet saksutredning uten ytterligere detaljer.",
-    "choice_side":"left",
-    "chosen":"GPT4o-mini",
-    "rationale":"Summary A provides more details by mentioning the proposal for presenting items under 'eventuelt' in the meeting on December 7, 2010, while Summary B lacks specific information."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries capture minimal newsworthy elements from a procedural document that lacks substantive content. Neither summary highlights impact, conflict, financial implications, or human interest—the document itself contains only a meeting notice with no specific agenda items or controversial details to surface."
   },
   {
     "doc_id":"doc_9",
@@ -405,7 +405,7 @@
     "reference_summary":"Dokumentet inneholder et forslag til vedtak om at saker til eventuelt skal legges fram i møtet den 7. desember 2010. Det er ingen spesifikke saker nevnt, og det er en kortfattet saksutredning uten ytterligere detaljer.",
     "choice_side":"right",
     "chosen":"llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a clearer and more specific overview of the document, mentioning the proposal for presenting issues at the meeting on December 7, 2010, while Summary A lacks this detail."
+    "rationale":"Summary B is more newsworthy because it clearly identifies the specific TIMELINESS element (meeting date of December 7, 2010) and presents the information more concisely, making it more suitable for local journalism. Summary A is verbose and repetitive without adding newsworthy value, and includes incomplete text that appears cut off."
   },
   {
     "doc_id":"doc_9",
@@ -415,9 +415,9 @@
     "sumright":"Dokumentet inneholder et forslag om at saker til eventuelt skal legges frem i møtet som skal avholdes den 7. desember 2010, med henvisning til sak MORO BBB-0256-200800956-166. Det finnes ingen ytterligere informasjon i denne korte oppsummeringen.",
     "source_text":" \n1 \nDato: 30. november 2010 \n \/10\n\n \n\n \n\n \nEventuelt til møte 7 desember 2010 \n\n MORO BBB-0256-200800956-166 \n\n \n\nForslag til vedtak: \nSaker til eventuelt legges fram i møte \n\n \n\n \n\n \n\n \n\n \n\n \n\n2 \nSaksutredning: \n ",
     "reference_summary":"Dokumentet inneholder et forslag til vedtak om at saker til eventuelt skal legges fram i møtet den 7. desember 2010. Det er ingen spesifikke saker nevnt, og det er en kortfattet saksutredning uten ytterligere detaljer.",
-    "choice_side":"right",
-    "chosen":"llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides more information by specifying the subject of the document and referencing the relevant case number, making it more complete than Summary A."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries accurately capture the minimal newsworthy content available in this administrative document—a procedural meeting notice with no substantive details about impact, conflict, spending, or community effects. Neither summary can highlight newsworthy elements because the source document itself contains none, making them equally uninformative from a journalism perspective."
   },
   {
     "doc_id":"doc_9",
@@ -427,9 +427,9 @@
     "sumright":"Dokumentet omhandler saker som skal tas opp under møtet den 7. desember",
     "source_text":" \n1 \nDato: 30. november 2010 \n \/10\n\n \n\n \n\n \nEventuelt til møte 7 desember 2010 \n\n MORO BBB-0256-200800956-166 \n\n \n\nForslag til vedtak: \nSaker til eventuelt legges fram i møte \n\n \n\n \n\n \n\n \n\n \n\n \n\n2 \nSaksutredning: \n ",
     "reference_summary":"Dokumentet inneholder et forslag til vedtak om at saker til eventuelt skal legges fram i møtet den 7. desember 2010. Det er ingen spesifikke saker nevnt, og det er en kortfattet saksutredning uten ytterligere detaljer.",
-    "choice_side":"left",
-    "chosen":"llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more details about the content of the document, mentioning that it includes proposals for topics to be presented at a meeting on December 7, 2010, while Summary B lacks this specific information."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries capture the same minimal newsworthy content from a procedural administrative document. Neither summary identifies substantive newsworthy elements because the source document itself contains only a meeting notice with no specific agenda items, financial implications, conflicts, or community impact details to highlight."
   },
   {
     "doc_id":"doc_10",
@@ -441,7 +441,7 @@
     "reference_summary":"Bergenhus bydelsstyre har enstemmig godkjent et bevilgningsprosjekt for nybygg ved Ladegården sykehjem. Styret forutsetter at eventuelle økninger i internleie ikke skal belaste bydelens driftsbudsjett.",
     "choice_side":"right",
     "chosen":"viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a clearer and more detailed overview of the bevilgningsprosjekt, including the key decision regarding increased costs and its impact on the district's budget."
+    "rationale":"Summary B better captures the newsworthy aspects by clearly highlighting the key accountability element—the bydelsstyre's explicit constraint that increased costs cannot burden the municipal budget—which is crucial financial and governance information for local residents. Summary A undermines newsworthiness by claiming the reasoning is unclear and focusing on missing details rather than emphasizing the actual decision and its financial implications."
   },
   {
     "doc_id":"doc_10",
@@ -453,7 +453,7 @@
     "reference_summary":"Bergenhus bydelsstyre har enstemmig godkjent et bevilgningsprosjekt for nybygg ved Ladegården sykehjem. Styret forutsetter at eventuelle økninger i internleie ikke skal belaste bydelens driftsbudsjett.",
     "choice_side":"left",
     "chosen":"norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A covers the main points of the document including the approval of the funding for the new building at Ladegården sykehjem and the condition regarding the increase in internal rent."
+    "rationale":"Summary A better captures the newsworthy financial accountability aspect by explicitly highlighting the bydelsstyre's condition that cost increases must not burden the district's operating budget, which is a key constraint with direct implications for local taxpayers. Summary B is incomplete and lacks this important financial safeguard detail."
   },
   {
     "doc_id":"doc_10",
@@ -465,7 +465,7 @@
     "reference_summary":"Bergenhus bydelsstyre har enstemmig godkjent et bevilgningsprosjekt for nybygg ved Ladegården sykehjem. Styret forutsetter at eventuelle økninger i internleie ikke skal belaste bydelens driftsbudsjett.",
     "choice_side":"left",
     "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A covers the main points of the document concisely without unnecessary details, making it more complete."
+    "rationale":"Summary A more effectively highlights the newsworthy MONEY and ACCOUNTABILITY elements by clearly stating the financial constraint that costs cannot be covered by the district's operating budget, which is the core conflict and fiscal implication. Summary B dilutes this key point with excessive procedural details and speculative commentary that obscures rather than clarifies the newsworthy aspects."
   },
   {
     "doc_id":"doc_10",
@@ -477,7 +477,7 @@
     "reference_summary":"Bergenhus bydelsstyre har enstemmig godkjent et bevilgningsprosjekt for nybygg ved Ladegården sykehjem. Styret forutsetter at eventuelle økninger i internleie ikke skal belaste bydelens driftsbudsjett.",
     "choice_side":"left",
     "chosen":"llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more detailed and accurate account of the key points discussed in the document compared to Summary B."
+    "rationale":"Summary A more accurately captures the newsworthy financial accountability aspect by precisely stating the budget constraint (that cost increases cannot be covered by the district's operating budget), while Summary B mischaracterizes the decision as approving a 'new nursing home' construction when the document only approves a financing project for an expansion at an existing facility, reducing its newsworthiness through inaccuracy."
   },
   {
     "doc_id":"doc_11",
@@ -489,7 +489,7 @@
     "reference_summary":"Bergenhus bydelsstyre mottar informasjon om ajourføring av kommunedelplanen for anlegg og områder for idrett og friluftsliv. Det legges frem en oversikt over søknader om spillemidler for 2001, som ikke er prioritert. Prioritering vil skje av byrådet i desember, og bydelsstyrene vil få en mer aktiv rolle i fremtidige prioriteringer.",
     "choice_side":"left",
     "chosen":"viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more concise and accurate overview of the document, covering the main points effectively."
+    "rationale":"Summary A concisely captures the key newsworthy elements: the plan update, gaming fund applications for 2001, and the increased role for the district board in 2002 prioritization. Summary B adds interpretive commentary about local needs that is not present in the source document, reducing focus on the actual newsworthy facts and decisions."
   },
   {
     "doc_id":"doc_11",
@@ -501,7 +501,7 @@
     "reference_summary":"Bergenhus bydelsstyre mottar informasjon om ajourføring av kommunedelplanen for anlegg og områder for idrett og friluftsliv. Det legges frem en oversikt over søknader om spillemidler for 2001, som ikke er prioritert. Prioritering vil skje av byrådet i desember, og bydelsstyrene vil få en mer aktiv rolle i fremtidige prioriteringer.",
     "choice_side":"right",
     "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a more concise and focused overview of the document, covering the main points without unnecessary details."
+    "rationale":"Summary B better highlights newsworthy elements by emphasizing the increased influence of district councils in future planning decisions (ACCOUNTABILITY and TIMELINESS), while Summary A focuses on general importance without surfacing concrete developments. Summary B also clarifies the timeline and decision-making process more clearly, making it more relevant for local journalism coverage."
   },
   {
     "doc_id":"doc_11",
@@ -513,7 +513,7 @@
     "reference_summary":"Bergenhus bydelsstyre mottar informasjon om ajourføring av kommunedelplanen for anlegg og områder for idrett og friluftsliv. Det legges frem en oversikt over søknader om spillemidler for 2001, som ikke er prioritert. Prioritering vil skje av byrådet i desember, og bydelsstyrene vil få en mer aktiv rolle i fremtidige prioriteringer.",
     "choice_side":"right",
     "chosen":"norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a more detailed and accurate overview of the document, including key points about the municipal plan for sports and outdoor activities and the role of district councils in the prioritization process."
+    "rationale":"Summary B better surfaces newsworthy elements by highlighting the ACCOUNTABILITY aspect (bydelsstyrene gaining more active roles in prioritization) and TIMELINESS (the 2002 rollout deadline), while also emphasizing local IMPACT and relevance to residents. Summary A merely states facts without connecting them to why this matters for the community."
   },
   {
     "doc_id":"doc_11",
@@ -525,7 +525,7 @@
     "reference_summary":"Bergenhus bydelsstyre mottar informasjon om ajourføring av kommunedelplanen for anlegg og områder for idrett og friluftsliv. Det legges frem en oversikt over søknader om spillemidler for 2001, som ikke er prioritert. Prioritering vil skje av byrådet i desember, og bydelsstyrene vil få en mer aktiv rolle i fremtidige prioriteringer.",
     "choice_side":"left",
     "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more detailed overview of the document, including information on the upcoming plan revision and the prioritization process for grant applications."
+    "rationale":"Summary A better surfaces newsworthy elements by highlighting the increased influence of district councils in future planning (ACCOUNTABILITY), the timeline for prioritization decisions (TIMELINESS), and the connection to broader economic planning (MONEY\/IMPACT). Summary B is vague and fails to clarify key details about the decision-making process and its implications for local residents."
   },
   {
     "doc_id":"doc_12",
@@ -537,7 +537,7 @@
     "reference_summary":"Bergenhus bydelsstyre vurderer en søknad om skjenkebevilling for øl, vin og brennevin ved det nye spisestedet God Drikke Bergen. Søknaden er i tråd med retningslinjene for restriktiv tildeling av skjenkebevillinger, og administrasjonen har ingen merknader til at bevillingen innvilges, da alkoholomsetningen er oppgitt til 50% av totalomsetningen.",
     "choice_side":"right",
     "chosen":"gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a more concise and accurate overview of the document, capturing the key points and decision made by Bergenhus bydelsstyre regarding the skjenkebevilling application."
+    "rationale":"Summary B clearly surfaces the key newsworthy elements: the specific decision (approval), the applicant and location, and the outcome with minimal conditions. Summary A is incomplete and cuts off mid-sentence, failing to communicate the decision or its implications for local residents. For local journalism, Summary B's concise presentation of the approval decision and its basis is more newsworthy and useful."
   },
   {
     "doc_id":"doc_12",
@@ -549,7 +549,7 @@
     "reference_summary":"Bergenhus bydelsstyre vurderer en søknad om skjenkebevilling for øl, vin og brennevin ved det nye spisestedet God Drikke Bergen. Søknaden er i tråd med retningslinjene for restriktiv tildeling av skjenkebevillinger, og administrasjonen har ingen merknader til at bevillingen innvilges, da alkoholomsetningen er oppgitt til 50% av totalomsetningen.",
     "choice_side":"left",
     "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more detailed information about the application, including the specific percentage of alcohol sales and the recommendation for approval based on the establishment being classified as a restaurant."
+    "rationale":"Summary A better surfaces newsworthy elements by specifying the concrete financial detail (50% alcohol revenue threshold) and the policy tension between the restrictive allocation policy and the approval recommendation, which creates accountability and conflict angles relevant to local journalism. Summary B is vague about the reasoning and omits these specific, newsworthy details."
   },
   {
     "doc_id":"doc_12",
@@ -559,9 +559,9 @@
     "sumright":"Bergenhus bydelsstyre vurderer en søknad fra God Drikke Bergen om skjenkebevilling for øl, vin og brennevin. Bydelsstyret anbefaler å gi bevilling, da tilgangen på alkohol skal begrenses og det foreligger andre positive sider ved konseptet.",
     "source_text":"\n| |Dato: 3. april 2002 |\n| | |\n| | |\n| |BEBS |\n| |113 \/02 |\n| |\n| |\n|Bergenhus bydelsstyre |\n| |\n| |\n| |\n|God Drikke Bergen - søknad om skjenkebevilling frem til 30.06.04 |\n| |\n| |MACH |BEBD-7513-200200125-74|\n| |\n\nHva saken gjelder:\n\nSøknaden gjelder ny alminnelig skjenkebevilling for øl, vin og brennevin\nved God Drikke Bergen, Vaskerelven 14.\n\nVed behandling av søknader om skjenkebevilling skal alkoholpolitiske\nvurderinger legges til grunn. Tilgangen på alkohol skal begrenses, og det\nskal føres en restriktiv tildelingspolitikk ved behandling av søknader om\nnye skjenkebevillinger.\n\nI utgangspunktet tildeles nye bevillinger i hovedsak til spisesteder. Nye\nbevillinger til andre konsepter kan tildeles etter en konkret vurdering.\nSkal skjenkebevilling gis, bør det foreligge andre forhold\/sider ved\nkonseptet\/virksomheten som tilsier at slik bevilling bør gis.\n\nIfølge søknaden skal det åpnes et nytt spisested og alkoholomsetningen er\noppgitt til 50% av totalomsetningen. Spisested defineres som\nserveringssted med hovedvekt på servering av mat. Dersom mer enn 50% av\ntotalomsetningen ved et sted er alkoholholdig drikk, kan stedet vanligvis\nikke betraktes som spisested.\nAdministrasjonen legger til grunn at det her søkes om bevilling for\nspisested, og har ingen merknader til at det gis skjenkebevilling.\n\nForslag til vedtak:\n\nBergenhus bydelsstyre har ingen merknader til at det gis skjenkebevilling\nfor øl, vin og brennevin for God Drikke Bergen.\n\nOle Vorland\nbydelsdirektør\n\n Steinar Løland\n prosjektleder\n",
     "reference_summary":"Bergenhus bydelsstyre vurderer en søknad om skjenkebevilling for øl, vin og brennevin ved det nye spisestedet God Drikke Bergen. Søknaden er i tråd med retningslinjene for restriktiv tildeling av skjenkebevillinger, og administrasjonen har ingen merknader til at bevillingen innvilges, da alkoholomsetningen er oppgitt til 50% av totalomsetningen.",
-    "choice_side":"right",
-    "chosen":"viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides more detailed information about the considerations made by the Bergenhus bydelsstyre and the reasons behind recommending the approval of the liquor license for God Drikke Bergen."
+    "choice_side":"left",
+    "chosen":"gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500",
+    "rationale":"Summary A better captures newsworthy elements by clearly stating the application was approved without objections and specifying the key criterion (restaurant classification with 50% alcohol revenue threshold). Summary B is vague about the actual decision outcome and misrepresents the rationale, making it less informative for local journalism purposes."
   },
   {
     "doc_id":"doc_12",
@@ -573,7 +573,7 @@
     "reference_summary":"Bergenhus bydelsstyre vurderer en søknad om skjenkebevilling for øl, vin og brennevin ved det nye spisestedet God Drikke Bergen. Søknaden er i tråd med retningslinjene for restriktiv tildeling av skjenkebevillinger, og administrasjonen har ingen merknader til at bevillingen innvilges, da alkoholomsetningen er oppgitt til 50% av totalomsetningen.",
     "choice_side":"left",
     "chosen":"GPT4o-mini",
-    "rationale":"Summary A provides a more detailed overview of the application process and the considerations made by the administration, including the specific percentage of alcohol sales."
+    "rationale":"Summary A better highlights the newsworthy aspect of ACCOUNTABILITY by explicitly noting that the application complies with the restrictive allocation policy for alcohol licenses, making clear the regulatory framework and decision rationale. Summary B adds unnecessary speculation about 'further processing' that contradicts the document's clear approval decision, reducing its newsworthiness."
   },
   {
     "doc_id":"doc_13",
@@ -585,7 +585,7 @@
     "reference_summary":"Bergenhus bydelsstyre har behandlet en søknad om bygging av et garasjeanlegg under Skansendammen, men har besluttet å avvente videre behandling inntil det foreligger en nærmere utredning om et fjellanlegg. Det er også behov for ytterligere vurderinger angående bading og utforming av grøntområdet i samarbeid med beboerne.",
     "choice_side":"left",
     "chosen":"llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A covers more key points including the decision to not take a stance on the proposed parking facility and new Skansendam until further investigation, the consideration of swimming in the area, and the request for information on the customers of the ticket machine."
+    "rationale":"Summary A provides a more complete and newsworthy account by highlighting the key conflict (multiple party proposals with different positions), the decision outcome (rejection of parking garage proposal), and local impact (community involvement in green space planning). Summary B is incomplete and cuts off mid-sentence, failing to convey any substantive newsworthy elements."
   },
   {
     "doc_id":"doc_13",
@@ -597,7 +597,7 @@
     "reference_summary":"Bergenhus bydelsstyre har behandlet en søknad om bygging av et garasjeanlegg under Skansendammen, men har besluttet å avvente videre behandling inntil det foreligger en nærmere utredning om et fjellanlegg. Det er også behov for ytterligere vurderinger angående bading og utforming av grøntområdet i samarbeid med beboerne.",
     "choice_side":"left",
     "chosen":"norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more information about the decisions made regarding the garage construction under Skansendammen compared to Summary B, which lacks important details."
+    "rationale":"Summary A, though incomplete, at least attempts to summarize the actual decision made by the council. Summary B appears to be a malformed instruction\/prompt rather than a summary, cutting off mid-sentence and failing to convey any newsworthy elements about the council's decision to delay the parking garage project pending further study."
   },
   {
     "doc_id":"doc_13",
@@ -609,7 +609,7 @@
     "reference_summary":"Bergenhus bydelsstyre har behandlet en søknad om bygging av et garasjeanlegg under Skansendammen, men har besluttet å avvente videre behandling inntil det foreligger en nærmere utredning om et fjellanlegg. Det er også behov for ytterligere vurderinger angående bading og utforming av grøntområdet i samarbeid med beboerne.",
     "choice_side":"left",
     "chosen":"nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more detailed overview of the decisions made by the Bergenhus bydelsstyre regarding the construction project, including the different proposals and outcomes."
+    "rationale":"Summary A better captures the newsworthy elements by highlighting the key conflict (Frp's proposal being rejected 8-5), the accountability aspect (styret's cautious approach), and the concrete impact on the community (parking problems, community involvement requirements). Summary B appears incomplete and merely restates the document without emphasizing what makes this newsworthy for local residents."
   },
   {
     "doc_id":"doc_13",
@@ -621,7 +621,7 @@
     "reference_summary":"Bergenhus bydelsstyre har behandlet en søknad om bygging av et garasjeanlegg under Skansendammen, men har besluttet å avvente videre behandling inntil det foreligger en nærmere utredning om et fjellanlegg. Det er også behov for ytterligere vurderinger angående bading og utforming av grøntområdet i samarbeid med beboerne.",
     "choice_side":"left",
     "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A covers more key points including the decision to not take a stance on the proposed garage and the need for further investigation into an alternative location."
+    "rationale":"Summary A better captures newsworthy elements by highlighting the key conflict (multiple party proposals with different positions), the accountability aspect (the decision to require further study), and the local impact (parking problems). Summary B is incomplete and fails to convey any substantive information about the decision or its implications."
   },
   {
     "doc_id":"doc_14",
@@ -633,7 +633,7 @@
     "reference_summary":"Bergenhus bydelsstyre har besluttet å videreføre ordningen med overføring av overskudd og underskudd for tjenesteenheter i 2003. Dette ble vedtatt etter en votering der et fellesforslag fra Frp, H og KrF fikk flertall, mens administrasjonens forslag ble nedstemt.",
     "choice_side":"left",
     "chosen":"GPT4o-mini",
-    "rationale":"Summary A accurately reflects the decision made by Bergenhus bydelsstyre to continue the surplus\/deficit transfer arrangement for service units in 2003, based on the majority vote of Frp, H, and KrF."
+    "rationale":"Summary A accurately captures the key newsworthy elements: the political conflict (coalition vs. administration), the voting outcome showing accountability and power dynamics, and the concrete decision made. Summary B contains factual errors (mentions 2004 instead of 2003, mischaracterizes the disagreement) and fails to highlight the actual conflict and decision that occurred."
   },
   {
     "doc_id":"doc_14",
@@ -645,7 +645,7 @@
     "reference_summary":"Bergenhus bydelsstyre har besluttet å videreføre ordningen med overføring av overskudd og underskudd for tjenesteenheter i 2003. Dette ble vedtatt etter en votering der et fellesforslag fra Frp, H og KrF fikk flertall, mens administrasjonens forslag ble nedstemt.",
     "choice_side":"left",
     "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A is more complete as it mentions the debate among different parties and the opposition from the administration to continue the surplus\/deficit transfer arrangement."
+    "rationale":"Summary A better surfaces newsworthy elements by explicitly highlighting the CONFLICT between the bydelsstyre majority and the administration's opposing position, emphasizing the disagreement and stakes involved. Summary B mentions the conflict more briefly and focuses more on procedural details (which parties proposed what) rather than the substantive disagreement that makes this newsworthy for local residents."
   },
   {
     "doc_id":"doc_14",
@@ -657,7 +657,7 @@
     "reference_summary":"Bergenhus bydelsstyre har besluttet å videreføre ordningen med overføring av overskudd og underskudd for tjenesteenheter i 2003. Dette ble vedtatt etter en votering der et fellesforslag fra Frp, H og KrF fikk flertall, mens administrasjonens forslag ble nedstemt.",
     "choice_side":"left",
     "chosen":"norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A accurately captures the decision made by Bergenhus bydelsstyre to continue the surplus\/deficit transfer arrangement for individual service units in 2003, which is the main point of the document."
+    "rationale":"Summary A accurately reflects the actual decision made (continuing the arrangement), while Summary B contains significant factual errors (claiming the arrangement won't continue in 2003, mentioning 2004, and mischaracterizing the disagreement). For local journalism, accuracy about what was actually decided is fundamental to newsworthiness."
   },
   {
     "doc_id":"doc_14",
@@ -669,7 +669,7 @@
     "reference_summary":"Bergenhus bydelsstyre har besluttet å videreføre ordningen med overføring av overskudd og underskudd for tjenesteenheter i 2003. Dette ble vedtatt etter en votering der et fellesforslag fra Frp, H og KrF fikk flertall, mens administrasjonens forslag ble nedstemt.",
     "choice_side":"left",
     "chosen":"viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A accurately captures the decision made by Bergenhus bydelsstyre to continue the practice of transferring surplus\/deficit for individual service units in 2003, while also mentioning the rejection of the administration's proposal."
+    "rationale":"Summary A accurately captures the key newsworthy elements: the political conflict (multiple parties proposing similar measures against administration), the voting outcome (8-5 decision), and the accountability aspect of budget management. Summary B contains factual errors (mentions 2004 instead of 2003, mischaracterizes the decision as uncertain) and fails to highlight the political disagreement and clear outcome that make this newsworthy."
   },
   {
     "doc_id":"doc_15",
@@ -681,7 +681,7 @@
     "reference_summary":"Dokumentet omhandler en sak fra Foretningsutvalget som fokuserer på kontakt, samhandling og bistand mellom byrådsavdelingene og bydelsstyrene. Det nevnes også en e-post fra Sandviken idrettslag, sendt av leder Bjarne Ø. Graabræk, som er utdelt i møtet.",
     "choice_side":"left",
     "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A covers the main points of the document by mentioning the topics to be reviewed by the executive committee and the interaction between city council departments."
+    "rationale":"Summary A identifies the key newsworthy elements: the specific case number (137-08), the actors involved (business committee, municipal departments, district councils), and the subject matter (contact and cooperation). Summary B acknowledges uncertainty and lacks concrete information about what was discussed, making it less useful for local journalism that requires clarity on who, what, and why."
   },
   {
     "doc_id":"doc_15",
@@ -693,7 +693,7 @@
     "reference_summary":"Dokumentet omhandler en sak fra Foretningsutvalget som fokuserer på kontakt, samhandling og bistand mellom byrådsavdelingene og bydelsstyrene. Det nevnes også en e-post fra Sandviken idrettslag, sendt av leder Bjarne Ø. Graabræk, som er utdelt i møtet.",
     "choice_side":"right",
     "chosen":"norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides more detailed information about the specific actions taken regarding the contact between the city departments and the sports club, while also mentioning the decision outcome and the date of the meeting."
+    "rationale":"Summary B is more newsworthy because it includes concrete details about the decision (a specific vote count, the date of the meeting, and the actual action taken by the culture department), which demonstrates ACCOUNTABILITY and provides IMPACT information about how the city will support local sports organizations. Summary A merely describes what was discussed without capturing the substantive outcome or decision."
   },
   {
     "doc_id":"doc_15",
@@ -703,9 +703,9 @@
     "sumright":"Foretningsutvalget har behandlet saken om kontakt, samhandling og bistand mellom byrådsavdelinger og bydelsstyrene. Det ble også diskutert et brev fra Sandviken idrettslag som ble distribuert under møtet. Sakene vil bli gjennomsett videre.",
     "source_text":" Saker til gjenomsyn\n\nForetningsutvalget sak 137-08 \nKontakt, samhandling og bistand mellom byrådsavdelingene og bydelsstyrene.\n\nPapirer utdelt i møte:\nTil sak 53-08: E-post fra Sandviken idrettslag ved leder Bjarne Ø. Graabræk\n\n",
     "reference_summary":"Dokumentet omhandler en sak fra Foretningsutvalget som fokuserer på kontakt, samhandling og bistand mellom byrådsavdelingene og bydelsstyrene. Det nevnes også en e-post fra Sandviken idrettslag, sendt av leder Bjarne Ø. Graabræk, som er utdelt i møtet.",
-    "choice_side":"right",
-    "chosen":"llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides more details including the discussion of the letter from Sandviken idrettslag distributed during the meeting, making it more complete than Summary A."
+    "choice_side":"left",
+    "chosen":"gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500",
+    "rationale":"Summary A surfaces more newsworthy elements by highlighting the unusual 40-year delay in decision-making (NOVELTY\/ACCOUNTABILITY) and explicitly noting that no decision was made (ACCOUNTABILITY\/TIMELINESS), which are significant for local journalism. Summary B provides generic information without emphasizing what makes this case noteworthy to residents."
   },
   {
     "doc_id":"doc_15",
@@ -717,7 +717,7 @@
     "reference_summary":"Dokumentet omhandler en sak fra Foretningsutvalget som fokuserer på kontakt, samhandling og bistand mellom byrådsavdelingene og bydelsstyrene. Det nevnes også en e-post fra Sandviken idrettslag, sendt av leder Bjarne Ø. Graabræk, som er utdelt i møtet.",
     "choice_side":"right",
     "chosen":"GPT4o-mini",
-    "rationale":"Summary B provides a more complete overview by mentioning the main topic, key points, and the specific document distributed in the meeting."
+    "rationale":"Summary B clearly identifies the key newsworthy elements including the specific case (contact and cooperation between city departments and district councils), the actors involved, and the concrete document (email from Sandviken sports club leader), while Summary A admits uncertainty about what was discussed and which case is referenced, failing to surface any meaningful newsworthy aspects."
   },
   {
     "doc_id":"doc_16",
@@ -729,7 +729,7 @@
     "reference_summary":"Dokumentet beskriver prosedyrene for innlevering av skriftlige spørsmål fra medlemmer av Bystyret før møter. Det spesifiseres frister og hvordan spørsmålene skal sendes til Bystyrets kontor, samt hvordan man kan finne innkomne spørsmål via en nettlenke.",
     "choice_side":"right",
     "chosen":"llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a more detailed description of the procedures for submitting written questions to the City Council's office in Bergen municipality, including the deadline and the forwarding process."
+    "rationale":"Summary B more clearly identifies the newsworthy procedural information by explicitly stating this is about Bergen kommune's formal process for citizen participation, making it more relevant to local residents who need to understand how to engage with their municipal government. Summary A includes an unexplained reference to 'bystyredirektøren' that appears disconnected from the source document, reducing its clarity and credibility."
   },
   {
     "doc_id":"doc_16",
@@ -739,9 +739,9 @@
     "sumright":"Dokumentet beskriver prosedyrene for hvordan man kan levere skriftlige spørsmål til Bystyrets kontor i Bergen kommune. Det opplyser at spørsmålene må være innkommet senest en uke før møtedagen, og at de vil bli sendt videre til relevant byråd. Det finnes også en lenke til et register der man kan søke etter innkomne spørsmål.",
     "source_text":" Saksnr.: 0239- 200801472-23\n\nSkriftlige spørsmål\n\nMøtende medlemmer eller varamedlemmer som regner med å ta sete i møtet kan levere spørsmål skriftlig til Bystyrets kontor senest en uke før møtet, senest kl. 1500 samme ukedag som møtedagen. Bystyrets kontor oversender spørsmålet til vedkommende byråd.\n\nKlikk deg inn på linken nedenunder for å få en oversikt over innkomne spørsmål til dette møtet, evt. andre møter.\n\nhttp:\/\/www.bergen.kommune.no\/bksak\/\n\nVelg ”Søk spørsmålsregister” øverst i menyen til venstre, og du kan da søke på den spørsmåltypen du ønsker, hvilke utvalg som har fremmet det og i hvilket år. \n\n",
     "reference_summary":"Dokumentet beskriver prosedyrene for innlevering av skriftlige spørsmål fra medlemmer av Bystyret før møter. Det spesifiseres frister og hvordan spørsmålene skal sendes til Bystyrets kontor, samt hvordan man kan finne innkomne spørsmål via en nettlenke.",
-    "choice_side":"left",
-    "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more detailed information including the procedure for submitting questions, the deadline, and links to relevant websites."
+    "choice_side":"right",
+    "chosen":"llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500",
+    "rationale":"Summary B more clearly conveys the newsworthy procedural information by accurately stating the deadline (one week before the meeting day) and emphasizing the accountability mechanism of questions being forwarded to relevant municipal departments. Summary A contains a factual error (stating 15:00 the day before the meeting rather than one week before) and includes extraneous URL formatting that detracts from clarity, making it less suitable for local journalism purposes."
   },
   {
     "doc_id":"doc_16",
@@ -753,7 +753,7 @@
     "reference_summary":"Dokumentet beskriver prosedyrene for innlevering av skriftlige spørsmål fra medlemmer av Bystyret før møter. Det spesifiseres frister og hvordan spørsmålene skal sendes til Bystyrets kontor, samt hvordan man kan finne innkomne spørsmål via en nettlenke.",
     "choice_side":"right",
     "chosen":"GPT4o-mini",
-    "rationale":"Summary B provides a more detailed description of the procedures for submitting written questions to the City Council before meetings, including deadlines and how to access submitted questions via a web link."
+    "rationale":"Summary B better captures the newsworthy procedural aspects by clearly identifying this as an official process document with specific deadlines and submission requirements that would be relevant to local government participants. Summary A includes an irrelevant and confusing reference to a 'response from bystyredirektøren' that does not appear in the source text, undermining its credibility and newsworthiness."
   },
   {
     "doc_id":"doc_16",
@@ -763,9 +763,9 @@
     "sumright":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål fra medlemmer av Bergen bystyre. Spørsmål må leveres innen en uke før møtet, og vil bli oversendt til den aktuelle byråden. Det er også mulig å søke i et register for tidligere innleverte spørsmål.",
     "source_text":" Saksnr.: 0239- 200801472-23\n\nSkriftlige spørsmål\n\nMøtende medlemmer eller varamedlemmer som regner med å ta sete i møtet kan levere spørsmål skriftlig til Bystyrets kontor senest en uke før møtet, senest kl. 1500 samme ukedag som møtedagen. Bystyrets kontor oversender spørsmålet til vedkommende byråd.\n\nKlikk deg inn på linken nedenunder for å få en oversikt over innkomne spørsmål til dette møtet, evt. andre møter.\n\nhttp:\/\/www.bergen.kommune.no\/bksak\/\n\nVelg ”Søk spørsmålsregister” øverst i menyen til venstre, og du kan da søke på den spørsmåltypen du ønsker, hvilke utvalg som har fremmet det og i hvilket år. \n\n",
     "reference_summary":"Dokumentet beskriver prosedyrene for innlevering av skriftlige spørsmål fra medlemmer av Bystyret før møter. Det spesifiseres frister og hvordan spørsmålene skal sendes til Bystyrets kontor, samt hvordan man kan finne innkomne spørsmål via en nettlenke.",
-    "choice_side":"left",
-    "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more detailed information about the procedure for submitting written questions to the City Council's office, including links to relevant websites."
+    "choice_side":"right",
+    "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
+    "rationale":"Summary B is more newsworthy because it clearly identifies the key accountability element—that questions will be forwarded to the relevant byråd (city councilor)—which highlights the mechanism of democratic oversight and accountability. Summary A focuses on procedural details and includes extraneous URL information that obscures the newsworthy aspect of how citizens can hold elected officials accountable."
   },
   {
     "doc_id":"doc_17",
@@ -777,7 +777,7 @@
     "reference_summary":"I møtet den 15. juni 2009 behandlet Bergenhus bydelsstyre saken om helsepark i Dokken, presentert av prosjektleder Carl Fredrik Dalaker fra Ispoli helse AS. Prosjektet fokuserer på samhandlingsgevinst og samlokalisering av eksisterende aktører.",
     "choice_side":"tie",
     "chosen":null,
-    "rationale":"Both Summary A and Summary B cover the main points of the document equally well without missing any important information."
+    "rationale":"Both summaries capture the same newsworthy elements with equal effectiveness: the local government body (Bergenhus bydelsstyre), the specific project (helsepark in Dokken), the organization involved (Ispoli helse AS), the key concept (collaboration and co-location), and the meeting date. Neither summary better highlights proximity, impact, conflict, money, accountability, timeliness, novelty, or human interest aspects that would make this more relevant to local journalism."
   },
   {
     "doc_id":"doc_17",
@@ -789,7 +789,7 @@
     "reference_summary":"I møtet den 15. juni 2009 behandlet Bergenhus bydelsstyre saken om helsepark i Dokken, presentert av prosjektleder Carl Fredrik Dalaker fra Ispoli helse AS. Prosjektet fokuserer på samhandlingsgevinst og samlokalisering av eksisterende aktører.",
     "choice_side":"right",
     "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a more detailed and comprehensive overview of the project, emphasizing the importance of collaboration and synergy in the health park initiative."
+    "rationale":"Summary B better surfaces newsworthy elements by explicitly highlighting the local health sector context, the intended impact of improving local health services, and the concept of synergy effects, making it more relevant to residents. Summary A is more generic and fails to emphasize the concrete local benefit and community impact that would interest journalists covering municipal affairs."
   },
   {
     "doc_id":"doc_17",
@@ -799,9 +799,9 @@
     "sumright":"Forslag til vedtak: Byrådet anbefaler at Bergenhus bydelsstyre tar saken til orientering. byråd Byrådsmedlemmer deltok ikke i debatten. bydelsstyret Inger Marie Høiby (H) stilte spørsmål om hvordan prosjektet vil bidra til å redusere antall sykehusleie, og hvor mange leier det nåsies. Carl Fredrik Dalaker svarte at det er et mål om å redusere antall sykehusleie med 20%, men dette er ikke et krav fra helseforeningen. Prosjektet vil også bidra til å redusere antall leie av sykepleietjenester. I dag har de 3 leie av sykepleietjenester, og etter prosjektet vil de ha 2. Antallet leie av sykepleietjenester vil derfor bli redusert med 1. fagperson Carl Fred",
     "source_text":" Åpen halvtime\n\nBergenhus bydelsstyre behandlet saken i møtet 150609 sak 47-09 \n\nIspoli helse AS ved prosjektleder Carl Fredrik Dalaker: presenterte prosjektet helsepark i Dokken. Det viktigste for prosjektet er samhandlingsgevinst og samlokalisering av aktører som allerede finnes.\n\n",
     "reference_summary":"I møtet den 15. juni 2009 behandlet Bergenhus bydelsstyre saken om helsepark i Dokken, presentert av prosjektleder Carl Fredrik Dalaker fra Ispoli helse AS. Prosjektet fokuserer på samhandlingsgevinst og samlokalisering av eksisterende aktører.",
-    "choice_side":"left",
-    "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides a more complete overview of the main points and important information presented in the document, focusing on the establishment of a health park in Dokken and the key aspects of the project."
+    "choice_side":"right",
+    "chosen":"norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500",
+    "rationale":"Summary B better surfaces newsworthy elements by highlighting specific IMPACT metrics (20% reduction goal in hospital stays, reduction of nursing service leases from 3 to 2) and ACCOUNTABILITY through documented questioning by elected official Inger Marie Høiby, whereas Summary A only provides generic overview without concrete consequences or controversy."
   },
   {
     "doc_id":"doc_17",
@@ -811,9 +811,9 @@
     "sumright":"Under åpen halvtime i Bergenhus bydelsstyre den 15. juni 2009 ble det presentert et prosjekt om etablering av en helsepark i Dokken, med fokus på samhandling mellom eksisterende aktører innen helsesektoren. Prosjektlederen fremhevet viktigheten av å oppnå synergieffekter gjennom samarbeid. Prosjektet har til hensikt å forbedre helsetjenester lokalt. [\/url] [url]https:\/\/www.bergen.kommune.no\/bk\/motekalender\/bydelstyrene\/bergenhus-bydelsstyre\/saksdokumenter\/sak-47-09[\/url] [url]https:\/\/www.bergen.kommune.no\/bk\/motekalender\/bydelstyrene\/bergenhus-bydelsstyre\/saksdokumenter\/sak-47-09[\/url] [url]https:\/\/www.bergen.kommune.no\/bk\/motekalender\/bydelstyrene\/bergenhus-bydelsstyre\/saksdokumenter\/sak-47-09[\/url] [url]https:\/\/www.bergen.kommune.no\/bk\/motekalender\/bydelstyrene\/bergenhus-bydelsstyre\/saksdokumenter\/sak-47-09[\/url] [url]https:\/\/www.bergen.kommune.no\/bk\/mote",
     "source_text":" Åpen halvtime\n\nBergenhus bydelsstyre behandlet saken i møtet 150609 sak 47-09 \n\nIspoli helse AS ved prosjektleder Carl Fredrik Dalaker: presenterte prosjektet helsepark i Dokken. Det viktigste for prosjektet er samhandlingsgevinst og samlokalisering av aktører som allerede finnes.\n\n",
     "reference_summary":"I møtet den 15. juni 2009 behandlet Bergenhus bydelsstyre saken om helsepark i Dokken, presentert av prosjektleder Carl Fredrik Dalaker fra Ispoli helse AS. Prosjektet fokuserer på samhandlingsgevinst og samlokalisering av eksisterende aktører.",
-    "choice_side":"left",
-    "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A covers the main points of the document more clearly and concisely compared to Summary B."
+    "choice_side":"right",
+    "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
+    "rationale":"Summary B better surfaces newsworthy elements by including specific TIMELINESS details (date: 15. juni 2009, meeting reference), PROXIMITY (local Bergenhus district context), and IMPACT (explicit mention of improving local health services). Summary A omits the temporal specificity and local governance context that would be relevant to residents following their district council's decisions."
   },
   {
     "doc_id":"doc_18",
@@ -823,9 +823,9 @@
     "sumright":"Bergen bystyre har valgt nye medlemmer og ledere for komite for helse og sosial for perioden 2015-2019. Oddny Irene Miljeteig fra SV blir leder, mens Marita Moltu fra KrF blir nestleder. Komiteens medlemmer inkluderer representanter fra flere partier, blant annet Arbeiderpartiet, Høyre, Fremskrittspartiet, Sosialistisk Venstreparti, Kristelig Folkeparti, Miljøpartiet De Grønne og Venstre. Valgene ble gjennomført enstemmig.",
     "source_text":" 1 \nValg av komite for helse og sosial for valgperioden 2015-2019 \n\nBergen bystyre behandlet saken i møtet 281015 sak 276-15 og fattet følgende vedtak: \n1. Som medlemmer og varamedlemmer til komite for helse og sosial for valgperioden 2015-\n2019 velges: \n\nMedlemmer: \n1. Siw-Anita Lien (A) \n2. Øystein Hassel (A) \n3. Shady Hassan Abusaada (A) \n4. Per E. Stiegler (A) \n5. Natasha Vallebona Rivera (A) \n6. Jana Midelfart Hoff (H) \n7. Asle Steiestøl Wingsternes (H) \n8. Anette Strand (H) \n9. Anine Frølich (H) \n10. Eiler Macody Lund (FrP) \n11 Oddny Irene Miljeteig (SV) \n12. Marita Moltu (KrF) \n13. Randi Amundsen (MDG) \n14. Njaal Hendrik Neckelmann (V) \n15. Torstein Dahle (R) \n\nVaramedlemmer: \n1. Ragnhild Hoff Eilertsen (A) \n2. Odd Egil Rambøl (A) \n3. John Brattåker (A) \n4. Rigmor Heggdal (A) \n5. Veman Abdulaziz (A) \n6. Beate Tvedt Johannessen (A) \n7. Inger Johanne Seim (A) \n8. Geir Kaland (H) \n9.Kenneth Stien (H) \n10.Atle Fasteland (H) \n11.Lise Hæreide Ramsøy (H) \n12. Kari Odland (H) \n13. John Andre Kongsvik (H) \n14.Marte J. Monstad (FrP) \n15. Øivind Kristoffersen (FrP) \n16. Torbjørn M. Jørgensen (FrP) \n17. Sara Bell (SV) \n18. Ali Watti (SV) \n19. Eskild Hustvedt (SV) \n20. Knut Vindenes (KrF) \n21. Ragnhild Heradstveit (KrF) \n22. Eivind Skår (KrF) \n23. Janet Wiberg (MDG) \n24. Diane Alexandra Berbain (MDG) \n25. Øystein Bønes (MDG) \n26. Sindre August Horn (V) \n27. Øydis Lebiko (V) \n28. Kjell-Andre S. Johannessen (V) \n\n 2 \n29. Magne Hagesæter (R) \n30. Tora Kristiane Madsen Finne (R) \n31. Åsne Hagen (R) \n\n2. Som leder for komite for helse og sosial for valgperioden 2015-2019 velges: \n Oddny Irene Miljeteig (SV) \n\n3. Som nestleder for komite for helse og sosial for valgperioden 2015-2019 velges: \n Marita Moltu (KrF) \n\n4. Som 3 medlem av arbeidsutvalget i komite for helse og sosial for valgperioden 2015-2019 \nvelges: Jana Midelfart Hoff \n\n \nBystyrets behandling: \nIngen representanter tok ordet. \n\nVotering: \nInnstillingen punkt 1-4 ble vedtatt enstemmig. \n\n \nMidlertidig valgkomites forslag til innstilling til bystyret: \nInnstillingen er likelydende med bystyrets vedtak. \n\n ",
     "reference_summary":"Bergen bystyre har valgt medlemmer og varamedlemmer til komiteen for helse og sosial for perioden 2015-2019. Oddny Irene Miljeteig fra SV er valgt som leder, mens Marita Moltu fra KrF er nestleder. Innstillingen ble vedtatt enstemmig uten debatt.",
-    "choice_side":"right",
-    "chosen":"llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides more details about the political parties represented in the committee and includes additional information about the voting process, making it more complete than Summary A."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries capture the essential newsworthy elements equally well: the committee appointments, leadership selections, and unanimous approval. Neither summary highlights particularly strong newsworthy angles (proximity, impact, conflict, money, accountability, timeliness, novelty, or human interest), as this is a routine administrative appointment with no controversy or significant local implications. Summary B provides slightly more detail about party representation, but this adds minimal newsworthy value to an otherwise procedural announcement."
   },
   {
     "doc_id":"doc_18",
@@ -837,7 +837,7 @@
     "reference_summary":"Bergen bystyre har valgt medlemmer og varamedlemmer til komiteen for helse og sosial for perioden 2015-2019. Oddny Irene Miljeteig fra SV er valgt som leder, mens Marita Moltu fra KrF er nestleder. Innstillingen ble vedtatt enstemmig uten debatt.",
     "choice_side":"left",
     "chosen":"llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more detailed information about the elected members, leaders, and the unanimous voting process, while also mentioning the parties represented in the committee."
+    "rationale":"Summary A better surfaces newsworthy elements by specifically naming the committee chair (Oddny Irene Miljeteig from SV) and vice-chair (Marita Moltu from KrF), and explicitly listing the political parties represented, which provides local readers with concrete information about who holds power and how representation is distributed. Summary B is more procedural and generic, focusing on process rather than the substantive composition and leadership that would interest local residents."
   },
   {
     "doc_id":"doc_18",
@@ -849,7 +849,7 @@
     "reference_summary":"Bergen bystyre har valgt medlemmer og varamedlemmer til komiteen for helse og sosial for perioden 2015-2019. Oddny Irene Miljeteig fra SV er valgt som leder, mens Marita Moltu fra KrF er nestleder. Innstillingen ble vedtatt enstemmig uten debatt.",
     "choice_side":"left",
     "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more detailed information about the elected members and their roles, including the 3rd member of the working committee, which is missing in Summary B."
+    "rationale":"Summary A is more newsworthy because it identifies and highlights specific leadership positions (committee chair and vice chair) and key committee members, which are important for local accountability and governance. Summary B provides only generic information about the selection process without surfacing the concrete details that would matter to residents interested in who leads their health and social services committee."
   },
   {
     "doc_id":"doc_18",
@@ -859,9 +859,9 @@
     "sumright":"Bergen bystyre har enstemmig valgt medlemmer og varamedlemmer til komite for helse og sosial for perioden 2015-2019. Oddny Irene Miljeteig fra SV blir valgt som leder, mens Marita Moltu fra KrF blir nestleder. Jana Midelfart Hoff fra H blir valgt som 3. medlem av arbeidsutvalget. Ingen representanter tok ordet under voteringen.",
     "source_text":" 1 \nValg av komite for helse og sosial for valgperioden 2015-2019 \n\nBergen bystyre behandlet saken i møtet 281015 sak 276-15 og fattet følgende vedtak: \n1. Som medlemmer og varamedlemmer til komite for helse og sosial for valgperioden 2015-\n2019 velges: \n\nMedlemmer: \n1. Siw-Anita Lien (A) \n2. Øystein Hassel (A) \n3. Shady Hassan Abusaada (A) \n4. Per E. Stiegler (A) \n5. Natasha Vallebona Rivera (A) \n6. Jana Midelfart Hoff (H) \n7. Asle Steiestøl Wingsternes (H) \n8. Anette Strand (H) \n9. Anine Frølich (H) \n10. Eiler Macody Lund (FrP) \n11 Oddny Irene Miljeteig (SV) \n12. Marita Moltu (KrF) \n13. Randi Amundsen (MDG) \n14. Njaal Hendrik Neckelmann (V) \n15. Torstein Dahle (R) \n\nVaramedlemmer: \n1. Ragnhild Hoff Eilertsen (A) \n2. Odd Egil Rambøl (A) \n3. John Brattåker (A) \n4. Rigmor Heggdal (A) \n5. Veman Abdulaziz (A) \n6. Beate Tvedt Johannessen (A) \n7. Inger Johanne Seim (A) \n8. Geir Kaland (H) \n9.Kenneth Stien (H) \n10.Atle Fasteland (H) \n11.Lise Hæreide Ramsøy (H) \n12. Kari Odland (H) \n13. John Andre Kongsvik (H) \n14.Marte J. Monstad (FrP) \n15. Øivind Kristoffersen (FrP) \n16. Torbjørn M. Jørgensen (FrP) \n17. Sara Bell (SV) \n18. Ali Watti (SV) \n19. Eskild Hustvedt (SV) \n20. Knut Vindenes (KrF) \n21. Ragnhild Heradstveit (KrF) \n22. Eivind Skår (KrF) \n23. Janet Wiberg (MDG) \n24. Diane Alexandra Berbain (MDG) \n25. Øystein Bønes (MDG) \n26. Sindre August Horn (V) \n27. Øydis Lebiko (V) \n28. Kjell-Andre S. Johannessen (V) \n\n 2 \n29. Magne Hagesæter (R) \n30. Tora Kristiane Madsen Finne (R) \n31. Åsne Hagen (R) \n\n2. Som leder for komite for helse og sosial for valgperioden 2015-2019 velges: \n Oddny Irene Miljeteig (SV) \n\n3. Som nestleder for komite for helse og sosial for valgperioden 2015-2019 velges: \n Marita Moltu (KrF) \n\n4. Som 3 medlem av arbeidsutvalget i komite for helse og sosial for valgperioden 2015-2019 \nvelges: Jana Midelfart Hoff \n\n \nBystyrets behandling: \nIngen representanter tok ordet. \n\nVotering: \nInnstillingen punkt 1-4 ble vedtatt enstemmig. \n\n \nMidlertidig valgkomites forslag til innstilling til bystyret: \nInnstillingen er likelydende med bystyrets vedtak. \n\n ",
     "reference_summary":"Bergen bystyre har valgt medlemmer og varamedlemmer til komiteen for helse og sosial for perioden 2015-2019. Oddny Irene Miljeteig fra SV er valgt som leder, mens Marita Moltu fra KrF er nestleder. Innstillingen ble vedtatt enstemmig uten debatt.",
-    "choice_side":"left",
-    "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more details about the elected members, their roles, and additional context compared to Summary B."
+    "choice_side":"right",
+    "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
+    "rationale":"Summary B is more newsworthy because it clearly identifies the party affiliations of the elected leaders (SV, KrF, H), which is crucial for local journalism to understand political representation and coalition dynamics. Summary A includes fabricated details not in the source document (Hilde Onarheim's departure, links) that undermine credibility, while B sticks to verifiable facts that matter to local residents understanding their governance structure."
   },
   {
     "doc_id":"doc_19",
@@ -873,7 +873,7 @@
     "reference_summary":"Bergen bystyre har enstemmig vedtatt en samarbeidsavtale med Samnanger kommune om vertskommunesamarbeid knyttet til barneverntjenester. Avtalen ble behandlet uten debatt og fikk støtte fra både byrådet og komiteen for helse og sosial.",
     "choice_side":"left",
     "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more details including the legal basis of the agreement and the unanimous approval, while also mentioning the lack of discussion during the meeting."
+    "rationale":"Summary A is more newsworthy because it provides complete information about the agreement's scope (child welfare services), emphasizes the unanimous decision (ACCOUNTABILITY\/GOVERNANCE), and notes the lack of debate, which signals potential consensus or lack of controversy. Summary B is incomplete and cuts off mid-sentence, failing to convey essential details about what the agreement covers."
   },
   {
     "doc_id":"doc_19",
@@ -885,7 +885,7 @@
     "reference_summary":"Bergen bystyre har enstemmig vedtatt en samarbeidsavtale med Samnanger kommune om vertskommunesamarbeid knyttet til barneverntjenester. Avtalen ble behandlet uten debatt og fikk støtte fra både byrådet og komiteen for helse og sosial.",
     "choice_side":"left",
     "chosen":"gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more details about the collaboration plan and the unanimous approval by Bergen bystyre."
+    "rationale":"Summary A better surfaces newsworthy elements by explaining the purpose and benefit of the agreement (ensuring efficient service delivery), while Summary B is incomplete and fails to convey what the arrangement actually accomplishes or why it matters to residents. Neither summary strongly emphasizes local impact, but A provides more substantive information about the collaboration's intent."
   },
   {
     "doc_id":"doc_19",
@@ -897,7 +897,7 @@
     "reference_summary":"Bergen bystyre har enstemmig vedtatt en samarbeidsavtale med Samnanger kommune om vertskommunesamarbeid knyttet til barneverntjenester. Avtalen ble behandlet uten debatt og fikk støtte fra både byrådet og komiteen for helse og sosial.",
     "choice_side":"right",
     "chosen":"GPT4o-mini",
-    "rationale":"Summary B provides more details about the collaboration between Bergen and Samnanger municipalities regarding child welfare services, including the involvement of the city council, city government, and health and social committee."
+    "rationale":"Summary B is more newsworthy because it specifies the subject matter (barneverntjenester\/child welfare services), which is crucial for local residents to understand the impact and relevance of the agreement. It also highlights the unanimous support and smooth process, adding context about accountability and governance. Summary A omits the critical detail of what the collaboration concerns, making it less informative for local journalism."
   },
   {
     "doc_id":"doc_19",
@@ -909,7 +909,7 @@
     "reference_summary":"Bergen bystyre har enstemmig vedtatt en samarbeidsavtale med Samnanger kommune om vertskommunesamarbeid knyttet til barneverntjenester. Avtalen ble behandlet uten debatt og fikk støtte fra både byrådet og komiteen for helse og sosial.",
     "choice_side":"right",
     "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides more specific details about the collaboration agreement and mentions the unanimous approval by the Bergen city council."
+    "rationale":"Summary B better surfaces newsworthy elements by specifying the legal framework (kommuneloven § 28-1e), clarifying the administrative nature of the arrangement, and noting the procedural detail that no representatives spoke—which could signal lack of controversy or concern. Summary A contains a redundant phrase ('samarbeidssamarbeidsprosjekt') and provides less concrete information about what makes this decision relevant to local residents."
   },
   {
     "doc_id":"doc_20",
@@ -919,9 +919,9 @@
     "sumright":"Endringene består i at det er lagt inn en hensynssone H570_1 i tråd med kulturminneloven § 11 (fredete kulturminner) og at det er lagt inn en hensynssone H570_2 i tråd med kulturminneloven § 11 (automatisk fredete kulturminner). Videre er det lagt inn en hensynssone H570_3 i tråd med kulturminneloven § 11 (hensynsone bevaring av kulturmiljø), samt at det er lagt inn en hensynssone H570_4 i tråd med kulturminneloven § 11 (hensynsone bevaring av kulturlandskap). Videre er det foretatt mindre justeringer av formålsgrenser, samt at det er lagt inn en hensynssone H570_5 (hensynsone bevaring av",
     "source_text":" \n1 \n\n \n\n \nByrådssak \n\n \n320\/16 \nYtrebygda, gnr.119,bnr.75 mfl, Holtaåsen. Reguleringsplan. Nasjonal arealplan-ID 62540000 \n\n ASRO ESARK-5120-201214995-60 \n\nHva saken gjelder: \nEn Til En Arkitekter AS i samarbeid med Weglo Design og Plan og Landskap AS fremmer på \nvegne av Minde Prosjekt AS planforslag for fortetting i et område i Ytrebygda bydel på Holtaåsen, sør for \nSteinsvikvegen. \n\nTil venstre: Oversiktskart m\/plangrense. Til høyre: Planforslaget. \n\nDet står i dag en enebolig på eiendommen. \nEiendommens grunnareal er i overkant av 4 daa, og planområdet utgjør totalt ca. 4,1 daa. I gjeldende \nreguleringsplan fra 1966 er eiendommen regulert med tre eneboliger \n\nDet planlegges to leilighetsbygg på to etasjer, BK-1 og BK-2, med til sammen 7 leiligheter og en ny \neneboligtomt, BF-1. Utnyttelsesgraden i planforslaget er satt til 50% BRA for eneboligtomtene BF-1 og \n75% BRA for tomtene for leilighetsbygg BK-1 og BK-2. Samlet har planområdet en utnyttelsesgrad på \nca. 46,5 %, når regulerte lekeplasser, adkomstveger mv. er medregnet. Eneboligene planlegges med \nparkering på bakkeplan eller i garasje\/carport. For leilighetsbyggene planlegges parkering i \nparkeringskjeller under BK-1, samt 1 handicap-parkeringsplass på bakkeplan. \n\nInnenfor planområdet er det avsatt to områder til felles uteoppholdsareal. \nPlanområdet har tilkomst fra fylkesveg Steinsviksvegen, via kommunal veg Holtaåsen. Siste del av \ntilkomstvegen er privat. Tilkomstvegen til planområdet er uten fortau, og har bratte stigningsforhold på \ndeler av vegen. Det planlegges varmekabler i den bratteste delen av vegen. \n\nFor utfyllende opplysninger vises til vedleggene (materiell utarbeidet av forslagsstiller). Materialet er \ngjennomgått av fagetaten og anses i hovedsak som dekkende. \n\n2 \nInnkomne merknader og uttalelser ved offentlig ettersyn \nPlanforslaget lå ute til offentlig ettersyn i tidsrommet 13.04.14 – 27.05.14. Det kom inn 8 uttalelser fra \nhøringsinstanser, og 2 private merknader der den ene merknaden er en felles merknad fra 10 naboer. \nMerknadene og uttalelsene er oppsummert og kommentert av plankonsulenten i vedlegg N. Dette \nmaterialet er gjennomgått av fagetaten og vurderes som dekkende. \n\nI uttalelsene og merknadene ble det i hovedtrekk pekt på følgende: \n Trafikksikkerheten ved økt bruk av atkomstvegen \n Manglende tilpassing til strøkskarakteren \n Landskapstilpasning \/ fjernvirkning av tiltaket på grunn av beliggenheten på toppen av en høyde \n\nEtter offentlig høring ble det foretatt en begrenset høring i tidsrommet 03.11.14 – 27.11.14 for utvidelse \nav plangrensen for å sikre nok vegareal for gjennomføring av planen. På grunn av stigningsforholdene ble \ndet foreslått å senke eksisterende adkomstveg, noe som førte til at eksisterende avkjørsel inn til \neiendommene gnr.119, bnr.907, 415 m.fl. også måtte senkes. Det kom inn 3 private merknader der den \nene merknaden er en felles merknad fra 9 naboer. Berørte naboer var negative til den foreslåtte endringen \nda dette medførte inngrep i deres eiendom. \n\nDet har også vært gjort en begrenset høring i tidsrommet 29.10.15 – 16.11.15 slik at areal for frisikt mot \nkommunal veg Holtaåsen er ivaretatt i planforslaget. Ved denne høringen kom det inn 2 merknader fra \nnaboer i tillegg til en uttale fra trafikketaten. Merknadene og uttalelsene til begrenset høring nr.2 er \noppsummert og kommentert av plankonsulenten i vedlegg O. \n\nDet henvises til «Fagetatens vurdering» for fagetatens synspunkt på aktuelle tema. \n\nEndringer etter 1.gangs behandling\/ offentlig ettersyn \nEndringene som er foretatt etter 1.gangs behandling\/ offentlig ettersyn er i hovedsak følgende: \n Del av kommunal veg Holtaåsen og nødvendig privat sideareal tatt med i planen for å ivareta \nfrisiktsforhold \n Det er innregulert to områder for bossavhenting \n Etter første begrensede høring ble det gjort en ny vurdering på tilkomstvegen. I foreliggende \nplanforslag foreslås det å legge varmekabler i første del av adkomstvegen, som har et \nstigningsforhold på ca. 1:7. Dette fører til at det ikke er behov for å senke eksisterende avkjørsel inn \ntil eiendommene gnr.119, bnr.907, 415 m.fl., som var en del av endret reguleringsforslag til begrenset \nhøring i november 2014. \n Mindre justeringer som i all hovedsak gjelder plantekniske forhold \n\nFagetatens vurdering \nFagetaten har vurdert alle aktuelle tema, men nedenfor følger kun kommentarer til de aktuelle \nhovedproblemstillingene i saken. For opplysninger om øvrige tema henvises til forslagsstillers \nplanbeskrivelse (vedlegg E). \n\nUtnyttelsesgrad \/ byggehøyder \/ estetikk \nI kommuneplanens arealdel (KPA) ligger Holtaåsen innenfor generelt byggeområde for bebyggelse og \nanlegg. Ny bebyggelse skal tilpasses strøkskarakteren med hensyn til høyde og grad av utnytting. For \nboligbebyggelse er maksimal utnyttingsgrad 60% BRA og langs de store kollektivårene kan det åpnes for \ndifferensiert utnyttelsesgrad mellom 60% - 200 %. Eksisterende grønnstruktur skal ivaretas. \n\nDet er utarbeidet illustrasjonsmateriell i 3D som viser hvordan den planlagte bebyggelsen forholder seg til \nomgivelsene med hensyn til høyde og terrengtilpassing. \nDen mest markerte øvre delen av kollen blir sprengt ned for å gi plass til garasjekjeller under \nleilighetsbygget som ligger mot øst (til høyre i illustrasjonen under). Vedlagte snitt (vedlegg G) viser at \n\n3 \nregulert maksimal byggehøyde er ca. 4 meter høyere enn eneboligen i vest som ligger på en lavere del av \nhøydedraget. Fagetaten vurderer dette til å være en akseptabel byggehøyde, med bakgrunn i at de \nforeslåtte bygg vurderes til å tilpasses eksisterende bygningsstrukturer-\/volumer og vil gli inn i landskapet \nuten å gi vesentlig nær- og fjernvirkning. \n\n Planområdet sett fra sør. BK-2 til venstre og BK-1 til høyre. \n\nPlanområdet\/kollen sett fra øst. BK-1 til venstre, BF-2 (eksisterende bolig i planområdet) i midten, og ny enebolig til høyre på den \nlavereliggende delen av kollen. \nDet er etter offentlig ettersyn tatt inn i reguleringsbestemmelsene at forstøtningsmurer skal oppføres i \nnaturstein og beplantes i forkant for å avdempe den visuelle fremtoningen. Fagetaten vurderer at de viste \nvolumene og byggehøydene, sammen med kravene til terrengbehandling, utgjør et godt grep for \nutbygging på tomten. \n\nAdkomstvei \nPlanforslaget har veiadkomst fra den kommunale veien Holtaåsen (blå stipling) via eksisterende private \nvei (gul stipling) og foreslår etablering av ny privat vei (rød stipling) til det nye boligfeltet på toppen. \nDet har vært utfordringer i planprosessen når det gjelder adkomstveien. Eksisterende adkomstvei (gul \nstipling) er bratt, særlig øvre del som har en bratt kneik med stigningsforhold ca. 1:6. Dette er brattere enn \nBergen brannvesen sine krav til stigningsforhold på vei som er maksimalt 1:8. Med hensyn til mest mulig \nfleksibilitet ved gjennomføring, foreslår fagetaten at de angitte stigningsforholdene som er vist i \nplankartet tas ut og da reguleringsbestemmelsene har lagt inn et krav til at vegen skal ha maks. stigning på \n1:7. \n\n4 \n\nSkråfoto som viser veisituasjonen i området \nFagetaten foreslår at det settes krav om varmekabler i de delene av bakken som har stigningsforhold \nbrattere enn 1:8. \nFagetaten foreslår videre krav om godkjent trafikk- og sikringsplan for gjennomføring av tiltak i f_V3 \nbåde for den kommunale og private veien. \n\nGjennomføring og privatrettslige forhold \nNabo og eier av gnr 119 bnr 415 (eiendomsgrense vist \nmed rød strek nedenfor) har signalisert gjennom \nprosessen at det ikke er aktuelt å inngå avtale med \nutbygger om nødvendige tiltak i vei. Uten at en slik \nprivatrettslig avtale foreligger, er gjennomføring av \nplanforslaget ikke realistisk. \nNår fagetaten likevel anbefaler vedtak av planforslaget, \ner det fordi det vurderes at planlagte tiltak bør kunne la \nseg gjennomføre uten at det medfører uforholdsmessig \nstore ulemper for naboskapet, ut ifra hva som kan \nforventes i sammenheng med fortetting i et \neksisterende boligområde. \n\nBarn og unges interesser \nDet er satt av to felles lekeplasser \/ uteoppholdsplasser i planforslaget, på til sammen 312 m2. Disse \noppfyller arealkravene i KPA. Fellesarealene ligger sentralt plassert med enkelt tilkomst fra leilighetene \nog på en flatere del av tomten. Lekearealene ligger også skjermet fra trafikk, og har gode solforhold jf. \nvedlagte soldiagram (vedlegg I). Notat vedr. vegtrafikkstøy konkluderer med at de planlagte boligene \ntilfredsstiller støykravene i KPA og øvrige retningslinjer uten spesielle tiltak. \nUt fra ovennevnte vurderer fagetaten at avsatte arealer for felles uteoppholdsareal er tilfredsstillende i \nplanforslaget. \n\nUniversell utforming \nI tråd med bestemmelsene i kommuneplanen er det utformet og reservert en parkeringsplass for \n119\/907 \nIllustrasjon av aktuell tomt, markert med rødt \n\n5 \nbevegelseshemmede. Denne er plassert på bakkeplan nær inngangspartiet til boligene. Boligene har ikke \nkrav om heis, og det er dermed ikke krav til universell utforming av uteareal. \n\nNaturmangfold \nDet går frem av planbeskrivelsen s 12 at eiendommen har vært beplantet og\/eller har blitt tilgrodd med \nunge løvtrær. Det er ingen nyere registrering av sårbare arter i området. \n\nMassehåndtering \nDet planlegges å planere ut deler av planområdets topp, samt å bygge parkeringskjeller under bygg BK-1. \nOverskuddsmassene planlegges brukt til parkeringsplassen i enden av veien ved bygg BK-1 og BK-2, \nsamt opparbeiding av tilkomstvei. Det er ikke vist beregninger på dette. Det er i dag utfordringer i Bergen \nkommune når det gjelder deponering av masse. Derfor må det i bestemmelsene stilles krav til \ndokumentasjon av massebalanse og deponering av eventuelle overskuddsmasser. \n\nPlanfremstilling \nFagetaten vurderer fremstillingen av plankart, reguleringsbestemmelser og planbeskrivelse generelt til å \nvære god. Plankartet har god lesbarhet, og reguleringsbestemmelsene har et enkelt og lettfattelig språk, \nmen må gjøres mer entydige. Fagetaten vurderer at følgende endringer må utføres før reguleringsplanen \nkan anses som tilfredsstillende: \n\nPlankart: \n- Tiltenkt parkeringskjeller mangler benevning. Fagetaten foreslår #1 som benevning. \n- På tegnforklaringen må riktig eksakt plannavn påføres \n- Påført tekst for stigningsforhold og koter må tas ut av kartet. \n- Siktlinjene i avkjørsel f_V1 og f_V2 må være i samsvar med tekst 3x 20 m. Disse er tegnet 2x20 m \n\nReguleringsbestemmelser: \nFagetaten foreslår en rekke endringer i reguleringsbestemmelsene, og har utarbeidet eget forslag til \nendrede bestemmelser «fagetatens forslag til reguleringsbestemmelser, datert 070716». Forslag til \nendringer omtales\/begrunnes i detalj i fagnotatet og framgår av vedlegg C. Mange av endringene av \nbestemmelsene er av teknisk, redigeringsmessig karakter og en oppretting i forhold til plankartet. \n\nDe planfaglige endringene er: \n§ 2.1 Krav til utomhusplan. \n§ 2.6 Krav om trafikk og sikringsplan \n§ 2.7 Krav til massehåndtering \n§ 3 Rekkefølgekrav angående parkeringsplass for bevegelseshemmede og ev \n rassikringstiltak \n§§5.2.2, 5.4.1 og 8.1 Parkering \n§ 6.1.1 Krav til varmekabler i vei \n\nFagetatens konklusjon \nFagetaten slutter seg i hovedsak til hovedformålet (bolig) og det planfaglige grepet i planforslaget. \nFagetaten anbefaler planforslaget vedtatt med endringer foreslått i fagnotatet. \n\nByrådets anbefaling \nByrådet slutter seg til fagetatens anbefaling av foreliggende plan for fortetting, der det legges til rette for \nto leilighetsbygg på to etasjer, med til sammen 7 leiligheter og en ny eneboligtomt. Leilighetsbyggene har \nen utnyttelsesgrad eks parkering som er høyre enn rammene i KPA, men kan likevel anbefales da området \nligger sentralt og innfor ti minutters gangavstand fra busstopp, bybanestopp ved Lagunen og Råstølen, \nskoler, barnehager og service. Området rundt bybanestoppet ved Tunesflaten (Råstølen) ligger ikke inne \nsom sentrumsområde i gjeldende KPA, men ny avgrensing utredes ved rullering av KPA. På grunn av den \n\n6 \nsentrale beliggenheten og politisk plattforms målsetning om 10 % reduksjon i biltrafikken innen 2020, \n(med 2013 som basisår), mener byrådet at parkeringsdekningen bør reduseres til maks 1.0 p-plass pr 100 \nm2 bolig i stedet for 1,4 plasser. \n\nForeslått to etasjes leilighetsbygg ligger eksponert oppå en kolle. For å dempe virkningen er det positivt \nat det er formulert bestemmelser som stiller krav til at det gjøres rede for materialvalg og bygningenes \nplassering i forhold til hverandre og at ny bebyggelse skal ha en material- og fargebruk som virker \ndempende. Tiltak innad i feltet skal ha et samlende uttrykk. \nByrådet mener at fellestrekk i fargebruk, volum og takformer bidrar til at et område framstår som \nenhetlig. Kontraster kan benyttes for å framheve ekstra gode kvaliteter. Plassering i landskapet kan \npåvirke om et bygg virker dominerende eller om det underordner seg omgivelsene. For å kunne vurdere \nden visuelle kvaliteten av nybygg i forhold til nabobebyggelsen, er fotomontasjer, perspektivtegninger, \nsnitt og\/eller fasadeoppriss sammen med nabobebyggelse et nyttig verktøy. Byrådet anbefaler at \nbestemmelsene presiseres som foreslått i innstillingen i vedtak på dette området. \n\nPlanforslaget er ellers grundig behandlet i prosessen og fagetatens bearbeiding av bestemmelsene sikrer et \nforbedret planforslag. Byrådet viser til at ekspropriasjon kan være et aktuelt virkemiddel om det ikke \noppnås minnelig avtale for opparbeiding av avkjørsel, jfr rekkefølgekrav. \nUnder henvisning til politisk plattform, mener byrådet at krav om strømtilførsel til alle parkeringsplasser \nmå innarbeides i bestemmelsene. \n\nByrådet anbefaler planforslaget slik det framgår av innstillingen til vedtak. \n\nBegrunnelse for fremleggelse for bystyret: \nI henhold til plan og bygningslovens (2008) § 3-3, 2.ledd, ligger det til bystyret selv å vedta \nreguleringsplan, jfr. § 12-12. Komite for miljø og byutvikling skal avgi innstilling i saken. \n\nByrådet innstiller til bystyret å fatte følgende vedtak: \n1. I medhold av plan- og bygningsloven av 2008 § 12-12 vedtas følgende: \n\nA. Ytrebygda, gnr. 119, bnr. 75, Holtaåsen, Reguleringsplan. Nasjonal arealplan-ID 1201_62540000. \nVist på plankart sist datert 04.05.16, med følgende endringer\/tillegg: \n\na) Tiltenkt parkeringskjeller (vist som bestemmelsesområde) under feltene BK-1, BK-2 og \nf_lek-2 skal gis #1 som benevning. \n\nb) På tegnforklaringen må riktig plannavn påføres: «Holtaåsen». Påført tekst for stigningsforhold \nog koter på vegen, og målsetting av bossplass må tas ut av plankartet. \n\nc) Siktlinjene i avkjørsel f_V1 og f_V2 må være i samsvar med tekst 3x 20 m. (Disse er tegnet \n2x20 m). \n\nB. Fagetatens forslag til reguleringsbestemmelser, datert 07.07.16, med følgende tillegg: \n\na) § 2.2.2 tilføyes: «Kommunen kan kreve illustrasjoner av nær- og fjernvirkning av nybygg i \nform av fotomontasjer, snitt og fasadeoppriss som viser ny bebyggelse sammen med \neksisterende bebyggelse.» \n\nb) 5.4.1 Første setning endres til: «Det skal avsettes maks 1,0 parkeringsplasser for bil pr. 100 \nm2 boligareal….». \nc) § 5.4.1 tilføyes: «Alle parkeringsplasser skal ha strømtilførsel.» \n\n7 \n2. De vedtatte endringer tas inn i plankart og bestemmelser før bystyrets vedtak kunngjøres. \n\nDato: 13. september 2016 \n\nDette dokumentet er godkjent elektronisk. \n\nHarald Schjelderup \nbyrådsleder \n\n Anna Elisa Tryti \nbyråd for byutvikling \n\nVedlegg: \nFagnotat datert 7.7.2016 med følgende vedlegg: \nPlankart datert 04.05.16 \nFagetatens forslag til reguleringsbestemmelser, datert 070716 \nFagetatens forslag til bestemmelser med visning av endringer \nForslagsstillers forslag til bestemmelser, datert 040216 \nForslagsstillers planbeskrivelse, datert 140416 \nIllustrasjonsplan, datert 010216 \nSnitt \nIllustrasjoner, datert 010216 \nSol og skygge \nMerknadskart, oppstart \nMerknadskart, offentlig ettersyn \nMerknadskart, begrenset høring \nMerknadsoppsummeringsskjema, oppstart \nMerknadsoppsummeringsskjema, offentlig ettersyn, redigert 030516 \nMerknadsoppsummeringsskjema, begrenset høring \nROS-analyse \nNotat, adkomstvei \nNotat, varmekabler \nNotat, varmekabler, vedlegg01 \nNotat, veitrafikkstøy \nLengdeprofil, vei \nLengdeprofil, vei, vedlegg01 \nTverrprofil.zip \nVA-rammeplan.zip \n\n \n\n ",
     "reference_summary":"Dokumentet omhandler en reguleringsplan for fortetting av boligområder i Ytrebygda, Bergen, hvor det foreslås bygging av to leilighetsbygg med totalt syv leiligheter og en ny eneboligtomt. Planen har vært gjennom offentlig høring, og det er kommet inn merknader fra naboer og høringsinstanser, særlig knyttet til trafikksikkerhet og tilpasning til strøkskarakteren. Byrådet anbefaler planen med endringer, inkludert krav om strømtilførsel til parkeringsplasser.",
-    "choice_side":"right",
-    "chosen":"nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides additional details on zoning changes and cultural heritage considerations, making it more comprehensive."
+    "choice_side":"tie",
+    "chosen":null,
+    "rationale":"Both summaries are incomplete and truncated, making it impossible to evaluate their newsworthiness. Summary A cuts off mid-sentence, and Summary B appears to be discussing cultural heritage zones that are not mentioned in the source document, suggesting it may be from a different document entirely."
   },
   {
     "doc_id":"doc_20",
@@ -933,7 +933,7 @@
     "reference_summary":"Dokumentet omhandler en reguleringsplan for fortetting av boligområder i Ytrebygda, Bergen, hvor det foreslås bygging av to leilighetsbygg med totalt syv leiligheter og en ny eneboligtomt. Planen har vært gjennom offentlig høring, og det er kommet inn merknader fra naboer og høringsinstanser, særlig knyttet til trafikksikkerhet og tilpasning til strøkskarakteren. Byrådet anbefaler planen med endringer, inkludert krav om strømtilførsel til parkeringsplasser.",
     "choice_side":"right",
     "chosen":"nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides additional details on cultural heritage considerations and adjustments made to accommodate them, which are important aspects of the document."
+    "rationale":"Summary B addresses substantive regulatory changes related to cultural heritage protections under the Cultural Heritage Act, which represents newsworthy accountability and policy developments. Summary A merely references a figure caption without conveying any newsworthy content about the case itself."
   },
   {
     "doc_id":"doc_20",
@@ -945,7 +945,7 @@
     "reference_summary":"Dokumentet omhandler en reguleringsplan for fortetting av boligområder i Ytrebygda, Bergen, hvor det foreslås bygging av to leilighetsbygg med totalt syv leiligheter og en ny eneboligtomt. Planen har vært gjennom offentlig høring, og det er kommet inn merknader fra naboer og høringsinstanser, særlig knyttet til trafikksikkerhet og tilpasning til strøkskarakteren. Byrådet anbefaler planen med endringer, inkludert krav om strømtilførsel til parkeringsplasser.",
     "choice_side":"right",
     "chosen":"normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary B provides a more detailed and comprehensive evaluation of the plan proposal, considering various aspects like urban development, quality of life, and landscape integration."
+    "rationale":"Summary B captures the key newsworthy elements including the planning authority's recommendation, the project's alignment with municipal planning goals, and the emphasis on balancing density with quality of life and landscape integration. Summary A is incomplete and fails to convey any substantive information about the case, making it impossible to assess newsworthiness."
   },
   {
     "doc_id":"doc_20",
@@ -957,6 +957,6 @@
     "reference_summary":"Dokumentet omhandler en reguleringsplan for fortetting av boligområder i Ytrebygda, Bergen, hvor det foreslås bygging av to leilighetsbygg med totalt syv leiligheter og en ny eneboligtomt. Planen har vært gjennom offentlig høring, og det er kommet inn merknader fra naboer og høringsinstanser, særlig knyttet til trafikksikkerhet og tilpasning til strøkskarakteren. Byrådet anbefaler planen med endringer, inkludert krav om strømtilførsel til parkeringsplasser.",
     "choice_side":"left",
     "chosen":"gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500",
-    "rationale":"Summary A provides more detailed information about the proposed changes to the access road, emphasizing the importance of safety and comfort for pedestrians and vehicles."
+    "rationale":"Summary A addresses multiple newsworthy elements including the access road challenges (PROXIMITY\/IMPACT), safety concerns (ACCOUNTABILITY), and specific infrastructure solutions like heat cables and speed reduction (TIMELINESS\/MONEY). Summary B appears incomplete and only shows a figure caption without substantive content, making it impossible to evaluate its newsworthiness."
   }
 ]

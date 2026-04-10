@@ -55,12 +55,13 @@ EVAL_DIMENSIONS: tuple[str, ...] = (
 # OpenAI Chat Completions (``OPENAI_CHAT_COMPLETIONS_URL`` + ``OPENAI_API_KEY``). Ids in
 # ``GEMINI_JUDGE_IDS`` use the Gemini REST API (``GEMINI_API_BASE`` + ``GOOGLE_API_KEY`` or
 # ``GEMINI_API_KEY``); the judge id is ``google/<gemini-model-id>`` and the API model id is the
-# part after ``google/``.
+# part after ``google/``. Ids in ``ANTHROPIC_JUDGE_IDS`` use the Messages API
+# (``ANTHROPIC_MESSAGES_URL`` + ``ANTHROPIC_API_KEY``); judge id is ``anthropic/<model-id>``.
 JUDGES: tuple[str, ...] = (
     "google/gemma-3-4b",
     "gpt-3.5-turbo",
     "google/gemini-2.5-flash-preview-05-20",
-    # "anthropic/claude-3-5-haiku-20241022",  # example
+    "anthropic/claude-3-5-haiku-20241022",
     # "mistral-medium-latest",
 )
 
@@ -87,6 +88,19 @@ GEMINI_JUDGE_TO_API_MODEL: dict[str, str] = {
 # ``GEMINI_MAX_REQUESTS_PER_MINUTE`` (float); ``0`` disables throttling.
 GEMINI_MAX_REQUESTS_PER_MINUTE: float = _env_float("GEMINI_MAX_REQUESTS_PER_MINUTE", 18.0)
 
+# Anthropic Messages API; judge keys look like ``anthropic/<logical-name>``.
+ANTHROPIC_JUDGE_IDS: frozenset[str] = frozenset({"anthropic/claude-3-5-haiku-20241022"})
+ANTHROPIC_API_KEY: str | None = os.environ.get("ANTHROPIC_API_KEY")
+ANTHROPIC_MESSAGES_URL: str = os.environ.get(
+    "ANTHROPIC_MESSAGES_URL", "https://api.anthropic.com/v1/messages"
+)
+ANTHROPIC_VERSION: str = os.environ.get("ANTHROPIC_VERSION", "2023-06-01")
+# Legacy judge id → Messages API ``model`` (Anthropic retires dated ids; keep a stable checkpoint key).
+# See https://platform.claude.com/docs/en/about-claude/models/overview — use ``claude-haiku-4-5`` for the alias.
+ANTHROPIC_JUDGE_TO_API_MODEL: dict[str, str] = {
+    "anthropic/claude-3-5-haiku-20241022": "claude-haiku-4-5-20251001",
+}
+
 HUMAN_JUDGES: tuple[str, ...] = ()
 LLM_JUDGES: tuple[str, ...] = tuple(j for j in JUDGES if j not in HUMAN_JUDGES)
 
@@ -98,7 +112,7 @@ LOCAL_LLM_CHAT_URL = "http://localhost:1234/api/v1/chat"
 LOCAL_LLM_TIMEOUT_S = 300.0
 
 # First N documents (by first-seen ``doc_id`` order). None = use the full loaded corpus.
-MAX_DOCUMENTS: int | None = 6 #603
+MAX_DOCUMENTS: int | None = 20 #603
 
 # Random model pairs sampled per document (capped by available combinations); see :func:`pairwise_eval.pairs.build_pairs_table`.
 N_PAIRS_PER_DOCUMENT: int = 4

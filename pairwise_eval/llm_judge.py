@@ -1,4 +1,4 @@
-"""Pairwise row evaluator: local LM Studio chat and/or OpenAI Chat Completions."""
+"""Pairwise row evaluator: local LM Studio chat, OpenAI, Gemini, and Anthropic."""
 
 from __future__ import annotations
 
@@ -301,6 +301,92 @@ def _gemini_generate_content(
     return text
 
 
+def _anthropic_assistant_text(data: Mapping[str, Any]) -> str:
+    """Concatenate text blocks from a Messages API response body."""
+    raw = data.get("content")
+    if raw is None:
+        return ""
+    if isinstance(raw, str):
+        return raw.strip()
+    if not isinstance(raw, list):
+        return str(raw).strip()
+    parts: list[str] = []
+    for block in raw:
+        if isinstance(block, dict) and block.get("type") == "text":
+            t = block.get("text")
+            if t is not None:
+                parts.append(str(t))
+    return "\n".join(parts).strip()
+
+
+def _anthropic_messages(
+    *,
+    user_content: str,
+    system_content: str,
+    model: str,
+    api_key: str,
+    url: str,
+    api_version: str,
+    timeout_s: float,
+    max_tokens: int = 4096,
+    http_retry_policy: LLMHttpRetryPolicy | None = None,
+) -> str:
+    """POST Anthropic Messages; return assistant text."""
+    key = api_key.strip()
+    if not key:
+        raise RuntimeError("Anthropic API key is empty after strip()")
+
+    policy = http_retry_policy or LLMHttpRetryPolicy.for_provider("anthropic", model=model)
+
+    def _send() -> requests.Response:
+        return requests.post(
+            url.strip(),
+            headers={
+                "x-api-key": key,
+                "anthropic-version": api_version.strip(),
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": model,
+                "max_tokens": max_tokens,
+                "system": system_content,
+                "messages": [{"role": "user", "content": user_content}],
+                "temperature": 0,
+            },
+            timeout=timeout_s,
+        )
+
+    r = request_with_retry(
+        _send,
+        policy=policy,
+        get_status=lambda resp: resp.status_code,
+        get_retry_after=lambda resp: resp.headers.get("Retry-After"),
+    )
+
+    try:
+        data = r.json()
+    except ValueError as e:
+        raise RuntimeError(
+            f"Anthropic response is not JSON (HTTP {r.status_code}): {r.text[:400]}"
+        ) from e
+
+    if not r.ok:
+        err = data.get("error") if isinstance(data, dict) else None
+        detail = ""
+        if isinstance(err, dict) and err.get("message"):
+            detail = str(err["message"])
+        elif isinstance(err, str):
+            detail = err
+        else:
+            detail = r.text[:500] if r.text else r.reason
+        raise RuntimeError(f"Anthropic HTTP {r.status_code}: {detail}")
+
+    text = _anthropic_assistant_text(data)
+    if not text:
+        raise RuntimeError(f"Anthropic response has no assistant text (HTTP {r.status_code})")
+    return text
+
+
 def openai_llm_geval_judge(
     document: str,
     summary_a: str,
@@ -375,6 +461,45 @@ def gemini_llm_geval_judge(
     )
 
 
+def anthropic_llm_geval_judge(
+    document: str,
+    summary_a: str,
+    summary_b: str,
+    *,
+    judge: str,
+    model: str,
+    api_key: str,
+    messages_url: str,
+    api_version: str,
+    prompts_dir: Optional[Path] = None,
+    system_prompt: Optional[str] = None,
+    timeout_s: float = 300.0,
+    http_retry_policy: LLMHttpRetryPolicy | None = None,
+) -> str:
+    """Same templates as local G-Eval; send via Anthropic Messages API."""
+    _ensure_repo_on_path()
+    from geval_local_judge import fill_geval_prompt, load_geval_template
+
+    template = load_geval_template(judge, prompts_dir=prompts_dir)
+    user_message = fill_geval_prompt(template, document, summary_a, summary_b)
+    sys_msg = system_prompt or (
+        "You are an evaluator. Follow the user instructions exactly. "
+        "When the prompt asks for JSON, reply with only a valid JSON object "
+        'with \"decision\" (A, B, or Tie) and \"rationale\" (string). '
+        "Otherwise, if asked for one word (A, B, or Tie), reply with only that word."
+    )
+    return _anthropic_messages(
+        user_content=user_message,
+        system_content=sys_msg,
+        model=model,
+        api_key=api_key,
+        url=messages_url,
+        api_version=api_version,
+        timeout_s=timeout_s,
+        http_retry_policy=http_retry_policy,
+    )
+
+
 def make_local_llm_evaluate_fn(
     *,
     base_url: Optional[str] = None,
@@ -391,15 +516,23 @@ def make_local_llm_evaluate_fn(
     gemini_max_requests_per_minute: Optional[float] = None,
     openai_http_retry_policy: LLMHttpRetryPolicy | None = None,
     gemini_http_retry_policy: LLMHttpRetryPolicy | None = None,
+    anthropic_api_key: Optional[str] = None,
+    anthropic_messages_url: Optional[str] = None,
+    anthropic_version: Optional[str] = None,
+    anthropic_judges: Optional[frozenset[str]] = None,
+    anthropic_http_retry_policy: LLMHttpRetryPolicy | None = None,
 ):
-    """Factory: return an ``evaluate_pair`` for local, OpenAI, and/or Gemini judges.
+    """Factory: return an ``evaluate_pair`` for local, OpenAI, Gemini, and/or Anthropic judges.
 
     Judges listed in ``openai_judges`` (default: :data:`pairwise_eval.config.OPENAI_JUDGE_IDS`)
     use OpenAI Chat Completions and require ``openai_api_key``. Judges in ``gemini_judges``
     (default: :data:`pairwise_eval.config.GEMINI_JUDGE_IDS`) use Gemini ``generateContent`` and
-    require ``google_api_key`` (or env ``GOOGLE_API_KEY`` / ``GEMINI_API_KEY``). OpenAI and Gemini
-    HTTP calls retry on 429/503 with backoff from :class:`pairwise_eval.llm_http_retry.LLMHttpRetryPolicy`
-    (override with ``openai_http_retry_policy`` / ``gemini_http_retry_policy``). Consecutive Gemini
+    require ``google_api_key`` (or env ``GOOGLE_API_KEY`` / ``GEMINI_API_KEY``). Judges in
+    ``anthropic_judges`` (default: :data:`pairwise_eval.config.ANTHROPIC_JUDGE_IDS`) use the
+    Anthropic Messages API and require ``anthropic_api_key`` (or env ``ANTHROPIC_API_KEY``).
+    OpenAI, Gemini, and Anthropic HTTP calls retry on 429/503 with backoff from
+    :class:`pairwise_eval.llm_http_retry.LLMHttpRetryPolicy` (override with the corresponding
+    ``*_http_retry_policy`` arguments). Consecutive Gemini
     calls are spaced using :data:`pairwise_eval.config.GEMINI_MAX_REQUESTS_PER_MINUTE` (or
     ``gemini_max_requests_per_minute=`` here) to stay under per-minute quotas. All other judges
     use the local LM Studio–style endpoint (``LOCAL_LLM_CHAT_URL``).
@@ -408,6 +541,11 @@ def make_local_llm_evaluate_fn(
     overwrite existing local-judge checkpoint files.
     """
     from pairwise_eval.config import (
+        ANTHROPIC_API_KEY as _cfg_anthropic_key,
+        ANTHROPIC_JUDGE_IDS,
+        ANTHROPIC_JUDGE_TO_API_MODEL,
+        ANTHROPIC_MESSAGES_URL,
+        ANTHROPIC_VERSION,
         GEMINI_API_BASE,
         GEMINI_JUDGE_IDS,
         GEMINI_JUDGE_TO_API_MODEL,
@@ -426,7 +564,11 @@ def make_local_llm_evaluate_fn(
     oai_j = openai_judges if openai_judges is not None else OPENAI_JUDGE_IDS
     oai_key = openai_api_key if openai_api_key is not None else _cfg_openai_key
     gem_j = gemini_judges if gemini_judges is not None else GEMINI_JUDGE_IDS
+    ant_j = anthropic_judges if anthropic_judges is not None else ANTHROPIC_JUDGE_IDS
     g_key = google_api_key if google_api_key is not None else _cfg_google_key
+    a_key = anthropic_api_key if anthropic_api_key is not None else _cfg_anthropic_key
+    ant_url = anthropic_messages_url or ANTHROPIC_MESSAGES_URL
+    ant_ver = anthropic_version or ANTHROPIC_VERSION
     gem_base = gemini_api_base or GEMINI_API_BASE
     rpm = (
         _cfg_gemini_rpm
@@ -461,6 +603,8 @@ def make_local_llm_evaluate_fn(
                 backend = "openai"
             elif judge_id in gem_j:
                 backend = "gemini"
+            elif judge_id in ant_j:
+                backend = "anthropic"
             else:
                 backend = "local"
             print(
@@ -511,6 +655,32 @@ def make_local_llm_evaluate_fn(
                     system_prompt=system_prompt,
                     timeout_s=t_out,
                     http_retry_policy=gemini_http_retry_policy,
+                )
+            elif judge_id in ant_j:
+                if not a_key:
+                    raise RuntimeError(
+                        "ANTHROPIC_API_KEY is not set (or pass anthropic_api_key=...) "
+                        "for Anthropic judges"
+                    )
+                if "/" not in judge_id:
+                    raise RuntimeError(
+                        f"Anthropic judge id must be anthropic/<model-id>, got {judge_id!r}"
+                    )
+                _, ant_suffix = judge_id.split("/", 1)
+                api_model = ANTHROPIC_JUDGE_TO_API_MODEL.get(judge_id, ant_suffix)
+                assistant = anthropic_llm_geval_judge(
+                    str(row["source_text"]),
+                    str(row["sumleft"]),
+                    str(row["sumright"]),
+                    judge=dimension,
+                    model=api_model,
+                    api_key=a_key,
+                    messages_url=ant_url,
+                    api_version=ant_ver,
+                    prompts_dir=prompts_dir,
+                    system_prompt=system_prompt,
+                    timeout_s=t_out,
+                    http_retry_policy=anthropic_http_retry_policy,
                 )
             else:
                 from geval_local_judge import local_llm_geval_judge

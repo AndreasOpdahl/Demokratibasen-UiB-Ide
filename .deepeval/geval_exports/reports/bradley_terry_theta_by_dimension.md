@@ -4,60 +4,60 @@ Gold summaries use the label `GPT4o-mini` (text from JSONL `reference`). β is s
 
 ### Faithfulness
 
-| model | google/gemma-3-4b_theta | gpt-3.5-turbo_theta | google/gemini-2.5-flash-preview-05-20_theta |
-| --- | --- | --- | --- |
-| GPT4o-mini | 2405869.9244 | 72.7822 | 38147010239596.0078 |
-| gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500 | 0.0000 | 0.0000 | 0.0042 |
-| gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500 | 0.3736 | 72.7786 | 0.0058 |
-| llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500 | 0.3774 | 133803300831694.3906 | 0.0115 |
-| llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500 | 174939781078034624.0000 | 0.0000 | 0.0007 |
-| nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500 | 0.0954 | 0.0000 | 0.0016 |
-| normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500 | 0.1803 | 133791110897398.4531 | 84532.6279 |
-| norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500 | 0.0000 | 0.0000 | 0.0110 |
-| norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500 | 0.1888 | 72.7648 | 0.0286 |
-| viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500 | 0.7229 | 133812497858010.3594 | 0.0030 |
+| model | google/gemma-3-4b_theta | gpt-3.5-turbo_theta | google/gemini-2.5-flash-preview-05-20_theta | anthropic/claude-3-5-haiku-20241022_theta |
+| --- | --- | --- | --- | --- |
+| GPT4o-mini | 1.3793 | 3.4327 | 7.6225 | 3888144.2955 |
+| gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500 | 1.6008 | 4.5470 | 1.7433 | 0.4240 |
+| gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500 | 1.4427 | 0.4081 | 0.2184 | 0.0815 |
+| llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500 | 0.9154 | 1.7116 | 2.0185 | 1.4558 |
+| llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500 | 1.5058 | 0.7348 | 0.9586 | 0.4174 |
+| nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500 | 0.5953 | 0.1461 | 0.1241 | 0.0361 |
+| normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500 | 0.7839 | 2.4269 | 0.9042 | 0.1756 |
+| norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500 | 0.7104 | 0.2028 | 1.3769 | 0.0615 |
+| norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500 | 0.6127 | 0.9909 | 1.9775 | 0.1370 |
+| viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500 | 1.1213 | 1.7515 | 0.5829 | 0.2292 |
 
 ### Correctness
 
-| model | google/gemma-3-4b_theta | gpt-3.5-turbo_theta | google/gemini-2.5-flash-preview-05-20_theta |
-| --- | --- | --- | --- |
-| GPT4o-mini | 98467.7470 | 4.8552 | 83540573967732572160.0000 |
-| gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500 | 0.0029 | 0.1846 | 0.0000 |
-| gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500 | 0.0128 | 0.7870 | 211461011.3706 |
-| llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500 | 0.0109 | 15.5017 | 600484540.8673 |
-| llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500 | 4549895488234.4727 | 0.3682 | 0.0000 |
-| nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500 | 0.0047 | 0.0510 | 0.0000 |
-| normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500 | 0.0032 | 12.4572 | 905188926.2403 |
-| norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500 | 0.0017 | 0.0784 | 0.0000 |
-| norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500 | 0.0104 | 0.3103 | 74.8162 |
-| viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500 | 0.0220 | 16.0680 | 229812520.9321 |
+| model | google/gemma-3-4b_theta | gpt-3.5-turbo_theta | google/gemini-2.5-flash-preview-05-20_theta | anthropic/claude-3-5-haiku-20241022_theta |
+| --- | --- | --- | --- | --- |
+| GPT4o-mini | 1.7248 | 6.3078 | 13.0934 | 14.0576 |
+| gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500 | 1.9932 | 4.0722 | 1.4491 | 1.9550 |
+| gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500 | 0.9752 | 0.2412 | 0.3603 | 0.4670 |
+| llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500 | 0.7261 | 1.3594 | 1.9975 | 3.1722 |
+| llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500 | 2.0377 | 1.1301 | 0.9920 | 2.3172 |
+| nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500 | 0.7755 | 0.2263 | 0.1133 | 0.1369 |
+| normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500 | 0.7537 | 2.6507 | 0.5388 | 0.6033 |
+| norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500 | 0.4634 | 0.2110 | 0.8768 | 0.2024 |
+| norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500 | 0.5959 | 0.4671 | 2.3622 | 0.5139 |
+| viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500 | 1.2491 | 1.7767 | 0.5838 | 1.2336 |
 
 ### Completeness
 
-| model | google/gemma-3-4b_theta | gpt-3.5-turbo_theta | google/gemini-2.5-flash-preview-05-20_theta |
-| --- | --- | --- | --- |
-| GPT4o-mini | 25.2077 | 465.0122 | 242373025396482240.0000 |
-| gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500 | 2.1635 | 0.0000 | 0.0000 |
-| gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500 | 1.7082 | 258.0346 | 1326.1128 |
-| llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500 | 3.5411 | 4664.3174 | 1606921176.6118 |
-| llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500 | 22.5274 | 1784.0112 | 0.0000 |
-| nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500 | 2.3283 | 0.0000 | 0.0000 |
-| normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500 | 2.0105 | 5576.1209 | 3716549311.5607 |
-| norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500 | 0.0000 | 0.0000 | 0.0000 |
-| norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500 | 11.1244 | 346.3572 | 0.0032 |
-| viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500 | 9.4867 | 2058.3190 | 2439623573.8186 |
+| model | google/gemma-3-4b_theta | gpt-3.5-turbo_theta | google/gemini-2.5-flash-preview-05-20_theta | anthropic/claude-3-5-haiku-20241022_theta |
+| --- | --- | --- | --- | --- |
+| GPT4o-mini | 1.3923 | 2.0778 | 4.4376 | 10.1045 |
+| gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500 | 2.2062 | 3.9829 | 2.5324 | 3.2504 |
+| gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500 | 0.7473 | 0.2583 | 0.4312 | 0.3713 |
+| llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500 | 1.0652 | 1.2642 | 1.7162 | 1.8918 |
+| llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500 | 1.0372 | 1.5247 | 1.1944 | 3.4460 |
+| nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500 | 1.1371 | 0.2339 | 0.3125 | 0.0704 |
+| normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500 | 0.8397 | 3.6205 | 1.0522 | 0.6679 |
+| norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500 | 0.6082 | 0.2339 | 0.7170 | 0.3409 |
+| norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500 | 0.6816 | 0.5947 | 0.3874 | 0.5862 |
+| viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500 | 0.9960 | 2.0606 | 1.1022 | 1.3387 |
 
 ### Newsworthiness
 
-| model | google/gemma-3-4b_theta | gpt-3.5-turbo_theta | google/gemini-2.5-flash-preview-05-20_theta |
-| --- | --- | --- | --- |
-| GPT4o-mini | 27.4563 | 2.8643 | 9042263.1210 |
-| gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500 | 2.6332 | 272154119.7128 | 2.4968 |
-| gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500 | 26.6029 | 1.6146 | 0.4731 |
-| llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500 | 1.7375 | 1.5792 | 4.4973 |
-| llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500 | 5.7617 | 6.0923 | 0.6871 |
-| nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500 | 2.4590 | 0.2184 | 1.5652 |
-| normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500 | 2.8197 | 9.0123 | 3.9817 |
-| norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500 | 0.0000 | 0.0000 | 0.0000 |
-| norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500 | 5.1808 | 0.4266 | 0.8608 |
-| viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500 | 6.9224 | 0.3134 | 0.5672 |
+| model | google/gemma-3-4b_theta | gpt-3.5-turbo_theta | google/gemini-2.5-flash-preview-05-20_theta | anthropic/claude-3-5-haiku-20241022_theta |
+| --- | --- | --- | --- | --- |
+| GPT4o-mini | 2.5354 | 1.5925 | 2.5011 | 4.7544 |
+| gemma-2-9b-checkpoint-9000-inputs-refs-preds-examples_2500 | 1.0471 | 2.3112 | 3.2054 | 3.0211 |
+| gemma-2b-checkpoint-5000-inputs-refs-preds-examples_2500 | 0.8328 | 0.5288 | 0.4449 | 0.7095 |
+| llama-2-13b-chat-norwegian-checkpoint-3000-inputs-refs-preds-examples_2500 | 0.6452 | 1.0964 | 2.1616 | 0.9272 |
+| llama-3.1-8b-instruct-checkpoint-500-inputs-refs-preds-examples_2500 | 1.5419 | 0.8334 | 0.9514 | 1.1197 |
+| nb-gpt-j-6b-checkpoint-3000-inputs-refs-preds-examples_2500 | 0.5343 | 0.3031 | 0.6075 | 0.3069 |
+| normistral-11b-checkpoint-1000-inputs-refs-preds-examples_2500 | 1.6015 | 2.9355 | 1.3022 | 1.1217 |
+| norskgpt-llama3-8b-checkpoint-500-inputs-refs-preds-examples_2500 | 0.6153 | 0.8586 | 0.4421 | 0.4503 |
+| norwai-mistral-7b-instruct-checkpoint-8000-inputs-refs-preds-examples_2500 | 0.7812 | 0.7174 | 0.5098 | 0.6921 |
+| viking-13b-checkpoint-4000-inputs-refs-preds-examples_2500 | 1.1054 | 1.0261 | 0.7646 | 0.8809 |
