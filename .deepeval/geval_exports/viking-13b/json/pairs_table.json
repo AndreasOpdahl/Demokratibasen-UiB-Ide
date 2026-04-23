@@ -1,0 +1,702 @@
+[
+  {
+    "doc_id":"doc_1",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Kinn kommune har innvilget et tilbygg til eksisterende næringsbygg på Botnaneset 27, som omfatter kontrollrom og kontorarbeidsplasser. Løyvet ble gitt etter vurdering av søknaden i henhold til gjeldende reguleringsplan. Ingen merknader ble registrert, og tiltaket anses å være i tråd med kravene i plan- og bygningsloven.",
+    "sumright":"Kinn kommune har innvilget søknaden fra Ivest Consult AS om et tilbygg til eksisterende næringsbygg på Botnaneset 27. Tilbygget omfatter kontorarbeidsplasser og kontrollrom, og oppfyller gjeldende reguleringsplan for området. Løyvet forutsetter at nødvendige ansvarsforhold er ivaretatt, og tiltaket vurderes å være i tråd med gjeldende planer."
+  },
+  {
+    "doc_id":"doc_1",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Kinn kommune har innvilget et tilbygg til eksisterende næringsbygg på Botnaneset 27, som skal inneholde kontorarbeidsplasser og kontrollrom. Løyvet er gitt i henhold til gjeldende reguleringsplan, og det vurderes at tiltaket oppfyller nødvendige krav. Ingen merknader ble registrert fra naboer, og tiltaket kan ikke tas i bruk før ferdigattest er utstedt.",
+    "sumright":"Kinn kommune har innvilget et nytt tilbygg til eksisterende næringsbygg på Botnaneset 27, som skal inneholde kontrollrom og kontorarbeidsplasser. Løyvet er gitt i samsvar med gjeldende reguleringsplan, og det foreligger ingen merknader fra naboer eller andre instanser. Tiltaket vurderes å være i tråd med planen og oppfyller alle tekniske krav."
+  },
+  {
+    "doc_id":"doc_1",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Kinn kommune har godkjent søknaden fra Fjord Base AS for et tilbygg til eksisterende næringsbygg på Botnaneset 27. Tilbygget, som er på 42,67 m², vil huse et kontrollrom og kontorarbeidsplass, og tiltaket har blitt vurdert som i samsvar med gjeldende reguleringer og uten miljøfare. Vedtaket kan påklages innen tre uker.",
+    "sumright":"Kinn kommune har innvilget et nytt tilbygg til eksisterende næringsbygg på Botnaneset 27, som omfatter kontrollrom og kontorarbeidsplasser. Løyvet ble gitt etter vurdering av søknaden i henhold til gjeldende reguleringsplan, uten merknader fra naboer. Tiltaket er godkjent med vilkår om ansvarlig søker og tiltakshaver, samt krav om kvalitetssikring og klageadgang."
+  },
+  {
+    "doc_id":"doc_1",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Kinn kommune har innvilget søknaden fra Fjord Base AS om et tilbygg til eksisterende næringsbygg på Botnaneset 27. Bygget, som skal inneholde kontorarbeidsplasser og kontrollrom, oppfyller gjeldende reguleringsplaner og har fått godkjenning fra ansvarlige myndigheter. Løyvet inkluderer vilkår for ansvarlig søker og tiltakshaver, samt en klagemulighet for berørte parter.",
+    "sumright":"Kinn kommune har innvilget et tilbygg til eksisterende næringsbygg på Botnaneset 27, som skal inneholde kontorarbeidsplasser og kontrollrom. Løyvet ble gitt etter vurdering av at tiltaket oppfyller gjeldende planer og ikke medfører naturfare eller miljøkonsekvenser. Vedtaket inkluderer en rekke vilkår knyttet til ansvarsforhold og dokumentasjon."
+  },
+  {
+    "doc_id":"doc_2",
+    "left":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet og vedtatt en statusmelding for sosialtjenesten for året 2024. De anbefaler at bystyret tar meldingen til orientering og ber om videre arbeid med utfordringer som er nevnt i meldingen.",
+    "sumright":"Byrådet har behandlet statusmeldingen for sosialtjenesten for året 2024 og anbefaler at bystyret tar den til orientering. Byrådet vil også jobbe videre med utfordringene som er beskrevet i meldingen."
+  },
+  {
+    "doc_id":"doc_2",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet statusmeldingen for sosialtjenesten for året 2024 og anbefaler at bystyret tar den til orientering. Byrådet vil også jobbe videre med utfordringene som er beskrevet i meldingen.",
+    "sumright":"Byrådet har behandlet og vedtatt en statusmelding for sosialtjenesten for året 2024. De anbefaler at bystyret tar meldingen til orientering og ber om videre arbeid med utfordringer som er nevnt i meldingen."
+  },
+  {
+    "doc_id":"doc_2",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet statusmeldingen for sosialtjenesten for året 2024 og anbefaler at bystyret tar den til orientering. Byrådet vil også jobbe videre med utfordringene som er beskrevet i meldingen.",
+    "sumright":"Byrådet har behandlet og vedtatt å ta statusmeldingen for sosialtjenesten for året 2024 til orientering. Byrådet vil også jobbe videre med utfordringene som er beskrevet i meldingen."
+  },
+  {
+    "doc_id":"doc_2",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet og vedtatt en statusmelding for sosialtjenesten for året 2024. De anbefaler at bystyret tar meldingen til orientering og ber om videre arbeid med utfordringer som er nevnt i meldingen.",
+    "sumright":"Byrådet har behandlet statusmeldingen for sosialtjenesten for året 2024 og anbefaler at bystyret tar den til orientering. Byrådet vil også jobbe videre med utfordringene som er beskrevet i meldingen."
+  },
+  {
+    "doc_id":"doc_3",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Etne kommune har utarbeidet en ny kvalitetsplan for oppvekst og kultur som skal gjelde frem til 2025. Planen fokuserer på områder som barnehage, skole og kultur, med mål om å sikre god kvalitet i tjenestene for barn og unge. Kommunestyret har tatt saken til orientering etter en grundig prosess ledet av rådene for mennesker med nedsatt funksjonsevne og ungdomsrådet.",
+    "sumright":"Etne kommune har vedtatt en ny kvalitetsplan for oppvekst og kultur som skal sikre god kvalitet i barnehager, skoler og andre tjenester de kommende årene. Planen ble utarbeidet over et halvt år og tar for seg områder som barnehage, skole og kultur, med fokus på verdier og holdninger som skal fremme trivsel og utvikling hos barn og unge."
+  },
+  {
+    "doc_id":"doc_3",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Etne kommune har vedtatt en ny kvalitetsplan for oppvekst og kultur som skal gjelde frem til 2025. Planen fokuserer på områder som barnehage, skole og kultur, med mål om å sikre trygge omgivelser for barn og unge. Den nye planen er utarbeidet etter innspill fra ulike grupper, inkludert ungdomsrådet, og skal bidra til å fremme felles verdier og holdninger blant de involverte.",
+    "sumright":"Etne kommune har vedtatt en ny kvalitetsplan for oppvekst og kultur som skal gjelde frem til 2025. Planen fokuserer på områder som barnehage, skole og kultur, og skal sikre at barn og unge blir møtt med felles verdier og holdninger gjennom hele utdanningsløpet. Kommunedirektøren anbefaler kommunestyret å ta saken til orientering."
+  },
+  {
+    "doc_id":"doc_3",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Etne kommune har vedtatt en ny kvalitetsplan for oppvekst og kultur som skal gjelde frem til 2025. Planen fokuserer på områder som barnehage, skole og kultur, med mål om å sikre trygge omgivelser for barn og unge. Den nye planen er utarbeidet etter innspill fra råd og ungdomsråd, og skal bidra til å fremme felles verdier og holdninger blant ansatte og foresatte.",
+    "sumright":"Etne kommune har utarbeidet en ny kvalitetsplan for oppvekst og kultur som skal gjelde de neste fem årene. Planen adresserer barnehage, skole og kultur og har som mål å sikre gode oppvekstvilkår for barn og unge. Kommunestyret tar saken til orientering etter en samrøstes innstilling fra både Råd for menneske med nedsett funksjonsevne og Ungdomsrådet."
+  },
+  {
+    "doc_id":"doc_3",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"Etne kommune har utarbeidet en ny kvalitetsplan for oppvekst og kultur som skal sikre god kvalitet i barnehager, skoler og kulturtilbud de kommende årene. Planen ble enstemmig vedtatt av kommunestyret etter flere runder med innspill fra råd og ungdomsråd.",
+    "sumright":"Etne kommune har vedtatt en ny kvalitetsplan for oppvekst og kultur som skal gjelde frem til 2025. Planen fokuserer på områder som barnehage, skole og kultur, med mål om å sikre trygge omgivelser for barn og unge. Den nye planen er utarbeidet etter innspill fra råd og ungdomsråd, og skal bidra til å fremme felles verdier og holdninger blant ansatte og foresatte."
+  },
+  {
+    "doc_id":"doc_4",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Sogndal eldreråd har behandlet årsmeldingen for 2024 i sitt møte den 31. mars 2025. Rådet vedtok enstemmig å godkjenne årsmeldingen, som beskriver rådets aktiviteter og prioriteringer i perioden 2023-2027. Viktige temaer som ble diskutert inkluderer eldrerådets rolle i kommunen, opplæring fra KS, samarbeid med andre råd, og innspill til budsjettprosessen.",
+    "sumright":"Sogndal eldreråd behandlet sin årsmelding for 2024 i møte den 31. mars 2025. Rådet vedtok enstemmig å godkjenne årsmeldingen uten endringer. Videre diskuterte de flere viktige temaer, inkludert retningslinjer for bruk av sentrumsparken, rusmiddelpolitisk handlingsplan, og planer for eldreomsorg. Rådet fremhevet viktigheten av samarbeid med administrasjonen og behovet for økt fokus på eldre i kommunen."
+  },
+  {
+    "doc_id":"doc_4",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 31. mars 2025 behandlet Sogndal eldreråd en årsmelding for perioden 2024. Rådet vedtok enstemmig å godkjenne årsmeldingen uten endringer. Videre diskuterte de flere viktige temaer, inkludert retningslinjer for bruk av sentrumsparken, rusmiddelpolitisk handlingsplan, og planer for eldreomsorg. Rådet fremhevet viktigheten av samarbeid med administrasjonen og andre instanser for å fremme eldres interesser i kommunen.",
+    "sumright":"Sogndal eldreråd behandlet årsmeldingen for 2024 i sitt møte den 31. mars 2025. Rådet vedtok enstemmig å godkjenne meldingen uten endringer. De diskuterte også viktige temaer som eldreomsorg, rusmisbruk, og planer for fremtiden. Rådet fremhevet viktigheten av samarbeid mellom de ulike rådene i kommunen."
+  },
+  {
+    "doc_id":"doc_4",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Sogndal eldreråd behandlet årsmeldingen for 2024 i sitt møte den 31. mars 2025. Rådet vedtok enstemmig å godkjenne meldingen uten endringer. De diskuterte også viktige temaer som eldreomsorg, rusmisbruk, og planer for fremtiden. Rådet fremhevet viktigheten av samarbeid mellom de ulike rådene i kommunen.",
+    "sumright":"Sogndal eldreråd har samrøystes vedtatt årsmeldingen for 2024 under møtet den 31. mars 2025. Eldrerådet, opprettet av kommunestyret i 2023, har fokusert på opplæring, viktige saker for eldre, og samarbeid med andre råd og instanser. Årsmeldingen oppsummerer rådets aktiviteter, inkludert kurs og møter, samt innspill til økonomiplan og budsjettprosess."
+  },
+  {
+    "doc_id":"doc_4",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Sogndal eldreråd behandlet sin årsmelding for 2024 i møte den 31. mars 2025. Rådet vedtok enstemmig å godkjenne årsmeldingen uten endringer. De diskuterte også viktige temaer som eldreomsorg, rusmisbruk og planer for fremtiden, inkludert en ny plan for friluftslivets ferdselsårer.",
+    "sumright":"Sogndal eldreråd behandlet årsmeldingen for 2024 i sitt møte den 31. mars 2025. Rådet vedtok enstemmig å godkjenne årsmeldingen, som beskriver rådets aktiviteter og innsats for eldre i kommunen. Viktige temaer som ble diskutert inkluderte retningslinjer for bruk av sentrumsparken, rusmiddelpolitisk handlingsplan, og planer for nye lavterskeltilbud for eldre."
+  },
+  {
+    "doc_id":"doc_5",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Bjørnafjorden kommunestyre har enstemmig godkjent årsregnskapet for Oseana Kunst- og Kultursenter for 2024, som viser et negativt resultat på -1,5 millioner kroner. Dette beløpet vil bli dekket av kommunen i 2025, etter at det akkumulerte merforbruket ble redusert med 667.196,19 kroner. Kommunedirektøren presenterte saken, mens ordfører Terje Søviknes var tilstede under behandlingen.",
+    "sumright":"Bjørnafjorden Kommune har godkjent årsrekneskapen for Oseana Kunst og Kultursenter Bjørnafjorden KF for 2024, til tross for et negativt driftsresultat på over 1,5 millioner kroner. Kommunen vil dekke det akkumulerte meirforbruket på 667.196,19 kroner i 2025. Godkjenningen ble enstemmig vedtatt av både formannskapet og kommunestyret."
+  },
+  {
+    "doc_id":"doc_5",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Bjørnafjorden kommunestyre har enstemmig godkjent årsregnskapet for Oseana Kunst- og Kultursenter Bjørnafjorden KF for 2024, hvor det ble rapportert et negativt driftsresultat på -1.596.858,42 kroner. Dette beløpet vil bli dekket av kommunen i 2025, etter at merforbruket fra tidligere år er blitt dekket inn. Regnskapet viser også en resultatgrad på -8,6 %, noe som indikerer økonomisk stabilitet.",
+    "sumright":"Bjørnafjorden Kommune har godkjent årsrekneskapen for Oseana Kunst og Kultursenter Bjørnafjorden KF for 2024, til tross for et negativt driftsresultat på over 1,5 millioner kroner. Kommunen vil dekke det akkumulerte meirforbruket på 667.196,19 kroner i 2025. Godkjenningen ble enstemmig vedtatt av både formannskapet og kommunestyret."
+  },
+  {
+    "doc_id":"doc_5",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bjørnafjorden kommunestyre har enstemmig godkjent årsregnskapet for Oseana Kunst- og Kultursenter for 2024, som viser et negativt resultat på -1.596.858,42 kroner. Dette beløpet vil bli dekket av kommunen i 2025, etter tidligere års akkumulert merforbruk. Kommunedirektøren presenterte saken for kommunestyret, hvor det ble understreket viktigheten av å ha en daglig leder tilstede under behandlingen.",
+    "sumright":"Bjørnafjorden kommunestyre har enstemmig godkjent årsregnskapet for Oseana Kunst- og Kultursenter Bjørnafjorden KF for 2024, hvor det ble besluttet å dekke et akkumulert merforbruk på 667.196,19 kroner fra tidligere år. Dette beløpet vil bli dekket av kommunen i 2025."
+  },
+  {
+    "doc_id":"doc_5",
+    "left":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bjørnafjorden kommunestyre har enstemmig godkjent årsregnskapet for Oseana Kunst- og Kultursenter Bjørnafjorden KF for 2024, inkludert et akkumulert merforbruk på 667.196,19 kroner som dekkes av kommunen i 2025. Regnskapet viser et negativt driftsresultat på -1.596.858,42 kroner, men det er dekket inn gjennom tidligere års fondsmidler. Det ble også informert om en positiv utvikling i driften av senteret.",
+    "sumright":"Bjørnafjorden kommunestyre har enstemmig godkjent årsregnskapet for Oseana Kunst- og Kultursenter Bjørnafjorden KF for 2024, hvor det ble rapportert et negativt driftsresultat på -1.596.858,42 kroner. Dette beløpet vil bli dekket av kommunen i 2025, etter at merforbruket fra tidligere år er blitt dekket inn. Regnskapet viser også en resultatgrad på -8,6 %, noe som indikerer økonomisk stabilitet."
+  },
+  {
+    "doc_id":"doc_6",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Stad Energi- og Eigedomsutvikling KF har i sitt møte den 18. november 2025 behandlet og godkjent innkallingen og saklisten for møtet. Dette ble gjort av daglig leder, som anbefalte at innkallingen og saklisten godkjennes.",
+    "sumright":"Stad Energi- og Eigedomsutvikling KF skal behandle innkallingen og saklisten for møtet den 18. november 2025, hvor daglig leder anbefaler at disse godkjennes."
+  },
+  {
+    "doc_id":"doc_6",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Saksframlegget omhandler godkjenning av innkalling og saksliste for møtet i Stad Energi- og Eigedomsutvikling KF den 18. november 2025, med anbefaling fra daglig leder om at innkallingen og saklisten blir godkjent.",
+    "sumright":"Stad Energi- og Eigedomsutvikling KF skal behandle innkallingen og saklisten for møtet den 18. november 2025, hvor daglig leder anbefaler at disse godkjennes."
+  },
+  {
+    "doc_id":"doc_6",
+    "left":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Stad Energi- og Eigedomsutvikling KF har i sitt møte den 18. november 2025 behandlet innkallingen og saklisten for møtet, som ble enstemmig godkjent av daglig leder.",
+    "sumright":"Stad Energi- og Eigedomsutvikling KF har i sitt møte den 18. november 2025 behandlet innkallingen og saklisten, som ble enstemmig godkjent av daglig leder."
+  },
+  {
+    "doc_id":"doc_6",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Stad Energi- og Eigedomsutvikling KF har i sitt møte den 18. november 2025 behandlet innkallingen og saklisten for møtet, som ble enstemmig godkjent av daglig leder.",
+    "sumright":"Stad Energi- og Eigedomsutvikling KF skal behandle innkallingen og saklisten for møtet den 18. november 2025, hvor daglig leder anbefaler at disse godkjennes."
+  },
+  {
+    "doc_id":"doc_7",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 12. mai 2025 godkjente Rådet for mennesker med nedsatt funksjonsevne møteinnkallingen og saklisten uten innvendinger. Vedtaket ble fattet enstemmig, og det ble understreket viktigheten av å sende informasjonen digitalt i Word- eller PDF-format, ikke som bilde.",
+    "sumright":"Rådet for mennesker med nedsatt funksjonsevne har enstemmig godkjent møteinnkallingen og saklisten for møtet den 12. mai 2025. Vedtaket ble fattet uten diskusjon, og det understrekes viktigheten av å sende inn informasjon i Word- eller PDF-format, ikke som bilde."
+  },
+  {
+    "doc_id":"doc_7",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 12. mai 2025 godkjente Rådet for mennesker med nedsatt funksjonsevne innkallingen og saklisten uten innvendinger. Vedtaket ble fattet enstemmig, og det ble understreket viktigheten av å sende informasjon i Word- eller PDF-format, ikke som bilder.",
+    "sumright":"Rådet for mennesker med nedsatt funksjonsevne har enstemmig godkjent møteinnkallingen og saklisten for møtet den 12. mai 2025. Vedtaket ble fattet uten diskusjon, og det understrekes viktigheten av å sende inn informasjon i Word- eller PDF-format, ikke som bilde."
+  },
+  {
+    "doc_id":"doc_7",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "sumleft":"Råd for mennesker med nedsatt funksjonsevne har enstemmig vedtatt å godkjenne innkallingen til møtet den 12. mai 2025, uten noen innvendinger fra medlemmene. Vedtaket ble fattet under det digitale møtet, hvor informasjonen vil bli skannet i Word- eller PDF-format.",
+    "sumright":"Rådet for mennesker med nedsatt funksjonsevne har enstemmig godkjent møteinnkallingen og saklisten for møtet den 12. mai 2025. Vedtaket ble fattet uten diskusjon, og det understrekes viktigheten av å sende inn informasjon i Word- eller PDF-format, ikke som bilde."
+  },
+  {
+    "doc_id":"doc_7",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Rådet for mennesker med nedsatt funksjonsevne har enstemmig vedtatt å godkjenne møteinnkallingen og saklisten til møtet den 12. mai 2025. Vedtaket ble fattet uten diskusjon, og det understrekes at informasjonen skal sendes inn som Word- eller PDF-dokument, ikke som bilde.",
+    "sumright":"Råd for mennesker med nedsatt funksjonsevne har enstemmig vedtatt å godkjenne innkallingen til møtet den 12. mai 2025, uten noen innvendinger fra medlemmene. Vedtaket ble fattet under det digitale møtet, hvor informasjonen vil bli skannet i Word- eller PDF-format."
+  },
+  {
+    "doc_id":"doc_8",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Kommunestyret har enstemmig vedtatt å gi ordfører fullmakt til å delta på generalforsamlingen til Samnanger kommunale utviklingsselskap AS, representert av ordføreren.",
+    "sumright":"Kommunestyret har enstemmig vedtatt at ordfører får fullmakt til å representere kommunen i generalforsamlingen til Samnanger kommunale utviklingsselskap AS."
+  },
+  {
+    "doc_id":"doc_8",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Kommunestyret har enstemmig vedtatt å gi ordfører fullmakter til å representere kommunen i generalforsamlingen til Samnanger kommunale utviklingsselskap AS.",
+    "sumright":"Kommunestyret har enstemmig vedtatt at ordfører får fullmakt til å representere kommunen i generalforsamlingen til Samnanger kommunale utviklingsselskap AS."
+  },
+  {
+    "doc_id":"doc_8",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "sumleft":"Kommunestyret har enstemmig vedtatt å gi ordfører fullmakt til å delta på generalforsamlingen til Samnanger kommunale utviklingsselskap AS, representert av ordføreren.",
+    "sumright":"Kommunestyret har enstemmig vedtatt å gi ordfører fullmakter til å representere kommunen i generalforsamlingen til Samnanger kommunale utviklingsselskap AS."
+  },
+  {
+    "doc_id":"doc_8",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Kommunestyret har enstemmig vedtatt å gi ordfører fullmakt til å delta på generalforsamlingen til Samnanger kommunale utviklingsselskap AS, representert av ordføreren.",
+    "sumright":"Kommunestyret har enstemmig vedtatt at ordfører får fullmakt til å representere kommunen i generalforsamlingen til Samnanger kommunale utviklingsselskap AS."
+  },
+  {
+    "doc_id":"doc_9",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Likestillingsutvalget har enstemmig vedtatt detaljreguleringsplanen for Gåsværvegen småhusbebyggelse, i tråd med plan- og bygningsloven.",
+    "sumright":"Likestillingsutvalget har enstemmig vedtatt detaljreguleringsplanen for Gåsværvegen småhusbebyggelse, som omfatter 80 boenheter. Vedtaket følger plan- og bygningslovens bestemmelser om offentlig ettersyn og høring."
+  },
+  {
+    "doc_id":"doc_9",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Helse- og velferdsutvalget, likestillingsutvalget og kommune- og byutviklingsutvalget har alle godkjent forslaget til detaljreguleringsplan for Gåsværvegen småhusbebyggelse. Vedtaket ble fattet etter en enstemmig behandling den 05. juni 2025.",
+    "sumright":"Likestillingsutvalget har enstemmig vedtatt detaljreguleringsplanen for Gåsværvegen småhusbebyggelse, som omfatter 80 boenheter. Vedtaket følger plan- og bygningsloven og er basert på tidligere behandling i utvalgene Helse og velferd, Kommune- og byutvikling, samt Kommunestyret."
+  },
+  {
+    "doc_id":"doc_9",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Likestillingsutvalget har enstemmig vedtatt forslaget til detaljreguleringsplan for Gåsværvegen småhusbebyggelse, som nå sendes videre til kommunestyret for endelig godkjenning.",
+    "sumright":"Likestillingsutvalget har enstemmig vedtatt detaljreguleringsplanen for Gåsværvegen småhusbebyggelse, som omfatter 80 boenheter. Vedtaket følger plan- og bygningslovens bestemmelser om offentlig ettersyn og høring."
+  },
+  {
+    "doc_id":"doc_9",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Likestillingsutvalget har enstemmig vedtatt detaljreguleringsplanen for Gåsværvegen småhusbebyggelse, som omfatter 80 boenheter. Vedtaket følger plan- og bygningsloven og er basert på tidligere behandling i utvalgene Helse og velferd, Kommune- og byutviklingsutvalget, samt Kommune- og byutviklingsutvalget.",
+    "sumright":"Likestillingsutvalget har enstemmig vedtatt forslaget til detaljreguleringsplan for Gåsværvegen småhusbebyggelse, som nå sendes videre til kommunestyret for endelig godkjenning."
+  },
+  {
+    "doc_id":"doc_10",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "sumleft":"Eldrerådet i Samnanger kommune skal behandle orienterings- og referatsaker under møtet den 10. juni 2025. Rådmannen vil legge frem en oversikt over aktuelle saker som kan tas opp, inkludert eventuelle merknader fra tidligere møter samt spørsmål fra rådet.",
+    "sumright":"Eldrerådet i Samnanger kommune skal behandle orienterings- og referatsaker under møtet den 10. juni 2025. Rådmannen vil presentere svar på spørsmål knyttet til statusen for apoteket i kommunen, som ble reist av eldrerådet tidligere."
+  },
+  {
+    "doc_id":"doc_10",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "sumleft":"Eldrerådet i Samnanger kommune skal behandle orienterings- og referatsaker under møtet den 10. juni 2025. Rådmannen vil presentere svar på spørsmål knyttet til statusen for apoteket i kommunen, som ble stilt av eldrerådet tidligere.",
+    "sumright":"Eldrerådet i Samnanger kommune skal behandle orienterings- og referatsaker under møtet den 10. juni 2025. Rådmannen vil gi en oversikt over aktuelle saker som kan tas opp, inkludert eventuelle merknader til protokollen fra forrige møte samt spørsmål fra rådet."
+  },
+  {
+    "doc_id":"doc_10",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"Eldrerådet skal behandle orienterings- og referatsaker under møtet den 10. juni 2025. Rådmannen vil legge frem en oversikt over aktuelle saker, inkludert eventuelle merknader fra forrige møte samt spørsmål fra rådet.",
+    "sumright":"Eldrerådet i Samnanger kommune skal behandle orienterings- og referatsaker under møtet den 10. juni 25. Rådmannen vil presentere svar på spørsmål knyttet til statusen for apoteket i kommunen."
+  },
+  {
+    "doc_id":"doc_10",
+    "left":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "sumleft":"Eldrerådet i Samnanger kommune skal behandle orienterings- og referatsaker under møtet den 10. juni 2025. Rådmannen vil gi en oversikt over aktuelle saker som kan tas opp, inkludert eventuelle merknader til protokollen fra forrige møte samt spørsmål fra rådet.",
+    "sumright":"Eldrerådet i Samnanger kommune skal behandle orienterings- og referatsaker under møtet den 10. juni 2025. Rådmannen vil gi en oversikt over aktuelle saker som kan tas opp, inkludert eventuelle merknader til protokollen fra forrige møte samt spørsmål fra rådet."
+  },
+  {
+    "doc_id":"doc_11",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Utvalg for samfunnsutvikling skal behandle godkjenning av innkalling, sakliste, referatsaker, samt rullering av handlingsprogrammet for spillemidler 2025-2028. Det vil også bli diskutert prioriteringen av anleggene som søker midler fra ordningen, inkludert seks anlegg som får fornyet status og tre som flyttes til neste år.",
+    "sumright":"Utvalget for samfunnsutvikling skal behandle godkjenning av innkalling, sakliste, referatsaker og rullering av handlingsprogram for spillemidler 2025-2028. Det vil også bli diskutert prioriteringen av anleggene som søker midler, inkludert rehabilitering av lysanlegg og bygging av padeltennisbaner."
+  },
+  {
+    "doc_id":"doc_11",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "sumleft":"Utvalg for samfunnsutvikling skal behandle godkjenning av innkalling, sakliste, referatsaker, samt rullering av handlingsprogrammet for spillemidler 2025-2028. Det vil også bli diskutert prioriteringen av anleggene som søker midler fra ordningen, inkludert seks anlegg som får fornyet status og tre som flyttes til neste år.",
+    "sumright":"Utvalget for samfunnsutvikling skal behandle godkjenning av innkalling, sakliste, referatsaker, samt rullering av handlingsprogram for spillemidler 2025-2028. Det vil også bli fremmet en prioriteringsliste for anlegg som søker midler fra ordningen, inkludert seks anlegg som får fornyet behandling i 2025 og resten flyttet til 2026."
+  },
+  {
+    "doc_id":"doc_11",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "sumleft":"Utvalget for samfunnsutvikling skal godkjenne innkallingen og protokollen fra forrige møte samt referatsakene før de går videre til behandling av rulleringen av handlingsprogrammet for idrett, fysisk aktivitet og friluftsliv. Det er også planlagt en oppdatering av prioriteringen av anlegg for spillemidler i 2025, inkludert endringer i søknaden fra Stryn Vinterski.",
+    "sumright":"Utvalget for samfunnsutvikling skal godkjenne innkallingen og protokollen fra forrige møte samt referatsakene før de går videre til behandling av rullering av handlingsprogrammet for idrett, fysisk aktivitet og friluftsliv. Det er også planlagt en oppdatering av prioriteringen av anlegg som søker om spillemidler i 2025, inkludert endringer i søknaden fra Stryn Vinterski."
+  },
+  {
+    "doc_id":"doc_11",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Utvalg for samfunnsutvikling skal behandle godkjenning av innkalling, sakliste, referatsaker, samt rullering av handlingsprogrammet for spillemidler 2025-2028. Det vil også bli diskutert prioriteringen av anleggene som søker midler fra ordningen, inkludert seks anlegg som får fornyet status og tre som flyttes til neste år.",
+    "sumright":"Utvalget for samfunnsutvikling skal behandle godkjenning av innkalling, sakliste, referatsaker og rullering av handlingsprogram for idrett, fysisk aktivitet og friluftsliv. Det vil også bli fremmet en ny sak angående prioritering av anlegg for spillemidler i 2025."
+  },
+  {
+    "doc_id":"doc_12",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 29. januar 2002 behandlet Arna bydelsstyre flere saker uten å fatte noen vedtak. Ingen av de refererte sakene ble vedtatt, og saken er nå avsluttet.",
+    "sumright":"Dokumentet omhandler en melding fra Arna bydelsstyre datert 29. januar 2002, hvor det ikke ble fattet noen vedtak knyttet til de refererte sakene. Dette indikerer at ingen av sakene fikk tilslutning fra styret."
+  },
+  {
+    "doc_id":"doc_12",
+    "left":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 29. januar 2022 behandlet Arna bydelsstyre flere saker uten å komme til noen konklusjoner. Saken ble oversendt til Arna bydelsadministrasjon for videre behandling.",
+    "sumright":"I møtet den 29. januar 2022 behandlet Arna bydelsstyre flere saker uten å komme til noen form for vedtak. Dette er en oppfølging av tidligere møter hvor det ikke ble fattet beslutninger om de refererte sakene."
+  },
+  {
+    "doc_id":"doc_12",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en melding fra Arna bydelsstyre datert 29. januar 2002, hvor det ikke ble fattet noen vedtak knyttet til de refererte sakene. Dette indikerer at ingen av sakene fikk tilslutning fra styret.",
+    "sumright":"I møtet den 29. januar 2002 behandlet Arna bydelsstyre flere saker uten å komme til noen beslutninger. Dette indikerer at det ikke ble gjort noen vedtak angående de refererte sakene."
+  },
+  {
+    "doc_id":"doc_12",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 29. januar 2002 behandlet Arna bydelsstyre flere saker uten å fatte noen vedtak. Dette er en oppfølging av tidligere møter hvor det ikke ble gjort vedtak om de refererte sakene.",
+    "sumright":"Dokumentet omhandler et møte i Arna bydelsstyre den 29. januar 2002, hvor ingen av de refererte sakene endte opp med vedtak. Møtet ble ledet av utvalgssekretæren, Elin Blom Rivenes."
+  },
+  {
+    "doc_id":"doc_13",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "sumleft":"Arna bydelsstyre har avvist en klage fra Jarle Bøe angående avslag på søknad om oppføring av terrasse\/tilbygg mot vest. Klagen ble vurdert på nytt, men det ble konkludert med at tiltaket ikke tilfredsstiller kravene til estetikk og synlighet, og at det ikke er i tråd med kommunens reguleringsplan.",
+    "sumright":"Arna bydelsstyre har avvist en klage angående avslag på søknad om oppføring av terrasse\/tilbygg mot vest. Klageren, Jarle Bøe, argumenterte for at tiltaket ville være synlig fra veien og påvirke byggets egenart negativt. Til tross for at tiltaket bryter med kommunens reguleringsplan, fant Etat for Byggesak og Private Planer ingen grunn til å endre vedtaket."
+  },
+  {
+    "doc_id":"doc_13",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "sumleft":"Jarle Bøes klage på avslag om oppføring av terrasse\/tilbygg mot vest i Arna ble avvist av Etat for Byggesak og Private Planer. Tiltaket ble ansett å være i strid med estetiske retningslinjer og kommunens arealplaner. Klageren påpekte at tiltaket ville endre byggets karakter og påvirke naboenes utsikt negativt. Vedtaket ble opprettholdt, og klagen ble ikke tatt til følge.",
+    "sumright":"Arna bydelsstyre har avvist en klage angående avslag på søknad om oppføring av terrasse\/tilbygg mot vest. Klageren, Jarle Bøe, argumenterte for at tiltaket ville være synlig fra veien og påvirke byggets egenart negativt. Til tross for at tiltaket bryter med kommunens reguleringsplan, fant Etat for Byggesak og Private Planer ingen grunn til å endre vedtaket."
+  },
+  {
+    "doc_id":"doc_13",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Arna bydelsstyre har avvist en klage fra Jarle Bøe angående avslag på søknad om oppføring av terrasse\/tilbygg mot vest. Klagen ble vurdert på nytt, men det ble konkludert med at tiltaket ikke tilfredsstiller kravene til estetikk og derfor ikke kan godkjennes.",
+    "sumright":"Jarle Bøes klage på avslag om tilbygg til boligen i Arna er blitt avvist av Etat for Byggesak og Private Planer. Tiltaket anses å være i strid med estetiske retningslinjer og kommunens arealplaner. Klageren påpeker at tiltaket vil endre byggets fasade betydelig og redusere dets egenart. Vedtaket opprettholdes, og saken sendes tilbake til Etat for Byggesak og Private Planer for videre behandling."
+  },
+  {
+    "doc_id":"doc_13",
+    "left":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "sumleft":"Jarle Bøes klage på avslag om tilbygg til boligen i Arna er blitt avvist av Etat for Byggesak og Private Planer. Tiltaket anses å være i strid med estetiske retningslinjer og kommunens arealplaner. Klageren påpeker at tiltaket vil endre byggets karakter og redusere dets egenart, mens Etat for Byggesak og Private Planer fastholder sitt tidligere vedtak.",
+    "sumright":"Jarle Bøes klage på avslag om oppføring av terrasse\/tilbygg mot vest i Arna ble avvist av Etat for Byggesak og Private Planer. Klageren påpekte at tiltaket ville være dominerende og bryte med byggets estetiske uttrykk. Tiltaket ble ansett å ikke oppfylle kravene i plan- og bygningsloven angående estetikk og synlighet fra tilkomstveien."
+  },
+  {
+    "doc_id":"doc_14",
+    "left":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler godkjenning av protokollen fra styremøtet i Bergen Bolig og Byfornyelse KF den 23. oktober 2012. Forslaget til vedtak er at protokollen godkjennes.",
+    "sumright":"Dokumentet omhandler godkjenning av protokollen fra møtet i styret for Bergen Bolig og Byfornyelse KF den 23. oktober 2012. Forslaget til vedtak er at protokollen godkjennes."
+  },
+  {
+    "doc_id":"doc_14",
+    "left":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "sumleft":"I et møte den 11. desember 2012 godkjente styret for Bergen Bolig og Byfornyelse KF protokollen fra møtet den 23. oktober 2012.",
+    "sumright":"Dokumentet omhandler godkjenning av protokollen fra møtet i styret for Bergen Bolig og Byfornyelse KF den 23. oktober 2012. Forslaget til vedtak er at protokollen godkjennes."
+  },
+  {
+    "doc_id":"doc_14",
+    "left":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Styret for Bergen Bolig og Byfornyelse KF har godkjent protokollen fra møtet den 23. oktober 2012.",
+    "sumright":"Dokumentet omhandler godkjenning av protokollen fra styremøtet i Bergen Bolig og Byfornyelse KF den 23. oktober 2012. Det foreslås at protokollen godkjennes."
+  },
+  {
+    "doc_id":"doc_14",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Styret for Bergen Bolig og Byfornyelse KF har behandlet og godkjent protokollen fra møtet den 23. oktober 2012. Forslaget til vedtak om godkjenning ble enstemmig vedtatt.",
+    "sumright":"I et møte den 11. desember 2012 godkjente styret for Bergen Bolig og Byfornyelse KF protokollen fra møtet den 23. oktober 2012."
+  },
+  {
+    "doc_id":"doc_15",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har vedtatt å gi leder og nestleder fullmakt til å avgjøre hastesaker i sommerferien 2000. Dette vedtaket ble gjort for å unngå vesentlige ulemper ved forsinkelser i beslutningsprosesser. Forslaget fra Høyre ble enstemmig vedtatt.",
+    "sumright":"Bergenhus bydelsstyre har gitt leder\/nestleder fullmakt til å ta avgjørelser i sommerferien 2000 for saker som haster og ikke kan vente til første møte etter ferien. Dette er en midlertidig ordning som skal sikre at viktige beslutninger kan tas raskt uten forsinkelser."
+  },
+  {
+    "doc_id":"doc_15",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har gitt leder\/nestleder fullmakt til å ta avgjørelser i sommerferien 2000 for saker som haster og ikke kan vente til første møte etter ferien. Dette er en midlertidig løsning inntil et nytt bydelsstyre er på plass.",
+    "sumright":"Bergenhus bydelsstyre har gitt leder\/nestleder fullmakt til å ta avgjørelser i sommerferien 2000 for saker som haster og ikke kan vente til første møte etter ferien. Dette er en midlertidig ordning som skal sikre at viktige beslutninger kan tas raskt i løpet av sommeren."
+  },
+  {
+    "doc_id":"doc_15",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har gitt leder\/nestleder fullmakt til å ta avgjørelser i sommerferien 2000 for saker som haster og ikke kan vente til første møte etter ferien. Denne fullmakten gjelder også arbeidsutvalgets disposisjoner, som skal rapporteres på det første møtet etter ferien.",
+    "sumright":"I et møte den 20. juni 2000 har Bergenhus bydelsstyre vedtatt en fullmakter for lederen og nestlederen angående avgjørelser som må tas i sommerferien 2000. Fullmakten gir dem mulighet til å ta beslutninger raskt uten forsinkelser, men krever at de rapporterer om sine handlinger til bydelsstyret ved neste møte."
+  },
+  {
+    "doc_id":"doc_15",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har gitt leder og nestleder fullmakt til å ta avgjørelser i sommerferien 2000 for saker som krever umiddelbar behandling. Dette er gjort for å sikre kontinuitet i arbeidet selv om medlemmene tar ferie. Forslaget ble vedtatt med enstemmighet.",
+    "sumright":"I et møte den 20. juni 2000 vedtok Bergenhus bydelsstyre en fullmakter for lederen og nestlederen angående avgjørelser som må tas i sommerferien 2000. Fullmakten gir dem mulighet til å ta beslutninger raskt uten forsinkelser, men krever at de rapporterer om sine handlinger til bydelsstyret ved neste møte."
+  },
+  {
+    "doc_id":"doc_16",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har besluttet å avslå søknaden om brennevinsbevilling for \"​De Tre Musketerer\", et sted som er kjent for servering av øl og vin. Avslaget begrunnes med helse- og sosialpolitiske hensyn, der man frykter økt alkoholforbruk dersom stedet får brennevinsbevilling.",
+    "sumright":"Bergenhus bydelsstyre har behandlet en søknad om bevilling for salg av brennevin ved utestedet \"De tre musketerer\", men har besluttet å avslå søknaden på grunn av helse- og sosialpolitiske vurderinger som tilsier at brennevin ikke bør selges på rene skjenkesteder."
+  },
+  {
+    "doc_id":"doc_16",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"I et møte den 25. april 2000 besluttet Bergenhus bydelsstyre å anbefale avslag på søknaden om brennevinsbevilling til \" De tre musketerer\". Bydelen ønsket ikke å innvilge bevillingen ut fra helse- og sosialpolitiske hensyn, som frykter økt alkoholforbruk ved ren skjenking.",
+    "sumright":"Bergenhus bydelsstyre har behandlet en søknad om bevilling for salg av brennevin ved utestedet \"De tre musketerer\", men har besluttet å avslå søknaden på grunn av helse- og sosialpolitiske vurderinger som tilsier at brennevin ikke bør selges på rene skjenkesteder."
+  },
+  {
+    "doc_id":"doc_16",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har besluttet å avslå søknaden om brennevinsbevilling for \"​De Tre Musketerer\", som er et skjenkested uten servering. Dette begrunnes med helse- og sosialpolitiske hensyn, da økt tilgang på alkohol kan føre til økt forbruk.",
+    "sumright":"I et møte den 25. april 2000 besluttet Bergenhus bydelsstyre å anbefale avslag på søknaden om brennevinsbevilling til \" De tre musketerer\". Dette ble begrunnet med helse- og sosialpolitiske hensyn som frykter økt alkoholforbruk ved slike bevillinger."
+  },
+  {
+    "doc_id":"doc_16",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har enstemmig anbefalt å avslå søknaden om bevilling for salg av brennevin ved skjenkestedet \"De Tre Musketerer\" - \"Fekterloftet\". Avslaget er basert på helse- og sosialpolitiske vurderinger, med fokus på å unngå økt alkoholforbruk.",
+    "sumright":"Bergenhus bydelsstyre har behandlet en søknad om bevilling for salg av brennevin ved utestedet «De Tre Musketerer», men besluttet å avslå søknaden på grunn av helse- og sosialpolitiske vurderinger som tilsier at brennevin ikke bør selges på rene skjenkesteder."
+  },
+  {
+    "doc_id":"doc_17",
+    "left":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Dokumentet omhandler en høring av Kommunedelplan Sandviken-Fjellsiden Nord, som ble sendt fra byrådsavdelingen til Bergenhus bydelsstyre. Planen skal bidra til å utvikle området som et bolig- og næringsområde, med fokus på grønne områder, kulturminner og trafikkløsninger. Det er imidlertid bekymringer knyttet til fortetting og tunnelalternativer, samt negative konsekvenser for nærmiljø og kulturminner.",
+    "sumright":"Bergenhus bydelsstyre vurderer kommunedelplanen for Sandviken-Fjellsiden Nord, som skal gi retningslinjer for utvikling av området som bolig- og næringsområde. Planen har vært gjenstand for omfattende medvirkning fra beboere og næringsliv, men det er uenighet om enkelte konklusjoner. Bydelsstyret peker på behovet for å revurdere fortetting, utredning av tunnelalternativer og konsekvenser av en eventuell cruisehavn."
+  },
+  {
+    "doc_id":"doc_17",
+    "left":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en høring av Kommunedelplan Sandviken-Fjellsiden Nord, som ble sendt til Bergenhus bydelsstyre fra byrådsavdelingen for miljø og byutvikling. Planen tar sikte på å utvikle området som et bolig- og næringsområde, med fokus på grønne områder, kulturminner og trafikkløsninger. Velforeninger uttrykker bekymring for fortetting og tunnelalternativer, samt at en cruisehavn kan forstyrre miljøet.",
+    "sumright":"Bergenhus bydelsstyre vurderer positivt Kommunedelplanen for Sandviken-Fjellsiden Nord, men påpeker behovet for å vurdere fortetting i området og trekke tunnelinnslaget lenger mot nord. Velforeninger uttrykker bekymring for tap av grønne områder og økt trafikkbelastning, spesielt knyttet til Amalie Skramsvei. De anbefaler alternative løsninger for tunnelinnslag og cruisehavn."
+  },
+  {
+    "doc_id":"doc_17",
+    "left":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre vurderer positivt Kommunedelplanen for Sandviken-Fjellsiden Nord, men påpeker behovet for å vurdere fortetting i området og trekke tunnelinnslaget lenger nordover. Velforeninger uttrykker bekymring for tap av grønne områder og økt trafikkbelastning, spesielt knyttet til Amalie Skramsvei. De anbefaler å utrede alternative tunnelalternativer og bevare åpne arealer for rekreasjon.",
+    "sumright":"Bergenhus bydelsstyre har mottatt en kommunedelplan for Sandviken-Fjellsiden Nord, som skal danne grunnlaget for videre utvikling av området. Planen inneholder tiltak for fortetting, tunnelinnslag og bevaring av grønne områder, men møter motstand fra velforeninger som frykter negative konsekvenser for nærmiljø og naturverdier. Bydelsdirektøren understreker behovet for å ivareta områdets kvaliteter og anbefaler at det tas hensyn til områdets karakter når nye planer utvikles."
+  },
+  {
+    "doc_id":"doc_17",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har mottatt Kommunedelplan Sandviken-Fjellsiden Nord for høring. Planen legger opp til fortetting i området, men velforeninger protesterer mot fortetting og ønsker bevaring av grønne områder. Det foreslås også tiltak for å redusere trafikkproblemer og forbedre kollektivtrafikken.",
+    "sumright":"Bergenhus bydelsstyre behandler en kommunedelplan for Sandviken-Fjellsiden Nord, som legger føringer for utviklingen av området. Planen inneholder tiltak for fortetting, trafikkløsninger og bevaring av grønne områder, men møter motstand fra velforeninger som frykter tap av åpne arealer og økt trafikkbelastning. Spesielt er det bekymring knyttet til fortetting langs Amalie Skramsvei, tunnelalternativer og cruisehavn ved Kristiansholm."
+  },
+  {
+    "doc_id":"doc_18",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler protokollen fra et møte i Bergenhus bydelsstyre, hvor en sak ble vedtatt på fullmakt den 20. desember 2002. Det foreslås at protokollen tas til etterretning av Ole Vorland, som er bydelsdirektør.",
+    "sumright":"Dokumentet omhandler protokollen fra et møte i Bergenhus bydelsstyre, hvor en sak ble vedtatt på fullmakt den 20. desember 2002. Forslaget til vedtak er at protokollen tas til etterretning av bydelsstyret."
+  },
+  {
+    "doc_id":"doc_18",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler protokollen fra et møte i Bergenhus bydelsstyre, hvor en sak ble vedtatt på fullmakt den 20. desember 2002. Det foreslås at protokollen tas til etterretning av Ole Vorland, som er bydelsdirektør.",
+    "sumright":"Dokumentet omhandler protokollen fra et møte i Bergenhus bydelsstyre, som ble vedtatt på fullmakt den 20. desember 2002. Det foreslås at protokollen tas til etterretning av bydelsstyret."
+  },
+  {
+    "doc_id":"doc_18",
+    "left":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler protokollen fra et møte i Bergenhus bydelsstyre, hvor en sak ble vedtatt på fullmakt den 20. desember 2020. Det foreslås at protokollen tas til etterretning av Ole Vorland, som er bydelsdirektør.",
+    "sumright":"Dokumentet omhandler protokollen fra et møte i Bergenhus bydelsstyre, hvor en sak ble vedtatt på fullmakt den 20. desember 2020. Det foreslås at protokollen tas til etterretning av Ole Vorland, som er bydelsdirektør."
+  },
+  {
+    "doc_id":"doc_18",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet er en protokoll fra Bergenhus bydelsstyre som omhandler vedtaket av en sak fattet på fullmakt den 20. desember 2002. Det foreslås at protokollen tas til etterretning, og det anbefales å godkjenne innholdet i dokumentet.",
+    "sumright":"Dokumentet omhandler protokollen fra et møte i Bergenhus bydelsstyre, hvor en sak ble vedtatt på fullmakt den 20. desember 2020. Det foreslås at protokollen tas til etterretning av Ole Vorland, som er bydelsdirektør."
+  },
+  {
+    "doc_id":"doc_19",
+    "left":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet presenterer årsmeldingen for Bergen bystyre for 2013, inkludert aktiviteter fra ulike utvalg og regnskapstall. Det foreslås at bystyret tar meldingen til orientering.",
+    "sumright":"Dokumentet presenterer årsmeldingen for Bergen bystyre for 2013, inkludert aktiviteter, regnskap og resultater fra ulike utvalg. Det foreslås at bystyret tar meldingen til orientering."
+  },
+  {
+    "doc_id":"doc_19",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet presenterer årsmeldingen for 2013 for bystyrets organer i Bergen, inkludert aktiviteter, regnskap og resultater fra utvalgene. Det foreslås at bystyret tar meldingen til orientering.",
+    "sumright":"Dokumentet presenterer årsmeldingen for 2013 for Bergen bystyre, som inkluderer informasjon om bystyrets organer, deres aktiviteter og økonomiske resultater fra året. Det foreslås at bystyret tar meldingen til orientering."
+  },
+  {
+    "doc_id":"doc_19",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet presenterer årsmeldingen for Bergen bystyre for året 2013, inkludert aktiviteter, regnskap og resultater fra ulike utvalg. Det foreslås at bystyret tar meldingen til orientering.",
+    "sumright":"Dokumentet presenterer årsmeldingen for Bergen bystyre for 2013, inkludert aktiviteter fra ulike utvalg og regnskapstall. Det foreslås at bystyret tar meldingen til orientering."
+  },
+  {
+    "doc_id":"doc_19",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet presenterer årsmeldingen for 2013 for Bergen bystyre, som inkluderer informasjon om bystyrets organer, deres aktiviteter og økonomiske resultater fra året. Det foreslås at bystyret tar meldingen til orientering.",
+    "sumright":"Dokumentet presenterer årsmeldingen for 2013 for bystyrets organer, inkludert aktiviteter, regnskap og resultater fra utvalgene. Det foreslås at bystyret tar rapporten til orientering."
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "sumleft":"Det ble gitt tre anbefalinger i rapporten. Den første anbefalingen var at kommunen må etablere rutiner for opplæring av ansatte om oppfølging av barn i kommunale fosterhjem. Den andre anbefalingen var at kommunen må etablere rutiner for systematisk dokumentasjon av barnevernsfaglige vurderinger i arbeidet med oppfølging av barn i kommunale fosterhjem. Den tredje anbefalingen var at kommunen må etablere rutiner for å sikre at alle barn i kommunale fosterhjem får",
+    "sumright":"Det ble gitt tre anbefalinger. Den første anbefalingen var at kommunen må sikre at alle ansatte får nødvendig opplæring om oppfølging av barn i kommunale fosterhjem. Den andre anbefalingen var at kommunen må sikre at det dokumenteres tilstrekkelig i journalen hvilke vurderinger som ligger til grunn for valg av tiltak overfor barna. Den tredje anbefalingen var at kommunen må sikre at det gis tilstrekkelig veiledning til fosterforeldre når det gjelder deres rolle og ansvar. De tre anbefalingene ble oversendt kommunen våren 2014. Kommunen svarte at de ville iverksette tiltak for å lukke avvikene. Fylkesmannen mottok deretter en statusrapport der det ble redegjort for hvilke tiltak som var iverksatt. Fylkesmannen konkluderte med at avvikene var lukket, og avsluttet tilsynet 19. september 2014. Tilsyn ved Årstad barnevernstjeneste i 2013 Fylkesmannen gjennomførte tilsyn ved Årstad barnevernstjeneste i 2013. Temaet for tilsynet var oppfølging av hjelpetiltak for hjemmeboende barn og unge. Fylkesmannen avdekket ett avvik. Det gjalt at kommunen ikke hadde etablert rutiner for å vurdere om hjelpetiltakene var egnet for å ivareta barnas behov. Fylkesmannen anbefalte at kommunen etablerer rutiner for å"
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Det ble gitt tre anbefalinger. Den første anbefalingen handlet om at kommunen må sikre at alle ansatte har fått tilstrekkelig opplæring i oppfølging av barn i kommunale fosterhjem. Den andre anbefalingen handlet om at kommunen må sikre at dokumentasjonen av barnevernsfaglige vurderinger i arbeidet med oppfølging av barn i kommunale fosterhjem blir bedre. Den tredje anbefalingen handlet om at kommunen må sikre at det blir foretatt en systematisk evaluering av om barna får forsvarlig omsorg i kommunale fosterhjem. Fylkesmannen ba om en statusrapport om hvordan igangsatte tiltak så ut til å virke. Dette resulterte da i at fylkesmannen godkjente statusrapporten og avsluttet tilsynet 19. september 2014. 3 Nye systemtilsyn i 2014 I 2014 ble det gjennomført 6 nye systemtilsyn med helse- og omsorgstjenesten og barnevernstjenesten. Disse tilsynene ble fordelt slik: 2 tilsyn i kommunale sykehjem, 2 tilsyn med tjenestene til utviklingshemmede og 2 tilsyn med barnevernstjenesten. De nye tilsynene i 2014 ble gjennomført uten avvik, dvs. fylkesmannen fant ingen avvik i forhold til lov og myndighetskravene. For 2 tilsyn ble det funnet avvik. Tilsynet med tjenestene til",
+    "sumright":"Det ble gitt tre anbefalinger i rapporten. Den første anbefalingen handlet om at kommunen må sikre at alle ansatte får nødvendig opplæring om oppfølging av barn i kommunale fosterhjem. Den andre anbefalingen handlet om at kommunen må sikre at dokumentasjonen av barnevernsfaglige vurderinger blir bedre. Den tredje anbefalingen handlet om at kommunen må sikre at det blir foretatt en systematisk vurdering av om det er behov for å endre plasseringen av barn i fosterhjem. Tiltakene for å lukke avvikene ble oversendt fylkesmannen våren 2014. Tiltakene omfattet blant annet å lage en plan for kompetanseheving av ansatte, etablere rutiner for å sikre at alle ansatte får nødvendig opplæring, forbedre dokumentasjonen av barnevernsfaglige vurderinger og vurdere behovet for å endre plasseringen av barn i fosterhjem. Fylkesmannen godkjente tiltaksplanen og avsluttet tilsynet 19. september 2014. 3 Nye systemtilsyn i 2014 I 2014 ble det gjennomført 6 nye systemtilsyn med helse- og omsorgstjenesten og barnevernstjenesten. Disse tilsynene ble gjennomført i følgende enheter: • Hjemmesykepleien i Årstad bydel • Hjemmetjenesten i Arna bydel • Hjemmetjenesten i Fana"
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "sumleft":"Det ble gitt tre anbefalinger i rapporten. Den første anbefalingen var at kommunen må etablere rutiner for opplæring av ansatte om oppfølging av barn i kommunale fosterhjem. Den andre anbefalingen var at kommunen må etablere rutiner for systematisk dokumentasjon av barnevernsfaglige vurderinger i arbeidet med oppfølging av barn i kommunale fosterhjem. Den tredje anbefalingen var at kommunen må etablere rutiner for å sikre at alle barn i kommunale fosterhjem får",
+    "sumright":"Det ble gitt tre anbefalinger. Den første anbefalingen handlet om at kommunen må sikre at alle ansatte har fått tilstrekkelig opplæring i oppfølging av barn i kommunale fosterhjem. Den andre anbefalingen handlet om at kommunen må sikre at det dokumenteres hvilke vurderinger som ligger til grunn for beslutninger om plassering av barn i kommunale fosterhjem. Den tredje anbefalingen handlet om at kommunen må sikre at det gis tilstrekkelig veiledning til fosterforeldre om deres rettigheter og plikter. Fylkesmannen ba om en statusrapport om hvordan igangsatte tiltak virket. Statusrapporten ble sendt til fylkesmannen 1. oktober 2013. Rapporten viste at kommunen hadde iverksatt tiltak for å lukke avvikene. Fylkesmannen godkjente statusrapporten og avsluttet tilsynet 19. september 2014. Tilsyn ved Årstad barnevernstjeneste i 2013 Fylkesmannen gjennomførte tilsyn ved Årstad barnevernstjeneste i 2013. Temaet for tilsynet var oppfølging av hjelpetiltak til hjemmeboende barn og unge. Fylkesmannen avdekket ett avvik. Det handlet om at kommunen ikke sikrer at det foretas systematisk kartlegging av barnas situasjon og behov når hjelpetiltak vurderes. Fylkesmannen anbefalte at kommunen må sikre at det foretas systematisk kartlegging av barnas situasjon"
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Det ble gitt tre anbefalinger. Den første anbefalingen handlet om at kommunen må sikre at alle ansatte som arbeider med oppfølging av barn i kommunale fosterhjem får nødvendig opplæring. Den andre anbefalingen handlet om at kommunen må sikre at dokumentasjonen av barnevernsfaglige vurderinger blir bedre. Den tredje anbefalingen handlet om at kommunen må sikre at det blir foretatt systematisk kontroll av barnas situasjon i kommunale fosterhjem. Tiltakene for å lukke avvikene ble oversendt fylkesmannen våren 2014. Tiltakene omfattet blant annet å lage en plan for kompetanseheving av ansatte, etablere rutiner for å sikre at alle ansatte får nødvendig opplæring, etablere rutiner for å sikre at dokumentasjonen av barnevernsfaglige vurderinger blir bedre, samt etablere rutiner for å sikre systematisk kontroll av barnas situasjon i kommunale fosterhjem. Fylkesmannen godkjente tiltaksplanen og avsluttet tilsynet 19. september 2014. 3 Nye systemtilsyn i 2014 I 2014 ble det gjennomført 6 nye systemtilsyn med helse- og omsorgstjenesten og barnevernstjenesten. Disse tilsynene ble gjennomført slik: • Et tilsyn ved to sykehjem i 2014 omhandlet tvungen helsehjelp etter pasient- og brukerrettighetsloven. Det ble",
+    "sumright":"Det ble gitt tre anbefalinger. Den første anbefalingen handlet om at kommunen må sikre at alle ansatte har fått tilstrekkelig opplæring om oppfølging av barn i kommunale fosterhjem. Den andre anbefalingen gikk på at kommunen må sikre at dokumentasjonen av barnevernsfaglige vurderinger i arbeidet med oppfølging av barn i kommunale fosterhjem"
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har besluttet å frita Gnr. 159 bnr. 256 snr. 3, Kanalveien 66, Kristent Fellesskap for eiendomsskatt fra 1. januar 2015. Eiendommen har en skattetakst på 9 025 000 kroner og en utskrevet eiendomsskatt på 45 125 kroner.",
+    "sumright":"Bergen bystyre har besluttet å frita Gnr. 159 bnr. 256 snr. 3, Kanalveien 66, Kristent Fellesskap for eiendomsskatt fra 1. januar 2015. Eiendommen har en skattetakst på 9 025 000 kroner og en utskrevet eiendomsskatt på 45 125 kroner. Notat:"
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har besluttet å frita Gnr. 159 bnr. 256 snr. 3, Kanalveien 66, Kristent Fellesskap for eiendomsskatt fra 1. januar 2015. Eiendommen har en skattetakst på 9 025 000 kroner og en utskrevet eiendomsskatt på 45 125 kroner. Vedtaket ble gjort etter en samlet diskusjon i bystyret.",
+    "sumright":"Bergen bystyre har besluttet å frita Gnr. 159 bnr. 256 snr. 3, Kanalveien 66, Kristent Fellesskap for eiendomsskatt fra 1. januar 2015. Eiendommen har en skattetakst på 9 025 000 kroner og en utskrevet eiendomsskatt på 45 125 kroner. Notat:"
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har besluttet å frita Gnr. 159 bnr. 256 snr. 3, Kanalveien 66, Kristent Fellesskap for eiendomsskatt fra og med 1. januar 2015. Eiendommen har en skattetakst på 9 millioner kroner og en utskrevet eiendomsskatt på 45 125 kroner.",
+    "sumright":"Bergen bystyre har besluttet å frita Gnr. 159 bnr. 256 snr. 3, Kanalveien 66, for eiendomsskatt fra og med 1. januar 2015. Eiendommen har en skattetakst på 9 025 000 kroner og en utskrevet eiendomsskatt på 45 125 kroner. Vedtaket ble gjort etter en samlet diskusjon i bystyret."
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har besluttet å frita Gnr. 159 bnr. 256 snr. 3, Kanalveien 66, Kristent Fellesskap for eiendomsskatt fra og med 1. januar 2015. Eiendommen har en skattetakst på 9 millioner kroner og en utskrevet eiendomsskatt på 45 125 kroner.",
+    "sumright":"Bergen bystyre har besluttet å frita Gnr. 159 bnr. 256 snr. 3, Kanalveien 66, Kristent Fellesskap, for eiendomsskatt fra og med 1. januar 2015. Eiendommen har en skattetakst på 9 millioner kroner, men vil bli fjernet dersom den selges eller tas i bruk til andre formål."
+  },
+  {
+    "doc_id":"doc_22",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "sumleft":"B. Tiltakshaver er Townhouse Skjold AS. C. I medhold av plan- og bygningsloven § 12-14 gis tillatelse til oppføring av blokkbebyggelse med tilhørende infrastruktur, samt etablering av gangvei og parkeringsplass, som omsøkt. D. Før det gis igangsettingstillatelse for tiltak innen for planområdet, skal det foreligge godkjent avkjørselsløsning, jf. pbl. § 27-4, nr. 2. E. Før det gis brukstillatelse for tiltak innen for planområdet, skal det dokumenteres at nødvendig sikringstiltak iht. pbl. § 28-1 er etablert, jf. pbl. § 28-1, nr. 2. 2. Bybanen AS gis ansvarsrett som ansvarlig søker og prosjekterende for fagområdene arkitektur, landskapsarkitektur og veg, vann og avløp for gjennomføring av reguleringsplanen. 3. I samsvar med pbl. § 12-7, siste ledd, varsles det at det vil bli krevet innsendt dokumentasjon for veg, vann og avløp i forbindelse med byggesøknad. 4. Det tas forbehold",
+    "sumright":"B. Tilhørende reguleringsbestemmelser datert 14.12.15. C. Tilhørende illustrasjonsplan datert 14.12.15. D. Tilhørende utomhusplan datert 14.12.15. E. Tilhørende geoteknisk rapport datert 14.12.15. 2. Med hjemmel i plan- og bygningsloven § 12-7 nr. 2 vedtas følgende mindre vesentlig endring av reguleringsplanen: a. Bestemmelse 2.4 endres til: «Før det gis tillatelse til tiltak etter pbl. § 20-1 første ledd bokstav a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, æ, ø, aa, ab, ac, ad, ae, af, ag, ah, ai, ak, al, am, an, ao, ap, aq, ar, as, at, au, av"
+  },
+  {
+    "doc_id":"doc_22",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Bestemmelser datert 14.12.15 b. Planbeskrivelse datert 14.12.15 c. Illustrasjonsplan datert 14.12.15 d. VA-plan datert 14.12.15 e. Geoteknisk rapport datert 14.12.15 f. Støysonekart datert 14.12.15 g. ROS-analyse datert 14.12.15 h. Solstudie datert 14.12.15 i. Terrengprofil datert 14.12.15 j. Snitt datert 14.12.15 k. Fasader datert 14.12.15 l. Perspektiv datert 14.12.15 m. Uteoppholdsareal datert 14.12.15 n. Utomhusplan datert 14.12.15 o. Situasjonsplan datert 14.12.15 p. Oversikt",
+    "sumright":"Byrådssak 262\/16 omhandler reguleringsplanen for en ny boligblokk på Skjold i Fana bydel, som foreslås av Opus Bergen AS og Faaland arkitekter AS. Planen inkluderer en terrassert boligblokk med 5 etasjer og 13 boenheter, samt tilhørende infrastruktur som fortau og parkeringsplasser. Etter offentlig ettersyn er planen justert, blant annet med redusert antall boenheter og utnyttelsesgrad. Byrådet anbefaler planen vedtatt med endringer for å sikre kvalitetene i prosjektet."
+  },
+  {
+    "doc_id":"doc_22",
+    "left":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "sumleft":"B. Tilhørende reguleringsbestemmelser datert 14.12.15. C. Tilhørende illustrasjonsplan datert 14.12.15. D. Tilhørende utomhusplan datert 14.12.15. E. Tilhørende geoteknisk rapport datert 14.12.15. 2. Med hjemmel i plan- og bygningsloven § 12-7 nr. 2 vedtas følgende rekkefølgebestemmelse: «Før det gis rammetillatelse til nye boenheter innenfor felt BBB1, skal det foreligge godkjent avkjørselsløsning for feltet.» Dato: 15. februar 2016 Dette dokumentet er godkjent elektronisk. Martin Smith-Sivertsen byrådsleder Henning Warloe byråd for byutvikling, klima og miljø Vedlegg: Fagnotat: Reguleringsendring for Dyrhaugen, gnr. 40, bnr. 411 mfl., Fana bydel, Bergen kommune. Plankart, datert 14.12.15 Reguleringsbestemmelser, datert 1",
+    "sumright":"Byggegrenser er endret i samsvar med plankart datert 14.12.15. b. Bestemmelser § 2.1 endres til: «Maksimal tillatt bruksareal (BRA) er angitt i prosent bebygd areal (%-BYA) og skal ikke overstige %-BYA: 112 %». c. Bestemmelser § 2.2 endres til: «Maksimalt tillatt gesimshøyde er angitt i meter over gjennomsnittlig planert terreng.» d. Bestemmelser § 2.3 endres til: «Maksimal tillatt mønehøyde er angitt i meter over gjennomsnittlig planert terreng.» e. Bestemmelser § 2.4 endres til: «Ved søknad om rammetillatelse skal det redegjøres for håndtering av overskuddsmasser.» f. Bestemmelser § 2.5 endres til: «Uteoppholdsarealer skal ha solrik plassering og være egnet for lek og opphold.» g. Bestemmelser § 2.6 endres til: «Lekeplass skal være felles for hele feltet.» h. Bestemmelser § 2.7 endres til: «Lekeplassen skal være ferdigstilt før"
+  },
+  {
+    "doc_id":"doc_22",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byggegrenser er endret i samsvar med gjeldende reguleringsplan. b. Bestemmelser § 2.1.1 endres til: «Maksimal tillatt bebygd areal (%-BYA) er angitt på plankartet. Byggehøyden skal ikke overstige kote + 77.» c. Bestemmelser § 2.1.2 endres til: «Lekeplass L1 skal være felles for hele planområdet. Lekeplassen skal være minimum 150 m². Lekeplassen skal ha sandkasse, huskestativ, vippe, klatrestativ og sitteplasser.» d. Bestemmelser § 2.1.3 endres til: «Lekeplass L2 skal være felles for hele planområdet. Lekeplassen skal ha sandkasse, huskestativ, vippe,",
+    "sumright":"Bestemmelser datert 14.12.15 b. Planbeskrivelse datert 14.12.15 c. Illustrasjonsplan datert 14.12.15 d. VA-plan datert 14.12.15 e. Geoteknisk rapport datert 14.12.15 f. Støysonekart datert 14.12.15 g. Solstudie datert 14.12.15 h. Terrengprofil datert 14.12.15 i. ROS-analyse datert 14.12.15 j. Miljøgeologisk rapport datert 14.12.15 k. Notat om massehåndtering datert 14.12.15 l. Notat om støy datert 14.12.15 m. Notat om geoteknikk datert 14.12.15 n. Notat om VA datert 14.12.15 o. Notat om veg datert 14.12"
+  },
+  {
+    "doc_id":"doc_23",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune har avgitt høringsuttalelse til et forslag om en ny forskrift for tilskudd til klimatiltak i kommunene. Forskriften skal regulere rammene for en tilskuddsordning som skal gi kommuner midler til gjennomføring av klimatiltak. Høringsfristen er satt til 30. oktober 2016, og det foreslås endringer angående tildelingskriterier, satsingsområder og overføring av midler.",
+    "sumright":"Bergen kommune har avgitt høringsuttalelse til et forslag om en ny forskrift for tilskudd til klimatiltak i kommunene. Forskriften skal regulere rammene for en tilskuddsordning som skal forvalte 100 millioner kroner årlig i fem år. Høringsfristen er 30. oktober 2016, og det foreslås endringer i kriteriene for tildeling av midler samt presiseringer angående overføring av midler mellom år."
+  },
+  {
+    "doc_id":"doc_23",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune har sendt en høringsuttalelse angående et forslag til ny forskrift om tilskudd til klimatiltak i kommunene. Forskriften skal regulere rammene for en tilskuddsordning som skal gi kommuner midler til gjennomføring av klimatiltak. Høringsfristen er satt til 30. oktober 2016, og Bergen kommune anbefaler at ordningen blir mer fleksibel og tydeliggjør kriteriene for tildeling.",
+    "sumright":"Bergen kommune har sendt inn en høringsuttalelse angående et forslag til ny forskrift om tilskudd til klimatiltak i kommunene. Forskriften skal regulere de ytre rammene for en tilskuddsordning som skal forvalte 100 millioner kroner årlig i minst fem år. Kommunen påpeker behovet for fleksibilitet i tildelingskriteriene og understreker viktigheten av samarbeid med andre finansieringskilder."
+  },
+  {
+    "doc_id":"doc_23",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune har mottatt et høringsforslag fra Miljødirektoratet angående en ny forskrift for tilskudd til klimatiltak i kommunene. Forskriften skal regulere rammene for en tilskuddsordning som skal forvalte 100 millioner kroner årlig i fem år. Byrådet foreslår endringer for å sikre at tiltakene får ønsket effekt, samt at det ikke stilles krav om overføring av midler mellom år.",
+    "sumright":"Bergen kommune har avgitt høringsuttalelse til et utkast til ny forskrift om tilskudd til klimatiltak i kommunene. Høringsfristen er 30. oktober 2016, og forslaget omhandler rammer for forvaltningen av en tilskuddsordning for klimatiltak. Kommunen påpeker behovet for langsiktige prosjekter og understreker viktigheten av samarbeid med andre finansieringskilder."
+  },
+  {
+    "doc_id":"doc_23",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Bergen kommune har avgitt høringsuttalelse til et utkast til ny forskrift om tilskudd til klimatiltak i kommunene. Høringsfristen er 30. oktober 2016, og forslaget omhandler rammer for forvaltningen av en tilskuddsordning for klimatiltak. Kommunen påpeker behovet for langsiktige prosjekter og understreker viktigheten av samarbeid med andre finansieringskilder.",
+    "sumright":"Bergen kommune har mottatt et høringsforslag fra Miljødirektoratet angående en ny forskrift for tilskudd til klimatiltak i kommunene. Forskriften har som mål å gi økonomisk støtte til kommuner som implementerer klimatiltak, med en totalbevilgning på 100 millioner kroner årlig over fem år. Byrådet foreslår flere endringer i høringsuttalelsen, inkludert behovet for å tillate flerårige prosjekter og presisering av tildelingskriteriene."
+  },
+  {
+    "doc_id":"doc_24",
+    "left":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "sumleft":"Marie Torgersen har søkt om fritak fra vervet som varamedlem i Åsane bydelsstyre på grunn av helsemessige årsaker. Formannskapet anbefaler at søknaden innvilges, og foreslår en ny representant for Arbeiderpartiet. Dette skjer i henhold til kommuneloven.",
+    "sumright":"Marie Torgersen har søkt om fritak fra vervet som varamedlem for Arbeiderpartiet i Åsane bydelsstyre på grunn av helsemessige årsaker. Formannskapet anbefaler at søknaden innvilges, og foreslår en ny representant for resten av valgperioden 1999-2003."
+  },
+  {
+    "doc_id":"doc_24",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "sumleft":"Marie Torgersen søker om fritak fra vervet som varamedlem i Åsane bydelsstyre på grunn av manglende evne til å utføre oppgavene. Formannskapet anbefaler at søknaden innvilges, og foreslår en ny representant for Arbeiderpartiet.",
+    "sumright":"Marie Torgersen søker fritak fra vervet som varamedlem i Åsane bydelsstyre på grunn av manglende evne til å utføre oppgavene. Formannskapet anbefaler at søknaden innvilges, og foreslår en ny person som nytt varamedlem for Arbeiderpartiet."
+  },
+  {
+    "doc_id":"doc_24",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "sumleft":"Marie Torgersen har søkt om fritak fra sitt verv som varamedlem i Åsane bydelsstyre, begrunnet med at hun ikke føler seg i stand til å utføre pliktene. Bysekretæren anbefaler at søknaden innvilges, og det foreslås å velge et nytt varamedlem fra Arbeiderpartiet for resten av valgperioden.",
+    "sumright":"Marie Torgersen har søkt om fritak fra vervet som varamedlem for Arbeiderpartiet i Åsane bydelsstyre på grunn av helsemessige årsaker. Formannskapet anbefaler at søknaden innvilges, og foreslår en ny representant for resten av valgperioden 1999-2003."
+  },
+  {
+    "doc_id":"doc_24",
+    "left":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Marie Torgersen har søkt om fritak fra vervet som varamedlem for Arbeiderpartiet i Åsane bydelsstyre på grunn av manglende evne til å skjøtte vervet. Kommuneloven gir henne mulighet til å søke om fritak for resten av valgperioden, og bysekretæren anbefaler at søknaden innvilges. Det foreslås også en ny vararepresentant for Arbeiderpartiet.",
+    "sumright":"Marie Torgersen søker fritak fra vervet som varamedlem for Arbeiderpartiet i Åsane bydelsstyre på grunn av manglende evne til å skjøtte vervet. Kommuneloven gir henne mulighet til å søke om fritak, og bysekretæren anbefaler at søknaden innvilges. Det foreslås at en ny person velges som varamedlem for resten av valgperioden."
+  },
+  {
+    "doc_id":"doc_25",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"I Bergen bystyre ble det diskutert strategier og handlingsplaner for kollektivtransporten i byen. Tom Skauge fra SV etterlyste en oppdatert statusrapport om kollektivtilbudets tilstand, spesielt med tanke på behovet for investeringer i bybaneprosjektet. Han påpekte også viktigheten av å finansiere nødvendige tiltak for å forbedre tilbudet, inkludert parkeringsrestriksjoner og restriksjoner på bilbruk. Byråd Tom Knudsen svarte på spørsmålene, men anmodninger om finansiering og fremdrift ble ikke besvart direkte.",
+    "sumright":"I Bergen bystyre ble det diskutert strategier og handlingsplaner for kollektivtransport i regionen. Tom Skauge fra SV etterlyste en oppdatert statusrapport om kollektivtilbudet, spesielt med tanke på behovet for investeringer og finansiering. Han påpekte også viktigheten av å prioritere bybaneutbygging til Flesland i neste periode. Byrådet ble bedt om å følge opp disse sakene og arbeide aktivt for å sikre finansieringen av prosjektet."
+  },
+  {
+    "doc_id":"doc_25",
+    "left":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"I Bergen bystyre ble det diskutert hvordan kollektivtransporten kan forbedres etter en tidligere strategi og handlingsplan. Tom Skauge fra SV påpekte at handlingsplanen hadde ambisiøse mål for kollektivtilbudet, men at finansieringen ikke fulgte opp. Han foreslo at byrådet tar kontakt med samferdselsdepartementet for å sikre fullfinansiering av bybanetrase til Flesland. Forslaget ble enstemmig vedtatt sendt videre til byrådet.",
+    "sumright":"I Bergen bystyre diskuteres behovet for investeringer i kollektivtransporten etter at handlingsplanen for perioden 1999-2002 ikke ble fulgt opp. Tom Skauge fra SV påpeker at planen hadde ambisiøse mål for kollektivtilbudet, men at finansieringen ikke ble fulgt opp. Han ber byråden om å legge frem en liste over tiltak som fortsatt er inkludert i Bergensprogrammet, samt arbeide for fullfinansiering av bybanetrase til Flesland."
+  },
+  {
+    "doc_id":"doc_25",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"I Bergen bystyre ble det diskutert hvordan kollektivtransporten kan forbedres etter en tidligere strategi og handlingsplan. Tom Skauge fra SV påpekte at handlingsplanen hadde ambisiøse mål for kollektivtilbudet, men at finansieringen ikke fulgte opp. Han foreslo at byrådet tar kontakt med samferdselsdepartementet for å sikre fullfinansiering av bybanetrase til Flesland. Forslaget ble enstemmig vedtatt sendt videre til byrådet.",
+    "sumright":"I Bergen bystyre ble det diskutert behovet for investeringer i kollektivtransporten etter vedtaket av handlingsplanen for Kollektivtrafikken i Bergensområdet i 1999. Tom Skauge (SV) påpekte at planen hadde ambisiøse mål for forbedring av tilbudet, men at finansieringen ikke fulgte opp. Han foreslo at byrådet skal rette en henvendelse til Samferdselsdepartementet for å sikre fullfinansiering av bybanetrase til Flesland."
+  },
+  {
+    "doc_id":"doc_25",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "sumleft":"I Bergen bystyre ble det diskutert viktigheten av kollektivtransport i byen, spesielt etter vedtaket om handlingsplanen for kollektivtrafikken i 1999. Interpellanten Tom Skauge påpeker at planen ikke har blitt fulgt opp tilstrekkelig, og etterspør tiltak for å finansiere bybanetrase til Flesland. Han ber byrådet ta initiativ overfor samferdselsdepartementet for å sikre fullfinansiering av strategien.",
+    "sumright":"I Bergen bystyre ble det diskutert hvordan kollektivtransporten kan forbedres etter en tidligere strategi og handlingsplan. Tom Skauge fra SV påpekte at handlingsplanen hadde ambisiøse mål for kollektivtilbudet, men at finansieringen ikke fulgte opp. Han foreslo at byrådet skal rette en henvendelse til Samferdselsdepartementet for å sikre fullfinansiering av bybanetrase til Flesland. Forslaget ble enstemmig vedtatt oversendt byrådet."
+  }
+]

@@ -1,0 +1,702 @@
+[
+  {
+    "doc_id":"doc_1",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Ivest Consult AS søker tillatelse fra Kinn Kommune angående et planlagt nybygg tilknyttet eksisterende næringseiendom på adressen 'Botanenesveien' (gbnr. 26\/142). Søknaden gjelder oppføring av kontorlokaler samt nødvendige endringer knyttet til byggetillatelse gitt tidligere samme dag.",
+    "sumright":"Ivest Consult AS søker tillatelse fra Kinn Kommune angående et planlagt nybygg tilknyttet eksisterende næringseiendom lokalisert på adressen 'Botanenesveien' (gbnr. 26\/142). Søknaden gjelder oppføring av kontorlokaler samt nødvendige endringer knyttet til byggetillatelse gitt tidligere samme sted."
+  },
+  {
+    "doc_id":"doc_1",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Ivest Consult AS søker tillatelse fra Kinn Kommune angående et planlagt nybygg tilknyttet eksisterende næringseiendom på adressen 'Botanenesveien' (gbnr. 26\/142). Søknaden gjelder oppføring av kontorlokaler samt nødvendige endringer knyttet til byggetillatelse gitt tidligere samme dag.",
+    "sumright":"I denne saken gir arealforvaltningen tillatelse til et planlagt nybygg tilknyttet adressen 'Botanasesveien' (gb.nr. 26\/142) uten merknader fra naboer. Byggetillatelse gis også selv om prosjektet ikke ble igangsatt innen fristen satt tidligere."
+  },
+  {
+    "doc_id":"doc_1",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Kinn Kommune gir tillatelse til et nytt kontor-tilbygg knyttet til eksisterende næringseiendom lokalisert på adressen Botnaneset 27. Tillatelse gis uten merknader fra naboer da prosjektet vurderes positivt visuelt samt ikke medfører naturfarerisiko.",
+    "sumright":"Ivest Consult AS søker tillatelse fra Kinn Kommune angående et planlagt nybygg tilknyttet eksisterende næringseiendom på adressen 'Botanenesveien' (gbnr. 26\/142). Søknaden gjelder oppføring av kontorlokaler samt nødvendige endringer knyttet til byggetillatelse gitt tidligere samme dag."
+  },
+  {
+    "doc_id":"doc_1",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Kinn kommune har godkjent søknaden fra Fjord Base AS for et tilbygg til eksisterende næringsbygg på Botnaneset 27. Tilbygget, som er på 42,67 m², vil huse et kontrollrom og kontorarbeidsplass, og tiltaket har blitt vurdert som i samsvar med gjeldende reguleringer og uten miljøfare. Vedtaket kan påklages innen tre uker.",
+    "sumright":"Ivest Consult AS søker tillatelse fra Kinn Kommune angående et planlagt nybygg tilknyttet eksisterende næringseiendom på adressen 'Botanenesveien' (gbnr. 26\/142). Søknaden gjelder oppføring av kontorlokaler samt nødvendige endringer knyttet til byggetillatelse gitt tidligere samme dag."
+  },
+  {
+    "doc_id":"doc_2",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møte den 22.mai har Bergen byråd vedtatt at de vil ta imot og vurdere utfordringer knyttet til sosialhjelpstjenesten fra året som gikk (statusrapport). De ønsker også videre arbeid gjennom fremtidige planprosesser.",
+    "sumright":"I møte den 22.mai har Bergen byråd vedtatt at de vil ta imot og vurdere utfordringer knyttet til sosialhjelpstjenesten fra året som gikk (statusrapport). De ønsker også videre arbeid gjennom fremtidige planprosesser basert på funnene presentert av rapporten"
+  },
+  {
+    "doc_id":"doc_2",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"I møte den 22.mai har Bergen byråd vedtatt at de vil ta imot og vurdere utfordringer knyttet til sosialhjelpstjenesten fra året som gikk (statusrapport). De ønsker også videre arbeid gjennom fremtidige planprosesser.",
+    "sumright":"I møte den 22.mai har Bergen byråd vedtatt at de vil ta imot og vurdere utfordringer fra sosialetaten som ble presentert gjennom deres årlige rapport om tilstanden innen sosiale tjenester."
+  },
+  {
+    "doc_id":"doc_2",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet statusmeldingen for sosialtjenesten for år 2024 og anbefaler at bystyret tar den til orientering. Videre oppfordres byrådet til å arbeide med utfordringene i statusmeldingen i kommende relevante planer.",
+    "sumright":"I møte den 22.mai har Bergen byråd vedtatt at de vil ta imot og vurdere utfordringer knyttet til sosialhjelpstjenesten fra året som gikk (statusrapport). De ønsker også videre arbeid gjennom fremtidige planprosesser."
+  },
+  {
+    "doc_id":"doc_2",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"I møte den 22.mai har Bergen byråd vedtatt at de vil ta imot og vurdere utfordringer knyttet til sosialhjelpstjenesten fra året som gikk (statusrapport). De ønsker også videre arbeid gjennom fremtidige planprosesser.",
+    "sumright":"I møte den 22.mai 2025 har Bergen byråd vedtatt at de vil ta imot og vurdere utfordringer knyttet til sosialhjelpstjenesten fra året før (statusrapport). De ønsker også videre arbeid av disse problemene gjennom fremtidige planarbeid"
+  },
+  {
+    "doc_id":"doc_3",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Etne kommunestyre behandler et forslag fra rådmannen angående ny «kvalitetsplan» innen området 'Oppvekst' de kommende årene frem mot år 2029. Den nye strategien fokuserer blant annet på felles verdier mellom barnehager, skoler samt kulturelle tilbud rettet mot barn og ungdom.",
+    "sumright":"Etne kommunestyre behandler et forslag fra rådmannen angående ny «kvalitetsplan» innen området 'Oppvekst' frem mot år 2029. Den nye strategien fokuserer blant annet på felles verdier mellom barnehager, skoler samt kulturelle tilbud rettet spesielt inn mot barn og ungdom de kommende årene."
+  },
+  {
+    "doc_id":"doc_3",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Etne kommunestyre behandler et forslag fra rådmannen angående ny kvalitetsstandard innen opplæring og utdanning de kommende årene. Den nye standarden fokuserer blant annet på felles verdier mellom barnehager og skoler samt systematisk utvikling mot bedre tjenester rettet mot barn og ungdom.",
+    "sumright":"Etne kommunestyre behandler et forslag fra rådmannen angående ny «kvalitetsplan» innen området 'Oppvekst' frem mot år 2029. Den nye strategien fokuserer blant annet på felles verdier mellom barnehager, skoler samt kulturelle tilbud rettet spesielt inn mot barn og ungdom de kommende årene."
+  },
+  {
+    "doc_id":"doc_3",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Etne kommunestyre behandler et forslag fra rådmannen angående ny «kvalitetsplan» innen området 'Oppvekst' frem mot år 2029. Den nye strategien fokuserer blant annet på felles verdier mellom barnehager, skoler samt kulturelle tilbud rettet spesielt inn mot barn og ungdom de kommende årene.",
+    "sumright":"Etne kommune har utarbeidet en ny kvalitetsplan for oppvekst og kultur som skal gjelde de neste fem årene. Planen adresserer barnehage, skole og kultur og har som mål å sikre gode oppvekstvilkår for barn og unge. Kommunestyret tar saken til orientering etter en samrøstes innstilling fra både Råd for menneske med nedsett funksjonsevne og Ungdomsrådet."
+  },
+  {
+    "doc_id":"doc_3",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Etne kommunestyre behandler et forslag fra rådmannen angående ny kvalitetsstandard innen utdanningssystemet de kommende årene. Den nye standarden fokuserer blant annet på felles verdier mellom barnehager og skoler samt systematisk utvikling mot bedre tjenester rettet mot barn og ungdom.",
+    "sumright":"Etne kommunestyre behandler et forslag fra rådmannen angående ny «kvalitetsplan» innen området 'Oppvekst' de kommende årene frem mot år 2029. Den nye strategien fokuserer blant annet på felles verdier mellom barnehager, skoler samt kulturelle tilbud rettet mot barn og ungdom."
+  },
+  {
+    "doc_id":"doc_4",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Kommunestyret behandlet saken angående årmelding fra Sogndals eldste rådgivende organ; sognefjordrådet vedtok enstemmig meldingen uten endringer eller merknader",
+    "sumright":"Sogndal eldreråd har samrøystes vedtatt årsmeldingen for 2024 under møtet den 31. mars 2025. Eldrerådet, opprettet av kommunestyret i 2023, har fokusert på opplæring, viktige saker for eldre, og samarbeid med andre råd og instanser. Årsmeldingen oppsummerer rådets aktiviteter, inkludert kurs og møter, samt innspill til økonomiplan og budsjettprosess."
+  },
+  {
+    "doc_id":"doc_4",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Under årets siste rådsmøte behandlet Sogndals eldrerådig sin årsrapport fra året før hvor de blant annet diskuterte retningslinjer knyttet til bruken av Sentrumparken, nye tilskuddsordninger innen rusfeltet, innspill angående Eldreplaner og deltakelse i politiske prosesser vedrørende budsjettet. Rådsmedlemmene fremhever viktigheten av samarbeid mellom forskjellige instanser innenfor helsesektoren så vel som involveringen deres gjennom hele prosessen mot bedre tjenester rettet spesifikt mot kommunens seniorer",
+    "sumright":"Under årets siste rådsmøte behandlet Sogndals eldreråd sin årsrapport fra året før hvor de blant annet diskuterte retningslinjer knyttet til bruken av Sentrumparken, digitale opplæringer innen ruspolitikk, innspill angående planforslagene vedrørende detaljreguleringen av barnehager, lavterskelstilbud for eldre innbyggere, brøyteordninger langs veier, fotterapi-tjenester innenfor helsesektoren, statusrapporter over omsorgsarbeidet inkludert brukerutvalgsprosesser, besøk hos institusjoner og mer omfattende diskusjoner omkring kommunens økonomiske situasjon fremover mot neste årsbudsjettperiode"
+  },
+  {
+    "doc_id":"doc_4",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Under årets siste rådsmøte behandlet Sogndals eldreråd sin årsrapport fra året før hvor de blant annet diskuterte retningslinjer knyttet til bruken av Sentrumparken, digitale opplæringer innen ruspolitikk, innspill angående planforslag vedrørende barnehagereguleringsplaner, lavterskelstilbud for seniorer, brøyteordninger og fotterapi-tjenester innenfor helsesektoren. Rådsmedlemmene uttrykte tilfredshet over samarbeidet mellom politikere og administrasjon gjennom flere presentasjoner holdt tidligere dette år",
+    "sumright":"Sogndal eldreråd har samrøystes vedtatt årsmeldingen for 2024 under møtet den 31. mars 2025. Eldrerådet, opprettet av kommunestyret i 2023, har fokusert på opplæring, viktige saker for eldre, og samarbeid med andre råd og instanser. Årsmeldingen oppsummerer rådets aktiviteter, inkludert kurs og møter, samt innspill til økonomiplan og budsjettprosess."
+  },
+  {
+    "doc_id":"doc_4",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Sogndal eldreråd har samrøystes vedtatt årsmeldingen for 2024 under møtet den 31. mars 2025. Eldrerådet, opprettet av kommunestyret i 2023, har fokusert på opplæring, viktige saker for eldre, og samarbeid med andre råd og instanser. Årsmeldingen oppsummerer rådets aktiviteter, inkludert kurs og møter, samt innspill til økonomiplan og budsjettprosess.",
+    "sumright":"Under årets siste rådsmøte behandlet Sogndals eldrerådig sin årsrapport fra året før hvor de blant annet diskuterte retningslinjer knyttet til bruken av Sentrumparken, nye tilskuddsordninger innen rusfeltet, innspill angående Eldreplaner og deltakelse i politiske prosesser vedrørende budsjettet. Rådsmedlemmene fremhever viktigheten av samarbeid mellom forskjellige instanser innenfor helsesektoren så vel som involveringen deres gjennom hele prosessen mot bedre tjenester rettet spesifikt mot kommunens seniorer"
+  },
+  {
+    "doc_id":"doc_5",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Kommunstyret godkjente enstemmig regnskapet fra 'oseanakunstogkultursenteret'for året 2024 etter anbefalingene gitt under møtet ledet av ordfører Terrje Søvkinesnsen. Regnskapet viste et negativt nettodriftsoverskuddpå rundt to millioner kroner,men ble dekket gjennom fondsmidler uten ytterligere konsekvenser utover det fremførte beløpettil senereår(merforbruket).",
+    "sumright":"Bjørnafjorden Kommune har godkjent årsrekneskapen for Oseana Kunst og Kultursenter Bjørnafjorden KF for 2024, til tross for et negativt driftsresultat på over 1,5 millioner kroner. Kommunen vil dekke det akkumulerte meirforbruket på 667.196,19 kroner i 2025. Godkjenningen ble enstemmig vedtatt av både formannskapet og kommunestyret."
+  },
+  {
+    "doc_id":"doc_5",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"I møtet fra formannskapet ble det enstemmig besluttet å godkjenne regnskapet for Oseana kunst-og kultursenteret Bjørnfjorden KFs virksomhet året 2024. Regnskapet viste et negativt nettoresultat etter fradragene var dekket gjennom fondsmidler; merforbruket vil bli betalt tilbake innen utgangen av inneværende regnskapsår.",
+    "sumright":"Bjørnafjorden Kommune har godkjent årsrekneskapen for Oseana Kunst og Kultursenter Bjørnafjorden KF for 2024, til tross for et negativt driftsresultat på over 1,5 millioner kroner. Kommunen vil dekke det akkumulerte meirforbruket på 667.196,19 kroner i 2025. Godkjenningen ble enstemmig vedtatt av både formannskapet og kommunestyret."
+  },
+  {
+    "doc_id":"doc_5",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Kommunstyret godkjente enstemmig regnskapet fra 'oseanakunstogkultursenteret'for året 2024 etter framleggelse under møtet avholdt tirsdag 19.juni 2025. Regnskapet viste et negativt nettodriftsoverskuddpå rundt to millioner kroner,men ble dekket gjennom fondsmidler uten konsekvenser utover det fremførte beløpettil senereår(merforbruket).",
+    "sumright":"Bjørnafjorden Kommune har godkjent årsrekneskapen for Oseana Kunst og Kultursenter Bjørnafjorden KF for 2024, til tross for et negativt driftsresultat på over 1,5 millioner kroner. Kommunen vil dekke det akkumulerte meirforbruket på 667.196,19 kroner i 2025. Godkjenningen ble enstemmig vedtatt av både formannskapet og kommunestyret."
+  },
+  {
+    "doc_id":"doc_5",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Kommunstyret godkjente enstemmig regnskapet fra 'oseanakunstogkultursenteret'for året 2024 etter framleggelse under møtet avholdt tirsdag 19.juni 2025. Regnskapet viste et negativt nettodriftsoverskuddpå rundt to millioner kroner,men ble dekket gjennom fondsmidler uten konsekvenser utover det fremførte beløpettil senereår(merforbruket).",
+    "sumright":"I møtet fra formannskapet ble det enstemmig besluttet å godkjenne regnskapet for Oseana kunst-og kultursenteret Bjørnfjorden KFs virksomhet året 2024. Regnskapet viste et negativt nettoresultat etter fradragene var dekket gjennom fondsmidler; merforbruket vil bli betalt tilbake innen utgangen av inneværende regnskapsår."
+  },
+  {
+    "doc_id":"doc_6",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Daglig leder anbefaler at innkallingen til møtet i Stad energi-og eiendomsutviklng kf den 18.november blir godkjend",
+    "sumright":"Daglig leder anbefaler at innkallingen til møtet i Stad energi-og eiendomsutviklng kf den 18.november blir godkjend"
+  },
+  {
+    "doc_id":"doc_6",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Daglig leder anbefaler at innkallingen til møtet i Stad energi-og eiendomsutviklng kf den 18.november blir godkjend",
+    "sumright":"Daglig leder anbefaler at innkallingen til møtet i stad energi-og eiendomsutviklng kf den 18.november blir godkjend"
+  },
+  {
+    "doc_id":"doc_6",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Daglig leder anbefaler at innkallingen til møtet i stad energi-og eiendomsutviking kf den 18.november blir godkjend",
+    "sumright":"Daglig leder anbefaler at innkallingen til møtet i Stad energi-og eiendomsutviklng kf den 18.november blir godkjend"
+  },
+  {
+    "doc_id":"doc_6",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Saksframlegget omhandler godkjenning av innkalling og saksliste for møtet i Stad Energi- og Eigedomsutvikling KF den 18. november 2025, med anbefaling fra daglig leder om at innkallingen og saklisten blir godkjent.",
+    "sumright":"Daglig leder anbefaler at innkallingen til møtet i Stad energi-og eiendomsutviklng kf den 18.november blir godkjend"
+  },
+  {
+    "doc_id":"doc_7",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"I møtet den 12.mai ble det enstemmig vedtatt å godkjenne både innkallingen til rådsmøtet samt sakslistene, noe som sikrer korrekt behandlingsprosess før videre vedtak fattes.",
+    "sumright":"Møtet for Rådet for mennesker med nedsatt funksjonsevne den 12. mai 2025 ble enstemmig godkjent, inkludert møteinnkallingen og saklisten. Det ble understreket at dokumentasjonen skal scannes i Word eller PDF-format og ikke som bilder."
+  },
+  {
+    "doc_id":"doc_7",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 12.mai ble det enstemmig vedtatt å godkjenne både innkallingen til rådsmøtet samt sakslistene, noe som understreker viktigheten av korrekt dokumentasjonshåndtering ved bruk av Word-eller PDF-format fremfor bilder under behandlingen.",
+    "sumright":"I møtet den 12. mai ble innkallingen til rådsmøtet enstemmig vedtatt, noe som også gjaldt sakslistene. Det understrekes viktigheten av å bruke riktig format ved skanning under behandlingen av saker."
+  },
+  {
+    "doc_id":"doc_7",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"I møtet den 12.mai har Rådet for mennesker med nedsatt funksjonevne enstemmig vedtatt å godkjenne både innkallingen til det kommende rådsmøtet samt sakslistene, etter anbefaling fra saksbehandleren om bruk av Word-eller pdf-format fremfor bilder ved skanning.",
+    "sumright":"Møtet for Rådet for mennesker med nedsatt funksjonsevne den 12. mai 2025 ble enstemmig godkjent, inkludert møteinnkallingen og saklisten. Det ble understreket at dokumentasjonen skal scannes i Word eller PDF-format og ikke som bilder."
+  },
+  {
+    "doc_id":"doc_7",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Møtet for Rådet for mennesker med nedsatt funksjonsevne den 12. mai 2025 ble enstemmig godkjent, inkludert møteinnkallingen og saklisten. Det ble understreket at dokumentasjonen skal scannes i Word eller PDF-format og ikke som bilder.",
+    "sumright":"I møtet den 12. mai ble innkallingen til rådsmøtet enstemmig vedtatt, noe som også gjaldt sakslistene. Det understrekes viktigheten av å bruke riktig format ved skanning under behandlingen av saker."
+  },
+  {
+    "doc_id":"doc_8",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"I kommunestyret ble det enstemmig vedtatt at ordføreren får fullmakten som representant fra kommunen under generalforsamlingen hos SKUAS, noe som vil gi mulighet for deltakelse uten ytterligere diskusjon eller votering.",
+    "sumright":"Kommunestyret i Samnanger har samrøystes vedteke å gi ordføraren fullmakt til å delta i generalforsamlinga til Samnanger kommunale utviklingsselskap AS. Dette ble behandlet og godkjent under møtet den 11. september 2025."
+  },
+  {
+    "doc_id":"doc_8",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Kommunestyret i Samnanger har samrøystes vedteke å gi ordføraren fullmakt til å delta i generalforsamlinga til Samnanger kommunale utviklingsselskap AS. Dette ble behandlet og godkjent under møtet den 11. september 2025.",
+    "sumright":"I kommunestyret ble det enstemmig vedtatt at ordføreren får fullmakten som representant fra kommunen under generalforsamlingen hos SKUAS, noe som vil styrke kommunens deltakelse. Ordførar har fått delegert ansvar frå kommunestyre om representasjon Kommunestyret skal ha møte den tysdag kl."
+  },
+  {
+    "doc_id":"doc_8",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"I kommunestyret ble det enstemmig vedtatt at ordføreren får fullmakten som representant fra kommunen under generalforsamlingen hos SKUAS, noe som vil styrke kommunens deltakelse. Ordførar har fått delegert ansvar frå kommunestyre om representasjon Kommunestyret skal ha møte den tysdag kl.",
+    "sumright":"I kommunestyret ble det enstemmig vedtatt at ordføreren får fullmakten som representant fra kommunen under generalforsamlingen hos SKU-AS, noe som vil styrke kommunens deltakelse"
+  },
+  {
+    "doc_id":"doc_8",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"I kommunestyret ble det enstemmig vedtatt at ordføreren får fullmakten som representant fra kommunen under generalforsamlingen hos SKUAS, noe som vil styrke kommunens deltakelse. Ordførar har fått delegert ansvar frå kommunestyre om representasjon Kommunestyret skal ha møte den tysdag kl.",
+    "sumright":"I kommunestyret ble det enstemmig vedtatt at ordføreren får fullmakten som representant fra kommunen under generalforsamlingen hos SKUAS, noe som vil gi mulighet for deltakelse uten ytterligere diskusjon eller votering."
+  },
+  {
+    "doc_id":"doc_9",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Likestillingsutvalget har enstemmig vedtatt detaljreguleringsplanen for Gåsværvegen småhusbebyggelse, i tråd med plan- og bygningsloven.",
+    "sumright":"I møtet den 5. juni 2025 vedtok likestillingsutvalet samrøystes å godkjenne forslaget om ein ny reguleringsplan som omfattar området rundt Gåsverveien Småhuseiendomar (g.nr.\/b.n.r.: 17 \/ 80). Vedtaket var basert på et forslag fra kommunen utarbeidet etter Plan-og bygningslova paragrafen"
+  },
+  {
+    "doc_id":"doc_9",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Likestillingsutvalget har enstemmig vedtatt detaljreguleringsplanen for Gåsværvegen småhusbebyggelse, i tråd med plan- og bygningsloven.",
+    "sumright":"I møtet den 5.juni vedtok likestillingsutvalet samrøystes å godkjenne forslaget om ein ny reguleringsplan som omfattar området rundt Gåsværveien Småhusbebyggelsen (gnr.\/bnr.: 17 \/80). Vedtaket blei gjort etter ei vurdering basert på det oppdaterte kartmaterialet frå mai månadene dette året"
+  },
+  {
+    "doc_id":"doc_9",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 5. juni 2025 vedtok likestillingsutvalet å godkjenne forslag om reguleringsplan nr. 1980 som omfatter området rundt Gåsærveien Småhuseiendom AS (g.nr.\/b.n.r.: 17 \/ 80). Vedtaket var enstemming etter voteringen blant medlemmene",
+    "sumright":"I møtet den 5. juni 2025 vedtok likestillingsutvalet samrøystes å godkjenne forslag om detaljereguleringsplanen 'Gåsværveien' som skal legge grunnlag for bygging av nye boliger innenfor området Gnr\/Brnr 17\/800 mfl.. Vedtaket følger Plan-og bygningslovens bestemmelser"
+  },
+  {
+    "doc_id":"doc_9",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 5. juni 2025 vedtok likestillingsutvalet samrøystes å godkjenne forslag om detaljereguleringsplanen 'Gåsværveien' som skal legge grunnlag for bygging av nye boliger innenfor området Gnr\/Brnr 17\/800 mfl.. Vedtaket følger Plan-og bygningslovens bestemmelser",
+    "sumright":"I møtet den 5. juni 2025 vedtok likestillingsutvalet samrøystes å godkjenne forslaget om ein ny reguleringsplan som omfattar området rundt Gåsverveien Småhuseiendomar (g.nr.\/b.n.r.: 17 \/ 80). Vedtaket var basert på et forslag fra kommunen utarbeidet etter Plan-og bygningslova paragrafen"
+  },
+  {
+    "doc_id":"doc_10",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"I møtet den 10.juni vil det bli orientert og diskutert flere viktige temaer som angår eldreomsorgen i kommunen av rådmannens stab samt svar fra tidligere stilte spørmål angående apoteksituasjonen",
+    "sumright":"I møtet den 10. juni 2025 ble det gjennomgått faste saker i eldrerådet, hvor rådmannen presenterte orienterings- og referatsaker. Det ble også gitt svar på spørsmål angående status for apotek i Samnanger, som ble tatt opp i forrige møte."
+  },
+  {
+    "doc_id":"doc_10",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 10. juni skal det orienteres og refereres fra tidligere møter samt behandles eventuelle merkander knyttet til protokollen som ble godkjent ved forrige anledning av rådet. Rådmannen vil også gi svar angående statusen rundt etablering av et nytt apoteklokale i kommunen etter forespørselen under siste rådsmøte",
+    "sumright":"I møtet den 10. juni vil det bli orientert og diskutert flere viktige temaer knyttet til eldreomsorgstjenesten i kommunen av rådmannens stab samt svar fra tidligere stilte spørmål angående apoteksituasjonen"
+  },
+  {
+    "doc_id":"doc_10",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 10.juni vil det bli orientert og diskutert flere viktige temaer som angår eldreomsorgen i kommunen av rådmannens stab samt svar fra tidligere stilte spørmål angående apoteksituasjonen",
+    "sumright":"I møtet den 10. juni vil det bli orientert og diskutert flere viktige temaer knyttet til eldreomsorgstjenesten i kommunen av rådmannens stab samt svar fra tidligere stilte spørmål angående apoteksituasjonen"
+  },
+  {
+    "doc_id":"doc_10",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 10. juni vil det bli orientert og diskutert flere viktige temaer knyttet til eldreomsorgstjenesten i kommunen av rådmannens stab samt svar fra tidligere stilte spørmål angående apoteksituasjonen",
+    "sumright":"I det kommende møtet den 10.juni vil rådet behandle flere orienteringer og referater fra tidligere møter angående blant annet apoteksituasjonen i kommunen som ble tatt opp av et medlem under forrige samling"
+  },
+  {
+    "doc_id":"doc_11",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Utval for samfunnsutvikling har innkalt til møte den 23. januar 2025 for å godkjenne innkalling, protokoll fra forrige møte, referatsaker, samt rullering av handlingsprogrammet for spelemidler i 2025-2028. Særskilt fokus vil være på oppdatering av prioriteringer for anlegg som skal søke om støtte fra spelemiddelordningen for 2025.",
+    "sumright":"Utvalg for Samfunnsutvikling møtes den 23. januar 2025 kl. 10:30 hvor de skal godkjenne protokollen fra tidligere møtet samt referere saker knyttet til spillemidler for perioden 2025–2028. Det blir også diskutert endringer angående prioriteringer mellom ulike idretts-, friluftslivs- og fysiske aktiviteter basert på nye opplysninger siden sist oppdatering."
+  },
+  {
+    "doc_id":"doc_11",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Utvalg for Samfunnsutvikling skal møtes den 23. januar 2025 kl. 10:30 hvor de vil behandle saker knyttet til godkjenning av protokoller fra tidligere møtet samt referater angående spillemidler for perioden 2025–2028. Det foreslås endringer basert på nye opplysninger vedrørende søknadsbehovene hos ulike aktører innen idretten.",
+    "sumright":"I møtet den 23. januar skal utvalsleiar Arnljot Sæternes lede godkjenningen av både protokollen fra tidligere utvalgsmøter samt referater knyttet til ulike saker innen samfunnsplanlegging. Det blir også diskutert endringer vedrørende spillemidler der seks nye prosjekter prioriteres mens andre flyttes fremover grunnet manglende finansiering."
+  },
+  {
+    "doc_id":"doc_11",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Utvalg for Samfunnsutvikling skal møtes den 23. januar 2025 kl. 10:30 hvor de vil behandle saker knyttet til godkjenning av protokoller fra tidligere møtet samt referater angående spillemidler for perioden 2025–2028. Det foreslås endringer basert på nye opplysninger vedrørende søknadsbehovene hos ulike aktører innen idretten.",
+    "sumright":"Utval for samfunnsutvikling har innkalt til møte den 23. januar 2025 for å godkjenne innkalling, protokoll fra forrige møte, referatsaker, samt rullering av handlingsprogrammet for spelemidler i 2025-2028. Særskilt fokus vil være på oppdatering av prioriteringer for anlegg som skal søke om støtte fra spelemiddelordningen for 2025."
+  },
+  {
+    "doc_id":"doc_11",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Utvalg for Samfunnsutvikling skal møtes den 23. januar 2025 kl. 10:30 hvor de vil behandle saker knyttet til godkjenning av protokoller fra tidligere møtet samt referater angående spillemidler for perioden 2025–2028. Det foreslås endringer basert på nye opplysninger vedrørende søknadsbehovene hos ulike aktører innen idretten.",
+    "sumright":"Utvalg for samfunnsutvilking skal møtes den 23.januar hvor de vil behandle saker knyttet til godkjenning av protokoller fra tidligere møtet samt referater angående ulike prosjekter innen idrettssektoren inkludert spillemidlerfor året 2025. Det blir også oppdateringav handlingsplanene basert på endringer siden sist behandling"
+  },
+  {
+    "doc_id":"doc_12",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 29.januar behandlet Aren Bydelsutvalg flere saker uten at det ble fattet noen konkrete beslutninger",
+    "sumright":"I møtet den 29.januar ble det ikke fattet noen konkrete beslutninger angående de behandlede meldingene eller referatene fra saken som var oppe til behandling ved Bergen kommune - Arna Bydelsutvalgs administrasjonsmøte"
+  },
+  {
+    "doc_id":"doc_12",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 29.januar ble det ikke fattet noen konkrete beslutninger angående de behandlede meldingene eller referatene fra saken som var oppe til behandling ved Bergen kommune - Arna Bydelsutvalgs administrasjonsmøte",
+    "sumright":"I møtet den 29.januar ble det ikke fattet noen konkrete beslutninger angående de behandlede meldingene eller referatene under sak nr.: 'Emnecode'"
+  },
+  {
+    "doc_id":"doc_12",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"I møtet den 29.januar behandlet Aren Bydelsutvalg flere saker uten at det ble fattet noen konkrete beslutninger",
+    "sumright":"Møtet i Arna bydelsstyre den 29. januar 2002 ble gjennomgått, men ingen av de refererte sakene resulterte i vedtak. Dokumentet er en melding fra Arna bydelsadministrasjon datert 11. februar 2002."
+  },
+  {
+    "doc_id":"doc_12",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Møtet i Arna bydelsstyre den 29. januar 2002 ble gjennomgått, men ingen av de refererte sakene resulterte i vedtak. Dokumentet er en melding fra Arna bydelsadministrasjon datert 11. februar 2002.",
+    "sumright":"I møtet den 29.januar ble det ikke fattet noen konkrete beslutninger angående de behandlede meldingene eller referatene fra saken som var oppe til behandling ved Bergen kommune - Arna Bydelsutvalgs administrasjonsmøte"
+  },
+  {
+    "doc_id":"doc_13",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Arna Bydelsstyres behandling omhandler søknaden om tillatelse til bygging av terrasser\/tillbygging hos huseier Jarla Boye (gnr\/bnr). Tiltaket fikk først avslag grunnet manglende tilpasning til områdets reguleringsplaner; nå vurderes situasjonen igjen hvor søkeren argumenterer imot avgjørelsen gjennom flere punkter knyttet til synlighetsgrad og bevaringsprinsipper",
+    "sumright":"Arna Bydelsstyret opprettholder sitt tidligere avslått vedrørende søknaden om tillatelse til bygging av terasse\/tillbygging hos Jarla Boee grunnet manglende tilfredsstillelse av skjønnhetsstandarder ifølge bygningsloven §§ 74nr 2 angående arkitekturen. Tiltaket anses være altfor dominant sammenlignet med omgivelsen och inte anpassad till byggnaders ursprungliga egenskaper"
+  },
+  {
+    "doc_id":"doc_13",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Arna bydelsstyre har behandlet en klage fra Jarle Bøe angående avslag på søknad om oppføring av et terrasse\/tilbygg. Klagen ble ikke tatt til følge, da tiltaket ble vurdert som dominerende og ikke i samsvar med estetiske krav i plan- og bygningsloven. Det ble konkludert med at tiltaket ville endre byggets fasade negativt.",
+    "sumright":"Arna Bydelsstyres behandling omhandler søknaden om tillatelse til bygging av terrasser\/tillbygging hos huseier Jarla Boye (gnr\/bnr). Tiltaket fikk først avslag grunnet manglende tilpasning til områdets reguleringsplaner; nå vurderes situasjonen igjen hvor søkeren argumenterer imot avgjørelsen gjennom flere punkter knyttet til synlighetsgrad og bevaringsprinsipper"
+  },
+  {
+    "doc_id":"doc_13",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Arna Bydelsstyret opprettholder sitt tidligere avslåtte tillatelse angående søknaden om bygging av terrasser\/tillbygging hos eiendomseier Jarle Bøe grunnet manglende tilpasning til områdets arkitektur eller omgivelsenes karakteristikker ifølge klagers argumenter",
+    "sumright":"Arna bydelsstyre har behandlet en klage fra Jarle Bøe angående avslag på søknad om oppføring av et terrasse\/tilbygg. Klagen ble ikke tatt til følge, da tiltaket ble vurdert som dominerende og ikke i samsvar med estetiske krav i plan- og bygningsloven. Det ble konkludert med at tiltaket ville endre byggets fasade negativt."
+  },
+  {
+    "doc_id":"doc_13",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Saken omhandler søknaden om tillatelse til bygging av terasse-tilbygg hos huseier Jarl Boe (gnr\/bnr), hvor kommunen avslår forslaget grunnet manglende tilpasning til områdets arkitektur eller omgivelsenes karakteristikker ifølge bygningsloven paragraf 74 nummer to angående skjønnhetsbetraktinger rundt nye prosjekters påvirkningskraft overfor miljøet sitt visuelle uttrykk",
+    "sumright":"Arna Bydelsstyret opprettholder sitt tidligere avslått vedrørende søknaden om tillatelse til bygging av terasse\/tillbygging hos Jarla Boee grunnet manglende tilfredsstillelse av skjønnhetsstandarder ifølge bygningsloven §§ 74nr 2 angående arkitekturen. Tiltaket anses være altfor dominant sammenlignet med omgivelsen och inte anpassad till byggnaders ursprungliga egenskaper"
+  },
+  {
+    "doc_id":"doc_14",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Styret i BBBy har vedtatt å godkjenne protokollen frå møtet den 23.oktober, som ble sendt ut med referansenummeret 'Moro'.",
+    "sumright":"Styret i BBBoy har vedtatt å godkjenne protokollen frå møtet den 23.oktober, utan innvendingar eller endringar."
+  },
+  {
+    "doc_id":"doc_14",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Styret i BBBoy har vedtatt å godkjenne protokollen frå møtet den 23.oktober, utan innvendingar eller endringar.",
+    "sumright":"Styret i BBBoy har vedtatt å godkjenne protokollen frå møtet den 23.oktober, som ble sendt ut med referansenummeret 'Moro'."
+  },
+  {
+    "doc_id":"doc_14",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Styret i BBBy har vedtatt å godkjenne protokollen frå møtet den 23.oktober, som ble sendt ut med referansenummeret 'Moro'.",
+    "sumright":"Styret i BBBoy har vedtatt å godkjenne protokollen frå møtet den 23.oktober, som ble sendt ut med referansenummeret 'Moro'."
+  },
+  {
+    "doc_id":"doc_14",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Styret for Bergen Bolig og Byfornyelse KF har behandlet og godkjent protokollen fra møtet den 23. oktober 2012. Forslaget til vedtak om godkjenning ble enstemmig vedtatt.",
+    "sumright":"Styret i BBBoy har vedtatt å godkjenne protokollen frå møtet den 23.oktober, utan innvendingar eller endringar."
+  },
+  {
+    "doc_id":"doc_15",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus Bydelsstyret har gitt arbeidsutvalgslederne fullmakter for sommeren 2000 angående hastesaker de trenger umiddelbar avgjørelse om før neste ordinære møtet finner sted",
+    "sumright":"Bergenhus Bydelsstyret har gitt arbeidsutvalgslederne fullmakter for sommeren 2000 angående hastesaker de trenger umiddelbar behandling før neste ordinære møtet finner sted"
+  },
+  {
+    "doc_id":"doc_15",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus Bydelsstyret har gitt arbeidsutvalgslederne fullmakter for sommeren 2000 angående hastesaker de trenger umiddelbar behandling før neste ordinære møtet finner sted",
+    "sumright":"Bergenhus Bydelsstyret har gitt arbeidsutvalet eller leiar \/ nestleiar fullmakter for sommaren 2000 når hastesaker oppstår der avgjerd ikkje kan utsetjast utan vesentlege konsekvensar."
+  },
+  {
+    "doc_id":"doc_15",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus Bydel har gitt arbeidsutvalet eller leiar \/ nestleiar fullmakter for sommaren 2000 når dei skal ta avgjerder om hastesaker utan moglegheit for utsetjing fram mot neste ordinære møtetidspunkt",
+    "sumright":"Bergenhus Bydelsstyret har gitt arbeidsutvalet eller leiar \/ nestleiar fullmakter for sommaren 2000 når hastesaker oppstår der avgjerd ikkje kan utsetjast utan vesentlege konsekvensar."
+  },
+  {
+    "doc_id":"doc_15",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus Bydelsstyret har gitt arbeidsutvalet eller leiar \/ nestleiar fullmakter for sommaren 2000 når hastesaker oppstår der avgjerd ikkje kan utsetjast utan vesentlege konsekvensar.",
+    "sumright":"Bergenhus Bydelsstyret har gitt arbeidsutvalgslederne fullmakter for sommeren 2000 angående hastesaker de trenger umiddelbar avgjørelse om før neste ordinære møtet finner sted"
+  },
+  {
+    "doc_id":"doc_16",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har enstemmig anbefalt å avslå søknaden om bevilling for salg av brennevin ved skjenkestedet \"De Tre Musketerer\" - \"Fekterloftet\". Avslaget er basert på helse- og sosialpolitiske vurderinger, med fokus på å unngå økt alkoholforbruk.",
+    "sumright":"Bergenhus Bydelsstyret har anbefalt avslag mot søknaden fra \"The Three Musceteers\" angående bevilgning for brennesalg grunnet bekymringer rundt økt forbruk som følge av et rent serveringssted uten andre tilbud enn alkoholsal"
+  },
+  {
+    "doc_id":"doc_16",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus Bydelsstyret har anbefalt avslag mot søknaden fra \"The Three Musceteers\" angående bevilgning for brennesalg grunnet bekymringer rundt økt forbruk som følge av et rent serveringssted uten andre tilbud enn alkoholsal",
+    "sumright":"Bergenhus Bydelsstyret har vedtatt et avslag mot søknaden fra \"The Three Musceteers\" angående bevilgning for brennesalg grunnet bekymringer rundt økt forbruk knyttet til slike steder"
+  },
+  {
+    "doc_id":"doc_16",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Bergenhus Bydelsstyret har vedtatt et avslag mot søknaden fra \"The Three Musceteers\" angående bevilgning for brennesalg grunnet bekymringer rundt økt forbruk knyttet til slike steder",
+    "sumright":"Bergenhus bydelsstyre har enstemmig anbefalt å avslå søknaden om bevilling for salg av brennevin ved skjenkestedet \"De Tre Musketerer\" - \"Fekterloftet\". Avslaget er basert på helse- og sosialpolitiske vurderinger, med fokus på å unngå økt alkoholforbruk."
+  },
+  {
+    "doc_id":"doc_16",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus Bydelsstyret har vedtatt et avslag mot søknaden fra \"The Three Musceteers\" angående bevilgning for brennesalg grunnet bekymringer rundt økt forbruk knyttet til slike steder",
+    "sumright":"Bergen kommune har avslått søknaden fra \"The Three Musceteers\" (også kjent som Fekteloften) angående bevilgning for brennesalg grunnet bekymringer rundt økt alkoholisme blant befolkningen"
+  },
+  {
+    "doc_id":"doc_17",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"I forbindelse med høringen knyttet til 'kommunedelen' vedrørende utviklingsområdet rundt fjellsidene i Bergens bydelshusbydeler ble forslaget godkjent uten innvendinger angående viktige aspekter innen infrastrukturplanlegging samt bevaring av naturområder langs kysten",
+    "sumright":"Bergenhus bydelsstyre vurderer kommunedelplanen for Sandviken-Fjellsiden Nord, som skal gi retningslinjer for utvikling av området som bolig- og næringsområde. Planen har vært gjenstand for omfattende medvirkning fra beboere og næringsliv, men det er uenighet om enkelte konklusjoner. Bydelsstyret peker på behovet for å revurdere fortetting, utredning av tunnelalternativer og konsekvenser av en eventuell cruisehavn."
+  },
+  {
+    "doc_id":"doc_17",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"I forbindelse med høringen knyttet til 'kommunedelen' vedrørende utviklingsområdet rundt fjellsidene i Bergens bydelshusbydeler ble forslaget godkjent uten innvendinger angående viktige aspekter innen infrastrukturplanlegging samt bevaring av naturområder langs kysten",
+    "sumright":"The case concerns the Communal Development of a new area in Northern Norway with focus on housing and traffic solutions to improve quality life conditions while preserving cultural heritage sites such as Festningen Park or other historical landmarks like Kristiansholm Pier which could potentially become an activity center if not used exclusively towards cruise ships' needs.."
+  },
+  {
+    "doc_id":"doc_17",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokument datert September 2000 omhandler høringssvar vedrørende 'kommunedelen' knyttet til utviklingsmuligheter innen boligeiendom samt infrastrukturelle løsninger rundt fjellsidene nær sentrumsområdet i byen. Representanter påpeker viktigheten av bevaring åpen plassbruk fremfor ytterligere utbygging grunnet begrenset tilgjengelighet spesielt rettet imot barnefamilier behov",
+    "sumright":"I forbindelse med høringen knyttet til 'kommunedelen' vedrørende utviklingsområdet rundt fjellsidene i Bergens bydelshusbydeler ble forslaget godkjent uten innvendinger angående viktige aspekter innen infrastrukturplanlegging samt bevaring av naturområder langs kysten"
+  },
+  {
+    "doc_id":"doc_17",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"The case concerns the Communal Development of a new area in Northern Norway with focus on housing and traffic solutions to improve quality life conditions while preserving cultural heritage sites such as Festningen Park or other historical landmarks like Kristiansholm Pier which could potentially become an activity center if not used exclusively towards cruise ships' needs..",
+    "sumright":"Bergenhus bydelsstyre vurderer kommunedelplanen for Sandviken-Fjellsiden Nord, som skal gi retningslinjer for utvikling av området som bolig- og næringsområde. Planen har vært gjenstand for omfattende medvirkning fra beboere og næringsliv, men det er uenighet om enkelte konklusjoner. Bydelsstyret peker på behovet for å revurdere fortetting, utredning av tunnelalternativer og konsekvenser av en eventuell cruisehavn."
+  },
+  {
+    "doc_id":"doc_18",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Protokollet fra Bergenhus Bydelsstyremøte den 20. desember 2002 ble godkjent og akseptert av bydelsdirektøren Ole Vorlander, som anbefalte at det tas til etteretning i samsvar med forslaget om å godkjenne protokolleringen uten innvendinger eller endringer",
+    "sumright":"Protokollet fra Bergenhus Bydelsstyres møte den 20. desember 2002 ble godkjent og akseptert av bydelsdirektøren Ole Vorland, som anbefalte at det tas til etteretning i henhold til forslaget om å godkjenne protokolleringen uten innvendinger eller endringer."
+  },
+  {
+    "doc_id":"doc_18",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Protokollet fra Bergenhus Bydelsstyremøte den 20. desember 2002 ble godkjent og akseptert av bydelsdirektøren Ole Vorlander, som anbefalte at det tas til etteretning i samsvar med forslaget om å godkjenne protokolleringen uten innvendinger eller endringer",
+    "sumright":"Protokollet fra møtet den 20 desember, som ble godkjent av Bergenhus Bydelsstyret og Ole Vordal i rollen som bydelsdirektör"
+  },
+  {
+    "doc_id":"doc_18",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Protokollet fra møtet den 20 desember, som ble godkjent av Bergenhus Bydelsstyret og Ole Vordal i rollen som bydelsdirektör",
+    "sumright":"Protokollet fra Bergenhus Bydelsstyremøte den 20. desember 2002 ble godkjent og akseptert av bydelsdirektøren Ole Vorland, som anbefalte at det tas til etteretning i samsvar med vedtaket fattet under møtet"
+  },
+  {
+    "doc_id":"doc_18",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Protokollet fra Bergenhus Bydelsstyres møte den 20. desember 2002 ble godkjent og akseptert av bydelsdirektøren Ole Vorland, som anbefalte at det tas til etteretning i henhold til forslaget om å godkjenne protokolleringen uten innvendinger eller endringer.",
+    "sumright":"Protokollet fra møtet den 20 desember, som ble godkjent av Bergenhus Bydelsstyret og Ole Vordal i rollen som bydelsdirektör"
+  },
+  {
+    "doc_id":"doc_19",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune presenterer sin årsrapport fra Bystyret som dekker alle utvalg inkludert forretningsutvalgeet samt klagenemnda og valgkomiteen. Rapporten beskriver aktivitetene gjennom året sammen med økonomiske resultater",
+    "sumright":"Bergen Bystyret har mottatt årsrapport fra Byrådirektøren som beskriver aktivitetene ved de ulike utvalgene samt deres økonomiske resultater under året 2013. Rapporten vil bli behandlet videre før endelig godkjenning"
+  },
+  {
+    "doc_id":"doc_19",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune presenterer sin årsrapport fra Bystyret som dekker alle utvalg inkludert forretningsutvalgeet samt klagenemnda og valgkomiteen. Rapporten beskriver aktivitetene gjennom året sammen med økonomiske resultater",
+    "sumright":"Bergen Bystyret har mottatt årsrapport fra Beby som beskriver aktivitetene ved de ulike utvalgene samt deres regnskapsmessige resultater gjennom året 2013. Rapporten ble lagt fram den 25.mai 2014"
+  },
+  {
+    "doc_id":"doc_19",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Bergen Bystyret har mottatt årsrapport fra Beby som beskriver aktivitetene ved de ulike utvalgene samt deres regnskapsmessige resultater gjennom året 2013. Rapporten ble lagt fram den 25.mai 2014",
+    "sumright":"Bystyredirektøren presenterer årsmelding for 2013 som gir en oversikt over bystyrets organers ansvarsområder, aktivitet og regnskapsresultat. Forslaget til innstilling er at Bergen bystyre tar årsmeldingen til orientering."
+  },
+  {
+    "doc_id":"doc_19",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen Bystyret har mottatt årsrapport fra Byrådirektøren som beskriver aktivitetene ved de ulike utvalgene samt deres økonomiske resultater gjennom året 2013. Rapporten vil bli behandlet videre før endelig vedtak fattes om godkjenning eller endringer",
+    "sumright":"Bergen kommune presenterer sin årsrapport fra Bystyret som dekker alle utvalg inkludert forretningsutvalgeet samt klagenemnda og valgkomiteen. Rapporten beskriver aktivitetene gjennom året sammen med økonomiske resultater"
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Rapporten presenterer resultatene av statstilsynee med helsetjenester, eldreomsorg og barnevern i Bergens kommuner i løpet av fjoråret. Selv om flertallet viste tilfredsstillende driftsforhold, fremheves spesielt utfordringene knyttet til store avvik oppdaget tidligere år - især vedrørende bruken av tvungent helsevern mot sårbare grupper.",
+    "sumright":"Dokumentet presenterer en melding fra byrådet i Bergen om statlige systemtilsyn med helse-, omsorgs- og barnevernstjenesten i 2014. Det oppsummerer tilsynenes temaer, avvik som ble avdekket, og oppfølging av disse. I 2014 ble det gjennomført 6 nye systemtilsyn, hvorav 4 ikke avdekket avvik, mens 2 tilsyn avdekket betydelige avvik som fortsatt ikke er lukket. Byrådet understreker viktigheten av kontinuerlig kvalitetsarbeid og oppfølging av lovkrav."
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Rapporten presenterer resultatene av statstilsynee med helsetjenester, eldreomsorg og barnevern i Bergens kommuner i løpet av fjoråret. Selv om flertallet viste tilfredsstillende driftsforhold, fremheves spesielt utfordringene knyttet til store avvik oppdaget tidligere år - især vedrørende bruken av tvungent helsevern mot sårbare grupper.",
+    "sumright":"Rapporten presenterer resultatene av statistiske kontroller foretatt mot data levert via Altinn-skjema RF‐1028 Selvangivelse for aksjeselskap mv., herunder identifisering av feilaktige opplysninger knyttet til inntektsskatteligning."
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Rapporten presenterer resultatene av statistiske kontroller foretatt mot data levert via Altinn knyttet til merverdiavgiftskompensasjonskrav sendt per postgang.",
+    "sumright":"Dokumentet presenterer en melding fra byrådet i Bergen om statlige systemtilsyn med helse-, omsorgs- og barnevernstjenesten i 2014. Det oppsummerer tilsynenes temaer, avvik som ble avdekket, og oppfølging av disse. I 2014 ble det gjennomført 6 nye systemtilsyn, hvorav 4 ikke avdekket avvik, mens 2 tilsyn avdekket betydelige avvik som fortsatt ikke er lukket. Byrådet understreker viktigheten av kontinuerlig kvalitetsarbeid og oppfølging av lovkrav."
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Saken omhandler meldinger vedrørende statens systematiske kontroller knyttet til helsetjenester rettet mot eldre mennesker bosatt hjemme; herunder fastlegerollen, legemiddelhåndteringspraksis, ernæringsmessige aspekter relatert til matombringingstilbudet. Videre presenteres resultatene fra tre tidligere utførte revisjoner angående kvaliteten rundt bruken av tvungent helsevern basert på Pasientrettighetsloven Kapitel IV A. Samtidig fremheves betydningen av retningslinjer utviklet spesielt for håndteringssystematiske inspeksjoner",
+    "sumright":"Rapporten presenterer resultatene av statistiske kontroller foretatt mot data levert via Altinn knyttet til merverdiavgiftskompensasjonskrav sendt per postgang."
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Bergen kommune innvilget søknad om skattefritak for eiendom gnr\/bnr\/s.nr., noe som vil gi betydelige besparelser årlig. For ytterligere informasjon se vedlagt dokument.",
+    "sumright":"Bergen bystyre har besluttet å frita eiendommen Gnr. 159 bnr. 256 snr. 3, Kanalveien 66, til Kristent fellesskap fra eiendomsskatt fra 1. januar 2015. Vedtaket ble fattet etter en behandling der det ble påpekt inhabilitet hos en kommunal ansatt. Eiendommens skattetakst er 9 025 000 kroner, og den utskrevne eiendomsskatten utgjør 45 125 kroner."
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har besluttet å frita eiendommen Gnr. 159 bnr. 256 snr. 3, Kanalveien 66, til Kristent fellesskap fra eiendomsskatt fra 1. januar 2015. Vedtaket ble fattet etter en behandling der det ble påpekt inhabilitet hos en kommunal ansatt. Eiendommens skattetakst er 9 025 000 kroner, og den utskrevne eiendomsskatten utgjør 45 125 kroner.",
+    "sumright":"Bergen kommune innvilget søknad om skattefritak for eiendom gnr\/bnr 159 \/ 256 seksjonsnr 3 tilhørende Kristen Fellesskapet etter at det var blitt vurdert inhabilt under saksbehandlingen"
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune vedtok at et kristelig samfunn skulle få unntak frå eigedomsskatten etter søknad datert januar 2015. Eiendommen ligger under gnr\/bnr kanalvegen 66 der det tidligere var skrevet ein takstverdi på over ni millioner kroner før vedtaket vart fatta",
+    "sumright":"Bergen kommune innvilget søknad om skattefritak for eiendom gnr\/bnr\/s.nr., noe som vil spare eieren betydelige beløp årlig"
+  },
+  {
+    "doc_id":"doc_21",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune innvilget søknad om skattefritak for eiendom gnr\/bnr\/s.nr., noe som vil gi betydelige besparelser årlig. For ytterligere informasjon se vedlagt dokument.",
+    "sumright":"Bergen kommune vedtok at et kristelig samfunn skulle få unntak frå eigedomsskatten etter søknad datert januar 2015. Eiendommen ligger under gnr\/bnr kanalvegen 66 der det tidligere var skrevet ein takstverdi på over ni millioner kroner før vedtaket vart fatta"
+  },
+  {
+    "doc_id":"doc_22",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Saken omhandler reguleringsplanen for området rundt Dyraugen i Fana Bydel, presentert av Opus Bergen As sammen med FAAB Arkitekter as. Planen inkluderer bygging av blokkleiligheter tilpasset strøket samtidig som man tar hensyn til lokale krav knyttet til infrastrukturutvikling.",
+    "sumright":"Saken omhandler reguleringsplanen for området rundt Dyraugenveien i Fana kommune, presentert av Opus Bergen As & FAAB Arkitekter as. Den inkluderer bygging av blokkleiligheter tilpasset strøket samtidig som man tar hensyn til lokale krav knyttet til infrastrukturutvikling. Samtidig diskuteres utfordringer vedrørende massehåndtering grunnet omfattende utbyggingsprosjekter"
+  },
+  {
+    "doc_id":"doc_22",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Saken omhandler reguleringsplanen for området rundt Dyraugenveien i Fana kommune, presentert av Opus Bergen As & FAAB Arkitekter as. Den inkluderer bygging av blokkleiligheter tilpasset strøket samtidig som man tar hensyn til lokale krav knyttet til infrastrukturutvikling. Samtidig diskuteres utfordringer vedrørende massehåndtering grunnet omfattende utbyggingsprosjekter",
+    "sumright":"Byrådssak 262\/16 omhandler reguleringsplanen for en ny boligblokk på Skjold i Fana bydel, som foreslås av Opus Bergen AS og Faaland arkitekter AS. Planen inkluderer en terrassert boligblokk med 5 etasjer og 13 boenheter, samt tilhørende infrastruktur som fortau og parkeringsplasser. Etter offentlig ettersyn er planen justert, blant annet med redusert antall boenheter og utnyttelsesgrad. Byrådet anbefaler planen vedtatt med endringer for å sikre kvalitetene i prosjektet."
+  },
+  {
+    "doc_id":"doc_22",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Saken omhandler reguleringsplaner for området rundt Dyraugenveien i Fana kommune. Etter innspill ble planene endret betydelig mellom første høringsperiode og endelig godkjennelse, inkludert justering av bygningsvolum, reduserering av parkeringsplassantall basert på bærekrafthensyn",
+    "sumright":"Byrådssak 262\/16 omhandler reguleringsplanen for en ny boligblokk på Skjold i Fana bydel, som foreslås av Opus Bergen AS og Faaland arkitekter AS. Planen inkluderer en terrassert boligblokk med 5 etasjer og 13 boenheter, samt tilhørende infrastruktur som fortau og parkeringsplasser. Etter offentlig ettersyn er planen justert, blant annet med redusert antall boenheter og utnyttelsesgrad. Byrådet anbefaler planen vedtatt med endringer for å sikre kvalitetene i prosjektet."
+  },
+  {
+    "doc_id":"doc_22",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådssak 262\/16 omhandler reguleringsplanen for en ny boligblokk på Skjold i Fana bydel, som foreslås av Opus Bergen AS og Faaland arkitekter AS. Planen inkluderer en terrassert boligblokk med 5 etasjer og 13 boenheter, samt tilhørende infrastruktur som fortau og parkeringsplasser. Etter offentlig ettersyn er planen justert, blant annet med redusert antall boenheter og utnyttelsesgrad. Byrådet anbefaler planen vedtatt med endringer for å sikre kvalitetene i prosjektet.",
+    "sumright":"Saken omhandler reguleringsplanen for området rundt Dyraugen i Fana Bydel, presentert av Opus Bergen As sammen med FAAB Arkitekter as. Planen inkluderer bygging av blokkleiligheter tilpasset strøket samtidig som man tar hensyn til lokale krav knyttet til infrastrukturutvikling."
+  },
+  {
+    "doc_id":"doc_23",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune har mottatt et høringsforslag fra Miljødirektoratet angående en ny forskrift for tilskudd til klimatiltak i kommunene. Forskriften har som mål å gi økonomisk støtte til kommuner som implementerer klimatiltak, med en totalbevilgning på 100 millioner kroner årlig over fem år. Byrådet foreslår flere endringer i høringsuttalelsen, inkludert behovet for å tillate flerårige prosjekter og presisering av tildelingskriteriene.",
+    "sumright":"Bergen bystyre behandler høringen angående 'ny forskrift om tilskudd til Klimatiltaket' der Miljødepartementet foreslår endringer knyttet til fordeling av økonomiske ressurser mellom norske byer innen klimarelaterte prosjekter. Byråden oppfordrer Bystyret til å vedta uttalelsen basert på foreslåtte justeringer vedrørende flerårige prosjektplaner samt forutsigbarhet rundt årlige satsningsfelt innenfor Klimafondet."
+  },
+  {
+    "doc_id":"doc_23",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Bergen Kommune gir sin uttalelse angående høringen knyttet til \"forskrift om tilskudd til Klimatiltaket\" hos Miljødepartementet. Byråden foreslår endringer vedrørende flerårige prosjekters mulighet for økonomisk bistand samt forutsigbarhet rundt årlige satsningsområder innen klimahandlingsplaner.",
+    "sumright":"Bergen kommune har mottatt et høringsforslag fra Miljødirektoratet angående en ny forskrift for tilskudd til klimatiltak i kommunene. Forskriften har som mål å gi økonomisk støtte til kommuner som implementerer klimatiltak, med en totalbevilgning på 100 millioner kroner årlig over fem år. Byrådet foreslår flere endringer i høringsuttalelsen, inkludert behovet for å tillate flerårige prosjekter og presisering av tildelingskriteriene."
+  },
+  {
+    "doc_id":"doc_23",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune har mottatt et høringsforslag fra Miljødirektoratet angående en ny forskrift for tilskudd til klimatiltak i kommunene. Forskriften har som mål å gi økonomisk støtte til kommuner som implementerer klimatiltak, med en totalbevilgning på 100 millioner kroner årlig over fem år. Byrådet foreslår flere endringer i høringsuttalelsen, inkludert behovet for å tillate flerårige prosjekter og presisering av tildelingskriteriene.",
+    "sumright":"Bergen bystyre behandler høringen angående Miljødirektoratets utkast til \"forskrift om tilskudd til Klimatilak\" rettet mot norske kommunar. Byråden foreslår endringer knyttet til flerårige prosjekters mulighet samt forutsigbarhet ved årlige satsningsområder innen klimasaker."
+  },
+  {
+    "doc_id":"doc_23",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre behandler høringen angående 'ny forskrift om tilskudd til Klimatiltaket' der Miljødepartementet foreslår endringer knyttet til fordeling av økonomiske ressurser mellom norske byer innen klimarelaterte prosjekter. Byråden oppfordrer Bystyret til å vedta uttalelsen basert på foreslåtte justeringer vedrørende flerårige prosjektplaner samt forutsigbarhet rundt årlige satsningsfelt innenfor Klimafondet.",
+    "sumright":"Bergen Kommune gir sin uttalelse angående høringen knyttet til \"forskrift om tilskudd til Klimatiltaket\" hos Miljødepartementet. Byråden foreslår endringer vedrørende flerårige prosjekters mulighet for økonomisk bistand samt forutsigbarhet rundt årlige satsningsområder innen klimahandlingsplaner."
+  },
+  {
+    "doc_id":"doc_24",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Marie Torgersens forespørsel angående fritakelse fra hennes varamedlemmerolle ved Åsane Bydelsstyret ble behandlet positivt av Bergen Formannskap hvor de anbefalte henne frigivelse samt valget av ny vara representant Anne Grete Strom Erichen",
+    "sumright":"Marie Torgersen har søkt om fritak fra sitt verv som varamedlem i Åsane bydelsstyre, begrunnet med at hun ikke føler seg i stand til å utføre pliktene. Bysekretæren anbefaler at søknaden innvilges, og det foreslås å velge et nytt varamedlem fra Arbeiderpartiet for resten av valgperioden."
+  },
+  {
+    "doc_id":"doc_24",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Marie Torgersens forespørsel angående fritakelse fra hennes varamedlemmerolle ved Åsane Bydelsstyret ble behandlet positivt av Bergen Formannskap hvor de anbefalte henne frigivelse samt valget av ny vara representant Anne Grete Strom Erichen",
+    "sumright":"Marie Torgersens ønske om midlertidig permisjon blir innvilget da hennes helsemessige tilstand gjør henne ute av stand til å utføre pliktene knyttet til varaplassen sin ved Åsan bydelsutvalg frem mot slutten av inneværende periode."
+  },
+  {
+    "doc_id":"doc_24",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Marie Torgersens forespørsel angående hennes rolle som varemeldem ved Arbeiderpartiets bydelsutvalg ble behandlet positivt da bystyret innvilget henne permisjon frem til slutten av perioden mellom april-oktober 2000",
+    "sumright":"Marie Torgersens forespørsel angående fritakelse fra hennes varamedlemmerolle ved Åsane Bydelsstyret ble behandlet positivt av Bergen Formannskap hvor de anbefalte henne frigivelse samt valget av ny vara representant Anne Grete Strom Erichen"
+  },
+  {
+    "doc_id":"doc_24",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Marie Torgersens forespørsel angående hennes rolle som varemeldem ved Arbeiderpartiets bydelsutvalg ble behandlet positivt da bystyret innvilget henne permisjon frem til slutten av perioden mellom april-oktober 2000",
+    "sumright":"Marie Torgersens ønske om midlertidig permisjon blir innvilget da hennes helsemessige tilstand gjør henne ute av stand til å utføre pliktene knyttet til varaplassen sin ved Åsan bydelsutvalg frem mot slutten av inneværende periode."
+  },
+  {
+    "doc_id":"doc_25",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Under behandlingen av 'Kollektivtrafikstrategien' vedtok bystyret flere punkter angående forbedringspotensialet innen transportsektoren samt behov for økt investeringstøtte etter valget hvor samarbeidspartienes prioriteringer endret seg betydelig. Byrådsrepresentant Tom Skauges interpelasjon fokuserte spesielt på manglende oppfølging av tidligere planer knyttet til investeringer innenfor busstransportsystemet før byggingen av den planlagte banen mot flyplassen startet",
+    "sumright":"Under behandlingen av interpelasjonen angående 'Kollektivtrafikstrategi' vedtok bystyret flere punkter knyttet til finansieringen av prosjektet samt ønsket om utvidelse av banenettet mot flyplassen."
+  },
+  {
+    "doc_id":"doc_25",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"I Bergen bystyre ble det diskutert en interpellasjon fra Tom Skauge (SV) angående den vedtatte strategi- og handlingsplanen for kollektivtrafikken i Bergensområdet fra 1999. Skauge påpekte manglende oppfølging av investeringsbehov og finansiering til kollektivtilbudet, spesielt i lys av byens lave tilskuddsandel sammenlignet med andre europeiske byer. Han stilte spørsmål til byråden om tiltak fra handlingsplanen og finansiering av bybanetraseen til Flesland. Anmodningen om å kontakte Samferdselsdepartementet for fullfinansiering av planen ble enstemmig vedtatt.",
+    "sumright":"Under behandlingen av 'Kollektivitetstrafikken' vedtok bystyret flere punkter angående strategien utarbeidet tidligere år samt anmodet byrådsavdelingen om videre oppfølging knyttet til finansieringen."
+  },
+  {
+    "doc_id":"doc_25",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Under behandlingen av 'Kollektivitetstrafikken' vedtok bystyret flere punkter angående strategien utarbeidet tidligere år samt anmodet byrådsavdelingen om videre oppfølging knyttet til finansieringen.",
+    "sumright":"Under behandlingen av 'Kollektivtrafikstrategien' vedtok bystyret flere punkter angående forbedringspotensialet innen transportsektoren samt behov for økt investeringstøtte etter valget hvor samarbeidspartienes prioriteringer endret seg betydelig. Byrådsrepresentant Tom Skauges interpelasjon fokuserte spesielt på manglende oppfølging av tidligere planer knyttet til investeringer innenfor busstransportsystemet før byggingen av den planlagte banen mot flyplassen startet"
+  },
+  {
+    "doc_id":"doc_25",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Under behandlingen av 'Kollektivtrafikstrategien' vedtok bystyret flere punkter angående forbedringspotensialet innen transportsektoren samt finansieringen knyttet til investeringsprosjekter innenfor området. Byrådets medlemmer skal svare på interpelasjonen vedrørende manglende midler avsatt etter den opprinnelige strategien",
+    "sumright":"Under behandlingen av 'Kollektivtrafikstrategien' vedtok bystyret flere punkter angående forbedringspotensialet innen transportsektoren samt behov for økt investeringstøtte etter valget hvor samarbeidspartienes prioriteringer endret seg betydelig. Byrådsrepresentant Tom Skauges interpelasjon fokuserte spesielt på manglende oppfølging av tidligere planer knyttet til investeringer innenfor busstransportsystemet før byggingen av den planlagte banen mot flyplassen startet"
+  }
+]

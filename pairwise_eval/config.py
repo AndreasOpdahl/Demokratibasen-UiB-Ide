@@ -48,26 +48,28 @@ EVAL_DIMENSIONS: tuple[str, ...] = (
     "correctness",
     "completeness",
     "newsworthiness",
+    "hygiene"
 )
 
 # Each string is both the G-Eval judge key and (for cloud APIs) the model id passed to the backend.
-# Local judges use ``LOCAL_LLM_CHAT_URL`` (LM Studio–style). Ids in ``OPENAI_JUDGE_IDS`` use
-# OpenAI Chat Completions (``OPENAI_CHAT_COMPLETIONS_URL`` + ``OPENAI_API_KEY``). Ids in
-# ``GEMINI_JUDGE_IDS`` use the Gemini REST API (``GEMINI_API_BASE`` + ``GOOGLE_API_KEY`` or
-# ``GEMINI_API_KEY``); the judge id is ``google/<gemini-model-id>`` and the API model id is the
-# part after ``google/``. Ids in ``ANTHROPIC_JUDGE_IDS`` use the Messages API
-# (``ANTHROPIC_MESSAGES_URL`` + ``ANTHROPIC_API_KEY``); judge id is ``anthropic/<model-id>``.
-# Ids in ``MISTRAL_JUDGE_IDS`` use Mistral Chat Completions (same JSON shape as OpenAI;
-# ``MISTRAL_CHAT_COMPLETIONS_URL`` + ``MISTRAL_API_KEY``).
+# The CLI pipeline's :func:`pairwise_eval.llm_judge.make_local_llm_evaluate_fn` routes **only**
+# ids in ``OPENAI_JUDGE_IDS``, ``MISTRAL_JUDGE_IDS``, ``GEMINI_JUDGE_IDS``, or ``ANTHROPIC_JUDGE_IDS``;
+# any other id raises ``ValueError`` (no silent LM Studio fallback). For ad‑hoc local judging,
+# call ``geval_local_judge`` / ``LOCAL_LLM_CHAT_URL`` from your own script.
+# OpenAI: ``OPENAI_CHAT_COMPLETIONS_URL`` + ``OPENAI_API_KEY``. Gemini: ``GEMINI_API_BASE`` +
+# ``GOOGLE_API_KEY`` or ``GEMINI_API_KEY``; judge id ``google/<…>`` with optional
+# ``GEMINI_JUDGE_TO_API_MODEL`` remap. Anthropic: ``ANTHROPIC_MESSAGES_URL`` + ``ANTHROPIC_API_KEY``;
+# judge id ``anthropic/<…>`` with optional ``ANTHROPIC_JUDGE_TO_API_MODEL``. Mistral: same JSON
+# shape as OpenAI via ``MISTRAL_CHAT_COMPLETIONS_URL`` + ``MISTRAL_API_KEY``.
 JUDGES: tuple[str, ...] = (
-    "google/gemma-3-4b",
-    "gpt-3.5-turbo",
-    "google/gemini-2.5-flash-preview-05-20",
-    "anthropic/claude-3-5-haiku-20241022",
+    #"google/gemma-3-4b",
+    #"gpt-3.5-turbo",
+    #"google/gemini-2.5-flash-preview-05-20",
+    #"anthropic/claude-3-5-haiku-20241022",
     "mistral-medium-latest",
 )
 
-# Subset of ``JUDGES`` that call OpenAI's Chat Completions (not Mistral, not the local server).
+# Subset of ``JUDGES`` that call OpenAI's Chat Completions (not Mistral).
 OPENAI_JUDGE_IDS: frozenset[str] = frozenset({"gpt-3.5-turbo"})
 OPENAI_API_KEY: str | None = os.environ.get("OPENAI_API_KEY")
 OPENAI_CHAT_COMPLETIONS_URL: str = os.environ.get(
@@ -92,9 +94,10 @@ GEMINI_JUDGE_TO_API_MODEL: dict[str, str] = {
     "google/gemini-2.5-flash-preview-05-20": "gemini-2.5-flash",
 }
 # Space Gemini calls so average rate stays under this (rolling minute, enforced as gap between
-# consecutive calls). Free tier is often ~20 RPM; default 18 leaves headroom. Set env
-# ``GEMINI_MAX_REQUESTS_PER_MINUTE`` (float); ``0`` disables throttling.
-GEMINI_MAX_REQUESTS_PER_MINUTE: float = _env_float("GEMINI_MAX_REQUESTS_PER_MINUTE", 18.0)
+# consecutive calls: ``60 / GEMINI_MAX_REQUESTS_PER_MINUTE`` seconds). Lower RPM = longer spacing
+# and fewer 429s; free tier is often ~20 RPM — default 10 (~6 s between calls) is conservative.
+# Override with env ``GEMINI_MAX_REQUESTS_PER_MINUTE`` (float); ``0`` disables throttling.
+GEMINI_MAX_REQUESTS_PER_MINUTE: float = _env_float("GEMINI_MAX_REQUESTS_PER_MINUTE", 10.0)
 
 # Anthropic Messages API; judge keys look like ``anthropic/<logical-name>``.
 ANTHROPIC_JUDGE_IDS: frozenset[str] = frozenset({"anthropic/claude-3-5-haiku-20241022"})
@@ -120,10 +123,24 @@ LOCAL_LLM_CHAT_URL = "http://localhost:1234/api/v1/chat"
 LOCAL_LLM_TIMEOUT_S = 300.0
 
 # First N documents (by first-seen ``doc_id`` order). None = use the full loaded corpus.
-MAX_DOCUMENTS: int | None = 21 #603
+# For per-model checkpoint selection, keep None so Bradley–Terry / win rates use every example
+# in that model folder’s JSONL files.
+MAX_DOCUMENTS: int | None = 25
 
 # Random model pairs sampled per document (capped by available combinations); see :func:`pairwise_eval.pairs.build_pairs_table`.
 N_PAIRS_PER_DOCUMENT: int = 4
+
+# When set to a prior run's ``json/pairs_table.json``, the pipeline **reuses** those rows (same
+# ``left`` / ``right`` / summary text) for each ``doc_id`` still present, then samples only
+# **additional** unordered pairs until ``N_PAIRS_PER_DOCUMENT`` is reached — so raising
+# ``N_PAIRS_PER_DOCUMENT`` does not throw away expensive judgments already in checkpoints.
+# ``None`` = do not force a path; the CLI still auto-loads ``<export_dir>/json/pairs_table.json``
+# when that file exists (per export leaf), which is correct for multi-model eval layouts.
+# If you set this to one model's ``pairs_table.json`` while running **several** model subfolders,
+# every subfolder would reuse that same file — usually wrong; leave ``None`` for auto per leaf.
+# Relative paths resolve under ``REPO_ROOT``.
+EXTEND_PAIRS_TABLE_JSON: Path | None = None
+# EXTEND_PAIRS_TABLE_JSON = REPO_ROOT / ".deepeval" / "geval_exports" / "gemma-2b" / "json" / "pairs_table.json"
 
 # --- Eval JSONL directory ---
 # ``None`` → auto-detect ``REPO_ROOT / "Data" / "eval"`` (with cwd fallbacks in

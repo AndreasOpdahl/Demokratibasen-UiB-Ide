@@ -526,7 +526,7 @@ def make_local_llm_evaluate_fn(
     mistral_judges: Optional[frozenset[str]] = None,
     mistral_http_retry_policy: LLMHttpRetryPolicy | None = None,
 ):
-    """Factory: return an ``evaluate_pair`` for local, OpenAI, Mistral, Gemini, and/or Anthropic judges.
+    """Factory: return an ``evaluate_pair`` for OpenAI, Mistral, Gemini, and/or Anthropic judges.
 
     Judges listed in ``openai_judges`` (default: :data:`pairwise_eval.config.OPENAI_JUDGE_IDS`)
     use OpenAI Chat Completions and require ``openai_api_key``. Judges in ``mistral_judges``
@@ -540,8 +540,10 @@ def make_local_llm_evaluate_fn(
     :class:`pairwise_eval.llm_http_retry.LLMHttpRetryPolicy` (override with the corresponding
     ``*_http_retry_policy`` arguments). Consecutive Gemini
     calls are spaced using :data:`pairwise_eval.config.GEMINI_MAX_REQUESTS_PER_MINUTE` (or
-    ``gemini_max_requests_per_minute=`` here) to stay under per-minute quotas. All other judges
-    use the local LM Studio–style endpoint (``LOCAL_LLM_CHAT_URL``).
+    ``gemini_max_requests_per_minute=`` here) to stay under per-minute quotas.
+
+    Any ``judge_id`` not in one of those four frozensets raises :class:`ValueError` immediately
+    (no silent fallback to a local LM Studio server).
 
     Checkpoints are one JSONL per (``judge_id``, dimension), so adding cloud judges does not
     overwrite existing local-judge checkpoint files.
@@ -557,7 +559,6 @@ def make_local_llm_evaluate_fn(
         GEMINI_JUDGE_TO_API_MODEL,
         GEMINI_MAX_REQUESTS_PER_MINUTE as _cfg_gemini_rpm,
         GOOGLE_API_KEY as _cfg_google_key,
-        LOCAL_LLM_CHAT_URL,
         LOCAL_LLM_TIMEOUT_S,
         MISTRAL_API_KEY as _cfg_mistral_key,
         MISTRAL_CHAT_COMPLETIONS_URL,
@@ -567,7 +568,7 @@ def make_local_llm_evaluate_fn(
         OPENAI_JUDGE_IDS,
     )
 
-    url = base_url or LOCAL_LLM_CHAT_URL
+    _ = base_url  # unused: cloud-only routing (no local LM Studio fallback in this factory)
     t_out = LOCAL_LLM_TIMEOUT_S if timeout_s is None else timeout_s
     oai_url = openai_completions_url or OPENAI_CHAT_COMPLETIONS_URL
     oai_j = openai_judges if openai_judges is not None else OPENAI_JUDGE_IDS
@@ -610,6 +611,16 @@ def make_local_llm_evaluate_fn(
         del rng  # LLM judge is deterministic given server state
         _ensure_repo_on_path()
 
+        _allowed_cloud = oai_j | mist_j | gem_j | ant_j
+        if judge_id not in _allowed_cloud:
+            raise ValueError(
+                f"Unknown judge id {judge_id!r}: not in openai_judges, mistral_judges, gemini_judges, "
+                f"or anthropic_judges (union had {len(_allowed_cloud)} ids). "
+                "Local LM Studio routing is disabled here — add the id to the right frozenset in "
+                "pairwise_eval.config or pass openai_judges= / mistral_judges= / gemini_judges= / "
+                "anthropic_judges= to make_local_llm_evaluate_fn."
+            )
+
         if verbose:
             if judge_id in oai_j:
                 backend = "openai"
@@ -617,10 +628,8 @@ def make_local_llm_evaluate_fn(
                 backend = "mistral"
             elif judge_id in gem_j:
                 backend = "gemini"
-            elif judge_id in ant_j:
-                backend = "anthropic"
             else:
-                backend = "local"
+                backend = "anthropic"
             print(
                 f"[LLM G-Eval] {backend} | {judge_id} | {dimension} | {row['doc_id']}",
                 flush=True,
@@ -716,18 +725,8 @@ def make_local_llm_evaluate_fn(
                     http_retry_policy=anthropic_http_retry_policy,
                 )
             else:
-                from geval_local_judge import local_llm_geval_judge
-
-                assistant = local_llm_geval_judge(
-                    str(row["source_text"]),
-                    str(row["sumleft"]),
-                    str(row["sumright"]),
-                    judge=dimension,
-                    model=judge_id,
-                    base_url=url,
-                    prompts_dir=prompts_dir,
-                    system_prompt=system_prompt,
-                    timeout_s=t_out,
+                raise AssertionError(
+                    f"internal: judge {judge_id!r} passed cloud membership check but no branch matched"
                 )
         except Exception as e:
             return {

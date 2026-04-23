@@ -29,6 +29,7 @@ from pairwise_eval.bradley_terry import (
 from pairwise_eval.config import (
     EVAL_DATA_DIR,
     EVAL_DIMENSIONS,
+    EXTEND_PAIRS_TABLE_JSON,
     GEVAL_CHECKPOINT_DIR,
     GEVAL_EXPORT_DIRNAME,
     HUMAN_JUDGES,
@@ -51,6 +52,7 @@ from pairwise_eval.geval_checkpoint import (
 from pairwise_eval.data import (
     append_gold_summary_as_model_rows,
     build_toy_long_df,
+    discover_eval_model_subdirs,
     load_eval_jsonl_long_df,
     long_df_head_documents,
     resolve_eval_data_dir,
@@ -76,7 +78,7 @@ from pairwise_eval.judging import (
     models_in_dimension,
     rng_for_judge_dimension,
 )
-from pairwise_eval.pairs import build_pairs_table
+from pairwise_eval.pairs import build_pairs_table, load_pairs_table_json
 from pairwise_eval.win_rates import (
     markdown_win_rate_tables_by_dimension,
     win_rate_matrix_by_dimension,
@@ -87,6 +89,7 @@ from pairwise_eval.win_rates import (
 __all__ = [
     "EVAL_DATA_DIR",
     "EVAL_DIMENSIONS",
+    "EXTEND_PAIRS_TABLE_JSON",
     "GEVAL_CHECKPOINT_DIR",
     "GEVAL_EXPORT_DIRNAME",
     "HUMAN_JUDGES",
@@ -118,6 +121,8 @@ __all__ = [
     "is_tie_row",
     "judgment_stable_key",
     "load_checkpoint_index",
+    "load_pairs_table_json",
+    "discover_eval_model_subdirs",
     "load_eval_jsonl_long_df",
     "long_df_head_documents",
     "make_local_llm_evaluate_fn",

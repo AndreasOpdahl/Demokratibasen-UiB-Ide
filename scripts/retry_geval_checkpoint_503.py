@@ -20,9 +20,16 @@ After any successful line updates, by default it **rebuilds G-Eval tables from c
 ``resolve_eval_data_dir``, etc.). If those differ from the run that produced the checkpoints,
 stable keys may not match and rows will be skipped.
 
+When the default checkpoint root contains **only subfolders** with ``*.jsonl`` (same layout as
+``python -m pairwise_eval`` per model), this script scans **every** such leaf folder, retries
+lines in each, reloads ``Data/eval/<folder_name>/`` for matching keys, and refreshes exports
+under ``.deepeval/<GEVAL_EXPORT_DIRNAME>/<folder_name>/`` for each touched model. You can still
+point ``--checkpoint-dir`` at a single model folder to scope work to that run.
+
 Usage::
 
     python scripts/retry_geval_checkpoint_503.py
+    python scripts/retry_geval_checkpoint_503.py --checkpoint-dir .deepeval/geval_judgment_checkpoints/gemma-2b
     python scripts/retry_geval_checkpoint_503.py --checkpoint-dir .deepeval/other_checkpoints
     python scripts/retry_geval_checkpoint_503.py --dry-run
     python scripts/retry_geval_checkpoint_503.py --no-export
@@ -54,6 +61,7 @@ from pairwise_eval.config import (  # noqa: E402
     DEFAULT_PAIR_SEED,
     EVAL_DIMENSIONS,
     GEVAL_CHECKPOINT_DIR,
+    GEVAL_EXPORT_DIRNAME,
     JUDGES,
     MAX_DOCUMENTS,
     N_PAIRS_PER_DOCUMENT,
@@ -64,8 +72,14 @@ from pairwise_eval.data import (  # noqa: E402
     load_eval_jsonl_long_df,
     long_df_head_documents,
     resolve_eval_data_dir,
+    resolve_eval_dir_for_judgment_leaf,
+    resolve_export_dir_for_judgment_leaf,
 )
-from pairwise_eval.geval_checkpoint import _judgment_jsonable, judgment_stable_key  # noqa: E402
+from pairwise_eval.geval_checkpoint import (  # noqa: E402
+    _judgment_jsonable,
+    discover_checkpoint_leaf_dirs,
+    judgment_stable_key,
+)
 from pairwise_eval.io_export import resolve_geval_export_dir  # noqa: E402
 from pairwise_eval.judging import (  # noqa: E402
     attach_doc_context,
@@ -80,6 +94,16 @@ def _default_checkpoint_dir() -> Path:
     if GEVAL_CHECKPOINT_DIR is not None:
         return Path(GEVAL_CHECKPOINT_DIR)
     return REPO_ROOT / ".deepeval" / "geval_judgment_checkpoints"
+
+
+def _leaf_is_per_model_judgment_subfolder(leaf: Path) -> bool:
+    """True if ``leaf`` is a direct child of the configured G-Eval checkpoint root (per-model layout)."""
+    if GEVAL_CHECKPOINT_DIR is None:
+        return False
+    try:
+        return leaf.parent.resolve() == Path(GEVAL_CHECKPOINT_DIR).resolve()
+    except OSError:
+        return False
 
 
 # Default: common HTTP failures + transport/parsing issues (see :func:`_categorize_api_error`).
@@ -244,13 +268,14 @@ def _scan_retryable_lines(
 
 def _load_eval_pairs_and_context(
     *,
+    eval_dir: Path | None = None,
     pair_seed: int,
     max_documents: int | None,
     n_pairs_per_document: int,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Return ``(pairs_df, long_df, ctx)`` with ``ctx = attach_doc_context(pairs, long_df)``."""
-    eval_dir = resolve_eval_data_dir()
-    long_df = load_eval_jsonl_long_df(eval_dir)
+    root = eval_dir if eval_dir is not None else resolve_eval_data_dir()
+    long_df = load_eval_jsonl_long_df(root)
     long_df = long_df_head_documents(long_df, max_documents)
     rng = np.random.default_rng(pair_seed)
     pairs = build_pairs_table(long_df, n_pairs=n_pairs_per_document, rng=rng)
@@ -386,7 +411,11 @@ def main() -> int:
         "--export-dir",
         type=Path,
         default=None,
-        help="Export root for reports (default: resolve_geval_export_dir() from cwd + config)",
+        help=(
+            "Force this export root for every refreshed model (overwrites same tree each time). "
+            "Omit for per-model exports under <repo>/.deepeval/<GEVAL_EXPORT_DIRNAME>/<model>/ "
+            "when judgment folders match Data/eval/<model>/."
+        ),
     )
     parser.add_argument(
         "-e",
@@ -423,18 +452,42 @@ def main() -> int:
     max_docs = MAX_DOCUMENTS if args.max_documents is None else args.max_documents
     n_pairs = N_PAIRS_PER_DOCUMENT if args.n_pairs_per_document is None else args.n_pairs_per_document
 
-    try:
-        by_path, cat_counts = _scan_retryable_lines(ck, retry_cats)
-    except FileNotFoundError as e:
-        print(e, file=sys.stderr)
+    if not ck.is_dir():
+        print(f"Not a directory: {ck}", file=sys.stderr)
         return 1
+
+    leaves = discover_checkpoint_leaf_dirs(ck)
+
+    if not leaves:
+        print(
+            f"No *.jsonl under {ck.resolve()} (neither top-level nor immediate subfolders).",
+            file=sys.stderr,
+        )
+        return 1
+
+    by_path: dict[Path, list[tuple[int, str, dict[str, Any]]]] = {}
+    cat_counts: Counter[str] = Counter()
+    for leaf in leaves:
+        try:
+            bp, cc = _scan_retryable_lines(leaf, retry_cats)
+        except FileNotFoundError as e:
+            print(e, file=sys.stderr)
+            return 1
+        for p, items in bp.items():
+            by_path[p] = items
+        cat_counts.update(cc)
 
     total_lines = sum(len(v) for v in by_path.values())
     if total_lines == 0:
-        print(f"No matching [api_error] lines for categories {sorted(retry_cats)} under {ck.resolve()}")
+        scanned = ", ".join(leaf.name for leaf in leaves)
+        print(
+            f"No matching [api_error] lines for categories {sorted(retry_cats)} "
+            f"(scanned {len(leaves)} leaf folder(s): {scanned})"
+        )
         return 0
 
-    print(f"Checkpoint dir: {ck.resolve()}")
+    print(f"Checkpoint root: {ck.resolve()}")
+    print(f"Leaf folders: {', '.join(leaf.name for leaf in leaves)}")
     print(f"Retry categories: {sorted(retry_cats)}")
     print(f"Lines to retry: {total_lines} across {len(by_path)} file(s)")
     print("By category:")
@@ -442,70 +495,96 @@ def main() -> int:
         print(f"  {c}: {cat_counts[c]}")
     if args.dry_run:
         for p, items in sorted(by_path.items()):
-            print(f"  {p.name}: {len(items)} line(s)")
+            print(f"  {p.parent.name}/{p.name}: {len(items)} line(s)")
         print("Dry run: no API calls, no writes.")
         return 0
 
-    pairs_df, long_df, ctx = _load_eval_pairs_and_context(
-        pair_seed=args.pair_seed,
-        max_documents=max_docs,
-        n_pairs_per_document=n_pairs,
-    )
-    print(
-        f"Context: eval subset rows={len(ctx)} "
-        f"(pair_seed={args.pair_seed}, max_documents={max_docs!r}, n_pairs={n_pairs})"
-    )
+    if args.export_dir is not None and len(leaves) > 1:
+        print(
+            "[warn] --export-dir is set with multiple checkpoint leaf folders: each model refresh "
+            "writes to the same path — use a single --checkpoint-dir or omit --export-dir.",
+            file=sys.stderr,
+        )
 
-    unique_keys: dict[str, None] = {}
-    for items in by_path.values():
-        for _, k, _ in items:
-            unique_keys[k] = None
-    keys_in_order = list(unique_keys.keys())
+    by_leaf_files: dict[Path, dict[Path, list[tuple[int, str, dict[str, Any]]]]] = defaultdict(dict)
+    for path, items in by_path.items():
+        by_leaf_files[path.parent][path] = items
 
     evaluate_fn = make_local_llm_evaluate_fn(verbose=True)
     key_to_judgment: dict[str, dict[str, object]] = {}
     skipped: list[str] = []
 
-    for key_str in keys_in_order:
-        try:
-            meta = json.loads(key_str)
-        except json.JSONDecodeError:
-            skipped.append(key_str[:80] + "...")
-            continue
-        judge_id = meta.get("j")
-        dimension = meta.get("d")
-        if not isinstance(judge_id, str) or not isinstance(dimension, str):
-            skipped.append(key_str[:80] + "...")
-            continue
-
-        row = _find_row_for_key(ctx, judge_id, dimension, key_str)
-        if row is None:
+    for leaf in sorted(by_leaf_files.keys()):
+        paths_dict = by_leaf_files[leaf]
+        eval_dir = resolve_eval_dir_for_judgment_leaf(leaf)
+        if _leaf_is_per_model_judgment_subfolder(leaf) and eval_dir.name != leaf.name:
             print(
-                f"[skip] No matching pair row for key (j={judge_id!r} d={dimension!r}) — "
-                "check MAX_DOCUMENTS / pair seed / eval data match the original run.",
-                flush=True,
+                f"[warn] Judgment folder {leaf.name!r} but eval data loaded from {eval_dir} "
+                f"(expected ``Data/eval/{leaf.name}/`` with at least one *.jsonl). "
+                "Stable keys will often not match — align folder names or set EVAL_DATA_DIR.",
+                file=sys.stderr,
             )
-            skipped.append(key_str[:120])
-            continue
+        _, _, ctx = _load_eval_pairs_and_context(
+            eval_dir=eval_dir,
+            pair_seed=args.pair_seed,
+            max_documents=max_docs,
+            n_pairs_per_document=n_pairs,
+        )
+        print(
+            f"Context [{leaf.name}]: eval={eval_dir} subset_rows={len(ctx)} "
+            f"(pair_seed={args.pair_seed}, max_documents={max_docs!r}, n_pairs={n_pairs})",
+            flush=True,
+        )
 
-        rng = rng_for_judge_dimension(judge_id, dimension, base_seed=DEFAULT_GEVAL_BASE_SEED)
-        judgment = evaluate_fn(row, dimension, judge_id, rng)
-        key_to_judgment[key_str] = judgment
-        cat = _categorize_api_error(str(judgment.get("rationale", "")))
-        print(f"[done] {dimension} | {judge_id} | new rationale category: {cat}", flush=True)
+        unique_keys: dict[str, None] = {}
+        for items in paths_dict.values():
+            for _, k, _ in items:
+                unique_keys[k] = None
+        keys_in_order = list(unique_keys.keys())
+
+        for key_str in keys_in_order:
+            try:
+                meta = json.loads(key_str)
+            except json.JSONDecodeError:
+                skipped.append(key_str[:80] + "...")
+                continue
+            judge_id = meta.get("j")
+            dimension = meta.get("d")
+            if not isinstance(judge_id, str) or not isinstance(dimension, str):
+                skipped.append(key_str[:80] + "...")
+                continue
+
+            row = _find_row_for_key(ctx, judge_id, dimension, key_str)
+            if row is None:
+                print(
+                    f"[skip] leaf={leaf.name!r} no matching pair row for key "
+                    f"(j={judge_id!r} d={dimension!r}) — "
+                    "check MAX_DOCUMENTS / pair seed / eval data match the original run.",
+                    flush=True,
+                )
+                skipped.append(key_str[:120])
+                continue
+
+            rng = rng_for_judge_dimension(judge_id, dimension, base_seed=DEFAULT_GEVAL_BASE_SEED)
+            judgment = evaluate_fn(row, dimension, judge_id, rng)
+            key_to_judgment[key_str] = judgment
+            cat = _categorize_api_error(str(judgment.get("rationale", "")))
+            print(f"[done] {leaf.name} | {dimension} | {judge_id} | new rationale category: {cat}", flush=True)
 
     if skipped:
         print(f"Skipped {len(skipped)} key(s) (unparseable or no matching row).", flush=True)
 
     total_replaced = 0
+    leaves_updated: set[Path] = set()
     for path, items in sorted(by_path.items()):
-        # Only rewrite keys we successfully recomputed
         subset = {k: key_to_judgment[k] for _, k, _ in items if k in key_to_judgment}
         if not subset:
             continue
         n = _rewrite_file(path, subset, dry_run=False)
         total_replaced += n
-        print(f"[write] {path.name}: replaced {n} line(s)", flush=True)
+        if n:
+            leaves_updated.add(path.parent)
+        print(f"[write] {path.parent.name}/{path.name}: replaced {n} line(s)", flush=True)
 
     print(f"Finished. Replaced {total_replaced} line(s) total.")
 
@@ -516,15 +595,26 @@ def main() -> int:
         print("No checkpoint lines were updated; skipping export.")
         return 0
 
-    exp_root = args.export_dir.expanduser().resolve() if args.export_dir is not None else None
     print("Refreshing exports from checkpoints (no new LLM calls expected)...", flush=True)
-    out = _refresh_exports(
-        pairs_df=pairs_df,
-        long_df=long_df,
-        checkpoint_dir=ck,
-        export_dir=exp_root,
-    )
-    print(f"Exports: {out.resolve()}", flush=True)
+    for leaf in sorted(leaves_updated):
+        pairs_df, long_df, _ = _load_eval_pairs_and_context(
+            eval_dir=resolve_eval_dir_for_judgment_leaf(leaf),
+            pair_seed=args.pair_seed,
+            max_documents=max_docs,
+            n_pairs_per_document=n_pairs,
+        )
+        if args.export_dir is not None:
+            exp_root = args.export_dir.expanduser().resolve()
+        else:
+            exp_root = resolve_export_dir_for_judgment_leaf(leaf)
+        out = _refresh_exports(
+            pairs_df=pairs_df,
+            long_df=long_df,
+            checkpoint_dir=leaf,
+            export_dir=exp_root,
+        )
+        where = "forced --export-dir" if args.export_dir is not None else GEVAL_EXPORT_DIRNAME.strip()
+        print(f"Exports [{leaf.name}] → {out.resolve()} ({where})", flush=True)
     return 0
 
 

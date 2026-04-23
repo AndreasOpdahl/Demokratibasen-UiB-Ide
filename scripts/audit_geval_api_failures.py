@@ -7,7 +7,9 @@ Run from the repo root (or anywhere, with ``--checkpoint-dir``)::
     python scripts/audit_geval_api_failures.py --checkpoint-dir /path/to/jsonl/dir
 
 Default checkpoint directory is :data:`pairwise_eval.config.GEVAL_CHECKPOINT_DIR` when set,
-otherwise ``<repo>/.deepeval/geval_judgment_checkpoints``.
+otherwise ``<repo>/.deepeval/geval_judgment_checkpoints``. If that root has no ``*.jsonl`` files
+directly but has **subfolders** with JSONL (per-model layout from ``python -m pairwise_eval``),
+every such subfolder is scanned and counts are **aggregated**.
 """
 
 from __future__ import annotations
@@ -224,12 +226,39 @@ def main() -> int:
     else:
         ck = ck.expanduser().resolve()
 
-    try:
-        counts, files_read, lines_read, api_err = audit_directory(ck)
-    except FileNotFoundError as e:
-        print(e, file=sys.stderr)
+    root = _repo_root()
+    if str(root) not in sys.path:
+        sys.path.insert(0, str(root))
+    from pairwise_eval.geval_checkpoint import discover_checkpoint_leaf_dirs  # noqa: E402
+
+    if not ck.is_dir():
+        print(f"Not a directory: {ck}", file=sys.stderr)
         return 1
 
+    leaves = discover_checkpoint_leaf_dirs(ck)
+    if not leaves:
+        print(
+            f"No *.jsonl under {ck.resolve()} (neither top-level nor immediate subfolders).",
+            file=sys.stderr,
+        )
+        return 1
+
+    counts: Counter[tuple[str, str, str]] = Counter()
+    files_read = 0
+    lines_read = 0
+    api_err = 0
+    for leaf in leaves:
+        try:
+            c, fr, lr, ae = audit_directory(leaf)
+        except FileNotFoundError as e:
+            print(e, file=sys.stderr)
+            return 1
+        counts.update(c)
+        files_read += fr
+        lines_read += lr
+        api_err += ae
+
+    print(f"Scanned {len(leaves)} judgment leaf folder(s): {', '.join(x.name for x in leaves)}")
     _print_report(
         counts,
         files_read=files_read,

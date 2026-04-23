@@ -86,6 +86,24 @@ def load_checkpoint_index(path: Path) -> Dict[str, Dict[str, object]]:
     return out
 
 
+def discover_checkpoint_leaf_dirs(checkpoint_root: Path) -> list[Path]:
+    """Return directories that each contain their own ``*.jsonl`` judgment streams.
+
+    If ``checkpoint_root`` has ``*.jsonl`` files directly (legacy flat layout), returns
+    ``[checkpoint_root]``. Otherwise returns each immediate subdirectory that contains at
+    least one ``*.jsonl`` (per-model layout under ``geval_judgment_checkpoints/<model>/``).
+    """
+    if not checkpoint_root.is_dir():
+        return []
+    if any(checkpoint_root.glob("*.jsonl")):
+        return [checkpoint_root]
+    out: list[Path] = []
+    for child in sorted(checkpoint_root.iterdir()):
+        if child.is_dir() and any(child.glob("*.jsonl")):
+            out.append(child)
+    return out
+
+
 def append_judgment_line(path: Path, key: str, judgment: Dict[str, object]) -> None:
     """Append one judgment and sync to disk so only the in-flight call is at risk on crash.
 

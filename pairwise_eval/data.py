@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+import warnings
 from pathlib import Path
 
 import pandas as pd
 
-from pairwise_eval.config import EVAL_DATA_DIR, REFERENCE_SUMMARY_MODEL_ID, REPO_ROOT
+from pairwise_eval.config import EVAL_DATA_DIR, GEVAL_EXPORT_DIRNAME, REFERENCE_SUMMARY_MODEL_ID, REPO_ROOT
 
 
 def append_gold_summary_as_model_rows(checkpoint_long_df: pd.DataFrame) -> pd.DataFrame:
@@ -81,6 +82,132 @@ def build_toy_long_df() -> pd.DataFrame:
             )
     checkpoints = pd.DataFrame(rows)
     return append_gold_summary_as_model_rows(checkpoints)
+
+
+def resolve_eval_dir_for_judgment_leaf(
+    leaf_dir: Path,
+    *,
+    fallback_single_eval_subdir: bool = False,
+) -> Path:
+    """Map a per-model judgment directory to the eval JSONL folder used for that run.
+
+    Resolution order:
+
+    1. ``<repo>/Data/eval/<leaf_name>/`` if it exists and contains at least one ``*.jsonl``.
+    2. :func:`resolve_eval_data_dir` if that directory itself contains ``*.jsonl`` (flat layout).
+    3. Immediate subdirectories of the eval root that contain ``*.jsonl``: use the subfolder
+       whose name equals ``leaf_dir.name`` (case-sensitive, then case-insensitive).
+    4. If still unmatched and ``fallback_single_eval_subdir`` is True and there is exactly
+       one such subdir under the eval root, return that directory (with :func:`warnings.warn`).
+       Use only when you know that single corpus matches the judgments (e.g. one machine,
+       judgments moved under a different leaf name). Otherwise set ``EVAL_JSONL_LEAF`` in the
+       notebook or add ``Data/eval/<leaf_name>/*.jsonl``.
+
+    This avoids returning a bare ``Data/eval`` directory that only holds per-model subfolders
+    (no JSONL at the top level), which would make :func:`load_eval_jsonl_long_df` fail.
+    """
+    name = leaf_dir.name
+    repo_eval = REPO_ROOT / "Data" / "eval"
+    candidate = repo_eval / name
+    if candidate.is_dir() and any(candidate.glob("*.jsonl")):
+        return candidate.resolve()
+
+    eval_root = resolve_eval_data_dir()
+    if any(eval_root.glob("*.jsonl")):
+        return eval_root.resolve()
+
+    subdirs = discover_eval_model_subdirs(eval_root)
+    if not subdirs:
+        raise FileNotFoundError(
+            f"No *.jsonl under {eval_root} or its immediate subfolders. "
+            f"Expected either flat {eval_root}/*.jsonl or nested {eval_root}/{name}/*.jsonl "
+            f"(and aligned checkpoint judgments for that eval)."
+        )
+    for p in subdirs:
+        if p.name == name:
+            return p.resolve()
+    lowered = name.lower()
+    for p in subdirs:
+        if p.name.lower() == lowered:
+            return p.resolve()
+    choices = ", ".join(p.name for p in subdirs)
+    if fallback_single_eval_subdir and len(subdirs) == 1:
+        only = subdirs[0].resolve()
+        warnings.warn(
+            f"No eval folder named {name!r}; using the only available eval subdir {only.name!r} "
+            f"under {eval_root}. Confirm this corpus matches these judgments.",
+            UserWarning,
+            stacklevel=2,
+        )
+        return only
+    raise FileNotFoundError(
+        f"No eval data for judgment leaf {name!r}: missing or empty {candidate}, "
+        f"and no subfolder under {eval_root} matches that name. "
+        f"Available eval subdirs (with *.jsonl): {choices}. "
+        f"Set CHECKPOINT_LEAF_NAME to match one of these, add Data/eval/{name}/*.jsonl, "
+        f"or call resolve_eval_dir_for_judgment_leaf(..., fallback_single_eval_subdir=True) "
+        f"when exactly one eval subdir exists and is the correct corpus."
+    )
+
+
+def resolve_eval_dir_for_judgment_leaf_notebook(leaf_dir: Path) -> Path:
+    """Like ``resolve_eval_dir_for_judgment_leaf(..., fallback_single_eval_subdir=True)``.
+
+    Use this from notebooks so they still work if the active interpreter loads an **older**
+    ``pairwise_eval`` where :func:`resolve_eval_dir_for_judgment_leaf` does not yet accept
+    ``fallback_single_eval_subdir`` (stale install, wrong ``sys.path`` order, etc.).
+    """
+    import inspect
+
+    sig = inspect.signature(resolve_eval_dir_for_judgment_leaf)
+    if "fallback_single_eval_subdir" in sig.parameters:
+        return resolve_eval_dir_for_judgment_leaf(leaf_dir, fallback_single_eval_subdir=True)
+
+    try:
+        return resolve_eval_dir_for_judgment_leaf(leaf_dir)
+    except FileNotFoundError:
+        name = leaf_dir.name
+        eval_root = resolve_eval_data_dir()
+        subdirs = discover_eval_model_subdirs(eval_root)
+        if len(subdirs) == 1:
+            only = subdirs[0].resolve()
+            warnings.warn(
+                f"No eval folder named {name!r}; using the only available eval subdir {only.name!r} "
+                f"under {eval_root}. Confirm this corpus matches these judgments. "
+                f"(Install the repo's ``pairwise_eval`` so ``fallback_single_eval_subdir`` is available.)",
+                UserWarning,
+                stacklevel=2,
+            )
+            return only
+        raise
+
+
+def resolve_export_dir_for_judgment_leaf(leaf_dir: Path) -> Path:
+    """Export root for a judgment leaf: per-model under ``REPO_ROOT/.deepeval/…`` when eval subdir exists."""
+    from pairwise_eval.io_export import resolve_geval_export_dir
+
+    name = leaf_dir.name
+    candidate = REPO_ROOT / "Data" / "eval" / name
+    if candidate.is_dir() and any(candidate.glob("*.jsonl")):
+        leaf = GEVAL_EXPORT_DIRNAME.strip()
+        return (REPO_ROOT / ".deepeval" / leaf / name).resolve()
+    return resolve_geval_export_dir()
+
+
+def discover_eval_model_subdirs(eval_root: Path) -> list[Path]:
+    """Return immediate child directories of ``eval_root`` that contain at least one ``*.jsonl``.
+
+    Used when checkpoints live under ``Data/eval/<model_name>/*.jsonl`` instead of flat
+    ``Data/eval/*.jsonl``. Output: sorted paths (each is a directory to pass to
+    :func:`load_eval_jsonl_long_df`).
+    """
+    if not eval_root.is_dir():
+        return []
+    out: list[Path] = []
+    for child in sorted(eval_root.iterdir()):
+        if child.is_dir() and any(child.glob("*.jsonl")):
+            out.append(child)
+    return out
 
 
 def resolve_eval_data_dir() -> Path:
