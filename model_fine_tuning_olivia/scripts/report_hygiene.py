@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Evaluate per-example hygiene for an inputs-refs-preds JSONL file.
 
-Produces per-example metrics, good-hygiene/bad-hygiene JSONL outputs, and
+Produces per-example metrics, hygiene-good/hygiene-bad JSONL outputs, and
 filter stats for both checkpoint predictions and (once) reference summaries.
+
+The optional ``gen<M>-`` fragment in the input filename is propagated to all
+checkpoint output filenames, allowing iterative hygiene-regenerate loops.
 
 Usage:
     python report_hygiene.py test_data/llama-3.1-8b-instruct-checkpoint-1000-inputs-refs-preds-1000-examples.jsonl
+    python report_hygiene.py some_folder/checkpoint-500-gen1-inputs-refs-preds-1000-examples.jsonl
 """
 
 import argparse
@@ -38,25 +42,28 @@ CRITERIA = [
 
 
 def parse_filename(path: str):
-    """Parse ``<prefix>checkpoint-<N>-inputs-refs-preds-<suffix>.jsonl``.
+    """Parse ``[<prefix>]checkpoint-<N>-[gen<M>-]inputs-refs-preds-<suffix>.jsonl``.
 
-    Also accepts filenames without prefix:
-    ``checkpoint-<N>-inputs-refs-preds-<suffix>.jsonl``.
-
-    Returns (prefix, checkpoint_tag, suffix) where *prefix* includes
-    the trailing hyphen when present (e.g. ``"llama-3.1-8b-instruct-"``).
+    Returns (prefix, checkpoint_tag, gen_part, suffix) where:
+    - *prefix* includes the trailing hyphen when present
+      (e.g. ``"llama-3.1-8b-instruct-"``).
+    - *gen_part* is ``""`` for gen0 (implicit or explicit ``gen0-``),
+      or ``"gen<M>-"`` for M >= 1.
     """
     basename = os.path.basename(path)
     m = re.match(
-        r"^(.*?)(checkpoint-\d+)-inputs-refs-preds-(.+)\.jsonl$",
+        r"^(.*?)(checkpoint-\d+)-(gen(\d+)-)?inputs-refs-preds-(.+)\.jsonl$",
         basename,
     )
     if not m:
         raise ValueError(
             f"Filename does not match "
-            f"[<prefix>]checkpoint-<N>-inputs-refs-preds-<suffix>.jsonl: {basename}"
+            f"[<prefix>]checkpoint-<N>-[gen<M>-]inputs-refs-preds-<suffix>.jsonl: {basename}"
         )
-    return m.group(1), m.group(2), m.group(3)
+    gen_part = m.group(3) or ""
+    if gen_part == "gen0-":
+        gen_part = ""
+    return m.group(1), m.group(2), gen_part, m.group(5)
 
 
 def evaluate_summary(doc, summary, ref, nlp_parser):
@@ -155,7 +162,7 @@ def build_stats(input_file, counters, args):
 def main():
     parser = argparse.ArgumentParser(description="Per-example hygiene evaluation.")
     parser.add_argument("input_file",
-                        help="JSONL file matching <prefix>checkpoint-<N>-inputs-refs-preds-<suffix>.jsonl")
+                        help="JSONL file matching [<prefix>]checkpoint-<N>-[gen<M>-]inputs-refs-preds-<suffix>.jsonl")
     parser.add_argument("--max_rep_3gram", type=float, default=0.2)
     parser.add_argument("--min_compression_ratio", type=float, default=1.0)
     parser.add_argument("--min_pred_chars", type=int, default=50)
@@ -168,30 +175,41 @@ def main():
                         help="Path to external Norwegian lexicon file (one word per line).")
     parser.add_argument("--spacy-model", type=str, default="nb_core_news_md",
                         help="spaCy model for sentence parsing.")
+    parser.add_argument("--overwrite", action="store_true",
+                        help="Allow overwriting existing output files.")
     args = parser.parse_args()
 
-    prefix, ckpt_tag, suffix = parse_filename(args.input_file)
+    prefix, ckpt_tag, gen_part, suffix = parse_filename(args.input_file)
     out_dir = os.path.dirname(args.input_file) or "."
 
-    def out(tag, kind, ext):
-        return os.path.join(out_dir, f"{prefix}{tag}-hygiene-{kind}-{suffix}.{ext}")
+    def out(tag, kind, ext, gen=""):
+        return os.path.join(out_dir, f"{prefix}{tag}-{gen}hygiene-{kind}-{suffix}.{ext}")
 
-    def out_hygiene_variant(tag, variant):
-        return os.path.join(out_dir, f"{prefix}{tag}-{variant}-hygiene-{suffix}.jsonl")
-
-    ckpt_metrics_path   = out(ckpt_tag, "metrics", "jsonl")
-    ckpt_good_path      = out_hygiene_variant(ckpt_tag, "good")
-    ckpt_bad_path       = out_hygiene_variant(ckpt_tag, "bad")
-    ckpt_stats_path     = out(ckpt_tag, "filter-stats", "json")
+    ckpt_metrics_path   = out(ckpt_tag, "metrics", "jsonl", gen_part)
+    ckpt_good_path      = out(ckpt_tag, "good", "jsonl", gen_part)
+    ckpt_bad_path       = out(ckpt_tag, "bad", "jsonl", gen_part)
+    ckpt_stats_path     = out(ckpt_tag, "filter-stats", "json", gen_part)
 
     ref_metrics_path    = out("reference", "metrics", "jsonl")
-    ref_good_path       = out_hygiene_variant("reference", "good")
-    ref_bad_path        = out_hygiene_variant("reference", "bad")
+    ref_good_path       = out("reference", "good", "jsonl")
+    ref_bad_path        = out("reference", "bad", "jsonl")
     ref_stats_path      = out("reference", "filter-stats", "json")
 
     _script_mtime = os.path.getmtime(__file__)
     need_ref = (not os.path.exists(ref_metrics_path)
                 or os.path.getmtime(ref_metrics_path) < _script_mtime)
+
+    # --- Pre-flight: refuse to overwrite existing outputs ---
+    planned_outputs = [ckpt_metrics_path, ckpt_good_path, ckpt_bad_path, ckpt_stats_path]
+    if need_ref:
+        planned_outputs += [ref_metrics_path, ref_good_path, ref_bad_path, ref_stats_path]
+    existing = [p for p in planned_outputs if os.path.exists(p)]
+    if existing and not args.overwrite:
+        print("ERROR: the following output files already exist:", file=sys.stderr)
+        for p in existing:
+            print(f"  {p}", file=sys.stderr)
+        print("Use --overwrite to replace them.", file=sys.stderr)
+        sys.exit(1)
 
     lexicon = load_lexicon(args.lexicon) if args.lexicon else None
     nlp_parser = NorwegianLightParser(lexicon=lexicon, model=args.spacy_model)

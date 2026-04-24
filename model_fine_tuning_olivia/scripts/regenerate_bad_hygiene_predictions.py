@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 """
-Regenerate predictions for bad-hygiene examples and merge with good-hygiene lines.
+Regenerate predictions for hygiene-bad examples and merge with hygiene-good lines.
 
 Expected folder layout:
   <hygiene_folder>/all_eval_results/
-    checkpoint-<N>-good-hygiene-1000-examples.jsonl
-    checkpoint-<N>-bad-hygiene-1000-examples.jsonl
+    checkpoint-<N>-[gen<M>-]hygiene-good-<suffix>.jsonl
+    checkpoint-<N>-[gen<M>-]hygiene-bad-<suffix>.jsonl
 
 For each checkpoint N divisible by --major_interval, this script:
   1) Verifies good/bad files are line-wise complementary (exactly one JSON object per line pair)
-  2) Generates new predictions only for non-empty lines in the bad-hygiene file
+  2) Generates new predictions only for non-empty lines in the hygiene-bad file
   3) Merges lines into:
-       checkpoint-<N>-gen1-inputs-refs-preds-1000-examples.jsonl
+       checkpoint-<N>-gen<M+1>-inputs-refs-preds-<suffix>.jsonl
+
+Files without a ``gen<M>-`` fragment are treated as gen0, so
+``checkpoint-500-hygiene-bad-1000-examples.jsonl`` produces
+``checkpoint-500-gen1-inputs-refs-preds-1000-examples.jsonl``.
 
 Adapter checkpoint lookup (for each checkpoint):
   <model_folder>/checkpoint-<N>
@@ -25,6 +29,7 @@ import argparse
 import json
 import os
 import re
+import sys
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Tuple
 
@@ -34,7 +39,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from model_configs import get_model_config
 
-BAD_FILE_RE = re.compile(r"^checkpoint-(\d+)-bad-hygiene-(.+)\.jsonl$")
+BAD_FILE_RE = re.compile(r"^(.*?)checkpoint-(\d+)-(gen(\d+)-)?hygiene-bad-(.+)\.jsonl$")
 
 
 def clean_decoded_text(text: str) -> str:
@@ -48,7 +53,7 @@ def clean_decoded_text(text: str) -> str:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Regenerate predictions for bad-hygiene lines and merge with good-hygiene lines."
+        description="Regenerate predictions for hygiene-bad lines and merge with hygiene-good lines."
     )
     parser.add_argument(
         "--hygiene_folder",
@@ -75,7 +80,7 @@ def parse_args() -> argparse.Namespace:
         "--batch_size",
         type=int,
         default=8,
-        help="Generation batch size for bad-hygiene lines.",
+        help="Generation batch size for [gen<M>-]hygiene-bad lines.",
     )
     parser.add_argument(
         "--max_input_tokens",
@@ -117,7 +122,7 @@ def parse_args() -> argparse.Namespace:
         action="append",
         default=[],
         help=(
-            "Optional explicit bad-hygiene JSONL path. Can be repeated. "
+            "Optional explicit [gen<M>-]hygiene-bad JSONL path. Can be repeated. "
             "When set, these files are processed instead of scanning --hygiene_folder/all_eval_results."
         ),
     )
@@ -135,7 +140,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--overwrite",
         action="store_true",
-        help="Overwrite existing checkpoint-<N>-gen1-inputs-refs-preds-<suffix>.jsonl files.",
+        help="Overwrite existing checkpoint-<N>-gen<M+1>-inputs-refs-preds-<suffix>.jsonl files.",
     )
     parser.add_argument(
         "--dry_run",
@@ -151,21 +156,24 @@ def iter_targets(
     major_interval: int,
 ) -> Iterable[Tuple[int, Path, Path, Path]]:
     """Yield (step, good_file, bad_file, out_file)."""
-    for bad_file in sorted(results_dir.glob("checkpoint-*-bad-hygiene-*.jsonl")):
+    for bad_file in sorted(results_dir.glob("*checkpoint-*-hygiene-bad-*.jsonl")):
         m = BAD_FILE_RE.match(bad_file.name)
         if not m:
             continue
-        step = int(m.group(1))
-        suffix = m.group(2)
+        prefix = m.group(1)
+        step = int(m.group(2))
+        gen_part = m.group(3) or ""
+        gen_num = int(m.group(4)) if m.group(4) is not None else 0
+        suffix = m.group(5)
         if suffix != examples_suffix:
             continue
         if step % major_interval != 0:
             continue
 
-        good_file = results_dir / f"checkpoint-{step}-good-hygiene-{suffix}.jsonl"
+        good_file = results_dir / f"{prefix}checkpoint-{step}-{gen_part}hygiene-good-{suffix}.jsonl"
         if not good_file.exists():
             raise FileNotFoundError(f"Missing complementary file: {good_file}")
-        out_file = results_dir / f"checkpoint-{step}-gen1-inputs-refs-preds-{suffix}.jsonl"
+        out_file = results_dir / f"{prefix}checkpoint-{step}-gen{gen_num + 1}-inputs-refs-preds-{suffix}.jsonl"
         yield step, good_file, bad_file, out_file
 
 
@@ -186,10 +194,13 @@ def iter_targets_from_pred_datasets(
         m = BAD_FILE_RE.match(bad_file.name)
         if not m:
             raise ValueError(
-                f"--pred_dataset must match checkpoint-<N>-bad-hygiene-<suffix>.jsonl, got: {bad_file.name}"
+                f"--pred_dataset must match [<prefix>]checkpoint-<N>-[gen<M>-]hygiene-bad-<suffix>.jsonl, got: {bad_file.name}"
             )
-        step = int(m.group(1))
-        suffix = m.group(2)
+        prefix = m.group(1)
+        step = int(m.group(2))
+        gen_part = m.group(3) or ""
+        gen_num = int(m.group(4)) if m.group(4) is not None else 0
+        suffix = m.group(5)
         if suffix != examples_suffix:
             continue
         if step % major_interval != 0:
@@ -199,10 +210,10 @@ def iter_targets_from_pred_datasets(
             raise ValueError(
                 f"--pred_dataset file is outside hygiene folder all_eval_results: {bad_file}"
             )
-        good_file = results_dir / f"checkpoint-{step}-good-hygiene-{suffix}.jsonl"
+        good_file = results_dir / f"{prefix}checkpoint-{step}-{gen_part}hygiene-good-{suffix}.jsonl"
         if not good_file.exists():
             raise FileNotFoundError(f"Missing complementary file: {good_file}")
-        out_file = results_dir / f"checkpoint-{step}-gen1-inputs-refs-preds-{suffix}.jsonl"
+        out_file = results_dir / f"{prefix}checkpoint-{step}-gen{gen_num + 1}-inputs-refs-preds-{suffix}.jsonl"
 
         key = str(out_file.resolve())
         if key in seen:
@@ -455,14 +466,20 @@ def main() -> int:
     for step, good_file, bad_file, out_file in targets:
         print(f"  - {model_short} checkpoint-{step}: {good_file.name} + {bad_file.name}")
 
+    # --- Pre-flight: refuse to overwrite existing outputs ---
+    existing = [out_file for _, _, _, out_file in targets if out_file.exists()]
+    if existing and not args.overwrite:
+        print("ERROR: the following output files already exist:", file=sys.stderr)
+        for p in existing:
+            print(f"  {p}", file=sys.stderr)
+        print("Use --overwrite to replace them.", file=sys.stderr)
+        return 1
+
     if args.dry_run:
         print("--dry_run enabled; exiting without generation.")
         return 0
 
     for step, good_file, bad_file, out_file in targets:
-        if out_file.exists() and not args.overwrite:
-            print(f"Skipping existing output (use --overwrite): {out_file}")
-            continue
 
         print(f"\nProcessing {model_short} checkpoint-{step}")
         good_lines = read_lines(good_file)
