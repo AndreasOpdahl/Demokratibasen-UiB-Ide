@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH -J regen-bad-hygiene
+#SBATCH -J regen-bad-preds
 #SBATCH -p accel
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks=1
@@ -105,7 +105,7 @@ for arg in "$@"; do
             echo "  Mode A (scan folder):"
             echo "    --hygiene_folder=DIR           Specific model hygiene folder (must contain all_eval_results)"
             echo "  Mode B (explicit files):"
-            echo "    --pred_dataset=PATH            Path to checkpoint-<N>-bad-hygiene-<suffix>.jsonl (repeatable)"
+            echo "    --pred_dataset=PATH            Path to checkpoint-<N>-[gen<M>-]hygiene-bad-<suffix>.jsonl (repeatable)"
             echo ""
             echo "Optional options:"
             echo "  --model=MODEL                    Model short name filter (default: llama-2-13b-chat-norwegian)"
@@ -186,8 +186,8 @@ if [ "${#PRED_DATASETS[@]}" -gt 0 ]; then
             continue
         fi
         base=$(basename "$ds")
-        if [[ "$base" != checkpoint-*-bad-hygiene-*.jsonl ]]; then
-            echo "ERROR: pred_dataset must match checkpoint-<N>-bad-hygiene-<suffix>.jsonl: $base"
+        if [[ "$base" != *checkpoint-*-hygiene-bad-*.jsonl ]]; then
+            echo "ERROR: pred_dataset must match [<prefix>]checkpoint-<N>-[gen<M>-]hygiene-bad-<suffix>.jsonl: $base"
             ERRORS=$((ERRORS + 1))
         fi
     done
@@ -234,27 +234,7 @@ if [ -z "${HUGGINGFACE_TOKEN:-}" ]; then
 fi
 
 # ********** JOB-LOCAL CACHE **********
-export SLURM_TMPDIR=${SLURM_TMPDIR:-/tmp/${USER}_${SLURM_JOB_ID:-$$}}
-mkdir -p "$SLURM_TMPDIR"
-
-export HF_HOME="$SLURM_TMPDIR/.cache/huggingface"
-export HF_DATASETS_CACHE="$HF_HOME/datasets"
-export HF_MODULES_CACHE="$HF_HOME/modules"
-export HF_METRICS_CACHE="$HF_HOME/metrics"
-mkdir -p "$HF_HOME" "$HF_DATASETS_CACHE" "$HF_MODULES_CACHE" "$HF_METRICS_CACHE"
-
-PROJECT_HF_DIR=/cluster/projects/YOUR_PROJECT_ID/shared/.cache/huggingface
-if [ -d "$PROJECT_HF_DIR/hub" ]; then
-    mkdir -p "$HF_HOME/hub"
-    # Non-fatal cache warmup
-    rsync -aq "$PROJECT_HF_DIR/hub/" "$HF_HOME/hub/" || true
-fi
-if [ -d "$PROJECT_HF_DIR/metrics" ]; then
-    rsync -aq "$PROJECT_HF_DIR/metrics/" "$HF_METRICS_CACHE/" || true
-fi
-if [ -d "$PROJECT_HF_DIR/modules" ]; then
-    rsync -aq "$PROJECT_HF_DIR/modules/" "$HF_MODULES_CACHE/" || true
-fi
+source scripts/olivia_job_local_cache.sh
 # ********** END JOB-LOCAL CACHE **********
 
 module --force purge

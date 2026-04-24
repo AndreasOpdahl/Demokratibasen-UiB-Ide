@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH -J gpu-monitor-eval
+#SBATCH -J monitor-finetune
 #SBATCH -p accel
 #SBATCH --gres=gpu:2  # Use fewer GPUs for evaluation
 #SBATCH --ntasks=1

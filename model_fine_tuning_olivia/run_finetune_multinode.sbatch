@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH -J gpu-finetune-apptainer
+#SBATCH -J finetune-multinode
 #SBATCH -p accel
 #SBATCH --gres=gpu:4
 #SBATCH --nodes=1
@@ -396,78 +396,9 @@ if [ "$DRY_RUN" = "true" ]; then
     exit 0
 fi
 
-export SLURM_TMPDIR=/tmp/${USER}_$SLURM_JOB_ID
-mkdir -p "$SLURM_TMPDIR"
-
-export HF_HOME="$SLURM_TMPDIR/.cache/huggingface"
-export HF_DATASETS_CACHE="$HF_HOME/datasets"
-export HF_MODULES_CACHE="$HF_HOME/modules"
-export HF_METRICS_CACHE="$HF_HOME/metrics"
-# Set PYTHONUSERBASE to writable location to avoid .local read-only filesystem errors
-export PYTHONUSERBASE="$SLURM_TMPDIR/.local"
-mkdir -p "$HF_HOME" "$HF_DATASETS_CACHE" "$HF_MODULES_CACHE" "$HF_METRICS_CACHE" "$PYTHONUSERBASE"
-
-# Project/account for shared HF cache: use whichever is set (run_multiple_models.sh exports SLURM_ACCOUNT)
-PROJECT_ID="${SLURM_JOB_ACCOUNT:-${SLURM_ACCOUNT:-${SLURM_PROJECT_ID:-}}}"
-if [ -z "$PROJECT_ID" ]; then
-    echo "ERROR: Project/account not set. Submit with: sbatch --account=YOUR_ACCOUNT run_finetune_multinode.sbatch ..."
-    echo "  Or use run_multiple_models.sh --account=YOUR_ACCOUNT (it exports SLURM_ACCOUNT)"
-    exit 1
-fi
-PROJECT_HF_DIR=/cluster/projects/${PROJECT_ID}/shared/.cache/huggingface
-mkdir -p "$HF_HOME/hub"
-
-# Convert model name to HuggingFace cache directory format
-# e.g., "google/gemma-7b-it" -> "models--google--gemma-7b-it"
-# e.g., "NorwAI/NorMistral-7B-warm-IT" -> "models--NorwAI--NorMistral-7B-warm-IT"
-convert_model_to_cache_dir() {
-    local model=$1
-    echo "models--${model//\//--}"
-}
-
-# Determine the full model name from the short name
-get_full_model_name() {
-    local short_name=$1
-    case "$short_name" in
-        gemma-2b) echo "google/gemma-2b" ;;
-        gemma-7b-it) echo "google/gemma-7b-it" ;;
-        viking-7b) echo "LumiOpen/Viking-7B" ;;
-        viking-13b) echo "LumiOpen/Viking-13B" ;;
-        normistral-7b) echo "norallm/normistral-7b-warm" ;;
-        normistral-11b) echo "norallm/normistral-11b-warm" ;;
-        normistral-11b-long) echo "norallm/normistral-11b-long" ;;
-        normistral-7b-instruct) echo "norallm/normistral-7b-warm-instruct" ;;
-        norskgpt-llama3-8b) echo "bineric/norskgpt-llama3-8b" ;;
-        llama-3.1-8b-instruct) echo "meta-llama/Llama-3.1-8B-Instruct" ;;
-        llama-2-13b-chat-norwegian) echo "ruternorway/llama-2-13b-chat-norwegian" ;;
-        eurollm-9b-instruct) echo "utter-project/EuroLLM-9B-Instruct-2512" ;;
-        norwai-mistral-7b-instruct) echo "NorwAI/NorwAI-Mistral-7B-instruct" ;;
-        nb-gpt-j-6b) echo "NbAiLab/nb-gpt-j-6B-torgersen-alpaca" ;;
-        gemma-2-9b) echo "google/gemma-2-9b" ;;
-        gemma-2-27b) echo "google/gemma-2-27b" ;;
-        gemma-3-12b) echo "google/gemma-3-12b-pt" ;;
-        gemma-3-27b) echo "google/gemma-3-27b-pt" ;;
-        viking-33b) echo "LumiOpen/Viking-33B" ;;
-        *) echo "$short_name" ;;  # Assume it's already a full name
-    esac
-}
-
-FULL_MODEL_NAME=$(get_full_model_name "$MODEL")
-MODEL_CACHE_DIR=$(convert_model_to_cache_dir "$FULL_MODEL_NAME")
-SOURCE_MODEL_DIR="$PROJECT_HF_DIR/hub/$MODEL_CACHE_DIR"
-
-# Copy model from read-only project storage to writable job-local cache
-if [ -d "$SOURCE_MODEL_DIR" ]; then
-    echo "Copying model $FULL_MODEL_NAME to job-local cache..."
-    rsync -aq "$SOURCE_MODEL_DIR/" "$HF_HOME/hub/$MODEL_CACHE_DIR/"
-    echo "Model cache copy complete"
-else
-    echo "WARNING: Model $FULL_MODEL_NAME not found in shared cache at $SOURCE_MODEL_DIR"
-    echo "Model will be downloaded during training (requires internet access)"
-fi
-
-[ -d "$PROJECT_HF_DIR/metrics" ] && rsync -aq "$PROJECT_HF_DIR/metrics/" "$HF_METRICS_CACHE/"
-[ -d "$PROJECT_HF_DIR/modules" ] && rsync -aq "$PROJECT_HF_DIR/modules/" "$HF_MODULES_CACHE/"
+# ********** JOB-LOCAL CACHE **********
+source scripts/olivia_job_local_cache.sh
+# ********** END JOB-LOCAL CACHE **********
 
 # Check for container command BEFORE loading modules (like the working monitor script)
 # The monitor script works without modules, so apptainer should be available in base environment
