@@ -206,25 +206,80 @@ def compute_bertscore(
 # Hygiene metrics
 # ---------------------------------------------------------------------------
 
+_HYGIENE_TOKEN_RE = re.compile(r"\d+(?:[.,]\d+)?|[\w/-]+|[^\w\s]")
+
+
+def _tokenize_hygiene(text: str) -> List[str]:
+    """Shared tokenizer for all hygiene metrics."""
+    return _HYGIENE_TOKEN_RE.findall(text.lower())
+
+
 def ngram_repetition(doc: str, n: int = 3) -> float:
     """Proportion of repeated n-grams in *doc*."""
-    tokens = re.findall(r"\d+(?:[.,]\d+)?|[\w/-]+|[^\w\s]", doc.lower())
+    tokens = _tokenize_hygiene(doc)
     if len(tokens) < n:
         return 0.0
     ngrams = [tuple(tokens[i : i + n]) for i in range(len(tokens) - n + 1)]
     return (len(ngrams) - len(set(ngrams))) / len(ngrams)
 
 
+_COMMON_MARKUP_RE = {
+    "heading": re.compile(r"(?m)^\s{0,3}#{1,6}\s+\S+"),
+    "list": re.compile(r"(?m)^\s{0,3}(?:[-*+]\s+\S+|\d{1,3}[.)]\s+\S+)"),
+    "bold": re.compile(r"\*\*[^\n*]{1,200}\*\*"),
+    "code": re.compile(r"`[^`\n]{1,200}`|```[\s\S]{0,2000}?```"),
+    "html": re.compile(r"</?[A-Za-z][A-Za-z0-9:-]{0,30}(?:\s+[^<>]{0,200})?>"),
+    "json": re.compile(r'(?s)^\s*[\[{].*"[A-Za-z0-9_ -]+"\s*:\s*.*[\]}]\s*$'),
+}
+
+
+def markup_contamination(text: str) -> Dict[str, Any]:
+    """Fraction of *text* covered by common markup patterns."""
+    text_len = len(text)
+    if not text_len:
+        return {"markup_ratio": 0.0}
+    total_match_chars = sum(
+        len(m.group())
+        for pat in _COMMON_MARKUP_RE.values()
+        for m in pat.finditer(text)
+    )
+    return {"markup_ratio": total_match_chars / text_len}
+
+
+_DELIMITER_RE = re.compile(r"#{3,}")
+_LEAD_BEFORE_RE = re.compile(r"\s*(?:Oppsummering\s*)?")
+
+
+def has_bad_delimiters(text: str) -> bool:
+    """True when *text* contains ``###`` in a non-lead/tail position.
+
+    A ``###`` (or longer ``####…``) is acceptable only when it is:
+      - a **lead**: preceded only by whitespace and optionally "Oppsummering"
+      - a **tail**: followed only by whitespace
+
+    Any occurrence that is neither a valid lead nor a valid tail makes the
+    whole text "bad_delimiters".
+    """
+    for m in _DELIMITER_RE.finditer(text):
+        before = text[: m.start()]
+        after = text[m.end() :]
+        lead_ok = _LEAD_BEFORE_RE.fullmatch(before) is not None
+        tail_ok = after.strip() == ""
+        if not lead_ok and not tail_ok:
+            return True
+    return False
+
+
 def hygiene(doc: str, pred_summary: str) -> Dict[str, Any]:
     """Per-document hygiene metrics."""
-    doc_words = len(re.findall(r"\w+", doc))
-    pred_sum_words = len(re.findall(r"\w+", pred_summary))
+    doc_tokens = len(_tokenize_hygiene(doc))
+    pred_tokens = len(_tokenize_hygiene(pred_summary))
     summary_stripped = pred_summary.strip()
     ends_with_punct = bool(summary_stripped) and unicodedata.category(summary_stripped[-1]).startswith("P")
     return {
-        "pred_summary_words": pred_sum_words,
-        "doc_words": doc_words,
-        "compression_ratio": (pred_sum_words / doc_words) if doc_words else None,
+        "pred_summary_words": pred_tokens,
+        "doc_words": doc_tokens,
+        "compression_ratio": (doc_tokens / pred_tokens) if pred_tokens else None,
         "rep_3gram": ngram_repetition(pred_summary, n=3),
         "ends_with_punct": ends_with_punct,
     }
