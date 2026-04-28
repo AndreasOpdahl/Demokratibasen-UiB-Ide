@@ -10,14 +10,14 @@ This script runs in parallel with FSDP training and:
 Usage:
   # Run in parallel with training (in a separate terminal/sbatch job):
   python monitor_and_evaluate_checkpoints.py \
-    --output_dir models/gemma-7b-apptainer-fsdp \
-    --model gemma-7b \
-    --val_dataset data/output/new_processed_data_val.jsonl \
+    --output_dir models/gemma-7b-it-apptainer-fsdp \
+    --model gemma-7b-it \
+    --val_dataset data/dataset_149978_examples/149978_text_summary_examples_val.jsonl \
     --hf_token YOUR_TOKEN \
     --check_interval 30 \
     --early_stopping_patience 10 \
     --wandb_project lm-finetuning \
-    --wandb_run_name gemma-7b-apptainer-fsdp
+    --wandb_run_name gemma-7b-it-apptainer-fsdp
 
 The training script will check for early stopping signals and stop if needed.
 """
@@ -25,6 +25,7 @@ The training script will check for early stopping signals and stop if needed.
 import argparse
 import json
 import os
+import re
 import sys
 import time
 import glob
@@ -42,6 +43,7 @@ if _script_dir not in sys.path:
 
 from model_configs import get_model_config
 from evaluate_distributed_checkpoints_multigpu import evaluate_checkpoint, AlreadyEvaluatedError
+from utils.nli_subset import NLI_DEFAULT_SUBSET_SIZE
 
 # Import shared utilities
 from utils import (
@@ -50,11 +52,60 @@ from utils import (
     is_major_checkpoint,
     get_evaluated_checkpoint_steps,
     get_model_dir_from_checkpoint,
+    get_predictions_file_path,
 )
 
 # Module-level variables for logging state
 _last_logged_step = None
 _log_counter = 0
+
+
+def _strip_generated_markers(text: str) -> str:
+    """Remove common prompt/format markers and keep only substantive output text."""
+    if not isinstance(text, str):
+        return ""
+    t = text
+    t = re.sub(r'<\|start_header_id\|>.*?<\|end_header_id\|>', '', t)
+    for tok in (
+        "[/INST]", "[INST]", "</s>", "<s>",
+        "<|begin_of_text|>", "<|end_of_text|>", "<|eot_id|>",
+        "<|im_start|>", "<|im_end|>",
+    ):
+        t = t.replace(tok, "")
+    t = re.sub(r'^\s*assistant\s*', '', t, flags=re.IGNORECASE)
+    t = re.sub(r'^\s*Oppsummering:\s*', '', t, flags=re.IGNORECASE)
+    t = re.sub(r'^\s*Response:\s*', '', t, flags=re.IGNORECASE)
+    t = re.sub(r'^\s*#+\s*', '', t)
+    t = t.replace("\\", "")
+    return " ".join(t.split()).strip()
+
+
+def _all_real_outputs_empty(predictions_file: str) -> Optional[bool]:
+    """Return True if all predictions are empty after marker stripping."""
+    if not os.path.exists(predictions_file):
+        return None
+    total = 0
+    empty = 0
+    try:
+        with open(predictions_file, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                total += 1
+                try:
+                    row = json.loads(line)
+                except json.JSONDecodeError:
+                    empty += 1
+                    continue
+                pred = row.get("prediction", "")
+                if not _strip_generated_markers(pred):
+                    empty += 1
+        if total == 0:
+            return None
+        return empty == total
+    except Exception:
+        return None
 
 
 def get_current_training_step(output_dir: str) -> Optional[int]:
@@ -172,9 +223,9 @@ def find_checkpoints(output_dir: str, max_step: Optional[int] = None) -> List[st
     return valid_checkpoints
 
 
-def get_evaluated_checkpoints_from_files(output_dir: str) -> set:
-    """Get set of already evaluated checkpoint steps using utility function."""
-    return get_evaluated_checkpoint_steps(output_dir)
+def get_evaluated_checkpoints_from_files(output_dir: str, val_data_size: int = 1000) -> set:
+    """Get set of already evaluated checkpoint steps for a specific validation size."""
+    return get_evaluated_checkpoint_steps(output_dir, examples_suffix=f"{val_data_size}-examples")
 
 
 def check_early_stopping_signal(output_dir: str) -> bool:
@@ -196,10 +247,10 @@ def get_best_checkpoint_metric(eval_results_dir: str) -> Optional[Dict]:
     best_metric = None
     best_checkpoint = None
     
-    # Check new location: all_eval_results/checkpoint-nnn-eval-results.json
+    # Check new location: all_eval_results/checkpoint-nnn-eval-results-<N>-examples.json
     all_eval_results_dir = os.path.join(eval_results_dir, "all_eval_results")
     if os.path.exists(all_eval_results_dir):
-        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results.json")):
+        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results*.json")):
             try:
                 with open(eval_file, 'r') as f:
                     results = json.load(f)
@@ -211,8 +262,10 @@ def get_best_checkpoint_metric(eval_results_dir: str) -> Optional[Dict]:
                         best_metric = metric_value
                         # Extract checkpoint step from filename
                         filename = os.path.basename(eval_file)
-                        checkpoint_step = filename.replace("checkpoint-", "").replace("-eval-results.json", "")
-                        best_checkpoint = f"checkpoint-{checkpoint_step}"
+                        match = re.match(r"checkpoint-(\d+)-eval-results", filename)
+                        if not match:
+                            continue
+                        best_checkpoint = f"checkpoint-{match.group(1)}"
             except (json.JSONDecodeError, ValueError, IndexError) as e:
                 print(f"Error reading {eval_file}: {e}")
                 continue
@@ -297,8 +350,9 @@ def monitor_and_evaluate(
     timeout_minutes: int = 30,  # Stop if no new checkpoints for X minutes
     major_checkpoint_interval: int = 500,  # Every Nth step is major (gets BERTScore). Default: 500 (every 500 steps = checkpoint-500, checkpoint-1000, etc.)
     include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation
+    nli_subset_size: int = NLI_DEFAULT_SUBSET_SIZE,  # passed to evaluate_checkpoint; use == val_data_size for full val NLI
     checkpoint_stability_seconds: int = 120,  # Wait for checkpoint to be stable (not modified) for this many seconds before evaluating
-    val_data_size: int = 500,  # Validation examples: 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files
+    val_data_size: int = 1000,  # Validation examples (default: 1000). Files are suffixed as -<N>-examples.json/.jsonl
 ):
     """Monitor checkpoints and evaluate them as they appear.
     
@@ -316,6 +370,7 @@ def monitor_and_evaluate(
         timeout_minutes: Stop monitoring if no new checkpoints appear for this many minutes
         major_checkpoint_interval: Every Nth checkpoint is major (gets BERTScore, default: 5)
         include_nli_faithfulness: Enable NLI faithfulness evaluation (slow, default: False)
+        nli_subset_size: NLI example count (default 100; set equal to val_data_size for full val NLI)
         checkpoint_stability_seconds: Wait for checkpoint to be stable (not modified) for this many seconds before evaluating (default: 120)
     """
     print(f"Monitor: {output_dir} (model={model_name}, check_interval={check_interval}s, early_stopping_patience={early_stopping_patience})")
@@ -367,13 +422,17 @@ def monitor_and_evaluate(
         print(f">>> wandb run initialized: {wandb.run.name}")
     
     # Load already evaluated checkpoints from disk (persists across restarts)
-    evaluated_steps = get_evaluated_checkpoints_from_files(output_dir)
+    evaluated_steps = get_evaluated_checkpoints_from_files(output_dir, val_data_size=val_data_size)
     if evaluated_steps:
         print(f"Found {len(evaluated_steps)} already evaluated checkpoints: {sorted(evaluated_steps)}")
     
     best_rouge_lsum = None
     consecutive_zero_rouge_count = 0  # Track consecutive checkpoints with zero ROUGE scores
-    ZERO_ROUGE_THRESHOLD = 5  # Stop training if ROUGE is zero for 5 consecutive checkpoints
+    ZERO_ROUGE_THRESHOLD = 3  # Stop training if ROUGE is zero for 3 consecutive checkpoints
+    consecutive_empty_output_count = 0
+    consecutive_zero_bertscore_count = 0
+    consecutive_zero_faithfulness_count = 0
+    DEGENERATE_THRESHOLD = 3
     best_checkpoint_step = None
     no_improvement_count = 0
     last_checkpoint_time = None  # Track when we last saw a new checkpoint
@@ -650,6 +709,7 @@ def monitor_and_evaluate(
                     wandb_disabled=True,
                     major_checkpoint_interval=major_checkpoint_interval,
                     include_nli_faithfulness=include_nli_faithfulness,
+                    nli_subset_size=nli_subset_size,
                     force_recompute=force_recompute_checkpoint,  # Re-run when checkpoint newer than stale eval (rerun)
                     val_data_size=val_data_size,
                 )
@@ -663,6 +723,40 @@ def monitor_and_evaluate(
                     continue
                 
                 if eval_results:
+                    # Detect collapsed generation: all real outputs empty after stripping known markers.
+                    examples_suffix = f"{val_data_size}-examples"
+                    preds_file = get_predictions_file_path(
+                        checkpoint_to_evaluate,
+                        model_dir=get_model_dir_from_checkpoint(checkpoint_to_evaluate),
+                        examples_suffix=examples_suffix,
+                    )
+                    all_real_empty = _all_real_outputs_empty(preds_file)
+                    if all_real_empty is True:
+                        consecutive_empty_output_count += 1
+                        print(f"⚠ Warning: all real outputs empty for checkpoint-{checkpoint_step}")
+                        print(
+                            f"  Consecutive empty-output checkpoints: "
+                            f"{consecutive_empty_output_count}/{DEGENERATE_THRESHOLD}"
+                        )
+                    else:
+                        if consecutive_empty_output_count > 0:
+                            print("✓ Real outputs non-empty again. Resetting empty-output counter.")
+                        consecutive_empty_output_count = 0
+
+                    if consecutive_empty_output_count >= DEGENERATE_THRESHOLD:
+                        print(
+                            f"CRITICAL: Early stopping - all real outputs empty for "
+                            f"{consecutive_empty_output_count} checkpoints in a row."
+                        )
+                        write_early_stopping_signal(output_dir)
+                        if wandb.run:
+                            wandb.log({
+                                "monitor/early_stop_reason": "empty_real_outputs",
+                                "monitor/consecutive_empty_output_count": consecutive_empty_output_count,
+                            }, step=checkpoint_step)
+                        print("Early stopping signal written. Training will stop on next check.")
+                        return
+
                     # Check all ROUGE metrics to detect zero scores
                     rouge1 = eval_results.get('eval_rouge1', eval_results.get('rouge1', 0))
                     rouge2 = eval_results.get('eval_rouge2', eval_results.get('rouge2', 0))
@@ -770,9 +864,81 @@ def monitor_and_evaluate(
                             print(f"✓ New best BERTScore F1: {bertscore_f1:.4f} (was {was_str})")
                             best_bertscore = bertscore_f1
                         previous_bertscore = bertscore_f1
+                        
+                        # Zero-BERTScore guard (requested): stop after 3 consecutive major evals at 0.0
+                        if isinstance(bertscore_f1, (int, float)) and bertscore_f1 == 0.0:
+                            consecutive_zero_bertscore_count += 1
+                            print(
+                                f"⚠ Warning: BERTScore is 0.0 for major checkpoint-{checkpoint_step} "
+                                f"({consecutive_zero_bertscore_count}/{DEGENERATE_THRESHOLD})"
+                            )
+                        else:
+                            if consecutive_zero_bertscore_count > 0:
+                                print("✓ BERTScore non-zero again. Resetting zero-BERTScore counter.")
+                            consecutive_zero_bertscore_count = 0
+                        
+                        if consecutive_zero_bertscore_count >= DEGENERATE_THRESHOLD:
+                            print(
+                                f"CRITICAL: Early stopping - BERTScore == 0.0 for "
+                                f"{consecutive_zero_bertscore_count} major checkpoints in a row."
+                            )
+                            write_early_stopping_signal(output_dir)
+                            if wandb.run:
+                                wandb.log({
+                                    "monitor/early_stop_reason": "zero_bertscore",
+                                    "monitor/consecutive_zero_bertscore_count": consecutive_zero_bertscore_count,
+                                }, step=checkpoint_step)
+                            print("Early stopping signal written. Training will stop on next check.")
+                            return
                     elif is_major:
                         # Major checkpoint but BERTScore not available (shouldn't happen, but handle gracefully)
                         print(f"⚠ Warning: Major checkpoint-{checkpoint_step} but BERTScore not available in results")
+                        if consecutive_zero_bertscore_count > 0:
+                            print("✓ Resetting zero-BERTScore counter (metric missing).")
+                        consecutive_zero_bertscore_count = 0
+                    else:
+                        # Non-major checkpoints don't carry BERTScore in this setup.
+                        if consecutive_zero_bertscore_count > 0:
+                            print("✓ Resetting zero-BERTScore counter (non-major checkpoint).")
+                        consecutive_zero_bertscore_count = 0
+
+                    # Zero-faithfulness guard (requested): stop if NLI aggregates are 0.0 for 3 evals in a row.
+                    faith = eval_results.get("eval_faithfulness")
+                    faith_values = []
+                    if isinstance(faith, dict):
+                        for key in ("ratio_passed_documents", "mean_entailment_score"):
+                            val = faith.get(key)
+                            if isinstance(val, (int, float)):
+                                faith_values.append(float(val))
+                    if faith_values:
+                        faith_zero = all(v == 0.0 for v in faith_values)
+                        if faith_zero:
+                            consecutive_zero_faithfulness_count += 1
+                            print(
+                                f"⚠ Warning: NLI faithfulness is 0.0 for checkpoint-{checkpoint_step} "
+                                f"({consecutive_zero_faithfulness_count}/{DEGENERATE_THRESHOLD})"
+                            )
+                        else:
+                            if consecutive_zero_faithfulness_count > 0:
+                                print("✓ NLI faithfulness non-zero again. Resetting zero-faithfulness counter.")
+                            consecutive_zero_faithfulness_count = 0
+                        if consecutive_zero_faithfulness_count >= DEGENERATE_THRESHOLD:
+                            print(
+                                f"CRITICAL: Early stopping - NLI faithfulness == 0.0 for "
+                                f"{consecutive_zero_faithfulness_count} checkpoints in a row."
+                            )
+                            write_early_stopping_signal(output_dir)
+                            if wandb.run:
+                                wandb.log({
+                                    "monitor/early_stop_reason": "zero_nli_faithfulness",
+                                    "monitor/consecutive_zero_faithfulness_count": consecutive_zero_faithfulness_count,
+                                }, step=checkpoint_step)
+                            print("Early stopping signal written. Training will stop on next check.")
+                            return
+                    else:
+                        if consecutive_zero_faithfulness_count > 0:
+                            print("✓ Resetting zero-faithfulness counter (metric missing).")
+                        consecutive_zero_faithfulness_count = 0
                     
                     # Continue with normal evaluation flow for non-zero ROUGE scores
                     evaluated_steps.add(checkpoint_step)
@@ -879,9 +1045,9 @@ if __name__ == "__main__":
                        help='Training output directory (where checkpoints are saved)')
     parser.add_argument('--model', type=str, required=True,
                        choices=['viking-7b', 'viking-13b', 'viking-33b',
-                                'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
+                                'gemma-2b', 'gemma-7b-it', 'gemma-2-9b', 'gemma-2-27b',
                                 'gemma-3-12b', 'gemma-3-27b',
-                                'normistral-7b', 'normistral-11b', 'normistral-7b-instruct',
+                               'normistral-7b', 'normistral-11b', 'normistral-11b-long', 'normistral-7b-instruct',
                                 'norskgpt-llama3-8b', 'llama-3.1-8b-instruct', 'llama-2-13b-chat-norwegian',
                                 'eurollm-9b-instruct', 'norwai-mistral-7b-instruct', 'nb-gpt-j-6b', 'mt5'],
                        help='Model short name')
@@ -906,13 +1072,23 @@ if __name__ == "__main__":
     parser.add_argument('--major_checkpoint_interval', type=int, default=500,
                        help='Every Nth step is considered "major" for BERTScore evaluation (default: 500). Major checkpoints: checkpoint-500, checkpoint-1000, checkpoint-1500, etc.')
     parser.add_argument('--include_nli_faithfulness', action='store_true',
-                       help='Enable NLI-based faithfulness evaluation (slow: ~4.5s per example, ~37 min for 500 examples)')
-    parser.add_argument('--val_data_size', type=int, default=500,
-                       help='Validation examples: 500 (default) or 1000; 1000 → separate -examples_1000.json/.jsonl files')
+                       help='Enable NLI-based faithfulness evaluation (see evaluate_distributed_checkpoints_multigpu --nli_subset_size)')
+    parser.add_argument(
+        '--nli_subset_size',
+        type=int,
+        default=NLI_DEFAULT_SUBSET_SIZE,
+        metavar='N',
+        help='With --include_nli_faithfulness: NLI example count (default: %(default)s; set equal to --val_data_size for full val NLI)',
+    )
+    parser.add_argument('--val_data_size', type=int, default=1000,
+                       help='Validation examples (default: 1000). Output files are suffixed as -<val_data_size>-examples.json/.jsonl')
     parser.add_argument('--checkpoint_stability_seconds', type=int, default=120,
                        help='Wait for checkpoint to be stable (not modified) for this many seconds before evaluating (default: 120). Prevents evaluating checkpoints that are still being written.')
     
     args = parser.parse_args()
+
+    if args.nli_subset_size < 1:
+        parser.error("--nli_subset_size must be a positive integer")
     
     # Get full model name
     model_config = get_model_config(args.model)
@@ -932,6 +1108,7 @@ if __name__ == "__main__":
         timeout_minutes=args.timeout_minutes,
         major_checkpoint_interval=args.major_checkpoint_interval,
         include_nli_faithfulness=args.include_nli_faithfulness,
+        nli_subset_size=args.nli_subset_size,
         checkpoint_stability_seconds=args.checkpoint_stability_seconds,
         val_data_size=args.val_data_size,
     )

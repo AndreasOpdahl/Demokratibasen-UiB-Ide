@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-#SBATCH -J gpu-eval-checkpoints-multigpu
+#SBATCH -J eval-checkpoints-multigpu
 #SBATCH -p accel
-#SBATCH --gres=gpu:2  # Request 2 GPUs (adjust if needed)
+#SBATCH --gres=gpu:4  # Request 2 GPUs (adjust if needed)
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16  # Increase CPUs for multi-GPU
 #SBATCH --mem=384G  # Increase memory for multi-GPU
@@ -12,6 +12,17 @@
 #SBATCH -e logs/%x-%j.err
 
 set -euo pipefail
+
+# Slurm stages the batch script under /var/spool/slurmd/job*/ on compute nodes, so
+# ${BASH_SOURCE[0]} points there—not your project. Use SLURM_SUBMIT_DIR (cwd when you ran sbatch).
+# Without Slurm, fall back to the directory containing this file.
+if [ -n "${SLURM_SUBMIT_DIR:-}" ]; then
+    SBATCH_DIR="$SLURM_SUBMIT_DIR"
+else
+    SBATCH_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+fi
+cd "$SBATCH_DIR" || { echo "ERROR: Cannot cd to $SBATCH_DIR"; exit 1; }
+echo "Working directory for this job: $SBATCH_DIR"
 
 # Load environment variables from .env file
 # .env should contain: SLURM_ACCOUNT, WANDB_API_KEY, HUGGINGFACE_TOKEN
@@ -31,14 +42,33 @@ fi
 MODEL=${MODEL:-llama-2-13b-chat-norwegian}
 NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
 CHECKPOINT_BASE_DIR=${CHECKPOINT_BASE_DIR:-"models/${MODEL}-apptainer-fsdp"}
-VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
-VAL_DATA_SIZE=${VAL_DATA_SIZE:-500}
+VAL_DATASET=${VAL_DATASET:-"data/dataset_149978_examples/149978_text_summary_examples_val.jsonl"}
+VAL_BATCH_SIZE=${VAL_BATCH_SIZE:-32}
+VAL_DATA_SIZE=${VAL_DATA_SIZE:-1000}
 SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:-""}
 DRY_RUN=${DRY_RUN:-false}
-# NLI Faithfulness evaluation flags
-INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-false}
+# NLI Faithfulness evaluation flags: "auto" (default) = on for major checkpoints only,
+# "true" = on for all checkpoints, "false" = off for all checkpoints
+INCLUDE_NLI_FAITHFULNESS=${INCLUDE_NLI_FAITHFULNESS:-auto}
+# Empty = Python default (100 NLI examples). Set equal to VAL_DATA_SIZE for full-val NLI.
+NLI_SUBSET_SIZE=${NLI_SUBSET_SIZE:-}
 KEEP_EXISTING=${KEEP_EXISTING:-false}
 FORCE_RECOMPUTE=${FORCE_RECOMPUTE:-false}
+# Checkpoint type filtering
+CHECKPOINT_FILTER=${CHECKPOINT_FILTER:-"all"}   # "all", "major", "minor"
+MAJOR_CHECKPOINT_INTERVAL=${MAJOR_CHECKPOINT_INTERVAL:-500}
+# Python evaluation mode flags
+EVAL_MODE=${EVAL_MODE:-""}        # "", "predict_only", "metrics_only"
+UPDATE_METRICS=${UPDATE_METRICS:-""}  # comma-separated: "rouge", "rouge,hygiene", etc.
+# Length-control options (enabled when both c200k limits are provided)
+MIN_NEW_TOKENS=${MIN_NEW_TOKENS:-40}
+MAX_NEW_TOKENS=${MAX_NEW_TOKENS:-180}
+USE_BEAM_LENGTH_CONTROL=${USE_BEAM_LENGTH_CONTROL:-false}
+VAL_BEAM_SIZE=${VAL_BEAM_SIZE:-4}
+LENGTH_PENALTY=${LENGTH_PENALTY:-1.05}
+C200K_MIN_NEW_TOKENS=${C200K_MIN_NEW_TOKENS:-}
+C200K_MAX_NEW_TOKENS=${C200K_MAX_NEW_TOKENS:-}
+C200K_FLAGS_FROM_ARGS=false
 
 # Parse command-line arguments if provided
 for arg in "$@"; do
@@ -60,6 +90,9 @@ for arg in "$@"; do
         --val_dataset=*)
             VAL_DATASET="${arg#*=}"
             ;;
+        --val_batch_size=*)
+            VAL_BATCH_SIZE="${arg#*=}"
+            ;;
         --val_data_size=*)
             VAL_DATA_SIZE="${arg#*=}"
             ;;
@@ -68,6 +101,9 @@ for arg in "$@"; do
             ;;
         --include_nli_faithfulness|--include-nli-faithfulness)
             INCLUDE_NLI_FAITHFULNESS=true
+            ;;
+        --no_nli_faithfulness|--no-nli-faithfulness)
+            INCLUDE_NLI_FAITHFULNESS=false
             ;;
         --keep_existing)
             KEEP_EXISTING=true
@@ -79,9 +115,60 @@ for arg in "$@"; do
             FORCE_RECOMPUTE=true
             ;;
         --nli_subset_size=*|--nli-subset-size=*)
+            NLI_SUBSET_SIZE="${arg#*=}"
+            ;;
+        --major-only|--major_only)
+            CHECKPOINT_FILTER="major"
+            ;;
+        --minor-only|--minor_only)
+            CHECKPOINT_FILTER="minor"
+            ;;
+        --major-interval=*|--major_checkpoint_interval=*)
+            MAJOR_CHECKPOINT_INTERVAL="${arg#*=}"
+            ;;
+        --predict-only|--predict_only)
+            EVAL_MODE="predict_only"
+            ;;
+        --metrics-only|--metrics_only)
+            EVAL_MODE="metrics_only"
+            ;;
+        --update-rouge|--update_rouge)
+            UPDATE_METRICS="${UPDATE_METRICS:+$UPDATE_METRICS,}rouge"
+            ;;
+        --update-hygiene|--update_hygiene)
+            UPDATE_METRICS="${UPDATE_METRICS:+$UPDATE_METRICS,}hygiene"
+            ;;
+        --update-bertscore|--update_bertscore)
+            UPDATE_METRICS="${UPDATE_METRICS:+$UPDATE_METRICS,}bertscore"
+            ;;
+        --update-faithfulness|--update_faithfulness)
+            UPDATE_METRICS="${UPDATE_METRICS:+$UPDATE_METRICS,}faithfulness"
             ;;
         --dry-run|--debug)
             DRY_RUN=true
+            ;;
+        --min_new_tokens=*)
+            MIN_NEW_TOKENS="${arg#*=}"
+            ;;
+        --max_new_tokens=*)
+            MAX_NEW_TOKENS="${arg#*=}"
+            ;;
+        --use_beam_length_control|--use-beam-length-control)
+            USE_BEAM_LENGTH_CONTROL=true
+            ;;
+        --val_beam_size=*)
+            VAL_BEAM_SIZE="${arg#*=}"
+            ;;
+        --length_penalty=*)
+            LENGTH_PENALTY="${arg#*=}"
+            ;;
+        --c200k_min_new_tokens=*)
+            C200K_MIN_NEW_TOKENS="${arg#*=}"
+            C200K_FLAGS_FROM_ARGS=true
+            ;;
+        --c200k_max_new_tokens=*)
+            C200K_MAX_NEW_TOKENS="${arg#*=}"
+            C200K_FLAGS_FROM_ARGS=true
             ;;
         *)
             echo "ERROR: Unknown argument: $arg"
@@ -92,16 +179,34 @@ for arg in "$@"; do
             echo "  --model=MODEL                    Model short name (default: llama-2-13b-chat-norwegian)"
             echo "  --num_gpus=N                     Number of GPUs (default: 4)"
             echo "  --checkpoint_base_dir=DIR         Base directory containing checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
-            echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
-            echo "  --val_data_size=N                 Number of validation examples (default: 500; use 1000 for extended eval)"
+            echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/dataset_149978_examples/149978_text_summary_examples_val.jsonl)"
+            echo "  --val_batch_size=N                Validation batch size per device (default: 32; auto-adjusted by Python script based on model size)"
+            echo "  --val_data_size=N                 Number of validation examples (default: 1000; output files end with -N-examples)"
             echo "  --specific_checkpoints=\"N1 N2\"   Space-separated checkpoint numbers to evaluate (default: all)"
             echo "  --force_recompute                  Re-evaluate even when results exist (e.g. backfill missed checkpoints)"
-            echo "  --include_nli_faithfulness        Enable NLI-based faithfulness evaluation (slow: ~4.5s per example)"
-            echo "  --nli_subset_size=N               Subset size for NLI evaluation (recommended: 50-100 for faster evaluation)"
+            echo "  --include_nli_faithfulness        Enable NLI-based faithfulness for ALL checkpoints (default: auto = major only)"
+            echo "  --no_nli_faithfulness             Disable NLI-based faithfulness for all checkpoints (override auto)"
+            echo "  --nli_subset_size=N               NLI examples (default 100 in Python if omitted); set N = val_data_size for full val NLI"
+            echo "  --major-only                      Only evaluate major checkpoints (every Nth step)"
+            echo "  --minor-only                      Only evaluate minor checkpoints (not every Nth step)"
+            echo "  --major-interval=N                Major checkpoint interval (default: 500)"
+            echo "  --predict-only                    Generate predictions (JSONL) only; skip metrics"
+            echo "  --metrics-only                    Compute metrics from existing JSONL; no model loading"
+            echo "  --update-rouge                    Recompute ROUGE from existing JSONL (combinable)"
+            echo "  --update-hygiene                  Recompute hygiene from existing JSONL (combinable)"
+            echo "  --update-bertscore                Recompute BERTScore from existing JSONL (combinable)"
+            echo "  --update-faithfulness             Recompute NLI faithfulness from existing JSONL (combinable)"
+            echo "  --min_new_tokens=N                Minimum generated tokens for length-controlled runs (default: 40)"
+            echo "  --max_new_tokens=N                Maximum generated tokens for length-controlled runs (default: 180)"
+            echo "  --use_beam_length_control         Use beam decoding with length_penalty for length-controlled runs"
+            echo "  --val_beam_size=N                 Beam size when --use_beam_length_control is enabled (default: 4)"
+            echo "  --length_penalty=F                Length penalty when --use_beam_length_control is enabled (default: 1.05)"
+            echo "  --c200k_min_new_tokens=N          Min length goal in c200k token space (auto-converted per model)"
+            echo "  --c200k_max_new_tokens=N          Max length goal in c200k token space (auto-converted per model)"
             echo "  --dry-run|--debug                Debug mode: validate inputs and show what would run (no job submission)"
             echo ""
-            echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
-            echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-7b-instruct,"
+            echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+            echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
             echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
             echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"
             exit 1
@@ -113,9 +218,9 @@ done
 validate_model() {
     local model=$1
     case "$model" in
-        gemma-2b|gemma-7b|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
+        gemma-2b|gemma-7b-it|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
         viking-7b|viking-13b|viking-33b| \
-        normistral-7b|normistral-11b|normistral-7b-instruct| \
+        normistral-7b|normistral-11b|normistral-11b-long|normistral-7b-instruct| \
         norskgpt-llama3-8b|llama-3.1-8b-instruct|llama-2-13b-chat-norwegian| \
         eurollm-9b-instruct|norwai-mistral-7b-instruct|nb-gpt-j-6b|mt5)
             return 0
@@ -152,8 +257,8 @@ ERRORS=0
 
 if ! validate_model "$MODEL"; then
     echo "ERROR: Invalid model name: $MODEL"
-    echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
-    echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-7b-instruct,"
+    echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+    echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
     echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
     echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"
     ERRORS=$((ERRORS + 1))
@@ -181,6 +286,24 @@ if ! validate_checkpoint_numbers "$SPECIFIC_CHECKPOINTS"; then
     ERRORS=$((ERRORS + 1))
 fi
 
+if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+    if ! [[ "$NLI_SUBSET_SIZE" =~ ^[0-9]+$ ]] || [ "$NLI_SUBSET_SIZE" -lt 1 ]; then
+        echo "ERROR: nli_subset_size must be a positive integer (got: $NLI_SUBSET_SIZE)"
+        ERRORS=$((ERRORS + 1))
+    fi
+fi
+
+if [ "$C200K_FLAGS_FROM_ARGS" = "true" ]; then
+    if [ -n "$C200K_MIN_NEW_TOKENS" ] && [ -z "$C200K_MAX_NEW_TOKENS" ]; then
+        echo "ERROR: --c200k_min_new_tokens requires --c200k_max_new_tokens"
+        ERRORS=$((ERRORS + 1))
+    fi
+    if [ -z "$C200K_MIN_NEW_TOKENS" ] && [ -n "$C200K_MAX_NEW_TOKENS" ]; then
+        echo "ERROR: --c200k_max_new_tokens requires --c200k_min_new_tokens"
+        ERRORS=$((ERRORS + 1))
+    fi
+fi
+
 # Check if NUM_GPUS matches #SBATCH --gres (warning only, skip in dry-run)
 if [ "$DRY_RUN" != "true" ]; then
     SBATCH_GPUS=$(grep "^#SBATCH --gres=gpu:" "$0" | sed 's/.*gpu:\([0-9]*\).*/\1/' | head -1)
@@ -201,11 +324,34 @@ echo "  MODEL: $MODEL"
 echo "  NUM_GPUS: $NUM_GPUS"
 echo "  CHECKPOINT_BASE_DIR: $CHECKPOINT_BASE_DIR"
 echo "  VAL_DATASET: $VAL_DATASET"
-echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (1000 → separate -examples_1000.json/.jsonl files)"
+echo "  VAL_BATCH_SIZE: $VAL_BATCH_SIZE"
+echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (output files end with -${VAL_DATA_SIZE}-examples.json/.jsonl)"
 echo "  SPECIFIC_CHECKPOINTS: ${SPECIFIC_CHECKPOINTS:-all}"
-echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS"
-if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
-    echo "  NLI: Using fixed 500-example subset (consistent across all checkpoints)"
+echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS (auto = major checkpoints only)"
+LENGTH_MODE=false
+if [ "$C200K_FLAGS_FROM_ARGS" = "true" ] && [ -n "$C200K_MIN_NEW_TOKENS" ] && [ -n "$C200K_MAX_NEW_TOKENS" ]; then
+    LENGTH_MODE=true
+fi
+echo "  LENGTH_CONTROLLED_BY_C200K_PAIR: $LENGTH_MODE"
+if [ "$LENGTH_MODE" = "true" ]; then
+    echo "  MIN_NEW_TOKENS: $MIN_NEW_TOKENS"
+    echo "  MAX_NEW_TOKENS: $MAX_NEW_TOKENS"
+    echo "  USE_BEAM_LENGTH_CONTROL: $USE_BEAM_LENGTH_CONTROL"
+    if [ "$USE_BEAM_LENGTH_CONTROL" = "true" ]; then
+        echo "  VAL_BEAM_SIZE: $VAL_BEAM_SIZE"
+        echo "  LENGTH_PENALTY: $LENGTH_PENALTY"
+    fi
+    if [ -n "$C200K_MIN_NEW_TOKENS" ] || [ -n "$C200K_MAX_NEW_TOKENS" ]; then
+        echo "  C200K_MIN_NEW_TOKENS: ${C200K_MIN_NEW_TOKENS:-unset}"
+        echo "  C200K_MAX_NEW_TOKENS: ${C200K_MAX_NEW_TOKENS:-unset}"
+    fi
+fi
+if [ "$INCLUDE_NLI_FAITHFULNESS" != "false" ]; then
+    if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+        echo "  NLI_SUBSET_SIZE: $NLI_SUBSET_SIZE"
+    else
+        echo "  NLI_SUBSET_SIZE: (unset → Python default 100; use same value as VAL_DATA_SIZE for full val NLI)"
+    fi
 fi
 echo "  DRY_RUN: $DRY_RUN"
 
@@ -296,6 +442,18 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "    --output_dir [optional, defaults to model_dir/all_eval_results]"
     echo "    --wandb_project lm-evaluation"
     echo "    --use_greedy --use_multi_gpu"
+    if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
+        echo "    --include_nli_faithfulness  (all checkpoints)"
+    elif [ "$INCLUDE_NLI_FAITHFULNESS" = "auto" ]; then
+        echo "    --include_nli_faithfulness  (auto: major checkpoints only)"
+    fi
+    if [ "$INCLUDE_NLI_FAITHFULNESS" != "false" ]; then
+        if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+            echo "    --nli_subset_size $NLI_SUBSET_SIZE"
+        else
+            echo "    --nli_subset_size 100   # Python default; set = VAL_DATA_SIZE for full val NLI"
+        fi
+    fi
     echo ""
     echo "==================================================================="
     echo "Dry-run complete. No job was submitted."
@@ -311,73 +469,7 @@ echo "Model: $MODEL"
 echo "==================================================================="
 
 # ********** JOB-LOCAL CACHE **********
-
-# define job-local cache for training
-export SLURM_TMPDIR=/tmp/${USER}_$SLURM_JOB_ID
-mkdir -p "$SLURM_TMPDIR"
-
-# create a job-local HF cache, overrides the global HF_home cache
-export HF_HOME="$SLURM_TMPDIR/.cache/huggingface"
-export HF_DATASETS_CACHE="$HF_HOME/datasets"
-export HF_MODULES_CACHE="$HF_HOME/modules"
-export HF_METRICS_CACHE="$HF_HOME/metrics"
-mkdir -p "$HF_HOME" "$HF_DATASETS_CACHE" "$HF_MODULES_CACHE" "$HF_METRICS_CACHE"
-
-# stage model/dataset into job-local cache (fast local read, writable)
-PROJECT_HF_DIR=/cluster/projects/YOUR_PROJECT_ID/shared/.cache/huggingface
-mkdir -p "$HF_HOME/hub"
-
-# Convert model name to HuggingFace cache directory format
-convert_model_to_cache_dir() {
-    local model=$1
-    echo "models--${model//\//--}"
-}
-
-# Determine the full model name from the short name
-get_full_model_name() {
-    local short_name=$1
-    case "$short_name" in
-        gemma-2b) echo "google/gemma-2b" ;;
-        gemma-7b) echo "google/gemma-7b" ;;
-        gemma-2-9b) echo "google/gemma-2-9b" ;;
-        gemma-2-27b) echo "google/gemma-2-27b" ;;
-        gemma-3-12b) echo "google/gemma-3-12b-pt" ;;
-        gemma-3-27b) echo "google/gemma-3-27b-pt" ;;
-        viking-7b) echo "LumiOpen/Viking-7B" ;;
-        viking-13b) echo "LumiOpen/Viking-13B" ;;
-        viking-33b) echo "LumiOpen/Viking-33B" ;;
-        normistral-7b) echo "norallm/normistral-7b-warm" ;;
-        normistral-11b) echo "norallm/normistral-11b-warm" ;;
-        normistral-7b-instruct) echo "norallm/normistral-7b-warm-instruct" ;;
-        norskgpt-llama3-8b) echo "bineric/norskgpt-llama3-8b" ;;
-        llama-3.1-8b-instruct) echo "meta-llama/Llama-3.1-8B-Instruct" ;;
-        llama-2-13b-chat-norwegian) echo "ruternorway/llama-2-13b-chat-norwegian" ;;
-        eurollm-9b-instruct) echo "utter-project/EuroLLM-9B-2512-instruct" ;;
-        norwai-mistral-7b-instruct) echo "NorwAI/NorwAI-Mistral-7B-instruct" ;;
-        nb-gpt-j-6b) echo "NbAiLab/nb-gpt-j-6B-torgersen-alpaca" ;;
-        *) echo "$short_name" ;;
-    esac
-}
-
-FULL_MODEL_NAME=$(get_full_model_name "$MODEL")
-MODEL_CACHE_DIR=$(convert_model_to_cache_dir "$FULL_MODEL_NAME")
-SOURCE_MODEL_DIR="$PROJECT_HF_DIR/hub/$MODEL_CACHE_DIR"
-
-# Copy model from read-only project storage to writable job-local cache
-echo "Copying model $FULL_MODEL_NAME to job-local cache..."
-if [ -d "$SOURCE_MODEL_DIR" ]; then
-    rsync -aq "$SOURCE_MODEL_DIR/" "$HF_HOME/hub/$MODEL_CACHE_DIR/"
-    echo "Model cache copy complete"
-else
-    echo "WARNING: Model $FULL_MODEL_NAME not found in shared cache at $SOURCE_MODEL_DIR"
-    echo "Model will be downloaded during evaluation (requires internet access)"
-fi
-
-[ -d "$PROJECT_HF_DIR/metrics" ] && rsync -aq "$PROJECT_HF_DIR/metrics/" "$HF_METRICS_CACHE/"
-[ -d "$PROJECT_HF_DIR/modules" ] && rsync -aq "$PROJECT_HF_DIR/modules/" "$HF_MODULES_CACHE/"
-
-echo "Cache staging complete"
-
+source scripts/olivia_job_local_cache.sh
 # ********** END JOB-LOCAL CACHE **********
 
 # env setup
@@ -419,8 +511,16 @@ if [ -n "$SPECIFIC_CHECKPOINTS" ]; then
             regular_legacy="$CHECKPOINT_BASE_DIR/regular_checkpoints/regular-checkpoint-$ckpt_num"
             major_ckpt=""
             regular_ckpt=""
-            [ -d "$major_new" ] && major_ckpt="$major_new" || [ -d "$major_legacy" ] && major_ckpt="$major_legacy"
-            [ -d "$regular_new" ] && regular_ckpt="$regular_new" || [ -d "$regular_legacy" ] && regular_ckpt="$regular_legacy"
+            if [ -d "$major_new" ]; then
+                major_ckpt="$major_new"
+            elif [ -d "$major_legacy" ]; then
+                major_ckpt="$major_legacy"
+            fi
+            if [ -d "$regular_new" ]; then
+                regular_ckpt="$regular_new"
+            elif [ -d "$regular_legacy" ]; then
+                regular_ckpt="$regular_legacy"
+            fi
             
             if [ -n "$major_ckpt" ] && [ -f "$major_ckpt/adapter_config.json" ]; then
                 CHECKPOINTS="$CHECKPOINTS $major_ckpt"
@@ -453,7 +553,11 @@ else
         exit 1
     fi
     declare -A CHECKPOINT_MAP
-    
+
+    # Bash < 4.4 treats empty associative arrays as unbound under set -u;
+    # disable -u for the map-building section.
+    set +u
+
     # Add main checkpoints first
     echo "DEBUG: Processing main checkpoints..."
     for ckpt in $MAIN_CHECKPOINTS; do
@@ -463,28 +567,46 @@ else
         fi
     done
     echo "DEBUG: Found ${#CHECKPOINT_MAP[@]} main checkpoints"
-    
+
     # Add backup checkpoints only if main doesn't exist.
     # Process MAJOR before REGULAR so step 500 uses major-checkpoint-500 (major steps are
     # stored only in major_checkpoints/, not regular_checkpoints/ - regular-checkpoint-500 may be empty).
     echo "DEBUG: Processing backup checkpoints (major first, then regular)..."
     for ckpt in $MAJOR_CHECKPOINTS $REGULAR_CHECKPOINTS; do
         if [ -n "$ckpt" ]; then
-            step=$(basename "$ckpt" | sed 's/checkpoint-//' | sed 's/regular-checkpoint-//' | sed 's/major-checkpoint-//')
+            step=$(basename "$ckpt" | sed -E 's/^(regular-checkpoint-|major-checkpoint-|checkpoint-)//')
             if [ -z "${CHECKPOINT_MAP[$step]:-}" ]; then
                 CHECKPOINT_MAP[$step]="$ckpt"
             fi
         fi
     done
     echo "DEBUG: Total checkpoints after adding backups: ${#CHECKPOINT_MAP[@]}"
-    
+
     # Sort by step number and build CHECKPOINTS string
     CHECKPOINTS=""
     for step in $(printf '%s\n' "${!CHECKPOINT_MAP[@]}" | sort -n); do
         CHECKPOINTS="$CHECKPOINTS ${CHECKPOINT_MAP[$step]}"
     done
     CHECKPOINTS=$(echo $CHECKPOINTS | xargs)  # Trim leading/trailing spaces
+
+    set -u
     echo "DEBUG: Checkpoint discovery complete (all checkpoints mode)"
+fi
+
+# Filter checkpoints by type (major/minor) if requested
+if [ "$CHECKPOINT_FILTER" != "all" ]; then
+    FILTERED=""
+    for CKPT_PATH in $CHECKPOINTS; do
+        step=$(basename "$CKPT_PATH" | sed -E 's/^(regular-checkpoint-|major-checkpoint-|checkpoint-)//')
+        remainder=$((step % MAJOR_CHECKPOINT_INTERVAL))
+        if [ "$CHECKPOINT_FILTER" = "major" ] && [ "$remainder" -eq 0 ]; then
+            FILTERED="$FILTERED $CKPT_PATH"
+        elif [ "$CHECKPOINT_FILTER" = "minor" ] && [ "$remainder" -ne 0 ]; then
+            FILTERED="$FILTERED $CKPT_PATH"
+        fi
+    done
+    CHECKPOINTS=$(echo $FILTERED | xargs)
+    echo "Filtered to $CHECKPOINT_FILTER checkpoints (interval=$MAJOR_CHECKPOINT_INTERVAL): $(echo $CHECKPOINTS | wc -w) remaining"
 fi
 
 # Count checkpoints
@@ -498,7 +620,11 @@ if [ $NUM_CHECKPOINTS -eq 0 ]; then
 fi
 
 # Create results directory
-RESULTS_DIR="$CHECKPOINT_BASE_DIR/all_eval_results"
+if [ "$LENGTH_MODE" = "true" ]; then
+    RESULTS_DIR="$CHECKPOINT_BASE_DIR/eval_results_min${C200K_MIN_NEW_TOKENS}_max${C200K_MAX_NEW_TOKENS}_tokens"
+else
+    RESULTS_DIR="$CHECKPOINT_BASE_DIR/all_eval_results"
+fi
 mkdir -p "$RESULTS_DIR"
 
 echo "Results will be saved to: $RESULTS_DIR"
@@ -511,17 +637,28 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     CHECKPOINT_NUM=$((CHECKPOINT_NUM + 1))
     CHECKPOINT_NAME=$(basename "$CHECKPOINT_DIR")
     
+    STARTED_AT=$(date '+%Y-%m-%d %H:%M:%S')
     echo "==================================================================="
-    echo "[$CHECKPOINT_NUM/$NUM_CHECKPOINTS] Evaluating: $CHECKPOINT_NAME"
-    echo "Using $NUM_GPUS GPUs for parallel evaluation"
+    echo "[$CHECKPOINT_NUM/$NUM_CHECKPOINTS] Evaluating: $CHECKPOINT_NAME | model=$MODEL | gpus=$NUM_GPUS | val_size=$VAL_DATA_SIZE | batch=$VAL_BATCH_SIZE | started=$STARTED_AT"
+    echo "  dir: $CHECKPOINT_DIR"
     echo "==================================================================="
     
     # Command to run inside apptainer - use model parallelism, not torchrun
     # Model parallelism (device_map="auto") doesn't need torchrun
-    # Build NLI and keep_existing flags
+    # Build NLI flags (per-checkpoint: "auto" enables NLI only for major checkpoints)
     NLI_FLAGS=""
+    NLI_SUBSET_FLAG=""
+    CKPT_STEP=$(basename "$CHECKPOINT_DIR" | sed -E 's/^(regular-checkpoint-|major-checkpoint-|checkpoint-)//')
     if [ "$INCLUDE_NLI_FAITHFULNESS" = "true" ]; then
         NLI_FLAGS="--include_nli_faithfulness"
+    elif [ "$INCLUDE_NLI_FAITHFULNESS" = "auto" ]; then
+        CKPT_REMAINDER=$((CKPT_STEP % MAJOR_CHECKPOINT_INTERVAL))
+        if [ "$CKPT_REMAINDER" -eq 0 ]; then
+            NLI_FLAGS="--include_nli_faithfulness"
+        fi
+    fi
+    if [ -n "$NLI_FLAGS" ] && [ -n "${NLI_SUBSET_SIZE:-}" ]; then
+        NLI_SUBSET_FLAG=" --nli_subset_size $NLI_SUBSET_SIZE"
     fi
     KEEP_FLAG=""
     if [ "$KEEP_EXISTING" = "true" ]; then
@@ -531,12 +668,37 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     if [ "$FORCE_RECOMPUTE" = "true" ]; then
         FORCE_FLAG="--force_recompute"
     fi
+
+    # Python evaluation mode flags
+    MODE_FLAGS=""
+    if [ "$EVAL_MODE" = "predict_only" ]; then
+        MODE_FLAGS="--predict_only"
+    elif [ "$EVAL_MODE" = "metrics_only" ]; then
+        MODE_FLAGS="--metrics_only"
+    fi
+    # --update-* flags (can be combined)
+    if [ -n "$UPDATE_METRICS" ]; then
+        IFS=',' read -ra METRICS_ARR <<< "$UPDATE_METRICS"
+        for m in "${METRICS_ARR[@]}"; do
+            MODE_FLAGS="$MODE_FLAGS --update_$m"
+        done
+    fi
+    # Decode strategy + optional length-control flags
+    DECODE_FLAGS="--use_greedy"
+    LENGTH_FLAGS=""
+    if [ "$LENGTH_MODE" = "true" ]; then
+        LENGTH_FLAGS="--min_new_tokens $MIN_NEW_TOKENS --max_output_summary_tokens $MAX_NEW_TOKENS"
+        LENGTH_FLAGS="$LENGTH_FLAGS --c200k_min_new_tokens $C200K_MIN_NEW_TOKENS --c200k_max_new_tokens $C200K_MAX_NEW_TOKENS"
+        if [ "$USE_BEAM_LENGTH_CONTROL" = "true" ]; then
+            DECODE_FLAGS="--val_beam_size $VAL_BEAM_SIZE --length_penalty $LENGTH_PENALTY"
+        fi
+    fi
     
-    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation --use_greedy --use_multi_gpu $NLI_FLAGS $KEEP_FLAG $FORCE_FLAG"
+    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_batch_size $VAL_BATCH_SIZE --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation $DECODE_FLAGS --use_multi_gpu $LENGTH_FLAGS --major_checkpoint_interval $MAJOR_CHECKPOINT_INTERVAL $NLI_FLAGS $KEEP_FLAG $FORCE_FLAG$NLI_SUBSET_FLAG $MODE_FLAGS"
 
     # Apptainer commands - all on one line
     # Install bert_score for BERTScore evaluation (required by evaluate library)
-    COMMAND="pip install --upgrade pip setuptools wheel > /dev/null 2>&1 && pip install --break-system-packages --only-binary=:all: transformers==4.45.2 tokenizers==0.20.3 datasets==3.0.0 sentencepiece==0.2.1 > /dev/null 2>&1 && pip install --break-system-packages --no-binary=rouge-score rouge-score==0.1.2 > /dev/null 2>&1 && pip install --break-system-packages --no-deps accelerate==1.0.1 peft==0.13.2 > /dev/null 2>&1 && pip install --break-system-packages --upgrade pyyaml psutil typing-extensions packaging==24.2 safetensors > /dev/null 2>&1 && pip install --break-system-packages --upgrade wandb evaluate sentence-transformers bert_score > /dev/null 2>&1 && $EVAL_CMD"
+    COMMAND="pip install --upgrade pip setuptools wheel > /dev/null 2>&1 && pip install --break-system-packages --only-binary=:all: transformers==4.45.2 tokenizers==0.20.3 datasets==3.0.0 sentencepiece==0.2.1 > /dev/null 2>&1 && pip install --break-system-packages --no-binary=rouge-score rouge-score==0.1.2 > /dev/null 2>&1 && pip install --break-system-packages --no-deps accelerate==1.0.1 peft==0.13.2 > /dev/null 2>&1 && pip install --break-system-packages --upgrade pyyaml psutil typing-extensions packaging==24.2 safetensors > /dev/null 2>&1 && pip install --break-system-packages --upgrade wandb evaluate sentence-transformers bert_score simplemma > /dev/null 2>&1 && $EVAL_CMD"
     
     # Run evaluation directly (already in SLURM job context from sbatch)
     apptainer exec --nv $IMAGE bash -c "$COMMAND"

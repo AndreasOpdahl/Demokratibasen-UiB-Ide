@@ -13,6 +13,17 @@
 
 set -euo pipefail
 
+# Slurm stages the batch script under /var/spool/slurmd/job*/ on compute nodes, so
+# ${BASH_SOURCE[0]} points there—not your project. Use SLURM_SUBMIT_DIR (cwd when you ran sbatch).
+# Without Slurm, fall back to the directory containing this file.
+if [ -n "${SLURM_SUBMIT_DIR:-}" ]; then
+    SBATCH_DIR="$SLURM_SUBMIT_DIR"
+else
+    SBATCH_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+fi
+cd "$SBATCH_DIR" || { echo "ERROR: Cannot cd to $SBATCH_DIR"; exit 1; }
+echo "Working directory for this job: $SBATCH_DIR"
+
 # Load environment variables from .env file
 # .env should contain: SLURM_ACCOUNT, WANDB_API_KEY, HUGGINGFACE_TOKEN
 if [ -f .env ]; then
@@ -100,8 +111,8 @@ for arg in "$@"; do
             echo "  --keep_test_data           Keep test datasets and outputs after testing"
             echo "  --dry-run|--debug          Debug mode: validate inputs and show what would run"
             echo ""
-            echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
-            echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-7b-instruct,"
+            echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+            echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
             echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
             echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"
             exit 1
@@ -113,9 +124,9 @@ done
 validate_model() {
     local model=$1
     case "$model" in
-        gemma-2b|gemma-7b|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
+        gemma-2b|gemma-7b-it|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
         viking-7b|viking-13b|viking-33b| \
-        normistral-7b|normistral-11b|normistral-7b-instruct| \
+        normistral-7b|normistral-11b|normistral-11b-long|normistral-7b-instruct| \
         norskgpt-llama3-8b|llama-3.1-8b-instruct|llama-2-13b-chat-norwegian| \
         eurollm-9b-instruct|norwai-mistral-7b-instruct|nb-gpt-j-6b|mt5)
             return 0
@@ -129,8 +140,8 @@ validate_model() {
 # Validate model
 if ! validate_model "$MODEL"; then
     echo "ERROR: Invalid model: $MODEL"
-    echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
-    echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-7b-instruct,"
+    echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+    echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
     echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
     echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"
     exit 1
@@ -201,64 +212,8 @@ echo "Single GPU, minimal resources (5 steps, 10 examples)"
 echo "==================================================================="
 
 # ********** JOB-LOCAL CACHE **********
-
-# define job-local cache
-export SLURM_TMPDIR=/tmp/${USER}_$SLURM_JOB_ID
-mkdir -p "$SLURM_TMPDIR"
-
-# create a job-local HF cache, overrides the global HF_home cache
-export HF_HOME="$SLURM_TMPDIR/.cache/huggingface"
-export HF_DATASETS_CACHE="$HF_HOME/datasets"
-export HF_MODULES_CACHE="$HF_HOME/modules"
-export HF_METRICS_CACHE="$HF_HOME/metrics"
-mkdir -p "$HF_HOME" "$HF_DATASETS_CACHE" "$HF_MODULES_CACHE" "$HF_METRICS_CACHE"
-
-# Set PYTHONUSERBASE to writable location to avoid .local read-only filesystem errors
-export PYTHONUSERBASE="$SLURM_TMPDIR/.local"
-mkdir -p "$PYTHONUSERBASE"
-
-# stage model/dataset into job-local cache (fast local read, writable)
-PROJECT_HF_DIR=/cluster/projects/YOUR_PROJECT_ID/shared/.cache/huggingface
-mkdir -p "$HF_HOME/hub"
-
-# Convert model name to HuggingFace cache directory format
-convert_model_to_cache_dir() {
-    local model=$1
-    case "$model" in
-        gemma-2b) echo "models--google--gemma-2b" ;;
-        gemma-7b) echo "models--google--gemma-7b" ;;
-        gemma-2-9b) echo "models--google--gemma-2-9b" ;;
-        gemma-2-27b) echo "models--google--gemma-2-27b" ;;
-        gemma-3-12b) echo "models--google--gemma-3-12b-pt" ;;
-        gemma-3-27b) echo "models--google--gemma-3-27b-pt" ;;
-        viking-7b) echo "models--LumiOpen--Viking-7B" ;;
-        viking-13b) echo "models--LumiOpen--Viking-13B" ;;
-        viking-33b) echo "models--LumiOpen--Viking-33B" ;;
-        normistral-7b) echo "models--norallm--normistral-7b-warm" ;;
-        normistral-11b) echo "models--norallm--normistral-11b-warm" ;;
-        normistral-7b-instruct) echo "models--norallm--normistral-7b-warm-instruct" ;;
-        norskgpt-llama3-8b) echo "models--bineric--norskgpt-llama3-8b" ;;
-        llama-3.1-8b-instruct) echo "models--meta-llama--Llama-3.1-8B-Instruct" ;;
-        llama-2-13b-chat-norwegian) echo "models--ruternorway--llama-2-13b-chat-norwegian" ;;
-        eurollm-9b-instruct) echo "models--utter-project--EuroLLM-9B-2512-instruct" ;;
-        norwai-mistral-7b-instruct) echo "models--NorwAI--NorwAI-Mistral-7B-instruct" ;;
-        nb-gpt-j-6b) echo "models--NbAiLab--nb-gpt-j-6B-torgersen-alpaca" ;;
-        *) echo "models--${model//\//--}" ;;
-    esac
-}
-
-MODEL_CACHE_DIR=$(convert_model_to_cache_dir "$MODEL")
-
-# Stage model cache if it exists in shared location
-if [ -d "$PROJECT_HF_DIR/hub/$MODEL_CACHE_DIR" ]; then
-    echo "Staging model cache from shared location..."
-    mkdir -p "$HF_HOME/hub"
-    rsync -aq "$PROJECT_HF_DIR/hub/$MODEL_CACHE_DIR/" "$HF_HOME/hub/$MODEL_CACHE_DIR/" || true
-fi
-
-# Stage other caches
-[ -d "$PROJECT_HF_DIR/metrics" ] && rsync -aq "$PROJECT_HF_DIR/metrics/" "$HF_METRICS_CACHE/"
-[ -d "$PROJECT_HF_DIR/modules" ] && rsync -aq "$PROJECT_HF_DIR/modules/" "$HF_MODULES_CACHE/"
+source scripts/olivia_job_local_cache.sh
+# ********** END JOB-LOCAL CACHE **********
 
 # Load modules
 module --force purge

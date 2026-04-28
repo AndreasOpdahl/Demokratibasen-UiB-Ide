@@ -9,8 +9,8 @@ set -euo pipefail
 # ===== DEFAULTS =====
 MODELS=""
 SLURM_ACCOUNT=""
-TRAIN_DATASET="${TRAIN_DATASET:-data/output/new_processed_data_train.jsonl}"
-VAL_DATASET="${VAL_DATASET:-data/output/new_processed_data_val.jsonl}"
+TRAIN_DATASET="${TRAIN_DATASET:-data/dataset_149978_examples/149978_text_summary_examples_train.jsonl}"
+VAL_DATASET="${VAL_DATASET:-data/dataset_149978_examples/149978_text_summary_examples_val.jsonl}"
 NUM_GPUS="${NUM_GPUS:-4}"
 TASK_LIMIT="${TASK_LIMIT:---max_steps 10000}"
 DISTRIBUTION_FLAG="${DISTRIBUTION_FLAG:---fsdp}"
@@ -47,8 +47,8 @@ Required:
   --account=ACCOUNT          SLURM account/project ID
 
 Optional:
-  --train_dataset=PATH       Training dataset (default: data/output/new_processed_data_train.jsonl)
-  --val_dataset=PATH         Validation dataset (default: data/output/new_processed_data_val.jsonl)
+  --train_dataset=PATH       Training dataset (default: data/dataset_149978_examples/149978_text_summary_examples_train.jsonl)
+  --val_dataset=PATH         Validation dataset (default: data/dataset_149978_examples/149978_text_summary_examples_val.jsonl)
   --num_gpus=N               Number of GPUs per model (default: 4)
   --task_limit="OPTIONS"     Task limit, e.g. "--max_steps 10000" (default: --max_steps 10000)
   --resume_checkpoint=NAME   Resume from checkpoint (e.g. checkpoint-5000, resolved per model)
@@ -59,8 +59,8 @@ Optional:
   --no-job-dependency         (Deprecated - dependency is disabled by default)
   --dry-run                   Show what would be submitted
 
-Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,
-              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b,
+Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,
+              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long,
               normistral-7b-instruct, norskgpt-llama3-8b, llama-3.1-8b-instruct,
               llama-2-13b-chat-norwegian, eurollm-9b-instruct, norwai-mistral-7b-instruct,
               nb-gpt-j-6b, mt5

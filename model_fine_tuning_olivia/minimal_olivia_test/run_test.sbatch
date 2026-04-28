@@ -11,6 +11,15 @@
 
 set -euo pipefail
 
+# Slurm stages the batch script under /var/spool/slurmd/job*/; use SLURM_SUBMIT_DIR when set.
+if [ -n "${SLURM_SUBMIT_DIR:-}" ]; then
+    SBATCH_DIR="$SLURM_SUBMIT_DIR"
+else
+    SBATCH_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+fi
+cd "$SBATCH_DIR" || { echo "ERROR: Cannot cd to $SBATCH_DIR"; exit 1; }
+echo "Working directory for this job: $SBATCH_DIR"
+
 # env setup
 module load CrayEnv
 module load cuda/12.6

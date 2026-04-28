@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH -J gpu-finetune-apptainer
+#SBATCH -J finetune-multinode
 #SBATCH -p accel
 #SBATCH --gres=gpu:4
 #SBATCH --nodes=1
@@ -14,6 +14,17 @@
 
 set -euo pipefail
 
+# Slurm stages the batch script under /var/spool/slurmd/job*/ on compute nodes, so
+# ${BASH_SOURCE[0]} points there—not your project. Use SLURM_SUBMIT_DIR (cwd when you ran sbatch).
+# Without Slurm, fall back to the directory containing this file.
+if [ -n "${SLURM_SUBMIT_DIR:-}" ]; then
+    SBATCH_DIR="$SLURM_SUBMIT_DIR"
+else
+    SBATCH_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+fi
+cd "$SBATCH_DIR" || { echo "ERROR: Cannot cd to $SBATCH_DIR"; exit 1; }
+echo "Working directory for this job: $SBATCH_DIR"
+
 # Load environment variables from .env file
 # .env should contain: SLURM_ACCOUNT, WANDB_API_KEY, HUGGINGFACE_TOKEN
 if [ -f .env ]; then
@@ -27,17 +38,18 @@ fi
 # SLURM_ACCOUNT from .env is still used for informational purposes
 
 # Parse command-line arguments or use defaults
-# Usage: sbatch --export=SLURM_ACCOUNT=nnXDXFWF run_finetune_multinode.sbatch [--model=MODEL] [--num_gpus=N] [--train_dataset=PATH] [--val_dataset=PATH] [--train_batch_size=N] [--val_batch_size=N] [--resume_checkpoint=CHECKPOINT] [--task_limit="--max_steps N"] [--distribution_flag="--fsdp"] [--dry-run]
+# Usage: sbatch --export=SLURM_ACCOUNT=nnXDXFWF run_finetune_multinode.sbatch [--model=MODEL] [--num_gpus=N] [--train_dataset=PATH] [--val_dataset=PATH] [--train_batch_size=N] [--val_batch_size=N] [--resume_checkpoint=CHECKPOINT] [--output_dir=DIR] [--task_limit="--max_steps N"] [--distribution_flag="--fsdp"] [--dry-run]
 MODEL=${MODEL:-gemma-2-9b}
 NUM_GPUS=${NUM_GPUS:-${SLURM_GPUS_ON_NODE:-4}}
-TRAIN_DATASET=${TRAIN_DATASET:-"data/output/new_processed_data_train.jsonl"}
-VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
+TRAIN_DATASET=${TRAIN_DATASET:-"data/dataset_149978_examples/149978_text_summary_examples_train.jsonl"}
+VAL_DATASET=${VAL_DATASET:-"data/dataset_149978_examples/149978_text_summary_examples_val.jsonl"}
 TRAIN_BATCH_SIZE=${TRAIN_BATCH_SIZE:-""}  # Empty = use model config default
 VAL_BATCH_SIZE=${VAL_BATCH_SIZE:-""}      # Empty = use model config default
 MAX_INPUT_TEXT_TOKENS=${MAX_INPUT_TEXT_TOKENS:-2048}
 RESUME_CHECKPOINT=${RESUME_CHECKPOINT:-""}
 TASK_LIMIT=${TASK_LIMIT:-"--max_steps 10000"}
 DISTRIBUTION_FLAG=${DISTRIBUTION_FLAG:-"--fsdp"}
+OUTPUT_DIR=${OUTPUT_DIR:-"models/${MODEL}-apptainer-fsdp"}
 DRY_RUN=${DRY_RUN:-false}
 
 # Parse command-line arguments if provided
@@ -45,12 +57,19 @@ for arg in "$@"; do
     case $arg in
         --model=*)
             MODEL="${arg#*=}"
+            if [ -z "${OUTPUT_DIR_SET:-}" ]; then
+                OUTPUT_DIR="models/${MODEL}-apptainer-fsdp"
+            fi
             ;;
         --num_gpus=*)
             NUM_GPUS="${arg#*=}"
             ;;
         --resume_checkpoint=*)
             RESUME_CHECKPOINT="${arg#*=}"
+            ;;
+        --output_dir=*)
+            OUTPUT_DIR="${arg#*=}"
+            OUTPUT_DIR_SET=1
             ;;
         --task_limit=*)
             TASK_LIMIT="${arg#*=}"
@@ -84,18 +103,19 @@ for arg in "$@"; do
             echo "Options:"
             echo "  --model=MODEL              Model short name (default: gemma-2-9b)"
             echo "  --num_gpus=N               Number of GPUs (default: 4)"
-            echo "  --train_dataset=PATH       Path to training dataset JSONL file (default: data/output/new_processed_data_train.jsonl)"
-            echo "  --val_dataset=PATH         Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
+            echo "  --train_dataset=PATH       Path to training dataset JSONL file (default: data/dataset_149978_examples/149978_text_summary_examples_train.jsonl)"
+            echo "  --val_dataset=PATH         Path to validation dataset JSONL file (default: data/dataset_149978_examples/149978_text_summary_examples_val.jsonl)"
             echo "  --train_batch_size=N       Training batch size per device (default: use model config default)"
             echo "  --val_batch_size=N         Validation batch size per device (default: use model config default)"
             echo "  --max_input_text_tokens=N  Maximum input text tokens (default: 2048)"
             echo "  --resume_checkpoint=DIR    Checkpoint directory to resume from (default: none)"
+            echo "  --output_dir=DIR           Output directory for model/checkpoints (default: models/\${MODEL}-apptainer-fsdp)"
             echo "  --task_limit=\"OPTIONS\"     Task limit, e.g. \"--max_steps 10000\" (default: --max_steps 10000)"
             echo "  --distribution_flag=FLAG   Distribution flag: --fsdp or --ddp (default: --fsdp)"
             echo "  --dry-run|--debug          Debug mode: validate inputs and show what would run (no job submission)"
             echo ""
-            echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
-            echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-7b-instruct,"
+            echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+            echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
             echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
             echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"
             exit 1
@@ -107,9 +127,9 @@ done
 validate_model() {
     local model=$1
     case "$model" in
-        gemma-2b|gemma-7b|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
+        gemma-2b|gemma-7b-it|gemma-2-9b|gemma-2-27b|gemma-3-12b|gemma-3-27b| \
         viking-7b|viking-13b|viking-33b| \
-        normistral-7b|normistral-11b|normistral-7b-instruct| \
+        normistral-7b|normistral-11b|normistral-11b-long|normistral-7b-instruct| \
         norskgpt-llama3-8b|llama-3.1-8b-instruct|llama-2-13b-chat-norwegian| \
         eurollm-9b-instruct|norwai-mistral-7b-instruct|nb-gpt-j-6b|mt5)
             return 0
@@ -153,8 +173,8 @@ ERRORS=0
 
 if ! validate_model "$MODEL"; then
     echo "ERROR: Invalid model name: $MODEL"
-    echo "Valid models: gemma-2b, gemma-7b, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
-    echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-7b-instruct,"
+    echo "Valid models: gemma-2b, gemma-7b-it, gemma-2-9b, gemma-2-27b, gemma-3-12b, gemma-3-27b,"
+    echo "              viking-7b, viking-13b, viking-33b, normistral-7b, normistral-11b, normistral-11b-long, normistral-7b-instruct,"
     echo "              norskgpt-llama3-8b, llama-3.1-8b-instruct, llama-2-13b-chat-norwegian,"
     echo "              eurollm-9b-instruct, norwai-mistral-7b-instruct, nb-gpt-j-6b, mt5"
     ERRORS=$((ERRORS + 1))
@@ -182,7 +202,7 @@ if [ -n "$RESUME_CHECKPOINT" ]; then
     # Determine output_dir for validation (same logic as later in script)
     case "$MODEL" in
         gemma-2b) FULL_MODEL_NAME="google/gemma-2b" ;;
-        gemma-7b) FULL_MODEL_NAME="google/gemma-7b" ;;
+        gemma-7b-it) FULL_MODEL_NAME="google/gemma-7b-it" ;;
         gemma-2-9b) FULL_MODEL_NAME="google/gemma-2-9b" ;;
         gemma-2-27b) FULL_MODEL_NAME="google/gemma-2-27b" ;;
         gemma-3-12b) FULL_MODEL_NAME="google/gemma-3-12b-pt" ;;
@@ -192,16 +212,17 @@ if [ -n "$RESUME_CHECKPOINT" ]; then
         viking-33b) FULL_MODEL_NAME="LumiOpen/Viking-33B" ;;
         normistral-7b) FULL_MODEL_NAME="norallm/normistral-7b-warm" ;;
         normistral-11b) FULL_MODEL_NAME="norallm/normistral-11b-warm" ;;
+        normistral-11b-long) FULL_MODEL_NAME="norallm/normistral-11b-long" ;;
         normistral-7b-instruct) FULL_MODEL_NAME="norallm/normistral-7b-warm-instruct" ;;
         norskgpt-llama3-8b) FULL_MODEL_NAME="bineric/norskgpt-llama3-8b" ;;
         llama-3.1-8b-instruct) FULL_MODEL_NAME="meta-llama/Llama-3.1-8B-Instruct" ;;
         llama-2-13b-chat-norwegian) FULL_MODEL_NAME="ruternorway/llama-2-13b-chat-norwegian" ;;
-        eurollm-9b-instruct) FULL_MODEL_NAME="utter-project/EuroLLM-9B-2512-instruct" ;;
+        eurollm-9b-instruct) FULL_MODEL_NAME="utter-project/EuroLLM-9B-Instruct-2512" ;;
         norwai-mistral-7b-instruct) FULL_MODEL_NAME="NorwAI/NorwAI-Mistral-7B-instruct" ;;
         nb-gpt-j-6b) FULL_MODEL_NAME="NbAiLab/nb-gpt-j-6B-torgersen-alpaca" ;;
         *) FULL_MODEL_NAME="$MODEL" ;;
     esac
-    OUTPUT_DIR_VALIDATION="models/${MODEL}-apptainer-fsdp"
+    OUTPUT_DIR_VALIDATION="$OUTPUT_DIR"
     
     # Try multiple resolution strategies (same as Python script)
     CHECKPOINT_FOUND=false
@@ -306,7 +327,7 @@ if [ "$DRY_RUN" = "true" ]; then
     # Compute model info (functions defined later, but we can compute manually for preview)
     case "$MODEL" in
         gemma-2b) FULL_MODEL_NAME="google/gemma-2b" ;;
-        gemma-7b) FULL_MODEL_NAME="google/gemma-7b" ;;
+        gemma-7b-it) FULL_MODEL_NAME="google/gemma-7b-it" ;;
         gemma-2-9b) FULL_MODEL_NAME="google/gemma-2-9b" ;;
         gemma-2-27b) FULL_MODEL_NAME="google/gemma-2-27b" ;;
         gemma-3-12b) FULL_MODEL_NAME="google/gemma-3-12b-pt" ;;
@@ -316,17 +337,18 @@ if [ "$DRY_RUN" = "true" ]; then
         viking-33b) FULL_MODEL_NAME="LumiOpen/Viking-33B" ;;
         normistral-7b) FULL_MODEL_NAME="norallm/normistral-7b-warm" ;;
         normistral-11b) FULL_MODEL_NAME="norallm/normistral-11b-warm" ;;
+        normistral-11b-long) FULL_MODEL_NAME="norallm/normistral-11b-long" ;;
         normistral-7b-instruct) FULL_MODEL_NAME="norallm/normistral-7b-warm-instruct" ;;
         norskgpt-llama3-8b) FULL_MODEL_NAME="bineric/norskgpt-llama3-8b" ;;
         llama-3.1-8b-instruct) FULL_MODEL_NAME="meta-llama/Llama-3.1-8B-Instruct" ;;
         llama-2-13b-chat-norwegian) FULL_MODEL_NAME="ruternorway/llama-2-13b-chat-norwegian" ;;
-        eurollm-9b-instruct) FULL_MODEL_NAME="utter-project/EuroLLM-9B-2512-instruct" ;;
+        eurollm-9b-instruct) FULL_MODEL_NAME="utter-project/EuroLLM-9B-Instruct-2512" ;;
         norwai-mistral-7b-instruct) FULL_MODEL_NAME="NorwAI/NorwAI-Mistral-7B-instruct" ;;
         nb-gpt-j-6b) FULL_MODEL_NAME="NbAiLab/nb-gpt-j-6B-torgersen-alpaca" ;;
         *) FULL_MODEL_NAME="$MODEL" ;;
     esac
     MODEL_CACHE_DIR="models--${FULL_MODEL_NAME//\//--}"
-    OUTPUT_DIR="models/${MODEL}-apptainer-fsdp"
+    OUTPUT_DIR="$OUTPUT_DIR"
     
     echo "✓ All validations passed!"
     echo ""
@@ -380,77 +402,9 @@ if [ "$DRY_RUN" = "true" ]; then
     exit 0
 fi
 
-export SLURM_TMPDIR=/tmp/${USER}_$SLURM_JOB_ID
-mkdir -p "$SLURM_TMPDIR"
-
-export HF_HOME="$SLURM_TMPDIR/.cache/huggingface"
-export HF_DATASETS_CACHE="$HF_HOME/datasets"
-export HF_MODULES_CACHE="$HF_HOME/modules"
-export HF_METRICS_CACHE="$HF_HOME/metrics"
-# Set PYTHONUSERBASE to writable location to avoid .local read-only filesystem errors
-export PYTHONUSERBASE="$SLURM_TMPDIR/.local"
-mkdir -p "$HF_HOME" "$HF_DATASETS_CACHE" "$HF_MODULES_CACHE" "$HF_METRICS_CACHE" "$PYTHONUSERBASE"
-
-# Project/account for shared HF cache: use whichever is set (run_multiple_models.sh exports SLURM_ACCOUNT)
-PROJECT_ID="${SLURM_JOB_ACCOUNT:-${SLURM_ACCOUNT:-${SLURM_PROJECT_ID:-}}}"
-if [ -z "$PROJECT_ID" ]; then
-    echo "ERROR: Project/account not set. Submit with: sbatch --account=YOUR_ACCOUNT run_finetune_multinode.sbatch ..."
-    echo "  Or use run_multiple_models.sh --account=YOUR_ACCOUNT (it exports SLURM_ACCOUNT)"
-    exit 1
-fi
-PROJECT_HF_DIR=/cluster/projects/${PROJECT_ID}/shared/.cache/huggingface
-mkdir -p "$HF_HOME/hub"
-
-# Convert model name to HuggingFace cache directory format
-# e.g., "google/gemma-7b" -> "models--google--gemma-7b"
-# e.g., "NorwAI/NorMistral-7B-warm-IT" -> "models--NorwAI--NorMistral-7B-warm-IT"
-convert_model_to_cache_dir() {
-    local model=$1
-    echo "models--${model//\//--}"
-}
-
-# Determine the full model name from the short name
-get_full_model_name() {
-    local short_name=$1
-    case "$short_name" in
-        gemma-2b) echo "google/gemma-2b" ;;
-        gemma-7b) echo "google/gemma-7b" ;;
-        viking-7b) echo "LumiOpen/Viking-7B" ;;
-        viking-13b) echo "LumiOpen/Viking-13B" ;;
-        normistral-7b) echo "norallm/normistral-7b-warm" ;;
-        normistral-11b) echo "norallm/normistral-11b-warm" ;;
-        normistral-7b-instruct) echo "norallm/normistral-7b-warm-instruct" ;;
-        norskgpt-llama3-8b) echo "bineric/norskgpt-llama3-8b" ;;
-        llama-3.1-8b-instruct) echo "meta-llama/Llama-3.1-8B-Instruct" ;;
-        llama-2-13b-chat-norwegian) echo "ruternorway/llama-2-13b-chat-norwegian" ;;
-        eurollm-9b-instruct) echo "utter-project/EuroLLM-9B-2512-instruct" ;;
-        norwai-mistral-7b-instruct) echo "NorwAI/NorwAI-Mistral-7B-instruct" ;;
-        nb-gpt-j-6b) echo "NbAiLab/nb-gpt-j-6B-torgersen-alpaca" ;;
-        gemma-2-9b) echo "google/gemma-2-9b" ;;
-        gemma-2-27b) echo "google/gemma-2-27b" ;;
-        gemma-3-12b) echo "google/gemma-3-12b-pt" ;;
-        gemma-3-27b) echo "google/gemma-3-27b-pt" ;;
-        viking-33b) echo "LumiOpen/Viking-33B" ;;
-        *) echo "$short_name" ;;  # Assume it's already a full name
-    esac
-}
-
-FULL_MODEL_NAME=$(get_full_model_name "$MODEL")
-MODEL_CACHE_DIR=$(convert_model_to_cache_dir "$FULL_MODEL_NAME")
-SOURCE_MODEL_DIR="$PROJECT_HF_DIR/hub/$MODEL_CACHE_DIR"
-
-# Copy model from read-only project storage to writable job-local cache
-if [ -d "$SOURCE_MODEL_DIR" ]; then
-    echo "Copying model $FULL_MODEL_NAME to job-local cache..."
-    rsync -aq "$SOURCE_MODEL_DIR/" "$HF_HOME/hub/$MODEL_CACHE_DIR/"
-    echo "Model cache copy complete"
-else
-    echo "WARNING: Model $FULL_MODEL_NAME not found in shared cache at $SOURCE_MODEL_DIR"
-    echo "Model will be downloaded during training (requires internet access)"
-fi
-
-[ -d "$PROJECT_HF_DIR/metrics" ] && rsync -aq "$PROJECT_HF_DIR/metrics/" "$HF_METRICS_CACHE/"
-[ -d "$PROJECT_HF_DIR/modules" ] && rsync -aq "$PROJECT_HF_DIR/modules/" "$HF_MODULES_CACHE/"
+# ********** JOB-LOCAL CACHE **********
+source scripts/olivia_job_local_cache.sh
+# ********** END JOB-LOCAL CACHE **********
 
 # Check for container command BEFORE loading modules (like the working monitor script)
 # The monitor script works without modules, so apptainer should be available in base environment
@@ -472,6 +426,14 @@ module load CUDA/12.6.0
 module load PyTorch/2.8.0
 
 source .env
+
+# NCCL settings for multi-node training.  Exported here (after module purge)
+# rather than earlier, because module --force purge can clear env vars on some nodes.
+export NCCL_SOCKET_IFNAME="${NCCL_SOCKET_IFNAME:-eth0}"
+export NCCL_DEBUG="${NCCL_DEBUG:-INFO}"
+export NCCL_IB_DISABLE="${NCCL_IB_DISABLE:-1}"
+export NCCL_P2P_DISABLE="${NCCL_P2P_DISABLE:-1}"
+export TORCH_NCCL_ASYNC_ERROR_HANDLING="${TORCH_NCCL_ASYNC_ERROR_HANDLING:-1}"
 
 # Re-check container command after loading modules (in case it's provided by a module)
 if [ -z "$CONTAINER_CMD" ]; then
@@ -579,10 +541,13 @@ echo "=== Network interfaces ==="
 ip link show | grep -E "^[0-9]+" | cut -d: -f2
 
 echo "=== Step 5: Launch training ==="
-torchrun --nnodes=SLURM_NNODES_PLACEHOLDER --nproc_per_node=SLURM_GPUS_ON_NODE_PLACEHOLDER --node_rank=$SLURM_NODEID --rdzv_backend=c10d --rdzv_endpoint=MASTER_ADDR_PLACEHOLDER:MASTER_PORT_PLACEHOLDER scripts/wandb_finetune.py --model MODEL_PLACEHOLDER --quantization none DISTRIBUTION_FLAG_PLACEHOLDER --hf_token HUGGINGFACE_TOKEN_PLACEHOLDER --train_dataset TRAIN_DATASET_PLACEHOLDER --val_dataset VAL_DATASET_PLACEHOLDER --max_input_text_tokens MAX_INPUT_TEXT_TOKENS_PLACEHOLDER TRAIN_BATCH_SIZE_PLACEHOLDER VAL_BATCH_SIZE_PLACEHOLDER TASK_LIMIT_PLACEHOLDER --output_dir models/MODEL_PLACEHOLDER-apptainer-fsdp RESUME_ARG_PLACEHOLDER
+torchrun --nnodes=SLURM_NNODES_PLACEHOLDER --nproc_per_node=SLURM_GPUS_ON_NODE_PLACEHOLDER --node_rank=$SLURM_NODEID --rdzv_backend=c10d --rdzv_endpoint=MASTER_ADDR_PLACEHOLDER:MASTER_PORT_PLACEHOLDER scripts/wandb_finetune.py --model MODEL_PLACEHOLDER --quantization none DISTRIBUTION_FLAG_PLACEHOLDER --hf_token HUGGINGFACE_TOKEN_PLACEHOLDER --train_dataset TRAIN_DATASET_PLACEHOLDER --val_dataset VAL_DATASET_PLACEHOLDER --max_input_text_tokens MAX_INPUT_TEXT_TOKENS_PLACEHOLDER TRAIN_BATCH_SIZE_PLACEHOLDER VAL_BATCH_SIZE_PLACEHOLDER TASK_LIMIT_PLACEHOLDER --output_dir OUTPUT_DIR_PLACEHOLDER RESUME_ARG_PLACEHOLDER
 SCRIPT_EOF
 
-# Replace placeholders with actual values
+# Replace placeholders with actual values.
+# Temporarily disable set -u: some variables (NCCL_*, batch sizes) may legitimately
+# be empty or unset on certain nodes/configurations after module purge.
+set +u
 sed -i "s|HF_HOME_PLACEHOLDER|$HF_HOME|g" "$SCRIPT_FILE"
 sed -i "s|HF_DATASETS_CACHE_PLACEHOLDER|$HF_DATASETS_CACHE|g" "$SCRIPT_FILE"
 sed -i "s|HF_MODULES_CACHE_PLACEHOLDER|$HF_MODULES_CACHE|g" "$SCRIPT_FILE"
@@ -599,6 +564,7 @@ sed -i "s|WANDB_API_KEY_PLACEHOLDER|$WANDB_API_KEY|g" "$SCRIPT_FILE"
 sed -i "s|SLURM_NNODES_PLACEHOLDER|$SLURM_NNODES|g" "$SCRIPT_FILE"
 sed -i "s|SLURM_GPUS_ON_NODE_PLACEHOLDER|$SLURM_GPUS_ON_NODE|g" "$SCRIPT_FILE"
 sed -i "s|MODEL_PLACEHOLDER|$MODEL|g" "$SCRIPT_FILE"
+sed -i "s|OUTPUT_DIR_PLACEHOLDER|$OUTPUT_DIR|g" "$SCRIPT_FILE"
 sed -i "s|DISTRIBUTION_FLAG_PLACEHOLDER|$DISTRIBUTION_FLAG|g" "$SCRIPT_FILE"
 sed -i "s|HUGGINGFACE_TOKEN_PLACEHOLDER|$HUGGINGFACE_TOKEN|g" "$SCRIPT_FILE"
 sed -i "s|TASK_LIMIT_PLACEHOLDER|$TASK_LIMIT|g" "$SCRIPT_FILE"
@@ -613,6 +579,7 @@ VAL_BATCH_SIZE_ARG=""
 sed -i "s|TRAIN_BATCH_SIZE_PLACEHOLDER|$TRAIN_BATCH_SIZE_ARG|g" "$SCRIPT_FILE"
 sed -i "s|VAL_BATCH_SIZE_PLACEHOLDER|$VAL_BATCH_SIZE_ARG|g" "$SCRIPT_FILE"
 sed -i "s|RESUME_ARG_PLACEHOLDER|$RESUME_ARG|g" "$SCRIPT_FILE"
+set -u
 sed -i "s|INSTALL_FLAG_PLACEHOLDER|${PWD}/logs/install_done_${SLURM_JOB_ID}|g" "$SCRIPT_FILE"
 
 chmod +x "$SCRIPT_FILE"

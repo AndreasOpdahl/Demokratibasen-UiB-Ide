@@ -14,7 +14,7 @@ Shared utilities for fine-tuning and evaluation. Import via `from utils import .
 | **eval_results.py** | Evaluation results I/O. Manages paths for centralized `all_eval_results/` layout, loads/saves eval JSON and summary files, tracks which checkpoints have been evaluated. |
 | **formatting.py** | Example formatting for training and evaluation. Applies model-specific prompt templates (chat vs plain) using `model_configs`; supports batched formatting for fast `dataset.map()`. |
 | **metrics.py** | ROUGE metrics and text cleaning. Computes ROUGE from predictions/labels, cleans decoded text (removes special tokens), optionally logs to WandB. |
-| **nli_subset.py** | Fixed NLI evaluation subset. Creates/loads deterministic subset indices (default 500) so NLI faithfulness is comparable across checkpoint runs. |
+| **nli_subset.py** | Fixed NLI evaluation subset. Default size 100; set size ≥ eval length (usually = `val_data_size`) for full-val NLI. Seed 42 for random subsets. Indices saved for comparability across checkpoints. |
 | **tokenization.py** | Tokenization for training and evaluation. Tokenizes examples, tracks prompt length for loss masking, handles model context limits and truncation. |
 
 ---
@@ -102,16 +102,16 @@ Shared utilities for fine-tuning and evaluation. Import via `from utils import .
 
 ### nli_subset.py
 
-**Description:** Manages a fixed subset of examples for NLI faithfulness evaluation. Creates and loads a deterministic subset of indices (default 500, seed 42) so that NLI is run on the same examples across all checkpoint evaluations—ensuring fair comparison. Can use "first N" when extending the eval set for backward compatibility. Saves indices to `nli_fixed_subset_indices.json` for reuse.
+**Description:** Manages a fixed subset of examples for NLI faithfulness evaluation. Default `subset_size` is **100** (`NLI_DEFAULT_SUBSET_SIZE`). Use `subset_size >= total_examples` (typically equal to `val_data_size`) for full-val NLI. Smaller sizes use a sorted **seed-42** random sample or first N when extending eval size. Same indices are reused across checkpoints via `nli_fixed_subset_indices.json`.
 
 **Important functions:**
 - `get_nli_subset_file_path(model_dir)` — Path to `all_eval_results/nli_fixed_subset_indices.json`.
-- `create_fixed_nli_subset(total_examples, subset_size, seed, model_dir)` — Creates subset with fixed seed, optionally saves to file.
+- `create_fixed_nli_subset(total_examples, subset_size, seed, model_dir)` — `subset_size` None → default 100; `subset_size >= total` → full set; else seeded random subset.
 - `load_fixed_nli_subset(model_dir)` — Loads indices from file; returns None if missing.
 - `get_or_create_fixed_nli_subset(total_examples, model_dir, subset_size, seed, use_first_n_for_extended)` — Loads existing or creates new. When `use_first_n_for_extended=True` and total > subset_size, uses first N indices (for backward comparability when extending eval set).
 - `apply_fixed_subset(input_texts, prediction_texts, reference_texts, indices)` — Filters lists by indices; returns `(filtered_inputs, filtered_preds, filtered_refs)`.
 
-**Constants:** `NLI_FIXED_SUBSET_SIZE = 500`, `NLI_FIXED_SUBSET_SEED = 42`
+**Constants:** `NLI_DEFAULT_SUBSET_SIZE = 100`, `NLI_FIXED_SUBSET_SEED = 42`; `NLI_FIXED_SUBSET_SIZE = 500` retained for legacy imports only.
 
 **Local dependencies:** None
 
@@ -153,7 +153,7 @@ All other modules have no internal utils dependencies.
 | Dataset | `load_jsonl_dataset` |
 | Tokenization | `tokenize_train_examples`, `tokenize_eval_examples` |
 | Formatting | `format_train_example`, `format_train_examples_batch`, `format_eval_example` |
-| NLI subset | `get_or_create_fixed_nli_subset`, `apply_fixed_subset`, `NLI_FIXED_SUBSET_SIZE` |
+| NLI subset | `get_or_create_fixed_nli_subset`, `apply_fixed_subset`, `NLI_DEFAULT_SUBSET_SIZE`, `NLI_FIXED_SUBSET_SEED` |
 
 ---
 

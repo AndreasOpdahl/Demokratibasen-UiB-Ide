@@ -246,14 +246,14 @@ MODEL_CONFIGS = {
         train_batch_size=4,
         val_batch_size=16,
     ),
-    'gemma-7b': ModelConfig(
-        short_name='gemma-7b',
-        hf_name='google/gemma-7b',
+    'gemma-7b-it': ModelConfig(
+        short_name='gemma-7b-it',
+        hf_name='google/gemma-7b-it',
         lora_r=8,
         lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj"],
-        learning_rate=1e-5,
-        prompt_config=PROMPT_PLAIN,
+        learning_rate=3e-6,
+        prompt_config=PROMPT_CHATML,
         architecture='gemma',
         train_batch_size=4,
         val_batch_size=8,
@@ -316,10 +316,10 @@ MODEL_CONFIGS = {
         lora_r=8,
         lora_alpha=16,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
-        learning_rate=1e-5,
+        learning_rate=2e-6,
         prompt_config=PROMPT_PLAIN,
         architecture='mistral',
-        train_batch_size=4,
+        train_batch_size=2,
         val_batch_size=16,
     ),
     'viking-13b': ModelConfig(
@@ -387,7 +387,8 @@ MODEL_CONFIGS = {
         architecture='mistral',
         train_batch_size=4,
         val_batch_size=16,
-        max_output_summary_tokens=256,  # Shorter limit reduces gibberish/hallucination in generation
+        max_input_text_tokens=1700,  # Model has max_position_embeddings=2048; must fit prompt+input+output within that
+        max_output_summary_tokens=256,
     ),
     'normistral-7b-instruct': ModelConfig(
         short_name='normistral-7b-instruct',
@@ -396,11 +397,12 @@ MODEL_CONFIGS = {
         lora_alpha=32,
         lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
         learning_rate=1.5e-5,
-        prompt_config=PROMPT_NORMISTRAL,  # Note: This model has a custom chat template (role-based), but tokenizer.apply_chat_template() should handle it
+        prompt_config=PROMPT_CHATML,
         architecture='mistral',
         train_batch_size=4,
         val_batch_size=16,
-        max_output_summary_tokens=256,  # Limit runway to reduce gibberish/hallucination
+        max_input_text_tokens=1700,  # Model has max_position_embeddings=2048; must fit prompt+input+output within that
+        max_output_summary_tokens=256,
     ),
     'normistral-11b': ModelConfig(
         short_name='normistral-11b',
@@ -414,6 +416,22 @@ MODEL_CONFIGS = {
         train_batch_size=4,
         val_batch_size=6,
         max_output_summary_tokens=256,  # Limit runway to reduce gibberish/hallucination
+    ),
+    'normistral-11b-long': ModelConfig(
+        short_name='normistral-11b-long',
+        hf_name='norallm/normistral-11b-long',
+        lora_r=16,
+        lora_alpha=32,
+        lora_target_modules=["q_proj", "v_proj", "k_proj", "o_proj"],
+        learning_rate=2e-5,
+        prompt_config=PROMPT_NORMISTRAL,
+        architecture='mistral',
+        # Wider-context variant: keep per-device batch conservative to avoid OOM
+        # when longer sequences are used.
+        train_batch_size=2,
+        val_batch_size=4,
+        max_input_text_tokens=12000,
+        max_output_summary_tokens=256,
     ),
     
     # Llama-based models - using chat templates
@@ -490,7 +508,7 @@ def get_model_config(short_name: str) -> ModelConfig:
     """Get configuration for a model by short name.
     
     Args:
-        short_name: Short model name (e.g., 'gemma-7b')
+        short_name: Short model name (e.g., 'gemma-7b-it')
     
     Returns:
         ModelConfig for the model

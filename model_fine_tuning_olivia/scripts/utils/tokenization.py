@@ -10,6 +10,19 @@ from typing import Dict, List, Any, Optional
 from transformers import AutoTokenizer
 
 
+def _find_last_subsequence(haystack: List[int], needle: List[int]) -> Optional[int]:
+    """
+    Return start index of the last occurrence of `needle` in `haystack`,
+    or None if not found.
+    """
+    if not haystack or not needle or len(needle) > len(haystack):
+        return None
+    for i in range(len(haystack) - len(needle), -1, -1):
+        if haystack[i:i + len(needle)] == needle:
+            return i
+    return None
+
+
 def _compute_prompt_length_chat(input_ids: List[int], tokenizer: AutoTokenizer) -> Optional[int]:
     """
     Compute exact prompt length (tokens before assistant response) for chat templates.
@@ -20,7 +33,8 @@ def _compute_prompt_length_chat(input_ids: List[int], tokenizer: AutoTokenizer) 
     # Mistral / Llama-2: ... [/INST] <space> assistant_response
     try:
         inst_id = tokenizer.convert_tokens_to_ids("[/INST]")
-        if inst_id is not None and inst_id in input_ids:
+        unk_id = getattr(tokenizer, "unk_token_id", None)
+        if inst_id is not None and inst_id != unk_id and inst_id in input_ids:
             positions = [i for i, tid in enumerate(input_ids) if tid == inst_id]
             if positions:
                 # First token of assistant is after [/INST]; often one space token follows
@@ -28,20 +42,46 @@ def _compute_prompt_length_chat(input_ids: List[int], tokenizer: AutoTokenizer) 
                 return min(last_inst + 1, len(input_ids))
     except Exception:
         pass
+    # Fallback: [/INST] is often not a single token (SentencePiece split),
+    # so detect it as an encoded token sequence.
+    try:
+        inst_marker_ids = tokenizer.encode("[/INST]", add_special_tokens=False)
+        pos = _find_last_subsequence(input_ids, inst_marker_ids)
+        if pos is not None:
+            return min(pos + len(inst_marker_ids), len(input_ids))
+    except Exception:
+        pass
     # Llama-3 / 3.1: ... <|end_header_id|> \n\n assistant_response
     try:
         end_header_id = tokenizer.convert_tokens_to_ids("<|end_header_id|>")
-        if end_header_id is not None and end_header_id in input_ids:
+        unk_id = getattr(tokenizer, "unk_token_id", None)
+        if end_header_id is not None and end_header_id != unk_id and end_header_id in input_ids:
             positions = [i for i, tid in enumerate(input_ids) if tid == end_header_id]
             if positions:
                 last_end = positions[-1]
                 return min(last_end + 1, len(input_ids))
     except Exception:
         pass
-    # ChatML: <|im_start|>assistant\n
+    try:
+        end_header_ids = tokenizer.encode("<|end_header_id|>", add_special_tokens=False)
+        pos = _find_last_subsequence(input_ids, end_header_ids)
+        if pos is not None:
+            return min(pos + len(end_header_ids), len(input_ids))
+    except Exception:
+        pass
+    # ChatML: support both "<|im_start|>assistant\n" and "<|im_start|> assistant\n"
+    for marker in ("<|im_start|>assistant\n", "<|im_start|> assistant\n", "<|im_start|>assistant", "<|im_start|> assistant"):
+        try:
+            assistant_marker_ids = tokenizer.encode(marker, add_special_tokens=False)
+            pos = _find_last_subsequence(input_ids, assistant_marker_ids)
+            if pos is not None:
+                return min(pos + len(assistant_marker_ids), len(input_ids))
+        except Exception:
+            pass
     try:
         im_start_id = tokenizer.convert_tokens_to_ids("<|im_start|>")
-        if im_start_id is not None and im_start_id in input_ids:
+        unk_id = getattr(tokenizer, "unk_token_id", None)
+        if im_start_id is not None and im_start_id != unk_id and im_start_id in input_ids:
             positions = [i for i, tid in enumerate(input_ids) if tid == im_start_id]
             if positions:
                 # Last <|im_start|> is for assistant; content starts after \n
@@ -59,17 +99,36 @@ def _compute_prompt_length_plain(input_ids: List[int], tokenizer: AutoTokenizer)
     """
     if not input_ids:
         return None
-    try:
-        marker = "Oppsummering:\n\n###\n\n"
-        marker_ids = tokenizer.encode(marker, add_special_tokens=False)
-        if not marker_ids:
-            return None
-        # Find last occurrence of marker sequence
-        for i in range(len(input_ids) - len(marker_ids), -1, -1):
-            if input_ids[i:i + len(marker_ids)] == marker_ids:
-                return min(i + len(marker_ids), len(input_ids))
-    except Exception:
-        pass
+    # Accept a few plain-format variants to avoid falling back when separators differ.
+    for marker in ("Oppsummering:\n\n###\n\n", "Oppsummering:\n\n", "Oppsummering:"):
+        try:
+            marker_ids = tokenizer.encode(marker, add_special_tokens=False)
+            if not marker_ids:
+                continue
+            pos = _find_last_subsequence(input_ids, marker_ids)
+            if pos is not None:
+                return min(pos + len(marker_ids), len(input_ids))
+        except Exception:
+            continue
+    return None
+
+
+def _compute_prompt_length_alpaca(input_ids: List[int], tokenizer: AutoTokenizer) -> Optional[int]:
+    """
+    Compute prompt length for Alpaca-style prompts ending with "Response:".
+    """
+    if not input_ids:
+        return None
+    for marker in ("Response:\n", "Response: ", "Response:"):
+        try:
+            marker_ids = tokenizer.encode(marker, add_special_tokens=False)
+            if not marker_ids:
+                continue
+            pos = _find_last_subsequence(input_ids, marker_ids)
+            if pos is not None:
+                return min(pos + len(marker_ids), len(input_ids))
+        except Exception:
+            continue
     return None
 
 
@@ -152,20 +211,21 @@ def tokenize_train_examples(
     
     # Calculate desired max length, but don't exceed model's limit
     # CRITICAL: Ensure we never exceed the model's actual context window
-    # OPTIMIZATION: Cap max_length at a reasonable value (e.g., 8192) even for large context models
+    # OPTIMIZATION: Cap max_length at a reasonable value even for large context models
     # This speeds up tokenization significantly while still allowing long sequences when needed
     desired_max_length = max_input_prompt_tokens + max_output_summary_tokens
-    # For very large context models (128K+), cap at 8192 for tokenization speed
+    # For very large context models (128K+), cap at 16384 for tokenization speed.
+    # This still supports wider-window model variants (e.g., long-context 11B models).
     # The model can still handle longer sequences, but tokenization is much faster with this cap
-    effective_model_max = min(model_max_length, 8192) if model_max_length > 8192 else model_max_length
+    effective_model_max = min(model_max_length, 16384) if model_max_length > 16384 else model_max_length
     max_length = min(desired_max_length, effective_model_max)
     
     # Additional safety check: if max_length is still too large, cap it
     if max_length > model_max_length:
         print(f"⚠ WARNING: Calculated max_length ({max_length}) exceeds model_max_length ({model_max_length}). Capping to {model_max_length}")
         max_length = model_max_length
-    elif model_max_length > 8192 and max_length == 8192:
-        pass  # Capped to 8192 for tokenization speed
+    elif model_max_length > 16384 and max_length == 16384:
+        pass  # Capped to 16384 for tokenization speed
     
     # OPTIMIZATION: Pre-truncate text at character level before tokenization
     # This is much faster than letting the tokenizer process very long texts
@@ -207,8 +267,10 @@ def tokenize_train_examples(
                 tokenized["input_ids"][idx] = input_ids[:max_length]
         print(f"⚠ WARNING: {sequences_exceeding_limit} example(s) exceeded max_length {max_length} and were manually truncated.")
     
-    # Exact prompt length: chat markers ([/INST], etc.), plain "Oppsummering:", or 80% heuristic
+    # Exact prompt length from known markers. If not found, fall back to 0
+    # (no masking) instead of a fixed-ratio guess.
     prompt_lengths = []
+    unresolved_count = 0
     for input_ids in input_ids_list:
         exact = _compute_prompt_length_chat(input_ids, tokenizer)
         if exact is not None:
@@ -218,8 +280,17 @@ def tokenize_train_examples(
             if exact_plain is not None:
                 prompt_lengths.append(exact_plain)
             else:
-                total_tokens = len(input_ids)
-                prompt_lengths.append(int(total_tokens * 0.8))
+                exact_alpaca = _compute_prompt_length_alpaca(input_ids, tokenizer)
+                if exact_alpaca is not None:
+                    prompt_lengths.append(exact_alpaca)
+                else:
+                    unresolved_count += 1
+                    prompt_lengths.append(0)
+    if unresolved_count:
+        print(
+            f"⚠ WARNING: Could not detect prompt boundary for {unresolved_count} training example(s); "
+            "using prompt_length=0 (no masking) for those examples."
+        )
     tokenized["prompt_length"] = prompt_lengths
     
     return tokenized

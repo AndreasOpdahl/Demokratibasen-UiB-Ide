@@ -10,8 +10,8 @@ evaluation when using FSDP for this reason. This script uses model parallelism i
 Usage:
   # Multi-GPU evaluation with model parallelism:
   python evaluate_distributed_checkpoints_multigpu.py \
-    --model gemma-7b \
-    --checkpoint_dir models/gemma-7b_fsdp/checkpoint-100 \
+    --model gemma-7b-it \
+    --checkpoint_dir models/gemma-7b-it_fsdp/checkpoint-100 \
     --val_dataset data/output/processed_data_val.jsonl \
     --hf_token YOUR_TOKEN \
     --wandb_project lm-evaluation \
@@ -30,7 +30,7 @@ import shutil
 import sys
 import time  # ADD THIS for staggered loading
 from datetime import datetime
-from typing import Any, Dict, Optional, Tuple, Union, List
+from typing import Any, Dict, List, Optional, Set, Tuple, Union
 
 # Disable tokenizer parallelism to avoid fork warnings in multi-process environment
 os.environ['TOKENIZERS_PARALLELISM'] = 'false'
@@ -76,6 +76,8 @@ from model_configs import get_model_config_by_hf_name, get_model_name_mapping, g
 # Import shared utilities
 from utils import (
     EvalDataCollator,
+    clean_decoded_text,
+    compute_rouge,
     compute_rouge_metrics,
     extract_checkpoint_step,
     get_checkpoint_name_and_step,
@@ -83,26 +85,29 @@ from utils import (
     get_model_dir_from_checkpoint,
     get_eval_results_path,
     get_predictions_file_path,
+    get_faithfulness_details_path,
     get_old_eval_results_path,
     load_eval_results,
     save_eval_results,
+    should_skip_faithfulness_update,
+    nli_faithfulness_aggregate_present,
     update_evaluation_summary,
     load_jsonl_dataset,
     tokenize_eval_examples,
     get_or_create_fixed_nli_subset,
     apply_fixed_subset,
-    NLI_FIXED_SUBSET_SIZE,
+    NLI_DEFAULT_SUBSET_SIZE,
     format_eval_example,
 )
 
-# Import summarisation evaluation metrics
+# Import extended evaluation metrics (hygiene, BERTScore, NLI faithfulness)
 try:
-    from summarisation_evaluation import extended_evaluate
+    from utils.metrics import extended_evaluate
     EXTENDED_EVAL_AVAILABLE = True
 except ImportError as e:
     EXTENDED_EVAL_AVAILABLE = False
     extended_evaluate = None  # type: ignore
-    print(f"Warning: summarisation_evaluation not available ({e}). Only ROUGE metrics will be computed.")
+    print(f"Warning: utils.metrics.extended_evaluate not available ({e}). Only ROUGE metrics will be computed.")
 
 # Helper function to calculate examples from steps
 def calculate_examples_from_steps(steps, batch_size, gradient_accumulation_steps, num_gpus):
@@ -111,15 +116,155 @@ def calculate_examples_from_steps(steps, batch_size, gradient_accumulation_steps
         return None
     return steps * batch_size * gradient_accumulation_steps * num_gpus
 
+def load_predictions_jsonl(predictions_file: str):
+    """Load input_texts, prediction_texts, reference_texts from a predictions JSONL file.
+
+    Returns:
+        Tuple of (input_texts, prediction_texts, reference_texts) as lists of strings.
+    """
+    input_texts, prediction_texts, reference_texts = [], [], []
+    with open(predictions_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            entry = json.loads(line)
+            input_texts.append(entry.get("input_text", ""))
+            prediction_texts.append(entry.get("prediction", ""))
+            reference_texts.append(entry.get("reference", ""))
+    return input_texts, prediction_texts, reference_texts
+
+
 # Evaluation parameters
 MAX_INPUT_TEXT_TOKENS = 2048
 MAX_EXTRA_PROMPT_TOKENS = 40
 MAX_INPUT_PROMPT_TOKENS = MAX_INPUT_TEXT_TOKENS + MAX_EXTRA_PROMPT_TOKENS
 MAX_OUTPUT_SUMMARY_TOKENS = 512
 VAL_BATCH_SIZE = 32
-VAL_DATA_SIZE = 500
+VAL_DATA_SIZE = 1000
 VAL_DATA_SEED = 42  # Fixed seed for reproducible validation sampling
 VAL_BEAM_SIZE = 4
+
+DEFAULT_C200K_TO_MODEL_RATIO = 1.0
+C200K_CONVERSION_TABLE_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "utils",
+    "c200k_length_conversion_table.json",
+)
+
+
+def _load_c200k_conversion_table(path: str = C200K_CONVERSION_TABLE_PATH) -> Dict[str, Any]:
+    """Load c200k->model conversion table if available."""
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def _resolve_c200k_to_model_ratio(
+    model_name: str,
+    model_config: Optional[Any],
+    table: Dict[str, Any],
+) -> float:
+    """Resolve c200k->model ratio from short name, HF name, architecture, or default."""
+    by_short = table.get("by_short_name", {}) if isinstance(table, dict) else {}
+    by_hf = table.get("by_hf_name", {}) if isinstance(table, dict) else {}
+    by_arch = table.get("by_architecture", {}) if isinstance(table, dict) else {}
+    default_ratio = float(table.get("default_ratio", DEFAULT_C200K_TO_MODEL_RATIO)) if isinstance(table, dict) else DEFAULT_C200K_TO_MODEL_RATIO
+
+    if model_config is not None:
+        short_name = getattr(model_config, "short_name", None)
+        if short_name and short_name in by_short:
+            return float(by_short[short_name])
+
+    if model_name in by_hf:
+        return float(by_hf[model_name])
+
+    if model_config is not None:
+        arch = getattr(model_config, "architecture", None)
+        if arch and arch in by_arch:
+            return float(by_arch[arch])
+
+    return default_ratio
+
+
+def _convert_c200k_goal_to_model_tokens(
+    model_name: str,
+    model_config: Optional[Any],
+    c200k_min_new_tokens: Optional[int],
+    c200k_max_new_tokens: Optional[int],
+) -> Tuple[Optional[int], Optional[int], Optional[float]]:
+    """Convert c200k min/max token goals to model-tokenizer min/max."""
+    if c200k_min_new_tokens is None and c200k_max_new_tokens is None:
+        return None, None, None
+
+    table = _load_c200k_conversion_table()
+    ratio = _resolve_c200k_to_model_ratio(model_name, model_config, table)
+    ratio = max(0.1, ratio)
+
+    min_tokens = round(c200k_min_new_tokens * ratio) if c200k_min_new_tokens is not None else None
+    max_tokens = round(c200k_max_new_tokens * ratio) if c200k_max_new_tokens is not None else None
+
+    if min_tokens is not None:
+        min_tokens = max(1, min_tokens)
+    if max_tokens is not None:
+        max_tokens = max(1, max_tokens)
+    if min_tokens is not None and max_tokens is not None and min_tokens > max_tokens:
+        min_tokens = max_tokens
+
+    return min_tokens, max_tokens, ratio
+
+
+def _build_results_subdir_name(
+    c200k_min_new_tokens: Optional[int],
+    c200k_max_new_tokens: Optional[int],
+) -> str:
+    """Return the result subdirectory for this run."""
+    if c200k_min_new_tokens is not None and c200k_max_new_tokens is not None:
+        return f"eval_results_min{c200k_min_new_tokens}_max{c200k_max_new_tokens}_tokens"
+    return "all_eval_results"
+
+
+def _sync_model_tokenizer_special_tokens(model: torch.nn.Module, tokenizer) -> None:
+    """Align pad/eos on model config + generation_config with the tokenizer.
+
+    Gemma and several other families set pad_token == eos_token; HF generate relies on
+    config.pad_token_id matching the tokenizer when batching with left padding.
+    """
+    pad_id = getattr(tokenizer, "pad_token_id", None)
+    eos_id = getattr(tokenizer, "eos_token_id", None)
+    if pad_id is None and eos_id is not None:
+        pad_id = eos_id
+    candidates: List[torch.nn.Module] = [model]
+    try:
+        if hasattr(model, "get_base_model"):
+            bm = model.get_base_model()
+            if bm is not None:
+                candidates.append(bm)
+    except Exception:
+        pass
+    inner = getattr(model, "base_model", None)
+    if inner is not None:
+        candidates.append(inner)
+        nested = getattr(inner, "model", None)
+        if nested is not None:
+            candidates.append(nested)
+    seen: Set[int] = set()
+    for m in candidates:
+        if m is None or id(m) in seen:
+            continue
+        seen.add(id(m))
+        cfg = getattr(m, "config", None)
+        if cfg is not None:
+            if pad_id is not None:
+                cfg.pad_token_id = pad_id
+            if eos_id is not None:
+                cfg.eos_token_id = eos_id
+        gen_cfg = getattr(m, "generation_config", None)
+        if gen_cfg is not None:
+            if pad_id is not None:
+                gen_cfg.pad_token_id = pad_id
+            if eos_id is not None:
+                gen_cfg.eos_token_id = eos_id
+
 
 def sample_validation_data_reproducibly(
     val_data: list,
@@ -241,16 +386,22 @@ def setup_distributed_evaluation():
 class CausalLMTrainer(Trainer):
     def __init__(self, *args, 
                  generation_max_length: Optional[int] = None,
+                 generation_min_new_tokens: int = 15,
                  generation_num_beams: Optional[int] = None,
+                 generation_length_penalty: float = 1.0,
                  eval_data_collator: Optional[Any] = None,
                  use_greedy: bool = True,
+                 allow_sampling_fallback: bool = False,
                  checkpoint_dir: Optional[str] = None,
                  model_name: Optional[str] = None,  # Store model name for prompt format detection
                  **kwargs) -> None:
         self.generation_max_length = generation_max_length
+        self.generation_min_new_tokens = max(1, int(generation_min_new_tokens))
         self.generation_num_beams = generation_num_beams
+        self.generation_length_penalty = generation_length_penalty
         self.eval_data_collator = eval_data_collator
         self.use_greedy = use_greedy
+        self.allow_sampling_fallback = allow_sampling_fallback
         self.checkpoint_dir = checkpoint_dir  # Store checkpoint directory
         self.model_name = model_name  # Store model name for prompt format detection
         super().__init__(*args, **kwargs)
@@ -325,6 +476,12 @@ class CausalLMTrainer(Trainer):
         
         return dataloader
 
+    def evaluate(self, eval_dataset=None, ignore_keys=None, metric_key_prefix="eval"):
+        """Clear per-run buffers so `evaluate()` can be called multiple times safely."""
+        self._eval_predictions = []
+        self._empty_warning_shown = False
+        return super().evaluate(eval_dataset, ignore_keys, metric_key_prefix)
+
     def prediction_step(
         self,
         model: torch.nn.Module,
@@ -350,20 +507,24 @@ class CausalLMTrainer(Trainer):
             labels = labels.clone()
             labels[labels == -100] = self._processing_class.pad_token_id
 
-        # Generate with memory-efficient settings
-        with torch.amp.autocast('cuda'):
+        # Generate with memory-efficient settings (use BF16 to match model's native dtype)
+        with torch.amp.autocast('cuda', dtype=torch.bfloat16):
             # Get special token IDs for better stopping
             inst_token_id = None
             if hasattr(self._processing_class, 'convert_tokens_to_ids'):
                 try:
-                    inst_token_id = self._processing_class.convert_tokens_to_ids('[/INST]')
+                    candidate_inst_id = self._processing_class.convert_tokens_to_ids('[/INST]')
+                    unk_token_id = getattr(self._processing_class, 'unk_token_id', None)
+                    # Some tokenizers map unknown strings to unk_token_id (often 0).
+                    # Treat that as "not found" so we don't mis-handle generation boundaries.
+                    if candidate_inst_id is not None and candidate_inst_id != unk_token_id:
+                        inst_token_id = candidate_inst_id
                 except:
                     pass
             
-            # Set minimum length to prevent model from outputting EOS immediately.
-            # Keep it low (5–15): high min_new_tokens (e.g. 51) forces model past natural stop and causes gibberish.
+            # Keep min_new_tokens configurable for length-controlled evaluation runs.
             gen_max_len = self.generation_max_length if self.generation_max_length is not None else 512
-            min_new_tokens = max(5, 15)
+            min_new_tokens = max(1, int(self.generation_min_new_tokens))
             
             generation_kwargs = {
                 'input_ids': input_ids,
@@ -373,6 +534,7 @@ class CausalLMTrainer(Trainer):
                 'do_sample': False,
                 'pad_token_id': self._processing_class.pad_token_id,
                 'eos_token_id': self._processing_class.eos_token_id,
+                'length_penalty': self.generation_length_penalty,
                 'repetition_penalty': 1.1,  # Slight penalty to prevent repetition
             }
             # Critical: pass attention_mask so model does not attend to left-padding.
@@ -533,6 +695,25 @@ class CausalLMTrainer(Trainer):
                             ) from recovery_error
                     else:
                         # For non-GPT-J models, try standard fallback
+                        if self.allow_sampling_fallback:
+                            print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
+                            generation_kwargs_fallback = generation_kwargs.copy()
+                            generation_kwargs_fallback['do_sample'] = True
+                            generation_kwargs_fallback['temperature'] = 0.7
+                            generation_kwargs_fallback['top_p'] = 0.9
+                            try:
+                                generated_ids = model.generate(**generation_kwargs_fallback)
+                                print(f'  Fallback generation succeeded')
+                            except Exception as e2:
+                                print(f'  Fallback also failed: {e2}')
+                                raise
+                        else:
+                            print("  Deterministic mode: sampling fallback disabled (use --allow_sampling_fallback to enable).")
+                            raise
+                else:
+                    # Non-CUDA error, try standard fallback
+                    print(f'⚠ ERROR during generation: {e}')
+                    if self.allow_sampling_fallback:
                         print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
                         generation_kwargs_fallback = generation_kwargs.copy()
                         generation_kwargs_fallback['do_sample'] = True
@@ -544,10 +725,14 @@ class CausalLMTrainer(Trainer):
                         except Exception as e2:
                             print(f'  Fallback also failed: {e2}')
                             raise
-                else:
-                    # Non-CUDA error, try standard fallback
-                    print(f'⚠ ERROR during generation: {e}')
+                    else:
+                        print("  Deterministic mode: sampling fallback disabled (use --allow_sampling_fallback to enable).")
+                        raise
+            except Exception as e:
+                print(f'⚠ ERROR during generation: {e}')
+                if self.allow_sampling_fallback:
                     print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
+                    # Try with sampling as fallback
                     generation_kwargs_fallback = generation_kwargs.copy()
                     generation_kwargs_fallback['do_sample'] = True
                     generation_kwargs_fallback['temperature'] = 0.7
@@ -558,19 +743,8 @@ class CausalLMTrainer(Trainer):
                     except Exception as e2:
                         print(f'  Fallback also failed: {e2}')
                         raise
-            except Exception as e:
-                print(f'⚠ ERROR during generation: {e}')
-                print(f'  Trying with do_sample=True and temperature=0.7 as fallback...')
-                # Try with sampling as fallback
-                generation_kwargs_fallback = generation_kwargs.copy()
-                generation_kwargs_fallback['do_sample'] = True
-                generation_kwargs_fallback['temperature'] = 0.7
-                generation_kwargs_fallback['top_p'] = 0.9
-                try:
-                    generated_ids = model.generate(**generation_kwargs_fallback)
-                    print(f'  Fallback generation succeeded')
-                except Exception as e2:
-                    print(f'  Fallback also failed: {e2}')
+                else:
+                    print("  Deterministic mode: sampling fallback disabled (use --allow_sampling_fallback to enable).")
                     raise
         
         input_length = input_ids.shape[1]
@@ -579,31 +753,33 @@ class CausalLMTrainer(Trainer):
         if generated_ids.shape[1] <= input_length:
             print(f'⚠ WARNING: Model generated nothing or only input! generated_ids.shape={generated_ids.shape}, input_length={input_length}')
             print(f'  This suggests the model is immediately outputting EOS or not generating.')
-            print(f'  Trying with more aggressive generation parameters...')
-            
-            # Try again with more permissive settings
-            with torch.amp.autocast('cuda'):
-                generation_kwargs_retry = {
-                    'input_ids': input_ids,
-                    'use_cache': True,
-                    'max_new_tokens': self.generation_max_length if self.generation_max_length is not None else 512,
-                    'min_new_tokens': max(20, (self.generation_max_length if self.generation_max_length is not None else 512) // 5),  # More aggressive minimum
-                    'do_sample': True,  # Try sampling instead of greedy
-                    'temperature': 0.8,
-                    'top_p': 0.95,
-                    'pad_token_id': self._processing_class.pad_token_id,
-                    'eos_token_id': self._processing_class.eos_token_id,
-                    'repetition_penalty': 1.05,  # Lower penalty
-                }
-                try:
-                    generated_ids_retry = model.generate(**generation_kwargs_retry)
-                    if generated_ids_retry.shape[1] > input_length:
-                        print(f'  Retry succeeded! New shape: {generated_ids_retry.shape}')
-                        generated_ids = generated_ids_retry
-                    else:
-                        print(f'  Retry also failed - model still not generating (shape: {generated_ids_retry.shape})')
-                except Exception as e:
-                    print(f'  Retry generation failed: {e}')
+            if self.allow_sampling_fallback:
+                print(f'  Trying with more aggressive generation parameters...')
+                # Try again with more permissive settings
+                with torch.amp.autocast('cuda', dtype=torch.bfloat16):
+                    generation_kwargs_retry = {
+                        'input_ids': input_ids,
+                        'use_cache': True,
+                        'max_new_tokens': self.generation_max_length if self.generation_max_length is not None else 512,
+                        'min_new_tokens': max(20, (self.generation_max_length if self.generation_max_length is not None else 512) // 5),  # More aggressive minimum
+                        'do_sample': True,  # Try sampling instead of greedy
+                        'temperature': 0.8,
+                        'top_p': 0.95,
+                        'pad_token_id': self._processing_class.pad_token_id,
+                        'eos_token_id': self._processing_class.eos_token_id,
+                        'repetition_penalty': 1.05,  # Lower penalty
+                    }
+                    try:
+                        generated_ids_retry = model.generate(**generation_kwargs_retry)
+                        if generated_ids_retry.shape[1] > input_length:
+                            print(f'  Retry succeeded! New shape: {generated_ids_retry.shape}')
+                            generated_ids = generated_ids_retry
+                        else:
+                            print(f'  Retry also failed - model still not generating (shape: {generated_ids_retry.shape})')
+                    except Exception as e:
+                        print(f'  Retry generation failed: {e}')
+            else:
+                print("  Deterministic mode: sampling fallback disabled (use --allow_sampling_fallback to enable).")
         
         # Slice to get only generated tokens (after input)
         # Different prompt formats use different markers:
@@ -638,17 +814,26 @@ class CausalLMTrainer(Trainer):
         
         # Strategy 1: Try token-based extraction for Mistral/Llama/ChatML formats
         extraction_successful = False
+        if generated_ids.shape[0] > 1:
+            # Batch-safe boundary: generated sequence starts after input_length for every row.
+            # Format-specific extraction below relies on row 0 tokens and is unsafe for mixed batches.
+            generated_ids = generated_ids[:, input_length:]
+            extraction_successful = True
         
         # First, try to find [/INST] token position (Mistral format)
         inst_token_id = None
         if hasattr(self._processing_class, 'convert_tokens_to_ids'):
             try:
-                inst_token_id = self._processing_class.convert_tokens_to_ids('[/INST]')
+                candidate_inst_id = self._processing_class.convert_tokens_to_ids('[/INST]')
+                unk_token_id = getattr(self._processing_class, 'unk_token_id', None)
+                # If [/INST] resolves to UNK, token-based [/INST] extraction is unsafe.
+                if candidate_inst_id is not None and candidate_inst_id != unk_token_id:
+                    inst_token_id = candidate_inst_id
             except:
                 pass
         
         # If we found [/INST] token, try to extract only tokens after it
-        if inst_token_id is not None and generated_ids.shape[0] > 0 and (prompt_format_type is None or prompt_format_type == 'mistral'):
+        if (not extraction_successful) and inst_token_id is not None and generated_ids.shape[0] > 0 and (prompt_format_type is None or prompt_format_type == 'mistral'):
             # Find the last occurrence of [/INST] in the input
             input_ids_list = input_ids[0].cpu().tolist()
             inst_positions = [i for i, token_id in enumerate(input_ids_list) if token_id == inst_token_id]
@@ -962,8 +1147,9 @@ class CausalLMTrainer(Trainer):
                         except Exception:
                             pass
             else:
-                # No sequences or already extracted, use original slice
-                generated_ids = generated_ids[:, input_length:]
+                # Already extracted in the batched fast-path above.
+                # Do NOT slice by input_length again, or generation becomes empty.
+                pass
         
         # Check if generated_ids is empty or all padding
         if generated_ids.numel() == 0:
@@ -1003,34 +1189,37 @@ class CausalLMTrainer(Trainer):
             
             if num_valid_tokens == 0:
                 print(f'⚠ CRITICAL: Model generated only pad/eos tokens (model collapse or checkpoint too early). Trying permissive generation...')
-                # Try with sampling and higher temperature to break out of pad token loop
-                with torch.no_grad():
-                    generation_kwargs_force = {
-                        'input_ids': input_ids,
-                        'use_cache': True,
-                        'max_new_tokens': min(50, self.generation_max_length or 512),  # Shorter for early checkpoints
-                        'min_new_tokens': 5,  # Force at least 5 tokens
-                        'do_sample': True,
-                        'temperature': 1.2,  # Higher temperature to encourage diversity
-                        'top_p': 0.95,
-                        'top_k': 50,
-                        'pad_token_id': pad_token_id,
-                        'eos_token_id': eos_token_id,
-                        'repetition_penalty': 1.0,  # No penalty
-                    }
-                    try:
-                        generated_ids_force = model.generate(**generation_kwargs_force)
-                        # Check if this produced better results
-                        generated_ids_force = generated_ids_force[:, input_length:]
-                        non_pad_eos_mask_force = (generated_ids_force != pad_token_id) & (generated_ids_force != eos_token_id)
-                        num_valid_force = non_pad_eos_mask_force.sum().item()
-                        if num_valid_force > 0:
-                            print(f'  ✓ Forced generation produced {num_valid_force} valid tokens! Using this instead.')
-                            generated_ids = generated_ids_force
-                        else:
-                            print(f'  ✗ Forced generation also failed - model may have collapsed or checkpoint too early.')
-                    except Exception as e:
-                        print(f'  ✗ Forced generation failed: {e}')
+                if self.allow_sampling_fallback:
+                    # Try with sampling and higher temperature to break out of pad token loop
+                    with torch.no_grad():
+                        generation_kwargs_force = {
+                            'input_ids': input_ids,
+                            'use_cache': True,
+                            'max_new_tokens': min(50, self.generation_max_length or 512),  # Shorter for early checkpoints
+                            'min_new_tokens': 5,  # Force at least 5 tokens
+                            'do_sample': True,
+                            'temperature': 1.2,  # Higher temperature to encourage diversity
+                            'top_p': 0.95,
+                            'top_k': 50,
+                            'pad_token_id': pad_token_id,
+                            'eos_token_id': eos_token_id,
+                            'repetition_penalty': 1.0,  # No penalty
+                        }
+                        try:
+                            generated_ids_force = model.generate(**generation_kwargs_force)
+                            # Check if this produced better results
+                            generated_ids_force = generated_ids_force[:, input_length:]
+                            non_pad_eos_mask_force = (generated_ids_force != pad_token_id) & (generated_ids_force != eos_token_id)
+                            num_valid_force = non_pad_eos_mask_force.sum().item()
+                            if num_valid_force > 0:
+                                print(f'  ✓ Forced generation produced {num_valid_force} valid tokens! Using this instead.')
+                                generated_ids = generated_ids_force
+                            else:
+                                print(f'  ✗ Forced generation also failed - model may have collapsed or checkpoint too early.')
+                        except Exception as e:
+                            print(f'  ✗ Forced generation failed: {e}')
+                else:
+                    print("  Deterministic mode: sampling fallback disabled (use --allow_sampling_fallback to enable).")
         
         # Strip leading pad/eos and truncate at first EOS to avoid gibberish/hallucination.
         # If model doesn't emit EOS, truncate at max reasonable summary length (256 tokens).
@@ -1040,8 +1229,14 @@ class CausalLMTrainer(Trainer):
         stripped_list = []
         for i in range(generated_ids.shape[0]):
             row = generated_ids[i].cpu().tolist()
-            # Truncate at first EOS (model's natural stop); if no EOS, cap at MAX_SUMMARY_TOKENS_BEFORE_TRUNCATE
-            first_eos = next((j for j, tid in enumerate(row) if tid == eos_token_id), None)
+            # Drop leading padding first. If pad_token_id == eos_token_id, scanning for "first EOS"
+            # before stripping pads can wipe the whole sequence incorrectly.
+            if pad_token_id is not None:
+                while row and row[0] == pad_token_id:
+                    row.pop(0)
+            first_eos = None
+            if eos_token_id is not None:
+                first_eos = next((j for j, tid in enumerate(row) if tid == eos_token_id), None)
             if first_eos is not None:
                 row = row[:first_eos]
             elif len(row) > MAX_SUMMARY_TOKENS_BEFORE_TRUNCATE:
@@ -1055,6 +1250,16 @@ class CausalLMTrainer(Trainer):
             padded = [r + [pad_token_id] * (max_len - len(r)) for r in stripped_list]
             generated_ids = torch.tensor(padded, device=generated_ids.device, dtype=generated_ids.dtype)
             decoded_predictions = self._processing_class.batch_decode(generated_ids, skip_special_tokens=True)
+            # Gemma/some tokenizers: skip_special_tokens=True can yield "" even when logits were non-trivial.
+            for bi, text in enumerate(decoded_predictions):
+                if text or bi >= len(stripped_list):
+                    continue
+                row_ids = stripped_list[bi]
+                if not row_ids:
+                    continue
+                raw = self._processing_class.decode(row_ids, skip_special_tokens=False)
+                if raw.strip():
+                    decoded_predictions[bi] = raw
         else:
             decoded_predictions = [""] * generated_ids.shape[0]
         
@@ -1064,9 +1269,10 @@ class CausalLMTrainer(Trainer):
             # Truncate at [/SAK] - Normistral sometimes emits this instead of EOS and repeats it
             if '[/SAK]' in text:
                 text = text.split('[/SAK]')[0].strip()
-            # Plain/Gemma format: training ends output with \n\n### - truncate at first ### to drop post-summary garbage
-            if '###' in text:
-                text = text.split('###')[0].strip()
+            # Plain/Gemma format sometimes has trailing separator blocks.
+            # Only trim explicit trailing separator patterns; never split at the first "###"
+            # because many valid generations can begin with markdown headings.
+            text = re.sub(r'(\n\s*)#{3,}\s*$', '', text).strip()
             # Remove common chat format tokens (Llama-2)
             text = text.replace('[/INST]', '').replace('[INST]', '')
             text = text.replace('</s>', '').replace('<s>', '')
@@ -1090,8 +1296,12 @@ class CausalLMTrainer(Trainer):
             # Plain/Gemma format: strip echoed "Oppsummering:" or "###" at start
             if text.lstrip().startswith('Oppsummering:'):
                 text = text.lstrip()[len('Oppsummering:'):].lstrip()
-            while text.startswith('###'):
-                text = text.lstrip()[3:].lstrip()
+            # Plain template ends with "###" delimiters; models often echo 1–3 of them. Cap iterations
+            # so markdown summaries that start with "### Title" are not consumed as repeated strips.
+            for _ in range(6):
+                if not text.startswith('###'):
+                    break
+                text = text[3:].lstrip()
             # Remove backslashes (common issue with Llama-2 chat models)
             text = text.replace('\\', '')
             # Strip trailing ### or ## (Gemma/plain format end markers)
@@ -1146,6 +1356,16 @@ class CausalLMTrainer(Trainer):
         cleaned_predictions = []
         for i, pred in enumerate(decoded_predictions):
             cleaned = clean_text(pred)
+            # Fallback: if aggressive cleaning dropped everything, keep minimally-cleaned text.
+            if not cleaned and pred and pred.strip():
+                fallback = pred.replace('[/INST]', '').replace('[INST]', '')
+                fallback = fallback.replace('</s>', '').replace('<s>', '')
+                fallback = fallback.replace('<|begin_of_text|>', '').replace('<|end_of_text|>', '').replace('<|eot_id|>', '')
+                fallback = re.sub(r'<\|start_header_id\|>.*?<\|end_header_id\|>', '', fallback)
+                fallback = fallback.replace('<|im_start|>', '').replace('<|im_end|>', '')
+                fallback = fallback.replace('\\', '')
+                fallback = ' '.join(fallback.split()).strip()
+                cleaned = fallback
             # Truncate at first repeated paragraph (fixes Arna-style repetition)
             cleaned = truncate_repeated_paragraphs(cleaned)
             # Try to fix mid-sentence starts
@@ -1205,7 +1425,8 @@ def load_model_and_peft_checkpoint(
     major_checkpoint_interval: int = 500,
     include_nli_faithfulness: bool = False,  # Check for missing NLI metrics if True
     force_recompute: bool = False,  # If True, skip "already evaluated" check and load model for re-evaluation
-    examples_suffix: Optional[str] = None,  # e.g. "examples_1000" when val_data_size != 500
+    examples_suffix: Optional[str] = None,  # canonical: "<N>-examples" (e.g. "1000-examples")
+    results_subdir: str = "all_eval_results",
 ):
     """Load base model and PEFT checkpoint for inference.
     
@@ -1237,7 +1458,7 @@ def load_model_and_peft_checkpoint(
             # First load model to CPU to get its structure
             base_model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                torch_dtype=torch.float16,
+                torch_dtype=torch.bfloat16,
                 device_map="cpu",  # Load to CPU first
                 token=hf_token,
                 low_cpu_mem_usage=True,
@@ -1266,7 +1487,7 @@ def load_model_and_peft_checkpoint(
             # Reload with device_map
             base_model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                torch_dtype=torch.float16,
+                torch_dtype=torch.bfloat16,
                 device_map=device_map,  # Use accelerate's device_map
                 token=hf_token,
                 low_cpu_mem_usage=True,
@@ -1277,7 +1498,7 @@ def load_model_and_peft_checkpoint(
             device_map_strategy = "auto"
             base_model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                torch_dtype=torch.float16,
+                torch_dtype=torch.bfloat16,
                 device_map=device_map_strategy,
                 token=hf_token,
                 low_cpu_mem_usage=True,
@@ -1286,7 +1507,7 @@ def load_model_and_peft_checkpoint(
         device_map_strategy = "cuda:0"
         base_model = AutoModelForCausalLM.from_pretrained(
             model_name,
-            torch_dtype=torch.float16,
+            torch_dtype=torch.bfloat16,
             device_map=device_map_strategy,
             token=hf_token,
             low_cpu_mem_usage=True,
@@ -1377,8 +1598,10 @@ def load_model_and_peft_checkpoint(
     
     # Check if this checkpoint was already evaluated using utility functions
     # Skip when force_recompute=True (monitor detected checkpoint newer than stale eval)
-    # When examples_suffix (e.g. "examples_1000"), check the suffixed file so 1000-example evals don't overwrite 500
-    eval_results_file = get_eval_results_path(checkpoint_dir, model_dir, examples_suffix=examples_suffix)
+    # When examples_suffix is set, check the suffixed file so different val_data_size runs do not overwrite each other.
+    eval_results_file = get_eval_results_path(
+        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+    )
     old_eval_results_file = get_old_eval_results_path(checkpoint_dir)
     
     # Retrain-from-scratch: eval results older than training_started.txt = from previous run
@@ -1401,13 +1624,17 @@ def load_model_and_peft_checkpoint(
             # If extended metrics should be computed but aren't present, allow re-evaluation
             if EXTENDED_EVAL_AVAILABLE:
                 try:
-                    existing_results = load_eval_results(checkpoint_dir, model_dir)
+                    existing_results = load_eval_results(
+                        checkpoint_dir, model_dir, results_subdir=results_subdir
+                    )
                     if existing_results is None:
                         pass  # Can't parse, allow re-evaluation
                         # Don't raise AlreadyEvaluatedError - allow re-evaluation
                     else:
                         # Check if this is a major checkpoint that should have BERTScore
-                        existing_results = load_eval_results(checkpoint_dir, model_dir, examples_suffix=examples_suffix)
+                        existing_results = load_eval_results(
+                            checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+                        )
                         
                         # Check if extended metrics are missing
                         has_extended_metrics = any(
@@ -1425,27 +1652,19 @@ def load_model_and_peft_checkpoint(
                         elif not has_extended_metrics:
                             pass  # Fall through to re-evaluate
                             # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                        # Check if NLI faithfulness is requested but missing
+                        # Check if NLI faithfulness is requested but missing (or details JSONL absent)
                         elif include_nli_faithfulness:
-                            has_nli_metrics = (
-                                any(key.startswith("eval_faithfulness_") for key in existing_results.keys()) or
-                                ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
-                            )
-                            # Also check for eval_faithfulness key (could be set to null)
-                            has_nli_results = (
-                                has_nli_metrics or 
-                                ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
-                            )
-                            if not has_nli_results:
-                                pass  # Fall through to re-evaluate
-                                # Don't raise AlreadyEvaluatedError - allow re-evaluation
-                            else:
-                                # All metrics present, skip evaluation
+                            if should_skip_faithfulness_update(
+                                existing_results, checkpoint_dir, model_dir,
+                                examples_suffix=examples_suffix,
+                                results_subdir=results_subdir,
+                            ):
                                 raise AlreadyEvaluatedError(
                                     f"Checkpoint {checkpoint_dir} appears to be already evaluated "
                                     f"(results file exists at {eval_results_file}). "
                                     f"Skipping evaluation."
                                 )
+                            # Fall through: missing aggregates or missing *-faithfulness-details-*.jsonl
                         else:
                             # Extended metrics are present, skip evaluation
                             raise AlreadyEvaluatedError(
@@ -1465,12 +1684,14 @@ def load_model_and_peft_checkpoint(
                 )
         
         # Also check old location for backwards compatibility
-        # When examples_suffix is set (e.g. examples_1000), the old file is from 500-example runs - do NOT skip
+        # When examples_suffix is set, the old file is from legacy unsuffixed 500-example runs - do NOT skip
         if not examples_suffix and os.path.exists(old_eval_results_file):
             # Check if extended metrics are missing (same logic as above)
             if EXTENDED_EVAL_AVAILABLE:
                 try:
-                    existing_results_old = load_eval_results(checkpoint_dir, model_dir)
+                    existing_results_old = load_eval_results(
+                        checkpoint_dir, model_dir, results_subdir=results_subdir
+                    )
                     if existing_results_old is not None:
                         is_major_old = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
                         has_extended_metrics_old = any(
@@ -1486,24 +1707,17 @@ def load_model_and_peft_checkpoint(
                         elif not has_extended_metrics_old:
                             pass  # Allow re-evaluation
                         elif include_nli_faithfulness:
-                            has_nli_metrics_old = (
-                                any(key.startswith("eval_faithfulness_") for key in existing_results_old.keys()) or
-                                ("eval_faithfulness" in existing_results_old and existing_results_old.get("eval_faithfulness") is not None)
-                            )
-                            # Also check for eval_faithfulness key (could be set to null)
-                            has_nli_results_old = (
-                                has_nli_metrics_old or 
-                                ("eval_faithfulness" in existing_results_old and existing_results_old.get("eval_faithfulness") is not None)
-                            )
-                            if not has_nli_results_old:
-                                pass  # Allow re-evaluation
-                            else:
-                                # All metrics present, skip evaluation
+                            if should_skip_faithfulness_update(
+                                existing_results_old, checkpoint_dir, model_dir,
+                                examples_suffix=examples_suffix,
+                                results_subdir=results_subdir,
+                            ):
                                 raise AlreadyEvaluatedError(
                                     f"Checkpoint {checkpoint_dir} appears to be already evaluated "
                                     f"(old results file exists at {old_eval_results_file}). "
                                     f"Skipping evaluation."
                                 )
+                            # Allow re-evaluation: missing aggregates or missing details JSONL
                         else:
                             raise AlreadyEvaluatedError(
                                 f"Checkpoint {checkpoint_dir} appears to be already evaluated "
@@ -1525,17 +1739,21 @@ def load_model_and_peft_checkpoint(
                     f"Skipping evaluation."
                 )
         
-        # Also check if checkpoint directory only contains eval_results (old structure)
-        dir_contents = os.listdir(checkpoint_dir)
-        if len(dir_contents) == 1 and 'eval_results' in dir_contents:
-            eval_results_file = os.path.join(checkpoint_dir, 'eval_results', 'eval_results.json')
-            if os.path.exists(eval_results_file):
-                raise AlreadyEvaluatedError(
-                    f"Checkpoint {checkpoint_dir} appears to be already evaluated "
-                    f"(only contains 'eval_results' with results file). "
-                    f"The adapter files may have been cleaned up. Skipping evaluation."
-                )
     
+    # Check if checkpoint directory is empty or only contains eval_results (no adapter files).
+    # This must be outside the force_recompute block — can't re-evaluate without adapter weights.
+    dir_contents = os.listdir(checkpoint_dir)
+    if len(dir_contents) == 0:
+        raise AlreadyEvaluatedError(
+            f"Checkpoint {checkpoint_dir} is an empty directory "
+            f"(adapter files may have been cleaned up). Skipping."
+        )
+    if len(dir_contents) == 1 and 'eval_results' in dir_contents:
+        raise AlreadyEvaluatedError(
+            f"Checkpoint {checkpoint_dir} only contains 'eval_results' "
+            f"(adapter files have been cleaned up). Skipping."
+        )
+
     adapter_config_path = os.path.join(checkpoint_dir, "adapter_config.json")
     adapter_model_path = os.path.join(checkpoint_dir, "adapter_model.safetensors")
     
@@ -1775,8 +1993,10 @@ def get_model_batch_size(model_name: str, default_batch_size: int) -> int:
     elif 'viking-13b' in model_name_lower or 'llama-2-13b' in model_name_lower:
         return min(8, default_batch_size)  # Increase from 4 to 8 (2x faster)
     # Large models (7B-11B)
-    elif 'gemma-7b' in model_name_lower:
+    elif 'gemma-7b-it' in model_name_lower:
         return min(8, default_batch_size)
+    elif 'normistral-11b-long' in model_name_lower:
+        return min(4, default_batch_size)  # Wider context variant: keep more headroom
     elif 'normistral-11b' in model_name_lower:
         return min(6, default_batch_size)  # Increase from 4 to 6
     # Medium models (2-7B)
@@ -1873,11 +2093,16 @@ def evaluate_checkpoint(
     max_input_text_tokens: int = MAX_INPUT_TEXT_TOKENS,
     max_extra_prompt_tokens: int = MAX_EXTRA_PROMPT_TOKENS,
     max_output_summary_tokens: int = MAX_OUTPUT_SUMMARY_TOKENS,
+    min_new_tokens: int = 15,
+    c200k_min_new_tokens: Optional[int] = None,
+    c200k_max_new_tokens: Optional[int] = None,
     val_batch_size: int = VAL_BATCH_SIZE,
     val_data_size: int = VAL_DATA_SIZE,
     val_data_seed: int = VAL_DATA_SEED,
     val_beam_size: int = VAL_BEAM_SIZE,
+    length_penalty: float = 1.0,
     use_greedy: bool = True,
+    allow_sampling_fallback: bool = False,
     use_multi_gpu: bool = False,
     wandb_project: Optional[str] = "lm-evaluation",
     wandb_entity: Optional[str] = None,
@@ -1885,11 +2110,22 @@ def evaluate_checkpoint(
     wandb_run_name: Optional[str] = None,
     wandb_group: Optional[str] = None,
     major_checkpoint_interval: int = 500,  # Every Nth step is major (gets BERTScore). Default: 500 (every 500 steps = checkpoint-500, checkpoint-1000, etc.)
-    include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation (uses fixed 500-example subset for consistency)
+    include_nli_faithfulness: bool = False,  # Enable NLI faithfulness evaluation (subset: see nli_subset_size)
+    nli_subset_size: int = NLI_DEFAULT_SUBSET_SIZE,  # default 100; set == val_data_size for full-set NLI
     keep_existing: bool = False,
     force_recompute: bool = False,  # If True, skip loading existing results and re-run evaluation (for rerun with corrected prompt)
+    predict_only: bool = False,
+    metrics_only: bool = False,
+    update_metrics: Optional[Set[str]] = None,  # e.g. {"rouge", "hygiene", "bertscore", "faithfulness"}
 ):
-    """Load a PEFT checkpoint and run evaluation with model parallelism support."""
+    """Load a PEFT checkpoint and run evaluation with model parallelism support.
+
+    Modes (mutually exclusive):
+        default         — generate predictions + compute all metrics
+        predict_only    — generate predictions, save JSONL, skip metrics
+        metrics_only    — load JSONL, compute all applicable metrics (no model loading)
+        update_metrics  — load JSONL + existing results, recompute selected metrics, merge
+    """
     
     # Convert checkpoint_dir to absolute path
     checkpoint_dir = os.path.abspath(checkpoint_dir)
@@ -1918,24 +2154,192 @@ def evaluate_checkpoint(
         checkpoint_step_int, DEFAULT_TRAIN_BATCH_SIZE, DEFAULT_GRADIENT_ACCUMULATION, DEFAULT_TRAIN_NUM_GPUS
     ) if checkpoint_step_int > 0 else None
     
-    # Determine output directory: save to model/all_eval_results/checkpoint-nnn-eval-results.json
+    # Determine output directory/subdir and isolate length-controlled result families.
     # Get model directory first (needed for results_file path)
     model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
+    results_subdir = _build_results_subdir_name(
+        c200k_min_new_tokens=c200k_min_new_tokens,
+        c200k_max_new_tokens=c200k_max_new_tokens,
+    )
     
     if output_dir is None:
-        # Create all_eval_results directory in model directory
-        output_dir = os.path.join(model_dir_eval, "all_eval_results")
+        output_dir = os.path.join(model_dir_eval, results_subdir)
     else:
         output_dir = os.path.abspath(output_dir)
     
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
     
-    # Suffix for val_data_size variants: 1000 → "examples_1000", 500 → None (default/backward compatible)
-    examples_suffix = f"examples_{val_data_size}" if val_data_size != 500 else None
+    # Always include val_data_size suffix in filenames (e.g. "500-examples", "1000-examples").
+    examples_suffix = f"{val_data_size}-examples"
     
     # Get results file path using utility function
-    results_file = get_eval_results_path(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
+    results_file = get_eval_results_path(
+        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+    )
+    predictions_file = get_predictions_file_path(
+        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+    )
+
+    # ---------------------------------------------------------------
+    # Early-return paths for --metrics-only and --update-* modes
+    # (no model loading, no prediction generation)
+    # ---------------------------------------------------------------
+    if metrics_only or update_metrics:
+        if not os.path.exists(predictions_file):
+            raise FileNotFoundError(
+                f"JSONL predictions file not found: {predictions_file}\n"
+                f"Run --predict_only first to generate predictions."
+            )
+        input_texts, prediction_texts, reference_texts = load_predictions_jsonl(predictions_file)
+        print(f"Loaded {len(prediction_texts)} predictions from {predictions_file}")
+
+        from utils.metrics import compute_metrics_from_texts
+
+        if update_metrics:
+            # Selective update: load existing results, recompute requested metrics, merge
+            existing_results = {}
+            if os.path.exists(results_file):
+                with open(results_file, 'r', encoding='utf-8') as f:
+                    existing_results = json.load(f)
+
+            # Unless force_recompute, skip metrics that already exist in the results
+            _METRIC_PRESENCE_KEYS = {
+                "rouge": "eval_rouge1",
+                "hygiene": "eval_hygiene_mean_compression_ratio",
+                "bertscore": "eval_reference_bertscore_f1_mean",
+                "faithfulness": "eval_faithfulness",
+            }
+            actually_update = set(update_metrics)
+            if not force_recompute:
+                for metric_name in list(actually_update):
+                    if metric_name == "faithfulness":
+                        details_path = get_faithfulness_details_path(
+                            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                        )
+                        if should_skip_faithfulness_update(
+                            existing_results, checkpoint_dir, model_dir_eval,
+                            examples_suffix=examples_suffix,
+                            results_subdir=results_subdir,
+                        ):
+                            print(
+                                f"⚠ Skipping faithfulness: aggregates and details file already present "
+                                f"({os.path.basename(results_file)}; {os.path.basename(details_path)}) "
+                                f"(use --force_recompute to overwrite)"
+                            )
+                            actually_update.discard(metric_name)
+                        elif nli_faithfulness_aggregate_present(existing_results):
+                            print(
+                                f"⚠ Recomputing faithfulness: details file missing "
+                                f"({os.path.basename(details_path)}); aggregates will be refreshed."
+                            )
+                        continue
+                    presence_key = _METRIC_PRESENCE_KEYS.get(metric_name)
+                    if presence_key and presence_key in existing_results and existing_results[presence_key] is not None:
+                        print(f"⚠ Skipping {metric_name}: already present in {os.path.basename(results_file)} "
+                              f"(use --force_recompute to overwrite)")
+                        actually_update.discard(metric_name)
+                if not actually_update:
+                    print(f"All requested metrics already present for {checkpoint_name}. Nothing to update.")
+                    return existing_results, None
+
+            include_flags = {
+                "include_rouge": "rouge" in actually_update,
+                "include_hygiene": "hygiene" in actually_update,
+                "include_bertscore": "bertscore" in actually_update,
+                "include_faithfulness": "faithfulness" in actually_update,
+            }
+            # Build NLI subset texts + incremental details file path
+            nli_in = nli_pred = None
+            nli_indices = None
+            faith_details = None
+            if "faithfulness" in actually_update:
+                use_first_n = val_data_size > nli_subset_size
+                nli_indices = get_or_create_fixed_nli_subset(
+                    total_examples=len(input_texts),
+                    model_dir=model_dir_eval,
+                    subset_size=nli_subset_size,
+                    use_first_n_for_extended=use_first_n,
+                    results_subdir=results_subdir,
+                )
+                nli_in = [input_texts[i] for i in nli_indices]
+                nli_pred = [prediction_texts[i] for i in nli_indices]
+                faith_details = get_faithfulness_details_path(
+                    checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                )
+                if force_recompute and os.path.exists(faith_details):
+                    try:
+                        os.remove(faith_details)
+                        print(f"force_recompute=True: removed stale faithfulness cache {faith_details}")
+                    except Exception as cache_rm_error:
+                        print(f"Warning: could not remove stale faithfulness cache {faith_details}: {cache_rm_error}")
+            result = compute_metrics_from_texts(
+                input_texts, prediction_texts, reference_texts,
+                nli_input_texts=nli_in, nli_prediction_texts=nli_pred,
+                nli_example_indices=nli_indices,
+                faithfulness_details_file=faith_details,
+                **include_flags,
+            )
+            # Re-read the results file right before merging to minimise the
+            # race window when parallel jobs update different metrics on the
+            # same checkpoint (e.g. --update-rouge and --update-faithfulness).
+            if os.path.exists(results_file):
+                with open(results_file, 'r', encoding='utf-8') as f:
+                    existing_results = json.load(f)
+            existing_results.update(result["metrics"])
+            existing_results.setdefault("_timing", {}).update(result["timing"])
+            existing_results["checkpoint_name"] = checkpoint_name
+            existing_results["checkpoint_step"] = checkpoint_step_int
+            with open(results_file, 'w', encoding='utf-8') as f:
+                json.dump(existing_results, f, indent=2, ensure_ascii=False, default=str)
+            print(f"Updated metrics {actually_update} in {results_file}")
+            return existing_results, None
+
+        else:
+            # metrics_only: compute all applicable metrics from JSONL
+            is_major = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
+            nli_in = nli_pred = None
+            nli_indices = None
+            faith_details = None
+            if include_nli_faithfulness and is_major:
+                use_first_n = val_data_size > nli_subset_size
+                nli_indices = get_or_create_fixed_nli_subset(
+                    total_examples=len(input_texts),
+                    model_dir=model_dir_eval,
+                    subset_size=nli_subset_size,
+                    use_first_n_for_extended=use_first_n,
+                    results_subdir=results_subdir,
+                )
+                nli_in = [input_texts[i] for i in nli_indices]
+                nli_pred = [prediction_texts[i] for i in nli_indices]
+                faith_details = get_faithfulness_details_path(
+                    checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                )
+                if force_recompute and os.path.exists(faith_details):
+                    try:
+                        os.remove(faith_details)
+                        print(f"force_recompute=True: removed stale faithfulness cache {faith_details}")
+                    except Exception as cache_rm_error:
+                        print(f"Warning: could not remove stale faithfulness cache {faith_details}: {cache_rm_error}")
+            result = compute_metrics_from_texts(
+                input_texts, prediction_texts, reference_texts,
+                include_rouge=True,
+                include_hygiene=True,
+                include_bertscore=is_major,
+                include_faithfulness=include_nli_faithfulness and is_major,
+                nli_input_texts=nli_in, nli_prediction_texts=nli_pred,
+                nli_example_indices=nli_indices,
+                faithfulness_details_file=faith_details,
+            )
+            all_results = result["metrics"]
+            all_results["_timing"] = result["timing"]
+            all_results["checkpoint_name"] = checkpoint_name
+            all_results["checkpoint_step"] = checkpoint_step_int
+            all_results["is_major_checkpoint"] = is_major
+            with open(results_file, 'w', encoding='utf-8') as f:
+                json.dump(all_results, f, indent=2, ensure_ascii=False, default=str)
+            print(f"Saved metrics-only results to {results_file}")
+            return all_results, None
     
     # If results file exists, load and log to Wandb without re-evaluating
     # Skip loading when force_recompute=True (e.g. monitor detected checkpoint newer than stale eval from previous run)
@@ -1944,7 +2348,9 @@ def evaluate_checkpoint(
     if os.path.exists(results_file) and not force_recompute:
         print(f"⚠ Checkpoint {checkpoint_name} already evaluated. Loading existing results...")
         if keep_existing:
-            existing_results = load_eval_results(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
+            existing_results = load_eval_results(
+                checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+            )
             if existing_results is None:
                 print(f"✓ keep_existing enabled and results file exists. Skipping checkpoint {checkpoint_name} without overwriting.")
                 return {
@@ -1953,11 +2359,30 @@ def evaluate_checkpoint(
                     "status": "skipped_keep_existing_existing_file",
                     "result_file": results_file,
                 }, None
-            print(f"✓ keep_existing enabled. Reusing existing results for {checkpoint_name} (no overwrite).")
-            return existing_results, None
+            # keep_existing should not block creation/backfill of per-example NLI caches.
+            # If faithfulness is requested and details JSONL is missing, continue evaluation.
+            if include_nli_faithfulness and is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval):
+                if not should_skip_faithfulness_update(
+                    existing_results, checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+                ):
+                    details_path = get_faithfulness_details_path(
+                        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+                    )
+                    print(
+                        "⚠ keep_existing override: faithfulness details missing; "
+                        f"re-evaluating to create {os.path.basename(details_path)}"
+                    )
+                else:
+                    print(f"✓ keep_existing enabled. Reusing existing results for {checkpoint_name} (no overwrite).")
+                    return existing_results, None
+            else:
+                print(f"✓ keep_existing enabled. Reusing existing results for {checkpoint_name} (no overwrite).")
+                return existing_results, None
         
         try:
-            existing_results = load_eval_results(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
+            existing_results = load_eval_results(
+                checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+            )
             if existing_results is None:
                 print(f"⚠ Warning: Could not load existing results from {results_file}")
                 # Fall through to normal evaluation
@@ -1995,18 +2420,16 @@ def evaluate_checkpoint(
                     # Check if NLI faithfulness is requested but missing (separate check, not elif)
                     # Always check NLI if requested, regardless of other extended metrics status
                     if include_nli_faithfulness:
-                        has_nli_metrics = (
-                            any(key.startswith("eval_faithfulness_") for key in existing_results.keys()) or
-                            ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
-                        )
-                        # Also check for eval_faithfulness key (could be set to null)
-                        has_nli_results = (
-                            has_nli_metrics or 
-                            ("eval_faithfulness" in existing_results and existing_results.get("eval_faithfulness") is not None)
-                        )
-                        if not has_nli_results:
+                        if not should_skip_faithfulness_update(
+                            existing_results, checkpoint_dir, model_dir_eval,
+                            examples_suffix=examples_suffix,
+                            results_subdir=results_subdir,
+                        ):
                             missing_extended_metrics = True
-                            print(f"⚠ Checkpoint {checkpoint_name} missing NLI faithfulness metrics (--include_nli_faithfulness was requested). Re-evaluating...")
+                            print(
+                                f"⚠ Checkpoint {checkpoint_name} missing NLI faithfulness or "
+                                f"faithfulness-details file (--include_nli_faithfulness). Re-evaluating..."
+                            )
                 
                 if all_zeros or missing_extended_metrics:
                     if all_zeros:
@@ -2037,7 +2460,9 @@ def evaluate_checkpoint(
                     # 500 vs 1000 examples → separate wandb runs so metrics don't mix
                     model_dir_eval_cached = get_model_dir_from_checkpoint(checkpoint_dir)
                     wandb_run_id_suffix_cached = f"_{examples_suffix}" if examples_suffix else ""
-                    wandb_run_id_file_cached = os.path.join(model_dir_eval_cached, "all_eval_results", f".wandb_run_id{wandb_run_id_suffix_cached}")
+                    wandb_run_id_file_cached = os.path.join(
+                        model_dir_eval_cached, results_subdir, f".wandb_run_id{wandb_run_id_suffix_cached}"
+                    )
                     
                     if wandb_run_name:
                         consistent_run_name_cached = f"{wandb_run_name}{wandb_run_id_suffix_cached}" if examples_suffix else wandb_run_name
@@ -2193,15 +2618,53 @@ def evaluate_checkpoint(
     if is_main_process:
         print(f"Using batch size: {val_batch_size} for evaluation")
 
+    # Populated after `trainer` is constructed so ROUGE can use the same cleaned strings as JSONL.
+    trainer_for_rouge = [None]
+
     def compute_metrics(eval_pred):
-        """Compute ROUGE metrics using shared utility function."""
+        """ROUGE from cleaned predictions when available (matches saved JSONL), else token-decode path."""
+        if predict_only:
+            return {}
+        tr = trainer_for_rouge[0]
+        _, labels_arr = eval_pred
+        labels_proc = np.where(labels_arr != -100, labels_arr, tokenizer.pad_token_id)
+        try:
+            max_tid = max(len(tokenizer) - 1, tokenizer.vocab_size - 1)
+        except Exception:
+            max_tid = tokenizer.vocab_size - 1
+        labels_proc = np.clip(labels_proc, 0, max_tid)
+        decoded_labels = tokenizer.batch_decode(labels_proc, skip_special_tokens=True)
+        decoded_labels = [clean_decoded_text(l).strip() for l in decoded_labels]
+
+        if tr is not None and len(tr._eval_predictions) == len(decoded_labels):
+            decoded_preds = list(tr._eval_predictions)
+            if len(decoded_preds) > 0 and is_main_process:
+                print("\n*** Example 1 (same cleaning as saved JSONL) ***")
+                print(f"Prediction: {decoded_preds[0][:200]}...")
+                print(f"Reference:  {decoded_labels[0][:200]}...\n")
+            scores = compute_rouge(decoded_preds, decoded_labels)
+            result = {k: v * 100 for k, v in scores.items()}
+            if is_main_process:
+                print("*** evaluation: computed_metrics ***", result)
+            if wandb_project and wandb.run is not None and is_main_process:
+                wandb.log(
+                    {
+                        "eval/rouge1": result["rouge1"],
+                        "eval/rouge2": result["rouge2"],
+                        "eval/rougeL": result["rougeL"],
+                        "eval/rougeLsum": result["rougeLsum"],
+                    },
+                    step=checkpoint_step_int,
+                )
+            return result
+
         return compute_rouge_metrics(
             eval_pred=eval_pred,
             tokenizer=tokenizer,
             log_to_wandb=True,
-            step=checkpoint_step_int,  # Use checkpoint step as x-axis
+            step=checkpoint_step_int,
             is_main_process=is_main_process,
-            verbose=True
+            verbose=True,
         )
 
     
@@ -2231,6 +2694,22 @@ def evaluate_checkpoint(
     # Some models don't have chat_template in their tokenizer config, but we need it for consistent formatting
     # This ensures training and evaluation use the same prompt format
     model_config = get_model_config_by_hf_name(model_name)
+    if c200k_min_new_tokens is not None or c200k_max_new_tokens is not None:
+        converted_min, converted_max, ratio = _convert_c200k_goal_to_model_tokens(
+            model_name=model_name,
+            model_config=model_config,
+            c200k_min_new_tokens=c200k_min_new_tokens,
+            c200k_max_new_tokens=c200k_max_new_tokens,
+        )
+        if converted_min is not None:
+            min_new_tokens = converted_min
+        if converted_max is not None:
+            max_output_summary_tokens = converted_max
+        if is_main_process and ratio is not None:
+            print(
+                f"Converted c200k length goals using ratio {ratio:.4f}: "
+                f"min_new_tokens={min_new_tokens}, max_output_summary_tokens={max_output_summary_tokens}"
+            )
     if model_config:
         template_type = model_config.prompt_config.template_type
         
@@ -2328,7 +2807,7 @@ def evaluate_checkpoint(
     # 500 vs 1000 examples → separate wandb runs so metrics don't mix
     model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
     wandb_run_id_suffix = f"_{examples_suffix}" if examples_suffix else ""
-    wandb_run_id_file = os.path.join(model_dir_eval, "all_eval_results", f".wandb_run_id{wandb_run_id_suffix}")
+    wandb_run_id_file = os.path.join(model_dir_eval, results_subdir, f".wandb_run_id{wandb_run_id_suffix}")
     
     # Use provided run_name or create one based on model (without checkpoint step)
     if wandb_run_name:
@@ -2381,6 +2860,7 @@ def evaluate_checkpoint(
                 "model": model_name,
                 "val_dataset": val_dataset_path,
                 "val_size": val_data_size,
+                "nli_subset_size": nli_subset_size,
                 "val_batch_size": val_batch_size,
                 "max_input_tokens": max_input_text_tokens,
                 "max_output_tokens": max_output_summary_tokens,
@@ -2447,10 +2927,18 @@ def evaluate_checkpoint(
             include_nli_faithfulness=include_nli_faithfulness,
             force_recompute=force_recompute,
             examples_suffix=examples_suffix,
+            results_subdir=results_subdir,
         )
     except AlreadyEvaluatedError:
         # Re-raise to be caught by the main block
         raise
+
+    _sync_model_tokenizer_special_tokens(model, tokenizer)
+    if is_main_process:
+        print(
+            f"Synced pad_token_id={tokenizer.pad_token_id} eos_token_id={tokenizer.eos_token_id} "
+            "into model config / generation_config for generate()."
+        )
     
     # DISABLE gradient checkpointing for evaluation - it's only for training
     # It trades speed for memory, but during inference we want speed
@@ -2563,7 +3051,7 @@ def evaluate_checkpoint(
     eval_data_collator = EvalDataCollator(tokenizer=tokenizer)
 
     # Set up evaluation-only training args
-    # Note: output_dir was already set earlier to model_dir/all_eval_results
+    # Note: output_dir was already set earlier to model_dir/<results_subdir>
     training_args = TrainingArguments(
         output_dir=output_dir,
         per_device_eval_batch_size=val_batch_size,
@@ -2581,9 +3069,12 @@ def evaluate_checkpoint(
     # Initialize Trainer for evaluation only
     trainer = CausalLMTrainer(
         generation_max_length=max_output_summary_tokens,
+        generation_min_new_tokens=min_new_tokens,
         generation_num_beams=val_beam_size,
+        generation_length_penalty=length_penalty,
         eval_data_collator=eval_data_collator,
         use_greedy=use_greedy,
+        allow_sampling_fallback=allow_sampling_fallback,
         checkpoint_dir=checkpoint_dir,  # Pass checkpoint directory to Trainer
         model_name=model_name,  # Pass model name for prompt format detection
         model=model,
@@ -2592,6 +3083,7 @@ def evaluate_checkpoint(
         tokenizer=tokenizer,
         compute_metrics=compute_metrics,
     )
+    trainer_for_rouge[0] = trainer
 
     # Run evaluation
     if is_main_process:
@@ -2624,6 +3116,67 @@ def evaluate_checkpoint(
         eval_results.setdefault("eval_wall_steps_per_second", eval_results["eval_steps_per_second"])
 
     # ------------------------------------------------------------------
+    # Token-length stats (input/reference/prediction)
+    # ------------------------------------------------------------------
+    # Use the same tokenizer-based counting style as eval payload JSONL strings.
+    def _to_text(value: object) -> str:
+        if isinstance(value, str):
+            return value
+        return str(value) if value is not None else ""
+
+    def _token_len(text: str) -> int:
+        try:
+            return len(tokenizer.encode(text, add_special_tokens=False))
+        except Exception:
+            return 0
+
+    def _stats(values: List[int]) -> Tuple[float, int, int]:
+        if not values:
+            return (0.0, 0, 0)
+        return (sum(values) / len(values), min(values), max(values))
+
+    num_examples = len(original_examples_for_jsonl)
+    num_predictions = len(trainer._eval_predictions)
+    num_aligned = min(num_examples, num_predictions)
+
+    input_token_counts: List[int] = []
+    ref_token_counts: List[int] = []
+    pred_token_counts: List[int] = []
+    for i in range(num_aligned):
+        example = original_examples_for_jsonl[i]
+        input_token_counts.append(_token_len(_to_text(example.get("input_text", ""))))
+        ref_token_counts.append(_token_len(_to_text(example.get("reference", ""))))
+        pred_token_counts.append(_token_len(_to_text(trainer._eval_predictions[i])))
+
+    input_mean, input_min, input_max = _stats(input_token_counts)
+    ref_mean, ref_min, ref_max = _stats(ref_token_counts)
+    pred_mean, pred_min, pred_max = _stats(pred_token_counts)
+
+    token_fields = {
+        "eval_mean_input_tokens": input_mean,
+        "eval_min_input_tokens": input_min,
+        "eval_max_input_tokens": input_max,
+        "eval_mean_ref_tokens": ref_mean,
+        "eval_min_ref_tokens": ref_min,
+        "eval_max_ref_tokens": ref_max,
+        "eval_mean_pred_tokens": pred_mean,
+        "eval_min_pred_tokens": pred_min,
+        "eval_max_pred_tokens": pred_max,
+    }
+
+    # Insert immediately after eval_rougeLsum for readability in JSON output.
+    if "eval_rougeLsum" in eval_results:
+        reordered_results = {}
+        for k, v in eval_results.items():
+            reordered_results[k] = v
+            if k == "eval_rougeLsum":
+                for field_key, field_value in token_fields.items():
+                    reordered_results[field_key] = field_value
+        eval_results = reordered_results
+    else:
+        eval_results.update(token_fields)
+
+    # ------------------------------------------------------------------
     # Doc-type distribution for evaluated examples
     # ------------------------------------------------------------------
     # Summarise how many examples of each doc_type were used in this evaluation.
@@ -2647,75 +3200,67 @@ def evaluate_checkpoint(
     eval_results.setdefault("eval_num_examples_by_doc_type", doc_type_counts)
     eval_results.setdefault("eval_num_examples_by_doc_type_norwegian", doc_type_nor_counts)
     
-    # Save inputs, references, and predictions to JSONL file (in all_eval_results, same as eval-results.json)
-    # Only save for major checkpoints to save disk space
+    # Save inputs, references, and predictions to JSONL file for ALL checkpoints.
+    # Required for --metrics-only and --update-* modes to work on any checkpoint.
     predictions_file = None
-    if is_main_process and is_major_checkpoint:
-        predictions_file = get_predictions_file_path(checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix)
+    if is_main_process:
+        predictions_file = get_predictions_file_path(
+            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+        )
         os.makedirs(os.path.dirname(predictions_file), exist_ok=True)
         
-        # Write to JSONL file
-        # Predictions are generated in the same order as the dataset
         with open(predictions_file, 'w', encoding='utf-8') as f:
             num_examples = len(original_examples_for_jsonl)
             num_predictions = len(trainer._eval_predictions)
-            
-            # If counts don't match, use the minimum (shouldn't happen, but safety check)
             num_to_save = min(num_examples, num_predictions)
             
             for i in range(num_to_save):
-                # Match predictions with original examples (same order)
-                # All fields are human-readable text
                 entry = {
-                    "input_text": original_examples_for_jsonl[i].get("input_text", ""),  # Raw input text
-                    "prompt": original_examples_for_jsonl[i].get("prompt", ""),  # Formatted prompt with template
-                    "reference": original_examples_for_jsonl[i].get("reference", ""),  # Target summary (ground truth)
-                    "prediction": trainer._eval_predictions[i] if i < len(trainer._eval_predictions) else ""  # Model prediction (cleaned)
+                    "input_text": original_examples_for_jsonl[i].get("input_text", ""),
+                    "prompt": original_examples_for_jsonl[i].get("prompt", ""),
+                    "reference": original_examples_for_jsonl[i].get("reference", ""),
+                    "prediction": trainer._eval_predictions[i] if i < len(trainer._eval_predictions) else "",
                 }
                 f.write(json.dumps(entry, ensure_ascii=False) + '\n')
         
         print(f"Saved predictions to: {predictions_file}")
         print(f"  - {num_to_save} examples saved")
-    elif is_main_process and not is_major_checkpoint:
-        print(f"Skipping predictions file (not a major checkpoint - only saved for major checkpoints to save disk space)")
+
+    if predict_only:
+        print("--predict_only: skipping metrics computation.")
+        return {"checkpoint_name": checkpoint_name, "checkpoint_step": checkpoint_step_int, "status": "predict_only"}, None
     
-    # Run extended evaluation metrics (reference-based, hygiene, faithfulness)
-    # Note: For normal checkpoints, we still run extended evaluation but use predictions from memory
-    # For major checkpoints, we can load from the saved JSONL file
+    # Run extended evaluation metrics (hygiene, BERTScore, NLI faithfulness)
     if is_main_process and not EXTENDED_EVAL_AVAILABLE:
         print("Warning: Extended evaluation not available. Only ROUGE metrics will be saved.")
     
-    # Run extended evaluation metrics (reference-based, hygiene, faithfulness)
-    # For major checkpoints: load from saved JSONL file
-    # For normal checkpoints: use predictions from memory (trainer._eval_predictions)
-    include_faithfulness = False  # Initialize to avoid unbound variable errors
+    # Run extended evaluation metrics (hygiene, BERTScore, NLI faithfulness)
+    include_faithfulness = False
     
     if is_main_process and EXTENDED_EVAL_AVAILABLE:
         try:
-            # Load texts from JSONL file if available (major checkpoints), otherwise use memory
-            input_texts = []
-            prediction_texts = []
-            reference_texts = []
-            
-            if predictions_file and os.path.exists(predictions_file):
-                # Major checkpoint: load from saved file
-                with open(predictions_file, 'r', encoding='utf-8') as f:
-                    for line in f:
-                        entry = json.loads(line)
-                        input_texts.append(entry.get("input_text", ""))
-                        prediction_texts.append(entry.get("prediction", ""))
-                        reference_texts.append(entry.get("reference", ""))
-            else:
-                # Normal checkpoint: use predictions from memory
-                # We have original_examples_for_jsonl and trainer._eval_predictions in memory
-                num_examples = len(original_examples_for_jsonl)
-                num_predictions = len(trainer._eval_predictions)
-                num_to_use = min(num_examples, num_predictions)
-                
-                for i in range(num_to_use):
-                    input_texts.append(original_examples_for_jsonl[i].get("input_text", ""))
-                    prediction_texts.append(trainer._eval_predictions[i] if i < len(trainer._eval_predictions) else "")
-                    reference_texts.append(original_examples_for_jsonl[i].get("reference", ""))
+            # Critical cache invalidation: when force_recompute is requested, predictions may differ
+            # from earlier runs (e.g. decoder/cleaning fixes). Reusing old per-example NLI cache
+            # would silently keep stale 0.0 faithfulness scores.
+            if force_recompute and include_nli_faithfulness:
+                faith_details_file = get_faithfulness_details_path(
+                    checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                )
+                if os.path.exists(faith_details_file):
+                    try:
+                        os.remove(faith_details_file)
+                        print(
+                            f"force_recompute=True: removed stale faithfulness cache "
+                            f"for this checkpoint: {faith_details_file}"
+                        )
+                    except Exception as cache_rm_error:
+                        print(
+                            f"Warning: could not remove stale faithfulness cache "
+                            f"{faith_details_file}: {cache_rm_error}"
+                        )
+
+            # Load texts from saved JSONL (always available since we save for all checkpoints)
+            input_texts, prediction_texts, reference_texts = load_predictions_jsonl(predictions_file)
             
             if len(input_texts) > 0 and len(prediction_texts) > 0 and len(reference_texts) > 0:
                 # Determine which metrics to compute based on checkpoint type and user settings
@@ -2726,23 +3271,28 @@ def evaluate_checkpoint(
 
                 nli_input_texts, nli_prediction_texts, nli_reference_texts = input_texts, prediction_texts, reference_texts
                 if include_faithfulness:
-                    # Get or create fixed NLI subset (500 examples, same across all checkpoints)
+                    # Fixed NLI indices are stored in the active results subdir.
                     model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
+                    use_first_n = val_data_size > nli_subset_size
                     nli_indices = get_or_create_fixed_nli_subset(
                         total_examples=len(input_texts),
                         model_dir=model_dir_eval,
-                        subset_size=NLI_FIXED_SUBSET_SIZE,
-                        use_first_n_for_extended=(val_data_size > NLI_FIXED_SUBSET_SIZE)
+                        subset_size=nli_subset_size,
+                        use_first_n_for_extended=use_first_n,
+                        results_subdir=results_subdir,
                     )
                     if not nli_indices or len(nli_indices) == 0:
-                        raise ValueError(f"Fixed NLI subset is empty. Total: {len(input_texts)}, subset: {NLI_FIXED_SUBSET_SIZE}")
+                        raise ValueError(
+                            f"Fixed NLI subset is empty. Total: {len(input_texts)}, "
+                            f"nli_subset_size={nli_subset_size!r}"
+                        )
                     nli_input_texts, nli_prediction_texts, nli_reference_texts = apply_fixed_subset(
                         input_texts, prediction_texts, reference_texts, nli_indices
                     )
                     if len(nli_input_texts) == 0:
                         raise ValueError(f"After applying fixed subset, NLI input texts are empty.")
 
-                # Run extended evaluation: ROUGE + Hygiene + BERTScore (full set), then NLI on subset if requested
+                # Run extended evaluation: Hygiene + optionally BERTScore (full set)
                 assert extended_evaluate is not None, "extended_evaluate should be available when EXTENDED_EVAL_AVAILABLE is True"
                 extended_results = extended_evaluate(
                     input_texts=input_texts,
@@ -2750,27 +3300,26 @@ def evaluate_checkpoint(
                     reference_texts=reference_texts,
                     print_output=False,
                     include_bertscore=include_bertscore,
-                    include_faithfulness=False  # Skip NLI in first run
                 )
                 extended_timing = extended_results.pop("_timing", {})
-                if "faithfulness" not in extended_results:
-                    extended_results["faithfulness"] = None
+                extended_results["faithfulness"] = None
 
+                # NLI faithfulness on subset (separate from extended_evaluate)
                 if include_faithfulness:
                     assert len(nli_input_texts) <= len(input_texts), "NLI evaluation must use subset"
                     try:
-                        nli_results = extended_evaluate(
-                            input_texts=nli_input_texts,
-                            prediction_texts=nli_prediction_texts,
-                            reference_texts=nli_reference_texts,
-                            print_output=False,
-                            include_bertscore=False,
-                            include_faithfulness=True
+                        from utils.faithfulness import NLIFaithfulnessGate
+                        gate = NLIFaithfulnessGate()
+                        faith_details_file = get_faithfulness_details_path(
+                            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
                         )
-                        nli_timing = nli_results.pop("_timing", {}) if nli_results else {}
-                        if "nli_faithfulness_seconds" in nli_timing:
-                            extended_timing["nli_faithfulness_seconds"] = nli_timing["nli_faithfulness_seconds"]
-                        extended_results["faithfulness"] = nli_results.get("faithfulness") if nli_results else None
+                        faithfulness_out = gate.eval_faithfulness_incremental(
+                            nli_input_texts, nli_prediction_texts,
+                            nli_indices, faith_details_file,
+                        )
+                        if "_timing" in faithfulness_out:
+                            extended_timing["nli_faithfulness_seconds"] = faithfulness_out.pop("_timing").get("nli_faithfulness_seconds", 0.0)
+                        extended_results["faithfulness"] = faithfulness_out
                     except Exception as nli_error:
                         print(f"ERROR: NLI faithfulness evaluation failed: {nli_error}")
                         extended_results["faithfulness"] = None
@@ -2866,15 +3415,16 @@ def evaluate_checkpoint(
     
     # Save results to file (only on main process)
     if is_main_process:
-        # Ensure all_eval_results dir exists (handles backup checkpoint paths)
-        os.makedirs(os.path.join(model_dir_eval, "all_eval_results"), exist_ok=True)
+        # Ensure target results directory exists (handles backup checkpoint paths)
+        os.makedirs(os.path.join(model_dir_eval, results_subdir), exist_ok=True)
         # Save per-checkpoint JSON so monitor and summary can read it
         saved_path = save_eval_results(
             results=eval_results,
             checkpoint_dir=checkpoint_dir,
             model_dir=model_dir_eval,
-            save_to_old_location=True,  # Keep backwards compatibility (skipped when examples_suffix set)
+            save_to_old_location=not (c200k_min_new_tokens is not None and c200k_max_new_tokens is not None),
             examples_suffix=examples_suffix,
+            results_subdir=results_subdir,
         )
         print(f"Per-checkpoint results saved to: {saved_path}")
         
@@ -2886,6 +3436,7 @@ def evaluate_checkpoint(
             val_dataset_path=val_dataset_path,
             model_dir=model_dir_eval,
             examples_suffix=examples_suffix,
+            results_subdir=results_subdir,
         )
     
     # Clean up distributed process group
@@ -2903,8 +3454,8 @@ if __name__ == "__main__":
 Examples:
   # Multi-GPU evaluation with model parallelism:
   python evaluate_distributed_checkpoints_multigpu.py \\
-    --model gemma-7b \\
-    --checkpoint_dir models/gemma-7b_fsdp/checkpoint-100 \\
+    --model gemma-7b-it \\
+    --checkpoint_dir models/gemma-7b-it_fsdp/checkpoint-100 \\
     --val_dataset data/output/processed_data_val.jsonl \\
     --hf_token YOUR_TOKEN \\
     --wandb_project lm-evaluation \\
@@ -2912,26 +3463,28 @@ Examples:
 
   # Single-GPU fallback:
   python evaluate_distributed_checkpoints_multigpu.py \\
-    --model gemma-7b \\
-    --checkpoint_dir models/gemma-7b_fsdp/checkpoint-100 \\
+    --model gemma-7b-it \\
+    --checkpoint_dir models/gemma-7b-it_fsdp/checkpoint-100 \\
     --val_dataset data/output/processed_data_val.jsonl \\
     --hf_token YOUR_TOKEN
 
-  # With NLI faithfulness evaluation on a subset:
+  # With NLI faithfulness (default 100 examples; use --nli_subset_size == --val_data_size for full val NLI):
   python evaluate_distributed_checkpoints_multigpu.py \\
-    --model gemma-7b \\
-    --checkpoint_dir models/gemma-7b_fsdp/checkpoint-100 \\
+    --model gemma-7b-it \\
+    --checkpoint_dir models/gemma-7b-it_fsdp/checkpoint-100 \\
     --val_dataset data/output/processed_data_val.jsonl \\
     --hf_token YOUR_TOKEN \\
-    --include_nli_faithfulness
+    --include_nli_faithfulness \\
+    --val_data_size 500 \\
+    --nli_subset_size 500
         """
     )
     
     parser.add_argument('--model', type=str, required=True,
                        choices=['viking-7b', 'viking-13b', 'viking-33b',
-                                'gemma-2b', 'gemma-7b', 'gemma-2-9b', 'gemma-2-27b',
+                                'gemma-2b', 'gemma-7b-it', 'gemma-2-9b', 'gemma-2-27b',
                                 'gemma-3-12b', 'gemma-3-27b',
-                                'normistral-7b', 'normistral-11b', 'normistral-7b-instruct',
+                               'normistral-7b', 'normistral-11b', 'normistral-11b-long', 'normistral-7b-instruct',
                                 'norskgpt-llama3-8b', 'llama-3.1-8b-instruct', 'llama-2-13b-chat-norwegian',
                                 'eurollm-9b-instruct', 'norwai-mistral-7b-instruct', 'nb-gpt-j-6b', 'mt5'],
                        help='Base model that was fine-tuned')
@@ -2953,16 +3506,26 @@ Examples:
                        help=f'Maximum extra tokens for input prompt (default: {MAX_EXTRA_PROMPT_TOKENS})')
     parser.add_argument('--max_output_summary_tokens', type=int, default=MAX_OUTPUT_SUMMARY_TOKENS,
                        help=f'Maximum tokens for output summary (default: {MAX_OUTPUT_SUMMARY_TOKENS})')
+    parser.add_argument('--min_new_tokens', type=int, default=15,
+                       help='Minimum number of generated tokens (default: 15).')
+    parser.add_argument('--c200k_min_new_tokens', type=int, default=None,
+                       help='Minimum generated tokens in c200k space; converted per model tokenizer.')
+    parser.add_argument('--c200k_max_new_tokens', type=int, default=None,
+                       help='Maximum generated tokens in c200k space; converted per model tokenizer.')
     parser.add_argument('--val_batch_size', type=int, default=VAL_BATCH_SIZE,
                        help=f'Validation batch size per device (default: {VAL_BATCH_SIZE}). The script will automatically adjust based on model size and provide memory utilization reports.')
     parser.add_argument('--val_data_size', type=int, default=VAL_DATA_SIZE,
-                       help=f'Number of examples to use for validation (default: {VAL_DATA_SIZE}). Use 1000 for extended eval; the 1000 contain the same 500 as used for 500-example runs.')
+                       help=f'Number of examples to use for validation (default: {VAL_DATA_SIZE}). Output files are suffixed as -<val_data_size>-examples; 1000-example sets contain the same 500 used by 500-example runs.')
     parser.add_argument('--val_data_seed', type=int, default=VAL_DATA_SEED,
                        help=f'Random seed for reproducible validation sampling (default: {VAL_DATA_SEED})')
     parser.add_argument('--val_beam_size', type=int, default=VAL_BEAM_SIZE,
                        help=f'Beam size for validation generation (default: {VAL_BEAM_SIZE})')
+    parser.add_argument('--length_penalty', type=float, default=1.0,
+                       help='Beam-search length penalty (default: 1.0). Ignored with --use_greedy.')
     parser.add_argument('--use_greedy', action='store_true',
                        help='Use greedy decoding instead of beam search for faster evaluation')
+    parser.add_argument('--allow_sampling_fallback', action='store_true',
+                       help='Allow non-deterministic sampling retries when deterministic generation fails.')
     parser.add_argument('--use_multi_gpu', action='store_true',
                        help='Use model parallelism (device_map="auto") to split model across multiple GPUs. Compatible with generation.')
     parser.add_argument('--keep_existing', action='store_true',
@@ -2978,19 +3541,68 @@ Examples:
     parser.add_argument('--wandb_disabled', action='store_true',
                        help='Disable wandb logging for this evaluation')
     parser.add_argument('--wandb_run_name', type=str, default=None,
-                       help='Wandb run name (if not provided, defaults to {model}_eval_all_checkpoints). All checkpoints will be combined into a single run automatically. The run ID is saved in model_dir/all_eval_results/.wandb_run_id for automatic resumption.')
+                       help='Wandb run name (if not provided, defaults to {model}_eval_all_checkpoints). All checkpoints are combined into one run per result directory. Run ID is stored in that directory as .wandb_run_id.')
     parser.add_argument('--wandb_group', type=str, default=None,
                        help='Wandb group name to combine multiple runs (default: model name)')
     parser.add_argument('--major_checkpoint_interval', type=int, default=500,
                        help='Every Nth step is considered "major" for BERTScore evaluation (default: 500). Major checkpoints: checkpoint-500, checkpoint-1000, checkpoint-1500, etc.')
     parser.add_argument('--include_nli_faithfulness', action='store_true',
-                       help='Enable NLI-based faithfulness evaluation using fixed 500-example subset (slow: ~4.5s per example, ~37 min for 500 examples). The same 500 examples are used for all checkpoints for consistency.')
+                       help='Enable NLI-based faithfulness evaluation on a fixed subset of examples (same indices across checkpoints; see --nli_subset_size).')
+    parser.add_argument(
+        '--nli_subset_size',
+        type=int,
+        default=NLI_DEFAULT_SUBSET_SIZE,
+        metavar='N',
+        help='With --include_nli_faithfulness: number of examples for NLI (default: %(default)s). '
+        'For NLI on the full eval set, set this equal to --val_data_size. '
+        'If N is smaller than the eval set, use a reproducible random subset (seed 42), or the first N examples when '
+        '--val_data_size is larger than N.',
+    )
+
+    # --- Evaluation mode flags ---
+    mode_group = parser.add_mutually_exclusive_group()
+    mode_group.add_argument('--predict_only', action='store_true',
+                           help='Generate predictions and save JSONL only; skip all metrics computation.')
+    mode_group.add_argument('--metrics_only', action='store_true',
+                           help='Compute all metrics from an existing JSONL predictions file; no model loading needed.')
+
+    parser.add_argument('--update_rouge', action='store_true',
+                       help='Recompute ROUGE from existing JSONL and merge into eval results.')
+    parser.add_argument('--update_hygiene', action='store_true',
+                       help='Recompute hygiene from existing JSONL and merge into eval results.')
+    parser.add_argument('--update_bertscore', action='store_true',
+                       help='Recompute BERTScore from existing JSONL and merge into eval results.')
+    parser.add_argument('--update_faithfulness', action='store_true',
+                       help='Recompute NLI faithfulness from existing JSONL and merge into eval results '
+                            'when eval_faithfulness is missing/null or the *-faithfulness-details-*.jsonl file is absent.')
 
     args = parser.parse_args()
-    
+
+    # Build update_metrics set (empty set means not in update mode)
+    update_metrics = {name for name in ("rouge", "hygiene", "bertscore", "faithfulness")
+                      if getattr(args, f"update_{name}", False)}
+
+    # Validate mode mutual exclusivity
+    if update_metrics and (args.predict_only or args.metrics_only):
+        parser.error("--update_* flags cannot be combined with --predict_only or --metrics_only.")
+
+    # --metrics_only and --update_* do not need --val_dataset or model loading
+    needs_prediction = not args.metrics_only and not update_metrics and not args.skip_eval
+
     # Validate arguments
-    if not args.skip_eval and args.val_dataset is None:
-        parser.error("--val_dataset is required when evaluation is enabled (use --skip_eval to skip evaluation)")
+    if needs_prediction and args.val_dataset is None:
+        parser.error("--val_dataset is required for prediction (use --metrics_only, --update_*, or --skip_eval to skip)")
+
+    if args.nli_subset_size < 1:
+        parser.error("--nli_subset_size must be a positive integer")
+    if args.min_new_tokens < 1:
+        parser.error("--min_new_tokens must be >= 1")
+    if args.c200k_min_new_tokens is not None and args.c200k_min_new_tokens < 1:
+        parser.error("--c200k_min_new_tokens must be >= 1")
+    if args.c200k_max_new_tokens is not None and args.c200k_max_new_tokens < 1:
+        parser.error("--c200k_max_new_tokens must be >= 1")
+    if (args.c200k_min_new_tokens is None) != (args.c200k_max_new_tokens is None):
+        parser.error("--c200k_min_new_tokens and --c200k_max_new_tokens must either both be set or both be omitted")
 
     # Model mapping from configs
     model_mapping = get_model_name_mapping()
@@ -3000,10 +3612,14 @@ Examples:
         print(f"Error mapping model name: {e}")
         sys.exit(1)
 
-    # Apply model-specific max_output_summary_tokens (e.g. Normistral uses 256 to reduce gibberish)
+    # Apply model-specific token limits (e.g. Normistral-7b has 2048 context window)
+    max_input_text_tokens = args.max_input_text_tokens
     max_output_summary_tokens = args.max_output_summary_tokens
     try:
         model_config = get_model_config_by_hf_name(model_name)
+        if model_config and model_config.max_input_text_tokens is not None:
+            max_input_text_tokens = model_config.max_input_text_tokens
+            print(f"Using model-specific max_input_text_tokens: {max_input_text_tokens}")
         if model_config and model_config.max_output_summary_tokens is not None:
             max_output_summary_tokens = model_config.max_output_summary_tokens
             print(f"Using model-specific max_output_summary_tokens: {max_output_summary_tokens}")
@@ -3030,10 +3646,16 @@ Examples:
                 checkpoint_dir=args.checkpoint_dir,
                 val_dataset_path=args.val_dataset,
                 hf_token=args.hf_token,
-                output_dir=args.output_dir,  # None will trigger default: model_dir/all_eval_results
+                output_dir=args.output_dir,
+                max_input_text_tokens=max_input_text_tokens,
                 max_output_summary_tokens=max_output_summary_tokens,
+                min_new_tokens=args.min_new_tokens,
+                c200k_min_new_tokens=args.c200k_min_new_tokens,
+                c200k_max_new_tokens=args.c200k_max_new_tokens,
                 val_data_size=args.val_data_size,
                 val_data_seed=args.val_data_seed,
+                length_penalty=args.length_penalty,
+                allow_sampling_fallback=args.allow_sampling_fallback,
                 use_multi_gpu=args.use_multi_gpu,
                 wandb_project=args.wandb_project if not args.wandb_disabled else None,
                 wandb_entity=args.wandb_entity,
@@ -3042,10 +3664,17 @@ Examples:
                 wandb_group=args.wandb_group,
                 major_checkpoint_interval=args.major_checkpoint_interval,
                 include_nli_faithfulness=args.include_nli_faithfulness,
+                nli_subset_size=args.nli_subset_size,
                 keep_existing=args.keep_existing,
                 force_recompute=args.force_recompute,
+                predict_only=args.predict_only,
+                metrics_only=args.metrics_only,
+                update_metrics=update_metrics or None,
             )
         except AlreadyEvaluatedError as e:
             print(f"⚠ SKIPPING: {e}")
             print(f"Checkpoint {args.checkpoint_dir} was already evaluated. Moving to next checkpoint.")
-            sys.exit(0)  # Exit with success code so bash loop continues
+            sys.exit(0)
+        except FileNotFoundError as e:
+            print(f"⚠ SKIPPING: {e}")
+            sys.exit(0)

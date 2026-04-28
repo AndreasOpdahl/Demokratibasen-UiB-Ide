@@ -535,7 +535,7 @@ def test_model_on_gpu(model, tokenizer, test_dataset_path, output_dir):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Fine-tune a language model')
     parser.add_argument('--model', type=str, required=True,
-                       choices=['viking-7b', 'gemma-2b', 'mt5', 'gemma-7b'],
+                       choices=['viking-7b', 'gemma-2b', 'mt5', 'gemma-7b-it'],
                        help='Model to fine-tune')
     parser.add_argument('--train_dataset', type=str, default='/app/data/output/processed_data_train.jsonl',
                        help='Path to processed dataset')
@@ -579,7 +579,7 @@ if __name__ == "__main__":
         'viking-7b': 'LumiOpen/Viking-7B',
         'gemma-2b': 'google/gemma-2b',
         'mt5': 'google/mt5-base',
-        'gemma-7b': 'google/gemma-7b'
+        'gemma-7b-it': 'google/gemma-7b-it'
     }
 
     print("Arguments: ", args)

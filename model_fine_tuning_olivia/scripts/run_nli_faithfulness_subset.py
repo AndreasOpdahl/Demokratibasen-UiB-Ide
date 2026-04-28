@@ -8,14 +8,14 @@ of examples from the evaluation predictions JSONL file.
 Usage:
     # Run on first 100 examples from a checkpoint's predictions file:
     python run_nli_faithfulness_subset.py \
-        --predictions_file models/gemma-7b/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \
+        --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \
         --subset_size 100 \
-        --output_file models/gemma-7b/all_eval_results/checkpoint-100-nli-faithfulness.json
+        --output_file models/gemma-7b-it/all_eval_results/checkpoint-100-nli-faithfulness.json
 
     # Run on all examples:
     python run_nli_faithfulness_subset.py \
-        --predictions_file models/gemma-7b/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \
-        --output_file models/gemma-7b/all_eval_results/checkpoint-100-nli-faithfulness.json
+        --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \
+        --output_file models/gemma-7b-it/all_eval_results/checkpoint-100-nli-faithfulness.json
 """
 
 import argparse
@@ -24,7 +24,7 @@ import os
 import random
 from pathlib import Path
 
-from summarisation_evaluation import NLIFaithfulnessGate
+from utils.faithfulness import NLIFaithfulnessGate
 
 
 def load_predictions_from_jsonl(predictions_file: str, subset_size: int = None, random_seed: int = 42):
@@ -68,16 +68,16 @@ def main():
 Examples:
   # Run on first 100 examples:
   python run_nli_faithfulness_subset.py \\
-    --predictions_file models/gemma-7b/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \\
+    --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \\
     --subset_size 100
 
   # Run on all examples:
   python run_nli_faithfulness_subset.py \\
-    --predictions_file models/gemma-7b/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl
+    --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl
 
   # Specify output file:
   python run_nli_faithfulness_subset.py \\
-    --predictions_file models/gemma-7b/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \\
+    --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \\
     --subset_size 50 \\
     --output_file results/nli_checkpoint_100.json
         """

@@ -57,8 +57,8 @@ except ImportError:
 try:
     import tiktoken
     TIKTOKEN_AVAILABLE = True
-    # Use cl100k_base encoding (used by GPT-4, GPT-3.5-turbo, etc.)
-    _tokenizer = tiktoken.get_encoding("cl100k_base")
+    # Use o200k_base encoding (used by GPT-4o family including gpt-4o-mini)
+    _tokenizer = tiktoken.get_encoding("o200k_base")
 except ImportError:
     TIKTOKEN_AVAILABLE = False
     _tokenizer = None
