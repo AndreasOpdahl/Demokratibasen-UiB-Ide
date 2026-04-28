@@ -429,7 +429,7 @@ def test_extended_evaluation_metrics(model_name: str, checkpoint_dir: str, val_d
         hf_token = os.environ.get('HUGGINGFACE_TOKEN') or os.environ.get('HF_TOKEN')
         
         # Test with extended metrics (if available)
-        # Note: This may skip if extended_evaluation.py is not available
+        # Note: This may skip if summarisation_evaluation.py is not available
         results, _ = evaluate_checkpoint(
             model_name=model_name,
             checkpoint_dir=checkpoint_dir,
@@ -585,7 +585,7 @@ def test_extended_evaluation_metrics(model_name: str, checkpoint_dir: str, val_d
             
     except Exception as e:
         print(f"⚠ Extended evaluation test skipped: {e}")
-        print("  (This is okay if extended_evaluation.py is not available)")
+        print("  (This is okay if summarisation_evaluation.py is not available)")
         # If NLI was requested, this is a failure
         if include_nli:
             print("✗ NLI faithfulness was requested but evaluation failed")

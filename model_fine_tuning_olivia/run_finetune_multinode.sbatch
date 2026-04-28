@@ -34,6 +34,7 @@ TRAIN_DATASET=${TRAIN_DATASET:-"data/output/new_processed_data_train.jsonl"}
 VAL_DATASET=${VAL_DATASET:-"data/output/new_processed_data_val.jsonl"}
 TRAIN_BATCH_SIZE=${TRAIN_BATCH_SIZE:-""}  # Empty = use model config default
 VAL_BATCH_SIZE=${VAL_BATCH_SIZE:-""}      # Empty = use model config default
+MAX_INPUT_TEXT_TOKENS=${MAX_INPUT_TEXT_TOKENS:-2048}
 RESUME_CHECKPOINT=${RESUME_CHECKPOINT:-""}
 TASK_LIMIT=${TASK_LIMIT:-"--max_steps 10000"}
 DISTRIBUTION_FLAG=${DISTRIBUTION_FLAG:-"--fsdp"}
@@ -69,6 +70,9 @@ for arg in "$@"; do
         --val_batch_size=*)
             VAL_BATCH_SIZE="${arg#*=}"
             ;;
+        --max_input_text_tokens=*)
+            MAX_INPUT_TEXT_TOKENS="${arg#*=}"
+            ;;
         --dry-run|--debug)
             DRY_RUN=true
             ;;
@@ -84,6 +88,7 @@ for arg in "$@"; do
             echo "  --val_dataset=PATH         Path to validation dataset JSONL file (default: data/output/new_processed_data_val.jsonl)"
             echo "  --train_batch_size=N       Training batch size per device (default: use model config default)"
             echo "  --val_batch_size=N         Validation batch size per device (default: use model config default)"
+            echo "  --max_input_text_tokens=N  Maximum input text tokens (default: 2048)"
             echo "  --resume_checkpoint=DIR    Checkpoint directory to resume from (default: none)"
             echo "  --task_limit=\"OPTIONS\"     Task limit, e.g. \"--max_steps 10000\" (default: --max_steps 10000)"
             echo "  --distribution_flag=FLAG   Distribution flag: --fsdp or --ddp (default: --fsdp)"
@@ -335,6 +340,7 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "    --hf_token [REDACTED]"
     echo "    --train_dataset $TRAIN_DATASET"
     echo "    --val_dataset $VAL_DATASET"
+    echo "    --max_input_text_tokens $MAX_INPUT_TEXT_TOKENS"
     echo "    $TASK_LIMIT"
     echo "    --output_dir $OUTPUT_DIR ${RESUME_CHECKPOINT:+--resume_checkpoint $RESUME_CHECKPOINT}"
     echo ""
@@ -573,7 +579,7 @@ echo "=== Network interfaces ==="
 ip link show | grep -E "^[0-9]+" | cut -d: -f2
 
 echo "=== Step 5: Launch training ==="
-torchrun --nnodes=SLURM_NNODES_PLACEHOLDER --nproc_per_node=SLURM_GPUS_ON_NODE_PLACEHOLDER --node_rank=$SLURM_NODEID --rdzv_backend=c10d --rdzv_endpoint=MASTER_ADDR_PLACEHOLDER:MASTER_PORT_PLACEHOLDER scripts/wandb_finetune.py --model MODEL_PLACEHOLDER --quantization none DISTRIBUTION_FLAG_PLACEHOLDER --hf_token HUGGINGFACE_TOKEN_PLACEHOLDER --train_dataset TRAIN_DATASET_PLACEHOLDER --val_dataset VAL_DATASET_PLACEHOLDER TRAIN_BATCH_SIZE_PLACEHOLDER VAL_BATCH_SIZE_PLACEHOLDER TASK_LIMIT_PLACEHOLDER --output_dir models/MODEL_PLACEHOLDER-apptainer-fsdp RESUME_ARG_PLACEHOLDER
+torchrun --nnodes=SLURM_NNODES_PLACEHOLDER --nproc_per_node=SLURM_GPUS_ON_NODE_PLACEHOLDER --node_rank=$SLURM_NODEID --rdzv_backend=c10d --rdzv_endpoint=MASTER_ADDR_PLACEHOLDER:MASTER_PORT_PLACEHOLDER scripts/wandb_finetune.py --model MODEL_PLACEHOLDER --quantization none DISTRIBUTION_FLAG_PLACEHOLDER --hf_token HUGGINGFACE_TOKEN_PLACEHOLDER --train_dataset TRAIN_DATASET_PLACEHOLDER --val_dataset VAL_DATASET_PLACEHOLDER --max_input_text_tokens MAX_INPUT_TEXT_TOKENS_PLACEHOLDER TRAIN_BATCH_SIZE_PLACEHOLDER VAL_BATCH_SIZE_PLACEHOLDER TASK_LIMIT_PLACEHOLDER --output_dir models/MODEL_PLACEHOLDER-apptainer-fsdp RESUME_ARG_PLACEHOLDER
 SCRIPT_EOF
 
 # Replace placeholders with actual values
@@ -598,6 +604,7 @@ sed -i "s|HUGGINGFACE_TOKEN_PLACEHOLDER|$HUGGINGFACE_TOKEN|g" "$SCRIPT_FILE"
 sed -i "s|TASK_LIMIT_PLACEHOLDER|$TASK_LIMIT|g" "$SCRIPT_FILE"
 sed -i "s|TRAIN_DATASET_PLACEHOLDER|$TRAIN_DATASET|g" "$SCRIPT_FILE"
 sed -i "s|VAL_DATASET_PLACEHOLDER|$VAL_DATASET|g" "$SCRIPT_FILE"
+sed -i "s|MAX_INPUT_TEXT_TOKENS_PLACEHOLDER|$MAX_INPUT_TEXT_TOKENS|g" "$SCRIPT_FILE"
 # Add batch size arguments if provided (empty string if not provided)
 TRAIN_BATCH_SIZE_ARG=""
 VAL_BATCH_SIZE_ARG=""

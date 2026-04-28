@@ -87,7 +87,7 @@ This document provides time estimates for computing various evaluation metrics o
 
 **Notes:** 
 - This is the **slowest metric** by far
-- The TODO in `extended_evaluation.py` suggests running on a subset for every checkpoint
+- The TODO in `summarisation_evaluation.py` suggests running on a subset for every checkpoint
 - Consider running on full set only for final evaluation or every N checkpoints
 
 ---
