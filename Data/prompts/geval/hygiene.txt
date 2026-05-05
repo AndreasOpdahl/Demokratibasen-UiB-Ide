@@ -48,7 +48,7 @@ Think carefully and make your decision based only on the specified criterion.
 
 Output Format:
 Return your answer as a valid JSON object with exactly the following format:
-{"decision": "<A|B|Tie>", "rationale": "<one or two short sentences>"}
+{"rationale": "<one or two short sentence>", "decision": "<A|B|Tie>"}
 
 - The rationale must be one or two short sentences.
 - Do not include any extra text outside the JSON.

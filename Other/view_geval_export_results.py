@@ -9,13 +9,22 @@ Interactive HTML viewer for **this repo's** G-Eval **export** results.
 
 **Models:** By default, discovers every subfolder of ``Data/eval/`` that contains ``*.jsonl`` and has a
 matching export under ``.deepeval/geval_exports/<same_name>/``. The folder named ``25`` is skipped.
+If you only have one such eval folder (e.g. only ``llama-2-13b``) but **many** export trees under
+``.deepeval/geval_exports/``, use ``--all_export_leaves`` to list **every** export leaf there (not
+tied to ``Data/eval``).
 
-**Mean over judges:** Optional curve = average of the per-judge values at each checkpoint step
-(same steps across judges).
+**Mean (selected judges):** When the checkbox is on, adds a curve that averages per-judge values
+at each checkpoint **only over judges that are checked** in the sidebar (it updates as you change
+the selection). The curve is drawn only when at least two checked judges have data for that panel
+(so it is not redundant with a single judge line).
 
 Usage (from repo root; auto-pick all eval models with exports):
 
     python Other/view_geval_export_results.py -o .deepeval/geval_exports/images/geval_viewer.html
+
+All export subfolders under ``.deepeval/geval_exports/`` (ignores e.g. ``images``):
+
+    python Other/view_geval_export_results.py --all_export_leaves -o geval_export_viewer.html
 
 Manual leaves still supported:
 
@@ -28,7 +37,6 @@ import argparse
 import csv
 import json
 import re
-import statistics
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -38,9 +46,11 @@ REPO_ROOT = _SCRIPT_DIR.parent
 _DEFAULT_EXPORT_ROOT = REPO_ROOT / ".deepeval" / "geval_exports"
 _DATA_EVAL_ROOT = REPO_ROOT / "Data" / "eval"
 _IGNORE_EVAL_DIR_NAMES = frozenset({"25"})
+# Subdirs of export_root that are not summarization-model export trees (plots, scratch, etc.).
+_IGNORE_EXPORT_LEAF_NAMES = frozenset({"images"})
 
 _MEAN_JUDGE_KEY = "__MEAN_OVER_JUDGES__"
-_MEAN_JUDGE_LABEL = "Mean (judges)"
+_MEAN_JUDGE_LABEL = "Mean (selected judges)"
 
 _DEFAULT_DIMENSIONS: Tuple[str, ...] = (
     "faithfulness",
@@ -109,21 +119,6 @@ def _read_csv_rows(path: Path) -> Tuple[List[str], List[Dict[str, str]]]:
         return list(r.fieldnames), rows
 
 
-def _mean_over_judges(by_judge: Dict[str, Dict[str, List[float]]]) -> Optional[Dict[str, List[float]]]:
-    """Average values at each checkpoint step across judges (same step keys)."""
-    step_vals: Dict[int, List[float]] = {}
-    for j, series in by_judge.items():
-        if j == _MEAN_JUDGE_KEY:
-            continue
-        for s, v in zip(series["steps"], series["values"]):
-            step_vals.setdefault(int(s), []).append(float(v))
-    if not step_vals:
-        return None
-    steps = sorted(step_vals)
-    vals = [float(statistics.mean(step_vals[s])) for s in steps]
-    return {"steps": steps, "values": vals}
-
-
 def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str, Dict[str, Dict[str, List[float]]]]:
     tables = leaf_path / "tables"
     out: Dict[str, Dict[str, Dict[str, List[float]]]] = {}
@@ -160,9 +155,6 @@ def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str
             if pts:
                 dim_j[judge_id] = {"steps": [a for a, _ in pts], "values": [b for _, b in pts]}
         if dim_j:
-            m = _mean_over_judges(dim_j)
-            if m:
-                dim_j[_MEAN_JUDGE_KEY] = m
             out[dim] = dim_j
     return out
 
@@ -226,9 +218,6 @@ def _parse_win_rates_from_summary(
             pts.sort(key=lambda t: t[0])
             dim_j[jid] = {"steps": [a for a, _ in pts], "values": [b for _, b in pts]}
         if dim_j:
-            m = _mean_over_judges(dim_j)
-            if m:
-                dim_j[_MEAN_JUDGE_KEY] = m
             out[dim] = dim_j
     return out
 
@@ -252,6 +241,67 @@ def discover_export_leaves_from_data_eval(
         exp = export_root / child.name
         if exp.is_dir() and (exp / "tables").is_dir():
             out.append(exp.resolve())
+    return out
+
+
+def _looks_like_geval_export_leaf(path: Path) -> bool:
+    """True if ``path`` has tables (and optional BT CSV or results summary) like a pipeline export."""
+    tables = path / "tables"
+    if not tables.is_dir():
+        return False
+    if (path / "reports" / "results_summary.md").is_file():
+        return True
+    return any(tables.glob("bradley_terry_theta__*.csv"))
+
+
+def _document_count_for_export_leaf(lp: Path) -> Optional[int]:
+    """Distinct ``doc_id`` count for this export (subset used in pairwise G-Eval).
+
+    Prefer ``reports/results_summary.md`` (same line as :func:`pairwise_eval.io_export` preamble);
+    fall back to ``json/pairs_table.json`` distinct ``doc_id`` values.
+    """
+    summary = lp / "reports" / "results_summary.md"
+    if summary.is_file():
+        text = summary.read_text(encoding="utf-8")
+        m = re.search(r"\*\*Documents in subset:\*\*\s*(\d+)\s+distinct", text)
+        if m:
+            return int(m.group(1))
+    pairs_json = lp / "json" / "pairs_table.json"
+    if pairs_json.is_file():
+        try:
+            rows = json.loads(pairs_json.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            return None
+        if not isinstance(rows, list):
+            return None
+        doc_ids = {r.get("doc_id") for r in rows if isinstance(r, dict)}
+        doc_ids.discard(None)
+        return len(doc_ids) if doc_ids else None
+    return None
+
+
+def discover_export_leaves_under_export_root(
+    export_root: Path,
+    ignore_names: frozenset[str] = _IGNORE_EXPORT_LEAF_NAMES,
+) -> List[Path]:
+    """Every immediate subdirectory of ``export_root`` that looks like a G-Eval export (has ``tables/``).
+
+    Use this when exports exist for many models under ``.deepeval/geval_exports/`` but ``Data/eval``
+    only mirrors one folder (so :func:`discover_export_leaves_from_data_eval` would return a single leaf).
+    """
+    if not export_root.is_dir():
+        return []
+    out: List[Path] = []
+    for child in sorted(export_root.iterdir()):
+        if not child.is_dir():
+            continue
+        if child.name.startswith("."):
+            continue
+        if child.name in ignore_names:
+            continue
+        if not _looks_like_geval_export_leaf(child):
+            continue
+        out.append(child.resolve())
     return out
 
 
@@ -280,10 +330,12 @@ def build_chart_data(
                 if k != _MEAN_JUDGE_KEY:
                     all_judges.add(k)
 
+        n_docs = _document_count_for_export_leaf(lp)
         leaves[name] = {
             "theta": theta,
             "win_rate": win_rate,
             "path": str(lp),
+            "document_count": n_docs,
         }
 
     judge_list = sorted(all_judges)
@@ -414,7 +466,10 @@ leafNames.forEach(name => {
   cb.onchange = () => { if (cb.checked) selectedLeaves.add(name); else selectedLeaves.delete(name); render(); };
   const sw = document.createElement("span"); sw.className = "sw"; sw.style.background = leafColors[name];
   lbl.appendChild(cb); lbl.appendChild(sw);
-  lbl.appendChild(document.createTextNode(" " + name));
+  const leafRec = DATA.leaves[name];
+  const nd = leafRec && leafRec.document_count != null ? leafRec.document_count : null;
+  const suffix = (typeof nd === "number" && Number.isFinite(nd)) ? ` (${nd} docs)` : "";
+  lbl.appendChild(document.createTextNode(" " + name + suffix));
   leafBar.appendChild(lbl);
   leafCbs.push({cb, name});
 });
@@ -491,6 +546,43 @@ document.querySelectorAll('input[name="metric"]').forEach(r => {
   });
 });
 
+/** How many checked judges have a non-empty series in ``byJ`` (ignores synthetic mean key). */
+function countJudgesWithData(byJ, selectedJudges) {
+  let n = 0;
+  for (const judge of Object.keys(byJ)) {
+    if (judge === MEAN_KEY) continue;
+    if (!selectedJudges.has(judge)) continue;
+    const d = byJ[judge];
+    if (d && d.steps && d.steps.length) n++;
+  }
+  return n;
+}
+
+/** Per checkpoint step, arithmetic mean of y over selected judges that have a value at that step. */
+function meanSeriesOverSelectedJudges(byJ, selectedJudges) {
+  const stepToVals = new Map();
+  for (const judge of Object.keys(byJ)) {
+    if (judge === MEAN_KEY) continue;
+    if (!selectedJudges.has(judge)) continue;
+    const d = byJ[judge];
+    if (!d || !d.steps || !d.values) continue;
+    for (let i = 0; i < d.steps.length; i++) {
+      const s = Number(d.steps[i]);
+      const v = Number(d.values[i]);
+      if (!Number.isFinite(s) || !Number.isFinite(v)) continue;
+      if (!stepToVals.has(s)) stepToVals.set(s, []);
+      stepToVals.get(s).push(v);
+    }
+  }
+  if (stepToVals.size === 0) return null;
+  const steps = Array.from(stepToVals.keys()).sort((a, b) => a - b);
+  const values = steps.map(s => {
+    const arr = stepToVals.get(s);
+    return arr.reduce((a, b) => a + b, 0) / arr.length;
+  });
+  return { steps, values };
+}
+
 function render() {
   const traces = [];
   const yTitle = metricMode === "bt" ? "Bradley–Terry θ" : "Win rate";
@@ -525,28 +617,30 @@ function render() {
 
       const chLab = (s) => "ch-" + String(Math.round(Number(s)));
 
-      if (showMeanJudges && byJ[MEAN_KEY] && byJ[MEAN_KEY].steps && byJ[MEAN_KEY].steps.length) {
-        const d = byJ[MEAN_KEY];
-        traces.push({
-          x: d.steps,
-          y: d.values,
-          text: d.steps.map(chLab),
-          hovertemplate: "%{text}<br>%{y:.4f}<extra></extra>",
-          mode: "lines+markers",
-          name: leaf + " / " + dim + " / " + MEAN_LAB,
-          line: {
-            color: dcol,
-            width: 5,
-            dash: "longdashdot",
-          },
-          marker: {
-            size: 10,
-            symbol: "star",
-            line: { color: "#0f172a", width: 1.2 },
-            color: dcol,
-          },
-          opacity: 0.98,
-        });
+      if (showMeanJudges && countJudgesWithData(byJ, selectedJudges) >= 2) {
+        const d = meanSeriesOverSelectedJudges(byJ, selectedJudges);
+        if (d && d.steps.length) {
+          traces.push({
+            x: d.steps,
+            y: d.values,
+            text: d.steps.map(chLab),
+            hovertemplate: "%{text}<br>%{y:.4f}<extra></extra>",
+            mode: "lines+markers",
+            name: leaf + " / " + dim + " / " + MEAN_LAB,
+            line: {
+              color: dcol,
+              width: 5,
+              dash: "longdashdot",
+            },
+            marker: {
+              size: 10,
+              symbol: "star",
+              line: { color: "#0f172a", width: 1.2 },
+              color: dcol,
+            },
+            opacity: 0.98,
+          });
+        }
       }
 
       for (const judge of Object.keys(byJ)) {
@@ -648,6 +742,15 @@ def main() -> None:
         help="Do not fall back to discovering all models under Data/eval (requires --export_leaf or --export_dir)",
     )
     ap.add_argument(
+        "--all_export_leaves",
+        action="store_true",
+        help=(
+            "Discover every export leaf under --export_root (subdirs with tables/ + summary or BT CSV). "
+            "Ignores names like 'images'. Use when many models exist under .deepeval/geval_exports but "
+            "Data/eval does not list them all."
+        ),
+    )
+    ap.add_argument(
         "--output",
         "-o",
         type=str,
@@ -658,23 +761,33 @@ def main() -> None:
 
     export_root = Path(args.export_root).resolve()
     paths: List[Path] = []
-    for d in args.export_dir:
-        p = Path(d).resolve()
-        if not p.is_dir():
-            print(f"Error: not a directory: {p}", file=sys.stderr)
-            sys.exit(1)
-        paths.append(p)
-    for name in args.export_leaf:
-        paths.append(_resolve_leaf_path(name, export_root))
+    if args.all_export_leaves:
+        if args.export_dir or args.export_leaf:
+            print(
+                "Warning: --all_export_leaves ignores --export_dir / --export_leaf; "
+                "using every export leaf under export_root.",
+                file=sys.stderr,
+            )
+        paths = discover_export_leaves_under_export_root(export_root)
+    else:
+        for d in args.export_dir:
+            p = Path(d).resolve()
+            if not p.is_dir():
+                print(f"Error: not a directory: {p}", file=sys.stderr)
+                sys.exit(1)
+            paths.append(p)
+        for name in args.export_leaf:
+            paths.append(_resolve_leaf_path(name, export_root))
 
-    if not paths and not args.no_auto_eval:
-        eval_root = Path(args.eval_root).resolve()
-        paths = discover_export_leaves_from_data_eval(eval_root, export_root)
+        if not paths and not args.no_auto_eval:
+            eval_root = Path(args.eval_root).resolve()
+            paths = discover_export_leaves_from_data_eval(eval_root, export_root)
 
     if not paths:
         print(
-            "Error: no export folders found. Pass --export_leaf NAME, --export_dir PATH, or ensure "
-            f"Data/eval/<model>/*.jsonl exists with matching {export_root}/<model>/ (skipped dirs: {_IGNORE_EVAL_DIR_NAMES}).",
+            "Error: no export folders found. Use --all_export_leaves, pass --export_leaf / --export_dir, "
+            f"or ensure Data/eval/<model>/*.jsonl exists with matching {export_root}/<model>/ "
+            f"(skipped eval dirs: {_IGNORE_EVAL_DIR_NAMES}).",
             file=sys.stderr,
         )
         sys.exit(1)
@@ -692,6 +805,11 @@ def main() -> None:
 
     print(f"Wrote: {out.resolve()}")
     print(f"  Leaves: {', '.join(data['leaf_order'])}")
+    doc_line = []
+    for ln in data["leaf_order"]:
+        n = data["leaves"][ln].get("document_count")
+        doc_line.append(f"{ln}={n}" if isinstance(n, int) else ln)
+    print(f"  Documents per leaf: {', '.join(doc_line)}")
     print(f"  Dimensions: {', '.join(data['dimensions'])}")
     print(f"  Judges: {len(data['judges'])} (+ optional mean curve)")
     print("  Open in a browser (or Cursor Simple Browser).")

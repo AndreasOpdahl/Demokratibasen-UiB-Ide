@@ -1,0 +1,75 @@
+{
+  "seed": 42,
+  "total_requested": 100,
+  "total_selected": 100,
+  "excluded_identical_summary_pairs": 23,
+  "ratios": {
+    "low_agreement": 0.3,
+    "high_agreement": 0.2,
+    "top_checkpoint_matchup": 0.3,
+    "gpt4o_challenged": 0.2
+  },
+  "counts_by_bucket": {
+    "low_agreement": 30,
+    "high_agreement": 20,
+    "top_checkpoint_matchup": 30,
+    "gpt4o_challenged": 20
+  },
+  "counts_by_stage": {
+    "late": 17,
+    "mid": 59,
+    "early": 24
+  },
+  "counts_by_length": {
+    "short": 100
+  },
+  "inputs": {
+    "pairs_table_json": ".deepeval/geval_exports/llama-2-13b/json/pairs_table.json",
+    "geval_json_dir": ".deepeval/geval_exports/llama-2-13b/json",
+    "dimension_weights": {
+      "faithfulness": 1.0,
+      "correctness": 1.0,
+      "completeness": 1.0,
+      "newsworthiness": 1.0,
+      "hygiene": 1.0
+    },
+    "top_k_checkpoints": 3,
+    "auto_top_checkpoints": [
+      3000,
+      4500,
+      6500
+    ],
+    "auto_top_checkpoint_scores": {
+      "3000": 0.5772727272727273,
+      "4500": 0.5670212765957447,
+      "6500": 0.552027027027027,
+      "7000": 0.5435714285714285,
+      "1500": 0.515,
+      "9500": 0.49510869565217386,
+      "8000": 0.48910256410256414,
+      "2500": 0.476875,
+      "5500": 0.4744318181818182,
+      "1000": 0.4738095238095238,
+      "6000": 0.46875,
+      "2000": 0.46621621621621623,
+      "10000": 0.46602564102564104,
+      "5000": 0.45859375,
+      "8500": 0.45405405405405413,
+      "3500": 0.4412162162162162,
+      "7500": 0.4345588235294118,
+      "4000": 0.4333333333333334,
+      "9000": 0.4144230769230769
+    },
+    "non_gpt4o_only_buckets": [
+      "low_agreement",
+      "high_agreement",
+      "top_checkpoint_matchup",
+      "fallback_representative"
+    ]
+  },
+  "outputs": {
+    "dataset_jsonl": "evaluation_suite/outputs/human_eval_pairs_llama-2-13b/human_eval_dataset.jsonl",
+    "answer_key_csv": "evaluation_suite/outputs/human_eval_pairs_llama-2-13b/human_eval_answer_key.csv",
+    "selection_metadata_json": "evaluation_suite/outputs/human_eval_pairs_llama-2-13b/selection_metadata.json"
+  }
+}

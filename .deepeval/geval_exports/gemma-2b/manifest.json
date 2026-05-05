@@ -8,31 +8,31 @@
   "files": [
     {
       "path": "json/pairs_table.json",
-      "rows": 100
+      "rows": 135
     },
     {
       "path": "json/summarization_long.json",
-      "rows": 500
+      "rows": 540
     },
     {
       "path": "json/geval__mistral-medium-latest__faithfulness.json",
-      "rows": 100
+      "rows": 135
     },
     {
       "path": "json/geval__mistral-medium-latest__correctness.json",
-      "rows": 100
+      "rows": 135
     },
     {
       "path": "json/geval__mistral-medium-latest__completeness.json",
-      "rows": 100
+      "rows": 135
     },
     {
       "path": "json/geval__mistral-medium-latest__newsworthiness.json",
-      "rows": 100
+      "rows": 135
     },
     {
       "path": "json/geval__mistral-medium-latest__hygiene.json",
-      "rows": 100
+      "rows": 135
     }
   ]
 }

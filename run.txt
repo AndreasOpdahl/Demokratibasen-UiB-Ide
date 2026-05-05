@@ -1,0 +1,145 @@
+# Evaluation tools — how to run
+
+Run from the repo root unless you use absolute paths.
+
+================================================================================
+## 1. Export results viewer (organized entrypoint)
+
+Interactive Plotly page: **Bradley–Terry θ** (from `tables/bradley_terry_theta__*.csv`) and/or
+**per-judge win rates** (from `reports/results_summary.md`). One chart; pick leaves, dimensions,
+judges in the UI.
+
+### Flags
+
+| Flag | Meaning |
+|------|---------|
+| `-o`, `--output` | Output HTML file path (default: `geval_export_viewer.html`). |
+| `--export_root` | Root folder that contains export leaves (default: `.deepeval/geval_exports`). |
+| `--eval_root` | `Data/eval` root used when auto-discovering leaves (default: `Data/eval`). |
+| `--export_leaf` | One or more leaf **names** under `--export_root` (e.g. `llama-2-13b`). Can repeat or pass several names. |
+| `--export_dir` | One or more **full paths** to export leaf directories (bypasses name resolution under `export_root`). |
+| `--all_export_leaves` | Use **every** sensible subfolder of `--export_root` as a leaf (ignores `--export_leaf` / `--export_dir` with a warning). Use when many exports exist but `Data/eval` only lists one model. |
+| `--no_auto_eval` | If you pass **no** `--export_leaf` / `--export_dir`, do **not** fall back to auto-discovery from `Data/eval`; you must supply leaves explicitly. |
+| *(no flags)* | If nothing above selects paths, the script tries to match `Data/eval/<model>` to `<export_root>/<model>/`. |
+
+### Examples
+
+    python3 evaluation_suite/apps/view_geval_export_results.py --all_export_leaves -o evaluation_suite/outputs/geval_export_viewer.html
+
+    python3 evaluation_suite/apps/view_geval_export_results.py --export_leaf llama-2-13b gemma-2b -o evaluation_suite/outputs/geval_export_viewer_subset.html
+
+================================================================================
+## 2. Prefix interactive viewer (organized entrypoint)
+
+Self-contained HTML: **cumulative document** curves — win rate vs “first n documents” for each
+training checkpoint. In the page you choose judges, checkpoints, dimensions, **mean vs pooled**
+aggregation, and optional mean-over-checkpoints line.
+
+### Flags
+
+| Flag | Meaning |
+|------|---------|
+| `--export_json_dir` | Path to the folder that contains `geval__*.json` (usually `…/<leaf>/json`). **Either** this **or** `--export_leaf` is required. |
+| `--export_leaf` | Short name: resolves to `<export_root>/<leaf>/json`. |
+| `--export_root` | Parent of leaf folders (default: `.deepeval/geval_exports`). Only used with `--export_leaf`. |
+| `--start_n` | Smallest `n` on the horizontal axis (default: `10`). |
+| `--step_n` | Step between grid points until the full doc count is reached (default: `5`). |
+| `--dimensions` | Space-separated list of dimension names to load (default: faithfulness, correctness, completeness, newsworthiness, hygiene). |
+| `--aggregation` | Initial mode in the page: `mean_over_dimensions` (M_k style) or `pooled` (export-style single ratio). You can still switch in the browser. |
+| `-o`, `--output` | Output HTML path (default: `geval_prefix_interactive.html`). |
+
+### Examples
+
+    python3 evaluation_suite/apps/view_geval_prefix_interactive.py \
+      --export_leaf llama-2-13b \
+      -o evaluation_suite/outputs/geval_prefix_interactive__llama-2-13b.html
+
+    python3 evaluation_suite/apps/view_geval_prefix_interactive.py \
+      --export_json_dir .deepeval/geval_exports/llama-2-13b/json \
+      --aggregation pooled \
+      --start_n 10 --step_n 5 \
+      -o evaluation_suite/outputs/geval_prefix_interactive__pooled.html
+
+================================================================================
+## 3. Human-eval pair selection (organized entrypoint)
+
+Builds:
+- `human_eval_dataset.jsonl`
+- `human_eval_answer_key.csv`
+- `selection_metadata.json`
+
+Bucket policy (current defaults):
+- 30% `low_agreement`
+- 20% `high_agreement`
+- 30% `top_checkpoint_matchup` (auto top-k checkpoints from weighted means)
+- 20% `gpt4o_challenged`
+
+### Key flags
+
+| Flag | Meaning |
+|------|---------|
+| `--pairs-table` | Input `pairs_table.json`. |
+| `--summarization-long` | Optional backfill source/reference text from `summarization_long.json`. |
+| `--output-dir` | Output folder for dataset/key/metadata. |
+| `--total` | Number of selected pairs. |
+| `--max-judgment-files` | Optional cap for faster runs. |
+| `--top-k-checkpoints` | Number of checkpoints selected automatically for top-checkpoint bucket. |
+| `--dimension-weights` | Weighted mean config, e.g. `faithfulness=1,correctness=1,completeness=1,newsworthiness=1,hygiene=1`. |
+
+### Example
+
+    python3 evaluation_suite/apps/select_human_eval_pairs.py \
+      --pairs-table ".deepeval/geval_exports/llama-2-13b/json/pairs_table.json" \
+      --summarization-long ".deepeval/geval_exports/llama-2-13b/json/summarization_long.json" \
+      --output-dir "evaluation_suite/outputs/human_eval_pairs_llama-2-13b" \
+      --total 100 \
+      --seed 42 \
+      --top-k-checkpoints 3 \
+      --dimension-weights "faithfulness=1,correctness=1,completeness=1,newsworthiness=1,hygiene=1"
+
+### Direct legacy script path (`human evaluation/select_human_eval_pairs.py`)
+
+    python3 "human evaluation/select_human_eval_pairs.py" \
+      --pairs-table ".deepeval/geval_exports/llama-2-13b/json/pairs_table.json" \
+      --summarization-long ".deepeval/geval_exports/llama-2-13b/json/summarization_long.json" \
+      --output-dir "evaluation_suite/outputs/human_eval_pairs_llama-2-13b" \
+      --total 100 \
+      --seed 42 \
+      --top-k-checkpoints 3 \
+      --dimension-weights "faithfulness=1,correctness=1,completeness=1,newsworthiness=1,hygiene=1"
+
+================================================================================
+## 4. Compute top checkpoints (shared weighted mean utility)
+
+Quick utility to print best checkpoints using weighted mean win-rate across dimensions.
+
+    python3 evaluation_suite/apps/compute_top_checkpoints.py \
+      --geval-json-dir ".deepeval/geval_exports/llama-2-13b/json" \
+      --top-k 5 \
+      --dimension-weights "faithfulness=1,correctness=1,completeness=1,newsworthiness=1,hygiene=1"
+
+================================================================================
+## 5. `scripts/retry_geval_checkpoint_503.py`
+
+Re-run G-Eval LLM judgments for checkpoint JSONL lines whose rationale is a retryable `[api_error]`,
+then optionally rebuild exports under `.deepeval/<GEVAL_EXPORT_DIRNAME>/`. Uses
+`GEVAL_CHECKPOINT_DIR` from `pairwise_eval/config.py` when `--checkpoint-dir` is omitted.
+
+### Useful flags
+
+| Flag | Meaning |
+|------|---------|
+| `--only-errors` | Comma-separated buckets only (aliases: `--errors`, `--categories`). E.g. `503`, `503,429`, `http_400_context_window`, or `all`. |
+| `--checkpoint-dir` | Single model folder of `*.jsonl` (default: whole configured checkpoint root). |
+| `--dry-run` | List work only; no API calls or file writes. |
+| `--no-export` | Do not regenerate export tables after JSONL updates. |
+
+### Retry HTTP 503 only
+
+    python scripts/retry_geval_checkpoint_503.py --only-errors 503
+
+Optional: scope to one model, or dry-run first:
+
+    python scripts/retry_geval_checkpoint_503.py --checkpoint-dir .deepeval/geval_judgment_checkpoints/gemma-2b --only-errors 503
+
+    python scripts/retry_geval_checkpoint_503.py --only-errors 503 --dry-run

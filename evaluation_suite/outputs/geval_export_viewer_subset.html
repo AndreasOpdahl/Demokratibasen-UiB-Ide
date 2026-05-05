@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>G-Eval export viewer</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+         display: flex; flex-direction: column; height: 100vh; background: #f6f7fb; }
+  header { padding: 10px 18px; background: #fff; border-bottom: 1px solid #ddd;
+           display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  header h1 { font-size: 16px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+  .bar label { font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+  .sw { width: 11px; height: 11px; border-radius: 2px; display: inline-block; }
+  .row2 { padding: 8px 18px; background: #fff; border-bottom: 1px solid #e5e7eb;
+          display: flex; flex-wrap: wrap; gap: 16px; align-items: center; font-size: 13px; }
+  .main { display: flex; flex: 1; overflow: hidden; }
+  #chart { flex: 1; min-width: 0; min-height: 360px; }
+  .sidebar { width: 230px; min-width: 200px; padding: 12px 14px; background: #fff;
+             border-left: 1px solid #ddd; overflow-y: auto; }
+  .sidebar h2 { font-size: 12px; text-transform: uppercase; color: #64748b; margin: 12px 0 6px; }
+  .sidebar h2:first-child { margin-top: 0; }
+  .sidebar label { display: flex; align-items: center; gap: 5px; font-size: 12px;
+                    cursor: pointer; padding: 2px 0; }
+  .bulk-btn { font-size: 11px; cursor: pointer; background: #eef2ff; border: 1px solid #c7d2fe;
+              border-radius: 4px; padding: 2px 7px; color: #3730a3; margin-left: 6px; }
+  .bulk-btn:hover { background: #e0e7ff; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 id="hdr-title">G-Eval exports</h1>
+  <div class="bar" id="leaf-bar"></div>
+</header>
+
+<div class="row2">
+  <strong>Metric:</strong>
+  <label><input type="radio" name="metric" value="bt"> Bradley–Terry θ</label>
+  <label><input type="radio" name="metric" value="wr" checked> Win rate (per judge)</label>
+</div>
+
+<div class="main">
+  <div id="chart"></div>
+  <div class="sidebar" id="sidebar"></div>
+</div>
+
+<script>
+const DATA = {"leaves": {"llama-2-13b": {"theta": {"faithfulness": {"gpt-3.5-turbo": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.7576042374308354, 1.0332978424988968, 1.4586117610207194, 1.2224669670478494, 1.5332256183745803, 0.492635572725809, 1.2794458529944512, 1.1381407137108608, 1.3580655788417924, 0.9496661730020333, 0.7800039377649485, 1.4069918844212244, 0.9838589516516407, 0.7529759658150809, 0.8580618894508906, 0.5009171337783921, 0.8507601694776884, 0.976032805459185, 0.7638241088055229]}, "google/gemini-2.5-flash-preview-05-20": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.8868798796224053, 1.4357547466956297, 1.1032564789014305, 1.113149270561499, 0.8490463318322126, 0.8178930229361484, 0.9241164263036199, 1.471915754126731, 0.5430857426490524, 0.6514521208781254, 0.8255527437182945, 1.5700337480818818, 0.9929311864180417, 0.8355728044919905, 0.729162459668639, 1.111909738881568, 0.8368833997500187, 1.0673708573699638, 0.861973216584341]}, "anthropic/claude-3-5-haiku-20241022": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [1.3036014861302714, 1.179795664498009, 0.7709367087367183, 0.9966242509408407, 1.2335963282347846, 0.8060979853550536, 1.2221071291888215, 1.4438262257158145, 0.5958703351056758, 0.762721551840794, 0.5949369852314708, 1.486086818636455, 0.8959759631364443, 0.7782520381952583, 1.001310970000626, 1.0839507775481936, 0.5217014648701201, 1.01163853731002, 0.8121737666040227]}, "mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.5715523273720299, 1.4305461553695809, 1.063225717072585, 0.8304665167691186, 1.710001725736223, 0.7572785471325361, 0.9843232522525923, 1.83009294229164, 0.605023393341701, 0.8592348238005678, 0.864239058890019, 1.4812730451537257, 0.8712792967303458, 0.6575319877822945, 1.4383287198669195, 0.8205580828457928, 0.5034910573401866, 0.9910346206227526, 0.7654061597060494]}}, "correctness": {"gpt-3.5-turbo": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.7356145328859524, 0.9296134941553397, 1.4192312136139107, 1.2426062960189823, 1.6315432246337078, 0.5571434534629442, 1.1646140717100202, 1.0244277343479709, 1.506092363166395, 1.1561469027980589, 0.8324210036231943, 1.2059142043154523, 1.1584369344138772, 0.8448923804458607, 0.7443017088592436, 0.5432040240282686, 0.7068820428897619, 0.9076556092696781, 0.7058415035719798]}, "google/gemini-2.5-flash-preview-05-20": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.5317642627604812, 1.1982230227683681, 1.0149764476017893, 0.9759860055013776, 1.275916975349686, 0.869900702784345, 0.9854197155846522, 1.4709804131952826, 0.7571813046892362, 0.6797382523485103, 0.7104184913523641, 1.3402786931007582, 1.026920742428562, 0.6500625462596573, 0.8738855325143181, 1.2833460795791127, 0.7367095657549765, 1.0746530584551075, 1.0568807491900822]}, "anthropic/claude-3-5-haiku-20241022": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.8556802510842776, 1.1033297325755032, 0.7660571971810448, 1.0829610308213564, 1.0397790805776594, 0.7648019749950706, 1.1877866257969845, 1.8437579073459969, 0.6660592871694506, 0.7769139538833854, 0.5812850388150578, 1.5661111120897828, 0.9828521482619916, 0.887338559805193, 1.1364360462576664, 1.086110178567753, 0.42875323852608704, 1.1768134769943128, 0.8038590720317117]}, "mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.5693627615866457, 0.9953714224028496, 1.118500763628492, 0.8431054803074837, 1.241525385852833, 0.7403090562540109, 1.0927737113830736, 1.6437117123775435, 0.9392225345515002, 0.8208704557389968, 0.8322770952747347, 1.4605978306986056, 1.0035885019138462, 0.6409757073930337, 1.4054040683275797, 0.9162312444122225, 0.48771398817756534, 1.0888708292010019, 0.8986977061739118]}}, "completeness": {"gpt-3.5-turbo": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.7422690386679192, 0.9990187478241874, 1.3141615296345597, 1.2498144052754734, 1.202141728553744, 0.41182291663921533, 0.8767860258945004, 1.1070958827611497, 1.2813621175402352, 1.1655575588114209, 0.9142341552394565, 1.340886046139524, 1.202245392393886, 0.9196018845537531, 0.9627865011493214, 0.6065601397651309, 1.0764741048568756, 0.9008468094769226, 0.8377799099618863]}, "google/gemini-2.5-flash-preview-05-20": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.6343747154451754, 1.0133790966899165, 1.2831382576627717, 0.9523442510397306, 0.7257515096803707, 0.8061777991081268, 0.9558057889767902, 1.7989412854047464, 0.7370211342600587, 0.6748474089106571, 0.6145849899975585, 1.5800079339617281, 1.1176940496313825, 0.8790191978951971, 1.444668670911181, 0.8367571156512592, 0.6272520481563424, 1.0837403418882665, 1.0239174884698792]}, "anthropic/claude-3-5-haiku-20241022": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [1.0071390532421853, 1.4232768625357815, 0.9819984040592072, 0.879853786216753, 0.9992997159832874, 0.7750803731704264, 1.375404548480519, 1.2874931199786688, 0.7577932621301383, 0.9672712822486392, 0.5879747598633985, 1.9723793701901926, 1.136265902004598, 0.8446852406426163, 1.476017960318494, 0.7581245168819029, 0.5585320067778902, 0.9105701841804172, 0.6437386128788455]}, "mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.6599715679658643, 1.3553310060576083, 1.3650929106751384, 0.7919955565570906, 1.0599326671578606, 0.7840047633422301, 0.9099486494043901, 1.3155125818521363, 1.0056810659983708, 1.1217391825365215, 0.7186779469156893, 1.2484999954034985, 1.221292320934053, 1.000661295471897, 1.7409110353162824, 0.670135501173052, 0.5893401318687717, 0.8562935264456402, 0.8724906253508758]}}, "newsworthiness": {"gpt-3.5-turbo": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [1.1115939770748338, 1.100922952471596, 0.8025459237501408, 0.8157766197665696, 1.3359696154691385, 0.7995358417809524, 1.1190670374772942, 1.0285286009450618, 0.9470110166266904, 1.1760449343946633, 0.9714185005788132, 0.6893327089468861, 1.160669468955701, 1.2365013265085396, 0.8257926029573885, 1.094006244510354, 0.9413777307261623, 0.6800324512370723, 1.0393048136735215]}, "google/gemini-2.5-flash-preview-05-20": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.7041535771066443, 1.2383794542162205, 0.9691878746335753, 0.7402506167530706, 0.9194131219838814, 0.591294555689363, 1.1341951373315682, 1.3997419751415587, 0.9178797626685101, 0.6859012347581281, 0.5913749103400611, 1.1708266450144316, 0.9592189421325795, 0.9225000842739678, 1.2517778013606047, 0.9568822757699177, 0.7866469936170204, 1.0760684435885635, 1.6667299471752246]}, "anthropic/claude-3-5-haiku-20241022": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.8871117011856798, 1.8305572479150756, 1.016221553435531, 0.6302118832893356, 0.9643506951652051, 0.8095361317550281, 1.0317242882137652, 1.1907797490286998, 0.9836840947480125, 0.838268888522322, 0.7408754300706937, 1.5586397071413833, 1.253896967296856, 0.6192449708359357, 1.267591320550014, 0.6271711163877591, 0.5985849845390655, 1.1673242038345646, 0.7795435745019367]}, "mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.6237030509999472, 1.5139271153500315, 1.1285444188848863, 0.958941345559429, 1.3139269423201954, 0.7369098494661309, 1.0438751247358358, 1.299211929632991, 0.8513615960474703, 0.835207046471192, 0.612637187972686, 0.9466508946076491, 1.0944149339947613, 0.8913569792052061, 1.0496146519032883, 0.7849538573633241, 0.7206626374914267, 1.247304703760348, 1.0374552486293414]}}, "hygiene": {"gpt-3.5-turbo": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [1.4564621672845524, 1.239132937267484, 0.9008397617185036, 0.998783166962535, 0.9025732694301898, 0.7520697304043137, 0.7809595733004207, 1.0707601963641074, 1.1677290952115997, 1.2705473647550658, 0.9083952692846429, 1.0514437190239028, 1.0861218241221129, 0.9095940444952818, 0.7234118139038016, 0.8522805500711065, 0.7021646413485382, 0.9477898153255123, 0.7820402971388185]}, "google/gemini-2.5-flash-preview-05-20": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [1.4137097408005974, 1.499664215424206, 1.0927667229453366, 1.0239711269640217, 0.8137509586952675, 0.7885645099056919, 1.2636418277312569, 1.3977967438101009, 0.955955065034751, 0.8468324006773148, 0.7595835819370608, 0.9830272396716291, 1.0666849827072065, 0.3990308233263865, 0.9870835381986971, 0.6634256691918097, 0.4697558503602847, 0.889264132538039, 1.044238950972019]}, "anthropic/claude-3-5-haiku-20241022": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [1.042259941196012, 1.415674026907919, 1.0752512319986898, 1.0144928115708138, 1.4582219049481604, 0.9094382205153427, 0.6307714699718431, 1.8070130863259957, 0.5140941106217014, 0.6726784994048557, 0.7192583804785208, 2.4639857304502217, 1.0441495891607986, 0.7045236724249971, 1.1044170153961042, 0.6823253416629846, 0.4542977270459107, 1.0521602855989343, 0.6115829198770304]}, "mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.6810556408193993, 1.8084311899496013, 1.262812270546651, 1.0161995865385312, 1.3325109141128852, 0.6203753445605262, 0.6478402315255356, 1.746861550455244, 0.805231180865555, 0.6799851614441568, 0.9764297651425377, 1.9259018827647039, 1.0866997213798242, 0.7075939887261173, 1.112454525738073, 0.8405461370613393, 0.42089710313588924, 0.8415585333238739, 0.5805933831543223]}}}, "win_rate": {"faithfulness": {"gpt-3.5-turbo": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.44, 0.483, 0.541, 0.55, 0.636, 0.351, 0.5, 0.532, 0.578, 0.5, 0.469, 0.568, 0.529, 0.426, 0.436, 0.338, 0.481, 0.489, 0.436]}, "google/gemini-2.5-flash-preview-05-20": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.476, 0.533, 0.473, 0.487, 0.5, 0.473, 0.417, 0.585, 0.359, 0.398, 0.479, 0.595, 0.514, 0.456, 0.41, 0.527, 0.481, 0.511, 0.474]}, "anthropic/claude-3-5-haiku-20241022": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.595, 0.483, 0.378, 0.475, 0.606, 0.473, 0.458, 0.585, 0.375, 0.443, 0.417, 0.581, 0.514, 0.441, 0.474, 0.527, 0.365, 0.489, 0.449]}, "mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.393, 0.533, 0.459, 0.438, 0.682, 0.459, 0.417, 0.628, 0.375, 0.455, 0.521, 0.554, 0.5, 0.397, 0.551, 0.459, 0.365, 0.511, 0.436]}}, "correctness": {"gpt-3.5-turbo": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.44, 0.467, 0.527, 0.562, 0.652, 0.378, 0.472, 0.511, 0.609, 0.557, 0.49, 0.527, 0.571, 0.456, 0.397, 0.351, 0.423, 0.467, 0.41]}, "google/gemini-2.5-flash-preview-05-20": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.357, 0.5, 0.446, 0.45, 0.606, 0.486, 0.417, 0.596, 0.438, 0.409, 0.448, 0.554, 0.529, 0.382, 0.436, 0.568, 0.471, 0.533, 0.513]}, "anthropic/claude-3-5-haiku-20241022": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.5, 0.45, 0.378, 0.487, 0.576, 0.459, 0.458, 0.638, 0.391, 0.455, 0.427, 0.581, 0.529, 0.471, 0.487, 0.527, 0.337, 0.533, 0.449]}, "mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.393, 0.45, 0.473, 0.438, 0.606, 0.446, 0.444, 0.617, 0.469, 0.455, 0.51, 0.554, 0.529, 0.382, 0.538, 0.486, 0.365, 0.533, 0.474]}}, "completeness": {"gpt-3.5-turbo": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.429, 0.483, 0.527, 0.562, 0.561, 0.297, 0.431, 0.511, 0.562, 0.545, 0.49, 0.554, 0.571, 0.471, 0.474, 0.378, 0.529, 0.467, 0.462]}, "google/gemini-2.5-flash-preview-05-20": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.417, 0.433, 0.514, 0.463, 0.47, 0.473, 0.417, 0.628, 0.391, 0.42, 0.427, 0.581, 0.543, 0.456, 0.551, 0.459, 0.442, 0.522, 0.526]}, "anthropic/claude-3-5-haiku-20241022": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.536, 0.55, 0.459, 0.475, 0.545, 0.459, 0.542, 0.521, 0.406, 0.511, 0.406, 0.649, 0.571, 0.456, 0.577, 0.446, 0.394, 0.467, 0.397]}, "mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.429, 0.55, 0.554, 0.463, 0.545, 0.459, 0.444, 0.532, 0.469, 0.545, 0.458, 0.527, 0.571, 0.485, 0.615, 0.405, 0.404, 0.467, 0.474]}}, "newsworthiness": {"gpt-3.5-turbo": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.536, 0.517, 0.419, 0.463, 0.576, 0.446, 0.486, 0.511, 0.5, 0.545, 0.5, 0.405, 0.557, 0.544, 0.449, 0.527, 0.471, 0.413, 0.487]}, "google/gemini-2.5-flash-preview-05-20": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.429, 0.5, 0.446, 0.4, 0.515, 0.392, 0.444, 0.574, 0.453, 0.42, 0.406, 0.527, 0.514, 0.456, 0.526, 0.5, 0.5, 0.543, 0.628]}, "anthropic/claude-3-5-haiku-20241022": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.488, 0.617, 0.446, 0.375, 0.545, 0.473, 0.431, 0.511, 0.484, 0.477, 0.469, 0.581, 0.586, 0.368, 0.526, 0.405, 0.413, 0.543, 0.449]}, "mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.393, 0.567, 0.486, 0.463, 0.606, 0.446, 0.444, 0.553, 0.453, 0.477, 0.417, 0.473, 0.543, 0.456, 0.487, 0.446, 0.462, 0.565, 0.513]}}, "hygiene": {"gpt-3.5-turbo": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.607, 0.533, 0.419, 0.5, 0.5, 0.446, 0.375, 0.511, 0.562, 0.58, 0.5, 0.486, 0.543, 0.471, 0.397, 0.459, 0.404, 0.467, 0.436]}, "google/gemini-2.5-flash-preview-05-20": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.619, 0.55, 0.459, 0.5, 0.5, 0.473, 0.431, 0.574, 0.5, 0.489, 0.49, 0.459, 0.557, 0.279, 0.474, 0.405, 0.337, 0.446, 0.513]}, "anthropic/claude-3-5-haiku-20241022": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.548, 0.517, 0.446, 0.487, 0.667, 0.514, 0.319, 0.617, 0.344, 0.398, 0.479, 0.676, 0.543, 0.426, 0.487, 0.405, 0.327, 0.489, 0.41]}, "mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.452, 0.583, 0.473, 0.5, 0.652, 0.419, 0.319, 0.606, 0.453, 0.409, 0.573, 0.608, 0.557, 0.412, 0.487, 0.459, 0.317, 0.446, 0.385]}}}, "path": "/Users/baharehfatemi/Desktop/demokratibasen_checkpoint_selection/.deepeval/geval_exports/llama-2-13b", "document_count": 100}, "gemma-2b": {"theta": {"faithfulness": {"mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.8288643537320606, 1.4968370019306378, 1.2611592362616788, 0.5862458663352724, 0.5935262850295675, 0.5197011902850066, 0.4658389841696601, 0.684340328805106, 1.2120224856396886, 0.40505550962669945, 0.41532763023864777, 0.4926368777234135, 1.2422107561062432, 1.3390080340125219, 0.9136497830760067, 1.8688986148303073, 1.2330424162185123, 0.8254604417376857, 1.1163586002997576]}}, "correctness": {"mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.3103010818108603, 0.47237808668199555, 0.6603936125410305, 0.32512652732763087, 0.49241401869631085, 0.43895761968140307, 0.2709127183901704, 0.39616241454421164, 0.7234328424986264, 0.2315620406009516, 0.3255624010545055, 0.17335776718711163, 0.7155168096362097, 0.7727405097357544, 0.5492364734663023, 1.4802077172139285, 0.7318110506965196, 0.3379285608666252, 0.6875596485702181]}}, "completeness": {"mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.8763040176916538, 0.8791745747649833, 2.4196487616956563, 0.49209523477099554, 0.7005408847734282, 0.8795101128598656, 1.0902472716230562, 1.4964702189069092, 0.8567778358629634, 0.546919190705727, 0.43126989789096376, 0.42748245424860876, 0.9330336914209457, 1.309398621093285, 1.0559330450055973, 0.9748152891902524, 0.8313026497916144, 1.0425964039959996, 0.8009303116666052]}}, "newsworthiness": {"mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.39583088074669587, 0.9064382827042147, 1.844774801285071, 0.5349995988511889, 0.7785414592812103, 1.1490093038578535, 1.6834370079337164, 0.9264835387095394, 2.102608654604492, 0.6090464875463569, 0.7474871832034773, 0.6418091448757867, 0.7804965706654945, 1.5843169716213128, 1.160740664583565, 1.07679371019361, 0.8324622838629032, 0.6411281518004195, 0.6852050769188178]}}, "hygiene": {"mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.3159329537032525, 1.2338673675071232, 0.696891648630615, 1.4117776801912802, 0.9708408654832693, 0.8612237305987865, 2.643560545278001, 0.8180003017887805, 1.3576788841007486, 0.313364588425499, 0.5548411409244282, 0.4990713313302288, 1.1590522432948427, 0.7094488652724209, 0.7028037249309278, 0.6104835542144349, 1.6124391098319393, 0.43960344716585403, 1.0034477997670512]}}}, "win_rate": {"faithfulness": {"mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.417, 0.625, 0.464, 0.375, 0.423, 0.429, 0.125, 0.412, 0.5, 0.375, 0.344, 0.393, 0.591, 0.591, 0.5, 0.636, 0.611, 0.45, 0.55]}}, "correctness": {"mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.333, 0.5, 0.429, 0.375, 0.5, 0.5, 0.125, 0.441, 0.542, 0.375, 0.406, 0.286, 0.591, 0.591, 0.5, 0.682, 0.611, 0.4, 0.55]}}, "completeness": {"mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.458, 0.438, 0.607, 0.333, 0.423, 0.571, 0.25, 0.618, 0.417, 0.406, 0.344, 0.321, 0.5, 0.591, 0.5, 0.455, 0.5, 0.5, 0.5]}}, "newsworthiness": {"mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.292, 0.5, 0.571, 0.375, 0.462, 0.607, 0.375, 0.5, 0.625, 0.406, 0.469, 0.393, 0.455, 0.636, 0.5, 0.5, 0.528, 0.4, 0.4]}}, "hygiene": {"mistral-medium-latest": {"steps": [1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500, 10000], "values": [0.25, 0.625, 0.393, 0.583, 0.577, 0.536, 0.312, 0.471, 0.542, 0.312, 0.438, 0.393, 0.591, 0.5, 0.462, 0.409, 0.639, 0.325, 0.5]}}}, "path": "/Users/baharehfatemi/Desktop/demokratibasen_checkpoint_selection/.deepeval/geval_exports/gemma-2b", "document_count": 27}}, "leaf_order": ["llama-2-13b", "gemma-2b"], "dimensions": ["faithfulness", "correctness", "completeness", "newsworthiness", "hygiene"], "judges": ["anthropic/claude-3-5-haiku-20241022", "google/gemini-2.5-flash-preview-05-20", "gpt-3.5-turbo", "mistral-medium-latest"], "mean_judge_key": "__MEAN_OVER_JUDGES__", "mean_judge_label": "Mean (selected judges)", "dimension_colors": {"faithfulness": "#1f77b4", "correctness": "#ff7f0e", "completeness": "#2ca02c", "newsworthiness": "#d62728", "hygiene": "#9467bd"}, "leaf_colors": {"llama-2-13b": "#1f77b4", "gemma-2b": "#ff7f0e"}};
+const MEAN_KEY = DATA.mean_judge_key;
+const MEAN_LAB = DATA.mean_judge_label;
+
+const leafNames = DATA.leaf_order.slice();
+const leafColors = DATA.leaf_colors || {};
+const dimColors = DATA.dimension_colors || {};
+
+let selectedLeaves = new Set(leafNames);
+let selectedDims = new Set(DATA.dimensions);
+let selectedJudges = new Set(DATA.judges);
+let showMeanJudges = false;
+let showLegend = false;
+let metricMode = "wr";
+
+function colorForDim(dim) {
+  return dimColors[dim] || "#334155";
+}
+
+/** Stable dash per judge (same judge = same style across dimensions / leaves). */
+const JUDGE_DASH_CYCLE = ["solid", "dot", "dash", "dashdot"];
+function dashForJudge(judgeId) {
+  const order = DATA.judges || [];
+  const i = order.indexOf(judgeId);
+  if (i < 0) return "solid";
+  return JUDGE_DASH_CYCLE[i % JUDGE_DASH_CYCLE.length];
+}
+
+/** Marker shape per judge so curves differ even when dimension color matches. */
+const JUDGE_MARKER_CYCLE = ["circle", "square", "diamond", "cross"];
+function markerForJudge(judgeId) {
+  const order = DATA.judges || [];
+  const i = order.indexOf(judgeId);
+  if (i < 0) return "circle";
+  return JUDGE_MARKER_CYCLE[i % JUDGE_MARKER_CYCLE.length];
+}
+
+function makeBulk(setAll, clearAll) {
+  const w = document.createElement("span");
+  w.style.cssText = "display:inline-flex;gap:4px;margin-left:4px;";
+  const a = document.createElement("button");
+  a.className = "bulk-btn"; a.textContent = "All"; a.onclick = setAll;
+  const z = document.createElement("button");
+  z.className = "bulk-btn"; z.textContent = "None"; z.onclick = clearAll;
+  w.appendChild(a); w.appendChild(z);
+  return w;
+}
+
+const leafBar = document.getElementById("leaf-bar");
+const leafCbs = [];
+leafNames.forEach(name => {
+  const lbl = document.createElement("label");
+  const cb = document.createElement("input");
+  cb.type = "checkbox";
+  cb.checked = selectedLeaves.has(name);
+  cb.onchange = () => { if (cb.checked) selectedLeaves.add(name); else selectedLeaves.delete(name); render(); };
+  const sw = document.createElement("span"); sw.className = "sw"; sw.style.background = leafColors[name];
+  lbl.appendChild(cb); lbl.appendChild(sw);
+  const leafRec = DATA.leaves[name];
+  const nd = leafRec && leafRec.document_count != null ? leafRec.document_count : null;
+  const suffix = (typeof nd === "number" && Number.isFinite(nd)) ? ` (${nd} docs)` : "";
+  lbl.appendChild(document.createTextNode(" " + name + suffix));
+  leafBar.appendChild(lbl);
+  leafCbs.push({cb, name});
+});
+leafBar.appendChild(makeBulk(
+  () => { leafCbs.forEach(({cb, name}) => { cb.checked = true; selectedLeaves.add(name); }); render(); },
+  () => { leafCbs.forEach(({cb, name}) => { cb.checked = false; selectedLeaves.delete(name); }); render(); }
+));
+
+const sidebar = document.getElementById("sidebar");
+
+sidebar.appendChild(document.createElement("h2")).textContent = "Dimensions";
+const dimCbs = [];
+DATA.dimensions.forEach(dim => {
+  const lbl = document.createElement("label");
+  const cb = document.createElement("input");
+  cb.type = "checkbox";
+  cb.checked = selectedDims.has(dim);
+  cb.onchange = () => { if (cb.checked) selectedDims.add(dim); else selectedDims.delete(dim); render(); };
+  const sw = document.createElement("span");
+  sw.className = "sw";
+  sw.style.background = colorForDim(dim);
+  lbl.appendChild(cb);
+  lbl.appendChild(sw);
+  lbl.appendChild(document.createTextNode(" " + dim));
+  sidebar.appendChild(lbl);
+  dimCbs.push({cb, dim});
+});
+sidebar.appendChild(makeBulk(
+  () => { dimCbs.forEach(({cb, dim}) => { cb.checked = true; selectedDims.add(dim); }); render(); },
+  () => { dimCbs.forEach(({cb, dim}) => { cb.checked = false; selectedDims.delete(dim); }); render(); }
+));
+
+sidebar.appendChild(document.createElement("h2")).textContent = "Judges";
+const jCbs = [];
+DATA.judges.forEach(j => {
+  const lbl = document.createElement("label");
+  const cb = document.createElement("input");
+  cb.type = "checkbox";
+  cb.checked = selectedJudges.has(j);
+  cb.onchange = () => { if (cb.checked) selectedJudges.add(j); else selectedJudges.delete(j); render(); };
+  lbl.appendChild(cb);
+  lbl.appendChild(document.createTextNode(" " + (j.length > 30 ? j.slice(0, 27) + "…" : j)));
+  sidebar.appendChild(lbl);
+  jCbs.push({cb, j});
+});
+sidebar.appendChild(makeBulk(
+  () => { jCbs.forEach(({cb, j}) => { cb.checked = true; selectedJudges.add(j); }); render(); },
+  () => { jCbs.forEach(({cb, j}) => { cb.checked = false; selectedJudges.delete(j); }); render(); }
+));
+
+const meanLbl = document.createElement("label");
+const meanCb = document.createElement("input");
+meanCb.type = "checkbox";
+meanCb.checked = showMeanJudges;
+meanCb.onchange = () => { showMeanJudges = meanCb.checked; render(); };
+meanLbl.appendChild(meanCb);
+meanLbl.appendChild(document.createTextNode(" " + MEAN_LAB));
+sidebar.appendChild(document.createElement("h2")).textContent = "Aggregate";
+sidebar.appendChild(meanLbl);
+
+sidebar.appendChild(document.createElement("h2")).textContent = "Display";
+const legLbl = document.createElement("label");
+const legCb = document.createElement("input");
+legCb.type = "checkbox";
+legCb.checked = showLegend;
+legCb.onchange = () => { showLegend = legCb.checked; render(); };
+legLbl.appendChild(legCb);
+legLbl.appendChild(document.createTextNode(" Show legend"));
+sidebar.appendChild(legLbl);
+
+document.querySelectorAll('input[name="metric"]').forEach(r => {
+  r.addEventListener("change", () => {
+    if (r.checked) { metricMode = r.value; render(); }
+  });
+});
+
+/** How many checked judges have a non-empty series in ``byJ`` (ignores synthetic mean key). */
+function countJudgesWithData(byJ, selectedJudges) {
+  let n = 0;
+  for (const judge of Object.keys(byJ)) {
+    if (judge === MEAN_KEY) continue;
+    if (!selectedJudges.has(judge)) continue;
+    const d = byJ[judge];
+    if (d && d.steps && d.steps.length) n++;
+  }
+  return n;
+}
+
+/** Per checkpoint step, arithmetic mean of y over selected judges that have a value at that step. */
+function meanSeriesOverSelectedJudges(byJ, selectedJudges) {
+  const stepToVals = new Map();
+  for (const judge of Object.keys(byJ)) {
+    if (judge === MEAN_KEY) continue;
+    if (!selectedJudges.has(judge)) continue;
+    const d = byJ[judge];
+    if (!d || !d.steps || !d.values) continue;
+    for (let i = 0; i < d.steps.length; i++) {
+      const s = Number(d.steps[i]);
+      const v = Number(d.values[i]);
+      if (!Number.isFinite(s) || !Number.isFinite(v)) continue;
+      if (!stepToVals.has(s)) stepToVals.set(s, []);
+      stepToVals.get(s).push(v);
+    }
+  }
+  if (stepToVals.size === 0) return null;
+  const steps = Array.from(stepToVals.keys()).sort((a, b) => a - b);
+  const values = steps.map(s => {
+    const arr = stepToVals.get(s);
+    return arr.reduce((a, b) => a + b, 0) / arr.length;
+  });
+  return { steps, values };
+}
+
+function render() {
+  const traces = [];
+  const yTitle = metricMode === "bt" ? "Bradley–Terry θ" : "Win rate";
+  const layout = {
+    template: "plotly_white",
+    margin: { t: showLegend ? 56 : 40, b: 72, l: 58, r: 16 },
+    xaxis: { title: "Checkpoint" },
+    yaxis: { title: yTitle, domain: [0, 1] },
+    showlegend: showLegend,
+    legend: {
+      font: { size: 9 },
+      orientation: "h",
+      y: 1.02,
+      x: 0,
+      bgcolor: "rgba(255,255,255,0.85)",
+    },
+  };
+
+  document.getElementById("hdr-title").textContent =
+    metricMode === "bt" ? "G-Eval exports — Bradley–Terry θ" : "G-Eval exports — Win rate";
+
+  for (const leaf of leafNames) {
+    if (!selectedLeaves.has(leaf)) continue;
+    const L = DATA.leaves[leaf];
+    const block = metricMode === "bt" ? (L.theta || {}) : (L.win_rate || {});
+
+    for (const dim of Object.keys(block)) {
+      if (!selectedDims.has(dim)) continue;
+      const byJ = block[dim];
+      if (!byJ) continue;
+      const dcol = colorForDim(dim);
+
+      const chLab = (s) => "ch-" + String(Math.round(Number(s)));
+
+      if (showMeanJudges && countJudgesWithData(byJ, selectedJudges) >= 2) {
+        const d = meanSeriesOverSelectedJudges(byJ, selectedJudges);
+        if (d && d.steps.length) {
+          traces.push({
+            x: d.steps,
+            y: d.values,
+            text: d.steps.map(chLab),
+            hovertemplate: "%{text}<br>%{y:.4f}<extra></extra>",
+            mode: "lines+markers",
+            name: leaf + " / " + dim + " / " + MEAN_LAB,
+            line: {
+              color: dcol,
+              width: 5,
+              dash: "longdashdot",
+            },
+            marker: {
+              size: 10,
+              symbol: "star",
+              line: { color: "#0f172a", width: 1.2 },
+              color: dcol,
+            },
+            opacity: 0.98,
+          });
+        }
+      }
+
+      for (const judge of Object.keys(byJ)) {
+        if (judge === MEAN_KEY) continue;
+        if (!selectedJudges.has(judge)) continue;
+        const d = byJ[judge];
+        if (!d.steps.length) continue;
+        const jd = dashForJudge(judge);
+        const msym = markerForJudge(judge);
+        traces.push({
+          x: d.steps,
+          y: d.values,
+          text: d.steps.map(chLab),
+          hovertemplate: "%{text}<br>%{y:.4f}<extra></extra>",
+          mode: "lines+markers",
+          name: leaf + " / " + dim + " / " + judge.split("/").pop(),
+          line: { color: dcol, width: 2.4, dash: jd },
+          marker: {
+            size: 5.5,
+            symbol: msym,
+            line: { color: "rgba(15,23,42,0.35)", width: 0.8 },
+            color: dcol,
+          },
+          opacity: 0.92,
+        });
+      }
+    }
+  }
+
+  if (metricMode === "wr") {
+    layout.yaxis.range = [-0.02, 1.02];
+  }
+
+  const xSet = new Set();
+  traces.forEach(tr => {
+    (tr.x || []).forEach(v => {
+      const n = Number(v);
+      if (Number.isFinite(n)) xSet.add(n);
+    });
+  });
+  const tickvals = Array.from(xSet).sort((a, b) => a - b);
+  if (tickvals.length) {
+    layout.xaxis = Object.assign({}, layout.xaxis, {
+      title: "Checkpoint",
+      tickmode: "array",
+      tickvals: tickvals,
+      ticktext: tickvals.map(v => "ch-" + String(Math.round(v))),
+      tickangle: -38,
+    });
+  }
+
+  Plotly.react("chart", traces, layout, { responsive: true });
+}
+
+render();
+window.addEventListener("resize", () => Plotly.Plots.resize(document.getElementById("chart")));
+</script>
+</body>
+</html>

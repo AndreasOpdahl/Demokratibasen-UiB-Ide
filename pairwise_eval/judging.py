@@ -20,6 +20,7 @@ from pairwise_eval.geval_checkpoint import (
     checkpoint_file_path,
     judgment_stable_key,
     load_checkpoint_index,
+    merge_done_from_geval_export_json,
 )
 
 EvaluateFn = Callable[[Mapping, str, str, np.random.Generator], Dict[str, object]]
@@ -99,12 +100,16 @@ def build_geval_tables(
     evaluate_fn: EvaluateFn = mock_evaluate_pair,
     base_seed: int = DEFAULT_GEVAL_BASE_SEED,
     checkpoint_dir: Path | None = None,
+    checkpoint_bootstrap_json_dir: Path | None = None,
 ) -> Dict[Tuple[str, str], pd.DataFrame]:
     """Run ``evaluate_fn`` on every (judge × dimension × pair) and collect judgments.
 
     Input: pairs, long_df, judges/dimensions, ``evaluate_fn``, optional ``checkpoint_dir``.
     If ``checkpoint_dir`` is set, each new judgment is appended to a JSONL file immediately and
     existing keys are skipped on restart (see :mod:`pairwise_eval.geval_checkpoint`).
+    If ``checkpoint_bootstrap_json_dir`` is set (typically ``<export_dir>/json``), judgments are also
+    read from any existing ``geval__<judge>__<dimension>.json`` export for keys missing from the
+    JSONL index so paid calls are not repeated when the JSONL stream lags the export snapshot.
     Output: dict ``(judge_id, dimension) -> DataFrame`` with judgment columns added.
     """
     ctx = attach_doc_context(pairs_df, long_df)
@@ -117,6 +122,18 @@ def build_geval_tables(
             if checkpoint_dir is not None:
                 ck_path = checkpoint_file_path(checkpoint_dir, judge_id, dimension)
                 done = load_checkpoint_index(ck_path)
+                n_from_jsonl = len(done)
+                boot_added = 0
+                if checkpoint_bootstrap_json_dir is not None:
+                    boot_added = merge_done_from_geval_export_json(
+                        done, judge_id, dimension, checkpoint_bootstrap_json_dir
+                    )
+                if boot_added:
+                    print(
+                        f"[checkpoint] {judge_id} × {dimension}: bootstrapped {boot_added} key(s) "
+                        f"from export json (jsonl had {n_from_jsonl}, index now {len(done)})",
+                        flush=True,
+                    )
             n_hit = 0
             n_miss = 0
             rows = []
@@ -130,10 +147,12 @@ def build_geval_tables(
                     n_miss += 1
                     if ck_path is not None:
                         append_judgment_line(ck_path, key, judgment)
+                        done[key] = judgment
                 rows.append({**row.to_dict(), **judgment})
             if checkpoint_dir is not None and ck_path is not None:
                 print(
-                    f"[checkpoint] {judge_id} × {dimension}: {n_hit} from disk, {n_miss} new → {ck_path}",
+                    f"[checkpoint] {judge_id} × {dimension}: {n_hit} reused (jsonl/export), "
+                    f"{n_miss} new → {ck_path}",
                     flush=True,
                 )
             out[(judge_id, dimension)] = pd.DataFrame(rows)

@@ -1986,5 +1986,817 @@
     "right":"checkpoint-8500-inputs-refs-preds-1000-examples",
     "sumleft":"Byrådet har besluttet å bygge et nytt oppveksttun i Nattland, med en total prosjektramme på 435 millioner kroner, inkludert etablering av midlertidige lokaler. Det ble også vedtatt å overføre 30 millioner kroner fra Handlingsplan 2 til investeringsrammen for oppveksttunet. Dette ble besluttet under et møte den 16. mai 2014.",
     "sumright":"Byrådet har besluttet å bygge et nytt oppveksttun i Nattland, med en total prosjektramme på 435 millioner kroner, inkludert etablering av midlertidige"
+  },
+  {
+    "doc_id":"doc_72",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Oppsummering: Bergen kommune har mottatt en søknad fra Løvås Maskin AS om tillatelse",
+    "sumright":"som må ivaretas for å sikre at tiltaket blir gjennomført på en miljøvennlig måte."
+  },
+  {
+    "doc_id":"doc_72",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"som må ivaretas for å sikre at tiltaket blir gjennomført på en miljøvennlig måte.",
+    "sumright":"Fylkesmannen ber om at kommunen vurderer saken med tilbakemelding innen 15. juni 2014. Byrådsavdelingen har fått forlenget fristen slik at uttale kan avgis av byrådet. Oppsummering: Dokumentet omhandler en høring fra Fylkesmannen om en søknad fra Løvås Maskin AS om tillatelse til drift og anlegg for sortering og gjenbruk av strøsand på Espehaugen 54. Byrådsavdelingen har fått forlenget fristen for å vurdere saken, og fagetatene har gitt positive uttalelser om tiltaket. Det er imidlertid spørsmål om hvordan forurensning og støy kan håndteres. Byråden anbefaler at søknaden godkjennes, men at forholdene må ivaretas for å sikre miljøvennlighet. Dokumentet gir en detaljert oversikt over høringens innhold og de ulike perspektivene som er vurdert."
+  },
+  {
+    "doc_id":"doc_72",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Løvås Maskin AS har søkt om løyve til drift og anlegg for sortering og gjenbruk av strøsand på Espehaugen 54. Fylkesmannen har bedt kommunen om en vurdering av søknaden, og flere fagetater har gitt tilbakemeldinger. Generelt er det en positiv holdning til gjenbruk av strøsand, men det stilles krav til at tiltaket ikke medfører ulemper som forurensning, støv eller støy for omgivelsene. Byrådet anbefaler å gi søknaden en positiv tilbakemelding under forutsetning av at fagetatenes merknader følges opp.",
+    "sumright":"Oppsummering: Bergen kommune har mottatt en høring fra Løvås Maskin AS om drift og anlegg for sortering og gjenbruk av strøsand på Espehaugen 54. Fylkesmannen har bedt kommunen vurdere saken, og byrådet har fått forlenget fristen for å gi sin uttalelse. Flere fagetater har gitt positive merknader til søknaden, men peker på behovet for å unngå forurensning og støyplager. Byrådet anbefaler gjenbruk av strøsand under forutsetning av at det skjer i tråd med fagetatene. Dokumentet gir en detaljert oversikt over høringssituasjonen og fagetaternes uttalelser."
+  },
+  {
+    "doc_id":"doc_72",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Oppsummering: Byrådet i Bergen har mottatt en høring fra Løvås Maskin AS om drift og anlegg for sortering og gjenbruk av strøsand på Espehaugen 54. Fylkesmannen har bedt kommunen vurdere saken, og byrådet har fått forlenget fristen for å gi sin uttalelse. Flere fagetater har gitt positive merknader til søknaden, men det stilles krav om at tiltaket ikke fører til ulemper for omgivelsene. Byrådet anbefaler at søknaden godkjennes, men under forutsetning av at det gis sikkerhet for miljøhensyn. Det er også vist bekymring for forurensning og støyplager. Saken vil bli sendt til bystyret for endelig behandling.",
+    "sumright":"Oppsummering: Byrådet i Bergen har mottatt en høring fra Løvås Maskin AS om drift og anlegg for sortering og gjenbruk av strøsand på Espehaugen 54. Fylkesmannen har bedt kommunen vurdere saken, og byrådet har fått forlenget fristen for å gi sin uttalelse. Flere fagetater har gitt positive merknader til søknaden, men peker på behovet for å unngå forurensning og støyplager. Byrådet anbefaler at søknaden godkjennes, men under forutsetning av at det ikke skapes ulemper for omgivelsene. Dokumentet inneholder merknader fra ulike fagetater og etatene."
+  },
+  {
+    "doc_id":"doc_73",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dette er et viktig steg mot å sikre at alle elever får tilbud om tilpasset opplæring og forebyggende tiltak. 2.2 Kommentarer Byråden støtter at dagens grunnskolelærerutdanning erstattes med en femårig, forskningsbasert utdanning. Det er imidlertid viktig at man innenfor grunnskolelærerutdanning sørger for at studentene har en god praksiserfaring å bygge på før de starter på en master. Uten å bygge på erfaring står en masterutdanning i fare for å bli lite relevant. Byråden støtter at det skal være mulig å ta en bachelorgrad i spesialpedagogikk. Byråden støtter at det skal være mulig å ta en mastergrad i spesialpedagogikk. Byråden stø",
+    "sumright":"Dette gjelder både for barnehagelærere og grunnskolelærere. Barnehagelærerutdanning Ekspertgruppen anbefaler at barnehagelærerutdanningen skal ha en lengde på minst 4 år. Grunnskolelærerutdanning Ekspertgruppen anbefaler at grunnskolelærerutdanningen skal ha en lengde på minst 5 år. 2.2 Kommentarer Byråden støtter at dagens grunnskolelærerutdanning erstattes med en femårig, forskningsbasert utdanning. Det er imidlertid viktig at man innenfor grunnskolelærerutdanningen sørger for at studentene har en god praksiserfaring å bygge på før de starter på en master. Uten å bygge på erfaring står en masterutdanning i"
+  },
+  {
+    "doc_id":"doc_73",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dette gjelder både i lærerskolene og i praksis. 2.2 Kommentarer Byråden støtter at dagens grunnskolelærerutdanning erstattes med en femårig, forskningsbasert utdanning. Det er imidlertid viktig at man innenfor grunnskolelærerutdanningen sørger for at studentene har en god praksiserfaring å bygge på før de starter på en master. Uten å bygge på erfaring står en masterutdanning i fare for å bli lite relevant. Byråden vil peke på at det innenfor dette feltet også er viktig at en vurderer hvordan en kan bruke andre yrkesgrupper som kan arbeide med forebyggende arbeid, sosialpedagogiske oppgaver og miljøarbeid knyttet til enkeltelever\/",
+    "sumright":"Dette er et viktig steg mot å sikre at alle elever får tilgang til en god opplæring. Barnehagelærerutdanning Ekspertgruppen anbefaler at barnehagelærerutdanningen skal ha en lengde på 4 år. Grunnskolelærerutdanning Ekspertgruppen anbefaler at grunnskolelærerutdanningen skal ha en lengde på 5 år. 2.2 Kommentarer fra byråden Byråden støtter i hovedsak forslagene til ekspertgruppen, men har enkelte merknader til noen av forslagene. De viktigste er: Byråden støtter at dagens grunnskolelærerutdanning erstattes med en femårig, forskningsbasert utdanning. Det er imidlertid viktig at man innenfor grunn"
+  },
+  {
+    "doc_id":"doc_73",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune avgir høringsuttalelse til Kunnskapsdepartementets rapport om utdanning og forskning i spesialpedagogikk. Byråden støtter hovedsakelig ekspertgruppens anbefalinger, men fremhever behovet for bedre praksiserfaring i lærerutdanningene og en tydeligere undervisningskompetanse for spesialpedagogiske utdanninger. Høringen tar sikte på å forbedre spesialpedagogisk utdanning og praksis i barnehager og skoler.",
+    "sumright":"Dette er et sentralt tema i ekspertgruppens rapport. Ekspertgruppen anbefaler at det skal være en obligatorisk faglig spesialpedagogisk utdanning for barnehagelærere og grunnskolelærere. 2.2 Kommentarer til høringsforslaget Byråden støtter i hovedsak forslagene til ekspertgruppen, men har enkelte merknader til noen av forslagene. De viktigste er: Byråden støtter at dagens grunnskolelærerutdanning erstattes med en femårig, forskningsbasert utdanning. Det er imidlertid viktig at man innenfor grunnskolelærerutdanningen sørger for at studentene har en god praksiserfaring å bygge på før de starter på en master. Uten å bygge på erfaring"
+  },
+  {
+    "doc_id":"doc_73",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dette er et sentralt tema i ekspertgruppens rapport. Ekspertgruppen anbefaler at det skal være en obligatorisk faglig spesialpedagogisk utdanning for barnehagelærere og grunnskolelærere. 2.2 Kommentarer fra byråden Byråden støtter i hovedsak forslagene til ekspertgruppen, men har enkelte merknader til noen av forslagene. De viktigste er: Byråden støtter at dagens grunnskolelærerutdanning erstattes med en femårig, forskningsbasert utdanning. Det er imidlertid viktig at man innenfor grunnskolelærerutdanningen sørger for at studentene har en god praksiserfaring å bygge på før de starter på en master. Uten å bygge på erfaring står en",
+    "sumright":"Dette gjelder både i lærerskolene og i praksis. Ekspertgruppen anbefaler at det etableres en ny, fireårig lærerutdanning med spesialpedagogisk kompetanse. Denne lærerutdanningen bør være en del av den"
+  },
+  {
+    "doc_id":"doc_74",
+    "left":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet forslaget til kommunedelplan for Ytrebygda, som omfatter områder innenfor Birkeland, Liland, Ådland og Espeland. Planen er nå lagt ut til offentlig ettersyn, med hjemmel i plan- og bygningsloven og bestemmelser fra 2009. Det er også lagt fram konsekvensutredning for planen.",
+    "sumright":"Dokumentet omhandler en kommunedelplan for Ytrebygda som skal legges ut til offentlig ettersyn. Byrådet har besluttet å legge planen ut i tråd med lovgivningen og bestemmelsene. Planen omfatter områdene Birkeland, Liland, Ådland og Espeland. Oppsummering: Byrådet har besluttet å legge ut en kommunedelplan for Ytrebygda, som omfatter områdene Birkeland, Liland, Ådland og Espeland. Planen er nå lagt ut til offentlig ettersyn i henhold til lovgivningen. Dokumentet gir en oversikt over hvilke områder som inngår i planen og de relevante bestemmelsene knyttet til denne. Det er viktig at innbyggerne deltar i prosessen og gir tilbakemeldinger før planen blir endelig vedtatt."
+  },
+  {
+    "doc_id":"doc_74",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en kommunedelplan for Ytrebygda som skal legges ut til offentlig ettersyn. Byrådet",
+    "sumright":"Byrådet har behandlet forslaget til kommunedelplan for Ytrebygda, som omfatter områder innenfor Birkeland, Liland, Ådland og Espeland. Planen er nå lagt ut til offentlig ettersyn, med hjemmel i plan- og bygningsloven og relevant forskrift. Det er også lagt fram konsekvensutredning for planen. Vedtaket ble fattet i byrådsmøte den 23. oktober 2014."
+  },
+  {
+    "doc_id":"doc_74",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en kommunedelplan for Ytrebygda som skal legges ut til offentlig ettersyn. Byrådet har besluttet å legge planen ut i tråd med lovgivningen og bestemmelsene. Planen omfatter områdene Birkeland, Liland, Ådland og Espeland, og inkluderer både plankart og forslag til bestemmelser. Offentlig ettersyn vil gi innbyggerne mulighet til å kommentere planen før den endelig vedtas. Oppsummering: Byrådet har besluttet å legge ut en kommunedelplan for Ytrebygda til offentlig ettersyn, som omfatter områdene Birkeland, Liland, Ådland og Espeland. Planen inkluderer plankart og forslag til bestemmelser, og gir innbyggerne mulighet til å kommentere den før den endelige vedtaket.",
+    "sumright":"Byrådet har behandlet forslaget til kommunedelplan for Ytrebygda, som omfatter områder innenfor Birkeland, Liland, Ådland og Espeland. Planen er nå lagt ut til offentlig ettersyn, med hjemmel i plan- og bygningsloven og bestemmelser fra 2009. Det er også lagt frem konsekvensutredning for planen. Vedtaket ble fattet i byrådsmøte den 23. oktober 2014."
+  },
+  {
+    "doc_id":"doc_74",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet forslaget til kommunedelplan for Ytrebygda, som omfatter Birkeland, Liland, Ådland og Espeland. Planen er nå lagt ut til offentlig ettersyn, med hjemmel i plan- og bygningsloven og bestemmelser fra 2009. Vedtaket ble fattet i møte den 23. oktober 2014.",
+    "sumright":"Dokumentet omhandler en kommunedelplan for Ytrebygda som skal legges ut til offentlig ettersyn. Byrådet har besluttet å legge planen ut i tråd med lovgivningen og bestemmelsene. Planen omfatter områdene Birkeland, Liland, Ådland og Espeland, og inkluderer både plankart og forslag til bestemmelser. Offentlig ettersyn vil gi innbyggerne mulighet til å kommentere planen før den endelig vedtas. Oppsummering: Byrådet har besluttet å legge ut en kommunedelplan for Ytrebygda til offentlig ettersyn, som omfatter områdene Birkeland, Liland, Ådland og Espeland. Planen inkluderer plankart og forslag til bestemmelser, og gir innbyggerne mulighet til å kommentere den før den endelige vedtaket."
+  },
+  {
+    "doc_id":"doc_75",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Klage over avslag på søknad",
+    "sumright":"Reguleringsendring. Byrådet behandlet saken i møtet 061114 sak 1403-14 og fattet følgende vedtak: Det anbefales at reguleringsendring av Øvre Ole Bulls Plass, gnr. 160, bnr. 100, vist på plankart datert 27.05.14, med tilhørende bestemmelser datert 18.09.14, gis tillatelse. 1404-14 Bergenhus, Gnr. 160, Bnr. 100, Øvre Ole Bulls Plass. Tilhørende arealplan."
+  },
+  {
+    "doc_id":"doc_75",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Klage over avslag på søknad om dispensasjon fra reguleringsplan. Byrådet behandlet saken i møtet 061114 sak 1403-14 og fattet følgende vedtak: Vedtak datert 10.09.2014 oppheves. I medhold av plan- og bygningslovens § 19-2, jf. § 19-1, godkjennes klagen over avslag på søknad om dispensasjon fra reguleringsplan. 1404-14 Bergenhus, Gnr. 168, Bnr. 100, Slettebakken 1. K",
+    "sumright":"Klage over tillatelse"
+  },
+  {
+    "doc_id":"doc_75",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Klage over avslag på søknad om fradeling av boligfelt. Byrådet behandlet saken i møtet 061114 sak 1403-14 og fattet følgende vedtak: Vedtak datert 10.09.2014 oppheves. I medhold av plan- og bygningslovens § 19-2, jf. § 19-1, godkjennes klagen over avslag på søknad om fradeling av boligfelt. 1404-14 Bergenhus, Gnr. 168, Bnr. 100, Slettebakken 1. Klage over",
+    "sumright":"Dokumentet omhandler godkjenning av protokollen fra byrådsmøtet den 6. november 2014, hvor flere saker ble behandlet, inkludert godkjenning av tidligere protokoller, gjennomføringsvedtak for Møllendalsveien, reguleringsendringer, og skjenkebevillinger. Byrådslederen, Martin Smith-Sivertsen, innstiller til byrådet å godkjenne protokollen."
+  },
+  {
+    "doc_id":"doc_75",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"Klage over avslag på søknad om dispensasjon fra reguleringsplan. Byrådet behandlet saken i møtet 061114 sak 1403-14 og fattet følgende vedtak: Vedtak datert 12.06.14 oppheves. Med hjemmel i plan- og bygningslovens § 19-2 gis det dispensasjon fra reguleringsplan for Bergenhus, gnr. 164, bnr. 100, Slettebakken 10, jfr. søknad datert 12.06.14. 1404-14 Bergenhus, Gnr. 164, B",
+    "sumright":"Klage over tillatelse til oppføring"
+  },
+  {
+    "doc_id":"doc_76",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2",
+    "sumright":"Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe"
+  },
+  {
+    "doc_id":"doc_76",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe",
+    "sumright":"Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2 ved Asmara Restaurant i Kong Oscars gate 51. Bevillingen gjelder innendørs skjenking frem til 30. juni 2016, med Rishan Tesfamichael som styrer. Det stilles krav om at det opprettes en stedfortreder, og det er også spesifisert krav til dokumentasjon før bevillingen kan tas i bruk. Vedtaket er gjort etter retningslinjer for salgs- og skjenkebevillinger i Bergen."
+  },
+  {
+    "doc_id":"doc_76",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har innvilget en ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2 til Asmara Restaurant i Bergen. Bevillingen gjelder innendørs servering frem til 30. juni 2016, og det stilles krav om dokumentasjon før bevillingen kan tas i bruk.",
+    "sumright":"Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2 ved Asmara Restaurant i Kong Oscars gate 51. Bevillingen gjelder innendørs skjenking frem til 30. juni 2016, med Rishan Tesfamichael som styrer. Det stilles også krav om stedfortreder og dokumentasjon før bevillingen kan tas i bruk. Det er også spesifisert krav til arbeidstakerregistrering og yrkesskadeforsikring for ansatte. Klageadgang er beskrevet i vedtaket."
+  },
+  {
+    "doc_id":"doc_76",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe",
+    "sumright":"Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2"
+  },
+  {
+    "doc_id":"doc_77",
+    "left":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har innvilget en ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 til Icookkitchen, beliggende på Kokstadvegen 23. Bevillingen gjelder innendørs skjenking frem til 30. juni 2016, og styrer for bevillingen er Lisa Thon Gundersen. Det er også fastsatt spesifikke krav for dokumentasjon før bevillingen kan tas i bruk.",
+    "sumright":"Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 innendørs ved Icookkitchen, Kokstadvegen 23, frem til 30. juni 2016. Bevillingen gjelder for et spisested\/selskapslokale, med Lisa Thon Gundersen som styrer og Halle Thon Gundersen som stedfortreder. Det stilles krav om dokumentasjon før bevillingen kan tas i bruk. Søksmål kan ikke reises før klagen er avgjort."
+  },
+  {
+    "doc_id":"doc_77",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 innendørs ved Icookkitchen, Kokstadvegen",
+    "sumright":"Byrådet har innvilget en ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 til Icookkitchen, beliggende på Kokstadvegen 23. Bevillingen gjelder innendørs skjenking frem til 30. juni 2016, og styrer for bevillingen er Lisa Thon Gundersen. Det stilles også krav om dokumentasjon før bevillingen kan tas i bruk."
+  },
+  {
+    "doc_id":"doc_77",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 innendørs ved Icookkitchen, Kokstadvegen",
+    "sumright":"Byrådet har innvilget en søknad om ny alminnelig skjenkebevilling for alkoholholdig drikk"
+  },
+  {
+    "doc_id":"doc_77",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet i Bergen har innvilget en søknad om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 ved Icookkitchen, som ligger på Kokstadvegen 23. Bevillingen gjelder innendørs skjenking frem til 30. juni 2016, og styrer for bevillingen er Lisa Thon Gundersen. Det er også fastsatt krav om dokumentasjon før bevillingen kan tas i bruk.",
+    "sumright":"Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 innendørs ved Icookkitchen, Kokstadvegen"
+  },
+  {
+    "doc_id":"doc_78",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har besluttet å utnevne Hallgeir Isdahl som nytt styremedlem i Mediefondet Zefyr, under behandlingen av saken i møte 150916. Oppsummering: Byrådet har gjort vedtak om å utnevne Hallgeir Isdahl som nytt medlem av",
+    "sumright":"Byrådet har besluttet å utnevne Hallgeir Isdahl som nytt styremedlem i Mediefondet"
+  },
+  {
+    "doc_id":"doc_78",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har besluttet å utnevne Hallgeir Isdahl som nytt styremedlem i Mediefondet Zefyr, under behandlingen av saken i møte 15. september 2016. Dette ble gjort i sak 1292-16. Oppsummering: Byrådet har utnevnt Hallgeir Isdahl som nytt medlem av styret i Mediefondet Zefyr. Beslutningen ble fattet under behandling av sak 1292-16 den 15. september 2016. Oppsummering: Denne saken omhandler utnevnelsen av Hallgeir Isdahl som nytt medlem av styret i Mediefondet Zefyr. Byrådet har besluttet dette under behandlingen av sak 1292-16 den 15. september 2016. Detaljer: * Utnevnelsen",
+    "sumright":"Byrådet har besluttet å utnevne Hallgeir Isdahl som nytt styremedlem i Mediefondet"
+  },
+  {
+    "doc_id":"doc_78",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Byrådet har besluttet å utnevne Hallgeir Isdahl som nytt styremedlem i Mediefondet",
+    "sumright":"Byrådet har behandlet saken om suppleringsvalg til styret i Mediefondet Zefyr og foreslår Hallgeir Isdahl som nytt styremedlem."
+  },
+  {
+    "doc_id":"doc_78",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har besluttet å utnevne Hallgeir Isdahl som nytt styremedlem i Mediefondet Zefyr, under behandlingen av saken i møte 150916. Dette ble gjort med bakgrunn i sak 1292-16. Oppsummering: Byrådet har vedtatt å utnevne Hallgeir Isdahl som nytt styremedlem i Mediefondet Zefyr. Vedtaket ble fattet i møte den 15. september 2016, basert på sak 1292-16. Denne oppsummeringen omhandler byrådets beslutning om å inkludere Hallgeir Isdahl i styret for Mediefondet Zefyr. Det gir et overordnet inntrykk av hva saken gjelder og de viktigste konsekvensene av vedtaket. Oppsummering: Byrådet har beslutt",
+    "sumright":"Byrådet har besluttet å utnevne Hallgeir Isdahl som nytt styremedlem i Mediefondet"
+  },
+  {
+    "doc_id":"doc_79",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler ansettelsen av en ny kommunaldirektør for finans, innkjøp og eierskap i Bergen kommune, etter at den tidligere direktøren gikk av med pensjon. Det er utlyst en søknadsfriertid, og byrådslederen innstiller Kristin Ulvang til stillingen. Det er ikke innstilt noen reservekandidater. Vedtaket gjelder for en periode på seks år, med mulighet for forlengelse. Dokumentet inneholder også informasjon om rekrutteringsprosessen og uttalelser fra relevant organisasjoner.",
+    "sumright":"Dokumentet omhandler ansettelsen av en ny kommunaldirektør for finans, innkjøp og eierskap i Bergen kommune, etter at den tidligere direktøren gikk av med pensjon. Det er valgt Kristin Ulvang til stillingen, og det er ikke foreslått noen reservekandidater. Ansettelsen er for en periode på seks år, med mulighet for forlengelse. Byrådslederen har godkjent dokumentet eletronisk. Vedleggene inkluderer utlysningstekst, offentlig søkerliste og uttalelser fra Akademikerne og Delta."
+  },
+  {
+    "doc_id":"doc_79",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler ansettelsen av en ny kommunaldirektør for finans, innkjøp og eierskap i Bergen kommune, etter at den tidligere direktøren gikk av med pensjon. Det er valgt Kristin Ulvang som ny direktør, og det er ikke innstilt noen reservekandidater. Ansettelsen er for en periode på seks år, med mulighet for forlengelse. Byrådslederen har godkjent dokumentet eletronisk. Vedleggene inkluderer utlysningstekst, offentlig søkerliste og uttalelser fra Akademikerne og Delta.",
+    "sumright":"Dokumentet omhandler ansettelsen av en ny kommunaldirektør for finans, innkjøp og eierskap i Bergen kommune, etter at den tidligere direktøren gikk av med pensjon. Det er valgt Kristin Ulvang til stillingen, og det er ikke innstilt noen reservekandidater. Ansettelsen er for en periode på seks år, med mulighet for forlengelse. Byrådslederen har godkjent dokumentet eletronisk. Vedleggene inkluderer utlysningstekst, offentlig søkerliste og uttalelser fra Akademikerne og Delta."
+  },
+  {
+    "doc_id":"doc_79",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Dokumentet omhandler ansettelsen av en ny kommunaldirektør for finans, innkjøp og eierskap i Bergen kommune, etter at den tidligere direktøren gikk av med pensjon. Det er valgt Kristin Ulvang til stillingen, og det er ikke innstilt noen reservekandidater. Ansettelsen er for en periode på seks år, med mulighet for forlengelse. Byrådslederen har godkjent dokumentet eletronisk. Vedleggene inkluderer utlysningstekst, offentlig søkerliste og uttalelser fra Akademikerne og Delta.",
+    "sumright":"Bergen kommune ansetter Kristin Ulvang som ny kommunaldirektør for finans, innkjøp og eierskap etter at Ove Foldnes gikk av med pensjon. Stillingen har vært utlyst, og ansettelsen gjelder for en periode på 6 år, med mulighet for forlengelse. Rekrutteringsfirmaet Headvisor har bistått i prosessen."
+  },
+  {
+    "doc_id":"doc_79",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler ansettelsen av en ny kommunaldirektør for finans, innkjøp og eierskap i Bergen kommune, etter at den tidligere direktøren gikk av med pensjon. Det er valgt Kristin Ulvang som ny direktør, og ansettelsen gjelder for en periode på seks år. Byrådslederen har også besluttet å ikke nominere reservekandidater. Dokumentet inneholder informasjon om rekrutteringsprosessen og vedlegg som inkluderer utlysningstekst, offentlig søkerliste og uttalelser fra relevant organisasjoner.",
+    "sumright":"Dokumentet omhandler ansettelsen av en ny kommunaldirektør for finans, innkjøp og eierskap i Bergen kommune, etter at den tidligere direktøren gikk av med pensjon. Det er valgt Kristin Ulvang til stillingen, og det er ikke innstilt noen reservekandidater. Ansettelsen er for en periode på seks år, med mulighet for forlengelse. Byrådslederen har godkjent dokumentet eletronisk. Vedlegg inkluderer utlysningstekst, offentlig søkerliste og uttalelser fra Akademikerne og Delta."
+  },
+  {
+    "doc_id":"doc_80",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Dokumentet omhandler godkjenningen av anbudet på byggetrinn 2 for Kirkebukten bydelspark, som innebærer opparbeiding av strandfront. Det er foreslått endringer i parkeringsplasser og byråden forutsetter at Laksevåg Bueskyttere kan fortsette sin tradisjonelle bålbrenning. Byrådet anbefaler at Brødrene Ulveseth A\/S får kontrakten, og det foreslås en total kostnad på 4,2 millioner kroner. Vedtaket skal fattes i tråd med vedtatte budsjettrammer.",
+    "sumright":"Byrådet godkjenner anbud og frigir midler til byggetrinn 2 av Kirkebukten bydelspark, som omfatter opparbeiding av strandfront. Det billigste anbudet er anbefalt, og arbeidet er planlagt ferdig i september\/oktober 2002. Endringer i parkeringsplassens plassering er under behandling, og byråden understreker viktigheten av tradisjonell bålbrenning for Laksevåg Bueskyttere."
+  },
+  {
+    "doc_id":"doc_80",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Dokumentet omhandler godkjenning av anbud og frigivelse av midler til byggetrinn 2 for Kirkebukten bydelspark. Byggetrinn 2 omfatter opparbeiding av strandfront, som skal være ferdig i september\/oktober 2002. Det er foretatt endringer i planen, inkludert flytting av parkeringsplassen, og byråden forutsetter at Laksevåg Bueskyttere kan fortsette sin tradisjon med bålbrenning. Byrådet anbefaler at Brødrene Ulveseth A\/S får kontrakten og at byrådet fatter gjennomføringsvedtak for de nødvendige midlene.",
+    "sumright":"Byrådet godkjenner anbud og frigir midler til byggetrinn 2 av Kirkebukten bydelspark, som omfatter opparbeiding av strandfront. Det billigste anbudet er anbefalt, og arbeidet er planlagt ferdig i september\/oktober 2002. Endringer i parkeringsplassens plassering er under behandling, og byråden understreker viktigheten av tradisjonell bålbrenning for Laksevåg Bueskyttere."
+  },
+  {
+    "doc_id":"doc_80",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler godkjenning av anbud og frigivelse av midler til byggetrinn 2 for Kirkebukten bydelspark. Byrådet vurderer kostnader og endringer i planen, samt at Laksevåg Bueskyttere skal kunne foreta bålbrenning. Byråden for miljø og byutvikling foreslår at Brødrene Ulveseth A\/S får kontrakt og at byrådet fatter gjennomføringsvedtak for 4,2 millioner kroner. Vedtaket er basert på vedlagte notat og anbefalinger fra Grønn avdeling.",
+    "sumright":"Dokumentet omhandler godkjenning av anbud og frigivelse av midler til byggetrinn 2 for Kirkebukten bydelspark. Byggetrinn 2 omfatter opparbeiding"
+  },
+  {
+    "doc_id":"doc_80",
+    "left":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler godkjenning av anbud og frigivelse av midler til byggetrinn 2 for Kirkebukten bydelspark. Byggetrinn 2 omfatter opparbeiding av strandfront, som skal være ferdig i september\/oktober 2002. Det er foretatt endringer i planen, inkludert flytting av parkeringsplassen, som vil påvirke kostnader. Byråden forutsetter at Laksevåg Bueskyttere kan fortsette sin tradisjonelle bålbrenning. Fagavdelingen anbefaler at byrådet gir fullmakt til å inngå kontrakt med Brødrene Ulveseth A\/S. Vedtaket krever godkjenning fra byrådet.",
+    "sumright":"Dokumentet omhandler godkjenning av anbud og frigivelse av midler til byggetrinn 2 for Kirkebukten bydelspark. Byggetrinn 2 omfatter opparbeiding av strandfront, som skal være ferdig i september\/oktober 2002. Det er foretatt endringer i planen, inkludert flytting av parkeringsplassen, og byråden forutsetter at Laksevåg Bueskyttere kan fortsette sin tradisjon med bålbrenning. Byrådet anbefaler at Brødrene Ulveseth A\/S får kontrakten og at byrådet fatter gjennomføringsvedtak for de nødvendige midlene."
+  },
+  {
+    "doc_id":"doc_81",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en søknad om bruksendring fra et lager\/verksted til et skjenkested i eiendommen Vaskerelven 14. Byrådet anbefaler godkjenning av søknaden, som ikke er i strid med kommunedelplanen for sentrum. Det er også merknader fra naboer involvert i saken. Tom Knudsen, byråd for miljø og byutvikling, leder behandlingen av saken. Forslaget til vedtak inkluderer krav om at tekniske krav for drift av virksomheten må oppfylles.",
+    "sumright":"Dokumentet omhandler en søknad om bruksendring fra et lager\/verksted til et skjenkested i eiendommen Vaskerelven 14. Byrådet anbefaler godkjenning av søknaden, som ikke er i strid med kommundelplanen for sentrum, og det er ikke forventet fasadeendringer. Det er også merknader fra naboer. Byrådet for miljø og byutvikling, ledet av Tom Knudsen, anbefaler at søknaden godkjennes under forutsetning av at tekniske krav for drift blir oppfylt. Oppsummert beskriver dokumentet en søknad om bruksendring fra et lager til et skjenkested i Bergen,"
+  },
+  {
+    "doc_id":"doc_81",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en søknad om bruksendring fra et lager\/verksted til et skjenkested i eiendommen Vaskerelven 14. Byrådet anbefaler godkjenning av søknaden, som ikke er i strid med kommundelplanen for sentrum, og det er ikke forventet fasadeendringer. Det er også en merknad fra en nabo. Byrådet for miljø og byutvikling, ledet av Tom Knudsen, anbefaler at søknaden godkjennes under forutsetning av at tekniske krav for drift av virksomheten blir oppfylt. Oppsummert beskriver dokumentet en søknad om bruksendring fra et lager til et skjenkested, samt byrådens anbefaling om godkjenning av søknaden. Det er også nevnt en merknad fra en nabo. Teknisk informasjon om søknaden og de relevante regler er inkludert i vedlagte not",
+    "sumright":"Dokumentet omhandler en søknad om bruksendring fra et lager\/verksted til et skjenkested i eiendommen Vaskerelven 14. Søknaden er ikke i strid med kommunedelplanen, og det er ikke forventet noen fasadeendringer. Byrådet anbefaler godkjenning av søknaden, men det er fremkommet en merknad fra en nabo. Tom Knudsen, byråd for miljø og byutvikling, stiller seg positiv til søknaden. Vedlegget inneholder notat fra byggesaksavdelingen som støtter vedtaket."
+  },
+  {
+    "doc_id":"doc_81",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet i Bergen har anbefalt å godkjenne en søknad om bruksendring av eiendommen Vaskerelven 14 fra lager\/verksted til skjenkested. Endringen er i tråd med kommunens planer og medfører ingen fasademessige endringer. Det foreligger merknad fra en nabo, men byrådet har myndighet til å fatte vedtaket.",
+    "sumright":"Dokumentet omhandler en søknad om bruksendring fra et lager\/verksted til et skjenkested i eiendommen Vaskerelven 14. Byrådet anbefaler godkjenning av søknaden, som ikke er i strid med kommunedelplanen for sentrum. Det er også merknader fra naboer. Tom Knudsen, byråd for miljø og byutvikling, leder innstillingen. Oppsummering: Dokumentet beskriver en søknad om bruksendring fra et lager til et skjenkested i Bergen, som ikke vil medføre fasadeendringer og er i tråd med kommunedelplanen. Byrådet anbefaler godkjenning av søknaden, men det er merknader fra naboer. Tom Knudsen leder innstillingen."
+  },
+  {
+    "doc_id":"doc_81",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en søknad om bruksendring fra et lager\/verksted til et skjenkested i eiendommen Vaskerelven 14. Byrådet anbefaler godkjenning av søknaden, som ikke er i strid med kommunedelplanen for sentrum. Det er også en merknad fra en nabo. Byråden for miljø og byutvikling, Tom Knudsen,",
+    "sumright":"Dokumentet omhandler en søknad om bruksendring fra et lager\/verksted til et skjenkested i eiendommen Vaskerelven 14. Byrådet anbefaler godkjenning av søknaden, som ikke er i strid med kommundelplanen for sentrum. Det er også merknader fra naboer. Byråden for miljø og byutvikling, Tom Knudsen, leder behandlingen av saken. Forslaget til vedtak inkluderer krav til teknisk drift av virksomheten. Oppsummering: Dokumentet beskriver en søknad om bruksendring fra et lager til et skjenkested i Bergen, som ikke vil ha noen innvirkning på kommunedelplanen eller fasadeutformingen. Byrådet anbefaler godkjenning av søknaden, men det er merknader fra naboer. Byråden for miljø og byutvikling leder behandlingen av saken."
+  },
+  {
+    "doc_id":"doc_82",
+    "left":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "sumleft":"Det ble mottatt uttalelse til varsel om vedtak 04.03.02. Her blir det opplyst om at internkontrollen skal innskjerpes, og at halvparten av antall sitteplasser\/bord nå er i røykeforbudssonen. Når det gjelder ventilasjonen, så kommer de til å ta kontakt med et ventilasjonsfirma for å utbedre denne. Merking av begge sonene skal også utbedres. Det ble foretatt ny inspeksjon på Dr. Livingstone den 10.04.02 med tilhørende vedtak om retting av 15.05.02. Tilstede på inspeksjonen var Per Gunnar Pedersen og Henning Gøhtesen fra Miljørettet helsevern. Denne inspeksjonen var en opp",
+    "sumright":"Det ble mottatt uttalelse til vedtaket 04.03.02. Her blir det opplyst om at virksomheten har fått inn nye ansatte som skal bidra til bedre innskjerping av internkontrollen. Det er også planlagt å få inn en ventilasjonsinstallasjon. Det ble foretatt ny inspeksjon på Dr. Livingstone den 10.04.02 med tilhørende vedtak om retting av 15.05.02. Tilstede på inspeksjonen var Per Gunnar Pedersen og Henning Gøhtesen fra Miljørettet helsevern. Denne inspeksjonen var en oppfølging for å se at virksomheten hadde gjennomført en tilfredsstillende retting, og det ble da på nytt observert følgende avvik: -"
+  },
+  {
+    "doc_id":"doc_82",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Det ble mottatt uttalelse til vedtaket 04.03.02. Her blir det opplyst om at virksomheten har fått inn nye ansatte som skal bidra til bedre innskjerping av internkontrollen. Det er også planlagt å få inn en ventilasjonsinstallasjon. Det ble foretatt ny inspeksjon på Dr. Livingstone den 10.04.02 med tilhørende vedtak om retting av 15.05.02. Tilstede på inspeksjonen var Per Gunnar Pedersen og Henning Gøhtesen fra Miljørettet helsevern. Denne inspeksjonen var en oppfølging for å se at virksomheten hadde gjennomført en tilfredsstillende retting, og det ble da på nytt observert følgende avvik: -",
+    "sumright":"Det ble mottatt uttalelse til vedtaket 04.03.02. Her blir det opplyst om at virksomheten har fått innført nye regler for personalet, og at det er innført en strengere kontroll av bruken av røykeforbudssonen. Det er også innført en strengere kontroll av bruken av askebeger. Det ble foretatt ny inspeksjon på Dr. Livingstone den 10.04.02 med tilhørende vedtak om retting av 15.05.02. Tilstede på inspeksjonen var Per Gunnar Pedersen og Henning Gøhtesen fra Miljørettet helsevern. Denne inspeksjonen var en oppfølging for å se at virksomheten hadde gjennomført en tilfredsstillende retting, og det ble da på nytt observert følgende"
+  },
+  {
+    "doc_id":"doc_82",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "sumleft":"Det ble mottatt uttalelse til vedtaket 04.03.02. Her blir det opplyst om at virksomheten har fått innført nye regler for røyking, og at det er satt opp skilt som viser hvor røykeforbudssonen ligger. Det er også satt opp ventilasjonsanlegg som gir tilstrekkelig lufttilførsel til røykeforbudssonen. Det ble foretatt ny inspeksjon på Dr. Livingstone den 10.04.02 med tilhørende vedtak om retting av 15.04.02. Tilstede på inspeksjonen var Per Gunnar Pedersen og Henning Gøhtesen fra Miljørettet helsevern. Denne inspeksjonen var en oppfølging for å se at virksomheten hadde gjennomført",
+    "sumright":"Det ble mottatt uttalelse til vedtaket 04.03.02. Her blir det opplyst om at virksomheten har fått innført nye regler for røyking, og at det er innført strengere kontroll av personalet. Det er også innført en ventilasjonssystem som gir bedre luftkvalitet. Det ble foretatt ny inspeksjon på Dr. Livingstone den 10.04.02 med tilhørende vedtak om retting av 15.05.02. Tilstede på inspeksjonen var Per Gunnar Pedersen og Henning Gøhtesen fra Miljørettet helsevern. Denne inspeksjonen var en oppfølging for å se at virksomheten hadde gjennomført en tilfredsstillende retting, og det ble da på nytt observert"
+  },
+  {
+    "doc_id":"doc_82",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"I vedtaket av 04.03.02 ble det pålagt at virksomheten skulle ha halvparten av antall sitteplasser\/bord i røykeforbudssonen innen 17.03.02. Det ble også pålagt at virksomheten skulle ha tilgang til røykeforbudssonen uten å måtte gå gjennom røykesonen, og at virksomheten skulle utøve internkontroll slik at forskriften etterleves. Det ble pålagt at personalet ikke skulle la kundene røyke i røykeforbudssonen, og at det ikke skulle stå askebeger på bordene i røykeforbudssonen. Det ble pålagt at virksomheten skulle utbedre ventilasjonen slik at luft tilføres røykeforbudssonen og trekkes ut fra røykesonen.",
+    "sumright":"Det ble mottatt uttalelse til vedtaket 04.03.02. Her blir det opplyst om at virksomheten har fått innført nye regler for røyking, og at det er satt opp skilt som viser hvor røykeforbudssonen ligger. Det er også satt opp ventilasjonsanlegg som gir tilstrekkelig lufttilførsel til røykeforbudssonen. Det ble foretatt ny inspeksjon på Dr. Livingstone den 10.04.02 med tilhørende vedtak om retting av 15.04.02. Tilstede på inspeksjonen var Per Gunnar Pedersen og Henning Gøhtesen fra Miljørettet helsevern. Denne inspeksjonen var en oppfølging for å se at virksomheten hadde gjennomført"
+  },
+  {
+    "doc_id":"doc_83",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler byrådets vurdering av søknader om fornyelse av tillatelser til skjenking av brennevin ved uteserveringer i Bergen. Byrådet innstiller på å fornye tillagene for flere steder, men anbefaler ikke fornyelse for noen av dem. Det er ingen merknader fra politiet, og bydelsstyret har også gitt sin anbefaling. Finansbyråden tror at det ikke har vært problemer knyttet til denne formen for skjenking, og anbefaler derfor fornyelse av tillagene. Vedtaket må imidlertid godkjennes av bystyret.",
+    "sumright":"Dokumentet beskriver en sak om fornyelse av tillatelser til uteservering av brennevin i Bergen. Byrådet anbefaler fornyelse av tillateltene for flere steder, men anbefaler ikke fornyelse for noen av dem. Det refereres til tidligere vedtak og politiets syn på saken. Innstillingen er i overensstemmelse med anbefalingen fra Rusmiddelpolitisk råd. Vedtaket må nå godkjennes av byrådet før det kan tråde i kraft."
+  },
+  {
+    "doc_id":"doc_83",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver en søknad om fornyelse av tillatelser for uteservering av brennevin i Bergen, etter en tidsbegrensning som gjelder frem til 30. juni 2004. Byrådet anbefaler fornyelse av tillateltene for flere steder, men avviser søknaden fra Margaritas. Finansbyråden innstiller på at søknadene blir innvilget, da det ikke har vært problemer knyttet til denne formen for skjenking. Vedtaket må imidlertid godkjennes av bystyret.",
+    "sumright":"Dokumentet beskriver en sak om fornyelse av tillatelser for uteservering av brennevin i Bergen, etter en endring i kommunens retningslinjer. Byrådet anbefaler fornyelse av tillateltene for flere steder, men anbefaler ikke fornyelse for noen av dem. Det refereres til politiets uttalelse og vedtak fra bydelsstyret. Finansbyråden innstiller på at søknadene om fornyelse av tillateltene innvilges for den resterende delen av bevillingsperioden. Vedtaket må imidlertid godkjennes av byrådet før det kan tråde i kraft."
+  },
+  {
+    "doc_id":"doc_83",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Dokumentet beskriver en søknad om fornyelse av tillatelser for uteservering av brennevin i Bergen, etter en endring i kommunens retningslinjer. Byrådet anbefaler fornyelse av tillateltene for flere steder, men avviser søknaden fra Margaritas. Innstillingen er i tråd med anbefalinger fra politiet og Rusmiddelpolitisk råd. Det er også spesifisert hvordan klagen kan reises dersom det er nødvendig. Finansbyråden, Trond Tystad, gir innstillingen. Dokumentet er datert 4. desember 2002.",
+    "sumright":"Byrådet vurderer søknader om fornyelse av skjenkebevillinger for uteservering av brennevin frem til 30. juni 2004. Politiet har ingen merknader, og Bergenhus bydelsstyre anbefaler fornyelse for enkelte serveringssteder, mens andre ikke får fornyet tillatelse. Finansbyråden innstiller på at alle søknader innvilges, med henvisning til at det ikke har vært problemer med skjenking utendørs."
+  },
+  {
+    "doc_id":"doc_83",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver en sak om fornyelse av tillatelser for uteservering av brennevin i Bergen, etter en tidsbegrensning som gjelder frem til 30. juni 2004. Byrådet anbefaler fornyelse av tillateltene for flere steder, men avviser søknaden fra Margaritas. Finansbyråden innstiller på at søknadene innvilges, da det ikke har vært problemer knyttet til denne formen for skjenking. Vedtaket må imidlertid godkjennes av bystyret.",
+    "sumright":"Dokumentet beskriver en søknad om fornyelse av tillatelser for uteservering av brennevin i Bergen, etter en tidsbegrensning som gjelder frem til 30. juni 2004. Byrådet anbefaler fornyelse av tillateltene for flere steder, mens anbefalinger fra Bergenhus bydelsstyre varierer. Finansbyråden innstiller på at søknadene om fornyelse innvilges, da det ikke har vært problemer knyttet til denne formen for skjenking. Vedtaket må imidlertid godkjennes av bystyret."
+  },
+  {
+    "doc_id":"doc_84",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en søknad fra For Bergen AS om støtte til driften av Lysdansen på Ulriken, som er en viktig kulturoppgave for Bergen kommune. Byrådslederen anbefaler at byrådet bevilger 50.000 kroner til driften, med forutsetning om at den fullfinansieres. Vedtaket skal fattes i henhold til gjeldende budsjettfullmakter.",
+    "sumright":"Dokumentet omhandler en søknad fra Bergen AS om støtte til driften av Lysdansen på Ulriken, som er en viktig kulturoppgave for Bergen kommune. Byrådslederen anbefaler bevilgning av 50.000 kroner til driften, som skal finansieres fullt. Det er en målsetting å bevare Lysdansen som et symbolsk varemerke for kulturbyen Bergen. Vedtaket vil bli fattet av byrådet."
+  },
+  {
+    "doc_id":"doc_84",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet i Bergen har besluttet å bevilge 50.000 kroner til driften av Lysdansen på Ulriken, som er en viktig kulturoppgave for kommunen. Det er forutsatt at driften fullfinansieres, og bevilgningen er en del av byrådets innsats for å bevare Lysdansen som et symbolsk og synlig tegn på kulturbyen Bergen.",
+    "sumright":"Byrådet i Bergen har besluttet å bevilge 50.000 kroner til driften av Lysdansen på Ulriken for 2003. Dette er en del av en større søknad fra Bergen AS om støtte til driften, som totalt krever 300.000 kroner årlig. Byrådsleder Anne-Grete Strøm-Erichsen mener at bevaringen av Lysdansen er viktig for byens kulturarv og vil være et symbolsk tegn på kulturbyåret. Det er også forutsatt at driften fullfinansieres."
+  },
+  {
+    "doc_id":"doc_84",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Byrådet i Bergen har besluttet å bevilge 50.000 kroner til driften av Lysdansen på Ulriken for 2003. Dette er en del av en større søknad fra Bergen AS om støtte til driften, som totalt krever 300.000 kroner årlig. Byrådsleder Anne-Grete Strøm-Erichsen mener at bevaringen av Lysdansen er viktig for byens kulturarv og vil være et symbolsk tegn på kulturbyåret. Det er også forutsatt at driften fullfinansieres.",
+    "sumright":"Bergen kommune vurderer å bevilge 50.000 kroner til driften av Lysdans på Ulriken, et prosjekt som anses som en viktig kulturoppgave for byen. Byrådsleder Anne-Grete Strøm-Erichsen fremhever prosjektets betydning for å videreføre kulturbyåret og skape et karakteristisk varemerke for Bergen."
+  },
+  {
+    "doc_id":"doc_84",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet i Bergen har besluttet å bevilge 50.000 kroner til driften av Lysdansen på Ulriken, som er en viktig kulturoppgave for kommunen. Det er forutsatt at driften fullfinansieres, og bevilgningen er en del av byrådets innsats for å bevare Lysdansen som et symbolsk varemerke for kulturbyen Bergen.",
+    "sumright":"Byrådet i Bergen har besluttet å bevilge 50.000 kroner til driften av Lysdansen på Ulriken, som er en viktig kulturoppgave for kommunen. Det er forutsatt at driften fullfinansieres, og bevilgningen er en del av et større prosjekt for å bevare Lysdansen som et karakteristisk symbol for kulturbyen Bergen. Byrådsleder Anne-Grete Strøm-Erichsen støtter initiativet for å bevare Lysdansen for fremtiden."
+  },
+  {
+    "doc_id":"doc_85",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Dokumentet omhandler godkjenningen av protokoller fra to møter i byrådet som fant",
+    "sumright":"Byrådslederen, Anne-Grete Strøm-Erichsen, innstiller til byrådet om å godkjenne protokollene fra møtene den 5. og 7. mai 2003. Dette er en rutinemessig godkjenning av tidligere møtereferater."
+  },
+  {
+    "doc_id":"doc_85",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Dokumentet omhandler godkjenning av protokoller fra to møter i byrådet som fant",
+    "sumright":"Byrådslederen, Anne-Grete Strøm-Erichsen, innstiller til byrådet om å godkjenne protokollene fra møtene den 5. og 7. mai 2003. Dette er en rutinemessig godkjenning av tidligere møtereferater."
+  },
+  {
+    "doc_id":"doc_85",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler godkjenning av protokoller fra to møter i byrådet som fant sted den 5. og 7. mai 2003. Byrådsleder Anne-Grete Strøm-Erichsen innstiller til byrådet at protokollenes godkjenning bekreftes. Detaljer om de to møtene er ikke spesifisert i dokumentet, men det er tydelig at protokollene skal godkjennes av byrådet. Oppsummering: Dokumentet beskriver godkjenningen av protokoller fra to møter i byrådet som ble holdt den 5. og 7. mai 2003. Byrådsleder Anne-Grete Strøm-Erichsen anbefaler at protokollenes godkjenning godkjennes av byrådet. Detaljer om møtene er ikke inkludert i dokumentet.",
+    "sumright":"Dokumentet omhandler godkjenning av protokoller fra to møter i byrådet som fant"
+  },
+  {
+    "doc_id":"doc_85",
+    "left":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler godkjenning av protokoller fra to møter i byrådet som fant sted den 5. og 7. mai 2003. Byrådslederen, Anne-Grete Strøm-Erichsen, innstiller til byrådet at protokollenes godkjenning bekreftes. Detaljer om de to møtene er ikke spesifisert i dokumentet, men det er tydelig at disse er viktige for byrådets arbeid. Godkjenningen av protokollene er et formelt trinn i prosessen for å sikre at beslutninger og diskusjoner i byrådet blir dokumentert og opprettholdt. Forslag til vedtak: Protokoller fra møter i byrådet 05.05. og 07.05.2003 godkjennes. Anne-Grete Strøm-Erichsen Byrådsleder Dokumentet er godkjent elektronisk.",
+    "sumright":"Dokumentet omhandler godkjenning av protokoller fra to møter i byrådet som fant"
+  },
+  {
+    "doc_id":"doc_86",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet en søknad om riving av bolighus på Nøstegaten 69a, og har besluttet å gi dispensasjon fra planen og godkjenne søknaden. Dette ble vedtatt i møte den 24. september 2003. Oppsummering: Byrådet har godkjent en søknad om riving av bolighus på Nøstegaten 69a, etter at det ble gitt dispensasjon fra planen. Vedtaket ble fattet i møte den 24. september 2003. Og med dette er det klart for riving av bolighuset!",
+    "sumright":"Byrådet har besluttet å gi dispensasjon fra planen for riving av bolighuset i"
+  },
+  {
+    "doc_id":"doc_86",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet i Bergen har godkjent søknaden om riving av et bolighus på Nøstegaten 69a, etter å ha innvilget dispensasjon fra plan- og bygningsloven. Vedtaket ble fattet i møte den 24. september 2003.",
+    "sumright":"Byrådet har besluttet å gi dispensasjon fra planen for riving av bolighuset i"
+  },
+  {
+    "doc_id":"doc_86",
+    "left":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har besluttet å gi dispensasjon fra planen for riving av bolighuset på Nøstegaten 69a, basert på søknad fra eieren. Vedtaket ble fattet i møte den 24. september 2003. Saken ble behandlet i byrådets møte, og det ble også gitt tillatelse til riving av huset. Dette innebærer at de nødvendige tiltakene kan gjennomføres som planlagt. Det er viktig å merke seg at dette vedtaket er begrunnet i henhold til bestemmelsene i plan- og bygningsloven, og at det ikke er en generell tillatelse til å rive alle bolighus i området. Hver enkelt sak må vurderes individuelt, og det er ansvarlig myndighet som skal ta stilling til om det er grunnlag for å gi dispensasjon eller ikke. Det er også viktig å",
+    "sumright":"Byrådet har behandlet en søknad om riving av bolighus på Nøstegaten 69a, og har besluttet å gi dispensasjon fra planen og godkjenne søknaden. Dette ble vedtatt i møte den 24. september 2003. Oppsummering: Byrådet har godkjent en søknad om riving av bolighus på Nøstegaten 69a, etter at det ble gitt dispensasjon fra planen. Vedtaket ble fattet i møte den 24. september 2003."
+  },
+  {
+    "doc_id":"doc_86",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet en søknad om riving av bolighus på gnr. 165 bnr. 854, Nøstegaten 69a. I møtet den 24. september 2003 ble det fattet vedtak om å gi dispensasjon fra planen og godkjenne søknaden om riving. Vedtaket er basert på byrådets vurdering av søknaden og de relevante reguleringsbestemmelsene. Det er imidlertid viktig å merke seg at vedtaket ikke innebærer godkjenning av eventuelle fremtidige byggeprosjekter eller endringer av eiendommen. Det er også viktig å merke seg at vedtaket kan bli endret eller opphevet dersom det kommer frem nye informasjoner som tilsier at vedtaket ikke er i tråd med lovens bestemmelser eller forholdene på stedet. Det er",
+    "sumright":"Byrådet har behandlet søknaden om riving av bolighuset på Nøstegaten 69a, og har besluttet å gi dispensasjon fra planbestemmelsene. Vedtaket ble fattet i møte den 24. september 2003. Rivingen av huset er nå godkjent."
+  },
+  {
+    "doc_id":"doc_87",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet klagen angående søknaden om å endre bruken av et uthus til bolig, men har besluttet å opprettholde det tidligere byggesaksavdels vedtak fra 2003, som innebærer at klagen ikke tas til følge. Dette ble vedtatt i møte den 7. juli 2004. Oppsummering: Byrådet har behandlet en klage angående søknaden om å omgjøre et uthus til bolig, men har besluttet å opprettholde det tidligere vedtaket om å nekte søknaden. Klagen ble ikke tatt til følge i møte den 7. juli 2004.",
+    "sumright":"Byrådet i Bergen har behandlet en klage angående søknad om bruksendring fra"
+  },
+  {
+    "doc_id":"doc_87",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet i Bergen har behandlet en klage angående søknad om bruksendring fra uthus til bolig for eiendommen Jonsvollsgaten 9. Vedtaket fra byggesaksavdelingen den 13. november 2003 opprettholdes, og klagen tas ikke til følge. Dette ble besluttet under et møte den 7. juli 2004, sak 1407-04.",
+    "sumright":"Byrådet i Bergen har behandlet en klage angående søknad om bruksendring fra"
+  },
+  {
+    "doc_id":"doc_87",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet klagen angående søknaden om bruksendring fra uthus til bolig for eiendommen Bergenhus, gnr 165 bnr 1003, Jonsvollsgaten 9. Vedtaket fra byggesaksavdelingen fra 13. november 2003 opprettholdes, og klagen tas ikke til følge. Dette ble besluttet under et møte den 7. juli 2004, sak 1407-04.",
+    "sumright":"Byrådet i Bergen har behandlet en klage angående søknad om bruksendring fra uthus til bolig for eiendommen Bergenhus, gnr 165 bnr 1003, Jonsvollsgaten 9. Vedtaket fra byggesaksavdelingen fra 13. november 2003 opprettholdes, og klagen tas ikke til følge. Dette ble besluttet under et møte den 7. juli 2004. Oppsummering: Byrådet i Bergen har behandlet en klage angående søknad om å endre bruken av eiendommen fra uthus til bolig. Klagen ble ikke tatt til følge, og det tidligere vedtaket fra byggesaksavdelingen ble opprettholdt. Saken ble behandlet under et møte den 7. juli 2004."
+  },
+  {
+    "doc_id":"doc_87",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet en klage angående søknad om bruksendring fra uthus til",
+    "sumright":"Byrådet har behandlet klagen angående søknaden om bruksendring fra uthus til bolig for eiendommen Bergenhus, gnr 165 bnr 1003, Jonsvollsgaten 9. Vedtaket fra byggesaksavdelingen fra 13. november 2003 opprettholdes, og klagen tas ikke til følge. Dette ble besluttet under et møte den 7. juli 2004, sak 1407-04."
+  },
+  {
+    "doc_id":"doc_88",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Det er også ledige kontorer i 6. etg. her. Disse kontorene er i dag tilsatt til Bergenhus PPT. I forbindelse med at PPT-kontorene i 5. etg. flyttes, vil det bli ledige kontorer i 6. etg. Ledige lokaler i Rådhuset: I 7. etg. er det ledige kontorer som kan benyttes til administrativ funksjon. I 8. etg. er det ledige kontorer som kan benyttes til administrativ funksjon. Ledige",
+    "sumright":"Det er 10 ledige kontorer i 5. etg. og 10 ledige kontorer i 6. etg. I 5. etg. er det 10"
+  },
+  {
+    "doc_id":"doc_88",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Ledige lokaler i Neumannsgt. 1:",
+    "sumright":"Det er 10 ledige kontorer i 5. etg. og 10 ledige kontorer i 6. etg. I 5. etg. er det 10"
+  },
+  {
+    "doc_id":"doc_88",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "sumleft":"Det er også ledige lokaler i 6. etg. etter at Byrådsavdeling for oppvekst flytter til",
+    "sumright":"Ledige lokaler i Neumannsgt. 1:"
+  },
+  {
+    "doc_id":"doc_88",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Det er også ledige lokaler i 6. etg. etter at Byrådsavdeling for oppvekst flytter til",
+    "sumright":"Det er 10 ledige kontorer i 5. etg. og 10 ledige kontorer i 6. etg. I 5. etg. er det 10"
+  },
+  {
+    "doc_id":"doc_89",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet en klage fra Margun Hatlestad angående tillatelse til oppføring av garasje\/carport på eiendommen Fana, gnr 82 bnr 134. Klagen ble ikke tatt til følge, og administrasjonens tidligere vedtak fra 18. oktober 2002 opprettholdes.",
+    "sumright":"Byrådet har behandlet klagen fra Margun Hatlestad angående tillatelsen for oppføring av garasje\/carport på Hatlestad terrasse"
+  },
+  {
+    "doc_id":"doc_89",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet klagen fra Margun Hatlestad angående tillatelsen til oppføring av garasje\/carport på Hatlestad terrasse",
+    "sumright":"Byrådet har behandlet klagen fra Margun Hatlestad angående tillatelsen for oppføring av garasje\/carport på Hatlestad terrasse"
+  },
+  {
+    "doc_id":"doc_89",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet klagen fra Margun Hatlestad angående tillatelsen for oppføring av garasje\/carport på Hatlestad terrasse",
+    "sumright":"Byrådet har behandlet klagen fra Margun Hatlestad angående tillatelsen til oppføring av garasje\/carport på Hatlestad terrasse"
+  },
+  {
+    "doc_id":"doc_89",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet klagen fra Margun Hatlestad angående tillatelsen for oppføring av garasje\/carport på Hatlestad terrasse",
+    "sumright":"Byrådet har behandlet klagen fra Margun Hatlestad angående tillatelsen for oppføring av garasje\/carport på Hatlestad terrasse"
+  },
+  {
+    "doc_id":"doc_90",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver en situasjon hvor vann- og avløpsarbeider i Vestre Torggate\/Vaskerelven vil føre til lengre køer i rushtiden, og at byrådsleder Monica Mæland innstiller til byrådet om å åpne kollektivfeltet i Lars Hilles gate og Christies gate for alminnelig ferdsel som en midlertidig løsning. Dette for å redusere trafikken i området. Vedtaket baserer seg på kompetansen gitt til byrådet i tidligere vedtak.",
+    "sumright":"Dokumentet beskriver en situasjon hvor rehabiliteringen av vann- og avløpsnettet i Vestre Torggate\/Vaskerelven vil føre til store køer i rushtiden, og at Byrådslederen innstiller til Byrådet om å be Statens Vegvesen om å åpne kollektivfeltet i Lars Hilles gate og Christies gate for alminnelig ferdsel. Dette er en midlertidig løsning for å håndtere trafikken mens arbeidet pågår. Vedtaket skal tre i kraft frem til rehabiliteringsarbeidet er fullført."
+  },
+  {
+    "doc_id":"doc_90",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver en situasjon hvor rehabiliteringen av vann- og avløpsnettet i Vestre Torggate\/Vaskerelven vil føre til store køer i rushtiden, og at byrådslederen innstiller til byrådet om å be Statens Vegvesen om å åpne kollektivfeltet i Lars Hilles gate og Christies gate for alminnelig ferdsel. Dette er en midlertidig løsning for å håndtere trafikken mens arbeidet pågår. Vedtaket skal tre i kraft frem til rehabiliteringsarbeidet er fullført.",
+    "sumright":"Dokumentet beskriver en situasjon hvor vann- og avløpsarbeider i Vestre Torggate\/Vaskerelven vil føre til lengre køer i rushtiden, og at byrådslederen innstiller til byrådet om å be Statens Vegvesen om å åpne kollektivfeltet i Lars Hilles gate og Christies gate for alminnelig ferdsel. Dette er en midlertidig løsning for å håndtere trafikkproblemene under rehabiliteringsarbeidet."
+  },
+  {
+    "doc_id":"doc_90",
+    "left":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har besluttet å be Statens Vegvesen om å åpne kollektivfeltet i Lars Hilles gate og Christies gate for alminnelig ferdsel i tidsrommet frem til rehabiliteringen av vann- og avløpsnettet i Vestre Torggate\/Vaskerelven er fullført. Dette er en midlertidig løsning for å håndtere konsekvensene av nettverkets omlegging, som vil føre til lengre køer i rushtiden. Beslutningen ble fattet etter initiativ fra byrådsleder Monica Mæland.",
+    "sumright":"Dokumentet beskriver en situasjon hvor vann- og avløpsarbeider i Vestre Torggate\/Vaskerelven vil føre til lengre køer i rushtiden, og at byrådslederen innstiller til byrådet om å be Statens Vegvesen om å åpne kollektivfeltet i Lars Hilles gate og Christies gate for alminnelig ferdsel. Dette er en midlertidig løsning for å håndtere trafikkproblemene under rehabiliteringsarbeidet."
+  },
+  {
+    "doc_id":"doc_90",
+    "left":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver en situasjon hvor vann- og avløpsarbeider i Vestre Torggate\/Vaskerelven vil føre til lengre køer i rushtiden, og at byrådslederen innstiller til byrådet om å be Statens Vegvesen om å åpne kollektivfeltet i Lars Hilles gate og Christies gate for alminnelig ferdsel. Dette er en midlertidig løsning for å håndtere trafikkproblemene under rehabiliteringsarbeidet. Vedtaket skal tre i kraft frem til arbeidet er fullført.",
+    "sumright":"Dokumentet beskriver en situasjon hvor vann- og avløpsarbeider i Vestre Torggate\/Vaskerelven vil føre til lengre køer i rushtiden, og at byrådslederen innstiller til byrådet om å be Statens Vegvesen om å åpne kollektivfeltet i Lars Hilles gate og Christies gate for alminnelig ferdsel. Dette er en midlertidig løsning for å håndtere trafikkproblemene under rehabiliteringsarbeidet."
+  },
+  {
+    "doc_id":"doc_91",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Det er derfor viktig at det i denne prosessen ikke bare fokuseres på kvaliteten på selve botilbudet, men også på beliggenhet, nærhet til offentlige tjenester, tilknytning til nærliggende befolkning og andre faktorer som kan bidra til å sikre en bedre livskvalitet for de som bor i midlertidige botilbud. I tillegg til å invitere til kvalitetsavtaler for midlertidige botilbud, vil byrådet også invitere til kvalitetsavtaler for andre typer tjenester som kan bidra til å sikre en bedre livskvalitet for bostedsløse. Kvalitetsavtaler for andre tjenester Etter en prosess med å identifisere behovet for tjenester som kan bidra til å s",
+    "sumright":"Det er derfor viktig at det videre utvikles et tilbud som kan tilby en god og trygg bolig for bostedsløse med rusproblemer, men som samtidig ikke er så kostbar at denne ressursen ikke kan brukes til andre tiltak. I tillegg til å utvikle varige tjenester, er det viktig å få til en bedre balanse mellom bruk av midlertidige botilbud"
+  },
+  {
+    "doc_id":"doc_91",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Det er derfor viktig at det videre utvikles et tilbud som kan tilby en god og trygg bolig for bostedsløse med rusproblemer, men som samtidig ikke er så kostbar at denne ressursen ikke kan brukes til andre tiltak. I tillegg til å utvikle varige tiltak, er det viktig å sikre at det er mulighet for å tilby midlertidige botilbud med kvalitetsavtale for bostedsløse med rusproblemer. Det er viktig å få til en situasjon hvor det er mulig å tilby midlertidige botilbud med kvalitetsavtale for bostedsløse med rusproblemer. Byrådet vil derfor invitere tilbydere til å inngå nye kvalitetsavtaler for midlertidige botilbud",
+    "sumright":"Det er imidlertid behov for å sikre at det er tilgjengelig midlertidige botilbud for bostedsløse med rusproblemer, spesielt i perioder med høy bruk. I denne sammenhengen vil byrådet invitere tilbydere av midlertidige botilbud til å inngå nye kvalitetsavtaler med Bergen kommune. Invitasjonen til å inngå nye kvalitetsavtaler Invitasjonen til å inngå nye kvalitetsavtaler vil innebære at tilbydere av midlertidige botilbud kan få tilbud om å inngå avtaler med Bergen kommune som gir kvalitetskrav for virksomheten. Kvalitetsavtalene vil være forbeholdt tilbydere som har god erfaring"
+  },
+  {
+    "doc_id":"doc_91",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune planlegger å inngå nye kvalitetsavtaler med tilbydere av midlertidige botilbud for bostedsløse, som skal gjelde fra 1. mars 2007. Målet er å forbedre levekårene for brukerne og vurdere konsekvenser for nærmiljøene. Det legges vekt på brannsikkerhet og beliggenhet i forhold til nærmiljøet i anbudsprosessen. Dagens avtaler utløper 28. februar 2007, og kommunen har som mål å redusere bruken av midlertidige botilbud ved å utvikle bedre og mer varige løsninger.",
+    "sumright":"Det er imidlertid behov for å sikre at det er tilgjengelig midlertidige botilbud for bostedsløse med rusproblemer. I denne sammenheng vil byrådet invitere tilbydere til å inngå nye kvalitetsavtaler med følgende krav: 1. Brannsikringskrav: Brannsikringskravet er i dag ikke tilfredsstilt i alle tilbudene. 2. Beliggenhet: Beliggenhet av botilbudet i forhold til nærmiljøet er viktig for å sikre god tilgang til tjenester og aktiviteter. 3. Fortetting av botilbud: Det er behov for flere botilbud i sentrum og i områder med høyere befolkningstetthet. 4. Størrelse på tilbudet: Det er beh"
+  },
+  {
+    "doc_id":"doc_91",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Det er derfor viktig at det i denne prosessen ikke bare fokuseres på å få tilbud som kan tilfredsstille dagens krav til kvalitet, men også at det i vurderingen av fremtidige avtaleinngåelser også skal tas hensyn til botilbudenes beliggenhet i forhold til nærmiljø, fortetting av botilbud, det enkelte tilbuds størrelse, samt kommunens samlede behov for antall plasser. I tillegg til dette vil det være viktig å ta hensyn til at det er mulig å tilby en god og trygg opplevelse for brukerne. Kvalitetsavtaler med private tilbydere av midlertidige botilbud Kvalitetsavtalene er utarbeidet i samarbeid med Bergen kommune og de private til",
+    "sumright":"Det er derfor viktig at det i denne prosessen ikke bare fokuseres på å få tilbud som kan tilfredsstille dagens krav til kvalitet, men også at det i vurderingen av fremtidige avtaleinngåelser også skal tas hensyn til botilbudenes beliggenhet i forhold til nærmiljø, fortetning av botilbud, det enkelte tilbuds størrelse, samt kommunens samlede behov for antall plasser. I tillegg til dette vil det bli lagt vekt på at det i avtaleprosessen skal være en tydelig forståelse av at det er en forventning om at det skal være en god samhandling mellom tilbyder og bruker. Kvalitetsavtaler med private tilbydere av midlertidige botilbud"
+  },
+  {
+    "doc_id":"doc_92",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet forslaget om reguleringsplan for fylkesvegen Peter Jebsens veg, og har besluttet å legge planen ut til offentlig ettersyn. Planen, som er datert 31. august 2006, inkluderer både kart og reguleringsbestemmelser. Det er etter Plan- og bygningsloven § 27-1, nr 2, som dette forslaget er vedtatt.",
+    "sumright":"Byrådet har behandlet et forslag til reguleringsplan for fylkesvei 238, Peter Jebsens vei, og besluttet å legge planen til offentlig ettersyn. Planen omfatter et område med kart i målestokk 1:1000 og bestemmelser datert 31. august 2006. Oppsummering: Byrådet har vedtatt å legge et forslag til reguleringsplan for fylkesvei 238, Peter Jebsens vei, til offentlig ettersyn. Planen omfatter et område med kart og bestemmelser datert 31. august 2006. Dette er en første gangs behandling av saken, og det er lagt til rette for innspill fra allmennheten før endelig vedtak. Reguleringsplanen vil ha betydning for utviklingen av området og vil kunne påvirke framtidige tiltak i området."
+  },
+  {
+    "doc_id":"doc_92",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet et forslag til reguleringsplan for fylkesvei 238, Peter Jebsens vei, og besluttet å legge planen til offentlig ettersyn. Planen omfatter et område med kart i målestokk 1:1000 og bestemmelser datert 31. august 2006. Oppsummering: Byrådet har behandlet og vedtatt å legge ut til offentlig ettersyn et forslag til reguleringsplan for fylkesvei 238, Peter Jebsens vei. Planen inkluderer kart og bestemmelser datert 31. august 2006. Dette er en første gangs behandling av planen, og det er nå åpnet for innspill fra allmennheten. Det er også lagt til rette for at planen kan endres basert på innspillene som kommer inn. Planen omfatter et spesifisert områ",
+    "sumright":"Byrådet har besluttet å legge ut forslaget til reguleringsplan for fylkesvegen 238 Peter Jebsens veg til offentlig ettersyn. Dette skjer i henhold til Plan- og bygningsloven, og det er lagt til grunn kart og bestemmelser datert 31. august 2006. Vedtaket ble fattet under møte den 26. mars 2007."
+  },
+  {
+    "doc_id":"doc_92",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har besluttet å legge ut forslag til reguleringsplan for fylkesveg 238 Peter Jebsens vei til offentlig ettersyn. Dette inkluderer både reguleringsplanen og reguleringsbestemmelser, datert 31.08.2006.",
+    "sumright":"Byrådet har besluttet å legge ut forslaget til reguleringsplan for fylkesvegen Peter Jebsens veg til offentlig ettersyn. Planen omfatter et område på 1876 meter kvadratmeter og inkluderer både kart og reguleringsbestemmelser. Vedtaket ble fattet i et møte den 26. mars 2007."
+  },
+  {
+    "doc_id":"doc_92",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet et forslag til reguleringsplan for fylkesvei 238, Peter Jebsens vei,",
+    "sumright":"Byrådet har behandlet forslaget om reguleringsplan for fylkesvegen Peter Jebsens veg, og har besluttet å legge planen til offentlig ettersyn. Planen, som er datert 31. august 2006, inkluderer både kart og reguleringsbestemmelser. Vedtaket ble fattet i møte den 26. mars 2007."
+  },
+  {
+    "doc_id":"doc_93",
+    "left":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har godkjent protokollen fra møtet som ble avholdt den 11. april 2007, under behandlingen av sak 1186-07 i møtet den 18. april 2007. Vedtaket ble fattet etter behandling av saken. Protokollen er dermed offisielt godkjent.",
+    "sumright":"Byrådet har godkjent protokollen fra møtet som ble avholdt den 11. april 2007, under behandlingen av sak 1186-07 den 18. april 2007. Oppsummering: Byrådet har godkjent protokollen fra et tidligere møte som ble holdt den 11. april 2007, i tråd med vedtaket fra møtet den 18. april 2007. Dette viser til at protokollen er akseptert og kan brukes som referanse for hendelsene som fant sted under det tidligere møtet."
+  },
+  {
+    "doc_id":"doc_93",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har godkjent protokollen fra møtet den 11. april 2007, som ble behandlet i møtet den 18. april 2007. Vedtaket ble fattet i sak 1186-07. Oppsummering: Byrådet har godkjent protokollen fra et tidligere møte den 11. april 2007, som ble behandlet i et senere møte den 18. april 2007. Vedtaket ble fattet i forbindelse med sak 1186-07.",
+    "sumright":"Byrådet har godkjent protokollen fra møtet den 11. april 2007, som ble behandlet i møtet den 18. april 2007. Saken ble behandlet under sak 1186-07. Oppsummering: Byrådet har godkjent protokollen fra et tidligere møte den 11. april 2007, som ble behandlet i et senere møte den 18. april 2007. Saken ble behandlet under en spesifikk saknummer."
+  },
+  {
+    "doc_id":"doc_93",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har godkjent protokollen fra møtet som ble avholdt den 11. april 2007, under behandlingen av sak 1186-07 den 18. april 2007. Oppsummering: Byrådet har godkjent protokollen fra et tidligere møte som ble holdt den 11. april 2007. Dette skjedde under behandling av sak 1186-07 den 18. april 2007. Oppsummering: Dokumentet omhandler godkjenningen av protokollen fra et møte i byrådet som fant sted den 11. april 2007. Det ble behandlet under et senere møte den 18. april 2007, hvor det ble fattet vedtak om godkjenning. Oppsummering: Dokumentet beskriver godkjenningen av protokollen fra et mø",
+    "sumright":"Byrådet har godkjent protokollen fra møtet den 11. april 2007, som ble behandlet i møtet den 18. april 2007. Vedtaket ble fattet i sak 1186-07. Oppsummering: Byrådet har godkjent protokollen fra et tidligere møte, som ble behandlet i et senere møte. Vedtaket ble fattet i forbindelse med sak 1186-07. Dette oppsummeringen inkluderer de viktigste informasjonene fra saken, herunder datoer, møtedatoer, saksnummer og at protokollen er godkjent."
+  },
+  {
+    "doc_id":"doc_93",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har godkjent protokollen fra møtet den 11. april 2007, som ble behandlet i møtet den 18. april 2007. Saken ble behandlet under sak 1186-07. Vedtaket ble fattet uten motforestillinger. Protokollen er dermed et offisielt dokument som bekrefter hendelsene og beslutninger som ble tatt under møtet.",
+    "sumright":"Byrådet har godkjent protokollen fra møtet som ble avholdt den 11. april 2007, under behandlingen av sak 1186-07 den 18. april 2007. Oppsummering: Byrådet har godkjent protokollen fra et tidligere møte som ble holdt den 11. april 2007. Dette skjedde under behandling av sak 1186-07 den 18. april 2007. Oppsummering: Dokumentet omhandler godkjenningen av protokollen fra et møte i byrådet som fant sted den 11. april 2007. Det ble behandlet under et senere møte den 18. april 2007, hvor det ble fattet vedtak om godkjenning. Oppsummering: Dokumentet beskriver godkjenningen av protokollen fra et mø"
+  },
+  {
+    "doc_id":"doc_94",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en klage på avslag på søknad om oppføring av en altan på eiendommen Laksevåg, gnr. 137 bnr. 520, Drotningsvikveien 88A. Avslaget ble gitt grunnet plassering nærmere nabogrense enn 4 meter, og manglende skjønnhetshensyn. Fagetaten konkluderer med at tiltaket ikke kan godkjennes, til tross for klagerens argumenter om at det er mange lignende altaner i området. Byråden støtter fagetatens vurderinger og innstiller på å opprettholde avslaget. Klagen tas ikke til følge.",
+    "sumright":"Dokumentet omhandler en klage på avslag av søknad om oppføring av en altan på eiendommen Drotningsvikveien 88A i Laksevåg. Byrådet har vurdert klagen og konkluderer med at avslaget står vedtaket fra september 2006, da tiltaket er plassert for nær nabogrense. Fagetaten har også vurdert skjønnhetshensyn og konkluderer med at tiltaket ikke er i samsvar med reguleringsplanen. Klagen blir ikke tatt til følge. Vedtaket vil bli sendt til fylkesmannen for endelig avgjørelse."
+  },
+  {
+    "doc_id":"doc_94",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en klage på avslag om oppføring av en altan på eiendommen Drotningsvikveien 88A i Laksevåg. Avslaget ble gitt grunnet plassering nærmere nabogrense enn tillatt, samt manglende skjønnhetshensyn. Fagetaten konkluderer med at tiltaket ikke kan godkjennes, til tross for klagerens argumenter om likhet med andre tilsvarende altaner i området. Byråden støtter fagetatens vurderinger og innstiller på å opprettholde avslaget. Klagen blir ikke tatt til følge.",
+    "sumright":"Dokumentet omhandler en klage på avslag av søknad om oppføring av en altan på"
+  },
+  {
+    "doc_id":"doc_94",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Dokumentet omhandler en klage på avslag om oppføring av en altan på eiendommen Drotningsvikveien",
+    "sumright":"Byrådet har avvist en klage på et tidligere avslag om oppføring av en altan på 14,8 m² i Laksevåg. Avslaget ble begrunnet med at altanen ville være plassert for nær nabogrensen og ikke oppfylte kravene til skjønnhetshensyn. Klageren hevdet forskjellsbehandling, men byrådet støttet fagetatens vurderinger og opprettholdt avslaget."
+  },
+  {
+    "doc_id":"doc_94",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en klage på avslag på søknad om oppføring av en altan på eiendommen Laksevåg, gnr. 137 bnr. 520, Drotningsvikveien 88A. Avslaget ble gitt grunnet plassering nærmere nabogrense enn 4 meter, og manglende skjønnhetshensyn. Fagetaten konkluderer med at tiltaket ikke kan godkjennes, til tross for klagers argumenter om at det er mange lignende altaner i området. Byråden støtter fagetatens vurderinger og innstiller på å opprettholde avslaget. Klagen tas ikke til følge.",
+    "sumright":"Dokumentet omhandler en klage på avslag om oppføring av en altan på"
+  },
+  {
+    "doc_id":"doc_95",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en klage på tillatelsen til oppføring av en garasje på eiendommen gnr 41 bnr 629 i Fana. Klagerne, Hellen Mygland, Siv Lise Bedringaas og Rafal Jablonski, hevder at garasjen vil medføre dårlig oversikt for trafikanten, da den ligger nærmere veien enn tillatt. Fagetaten vurderer at tiltaket ikke medfører usakelig forskjellsbehandling, og anbefaler at klagen",
+    "sumright":"Dokumentet omhandler en klage på tillatelse til oppføring av en garasje på eiendommen gnr 41 bnr 629 i Fana, som ble godkjent av byrådet. Klagerne, Hellen Mygland, Siv Lise Bedringaas og Rafal Jablonski, hevder at garasjen vil medføre trafikkriser og manglende oversikt for trafikanten. Fagetaten vurderer at klagen ikke gir grunnlag for å tas til følge, og anbefaler at vedtaket opprettholdes. Byråden for byutvikling innstiller til byrådet å fatte vedtak om å opprettholde den opprinnelige tillatelsen."
+  },
+  {
+    "doc_id":"doc_95",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en klage på tillatelsen til oppføring av en garasje på eiendommen gnr 41 bnr 629 i Fana, som ble godkjent av byrådet. Klagerne, Hellen Mygland, Siv Lise Bedringaas og Rafal Jablonski, hevder at garasjen vil medføre trafikkriser og manglende oversikt for trafikanten. Fagetaten vurderer at tiltaket ikke medfører forskjellsbehandling og anbefaler å opprettholde den tidligere tillatelsen. Byråden for byutvikling innstiller til byrådet å opprettholde vedtaket.",
+    "sumright":"Dokumentet omhandler en klage på tillatelse til oppføring av en garasje på eiendommen gnr 41 bnr 629 i Fana, som ble godkjent av byrådet. Klagerne, Hellen Mygland, Siv Lise Bedringaas og Rafal Jablonski, hevder at garasjen vil medføre trafikkriser og manglende oversikt for trafikanten. Fagetaten vurderer at tiltaket ikke medfører usakelig forskjellsbehandling, og anbefaler at klagen ikke tas til følge. Byråden for byutvikling støtter fagetatens vurdering og innstiller på å opprettholde den tidligere vedtaket."
+  },
+  {
+    "doc_id":"doc_95",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Dokumentet omhandler en klage på tillatelse til oppføring av en garasje på eiendommen gnr 41 bnr 629 i Fana, som ble godkjent av byrådet. Klagerne, Hellen Mygland, Siv Lise Bedringaas og Rafal Jablonski, hevder at garasjen vil medføre trafikkriser og manglende oversikt for trafikanten. Fagetaten vurderer at tiltaket ikke medfører usakelig forskjellsbehandling, og anbefaler at klagen ikke tas til følge. Byråden for byutvikling støtter fagetatens vurdering og innstiller på å opprettholde den tidligere vedtaket.",
+    "sumright":"Byrådet har avvist en klage fra naboer på tillatelsen til oppføring av en garasje på Jacob Kjødes vei 24. Klagerne, Hellen Mygland, Siv Lise Bedringaas og Rafal Jablonski, argumenterte for at garasjen ville utgjøre en trafikkfare, men byrådet støttet fagetatens vurdering om at tiltaket ikke ville medføre dårlig oversikt for trafikantene. Byrådet anbefaler å opprettholde den tidligere tillatelsen."
+  },
+  {
+    "doc_id":"doc_95",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en klage på tillatelse til oppføring av en garasje på eiendommen gnr 41 bnr 629 i Fana, som ble godkjent av byrådet. Klagerne, Hellen Mygland, Siv Lise Bedringaas og Rafal Jablonski, hevder at garasjen vil medføre trafikkriser og manglende oversikt for trafikanten. Fagetaten vurderer at tiltaket ikke vil medføre usakelig forskjellsbehandling, og anbefaler at klagen ikke tas til følge. Byråden for byutvikling innstiller til byrådet å opprettholde fagetatens vedtak.",
+    "sumright":"Dokumentet omhandler en klage på tillatelsen til oppføring av en garasje på eiendommen gnr 41 bnr 629 i Fana, som ble godkjent av byrådet. Klagerne, Hellen Mygland, Siv Lise Bedringaas og Rafal Jablonski, mener at garasjen vil medføre trafikkriser og manglende oversikt for trafikanten. Fagetaten vurderer at tiltaket ikke medfører usakelig forskjellsbehandling, og anbefaler å opprettholde den tidligere tillatelsen. Byråden for byutvikling innstiller til byrådet å fatte vedtak om å opprettholde den tidligere tillatelsen."
+  },
+  {
+    "doc_id":"doc_96",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Byrådet har behandlet klagen angående avslaget på oppføring av et tilbygg til rekkehus på Laksevåg, men har besluttet å opprettholde fagetatens vedtak om avslag. Klagen ble ikke tatt til følge. Dette ble besluttet under møte den 19. september 2007, sak 1515-07.",
+    "sumright":"Byrådet har behandlet en klage angående avslag på oppføring av et tilbygg til et rekkehus i Laksevåg. Klagen ble ikke tatt til følge, og fagetatens vedtak fra april 2007 opprettholdes."
+  },
+  {
+    "doc_id":"doc_96",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"GPT4o-mini",
+    "sumleft":"Byrådet har behandlet klagen angående avslaget på oppføring av et tilbygg til rekkehus på Lyngbøkollen 64. Vedtaket fra byrådet er at fagetatens vedtak fra april 2007 opprettholdes, og klagen tas ikke til følge. Dette ble besluttet under møtet den 19. september 2007.",
+    "sumright":"Byrådet har behandlet en klage angående avslag på oppføring av et tilbygg til et rekkehus i Laksevåg. Klagen ble ikke tatt til følge, og fagetatens vedtak fra april 2007 opprettholdes."
+  },
+  {
+    "doc_id":"doc_96",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet klagen angående avslaget på oppføring av et tilbygg til rekkehus på Lyngbøkollen 64. Vedtaket fra byrådet er at fagetatens vedtak fra april 2007 opprettholdes, og klagen tas ikke til følge. Dette ble besluttet under møte den 19. september 2007. Saken ble behandlet i sak 1515-07, og det ble ikke gjort noen endringer i fagetatens tidligere vedtak. Det er dermed ingen mulighet for å oppføre tilbygget. Det er viktig å merke seg at dette vedtaket er en klageavslag, og at det kan være mulig å anke vedtaket videre. Det er imidlertid ikke spesifisert hvilke mulige appellmuligheter som finnes i denne saken. Totalt sett gir vedt",
+    "sumright":"Byrådet har behandlet klagen angående avslaget på oppføring av et tilbygg til rekkehus på Lyngbøkollen 64."
+  },
+  {
+    "doc_id":"doc_96",
+    "left":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet klagen angående avslaget på oppføring av et tilbygg til rekkehus på Lyngbøkollen 64.",
+    "sumright":"Byrådet har behandlet klagen angående avslaget på oppføring av et tilbygg til rekkehus på Lyngbøkollen 64. Vedtaket fra byrådet er at fagetatens vedtak fra april 2007 opprettholdes, og klagen tas ikke til følge. Dette ble besluttet under møtet den 19. september 2007."
+  },
+  {
+    "doc_id":"doc_97",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en søknad fra Umoe Catering AS om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2 ved Cafe Opus i Bergen storsenter. Byrådet innstiller på å innvilge bevillingen for et begrenset skjenkeareal, men avviser skjenking i et område som er åpent for publikum. Innstillingen er basert på anbefalinger fra Kontor for skjenkesaker. Bevillingen gjelder frem til 30. juni 2008, og det stilles krav om dokumentasjon før bevillingen kan tas i bruk. Klagerett er også beskrevet.",
+    "sumright":"Dokumentet omhandler en søknad fra Umoe Catering AS om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2 ved Cafe Opus i Bergen Storsenter. Byrådet innstiller på å innvilge bevillingen for et begrenset skjenkeareal, men avviser skjenking i et område som er åpent for publikum. Innstillingen er basert på anbefalinger fra Kontor for skjenkesaker. Det er også spesifisert krav til dokumentasjon før bevillingen kan tas i bruk. Klagenadgangen er beskrevet i lovgivningen."
+  },
+  {
+    "doc_id":"doc_97",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet i Bergen har behandlet en søknad fra Umoe Catering AS om ny alminnelig skjenkebevilling for Café Opus i Bergen Storsenter. Søknaden omfatter skjenking av alkoholholdig drikk gruppe 1 og 2, og innvilges for et areal på 75 m2 med 55 gjesteplasser. Det er imidlertid ikke innvilget bevilling for et areal langs gangbroen, som er åpent mot publikumsarealet. Bevillingen gjelder frem til 30. juni 2008, og det stilles krav om at matomsetningen utgjør minst 25 % av totalomsetningen.",
+    "sumright":"Dokumentet omhandler en søknad fra Umoe Catering AS om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2 ved Cafe Opus i Bergen Storsenter. Byrådet innstiller på å innvilge bevillingen for et begrenset skjenkeareal, men avviser skjenking i et område som er åpent for publikum. Innstillingen er basert på anbefalinger fra Kontor for skjenkesaker. Det er også spesifisert krav til dokumentasjon før bevillingen kan tas i bruk. Klagenadgangen er beskrevet i lovgivningen."
+  },
+  {
+    "doc_id":"doc_97",
+    "left":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver en søknad fra Umoe Catering AS om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2 ved Cafe Opus i Bergen storsenter. Byrådet innstiller på å innvilge bevillingen for et begrenset skjenkeareal, men avviser skjenking i et område som er åpent for publikum. Innstillingen er basert på anbefalinger fra Kontor for skjenkesaker. Det er også spesifisert krav til matomsætningsandel og behov for dokumentasjon før bevillingen kan tas i bruk. Klagenadgang er beskrevet i detalj.",
+    "sumright":"Dokumentet omhandler en søknad fra Umoe Catering AS om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2 ved Cafe Opus i Bergen Storsenter. Byrådet innstiller på å innvilge bevillingen for et begrenset skjenkeareal, men avviser skjenking i et område som er åpent for publikum. Innstillingen er basert på anbefalinger fra Kontor for skjenkesaker. Det stilles krav om dokumentasjon før bevillingen kan tas i bruk. Klagerett er også beskrevet."
+  },
+  {
+    "doc_id":"doc_97",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver en søknad fra Umoe Catering AS om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2 ved Cafe Opus i Bergen Storsenter. Byrådet innstiller på å innvilge bevillingen for et begrenset skjenkeareal, men avviser skjenking i et område som er åpent for publikum. Innstillingen er basert på anbefalinger fra Kontor for skjenkesaker. Det er også spesifisert krav til matomsetning og dokumentasjon for å få bevillingen godkjent. Klagenadgang er beskrevet i detalj.",
+    "sumright":"Dokumentet beskriver en søknad fra Umoe Catering AS om å opprette et nytt café i Bergen Storsenter, med navnet Cafe Opus. Søknaden omfatter en alminnelig skjenkebevilling for alkoholholdige drikker i et område på 75 meter kvadrat. Byrådet anbefaler innvilgelse av bevillingen, men begrenser skjenkearealet til det indre av bygningen, da det åpenbare området langs gangbroen ikke er egnet for skjenking. Innstillingen er basert på anbefaling fra Kontor for skjenkesaker. Det er også spesifisert krav til matomsætningsandel og behov for dokumentasjon før bevillingen kan tas i bruk. Vedtaket må kunngjøres innen seks måneder."
+  },
+  {
+    "doc_id":"doc_98",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har godkjent protokollen fra møtet den 28. november 2007, som ble behandlet i møtet den 5. desember 2007. Vedtaket ble fattet i sak 1651-07. Protokollen er dermed et offisielt dokument som bekrefter hendelsene og beslutninger som ble tatt under det tidligere møtet.",
+    "sumright":"Byrådet har godkjent protokollen fra møtet som ble avholdt den 28. november 2007, under behandlingen av sak 1651-07 den 5. desember 2007. Oppsummering: Byrådet har godkjent protokollen fra et tidligere møte som fant sted den 28. november 2007. Vedtaket ble fattet under behandling av sak 1651-07 den 5. desember 2007."
+  },
+  {
+    "doc_id":"doc_98",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har godkjent protokollen fra møtet den 28. november 2007, som ble behandlet i møtet den 5. desember 2007. Vedtaket ble fattet i sak 1651-07. Oppsummering: Byrådet har godkjent protokollen fra et tidligere møte, som ble behandlet i et senere møte. Vedtaket ble fattet i forbindelse med sak 1651-07. Dette oppsummeringen inkluderer de viktigste informasjonene fra saken, herunder datoer, møtedatoer, saksnummer og at protokollen er godkjent.",
+    "sumright":"Byrådet har godkjent protokollen fra møtet som ble avholdt den 28. november 2007, under behandlingen av sak 1651-07 den 5. desember 2007. Oppsummering: Byrådet har godkjent protokollen fra et tidligere møte som fant sted den 28. november 2007. Vedtaket ble fattet under behandling av sak 1651-07 den 5. desember 2007."
+  },
+  {
+    "doc_id":"doc_98",
+    "left":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har godkjent protokollen fra møtet som ble avholdt den 28. november",
+    "sumright":"Byrådet har godkjent protokollen fra møtet som ble avholdt den 28. november 2007, under behandlingen av sak 1651-07 den 5. desember 2007. Oppsummering: Byrådet har godkjent protokollen fra et tidligere møte som fant sted den 28. november 2007. Vedtaket ble fattet under behandling av sak 1651-07 den 5. desember 2007."
+  },
+  {
+    "doc_id":"doc_98",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har godkjent protokollen fra møtet som ble avholdt den 28. november 2007, under behandlingen av sak 1651-07 i møtet den 5. desember 2007. Oppsummering: Byrådet har godkjent protokollen fra et tidligere møte som fant sted den 28. november 2007, under et senere møte den 5. desember 2007. Dette viser til at protokollen er akseptert og kan brukes som referanse for hendelsene som ble diskutert under det tidligere møtet.",
+    "sumright":"Byrådet har godkjent protokollen fra møtet som ble avholdt den 28. november"
+  },
+  {
+    "doc_id":"doc_99",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en veileder for helsepersonell og tjenesteytere som skal hjelpe dem med å samarbeide bedre med pårørende av personer med psykiske lidelser. Veilederen er utarbeidet av Helsedirektoratet og er ment å gi informasjon, støtte og avlastning til pårørende, samt å anerkjenne deres kunnskap og erfaringer i behandlingen. Byrådet i Bergen kommune vurderer veilederen som svært omfattende og grundig, og mener at den vil være nyttig for både kommunale og spesialisthelsetjenester. Byrådet innstiller på å gi sin tilslutning til veilederen.",
+    "sumright":"Dokumentet omhandler en veileder for helsepersonell og tjenesteytere som skal hjelpe dem med å"
+  },
+  {
+    "doc_id":"doc_99",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler en veileder for helsepersonell og tjenesteytere som skal hjelpe dem med å",
+    "sumright":"Dokumentet omhandler en veileder for helsepersonell og tjenesteytere som skal hjelpe dem med å"
+  },
+  {
+    "doc_id":"doc_99",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver en veileder for helsepersonell om dialog og kommunikasjon med pårørende av personer med psykiske lidelser. Veilederen er utarbeidet av Helsedirektoratet for å sikre at pårørende får nødvendig informasjon og støtte i behandlingen. Byrådet i Bergen kommune vurderer veilederen som svært omfattende og grundig, og mener at den vil være nyttig for både kommunale og spesialisthelsetjenester. Byrådet anbefaler at kommunen evaluerer sine tjenester mot veilederen og legger opp til pedagogisk innsats for å forbedre arbeidet med pårørende. Vedtaket om at byrådet gir sin tilslutning til veilederen skal sendes til Bystyrets kontor.",
+    "sumright":"Dokumentet omhandler en veileder for helsepersonell og tjenesteytere som skal hjelpe dem med å"
+  },
+  {
+    "doc_id":"doc_99",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver en veileder for helsepersonell om dialog og kommunikasjon med pårørende av personer med psykiske lidelser. Veilederen er utarbeidet av Helsedirektoratet for å sikre at pårørende får nødvendig informasjon og støtte i behandlingen. Byrådet i Bergen kommune vurderer veilederen som svært omfattende og grundig, og mener at den vil være nyttig for både kommunale og spesialisthelsetjenester. Byrådet anbefaler at kommunen evaluerer sine tjenester mot veilederen og legger opp til pedagogisk innsats for å forbedre arbeidet med pårørende. Vedtaket om at byrådet gir sin tilslutning til veilederen skal sendes til Bystyrets kontor.",
+    "sumright":"Dokumentet omhandler en veileder for helsepersonell og tjenesteytere som skal hjelpe dem med å"
+  },
+  {
+    "doc_id":"doc_100",
+    "left":"GPT4o-mini",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune innfører retningslinjer for å unngå innkjøp av tropisk trevirke i sine produkter og bygninger. Dette tiltaket er i tråd med nasjonale føringer for bærekraftige offentlige anskaffelser og har som mål å bidra til bevaring av tropisk regnskog. Retningslinjene trer i kraft 1. juli 2008, og kommunen signaliserer en bevisst miljøprofil ved å gå foran som et godt eksempel.",
+    "sumright":"Bergen kommune har en stor innflytelse på markedsutviklingen i Norge. Kommunen er en av landets største kunder og har en stor innflytelse på markedet for bygningsmaterialer. 5. Retningslinjer for Bergen kommune Bergen kommune vil derfor innføre følgende retningslinjer for å unngå innkjøp av tropisk trevirke: 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden. 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i produktene. 3. Ved kjøp som ikke er omfattet av rammeavtaler, og som kan tenkes å inneholde tropisk tømmer"
+  },
+  {
+    "doc_id":"doc_100",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune har en stor andel av innkjøp av varer som kan inneholde tropisk trevirke. I 2007 ble det innkjøpt for 5,3 milliarder kroner i varer og tjenester. Av dette var 1,3 milliarder kroner i varer som kan inneholde tropisk trevirke. 5. Retningslinjer for å unngå innkjøp av tropisk trevirke For å unngå innkjøp av tropisk trevirke i Bergen kommune bør det innføres rutiner som sikrer at den enkelte innkjøper opptrer korrekt i forhold til regelverket om offentlige anskaffelser, og de lokale føringer som kommunen har vedtatt innen området samfunnsansvar. 6. Konklusjon Bergen kommune har en sterk moralsk plikt til å bidra til å bevare tropisk regnskog. Det er viktig at Ber",
+    "sumright":"Bergen kommune har en stor andel av innkjøp av varer som kan inneholde tropisk trevirke. I 2007 var det totalt 550 millioner kroner i innkjøp av varer. Av dette var 100 millioner kroner i innkjøp av bygningsmaterialer. 5. Retningslinjer for å unngå tropisk trevirke Retningslinjen for å unngå tropisk trevirke er at Bergen kommune ikke skal bruke materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden. Dette innebærer at Bergen kommune ikke skal bruke tropisk trevirke i byggeprosjekter, og at det ikke skal inngå tropisk trevirke i materialer som brukes i byggeperioden. 6. Konklusjon Bergen kommune har en sterk moralsk plikt til å bidra til bevaring av trop"
+  },
+  {
+    "doc_id":"doc_100",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune har en stor andel av innkjøp av varer som kan",
+    "sumright":"Bergen kommune har en stor innflytelse på markedsutviklingen i Norge. Kommunen er en av landets største kunder og har en stor innflytelse på markedet for bygningsmaterialer. 5. Retningslinjer for Bergen kommune Bergen kommune vil derfor innføre følgende retningslinjer for å unngå innkjøp av tropisk trevirke: 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden. 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i produktene. 3. Ved kjøp som ikke er omfattet av rammeavtaler, og som kan tenkes å inneholde tropisk tømmer"
+  },
+  {
+    "doc_id":"doc_100",
+    "left":"checkpoint-3000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune har en stor innflytelse på markedsutviklingen i Norge. Kommunen er en av landets største kunder og har en stor innflytelse på markedet. Bergen kommune har også en sterk rolle som eksempel for andre kommuner. 5. Retningslinjer for Bergen kommune Bergen kommune vil derfor innføre følgende retningslinjer for å unngå innkjøp av tropisk trevirke: 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden. 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i produktene. 3. Ved kjøp som ikke er omfattet av rammeavtaler",
+    "sumright":"Bergen kommune har en stor andel av innkjøp av varer som kan"
   }
 ]

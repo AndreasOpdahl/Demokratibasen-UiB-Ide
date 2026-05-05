@@ -1,0 +1,75 @@
+{
+  "seed": 42,
+  "total_requested": 100,
+  "total_selected": 100,
+  "excluded_identical_summary_pairs": 23,
+  "ratios": {
+    "low_agreement": 0.3,
+    "high_agreement": 0.2,
+    "top_checkpoint_matchup": 0.3,
+    "gpt4o_challenged": 0.2
+  },
+  "counts_by_bucket": {
+    "low_agreement": 30,
+    "high_agreement": 20,
+    "top_checkpoint_matchup": 30,
+    "gpt4o_challenged": 20
+  },
+  "counts_by_stage": {
+    "late": 17,
+    "mid": 59,
+    "early": 24
+  },
+  "counts_by_length": {
+    "short": 100
+  },
+  "inputs": {
+    "pairs_table_json": ".deepeval/geval_exports/llama-2-13b/json/pairs_table.json",
+    "geval_json_dir": ".deepeval/geval_exports/llama-2-13b/json",
+    "dimension_weights": {
+      "faithfulness": 1.0,
+      "correctness": 1.0,
+      "completeness": 1.0,
+      "newsworthiness": 1.0,
+      "hygiene": 1.0
+    },
+    "top_k_checkpoints": 3,
+    "auto_top_checkpoints": [
+      3000,
+      4500,
+      6500
+    ],
+    "auto_top_checkpoint_scores": {
+      "3000": 0.582258064516129,
+      "4500": 0.5715909090909091,
+      "6500": 0.5566176470588236,
+      "7000": 0.5462121212121211,
+      "1500": 0.515,
+      "9500": 0.4948863636363637,
+      "8000": 0.4885135135135135,
+      "2500": 0.4756578947368421,
+      "1000": 0.4738095238095238,
+      "5500": 0.46875,
+      "6000": 0.4666666666666666,
+      "2000": 0.46621621621621623,
+      "10000": 0.4621428571428572,
+      "5000": 0.45859375,
+      "8500": 0.44848484848484854,
+      "3500": 0.43785714285714283,
+      "4000": 0.4333333333333334,
+      "7500": 0.43046875,
+      "9000": 0.4011111111111111
+    },
+    "non_gpt4o_only_buckets": [
+      "low_agreement",
+      "high_agreement",
+      "top_checkpoint_matchup",
+      "fallback_representative"
+    ]
+  },
+  "outputs": {
+    "dataset_jsonl": "human evaluation/_tmp_check/human_eval_dataset.jsonl",
+    "answer_key_csv": "human evaluation/_tmp_check/human_eval_answer_key.csv",
+    "selection_metadata_json": "human evaluation/_tmp_check/selection_metadata.json"
+  }
+}

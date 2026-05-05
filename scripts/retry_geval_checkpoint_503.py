@@ -20,6 +20,12 @@ After any successful line updates, by default it **rebuilds G-Eval tables from c
 ``resolve_eval_data_dir``, etc.). If those differ from the run that produced the checkpoints,
 stable keys may not match and rows will be skipped.
 
+**Pairs table:** The main CLI calls ``build_pairs_table`` with ``prior_pairs_df`` when
+``EXTEND_PAIRS_TABLE_JSON`` is set or when ``<export_leaf>/json/pairs_table.json`` exists.
+This script loads the **same** prior table for each judgment leaf so stable ``key`` hashes
+(sumleft/sumright) match; without that, retries often fail with "no matching pair row for key"
+even when eval settings are correct.
+
 When the default checkpoint root contains **only subfolders** with ``*.jsonl`` (same layout as
 ``python -m pairwise_eval`` per model), this script scans **every** such leaf folder, retries
 lines in each, reloads ``Data/eval/<folder_name>/`` for matching keys, and refreshes exports
@@ -60,6 +66,7 @@ from pairwise_eval.config import (  # noqa: E402
     DEFAULT_GEVAL_BASE_SEED,
     DEFAULT_PAIR_SEED,
     EVAL_DIMENSIONS,
+    EXTEND_PAIRS_TABLE_JSON,
     GEVAL_CHECKPOINT_DIR,
     GEVAL_EXPORT_DIRNAME,
     JUDGES,
@@ -87,7 +94,23 @@ from pairwise_eval.judging import (  # noqa: E402
     rng_for_judge_dimension,
 )
 from pairwise_eval.llm_judge import make_local_llm_evaluate_fn  # noqa: E402
-from pairwise_eval.pairs import build_pairs_table  # noqa: E402
+from pairwise_eval.pairs import build_pairs_table, load_pairs_table_json  # noqa: E402
+
+
+def _prior_pairs_df_for_judgment_leaf(leaf: Path) -> pd.DataFrame | None:
+    """Same prior as ``pairwise_eval.__main__._extend_pairs_json_for_export_dir`` for this leaf."""
+    if EXTEND_PAIRS_TABLE_JSON is not None:
+        p = Path(EXTEND_PAIRS_TABLE_JSON)
+        if not p.is_absolute():
+            p = REPO_ROOT / p
+        if p.is_file():
+            return load_pairs_table_json(p)
+        return None
+    export_dir = resolve_export_dir_for_judgment_leaf(leaf)
+    auto = export_dir / "json" / "pairs_table.json"
+    if auto.is_file():
+        return load_pairs_table_json(auto)
+    return None
 
 
 def _default_checkpoint_dir() -> Path:
@@ -272,13 +295,31 @@ def _load_eval_pairs_and_context(
     pair_seed: int,
     max_documents: int | None,
     n_pairs_per_document: int,
+    judgment_leaf: Path | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    """Return ``(pairs_df, long_df, ctx)`` with ``ctx = attach_doc_context(pairs, long_df)``."""
+    """Return ``(pairs_df, long_df, ctx)`` with ``ctx = attach_doc_context(pairs, long_df)``.
+
+    When ``judgment_leaf`` is set, loads the same ``prior_pairs_df`` as the main pipeline
+    (``EXTEND_PAIRS_TABLE_JSON`` or ``<export>/json/pairs_table.json``) so checkpoint ``key``
+    rows still match.
+    """
     root = eval_dir if eval_dir is not None else resolve_eval_data_dir()
     long_df = load_eval_jsonl_long_df(root)
     long_df = long_df_head_documents(long_df, max_documents)
     rng = np.random.default_rng(pair_seed)
-    pairs = build_pairs_table(long_df, n_pairs=n_pairs_per_document, rng=rng)
+    prior: pd.DataFrame | None = None
+    if judgment_leaf is not None:
+        prior = _prior_pairs_df_for_judgment_leaf(judgment_leaf)
+        if prior is not None:
+            src = (
+                str(EXTEND_PAIRS_TABLE_JSON)
+                if EXTEND_PAIRS_TABLE_JSON is not None
+                else str(resolve_export_dir_for_judgment_leaf(judgment_leaf) / "json" / "pairs_table.json")
+            )
+            print(f"  prior_pairs_df: {len(prior)} row(s) from {src}", flush=True)
+    pairs = build_pairs_table(
+        long_df, n_pairs=n_pairs_per_document, rng=rng, prior_pairs_df=prior
+    )
     ctx = attach_doc_context(pairs, long_df)
     return pairs, long_df, ctx
 
@@ -292,6 +333,7 @@ def _refresh_exports(
 ) -> Path:
     """Reload judgments from ``checkpoint_dir`` and write full export tree (same as main pipeline)."""
     models = sorted(long_df["model_id"].unique())
+    boot = (export_dir / "json") if export_dir is not None else None
     geval = build_geval_tables(
         pairs_df,
         long_df,
@@ -299,6 +341,7 @@ def _refresh_exports(
         judges=JUDGES,
         evaluate_fn=mock_evaluate_pair,
         checkpoint_dir=checkpoint_dir,
+        checkpoint_bootstrap_json_dir=boot,
     )
     out = export_dir if export_dir is not None else resolve_geval_export_dir()
     return export_full_run(
@@ -529,6 +572,7 @@ def main() -> int:
             pair_seed=args.pair_seed,
             max_documents=max_docs,
             n_pairs_per_document=n_pairs,
+            judgment_leaf=leaf,
         )
         print(
             f"Context [{leaf.name}]: eval={eval_dir} subset_rows={len(ctx)} "
@@ -602,6 +646,7 @@ def main() -> int:
             pair_seed=args.pair_seed,
             max_documents=max_docs,
             n_pairs_per_document=n_pairs,
+            judgment_leaf=leaf,
         )
         if args.export_dir is not None:
             exp_root = args.export_dir.expanduser().resolve()

@@ -63,9 +63,9 @@ EVAL_DIMENSIONS: tuple[str, ...] = (
 # shape as OpenAI via ``MISTRAL_CHAT_COMPLETIONS_URL`` + ``MISTRAL_API_KEY``.
 JUDGES: tuple[str, ...] = (
     #"google/gemma-3-4b",
-    #"gpt-3.5-turbo",
-    #"google/gemini-2.5-flash-preview-05-20",
-    #"anthropic/claude-3-5-haiku-20241022",
+    "gpt-3.5-turbo",
+    "google/gemini-2.5-flash-preview-05-20",
+    "anthropic/claude-3-5-haiku-20241022",
     "mistral-medium-latest",
 )
 
@@ -125,7 +125,7 @@ LOCAL_LLM_TIMEOUT_S = 300.0
 # First N documents (by first-seen ``doc_id`` order). None = use the full loaded corpus.
 # For per-model checkpoint selection, keep None so Bradley–Terry / win rates use every example
 # in that model folder’s JSONL files.
-MAX_DOCUMENTS: int | None = 25
+MAX_DOCUMENTS: int | None = 100
 
 # Random model pairs sampled per document (capped by available combinations); see :func:`pairwise_eval.pairs.build_pairs_table`.
 N_PAIRS_PER_DOCUMENT: int = 4

@@ -156,7 +156,13 @@ def run_pipeline_for_eval_dir(
         else mock_evaluate_pair
     )
     geval = build_geval_tables(
-        pairs, long_df, evaluate_fn=evaluate_fn, checkpoint_dir=checkpoint_dir
+        pairs,
+        long_df,
+        evaluate_fn=evaluate_fn,
+        checkpoint_dir=checkpoint_dir,
+        checkpoint_bootstrap_json_dir=export_dir / "json"
+        if checkpoint_dir is not None
+        else None,
     )
 
     out = export_full_run(
@@ -204,7 +210,11 @@ def main() -> None:
             else mock_evaluate_pair
         )
         geval = build_geval_tables(
-            pairs, long_df, evaluate_fn=evaluate_fn, checkpoint_dir=ck
+            pairs,
+            long_df,
+            evaluate_fn=evaluate_fn,
+            checkpoint_dir=ck,
+            checkpoint_bootstrap_json_dir=export_dir / "json" if ck is not None else None,
         )
         out = export_full_run(
             geval,
