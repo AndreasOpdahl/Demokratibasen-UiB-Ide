@@ -27,6 +27,18 @@ import requests
 
 _REPO_ROOT = Path(__file__).resolve().parent
 _DEFAULT_PROMPTS_DIR = _REPO_ROOT / "Data" / "prompts" / "geval"
+
+
+def _resolved_default_prompts_dir() -> Path:
+    """Prefer :func:`pairwise_eval.config.resolve_geval_prompts_dir` when the package is importable."""
+    try:
+        from pairwise_eval.config import resolve_geval_prompts_dir
+
+        return resolve_geval_prompts_dir()
+    except ImportError:
+        return _DEFAULT_PROMPTS_DIR
+
+
 _DEFAULT_CHAT_URL = "http://localhost:1234/api/v1/chat"
 
 # Optional: dimension slug → filename under ``prompts_dir`` when it is not ``{slug}.txt``.
@@ -63,7 +75,7 @@ def load_geval_template(
     ``*.md`` basename uses ``prompts_dir / key``. Override nonstandard filenames via
     :data:`_GEVAL_PROMPT_FILE_OVERRIDES`.
     """
-    base = prompts_dir if prompts_dir is not None else _DEFAULT_PROMPTS_DIR
+    base = prompts_dir if prompts_dir is not None else _resolved_default_prompts_dir()
     if isinstance(judge, Path):
         path = judge
     else:
@@ -80,7 +92,13 @@ def load_geval_template(
                 path = base / key
             else:
                 path = base / f"{key}.txt"
-    return path.read_text(encoding="utf-8")
+    try:
+        return path.read_text(encoding="utf-8")
+    except FileNotFoundError as e:
+        raise FileNotFoundError(
+            f"G-Eval template not found: {path}. "
+            "Create it under Data/prompts/geval/ or set GEVAL_PROMPTS_DIR in pairwise_eval/config.py."
+        ) from e
 
 
 def local_llm_chat(

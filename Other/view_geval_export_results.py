@@ -53,9 +53,8 @@ _MEAN_JUDGE_KEY = "__MEAN_OVER_JUDGES__"
 _MEAN_JUDGE_LABEL = "Mean (selected judges)"
 
 _DEFAULT_DIMENSIONS: Tuple[str, ...] = (
-    "faithfulness",
-    "correctness",
-    "completeness",
+    "relevance",
+    "consistency",
     "newsworthiness",
     "hygiene",
 )
@@ -100,6 +99,11 @@ def _checkpoint_step(model_id: str) -> Optional[int]:
     return int(mm.group(1)) if mm else None
 
 
+def _checkpoint_generation(model_id: str) -> str:
+    mid = str(model_id).lower()
+    return "gen1" if "-gen1-" in mid else "legacy"
+
+
 def _resolve_leaf_path(arg: str, export_root: Path) -> Path:
     p = Path(arg)
     if p.is_dir():
@@ -119,7 +123,7 @@ def _read_csv_rows(path: Path) -> Tuple[List[str], List[Dict[str, str]]]:
         return list(r.fieldnames), rows
 
 
-def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str, Dict[str, Dict[str, List[float]]]]:
+def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str, Dict[str, Dict[str, List[Any]]]]:
     tables = leaf_path / "tables"
     out: Dict[str, Dict[str, Dict[str, List[float]]]] = {}
     for dim in dimensions:
@@ -130,10 +134,10 @@ def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str
         if "model" not in headers:
             continue
         judge_cols = [c for c in headers if str(c).endswith("_theta")]
-        dim_j: Dict[str, Dict[str, List[float]]] = {}
+        dim_j: Dict[str, Dict[str, List[Any]]] = {}
         for jc in judge_cols:
             judge_id = str(jc)[: -len("_theta")]
-            pts: List[Tuple[int, float]] = []
+            pts: List[Tuple[int, float, str]] = []
             for row in rows:
                 mid = str(row.get("model", "")).strip()
                 if "checkpoint-" not in mid:
@@ -141,6 +145,7 @@ def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str
                 st = _checkpoint_step(mid)
                 if st is None:
                     continue
+                gen = _checkpoint_generation(mid)
                 raw = (row.get(jc) or "").strip()
                 if raw == "":
                     continue
@@ -150,10 +155,14 @@ def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str
                     continue
                 if v != v:
                     continue
-                pts.append((st, v))
+                pts.append((st, v, gen))
             pts.sort(key=lambda t: t[0])
             if pts:
-                dim_j[judge_id] = {"steps": [a for a, _ in pts], "values": [b for _, b in pts]}
+                dim_j[judge_id] = {
+                    "steps": [a for a, _, _ in pts],
+                    "values": [b for _, b, _ in pts],
+                    "generations": [g for _, _, g in pts],
+                }
         if dim_j:
             out[dim] = dim_j
     return out
@@ -161,7 +170,7 @@ def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str
 
 def _parse_win_rates_from_summary(
     md_path: Path, dimensions: Tuple[str, ...]
-) -> Dict[str, Dict[str, Dict[str, List[float]]]]:
+) -> Dict[str, Dict[str, Dict[str, List[Any]]]]:
     """dimension -> judge_id -> {steps, values} for checkpoint-* rows (from markdown tables)."""
     try:
         text = md_path.read_text(encoding="utf-8")
@@ -171,7 +180,7 @@ def _parse_win_rates_from_summary(
     if not m:
         return {}
     sec = m.group(1)
-    out: Dict[str, Dict[str, Dict[str, List[float]]]] = {}
+    out: Dict[str, Dict[str, Dict[str, List[Any]]]] = {}
     for dim in dimensions:
         dim_title = dim.capitalize()
         block_m = re.search(rf"### {re.escape(dim_title)}\s*\n+(.*?)(?=\n### |\Z)", sec, re.S)
@@ -185,7 +194,7 @@ def _parse_win_rates_from_summary(
         judge_cols = [h for h in header if h.endswith("_win_rate") and h != "model"]
         if "model" not in header or not judge_cols:
             continue
-        per_judge: Dict[str, List[Tuple[int, float]]] = {jc[: -len("_win_rate")]: [] for jc in judge_cols}
+        per_judge: Dict[str, List[Tuple[int, float, str]]] = {jc[: -len("_win_rate")]: [] for jc in judge_cols}
         for ln in lines[1:]:
             if re.match(r"\|\s*---", ln):
                 continue
@@ -199,6 +208,7 @@ def _parse_win_rates_from_summary(
             st = _checkpoint_step(mid)
             if st is None:
                 continue
+            gen = _checkpoint_generation(mid)
             for jc in judge_cols:
                 judge_id = jc[: -len("_win_rate")]
                 raw = (row.get(jc) or "").strip()
@@ -210,13 +220,17 @@ def _parse_win_rates_from_summary(
                     continue
                 if v != v:
                     continue
-                per_judge[judge_id].append((st, v))
-        dim_j: Dict[str, Dict[str, List[float]]] = {}
+                per_judge[judge_id].append((st, v, gen))
+        dim_j: Dict[str, Dict[str, List[Any]]] = {}
         for jid, pts in per_judge.items():
             if not pts:
                 continue
             pts.sort(key=lambda t: t[0])
-            dim_j[jid] = {"steps": [a for a, _ in pts], "values": [b for _, b in pts]}
+            dim_j[jid] = {
+                "steps": [a for a, _, _ in pts],
+                "values": [b for _, b, _ in pts],
+                "generations": [g for _, _, g in pts],
+            }
         if dim_j:
             out[dim] = dim_j
     return out
@@ -400,6 +414,9 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   <strong>Metric:</strong>
   <label><input type="radio" name="metric" value="bt"> Bradley–Terry θ</label>
   <label><input type="radio" name="metric" value="wr" checked> Win rate (per judge)</label>
+  <strong style="margin-left:10px;">Checkpoints:</strong>
+  <label><input type="checkbox" id="legacy-mode" checked> Legacy</label>
+  <label><input type="checkbox" id="gen1-mode" checked> Gen1</label>
 </div>
 
 <div class="main">
@@ -422,6 +439,8 @@ let selectedJudges = new Set(DATA.judges);
 let showMeanJudges = false;
 let showLegend = false;
 let metricMode = "wr";
+let showLegacy = true;
+let showGen1 = true;
 
 function colorForDim(dim) {
   return dimColors[dim] || "#334155";
@@ -546,6 +565,11 @@ document.querySelectorAll('input[name="metric"]').forEach(r => {
   });
 });
 
+const legacyCb = document.getElementById("legacy-mode");
+const gen1Cb = document.getElementById("gen1-mode");
+legacyCb.addEventListener("change", () => { showLegacy = legacyCb.checked; render(); });
+gen1Cb.addEventListener("change", () => { showGen1 = gen1Cb.checked; render(); });
+
 /** How many checked judges have a non-empty series in ``byJ`` (ignores synthetic mean key). */
 function countJudgesWithData(byJ, selectedJudges) {
   let n = 0;
@@ -553,20 +577,38 @@ function countJudgesWithData(byJ, selectedJudges) {
     if (judge === MEAN_KEY) continue;
     if (!selectedJudges.has(judge)) continue;
     const d = byJ[judge];
-    if (d && d.steps && d.steps.length) n++;
+    if (!d || !d.steps || !d.steps.length) continue;
+    const gens = Array.isArray(d.generations) ? d.generations : [];
+    let hasVisiblePoint = false;
+    for (let i = 0; i < d.steps.length; i++) {
+      const g = String(gens[i] || "legacy");
+      if (g === "gen1" && showGen1) { hasVisiblePoint = true; break; }
+      if (g !== "gen1" && showLegacy) { hasVisiblePoint = true; break; }
+    }
+    if (hasVisiblePoint) n++;
   }
   return n;
 }
 
+function selectedGenerations() {
+  const out = [];
+  if (showLegacy) out.push("legacy");
+  if (showGen1) out.push("gen1");
+  return out;
+}
+
 /** Per checkpoint step, arithmetic mean of y over selected judges that have a value at that step. */
-function meanSeriesOverSelectedJudges(byJ, selectedJudges) {
+function meanSeriesOverSelectedJudges(byJ, selectedJudges, targetGen) {
   const stepToVals = new Map();
   for (const judge of Object.keys(byJ)) {
     if (judge === MEAN_KEY) continue;
     if (!selectedJudges.has(judge)) continue;
     const d = byJ[judge];
     if (!d || !d.steps || !d.values) continue;
+    const gens = Array.isArray(d.generations) ? d.generations : [];
     for (let i = 0; i < d.steps.length; i++) {
+      const g = String(gens[i] || "legacy");
+      if (g !== targetGen) continue;
       const s = Number(d.steps[i]);
       const v = Number(d.values[i]);
       if (!Number.isFinite(s) || !Number.isFinite(v)) continue;
@@ -618,27 +660,29 @@ function render() {
       const chLab = (s) => "ch-" + String(Math.round(Number(s)));
 
       if (showMeanJudges && countJudgesWithData(byJ, selectedJudges) >= 2) {
-        const d = meanSeriesOverSelectedJudges(byJ, selectedJudges);
-        if (d && d.steps.length) {
+        for (const gen of selectedGenerations()) {
+          const d = meanSeriesOverSelectedJudges(byJ, selectedJudges, gen);
+          if (!(d && d.steps.length)) continue;
+          const glab = gen === "gen1" ? "Gen1" : "Legacy";
           traces.push({
             x: d.steps,
             y: d.values,
             text: d.steps.map(chLab),
             hovertemplate: "%{text}<br>%{y:.4f}<extra></extra>",
             mode: "lines+markers",
-            name: leaf + " / " + dim + " / " + MEAN_LAB,
+            name: leaf + " / " + dim + " / " + MEAN_LAB + " / " + glab,
             line: {
               color: dcol,
               width: 5,
-              dash: "longdashdot",
+              dash: gen === "gen1" ? "longdashdot" : "dashdot",
             },
             marker: {
               size: 10,
-              symbol: "star",
+              symbol: gen === "gen1" ? "star" : "star-triangle-up",
               line: { color: "#0f172a", width: 1.2 },
               color: dcol,
             },
-            opacity: 0.98,
+            opacity: gen === "gen1" ? 1.0 : 0.45,
           });
         }
       }
@@ -648,24 +692,37 @@ function render() {
         if (!selectedJudges.has(judge)) continue;
         const d = byJ[judge];
         if (!d.steps.length) continue;
+        const gens = Array.isArray(d.generations) ? d.generations : [];
         const jd = dashForJudge(judge);
         const msym = markerForJudge(judge);
-        traces.push({
-          x: d.steps,
-          y: d.values,
-          text: d.steps.map(chLab),
-          hovertemplate: "%{text}<br>%{y:.4f}<extra></extra>",
-          mode: "lines+markers",
-          name: leaf + " / " + dim + " / " + judge.split("/").pop(),
-          line: { color: dcol, width: 2.4, dash: jd },
-          marker: {
-            size: 5.5,
-            symbol: msym,
-            line: { color: "rgba(15,23,42,0.35)", width: 0.8 },
-            color: dcol,
-          },
-          opacity: 0.92,
-        });
+        for (const gen of selectedGenerations()) {
+          const fSteps = [];
+          const fVals = [];
+          for (let i = 0; i < d.steps.length; i++) {
+            const g = String(gens[i] || "legacy");
+            if (g !== gen) continue;
+            fSteps.push(d.steps[i]);
+            fVals.push(d.values[i]);
+          }
+          if (!fSteps.length) continue;
+          const glab = gen === "gen1" ? "Gen1" : "Legacy";
+          traces.push({
+            x: fSteps,
+            y: fVals,
+            text: fSteps.map(chLab),
+            hovertemplate: "%{text}<br>%{y:.4f}<extra></extra>",
+            mode: "lines+markers",
+            name: leaf + " / " + dim + " / " + judge.split("/").pop() + " / " + glab,
+            line: { color: dcol, width: 2.4, dash: gen === "gen1" ? jd : "dot" },
+            marker: {
+              size: 5.5,
+              symbol: gen === "gen1" ? msym : "triangle-up",
+              line: { color: "rgba(15,23,42,0.35)", width: 0.8 },
+              color: dcol,
+            },
+            opacity: gen === "gen1" ? 0.98 : 0.4,
+          });
+        }
       }
     }
   }

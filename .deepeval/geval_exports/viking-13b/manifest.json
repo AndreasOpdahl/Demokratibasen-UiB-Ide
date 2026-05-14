@@ -1,5 +1,5 @@
 {
-  "export_dir": "/Users/baharehfatemi/Desktop/demokratibasen_checkpoint_selection/.deepeval/geval_exports/viking-13b",
+  "export_dir": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\.deepeval\\geval_exports\\viking-13b",
   "layout": {
     "json": "json/",
     "tables": "tables/",
@@ -8,91 +8,75 @@
   "files": [
     {
       "path": "json/pairs_table.json",
-      "rows": 100
+      "rows": 520
     },
     {
       "path": "json/summarization_long.json",
-      "rows": 500
+      "rows": 2665
     },
     {
-      "path": "json/geval__gpt-3.5-turbo__faithfulness.json",
-      "rows": 100
+      "path": "json/geval__gpt-5-mini__relevance.json",
+      "rows": 520
     },
     {
-      "path": "json/geval__gpt-3.5-turbo__correctness.json",
-      "rows": 100
+      "path": "json/geval__gpt-5-mini__consistency.json",
+      "rows": 520
     },
     {
-      "path": "json/geval__gpt-3.5-turbo__completeness.json",
-      "rows": 100
+      "path": "json/geval__gpt-5-mini__newsworthiness.json",
+      "rows": 520
     },
     {
-      "path": "json/geval__gpt-3.5-turbo__newsworthiness.json",
-      "rows": 100
+      "path": "json/geval__gpt-5-mini__hygiene.json",
+      "rows": 520
     },
     {
-      "path": "json/geval__gpt-3.5-turbo__hygiene.json",
-      "rows": 100
+      "path": "json/geval__google__gemini-2.5-flash-preview-05-20__relevance.json",
+      "rows": 520
     },
     {
-      "path": "json/geval__google__gemini-2.5-flash-preview-05-20__faithfulness.json",
-      "rows": 100
-    },
-    {
-      "path": "json/geval__google__gemini-2.5-flash-preview-05-20__correctness.json",
-      "rows": 100
-    },
-    {
-      "path": "json/geval__google__gemini-2.5-flash-preview-05-20__completeness.json",
-      "rows": 100
+      "path": "json/geval__google__gemini-2.5-flash-preview-05-20__consistency.json",
+      "rows": 520
     },
     {
       "path": "json/geval__google__gemini-2.5-flash-preview-05-20__newsworthiness.json",
-      "rows": 100
+      "rows": 520
     },
     {
       "path": "json/geval__google__gemini-2.5-flash-preview-05-20__hygiene.json",
-      "rows": 100
+      "rows": 520
     },
     {
-      "path": "json/geval__anthropic__claude-3-5-haiku-20241022__faithfulness.json",
-      "rows": 100
+      "path": "json/geval__anthropic__claude-3-5-haiku-20241022__relevance.json",
+      "rows": 520
     },
     {
-      "path": "json/geval__anthropic__claude-3-5-haiku-20241022__correctness.json",
-      "rows": 100
-    },
-    {
-      "path": "json/geval__anthropic__claude-3-5-haiku-20241022__completeness.json",
-      "rows": 100
+      "path": "json/geval__anthropic__claude-3-5-haiku-20241022__consistency.json",
+      "rows": 520
     },
     {
       "path": "json/geval__anthropic__claude-3-5-haiku-20241022__newsworthiness.json",
-      "rows": 100
+      "rows": 520
     },
     {
       "path": "json/geval__anthropic__claude-3-5-haiku-20241022__hygiene.json",
-      "rows": 100
+      "rows": 520
     },
     {
-      "path": "json/geval__mistral-medium-latest__faithfulness.json",
-      "rows": 100
+      "path": "json/geval__mistral-medium-latest__relevance.json",
+      "rows": 520
     },
     {
-      "path": "json/geval__mistral-medium-latest__correctness.json",
-      "rows": 100
-    },
-    {
-      "path": "json/geval__mistral-medium-latest__completeness.json",
-      "rows": 100
+      "path": "json/geval__mistral-medium-latest__consistency.json",
+      "rows": 520
     },
     {
       "path": "json/geval__mistral-medium-latest__newsworthiness.json",
-      "rows": 100
+      "rows": 520
     },
     {
       "path": "json/geval__mistral-medium-latest__hygiene.json",
-      "rows": 100
+      "rows": 520
     }
   ]
 }

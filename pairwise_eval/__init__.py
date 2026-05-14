@@ -32,6 +32,7 @@ from pairwise_eval.config import (
     EXTEND_PAIRS_TABLE_JSON,
     GEVAL_CHECKPOINT_DIR,
     GEVAL_EXPORT_DIRNAME,
+    GEVAL_SKIP_MODEL_IF_CHECKPOINT_DOC_COUNT_GTE_RUN,
     HUMAN_JUDGES,
     JUDGES,
     LLM_JUDGES,
@@ -46,6 +47,7 @@ from pairwise_eval.config import (
 from pairwise_eval.geval_checkpoint import (
     append_judgment_line,
     checkpoint_file_path,
+    count_distinct_docs_in_checkpoint_leaf,
     judgment_stable_key,
     load_checkpoint_index,
 )
@@ -92,6 +94,7 @@ __all__ = [
     "EXTEND_PAIRS_TABLE_JSON",
     "GEVAL_CHECKPOINT_DIR",
     "GEVAL_EXPORT_DIRNAME",
+    "GEVAL_SKIP_MODEL_IF_CHECKPOINT_DOC_COUNT_GTE_RUN",
     "HUMAN_JUDGES",
     "JUDGES",
     "LLM_JUDGES",
@@ -112,6 +115,7 @@ __all__ = [
     "build_pairs_table",
     "build_toy_long_df",
     "checkpoint_file_path",
+    "count_distinct_docs_in_checkpoint_leaf",
     "export_bradley_terry",
     "export_full_run",
     "export_win_rates_by_dimension_md",

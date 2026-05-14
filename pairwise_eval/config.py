@@ -44,9 +44,8 @@ def _env_float(key: str, default: float) -> float:
 
 # Each name must have a template ``Data/prompts/geval/{name}.txt`` (or set overrides in ``geval_local_judge._GEVAL_PROMPT_FILE_OVERRIDES``).
 EVAL_DIMENSIONS: tuple[str, ...] = (
-    "faithfulness",
-    "correctness",
-    "completeness",
+    "relevance",
+    "consistency",
     "newsworthiness",
     "hygiene"
 )
@@ -63,14 +62,14 @@ EVAL_DIMENSIONS: tuple[str, ...] = (
 # shape as OpenAI via ``MISTRAL_CHAT_COMPLETIONS_URL`` + ``MISTRAL_API_KEY``.
 JUDGES: tuple[str, ...] = (
     #"google/gemma-3-4b",
-    "gpt-3.5-turbo",
+    "gpt-5-mini",
     "google/gemini-2.5-flash-preview-05-20",
     "anthropic/claude-3-5-haiku-20241022",
     "mistral-medium-latest",
 )
 
 # Subset of ``JUDGES`` that call OpenAI's Chat Completions (not Mistral).
-OPENAI_JUDGE_IDS: frozenset[str] = frozenset({"gpt-3.5-turbo"})
+OPENAI_JUDGE_IDS: frozenset[str] = frozenset({"gpt-5-mini"})
 OPENAI_API_KEY: str | None = os.environ.get("OPENAI_API_KEY")
 OPENAI_CHAT_COMPLETIONS_URL: str = os.environ.get(
     "OPENAI_CHAT_COMPLETIONS_URL", "https://api.openai.com/v1/chat/completions"
@@ -125,10 +124,20 @@ LOCAL_LLM_TIMEOUT_S = 300.0
 # First N documents (by first-seen ``doc_id`` order). None = use the full loaded corpus.
 # For per-model checkpoint selection, keep None so Bradley–Terry / win rates use every example
 # in that model folder’s JSONL files.
-MAX_DOCUMENTS: int | None = 100
+MAX_DOCUMENTS: int | None = 65
 
 # Random model pairs sampled per document (capped by available combinations); see :func:`pairwise_eval.pairs.build_pairs_table`.
-N_PAIRS_PER_DOCUMENT: int = 4
+N_PAIRS_PER_DOCUMENT: int = 8
+
+# If ``True``, ``build_pairs_table`` uses a greedy *balanced* sampler that keeps a global
+# counter of how often each model and each unordered pair has already been picked, and at each
+# step prefers pairs whose (model, pair) counts are lowest (random tie-break). This produces
+# near-uniform per-model and per-pair coverage instead of the vanilla i.i.d. uniform draw, at
+# the cost of being deterministic given the seed/history. Set to ``False`` to keep the original
+# uniform-random behavior (each doc samples ``N_PAIRS_PER_DOCUMENT`` pairs independently). The
+# flag is forwarded by the CLI to :func:`pairwise_eval.pairs.build_pairs_table`; library callers
+# pass it explicitly via the ``balanced=`` kwarg.
+BALANCED_PAIR_SAMPLING: bool = True
 
 # When set to a prior run's ``json/pairs_table.json``, the pipeline **reuses** those rows (same
 # ``left`` / ``right`` / summary text) for each ``doc_id`` still present, then samples only
@@ -163,6 +172,16 @@ GEVAL_EXPORT_DIRNAME: str = "geval_exports"
 GEVAL_CHECKPOINT_DIR: Path | None = REPO_ROOT / ".deepeval" / "geval_judgment_checkpoints"
 # GEVAL_CHECKPOINT_DIR = REPO_ROOT / ".deepeval" / "geval_judgment_checkpoints_winners"
 
+# Multi-model CLI (``Data/eval/<model>/``): skip a leaf when its checkpoint folder already shows
+# at least as many distinct ``doc_id`` values (union across ``*.jsonl``) as this run's subset
+# after ``MAX_DOCUMENTS``. Avoids re-running and overwriting exports when ``MAX_DOCUMENTS`` was
+# lowered while checkpoints still reflect more documents. **Heuristic only** — it does not
+# check that every judge×dimension finished. Set ``False`` to always run every model.
+GEVAL_SKIP_MODEL_IF_CHECKPOINT_DOC_COUNT_GTE_RUN: bool = True
+
 DEFAULT_PAIR_SEED = 42
 DEFAULT_GEVAL_BASE_SEED = 42
 MOCK_TIE_PROB = 0.1
+
+
+

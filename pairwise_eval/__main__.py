@@ -28,11 +28,13 @@ from pairwise_eval import (
 from pairwise_eval.config import (
     ANTHROPIC_API_KEY,
     ANTHROPIC_JUDGE_IDS,
+    BALANCED_PAIR_SAMPLING,
     EXTEND_PAIRS_TABLE_JSON,
     GEMINI_JUDGE_IDS,
     GOOGLE_API_KEY,
     GEVAL_CHECKPOINT_DIR,
     GEVAL_EXPORT_DIRNAME,
+    GEVAL_SKIP_MODEL_IF_CHECKPOINT_DOC_COUNT_GTE_RUN,
     JUDGES,
     MAX_DOCUMENTS,
     MISTRAL_API_KEY,
@@ -44,6 +46,7 @@ from pairwise_eval.config import (
     REPO_ROOT,
 )
 from pairwise_eval.data import discover_eval_model_subdirs, long_df_head_documents
+from pairwise_eval.geval_checkpoint import count_distinct_docs_in_checkpoint_leaf
 from pairwise_eval.llm_judge import make_local_llm_evaluate_fn
 from pairwise_eval.pairs import build_pairs_table, load_pairs_table_json
 
@@ -144,7 +147,10 @@ def run_pipeline_for_eval_dir(
             flush=True,
         )
     pairs = build_pairs_table(
-        long_df, n_pairs=N_PAIRS_PER_DOCUMENT, prior_pairs_df=prior_pairs_df
+        long_df,
+        n_pairs=N_PAIRS_PER_DOCUMENT,
+        prior_pairs_df=prior_pairs_df,
+        balanced=BALANCED_PAIR_SAMPLING,
     )
 
     if checkpoint_dir is not None:
@@ -199,7 +205,10 @@ def main() -> None:
                 flush=True,
             )
         pairs = build_pairs_table(
-            long_df, n_pairs=N_PAIRS_PER_DOCUMENT, prior_pairs_df=prior
+            long_df,
+            n_pairs=N_PAIRS_PER_DOCUMENT,
+            prior_pairs_df=prior,
+            balanced=BALANCED_PAIR_SAMPLING,
         )
         ck = GEVAL_CHECKPOINT_DIR
         if ck is not None:
@@ -233,10 +242,25 @@ def main() -> None:
 
     if direct_jsonl:
         export_here = resolve_geval_export_dir()
+        ck_flat = GEVAL_CHECKPOINT_DIR
+        if GEVAL_SKIP_MODEL_IF_CHECKPOINT_DOC_COUNT_GTE_RUN and ck_flat is not None:
+            long_df_probe = load_eval_jsonl_long_df(eval_root)
+            long_df_probe = long_df_head_documents(long_df_probe, MAX_DOCUMENTS)
+            n_run_docs = int(long_df_probe["doc_id"].nunique())
+            n_ck_docs = count_distinct_docs_in_checkpoint_leaf(ck_flat)
+            if n_run_docs > 0 and n_ck_docs >= n_run_docs:
+                print(
+                    f"Skip (checkpoint doc coverage, flat eval): {n_ck_docs} distinct doc_id(s) in "
+                    f"{ck_flat.resolve()} ≥ this run's {n_run_docs} document(s). "
+                    "Set GEVAL_SKIP_MODEL_IF_CHECKPOINT_DOC_COUNT_GTE_RUN=False in "
+                    "pairwise_eval/config.py to force a run.",
+                    flush=True,
+                )
+                return
         run_pipeline_for_eval_dir(
             eval_root,
             export_dir=export_here,
-            checkpoint_dir=GEVAL_CHECKPOINT_DIR,
+            checkpoint_dir=ck_flat,
             extend_pairs_table_json=_extend_pairs_json_for_export_dir(export_here),
         )
     elif model_dirs:
@@ -249,10 +273,26 @@ def main() -> None:
             key = md.name
             print("\n===", key, "===", flush=True)
             export_here = _per_model_export_dir(key)
+            ck_here = _per_model_checkpoint_dir(key)
+            if GEVAL_SKIP_MODEL_IF_CHECKPOINT_DOC_COUNT_GTE_RUN and ck_here is not None:
+                long_df_probe = load_eval_jsonl_long_df(md)
+                long_df_probe = long_df_head_documents(long_df_probe, MAX_DOCUMENTS)
+                n_run_docs = int(long_df_probe["doc_id"].nunique())
+                n_ck_docs = count_distinct_docs_in_checkpoint_leaf(ck_here)
+                if n_run_docs > 0 and n_ck_docs >= n_run_docs:
+                    print(
+                        f"Skip (checkpoint doc coverage): {n_ck_docs} distinct doc_id(s) in "
+                        f"{ck_here.resolve()} ≥ this run's {n_run_docs} document(s). "
+                        "Exports are left unchanged. Set "
+                        "GEVAL_SKIP_MODEL_IF_CHECKPOINT_DOC_COUNT_GTE_RUN=False in "
+                        "pairwise_eval/config.py to force a run.",
+                        flush=True,
+                    )
+                    continue
             run_pipeline_for_eval_dir(
                 md,
                 export_dir=export_here,
-                checkpoint_dir=_per_model_checkpoint_dir(key),
+                checkpoint_dir=ck_here,
                 extend_pairs_table_json=_extend_pairs_json_for_export_dir(export_here),
             )
     else:
@@ -265,3 +305,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    

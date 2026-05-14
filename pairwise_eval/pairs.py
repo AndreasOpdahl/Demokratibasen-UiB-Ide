@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import collections
 import itertools
 from pathlib import Path
 
@@ -66,6 +67,49 @@ def _prior_kept_rows_for_doc(
     return kept
 
 
+def _greedy_balanced_pick(
+    candidates: list[tuple[object, object]],
+    k: int,
+    c_model: collections.Counter,
+    c_pair: collections.Counter,
+    gen: np.random.Generator,
+    *,
+    alpha: float = 1.0,
+    beta: float = 1.0,
+) -> list[tuple[object, object]]:
+    """Pick ``k`` pairs from ``candidates`` minimizing combined model + pair load.
+
+    For each remaining candidate ``(a, b)`` the cost is
+    ``alpha * (c_model[a] + c_model[b]) + beta * c_pair[{a, b}]``. The lowest-cost pair is
+    picked at each step, with uniform random tie-break. Updates ``c_model`` and ``c_pair`` in
+    place so the caller can keep counters consistent across documents.
+    """
+    remaining = list(candidates)
+    chosen: list[tuple[object, object]] = []
+    while len(chosen) < k and remaining:
+        best_cost: float | None = None
+        best_indices: list[int] = []
+        for i, (a, b) in enumerate(remaining):
+            pair_key = _pair_key(a, b)
+            cost = alpha * (c_model[a] + c_model[b]) + beta * c_pair[pair_key]
+            if best_cost is None or cost < best_cost:
+                best_cost = cost
+                best_indices = [i]
+            elif cost == best_cost:
+                best_indices.append(i)
+        pick = (
+            best_indices[0]
+            if len(best_indices) == 1
+            else best_indices[int(gen.integers(0, len(best_indices)))]
+        )
+        a, b = remaining.pop(pick)
+        chosen.append((a, b))
+        c_model[a] += 1
+        c_model[b] += 1
+        c_pair[_pair_key(a, b)] += 1
+    return chosen
+
+
 def build_pairs_table(
     long_df: pd.DataFrame,
     n_pairs: int = N_PAIRS_PER_DOCUMENT,
@@ -73,6 +117,7 @@ def build_pairs_table(
     rng: np.random.Generator | None = None,
     seed: int = DEFAULT_PAIR_SEED,
     prior_pairs_df: pd.DataFrame | None = None,
+    balanced: bool = False,
 ) -> pd.DataFrame:
     """Sample up to ``n_pairs`` random model pairs per document and shuffle A/B sides.
 
@@ -81,10 +126,19 @@ def build_pairs_table(
     (same ``left`` / ``right`` / summaries) so checkpoint resume stays aligned; only **new**
     unordered pairs are sampled until ``n_pairs`` is reached (capped by available combinations).
 
+    When ``balanced=False`` (default), new pairs for each document are drawn uniformly at random
+    from the available combinations — identical to the original behavior. When ``balanced=True``,
+    a global greedy sampler instead picks the pair that minimizes the combined per-model and
+    per-pair usage counters (random tie-break), which yields near-uniform per-model appearance
+    counts and per-pair coverage across documents. Kept rows from ``prior_pairs_df`` pre-load the
+    counters so extension runs stay consistent.
+
     Output: DataFrame with ``doc_id``, ``left``, ``right``, ``sumleft``, ``sumright``.
     """
     gen = rng if rng is not None else np.random.default_rng(seed)
     rows: list[dict] = []
+    c_model: collections.Counter = collections.Counter()
+    c_pair: collections.Counter = collections.Counter()
     for doc_id, g in long_df.groupby("doc_id", sort=False):
         by_model = g.set_index("model_id")["summary_text"].to_dict()
         models_here = list(by_model.keys())
@@ -101,6 +155,11 @@ def build_pairs_table(
                     f"doc but n_pairs caps at {k_target}. Raise n_pairs or trim the prior export."
                 )
             used = {_pair_key(d["left"], d["right"]) for d in kept}
+            if balanced:
+                for d in kept:
+                    c_model[d["left"]] += 1
+                    c_model[d["right"]] += 1
+                    c_pair[_pair_key(d["left"], d["right"])] += 1
             need = k_target - len(kept)
             new_pairs: list[tuple[object, object]] = []
             if need > 0:
@@ -109,8 +168,13 @@ def build_pairs_table(
                     rows.extend(kept)
                     continue
                 take = min(need, len(candidates))
-                idx = gen.choice(len(candidates), size=take, replace=False)
-                new_pairs = [candidates[i] for i in idx]
+                if balanced:
+                    new_pairs = _greedy_balanced_pick(
+                        candidates, take, c_model, c_pair, gen
+                    )
+                else:
+                    idx = gen.choice(len(candidates), size=take, replace=False)
+                    new_pairs = [candidates[i] for i in idx]
             doc_rows: list[dict] = list(kept)
             for a, b in new_pairs:
                 if gen.random() < 0.5:
@@ -129,8 +193,13 @@ def build_pairs_table(
             rows.extend(doc_rows)
             continue
 
-        idx = gen.choice(len(all_pairs), size=k_target, replace=False)
-        chosen_pairs = [all_pairs[i] for i in idx]
+        if balanced:
+            chosen_pairs = _greedy_balanced_pick(
+                all_pairs, k_target, c_model, c_pair, gen
+            )
+        else:
+            idx = gen.choice(len(all_pairs), size=k_target, replace=False)
+            chosen_pairs = [all_pairs[i] for i in idx]
 
         for a, b in chosen_pairs:
             if gen.random() < 0.5:

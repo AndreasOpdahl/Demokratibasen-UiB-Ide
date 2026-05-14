@@ -1,0 +1,611 @@
+[
+  {
+    "doc_id":"doc_47",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har behandlet høringsuttalelsen angående Sørheimutvalgets rapport om forbedring av overføringssystemet for kommunene. Bystyret uttrykker støtte for en ny og mer rettferdig inntektsfordeling, men advarer om at eventuelle endringer må kombineres med økte frie inntekter for å unngå problemer for enkelte kommuner. Flertallet i bystyret fremmet flere merknader, inkludert krav om å opprettholde den opprinnelige satsen for tilbakeføring av selskapsskatt.",
+    "sumright":"Bergen bystyre har enstemmig vedtatt å sende inn en høringsuttalelse angående Sørheimutvalgets rapport om forbedring av overføringssystemet for kommunene. Utvalget anbefaler blant annet økte overføringer til vekstkommuner og en justering av innbyggertilskuddet. Bystyret uttrykker bekymring for potensielle tap av inntekter for noen kommuner og understreker behovet for langsiktig økonomisk stabilitet."
+  },
+  {
+    "doc_id":"doc_52",
+    "left":"checkpoint-5500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt et nytt reglement for valgstyret, som ble behandlet i møte den 26. mars 2012. Komite for fullmakter og politisk styringssystem støttet også vedtaket uten diskusjon.",
+    "sumright":"Bergen bystyre har enstemmig vedtatt et nytt reglement for valgstyret, som ble behandlet i møte den 26. mars 2012. Komite for fullmakter og politisk styringssystem hadde tidligere også behandlet saken uten at noen representanter tok ordet under voteringen."
+  },
+  {
+    "doc_id":"doc_6",
+    "left":"checkpoint-6000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Stad Energi-og Eigedomsutvikling KF godkjenner innkallingen og saken som ble presentert i møtet den 118 November 2015. Daglig leder anbefaler at de blir godkjente uten modifikasjoner. Den opprinnelige teksten inneholder detaljer om saksnummer, dato for behandlingen og ansvarlige personer. Det er ikke spesifikke endringer eller tilleggsinformasjon gitt i denne dokumentet.",
+    "sumright":"Stad Energi- og Eigedomsutvikling KF har sendt ut en invitasjon med saker som skal behandles under møtet den 18. november 2025. Daglig leder anbefaler at innkallingen og saklisten blir godkjent uten videre diskusjon."
+  },
+  {
+    "doc_id":"doc_46",
+    "left":"checkpoint-500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt en reguleringsendring for området Nattland, som begrenser antallet boenheter til 109. Vedtaket omfatter også revisjon av planbestemmelsene.",
+    "sumright":"Bergen bystyre har enstemmig vedtatt en reguleringsendring for området Nattland, som tillater oppføring av maksimalt 109 boenheter. Endringen gjelder feltet B1 i reguleringsplan B18, og det nye vedtaket trer i kraft etter at planbestemmelsene er revidert."
+  },
+  {
+    "doc_id":"doc_8",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 11. september 2025 ble det enstemmig vedtatt at Samnanger kommune gir sin ordfører fullmakt til å representere kommunen i generalforsamlingen til Samnanger kommunale utviklingsselskap AS. Vedtaket ble støttet av alle partier som deltok i behandlingen.",
+    "sumright":"I møtet den 11. september 2025 ble det enstemmig vedtatt at Samnanger kommune gir sin ordfører fullmakt til å representere kommunen i generalforsamlingen til Samnanger kommunale utviklingsselskap AS. Vedtaket ble fattet uten motforestillinger fra noen av de fremmøtte politikerne."
+  },
+  {
+    "doc_id":"doc_23",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen kommune har mottatt et høringsforslag fra Miljødirektoratet angående en ny forskrift som regulerer tilskudd til klimatiltak i kommunene. Forslaget inneholder detaljer om formål, tildelingskriterier og prosess for søknader. Byrådet anbefaler justeringer for å sikre fleksibilitet for langsiktige prosjekter og presisering av støtten til planlegging. Høringsfristen er satt til 30. oktober 2016.",
+    "sumright":"Bergen kommune har mottatt et høringsforslag fra Miljødirektoratet angående en ny forskrift som regulerer tilskudd til klimatiltak i kommunene. Forslaget innebærer en ordning med 100 millioner kroner årlig, hvor kommuner kan søke om støtte til prosjekter som bidrar til reduksjon av klimagassutslipp. Byrådet anbefaler justeringer i forskriften for å sikre kontinuitet og fleksibilitet i prosjektfinansieringen. Høringsfristen er satt til 30. oktober 2016."
+  },
+  {
+    "doc_id":"doc_39",
+    "left":"checkpoint-500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har vedtatt en ny reguleringsplan for området Sandviksboder 5-24, som erstatter deler av tidligere planer. Planen inkluderer bestemmelser om bruk av hopen mellom Radekboden og nr. 23\/24 for kystkultursenteret, samt krav om forbedringer av gangløysninger i området. Det ble også fremmet forslag om å vurdere alternative innkjøringsmuligheter for å frigjøre plass foran kystkultursenteret.",
+    "sumright":"Bergen bystyre har godkjent en offentlig detaljreguleringsplan som dekker området rundt Sandviksbodene 5–24 i Bergen sentrum, samtidig som deler av to eksisterende planer blir opphevet. Det ble fremmet forslag om å sikre interesser knyttet til et kystkultur-senter ved Radisson Hotel og forbedre gangveiene i området. Planen støttet disse forslagene, men var uenig om åpne plasser og gangbrosjer."
+  },
+  {
+    "doc_id":"doc_27",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål til bystyret i Bergen, med en frist på én uke før møtet og et krav om at spørsmålene skal være levert innen kl. 1500 den aktuelle ukedagen.",
+    "sumright":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål til byrådet i forkant av bystyremøter. Spørsmålene må leveres minst en uke i forveien og innen kl."
+  },
+  {
+    "doc_id":"doc_34",
+    "left":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byråd vil måtte få kompetanse inn via rådmennene. Dette innebære risiko for manglende kontinuitet. Hvilken modell bør velges? De kommunale muséene står i dag foran store utfordringer med tanke både på framtidig arealbruk og økonomiske ressurser. Samfunnets holdning til offentlige museumsinstitusjoner endres stadig og stiller krav om økt brukermedvirkning og tydelige resultatorientering. Bergen Kommune trenger en strategi for hvordan vi best tar hånd om våre samlinger under disse betingelsene. Vi mener at denne strategien bør knyttes direkte til vår politikk for kulturlivet generelt, samt vårt ønske om at kulturelle institusjoner aktivt bidrar til bærekraftig utvikling.",
+    "sumright":"Høringsuttalelser De fire kommunale museums KF har vært hørt i denne saken. Alle mener at det bør etableres et felles styre\/ tilsynsutvalg for alle samlinger og gjenstander. Dette begrunnes slik: • Styret vil få muligheten til å legge fram en samlet strategi for hvordan Bergen kommune skal håndtere sin rolle som eier av samlinger og gjenstander. • Samlingen blir sett i en bredere sammenheng enn bare egen samling. • Et slikt organ vil kunne bidra til å styrke samarbeidet mellom de forskjellige samlingene. • Organet vil kunne fungere som en rådgivende instans når det gjelder spørsmål rundt samlinger og gjenstander. • Det vil bli lettere å finne frivillige til å sitte i et slikt organ enn i flere små styrer. Forslag til vedtak Byrådet foreslår at Bergen bystyre fattee følgende vedtak: 1. Bergen bystyre fastsetter at de kommunale foretakene Bergen kunstmuseum KF, Edvard Grieg museum Troldhaugen KF Bergen, Det Hanseatiske museum og Schøtstuene KF Bergen"
+  },
+  {
+    "doc_id":"doc_50",
+    "left":"checkpoint-6500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt å utnevne Per Stiegler som nytt medlem for Arbeiderpartiet i Komite for kultur, idrett og næring, samt Thor Brekkeflat som nytt medlem i Komite for miljø og byutvikling. Begge endringene gjelder for resten av valgperioden 2007-2011. Ingen representanter tok ordet under behandlingen.",
+    "sumright":"Bergen bystyre har enstemmig valgt Per Stiegler som nytt medlem for Arbeiderpartiet i Komite for kultur, idrett og næring, samt Thor Brekkeflat som nytt medlem i Komite for miljø og byutvikling. Begge valg gjelder for resten av valgperioden 2007-2011. Ingen representanter tok ordet under behandlingen."
+  },
+  {
+    "doc_id":"doc_46",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt en reguleringsendring for området Nattland, som tillater oppføring av maksimalt 109 boenheter. Endringen ble behandlet uten debatt og fikk støtte fra både bystyret og komite for miljø og byutvikling.",
+    "sumright":"Bergen bystyre har enstemmig vedtatt en reguleringsendring for området Nattland, som tillater oppføring av maksimalt 109 boenheter. Endringen ble behandlet uten debatt og fikk støtte fra både bystyret og komite for miljø og byutvikling."
+  },
+  {
+    "doc_id":"doc_59",
+    "left":"checkpoint-2500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet i Bergen har avslått klager angående en rammetillatelse for oppføring av en gangvei med broer over Møllendalsveien og jernbanelinjen. Klagerne hevder at plasseringen av gangbroen vil føre til ulemper for naboene, men byrådet mener at innsynet fra gangveien er akseptabelt og at sikkerhetshensyn vil bli ivaretatt. Saken skal nå sendes til Fylkesmannen i Hordaland for endelig avgjørelse.",
+    "sumright":"Byrådet har mottatt klager angående en rammetillatelse for oppføring av gangvei med broer over Møllendalsveien og jernbanelinjen. Klagers advarer om innsyn fra brukerne av veien og manglende vurdering av sikkerhetsforhold. Byrådet støtter imidlertid fagavdelingens vurdering og mener at innsynet er akseptabelt og at sikkerhetskrav vil bli oppfylt. Klagen anbefales ikke å tas til følge."
+  },
+  {
+    "doc_id":"doc_47",
+    "left":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har behandlet høringsuttalelsen knyttet til Sørheimutvalgets rapport om forbedring av overføringssystemet for kommunene. Bystyret uttrykker støtte for en ny og mer rettferdig inntektsfordeling, men advarer samtidig om potensielle problemer for noen kommuner hvis endringer skjer uten økte frie inntekter. Flertallet av representantene støttet flere forslag, inkludert avvikling av kommunal selskapsskatt og innføring av nye tilskudd for distriktspolitikk og vekstkommuner.",
+    "sumright":"Bergen bystyre har behandlet høringsuttalelsen knyttet til Sørheimutvalgets rapport om forbedring av overføringssystemet for kommunene. Bystyret uttrykker støtte for flere av Sørheimutvalgets forslag, inkludert justeringer av inntektssystemet og behovet for økte frie inntekter for kommunene. Flere partier fremmet merknader angående selskapsskatt og inntektsutjevning, men disse ble ikke enstemmig godkjent. Innstillingen fra byrådet og komiteen ble vedtatt med flertall."
+  },
+  {
+    "doc_id":"doc_28",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig besluttet å frita Fana Roklubb for eiendomsskatt på eiendommen Straumeveien 18 fra 2002 og fremover. Fritaket vil falle bort dersom eiendommen overdras eller brukes til et annet formål. Byrådet og komiteen for finans, service og næring støtter denne avgjørelsen.",
+    "sumright":"Bergen bystyre har enstemmig besluttet å frita Fana Roklubb for eiendomsskatt på eiendommen Straumeveien 18 fra 2002 og fremover. Fritaket vil falle bort dersom eiendommen overdras eller brukes til et annet formål. Byrådet og komiteen for finans, service og næring støtter denne avgjørelsen."
+  },
+  {
+    "doc_id":"doc_10",
+    "left":"checkpoint-2000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Eldrerådet i Samnanger kommune har møtt den 10. juni 2025 for å diskutere faste saker som inkluderer eventuelle merknader til tidligere protokoller, referatsaker og spørsmål fra rådet. Rådmannen presenterte også svar på et spørsmål angående statusen for apotek i kommunen.",
+    "sumright":"Samnanger kommune har innkalt til et møte i eldrerådet der det skal diskuteres ulike faste saker, inkludert eventuelle merknader til tidligere protokoller og orienteringer fra rådmannen. Det er også planlagt en diskusjon om spørsmålet om statusen for apoteket i kommunen."
+  },
+  {
+    "doc_id":"doc_45",
+    "left":"checkpoint-6000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt en reguleringsplan for Torvmyra boligområde på Laksevåg, som inkluderer eiendommen gnr. 129 bnr. 166 for en enebolig. Byrådet vil foreta nødvendige endringer i plankartet og reguleringsbestemmelsene før implementeringen.",
+    "sumright":"Bergen bystyre har enstemmig vedtatt en reguleringsplan for Torvmyra boligområde på Laksevåg, som inkluderer eiendommen gnr. 129 bnr. 166 for eneboliger. Byrådet vil foreta nødvendige endringer i plankartet og reguleringsbestemmelsene før planen trer i kraft."
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Det er vanlig at fylkesmannen foretar tilsyn med samme tema i flere kommuner samtidig. Kommunene har dermed mulighet til å sammenligne sin egen situasjon med andres erfaringer. 2 Oversikt over tilsynene i 2014 Tabell 1 viser hvilke tema som er blitt vurdert i hvert enkelt tilsyn. Tabellen viser også når tilsynet startet og sluttet, og om det ble avdekket avvik eller ikke. Tabell 1 - Oversikt over tilsynene i 2014 Tema Start slutt Avvik? Tvangsmidler i botilbud for voksne med intellektuell utviklingshemming (botjenester) Botjeneste A 10.06.14 11.06.14 Nei Botjeneste B 17.06.14 18.06.14 Ja",
+    "sumright":"Tidsfristen gikk ut mai 24., men fortsatt mangler vi avklart når denne avvikssaken skal bli lukka. 2 av totalt 6 saker endte altså med avvik for perioden 25. oktober - 31. desember 2o14, se sak nr. 8 også nedenfor. Slik situasjon ønsker kommunen selvsagt ikke skal vare lenger enn nødvendig. Figur 1. Rullering av systemtilsyn i 6 år. Vedlagte saksmappe viser rulleringen nærmere. 4 Forholdene rundt avviksstatistikken Avvik fra lovens krav ved tilsynets sluttdato varierer fra ingenting, til store av"
+  },
+  {
+    "doc_id":"doc_29",
+    "left":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Terje Mikkelsen og Magnus Vårdal har sendt inn et krav om behandling av et innbyggerinitiativ mot utbygging av idrettsanlegg i Krohnegården, basert på over 800 underskrifter. Bystyret vurderer imidlertid at kravet ikke kan behandles da det bryter mot kommunelovens bestemmelser om gjentagelse av forslag innen samme valgperiode. Avvisningen kan ikke påklages ifølge forvaltningsloven.",
+    "sumright":"Terje Mikkelsen og Magnus Vårdal har sendt inn et krav om behandling av et innbyggerinitiativ mot utbygging av idrettsanlegg i Krohnegården, basert på over 800 underskrifter. Kravet er imidlertid avvist av Bergen bystyre, da det anses å ha samme innhold som et tidligere vedtak fra 2002, og fordi det ikke er gått de nødvendige fire år siden siste behandling. Avvisningen kan ikke påklages ifølge forvaltningslovens bestemmelser."
+  },
+  {
+    "doc_id":"doc_8",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 11. september 2025 ble det enstemmig vedtatt at Samnanger kommune gir sin ordfører fullmakt til å representere kommunen i generalforsamlingen til Samnanger kommunale utviklingsselskap AS. Vedtaket ble fattet uten motforestillinger fra noen av de fremmøtte politikerne.",
+    "sumright":"I møtet den 11. september 2025 ble det enstemmig vedtatt at Samnanger kommune gir sin ordfører fullmakt til å representere kommunen i generalforsamlingen til Samnanger kommunale utviklingsselskap AS. Vedtaket ble fattet uten motforestillinger fra noen av de fremmøtte representantene."
+  },
+  {
+    "doc_id":"doc_14",
+    "left":"checkpoint-6000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet datert 10. desember, 2 kan bekrefte at styret for BBB har godkjente protokollen fra møtet den 27. oktober 12. Forslaget til vedtaket er at protokoller skal godkjennes.",
+    "sumright":"Dokumentet, datert 17. januar 2104, inneholder en anbefaling om godkjenning og vedtak av protokollen fra møtet som fant sted den 2. juni 2214."
+  },
+  {
+    "doc_id":"doc_27",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål til bystyret i Bergen, hvor spørsmålene skal være levert skriftlig og innen en frist på en uke før møtedagen.",
+    "sumright":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål til bystyret i Bergen, med en frist på én uke før møtet og et krav om at spørsmålene skal være levert innen kl. 1500 den aktuelle ukedagen."
+  },
+  {
+    "doc_id":"doc_42",
+    "left":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt en reguleringsplan for området Fana, Hammersland, som omfatter flere eiendommer. Planen er utarbeidet av kommunen og vil ha betydning for fremtidig utvikling i området.",
+    "sumright":"Bergen bystyre har enstemmig vedtatt en reguleringsplan for området Fana, Hammersland, basert på et forslag fra kommunalavdelingen. Planen er datert 5. november 1997 og revidert 10. februar 1999, og omfatter flere eiendommer."
+  },
+  {
+    "doc_id":"doc_51",
+    "left":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet omhandler framleggelsen av årsrapporten for Kommunalt råd for funksjonshemmede i 2010, som skal presenteres for bystyret i samsvar med rådets vedtekter. Byrådet anbefaler at rapporten tas til orientering.",
+    "sumright":"Dokumentet presenterer årsrapporten for Kommunalt råd for funksjonshemmede for året 2010, som skal legges fram for bystyret i henhold til rådets vedtekter. Byrådet anbefaler at bystyret tar rapporten til orientering."
+  },
+  {
+    "doc_id":"doc_24",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Marie Torgersen har søkt om fritak fra sitt verv som varamedlem i Åsane bydelsstyre på grunn av helsemessige årsaker. Bysekretæren anbefaler at søknaden blir innvilget, og det foreslås at et nytt varamedlem velges fra Arbeiderpartiet for resten av valgperioden.",
+    "sumright":"Marie Torgersen har søkt om fritak fra sitt verv som varamedlem for Arbeiderpartiet i Åsane bydelsstyre på grunn av helsemessige årsaker. Bysekretæren anbefaler at søknaden blir innvilget, og foreslår at et nytt varamedlem velges for resten av valgperioden."
+  },
+  {
+    "doc_id":"doc_41",
+    "left":"checkpoint-1500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bystyremedlemmer med et ansvar for personaleforhold bør gis muligheten til å påvirke denne planen og dens gjennomføring, både i Komite for kultur og idrett og i Byrådsavdeling for finans og næring. 1A. Personalet som jobber i disse institusjonene bør engasjeres direkte i utformingen av hele personalstrategiet. Dette gjelder også for lærere som arbeider i offentlige barnehagelærerskolekurs. Ledergruppa i Bergen kommune har allerede vært kontaktet angående saken. Denne gruppen var enig om at fagforeninger bør delta aktivt i prosessen. Ledergruppen ønsker imidlertid at representanter for ledergruppene også deltar",
+    "sumright":"Bystyret slutter seg til gjennomføring av en økonomisk omfordelingsmodell som gir en mer likeverdig fordeling av kommunale midler til kommunale og private barnehager i forhold til gjennomsnittlig kostnadsnivå. Tildelingsmodellen til barnehagene baserer seg på aktivitet, dvs. tilskudd pr. barn. Følgende tildelingsmodell (1998-kroner) foreslås for henholdsvis kommunale, private med kommunalt tilskudd og private barnehager dels med, dels uten kommunalt tilskudd i dag: a. Kommunale barnehager: Det settes av en ramme på 53 mill. Foreslått tilskudd: kr. 35 500 for heldags småbarnsplass, kr. 9 000 for heldags storbarnsplass. b. Private barnehager med kommunalt tilskudd i dag: Gjeldende driftsavtaler sies opp"
+  },
+  {
+    "doc_id":"doc_12",
+    "left":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet er en melding fra Bergen kommune om at Arna Bydelsstyret ikke fattet noen vedtak under møtet den 27. januar 2. Ingen av de refererte saker førte til konkrete handlinger eller beslutninger.",
+    "sumright":"Dokumentet omhandler en møteinnkalling fra Bergen kommune, der det ikke ble fattet noen vedtak angående de refererte sakene under møtet den 29. januar 2002. Møtet ble ledet av utvalsekretær Elin Blom Rivenes."
+  },
+  {
+    "doc_id":"doc_48",
+    "left":"checkpoint-1500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har utsatt behandlingen av en privat reguleringsplan for et aktivitets- og skyteanlegg for Bergen Jæger- og Fiskeforening. Det ble foreslått en nærmere utredning av lokaliseringen av skytebanen i Svartebotn, samt en anmodning om uttalelser fra politiske skytebaneutvalg før videre behandling. Innstillingen fra komiteen ble enstemmig vedtatt.",
+    "sumright":"Bergen bystyre har besluttet å utsette behandlingen av reguleringsplanen for et aktivitetssenter med skytebaner for Bergen Jæger- og fiskeforening. Det stilles krav om ytterligere utredning av lokaliseringen av skytebanen i Svartebotn, samt at saken skal fremmes igjen for Komite for miljø og byutvikling i januar 2004. Anmodninger om uttalelser fra politiske skytebaneutvalg er også innvilget."
+  },
+  {
+    "doc_id":"doc_43",
+    "left":"checkpoint-1500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt en reguleringsendring og bebyggelsesplan for eiendommen gnr. 207 bnr. 86 i Åsane, kjent som Liamyrane 4. Vedtaket inkluderer krav om etablering av et nytt hovedveggryss og oppgraderinger av det lokale veinettet før byggeprosjekter kan starte. Fellesforslag fra SV og RV ble imidlertid forkastet.",
+    "sumright":"Bergen bystyre har enstemmig vedtatt en reguleringsendring og bebyggelsesplan for eiendommen Liamyrane 4 i Åsane. Vedtaket inkluderer etablering av et nytt hovedveggkryss og krav om opparbeidelse av vegnettet før byggeprosjekter kan starte. Fellesforslag fra SV og RV ble imidlertid forkastet."
+  },
+  {
+    "doc_id":"doc_28",
+    "left":"checkpoint-6000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig besluttet å frita Fana Roklubb for eiendomsskatt på eiendommen Straumeveien 18 fra 2002 og fremover. Fritaket vil falle bort dersom eiendommen overdras eller brukes til et annet formål. Byrådet støtter denne avgjørelsen.",
+    "sumright":"Bergen bystyre har enstemmig besluttet å frita Fana Roklubb for eiendomsskatt på eiendommen gnr 16 bnr 4, Straumeveien 18, fra og med 2002. Fritaket vil bestå så lenge eiendommen ikke overdras eller brukes til et annet formål."
+  },
+  {
+    "doc_id":"doc_9",
+    "left":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-inputs-refs-preds-1000-examples",
+    "sumleft":"Likestyringsutvalget behandlet en sak angående detaljreguleringsavslaget for Gåseværveien småhusområdet den 5. juni 20. Det foreslåtte reguleringsvedtaket ble enstemmingt godkjent med fem støttede stemmer, basert på innstilling fra utvalget. Dette innebærer at reguleringen nå kan gjennomføres i tråd med planene.",
+    "sumright":"Likestillingsutvalget har enstemmig vedtatt forslag til detaljreguleringsplan for Gåsværvegen småhusbebyggelse, som omfatter flere eiendommer. Planen, inkludert kart og bestemmelser, ble godkjent under møtet den 5. juni 2025."
+  },
+  {
+    "doc_id":"doc_40",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"P.1.1562.00.00, vist på kart i målestokk 1:1000, datert 18.12.97, sist revidert 9.10.98 utrykt bilag 54 og nedfotografert i planbeskrivelsen trykt vedlegg A ( bilag Aa), med tilhørende reguleringsbestemmelser, sist revidert 9.11.98 , trykt vedlegg B (bilag Bb), med den endring at reguleringsbestemmelsene § 3.1.6 skal lyde: 3.1.6 Områdene A og B kan bebygges til maks. høyde kote +21,3. Bebyggelsen i nord-vestre del",
+    "sumright":"P.1.1562.00.00, vist på kart i målestokk 1:1000, datert 18.12.97, sist revidert 9.10.98 utrykt bilag 54 og nedfotografert i planbeskrivelsen trykt vedlegg A ( bilag Aa), med tilhørende reguleringsbestemmelser, sist revidert 9.11.98 , trykt vedlegg B (bilag Bb), med den endring at reguleringsbestemmelsene § 3.1.6 skal lyde: 3.1.6 Områdene A og B kan bebygges til maks. høyde kote +21,3. Bebyggelsen i nord-vestre del"
+  },
+  {
+    "doc_id":"doc_34",
+    "left":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Høringsuttalelser De fire kommunale museums KF har vært hørt i denne saken. Alle mener at det bør etableres et nytt foretak for eierskapsforvaltningen. Dette fordi det er ønskelig med en samlet politikk for de kommunale samlingene. Samtidig ønsker de fleste at det bør etableres et eget styre for hver samling. Styrene foreslås å bestå av representanter fra de aktuelle samlingene samt eksterne eksperter. I forbindelse med høringen har de fire kommunale museums KF sendt inn forslag til vedtekter for et nytt foretak. Vedtektene er lagt til grunn for byrådets forslag til vedtak. Konklusjon Byrådet anbefaler at Bergen kunstmuseum KF, Edvard Grieg museum Troldhaugen KF Bergen, Det Hanseatiske museum og Schøtstuene KF Bergen og Bergen skolemuseum KF avvikles. Byrådet anbefaler videre at det samtidig etableres et nytt kommunalt foretak for den kommunale forvaltningen knyttet til kommunale museale samlinger og gjenstander. Byrådets anbefaling har to hovedbegrunnel",
+    "sumright":"Høringsuttalelser De fire kommunale museums KF har vært hørt i denne saken. Alle mener at det bør etableres et nytt foretak for eierskapsforvaltningen. Dette fordi det er ønskelig med en samlet politikk for de kommunale samlingene. Samtidig ønsker de fleste at det bør etableres et eget styre for hver samling. Styrene foreslås å bestå av representanter fra de aktuelle samlingene samt eksterne eksperter. I forbindelse med høringen har de fire kommunale museums KF sendt inn forslag til vedtekter for et nytt foretak. Vedtektene er lagt til grunn for byrådets forslag til vedtak. Konklusjon Byrådet anbefaler at Bergen kunstmuseum KF, Edvard Grieg museum Troldhaugen KF Bergen, Det Hanseatiske museum og Schøtstuene KF Bergen og Bergen skolemuseum KF avvikles. Byrådet anbefaler videre at det samtidig etableres et nytt kommunalt foretak for den kommunale forvaltningen knyttet til kommunale museale samlinger og gjenstander. Byrådets anbefaling har to hovedbegrunnel"
+  },
+  {
+    "doc_id":"doc_38",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Kommunal Pensjonskasse dersom de ønsker det. Dette gjelder også de ansatte som allerede er medlem av Bergen Kommunal Pensjonskasse. Returretten skal gjelde i fem år fra fusjonen trer i kraft.” Trond Tystads forslag fikk 3 stemmer (SV+RV+SP) og var dermed falt. Innstillingen ble vedtatt med 20 mot 3 stemmer (SV+RV+SP). Bystyrets kontor, Bergen 22. juni 1998 <h5>[2] Bjørn Nævdal <\/h5> <h5>. <\/h5> <h5> . <\/h5>",
+    "sumright":"I tillegg kreves det skriftlig informasjon til hver enkelt arbeidstager om hvilke konsekvenser fusjonen får for dem som individuelle medlemmene i hensynet til rettighetene i dagens ordning. Når disse punktene er klarlagt vil Forsmannskap Administrasjonen fastsette sin holdning i saken.” Tronds forslag til tilleggsbegrunnelse pkt. 1 og 4 ble enstemmig tatt til følge. Høyres representanter fremsatte alternativt følgende forslage̊r: Rådmanninnstillingen: Pramissene fra den kommende hovedpartneren i konsernet, tjener også som virkemidler for"
+  },
+  {
+    "doc_id":"doc_34",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-6500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Høringsuttalelser De fire kommunale museums KF har vært hørt i denne saken. Alle mener at det bør etableres et felles styre\/ tilsynsutvalg for alle samlinger og gjenstander. Dette begrunnes slik: • Styret vil få muligheten til å legge fram en samlet strategi for hvordan Bergen kommune skal håndtere sin rolle som eier av samlinger og gjenstander. • Samlingen blir sett i en bredere sammenheng enn bare egen samling. • Et slikt organ vil kunne bidra til å styrke samarbeidet mellom de forskjellige samlingene. • Organet vil kunne fungere som en rådgivende instans når det gjelder spørsmål rundt samlinger og gjenstander. • Det vil bli lettere å finne frivillige til å sitte i et slikt organ enn i flere små styrer. Forslag til vedtak Byrådet foreslår at Bergen bystyre fattee følgende vedtak: 1. Bergen bystyre fastsetter at de kommunale foretakene Bergen kunstmuseum KF, Edvard Grieg museum Troldhaugen KF Bergen, Det Hanseatiske museum og Schøtstuene KF Bergen",
+    "sumright":"Det tar tid å finne fram igjen når vi trenger bestemmelser om denne type problemstillinger. Dette kan vanskeliggjøre raske beslutninger. Høringsuttalelser: De kommunale KF har vært hørt om spørsmålet om eventuelt oppheving av eksisterende KF og opprettelse av ny KF. 9 Alle forslag til endringer i gjeldende lovgivning krever godkjennelse fra departementet for kultur og kirkedepartement. Vi har tatt kontakt med dette departement for å få deres synspunkter på hva slags lovkrav som kan stilles dersom det skal opprettes et nytt KF for å drive eierskapapparat for alle kommunales samlinger . Departementet sier at de ikke ser noe prinsipielt problem med en slik løsning,"
+  },
+  {
+    "doc_id":"doc_2",
+    "left":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet og anbefalt at bystyret tar statusmeldingen for sosialtjenesten for 2024 til orientering. De oppfordrer også byrådet til å jobbe med de utfordringer som er identifisert i meldingen i fremtidige planer.",
+    "sumright":"Byrådet har behandlet og anbefalt at bystyret tar statusmeldingen for sosialtjenesten for år 2024 til orientering. Det er også foreslått at byrådet skal jobbe med de utfordringer som fremkommer i meldingen i forbindelse med kommende planer."
+  },
+  {
+    "doc_id":"doc_13",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Arna bydelsstyre har behandlet en klage fra Jarle Bøe angående avslag på hans søknad om oppføring av terrasse\/tilbygg mot vest. Klagen ble ikke tatt til følge, da det ble konkludert med at tiltaket ville være dominerende og ikke i tråd med estetiske hensyn i henhold til plan- og bygningsloven. Byggesaken er uregulert, og det er ingen nabomerknader.",
+    "sumright":"Arna bydelsstyre har behandlet en klage fra Jarle Bøe angående avslag på søknaden om oppføring av terrasse\/tilbygg mot vest. Klagen ble ikke tatt til følge, da det ble konkludert med at tiltaket bryter med kravene til estetikk i henhold til plan- og bygningsloven. Byggesaken er uregulert, og det ble ikke funnet grunnlag for å endre tidligere avgjørelse."
+  },
+  {
+    "doc_id":"doc_52",
+    "left":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt et nytt reglement for valgstyret, som ble behandlet i møtet den 26. mars 2012. Komite for fullmakter og politisk styringssystem hadde tidligere også behandlet saken uten noen merknader.",
+    "sumright":"Bergen bystyre har behandlet og vedtatt et nytt reglement for valgstyret, som ble fremlagt den 1. mars 2012. Vedtaket ble fattet enstemmig i bystyremøtet den 26. mars 2012, uten at noen representanter tok ordet. Komite for fullmakter og politisk styringssystem hadde tidligere behandlet saken og ga en innstilling som var lik bystyrets vedtak."
+  },
+  {
+    "doc_id":"doc_4",
+    "left":"checkpoint-1500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-500-inputs-refs-preds-1000-examples",
+    "sumleft":"Hovland og fagkonsulent økonomi, Ida Voldnes • Kommunedirektøren held statusrapport over hovudspørsmål knytt til bygging av legekontor og helsesenter v\/ Elin Eide Larsen • Tilbakemelding fra ordføreren i Sogndalskommune Sak nr. 1 03\/25 Kommunedirektorens forslag til vedtak 1 Kva skjer når ein slutter eller fratar seg? Valprosedyrar for medlemsheiter i medverkingsorgan i Sogn og Fjordane Som rådmannen foreslår godkjenner Sogndal El.råd «Forslag til endra prosedyr for slukking eller fratrekk». Fagkonsulent Kari Hegge viste til saka. Votering: Samrøystaste.",
+    "sumright":"Gunhild Aasebø • Utgreiing av innsparingstiltak under kultur - orientering frå kultursjef, Anne Lise Øvrebotten • Val av leiar Sogndal eldreråd for resten av valperioden 2023- 2027 - orientering fra kommunaldirektør, Ingvild Eide • Avgrensa høyring - Plan for friluftslivets ferdselsårer - orientering fra kommunalsjef for miljø og areal, Torbjørn Gjesdal • Innspel til budsjett 2025 og økonomiplan 2025-2028 frå dei kommunale råda - orientering fra kommunalsjef for samfunn, Kristin Rundsveen Bøtun • Rusmiddelpolitisk handlingsplan 2024-2028 - høyring - uttale frå medverkingsråda - orientering from kommunalsjef for samfunn, Kristin Rundsveen Bøtun • Nye tilskotsordningar - orientering fra kommunalsjef for samfunn, Kristin Rundsveen Bøtun • Brukarutval"
+  },
+  {
+    "doc_id":"doc_18",
+    "left":"checkpoint-5500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet er en protokoll fra Bergenhus bydelsstyre som dokumenterer et vedtak fattet den 20. desember 2002. Forslaget til vedtak er at protokollen tas til etterretning, og det er signert av Ole Vorland, bydelsdirektøren.",
+    "sumright":"Dokumentet omhandler protokollen fra et møte i Bergenhus bydelsstyre, hvor det ble besluttet å ta protokollen til etterretning. Forslaget til vedtak er at protokollen skal tas til etterretning."
+  },
+  {
+    "doc_id":"doc_34",
+    "left":"checkpoint-2500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dette er uheldig hvis man ønsker en framtidig styrking av arbeidet med egen samlingspsykologi. Sammenfall mellom myndighet og funksjon betyr økt risiko for misbruk. Høringsuttalelser De aktuelle styrene samt direktøren for de konsolidte museiene er bedt om synspunkter på omorganisering av den kommunal eierskapet av museale objekter og samling. Alle har deltatt i høringsrunden. Kun Edvard Griegstiftelsen AS ytre seg direkte i saken. Styrene skriver generelt at dagens ordninger fungerer godt. Styrene mener det bør vurderes å beholde dagens arrangement med separate styrer. Man begrunner dette bl.a. med stor forskjell mellom størrelsen på de ulike",
+    "sumright":"Høringsuttalelser De fire kommunale museums KF har vært hørt i denne saken. Alle mener at det bør etableres et felles styre\/ tilsynsutvalg for alle samlinger og gjenstander. Dette begrunnes med at det er ønskelig å få en samlet politikk for hele kommunen når det gjelder samlinger og gjenstander. Styrene ønsker imidlertid at hver samling skal ha sin egen representant i styret. I tillegg foreslår Bergen skolemuseum KF at det bør etableres et råd for samlinger og gjenstander under Kultur- og næringsutvalget. Rådet skulle bestå av ordfører, varaordfører, leder for Kultur- og næringsutvalget, samt representanter fra de forskjellige samlinger og gjenstander. Forslag til vedtak Byrådet anbefaler at Bergen kunstmuseum KF, Edvard Grieg museum Troldhaugen KF Bergen, Det Hanseatiske museum og Schøtstuene KF Bergen og Bergen skolemuseum KF avvikles. Byrådet anbefaler videre at det samtidig etableres et nytt kommunalt foretak for den kommunale forvaltningen knyttet til kommunale museale samlinger og gjenstander"
+  },
+  {
+    "doc_id":"doc_40",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"P.1.1562.00.00, vist på kart i målestokk 1:1000, datert 18.12.97, sist revidert 9.10.98 utrykt bilag 54 og nedfotografert i planbeskrivelsen trykt vedlegg A ( bilag Aa), med tilhørende reguleringsbestemmelser, sist revidert 9.11.98 , trykt vedlegg B (bilag Bb), med den endring at reguleringsbestemmelsene § 3.1.6 skal lyde: 3.1.6 Områdene A og B kan bebygges til maks. høyde kote +21,3. Bebyggelsen i nord-vestre del",
+    "sumright":"P.1.1562.00.00, vist på kart i målestokk 1:1000, datert 18.12.97, sist revidert 9.10.98 utrykt bilag 54 og nedfotografert i planbeskrivelsen trykt vedlegg A ( bilag Aa), med tilhørende reguleringsbestemmelser, sist revidert 9.11.98 , trykt vedlegg B (bilag Bb), med den endring at reguleringsbestemmelsene § 3.1.6 skal lyde: 3.1.6 Områdene A og B kan bebygges til maks. høyde kote +21,3. Bebyggelsen i nord-vestre del"
+  },
+  {
+    "doc_id":"doc_49",
+    "left":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har behandlet en klage på et avslag om fradeling av eiendom i Arna. Bystyret har besluttet å oppheve fagetatens tidligere vedtak og gi dispensasjon fra kommuneplanen for fradelingen. Klagen ble tatt til følge etter at et alternativt forslag fra SV\/R ble nedstemt.",
+    "sumright":"Bergen bystyre har behandlet en klage på avslag om fradeling av eiendom i Arna. Bystyret har besluttet å oppheve fagetatens tidligere vedtak og gi dispensasjon for fradeling til uendret bruk. Det alternative forslaget fra SV\/R ble nedstemt, mens det opprinnelige forslaget ble vedtatt enstemmig."
+  },
+  {
+    "doc_id":"doc_2",
+    "left":"checkpoint-1500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Byrådet har behandlet og anbefalt at bystyret tar statusmeldingen for sosialtjenesten for 2024 til orientering. De oppfordrer også byrådet til å jobbe aktivt med de utfordringer som er identifisert i meldingen gjennom fremtidige planer.",
+    "sumright":"Byrådet har behandlet og anbefalt at bystyret tar statusmeldingen for sosialtjenesten for 2024 til orientering. De oppfordrer også byrådet til å jobbe med de utfordringer som er identifisert i meldingen i fremtidige planer."
+  },
+  {
+    "doc_id":"doc_44",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Samarbeide med ledergruppen i Helse Bergen om felles målsettinger for samarbeidet mellom primær- og spesialisthelsetjenesten. • Være kontaktperson for tilsynslegene ved institusjonene i Bergen kommune. • Bidra til god kommunikasjon mellom tilsynslegene og administrasjonen i Bergen kommune. • Bistå i planlegging og koordinering av kompetanseheving for ansatte i institusjonene. • Koordinere kvalitetssikring av legetjenesten ved institusjonene i Bergen kommune. • Koble til forskning og forskningsbaserte metoder i egen virksomhet. • Delta i internfaglig samarbeid med andre kommuner og fylkeskommuner. • Deltake i nasjonale nettverk for eldreomsorgsoverleger. • Ha ansvar for rapportering til Helsedirektoratet mht. legetjenesten ved institusjonene i Bergen kommune. • Øvrige oppgaver knyttet til stillingen.” Spørsmål: Hva gjør byrådet for å sikre at denne satsingen kommer i",
+    "sumright":"Hva skjer med eldreomsorgsoverleges stilling?” Byråd Trude H. Drevland besvarte spørsmålet: ”Stillingen som eldreomsorgsoverlege ble opprettet i 2003, og innehar fortsatt denne stillingen. Stillingen er delfinansiert av Helse Vest, og skal ha ansvar for å koordinere og legge til rette for god kvalitet på legetjenesten ved alders- og sykehjem. Eldreomsorgsoverlegen har hatt kontakt med tilsynslegen ved Arna helseheim, og bistått med å finne løsninger på problemet med mangel på leger. Eldeomsorgsoverlegen har også bidratt til å forbedre kvaliteten på legetjenesten ved alders- og sykehjem ved å bidra til kompetanseheving, samt sørge for at det legges til rette for godt samarbeid mellom primærhelsetjenesten og spesialisthelsetjenesten. Byrådsavdelingen mener at"
+  },
+  {
+    "doc_id":"doc_10",
+    "left":"checkpoint-6500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Samnanger kommune har innkalt til et møte i eldrerådet den 10. juni 2025, hvor det vil bli diskutert eventuelle merknader til tidligere møter og orientert om aktuelle saker. Rådmannen har også lovet svar på spørsmål knyttet til apoteket i kommunen.",
+    "sumright":"Eldrerådet i Samnanger kommune skal behandle en rekke faste saker under møtet den 10. juni 2025. Rådmannen har foreslått at orientasjons- og referatsaker tas til orientering, samt at det vil bli diskutert eventuelle merknader til tidligere protokoller og spørsmål fra rådet. Det er også planlagt en orientering om statusen for apoteket i kommunen."
+  },
+  {
+    "doc_id":"doc_10",
+    "left":"checkpoint-10000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-500-inputs-refs-preds-1000-examples",
+    "sumleft":"Eldrerådet i Samnanger kommune har møtt den 10. juni 2025 for å behandle faste saker og orientere seg om aktuelle temaer. Rådmannen presenterte svar på et tidligere spørsmål angående statusen for apotek i kommunen. Vedtaket fra rådet er at alle orienterings- og referatsaker skal tas til orientering.",
+    "sumright":"Dokumentet inneholder en orientering fra rådmannen til eldrerådet om ulike faste saker som skal tas opp under møtet den 10. juni 2025. Det inkluderer eventuelle merknader til tidligere protokoller, referatsaker og mulighet for spørsmål fra rådets medlemmer. Rådmannen gir også svar på et spørsmål angående statusen for apoteket i Samnanger."
+  },
+  {
+    "doc_id":"doc_27",
+    "left":"checkpoint-6000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål til bystyret i Bergen, med spesifikasjoner om fristen og hvordan spørsmålene skal sendes til byråden.",
+    "sumright":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål til bystyret i Bergen, med spesifikasjoner om fristen og hvordan spørsmålene skal sendes til byråden."
+  },
+  {
+    "doc_id":"doc_19",
+    "left":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet presenterer årsmeldingen for Bergen bystyres organer i 2013, som inkluderer informasjon om deres ansvar, aktiviteter og økonomiske resultater. Bystyredirektøren anbefaler at meldingen tas til orientering av bystyret.",
+    "sumright":"Dokumentet presenterer årsmeldingen for Bergen bystyres organer for 2013, som inkluderer informasjon om ansvarsområder, aktivitet og regnskapsresultat. Bystyredirektøren foreslår at årsmeldingen tas til orientering av bystyret."
+  },
+  {
+    "doc_id":"doc_22",
+    "left":"checkpoint-1500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Tiltaket forekommer mest utfordrende når det kommer til hensynet til naturmangfold. Prosjektets virkemåte innebærer at deler av området må fjernes. Både plante- og dyreliv berøres dermed. Figur 6. kart som viser hvilke deler av arealet som fylles igjen med masser, samt hvilken rekkefølge det gjøres. Merk at fargeangivelsen henger sammen med datoen for hvert lag – ikke fargen som benyttes for 4 massefylling. Overskridende masse transporteres bort eller brukes til annet formål. Ved første gjennomgang ble man enig om at bare de grøntområdene som allerede var ubrukte måtte tas med i regnskapet. I planbestemmelser har fagen",
+    "sumright":"Miljøverndepartementet har gitt dispensasjon fra § 12 i Naturmangfoldloven for arealer som er brukt til bygning og anlegg i minst 20 år. Arealet ble regulert til boligformål i 1975. I tillegg er det gjort en vurdering av planområdet etter § 11 i Naturmangfoldloven. Her konkluderes det med at det ikke foreligger vesentlige negative konsekvenser for naturmangfoldet. Vurdering av planforslaget Fagetaten anbefaler at planforslaget legges frem for politisk behandling. Vedtakskompetanse: I henhold til plan- og bygningslovens § 12-12, jf. Byrådets fullmakter § 1-2, pkt. 1 bokstav c, er myndigheten til å treffe vedtak om reguleringsplan delegert til byrådet. Byråden for byutvikling innstiller til byrådet å fatte følgende vedtak: 1. Fana, gnr"
+  },
+  {
+    "doc_id":"doc_8",
+    "left":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møtet den 11. september 2025 vedtok Kommunestyret enstemmig å gi ordføreren fullmakt til å representere kommunen i generalforsamlingen til Samnanger kommunale utviklingsselskap AS. Vedtaket ble støttet av alle partier som deltok i stemmeprosessen.",
+    "sumright":"I møtet den 11. september 2025 ble det enstemmig vedtatt at Samnanger kommune gir sin ordfører fullmakt til å representere kommunen i generalforsamlingen til Samnanger kommunale utviklingsselskap AS. Vedtaket ble støttet av alle partier som deltok i behandlingen."
+  },
+  {
+    "doc_id":"doc_55",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen og Omland havnestyre har besluttet å etablere et helhetlig kvalitetssystem for havnen. Styret vil vurdere forslag til organisering, kostnader og en milepælsplan for implementeringen. Det er også planlagt et ekstraordinært møte for å diskutere kvalitetsarbeidene.",
+    "sumright":"Bergen og Omland havnestyre har besluttet å implementere et helhetlig kvalitetssystem i havnen. Styret vil nå be om en nærmere beskrivelse av prosessen, inkludert organisering, kostnader og en milepælsplan. Det er også planlagt et ekstraordinært møte for å diskutere kvalitetsarbeidene."
+  },
+  {
+    "doc_id":"doc_16",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har enstemmig besluttet å ikke innvilge søknaden om bevilling for salg av brennevin ved \"De Tre Musketerer\" - \"Fekterloftet\". Dette er basert på helse- og sosialpolitiske hensyn, som frykten for økt alkoholforbruk.",
+    "sumright":"Bergenhus bydelsstyre har enstemmig besluttet å ikke anbefale utstedelse av bevilling for salg av brennevin til \"De Tre Musketerer\" - \"Fekterloftet\". Dette er basert på helse- og sosialpolitiske hensyn, som frykten for en økning i alkoholforbruk knyttet til rene skjenkesteder."
+  },
+  {
+    "doc_id":"doc_47",
+    "left":"checkpoint-7500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har behandlet høringsuttalelsen knyttet til Sørheimutvalgets rapport om forbedring av overføringssystemet for kommunene. Bystyret uttrykker støtte for flere av Sørheimutvalgets forslag, inkludert justeringer av inntektssystemet og behovet for økte frie inntekter for kommunene. Flere partier fremmet merknader angående selskapsskatt og inntektsutjevning, men disse ble ikke enstemmig godkjent. Innstillingen fra byrådet og komiteen ble vedtatt med flertall.",
+    "sumright":"Dokumentet inneholder en høring om Sørheims utvalg sitt forslag angående forbedringene av overføringsystemet for norske kommuner. Bystyret i Bergen har vedtømt å sende inn en hørselssvar, hvor de uttrykker bekymring for mulige utfordringer for visse kommuner basert på foreslåtte endringer. I tillegg fremsettes flere merknader fra ulike partier, som blant annet fokuserer på behovet for justeringer av inntektskilder og støtte til enkelte kommuners omstillinger."
+  },
+  {
+    "doc_id":"doc_27",
+    "left":"checkpoint-6000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål til bystyret i Bergen, med spesifikasjoner om fristen og hvordan spørsmålene skal sendes til byråden.",
+    "sumright":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål til bystyret i Bergen, med spesifikasjoner om fristen og hvordan spørsmålene skal sendes til den ansvarlige byråden."
+  },
+  {
+    "doc_id":"doc_6",
+    "left":"checkpoint-7500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet, datert 1122.25, inneholder en anbefaling om godkjenning fra daglig leder for både innkallingen og saken som skal behandles i møtet mellom Stad Energi og Eiendomsutvikling KS. Det er foreslått at disse godkjennes uten videre diskusjon eller endringer.",
+    "sumright":"Stad Energi- og Eigedomsutvikling KF har sendt ut en innkalling med saksliste, som skal godkjenns i møtet den 18. november 2025. Daglig leder anbefaler at innkallingen og saklisten blir godkjent uten endringer."
+  },
+  {
+    "doc_id":"doc_28",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig besluttet å frita Fana Roklubb for eiendomsskatt på eiendommen Straumeveien 18 fra 2002 og fremover. Fritaket vil falle bort dersom eiendommen overdras eller brukes til et annet formål. Byrådet og komiteen for finans, service og næring støtter denne avgjørelsen.",
+    "sumright":"Bergen bystyre har enstemmig besluttet å frita Fana Roklubb for eiendomsskatt på eiendommen Straumeveien 18 fra 2002 og fremover. Fritaket vil falle bort dersom eiendommen overdras eller brukes til et annet formål. Byrådet støtter denne avgjørelsen."
+  },
+  {
+    "doc_id":"doc_19",
+    "left":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-10000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre mottar årsmelding for 2013 fra bystyredirektøren, som inneholder en oversikt over bystyrets organers ansvarsområder, aktiviteter og økonomiske resultater. Forslaget til innstilling er at bystyret tar rapporten til orientering.",
+    "sumright":"Dokumentet presenterer årsmeldingen for Bergen bystyres organer for 2013, som inkluderer informasjon om ansvarsområder, aktivitet og regnskapsresultat. Bystyredirektøren foreslår at årsmeldingen tas til orientering av bystyret."
+  },
+  {
+    "doc_id":"doc_11",
+    "left":"checkpoint-6000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Utvalget for samfunnsutvikling skal behandle en rekke saker under sitt møte den 23. januar 2025, inkludert godkjenning av innkalling og sakliste, samt referatsaker knyttet til dispensasjoner og kommunal planlegging. Det vil også bli diskutert et nytt handlingsprogram for idrett, fysisk aktivitet og friluftsliv, hvor prioritering av anlegg for søknad om spelemidler blir vurdert.",
+    "sumright":"Stryn kommunes utvalg for samfunnsutvikling skal behandle en rekke saker knyttet til spelemidler og infrastrukturprosjekter under sitt møte den 23. januar 2025. Dette inkluderer godkjenning av innkalling og sakliste, samt referatsaker relatert til dispensasjoner og vedtak angående kulturminner. Det vil også bli diskutert et nytt handlingsprogram for idrett, fysisk aktivitet og friluftsliv, hvor prioriteringer for anleggssøknader fra spelemiddelordningen blir presentert."
+  },
+  {
+    "doc_id":"doc_46",
+    "left":"checkpoint-5500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt en reguleringsendring for området Nattland, som tillater oppføring av maksimalt 109 boenheter. Endringen ble behandlet i møte den 10. desember 2007, uten at noen representanter tok ordet under voteringen. Komite for miljø og byutvikling støttet også vedtaket.",
+    "sumright":"Bergen bystyre har enstemmig vedtatt en reguleringsendring for området Nattland, som tillater oppføring av maksimalt 109 boenheter. Endringen ble behandlet i møte den 10. desember 2007, uten at noen representanter tok ordet. Komite for miljø og byutvikling støttet også vedtaket."
+  },
+  {
+    "doc_id":"doc_26",
+    "left":"checkpoint-9000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt rammene for kommunens finansforvaltning, som ble behandlet i flere møter før den endelige godkjenningen. Saken ble først utsatt for videre vurdering, men ble senere godkjent uten motforestillinger.",
+    "sumright":"Bergen bystyre har enstemmig vedtatt rammer for kommunens finansforvaltning, som inkluderer et nytt vedlegg. Vedtaket ble først utsatt på grunn av manglende informasjon, men ble senere godkjent uten endringer."
+  },
+  {
+    "doc_id":"doc_35",
+    "left":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt en ny VA-norm for kommunen, med mulighet for byrådet til å foreta mindre endringer i administrative bestemmelser og tekniske krav. Komite for miljø og byutvikling støttet også denne vedtaket.",
+    "sumright":"Bergen bystyre har enstemmig vedtatt en ny VA-norm for kommunen, som inneholder både administrative bestemmelser og tekniske krav. Byrådet får myndighet til å foreta mindre endringer i disse kravene. Innstillingen fra komiteen omhandler samme sak som bystyrets vedtak."
+  },
+  {
+    "doc_id":"doc_6",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Stad Energi- og Eigedomsutvikling KF har sendt ut en invitasjon med saker som skal behandles under møtet den 18. november 2025. Daglig leder anbefaler at innkallingen og saken blir godkjent uten videre diskusjon.",
+    "sumright":"Stad Energi-og Eigedomutvikling KF har lagt fram forslag om godkjenning for innkallingen og saklisten, som skal behandles i møtet den 17. november 2015. Daglig leder anbefaler at det blir enstemmig vedtatt å godkjenne dokumentet. Utvalgssymbolet er utført med feil skrifttype (Arial)."
+  },
+  {
+    "doc_id":"doc_3",
+    "left":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-500-inputs-refs-preds-1000-examples",
+    "sumleft":"Etne kommune har utviklet en ny kvalitetsplan for oppvekst og kultur som gjelder frem til 2030. Planen fokuserer på å sikre god kvalitet i barnehager, skoler og kulturelle tilbud, samt skape et trygt miljø for barn og unge. Den nye planen ble presentert for ulike råd og organer, inkludert rådet for mennesker med nedsatt funksjonsevne og ungdomsrådet, som begge tok den til orientering. Kommunestyret vil også få saken til behandling.",
+    "sumright":"Etne kommune har utviklet en ny kvalitetsplan for oppvekst og kultur som gjelder frem til 2025. Planen fokuserer på områder som barnehage, skole og kultur, og skal sikre god kvalitet for barn, unge og ansatte. Den nye planen ble presentert for ulike råd og utvalg, inkludert Råd for mennesker med nedsatt funksjonsevne, Ungdomsrådet og Hovedutvalget, som alle tok den til orientering."
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Det er vanlig at fylkesmannen foretar tilsyn med samme tema i flere kommuner samtidig. Ved systemtilsynene i 2014 deltok både ledere og ansatte fra ulike deler av kommunen i tilsynene. Tilsynene ga dermed gode erfaringer og kunnskap som kunne deles mellom deltakerne. 2 Oversikt over tilsynene i 2014 Tabell 1 viser hvilke tema som var gjenstand for tilsynene i 2014. Tabellen viser også antall avvik som ble avdekket ved hvert enkelt tilsyn. Tabell 1 Tema for tilsynene i 2014 Tema Antall avvik Tvungen helsehjelp 2 - Botjenester til utviklingshemmede 2 1 Barnevernstjenesten 2 1 Totalt 6 2 Avvikene som ble avdekket ved tilsyn",
+    "sumright":"Til disse målene lagets med betydelig ressursbruk både for dem som leder tilsyn og for dem i kommunen som deltar på tilsynerne. 4 Fordi tilsyn krever mye ressurser – først og fremst hos de ansatte og ledere som er direktinvolvert - så skal rutiner for gjennomføring av fylkesmannstilsyn ha stor betydning. Rutinen sikrer at alle som er involvere- te på ulike nivåer vet hvilken rolle de spiller i denne prosess. Herunder hvordan saker skal behandles etter en høringsfrist eller varsling om tilsynt er ute. Også hvem som er ansvarlig for kommunikasjon med kommunen etter at tils"
+  },
+  {
+    "doc_id":"doc_7",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "sumleft":"I møte den 12. mai 2025 ble møteinnkallingen og saklisten for rådet til mennesker med nedsatt funksjonsevne enstemmig godkjent. Det er viktig å huske på at informasjonen skal skannes inn i Word eller PDF-format, ikke som bilder.",
+    "sumright":"I møte den 12. mai 2025 ble møteinnkallingen og saklisten for rådet for mennesker med nedsatt funksjonsevne enstemmig godkjent. Det er viktig å sikre at informasjonen fra møtet blir dokumentert ordentlig, enten i Word eller PDF-format, ikke som bilder."
+  },
+  {
+    "doc_id":"doc_11",
+    "left":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-10000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Stryn kommunes utvalg for samfunnsutvikling skal behandle en rekke saker knyttet til spelemidler og infrastrukturprosjekter under sitt møte den 23. januar 2025. Dette inkluderer godkjenning av innkalling og sakliste, samt referatsaker fra tidligere møter. Det vil også bli diskutert et nytt handlingsprogram for idrett, fysisk aktivitet og friluftsliv, hvor flere prosjekter blir prioritert for finansiering gjennom spelemidler.",
+    "sumright":"Utvalget for samfunnsutvikling skal behandle en rekke saker under sitt møte den 23. januar 2025, blant annet godkjenning av innkalling og sakliste, samt referatsaker knyttet til dispensasjoner og vedtak. Det vil også bli diskutert et oppdatert handlingsprogram for idrett, fysisk aktivitet og friluftsliv, der prioriteringer for spelemidler blir vurdert."
+  },
+  {
+    "doc_id":"doc_35",
+    "left":"checkpoint-1500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig vedtatt en ny VA-norm for kommunen, som inneholder både administrative bestemmelser og tekniske krav. Byrådet får myndighet til å foreta mindre endringer i disse kravene. Innstillingen fra komiteen omhandler også denne saken.",
+    "sumright":"Bergen bystyre har enstemmig vedtatt en ny VA-norm for kommunen, som inkluderer både administrative bestemmelser og tekniske krav. Byrådet får myndighet til å foreta mindre endringer i disse reglene. Innstillingen fra komiteen omhandler samme sak som bystyrets vedtak."
+  },
+  {
+    "doc_id":"doc_36",
+    "left":"checkpoint-2000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Monica Mæland byrådsleder ### Oppsummering: Bergen kommune har gjort betydelige fremskritt i barnehagetilbudet siden 23., men arbeider fortsatt mot å sikre plasser til alle barn. Tiltaksplan 2 «Alle får bli medlem» er lagt fram for å forbedre tilgjengeligheten av barnehage, spesielt for å imøtekomme økende søkertallet. Selv om fullt dekning kanskje ikke blir mulig før tidlig 24., jobber kommunen hardt for å nå dette målet innen årets slutt. Strategier inkluderer samarbeide med private leverandører, bruk av midltidlige løsninger, samarbeid mellom nabokommuner og økte investeringer.",
+    "sumright":"Meldingene skal rettes mot hvordan man best følger opp tiltakene. Morten Christiansen Byråden ### Oppsummering: Bergen kommune tar initiativ til \"tiltakplan for full barnedagedekning\" for å imøtekomme det store antallet barn som venter på barnehaveplasser, selv om prognosen indikerer en fortsat stigning i kravet. Den nye planen inkluderer midlertige løsninger og samarbejde med nabobyen for at alle børn bør have mulighed for at gå i barnehave inden udgangen af 2o7."
+  },
+  {
+    "doc_id":"doc_58",
+    "left":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Klagen tas ikke til følge. Avslaget datert 21.09.2016 opprettholdes. 399-16 Bergenhus gnr. 169 bnr. 100, Øvre Nygårdsgate 10. Klage på avslag på",
+    "sumright":"Tiltaket har fått avslag fra fylkesmannen fordi det innebærer nødvendig vern mot ras og snøskred innenfor rammene av planen. Innkalling til ny nabovarsel og nye innspill gis Svar på spørsmålene fra Per-Eivind Stibolt (FrP): Når vil saken komme tilbake til Bystyret? Grunneier ønsker å ha den aktuelle sak på nytt møte så fort som mulig – helst allerede når møtet skulle vært i dag. En eventuell gjenopptatt behandling i Bystyrets kontor må derfor finne sted før jul. Foran dette er det ønskelig med et eget skriftlig notat fra kommunen om de juridiske aspektene som er relevant for videre behandling av saken. Dette notatet skal legges frem senest"
+  },
+  {
+    "doc_id":"doc_48",
+    "left":"checkpoint-6000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har besluttet å utsette behandlingen av reguleringsplanen for et aktivitetssenter med skytebaner for Bergen Jæger- og fiskeforening. Det stilles krav om ytterligere utredning av lokaliseringen av skytebanen i Svartebotn, samt at saken skal fremmes igjen for komiteen i januar 2004. Flere partier har uttrykt bekymring for potensielle konsekvenser for naturmangfoldet i området.",
+    "sumright":"Bergen bystyre har utsatt behandlingen av en privat reguleringsplan for et aktivitets- og skyteanlegg i Fana, etter krav fra flere partier. Det ble foreslått en nærmere utredning av lokaliseringen av skytebanen i Svartebotn, samt en anmodning om uttalelser fra skytebaneutvalg før videre behandling. Innstillingen fra komiteen ble enstemmig vedtatt."
+  },
+  {
+    "doc_id":"doc_30",
+    "left":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-10000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Rådmannen anbefaler alternativ 1. Bystyret vedtok å følge rådmannens første alternative forslag. I møte 28. april 2003 behandlet bystyret sak 82\/03 ”Tilsynsutvalg for psykisk utviklingshemmede”. Bakgrunnen for saken var at byrådet mente at det var viktig å komme tilbake til spørsmålet om tilsynsutvalg etter at dep.jus har sendt ut forslag til ny lov om rettigheter for personer med nærliggende funksjonsnedsettelser. Departementet ønsker å gi personene selv mulighet til å bestemme hvem som skal føre tilsyn med dem. Kommunen får også muligheten til å sette opp egne",
+    "sumright":"Kommunen ønsker heller ikke å inngå noe bindende avtale om tilsyn utover det Som følger av gjeldende lover og forskrift.”. Rådmannen mente at dersom kommunestyret ønsker å gi sine egne regler for personvernbeskyttelse innenfor omsorgsområdet, vil kommunal forvaltningsrett og kommunenes hjemmel til å fastsette lokale bestemmelser måtte få sin egen behandling. Men rådet til at kommunestyrets tidligere vedtak (sak 133\/99 ) om «Retningslinjer for personvern og taushetsplikt» skulle tas som basis for diskusjonen. På bystyremøtet ba ordføreren råmannen"
+  },
+  {
+    "doc_id":"doc_57",
+    "left":"checkpoint-3000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "sumleft":"4 gatebildet og bedre framkommelighet generelt. Siden planforlaget kun tar høyde for 5 p-plasser per boenhet i kjelleren, er dette innenfor grenseverdien i kommunal planstrategi 2, og derfor ikke omfattet av kapittel 6 pkt. 7 (se sak 64-14). Utbygger kan søke dispensasjon om lavere standard for hver enkelt p-plass der det foreligger særlige grunner som gjør det nødvendig å gjøre unntak fra forskriftens krav om minimumsplassstandard. På bakgrunn av det ovennevnte anser vi heller ikke at planforlagets omfang\/antall park.plasser påvirker trafikksituasjonen på negative vis i andre deler av byen enn det",
+    "sumright":"Uteoppholdsareal Etter offentlig ettersyn er det foretatt endringer i forhold til uteområdene slik at disse nå er i samsvar med kravene i KPA2010. Endringen innebærer blant annet at deler av avkjørselen til parkeringskjelleren er gjort offentlig og endret til kombinert formål «torg og vei», samt at det er åpnet opp for gjennomgang mellom bygningsmassen og landskapet. Kulturminner Den gamle sekundærstasjonen er registrert som kulturminne i Kulturminnebase.no, men er ikke vernet. Byantikvaren fraråder derfor riving av bygget. Ved offentlig ettersyn ble det imidlertid stilt krav om at byggets karakteristiske fasade skulle beholdes dersom bygningen måtte rives. Denne kravet er fulgt opp i det reviderte forslaget. 4 Miljøhensyn Planforslaget legger til rette for miljøvennlig transport med god tilgjengelighet til"
+  },
+  {
+    "doc_id":"doc_29",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "sumleft":"Terje Mikkelsen og Magnus Vårdal har sendt inn et innbyggerinitiativ mot utbygging av et idrettsanlegg i Krohnegården, basert på over 800 underskrifter. Bystyredirektøren konkluderer imidlertid med at kravet ikke kan behandles, da det bryter mot kommunelovens bestemmelser om gjentagelse av forslag innen samme valgperiode. Innbyggerinitiativet avvises dermed.",
+    "sumright":"Terje Mikkelsen og Magnus Vårdal har sendt inn et krav om behandling av et innbyggerinitiativ mot utbygging av idrettsanlegg i Krohnegården, basert på over 800 underskrifter. Bystyret vurderer imidlertid at kravet ikke kan behandles da det bryter mot kommunelovens bestemmelser om gjentagelse av forslag innen samme valgperiode. Avvisningen kan ikke påklages ifølge forvaltningsloven."
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-9000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-1500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Et såkalt sluttrapport sendes deretter ut til offentligheten når tilsynets resultat er avgitt. Slik sluttdokumentasjon gis kun hvis virksomheten ikke lenger har noen tilbakemeldinger på avviksrapportering, og er enig med fylkeksen om at det ikke finnes behov for mer dialog på dette punktet.",
+    "sumright":"Direktoratet må behandle saker hvor tilsynets anbefaling er å sette ned budsjettmidlene for drift og investeringer, øke krav om ekstraordinære midler fra staten eller anmode om politisk behandling av spørsmålet om endringer i 1- eller 2-årsbudsjettet. Saken kom deretter tilbake til Fylkestmannens kontor, og etter flere runder mellom kommunen og fylkesmanden, ble tilsynsteamet enig i at vi hadde vist gode tegn på forbedringer og fikk tilsvar om at «avvikene er blitt lukket». Ettersom kommunen nå har fått bekreftelse fra fylkesmanten om at avvik er lukket, kan vi se tilbake"
+  },
+  {
+    "doc_id":"doc_27",
+    "left":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål til bystyret i Bergen, hvor spørsmålene skal være levert skriftlig og innen en frist på en uke før møtedagen.",
+    "sumright":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål til bystyret i Bergen, med spesifikke tidsfrister og ansvarlige instanser."
+  },
+  {
+    "doc_id":"doc_50",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig valgt Per Stiegler som nytt medlem for Arbeiderpartiet i Komite for kultur, idrett og næring, samt Thor Brekkeflat som nytt medlem i Komite for miljø og byutvikling. Begge valg gjelder for resten av valgperioden 2007-2011. Ingen representanter tok ordet under behandlingen.",
+    "sumright":"Bergen bystyre har enstemmig valgt Per Stiegler som nytt medlem for Arbeiderpartiet i Komite for kultur, idrett og næring, samt Thor Brekkeflat som nytt medlem i Komite for miljø og byutvikling for resten av valgperioden 2007-2011. Ingen representanter tok ordet under behandlingen."
+  },
+  {
+    "doc_id":"doc_9",
+    "left":"checkpoint-500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-2000-inputs-refs-preds-1000-examples",
+    "sumleft":"Likestillingsutvalget har enstemmig vedtatt forslag til detaljreguleringsplan for Gåsværvegen småhusbebyggelse, som inkluderer plankart og bestemmelser fra mai 2025. Vedtaket er basert på plan- og bygningsloven § 12-12.",
+    "sumright":"Likestillingsutvalget har enstemmig vedtatt forslag til detaljreguleringsplan for Gåsværvegen småhusbebyggelse, som omfatter flere eiendommer. Planen er godkjent i henhold til plan- og bygningsloven."
+  },
+  {
+    "doc_id":"doc_7",
+    "left":"checkpoint-5500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"I møte den 12. mai 2025 ble møteinnkallingen og saklisten for rådet for mennesker med nedsatt funksjonsevne enstemmig godkjent. Det er viktig å huske på at informasjonen skal skannes inn i Word eller PDF, ikke som bilder.",
+    "sumright":"I møte den 12. mai 2025 ble møteinnkallingen og saklisten til rådet for mennesker med nedsatt funksjonsevne enstemmig godkjent. Det er viktig å huske på at informasjonen skal skannes inn i Word eller PDF, ikke som bilder."
+  },
+  {
+    "doc_id":"doc_17",
+    "left":"checkpoint-9000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-4500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har mottatt en høringsuttalelse angående kommunedelplanen for Sandviken-Fjellsiden Nord, som gir retningslinjer for videre utvikling av området. Planen har møtt stor deltakelse fra beboere og næringsliv, spesielt gjennom arbeid fra velforeningene. Bydelsdirektøren understreker behovet for å ta hensyn til fortetting og trafikkbelastning i området, samt alternative tunnelalternativer for å redusere negative virkninger. Velforeningene uttrykker bekymring for potensiell cruisehavn og foreslår bruk av åpne arealer for lokal utvikling.",
+    "sumright":"Bergenhus bydelsstyre har mottatt en høringsuttalelse angående kommunedelplanen for Sandviken-Fjellsiden Nord, som gir retningslinjer for videre utvikling av området. Planen har møtt stor deltakelse fra beboere og næringsliv, men velforeningene uttrykker bekymring for fortetting og ønske om mer fokus på tilgjengelighet til sjøen. Bydelsdirektøren anbefaler at planen tas alvorlig, men understreker behovet for ytterligere vurdering av trafikk- og utviklingsmuligheter."
+  },
+  {
+    "doc_id":"doc_44",
+    "left":"checkpoint-6000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Hva skjer med eldreomsorgsoverleges stilling?” Byråd Trude H. Drevland besvarte spørsmålet: ”Stillingen som eldreomsorgsoverlege ble opprettet i 2003, og innehar fortsatt denne stillingen. Stillingen er deltidsstilling, 80 %. Eldreomsorgsoverlegen har ansvar for å koordinere og legge til rette for kvalitetssikring av legetjenesten ved alders- og sykehjem. Overlegen skal sørge for at tilsynslegetjenesten ved institusjonene i kommunen i løpet av en 4 –års perioden blir utviklet i tråd med Saksutredningen og Arbeidsgruppens rapport. Eldreomsorgsoverlegen har hatt kontakt med tilsynslegen ved Arna helseheim, og bistått ham i hans innsats for å finne løsninger på problemet med mangel på leger. En tidligere tilsatt lege går inn i et korttidsvikariat, deretter",
+    "sumright":"Hvorfor er denne satsingen på sykehusområdet blitt prioritert høyere enn på omsorgsområdet? Hvordan skal man forsterke legetatenes kompetanse uten ansvar for egen faglig videreutvikling? Hva skal hindre at de ansatte opplever at deres fagområde fortsatt blir nedprioritert? Et godt omsorgs- og helseverksted bør bygge på tverrfaglighet og god faglig kompetanse. Behovet for tett samarbeid mellom hjemmesyke"
+  },
+  {
+    "doc_id":"doc_7",
+    "left":"checkpoint-5000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-5500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"I møte den 12. mai 2025 ble møteinnkallingen og saklisten til rådet for mennesker med nedsatt funksjonsevne enstemmig godkjent. Det er viktig å huske på at informasjonen skal skannes inn i Word eller PDF, ikke som bilder.",
+    "sumright":"I møte den 12. mai 2025 ble møteinnkallingen og saklisten for rådet for mennesker med nedsatt funksjonsevne enstemmig godkjent. Det er viktig å huske på at informasjonen skal skannes inn i Word eller PDF, ikke som bilder."
+  },
+  {
+    "doc_id":"doc_14",
+    "left":"checkpoint-6000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8500-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet datert 10. desember, 2 kan bekrefte at styret for BBB har godkjente protokollen fra møtet den 27. oktober 12. Forslaget til vedtaket er at protokoller skal godkjennes.",
+    "sumright":"Dokumentet er en protokoll datert 1. november 2.011, hvor styret i Bergen Bolige og Byformyelse har behandlet godkjenninga av protokollen fra møtet den 22. oktober 1947. Forslaget til vedtaket er at protokoller skal godkjennes."
+  },
+  {
+    "doc_id":"doc_34",
+    "left":"checkpoint-6500-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-3000-gen1-inputs-refs-preds-1000-examples",
+    "sumleft":"Det tar tid å finne fram igjen når vi trenger bestemmelser om denne type problemstillinger. Dette kan vanskeliggjøre raske beslutninger. Høringsuttalelser: De kommunale KF har vært hørt om spørsmålet om eventuelt oppheving av eksisterende KF og opprettelse av ny KF. 9 Alle forslag til endringer i gjeldende lovgivning krever godkjennelse fra departementet for kultur og kirkedepartement. Vi har tatt kontakt med dette departement for å få deres synspunkter på hva slags lovkrav som kan stilles dersom det skal opprettes et nytt KF for å drive eierskapapparat for alle kommunales samlinger . Departementet sier at de ikke ser noe prinsipielt problem med en slik løsning,",
+    "sumright":"Det blir vanskelig å få innsikt i hva slags kvalitet vi får med hensyn til konservering, dokumentasjon og forskningsmuligheter for de konserverte samlingane. Kommunen mister sin egen kontroll med disse aktivitetene. Dersom styret\/Tilsynsutvalget er valgt lokalt ville denne formen vært mer godkjent enn når byen selv velger hvem som skal drive våre ting. Styringsverktøyene mot de konsoliderede museene er da begrensende og krevende å bruke. Rekkefølgehensyn De viktigste hensynet bør være hvilke organisering som gir best mulig resultater innen de økonomiske rammene. Dette betyr at spørsmålet først og fremst handler om hvilket nivå det er mest meningsfullt å arbeide på - enten samlet for hele kommunen, delt for hver av"
+  },
+  {
+    "doc_id":"doc_50",
+    "left":"checkpoint-8500-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7000-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergen bystyre har enstemmig valgt Per Stiegler som nytt medlem for Arbeiderpartiet i Komite for kultur, idrett og næring, samt Thor Brekkeflat som nytt medlem i Komite for miljø og byutvikling for resten av valgperioden 2007-2011. Ingen representanter tok ordet under behandlingen.",
+    "sumright":"Bergen bystyre har enstemmig valgt Per Stiegler som nytt medlem for Arbeiderpartiet i Komite for kultur, idrett og næring, samt Thor Brekkeflat som nytt medlem i Komite for miljø og byutvikling. Begge valg gjelder for resten av valgperioden 2007-2011. Ingen representanter tok ordet under behandlingen."
+  },
+  {
+    "doc_id":"doc_20",
+    "left":"checkpoint-1000-gen1-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-7500-inputs-refs-preds-1000-examples",
+    "sumleft":"Til sammen har altså 5 av de nye tilsyns sakene blitt sluttført i løpet av 2.-halvåret. Resten av sakene er fortsatt i ferd med å bli avslutta i første halvår av 5. år. 1 av dem hadde vært i gang siden januar 25., og enda ett så langt tilbake som mars 4., men begge sakene nærmer seg konklusjon i løpet første del av år 5.. Vedrørende to av saker, der det ble funnet kritikkverdige forhold, men ikke avvik ved noen",
+    "sumright":"Det er vanlig at fylkesmannen foretar tilsyn med samme tema i flere kommuner samtidig. Ved systemtilsynene i 2014 deltok både ledere og ansatte fra ulike deler av kommunen i tilsynene. Tilsynene ga dermed gode læringsmuligheter for mange medarbeidere. 2 Oversikt over tilsynene i 2014 Tabell 1 viser hvilke tilsyn som ble gjennomført i 2014. Tabellen viser også hvilken type avvik som ble funnet ved hvert enkelt tilsyn. Tabell 1: Oversikt over tilsynene i 2014 Tema Type avvik Avsluttet Botjenester til Utviklingshemmede Ingen avvik 5. mai 2014 helse- og Botjenester til Utviklingshemmede 1 avvik 5. mai 2014 omsorgskontoret Bar"
+  },
+  {
+    "doc_id":"doc_18",
+    "left":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-8000-inputs-refs-preds-1000-examples",
+    "sumleft":"Dokumentet er en protokoll fra Bergenhus bydelsstyre som dokumenterer et forslag til vedtak om å ta en tidligere vedtatt sak på fullmakt den 20. desember 2002, til etterretning. Protokollen ble behandlet av Ole Vorland, bydelsdirektøren.",
+    "sumright":"Dokumentet er en protokoll fra Bergenhus bydelsstyre som tar opp saker vedtatt på fullmakt den 20. desember 2002. Forslaget til vedtak er at protokollen tas til etterretning."
+  },
+  {
+    "doc_id":"doc_16",
+    "left":"checkpoint-4000-inputs-refs-preds-1000-examples",
+    "right":"checkpoint-9500-inputs-refs-preds-1000-examples",
+    "sumleft":"Bergenhus bydelsstyre har enstemmig besluttet å ikke innvilge søknaden om bevilling for salg av brennevin ved \"De Tre Musketerer\" - \"Fekterloftet\". Dette er basert på helse- og sosialpolitiske hensyn, som frykten for en økning av alkoholforbruket.",
+    "sumright":"Bergenhus bydelsstyre har enstemmig besluttet å ikke innvilge søknaden om bevilling for salg av brennevin ved \"De Tre Musketerer\" - \"Fekterloftet\". Dette er basert på helse- og sosialpolitiske hensyn, som frykten for økt alkoholforbruk."
+  }
+]

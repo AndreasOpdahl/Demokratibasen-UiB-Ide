@@ -1,6 +1,0 @@
-model,n_pairwise_human,win_rate_human,n_pairwise_llm,win_rate_llm_pooled
-GPT4o-mini,0,,840,0.9321428571428572
-checkpoint-1000-inputs-refs-preds-1000-examples,0,,760,0.4019736842105263
-checkpoint-1500-inputs-refs-preds-1000-examples,0,,820,0.325
-checkpoint-2000-inputs-refs-preds-1000-examples,0,,720,0.39166666666666666
-checkpoint-2500-inputs-refs-preds-1000-examples,0,,860,0.42209302325581394
