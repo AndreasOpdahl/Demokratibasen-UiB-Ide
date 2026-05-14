@@ -8,7 +8,7 @@
 | checkpoint-10000-gen1-inputs-refs-preds-1000-examples | 0.481 | 0.481 | 0.577 | 0.500 |
 | checkpoint-10000-inputs-refs-preds-1000-examples | 0.640 | 0.520 | 0.520 | 0.600 |
 | checkpoint-1500-gen1-inputs-refs-preds-1000-examples | 0.269 | 0.250 | 0.385 | 0.346 |
-| checkpoint-1500-inputs-refs-preds-1000-examples | 0.404 | 0.558 | 0.519 | 0.462 |
+| checkpoint-1500-inputs-refs-preds-1000-examples | 0.404 | 0.558 | 0.538 | 0.462 |
 | checkpoint-2000-gen1-inputs-refs-preds-1000-examples | 0.463 | 0.315 | 0.556 | 0.407 |
 | checkpoint-2000-inputs-refs-preds-1000-examples | 0.635 | 0.692 | 0.712 | 0.654 |
 | checkpoint-2500-gen1-inputs-refs-preds-1000-examples | 0.456 | 0.529 | 0.456 | 0.485 |
@@ -19,7 +19,7 @@
 | checkpoint-3500-inputs-refs-preds-1000-examples | 0.556 | 0.625 | 0.639 | 0.597 |
 | checkpoint-4000-gen1-inputs-refs-preds-1000-examples | 0.346 | 0.372 | 0.423 | 0.397 |
 | checkpoint-4000-inputs-refs-preds-1000-examples | 0.486 | 0.527 | 0.432 | 0.459 |
-| checkpoint-4500-gen1-inputs-refs-preds-1000-examples | 0.444 | 0.444 | 0.403 | 0.514 |
+| checkpoint-4500-gen1-inputs-refs-preds-1000-examples | 0.444 | 0.444 | 0.389 | 0.514 |
 | checkpoint-4500-inputs-refs-preds-1000-examples | 0.519 | 0.500 | 0.463 | 0.611 |
 | checkpoint-500-gen1-inputs-refs-preds-1000-examples | 0.500 | 0.537 | 0.426 | 0.352 |
 | checkpoint-500-inputs-refs-preds-1000-examples | 0.440 | 0.520 | 0.560 | 0.480 |
@@ -54,7 +54,7 @@
 | checkpoint-10000-gen1-inputs-refs-preds-1000-examples | 0.558 | 0.500 | 0.500 | 0.462 |
 | checkpoint-10000-inputs-refs-preds-1000-examples | 0.620 | 0.500 | 0.580 | 0.560 |
 | checkpoint-1500-gen1-inputs-refs-preds-1000-examples | 0.269 | 0.365 | 0.231 | 0.404 |
-| checkpoint-1500-inputs-refs-preds-1000-examples | 0.538 | 0.577 | 0.596 | 0.519 |
+| checkpoint-1500-inputs-refs-preds-1000-examples | 0.538 | 0.577 | 0.596 | 0.538 |
 | checkpoint-2000-gen1-inputs-refs-preds-1000-examples | 0.463 | 0.407 | 0.444 | 0.426 |
 | checkpoint-2000-inputs-refs-preds-1000-examples | 0.596 | 0.654 | 0.654 | 0.654 |
 | checkpoint-2500-gen1-inputs-refs-preds-1000-examples | 0.338 | 0.353 | 0.324 | 0.368 |
@@ -86,7 +86,7 @@
 | checkpoint-8500-gen1-inputs-refs-preds-1000-examples | 0.323 | 0.419 | 0.548 | 0.387 |
 | checkpoint-8500-inputs-refs-preds-1000-examples | 0.464 | 0.464 | 0.464 | 0.464 |
 | checkpoint-9000-gen1-inputs-refs-preds-1000-examples | 0.566 | 0.566 | 0.618 | 0.526 |
-| checkpoint-9000-inputs-refs-preds-1000-examples | 0.440 | 0.480 | 0.580 | 0.520 |
+| checkpoint-9000-inputs-refs-preds-1000-examples | 0.440 | 0.480 | 0.580 | 0.500 |
 | checkpoint-9500-gen1-inputs-refs-preds-1000-examples | 0.466 | 0.466 | 0.414 | 0.397 |
 | checkpoint-9500-inputs-refs-preds-1000-examples | 0.630 | 0.500 | 0.537 | 0.463 |
 

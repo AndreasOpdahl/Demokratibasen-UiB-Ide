@@ -6621,7 +6621,7 @@
     "reference_summary":"Bergen byråd foreslår å avvikle fire kommunale museer og etablere et nytt kommunalt foretak for å forvalte museale samlinger. Dette er en del av en større museumsreform som tar sikte på å konsolidere driften av museene og effektivisere eierskapsforvaltningen. Byrådet mener at en samlet forvaltning vil være mer kostnadseffektiv og bedre tilpasset fremtidige behov.",
     "choice_side":"tie",
     "chosen":null,
-    "rationale":"[api_error] Anthropic HTTP 400: messages.0: user messages must have non-empty content"
+    "rationale":"Both summaries are identical and contain inaccurate information about the hearing responses. The document shows the museums had specific concerns and disagreements (e.g., about fund management, building ownership, operational interference), but both summaries falsely claim 'all mean that a new enterprise should be established' and that 'most want a separate board for each collection'—neither of which is supported by the actual hearing statements. Since the summaries are identical and equally inaccurate, they are equally uninformative regarding newsworthy elements like conflict and accountability."
   },
   {
     "doc_id":"doc_38",

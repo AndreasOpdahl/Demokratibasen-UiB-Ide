@@ -6609,7 +6609,7 @@
     "reference_summary":"Bystyret i Bergen har vedtatt en reguleringsplan for Sandviken Brygge, som omfatter flere eiendommer. Planen inkluderer bestemmelser om byggehøyder og oppheving av tidligere reguleringsplaner. Det ble også fremmet flere forslag til endringer, men de fleste ble avvist. Den endelige vedtaket ble fattet enstemmig.",
     "choice_side":"tie",
     "chosen":null,
-    "rationale":"[api_error] Anthropic HTTP 400: messages.0: user messages must have non-empty content"
+    "rationale":"Both summaries are identical and appear to be incomplete excerpts from the document that cut off mid-sentence. Neither summary captures the full final decision or important details about the building height regulations and area modifications. They are equally relevant (or equally irrelevant) as incomplete fragments."
   },
   {
     "doc_id":"doc_34",
@@ -6621,7 +6621,7 @@
     "reference_summary":"Bergen byråd foreslår å avvikle fire kommunale museer og etablere et nytt kommunalt foretak for å forvalte museale samlinger. Dette er en del av en større museumsreform som tar sikte på å konsolidere driften av museene og effektivisere eierskapsforvaltningen. Byrådet mener at en samlet forvaltning vil være mer kostnadseffektiv og bedre tilpasset fremtidige behov.",
     "choice_side":"tie",
     "chosen":null,
-    "rationale":"[api_error] Anthropic HTTP 400: messages.0: user messages must have non-empty content"
+    "rationale":"Both summaries are identical and contain significant inaccuracies. They claim all museums want separate boards for each collection, but the source document shows museums actually opposed this—they wanted minimal intervention and a single unified ownership management structure. Both summaries also misrepresent the hearing responses and fail to capture the actual key points about consolidation and the establishment of a single new municipal enterprise."
   },
   {
     "doc_id":"doc_38",
@@ -7135,9 +7135,9 @@
     "sumright":"Dokumentet beskriver prosedyren for innlevering av skriftlige spørsmål til bystyret i Bergen, med spesifikke tidsfrister og ansvarlige instanser.",
     "source_text":"\nSaksnr.: 0221- 200290003-136\n\nSkriftlige spørsmål.\nSpørsmål leveres skriftlig til bystyrets kontor en uke før møtet, senest\nkl. 1500 samme ukedag som møtedagen. Bystyrets kontor oversender\nspørsmålet til vedkommende byråd.\n",
     "reference_summary":"Dokumentet beskriver prosedyrene for innlevering av skriftlige spørsmål til bystyret, inkludert frister og hvordan spørsmålene skal sendes til byrådet.",
-    "choice_side":"tie",
-    "chosen":null,
-    "rationale":"[api_error] Anthropic HTTP 400: messages.0: user messages must have non-empty content"
+    "choice_side":"left",
+    "chosen":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "rationale":"Summary A provides specific, concrete details about the deadline (one week before the meeting, by 15:00) and the submission method (written to the city council office), making it more informative and relevant. Summary B is vague with 'specific timetables and responsible bodies' without actually stating what those are, making it less useful despite claiming specificity."
   },
   {
     "doc_id":"doc_50",

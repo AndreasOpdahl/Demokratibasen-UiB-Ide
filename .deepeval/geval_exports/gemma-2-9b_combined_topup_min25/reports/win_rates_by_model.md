@@ -10,7 +10,7 @@ Human judges (all dimensions pooled): _(none)_. LLM judges (all dimensions poole
 | checkpoint-10000-gen1-inputs-refs-preds-1000-examples | 0 | — | 416 | 0.496 |
 | checkpoint-10000-inputs-refs-preds-1000-examples | 0 | — | 400 | 0.544 |
 | checkpoint-1500-gen1-inputs-refs-preds-1000-examples | 0 | — | 416 | 0.333 |
-| checkpoint-1500-inputs-refs-preds-1000-examples | 0 | — | 416 | 0.490 |
+| checkpoint-1500-inputs-refs-preds-1000-examples | 0 | — | 416 | 0.493 |
 | checkpoint-2000-gen1-inputs-refs-preds-1000-examples | 0 | — | 432 | 0.469 |
 | checkpoint-2000-inputs-refs-preds-1000-examples | 0 | — | 416 | 0.644 |
 | checkpoint-2500-gen1-inputs-refs-preds-1000-examples | 0 | — | 544 | 0.457 |
@@ -21,7 +21,7 @@ Human judges (all dimensions pooled): _(none)_. LLM judges (all dimensions poole
 | checkpoint-3500-inputs-refs-preds-1000-examples | 0 | — | 576 | 0.569 |
 | checkpoint-4000-gen1-inputs-refs-preds-1000-examples | 0 | — | 624 | 0.408 |
 | checkpoint-4000-inputs-refs-preds-1000-examples | 0 | — | 592 | 0.515 |
-| checkpoint-4500-gen1-inputs-refs-preds-1000-examples | 0 | — | 576 | 0.462 |
+| checkpoint-4500-gen1-inputs-refs-preds-1000-examples | 0 | — | 576 | 0.461 |
 | checkpoint-4500-inputs-refs-preds-1000-examples | 0 | — | 432 | 0.543 |
 | checkpoint-500-gen1-inputs-refs-preds-1000-examples | 0 | — | 432 | 0.442 |
 | checkpoint-500-inputs-refs-preds-1000-examples | 0 | — | 400 | 0.497 |
@@ -42,6 +42,6 @@ Human judges (all dimensions pooled): _(none)_. LLM judges (all dimensions poole
 | checkpoint-8500-gen1-inputs-refs-preds-1000-examples | 0 | — | 496 | 0.387 |
 | checkpoint-8500-inputs-refs-preds-1000-examples | 0 | — | 448 | 0.518 |
 | checkpoint-9000-gen1-inputs-refs-preds-1000-examples | 0 | — | 608 | 0.520 |
-| checkpoint-9000-inputs-refs-preds-1000-examples | 0 | — | 400 | 0.552 |
+| checkpoint-9000-inputs-refs-preds-1000-examples | 0 | — | 400 | 0.551 |
 | checkpoint-9500-gen1-inputs-refs-preds-1000-examples | 0 | — | 464 | 0.418 |
 | checkpoint-9500-inputs-refs-preds-1000-examples | 0 | — | 432 | 0.508 |

@@ -7015,9 +7015,9 @@
     "sumright":"I møte den 12. mai 2025 ble møteinnkallingen og saklisten for rådet for mennesker med nedsatt funksjonsevne enstemmig godkjent. Det er viktig å sikre at informasjonen fra møtet blir dokumentert ordentlig, enten i Word eller PDF-format, ikke som bilder.",
     "source_text":"Dokument: Godkjenning av møteinnkalling og sakliste\n\n Vår ref. 25\/4224 - 1\n Saksbehandlar Perline Dugstad Vivås\n Dato 02.05.2025\n\nSaksframlegg\n\nGodkjenning av møteinnkalling og sakliste\n\n Saksnr. Utval Møtedato\n 12\/25 Råd for menneske med nedsett funksjonsevne 12.05.2025\n\nMøteinnkalling og sakliste vert godkjent.\n\nRåd for menneske med nedsett funksjonsevne 12.05.2025\n\nHandsaming\n\nSamrøystes vedteke. Hugs at informasjon blir scanna i word eller PDF (ikkje scanna som bilete).\n\nKRMNF - 12\/25 Vedtak\nMøteinnkalling og sakliste vert godkjent.\n\f",
     "reference_summary":"Møtet for Rådet for mennesker med nedsatt funksjonsevne den 12. mai 2025 ble enstemmig godkjent, inkludert møteinnkallingen og saklisten. Det ble understreket at dokumentasjonen skal scannes i Word eller PDF-format og ikke som bilder.",
-    "choice_side":"tie",
-    "chosen":null,
-    "rationale":"[api_error] HTTPSConnectionPool(host='api.mistral.ai', port=443): Read timed out. (read timeout=300.0)"
+    "choice_side":"left",
+    "chosen":"checkpoint-1500-inputs-refs-preds-1000-examples",
+    "rationale":"Summary A directly mirrors the source text without added or distorted details. Summary B introduces an unsupported claim about 'dokumentert ordentlig,' which is not in the original document."
   },
   {
     "doc_id":"doc_11",

@@ -5,7 +5,7 @@ checkpoint-1000-inputs-refs-preds-1000-examples,0,,704,0.640625
 checkpoint-10000-gen1-inputs-refs-preds-1000-examples,0,,416,0.4963942307692308
 checkpoint-10000-inputs-refs-preds-1000-examples,0,,400,0.54375
 checkpoint-1500-gen1-inputs-refs-preds-1000-examples,0,,416,0.3329326923076923
-checkpoint-1500-inputs-refs-preds-1000-examples,0,,416,0.49038461538461536
+checkpoint-1500-inputs-refs-preds-1000-examples,0,,416,0.49278846153846156
 checkpoint-2000-gen1-inputs-refs-preds-1000-examples,0,,432,0.46875
 checkpoint-2000-inputs-refs-preds-1000-examples,0,,416,0.6442307692307693
 checkpoint-2500-gen1-inputs-refs-preds-1000-examples,0,,544,0.4568014705882353
@@ -16,7 +16,7 @@ checkpoint-3500-gen1-inputs-refs-preds-1000-examples,0,,416,0.41225961538461536
 checkpoint-3500-inputs-refs-preds-1000-examples,0,,576,0.5685763888888888
 checkpoint-4000-gen1-inputs-refs-preds-1000-examples,0,,624,0.4078525641025641
 checkpoint-4000-inputs-refs-preds-1000-examples,0,,592,0.5152027027027027
-checkpoint-4500-gen1-inputs-refs-preds-1000-examples,0,,576,0.4618055555555556
+checkpoint-4500-gen1-inputs-refs-preds-1000-examples,0,,576,0.4609375
 checkpoint-4500-inputs-refs-preds-1000-examples,0,,432,0.5428240740740741
 checkpoint-500-gen1-inputs-refs-preds-1000-examples,0,,432,0.44212962962962965
 checkpoint-500-inputs-refs-preds-1000-examples,0,,400,0.4975
@@ -37,6 +37,6 @@ checkpoint-8000-inputs-refs-preds-1000-examples,0,,400,0.58625
 checkpoint-8500-gen1-inputs-refs-preds-1000-examples,0,,496,0.3870967741935484
 checkpoint-8500-inputs-refs-preds-1000-examples,0,,448,0.5178571428571429
 checkpoint-9000-gen1-inputs-refs-preds-1000-examples,0,,608,0.5197368421052632
-checkpoint-9000-inputs-refs-preds-1000-examples,0,,400,0.5525
+checkpoint-9000-inputs-refs-preds-1000-examples,0,,400,0.55125
 checkpoint-9500-gen1-inputs-refs-preds-1000-examples,0,,464,0.41810344827586204
 checkpoint-9500-inputs-refs-preds-1000-examples,0,,432,0.5081018518518519

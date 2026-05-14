@@ -32,6 +32,13 @@ lines in each, reloads ``Data/eval/<folder_name>/`` for matching keys, and refre
 under ``.deepeval/<GEVAL_EXPORT_DIRNAME>/<folder_name>/`` for each touched model. You can still
 point ``--checkpoint-dir`` at a single model folder to scope work to that run.
 
+**No ``Data/eval`` for that leaf:** if ``Data/eval/<judgment_leaf>/`` is missing (or you pass
+``--geval-export-leaf``), the script loads pairwise rows from
+``.deepeval/geval_exports/<export_leaf>/json/geval__<judge>__<dim>.json`` instead, matching the
+same ``judgment_stable_key`` as the checkpoint lines. Export refresh then uses
+``summarization_long.json`` and ``pairs_table.json`` from that same export tree (both must
+exist under ``json/``).
+
 Usage::
 
     python scripts/retry_geval_checkpoint_503.py
@@ -41,6 +48,8 @@ Usage::
     python scripts/retry_geval_checkpoint_503.py --no-export
     python scripts/retry_geval_checkpoint_503.py --only-errors 503,429
     python scripts/retry_geval_checkpoint_503.py --errors http_400_context_window
+    python scripts/retry_geval_checkpoint_503.py --checkpoint-dir .deepeval/geval_judgment_checkpoints/gemma-2-9b_combined_topup_min25 \\
+        --geval-export-leaf gemma-2-9b
 """
 
 from __future__ import annotations
@@ -51,7 +60,7 @@ import re
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Any, FrozenSet
+from typing import Any, FrozenSet, Literal, cast
 
 import numpy as np
 import pandas as pd
@@ -363,6 +372,108 @@ def _find_row_for_key(
     return None
 
 
+def _judge_json_fragment(judge_id: str) -> str:
+    """Filename fragment for ``geval__…__<dim>.json`` (same rule as checkpoint stems)."""
+    return judge_id.replace("\\", "__").replace("/", "__")
+
+
+def _geval_table_json_path(export_dir: Path, judge_id: str, dimension: str) -> Path:
+    return export_dir / "json" / f"geval__{_judge_json_fragment(judge_id)}__{dimension}.json"
+
+
+def _try_geval_export_dir(exports_root: Path, basename: str) -> Path | None:
+    """Return ``exports_root/<basename>`` if it has ``json/geval__*.json``; else ``None``."""
+    cand = (exports_root / basename).resolve()
+    jdir = cand / "json"
+    if not jdir.is_dir():
+        return None
+    if not any(jdir.glob("geval__*.json")):
+        return None
+    return cand
+
+
+def _resolve_geval_export_for_leaf(
+    judgment_leaf: Path,
+    exports_root: Path,
+    export_leaf_override: str | None,
+) -> Path | None:
+    """Pick export tree under ``exports_root`` for checkpoint leaf ``judgment_leaf``."""
+    if export_leaf_override:
+        return _try_geval_export_dir(exports_root, export_leaf_override.strip())
+    return _try_geval_export_dir(exports_root, judgment_leaf.name)
+
+
+def _find_row_in_geval_export(
+    export_dir: Path,
+    judge_id: str,
+    dimension: str,
+    target_key: str,
+    cache: dict[tuple[str, str], pd.DataFrame | None],
+) -> pd.Series | None:
+    """Locate a row in ``geval__<judge>__<dim>.json`` whose stable key matches ``target_key``."""
+    ck = (judge_id, dimension)
+    if ck not in cache:
+        p = _geval_table_json_path(export_dir, judge_id, dimension)
+        if not p.is_file():
+            cache[ck] = None
+        else:
+            cache[ck] = cast(pd.DataFrame, pd.read_json(p))
+    df = cache[ck]
+    if df is None or df.empty:
+        return None
+    for _, row in df.iterrows():
+        if judgment_stable_key(judge_id, dimension, row) == target_key:
+            return row
+    return None
+
+
+def _load_pairs_and_long_from_geval_export(export_dir: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Load ``pairs_table.json`` + ``summarization_long.json`` from a completed export tree."""
+    jdir = export_dir / "json"
+    pairs_path = jdir / "pairs_table.json"
+    long_path = jdir / "summarization_long.json"
+    if not long_path.is_file():
+        raise FileNotFoundError(f"Missing {long_path} (needed to refresh exports without Data/eval).")
+    if not pairs_path.is_file():
+        raise FileNotFoundError(f"Missing {pairs_path} (needed to refresh exports without Data/eval).")
+    long_df = cast(pd.DataFrame, pd.read_json(long_path))
+    pairs_df = load_pairs_table_json(pairs_path)
+    return pairs_df, long_df
+
+
+def _resolve_retry_context_root(
+    judgment_leaf: Path,
+    *,
+    geval_exports_root: Path,
+    geval_export_leaf: str | None,
+) -> tuple[Literal["eval"], Path] | tuple[Literal["geval"], Path]:
+    """Return either ``("eval", eval_dir)`` or ``("geval", export_dir)`` for this judgment leaf."""
+    if geval_export_leaf:
+        gdir = _resolve_geval_export_for_leaf(judgment_leaf, geval_exports_root, geval_export_leaf)
+        if gdir is None:
+            raise FileNotFoundError(
+                f"--geval-export-leaf {geval_export_leaf!r}: no export under {geval_exports_root} "
+                f"with json/geval__*.json (tried {geval_exports_root / geval_export_leaf})."
+            )
+        return ("geval", gdir)
+    try:
+        ev = resolve_eval_dir_for_judgment_leaf(judgment_leaf)
+        return ("eval", ev)
+    except FileNotFoundError:
+        gdir = _resolve_geval_export_for_leaf(judgment_leaf, geval_exports_root, None)
+        if gdir is None:
+            raise FileNotFoundError(
+                f"No eval data for judgment leaf {judgment_leaf.name!r} under Data/eval, and no "
+                f"fallback under {geval_exports_root / judgment_leaf.name!r} with json/geval__*.json. "
+                f"Pass --geval-export-leaf <name> where <name> is a folder under {geval_exports_root}."
+            ) from None
+        print(
+            f"[info] No Data/eval/{judgment_leaf.name}; using G-Eval export context from {gdir}",
+            flush=True,
+        )
+        return ("geval", gdir)
+
+
 def _rewrite_file(
     path: Path,
     key_to_judgment: dict[str, dict[str, object]],
@@ -461,6 +572,23 @@ def main() -> int:
         ),
     )
     parser.add_argument(
+        "--geval-exports-root",
+        type=Path,
+        default=None,
+        help="Parent of per-model export trees (default: <repo>/.deepeval/geval_exports).",
+    )
+    parser.add_argument(
+        "--geval-export-leaf",
+        type=str,
+        default=None,
+        metavar="NAME",
+        help=(
+            "Folder name under geval_exports (e.g. gemma-2-9b) used to load json/geval__*.json "
+            "for retries when Data/eval/<checkpoint_leaf> is absent, or to force this export even "
+            "if Data/eval exists (e.g. checkpoint leaf gemma-2-9b_combined_topup_min25 vs export gemma-2-9b)."
+        ),
+    )
+    parser.add_argument(
         "-e",
         "--only-errors",
         "--errors",
@@ -494,6 +622,12 @@ def main() -> int:
 
     max_docs = MAX_DOCUMENTS if args.max_documents is None else args.max_documents
     n_pairs = N_PAIRS_PER_DOCUMENT if args.n_pairs_per_document is None else args.n_pairs_per_document
+
+    geval_exports_root = (
+        REPO_ROOT / ".deepeval" / "geval_exports"
+        if args.geval_exports_root is None
+        else args.geval_exports_root.expanduser().resolve()
+    )
 
     if not ck.is_dir():
         print(f"Not a directory: {ck}", file=sys.stderr)
@@ -556,29 +690,59 @@ def main() -> int:
     evaluate_fn = make_local_llm_evaluate_fn(verbose=True)
     key_to_judgment: dict[str, dict[str, object]] = {}
     skipped: list[str] = []
+    leaf_source: dict[Path, tuple[Literal["eval", "geval"], Path]] = {}
 
     for leaf in sorted(by_leaf_files.keys()):
         paths_dict = by_leaf_files[leaf]
-        eval_dir = resolve_eval_dir_for_judgment_leaf(leaf)
-        if _leaf_is_per_model_judgment_subfolder(leaf) and eval_dir.name != leaf.name:
-            print(
-                f"[warn] Judgment folder {leaf.name!r} but eval data loaded from {eval_dir} "
-                f"(expected ``Data/eval/{leaf.name}/`` with at least one *.jsonl). "
-                "Stable keys will often not match — align folder names or set EVAL_DATA_DIR.",
-                file=sys.stderr,
+        try:
+            mode, root_path = _resolve_retry_context_root(
+                leaf,
+                geval_exports_root=geval_exports_root,
+                geval_export_leaf=args.geval_export_leaf,
             )
-        _, _, ctx = _load_eval_pairs_and_context(
-            eval_dir=eval_dir,
-            pair_seed=args.pair_seed,
-            max_documents=max_docs,
-            n_pairs_per_document=n_pairs,
-            judgment_leaf=leaf,
-        )
-        print(
-            f"Context [{leaf.name}]: eval={eval_dir} subset_rows={len(ctx)} "
-            f"(pair_seed={args.pair_seed}, max_documents={max_docs!r}, n_pairs={n_pairs})",
-            flush=True,
-        )
+        except FileNotFoundError as e:
+            print(e, file=sys.stderr)
+            return 1
+        leaf_source[leaf] = (mode, root_path)
+
+        if mode == "eval":
+            eval_dir = root_path
+            if _leaf_is_per_model_judgment_subfolder(leaf) and eval_dir.name != leaf.name:
+                print(
+                    f"[warn] Judgment folder {leaf.name!r} but eval data loaded from {eval_dir} "
+                    f"(expected ``Data/eval/{leaf.name}/`` with at least one *.jsonl). "
+                    "Stable keys will often not match — align folder names or set EVAL_DATA_DIR.",
+                    file=sys.stderr,
+                )
+            _, _, ctx = _load_eval_pairs_and_context(
+                eval_dir=eval_dir,
+                pair_seed=args.pair_seed,
+                max_documents=max_docs,
+                n_pairs_per_document=n_pairs,
+                judgment_leaf=leaf,
+            )
+            print(
+                f"Context [{leaf.name}]: eval={eval_dir} subset_rows={len(ctx)} "
+                f"(pair_seed={args.pair_seed}, max_documents={max_docs!r}, n_pairs={n_pairs})",
+                flush=True,
+            )
+
+            def _row_for_key(judge_id: str, dimension: str, target_key: str) -> pd.Series | None:
+                return _find_row_for_key(ctx, judge_id, dimension, target_key)
+
+        else:
+            export_dir = root_path
+            geval_df_cache: dict[tuple[str, str], pd.DataFrame | None] = {}
+            print(
+                f"Context [{leaf.name}]: geval_export={export_dir} "
+                f"(lookup in json/geval__*__*.json; no Data/eval rebuild)",
+                flush=True,
+            )
+
+            def _row_for_key(judge_id: str, dimension: str, target_key: str) -> pd.Series | None:
+                return _find_row_in_geval_export(
+                    export_dir, judge_id, dimension, target_key, geval_df_cache
+                )
 
         unique_keys: dict[str, None] = {}
         for items in paths_dict.values():
@@ -598,12 +762,12 @@ def main() -> int:
                 skipped.append(key_str[:80] + "...")
                 continue
 
-            row = _find_row_for_key(ctx, judge_id, dimension, key_str)
+            row = _row_for_key(judge_id, dimension, key_str)
             if row is None:
                 print(
-                    f"[skip] leaf={leaf.name!r} no matching pair row for key "
+                    f"[skip] leaf={leaf.name!r} no matching row for key "
                     f"(j={judge_id!r} d={dimension!r}) — "
-                    "check MAX_DOCUMENTS / pair seed / eval data match the original run.",
+                    "check keys vs geval JSON (or eval / pair seed if using Data/eval).",
                     flush=True,
                 )
                 skipped.append(key_str[:120])
@@ -641,24 +805,31 @@ def main() -> int:
 
     print("Refreshing exports from checkpoints (no new LLM calls expected)...", flush=True)
     for leaf in sorted(leaves_updated):
-        pairs_df, long_df, _ = _load_eval_pairs_and_context(
-            eval_dir=resolve_eval_dir_for_judgment_leaf(leaf),
-            pair_seed=args.pair_seed,
-            max_documents=max_docs,
-            n_pairs_per_document=n_pairs,
-            judgment_leaf=leaf,
-        )
+        mode, root_path = leaf_source[leaf]
         if args.export_dir is not None:
             exp_root = args.export_dir.expanduser().resolve()
+        elif mode == "geval":
+            exp_root = root_path
         else:
             exp_root = resolve_export_dir_for_judgment_leaf(leaf)
+
+        if mode == "geval":
+            pairs_df, long_df = _load_pairs_and_long_from_geval_export(root_path)
+        else:
+            pairs_df, long_df, _ = _load_eval_pairs_and_context(
+                eval_dir=root_path,
+                pair_seed=args.pair_seed,
+                max_documents=max_docs,
+                n_pairs_per_document=n_pairs,
+                judgment_leaf=leaf,
+            )
         out = _refresh_exports(
             pairs_df=pairs_df,
             long_df=long_df,
             checkpoint_dir=leaf,
             export_dir=exp_root,
         )
-        where = "forced --export-dir" if args.export_dir is not None else GEVAL_EXPORT_DIRNAME.strip()
+        where = "forced --export-dir" if args.export_dir is not None else ("geval export" if mode == "geval" else GEVAL_EXPORT_DIRNAME.strip())
         print(f"Exports [{leaf.name}] → {out.resolve()} ({where})", flush=True)
     return 0
 
