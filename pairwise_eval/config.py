@@ -124,7 +124,7 @@ LOCAL_LLM_TIMEOUT_S = 300.0
 # First N documents (by first-seen ``doc_id`` order). None = use the full loaded corpus.
 # For per-model checkpoint selection, keep None so Bradley–Terry / win rates use every example
 # in that model folder’s JSONL files.
-MAX_DOCUMENTS: int | None = 65
+MAX_DOCUMENTS: int | None = 150
 
 # Random model pairs sampled per document (capped by available combinations); see :func:`pairwise_eval.pairs.build_pairs_table`.
 N_PAIRS_PER_DOCUMENT: int = 8
@@ -158,7 +158,7 @@ EXTEND_PAIRS_TABLE_JSON: Path | None = None
 EVAL_DATA_DIR: Path | None = None
 
 # Winners / alternate corpus (uncomment). Keeps ``Data/eval`` as the default when this is ``None``.
-# EVAL_DATA_DIR = Path("Data/eval/winners")
+# EVAL_DATA_DIR = Path("Data/winners")  # flat dir; each *.jsonl stem is <model>__checkpoint-...
 
 # --- Export root ---
 # Artifacts go under ``<cwd>/.deepeval/<GEVAL_EXPORT_DIRNAME>/`` (see
@@ -177,7 +177,7 @@ GEVAL_CHECKPOINT_DIR: Path | None = REPO_ROOT / ".deepeval" / "geval_judgment_ch
 # after ``MAX_DOCUMENTS``. Avoids re-running and overwriting exports when ``MAX_DOCUMENTS`` was
 # lowered while checkpoints still reflect more documents. **Heuristic only** — it does not
 # check that every judge×dimension finished. Set ``False`` to always run every model.
-GEVAL_SKIP_MODEL_IF_CHECKPOINT_DOC_COUNT_GTE_RUN: bool = True
+GEVAL_SKIP_MODEL_IF_CHECKPOINT_DOC_COUNT_GTE_RUN: bool = False
 
 DEFAULT_PAIR_SEED = 42
 DEFAULT_GEVAL_BASE_SEED = 42

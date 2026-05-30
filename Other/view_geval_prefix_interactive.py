@@ -62,7 +62,7 @@ REPO_ROOT = _SCRIPT_DIR.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from pairwise_eval.config import HUMAN_JUDGES
+from pairwise_eval.config import HUMAN_JUDGES, REFERENCE_SUMMARY_MODEL_ID
 _DEFAULT_EXPORT_ROOT = REPO_ROOT / ".deepeval" / "geval_exports"
 # Subdirs of the export root that are not summarization-model export trees (plots, scratch, etc.).
 _IGNORE_EXPORT_LEAF_NAMES = frozenset({"images"})
@@ -202,6 +202,17 @@ def checkpoint_generation(model_id: str) -> str:
     return "gen1" if "-gen1-" in str(model_id).lower() else "legacy"
 
 
+def checkpoint_display_label(model_id: str, step: Optional[int]) -> str:
+    """Legend label: model prefix for winner ids, otherwise ``ch-<step>``."""
+    s = str(model_id)
+    marker = "__checkpoint-"
+    if marker in s:
+        prefix = s.split(marker, 1)[0].strip()
+        if prefix:
+            return prefix
+    return f"ch-{step}" if step is not None else s
+
+
 def build_n_grid(n_docs: int, start_n: int, step_n: int) -> List[int]:
     if n_docs <= 0:
         return []
@@ -250,9 +261,14 @@ def rows_to_compact_payload(
     mi = {m: i for i, m in enumerate(model_list)}
 
     checkpoints = sorted(
-        (m for m in model_list if m.startswith("checkpoint-") and checkpoint_step(m) is not None),
+        # Accept both plain ids ("checkpoint-3500-...") and prefixed ids
+        # ("model__checkpoint-3500-..."), used by Data/winners flat exports.
+        (m for m in model_list if checkpoint_step(m) is not None),
         key=lambda m: checkpoint_step(m) or 0,
     )
+    # Also expose the reference (gold) model as a normal selectable trace.
+    if REFERENCE_SUMMARY_MODEL_ID in mi and REFERENCE_SUMMARY_MODEL_ID not in checkpoints:
+        checkpoints.append(REFERENCE_SUMMARY_MODEL_ID)
 
     judges = sorted({str(r["judge_id"]) for r in kept})
     human_set = frozenset(str(h) for h in HUMAN_JUDGES)
@@ -294,14 +310,15 @@ def rows_to_compact_payload(
         step = checkpoint_step(k)
         gen = checkpoint_generation(k)
         glab = "gen1" if gen == "gen1" else "legacy"
+        short = checkpoint_display_label(k, step)
         ck_meta.append(
             {
                 "id": k,
                 "step": step,
                 "mi": mi[k],
                 "gen": gen,
-                "short": f"ch-{step}",
-                "short_gen": f"ch-{step} ({glab})",
+                "short": short,
+                "short_gen": f"{short} ({glab})",
             }
         )
 

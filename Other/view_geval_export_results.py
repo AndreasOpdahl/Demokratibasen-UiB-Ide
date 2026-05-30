@@ -104,6 +104,14 @@ def _checkpoint_generation(model_id: str) -> str:
     return "gen1" if "-gen1-" in mid else "legacy"
 
 
+def _model_display_name(model_id: str) -> Optional[str]:
+    mid = str(model_id).strip()
+    if "__checkpoint-" in mid:
+        base = mid.split("__checkpoint-", 1)[0].strip()
+        return base or None
+    return None
+
+
 def _resolve_leaf_path(arg: str, export_root: Path) -> Path:
     p = Path(arg)
     if p.is_dir():
@@ -137,7 +145,7 @@ def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str
         dim_j: Dict[str, Dict[str, List[Any]]] = {}
         for jc in judge_cols:
             judge_id = str(jc)[: -len("_theta")]
-            pts: List[Tuple[int, float, str]] = []
+            pts: List[Tuple[int, float, str, Optional[str]]] = []
             for row in rows:
                 mid = str(row.get("model", "")).strip()
                 if "checkpoint-" not in mid:
@@ -146,6 +154,7 @@ def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str
                 if st is None:
                     continue
                 gen = _checkpoint_generation(mid)
+                model_label = _model_display_name(mid)
                 raw = (row.get(jc) or "").strip()
                 if raw == "":
                     continue
@@ -155,13 +164,14 @@ def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str
                     continue
                 if v != v:
                     continue
-                pts.append((st, v, gen))
+                pts.append((st, v, gen, model_label))
             pts.sort(key=lambda t: t[0])
             if pts:
                 dim_j[judge_id] = {
-                    "steps": [a for a, _, _ in pts],
-                    "values": [b for _, b, _ in pts],
-                    "generations": [g for _, _, g in pts],
+                    "steps": [a for a, _, _, _ in pts],
+                    "values": [b for _, b, _, _ in pts],
+                    "generations": [g for _, _, g, _ in pts],
+                    "labels": [lb for _, _, _, lb in pts],
                 }
         if dim_j:
             out[dim] = dim_j
@@ -194,7 +204,9 @@ def _parse_win_rates_from_summary(
         judge_cols = [h for h in header if h.endswith("_win_rate") and h != "model"]
         if "model" not in header or not judge_cols:
             continue
-        per_judge: Dict[str, List[Tuple[int, float, str]]] = {jc[: -len("_win_rate")]: [] for jc in judge_cols}
+        per_judge: Dict[str, List[Tuple[int, float, str, Optional[str]]]] = {
+            jc[: -len("_win_rate")]: [] for jc in judge_cols
+        }
         for ln in lines[1:]:
             if re.match(r"\|\s*---", ln):
                 continue
@@ -209,6 +221,7 @@ def _parse_win_rates_from_summary(
             if st is None:
                 continue
             gen = _checkpoint_generation(mid)
+            model_label = _model_display_name(mid)
             for jc in judge_cols:
                 judge_id = jc[: -len("_win_rate")]
                 raw = (row.get(jc) or "").strip()
@@ -220,16 +233,17 @@ def _parse_win_rates_from_summary(
                     continue
                 if v != v:
                     continue
-                per_judge[judge_id].append((st, v, gen))
+                per_judge[judge_id].append((st, v, gen, model_label))
         dim_j: Dict[str, Dict[str, List[Any]]] = {}
         for jid, pts in per_judge.items():
             if not pts:
                 continue
             pts.sort(key=lambda t: t[0])
             dim_j[jid] = {
-                "steps": [a for a, _, _ in pts],
-                "values": [b for _, b, _ in pts],
-                "generations": [g for _, _, g in pts],
+                "steps": [a for a, _, _, _ in pts],
+                "values": [b for _, b, _, _ in pts],
+                "generations": [g for _, _, g, _ in pts],
+                "labels": [lb for _, _, _, lb in pts],
             }
         if dim_j:
             out[dim] = dim_j
@@ -597,32 +611,44 @@ function selectedGenerations() {
   return out;
 }
 
-/** Per checkpoint step, arithmetic mean of y over selected judges that have a value at that step. */
-function meanSeriesOverSelectedJudges(byJ, selectedJudges, targetGen) {
-  const stepToVals = new Map();
+/** Mean of y over selected judges, keyed by model label (if present) else checkpoint step. */
+function meanSeriesOverSelectedJudges(byJ, selectedJudges, targetGen, useModelLabels) {
+  const keyToVals = new Map();
+  const keyOrder = new Map();
   for (const judge of Object.keys(byJ)) {
     if (judge === MEAN_KEY) continue;
     if (!selectedJudges.has(judge)) continue;
     const d = byJ[judge];
     if (!d || !d.steps || !d.values) continue;
     const gens = Array.isArray(d.generations) ? d.generations : [];
+    const labels = Array.isArray(d.labels) ? d.labels : [];
     for (let i = 0; i < d.steps.length; i++) {
       const g = String(gens[i] || "legacy");
       if (g !== targetGen) continue;
       const s = Number(d.steps[i]);
       const v = Number(d.values[i]);
-      if (!Number.isFinite(s) || !Number.isFinite(v)) continue;
-      if (!stepToVals.has(s)) stepToVals.set(s, []);
-      stepToVals.get(s).push(v);
+      if (!Number.isFinite(v)) continue;
+      const rawLabel = labels[i];
+      const label = typeof rawLabel === "string" ? rawLabel.trim() : "";
+      const key = useModelLabels && label ? label : s;
+      if (!Number.isFinite(s) && !(useModelLabels && label)) continue;
+      if (!keyToVals.has(key)) keyToVals.set(key, []);
+      keyToVals.get(key).push(v);
+      if (!keyOrder.has(key)) keyOrder.set(key, i);
     }
   }
-  if (stepToVals.size === 0) return null;
-  const steps = Array.from(stepToVals.keys()).sort((a, b) => a - b);
-  const values = steps.map(s => {
-    const arr = stepToVals.get(s);
+  if (keyToVals.size === 0) return null;
+  const keys = Array.from(keyToVals.keys());
+  if (useModelLabels) {
+    keys.sort((a, b) => (keyOrder.get(a) || 0) - (keyOrder.get(b) || 0));
+  } else {
+    keys.sort((a, b) => Number(a) - Number(b));
+  }
+  const values = keys.map(k => {
+    const arr = keyToVals.get(k);
     return arr.reduce((a, b) => a + b, 0) / arr.length;
   });
-  return { steps, values };
+  return { keys, values };
 }
 
 function render() {
@@ -658,17 +684,21 @@ function render() {
       const dcol = colorForDim(dim);
 
       const chLab = (s) => "ch-" + String(Math.round(Number(s)));
+      const firstJudge = Object.keys(byJ).find(j => j !== MEAN_KEY);
+      const firstD = firstJudge ? byJ[firstJudge] : null;
+      const firstLabels = firstD && Array.isArray(firstD.labels) ? firstD.labels : [];
+      const useModelLabels = firstLabels.some(lbl => typeof lbl === "string" && lbl.trim().length > 0);
 
       if (showMeanJudges && countJudgesWithData(byJ, selectedJudges) >= 2) {
         for (const gen of selectedGenerations()) {
-          const d = meanSeriesOverSelectedJudges(byJ, selectedJudges, gen);
-          if (!(d && d.steps.length)) continue;
+          const d = meanSeriesOverSelectedJudges(byJ, selectedJudges, gen, useModelLabels);
+          if (!(d && d.keys.length)) continue;
           const glab = gen === "gen1" ? "Gen1" : "Legacy";
           traces.push({
-            x: d.steps,
+            x: d.keys,
             y: d.values,
-            text: d.steps.map(chLab),
-            hovertemplate: "%{text}<br>%{y:.4f}<extra></extra>",
+            text: d.keys.map(k => (typeof k === "number" ? chLab(k) : String(k))),
+            hovertemplate: "%{x}<br>%{y:.4f}<extra></extra>",
             mode: "lines+markers",
             name: leaf + " / " + dim + " / " + MEAN_LAB + " / " + glab,
             line: {
@@ -693,24 +723,31 @@ function render() {
         const d = byJ[judge];
         if (!d.steps.length) continue;
         const gens = Array.isArray(d.generations) ? d.generations : [];
+        const labels = Array.isArray(d.labels) ? d.labels : [];
         const jd = dashForJudge(judge);
         const msym = markerForJudge(judge);
         for (const gen of selectedGenerations()) {
-          const fSteps = [];
+          const fX = [];
           const fVals = [];
+          const fText = [];
           for (let i = 0; i < d.steps.length; i++) {
             const g = String(gens[i] || "legacy");
             if (g !== gen) continue;
-            fSteps.push(d.steps[i]);
+            const step = d.steps[i];
+            const rawLabel = labels[i];
+            const label = typeof rawLabel === "string" ? rawLabel.trim() : "";
+            const xVal = useModelLabels && label ? label : step;
+            fX.push(xVal);
             fVals.push(d.values[i]);
+            fText.push(Number.isFinite(Number(step)) ? chLab(step) : String(step));
           }
-          if (!fSteps.length) continue;
+          if (!fX.length) continue;
           const glab = gen === "gen1" ? "Gen1" : "Legacy";
           traces.push({
-            x: fSteps,
+            x: fX,
             y: fVals,
-            text: fSteps.map(chLab),
-            hovertemplate: "%{text}<br>%{y:.4f}<extra></extra>",
+            text: fText,
+            hovertemplate: "%{x}<br>%{text}<br>%{y:.4f}<extra></extra>",
             mode: "lines+markers",
             name: leaf + " / " + dim + " / " + judge.split("/").pop() + " / " + glab,
             line: { color: dcol, width: 2.4, dash: gen === "gen1" ? jd : "dot" },
@@ -732,21 +769,35 @@ function render() {
   }
 
   const xSet = new Set();
+  let hasCategoricalX = false;
   traces.forEach(tr => {
     (tr.x || []).forEach(v => {
+      if (typeof v === "string") {
+        hasCategoricalX = true;
+        return;
+      }
       const n = Number(v);
       if (Number.isFinite(n)) xSet.add(n);
     });
   });
-  const tickvals = Array.from(xSet).sort((a, b) => a - b);
-  if (tickvals.length) {
+  if (hasCategoricalX) {
     layout.xaxis = Object.assign({}, layout.xaxis, {
-      title: "Checkpoint",
-      tickmode: "array",
-      tickvals: tickvals,
-      ticktext: tickvals.map(v => "ch-" + String(Math.round(v))),
-      tickangle: -38,
+      title: "Model",
+      type: "category",
+      tickangle: -28,
+      categoryorder: "trace",
     });
+  } else {
+    const tickvals = Array.from(xSet).sort((a, b) => a - b);
+    if (tickvals.length) {
+      layout.xaxis = Object.assign({}, layout.xaxis, {
+        title: "Checkpoint",
+        tickmode: "array",
+        tickvals: tickvals,
+        ticktext: tickvals.map(v => "ch-" + String(Math.round(v))),
+        tickangle: -38,
+      });
+    }
   }
 
   Plotly.react("chart", traces, layout, { responsive: true });
