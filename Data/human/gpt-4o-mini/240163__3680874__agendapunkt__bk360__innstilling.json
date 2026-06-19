@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240163:3680874:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:29:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal for a new care housing project for people with disabilities is significant for local residents."
+    },
+    "summary_headline": "Ny reguleringsplan for omsorgsboliger i Midtunvegen",
+    "summary_body": "Byrådet har foreslått en reguleringsplan for omsorgsboliger i Midtunvegen, som skal gi et bofellesskap med åtte leiligheter for multifunksjonshemmede. Planen er en del av Boligløftet og vil bli behandlet politisk, der Kommunalt råd for personer med funksjonsnedsettelse (KRPF) kan komme med innspill før saken går videre til utvalg og bystyre. Dette tiltaket er viktig for å forbedre boligtilbudet for personer med funksjonsnedsettelse i Bergen."
+  }
+}

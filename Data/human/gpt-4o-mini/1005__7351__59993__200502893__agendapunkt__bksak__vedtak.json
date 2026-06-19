@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7351:59993:200502893:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:16:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a unanimous decision on a cultural policy, which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Bystyret vedtar ny handlingsplan for kunst- og kulturutveksling",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt en ny strategisk handlingsplan for internasjonal kunst- og kulturpolitikk for perioden 2011-2015. Planen skal prioritere kunst- og kulturutveksling for å styrke byens kunst- og kulturliv. Ingen representanter tok ordet under behandlingen, og både byrådet og komiteen for kultur, idrett og næring støttet vedtaket."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "242972:5011039:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:35:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the use of meeting rooms and a delayed response to a proposal, which may affect local political operations."
+    },
+    "summary_headline": "Diskusjon om møteromsbruk og forsinket svar på ytringsfrihetsforslag",
+    "summary_body": "Under møtet 24. januar 2023 diskuterte forretningsutvalget bruken av ledige møterom i 14. etg og Kaigaten for gruppemøter. Hilde Onarheim (H) og Mikkel Grüner (SV) fremmet spørsmål om tilgjengelighet for partiene. Byrådsleder Rune Bakervik (A) foreslo en gjennomgang av møteromsbruken. I tillegg ble det informert om at et representantforslag fra Diane Alexandra Berbain (SV) om ytringsfrihet for funksjonshemmede er forsinket, med svar planlagt til bystyremøtet i mars."
+  }
+}

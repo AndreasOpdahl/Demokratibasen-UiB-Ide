@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10551:68712:201301526:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:43:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant changes in planning guidelines that will affect housing and transport in Bergen."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse til nye planretningslinjer for bolig- og transportplanlegging",
+    "summary_body": "Bergen kommune har sendt sin høringsuttalelse til den nye statlige planretningslinjen for samordnet bolig-, areal- og transportplanlegging, med frist 25. oktober 2013. Byråden anbefaler at kommunen selv ivaretar arealpolitikken, og understreker viktigheten av tydelige føringer i retningslinjen for å unngå tvil i planprosesser. De nye retningslinjene legger større vekt på regionale planer og boligutvikling enn tidligere, og vil ikke medføre vesentlige endringer i kommunens nåværende planarbeid. Dette er relevant for innbyggere i Bergen, da det vil påvirke fremtidig boligbygging og transportløsninger."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:4355:40316:200416266:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:47:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The application for a liquor license has local relevance and some dissent."
+    },
+    "summary_headline": "Søtt Salt får anbefaling for skjenkebevilling, men møter motstand",
+    "summary_body": "Rusmiddelpolitisk råd har anbefalt Søtt Salt i Skostreedet 14 å få alminnelig skjenkebevilling for øl og vin til sluttet lag frem til 30. juni 2008. Vedtaket ble fattet med 2 stemmer imot fra KrF og RV, noe som indikerer uenighet i saken. Dette kan påvirke lokale arrangementer og sosiale sammenkomster i området."
+  }
+}

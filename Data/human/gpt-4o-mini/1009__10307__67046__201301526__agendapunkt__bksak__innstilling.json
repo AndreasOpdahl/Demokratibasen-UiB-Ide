@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10307:67046:201301526:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:40:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposed change to bus routes that could impact local transportation."
+    },
+    "summary_headline": "Bergen kommune støtter endring av ruteløyve for Flybussbergen.no AS",
+    "summary_body": "Bergen kommune har gitt en positiv høringsuttalelse til Flybussbergen.no AS sin søknad om endring av ruteløyve på strekningen mellom Haukeland sykehus og Bergen Lufthavn Flesland. Selskapet ønsker å kunne ta opp og sette av passasjerer underveis, samt øke antall avganger, noe som er etterspurt av passasjerene. Byråden for byutvikling, klima og miljø, Filip Rygg, understreker at Hordaland fylkeskommune må vurdere holdeplasskapasiteten nøye. Høringsfristen er 22. mars 2013."
+  }
+}

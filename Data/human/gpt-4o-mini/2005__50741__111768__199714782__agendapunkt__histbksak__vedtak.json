@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50741:111768:199714782:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:42:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine meeting plan with no significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for byutvikling vedtatt uten motstand",
+    "summary_body": "Hovedutvalg for byutvikling i Bergen kommune har enstemmig vedtatt møteplanen for 1999. Saken ble behandlet den 2. november 1998, og det ble besluttet at saken tas til orientering."
+  }
+}

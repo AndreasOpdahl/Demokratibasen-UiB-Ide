@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9612:64710:201100056:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:46:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves a local dispute over a garage construction, which affects residents' property rights."
+    },
+    "summary_headline": "Dispensasjon gitt for garasje i Laksevåg",
+    "summary_body": "Byrådet har besluttet å gi dispensasjon fra kommuneplanens arealformål for oppføring av en dobbel garasje på Bjørndalsbrotet 265 i Laksevåg. Klagen fra en innbygger ble tatt til følge, og fagetaten får ansvar for å behandle selvbyggesaken og stille nødvendige vilkår. Dette kan påvirke reguleringen av området, som tidligere var underlagt restriksjoner for sikringssone for forsvaret."
+  }
+}

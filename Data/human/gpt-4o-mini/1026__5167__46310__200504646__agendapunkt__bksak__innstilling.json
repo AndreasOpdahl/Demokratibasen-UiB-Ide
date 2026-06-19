@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5167:46310:200504646:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:07:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested building permit for a holiday home in a sensitive area, raising concerns about environmental impact and adherence to local planning regulations."
+    },
+    "summary_headline": "Byrådet anbefaler dispensasjon for ny hytte i Mildevegen til tross for klage",
+    "summary_body": "Byrådet i Bergen har anbefalt å opprettholde dispensasjonen for oppføring av en ny fritidsbolig på Mildevegen 179, til tross for en klage fra Fylkesmannen i Hordaland. Klagen omhandler manglende dokumentasjon om en tidligere hytte som brant ned i 1982. Byrådet mener at saken er spesiell og at ny hytte kan bygges uten å skade hensynene bak kommunedelplanen for området. Det stilles imidlertid krav om at den nye hytten plasseres på samme sted som den gamle, ikke overskrider grunnflaten, og tilpasses omgivelsene. Klagen fra Fylkesmannen tas ikke til følge, og saken vil bli sendt videre til fylkesmannen for endelig avgjørelse."
+  }
+}

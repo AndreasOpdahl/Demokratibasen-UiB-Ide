@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:267:1787:200190441:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:27:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines important budget deadlines and processes that will affect local governance and services."
+    },
+    "summary_headline": "Frist for budsjettinnspill satt til 20. november",
+    "summary_body": "Komite for finans og næring har fastsatt fristen for innlevering av tekstforslag og merknader til byrådets budsjettforslag for 2002/økonomiplan 2002-2005 til 20. november. Komiteen vil behandle forslagene i sitt møte 28. november. Dette er en viktig prosess for å sikre at innbyggernes behov blir ivaretatt i det kommende budsjettet."
+  }
+}

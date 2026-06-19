@@ -1,0 +1,18 @@
+{
+  "dokument_id": "245079:4955700:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:41:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the municipal audit report and its implications, which is relevant for local governance."
+    },
+    "summary_headline": "Kontrollutvalget behandler revisjonsrapport for 2022",
+    "summary_body": "Kontrollutvalget i Bergen har behandlet Deloittes revisjonsrapport for regnskapsåret 2022 i sitt møte 26. april 2023. Utvalget har enstemmig vedtatt å oversende rapporten til byrådet for uttalelse og ber om tilbakemelding innen 5. juni 2023. Dette er en viktig prosess for å sikre ansvarlighet i kommunens økonomi."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51083:112685:199713355:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:44:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant proposed expansion of a local shopping center, which has implications for community services and local economy."
+    },
+    "summary_headline": "Sletten Shopping Senter får avslag på utvidelsessøknad",
+    "summary_body": "Det faste utvalg for plansaker har avslått søknaden fra Sletten Shopping Senter om utvidelse med 4500 m², begrunnet i nylig vedtatte retningslinjer for detaljhandelen i Bergen. Administrasjonen mener at senteret, som ligger i Landås bydel, ikke oppfyller kriteriene for verken bydelssenter eller lokalsenter. Til tross for at senteret ønsker å styrke sitt tilbud for å møte lokalbefolkningens behov, er det vurdert at en utvidelse ikke kan anbefales på nåværende tidspunkt. Dette kan påvirke tilgjengeligheten av varer og tjenester for innbyggerne i området."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5149:45323:200608983:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:25:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a liquor license to Vågen Fetevare has local relevance and potential impact on the community."
+    },
+    "summary_headline": "Byrådet innvilger skjenkebevilling til Vågen Fetevare",
+    "summary_body": "Byrådet har besluttet å innvilge søknaden om alminnelig skjenkebevilling for alkoholholdig drikk til Vågen Fetevare, beliggende på Kong Oscarsgt. 10, frem til 30. juni 2008. Søknaden ble først vurdert negativt på grunn av vandel, men etter at søker fremla ny dokumentasjon, ble det anbefalt å gi bevillingen. Skjenking i bakgård er tillatt frem til kl. 22.00, og stedet vil ha en forventet matomsetning på 53%, noe som kvalifiserer det som et spisested. Byrådsleder Henning Warloe står bak innstillingen."
+  }
+}

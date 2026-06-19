@@ -1,0 +1,18 @@
+{
+  "dokument_id": "d33bc3f5-9617-570e-b18b-bdd8c61e3bbf",
+  "kommune_nummer": 4624,
+  "kommune_navn": "Bjørnafjorden",
+  "generated_at": "2026-02-19 23:21:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a significant decision regarding wastewater discharge permits that affects local residents."
+    },
+    "summary_headline": "Godkjent utslepp av sanitært avløpsvatn i Bjørnafjorden kommune",
+    "summary_body": "Bjørnafjorden kommune har godkjent søknaden om utslepp av sanitært avløpsvatn frå to einebustadar, ein fritidsbustad og eit naust på Kalven. Utsleppet skal reinsast gjennom eit minireinseanlegg før det går til sjøen. Vedtaket er gjort av avdeling for samferdsel og VA, og det er stilt fleire vilkår for godkjenninga, inkludert krav om tømming av anlegget og sikring av kumlokk. Nabovarsel er sendt ut, men ingen merknader er mottatt. Det er også mulighet for klage på vedtaket."
+  }
+}

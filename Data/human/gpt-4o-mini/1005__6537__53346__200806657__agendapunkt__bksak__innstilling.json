@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:6537:53346:200806657:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:10:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The introduction of free choice in home nursing services is a significant change that affects many residents and has generated diverse opinions."
+    },
+    "summary_headline": "Fritt brukervalg i hjemmesykepleien innføres i Bergen",
+    "summary_body": "Byrådet i Bergen har besluttet å innføre fritt brukervalg av hjemmesykepleie fra 1. januar 2010. Dette gir brukerne mulighet til å velge mellom kommunale og private leverandører av hjemmesykepleie, med kommunen som dekker kostnadene uavhengig av valg. Byrådet mener dette vil øke kvaliteten og brukermedvirkningen. Høringsuttalelser fra ulike organisasjoner har avdekket bekymringer om kvalitet og rekruttering, men byrådet vil ta hensyn til disse i det videre arbeidet. Innføringen av ordningen vil gjelde for alle bydeler i kommunen."
+  }
+}

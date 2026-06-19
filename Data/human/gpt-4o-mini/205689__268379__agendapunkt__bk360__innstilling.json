@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205689:268379:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:09:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av protokoll fra byrådsmøte",
+    "summary_body": "Byrådet godkjente protokollen fra møtet den 24. mai 2018. Dette er en standard prosedyre uten kontroverser eller betydelig innvirkning på innbyggerne."
+  }
+}

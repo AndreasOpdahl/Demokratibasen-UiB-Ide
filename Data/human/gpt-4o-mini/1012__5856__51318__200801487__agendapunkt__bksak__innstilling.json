@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:5856:51318:200801487:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:54:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a local activity plan which is relevant but lacks significant conflict or financial implications."
+    },
+    "summary_headline": "Fana bydelsstyre vedtar aktivitetsplan for høsten 2008",
+    "summary_body": "Fana bydelsstyre skal i juni vedta aktivitetsplanen for høsten 2008, som inkluderer møter og fellesopplæring for bydelsstyrene. Planen inneholder aktiviteter som orientering om kulturlivet i Fana og reguleringsplaner for Nesttun Park. Det er også planlagt bydelsbefaring 17. juni, hvor representanter fra ulike lokale grupper vil presentere sine planer. Bydelsstyret ledes av Roar Kristiansen, bystyredirektør."
+  }
+}

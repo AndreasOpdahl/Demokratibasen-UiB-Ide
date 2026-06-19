@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:4258:39474:200400076:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:49:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains several administrative updates and reports relevant to local education and youth activities, but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Oppvekstkomiteen vurderer flere saker om utdanning og aktiviteter",
+    "summary_body": "Komite for oppvekst har behandlet flere saker i sitt møte, inkludert aktiviteter knyttet til Friluftslivets År 2005 og rapportering om ventelistesituasjonen ved PPT. Det er også sendt brev fra Oddny Miljeteig til byråd Hans-Carl Tveit angående utlysning av stilling som kommunaldirektør for oppvekst. Utdanningsforbundet har sendt uttalelser om budsjettsituasjonen i grunnskolen og barnehager. I tillegg er det invitasjoner til seminarer om tiltak for minoritetsungdom og sosialpolitikk. Disse sakene kan påvirke utdanningssektoren og ungdomsaktiviteter i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4757:44136:200209734:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:06:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant decision regarding the placement of a kindergarten, which affects local residents."
+    },
+    "summary_headline": "Utsettelse av reguleringsplan for barnehage i Rådalen Nord",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig vedtatt å utsette behandlingen av reguleringsplanen for Fana, del av gnr. 119, Rådal Nord. Saken sendes tilbake til Byrådet for vurdering av innplassering av barnehage i området. Dette kan påvirke fremtidige barnehagetilbud i Rådalen Nord, noe som er av interesse for lokale familier."
+  }
+}

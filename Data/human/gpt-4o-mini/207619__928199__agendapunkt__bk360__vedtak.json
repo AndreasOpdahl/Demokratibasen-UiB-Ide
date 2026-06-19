@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207619:928199:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:14:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains routine scheduling changes with no significant newsworthy elements."
+    },
+    "summary_headline": "Endringer i møteplan for Rådet for byforming og arkitektur",
+    "summary_body": "Møtet for evaluering av Bergen kommunes arkitektur- og byformingspris er flyttet til 10. oktober, og befaringen er utsatt til 25. oktober. Juleavslutningen for Rådet for byforming og arkitektur vil finne sted etter møtet den 19. desember."
+  }
+}

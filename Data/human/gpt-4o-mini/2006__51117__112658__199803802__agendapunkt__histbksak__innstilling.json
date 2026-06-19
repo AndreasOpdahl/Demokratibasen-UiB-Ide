@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:51117:112658:199803802:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:51:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document addresses a local environmental concern but lacks significant controversy or impact."
+    },
+    "summary_headline": "Bevaring av trær på Vågsalmenningen tas til orientering",
+    "summary_body": "Hovedutvalg for fritid og kultur har mottatt en forespørsel fra Ragnhild Hedemann om bevaring av trær på Vågsalmenningen. Grønn avdeling bekrefter at de vil følge vedtatte planer for treplanting i området, med fokus på å bevare eksisterende trær. Det er ingen vedtak om endringer, og saken tas til orientering."
+  }
+}

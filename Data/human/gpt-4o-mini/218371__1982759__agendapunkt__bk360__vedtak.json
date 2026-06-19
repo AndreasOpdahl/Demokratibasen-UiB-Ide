@@ -1,0 +1,18 @@
+{
+  "dokument_id": "218371:1982759:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:39:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document highlights a conflict regarding the handling of documentation in a significant case, which may affect local stakeholders."
+    },
+    "summary_headline": "Kritikk av håndtering i Vigilo-saken",
+    "summary_body": "Forretningsutvalget behandlet 21. januar 2020 en sak om høringen i \"Vigilo-saken\". August Simonsen (V) og Reidar Staalesen (A) har sendt en e-post med kommentarer til forberedelsene, mens Marte Leirvåg (H) og Cesilie Tveit (FNB) kritiserer håndteringen av dokumentasjonen. Dette kan påvirke barnehage, skole og idrett i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2115:20399:200000123:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:42:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant change in operating hours for a local business, which could impact residents and nearby establishments."
+    },
+    "summary_headline": "Utvidede åpningstider for uteservering i Kong Oscarsgate innvilget",
+    "summary_body": "Bergen kommune har innvilget søknaden fra Roots AS om vanlige åpningstider for uteservering bak Dr. Livingstone og Mr. Bean i Kong Oscarsgate 12. Den nye skjenketiden blir fra kl. 08.00 til 24.00, og åpningstiden til kl. 00.30, noe som gir gjester mulighet til å spise middag senere. Politiet har ikke innvendinger mot endringen, og det er ikke rapportert om støyproblemer fra uteserveringen. Tillatelsen gjelder fra 15. mars til 1. oktober 2000. Dette kan påvirke både lokale innbyggere og besøkende, da området er kjent for sine restauranter."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "247543:5031661:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:48:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises significant environmental concerns regarding yacht emissions and proposes a new tax, which could impact local residents."
+    },
+    "summary_headline": "Forslag om båtmotoravgift for å redusere utslipp fra superyachter i Bergen",
+    "summary_body": "Mailiss Solheim-Åkerblom (R) stiller spørsmål til byråden om innføring av en avgift på fossile båtmotorer, etter forslag fra Thor Haakon Bakke (MDG) om forbud mot superyachter i Bergen. Hun viser til tidligere anbefalinger om en progressiv båtmotoravgift for å redusere utslipp, som i dag er subsidiert. Solheim-Åkerblom ber byråden vurdere en avgift basert på hestekrefter og drivstoffbruk, samt ta initiativ til statlige myndigheter for å fremme dette behovet. Dette kan ha stor betydning for miljøet og innbyggerne i Bergen."
+  }
+}

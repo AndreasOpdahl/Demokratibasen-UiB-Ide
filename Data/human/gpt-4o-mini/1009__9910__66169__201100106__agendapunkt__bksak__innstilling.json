@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9910:66169:201100106:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:48:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses proposed regulations for teacher education that will impact local educational institutions and future teachers."
+    },
+    "summary_headline": "Byrådet støtter nye rammeplaner for lærerutdanning trinn 8-13",
+    "summary_body": "Byrådet i Bergen har vedtatt å støtte Kunnskapsdepartementets høringsforslag til forskrifter om rammeplaner for lærerutdanning for trinn 8-13. Høringen, som ble sendt ut 31. august 2012, har frist til 30. november 2012, og omfatter flere utdanninger, inkludert faglærerutdanning og yrkesfaglærerutdanning. Målet med de nye rammeplanene er å heve kvaliteten på lærerutdanningene og tilpasse dem skolens behov. Utdanningene skal iverksettes fra høsten 2013. Byrådet mener at dette vil styrke lærerkompetansen og bidra til bedre overganger mellom skoleslagene."
+  }
+}

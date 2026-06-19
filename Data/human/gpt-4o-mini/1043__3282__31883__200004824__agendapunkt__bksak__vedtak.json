@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:3282:31883:200004824:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:18:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine procedural matter with no significant newsworthy elements."
+    },
+    "summary_headline": "Innkalling og dagsorden godkjent i Årstad bydelsstyre",
+    "summary_body": "Årstad bydelsstyre godkjente innkallingen og dagsorden for møtet den 3. september 2002, med en endring foreslått av Arve Fjeldsbø (H) om rekkefølgen på sakene."
+  }
+}

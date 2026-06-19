@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9282:65662:201200109:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:22:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant tax exemption for a local educational institution, impacting public finances and community services."
+    },
+    "summary_headline": "Bystyret vurderer fritak for eiendomsskatt til Åsanefolkehøgskole",
+    "summary_body": "Bergen bystyre skal behandle en søknad fra Åsanefolkehøgskole om fritak for eiendomsskatt for to eiendommer i Hylkjeneset. Skolen, eid av IOGT Norge, søker om fritak fra 1. januar 2012, og begrunner dette med at eiendommene brukes til undervisning og bolig for elever og personale. Den årlige eiendomsskatten utgjør 128 421 kroner for begge eiendommer. Byrådet anbefaler at fritaket innvilges, men det vil bortfalle dersom eiendommene endres til andre formål. Dette kan ha betydelig innvirkning på skolens økonomi og drift."
+  }
+}

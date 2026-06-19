@@ -1,0 +1,18 @@
+{
+  "dokument_id": "bb351661-1463-5137-bba2-fd43f2e257fd",
+  "kommune_nummer": 4626,
+  "kommune_navn": "Øygarden",
+  "generated_at": "2026-02-19 23:18:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a significant regulatory change with local implications and a formal complaint, indicating community concern."
+    },
+    "summary_headline": "Klage på reguleringsplan for bustader på Straume sendt til Statsforvaltaren",
+    "summary_body": "Hans Gunnar Våge har klaga på plan- og miljøutvalet sitt vedtak om endring av reguleringsplan for bustader på Straume sør, som aukar tal bustadeiningar frå 24 til 38. Klagar fryktar auka ferdsle og parkeringsproblem i området. Kommunedirektøren rår til at klagen ikkje vert tatt til følgje, og saka vert sendt til Statsforvaltaren i Vestland for endeleg avgjerd. Utbygginga er viktig for å realisere bustadtilbod i eit sentralt område, men har møtt motstand frå naboar."
+  }
+}

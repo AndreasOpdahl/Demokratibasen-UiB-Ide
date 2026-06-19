@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:42:239:200090169:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:03:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant decision on a housing application that requires a dispensation from planning regulations, impacting local development."
+    },
+    "summary_headline": "Dispensasjon for nytt bolighus i Åsane godkjent av byrådet",
+    "summary_body": "Byrådet har anbefalt at Komite for miljø og byutvikling gir dispensasjon fra kommuneplanens plankrav for oppføring av et nytt bolighus på Åsane, gnr 197 bnr 86. Søknaden om bygging krever dispensasjon, men Tomteselskapet mener at dette ikke vil hindre pågående planarbeid i området. Det settes vilkår om tilknytning til tekniske anlegg når disse er tilgjengelige. Dette kan påvirke boligmarkedet i Åsane og er et skritt mot fortetting i området."
+  }
+}

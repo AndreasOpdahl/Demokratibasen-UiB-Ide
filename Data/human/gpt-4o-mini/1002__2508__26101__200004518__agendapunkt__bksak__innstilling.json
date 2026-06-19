@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2508:26101:200004518:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:18:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a legal control request regarding a municipal plan, indicating some political contention."
+    },
+    "summary_headline": "Lovlighetsklage avvist av Arna bydelsstyre",
+    "summary_body": "Arna bydelsstyre har avvist en lovlighetsklage fra bystyrerepresentantene Ragnhild Hedeman (SV), Arne Sortevik (Frp) og Liv Røssland (Frp) angående behandlingen av kommunedelplanen for Ytre Arna. Bydelsdirektør Paal Fennell forklarte at vedtaket fra 27. februar 2001 ikke var et realitetsvedtak, og dermed ikke kunne vurderes for lovlighetskontroll. Dette kan påvirke hvordan fremtidige planer behandles i bydelen."
+  }
+}

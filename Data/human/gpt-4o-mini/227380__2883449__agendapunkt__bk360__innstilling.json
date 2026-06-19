@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227380:2883449:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:58:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a new cultural strategy for the elderly in Bergen, which is a significant and first-time initiative."
+    },
+    "summary_headline": "Bergen kommune lanserer ny kulturstrategi for eldre",
+    "summary_body": "Bergen kommune har foreslått en ny kulturstrategi for eldre, «Bergen kommune - en aldersvennlig kunst- og kulturby 2021-2026», som nå sendes på offentlig høring med en frist på fire uker. Strategien, som er den første av sitt slag i kommunen, tar sikte på å inkludere eldre i kulturlivet og anerkjenne dem som en ressurs for samfunnet. Byråd for kultur, mangfold og likestilling, Katrine Nødtvedt, understreker at strategien vil bidra til økt deltakelse og livskvalitet for eldre. Høringen er en del av en bredere innsats for å fremme folkehelse og aktiv aldring i Bergen."
+  }
+}

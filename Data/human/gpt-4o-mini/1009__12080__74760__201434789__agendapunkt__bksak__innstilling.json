@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:12080:74760:201434789:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:51:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant budget allocations and adjustments that will impact local services and funding."
+    },
+    "summary_headline": "Bergen kommune foreslår fondsavsetninger på 9,12 millioner kroner",
+    "summary_body": "Bergen kommune planlegger å avsette totalt 9,12 millioner kroner i fondsavsetninger ved årsregnskapet for 2015. Dette inkluderer 1,4 millioner kroner til vikarservice for å balansere inntekter og kostnader, samt 7,5 millioner kroner til modernisering av helse- og omsorgstjenester. I tillegg foreslås 160.000 kroner til flytting av Gårds- og bruksarkivet til Bergen byarkiv. Byråden for finans, Dag Inge Ulstein, anbefaler disse justeringene for å sikre tilgjengelighet av midler tidlig i budsjettåret 2016."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5171:47750:199938439:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:09:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a complaint regarding a housing development, which has local relevance and some dissent."
+    },
+    "summary_headline": "Klage på boligprosjekt avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har behandlet en klage fra Bybo AS angående endring av rammetillatelse for oppføring av fem leiligheter på Ole Irgensvei 76. Klagen ble enstemmig avvist, og komiteen opprettholder fagetatens vedtak fra 2006. Anne Gine Hestetun (A) foreslo å utsette saken for befaring, men dette forslaget fikk ikke flertall. Saken er nå avgjort, og det blir ingen endringer i tillatelsen."
+  }
+}

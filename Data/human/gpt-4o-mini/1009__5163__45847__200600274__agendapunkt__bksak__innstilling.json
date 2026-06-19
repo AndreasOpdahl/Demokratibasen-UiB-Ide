@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5163:45847:200600274:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:25:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves significant public spending and impacts local maintenance costs."
+    },
+    "summary_headline": "Bergen kommune bevilger 226.000 kroner til ekstraordinære vedlikeholdskostnader for Torget",
+    "summary_body": "Bergen kommune har besluttet å utbetale 226.000 kroner til Driftsselskapet Torget i Bergen AS (TiB) for å dekke ekstraordinære vedlikeholdskostnader i 2006. Dette beløpet er nødvendig for å håndtere vedlikehold som overstiger de avtalte kostnadene på 324.000 kroner, som nå anslås å bli totalt 550.000 kroner. Bakgrunnen for kostnadene inkluderer reparasjoner på sjøvannsinntak og pålegg fra Mattilsynet. Byråden for finans, Hans E. Seim, anbefaler denne utbetalingen for å sikre selskapets likviditet før årets slutt."
+  }
+}

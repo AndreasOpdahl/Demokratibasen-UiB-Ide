@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4875:44914:200000762:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:57:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant final decision on a local development plan affecting Åsane, with implications for land use and community planning."
+    },
+    "summary_headline": "Endelig vedtak for kommunedelplan i Åsane",
+    "summary_body": "Byrådet har anbefalt at bystyret vedtar kommunedelplanen for Åsane sentrale deler, etter en lang planprosess og mekling med Fylkeslandbruksstyret. Planen inkluderer endringer som å redusere næringsareal for å gi plass til en ny gravplass. Bystyret skal nå fatte endelig vedtak, som ikke kan påklages. Dette vedtaket vil påvirke utviklingen av området og er viktig for innbyggerne i Åsane."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "78b03329-5863-50e6-826c-3919dc773b45",
+  "kommune_nummer": 4621,
+  "kommune_navn": "Voss",
+  "generated_at": "2026-02-19 23:07:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is an informational circular regarding budget proposals, lacking immediate local impact or controversy."
+    },
+    "summary_headline": "Informasjonsrundskriv om kommuneproposisjonen 2026",
+    "summary_body": "Kommunal- og distriktsdepartementet har sendt ut et rundskriv om kommuneproposisjonen for 2026 og det reviderte nasjonalbudsjettet for 2025. Dokumentet inneholder informasjon som kan være relevant for kommunene, men det er ingen spesifikke beslutninger eller kontroverser nevnt."
+  }
+}

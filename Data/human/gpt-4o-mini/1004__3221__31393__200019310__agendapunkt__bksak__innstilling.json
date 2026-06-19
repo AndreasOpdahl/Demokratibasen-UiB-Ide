@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3221:31393:200019310:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:27:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant changes to the mental health plan affecting local services and funding."
+    },
+    "summary_headline": "Bergenhus bydelsstyre vurderer endringer i psykiatriplanen",
+    "summary_body": "Bergenhus bydelsstyre skal behandle endringsforslag til psykiatriplanen for perioden 2001-2004, som er påvirket av redusert statlig finansiering. I 2002 fikk bydelen 1.068.000 kroner, 247.000 kroner mindre enn forventet. Dette fører til justeringer i målsettingene og omdisponering av stillinger, inkludert opprettelse av en ny stilling som psykiatrisk vernepleier ved helsestasjonene. Endringene må godkjennes politisk, og det er usikkerhet om videre finansiering for 2003. Dette vil påvirke tilbudet til innbyggerne i Bergenhus."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7457:58616:200910703:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:19:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant change in land use from commercial to residential, impacting local traffic and community structure."
+    },
+    "summary_headline": "Klage på bruksendring fra næring til bolig godkjent med vilkår",
+    "summary_body": "Komite for miljø og byutvikling har godkjent en klage om bruksendring fra næring til bolig på Skjoldstølen 11, til tross for tidligere avslag. Vedtaket ble fattet med 12 stemmer fra Høyre, Arbeiderpartiet, Fremskrittspartiet og Kristelig Folkeparti, mens 3 stemte imot fra SV, Venstre og Senterpartiet. Godkjenningen inkluderer krav om dokumentasjon av vannforsyning og avtale om tilleggsparsell. Endringen forventes å redusere biltrafikken i området, noe som vil forbedre trafikksituasjonen. Byrådet får fullmakt til å godkjenne fasadeendringen. Dette tiltaket kan ha stor betydning for beboerne i området."
+  }
+}

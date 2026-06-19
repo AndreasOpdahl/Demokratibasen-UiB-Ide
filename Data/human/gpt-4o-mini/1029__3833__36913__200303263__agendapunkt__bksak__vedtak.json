@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:3833:36913:200303263:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:31:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant issues regarding children's rights and the use of public resources in child welfare."
+    },
+    "summary_headline": "Bystyret får rapport om barnevernets bruk av barnehageplasser",
+    "summary_body": "Kontrollutvalget har behandlet delrapport I om barnevernets bruk av barnehageplasser som hjelpetiltak og fremhever at det er usaklig å nekte barn barnehageplass så lenge barnevernet betaler. Bystyret oppfordres til å ta rapporten til etterretning og ber byrådet iverksette tiltak for bedre oppfølging og evaluering av hjelpetiltakene. Det påpekes også behov for bedre informasjonsutveksling mellom barnehager og barnevern, spesielt med hensyn til taushetsplikten. Dette er viktig for å sikre barnas rettigheter og kvaliteten på hjelpetiltakene."
+  }
+}

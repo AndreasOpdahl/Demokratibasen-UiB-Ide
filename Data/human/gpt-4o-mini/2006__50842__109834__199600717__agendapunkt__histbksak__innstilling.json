@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50842:109834:199600717:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:49:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses budgetary issues and minor concerns but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Budsjettoppfølging for fritid og kultur viser mindre uropunkter",
+    "summary_body": "Hovedutvalg for fritid og kultur har mottatt en regnskapsrapport pr. 31. mars 1998 som avdekker noen mindre uropunkter. Administrasjonen har iverksatt tiltak for å håndtere disse. Budsjettet for Kommunalavdeling fritid og kultur er på 220,4 millioner kroner, men det er forventet et rammekutt på 1 million kroner i løpet av året. Det er ingen spesielle uropunkter innen kulturavdelingen, men idrettsavdelingen rapporterer om inntektssvikt på opp mot 1 million kroner. Hovedutvalget vil bli orientert om videre utvikling."
+  }
+}

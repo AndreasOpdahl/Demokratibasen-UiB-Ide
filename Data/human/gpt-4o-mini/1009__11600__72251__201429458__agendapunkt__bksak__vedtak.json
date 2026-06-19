@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11600:72251:201429458:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:48:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a development agreement that has local relevance but lacks significant controversy or financial implications."
+    },
+    "summary_headline": "Bergen kommune godkjenner utbyggingsavtale med Marineholmen Forskningspark AS",
+    "summary_body": "Bergen kommune har godkjent en utbyggingsavtale med Marineholmen Forskningspark AS. Byrådet fattet vedtaket i møte den 12. februar 2015, og byråden for byutvikling, klima og miljø får myndighet til å signere avtalen på vegne av kommunen. Dette kan påvirke utviklingen av området, men det er ingen kjent motstand eller kontrovers knyttet til avtalen."
+  }
+}

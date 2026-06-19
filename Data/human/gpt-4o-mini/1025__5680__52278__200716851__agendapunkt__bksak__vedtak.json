@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:5680:52278:200716851:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:50:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses administrative matters related to refugee settlement but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Komite for oppvekst vurderer bosetting av enslige mindreårige flyktninger",
+    "summary_body": "I møtet den 23. oktober 2008 behandlet Komite for oppvekst sak 72-08, som omhandler forespørselen fra IMDi om bosetting av flere enslige mindreårige flyktninger i 2008. Byråd Liv Røssland har sendt notater til bystyrets kontor angående integreringstilskudd og svar på spørsmål fra tidligere møter. Det ble også utdelt dokumenter om budsjettmal for 2009 og tertialrapport for 2008. Ingen kontroverser eller dissent ble rapportert."
+  }
+}

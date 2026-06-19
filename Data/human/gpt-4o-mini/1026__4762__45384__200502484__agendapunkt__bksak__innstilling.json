@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4762:45384:200502484:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:07:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision regarding a temporary structure for a prominent agricultural business, impacting local land use and aesthetics."
+    },
+    "summary_headline": "Byrådet gir midlertidig dispensasjon for sommerstall i Åsane",
+    "summary_body": "Byrådet har besluttet å gi midlertidig dispensasjon for oppføring av en sommerstall ved Stall Blindheim i Åsane, tilknyttet avlsdriften for hester. Tiltakshaver, John Blindheim, har fått avslag tidligere, men byrådet mener at stallen er nødvendig for å støtte opp om avlsstasjonen, som er den største på Vestlandet. Dispensasjonen er midlertidig, noe som betyr at kommunen kan kreve hallen fjernet når som helst. Byrådet vurderer at tiltaket ikke vil skape presedens for fremtidige søknader, til tross for estetiske bekymringer fra Grønn etat og Fylkesmannen."
+  }
+}

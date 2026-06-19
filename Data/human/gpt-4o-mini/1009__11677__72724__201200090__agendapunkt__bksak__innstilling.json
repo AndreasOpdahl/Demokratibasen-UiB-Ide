@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11677:72724:201200090:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:49:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document contains several significant decisions affecting local infrastructure and public spending."
+    },
+    "summary_headline": "Byrådet godkjenner viktige tiltak for infrastruktur og økonomisk kontroll",
+    "summary_body": "Byrådet i Bergen har fattet flere viktige vedtak i sitt møte 26. mars 2015. Blant annet ble det godkjent en kostnadsramme på 19,5 millioner kroner for omlegging av VA-ledninger på strekningen Åsamyrane – Salhusvegen øst. I tillegg ble det innvilget dispensasjon fra byggegrenser langs sjø for et prosjekt i Åsane, og det ble vedtatt tiltak for å styrke internkontrollen mot økonomiske misligheter i Idrettsservice. Byrådet har også sendt forprosjektet for hovedsykkelrute og gateopprustning av Strandgaten på høring. Disse beslutningene vil ha direkte innvirkning på innbyggerne i Bergen, både økonomisk og i forhold til infrastruktur."
+  }
+}

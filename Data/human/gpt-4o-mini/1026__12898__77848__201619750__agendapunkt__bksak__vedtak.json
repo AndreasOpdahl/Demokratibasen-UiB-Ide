@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12898:77848:201619750:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:59:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to approve a new office building in a contested area has significant local implications and involves public interest."
+    },
+    "summary_headline": "Klage på avslag om nybygg på Kokstadflaten innvilges",
+    "summary_body": "Komite for miljø og byutvikling har besluttet å innvilge en klage på avslag om oppføring av et nytt kontorbygg på Kokstadflaten 36. Vedtaket, som ble fattet enstemmig, opphever tidligere vedtak fra 2016 og gir tillatelse til bygging av et tre etasjers næringsbygg samt ny avkjørsel. Komiteen vurderte at fordelene ved å gi dispensasjon fra reguleringsplanen klart overstiger ulempene, og at det ikke er behov for en ny planprosess. Dette prosjektet er viktig for å skape nye arbeidsplasser i Bergen, og utbygger har allerede en avtale med en større næringsvirksomhet som ønsker å etablere seg der."
+  }
+}

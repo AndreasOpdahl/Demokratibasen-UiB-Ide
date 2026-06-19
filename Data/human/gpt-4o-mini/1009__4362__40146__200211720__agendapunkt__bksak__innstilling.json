@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4362:40146:200211720:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:15:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision regarding the construction of a new holiday home in a protected area, which has implications for local land use and community access."
+    },
+    "summary_headline": "Byrådet godkjenner bygging av ny fritidsbolig i Håkonshella",
+    "summary_body": "Byrådet har besluttet å oppheve et tidligere avslag og godkjenne søknaden om oppføring av en ny fritidsbolig på gnr. 129, bnr. 157 i Håkonshella. Tiltakshaver Trygve F. Johnsen fikk dispensasjon fra kommuneplanens forbud mot ny fritidsbebyggelse, da byråden vurderte at det ikke vil endre arealbruken i området. Den nye boligen vil ha et bebygd areal på 48,1 m², noe som er en moderat økning fra den eksisterende bygningen. Byråden mener at godkjenningen ikke vil påvirke allmennhetens tilgang til området, som allerede er privatisert. Dette vedtaket kan ha betydning for fremtidige byggesaker i regulerte friarealer."
+  }
+}

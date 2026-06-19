@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2057:20755:200006044:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:22:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision on the alcohol license for M/S Christian Børs involves local business interests and reflects a split vote, indicating community interest."
+    },
+    "summary_headline": "Bergenhus bydelsstyre gir ny skjenkebevilling til M/S Christian Børs",
+    "summary_body": "Bergenhus bydelsstyre har besluttet å anbefale innvilgelse av ny skjenkebevilling for øl og vin til M/S Christian Børs. Forslaget fra Høyre ble vedtatt med 7 mot 5 stemmer, til tross for administrasjonens anbefaling om avslag på den opprinnelige søknaden. Dette vedtaket kan påvirke det lokale næringslivet og tilbudet i bydelen."
+  }
+}

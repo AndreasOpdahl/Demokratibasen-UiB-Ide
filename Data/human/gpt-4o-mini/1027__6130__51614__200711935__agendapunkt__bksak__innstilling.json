@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1027:6130:51614:200711935:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:25:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant dispute over a housing development that affects local residents and has implications for land use regulations."
+    },
+    "summary_headline": "Klage på avslag om boligfradeling avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage på avslaget av en søknad om fradeling av eiendom til boligformål i Haukedalsbotn. Klageren argumenterte for at tiltaket ikke krever dispensasjon fra reguleringsplanen, men byrådet, ledet av Monica Mæland og Øistein Christoffersen, støttet fagetatens vurdering om at eiendommens størrelse og terrengforhold ikke oppfyller kravene for boligbygging. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

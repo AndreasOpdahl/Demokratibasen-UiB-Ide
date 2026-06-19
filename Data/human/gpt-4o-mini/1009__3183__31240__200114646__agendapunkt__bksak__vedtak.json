@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3183:31240:200114646:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:01:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves significant funding for a local kindergarten, which impacts residents."
+    },
+    "summary_headline": "Byrådet gir ekstra støtte til Fjellveien barnehage",
+    "summary_body": "Byrådet i Bergen har besluttet å gi Fjellveien barnehage et ekstra tilskudd på 227.900 kroner for 2002 for å opprettholde eksisterende plasser. Dette tilskuddet kom som følge av inntektstap fra reduserte plasser. Midlene overføres fra driftsmidler avsatt til nye småbarnsplasser, som ikke vil være klare før i 2003. Dette tiltaket er viktig for å sikre barnehagetilbudet i lokalmiljøet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224826:1838137:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:52:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The report highlights significant risks related to military ships in Bergen, prompting calls for improved local preparedness."
+    },
+    "summary_headline": "Bystyret ber om økt beredskap mot reaktorulykker i Bergen",
+    "summary_body": "Bergen bystyre behandlet den overordnede risiko- og sårbarhetsanalysen 17. november 2020, og vedtok å følge opp rapportens resultater. SVs Andreas Madsen Berg uttrykte bekymring for risikoen ved militære skip i Bergen, og ba byrådet om å samarbeide med nasjonale myndigheter for å forbedre beredskapen. Diane Alexandra Berbain (SV) foreslo også å utvikle pedagogisk informasjon til innbyggerne om beredskap og sikkerhet. Begge forslagene fra SV fikk ikke flertall, men vedtaket om oppfølging ble enstemmig vedtatt."
+  }
+}

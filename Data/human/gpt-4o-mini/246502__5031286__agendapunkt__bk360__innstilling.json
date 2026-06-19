@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246502:5031286:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:45:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises a relevant question about local food sourcing and sustainability, which could impact residents and local farmers."
+    },
+    "summary_headline": "Bystyret spør om kortreist frukt til kommunale virksomheter",
+    "summary_body": "Mailiss Solheim-Åkerblom (R) har stilt spørsmål til byråden om muligheten for å sikre kommunale virksomheter tilgang på kortreist frukt hele året. Hun påpeker at mye av frukten i Norge er importert, noe som har negative konsekvenser for klimaet. Solheim-Åkerblom foreslår at Bergen kommune kan samarbeide med vestlandsbønder og distributører for å forbedre lagringsforholdene og støtte bondesamvirker. Dette kan gi både bedre tilgang til norsk frukt og støtte lokal landbruk. Byråden oppfordres til å undersøke dette nærmere."
+  }
+}

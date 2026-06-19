@@ -1,0 +1,18 @@
+{
+  "dokument_id": "209269:267588:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:18:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a procedural question without significant newsworthy elements."
+    },
+    "summary_headline": "Skriftlig spørsmål om Løvstakktunnelen",
+    "summary_body": "Ronja Bell Breisnes (A) har stilt et skriftlig spørsmål vedrørende stenging av Løvstakktunnelen. Byråd Anna Elisa Tryti svarte på spørsmålet under møtet i Komite for miljø og byutvikling den 06.12.2018."
+  }
+}

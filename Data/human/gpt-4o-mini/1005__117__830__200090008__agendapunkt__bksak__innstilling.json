@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:117:830:200090008:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:35:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to the powers and responsibilities of the Business Committee, which could impact local governance."
+    },
+    "summary_headline": "Forretningsutvalget får utvidet ansvar og kompetanse",
+    "summary_body": "Forretningsutvalget i Bergen kommune foreslås å overta oppgavene til fullmaktskomiteen, ifølge en ny sak fra bysekretariatet. Dette innebærer at utvalget blir innstillende organ for alle konstitusjonelle og styringsmessige saker, samt får myndighet til å fastsette honorarer for bystyret og dets organer. Venstre, ved Hans Carl Tveit, har påpekt behovet for ordinært valg til utvalget i tråd med kommuneloven. Endringene skal sikre politisk bredde og effektivitet i styringen av kommunen."
+  }
+}

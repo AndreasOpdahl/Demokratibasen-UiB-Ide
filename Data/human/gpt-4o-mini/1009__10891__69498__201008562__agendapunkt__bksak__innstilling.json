@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10891:69498:201008562:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:44:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines a significant municipal plan for water supply, which affects local residents and involves public consultation."
+    },
+    "summary_headline": "Bergen kommune legger ut hovedplan for vannforsyning til offentlig ettersyn",
+    "summary_body": "Bergen byråd har besluttet å legge ut «Hovedplan for vannforsyning 2014-2023» til offentlig ettersyn. Planen, som omhandler viktige tiltak som bygging av ny dam ved Svartavatnet og oppgradering av vannbehandlingsanlegg, har som mål å forbedre vannforsyningen i kommunen. Byråden for byutvikling, klima og miljø, Filip Rygg, anbefaler at innbyggerne får mulighet til å gi innspill før den endelige planen fremlegges for bystyret. Dette tiltaket er viktig for å sikre en bærekraftig vannforsyning for Bergen i årene som kommer."
+  }
+}

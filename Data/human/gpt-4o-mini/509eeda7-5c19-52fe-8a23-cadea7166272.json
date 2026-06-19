@@ -1,0 +1,18 @@
+{
+  "dokument_id": "509eeda7-5c19-52fe-8a23-cadea7166272",
+  "kommune_nummer": 4649,
+  "kommune_navn": "Stad",
+  "generated_at": "2026-02-19 23:02:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses several important regional issues, but lacks immediate conflict or significant financial implications."
+    },
+    "summary_headline": "Fjordane interkommunalt politisk råd tar opp viktige regionale saker",
+    "summary_body": "Fjordane interkommunalt politisk råd har i sitt møte den 31. oktober 2025 referert til flere viktige saker, inkludert oppstart av E39 Storehaugen-Førde, finansiering til helseforetakene, og oppfølging av Stad skipstunnel. Rådet har vedtatt å ta disse sakene til vitande og gir sekretariatet og leiar fullmakt til å følge opp. Dette kan påvirke innbyggerne i regionen, spesielt med tanke på infrastruktur og helse."
+  }
+}

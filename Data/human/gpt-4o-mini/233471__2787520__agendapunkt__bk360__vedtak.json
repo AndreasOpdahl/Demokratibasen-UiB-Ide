@@ -1,0 +1,18 @@
+{
+  "dokument_id": "233471:2787520:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:15:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant public health concerns and noise pollution affecting residents."
+    },
+    "summary_headline": "Eldrerådet ber om tiltak mot uvaksinerte ansatte og lydforurensning i Bergen",
+    "summary_body": "Eldrerådet i Bergen har uttrykt bekymring for uvaksinerte ansatte i helse- og omsorgstjenestene, der mellom 5% og 15% av ansatte ikke er vaksinert. De ber kommunen om å legge til rette for vaksinering og alternative arbeidsoppgaver for de som ikke kan vaksineres. I tillegg har Eldrerådet tatt opp problemet med lydforurensning i sentrale deler av Bergen, spesielt i Nygårdsparken, og oppfordrer byrådet til å skjerpe håndhevelsen av nattero-reglene for å bedre livskvaliteten for innbyggerne."
+  }
+}

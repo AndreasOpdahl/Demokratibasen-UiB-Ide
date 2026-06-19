@@ -1,0 +1,18 @@
+{
+  "dokument_id": "b90ffe65-2639-5ad6-85f0-52b2d36b5854",
+  "kommune_nummer": 1870,
+  "kommune_navn": "Sortland - Suortá",
+  "generated_at": "2026-02-19 23:17:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a meeting notice for a local council, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Innkalling til møte i Eldrerådet",
+    "summary_body": "Eldrerådet i Sortland kommune har innkalt til møte den 19. november 2025. Saksbehandler er Marit Haukland."
+  }
+}

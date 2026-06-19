@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:8117:59120:201003126:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:20:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision on a building permit that affects local residents and has seen a formal complaint."
+    },
+    "summary_headline": "Byrådet gir dispensasjon for garasje i Søreidåsen til tross for tidligere avslag",
+    "summary_body": "Byrådet har besluttet å gi dispensasjon fra plankravet for oppføring av en garasje på Søreidåsen, til tross for et tidligere avslag fra fagetaten. Klagerne, Jan Rune Fossheim og Liv Tove Haugseng, argumenterte for at det er urimelig å kreve en egen plan for deres eiendom, som ligger i et etablert boligområde. Byrådet, ledet av Monica Mæland, mener fordelene ved tiltaket oppveier ulempene, og at det ikke vil skape presedens for fremtidige saker. Den nye garasjen vil ha et bebygd areal på 63 m², noe som er over retningslinjene, men byrådet vurderer at dette er akseptabelt. Saken vil nå bli sendt til Komité for miljø og byutvikling for endelig avgjørelse."
+  }
+}

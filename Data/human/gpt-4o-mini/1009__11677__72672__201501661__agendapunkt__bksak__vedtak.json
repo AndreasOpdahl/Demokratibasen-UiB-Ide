@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11677:72672:201501661:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:49:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property sale is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på leiegård",
+    "summary_body": "Bergen kommune har besluttet å ikke gjøre forkjøpsrett gjeldende ved overdragelse av leiegården i Henrik Wergelands gate 24 fra Kari Ellinor Fimland til Havre Holding A. Dette ble vedtatt av byrådet i møte den 9. april 2015. Beslutningen kan påvirke lokale boligforhold, men det er ingen kjent motstand mot avgjørelsen."
+  }
+}

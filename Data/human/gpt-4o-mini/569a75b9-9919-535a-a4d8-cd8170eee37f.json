@@ -1,0 +1,18 @@
+{
+  "dokument_id": "569a75b9-9919-535a-a4d8-cd8170eee37f",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 23:02:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The agreement involves significant public spending and local relevance."
+    },
+    "summary_headline": "Alver kommune inngår beredskapssamarbeid med Røde Kors",
+    "summary_body": "Alver kommune har enstemmig vedtatt å inngå en samarbeidsavtale om beredskap med Nordhordland Røde Kors. Avtalen er løpende med en oppsigelsestid på seks måneder. For budsjettåret 2026 er det avsatt 175 000 kroner til avtalen, som vil dekke kostnader ved bruk av mannskap og utstyr utover akuttoppdrag. Dette samarbeidet er viktig for å sikre beredskap og respons i nødsituasjoner i kommunen."
+  }
+}

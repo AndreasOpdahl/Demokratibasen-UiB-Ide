@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:4329:40130:200400010:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:28:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The significant increase in rental fees for a local boating association raises concerns about community access and financial impact."
+    },
+    "summary_headline": "Kraftig leieøkning for Sandviken Motorbåtforening vekker bekymring",
+    "summary_body": "Sandviken Motorbåtforening har opplevd en dramatisk økning i leieutgiftene for småbåthavnen fra 2.100 kroner i 2003 til 230.000 kroner i 2004. Dette har ført til spørsmål fra Terje Ohnstad (A) til byrådet om muligheten for å redusere leien. Finansbyråd Henning Warloe har vært i kontakt med Gamle Bergen Museum, som mener leien er under markedspris. Han vil invitere begge parter til et møte for å diskutere leieavtalen. Komiteen ønsker å bli orientert om utfallet av møtet, som kan påvirke båtførernes fremtid i området."
+  }
+}

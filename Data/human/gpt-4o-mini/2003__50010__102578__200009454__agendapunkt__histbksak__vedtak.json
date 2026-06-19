@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50010:102578:200009454:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:32:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to grant a new alcohol license for a prominent cultural venue has significant local relevance and potential impact."
+    },
+    "summary_headline": "Skjenkebevilling innvilget for Edvard Grieg Museum",
+    "summary_body": "Formannskapet i Bergen har enstemmig innvilget søknaden fra ISS Norge - Avd. Catering om ny skjenkebevilling for øl og vin ved Edvard Grieg Museum, Troldhaugveien 65. Bevillingen gjelder for perioden frem til 1. juli 2004, men uteservering ble ikke godkjent. Styrer for bevillingen er Ole Pedersen, med Grete Fimreite som stedfortreder. Det stilles krav om at servering ved uteservering skal skje ved bord eller fra betjent tappestasjon. Dette vedtaket kan påvirke både besøkende og ansatte ved museet, og det er viktig for den lokale kultur- og serveringsbransjen."
+  }
+}

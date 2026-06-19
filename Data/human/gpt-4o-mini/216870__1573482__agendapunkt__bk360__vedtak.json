@@ -1,0 +1,18 @@
+{
+  "dokument_id": "216870:1573482:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:37:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine inquiry about staffing levels in health services, which is of limited immediate news value."
+    },
+    "summary_headline": "Spørsmål om helsepersonell i Bergen kommune",
+    "summary_body": "Vasan Singaravel (H) stilte et skriftlig spørsmål om antall årsverk av psykologer, fysioterapeuter og ergoterapeuter ansatt i Bergen kommune. Byråd Beate Husa svarte på spørsmålet under møtet i utvalg for helse og sosial den 4. desember 2019."
+  }
+}

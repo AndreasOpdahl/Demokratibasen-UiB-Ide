@@ -1,0 +1,18 @@
+{
+  "dokument_id": "237858:3774254:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:23:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The report highlights the lack of principled decisions made by the council, which may affect local governance."
+    },
+    "summary_headline": "Byrådet rapporterer om manglende prinsipielle vedtak i 2021",
+    "summary_body": "Byrådet i Bergen har fremlagt sin halvårlige rapport om vedtak av prinsipiell betydning for andre halvår 2021, hvor det fremgår at det ikke er fattet vedtak i saker av prinsipiell betydning. I løpet av året ble det behandlet 196 saker, men ingen av disse ble ansett som prinsipielle. Rapporteringen er i henhold til kommuneloven § 10-2, som pålegger byrådet å informere bystyret om slike vedtak. Byrådsleder Roger Valhammer anbefaler at bystyret tar rapporten til orientering, og understreker behovet for videre utvikling av rapporteringsordningen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "200649:205737:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:48:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a building permit that affects local residents and historical preservation."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på tilbygget i Fana",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på Bjørn Sletten Birkelands søknad om oppføring av et 214,7 m2 stort tilbygg til sin bolig på Nedre Kirkebirkeland 7. Tiltaket ble avslått på grunn av manglende visuelle kvaliteter og brudd på reguleringsplanens tomteutnyttelse. Klagen ble vurdert, men byrådet støtter fagetatens vurdering om at tilbygget ikke er tilpasset eksisterende bebyggelse og vil påvirke lys og luft i området. Byantikvaren frarådet også tilbygget, og byrådet vil heller tillate en garasje dersom den er i tråd med reguleringsplanen. Saken kan nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

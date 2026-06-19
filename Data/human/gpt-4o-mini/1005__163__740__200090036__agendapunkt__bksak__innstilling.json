@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:163:740:200090036:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:42:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural guideline without significant newsworthy elements."
+    },
+    "summary_headline": "Ny prosedyre for håndtering av spørsmål i bystyret",
+    "summary_body": "Forretningsutvalget har vedtatt en ny prosedyre for håndtering av svar på spørsmål og anmodninger i bystyret, som trer i kraft fra neste bystyremøte. Skriftlige svar fra byrådet vil bli sendt ut til representantene sammen med andre bystyrepapirer, men vil ikke bli kommentert eller behandlet videre i bystyret. Representanter som ønsker å følge opp svarene, må selv ta initiativ i den aktuelle komiteen."
+  }
+}

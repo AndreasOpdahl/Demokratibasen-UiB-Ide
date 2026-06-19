@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12071:77302:201610477:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:58:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a significant decision regarding land use and local environmental concerns."
+    },
+    "summary_headline": "Bystyret ber om ny vurdering av byfjellsgrensen etter dispensasjonssøknad",
+    "summary_body": "Komite for miljø og byutvikling har behandlet en søknad om dispensasjon for tilbygg til garasje på Rosenlundveien 43. Komiteen returnerer saken til byråden for å vurdere dispensasjon fra kommuneplanens §23.1, som ikke ble vurdert i saksbehandlingen. Bystyret påpeker at byfjellsgrensen er vilkårlig satt og ber om en særskilt gjennomgang av denne i rulleringen av KPA. Utsettelsesforslaget fra Arbeiderpartiet, Kristelig Folkeparti og Venstre ble vedtatt enstemmig."
+  }
+}

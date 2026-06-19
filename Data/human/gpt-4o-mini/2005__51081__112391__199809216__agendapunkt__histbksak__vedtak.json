@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51081:112391:199809216:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:43:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a denied building permit which may affect local residents' property rights."
+    },
+    "summary_headline": "Bygningsrådet avslår bygging av terrasse i Bergen",
+    "summary_body": "Bygningsrådet i Bergen har besluttet å opprettholde avslaget på søknaden om byggetillatelse for en terrasse fra Tove og Ronny Vange. I møtet den 11. januar 1999 ble det stemt over administrasjonens forslag, som ble vedtatt med 8 mot 3 stemmer. Klagen fra byggherren ble dermed ikke tatt til følge, i henhold til plan- og bygningsloven."
+  }
+}

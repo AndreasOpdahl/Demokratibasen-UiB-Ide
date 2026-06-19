@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244429:5230058:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:39:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses accessibility issues for students with disabilities, highlighting a significant local concern."
+    },
+    "summary_headline": "KRPF krever bedre tilrettelegging for studenter med funksjonsnedsettelse",
+    "summary_body": "Kommunalt råd for personer med funksjonsnedsettelse (KRPF) har sendt innspill til byrådets temaplan for studenter, og etterlyser tiltak for å øke antallet studenter med funksjonsnedsettelse som tar og fullfører høyere utdanning. Rådet påpeker at universiteter og høgskoler må tilrettelegge for universell utforming, både fysisk og digitalt. De understreker også behovet for flere sentrumsnære studentboliger med universell utforming, da studenter med funksjonsnedsettelse er mer avhengige av gode boliger. KRPF ber om at arbeidet med en plan for universell utforming settes i gang igjen, for å sikre at Bergen blir en mer inkluderende studentby."
+  }
+}

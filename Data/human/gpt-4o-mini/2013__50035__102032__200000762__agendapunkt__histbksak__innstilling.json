@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2013:50035:102032:200000762:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:59:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a proposal for a new attraction in Åsane, but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Forslag om opplevelsessenter i Åsane vurderes",
+    "summary_body": "Utvalg for byutvikling har mottatt et forslag fra Hans-Carl Tveit (V) om å vurdere et opplevelsessenter/eventyrpark i Kommunedelplan for Åsane sentrale deler. Forslaget ble behandlet som et innspill til planarbeidet, men det er ingen vedtak om videre tiltak. Saken tas til orientering av kommunaldirektør Edel Eikeseth og plansjef Odd Pedersen."
+  }
+}

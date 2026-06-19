@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1021:11977:74841:201532880:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:34:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the delegation of authority regarding asylum seeker housing, which is relevant to local residents."
+    },
+    "summary_headline": "Bystyret gir byrådet fullmakt til å behandle klager om asylinnkvartering",
+    "summary_body": "Komite for fullmakter og politisk styringssystem har enstemmig godkjent en innstilling som gir byrådet fullmakt til å behandle klager knyttet til midlertidig forskrift om innkvartering av asylsøkere. Dette gjelder så lenge forskriften er i kraft. Møtet ble ledet av ordfører Marte Mjøs Persen, og det var ingen merknader til innkallingen. Dette vedtaket kan påvirke hvordan asylsøkere blir behandlet i Bergen."
+  }
+}

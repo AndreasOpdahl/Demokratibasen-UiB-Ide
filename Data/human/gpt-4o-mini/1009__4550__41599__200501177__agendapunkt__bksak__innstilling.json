@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4550:41599:200501177:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:18:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposed changes to the patient rights law address significant ethical dilemmas and have a direct impact on vulnerable patients without consent competence."
+    },
+    "summary_headline": "Bergen kommune kritiserer forslag til endringer i pasientrettighetsloven",
+    "summary_body": "Bergen kommune har sendt inn høringsuttalelse til Helse- og omsorgsdepartementet angående foreslåtte endringer i pasientrettighetsloven, som omhandler helsehjelp til pasienter uten samtykkekompetanse. Byråden for helse og omsorg, Trude H. Drevland, påpeker at lovendringene kan føre til etiske dilemmaer og kritiserer innføringen av tvang i en lov som skal beskytte pasienters rettigheter. Høringsfristen er 14. juni 2005, og kommunen mener at vedtak om tvang bør gjøres av uavhengig helsepersonell for å sikre pasientenes rettssikkerhet."
+  }
+}

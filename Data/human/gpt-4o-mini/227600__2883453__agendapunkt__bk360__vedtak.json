@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227600:2883453:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:59:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves significant public spending on a local infrastructure project."
+    },
+    "summary_headline": "Byrådet godkjenner 13 millioner til Starefossvingen overvannsanlegg",
+    "summary_body": "Byrådet har besluttet å gjennomføre prosjektet Starefossvingen overvannsanlegg med en kostnadsramme på 13 millioner kroner. Finansieringen kommer fra ulike budsjettposter, inkludert 6,5 millioner fra fornying avløpsnett og 4,5 millioner fra fornying distribusjonsnett. Dette prosjektet er viktig for å håndtere overvann i området, noe som vil påvirke innbyggerne i Bergen."
+  }
+}

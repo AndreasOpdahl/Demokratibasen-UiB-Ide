@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228025:2722517:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:00:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a written question regarding youth exclusion but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Skriftlig spørsmål om ungt utenforskap",
+    "summary_body": "Hege Solbakken (SP) stilte et skriftlig spørsmål om ungt utenforskap til byråd Lubna Boby Jaffery under møtet i Utvalg for barnehage, skole og idrett den 9. mars 2021."
+  }
+}

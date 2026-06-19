@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7346:57820:200801988:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:14:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a regulatory plan approval with unanimous support, indicating local development but lacking controversy."
+    },
+    "summary_headline": "Bystyret godkjenner reguleringsplan for Fana",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt reguleringsplan for Fana, gnr. 96, bnr. 40, som omfatter eiendommen Fanahammeren 124. Planen, som ble behandlet i bystyremøtet 26. april, krever at felles vei innenfor eiendommen må være opparbeidet før det kan gis midler til brukstillatelse for nye boliger. Ingen representanter tok ordet under behandlingen, og både byrådet og komiteen for miljø og byutvikling støttet vedtaket."
+  }
+}

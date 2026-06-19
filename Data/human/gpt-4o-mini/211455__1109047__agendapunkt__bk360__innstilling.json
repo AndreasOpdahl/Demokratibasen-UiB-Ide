@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211455:1109047:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:22:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant proposed changes to healthcare regulations and the introduction of a new law regarding public sector interpreting, which could impact residents' access to services."
+    },
+    "summary_headline": "Høringer om fysioterapi og tolkeloven til behandling i Bergen kommune",
+    "summary_body": "Bystyrets kontor har mottatt to høringssaker til behandling. Den første gjelder endringer i forskrift om stønad til fysioterapi, som foreslår å oppdatere regelverket og fjerne bestemmelser om behandlingsformer. Høringsfristen er 1. mai 2019. Den andre saken omhandler et forslag til lov om offentlige organers ansvar for bruk av tolk, som vil regulere bruken av tolker i offentlig sektor og sikre rettssikkerhet. Bystyredirektøren anbefaler at bystyret avgir høringssvar til tolkeloven, med høringsfrist 7. juni 2019. Disse endringene kan ha stor betydning for innbyggernes tilgang til helsetjenester og tolketjenester."
+  }
+}

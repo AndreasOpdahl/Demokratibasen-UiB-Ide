@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:3508:32150:199905835:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:37:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a contested building plan with multiple complaints from residents, making it relevant to local residents."
+    },
+    "summary_headline": "Klage på bebyggelsesplan for Fløenbakken avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde vedtaket fra Komite for miljø og byutvikling om bebyggelsesplanen for Fløenbakken 56, som inkluderer 60 nye boliger og et parkeringsanlegg. Klager fra Fløen Vel og andre beboere om arealbruk, utbyggingens omfang og trafikkbelastning ble ikke tatt til følge. Byrådet mener at klagene ikke avdekket saksbehandlingsfeil eller nye vesentlige momenter. Planen er i tråd med kommunedelplanen for Fjellsiden sør, vedtatt i 2001. Neste steg er at saken sendes til Fylkesmannen for endelig avgjørelse."
+  }
+}

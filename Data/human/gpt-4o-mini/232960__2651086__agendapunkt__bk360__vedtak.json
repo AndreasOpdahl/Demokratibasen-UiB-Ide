@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232960:2651086:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:14:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a procedural change in meeting scheduling, which has limited local impact."
+    },
+    "summary_headline": "Endring av møtedag for UMBY vurderes",
+    "summary_body": "Utvalg for miljø og byutvikling diskuterte den 11. november 2021 muligheten for å endre møtedagen fra torsdag til tirsdag. Jarle Brattespe (SV) uttrykte bekymring for at dette kan redusere tiden fra sakene sendes ut til møtedagen. Marte Holm svarte at ved å flytte utsendingen fra fredag til onsdag, vil saker fra byrådets møte torsdag samme uke ikke bli inkludert, men det vil være mulig å ettersende saker."
+  }
+}

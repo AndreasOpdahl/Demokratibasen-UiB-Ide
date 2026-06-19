@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50935:111721:199812850:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:34:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to appoint a project director for the district reform is significant for local governance and involves a contentious vote."
+    },
+    "summary_headline": "Bergen kommune oppretter prosjektdirektør for bydelsreform etter omstridt avstemning",
+    "summary_body": "Bergen formannskap har besluttet å opprette en engasjementsstilling som prosjektdirektør for å lede bydelsreformen i kommunen. Stillingen varer fra 1. desember 1998 til 1. juli 2000. Forslaget ble vedtatt med 11 mot 10 stemmer, der Ragnhild Hedemann fra Høyre fremmet et tillegg som understreker arbeidstakernes rett til deltakelse i prosjektene. Dette vedtaket er viktig for innbyggerne i Bergen, da det vil påvirke organiseringen av bydeler i kommunen."
+  }
+}

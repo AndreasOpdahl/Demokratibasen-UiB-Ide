@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:6510:53006:200800926:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:34:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to allocate funding for Pepperkakebyen is significant for local families and the community."
+    },
+    "summary_headline": "Bergen kommune bevilger 250.000 kroner til Pepperkakebyen",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 250.000 kroner til Pepperkakebyen for 2008. Støtten skal sikre gratis adgang for skoleklasser, barnehager og barn under 12 år, og er en del av en strategi for å utvikle Pepperkakebyen som en attraksjon i førjulstiden. Byrådet mener det er viktig å støtte opp om denne tradisjonen, som har vært en del av Bergen siden 1991. Bergen Sentrum AS, som eies delvis av kommunen, har søkt om midler for å sikre driften av arrangementet."
+  }
+}

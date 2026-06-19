@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1021:11979:76074:201525566:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:34:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant cost overruns and delays in major municipal investment projects, which directly affect local residents."
+    },
+    "summary_headline": "Bystyret krever bedre kontroll over kostnadsutvikling i store investeringsprosjekter",
+    "summary_body": "Bystyret i Bergen har enstemmig vedtatt å be byrådet om å forbedre den administrative organiseringen og rapporteringen av store investeringsprosjekter, etter betydelige kostnadsoverskridelser og forsinkelser ved oppgradering av renseanlegg og bygging av biogassanlegg. Komiteene for miljø og byutvikling og finans ønsker halvårlig rapportering om prosjekter med kostnader over 500 millioner kroner. Byrådet varsler at de vil fremme en sak om dette i løpet av høsten 2016. Dette vedtaket er viktig for å sikre bedre oversikt og kontroll over kommunens investeringer, som påvirker innbyggerne direkte."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:3082:32783:200108811:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:22:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant improvements and evaluations in the working conditions of cleaners in schools and kindergartens, which directly impacts local residents."
+    },
+    "summary_headline": "Fyllingsdalen bydel forbedrer arbeidsmiljøet for renholdere",
+    "summary_body": "Fyllingsdalen arbeidsmiljøutvalg har behandlet en rapport om oppfølging av renholdere i skoler og barnehager, som viser betydelige utfordringer og anbefalinger for forbedringer. Rapporten fremhever behovet for bedre opplæring, evaluering av tiltaksplaner, og samarbeid mellom renholdere og ledelse. Det foreslås også å etablere faste møter for erfaringsutveksling og opplæring. Bydelen tar initiativ til å forbedre arbeidsforholdene, noe som vil ha direkte innvirkning på renholdernes hverdag og kvaliteten på renholdet i offentlige institusjoner."
+  }
+}

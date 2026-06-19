@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:6005:52457:200801465:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:20:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant local infrastructure projects and community concerns regarding sports facilities and land use."
+    },
+    "summary_headline": "Byrådet lover fremdrift for idrettsanlegget i Indre Arna",
+    "summary_body": "Byråd Henning Warloe bekrefter at grunnarbeidet for det planlagte idrettsanlegget i Indre Arna vil bli ferdigstilt i løpet av vinteren, med bygging av garderober og tribuner som følger. Dette er en viktig oppdatering for idrettsbevegelsen i Arna, som har ventet på prosjektet i flere år. I tillegg diskuteres bruken av gymsalen på den nedlagte Tunes skule, hvor byråden vil ta initiativ for å muliggjøre fortsatt utleie til lokale lag. Det er også spørsmål om fremtidige planer for NCC/Arna steinknuseverk, som tidligere har vært vurdert til avfallsdeponi."
+  }
+}

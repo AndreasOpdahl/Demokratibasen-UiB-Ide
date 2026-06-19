@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:2039:20138:200002114:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:43:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses air quality measures in Bergen, which is a significant local issue affecting residents."
+    },
+    "summary_headline": "Bystyret vedtar tiltak for bedre luftkvalitet i Bergen",
+    "summary_body": "Bystyret i Bergen har vedtatt å ta rapporten \"Luftkvalitet i Bergen 1994 - 1999\" til orientering og ønsker årlig rapportering om luftkvalitet. Tom Skauge (SV) foreslo at kommunen skal stenge offentlige parkeringsplasser på dager med forurensning, og at rådmannen skal kontakte samferdselsministeren for lovhjemmel til å bruke Parismodellen. Utsettelsesforslaget fra ordføreren ble vedtatt med 58 mot 9 stemmer. Dette tiltaket er viktig for å forbedre luftkvaliteten og beskytte innbyggernes helse."
+  }
+}

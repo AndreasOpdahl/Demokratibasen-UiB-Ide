@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50736:110734:199708882:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:41:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over land use and building restrictions in a residential area, impacting local residents and future development."
+    },
+    "summary_headline": "Klage på byggeforbud i Laksevåg avvist av byutvalget",
+    "summary_body": "Det faste utvalg for plansaker har avvist klagen fra advokat Erik Lea angående et midlertidig bygge- og delingsforbud i Skarehaugane, Laksevåg. Forbudet ble innført i påvente av omregulering av området, som ligger i flystøysone III, hvor det ikke skal bygges støyutsatt bebyggelse. Klageren argumenterer for at området vil bli klassifisert i flystøysone II ved neste revisjon, og at fradeling av tomter til arvemessig fordeling bør tillates. Utvalget, med 7 mot 4 stemmer, mener imidlertid at det ikke foreligger tilstrekkelige grunner for å oppheve forbudet, og understreker behovet for videre vurdering av arealbruken."
+  }
+}

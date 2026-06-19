@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:302:2298:200290040:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:04:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions without significant newsworthy elements."
+    },
+    "summary_headline": "Byrådet fordeler saker til komiteene",
+    "summary_body": "Byrådet har i møte 10. og 17. april 2002 fordelt flere saker til ulike komiteer. Byrådsak 62, 63, 64, 66, 65, 67, 70, 72, 73 og 74 ble sendt til komiteer for kultur, idrett, oppvekst, finans, næring, helse, sosial, service, utvikling, teknisk miljø, samt miljø og byutvikling. To tilleggsforslag fra Heidi Havelin og Martin Smith-Sivertsen ble vedtatt enstemmig."
+  }
+}

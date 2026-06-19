@@ -1,0 +1,18 @@
+{
+  "dokument_id": "215375:1690485:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:34:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant development agreement that impacts local infrastructure and urban planning."
+    },
+    "summary_headline": "Byrådet godkjenner utbyggingsavtale for Kokstadflaten",
+    "summary_body": "Bergen byråd har anbefalt å godkjenne en utbyggingsavtale med Felles Bygget AS for Kokstadflaten 36. Avtalen er nødvendig for å oppfylle rekkefølgekrav i områdereguleringsplanen for Kokstad vest og Storrinden, vedtatt i 2015. Utbyggingsavtalen innebærer at en offentlig vei, o_V02, må opparbeides før midlertidig brukstillatelse kan gis. Dette tiltaket vil forbedre infrastrukturen i området, som i dag er lite tilrettelagt for myke trafikanter. Byråden, Rune Bakervik, anbefaler godkjenning av avtalen, som vil bidra til utviklingen av et fortau og sykkelfelt. Neste steg er signering av avtalen."
+  }
+}

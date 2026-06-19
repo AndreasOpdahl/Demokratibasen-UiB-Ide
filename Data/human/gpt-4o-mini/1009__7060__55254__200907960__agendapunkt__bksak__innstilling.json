@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7060:55254:200907960:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:36:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for student housing in a key development area is significant for local residents and involves public consultation."
+    },
+    "summary_headline": "Offentlig ettersyn for studenthybler på Grønneviksøren i Møllendal",
+    "summary_body": "Byrådet i Bergen har besluttet å legge ut et forslag til reguleringsplan for studenthybler på Grønneviksøren til offentlig ettersyn. Planen omfatter bygging av opptil 520 hybelenheter på en tomt på ca. 8300 m², og er en del av en større byutvikling i Møllendal. Dette prosjektet er prioritert for å møte behovet for studentboliger i Bergen. Det er mottatt 32 merknader til oppstartvarselet, og byråden understreker viktigheten av å vurdere bygningens påvirkning på elvepromenaden. Offentlig ettersyn gir innbyggerne mulighet til å gi tilbakemelding før endelig vedtak."
+  }
+}

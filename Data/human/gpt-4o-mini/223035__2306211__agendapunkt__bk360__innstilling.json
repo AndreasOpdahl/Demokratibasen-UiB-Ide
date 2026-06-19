@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223035:2306211:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:48:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a new alcohol license application for a restaurant, which is relevant to local residents and involves community considerations."
+    },
+    "summary_headline": "Ny skjenkebevilling for Litleré Mat på Damsgård innvilges",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 ved Litleré Mat, Damsgårdsveien 55. Bevillingen gjelder både innendørs og uteservering, med et totalt skjenkeareal på 296 kvm, hvorav 57 kvm er uteservering. Politiet og etat for sosiale tjenester har ikke innvendinger mot søknaden. Byrådet understreker at skjenkebevillingen er en del av kommunens tiltak for å regulere alkoholservering i boligområder, og at det er gitt flere bevillinger i Damsgård de siste årene. Bevillingen gjelder frem til 30. september 2020, med mulighet for forlengelse."
+  }
+}

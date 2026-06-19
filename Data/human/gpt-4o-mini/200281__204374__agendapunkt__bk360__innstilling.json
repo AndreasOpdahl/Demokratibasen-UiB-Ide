@@ -1,0 +1,18 @@
+{
+  "dokument_id": "200281:204374:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:29:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines routine administrative matters related to an upcoming meeting of the election committee, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Innkalling til møte i valgstyret",
+    "summary_body": "Valgstyret i Bergen kommune har innkalt til møte den 22. august 2017 for å behandle flere saker, inkludert godkjenning av protokoll fra tidligere møte og søknad fra Frelsesarmeen om tillatelse til å kollektere under valget. Møtet finner sted i Bergen rådhus."
+  }
+}

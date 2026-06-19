@@ -1,0 +1,18 @@
+{
+  "dokument_id": "201366:223898:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:57:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines the activities of a municipal council for the disabled, which has local relevance but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Arbeidsplan for utvalg for universell utforming presentert",
+    "summary_body": "Kommunalt råd for funksjonshemmede har lagt frem en arbeidsplan for utvalget for universell utforming for høsten og vinteren 2017-18. Planen ble diskutert i møte 28. september 2017, men befaringer i private bygg ble frarådet av Delta senteret og er derfor fjernet fra planen. Utvalget skal fortsatt kommentere reguleringsplaner og gi uttalelser om offentlig tilgjengelige bygg og områder. Det er viktig for innbyggere med funksjonshemninger å følge med på hvordan kommunen arbeider for universell utforming."
+  }
+}

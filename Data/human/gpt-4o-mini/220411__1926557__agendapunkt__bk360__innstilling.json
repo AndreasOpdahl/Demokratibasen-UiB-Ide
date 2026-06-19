@@ -1,0 +1,18 @@
+{
+  "dokument_id": "220411:1926557:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:43:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant expropriation for traffic safety measures affecting multiple properties, which has local relevance and potential impact on residents."
+    },
+    "summary_headline": "Byrådet vedtar ekspropriasjon for trafikksikkerhetstiltak i Lyngbøveien",
+    "summary_body": "Byrådet i Bergen har besluttet å ekspropriere nødvendig grunn for å gjennomføre trafikksikkerhetstiltak i Lyngbøveien, en viktig skolevei og turområde. Planen, som ble vedtatt i 2019, inkluderer utvidelse av veibanen og etablering av fortau over 820 meter. 62 eiendommer berøres, og kommunen har inngått avtaler med 34 grunneiere, mens 19 eiendommer fortsatt er i konflikt. Byråden mener tiltaket er nødvendig for å forbedre trafikksikkerheten, spesielt for myke trafikanter, og vil søke om rettslig skjønn for å fastsette erstatning for de berørte eiendommene."
+  }
+}

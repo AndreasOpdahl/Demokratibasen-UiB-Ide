@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:4588:42484:200501968:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:55:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant safety concerns for elderly pedestrians in Hordaland, highlighting the need for updated traffic safety measures."
+    },
+    "summary_headline": "Eldrerådet krever oppdatering av trafikksikringsplan for eldre i Hordaland",
+    "summary_body": "Bergen eldreråd har sendt inn høringsuttalelse til handlingsplanen for trafikksikring i Hordaland for 2006-2009, og understreker at 9 av 10 drepte fotgjengere i fylket er over 65 år. Eldrerådet mener planen må oppdateres kontinuerlig og foreslår flere tiltak, inkludert reduserte fartsgrenser ved barnehager og skoler, samt bedre trafikksikkerhet for ungdommer. De påpeker også manglende fokus på ungdomstrinnet i trafikksikkerhetsopplæring. Eldrerådet krever at tiltak for å beskytte eldre fotgjengere prioriteres, og at det tas hensyn til veistandard og sikkerhet i den kommende planen."
+  }
+}

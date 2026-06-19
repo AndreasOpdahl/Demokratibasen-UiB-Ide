@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:6645:54397:200820056:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:14:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant budgetary decisions and evaluations affecting local services, which have a direct impact on residents."
+    },
+    "summary_headline": "Bergen kommune vurderer årsregnskap og 6-timersdag for hjemmetjenester",
+    "summary_body": "Bystyret i Bergen skal behandle byrådets innstilling om årsregnskapet for 2008 og evalueringen av 6-timers arbeidsdag i hjemmetjenester. Byrådet foreslår at det pågående forsøket med 6-timersdag opphører 30. juni 2009, og at det igangsettes et nytt forsøk for seniorer over 60 år. Økonomiske konsekvenser av dette tiltaket er estimert til ca. 4 millioner kroner årlig. I tillegg skal bystyret godkjenne årsregnskapet for 2008, som viser både udisponerte beløp og ufinansierte prosjekter."
+  }
+}

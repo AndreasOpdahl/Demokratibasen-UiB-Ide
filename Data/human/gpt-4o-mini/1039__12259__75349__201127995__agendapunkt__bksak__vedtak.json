@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1039:12259:75349:201127995:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:07:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses various initiatives and proposals from the Youth City Council that could impact local schools and community services."
+    },
+    "summary_headline": "Ungdommens bystyre foreslår flere tiltak for skoler og miljø i Bergen",
+    "summary_body": "Ungdommens bystyre i Bergen har behandlet flere saker som kan påvirke lokale skoler og miljø. Blant forslagene er krav om skillevegger i dusjene på alle skoler, nedleggelse av fire svømmebassenger, og en lik vurderingsplan for Bergensskolen. Det er også forslag om å forbedre kantinetilbudet med sunn mat, samt å ansette flere miljøterapeuter på ungdomsskolene. I tillegg diskuteres opprettelsen av en skatepark i sentrum og bedre resirkulering med oppdelte søppelspann. Disse tiltakene kan ha betydelig innvirkning på ungdom og skolemiljøet i Bergen."
+  }
+}

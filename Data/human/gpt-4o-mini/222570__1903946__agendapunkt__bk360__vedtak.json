@@ -1,0 +1,18 @@
+{
+  "dokument_id": "222570:1903946:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:47:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant decision on a building permit that affects local residents and has seen political debate."
+    },
+    "summary_headline": "Klage på avslag om dispensasjon for bygging av enebolig i Nydalen avvist",
+    "summary_body": "Utvalg for miljø og byutvikling har avvist en klage på avslag om dispensasjon fra plankrav for bygging av enebolig på Nydalen 8. I møtet 27.08.2020 ble det besluttet å opprettholde fagetatens vedtak fra 18.03.2020. Forslag fra Charlotte Spurkeland (H) om å utsette saken for befaring ble nedstemt. Det ble også fremmet et alternativt forslag fra H, men dette fikk ikke flertall. Utvalget konkluderte med at fordelene ved å innvilge dispensasjon ikke oppveier ulempene, til tross for at det er argumentert for at området er utbygd og at infrastrukturen kan håndtere en ny bolig. Saken er av interesse for innbyggere i Nydalen, da den berører lokal boligutvikling."
+  }
+}

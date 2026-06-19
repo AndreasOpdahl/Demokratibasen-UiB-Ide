@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50742:111956:199810158:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:42:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine budget proposal with no significant newsworthy elements."
+    },
+    "summary_headline": "Budsjettforslag for byutvikling 1999 presentert",
+    "summary_body": "Rådmannens forslag til budsjett for 1999 for Kommunalavdeling byutvikling er nå tilgjengelig for foreløpig orientering. Det er også varslet et ytterligere nedtrekk i rammebeløpet på 633.900 kroner. Ingen kontroverser eller dissent er rapportert."
+  }
+}

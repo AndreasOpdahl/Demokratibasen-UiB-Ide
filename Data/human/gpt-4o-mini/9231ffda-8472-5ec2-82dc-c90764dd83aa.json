@@ -1,0 +1,18 @@
+{
+  "dokument_id": "9231ffda-8472-5ec2-82dc-c90764dd83aa",
+  "kommune_nummer": 4626,
+  "kommune_navn": "Øygarden",
+  "generated_at": "2026-02-19 23:12:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a significant local development project with potential community impact and some dissent from neighbors."
+    },
+    "summary_headline": "Dispensasjon for naust og småbåthamn på Nordre Bjorøyna godkjent til tross for nabomerknader",
+    "summary_body": "Øygarden kommune har gitt dispensasjon fra byggeforbudet i strandsonen for riving og oppføring av naust samt etablering av småbåthavn på Nordre Bjorøyna (GBNR 50/9). Tiltakshaver, Karsten Bjarne Bjorøy, har fått godkjent rammeløyve til tiltaket, som inkluderer en flytebrygge med landgang. Det er imidlertid kommet inn flere merknader fra naboer som uttrykker bekymringer om tilkomst og påvirkning på eiendommene deres. Bygningsmyndighetene vurderer at tiltaket ikke vil ha betydelig negativ innvirkning på naturmangfold eller kulturmiljø. Det totale gebyret for tiltaket er satt til 58 400 kroner. Klagefristen for vedtaket er tre uker."
+  }
+}

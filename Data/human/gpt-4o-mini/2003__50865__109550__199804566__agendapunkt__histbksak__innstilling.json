@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50865:109550:199804566:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:33:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant financial claim against Bergen municipality, which could impact local finances."
+    },
+    "summary_headline": "Bergen kommune bevilger 200.000 til juridisk bistand i erstatningssak",
+    "summary_body": "Bergen formannskap har besluttet å bevilge 200.000 kroner til konsulentutgifter for å håndtere et erstatningskrav fra Samnanger kommune. Kravet, som er på 30 millioner kroner, gjelder verdier knyttet til konsesjonskraft og investeringer i nettet i Samnanger. Rådmannen foreslår å styrke budsjettposten for kommunens rettssaker for å dekke kostnadene. Dette kan få betydning for kommunens økonomi og innbyggerne i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50979:111416:199706921:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:50:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for Sunday opening of the Bergen Public Library has significant implications for local residents, including staffing and budget considerations."
+    },
+    "summary_headline": "Bergen Offentlige Bibliotek vurderer søndagsåpning med behov for flere ansatte",
+    "summary_body": "Hovedutvalg for fritid og kultur vurderer nå muligheten for å holde Bergen Offentlige Bibliotek åpent på søndager. En brukerundersøkelse viser at 40% av innbyggerne ville besøke biblioteket på søndager. For å gjennomføre dette, kreves det minst 5 nye årsverk, noe som vil medføre kostnader på ca. 1.550.000 kroner. Tidligere erfaringer fra andre kommuner viser at søndagsåpning kan være utfordrende, med lavere besøkstall enn ukedagene. Det er foreslått at åpningstiden på ukedagene ikke reduseres, noe som kan skape bemanningsproblemer. Neste steg er å diskutere dette videre i hovedutvalget."
+  }
+}

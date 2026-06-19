@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:4356:40531:200416513:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:48:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a liquor license has local relevance and some community interest, especially with a dissenting vote."
+    },
+    "summary_headline": "Kafe Kranen får skjenkebevilling til øl, vin og brennevin",
+    "summary_body": "Rusmiddelpolitisk råd har anbefalt å innvilge søknaden fra Kafe Kranen på Solheimsgt. 9B om skjenkebevilling for øl, vin og brennevin innendørs, samt øl og vin utendørs. Vedtaket ble fattet med 1 stemme imot fra Kristelig Folkeparti (Krf). Dette kan påvirke både kaféens drift og lokalsamfunnet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50734:109935:199704780:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:41:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested urban development plan with significant local interest and community opposition."
+    },
+    "summary_headline": "Kontroversiell reguleringsplan for Fana, Råvarden vedtatt av byutvalget",
+    "summary_body": "Hovedutvalg for byutvikling har vedtatt et korrigert forslag til reguleringsplan for Fana, Råvarden, som nå sendes til bystyret for endelig godkjenning. Planen har vært til offentlig høring, og det er mottatt flere merknader fra innbyggere, hvorav noen har ført til justeringer. Det er imidlertid betydelig motstand fra grunneiere som ønsker at alternativ B, som de mener er bedre, også skal vurderes. Administrasjonen anbefaler at kun alternativ A legges til grunn, til tross for klager fra flere innbyggere, noe som kan føre til videre konflikt. Dette utviklingsprosjektet vil påvirke mange lokale innbyggere, spesielt med tanke på trafikk og støy."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11107:70679:201211508:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:46:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a routine appointment of board members, which has limited local impact."
+    },
+    "summary_headline": "Nye styremedlemmer utnevnt til Ulvsnesøy skolehjem",
+    "summary_body": "Byrådet har utnevnt Magne Ervik og Anne Marit Presterud som styremedlemmer til stiftelsen Ulvsnesøy skolehjem. De vil sammen utnevne et tredje medlem, som bør være jurist, i henhold til Stiftelsesloven. Dette følger vedtak fra Lotteri- og stiftelsestilsynet."
+  }
+}

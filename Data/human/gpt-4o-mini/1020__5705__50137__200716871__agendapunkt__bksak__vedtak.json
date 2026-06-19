@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:5705:50137:200716871:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:30:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll fra finanskomiteen godkjent",
+    "summary_body": "Protokollen fra møtet i Komite for finans den 13. februar 2008 ble godkjent i møtet den 12. mars 2008."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2671:26544:200001911:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:44:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The application for a liquor license for outdoor serving at a local restaurant is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "Peppe's Pizza søker skjenkebevilling for uteservering",
+    "summary_body": "Rusmiddelpolitisk råd har behandlet søknaden fra Peppe's Pizza om skjenkebevilling for brennevin ved uteserveringen på Zachariasbryggen. Rådet støtter anbefalingen fra Kontor for skjenkesaker, men det er ingen rapportert motstand eller kontrovers knyttet til saken."
+  }
+}

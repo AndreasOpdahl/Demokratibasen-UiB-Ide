@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:2925:28992:200111949:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:58:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document involves a local business seeking a sales permit for beer, which has implications for community regulations and local commerce."
+    },
+    "summary_headline": "Osvald Stiens Eftf. får salgsbevilling for øl",
+    "summary_body": "Byrådet har innstilt på å innvilge salgsbevilling for øl til dagligvarebutikken Osvald Stiens Eftf. på Skutevikstorget 2, etter at tidligere eier la ned butikken. Adil Al-Mosawi er godkjent som styrer for bevillingen, som gjelder frem til 30. juni 2004. Salg av øl kan skje i henhold til kommunens forskrifter, og politiet har ikke merknader til søknaden. Bergenhus bydelsstyre skal behandle saken den 6. november 2001."
+  }
+}

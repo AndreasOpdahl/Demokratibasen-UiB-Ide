@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248380:5031663:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:51:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to purchase land for a kindergarten is significant for local residents and involves public spending."
+    },
+    "summary_headline": "Bergen kommune kjøper tomt for Kristianborg barnehage",
+    "summary_body": "Utvalg for finans, kultur og næring har enstemmig vedtatt å kjøpe tomt fra Conrad Mohrs vei 15 AS for å utvide Kristianborg barnehage. Kjøpet vil bli finansiert gjennom sekkeposten for strategiske eiendomskjøp. Utvalget har også bedt om at lekearealet ikke godkjennes som uteoppholdsareal for boliger i reguleringsplanen. Dette kan påvirke fremtidige boligprosjekter i området, noe som er av interesse for lokale innbyggere."
+  }
+}

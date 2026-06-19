@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3312:31976:200007858:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:02:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal for a new residential development in a sensitive area raises concerns about adherence to existing planning guidelines."
+    },
+    "summary_headline": "Kontroversiell reguleringsplan for Kolstien felt E legges ut til offentlig ettersyn",
+    "summary_body": "Byrådet i Bergen har besluttet å legge ut et privat forslag til reguleringsplan for Kolstien felt E til offentlig ettersyn. Planen, utarbeidet av 1:1 arkitekter A/S, omfatter bygging av 20-25 boliger i et leilighetsbygg i et område som i kommunedelplanen er definert som fortettingsområde. Utbyggingen bryter med eksisterende bebyggelse og retningslinjer i KDP Landås, som foreslår eneboliger og rekkehus. Byrådet mener at den sentrale beliggenheten kan rettferdiggjøre høyere utnyttelse, men det er bekymringer om tiltakets påvirkning på det sårbare bylandskapet. Offentlig høring vil gi innbyggerne mulighet til å gi tilbakemelding på forslaget."
+  }
+}

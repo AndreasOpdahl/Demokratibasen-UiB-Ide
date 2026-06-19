@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1022:9027:63141:201104109:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:36:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document provides a routine financial update with no significant newsworthy elements."
+    },
+    "summary_headline": "Bergen Vann KF rapporterer positivt resultat",
+    "summary_body": "Styret for Bergen Vann KF har presentert en økonomisk statusrapport per 30. september 2011, som viser et foreløpig positivt resultat på cirka 700.000 kroner. Detaljerte tall vil bli sendt ut før styremøtet den 21. oktober 2011. Saken er kun til orientering for styret."
+  }
+}

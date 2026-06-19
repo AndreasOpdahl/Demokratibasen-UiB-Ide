@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51422:115459:199932497:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:47:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a municipal decision regarding the right of first refusal on a property sale, which has local relevance but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Bergen kommune avviser forkjøpsrett på Stølegaten 19",
+    "summary_body": "Bergen kommune har besluttet å ikke benytte sin forkjøpsrett ved overdragelsen av Stølegaten 19, som selges av Stølegaten 19 AS til Øvre Blekevei 43 AS for 12,5 millioner kroner. Administrasjonen vurderte at det ikke forelå grunnlag for å benytte forkjøpsretten, da leietakerne ikke har uttrykt ønske om å overta eiendommen som borettslag eller eierseksjonssameie. Fristen for å benytte forkjøpsretten utløper 16. november 1999."
+  }
+}

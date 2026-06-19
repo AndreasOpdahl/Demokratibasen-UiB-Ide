@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221805:1930782:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:46:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises concerns about the potential loss of a historical gathering place for a local youth corps, which could impact community traditions."
+    },
+    "summary_headline": "Bekymring for Sydnæs Bataljons ekserserplass ved nytt universitetbygg",
+    "summary_body": "Rune Bakervik (A) har stilt spørsmål til kulturbyråden om dialog med Sydnæs Bataljon angående bekymringer for ekserserplassen ved Vinjesplass, som kan bli berørt av et nytt HF-bygg ved universitetet. Bataljonen har brukt området siden 1890-årene, og frykter at byggingen vil ødelegge deres fest- og ekserserplass. Bakervik minner om bystyrets tidligere vedtak om å beskytte slike plasser. Det er nå opp til kulturbyråden å sikre at tradisjonene kan fortsette."
+  }
+}

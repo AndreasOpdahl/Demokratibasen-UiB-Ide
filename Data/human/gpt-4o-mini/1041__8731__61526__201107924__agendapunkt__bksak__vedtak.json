@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:8731:61526:201107924:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:12:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine administrative decision regarding the electoral roll, which is not particularly newsworthy."
+    },
+    "summary_headline": "Manntallet for kommune- og fylkesvalg legges ut til gjennomsyn",
+    "summary_body": "Valgstyret har enstemmig besluttet å legge ut manntallet for kommune- og fylkesvalget 2011 til gjennomsyn på Bergen rådhus og Bergen Offentlige Bibliotek. Tid og sted for utleggingen vil bli kunngjort i Bergens Tidende og Bergensavisen."
+  }
+}

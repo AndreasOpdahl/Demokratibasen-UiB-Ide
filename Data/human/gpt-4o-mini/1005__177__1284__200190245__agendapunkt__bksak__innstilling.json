@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:177:1284:200190245:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:42:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to exempt a local sanatorium from property tax is significant for the community and involves public funds."
+    },
+    "summary_headline": "Nervesanatoriet 'SOLLI' får fritak fra eiendomsskatt",
+    "summary_body": "Byrådet har anbefalt bystyret å frita Nervesanatoriet 'SOLLI' for eiendomsskatt for eiendommene gnr. 44, bnr. 9, 504, 505 og 586 fra og med år 2001. Fritaket er basert på at sanatoriet er en allmennyttig institusjon som gagner kommunen. Dersom eiendommene overdras eller brukes til annet formål, vil fritaket bortfalle. Byrådsleder Anne-Grete Strøm-Erichsen og byråd Tom Knudsen står bak innstillingen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203668:255271:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:03:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses delays in school rehabilitation affecting local students, raising concerns and potential conflict."
+    },
+    "summary_headline": "Forsinkelser i skolesituasjonen i Arna skaper bekymring",
+    "summary_body": "Sofie Marhaug (R) har stilt spørsmål om skolesituasjonen i Arna, der forsinkelser i rehabiliteringen av Garnes ungdomsskole fører til at elever fra Ytre Arna må flyttes til midlertidige brakker. Dette er i strid med opprinnelige planer og har skapt motstand blant berørte parter. Marhaug etterspør om byrådet vil revurdere saksgangen for å la ungdomsskoleelevene bli værende i Ytre Arna inntil erstatningslokalene er klare. Dette er en viktig sak for lokalsamfunnet, da det direkte påvirker skoleelevenes hverdag."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1d6b2a27-a716-547d-a083-affb35fb83aa",
+  "kommune_nummer": 4602,
+  "kommune_navn": "Kinn",
+  "generated_at": "2026-02-19 20:29:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines the process for kindergarten admissions, which is relevant to local families and may impact many residents."
+    },
+    "summary_headline": "Kinn kommune presenterer prosessen for barnehageinntak",
+    "summary_body": "Kinn kommune har lagt fram sin prosess for tildeling av barnehageplasser, som sikrer at alle barn med rett til plass får tilbud i henhold til barnehageloven. Hovedinntaket skjer i slutten av februar, med søknadsfrist 15. februar hvert år. Kommunen prioriterer barn med nedsatt funksjonsevne og de som bor i områder uten eksisterende barnehagetilbud. Det er også mulighet for rullerande inntak ved ledig kapasitet gjennom året. Dette er viktig informasjon for familier i kommunen som planlegger barnehageplass for sine barn."
+  }
+}

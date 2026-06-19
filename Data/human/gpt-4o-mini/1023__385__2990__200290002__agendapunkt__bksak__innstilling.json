@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:385:2990:200290002:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:39:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains a written question regarding the treatment of substance abusers, which is a relevant local issue."
+    },
+    "summary_headline": "Spørsmål om behandling av rusmisbrukere i Bergen",
+    "summary_body": "Else Mebust Tveiten (KrF) har stilt et skriftlig spørsmål til KHSB angående behandlingen av rusmisbrukere ved Evangeliesenteret. Dette spørsmålet vil bli behandlet i møtet den 11. desember 2022, og det reiser viktige spørsmål om lokale tiltak for rusmisbrukere."
+  }
+}

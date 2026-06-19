@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:7982:59467:200918007:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:40:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a public hearing on a school usage plan, which is relevant but lacks immediate controversy or significant financial implications."
+    },
+    "summary_headline": "Høring om Skolebruksplan 2010-2024 i Laksevåg",
+    "summary_body": "Laksevåg bydelsstyre har fått tilsendt høringsutkastet for Skolebruksplanen 2010-2024, som skal sikre et godt skoletilbud og arbeidsmiljø for elever og ansatte. Høringen har frist 24. september 2010, og bydelsstyret oppfordres til å gi sin uttalelse. Planen fokuserer på oppdatering av skoleanlegg og samspill mellom pedagogiske mål og bygningsdesign."
+  }
+}

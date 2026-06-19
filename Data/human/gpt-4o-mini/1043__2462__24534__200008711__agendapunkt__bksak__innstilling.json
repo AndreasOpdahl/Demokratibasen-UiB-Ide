@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:2462:24534:200008711:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:17:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a routine application for a sales license, which has limited local impact."
+    },
+    "summary_headline": "Årstad bydelsstyre gir salgsbevilling for øl til Jellestads Eft. AS",
+    "summary_body": "Årstad bydelsstyre har behandlet en søknad fra Jellestads Eft. AS om salgsbevilling for øl frem til 30. juni 2004. Bydelsstyret har ingen merknader til søknaden, og uttalelsen vil bli sendt til rusmiddelpolitisk råd og formannskap for videre behandling. Det er også nødvendig å innhente uttalelse fra sosialtjenesten i henhold til alkoholloven."
+  }
+}

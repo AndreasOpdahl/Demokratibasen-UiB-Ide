@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11958:75987:201500183:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:37:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document outlines a comprehensive climate and energy action plan for Bergen, which has significant implications for local residents and involves various political actors."
+    },
+    "summary_headline": "Bystyret vedtar ambisiøs Grønn Strategi for Bergen",
+    "summary_body": "Bergen bystyre har vedtatt Grønn Strategi – klima- og energihandlingsplan for Bergen, som har som mål å redusere klimagassutslippene med 30 % innen 2020. Planen inkluderer tiltak for å fremme fornybar energi, støtte grønt næringsliv, og utvikle innovative løsninger for transport og avfallshåndtering. Bystyret understreker viktigheten av å tilrettelegge for elbiler og kollektivtransport, samt å involvere innbyggerne i det grønne skiftet. Det er også foreslått å etablere bilfrie soner og øke antallet trær i bykjernen. Planen krever betydelige økonomiske ressurser og vil bli fulgt opp med årlige rapporter fra byrådet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223216:1938469:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:48:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document highlights concerns from local sports clubs regarding communication and progress on sports projects, indicating local relevance and potential impact."
+    },
+    "summary_headline": "Idrettsklubber i Bergen etterlyser svar fra byråden",
+    "summary_body": "Eivind Nævdal-Bolstad (H) har stilt skriftlig spørsmål til byråden om status og fremdrift på idrettsprosjekter i Bergen, etter at flere idrettsklubber uttrykte frustrasjon over manglende kommunikasjon. Klubbenes bekymringer ble omtalt i Bergensavisen 1. september, hvor de etterlyste tydelige svar fra byråden. Det er nå forventet at byråden redegjør for situasjonen."
+  }
+}

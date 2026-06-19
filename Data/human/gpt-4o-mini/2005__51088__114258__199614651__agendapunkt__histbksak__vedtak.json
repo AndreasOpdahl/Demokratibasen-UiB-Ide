@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51088:114258:199614651:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:46:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to approve the impact assessment program for the location of Høgskolen i Bergen is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Hovedutvalg for byutvikling godkjenner utredningsprogram for Høgskolen i Bergen",
+    "summary_body": "Hovedutvalg for byutvikling har enstemmig godkjent utredningsprogrammet for lokalisering av Høgskolen i Bergen. I tillegg ble det enstemmig vedtatt at tidligere vedtak fra HOBY-sakene 565/97 og 82/98 skal siteres i sin helhet i videre behandling. Dette vedtaket ble fattet under møtet den 1. juni 1999."
+  }
+}

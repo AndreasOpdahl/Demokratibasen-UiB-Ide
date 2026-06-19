@@ -1,0 +1,18 @@
+{
+  "dokument_id": "231541:3453202:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:11:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a rejected urban development plan that impacts local architecture and community identity."
+    },
+    "summary_headline": "Rådet avviser utbyggingsplan for Lars Hilles gate - Nygårdsgaten",
+    "summary_body": "Rådet for byforming og arkitektur (RBA) har avvist et planforslag for utbygging av tomten mellom Lars Hilles gate og Nygårdsgaten. I møtet 6. september 2021 ble det konkludert med at planforslaget ikke utnytter tomtens potensiale og ikke tilpasser seg den eksisterende bystrukturen. RBA påpekte at bygningens volumer er for dominerende og ikke ivaretar det lokale særpreget, spesielt i forhold til det historiske Kardemommehuset. For at et nytt forslag skal bli godkjent, må det radikalt omarbeides for å oppfylle kravene i Kommuneplanens arealdel."
+  }
+}

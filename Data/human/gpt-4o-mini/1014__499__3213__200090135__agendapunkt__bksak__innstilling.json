@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1014:499:3213:200090135:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:19:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a decision regarding the accessibility of ballots for district council elections, which has implications for local voting practices."
+    },
+    "summary_headline": "Bystyret avviser tilgjengelighet av stemmesedler i andre bydeler",
+    "summary_body": "Bergen bystyre har besluttet at stemmesedler til valg av bydelsstyre kun skal være tilgjengelige i valglokalene i den aktuelle bydelen. Valgsekretariatet anbefaler ikke å utvide tilgjengeligheten til andre valglokaler, da det vil skape praktiske utfordringer og økte kostnader. Det er tradisjonelt få fremmedstemmer, og det vil kreve betydelige ressurser å tilpasse alle 59 valglokaler i kommunen. Den videre oppfølgingen av direkte valg til bydelsstyrene delegeres til Valgstyret."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:11231:72074:201310558:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:54:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested building permit with multiple complaints from neighbors, highlighting local community concerns."
+    },
+    "summary_headline": "Klage på rammetillatelse til nybygg i Nordåsvegen avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde rammetillatelsen for oppføring av en enebolig i Nordåsvegen, til tross for fem klager fra naboer. Klagerne, inkludert Otto Vindenæs og Sameiet Nordåsvegen 134, uttrykker bekymringer om husets høyde, volum, tap av utsikt og solforhold. Byrådet konkluderer med at tiltaket overholder gjeldende regler og at klagene ikke er tilstrekkelige for å omgjøre tillatelsen. Neste steg er at saken kan bli sendt til Fylkesmannen for endelig avgjørelse dersom klagerne velger å anke."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:6962:54605:200812961:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:03:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a revised application for a residential building, which has local relevance and potential impact on housing availability."
+    },
+    "summary_headline": "Revidert søknad om ny tomannsbolig i Åsane vurderes av tilsynsutvalget",
+    "summary_body": "Tilsynsutvalget for byens utseende vurderer en revidert søknad om oppføring av en ny tomannsbolig på Lokketomarka 20 i Åsane. Den nye søknaden gjelder et bygg i to etasjer med to boenheter, etter at en tidligere søknad om tre etasjer ble avslått. Rammetillatelse ble gitt med vilkår, men ble påklaget. Juridisk seksjon ber om en estetisk vurdering av tiltaket i forbindelse med klagebehandlingen."
+  }
+}

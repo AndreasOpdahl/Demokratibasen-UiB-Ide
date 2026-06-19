@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223784:1938367:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:50:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document raises concerns about the reallocation of health personnel, which could impact local health services."
+    },
+    "summary_headline": "Helsesykepleiere omdisponert til smittesporing",
+    "summary_body": "Hilde Onarheim (H) har stilt spørsmål til byråden om omdisponeringen av helsesykepleiere fra helsestasjon og skolehelsetjeneste til smittesporing. Hun ber om informasjon om antall helsesykepleiere som er berørt, tidsperioden for omdisponeringen, og konsekvensene for helsetjenestene. Dette kan påvirke tilgjengeligheten av helsetjenester for innbyggerne i Bergen."
+  }
+}

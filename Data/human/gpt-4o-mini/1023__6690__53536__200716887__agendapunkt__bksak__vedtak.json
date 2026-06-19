@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:6690:53536:200716887:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:42:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine request for a protocol copy, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Rutineforespørsel om protokoll for brukerundersøkelse",
+    "summary_body": "Komite for helse og sosial behandlet en forespørsel fra Hallgeir Utne Hatlevik (A) om å få kopi av protokollen vedrørende brukerundersøkelse for utviklingshemmede. Byrådsavdelingen vil sørge for at protokollen blir sendt."
+  }
+}

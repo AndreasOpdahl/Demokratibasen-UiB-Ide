@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:6741:53910:200714683:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:55:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a local regulatory plan with unanimous support, indicating local governance activity but lacking significant controversy or impact."
+    },
+    "summary_headline": "Fana bydelsstyre godkjenner reguleringsplan uten innvendinger",
+    "summary_body": "Fana bydelsstyre har enstemmig godkjent planforslaget for Fredheim boligområde, med vekt på at rekkefølgebestemmelsene må opprettholdes. Stig Høgholm (FrP) fremmet uttalelsen på vegne av FrP, H og KrF, mens Atle Grimstad (A) understreket viktigheten av rekkefølgebestemmelsene. Det er ingen innvendinger til planen, som nå går til offentlig ettersyn."
+  }
+}

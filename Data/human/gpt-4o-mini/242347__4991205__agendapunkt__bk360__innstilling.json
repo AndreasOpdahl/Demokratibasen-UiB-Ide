@@ -1,0 +1,18 @@
+{
+  "dokument_id": "242347:4991205:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:34:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves significant local opposition to a housing development, impacting residents' privacy and light conditions."
+    },
+    "summary_headline": "Naboer klager på rammetillatelse for ny boligblokk i Bergenhus",
+    "summary_body": "Byrådet har besluttet å opprettholde rammetillatelsen for oppføring av en ny boligblokk med 7 leiligheter på Helleveien 245 A, til tross for klager fra naboene. Klagerne, som inkluderer Geir Sævrøy og John Dalen, uttrykker bekymringer om innsyn, solforhold og sprengningsarbeider. Byrådet understreker at tiltaket er i tråd med reguleringsplanen og at klagernes bekymringer allerede er vurdert i planprosessen. Saken vil nå bli sendt til Statsforvalteren i Vestland for endelig avgjørelse."
+  }
+}

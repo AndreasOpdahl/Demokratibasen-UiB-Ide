@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:356:2536:200290236:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:48:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant changes in educational services for children with autism, impacting local families."
+    },
+    "summary_headline": "Bergen kommune overtar ansvaret for opplæring av barn med autisme",
+    "summary_body": "Bergen kommune vil overta det faglige ansvaret for barn som mottar TIPO-trening, ifølge en enstemmig beslutning fra Komite for kultur, idrett og oppvekst. Foreldre til barn med TIPO-trening får innsyns- og uttalesesrett under saksutredningen, med minimum tre ukers forhåndsvarsel for å gi sin uttalelse. TIPO Norge AS sitt engasjement i Bergen avsluttes innen 1. januar 2004. Det er satt av 1.690.000 kroner årlig til dette opplegget, som skal videreføres av det lokale tjenesteapparatet i samarbeid med Haukeland sykehus."
+  }
+}

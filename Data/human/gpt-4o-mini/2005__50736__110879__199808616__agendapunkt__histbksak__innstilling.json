@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50736:110879:199808616:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:42:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines a new collaboration initiative for urban development involving multiple cities, which is relevant to local governance."
+    },
+    "summary_headline": "Bergen deltar i nytt samarbeid for bærekraftig storbyutvikling",
+    "summary_body": "Miljøverndepartementet har invitert storbyene Oslo, Stavanger, Bergen, Trondheim og Tromsø til å delta i \"Samarbeidsforum for Storbyutvikling\". Målet er å fremme bærekraftig utvikling i byene gjennom samarbeid om miljøvennlige transportsystemer, stedsutvikling og bokvaliteter. Det første møtet i programgruppen er planlagt til 15. september. Dette initiativet kan føre til bedre samhandling mellom staten og byene, noe som er viktig for innbyggerne i Bergen."
+  }
+}

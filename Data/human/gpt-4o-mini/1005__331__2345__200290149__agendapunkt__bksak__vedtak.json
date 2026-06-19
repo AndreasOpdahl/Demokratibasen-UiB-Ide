@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:331:2345:200290149:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:47:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant support for youth organizations in Bergen, highlighting inclusion and community engagement."
+    },
+    "summary_headline": "Bergen bystyre vedtar tiltak for å støtte frivillige barne- og ungdomsorganisasjoner",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt tiltak for å styrke frivillige barne- og ungdomsorganisasjoner, basert på funn fra kartleggingsundersøkelsen \"Organisasjonssamfunnet i Hordaland ved årtusenskiftet\". Bystyret ber byrådet om å iverksette tiltak som inkluderer aktiv informasjonsvirksomhet, erfaringsutveksling mellom organisasjoner, og tilrettelegging for ungdom med minoritetsbakgrunn. Dette tiltaket er viktig for å sikre at alle barn og unge i Bergen får mulighet til å delta i fritidsaktiviteter, spesielt de som har vanskeligere for å delta i mer regulerte aktiviteter."
+  }
+}

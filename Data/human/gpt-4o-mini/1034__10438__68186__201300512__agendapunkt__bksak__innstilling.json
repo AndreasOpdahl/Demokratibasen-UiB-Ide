@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:10438:68186:201300512:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:53:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses an updated traffic safety plan which is relevant to local residents."
+    },
+    "summary_headline": "Oppdatering av trafikksikkerhetsplan for Bergen 2014-19",
+    "summary_body": "Eldrerådet har fått tilsendt et forslag til oppdatering av trafikksikkerhetsplanen for Bergen for perioden 2014-19, som rullerer den eksisterende planen fra 2010. Det er behov for økt innsats fra kommunen, og planen vil inkludere tiltak finansiert av både riksvegmidler og fylkeskommunen. Eldrerådet vil utarbeide en uttalelse til planen, og høringsfristen er satt til slutten av september."
+  }
+}

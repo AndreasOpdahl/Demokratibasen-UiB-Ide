@@ -1,0 +1,18 @@
+{
+  "dokument_id": "238830:4029571:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:26:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural decision without significant local impact or controversy."
+    },
+    "summary_headline": "Byrådet avgir høringsuttalelse om helsepersonellnemndas vedtak",
+    "summary_body": "Byrådet i Bergen har behandlet en høringsuttalelse angående statens partsstilling i saker om Helsepersonellnemndas vedtak. I møtet den 23. juni 2022 ble det besluttet å sende høringsuttalelsen i tråd med byrådens forslag. Melding om vedtaket vil bli sendt til Bystyrets kontor."
+  }
+}

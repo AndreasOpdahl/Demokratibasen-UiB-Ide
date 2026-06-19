@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50011:102847:200000115:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:32:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant financial support for local kindergartens, which impacts families and raises concerns about equitable treatment."
+    },
+    "summary_headline": "Bergen kommune bevilger 1,5 millioner til Hjemmenes Vels Familiebarnehager",
+    "summary_body": "Formannskapet i Bergen kommune har besluttet å gi Hjemmenes Vels Familiebarnehager et årlig overgangstilskudd på 1,5 millioner kroner fra 1. august 2000 til 31. juli 2003. Solgården barnehage vil motta 265 000 kroner årlig i samme periode. Det ble uttrykt bekymring for at den nye tilskuddsordningen kan påvirke tidligere private barnehager negativt, noe som kan føre til økte kostnader for foreldre og endringer i barnehagetilbudet. Formannskapet ber byrådet om å utrede disse problemene nærmere."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5624:49989:200612173:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:06:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant public interest due to a complaint against an expropriation decision affecting local traffic safety and infrastructure."
+    },
+    "summary_headline": "Klage på ekspropriasjon for Fjøsangervegen oversendes Fylkesmannen",
+    "summary_body": "Byrådet anbefaler at bystyret opprettholder vedtaket om ekspropriasjon av grunn til reguleringsplan 1807.00.00 for Fjøsangervegen, til tross for en klage fra grunneier Linda Råen. Råen hevder at hun har fått uklare opplysninger om tiltakets omfang og at planleggingen har vært mangelfull. Saken er presserende, da tiltaket er nødvendig for å håndtere forventet trafikkøkning knyttet til byggingen av bybane, og anleggsarbeidet er planlagt til sommeren 2008. Klagen vil bli sendt til Fylkesmannen for videre behandling."
+  }
+}

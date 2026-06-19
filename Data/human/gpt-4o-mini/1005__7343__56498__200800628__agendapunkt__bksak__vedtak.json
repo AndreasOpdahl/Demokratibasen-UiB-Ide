@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7343:56498:200800628:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:13:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant HR strategy for Bergen municipality with political dissent and implications for employee welfare."
+    },
+    "summary_headline": "Bystyret vedtar HR-strategi, men møter kritikk fra opposisjonen",
+    "summary_body": "Bystyret i Bergen har vedtatt en HR-strategi for kommunen, men det er oppstått kritikk fra opposisjonen, spesielt fra Rødt, SV og Sp. Torstein Dahle (R) påpekte at strategien er uklart definert og ikke tar tilstrekkelig hensyn til de ansattes behov. Bystyret vedtok også at helse, miljø og sikkerhet skal inkluderes i strategien, men et forslag om å bruke norske begreper i stedet for engelsk ble nedstemt. Byrådet vil rapportere om HR-utfordringer i årsmeldingen, og det er enighet om at det er behov for mer konkretisering av mål og tiltak i strategien."
+  }
+}

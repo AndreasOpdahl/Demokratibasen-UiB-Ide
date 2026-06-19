@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230238:3161387:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:08:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document involves a funding decision for a local foundation, which has moderate local relevance."
+    },
+    "summary_headline": "Byrådet bevilger 100 000 kroner til Krigsveteranenes Minne",
+    "summary_body": "Byrådet har besluttet å bevilge 100 000 kroner til Stiftelsen Krigsveteranenes Minne ved Kronstad Hovedgård for vedlikehold av bygningen. Bevilgningen ble gjort under møtet den 10. juni 2021, og midlene vil bli overført fra tilleggsbevilgningskontoen til sosial rådgivning og veiledning. Dette tiltaket er viktig for å bevare et historisk minnesmerke i kommunen."
+  }
+}

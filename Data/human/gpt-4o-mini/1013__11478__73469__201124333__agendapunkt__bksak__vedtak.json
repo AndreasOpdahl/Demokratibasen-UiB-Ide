@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:11478:73469:201124333:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:00:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains discussions about procedural changes and ethical considerations, which are relevant but not highly impactful."
+    },
+    "summary_headline": "Bystyret vurderer evakueringsveier og etisk deltakelse på arrangement",
+    "summary_body": "Under møtet 15. juni diskuterte Forretningsutvalget tilpasninger i bystyresalen etter tidligere møter, inkludert evakueringsveier i krisesituasjoner. Fungerende ordfører Tor A. Woldseth (FrP) foreslo å flytte saker i agendaen på grunn av fravær. Pål H. Thorsen (A) spurte om deltakelse på et arrangement under Elton John-konserten var i tråd med kommunens etiske retningslinjer, og fikk bekreftet at det var akseptabelt. Bystyredirektør Roar Kristiansen informerte om en kommende gjennomgang av retningslinjer for gaveregisteret som trer i kraft 1. november."
+  }
+}

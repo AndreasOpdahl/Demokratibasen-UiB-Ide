@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:12276:75364:201334138:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:58:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposed regulatory plan for new housing in Åsane has significant local impact and requires public input."
+    },
+    "summary_headline": "Ny reguleringsplan for leilighetsbygg i Åsane legges ut til offentlig ettersyn",
+    "summary_body": "Forslaget til reguleringsplan for Bekkjarvikveien 2 i Åsane, fremmet av Ard Arealplan AS, legger opp til å rive en eksisterende enebolig for å bygge et leilighetsbygg med 13 boenheter. Planområdet er 4,1 daa og ligger i krysset mellom Tertnesveien og Bekkjarvikveien. Offentlig ettersyn starter nå, med frist for merknader satt til 19. april 2016. Fagetaten har imidlertid påpekt behov for flere justeringer før 2. gangs behandling, inkludert reduksjon av byggehøyde og tilpasning til strøkskarakter. Dette kan påvirke både trafikksikkerhet og tilgjengelighet for beboere."
+  }
+}

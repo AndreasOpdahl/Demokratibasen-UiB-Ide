@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241081:4080808:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:31:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant decision regarding land use and environmental impact, which affects local residents."
+    },
+    "summary_headline": "Bystyret opprettholder dispensasjon for terrenginngrep i byfjellene",
+    "summary_body": "Bergen bystyre har besluttet å opprettholde dispensasjonen for vesentlig terrenginngrep på Øvre Sædalsvegen 249, til tross for en klage. Bystyret behandlet saken 23. november 2022, hvor et alternativt forslag fra SV, Sp og R om å oppheve dispensasjonen ble nedstemt med 22 mot 45 stemmer. Dette vedtaket kan ha betydelige konsekvenser for miljøet og lokalsamfunnet, da det berører byfjellene i Bergen."
+  }
+}

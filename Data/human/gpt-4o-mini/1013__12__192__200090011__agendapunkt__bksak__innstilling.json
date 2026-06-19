@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:12:192:200090011:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:03:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines procedural changes in the municipal committee system, which may affect local governance."
+    },
+    "summary_headline": "Endringer i komiteenes rolle i bystyret",
+    "summary_body": "Forretningsutvalget har vedtatt prinsipper for hvordan komiteene skal behandle saker i det parlamentariske systemet. Komiteene får ansvar for å forberede saker før de legges frem for bystyret, og saksordførere må sørge for at det foreligger en flertallsinnstilling. Dette er første gang den nye ordningen praktiseres fullt ut, noe som kan påvirke hvordan saker behandles i fremtiden."
+  }
+}

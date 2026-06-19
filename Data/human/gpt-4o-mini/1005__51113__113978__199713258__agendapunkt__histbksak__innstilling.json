@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51113:113978:199713258:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:01:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines significant financial guarantees by the municipality, which could impact local residents."
+    },
+    "summary_headline": "Bergen kommune reduserer garantiforpliktelser med 7 millioner kroner",
+    "summary_body": "Bergen kommune har rapportert en reduksjon i garantiforpliktelsene på over 7 millioner kroner per 31. desember 1998. Dette inkluderer en netto reduksjon av garantier for boliglån og private barnehager, mens garantier for lån til vernede bedrifter og eldreinstitusjoner har økt. Rådmannen informerte formannskapet om at det ikke har vært betydelige tap knyttet til disse garantiene, og at det vil bli lagt frem en egen sak om Grieghallen AS snart. Formannskapet godkjente enstemmig rådmannens redegjørelse."
+  }
+}

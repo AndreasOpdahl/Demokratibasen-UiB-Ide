@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4205:39689:200409016:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:51:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes to the electoral administration in Bergen, impacting local governance and election processes."
+    },
+    "summary_headline": "Bystyret vedtar omlegging av valgarbeidet i Bergen kommune",
+    "summary_body": "Bystyret i Bergen har besluttet å overføre det administrative ansvaret for valgarbeidet fra byrådet til Bystyrets kontor fra 1. januar 2005. Dette er en del av en omlegging for å tilpasse valgarbeidet til kommunens parlamentariske styringsform. Kemneren vil fortsatt ha ansvar for den praktiske gjennomføringen av valg, men rapporterer nå til bystyredirektøren. Bystyret har også bedt om en evaluering av valget i 2005 for å forberede kommunevalget i 2007. Denne omleggingen er viktig for å sikre en mer effektiv og ansvarlig valgprosess i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "222655:2397643:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:47:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses ongoing issues related to the COVID-19 situation and political responses, which are relevant to local residents."
+    },
+    "summary_headline": "Politisk debatt om koronahåndtering i Bergen",
+    "summary_body": "Under møtet 18. august 2020 ba Diane A. Berbain (SV) om gjenopptakelse av ukentlige orienteringer fra byrådsleder om koronasituasjonen. Forretningsutvalget ba byrådsleder om å fremlegge et forslag til hvordan informasjonen skal deles med bystyret. Hilde Onarheim (H) stilte spørsmål om koronatesting, og byråd Beate Husa svarte. Mikkel Grüner (SV) etterlyste oppfølging av en henvendelse angående en fanemarkering mot Sian den 22. august. Kommunaldirektør Robert Rastad etterlyste avklaring om lovmessig forankring av karanteneutvalget. Bystyredirektør Roar Kristiansen informerte om at det vil bli utarbeidet en sak om valg av leder og nestleder."
+  }
+}

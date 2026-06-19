@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4111:38751:200200095:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:12:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant funding proposal for a cultural project that could have a substantial impact on the local music and film industries."
+    },
+    "summary_headline": "Bergen kommune vurderer støtte til musikkvideoprosjektet GAFFA",
+    "summary_body": "Bergen kommune vurderer å bevilge 250.000 kroner til musikkvideoprosjektet GAFFA, som involverer samarbeid mellom lokale plateselskaper og filmproduksjonsselskaper. Prosjektet har et totalbudsjett på 1.850.000 kroner og har som mål å produsere fem musikkvideoer og en dokumentarisk rammefilm. Byråden for finans, kultur og næring, Henning Warloe, mener prosjektet vil fremme kulturbasert næringsutvikling og styrke Bergens posisjon som kulturby. Prosjektet skal premieres under BIFF i oktober 2004."
+  }
+}

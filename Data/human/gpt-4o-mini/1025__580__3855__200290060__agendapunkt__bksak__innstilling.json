@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:580:3855:200290060:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:50:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains administrative responses but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Byrådet svarer på spørsmål om samlokalisering",
+    "summary_body": "Byrådet har svart på spørsmål fra representanten Veslemøy Gullachsen (A) angående muligheten for å samlokalisere BIKS og Barnas Hus i Danseteateret når dette blir ledig. Svaret ble gitt i et notat datert 29. september 2003, og det er en oppfølging av tidligere spørsmål i KKIO."
+  }
+}

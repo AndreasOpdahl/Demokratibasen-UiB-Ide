@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10671:71237:201400050:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:31:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant changes to procurement regulations that could impact local businesses and public spending."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse om forenkling av anskaffelsesregler",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til NOU 2014:4, som foreslår forenkling av anskaffelsesregelverket. Byrådet, ledet av Ragnhild Stolt-Nielsen, mener at færre og mer konkrete regler kan redusere konflikter mellom oppdragsgivere og leverandører. Høringsfristen er 31. oktober 2014, og endringer kan tre i kraft fra 1. januar 2016. Byrådet understreker også viktigheten av å ivareta samfunnsmessige hensyn i offentlige anskaffelser. Dette kan påvirke lokale leverandører og innkjøpsprosesser i kommunen."
+  }
+}

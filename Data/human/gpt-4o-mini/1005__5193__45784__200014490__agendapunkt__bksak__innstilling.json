@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5193:45784:200014490:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:03:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant regulatory plan affecting housing development in a local area, with community concerns and implications for school capacity."
+    },
+    "summary_headline": "Reguleringsplan for 23 boliger i Glaskaråsen vest anbefales vedtatt av byrådet",
+    "summary_body": "Byrådet har anbefalt bystyret å vedta reguleringsplanen for Glaskaråsen vest, som omfatter bygging av 23 boliger med 36 boenheter. Planen, som har vært til offentlig ettersyn, har mottatt 18 merknader, inkludert bekymringer om landskap, rassikring og skolekapasitet. Det er bekreftet at Kalvatræet skole har tilstrekkelig kapasitet for de nye innbyggerne, men det er fortsatt en underdekning av barnehageplasser i Åsane bydel. Byrådet påpeker at det er viktig å ivareta arkitektoniske variasjoner i boligene. Neste steg er behandling i bystyret."
+  }
+}

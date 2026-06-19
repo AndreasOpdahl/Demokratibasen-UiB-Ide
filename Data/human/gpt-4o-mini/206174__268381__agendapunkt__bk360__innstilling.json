@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206174:268381:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:11:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The renewal of the alcohol license for BarKollektiv is significant for local businesses and residents."
+    },
+    "summary_headline": "BarKollektiv får fornyet skjenkebevilling frem til 2020",
+    "summary_body": "Byrådet i Bergen har innvilget søknaden fra Aroma Restaurant AS om fornyelse av skjenkebevillingen for BarKollektiv, Vetrlidsallmenningen 4, frem til 30. juni 2020. Dette innebærer at stedet kan servere alkohol både innendørs og utendørs, med et totalt skjenkeareal på 578 m2. Byråden, Rebekka Ljosland, støtter fagetatens anbefaling, men påpeker at uteserveringen kun kan benyttes dersom det foreligger lovlig adgang og godkjennelse fra kommunen. Dette er viktig for både restaurantens drift og for lokalsamfunnet, som har hatt uteservering i mange år."
+  }
+}

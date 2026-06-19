@@ -1,0 +1,18 @@
+{
+  "dokument_id": "233762:2898071:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:16:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document presents youth perspectives on urban planning, highlighting community needs and future aspirations."
+    },
+    "summary_headline": "Ungdomsrådet foreslår flere grønne områder og bedre tilgjengelighet i Bergen",
+    "summary_body": "Ungdomsrådet har i sitt møte 29. november 2021 fremmet forslag til forbedringer av grønne områder i Bergen. De etterlyser flere parker, spesielt i Åsane, samt bedre tilgang til sjøen med tilpassede brygger. Rådet ønsker også flere tilrettelagte aktiviteter som skiløyper og skøytefasiliteter, samt mer kollektivtransport. Ungdommene uttrykker behov for møteplasser i grønne områder med benker og kafeer. Dette er viktige innspill for fremtidig byutvikling, og det er avgjørende at kommunen tar hensyn til ungdommens ønsker for en bærekraftig byutvikling."
+  }
+}

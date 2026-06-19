@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51182:113930:199606806:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:36:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision involves local advertising practices and the future role of neighborhood councils, which may impact community engagement."
+    },
+    "summary_headline": "Bergen kommune vurderer annonsering i bydelsaviser",
+    "summary_body": "Formannskapet i Bergen har behandlet et forslag om kommunal annonsering i bydelsavisene. Tom Skauge (SV) foreslo at kommunen skulle fortsette annonseringen frem til nye bydelsstyrer ble opprettet, men dette forslaget fikk kun støtte fra SV og RV. I stedet ble det enstemmig vedtatt at saken om annonsering skal fremlegges for de nye bydelsstyrene til behandling. Dette kan påvirke hvordan kommunen kommuniserer med innbyggerne i fremtiden."
+  }
+}

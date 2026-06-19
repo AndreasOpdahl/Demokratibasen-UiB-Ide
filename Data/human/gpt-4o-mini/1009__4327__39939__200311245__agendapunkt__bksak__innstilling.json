@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4327:39939:200311245:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:15:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document highlights significant potential negative impacts on the local maritime industry due to military restructuring."
+    },
+    "summary_headline": "Byrådet advarer mot nedbygging av Sjøforsvaret i Bergen",
+    "summary_body": "Bergen byråd har uttrykt bekymring for de negative konsekvensene av en mulig nedbygging av Haakonsvernmiljøet, ifølge rapporten fra Samfunns- og Næringslivsforskning (SNF). Rapporten viser at en reduksjon i Sjøforsvarets tilstedeværelse kan svekke den regionale maritime klyngen, med tap av kompetanse og arbeidsplasser som følge. Byrådet ber Stortinget om å vurdere disse konsekvensene i forbindelse med omorganiseringen av Forsvarets logistikkorganisasjon. Det foreslås også en bevilgning på 75.000 kroner fra Bergen kommune for å støtte utredningen, som har en total kostnad på 250.000 kroner."
+  }
+}

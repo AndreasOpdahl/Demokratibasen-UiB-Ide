@@ -1,0 +1,18 @@
+{
+  "dokument_id": "a31d2c41-b404-53c2-a40e-5df5a944e1ed",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:14:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the completion of a significant municipal project with financial implications."
+    },
+    "summary_headline": "Bergen Inkluderingssenter får godkjent sluttmelding for ombygging",
+    "summary_body": "Byrådet i Bergen har behandlet sluttmeldingen for ombyggingen av Bergen Inkluderingssenter i møte 23. oktober 2025. De innstiller til bystyret om å godkjenne prosjektets sluttmelding. Det er også meldt om et antatt mindreforbruk på 3,4 millioner kroner, som vil bli trukket inn ved første anledning etter at de økonomiske forpliktelsene er ivaretatt. Dette prosjektet er av betydning for lokalsamfunnet, da det omhandler et viktig inkluderingssenter."
+  }
+}

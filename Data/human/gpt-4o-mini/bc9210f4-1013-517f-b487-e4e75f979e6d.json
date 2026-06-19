@@ -1,0 +1,18 @@
+{
+  "dokument_id": "bc9210f4-1013-517f-b487-e4e75f979e6d",
+  "kommune_nummer": 4649,
+  "kommune_navn": "Stad",
+  "generated_at": "2026-02-19 23:18:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant budget cuts affecting the local school, which will impact students and parents."
+    },
+    "summary_headline": "Eid ungdomsskule forbereder seg på store budsjettkutt i 2026",
+    "summary_body": "Under møtet den 15. september 2025 ble det diskutert at Eid ungdomsskule må forberede seg på betydelige budsjettkutt på 17,5 millioner kroner i 2026, som følge av kommunens økonomiske situasjon. Rektor Peder Felde oppfordret FAU til å engasjere seg og samarbeide med andre FAU-er for å uttale seg samlet om saken. Dette vil påvirke skolens aktiviteter og ressurser, noe som er av stor interesse for både elever og foreldre."
+  }
+}

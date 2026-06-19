@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9769:65426:200904570:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:47:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant illegal construction issues that affect local residents and involves potential enforcement actions."
+    },
+    "summary_headline": "Byrådet vurderer tvangsfullbyrdelse mot ulovlig bygging i Merkesvika",
+    "summary_body": "Byråden for byutvikling, klima og miljø, Filip Rygg, har innstilt til byrådet om å delegere myndighet til å utferdige forelegg og iverksette tvangsfullbyrdelse mot ulovlige forhold på Merkesvika 6, gnr 302, bnr 556. Dette gjelder ulovlig bruksendring, fasadeendring og oppføring av påbygg. Tidligere pålegg om retting har ikke blitt fulgt, og det er ilagt tvangsmulkt på 1000 kroner per dag siden 1. august 2011. Byrådet må nå ta stilling til om de vil følge opp med ytterligere tiltak for å sikre at loven overholdes."
+  }
+}

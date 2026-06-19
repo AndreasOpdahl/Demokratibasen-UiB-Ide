@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:12811:77665:201529579:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:59:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a positive planning decision but lacks significant conflict or impact."
+    },
+    "summary_headline": "Positivt reguleringsplan for Øvre Fyllingsvei godkjent",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet reguleringsplanen for Øvre Fyllingsvei, Gnr. 154, Bnr. 126, og uttrykt støtte til planforslaget. Rådet berømmer tilbygget for sin gode utforming og positive bidrag til nærmiljøet."
+  }
+}

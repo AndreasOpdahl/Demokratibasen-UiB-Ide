@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:9313:65909:201124952:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:51:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to appoint a new representative is relevant but lacks significant impact or controversy."
+    },
+    "summary_headline": "Ny representant valgt til Ungdommens bystyre",
+    "summary_body": "Komite for oppvekst har enstemmig valgt Sentoorvasan Singaravel (H) som ny representant til Ungdommens bystyre, etter forslag fra Marita Moltu (KrF). I møtet ble det også orientert om et møte mellom ledere fra Komite for helse og Komite for oppvekst og ordføreren for å avklare regler for høringer, inkludert mindretallets rettigheter."
+  }
+}

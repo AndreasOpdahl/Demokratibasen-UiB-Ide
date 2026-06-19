@@ -1,0 +1,18 @@
+{
+  "dokument_id": "216211:1108000:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:36:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The proposal to form a committee to review user councils in nursing homes is relevant but lacks immediate impact or controversy."
+    },
+    "summary_headline": "Eldrerådet foreslår nytt utvalg for brukerrådene i sykehjem",
+    "summary_body": "Eldrerådet i Bergen har foreslått å opprette et utvalg som skal vurdere sammensetningen, mandatet og antall møter i brukerrådene for sykehjem. Utvalget skal inkludere representanter fra både det gamle og det nye eldrerådet, samt Etat for sykehjem. Dette ble besluttet under møtet den 13. november 2019, ledet av etatsdirektør Anita Wøbbekind Johansen."
+  }
+}

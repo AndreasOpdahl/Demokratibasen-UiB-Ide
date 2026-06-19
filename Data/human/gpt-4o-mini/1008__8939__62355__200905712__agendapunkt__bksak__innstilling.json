@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:8939:62355:200905712:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:40:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant fee dispute affecting land use and potential housing development, which is relevant to local residents."
+    },
+    "summary_headline": "Byrådet opprettholder gebyr for fradeling av landbrukseiendom",
+    "summary_body": "Byrådet har besluttet å opprettholde et gebyr på 406.730 kroner for oppmåling og fradeling av 10 parseller i Alvøveien, til tross for klage fra Advokat Vidar Broder Lund AS. Klageren argumenterer for at gebyret er urimelig høyt, spesielt for landbruksformål, og at det vil svekke mulighetene for drift av eiendommen. Byrådet avviser imidlertid klagen, og mener at det ikke foreligger særlig grunn for reduksjon, da det er inntektspotensial i området som er regulert for boligbygging. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

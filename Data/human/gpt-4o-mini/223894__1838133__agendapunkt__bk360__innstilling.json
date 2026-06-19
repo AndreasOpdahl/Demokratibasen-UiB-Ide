@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223894:1838133:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:50:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the follow-up on previous decisions, which is relevant but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Bystyret vurderer oppfølging av helse- og sosialvedtak",
+    "summary_body": "Bystyret skal vurdere om tidligere vedtak og flertallsmerknader innen helse og sosial er tilfredsstillende fulgt opp. Rapporteringen gjelder for året 2019, og det er mulighet for å fremme nye merknader. Bystyredirektøren anbefaler at vedtakene kvitteres ut i henhold til vedlagte oversikter. Punkter som ikke blir kvittert ut, vil bli inkludert i fremtidige rapporter."
+  }
+}

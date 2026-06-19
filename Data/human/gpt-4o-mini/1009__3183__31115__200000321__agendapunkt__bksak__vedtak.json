@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3183:31115:200000321:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:01:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to grant a liquor license for Garage Bar is relevant to local nightlife and business."
+    },
+    "summary_headline": "Garage Bar får skjenkebevilling for øl og vin",
+    "summary_body": "Byrådet i Bergen har innvilget søknaden om alminnelig skjenkebevilling for øl og vin til Garage Bar og konsertlokale på Christies gt. 14. Bevillingen er gitt til Musikkhuset AS, med Sjur Endre Gullaksen som styrer og Frank Pedersen som stedfortreder. Skjenkebevillingen gjelder for en periode frem til 30. juni 2004, og baren har kapasitet til 90 gjester, mens konsertlokalet kan romme 330. Søker må sende inn nødvendig dokumentasjon før bevillingen kan tas i bruk."
+  }
+}

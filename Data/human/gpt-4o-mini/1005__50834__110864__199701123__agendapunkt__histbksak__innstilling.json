@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:50834:110864:199701123:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:59:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant investment in a new nursing home, which will impact local residents and involves substantial public spending."
+    },
+    "summary_headline": "Bergen kommune bevilger 78,8 millioner til nytt sykehjem i Åsane",
+    "summary_body": "Bergen kommune har besluttet å bevilge 78,8 millioner kroner til bygging av et nytt Åsane alders- og sykehjem, som skal erstatte det eksisterende bygget. Det nye sykehjemmet vil ha 60 heldøgns plasser og to akuttplasser, og byggingen er planlagt å starte høsten 1998 med ferdigstillelse i april 2000. Rådmannen understreker viktigheten av å holde seg innenfor investeringsbudsjettet og foreslår justeringer for å unngå overskridelser. Prosjektet vil gi en netto tilvekst på 24 institusjonsplasser, noe som vil være til fordel for lokalsamfunnet."
+  }
+}

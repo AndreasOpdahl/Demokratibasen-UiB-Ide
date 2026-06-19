@@ -1,0 +1,18 @@
+{
+  "dokument_id": "229935:2651034:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:06:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The inquiry raises concerns about public transport options and local dissent regarding the Bybanen project."
+    },
+    "summary_headline": "FNB krever svar om bussalternativ til Åsane",
+    "summary_body": "Stian Skare fra FNB har stilt spørsmål til utvalg for miljø og byutvikling om bussalternativer til Åsane, et tema som skaper debatt i nordre bydel. Skare påpeker at mange innbyggere er skeptiske til Bybanens trasevalg og mener at Eidsvåg innbyggere ikke blir hørt. Han etterlyser en rapport som byrådspartiene henviser til, som angivelig avviser bussalternativet. Skare ber byråden om å finne frem til denne rapporten."
+  }
+}

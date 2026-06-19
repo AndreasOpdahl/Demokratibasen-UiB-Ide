@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9281:65357:201200109:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:21:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a tax exemption request for a local non-profit organization, which has implications for public funding and community services."
+    },
+    "summary_headline": "Bergen kommune vurderer fritak for eiendomsskatt til Norgesspeiderforbund",
+    "summary_body": "Bergen bystyre skal behandle en søknad fra Hordalands krins av Norgesspeiderforbund om fritak for eiendomsskatt for eiendommen Tverrgaten 2. Eiendommen brukes som foreningshus og er eid av en ideell organisasjon uten profittformål. Byrådet anbefaler å innvilge fritaket fra 1. januar 2012, som vil spare foreningen 3 612 kroner årlig. Fritaket kan oppheves dersom eiendommen endres til annet bruk. Dette kan påvirke de rundt 1500 medlemmene og deres aktiviteter i kommunen."
+  }
+}

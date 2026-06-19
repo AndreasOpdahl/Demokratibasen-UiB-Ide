@@ -1,0 +1,18 @@
+{
+  "dokument_id": "201859:205751:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:01:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a denied facade change for a boathouse, impacting local regulations and community access."
+    },
+    "summary_headline": "Klage på avslag om fasadeendring av naust i Laksevåg avvist av byrådet",
+    "summary_body": "Byrådet har avvist klagen fra Jan Olav Enberget om fasadeendring av naustet på Breivikstølen 44 B, hvor det søkes om å endre fra saltak til flatt tak og bygge med betong. Fagetaten frarådet dispensasjon, da tiltaket strider mot reguleringene for strandsonen og kan føre til økt privatisering av området. Byrådet støtter fagetatens vurderinger og anbefaler at klagen ikke tas til følge. Saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

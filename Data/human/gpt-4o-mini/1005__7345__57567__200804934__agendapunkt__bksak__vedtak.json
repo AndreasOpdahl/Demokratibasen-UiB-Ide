@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7345:57567:200804934:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:14:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a municipal decision regarding air quality reporting, which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Bystyret krever årlig rapport om luftkvalitet",
+    "summary_body": "Bergen bystyre har vedtatt at byrådet skal rapportere om luftkvalitet årlig, som tidligere vedtatt. Oddny Irene Miljeteig (SV) fremmet et tilleggsforslag om at byrådet ikke har levert årsmelding for 2008, men dette forslaget ble avvist med 30 stemmer. Bystyret forventer at fremtidige rapporter blir levert som avtalt."
+  }
+}

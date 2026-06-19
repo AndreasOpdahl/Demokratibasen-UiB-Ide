@@ -1,0 +1,18 @@
+{
+  "dokument_id": "213746:1109075:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:29:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal addresses a significant issue in healthcare recruitment and has unanimous support."
+    },
+    "summary_headline": "Enstemmig støtte til stipendordninger for sykepleiere og jordmødre",
+    "summary_body": "Kjersti Pettersen (H) har fremmet et privat forslag om stipendordninger for å rekruttere flere mannlige sykepleiere til helsesykepleierutdanning, samt en felles stipendordning for jordmødre i samarbeid med Helse Bergen. Forretningsutvalget behandlet saken den 11. juni 2019 og vedtok enstemmig å legge forslaget fram for bystyret til behandling senest 23. oktober 2019. Komite for helse og sosial skal avgi innstilling til bystyret. Dette tiltaket kan ha stor betydning for rekrutteringen av helsepersonell i Bergen."
+  }
+}

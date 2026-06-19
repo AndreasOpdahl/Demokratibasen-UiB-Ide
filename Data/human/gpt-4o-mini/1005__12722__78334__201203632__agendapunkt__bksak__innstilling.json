@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:12722:78334:201203632:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:40:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant urban development plan that affects local housing and environmental concerns."
+    },
+    "summary_headline": "Kontroversiell reguleringsplan for Kannevikneset boligområde i Ytrebygda",
+    "summary_body": "Byrådet har anbefalt vedtak av en reguleringsplan for Kannevikneset boligområde i Ytrebygda, som åpner for bygging av inntil 27 nye boenheter, inkludert blokkleiligheter med passivhusstandard. Planen har møtt motstand fra naboer og Fylkesmannen, som advarer mot nedbygging av strandsonen og krever reduksjon av byggehøyder. Endringer etter offentlig ettersyn har blitt gjort for å imøtekomme innsigelser, men flere bekymringer gjenstår, spesielt knyttet til trafikkforhold og støy. Planen vil forbedre tilgjengeligheten til Nordåsvannet og legge til rette for friluftsaktiviteter, men det er fortsatt usikkerhet om hvordan dette vil påvirke eksisterende beboere og miljøet."
+  }
+}

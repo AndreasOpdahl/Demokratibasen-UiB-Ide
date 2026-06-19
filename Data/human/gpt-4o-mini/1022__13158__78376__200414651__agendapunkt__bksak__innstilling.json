@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1022:13158:78376:200414651:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:35:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine annual report with no significant newsworthy elements."
+    },
+    "summary_headline": "Årsmelding for Bergen Vann KF legges frem for Bystyret",
+    "summary_body": "Styret for Bergen Vann KF har forberedt årsberetningen for 2016, som skal legges frem for Bystyret i juni. Forslaget til styrets beretning skal diskuteres i styret før det vedtas."
+  }
+}

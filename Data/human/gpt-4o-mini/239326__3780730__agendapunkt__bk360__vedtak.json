@@ -1,0 +1,18 @@
+{
+  "dokument_id": "239326:3780730:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:27:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document contains important feedback from the Youth Council regarding educational quality and student involvement."
+    },
+    "summary_headline": "Ungdomsrådet krever mer medbestemmelse i Bergensskolen",
+    "summary_body": "Ungdomsrådet har behandlet kvalitetsutviklingsplanen for Bergensskolen i møte 23. august 2022, og fremhever viktigheten av at elever får gi tilbakemelding til lærerne for å forbedre læringsutbyttet. De etterlyser også reel medbestemmelse i skolehverdagen, med krav om bedre ressurser og samarbeid med skoleledelsen. Videre støtter de diskusjoner om etiske dilemmaer knyttet til digitale ressurser. Saken legges frem uten forslag til vedtak."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:6486:53243:200801477:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:29:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains administrative decisions and discussions but lacks significant conflict or impact."
+    },
+    "summary_headline": "Bergenhus bydelsstyre planlegger informasjonsmøte om Torget",
+    "summary_body": "Bergenhus bydelsstyre har besluttet å starte arbeidet med et åpent informasjonsmøte om Torget i mars-april. Under møtet ble det også diskutert behovet for å redusere småsnakk og pauser for å forbedre debatten. Politiet vil delta på neste møte for å presentere en rapport om tilstanden i Bergen sentrum."
+  }
+}

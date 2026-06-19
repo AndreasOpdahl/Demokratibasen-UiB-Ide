@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:11767:74494:201532260:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:48:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant budget proposals and educational reforms affecting local schools and kindergartens."
+    },
+    "summary_headline": "Bergen kommune vurderer endringer i skolefritidsordningen og budsjett for 2016",
+    "summary_body": "Komite for barnehage, skole og idrett i Bergen har besluttet å sende saken om omdanning av skolefritidsordningen (SFO) til en frivillig Aktivitetsskole tilbake til byrådet for ny utredning. Dette inkluderer forslag om gratis SFO i områder med høy barnefattigdom. Byrådet ble også bedt om å vurdere innføring av rett til barnehageplass for alle ettåringer. Komiteen diskuterte også budsjettforslaget for 2016, som vil påvirke lokale skoler og barnehager. Møtet ble ledet av Idun Kristine Bortne (V) og inkluderte representanter fra flere partier, med en avstemning som viste støtte for de foreslåtte endringene."
+  }
+}

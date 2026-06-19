@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:12584:76842:200514097:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:58:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document provides an update on a local planning case but lacks significant controversy or impact."
+    },
+    "summary_headline": "Statusoppdatering for Hjellestad Marina plansak",
+    "summary_body": "I et møte den 25. mai 2016 etterspurte representanten Tor Helge Valen status for plansaken over Hjellestad Marina. Etter første gangs behandling er merknader oppsummert og sendt til plankonsulent for kommentarer. Planmaterialet for andre gangs behandling ble oversendt Bergen kommune 30. august 2016."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:8162:59391:200916074:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:21:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested planning case with significant local implications and community opposition."
+    },
+    "summary_headline": "Klage på butikketablering i Krokeide avvist av Byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde rammetillatelsen for etablering av butikk på Krokeide, til tross for flere klager fra naboer og lokale foreninger. Klagerne, inkludert Rosenlund Velforening og flere private aktører, uttrykte bekymringer om økt trafikk, støy og sikkerhet, spesielt i krysset Høgsetevegen/Riksvegen, som er brukt av skolebarn. Byrådet, ledet av Monica Mæland, anbefaler at klagene ikke tas til følge, og gir dispensasjon fra kommuneplanens krav om parkeringsplasser. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

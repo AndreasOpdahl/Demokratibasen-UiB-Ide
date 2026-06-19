@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:11266:72433:201124957:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:37:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll godkjent i helse- og sosialkomiteen",
+    "summary_body": "Protokollen fra møtet i Komite for helse og sosial den 15. februar 2018 ble godkjent i møtet den 11. mars 2015."
+  }
+}

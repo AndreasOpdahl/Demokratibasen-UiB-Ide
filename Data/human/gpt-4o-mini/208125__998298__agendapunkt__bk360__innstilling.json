@@ -1,0 +1,18 @@
+{
+  "dokument_id": "208125:998298:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:15:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant new construction project that affects local business and urban development."
+    },
+    "summary_headline": "Nybygg forretning/kontor på Fjøsangerveien 48 godkjennes",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet søknaden om oppføring av et nytt forretnings- og kontorbygg på Fjøsangerveien 48, som er en del av reguleringsplanen for Kronstadparken. Tiltaket, foreslått av OG Arkitekter AS for Bara Eiendom AS, er en videreføring av tidligere godkjente planer, men med noen justeringer. Bygget vil bestå av to elementer med varierende høyder og vil bidra til fornyelse i området. Det er innkommet merknader fra Statens Vegvesen, men ingen dispensasjoner er nødvendige. Rask saksbehandling er ønsket for å fremme prosjektet, som er viktig for lokal næringsutvikling."
+  }
+}

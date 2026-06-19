@@ -1,0 +1,18 @@
+{
+  "dokument_id": "c7883181-19fb-5b61-ab7d-c8250bf7add3",
+  "kommune_nummer": 4630,
+  "kommune_navn": "Osterøy",
+  "generated_at": "2026-02-19 23:20:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant plan initiative for local business development, which has implications for the community."
+    },
+    "summary_headline": "Planinitiativ for Solberg Mek. Verksted AS godkjent for oppstart",
+    "summary_body": "Plan- og kommunalteknisk utval har godkjent planinitiativet for detaljregulering av Solberg Mek. Verksted AS i Gjerstad, Osterøy kommune. Kommunedirektøren anbefaler videre behandling av planen, som har som mål å regulere og optimalisere bruken av området for verkstedet, som har vært i drift siden 1979. Det er behov for å avklare arealbruken for å unngå fremtidige klager og usikkerhet knyttet til dispensasjonssøknader. Planen vil også bidra til bærekraftig utvikling av næringsvirksomheten i kommunen. Saken skal nå behandles i heradsstyret."
+  }
+}

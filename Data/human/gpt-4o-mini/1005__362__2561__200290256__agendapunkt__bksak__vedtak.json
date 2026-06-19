@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:362:2561:200290256:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:48:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a local regulatory plan that affects public access to the waterfront, which is a significant concern for residents."
+    },
+    "summary_headline": "Bystyret vedtar reguleringsplan for Steinsviken med begrensninger på strandlinjen",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt et privat forslag til reguleringsplan for Steinsviken, gnr 39 bnr 7, som inkluderer båtplasser og naust. Planen, datert 02.12.2001, forutsetter minimale fysiske tiltak i strandlinjen, og området skal ikke stenges eller privatiseres. Ragnhild Hedemann fra SV fremmet et forslag om ytterligere begrensninger, men dette ble ikke vedtatt. Vedtaket kan påvirke hvordan innbyggerne i Ytrebygda får tilgang til strandlinjen."
+  }
+}

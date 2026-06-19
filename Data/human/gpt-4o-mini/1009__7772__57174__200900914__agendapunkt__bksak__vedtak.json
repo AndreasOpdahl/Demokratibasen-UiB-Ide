@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7772:57174:200900914:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:38:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural decision regarding a hearing on land protection, which lacks significant local impact or controversy."
+    },
+    "summary_headline": "Høring om vernehjemmel i jordloven behandlet av byrådet",
+    "summary_body": "Byrådet har behandlet en høring om forslag til vernehjemmel i jordloven. I møtet 10. februar 2017 ble det besluttet at byrådets saksutredning skal utgjøre kommunens høringsuttalelse, og at meldingen om vedtaket oversendes Bystyrets kontor."
+  }
+}

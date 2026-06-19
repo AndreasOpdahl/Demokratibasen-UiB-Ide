@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:5075:45510:200503602:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:50:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a unanimous recommendation for a sales permit for alcohol, which has local relevance but lacks significant controversy or impact."
+    },
+    "summary_headline": "Rimi Hansaparken får anbefaling for salgsbevilling av alkohol",
+    "summary_body": "Rusmiddelpolitisk råd har enstemmig anbefalt å innvilge søknaden fra Rimi Hansaparken, Kalfarveien 76, om salgsbevilling for alkoholholdig drikk gruppe 1 frem til 30. juni 2008. Dette kan påvirke tilgjengeligheten av alkohol i området."
+  }
+}

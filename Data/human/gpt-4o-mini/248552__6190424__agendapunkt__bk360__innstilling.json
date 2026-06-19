@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248552:6190424:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:51:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant financial contribution to a charity aimed at helping children affected by conflict, which has local relevance and impact."
+    },
+    "summary_headline": "Bergen kommune bevilger 290.357 kroner til TV-aksjonen 2023 for Redd Barna",
+    "summary_body": "Bergen kommune har besluttet å bevilge 290.357 kroner til TV-aksjonen 2023, som i år støtter Redd Barna. Midlene skal hjelpe barn rammet av krig og konflikt, både internasjonalt og i Norge. Byrådsleder Rune Bakervik understreker at dette bidraget er i tråd med kommunens forpliktelse til å fremme menneskerettigheter og bærekraftsmål. Tidligere har kommunen bidratt med 1 krone per innbygger, og dette beløpet er i samsvar med den etablerte praksisen. Støtten vil bli finansiert over byrådets tilleggsbevilgningskonto."
+  }
+}

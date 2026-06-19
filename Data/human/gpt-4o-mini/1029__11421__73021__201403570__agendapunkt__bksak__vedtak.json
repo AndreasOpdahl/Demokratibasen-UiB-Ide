@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:11421:73021:201403570:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:29:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses oversight of private health service providers, which is relevant to local residents."
+    },
+    "summary_headline": "Kontrollutvalget krever redegjørelse om private helseleverandører",
+    "summary_body": "Kontrollutvalget i Bergen har behandlet oppfølgingen av forvaltningsrevisjonsrapporten om tjenester fra private leverandører innen helse og omsorg. Utvalget ber Byrådsavdeling for helse og omsorg om en redegjørelse for oppfølgingen av lønns- og arbeidsvilkår hos disse leverandørene det siste året, med frist til 16. juni 2015. Det ble vedtatt enstemmig å sende saken til Bystyret for orientering."
+  }
+}

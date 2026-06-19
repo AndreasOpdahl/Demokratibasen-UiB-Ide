@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:6473:56428:200801539:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:20:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative information without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen betydelige nyheter fra bystyremøtet",
+    "summary_body": "Dokumentet inneholder informasjon om saker som skal behandles i et kommende møte, inkludert et dagsseminar for bystyret, vedtak om jubileet til Ambrosia Tønnesen, og søknad om kinokonsesjon for Forum kino. Det er ingen kontroverser eller betydelige beslutninger som påvirker innbyggerne direkte."
+  }
+}

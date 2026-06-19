@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:2040:21088:200005818:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:44:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposed increase in board member compensation for a municipal company, which has local relevance and financial implications."
+    },
+    "summary_headline": "Bystyret vurderer ny honorargruppe for styremedlemmer i kommunale selskaper",
+    "summary_body": "Bystyret i Bergen vurderer å innføre en ny honorargruppe for styremedlemmer i kommunale aksjeselskaper, inkludert Fana Stein & Gjenvinning AS. Rådmannen foreslår at honorarene settes til 27.000 kr for leder og 23.000 kr for medlemmer per år, med tillegg for varamedlemmer. Styret i Fana Stein & Gjenvinning AS ønsker å opprettholde tidligere honorarsatser, og generalforsamlingene i selskapene vil ha det endelige ordet. Dette kan påvirke økonomien til selskapene og deres styremedlemmer."
+  }
+}

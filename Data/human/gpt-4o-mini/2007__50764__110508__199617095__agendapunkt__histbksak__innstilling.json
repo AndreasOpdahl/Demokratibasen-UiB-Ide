@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2007:50764:110508:199617095:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:53:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the approval of bids for a new nursing home, which involves significant public spending and local impact."
+    },
+    "summary_headline": "Godkjenning av anbud for nytt sykehjem i Fana",
+    "summary_body": "Hovedutvalg for teknisk utbygging har godkjent anbud for byggingen av et nytt sykehjem i Skjoldvegen, Fana. Prosjektet har en total kostnad på 35,3 millioner kroner, men anbudene overskrider kalkylen med 2,15 millioner kroner. Byggmester Jan H. Tvedt A/S er valgt som laveste anbyder for tømrerarbeid, mens H-Tre A/S og Fana Murservice AS er valgt for vinduer og murarbeid. Prosjektet er forsinket med to måneder, og innflytting er nå planlagt til 1. juli 1999. Dette prosjektet er viktig for kommunen, da det er en del av en større plan for å forbedre eldreomsorgen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:7098:56477:200801486:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:55:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll fra Fana bydelsstyre godkjent",
+    "summary_body": "Fana bydelsstyre har godkjent protokollen fra møtene den 13. og 14. oktober 2009."
+  }
+}

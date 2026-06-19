@@ -1,0 +1,18 @@
+{
+  "dokument_id": "237118:3795470:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:22:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant procurement strategy that impacts local governance and community welfare."
+    },
+    "summary_headline": "Bergen kommune legger frem ny anskaffelsesstrategi for 2022-2025",
+    "summary_body": "Byrådet i Bergen har lagt frem et høringsutkast for Anskaffelsesstrategi 2022-2025, som skal bidra til å motvirke sosial dumping og fremme klima- og miljøansvar. Strategien, som erstatter den tidligere fra 2017-2020, fokuserer på effektiv ressursbruk, verdiskaping, klimaansvar og samarbeid. Byrådet, ledet av byråd Per-Arne Hvidsten Larsen, anbefaler at strategien legges ut på høring i fire uker. Bergen kommune har en årlig innkjøpsverdi på 6,7 milliarder kroner, og strategien vil ha direkte innvirkning på innkjøpene som påvirker innbyggerne."
+  }
+}

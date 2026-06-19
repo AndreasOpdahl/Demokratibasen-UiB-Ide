@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9783:65545:201200985:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:47:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a routine administrative response to a report, lacking significant conflict or impact."
+    },
+    "summary_headline": "Byrådet gir høringssvar til revisjonsrapport om NAV",
+    "summary_body": "Byrådet i Bergen kommune har behandlet revisjonsrapporten om NAV og besluttet å avgi en uttalelse i tråd med saksutredningen. Uttalelsen vil bli sendt til Kontrollutvalget for videre behandling."
+  }
+}

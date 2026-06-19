@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5656:51602:200705844:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:14:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a housing project that affects local residents and has implications for urban planning."
+    },
+    "summary_headline": "Klage på boligbygg i Arna avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Frode B. Johnsen angående avslag på søknad om oppføring av et boligbygg med seks boenheter på Andreas Gjellesviks veg 6 i Arna. Klagen ble sendt inn av advokatfirmaet Vogt & Wiig etter at kommunen tidligere hadde avslått søknaden på grunn av overskridelse av tomteutnyttelse og manglende oppfyllelse av krav til uteareal. Nabomerknader har også påpekt at bygget vil være for massivt for området, som er avsatt til eneboliger. Byrådet mener at tiltaket er for omfattende og opprettholder fagetatens vedtak. Saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

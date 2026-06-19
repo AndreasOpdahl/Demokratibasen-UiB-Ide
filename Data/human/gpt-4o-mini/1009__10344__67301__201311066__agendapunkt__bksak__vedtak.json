@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10344:67301:201311066:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:41:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision not to exercise the municipal pre-emption right is relevant to local property transactions."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på leiegård i Årstad",
+    "summary_body": "Bergen kommune har besluttet å ikke gjøre forkjøpsrett gjeldende ved overdragelse av 100 % av aksjene i Zinken Hopps gate 25 AS, som eier eiendommen Zinken Hopps gate 25. Dette ble vedtatt av byrådet i møte 25. april 2013. Overdragelsen skjer fra Coanda AS til Investorgruppen AS, noe som kan påvirke boligmarkedet i området."
+  }
+}

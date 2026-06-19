@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13041:79051:201534434:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:56:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a new alcohol license application for a local restaurant, which is relevant to the community."
+    },
+    "summary_headline": "Filipinnorsk Kjøkken får skjenkebevilling for alkohol",
+    "summary_body": "Bergen byråd har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Filipinnorsk Kjøkken, Indre Arnavegen 166. Mabel Caramat Hermansen, som driver stedet, har fått tillatelse til å servere alkohol både innendørs og utendørs. Uteserveringen vil være 18 m2 av totalt 42 m2. Byråden for helse og omsorg, Vigdis Anita Gåskjenn, anbefaler innvilgelse, og det er stilt krav om gratis vann i lokalet. Bevillingen gjelder frem til 30. juni 2020, og det er spesifikke krav som må oppfylles før den kan tas i bruk."
+  }
+}

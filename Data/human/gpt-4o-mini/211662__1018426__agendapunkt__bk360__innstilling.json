@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211662:1018426:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:24:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document raises concerns about potential conflicts of interest regarding the leader of a committee reviewing child welfare cases."
+    },
+    "summary_headline": "Habilitetsproblemer for leder av barnevernskomiteen",
+    "summary_body": "Kjersti Pettersen (H) har stilt spørsmål om habiliteten til Rune Fjeld, som skal lede komiteen som gjennomgår barnevernssaker. Fjeld har tidligere jobbet hos fylkesmannen, hvor mange av barnevernssakene avgjøres. Pettersen etterspør hvordan byrådet vil håndtere eventuelle habilitetsproblemer som kan oppstå under gjennomgangen av sakene. Dette er et viktig tema for innbyggere som er berørt av barnevernets avgjørelser."
+  }
+}

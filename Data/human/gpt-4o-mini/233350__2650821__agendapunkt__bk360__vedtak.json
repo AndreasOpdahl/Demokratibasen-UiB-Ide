@@ -1,0 +1,18 @@
+{
+  "dokument_id": "233350:2650821:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:14:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The interpellation addresses a local sports team and gender equality in sports, which may resonate with the community."
+    },
+    "summary_headline": "Bystyret diskuterer hedring av Sandviken Toppfotball",
+    "summary_body": "Reidar Staalesen (A) fremmet en interpellasjon i Bergen bystyre om å hedre Sandviken Toppfotball sitt kvinnelag for deres prestasjoner og rolle som forbilder. Han spurte om byrådet vil vurdere å dekorere rådhusets lobby med bilder av laget og om de vil jobbe videre med likestilling i idretten. Byråd Beate Husa svarte på spørsmålet, men det ble ikke fremsatt noen forslag i møtet den 24. november 2021."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1039:5784:51910:200804583:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:08:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a unanimous decision regarding water quality improvement, which is relevant to local schools and communities."
+    },
+    "summary_headline": "Ungdommens bystyre krever bedre vannkvalitet i Skranevatnet",
+    "summary_body": "Ungdommens bystyre har enstemmig vedtatt å sende en uttalelse til Byråd for klima, miljø og byutvikling, hvor de ber om forbedring av vannkvaliteten i Skranevatnet. De påpeker at selv om vannet ikke er en offentlig badeplass, må det gjøres tiltak slik at skolene og elevene i nærområdet kan bruke det igjen. Dette vedtaket kan påvirke lokalsamfunnet og skolene i området."
+  }
+}

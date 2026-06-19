@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223516:2597237:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:49:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details a procedural decision regarding a member's resignation and appointment, which lacks significant local impact or controversy."
+    },
+    "summary_headline": "Bystyret godkjenner nytt varamedlem for Høyre",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å velge Lars Mæhle som nytt varamedlem for Høyre i utvalg for barnehage, skole og idrett. Emma Ingeborg Tveit Erlandsen har fått fritak fra sine verv som varamedlem i bystyret og utvalget på grunn av flytting fra kommunen."
+  }
+}

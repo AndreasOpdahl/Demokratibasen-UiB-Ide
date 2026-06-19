@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:9085:63467:201126003:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:17:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is procedural and does not present any significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Forretningsutvalget om permisjon fra verv",
+    "summary_body": "Forretningsutvalget har behandlet en sak om permisjon fra verv som medlem og varamedlem i bystyret for perioden 2011-2015, i forbindelse med funksjon som rådgiver for byrådet. Saken ble enstemmig tatt til orientering uten videre tiltak."
+  }
+}

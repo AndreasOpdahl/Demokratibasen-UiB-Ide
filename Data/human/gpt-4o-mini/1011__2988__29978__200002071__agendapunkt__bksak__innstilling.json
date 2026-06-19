@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1011:2988:29978:200002071:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:50:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The project for the Meyermarken community house involves significant public funding and has faced user opposition, making it newsworthy."
+    },
+    "summary_headline": "Meyermarken bydelshus får godkjenning med økt budsjett",
+    "summary_body": "Styret i Bergen Bygg og Eiendom KF har godkjent prosjektet for Meyermarken bydelshus med et budsjett på 8,5 millioner kroner. Prosjektet har vært gjenstand for omfattende diskusjoner og justeringer etter tilbakemeldinger fra brukerne, som har ønsket større areal og bedre fasiliteter. Den reviderte planen inkluderer nå et bygg på to etasjer med fleksible bruksområder. Det er enighet om prosjektet, men det har vært motstand fra enkelte grupper som ønsker mer plass til velforeningene. Bygget forventes å stå klart høsten 2002, og vil bli drevet av Bergenhus bydel."
+  }
+}

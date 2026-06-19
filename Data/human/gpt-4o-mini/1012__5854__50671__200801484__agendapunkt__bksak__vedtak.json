@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:5854:50671:200801484:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:54:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant safety concerns for students and proposes immediate actions to improve traffic conditions."
+    },
+    "summary_headline": "Fana bydelsstyre vedtar tiltak for tryggere skoleveier",
+    "summary_body": "Fana bydelsstyre har enstemmig vedtatt flere tiltak for å forbedre trafikksikkerheten for elever ved Slåtthaug Ungdomsskole. Det ble foreslått å forlenge fortauet på østsiden av Apeltunveien, lage fartsdump og sette opp fareskilt ved Apeltunveien 29, samt å installere vegbelysning. I tillegg ble det vedtatt å se på muligheten for lysregulering ved fotgjengerovergangen der Kirkebirkeland møter Osveien, et område med høy trafikk og mange barn. Byrådsavdelingen for klima, miljø og byutvikling vil bli bedt om tilbakemelding på disse tiltakene."
+  }
+}

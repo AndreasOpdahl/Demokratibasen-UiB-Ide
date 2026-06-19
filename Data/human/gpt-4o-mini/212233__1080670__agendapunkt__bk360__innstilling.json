@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212233:1080670:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:25:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural matter regarding oral questions in a committee meeting, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Muntlige spørsmål i komite for miljø og byutvikling",
+    "summary_body": "Komite for miljø og byutvikling har behandlet muntlige spørsmål fra medlemmene under møtet den 9. mai 2019. Byråden vil svare på disse spørsmålene, som senere vil bli registrert på kommunens nettsider. Dette er en rutinemessig prosedyre for å sikre oversikt over innkomne spørsmål."
+  }
+}

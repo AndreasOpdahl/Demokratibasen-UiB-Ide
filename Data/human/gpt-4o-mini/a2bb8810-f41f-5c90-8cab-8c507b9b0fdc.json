@@ -1,0 +1,18 @@
+{
+  "dokument_id": "a2bb8810-f41f-5c90-8cab-8c507b9b0fdc",
+  "kommune_nummer": 1868,
+  "kommune_navn": "Øksnes",
+  "generated_at": "2026-02-19 23:14:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant local development project that may affect public access to the shoreline."
+    },
+    "summary_headline": "Dispensasjon for nytt naust i Strengelvåg innvilget av Øksnes kommune",
+    "summary_body": "Øksnes kommune har innvilget en dispensasjon fra reguleringsplanen for etablering av et nytt naust på eiendommene gbnr 76/7, 13 og 24 i Strengelvåg. Gp-Invest AS står bak søknaden, som ble mottatt 15. juli 2025. Naustet, som vil være 5x7 meter, plasseres i strandsonen og er en gjenoppbygging av et tidligere naust som ble ødelagt av storm. Kommunen vurderer at fordelene ved dispensasjonen oppveier ulempene, til tross for bekymringer om redusert offentlig tilgang til strandsonen. Det er ingen innvendinger fra fylkeskommunen eller Sametinget. Neste steg er at tiltaket kan igangsettes, med forventet minimal påvirkning på natur og friluftsliv."
+  }
+}

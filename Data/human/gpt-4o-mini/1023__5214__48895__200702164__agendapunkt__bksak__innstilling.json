@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:5214:48895:200702164:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:41:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant changes in food service for elderly residents, impacting local community health and welfare."
+    },
+    "summary_headline": "Bergen kommune reetablerer kjøkken for eldre med fokus på kvalitet",
+    "summary_body": "Bergen kommune har reetablert to kjøkken ved Lyngbøtunet Bo- og Servicesenter og Kolstihagen Sykehjem, som nå leverer mat til institusjoner og hjemmeboende. Etter seks måneder med produksjon har tilbakemeldingene vært positive. Byrådet, ledet av Monica Mæland, rapporterer at matleveransene skjer i henhold til bystyrets vedtak fra 2006. Det er også planlagt en overgang til sous vide-metoden for hjemmeboende, med mål om å forbedre kvaliteten på middagsmaten. Det er avsatt 3 millioner kroner i budsjettet for å dekke økte driftsutgifter. Neste statusmelding vil ta for seg videre tiltak for ernæringspolitikk for eldre."
+  }
+}

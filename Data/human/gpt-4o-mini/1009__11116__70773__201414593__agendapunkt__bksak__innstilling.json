@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11116:70773:201414593:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:46:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a local business's application for an alcohol license expansion, which is relevant to residents and may impact local nightlife."
+    },
+    "summary_headline": "Utvidelse av skjenkeareal ved Bergen lufthavn godkjent",
+    "summary_body": "Byrådet har innvilget søknaden fra Blender AS om utvidelse av skjenkearealet ved Fresh & Tasty/Millibar på Bergen lufthavn Flesland. Det nye arealet, kalt SJØ, vil være 111 m2 og vil bli underlagt samme skjenkebevilling som eksisterende lokaler. Utvidelsen er planlagt å vare frem til 30. juni 2016. Byrådsleder Ragnhild Stolt-Nielsen støtter fagetatens vurderinger, og det er nødvendig med dokumentasjon fra bygningsmyndighetene før bevillingen kan tas i bruk. Dette kan påvirke tilbudet av servering og opplevelser for reisende og besøkende på flyplassen."
+  }
+}

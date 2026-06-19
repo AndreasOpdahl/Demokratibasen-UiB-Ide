@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:5805:49899:200801518:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:39:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines the annual activity plans for local councils, which is relevant but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Bystyret krever aktivitetsplaner fra bydelsstyrene",
+    "summary_body": "Bystyret har besluttet at alle bydelsstyrene må utarbeide årlige aktivitetsplaner for å bedre planlegge arbeidet og målrette aktivitetene. Hvert bydelsstyre vil ha et budsjett på ca. 100-125 000 kroner, med en fellespott på 500-600 000 kroner. Det er planlagt fellessamlinger for opplæring av medlemmene, og bydelsstyrene kan også planlegge egne aktiviteter. Den endelige saken om budsjettene vil bli presentert på neste møte."
+  }
+}

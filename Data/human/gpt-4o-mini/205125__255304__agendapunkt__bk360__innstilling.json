@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205125:255304:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:07:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra komiteen for barnehage, skole og idrett",
+    "summary_body": "Komite for barnehage, skole og idrett har godkjent protokollen fra møtet den 10. april 2018."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7447:56995:200818333:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:17:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document involves a complaint about a rejected application for a holiday home, but lacks significant conflict or public interest."
+    },
+    "summary_headline": "Klage på avslag om fritidsbolig avvist enstemmig",
+    "summary_body": "Komite for miljø og byutvikling har behandlet en klage på avslag om oppføring av fritidsbolig på Krokeide. Klagen ble ikke tatt til følge, og komiteen vedtok enstemmig å opprettholde fagetatens vedtak fra 12. mars 2009. Ingen representanter tok ordet under behandlingen."
+  }
+}

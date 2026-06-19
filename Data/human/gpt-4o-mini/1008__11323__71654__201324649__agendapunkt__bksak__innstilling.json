@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:11323:71654:201324649:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:32:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over land use and environmental concerns, impacting local agricultural practices."
+    },
+    "summary_headline": "Byrådet avslår klage på bygging av driftsbygning nær Langavatnet",
+    "summary_body": "Byrådet i Bergen har avslått en klage fra Trond Mellingen om tillatelse til oppføring av en driftsbygning nær Langavatnet, kun 15 meter fra vassdraget. Avslaget er basert på at bygningen strider mot kommunens byggegrenser på 50 og 100 meter i LNF-områder, og at det er risiko for punktforurensning ved flom. Mellingen argumenterer for at bygningen vil være sikret mot flom ved bruk av tett betong, men byrådet mener at tiltaket ikke oppfyller kravene for dispensasjon. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

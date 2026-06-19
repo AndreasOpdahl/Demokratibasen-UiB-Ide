@@ -1,0 +1,18 @@
+{
+  "dokument_id": "213874:1475673:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:30:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a contested building permit with significant local implications and opposition from neighbors."
+    },
+    "summary_headline": "Klage på avslag om garasje og tilbygg i Arna opprettholdes av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på en søknad om oppføring av garasje og tilbygg i Arna, etter at tiltaket ble vurdert som i strid med reguleringsplaner og kulturhistoriske verdier. Klagen ble sendt inn av Delta Bolig Prosjektering AS på vegne av tiltakshaverne Iren og Mircea Rus, men byrådet, ledet av Roger Valhammer, konkluderte med at det ikke foreligger rettslig grunnlag for dispensasjon fra gjeldende bestemmelser. Naboer har uttrykt bekymring for trafikksikkerhet og avstand til nabogrense, og byantikvaren fraråder tiltaket på grunn av boligens kulturhistoriske verdi. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

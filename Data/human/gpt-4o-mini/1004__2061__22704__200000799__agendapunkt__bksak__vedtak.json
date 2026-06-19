@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2061:22704:200000799:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:23:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a local safety proposal but lacks significant controversy or impact."
+    },
+    "summary_headline": "Bergenhus bydelsstyre vurderer vaktordning ved Elsesro sjøbad",
+    "summary_body": "Bergenhus bydelsstyre har behandlet et forslag om vaktordning ved Elsesro sjøbad. I møtet 20. juni 2000 ble administrasjonens redegjørelse enstemmig tatt til orientering. Høyre fremmet et forslag om samarbeid med frivillige organisasjoner eller bedrifter for vaktordningen, som også ble enstemmig vedtatt for videre vurdering av administrasjonen. Det er ingen umiddelbare kostnader eller kontroverser knyttet til saken."
+  }
+}

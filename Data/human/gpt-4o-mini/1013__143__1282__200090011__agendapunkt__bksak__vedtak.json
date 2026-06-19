@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:143:1282:200090011:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:03:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a meeting agenda without significant newsworthy elements."
+    },
+    "summary_headline": "Bystyrets møte 28. mai 2001: Mistillitsforslag på agendaen",
+    "summary_body": "Kjøreplanen for bystyrets møte 28. mai 2001 er fastsatt av Forretningsutvalget. Første sak etter spørsmål og interpellasjoner vil være mistillitsforslaget fra Frank W. Hansen. Møtet vil deretter fortsette med sakene i oppsatt rekkefølge."
+  }
+}

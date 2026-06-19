@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10376:67587:201211939:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:56:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposed high-rise development has significant local implications and has drawn opposition from the planning department."
+    },
+    "summary_headline": "Kontroversielt høyhusforslag ved Mølleneset møter motstand",
+    "summary_body": "Bergenhus byforming og arkitektur har mottatt et reguleringsplanforslag fra Opus Bergen AS for Mølleneset, som inkluderer to alternativer for bolig- og næringsutvikling. Alternativ 1 foreslår et høyhus på 16 etasjer, mens alternativ 2 omfatter to lavblokker på 5 og 6 etasjer. Fagetaten anbefaler ikke høyhuset, da det bryter med gjeldende reguleringsplan og kan skade det planlagte byrommet. Det er bekymringer for skygge og vindforhold, og fagetaten mener at lavblokker vil gi bedre solforhold og opprettholde en menneskelig skala. Videre behandling av alternativ 2 er nødvendig for å tilpasse det til gjeldende plan."
+  }
+}

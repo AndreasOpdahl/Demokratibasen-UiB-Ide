@@ -1,0 +1,18 @@
+{
+  "dokument_id": "247294:4950297:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:47:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document contains multiple administrative updates relevant to local governance and services affecting residents."
+    },
+    "summary_headline": "Oppdateringer fra kommunalt råd for personer med funksjonsnedsettelse",
+    "summary_body": "Kommunalt råd for personer med funksjonsnedsettelse har presentert flere viktige saker til utvalg for helse og sosial, inkludert høringsuttalelser til NOU 2023/8 om felleskapets sykehus og statusmeldinger for sykehjem og tjenester til utviklingshemmede. Det er også planer for likestilling og universell utforming i Bergen. Rådet har foreslått at informasjonen tas til orientering, og det er viktig for innbyggerne å følge med på hvordan disse tiltakene kan påvirke tilgjengeligheten og kvaliteten på tjenester i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2564:25546:200003580:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:43:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a liquor license to Roof Garden nightclub has local relevance and some controversy due to dissenting votes."
+    },
+    "summary_headline": "Dissent i skjenkebevilling for Roof Garden nattklubb",
+    "summary_body": "Bergen kommune har innvilget søknaden om skjenkebevilling for brennevin ved Roof Garden, Torggaten 5, til God Fornøyelse AS. Dette ble vedtatt av administrasjonen, men med to stemmer imot fra Kristelig Folkeparti og Rødt. Bevillingen gjelder frem til 30. juni 2004, men faller bort dersom stedet ikke lenger drives som nattklubb. Klageadgang er tilgjengelig innen seks måneder."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:8162:59416:201002050:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:21:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant land use decision affecting local housing development, with a formal complaint and recommendations from the municipal administration."
+    },
+    "summary_headline": "Klage på avslag om deling av eiendom til boligformål avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Per Steinar Nygard om deling av en parsell på 873 m² til boligformål i Åsane. Klagen ble sendt etter at kommunen tidligere hadde avslått søknaden, med begrunnelse i at tomten ikke oppfyller kravene i kommuneplanen og har høy risiko for ras. Fagetaten anbefaler å opprettholde avslaget, og byrådet støtter denne anbefalingen. Saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

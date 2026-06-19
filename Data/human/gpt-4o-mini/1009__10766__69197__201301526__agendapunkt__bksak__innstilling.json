@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10766:69197:201301526:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:44:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant traffic safety plan with ambitious goals and local implications."
+    },
+    "summary_headline": "Bergen kommune støtter ambisiøs trafikksikkerhetsplan for Hordaland",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Handlingsplan for trafikksikring i Hordaland 2014-2017, som har som mål å redusere antall drepte og hardt skadde i trafikken med 45 prosent innen 2024. Byråden for byutvikling, klima og miljø, Filip Rygg, understreker viktigheten av tverrsektorielt samarbeid og folkehelse i trafikksikringsarbeidet. Planen, som har en kostnadsramme på 16 millioner kroner, vil være førende for trafikksikkerhetsarbeid i hele Hordaland. Høringsfristen er 20. desember 2013, og fylkestinget skal vedta planen i mars 2014."
+  }
+}

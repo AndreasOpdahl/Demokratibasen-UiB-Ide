@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:7677:57452:200207630:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:03:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant housing project with a history of disputes and changes, impacting local residents."
+    },
+    "summary_headline": "Revidert søknad om boligbygg på Johannes Bruns gate 5 vurderes av Tilsynsutvalget",
+    "summary_body": "Tilsynsutvalget for byens utseende vurderer en revidert søknad om rammetillatelse for riving av en brannskadd bygning og oppføring av et nytt boligbygg på Johannes Bruns gate 5. Prosjektet har vært gjenstand for flere endringer og klager fra naboer, og det er nå foreslått å endre takform og redusere synligheten av takterrassen. Eiendommen ligger i et verneverdig kulturminnemiljø, og det er viktig for lokalbefolkningen å følge med på utviklingen av dette boligprosjektet."
+  }
+}

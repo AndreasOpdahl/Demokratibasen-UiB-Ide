@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232d1a28-1a02-557a-b16c-791f7a332aa5",
+  "kommune_nummer": 4626,
+  "kommune_navn": "Øygarden",
+  "generated_at": "2026-02-19 22:14:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a permit application for construction, which has local relevance but lacks significant controversy or impact."
+    },
+    "summary_headline": "Søknad om deling av eiendom i Øygarden",
+    "summary_body": "Jan Inge Oen har sendt inn en søknad om deling av eiendom i Lynghøyen, Øygarden. Søknaden gjelder tiltak uten ansvarsrett etter plan- og bygningsloven, og det er søkt om dispensasjon fra gjeldende arealplan. Nabovarsling er gjennomført, men det er ikke oppgitt om det foreligger merknader fra naboer. Det er viktig for innbyggerne å følge med på denne saken, da den kan påvirke lokal arealbruk."
+  }
+}

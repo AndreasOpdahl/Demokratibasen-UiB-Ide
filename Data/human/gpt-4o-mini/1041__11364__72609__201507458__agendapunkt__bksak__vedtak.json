@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:11364:72609:201507458:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:10:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines the appointment of members to a committee for an upcoming election, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Valgstyret oppnevner arbeidsutvalg for 2015-valget",
+    "summary_body": "Valgstyret har oppnevnt medlemmer til arbeidsutvalget for kommunestyre- og fylkestingsvalget 2015. Asle Steiestøl Wingsternes (H) er utnevnt som leder, mens Marte Mjøs Persen (A) er nestleder. Ingen representanter tok ordet under behandlingen, og vedtaket ble fattet enstemmig."
+  }
+}

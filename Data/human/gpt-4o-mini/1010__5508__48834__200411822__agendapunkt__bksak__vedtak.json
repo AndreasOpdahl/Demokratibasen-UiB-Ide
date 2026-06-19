@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1010:5508:48834:200411822:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:49:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine decision regarding a workplace environment survey, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Bydrift Bergen KF tar arbeidsmiljøundersøkelse til etterretning",
+    "summary_body": "Styret for Bydrift Bergen KF har enstemmig vedtatt å ta til etterretning saken om arbeidsmiljøundersøkelse og handlingsplan for oppfølging av undersøkelsen. Møtet fant sted den 12. november 2007."
+  }
+}

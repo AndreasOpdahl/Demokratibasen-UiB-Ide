@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241606:4080815:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:33:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal addresses significant issues of teacher harassment and safety in schools, which affects local educators and students."
+    },
+    "summary_headline": "Tiltak mot trakassering av lærere foreslås i Bergen",
+    "summary_body": "Bystyremedlemmene Turid B. Sveen og Adele Nilsen har fremmet et forslag om å sette inn vektere på skoler der lærere opplever trakassering fra utagerende elever. Forslaget ble overlevert ordføreren 24. mai 2022, etter rapporter om vold og mobbing som har ført til mistrivsel og sykemeldinger blant lærere. Forretningsutvalget har oversendt saken til byrådet for videre vurdering, med en frist for behandling i bystyret innen 23. november 2022. Behandlingen er imidlertid utsatt til desember. Dette forslaget kan ha stor innvirkning på læreres arbeidsmiljø og sikkerhet i Bergen."
+  }
+}

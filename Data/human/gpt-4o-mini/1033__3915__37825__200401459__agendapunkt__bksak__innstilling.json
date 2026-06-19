@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3915:37825:200401459:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:47:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The application for a new liquor license is relevant to local businesses and residents."
+    },
+    "summary_headline": "Euro Hotell Sandviken Brygge søker ny skjenkebevilling",
+    "summary_body": "Euro Hotell Sandviken Brygge har søkt om ny alminnelig skjenkebevilling for servering av øl, vin og brennevin både innendørs og ved uteservering frem til 30. juni 2004. Rusmiddelpolitisk råd anbefaler søknaden, som nå vil bli vurdert av byrådet. Dette kan påvirke både hotellets drift og lokale beboeres opplevelse av området."
+  }
+}

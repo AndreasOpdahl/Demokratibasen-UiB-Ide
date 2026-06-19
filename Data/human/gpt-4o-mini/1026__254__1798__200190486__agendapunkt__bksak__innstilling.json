@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:254:1798:200190486:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:00:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a contested building plan with significant local implications and community opposition."
+    },
+    "summary_headline": "Klage på bebyggelsesplan for Sandviken Brygge avvist av byrådet",
+    "summary_body": "Byrådet har avvist klager på den godkjente bebyggelsesplanen for Sandviken Brygge, som ble vedtatt med krav om reduksjon av byggehøyde. Klagene kom fra tiltakshaver og naboer som påpekte manglende parkeringsplasser i beregningene. Byrådet, ledet av Anne-Grete Strøm-Erichsen, opprettholder vilkåret om å redusere bygget med en etasje, og mener at de har rett til å vurdere bygningens høyde i forhold til omgivelsene. Saken vil bli sendt videre til Fylkesmannen i Hordaland."
+  }
+}

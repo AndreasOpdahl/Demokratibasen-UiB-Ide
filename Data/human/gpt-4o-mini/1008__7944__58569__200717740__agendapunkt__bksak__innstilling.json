@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:7944:58569:200717740:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:39:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains administrative decisions regarding multiple appeals, which may affect local residents."
+    },
+    "summary_headline": "Byrådet godkjenner protokoller og behandler klager på byggetillatelser",
+    "summary_body": "Byrådet i Bergen har godkjent protokoller fra møter den 22. og 26. april 2010. I tillegg har byrådet behandlet flere klager på avslag på byggetillatelser, hvor de fleste klagene ikke ble tatt til følge. Det ble imidlertid gitt dispensasjon for en klage angående fasadeendring på Nedre Ole Bullsplass 4. Byrådsleder Monica Mæland ledet møtene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "034f2520-be97-5ab3-88de-1a71331685f7",
+  "kommune_nummer": 4640,
+  "kommune_navn": "Sogndal",
+  "generated_at": "2026-02-19 14:30:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses a critical infrastructure project with significant local impact and urgency."
+    },
+    "summary_headline": "Sogndal kommune ber om prioritering av Esefjordbrua",
+    "summary_body": "Sogndal kommune har vedtatt å be Vestland fylkeskommune om å prioritere Esefjordbrua i den kommende rulleringen av regional transportplan i juni 2025. Brua er ansett som det viktigste samferdselsprosjektet i kommunen, og det er dokumentert et akutt behov for rassikring i området. Kommunestyret oppfordrer også til en utredning av bompengefinansiering for prosjektet, som kan være avgjørende for oppstart. Det er viktig for både lokal og regional trafikk, og kommunen understreker at midlertidige løsninger ikke er tilstrekkelige for å sikre innbyggernes trygghet."
+  }
+}

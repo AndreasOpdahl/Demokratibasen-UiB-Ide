@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:2122:21839:200008052:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:13:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the allocation of cultural funds, which is relevant to local community projects."
+    },
+    "summary_headline": "Ytrebygda bydelsstyre fordeler kulturmidler til lokale prosjekter",
+    "summary_body": "Ytrebygda bydelsstyre har godkjent fordelingen av kulturmidler til samarbeidsprosjekter, med totalt 84.000 kroner fordelt på fire lokale initiativer. Nordås fritidsklubb får 30.000 kroner, Adventura 30.000 kroner, Liland Ungdomslag 12.000 kroner, og FAU - Rå skole 12.000 kroner. I tillegg ble det vedtatt å utlyse midlene for kommende år, og det ble enstemmig besluttet at fordelingen av midlene bør vurderes bedre i neste års budsjett. Dette tiltaket er viktig for å støtte lokale kulturprosjekter i Ytrebygda."
+  }
+}

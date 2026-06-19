@@ -1,0 +1,18 @@
+{
+  "dokument_id": "8a2c3352-dfaf-5ebf-9b19-589cf803f882",
+  "kommune_nummer": 4616,
+  "kommune_navn": "Tysnes",
+  "generated_at": "2026-02-19 23:10:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to funding for sports facilities that could greatly impact local communities."
+    },
+    "summary_headline": "Tysnes kommune protesterer mot endringer i tilskuddsordning for idrettsanlegg",
+    "summary_body": "Tysnes kommune har sendt inn et høringssvar til Kultur- og likestillingsdepartementet angående forslag til forskrift om tilskudd til bygging og rehabilitering av idrettsanlegg. Kommunen avviser forslaget om ny fordelingsnøkkel for tilskudd til fylkeskommunene, som vil redusere midlene til Vestland. De mener også at burettslag og bygdelag fortsatt må kunne søke om midler til nærmiljøanlegg, og at prosjekteringskostnader bør inkluderes i tilskuddsgrunnlaget. Høringsfristen er 20. januar 2026, og saken skal behandles i formannskapet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:447:2972:200290412:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:05:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant regulatory change affecting local land use and has garnered support from multiple political parties."
+    },
+    "summary_headline": "Dispensasjon for boligtomt i Ytrebygda godkjent av komiteen",
+    "summary_body": "Komite for miljø, byutvikling og tekniske tjenester har besluttet å gi dispensasjon for fradeling av boligtomt i Ytrebygda, til tross for tidligere avslag fra Planavdelingen. Klagen fra Trygve Stafseth ble tatt til følge, og saken anses som en mindre vesentlig reguleringsendring. Det ble enstemmig vedtatt at fremtidig bebyggelse må tilpasses terrenget for å minimere sjenanse for friluftsområdet. Dette vedtaket kan påvirke utviklingen av boligområder i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "215750:1573522:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:35:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details a routine appointment of committee members with no dissent or controversy."
+    },
+    "summary_headline": "Bergen bystyre velger nytt forretningsutvalg for 2019-2023",
+    "summary_body": "Bergen bystyre har enstemmig valgt medlemmene til forretningsutvalget for perioden 2019-2023. Utvalget består av 10 medlemmer fra ulike partier, inkludert Høyre, Arbeiderpartiet, og Miljøpartiet De Grønne. Ingen representanter tok ordet under behandlingen, og det ble ikke meldt om noen motforestillinger."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "24eb01f6-d86b-5ef2-b38c-716e0e1e20b7",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:56:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant municipal planning and social service revisions that directly impact residents."
+    },
+    "summary_headline": "Bergen kommune starter rullering av kommuneplanens arealdel KPA 2027",
+    "summary_body": "Bergen kommune har besluttet å starte arbeidet med rullering av kommuneplanens arealdel (KPA 2027) for å forenkle bestemmelsene og legge til rette for flere boliger og næringsutvikling. Planprogrammet, som skal sendes på høring, inkluderer innarbeiding av kommunedelplanen for Birkeland, Liland, Ådland og Espeland (KDP BLÅE). Byrådet ønsker å oppnå raskere saksbehandling og lavere konfliktnivå i planprosesser. Innbyggere og interessenter oppfordres til å gi innspill under høringen, som er planlagt tidlig i 2025."
+  }
+}

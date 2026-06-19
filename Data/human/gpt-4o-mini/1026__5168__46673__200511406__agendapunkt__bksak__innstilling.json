@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5168:46673:200511406:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:08:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over land use and building permits, affecting local residents and community planning."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på naust i Holmevika",
+    "summary_body": "Byrådet har besluttet å opprettholde tidligere avslag på søknader om fradeling av parsell og oppføring av naust i Holmevika, Ytrebygda. Tiltakshaver Einar Aasmul har klaget på avslaget, men byrådet mener at tillatelse vil stride mot gjeldende arealplaner og kan svekke den demokratiske tilliten til planmyndighetene. Klagen fra naboer, representert ved advokat Leif Jæger, understreker at en tillatelse vil være i strid med bygge- og deleforbudet. Saken vil nå bli sendt til fylkesmannen for endelig avgjørelse."
+  }
+}

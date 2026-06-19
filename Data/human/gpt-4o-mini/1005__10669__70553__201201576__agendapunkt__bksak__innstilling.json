@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10669:70553:201201576:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:31:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision involves significant public spending and a long-term lease agreement for a new school, impacting local residents."
+    },
+    "summary_headline": "Bystyret godkjenner leiekontrakt for ny Landås skole",
+    "summary_body": "Bystyret har vedtatt å inngå en leiekontrakt med Sognnes skolebygg AS for bygging og drift av ny Landås skole. Leieavtalen, som har en varighet på 25 år, innebærer en årlig leiepris på 11 807 830 kroner med en fast økning på 2 % per år. Dette prosjektet er et OPS-initiativ, og leiekontrakten vil bli bokført som finansiell leasing i bykassens balanse. Byrådet har fått fullmakt til å justere budsjettet i tråd med avtalen. Prosjektet vil ha betydelig innvirkning på skolekapasiteten i området."
+  }
+}

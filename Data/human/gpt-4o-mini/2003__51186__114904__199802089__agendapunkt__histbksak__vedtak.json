@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51186:114904:199802089:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:37:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine administrative decision with no significant newsworthy elements."
+    },
+    "summary_headline": "Formannskapet tar skatteinngang til orientering",
+    "summary_body": "Formannskapet i Bergen kommune behandlet skatteinngangen pr. 31. juli 1999 i møte 18. august 1999. Rådmannens forslag om å ta saken til orientering ble vedtatt enstemmig."
+  }
+}

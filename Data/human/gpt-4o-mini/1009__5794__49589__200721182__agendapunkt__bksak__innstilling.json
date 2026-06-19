@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5794:49589:200721182:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:32:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a new alcohol license to Thon Hotel Sandviken Brygge is relevant for local residents and involves public interest."
+    },
+    "summary_headline": "Thon Hotel Sandviken Brygge får ny skjenkebevilling",
+    "summary_body": "Byrådet har innvilget søknaden fra Reine Hotelldrift AS om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Thon Hotel Sandviken Brygge. Bevillingen gjelder for resepsjonsområdet, spa og 46 gjesterom, og er gyldig frem til 30. juni 2008. Styrer for bevillingen er Tore Reine, med Tone Holdhus Strand som stedfortreder. Før bevillingen kan tas i bruk, må søker sende inn nødvendig dokumentasjon til Kontor for skjenkesaker."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:2096:20505:200001320:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:21:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant urban planning decisions affecting the Åsane district, with implications for local infrastructure and community identity."
+    },
+    "summary_headline": "Åsane bydelsstyre vedtar ny kommunedelplan med fokus på grøntområder og infrastruktur",
+    "summary_body": "Åsane bydelsstyre har besluttet å gjenoppta arbeidet med kommunedelplanen for Åsane sentrale deler, med vekt på å bevare områdets karakteristiske landskap og identitet. Planen inkluderer utvikling av gang- og sykkelveier, økt parkeringskapasitet ved bussterminalen, samt areal for hotell og konferansesenter. Det er også foreslått å inkludere plass for bybane og sykehjem. Forslaget ble vedtatt med 10 mot 3 stemmer, og det er forventet at dette vil ha stor innvirkning på innbyggerne i Åsane."
+  }
+}

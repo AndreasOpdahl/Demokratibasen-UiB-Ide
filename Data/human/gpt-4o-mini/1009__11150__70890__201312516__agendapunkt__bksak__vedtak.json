@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11150:70890:201312516:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:46:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves a significant regulatory plan affecting local land use and environmental considerations."
+    },
+    "summary_headline": "Bystyret godkjenner reguleringsplan for Arnadalsflaten med omfattende konsekvensutredning",
+    "summary_body": "Bystyret har vedtatt et planprogram for regulering av Arnadalsflaten i Arna, som omfatter eiendommer gnr. 299 bnr. 25, gnr. 300 bnr. 23 og gnr. 301 bnr. 200. Planprogrammet, datert 24. mars 2014, fastsettes med krav om flere endringer, inkludert tydeliggjøring av 0-alternativet og tilleggsalternativer for arealbruk. Utredningen skal også dekke temaer som transport, kulturminner, og miljøpåvirkning. Dette vedtaket kan ha stor betydning for lokal utvikling og miljøhensyn i området."
+  }
+}

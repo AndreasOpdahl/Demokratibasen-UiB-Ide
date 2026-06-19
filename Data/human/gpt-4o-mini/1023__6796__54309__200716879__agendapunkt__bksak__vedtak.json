@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:6796:54309:200716879:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:42:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses various inquiries regarding health and social services, highlighting community concerns and potential initiatives."
+    },
+    "summary_headline": "Spørsmål om helse- og sosialtiltak i Bergen kommune",
+    "summary_body": "I et møte den 15. april behandlet Komite for helse og sosial flere spørsmål fra medlemmer om helse- og sosialtiltak. Hans Edvard Seim (H) spurte om byråden har planer for å implementere løsninger fra en studietur til Danmark. Hallgeir Utne Hatlevik (A) etterspurte rutiner for utdeling av medisiner til barn i SFO, mens Olav Lundestad (FrP) foreslo underholdning for eldre på sykehjem. Oddny Irene Miljeteig (SV) tok opp behovet for støtte til det tamilske miljøet i Bergen, som er hardt rammet av krigshandlinger på Sri Lanka. Byråd Liv Røssland besvarte alle spørsmålene, men det er uklart hvilke konkrete tiltak som vil bli iverksatt."
+  }
+}

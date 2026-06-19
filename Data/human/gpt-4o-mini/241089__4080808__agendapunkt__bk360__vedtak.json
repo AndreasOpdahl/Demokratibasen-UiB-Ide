@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241089:4080808:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:31:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses proposed fare reductions for public transport in Bergen, which is highly relevant to residents facing economic challenges."
+    },
+    "summary_headline": "Bergen bystyre vurderer julekampanje med rabatterte kollektivtakster",
+    "summary_body": "Bergen bystyre har behandlet forslag om å innføre en julekampanje med 40% prisreduksjon på kollektivtakster for desember 2022. Forslaget ble fremsatt av flere partier, inkludert Fremskrittspartiet og Rødt, men ble ikke vedtatt. Bystyret ber imidlertid byrådet om å gå i dialog med Vestland fylkeskommune og Skyss for å forbedre kollektivtilbudet og vurdere kampanjer for å øke bruken av kollektivtransport. Dette tiltaket kommer i lys av høye levekostnader som påvirker bergensernes økonomi i juletiden."
+  }
+}

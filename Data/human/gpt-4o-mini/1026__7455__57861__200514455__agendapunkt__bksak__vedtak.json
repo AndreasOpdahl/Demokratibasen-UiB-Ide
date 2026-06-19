@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7455:57861:200514455:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:18:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision regarding housing development and community planning, with implications for local residents."
+    },
+    "summary_headline": "Klage på avslag om riving og nybygg i Fana godkjent av KMBY",
+    "summary_body": "Komite for miljø og byutvikling (KMBY) har besluttet å gi medhold til tiltakshaver i en klage over avslag på riving av en bolig og oppføring av et nytt bygg i Nyhaugveien 4, Fana. KMBY vurderte at tiltaket er i tråd med kommuneplanens arealdel for senterområdet S11, som tillater fortetting. Det ble også gitt dispensasjon for bygging nærmere nabogrense enn 4 meter. Klagen ble tatt til følge, og fagetatens avslag fra 10. juni 2009 ble satt til side. Det forutsettes at det søkes om tillatelse til endret avkjørsel fra Samferdselsetaten. Dette tiltaket kan påvirke områdets karakter og tilgjengelighet for innbyggere."
+  }
+}

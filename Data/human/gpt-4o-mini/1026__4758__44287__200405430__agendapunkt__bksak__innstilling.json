@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4758:44287:200405430:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:06:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant dispute over a building permit that affects local residents."
+    },
+    "summary_headline": "Klage på nybygg i Apeltun avvist av byrådet",
+    "summary_body": "Byrådet har avvist klagen fra naboer angående rammetillatelsen for oppføring av en ny enebolig på Apeltunveien 29 A. Klagerne, Bjørn Skanding og Ole Audun Raknes, har uttrykt bekymring for byggets størrelse og trafikkproblemer, men byrådet konkluderte med at tiltaket ikke vil påføre naboene betydelig ulempe. Det ble også gitt dispensasjon fra plankravet. Saken vil nå bli sendt til fylkesmannen for endelig avgjørelse."
+  }
+}

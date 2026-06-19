@@ -1,0 +1,18 @@
+{
+  "dokument_id": "231598:2650743:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:11:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a property tax exemption to Bergen Roklubb raises issues of social equity and public funding."
+    },
+    "summary_headline": "Bergen Roklubb får 82 % fritak fra eiendomsskatt, men FNB protesterer",
+    "summary_body": "Bergen bystyre har besluttet å frita Bergen Roklubb for 82 % av eiendomsskatten for klubbhuset fra 1. januar 2021, mens boligdelen ikke omfattes av fritaket. Gunnar van der Meeren fra FNB uttrykte motstand mot fritaket, og argumenterte for at eiendomsskatt er usosial og skaper ulikhet mellom eiere og leietakere. FNB ønsker å fjerne eiendomsskatt for alle og støtte frivillige og kulturtiltak gjennom andre ordninger. Bystyret vedtok fritaket med 59 stemmer, til tross for FNBs innvendinger."
+  }
+}

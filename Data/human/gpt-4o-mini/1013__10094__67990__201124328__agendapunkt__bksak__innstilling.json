@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10094:67990:201124328:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:57:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document contains several administrative decisions and discussions that may affect local governance and community services."
+    },
+    "summary_headline": "Bystyret godkjenner flere høringer og tar til etterretning om flytting av KrF-representant",
+    "summary_body": "Forretningsutvalget i Bergen kommune har godkjent protokollen fra sitt møte 18. juni 2013, og behandlet flere saker. Blant annet ble det enstemmig vedtatt å sende høringer om endringer i forskrifter for motorkjøretøyer i utmark og skogfond til videre behandling. I tillegg ble det tatt til etterretning at Lisbeth Iversen (KrF) har flyttet fra kommunen og fritas fra sitt verv i bystyret. Byråd Hilde Onarheim informerte om at det vil bli nedsatt grupper for å samle informasjon om kommunens tjenester knyttet til en aktuell familiesak, og at det vil bli avholdt møte om valg av ny byråd denne uken."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5168:47043:200512285:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:08:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document involves a rejected application for a housing plot, which may affect local residents but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Klage på avslag om fradeling av boligtomt avvist",
+    "summary_body": "Åsane Gårds- og friluftsbarnehage AS har klaget på avslag på søknad om fradeling av boligtomt på Snekkerplassen 24. Komite for miljø og byutvikling behandlet saken den 12. april 2007 og opprettholdt fagetatens vedtak fra 15. november 2005. Klagen ble enstemmig avvist, og det var ingen debatt under møtet."
+  }
+}

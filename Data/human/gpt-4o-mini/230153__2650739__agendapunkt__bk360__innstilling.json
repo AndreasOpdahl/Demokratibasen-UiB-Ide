@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230153:2650739:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:07:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the municipal response to the government's handling of the pandemic, which is highly relevant and impactful for local residents."
+    },
+    "summary_headline": "Bergen kommune kritiserer regjeringens håndtering av koronapandemien",
+    "summary_body": "Bergen kommune har avgitt en høringsuttalelse til Koronakommisjonens rapport om myndighetenes håndtering av koronapandemien. Byrådet mener at kommunenes innsats har vært avgjørende, men savner at kommisjonen anerkjenner dette tilstrekkelig. De fremhever behovet for bedre beredskap og koordinering mellom stat og kommune, samt at kommunene må involveres mer i fremtidige krisehåndteringer. Høringsuttalelsen inneholder 46 innspill og må leveres innen 17. juni 2021."
+  }
+}

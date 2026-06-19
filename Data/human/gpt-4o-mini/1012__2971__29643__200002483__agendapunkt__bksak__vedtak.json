@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:2971:29643:200002483:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:52:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision involves a significant dispute over a building permit affecting local residents' views."
+    },
+    "summary_headline": "Fana bydelsstyre gir medhold til nabo i klage på garasjeutbygging",
+    "summary_body": "Fana bydelsstyre har enstemmig besluttet å ta klagen fra nabo Lars Nedrelid til følge, angående en garasje bygget av utbygger Hogne Fredriksen. Klagen ble behandlet 5. februar 2002, hvor bydelsstyret konkluderte med at garasjen er bygget betydelig høyere enn godkjent, noe som har ført til tap av utsikt for klageren. Bydelsstyret uttrykte at det er uakseptabelt å ikke følge byggetillatelser og ber om at alternative sanksjoner vurderes. Dette vedtaket kan ha stor betydning for hvordan fremtidige byggeprosjekter håndteres i Fana."
+  }
+}

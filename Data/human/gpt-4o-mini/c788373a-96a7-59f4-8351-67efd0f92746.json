@@ -1,0 +1,18 @@
+{
+  "dokument_id": "c788373a-96a7-59f4-8351-67efd0f92746",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:20:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for easier outdoor serving in Bergen is relevant and could impact local businesses and residents."
+    },
+    "summary_headline": "Enklere uteservering i Bergen foreslås av Venstre",
+    "summary_body": "Ole-Ansger Nepomuk Martini fra Venstre har fremmet et representantforslag om «Bergensmeteren», som skal gjøre uteservering enklere og rimeligere for å fremme byliv. Forretningsutvalget behandlet forslaget den 30. september 2025 og besluttet enstemmig å sende det videre til byrådet for utredning. Byrådet skal levere et notat til bystyret innen 18. februar 2026, og Utvalg for finans, kultur og næring vil gi sin innstilling i saken."
+  }
+}

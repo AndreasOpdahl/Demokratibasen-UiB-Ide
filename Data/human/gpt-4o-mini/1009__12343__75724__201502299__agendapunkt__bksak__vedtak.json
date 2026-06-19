@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:12343:75724:201502299:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:52:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details routine appointments to a board, which is of limited news interest."
+    },
+    "summary_headline": "Oppnevning av styremedlemmer til Midtun Vekst AS",
+    "summary_body": "Byrådet har oppnevnt nye styremedlemmer til Midtun Vekst AS. Lillian Blom (SV) blir leder, mens Arvid Nilssen (KrF) blir nestleder. Øvrige medlemmer inkluderer Liv Smith (Ap), Daniel Mekki (H) og Arvid Nilssen (KrF). Varamedlemmer er Øystein Hassel (Ap), Ragnhild Kristin Heradstveit (KrF), Kari Odland (H) og Thor Chr. Schmidt (SV)."
+  }
+}

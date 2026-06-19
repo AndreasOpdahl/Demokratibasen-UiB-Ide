@@ -1,0 +1,18 @@
+{
+  "dokument_id": "75d22caa-2e5a-529c-a36b-271b8023b635",
+  "kommune_nummer": 4624,
+  "kommune_navn": "Bjørnafjorden",
+  "generated_at": "2026-02-19 23:06:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a routine completion certificate for a minor change of use in a municipal building."
+    },
+    "summary_headline": "Ferdigattest for kontor i Torggata 11",
+    "summary_body": "Bjørnafjorden kommune har gitt ferdigattest for bruksendring av venterom til kontor i Torggata 11. Vedtaket ble fattet 10. januar 2025, etter at søknaden om ferdigattest ble sendt inn 6. januar 2025. Bygningen må kun brukes til det formålet som er godkjent i løyvet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2013:50035:102027:200003394:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:58:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested zoning change that affects local residents and has seen multiple appeals."
+    },
+    "summary_headline": "Klage på reguleringsendring avvist av byutviklingsutvalget",
+    "summary_body": "Utvalg for byutvikling har avvist klagen fra Linda K. Ryn om reguleringsendring fra eneboligtomt til tomt for tomannsbolig på Hammersland. Klagen ble ansett som ikke tilstrekkelig, til tross for argumenter om marginal merbelastning på Grimstadvegen og likhetshensyn. Utvalget opprettholder sitt tidligere vedtak fra januar 2000, som ble fattet etter at to naboer klaget på den opprinnelige godkjenningen. Administrasjonen advarer om at en godkjenning kan endre områdets karakter og skape presedens for flere boligenheter. Dette kan påvirke trafikksikkerheten i området, noe som er en bekymring for innbyggerne."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:536:3638:200390293:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:12:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant decision regarding land use and community interests, with potential financial implications and local relevance."
+    },
+    "summary_headline": "Utsettelse av omregulering i Ytrebygda for bedre vurderinger",
+    "summary_body": "Komite for miljø, byutvikling og tekniske tjenester har enstemmig vedtatt å utsette saken om omregulering av eiendommen gnr 37, bnr 250 i Ytrebygda. Komiteen ønsker en grundigere saksframstilling som inkluderer vurderinger av kostnader ved innløsning av området som friområde, samt mulige kostnader ved mindre utbygging som småhus eller barnehage. Det skal også vurderes finansieringsmuligheter og innhentes synspunkter fra borettslagene i området. Byrådet anbefaler at eiendommen ikke omreguleres."
+  }
+}

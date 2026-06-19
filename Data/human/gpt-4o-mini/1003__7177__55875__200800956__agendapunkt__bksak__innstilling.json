@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1003:7177:55875:200800956:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:21:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant maintenance needs and upgrades for public housing, impacting local residents."
+    },
+    "summary_headline": "Vedlikeholdsetterslep i BBBs boligportefølje redusert med 56 millioner kroner",
+    "summary_body": "Bergen Bolig og Byfornyelse KF (BBB) har oppdatert tilstandsanalyse av sin boligportefølje, som nå viser et akkumulert vedlikeholdsbehov på 196 millioner kroner, ned fra 252 millioner kroner i 2003. Dette er en reduksjon på 56 millioner kroner, noe som indikerer at vedlikeholdsetterslepet er blitt bedre håndtert. Analysen omfatter 5119 boenheter og identifiserer også behov for oppgraderinger knyttet til brannsikkerhet, ventilasjon og universell utforming. Styret i BBB tar saken til orientering, og det er viktig for innbyggerne i Bergen å være oppmerksomme på disse vedlikeholdsbehovene, da de direkte påvirker livskvaliteten i boligene."
+  }
+}

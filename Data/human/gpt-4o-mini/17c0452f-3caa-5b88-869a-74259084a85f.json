@@ -1,0 +1,18 @@
+{
+  "dokument_id": "17c0452f-3caa-5b88-869a-74259084a85f",
+  "kommune_nummer": 4614,
+  "kommune_navn": "Stord",
+  "generated_at": "2026-02-19 20:28:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a significant decision regarding the extension of a liquor license for a public venue, impacting local residents and businesses."
+    },
+    "summary_headline": "Utvidet skjenkeløyve for Stord Kulturkontoret godkjent",
+    "summary_body": "Stord formannskap har tildelt Stord kommune Kulturkontoret et utvidet skjenkeløyve for alkoholgruppe 1 og 2, som gjelder fra 2024 til 2028. Det nye skjenkearealet på 747 m² i Stord kulturhus kan romme opptil 420 gjester. Løyvet skal brukes ved spesielle arrangementer, og det stilles krav om rapportering av skjenking to ganger årlig. Styrer for løyvet er Tore Hatlevik, med Herdis Elin Belsvik som reservestyrer. Dette vedtaket kan påvirke lokale arrangementer og næringsliv i Stord."
+  }
+}

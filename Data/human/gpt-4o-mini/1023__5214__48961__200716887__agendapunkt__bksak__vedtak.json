@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:5214:48961:200716887:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:41:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains administrative decisions and proposals that may interest local residents."
+    },
+    "summary_headline": "Opprettelse av arbeidsutvalg i Komite for helse og sosial",
+    "summary_body": "Komite for helse og sosial har opprettet et arbeidsutvalg for valgperioden 2007-2011, med Hans Edvard Seim (H), Hallgeir Utne Hatlevik (A) og Oddny Irene Miljeteig (SV) som medlemmer. Utsettelse av saken om inkluderende komitearbeid ble enstemmig godkjent. I tillegg ble det informert om et seminar om sosiale menneskerettigheter som finner sted 19. november 2007 ved Universitetet i Bergen."
+  }
+}

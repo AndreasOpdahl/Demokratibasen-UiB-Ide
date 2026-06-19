@@ -1,0 +1,18 @@
+{
+  "dokument_id": "208551:888554:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:16:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a proposal that could impact the procurement of health and social services, which is relevant to local organizations."
+    },
+    "summary_headline": "Byrådet støtter reservasjon av helse- og sosialtjenester for ideelle organisasjoner",
+    "summary_body": "Byrådet har behandlet et forslag om å reservere anskaffelser av helse- og sosialtjenester for ideelle organisasjoner. I møtet den 8. november 2018 vedtok byrådet å avgi høringsuttalelse til forslaget, som nå sendes videre til bystyrets kontor. Dette kan påvirke hvordan helse- og sosialtjenester tilbys i Bergen, og gir ideelle organisasjoner mulighet til å delta i anbud."
+  }
+}

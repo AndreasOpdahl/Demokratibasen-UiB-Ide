@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7888:58200:200805835:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:38:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision on extended serving hours for local events is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "Byrådet avslår søknad om utvidet skjenketid for Bergenfest og Festspillene",
+    "summary_body": "Byrådet i Bergen har besluttet å avslå NHO Reiselivs søknad om utvidet skjenketid til kl. 03.00 under Bergenfest fra 27. april til 23. mai 2010 og Festspillene fra 26. mai til 9. juni 2010. Beslutningen ble fattet i møte 21. april 2010, sak 1144-10."
+  }
+}

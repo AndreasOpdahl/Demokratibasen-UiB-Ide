@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2007:50762:109677:199805414:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:52:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant proposal for restructuring Bergen's administrative divisions, which could impact local governance and community identity."
+    },
+    "summary_headline": "Forslag til ny bydelsinndeling i Bergen kan endre lokal styring",
+    "summary_body": "En arbeidsgruppe har foreslått to alternativer for ny bydelsinndeling i Bergen, med henholdsvis 6 eller 8 bydeler. Forslaget tar hensyn til befolkningsstruktur, kommunens drift, kultur og geografi. Alternativ 6a anbefales for bedre administrativ effektivitet, mens alternativ 8ab kan gi mer identitet til bydeler som Arna. Dette kan påvirke hvordan tjenester tilbys og hvordan innbyggerne opplever lokalsamfunnet. Det er usikkert hvilken inndeling som vil bli vedtatt, men begge alternativer vil bli vurdert av kommunen."
+  }
+}

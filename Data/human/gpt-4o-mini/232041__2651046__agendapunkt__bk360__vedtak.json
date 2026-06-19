@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232041:2651046:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:11:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision regarding a housing project that affects local residents and includes a unanimous vote from multiple political parties."
+    },
+    "summary_headline": "Boligbygging i Fyllingsdalen godkjent etter klage",
+    "summary_body": "Utvalg for miljø og byutvikling har enstemmig vedtatt å oppheve et tidligere avslag fra Plan- og bygningsetaten og godkjent bygging av enebolig med sekundærleilighet på Torgny Segerstedts vei 161. Klagen ble innvilget etter at det ble dokumentert at tomten er regulert for boligbygging. Det stilles vilkår om avstand fra vei og mulighet for gangvei. Dette tiltaket er i tråd med kommunens fortetningspolitikk og vil bidra til økt boligkapasitet i området."
+  }
+}

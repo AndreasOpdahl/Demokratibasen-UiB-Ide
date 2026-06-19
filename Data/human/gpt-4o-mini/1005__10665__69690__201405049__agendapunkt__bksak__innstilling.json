@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10665:69690:201405049:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:30:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The resignation of a local politician due to health reasons and the subsequent appointments of replacements is relevant to the community."
+    },
+    "summary_headline": "Janne Halvorsen (H) trekker seg fra verv i bystyret",
+    "summary_body": "Janne Halvorsen fra Høyre har søkt om fritak fra alle verv i Bergen bystyre for resten av valgperioden 2011-2015 på grunn av økt arbeidspress og helseproblemer. Bystyrets forretningsutvalg har foreslått å innvilge søknaden, og flere nye medlemmer fra Fremskrittspartiet vil bli valgt inn i hennes sted. Dette inkluderer Hallstein Aadland som nytt medlem i Komite for oppvekst og Morten Myksvoll i Valgstyret. Endringene vil påvirke bystyrets arbeid fremover."
+  }
+}

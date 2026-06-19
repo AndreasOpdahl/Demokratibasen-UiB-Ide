@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:2916:28851:200006827:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:30:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a proposal for clarification of water and sewage fee calculations, but lacks significant local impact or controversy."
+    },
+    "summary_headline": "Forslag om klargjøring av vann- og avløpsgebyrer",
+    "summary_body": "Kontrollutvalget i Bergen kommune behandlet den 6. november 2001 et forslag fra stortingsrepresentant Arne Sortevik. Forslaget omhandler klargjøring og presisering av beregningsgrunnlaget for vann- og avløpsgebyrer i kommunene. Dokumentet ble delt ut til orientering, men det er ingen indikasjoner på konflikt eller betydelig lokal påvirkning."
+  }
+}

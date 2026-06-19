@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11207:71282:201115733:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:47:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant infrastructure agreement affecting local traffic and safety."
+    },
+    "summary_headline": "Utbyggingsavtale for gang- og sykkelveg langs Fleslandsvegen godkjent",
+    "summary_body": "Bergen kommune har inngått en utbyggingsavtale med Statens vegvesen for å etablere en gang- og sykkelveg langs Fleslandsvegen, som strekker seg over 762 meter. Avtalen, som utløser et anleggsbidrag på 9,5 millioner kroner, er nødvendig for å oppfylle reguleringsplanens krav før ferdigattest kan gis for det nye VA-anlegget. Det har kommet inn bekymringer fra innbygger Arvid Ask angående trafikksituasjonen og manglende tiltak for hele strekningen til Fleslandsvika. Byrådet anbefaler godkjenning av avtalen, som vil bli signert av byråden for byutvikling, klima og miljø, Henning Warloe."
+  }
+}

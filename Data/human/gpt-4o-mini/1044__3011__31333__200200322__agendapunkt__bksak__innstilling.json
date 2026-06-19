@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3011:31333:200200322:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:24:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a building permit dispute with local residents opposing the construction due to concerns about privacy and aesthetics."
+    },
+    "summary_headline": "Naboer klager på heving av bolighus i Åsane",
+    "summary_body": "Åsane bydelsstyre har besluttet å opprettholde tillatelsen til Frank Nordal om å heve topp grunnmur på bolighuset Kistebakkane 12 fra kote 61,00 til kote 62,00. Naboene Haakon Dag Ripe og Anne Titlestad Ripe, samt Anne og Karsten Eikeland, har klaget på vedtaket, og hevder at heving av huset vil føre til økt innsyn og vil være skjemmende i forhold til omkringliggende hus. Bydelsdirektøren anbefaler at klagen ikke tas til følge, da ulempene ved økt innsyn ikke anses som betydelige. Saken oversendes Fylkesmannen i Hordaland for videre behandling."
+  }
+}

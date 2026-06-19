@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230608:3161394:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:08:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a regulatory plan change that affects local infrastructure, which is relevant but lacks significant controversy or financial implications."
+    },
+    "summary_headline": "Endring av reguleringsplan for Bybanen Rådal - Flesland vedtatt",
+    "summary_body": "Byrådet har vedtatt endringer i reguleringsplanen for Bybanen Rådal - Flesland under møte 01.07.2021. Endringene omfatter arealplaner for Ytrebygda, inkludert reguleringsføresegner for Brakehaugen næringsområde. Dette kan påvirke lokal infrastruktur og utvikling i området."
+  }
+}

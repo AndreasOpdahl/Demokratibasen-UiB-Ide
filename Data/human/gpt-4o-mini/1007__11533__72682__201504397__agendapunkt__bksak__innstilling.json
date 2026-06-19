@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:11533:72682:201504397:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:29:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document presents a routine financial report with no significant controversies or impacts."
+    },
+    "summary_headline": "Havnestyret godkjenner årsregnskap for 2014 med overskudd",
+    "summary_body": "Havnestyret i Bergen og Omland har godkjent årsregnskapet for 2014, som viser et udisponert overskudd på 8 717 144 kroner. Overskuddet anbefales avsatt til disposisjonsfond. Havnestyret har også vedtatt styrets beretning og anbefaler Havnerådet å godkjenne regnskapet som fremlagt."
+  }
+}

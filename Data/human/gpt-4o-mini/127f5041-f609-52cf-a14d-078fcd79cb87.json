@@ -1,0 +1,18 @@
+{
+  "dokument_id": "127f5041-f609-52cf-a14d-078fcd79cb87",
+  "kommune_nummer": 4634,
+  "kommune_navn": "Masfjorden",
+  "generated_at": "2026-02-19 20:27:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a proposal for a future statement but lacks immediate impact or controversy."
+    },
+    "summary_headline": "Formannskapet ber rådmannen om uttale til kommunestyret",
+    "summary_body": "Formannskapet har drøfta KS Debatthefte 2025 og enstemmig vedtatt å be rådmannen kome attende med eit framlegg til uttale som skal leggjast fram i kommunestyret. Dette tiltaket tar sikte på å adressere forventningsgapet i kommunen."
+  }
+}

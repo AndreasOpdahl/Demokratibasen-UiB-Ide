@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:346:2241:200290122:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:00:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document involves a neighbor complaint regarding a building permit, which has local relevance but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Klage på rammetillatelse avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har behandlet en klage fra naboer i Olinestien angående rammetillatelse for tiltakshaver Selmer Bolig i Åsane. Klagen ble enstemmig avvist, og administrasjonens tidligere vedtak fra 2000 ble opprettholdt. Barn- og unges representant, Liv Skreden, påpekte behovet for å ivareta barn og unges behov i planleggingen av området. Det er ingen dissent i komiteens vedtak."
+  }
+}

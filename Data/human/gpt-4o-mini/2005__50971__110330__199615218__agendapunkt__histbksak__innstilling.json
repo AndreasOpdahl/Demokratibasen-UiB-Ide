@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50971:110330:199615218:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:43:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the ongoing planning and environmental assessment for the Skansentunnel, which is significant for local traffic management."
+    },
+    "summary_headline": "Fremdrift for Skansentunnelen: Vegdirektoratet må godkjenne utredningsprogrammet",
+    "summary_body": "Hovedutvalg for byutvikling i Bergen har mottatt en orientering om status for konsekvensutredningen av Skansentunnelen. Det er foreslått at Vegdirektoratet snarest godkjenner utredningsprogrammet, som har vært forsinket i over ett år. Utredningen vurderer tre hovedalternativer for tunnelen, inkludert trafikksystemforbedringer og tilknytning til eksisterende tunneler. En endelig rapport forventes innen utgangen av 1998, forutsatt rask godkjenning fra Vegdirektoratet. Dette prosjektet er viktig for å avlaste trafikken i sentrum og vil påvirke innbyggerne i Bergen."
+  }
+}

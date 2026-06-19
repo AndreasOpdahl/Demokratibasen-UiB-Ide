@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212620:1024402:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:27:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant decisions regarding tax exemptions for various local organizations, which could impact residents financially."
+    },
+    "summary_headline": "Bergen kommune vurderer fritak for eiendomsskatt for flere idrettslag og organisasjoner",
+    "summary_body": "Under møtet den 8. mai 2019, vurderte Komite for finans, kultur og næring i Bergen kommune flere søknader om fritak for eiendomsskatt fra lokale idrettslag og organisasjoner. Blant søkerne er Fana IL Fotball, Laksevåg Turn og Idrettslag, og Dyrebeskyttelsen Norge Bergen. Disse beslutningene kan ha økonomiske konsekvenser for kommunen og berørte grupper. Det ble også diskutert retningslinjer for kommunale tilskudd til dyrevelferd og amatørkulturfeltet."
+  }
+}

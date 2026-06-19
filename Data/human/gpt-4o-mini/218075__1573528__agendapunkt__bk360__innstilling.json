@@ -1,0 +1,18 @@
+{
+  "dokument_id": "218075:1573528:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:38:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a procedural matter with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra bystyret",
+    "summary_body": "Bystyrets medlemmer har overlevert representantforslag til ordføreren den 18. desember 2019. Dette er en rutinemessig prosedyre uten kontrovers eller betydelig innvirkning på innbyggerne."
+  }
+}

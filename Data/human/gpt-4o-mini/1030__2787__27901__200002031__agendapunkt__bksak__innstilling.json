@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2787:27901:200002031:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:37:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the progress of a mental health plan, which is relevant to local residents and involves public spending."
+    },
+    "summary_headline": "Fremdrift i psykiatriplanen for Laksevåg bydelsstyre",
+    "summary_body": "Laksevåg bydelsstyre har mottatt en redegjørelse om fremdriften av psykiatriplanen, etter forespørsel fra Sylvia Rødberg (H). Planen, som er basert på Opptrappingsplan for psykisk helse, har fått økte midler, men det er rapportert om merforbruk i helsestasjon og skolehelsetjeneste. Tiltakene inkluderer utvidelse av forebyggende arbeid og styrking av oppfølging for barn og unge med psykiske utfordringer. Bydelen skal rapportere til Fylkeslegen om bruken av psykiatrimidler ved årsskiftet."
+  }
+}

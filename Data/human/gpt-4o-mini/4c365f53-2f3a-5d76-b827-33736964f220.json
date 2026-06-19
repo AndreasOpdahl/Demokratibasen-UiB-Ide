@@ -1,0 +1,18 @@
+{
+  "dokument_id": "4c365f53-2f3a-5d76-b827-33736964f220",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:01:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Rådet for byforming og arkitektur godkjenner saksprotokoll",
+    "summary_body": "Rådet for byforming og arkitektur (RBA) godkjente saksprotokollen fra møtet den 19. august 2025 i sitt møte den 17. september 2025. Vedtaket ble fattet uten noen innvendinger."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:170:894:200190082:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:42:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant emergency preparedness measures and a unanimous decision against the closure of a local oil depot, which is crucial for regional safety."
+    },
+    "summary_headline": "Bergen bystyre prioriterer beredskap og avviser nedleggelse av oljeverndepot",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å prioritere beredskapsarbeidet og avviser nedleggelsen av det statlige oljeverndepotet på Fedje, samt flytting av Solund-depotet til Florø. Dette er en viktig beslutning for å opprettholde beredskapen i regionen, spesielt med tanke på den høye risikoen for oljeutslipp i området. Bystyret har også vedtatt langsiktige tiltak for å kartlegge risiko og sårbarhet, samt å styrke samarbeidet med andre offentlige organer og frivillige organisasjoner. Det er planlagt flere beredskapsøvelser og oppdateringer av beredskapsplanene i bydelene. Innstillingen ble vedtatt enstemmig av alle partier i bystyret."
+  }
+}

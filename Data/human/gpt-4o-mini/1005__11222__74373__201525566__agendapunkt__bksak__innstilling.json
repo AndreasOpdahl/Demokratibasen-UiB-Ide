@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11222:74373:201525566:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:35:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document proposes changes to the regulations governing the Bergen City Council, which could impact local political structure."
+    },
+    "summary_headline": "Endringer i reglementet for Bergen bystyre vedtatt",
+    "summary_body": "Bergen bystyre har vedtatt endringer i reglementet for perioden 2015-2019, spesielt punkt 2.2 om valg til verv. Endringene inkluderer at medlemmer av komiteenes arbeidsutvalg nå skal godtgjøres i 50 % stilling. I tillegg fastsettes antall politikere med 100 % stilling til 9 og med 50 % stilling til 4. Dette er en oppfølging av tidligere vedtak om komitestruktur og kan påvirke hvordan politiske verv fordeles i kommunen."
+  }
+}

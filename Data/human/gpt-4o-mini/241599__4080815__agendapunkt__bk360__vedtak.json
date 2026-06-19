@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241599:4080815:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:32:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for a trial project to reduce speed limits in certain streets was rejected, indicating local governance issues."
+    },
+    "summary_headline": "Bystyret avviser prøveprosjekt med 20 km/t i Bergen",
+    "summary_body": "Bergen bystyre avviste 14. desember 2022 et forslag fra Magne Hagesæter (R) om å etablere et prøveprosjekt med 20 km/t i utvalgte gater med dårlig sikt. Forslaget fikk støtte fra MDG og SV, men falt med 46 stemmer fra H, A, FP, Sp, V og KrF. Bystyret begrunnet avvisningen med behovet for endringer i regelverket for å oppnå mål innen klima og byutvikling. Hagesæter foreslo også at byrådet skulle søke Statens Vegvesen om prosjektet, men dette ble ikke vedtatt. Neste steg er usikkert, men det er klart at det ikke blir noe prøveprosjekt i nær fremtid."
+  }
+}

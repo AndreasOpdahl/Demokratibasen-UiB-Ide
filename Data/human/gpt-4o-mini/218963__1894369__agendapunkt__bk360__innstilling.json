@@ -1,0 +1,18 @@
+{
+  "dokument_id": "218963:1894369:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:40:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant dispute over a building permit that affects local residents."
+    },
+    "summary_headline": "Naboer klager på byggesak i Laksevåg",
+    "summary_body": "Byrådet har besluttet å opprettholde tillatelsen til Karin og Einar Eriksen for et tilbygg, garasje og gangadkomst på Sundby-Hvorups vei 71, til tross for klage fra naboene Gerd og John Ingvald Sandal. Klagerne mener at garasjen er for stor og at bygget ikke følger reguleringsplanen. Byrådet, ledet av Roger Valhammer, konkluderer med at klagen ikke tas til følge, og at tiltaket er i tråd med gjeldende regelverk. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

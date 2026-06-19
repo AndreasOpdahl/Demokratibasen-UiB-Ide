@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:2973:30702:200002297:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:53:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document lacks specific details and does not present any newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Fana bydelsstyre",
+    "summary_body": "Dokumentet inneholder ingen konkrete beslutninger eller forslag som er av offentlig interesse."
+  }
+}

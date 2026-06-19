@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:7359:56817:200802758:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:30:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine meeting protocol with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll fra havnestyremøte godkjent",
+    "summary_body": "Protokollen fra møtet i Bergen og Omland havnestyre den 13. november 2009 ble godkjent."
+  }
+}

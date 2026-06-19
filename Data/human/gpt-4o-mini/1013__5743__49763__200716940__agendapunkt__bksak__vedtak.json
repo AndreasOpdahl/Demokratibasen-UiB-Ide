@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5743:49763:200716940:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:11:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains administrative updates but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Forretningsutvalget diskuterer aktivitetsplan og kommende arrangementer",
+    "summary_body": "Forretningsutvalget behandlet flere saker i møtet 12. februar 2008. Gunnar Bakke presenterte en aktivitetsplan og ba om tilbakemelding innen 15. februar. Ruth Grung reiste spørsmål om forankring av NTP i bystyret, og det ble enighet om at ordføreren vil samkjøre dette med byrådet. Filip Rygg oppfordret medlemmene til å delta på Klimaseminar 13. februar, mens Trude Drevland foreslo at bystyrets medlemmer får mulighet til å se Picassoutstillingen, noe bystyredirektøren vil følge opp."
+  }
+}

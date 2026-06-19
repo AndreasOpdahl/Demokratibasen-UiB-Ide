@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11955:75419:201520829:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:36:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines new guidelines for funding in the arts and culture sector, which is relevant to local residents and artists."
+    },
+    "summary_headline": "Bystyret vedtar nye retningslinjer for tilskudd til kunst og kultur",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt retningslinjer og kriterier for tilskuddsordninger innen kunst- og kulturområdet. Bystyret gir også byrådet myndighet til å gjøre mindre endringer i retningslinjene. Sofie Marhaug fra Rødt foreslo en utvidelse av søknadsordningen for visuell kunst, men forslaget fikk ikke flertall. Dette vedtaket kan påvirke lokale kunstnere og kulturaktører i Bergen."
+  }
+}

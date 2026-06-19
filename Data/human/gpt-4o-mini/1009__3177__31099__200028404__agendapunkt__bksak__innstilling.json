@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3177:31099:200028404:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:01:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to allow jet ski events has local relevance and potential impact on residents."
+    },
+    "summary_headline": "Tillatelse til vannscooterstevner i Bergen",
+    "summary_body": "Hjellestad Jet Ski Klubb har fått tillatelse fra byrådet til å arrangere tre vannscooterstevner over fire dager i Store Lungegårdsvann og Hjellestadvika i 2002. Byråd for miljø og byutvikling, Tom Knudsen, støtter anbefalingen fra Grønn avdeling, og arrangementene må gjennomføres i samsvar med gjeldende forskrifter. Dette kan påvirke lokalbefolkningen, spesielt med tanke på støy og trafikk i området."
+  }
+}

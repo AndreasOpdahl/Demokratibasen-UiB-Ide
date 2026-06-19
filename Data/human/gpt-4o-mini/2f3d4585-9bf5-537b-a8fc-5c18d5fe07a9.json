@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2f3d4585-9bf5-537b-a8fc-5c18d5fe07a9",
+  "kommune_nummer": 4623,
+  "kommune_navn": "Samnanger",
+  "generated_at": "2026-02-19 22:57:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document discusses a significant restructuring of municipal daycare services in response to demographic changes, which will impact local families and the community."
+    },
+    "summary_headline": "Samnanger kommune vedtar samlokalisering av barnehagedrift",
+    "summary_body": "Samnanger kommune har besluttet å samlokalisere den kommunale barnehagedriften i Vassloppa barnehage fra 1. august 2027. Dette tiltaket er en respons på synkende barnetal og økende driftskostnader. Rådmannen foreslår at det utarbeides en prosjektplan for samlokaliseringen, som skal involvere ansatte, tillitsvalgte og foreldre. En styrer vil bli ansatt fra 1. august 2026. Målet er å opprettholde høy pedagogisk kvalitet og sikre bærekraftig drift av barnehagetilbudet i kommunen. Dagens struktur med to barnehager er ikke lenger økonomisk bærekraftig, og samlokaliseringen forventes å gi både økonomiske og pedagogiske gevinster."
+  }
+}

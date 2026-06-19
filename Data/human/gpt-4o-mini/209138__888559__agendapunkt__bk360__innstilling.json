@@ -1,0 +1,18 @@
+{
+  "dokument_id": "209138:888559:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:18:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a funding request for a significant local event celebrating diversity and inclusion."
+    },
+    "summary_headline": "Byrådet bevilger 20 000 kroner til DFIRH sitt 30-årsjubileum",
+    "summary_body": "Byrådet har besluttet å bevilge 20 000 kroner til Det Felles Innvandrerråd i Hordaland (DFIRH) for å feire deres 30-årsjubileum. Feiringen finner sted 28. november 2018 på Bergen Internasjonale Kultursenter, i samarbeid med andre lokale kulturarrangementer. Midlene skal dekke kostnader til mat, leie av lokale og trykking av en jubileumsbrosjyre. Byråden for sosial, bolig og inkludering, Erlend Horn, anbefaler bevilgningen som en støtte til likestilling og inkludering i lokalsamfunnet."
+  }
+}

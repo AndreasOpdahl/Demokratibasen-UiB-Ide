@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:9504:65109:201124335:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:18:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a hearing on proposed changes but lacks significant conflict or impact."
+    },
+    "summary_headline": "Høring om midlertidig endring av aldersgrense for lærlinger",
+    "summary_body": "Forretningsutvalget har behandlet høringssaker i møte 12. juni, inkludert et forslag om midlertidig endring av aldersgrensen for lærlinger i bussfaget. Det ble også sendt ut en høringsrapport fra Statens kartverk om det offentlige kartgrunnlaget."
+  }
+}

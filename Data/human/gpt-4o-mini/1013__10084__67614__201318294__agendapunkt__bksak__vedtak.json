@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10084:67614:201318294:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:56:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for cycling against traffic in one-way streets is relevant for local cyclists and urban planning."
+    },
+    "summary_headline": "Enstemmig forslag om sykling mot kjøreretning oversendes byrådet",
+    "summary_body": "Endre Tvinnereim (BY) har fremmet et privat forslag om tillatelse til sykling mot kjøreretningen i enveiskjørte gater. Forretningsutvalget behandlet forslaget og besluttet enstemmig å sende det videre til byrådet for utredning. Byrådet må vurdere forslaget og sende et notat til Bystyrets kontor, slik at det kan behandles innen seks måneder. Dette forslaget kan ha betydning for lokale syklister og byens trafikksikkerhet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "201572:204317:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:00:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the continuation of Bergen's membership in Safe Communities, which is relevant for local safety initiatives."
+    },
+    "summary_headline": "Bergen vurderer fortsatt medlemskap i Safe Communities",
+    "summary_body": "Bergen kommune vurderer å videreføre sitt medlemskap i Safe Communities, som fokuserer på trygge lokalsamfunn og skadeforebygging. En ressursgruppe har blitt opprettet for å evaluere medlemskapet og arbeide med selvmordsforebygging. Byrådet har fått anbefalinger om å fortsette medlemskapet etter den norske modellen. Det er uklart når en endelig beslutning vil bli tatt, og hvilke innspill ressursgruppen har gitt."
+  }
+}

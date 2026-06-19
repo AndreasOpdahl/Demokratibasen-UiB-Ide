@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2007:50768:111975:199508674:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:54:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves significant public spending and local infrastructure improvements."
+    },
+    "summary_headline": "Bergen kommune bevilger 400.000 kroner til oppgradering av St. Markus tilfluktsrom",
+    "summary_body": "Hovedutvalg for teknisk utbygging i Bergen kommune har godkjent en bevilgning på 400.000 kroner for å sikre det tekniske anlegget i St. Markus tilfluktsrom mot fuktskader. Bevilgningen dekkes av frikjøpsfondet og vil bli gjennomført av W. Giertsen A/S. Forslaget fra Liv Glasser (SV) om å innhente anbud ble nedstemt. Dette tiltaket er viktig for å opprettholde sikkerheten i tilfluktsrommet, som er en del av kommunens beredskap."
+  }
+}

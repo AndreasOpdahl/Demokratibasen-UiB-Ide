@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:7373:59472:200506657:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:27:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines a significant urban development plan for Åsane sentrum, which is relevant to local residents."
+    },
+    "summary_headline": "Reguleringsplan for Åsane sentrum legges ut til offentlig ettersyn",
+    "summary_body": "Åsane bydelsstyre har lagt ut en reguleringsplan for Åsane sentrum til offentlig ettersyn frem til 12. oktober 2010. Planen tar sikte på å utvikle området fra et kjøpesenter til et aktivt bydelssentrum med boliger, servicefunksjoner og arbeidsplasser. Dette er i tråd med kommuneplanens mål om å forbedre urbane kvaliteter og redusere gråarealer. Tidligere forsøk på privat regulering ble avsluttet i 2003, men nå ønsker grunneierne en offentlig plan for området."
+  }
+}

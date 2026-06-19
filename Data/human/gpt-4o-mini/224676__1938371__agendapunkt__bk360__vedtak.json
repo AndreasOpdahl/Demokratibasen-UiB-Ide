@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224676:1938371:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:52:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine inquiry regarding care standards without significant newsworthy elements."
+    },
+    "summary_headline": "Hilde Onarheim (H) stiller spørsmål om kvalitetsstandarder i omsorgssentre",
+    "summary_body": "Hilde Onarheim (H) har stilt et skriftlig spørsmål til Utvalg for helse og sosial angående om kvalitetsstandardene for omsorgssentre er ivaretatt, samt en oversikt over aktiviteter ved de ulike sentrene. Byråd Beate Husa svarte på spørsmålet under møtet den 2. november 2020."
+  }
+}

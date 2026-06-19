@@ -1,0 +1,18 @@
+{
+  "dokument_id": "222575:1903946:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:47:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested building permit that affects local residents' views and property values."
+    },
+    "summary_headline": "Klage på tomannsbolig i Laksevåg avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde tillatelsen for oppføring av en tomannsbolig i Laksevåg, til tross for klager fra naboer som mener bygget vil medføre tap av sol og utsikt. Klagen ble sendt inn av Ann Elin og Morten Ask, som argumenterer for at det ikke er rettslig grunnlag for dispensasjon fra reguleringsplanen som kun tillater en enebolig. Byrådet mener fordelene ved å tillate tomannsboligen er større enn ulempene, og har stilt vilkår om at et kulturminne på eiendommen skal bevares. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

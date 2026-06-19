@@ -1,0 +1,18 @@
+{
+  "dokument_id": "214768:1667598:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:33:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision involves significant financial implications for the municipality regarding its shares."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett i Åsane Sentrum Øst AS",
+    "summary_body": "Bergen kommune har besluttet å beholde sine aksjer i Åsane Sentrum Øst AS og vil ikke benytte seg av sin medsalgsrett dersom Ole Bull Utvikling AS selger 20 % av aksjene. Kommunen vil heller ikke benytte sin forkjøpsrett hvis aksjene selges for mer enn 50 millioner kroner. Dette kan påvirke kommunens økonomiske posisjon i selskapet."
+  }
+}

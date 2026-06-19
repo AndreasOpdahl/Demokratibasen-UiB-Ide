@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:10754:70756:201206632:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:28:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is an informational update with no significant newsworthy elements."
+    },
+    "summary_headline": "Havnestyret orienterer om pågående prosjekter",
+    "summary_body": "Havnestyret for Bergen og Omland havn ble orientert om pågående og aktuelle saker og prosjekter. Det ble ikke fattet noen beslutninger, men orienteringen ble tatt til etterretning av styret."
+  }
+}

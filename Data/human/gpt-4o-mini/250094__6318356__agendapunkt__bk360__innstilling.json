@@ -1,0 +1,18 @@
+{
+  "dokument_id": "250094:6318356:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:56:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a dispute over property rights and municipal decisions affecting local residents."
+    },
+    "summary_headline": "Klage på matrikkelretting i Laksevåg avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde en matrikkelretting i Laksevåg, til tross for klage fra Sameiet Leirvik Sør. Rettingen, som ble gjennomført 11. september 2023, tildelte et tidligere uregistrert område til eiendommen gbnr 139/4. Klagen ble sendt inn 12. september av styreleder Gyrid Irene Dahl, men byrådet mener rettingen er i tråd med gjeldende prosedyrer. Rettingen påvirker eierskapet til veigrunnen, men endrer ikke eksisterende rettigheter. Saken vil bli sendt til Statsforvalteren i Vestland for endelig avgjørelse dersom klagen ikke tas til følge."
+  }
+}

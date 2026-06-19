@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3393:32964:200018956:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:03:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant safety measures and potential costs related to public art, which affects local residents."
+    },
+    "summary_headline": "Sikring av granittsøyler på Torgallmenningen foreslås av byrådet",
+    "summary_body": "Byrådet har besluttet å montere sikringsbånd rundt granittsøyler på Torgallmenningen etter at riss ble oppdaget. Norconsult anbefaler tiltakene som midlertidige, mens kunstner Bård Breivik ønsker en full utskifting av søylene som permanent løsning. Kostnadene for de midlertidige tiltakene vil belastes Grønn avdelings budsjett, med forventet dekning fra forsikringsoppgjør. Byrådet vil forfølge saken videre for å sikre en permanent løsning."
+  }
+}

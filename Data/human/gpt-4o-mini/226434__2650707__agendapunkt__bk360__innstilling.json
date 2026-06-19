@@ -1,0 +1,18 @@
+{
+  "dokument_id": "226434:2650707:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:56:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses a local citizen initiative regarding the use of sports facilities, which has implications for community sports and safety."
+    },
+    "summary_headline": "Byrådet avviser innbyggerforslag om trening på friidrettsbaner",
+    "summary_body": "Byrådet har besluttet å avvise innbyggerforslaget fra Mons Einar Troland om å skjerme friidrettsbaner mot fotballtrening i Bergen. Forslaget ble behandlet etter kommunelovens regler for innbyggerinitiativ, men byrådet vil i stedet gå i dialog med Idrettsrådet for å finne midlertidige løsninger på problemstillingen. Dette er spesielt relevant for bydeler med få friidrettsanlegg, som Fyllingsdalen, hvor det er bekymringer om sikkerhet og sambruk mellom idrettene. Byrådet oppfordrer til samarbeid for å finne gode løsninger."
+  }
+}

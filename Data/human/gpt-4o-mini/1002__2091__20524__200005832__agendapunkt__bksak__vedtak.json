@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2091:20524:200005832:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:17:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to fund a new author for the local history book is relevant and involves public spending."
+    },
+    "summary_headline": "Arna bydelsstyre anbefaler forfatter til bygdebok for Arna",
+    "summary_body": "Arna bydelsstyre har anbefalt formannskapet å utlyse et tre-årig engasjement for en forfatter til andre bandet av bygdeboka for Arna, som dekker perioden 1840-1972. Lønnen er satt til 320.131 kroner per år, med totale kostnader på 440.000 kroner årlig fra 2001 til 2003. Utgiftene for inneværende år, totalt 200.000 kroner, vil bli dekket av budsjettet. Vedtaket ble fattet med to stemmer imot fra Fremskrittspartiet. Dette prosjektet er viktig for å bevare lokalhistorien og vil engasjere innbyggerne i Arna."
+  }
+}

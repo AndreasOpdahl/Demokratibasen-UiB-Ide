@@ -1,0 +1,18 @@
+{
+  "dokument_id": "208241:265735:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:16:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses routine travel approvals for the mayor, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Reiser godkjent for ordfører Mjøs Persen",
+    "summary_body": "Forretningsutvalget har godkjent to utenlandsreiser for ordfører Marte Mjøs Persen. Den første reisen er fra 31. oktober til 2. november for utdeling av pris, og den andre er til Newcastle fra 5. til 7. desember for å tenne julegranen. Ingen kontroverser eller dissent ble rapportert."
+  }
+}

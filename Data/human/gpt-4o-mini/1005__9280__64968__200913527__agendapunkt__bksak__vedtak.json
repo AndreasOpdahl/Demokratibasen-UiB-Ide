@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9280:64968:200913527:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:21:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine approval of a regulatory plan with no dissent or significant impact."
+    },
+    "summary_headline": "Reguleringsplan for Ulsmågskole vedtatt uten debatt",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt reguleringsplanen for Ulsmågskole, PlanID 61150000, datert 8. mai 2012. Ingen representanter tok ordet under behandlingen, og både byrådet og komiteen for miljø og byutvikling støttet innstillingen. Dette er en rutinemessig beslutning uten kontroverser."
+  }
+}

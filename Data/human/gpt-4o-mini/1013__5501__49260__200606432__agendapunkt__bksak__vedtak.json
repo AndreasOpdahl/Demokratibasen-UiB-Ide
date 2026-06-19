@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5501:49260:200606432:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:11:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to postpone the implementation of a meeting administration system is relevant to local governance and involves potential cost savings."
+    },
+    "summary_headline": "Bystyret utsetter beslutning om møteadministrasjonssystem",
+    "summary_body": "Forretningsutvalget har enstemmig vedtatt å utsette saken om møteadministrasjonssystem i bystyresalen til utgangen av februar. Utvalget er positiv til prosjektet, men ønsker en grundigere vurdering av erfaringer fra andre byer, innsparingspotensial, opplæring av bystyrerepresentanter, samordning med byrådet, og en utredning om PC-ordning for medlemmene. Dette kan påvirke hvordan bystyret jobber i fremtiden og er derfor av interesse for innbyggerne."
+  }
+}

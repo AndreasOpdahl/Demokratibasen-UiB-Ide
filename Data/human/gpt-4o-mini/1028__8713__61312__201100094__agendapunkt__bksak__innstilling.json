@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1028:8713:61312:201100094:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:28:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine meeting protocol approval with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra møtet i kommunalt råd for funksjonshemmede",
+    "summary_body": "Protokollen fra møtet i kommunalt råd for funksjonshemmede den 11. januar 2011 ble godkjent."
+  }
+}

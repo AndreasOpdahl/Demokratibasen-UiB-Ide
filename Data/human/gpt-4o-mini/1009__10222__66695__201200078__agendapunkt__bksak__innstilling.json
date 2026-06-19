@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10222:66695:201200078:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:40:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The appointment of a new board member is relevant but lacks significant conflict or impact."
+    },
+    "summary_headline": "Geir Steinar Dale utnevnt til nytt styremedlem i Bergen Vann",
+    "summary_body": "Etter bortgangen til Sigmund Olsnes (Ap) før jul, foreslår Arbeiderpartiets gruppeleder, Geir Steinar Dale, som nytt medlem i styret i Bergen Vann KF. Byrådsleder Monica Mæland har innstilt til byrådet om denne oppnevnelsen, som ble besluttet 31. januar 2013. Dette er en rutinemessig administrativ beslutning som påvirker styringen av kommunens vannforsyning."
+  }
+}

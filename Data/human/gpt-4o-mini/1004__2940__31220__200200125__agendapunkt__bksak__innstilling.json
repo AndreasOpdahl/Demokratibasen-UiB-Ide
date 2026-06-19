@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2940:31220:200200125:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:26:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a local event with extended alcohol serving hours, which may interest residents."
+    },
+    "summary_headline": "Utvidet skjenkeareal og skjenketid for Nattjazz 2002",
+    "summary_body": "Bergenhus bydelsstyre har godkjent søknaden fra Kulturhuset UFS om utvidelse av skjenkeareal og skjenketid i forbindelse med Nattjazz 2002. Utvidelsen gjelder fra 22. mai til 1. juni 2002, med skjenking til kl. 02.30 og 03.00 på ulike dager. Administrasjonen har ikke merknader til søknaden."
+  }
+}

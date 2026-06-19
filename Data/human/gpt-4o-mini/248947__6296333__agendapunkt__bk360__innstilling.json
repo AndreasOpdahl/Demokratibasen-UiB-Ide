@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248947:6296333:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:52:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a contested decision regarding housing development and traffic safety, which affects local residents."
+    },
+    "summary_headline": "Byrådet avviser klage på boligprosjekt i Gravdal på grunn av trafikksikkerhet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på dispensasjon for oppføring av 6 eneboliger i Gravdal, etter klage fra Noreidbrekka Eiendom AS. Klagen ble avslått på grunn av bekymringer om trafikksikkerheten på Gravdalsveien, som er vurdert som utilfredsstillende for videre utbygging. Til tross for at prosjektet vil øke antall boliger, mener byrådet at nødvendige infrastrukturforbedringer må prioriteres før nye boliger kan tillates. Klageren har bedt om befaring, men byrådet anbefaler samarbeid med andre utbyggere for en felles plan for veistandardheving."
+  }
+}

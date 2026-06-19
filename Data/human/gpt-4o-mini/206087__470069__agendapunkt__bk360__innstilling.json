@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206087:470069:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:11:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses an internal meeting regarding employment matters, which is of limited public interest."
+    },
+    "summary_headline": "Ekstraordinært møte i Kontrollutvalget om sekretariatets arbeidsgiverforhold",
+    "summary_body": "Kontrollutvalget avholdt et telefonmøte for å diskutere arbeidsgiverforhold i sekretariatet, etter at det ikke var mulig å finne en passende dato for alle faste medlemmer. Møtet ble innkalt av lederen den 31. mai 2018."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248802:6140902:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:52:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural item with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Rådet for byforming og arkitektur",
+    "summary_body": "Rådet for byforming og arkitektur har ingen vedtak å rapportere om i sitt møte den 25. oktober 2023."
+  }
+}

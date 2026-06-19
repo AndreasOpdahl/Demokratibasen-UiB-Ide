@@ -1,0 +1,18 @@
+{
+  "dokument_id": "f93cc602-8e65-5be8-83ab-9d56504d1f16",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 23:25:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant municipal projects for environmental improvement, impacting local infrastructure and community mobility."
+    },
+    "summary_headline": "Alver kommune foreslår nye prosjekter til Miljøløftet 2027-2029",
+    "summary_body": "Alver kommune har sendt inn sine innspill til Miljøløftet sitt handlingsprogram for perioden 2027-2029, med fokus på viktige infrastrukturprosjekter. Kommunedirektøren anbefaler prosjekter som kollektivknutepunkt og innfartsparkering på Flatøy, samt utvidelse av gang- og sykkelveier i Gymnasbakken og Kleivane. Disse tiltakene er avgjørende for å forbedre mobiliteten og trafikksikkerheten i kommunen. Prosjektene vil bli vurdert av formannskapet og kommunestyret, med mulighet for byggestart fra 2027. Dette er et viktig steg for å oppnå nullvekstmålet for personbiltrafikk og forbedre hverdagen for innbyggerne."
+  }
+}

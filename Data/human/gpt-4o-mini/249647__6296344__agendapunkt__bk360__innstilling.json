@@ -1,0 +1,18 @@
+{
+  "dokument_id": "249647:6296344:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:54:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural matter regarding oral questions to be addressed in a meeting, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Muntlig spørsmål til utvalg for finans, kultur og næring",
+    "summary_body": "Utvalg for finans, kultur og næring vil ha muntlige spørsmål fra medlemmene under møtet den 6. desember 2023. Spørsmålene må sendes elektronisk til utvalgsleder eller rådgiver for å bli registrert. Dokumentet er en rutinemessig sak uten kontroverser eller betydelig offentlig interesse."
+  }
+}

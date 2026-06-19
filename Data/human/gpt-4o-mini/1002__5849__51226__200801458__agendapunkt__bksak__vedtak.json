@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:5849:51226:200801458:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:20:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural information with no significant newsworthy elements."
+    },
+    "summary_headline": "Arna bydelsstyre behandler saker om samhandling",
+    "summary_body": "Arna bydelsstyre behandlet flere saker i møte 180608, inkludert kontakt og samhandling mellom byrådsavdelingene og bydelsstyrene. Det ble også delt ut svar på skriftlige spørsmål fra Atle Fasteland (H) og Nils Gunnar Knutsen (A). Ingen kontroverser eller betydelige beslutninger ble rapportert."
+  }
+}

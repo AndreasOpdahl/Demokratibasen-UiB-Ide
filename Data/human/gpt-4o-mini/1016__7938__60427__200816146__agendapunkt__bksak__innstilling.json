@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:7938:60427:200816146:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:23:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document presents significant data on employee attendance and sick leave trends in Bergen municipality, which is relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune oppnår rekordlavt sykefravær i 3. kvartal 2010",
+    "summary_body": "Bergen kommune rapporterer om en samlet nærværsprosent på 91,7 % for 3. kvartal 2010, noe som tilsvarer et sykefravær på 8,3 %. Dette er en reduksjon fra 9,4 % i samme kvartal året før, og den laveste registrerte sykefraværsprosenten siden registreringen startet i 2004. Hovedarbeidsmiljøutvalget, ledet av kommunaldirektør Rune Haugsdal og HR-sjef Bjørg Lædre, tar til orientering at tiltak for å redusere sykefraværet har vært effektive. Det er også en økning i korttidsfravær, men langtidsfraværet har sunket betydelig. Dette er gode nyheter for innbyggerne, da lavere sykefravær kan bety bedre tjenester fra kommunen."
+  }
+}

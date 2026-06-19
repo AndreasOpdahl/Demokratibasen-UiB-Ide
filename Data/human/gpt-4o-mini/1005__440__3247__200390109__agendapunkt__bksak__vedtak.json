@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:440:3247:200390109:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:53:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant budget adjustments and political disagreements that directly impact local services and funding."
+    },
+    "summary_headline": "Bystyret vedtar revidert budsjett for 2003 med endringer for å unngå nedtrekk i bydelene",
+    "summary_body": "Bergen bystyre har vedtatt et revidert budsjett for 2003, som inkluderer økte inntekter fra kommunale selskaper og reduserte kapitalutgifter som følge av rentenedgang. Bystyret har også avsatt 28,2 millioner kroner for å redusere nedtrekk i bydelene. Det er politisk uenighet, særlig fra Høyre, som kritiserer byrådet for manglende kontroll over økonomien. Bystyret ber byrådet om å gjennomgå investeringsbudsjettet i tråd med krav fra Fylkesmannen. Neste steg inkluderer en sak om bybanens byggetrinn og tiltak for luftforurensning som skal presenteres i juni."
+  }
+}

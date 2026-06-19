@@ -1,0 +1,18 @@
+{
+  "dokument_id": "247260:5693279:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:47:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The appointment of board members for a new cultural company is significant for local development and community engagement."
+    },
+    "summary_headline": "Bergen kommune utnevner styremedlemmer til Kulturkvartalet Verftet Holding AS",
+    "summary_body": "Bergen kommune har besluttet å utnevne Sophie Dedekam Kryvi og Tore Johan Smidt som styremedlemmer i det nyopprettede Kulturkvartalet Verftet Holding AS. Utnevnelsen er viktig for å sikre kompetanse i arbeidet med ombyggingen av Dikkedokken, som er en del av et nytt kulturkvartal. Byrådet understreker at det haster med å få på plass styremedlemmene for å unngå forsinkelser i prosjektet. Kryvi har erfaring fra Helse Bergen og Statsbygg, mens Smidt har over 30 års erfaring innen prosjektledelse i bygg- og anleggssektoren. Dette tiltaket er et skritt mot å styrke kulturtilbudet i Bergen."
+  }
+}

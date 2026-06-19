@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:10042:66852:200816146:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:21:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The report highlights a slight increase in absenteeism in Bergen municipality, which is relevant to local residents and indicates ongoing challenges in achieving health and productivity goals."
+    },
+    "summary_headline": "Økt sykefravær i Bergen kommune i 2012",
+    "summary_body": "Bergen kommune rapporterer om et sykefravær på 9,5 % for 2012, en økning på 0,1 prosentpoeng fra 2011. Nærværsprosenten er 90,5 %, noe som er under målet på 92,1 % for 2013. Til tross for en positiv trend i nærvær fra 2010 til 2012, viser tallene at kommunen fortsatt har utfordringer med sykefravær, spesielt blant kvinnelige ansatte. Hovedarbeidsmiljøutvalget tar oversikten til orientering, og det er planlagt videre arbeid for å forbedre situasjonen i 2013."
+  }
+}

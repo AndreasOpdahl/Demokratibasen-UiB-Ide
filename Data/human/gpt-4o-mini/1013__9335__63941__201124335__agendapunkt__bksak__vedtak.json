@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:9335:63941:201124335:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:18:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses proposed changes but lacks significant impact or controversy."
+    },
+    "summary_headline": "Høring om endringer i kart- og planforskriften og studentboliger",
+    "summary_body": "Forretningsutvalget har behandlet høringssaker om forslag til endringer i kart- og planforskriften samt krav til studentboliger i byggteknisk forskrift. Ingen kontroverser eller dissent ble rapportert."
+  }
+}

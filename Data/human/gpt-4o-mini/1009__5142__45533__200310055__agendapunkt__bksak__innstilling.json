@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5142:45533:200310055:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:25:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines the establishment of a new foundation and the appointment of representatives, which is relevant to local governance."
+    },
+    "summary_headline": "Bergen kommune oppretter Stiftelsen Nordiske Mediedager",
+    "summary_body": "Bystyret har besluttet å legge ned Stiftelsen Nordiske TV Dager og opprette Stiftelsen Nordiske Mediedager, der Bergen kommune blir medstifter. Byrådet har nå oppnevnt Ruth Grung og Terje Ohnstad som henholdsvis medlem og varamedlem til styret, samt Hilde Onarheim og Christopher Brun til representantskapet. Overføringen av stiftelseskapital på 25.000 kroner fra den nedlagte stiftelsen til den nye stiftelsen skal gjennomføres snarest."
+  }
+}

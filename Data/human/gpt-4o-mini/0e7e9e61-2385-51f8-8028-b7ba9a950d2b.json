@@ -1,0 +1,18 @@
+{
+  "dokument_id": "0e7e9e61-2385-51f8-8028-b7ba9a950d2b",
+  "kommune_nummer": 5601,
+  "kommune_navn": "Alta",
+  "generated_at": "2026-02-19 15:16:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant challenges faced by local municipalities, including resource limitations and the need for strategic reforms, which are highly relevant to residents."
+    },
+    "summary_headline": "Alta kommune adresserer forventningsgapet i KS Debatthefte 2025",
+    "summary_body": "I KS Debatthefte 2025 fremhever Alta kommune viktigheten av å håndtere forventningsgapet mellom innbyggernes forventninger og kommunens ressurser. Kommunedirektør Oddvar Kr. Konst påpeker at nasjonale politikere skaper forventninger som kommunene sliter med å innfri, spesielt innen helse og utdanning. Alta kommune foreslår tiltak for å forbedre kommunikasjonen med innbyggerne og prioritere ressursene bedre. I tillegg etterlyser de støtte fra KS for å redusere statlig detaljstyring og øke handlingsrommet lokalt. Dette er kritisk for å sikre bærekraftige tjenester i fremtiden."
+  }
+}

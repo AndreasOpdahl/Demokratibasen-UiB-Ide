@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2004:51160:113258:199617233:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:40:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document addresses a procedural change but lacks significant impact or controversy."
+    },
+    "summary_headline": "Bystyret innfører stemmetall i skjenkesaker",
+    "summary_body": "Bystyret har besluttet at stemmetall skal oppgis når skjenkesaker behandles i bydelsutvalg. Forslaget ble fremsatt av Trygve Birkeland (KrF) og ble enstemmig vedtatt å oversende til administrasjonen. Administrasjonen har bekreftet at stemmetall nå vil bli inkludert i sakene. Saken tas til orientering."
+  }
+}

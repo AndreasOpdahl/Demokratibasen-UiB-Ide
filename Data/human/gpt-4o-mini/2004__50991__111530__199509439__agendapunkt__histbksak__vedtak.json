@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2004:50991:111530:199509439:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:39:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses administrative decisions and requests for reports, which may have local relevance."
+    },
+    "summary_headline": "Hovedutvalg for administrasjon ber om redegjørelse om budtjenester",
+    "summary_body": "Hovedutvalg for administrasjon har enstemmig vedtatt å ta tertialrapport 2/98 til etterretning, men med unntak for sak INK 2/98 om budtjenester. Utvalget ber administrasjonen om en redegjørelse for oppfølgingen av vedtaket fra sak 85/96. I tillegg ble det vedtatt at budsjettrapporter for investeringsbudsjettet skal presenteres på samme måte som driftsbudsjettet i fremtidige rapporter."
+  }
+}

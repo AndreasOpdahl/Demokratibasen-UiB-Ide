@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:11456:72806:201124333:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:59:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses procedural improvements for public hearings, which is relevant but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Behov for forbedringer i høringsrutiner",
+    "summary_body": "Under møtet den 14. april 2015 diskuterte Forretningsutvalget behovet for å forbedre rutinene for vann- og avløpshøringer. Marita Moltu (KrF) fremhevet viktigheten av å klargjøre hvem som skal informeres og innkallingsprosedyrer. Bystyredirektør Roar Kristiansen understreket at høringsbestemmelsene jevnlig vurderes, mens Harald Schjelderup (A) foreslo at Forretningsutvalget bør få programmet for kommende høringer til vurdering. Dette kan påvirke hvordan innbyggerne i Bergen involveres i fremtidige høringer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2091:20522:200005983:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:17:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposed action plan for youth in Arna, which is relevant to local residents."
+    },
+    "summary_headline": "Arna bydelsstyre vedtar handlingsplan for barn og unge",
+    "summary_body": "Arna bydelsstyre har besluttet å ta til orientering et forslag om tiltak for barn og unge i Arna, og ber bydelsdirektøren om å utarbeide en handlingsplan. Dette ble vedtatt enstemmig under møtet 22. februar 2000. Et tilleggsforslag fra RV om å uttale seg mot lokalisering av et vinmonopol i Arna ble nedstemt med 10 mot 3 stemmer. Dette tiltaket er viktig for å adressere ungdomsproblematikk i området."
+  }
+}

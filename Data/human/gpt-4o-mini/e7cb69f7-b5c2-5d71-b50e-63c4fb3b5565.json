@@ -1,0 +1,18 @@
+{
+  "dokument_id": "e7cb69f7-b5c2-5d71-b50e-63c4fb3b5565",
+  "kommune_nummer": 1870,
+  "kommune_navn": "Sortland - Suortá",
+  "generated_at": "2026-02-19 23:23:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant trends in sick leave that affect municipal operations and services."
+    },
+    "summary_headline": "Sykefraværet i Sortland kommune synker, men utfordringer gjenstår",
+    "summary_body": "I en orienteringssak fra Sortland kommune ble det rapportert om sykefraværsutviklingen fra 01.01.25 til 31.08.25. Kommunen har hatt en nedgang i sykefraværet, som nå ligger på 9.8%, det laveste siden 2019. Til tross for dette er det fortsatt utfordringer med rekruttering og drift, noe som kan påvirke kvaliteten på tjenestene. HR-leder Silje Beate Viken understreker behovet for kontinuerlig arbeid med forebygging av sykefravær og forbedring av arbeidsmiljøet. Dette er viktig for å sikre forsvarlig drift og kvalitet i kommunens tjenester."
+  }
+}

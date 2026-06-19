@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:9792:65604:200514097:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:05:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses ongoing construction projects that may impact local residents."
+    },
+    "summary_headline": "Byforming og arkitektur: Orientering om byggesak og godsterminal",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet byggesak nr. 201206598 for Haakon Sheteligs Plass, som omhandler en søknad om midlertidig dispensasjon for oppføring av paviljong til skolebygg. I tillegg ønsker Tor Helge Valen en orientering om status for planene for ny godsterminal, med særlig fokus på Fleslandsalternativet. Dette kan påvirke innbyggerne i Bergen."
+  }
+}

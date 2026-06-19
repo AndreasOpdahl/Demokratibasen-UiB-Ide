@@ -1,0 +1,18 @@
+{
+  "dokument_id": "222808:1938466:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:48:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document raises important questions about dyslexia-friendly schools in Bergen, which affects local students and families."
+    },
+    "summary_headline": "Spørsmål om dysleksivennlige skoler i Bergen",
+    "summary_body": "Christian Rolland fra FNB har stilt skriftlige spørsmål til byrådet angående tiltak for å sertifisere flere skoler som dysleksivennlige. Han etterspør hvordan byrådet har lagt til rette for dette, samt hvilke skoler som er i prosess med sertifisering. Det er også spørsmål om rapportering i årlige kvalitetsmeldinger. Dette er relevant for foreldre og elever i Bergen som er berørt av dysleksi."
+  }
+}

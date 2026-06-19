@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8841:61773:201101831:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:42:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The approval of a new alcohol license for a local pub is relevant and impacts the community."
+    },
+    "summary_headline": "Fishermans Pub får ny skjenkebevilling",
+    "summary_body": "Byrådet har innvilget søknaden fra Harbour Cayo AS om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Fishermans Pub og Bar på Torget 2. Den nye bevillingen gjelder både innendørs og uteservering, med et totalt skjenkeareal på 265 m² og 240 gjesteplasser. Byrådet for helse og inkludering, Hilde Onarheim, understreker at stedet må ha en matomsetning på minst 25 % av totalomsetningen. Bevillingen gjelder frem til 30. juni 2012, og det stilles krav om dokumentasjon før den kan tas i bruk."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3690:35700:200108516:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:06:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The funding request for a documentary on Bergen's industrial history is significant for local culture and education."
+    },
+    "summary_headline": "Bergen kommune vurderer støtte til dokumentar om BMV-kulturen",
+    "summary_body": "Byrådet vurderer å bevilge 200.000 kroner til ferdigstilling av dokumentarfilmprosjektet \"BMV-kulturen gjennom tidene\". Prosjektet, som har pågått i nesten 10 år, dokumenterer historien til Bergen Mekaniske Verksteder, en av byens viktigste industriaktører. Byrådsleder Anne-Grete Strøm-Erichsen understreker betydningen av å bevare og formidle denne kulturhistorien til nye generasjoner. Filmen vil også være nyttig for skoler og undervisning. Totalkostnaden for prosjektet er 1.254.270 kroner, og kommunen har tidligere bevilget 150.000 kroner til filmen."
+  }
+}

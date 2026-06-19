@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2256:22534:200012565:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:43:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The application for a new alcohol license is relevant to local residents and involves a change in business operations."
+    },
+    "summary_headline": "Let`s Eat Deli får ny skjenkebevilling for øl og vin",
+    "summary_body": "Let`s Eat Deli Bergen AS har fått innvilget søknaden om ny alminnelig skjenkebevilling for øl og vin frem til 30. juni 2004. Bevillingshaver er Let`s Eat Deli Bergen AS, med Håkon Karlsen som styrer. Det er også gitt dispensasjon fra kravet om at all bestilling skal skje ved bord, ettersom alkoholomsetningen er stipulert til kun 10 % av totalomsetningen. Dette kan påvirke hvordan stedet oppfattes i lokalmiljøet, da det skiller seg fra tradisjonelle spisesteder."
+  }
+}

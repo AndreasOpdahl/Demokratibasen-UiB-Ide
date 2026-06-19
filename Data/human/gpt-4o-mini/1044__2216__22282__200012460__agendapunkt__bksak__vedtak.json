@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:2216:22282:200012460:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:21:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to deny funding for holiday support to single parents is relevant and impacts a vulnerable group in the community."
+    },
+    "summary_headline": "Åsane bydelsstyre avslår støtte til ferietur for enslige forsørgere",
+    "summary_body": "Åsane bydelsstyre har besluttet å avslå en søknad om støtte på inntil 15.000 kroner til ferietiltak for enslige forsørgere og deres barn. Beslutningen ble fattet under et møte den 30. mai 2000, der administrasjonens forslag ble vedtatt med 11 mot 1 stemme. Bydelsstyreleder Karin S. Woldseth oppfordrer de berørte til å søke om støtte direkte fra sosialtjenesten. Dette tiltaket vil påvirke familier med begrensede økonomiske ressurser som sjelden har mulighet til ferie."
+  }
+}

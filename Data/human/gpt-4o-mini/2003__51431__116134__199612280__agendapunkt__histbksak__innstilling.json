@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51431:116134:199612280:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:38:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses significant changes in the organization of municipal enterprises due to new legislation, which will affect local governance."
+    },
+    "summary_headline": "Endringer i organiseringen av kommunale bedrifter i Bergen",
+    "summary_body": "Bystyret har vedtatt at det skal foretas en gjennomgang av de kommunale virksomhetene i lys av den nye kommuneloven som trer i kraft 1. januar 2000. Rådmannen, Jan Refseth, vil vurdere eksisterende vedtekter og foreslå nødvendige endringer for å tilpasse virksomhetene til det nye regelverket. Dette arbeidet vil også bli knyttet til innføringen av parlamentarisme fra 27. juni 2000, som vil endre styringsstrukturen i kommunen. Det er viktig for innbyggerne i Bergen å være oppmerksomme på disse endringene, da de kan påvirke hvordan kommunale tjenester leveres."
+  }
+}

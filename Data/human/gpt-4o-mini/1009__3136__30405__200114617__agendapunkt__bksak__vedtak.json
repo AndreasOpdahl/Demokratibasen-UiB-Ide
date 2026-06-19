@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3136:30405:200114617:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:00:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property sale is relevant to local real estate and community interests."
+    },
+    "summary_headline": "Bergen kommune avviser forkjøpsrett på leiegård",
+    "summary_body": "Bergen kommune har besluttet å ikke gjøre forkjøpsrett gjeldende ved salget av leiegården på Vestre Muralmenning 4, gnr 165, bnr 913, fra Per Rasmus Landaas til Vestre Muralmenning 4 AS. Byrådet behandlet saken den 20. mars 2002, og det ble konkludert med at kjøpet ikke ble anbefalt. Dette kan påvirke lokale boligforhold og eiendomsmarkedet."
+  }
+}

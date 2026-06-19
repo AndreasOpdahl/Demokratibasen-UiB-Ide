@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:3273:33283:200001809:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:38:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to uphold the construction permit for a boathouse is relevant to local residents but lacks significant controversy or impact."
+    },
+    "summary_headline": "Klage på nausttillatelse avvist av Laksevåg bydelsstyre",
+    "summary_body": "Laksevåg bydelsstyre har enstemmig besluttet å opprettholde tillatelsen til oppføring av naust med kai på Håkonshellaveien 281. Klagen mot vedtaket fra 22. mars 2002 ble ikke tatt til følge. Dette betyr at planene for naustet kan fortsette uten hindringer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50844:110532:199606570:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:49:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a significant plan for the integration of immigrants and refugees, which is relevant to local residents."
+    },
+    "summary_headline": "Enstemmig vedtak om oppfølging av integreringsplan for innvandrere i Bergen",
+    "summary_body": "Hovedutvalg for fritid og kultur har enstemmig vedtatt rutiner for oppfølging av Handlingsplan for integrering av innvandrere og flyktninger i Bergen for perioden 1998-2001. Dette vedtaket ble fattet under møtet den 25. juni 1998, der administrasjonens forslag ble støttet av alle unntatt Frp, som fikk én stemme. Dette er et viktig skritt for å sikre bedre integrering av innvandrere og flyktninger i kommunen."
+  }
+}

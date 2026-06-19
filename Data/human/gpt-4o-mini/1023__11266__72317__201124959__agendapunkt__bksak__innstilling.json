@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:11266:72317:201124959:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:37:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural information regarding oral questions in a committee meeting, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra komite for helse og sosial",
+    "summary_body": "Dokumentet beskriver prosedyren for innsendelse av muntlige spørsmål til komite for helse og sosial. Byråden vil svare på spørsmål fra komiteens medlemmer, men det er ingen spesifikke saker eller kontroverser nevnt."
+  }
+}

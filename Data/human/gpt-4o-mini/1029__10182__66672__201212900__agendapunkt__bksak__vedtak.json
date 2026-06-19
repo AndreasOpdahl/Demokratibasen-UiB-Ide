@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:10182:66672:201212900:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:28:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a routine financial decision with no significant controversy or impact."
+    },
+    "summary_headline": "Kontrollutvalget deltar i prosjekt med Business Region Bergen AS",
+    "summary_body": "Kontrollutvalget i Bergen kommune har besluttet å delta i et prosjekt med Business Region Bergen AS, og bevilger inntil 80 000 kroner for å få tilgang til relevante rapporter. Beslutningen ble fattet enstemmig av de tilstedeværende medlemmene i møtet den 29. januar 2013."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9897:65790:200900139:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:23:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document addresses significant issues regarding mental health services in Bergen, highlighting local relevance and potential impact on residents."
+    },
+    "summary_headline": "Bystyret vedtar ny plan for psykisk helsearbeid i Bergen kommune",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt en statusrapport for psykisk helsearbeid i kommunen for perioden 2011-2015. Bystyret støtter byrådets mål om å øke brukernes innflytelse, forbedre integreringen av tjenester for barn og unge, og redusere ventetid for psykisk syke. Det er også fokus på å styrke kriseberedskapen og forebygge selvmord. Bystyret ber om en statusrapport om pasienter i spesialisthelsetjenesten og om boligsituasjonen for psykisk syke. Dette vedtaket er viktig for å sikre bedre tjenester til sårbare grupper i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5169:47061:200507043:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:08:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The case involves a rejected application for housing units, which may affect local residents but lacks significant conflict or dissent."
+    },
+    "summary_headline": "Klage på boligutvikling avvist i Ytrebygda",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig avvist klagen fra Boligplan AS angående oppføring av tre boligenheter på Grindhaugveien, Ytrebygda. Komiteen opprettholder fagetatens vedtak fra 12. september 2005, og ingen representanter tok ordet under behandlingen."
+  }
+}

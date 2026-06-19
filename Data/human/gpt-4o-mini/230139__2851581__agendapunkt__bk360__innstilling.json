@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230139:2851581:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:07:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines the distribution of various municipal matters to committees, which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Saker fra byrådets møter fordeles til bystyreutvalg",
+    "summary_body": "Byrådet har fordelt flere saker til bystyreutvalg etter møter den 25. og 27. mai 2021. Sakene 199, 204 og 206 sendes til utvalg for miljø og byutvikling, mens sakene 198 og 205 går til utvalg for finans, kultur og næring. Dette er en rutinemessig fordeling av saker som ikke inneholder kontroverser eller dissent."
+  }
+}

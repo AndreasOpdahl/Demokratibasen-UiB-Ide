@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4315:40430:200304190:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:03:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a rejected appeal regarding a construction project, indicating local interest and political disagreement."
+    },
+    "summary_headline": "Klage på takarker avvist av komiteen for miljø og byutvikling",
+    "summary_body": "Komite for miljø og byutvikling har avvist klagen fra Finn Greve angående oppføring av takarker på Hans Holmboesgate 12. I møtet 5. mars 2017 ble det enstemmig vedtatt å opprettholde fagetatens avslag fra 20. november 2003. Sigurd Galtung Døsvig fra FrP fremmet et alternativt forslag om å oppheve avslaget, men dette fikk kun 4 stemmer og ble dermed forkastet. Saken er av interesse for lokale innbyggere som følger med på byggeprosjekter i området."
+  }
+}

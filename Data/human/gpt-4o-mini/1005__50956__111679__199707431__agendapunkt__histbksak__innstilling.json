@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:50956:111679:199707431:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:00:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The dissolution of a municipal committee and transfer of its responsibilities to the city council is significant for local governance."
+    },
+    "summary_headline": "Plan-, miljø- og økonomiutvalget legges ned i Bergen kommune",
+    "summary_body": "Bergen kommune har besluttet å legge ned Plan-, miljø- og økonomiutvalget (PMØ-utvalget) fra 26. oktober 1998. Formannskapet, som enstemmig støttet forslaget, vil overta utvalgets oppgaver, som inkluderer behandling av kommuneplaner, miljøplaner og årsbudsjett. Denne omorganiseringen er i tråd med kommuneloven og vil medføre endringer i kommunens reglementer, der leder og nestleder av hovedutvalgene nå også vil bli benevnt som kommunalråder. Dette kan påvirke hvordan politiske saker behandles i kommunen fremover."
+  }
+}

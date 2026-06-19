@@ -1,0 +1,18 @@
+{
+  "dokument_id": "234121:3478861:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:16:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant development agreement that impacts local infrastructure and economic growth."
+    },
+    "summary_headline": "Byrådet godkjenner utbyggingsavtale for ny godsterminal i Espehaugen Øst",
+    "summary_body": "Byrådet i Bergen har godkjent en utbyggingsavtale med Lønningen Utvikling AS for oppfyllelse av rekkefølgekrav i reguleringsplanen for Espehaugen Øst. Avtalen omhandler byggingen av en ny godsterminal for Schenker AS, som skal erstatte den nåværende terminalen på Nygårdstangen. Kostnadene for nødvendige infrastrukturtiltak er estimert til ca. 146 millioner kroner. Dette er den første utbyggingsavtalen i området etter vedtaket av kommunedelplanen KDP BLÅE, og den forventes å bidra til betydelig utvikling av næringsareal i Bergen. Byrådet har delegert myndighet til byråden for klima, miljø og byutvikling til å signere avtalen."
+  }
+}

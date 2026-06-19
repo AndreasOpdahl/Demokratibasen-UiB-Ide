@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230695:3161394:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:09:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a funding decision for a local organization, which has some relevance but lacks significant impact or controversy."
+    },
+    "summary_headline": "Byrådet bevilger 100 000 kroner til Røde Kors Båten Hordaland",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 100 000 kroner til Røde Kors Båten Hordaland Kurs og Kompetansesenter AS. Bevilgningen ble gjort i møtet den 1. juli 2021, og midlene vil bli brukt til øvrig kulturaktivitet. Dette tiltaket kan ha betydning for lokale aktiviteter, men det er ingen rapportert motstand eller kontrovers knyttet til beslutningen."
+  }
+}

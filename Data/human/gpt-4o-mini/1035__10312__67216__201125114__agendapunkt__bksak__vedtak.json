@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10312:67216:201125114:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:56:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant urban development plans for the Bybanen project, which will impact local residents and city infrastructure."
+    },
+    "summary_headline": "Bybanen-utvidelse kan revitalisere Bergen sentrum",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet reguleringsplanen for Bybanen fra Sentrum til Åsane, og fremhever at trasevalget kan revitalisere Bergen sentrum. De foretrekker en åpen løsning fra Kaigaten til Torget, som vil forbedre tilgjengeligheten til byrommene. Alternativene for delstrekningene B og C vurderes også, med fokus på å unngå inngrep foran Bryggen og ivareta kulturminner. Rådet advarer mot usikkerhet knyttet til nasjonale antikvariske myndigheter og fremhever viktigheten av å vurdere grunnforholdene nøye. Dette prosjektet kan ha stor betydning for kollektivtilbudet og byutviklingen i Bergen."
+  }
+}

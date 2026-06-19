@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13021:77696:201300423:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:54:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses budget approval and fund reallocation, which is relevant but not highly impactful."
+    },
+    "summary_headline": "Byrådet godkjenner sluttregnskap for Håsteinarparken",
+    "summary_body": "Byrådet har godkjent sluttregnskapet for prosjektering og byggetrinn 1 av Håsteinarparken. I tillegg ble det besluttet at ubrukte midler på 843 672 kroner skal tilbakeføres til budsjettposten for nyanlegg av bydelsparker. Dette kan påvirke fremtidige parkprosjekter i Bergen."
+  }
+}

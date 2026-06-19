@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10667:69953:201302545:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:30:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for introducing a challenge right in Bergen municipality has significant implications for public services and private sector involvement."
+    },
+    "summary_headline": "Bergen kommune vurderer innføring av utfordringsrett for private aktører",
+    "summary_body": "Bystyrerepresentant Morten Myksvoll (FrP) har fremmet et forslag om å innføre utfordringsrett i Bergen kommune, som gir private og frivillige aktører mulighet til å utfordre kommunen på levering av tjenester. Forslaget ble behandlet av Forretningsutvalget, som besluttet å sende det videre til byrådet for utredning. Byrådet skal vurdere forslaget og rapportere tilbake til bystyret innen seks måneder. Utfordringsretten har vært benyttet i Sverige og Danmark, og kan føre til mer effektiv ressursbruk i kommunen. Dette kan påvirke hvordan tjenester leveres til innbyggerne, og åpner for økt konkurranse mellom offentlige og private aktører."
+  }
+}

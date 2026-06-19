@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9900:66706:201202281:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:23:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant municipal procurement strategy with implications for local governance and social responsibility."
+    },
+    "summary_headline": "Bystyret godkjenner ny anskaffelsesstrategi med fokus på samfunnsansvar",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt Anskaffelsesstrategi 2013-2016, som inkluderer mål om å innføre land-til-land-rapportering og tiltak mot skatteparadiser. Bystyret oppfordrer byrådet til å utvikle en plan for miljø- og samfunnsansvar i innkjøpene, samt å vurdere krav til lærlingeordninger og støtte til ideelle virksomheter. Flere tilleggsforslag ble fremmet, men de fleste falt. Dette vedtaket kan påvirke hvordan kommunen håndterer innkjøp og samarbeid med leverandører, noe som er av stor betydning for innbyggerne i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205235:255945:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:07:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains several administrative matters and a request for legal review, which may interest local residents."
+    },
+    "summary_headline": "Komite for finans, kultur og næring møter 8. mai med flere saker til behandling",
+    "summary_body": "Komite for finans, kultur og næring i Bergen kommune har møte 8. mai 2018, hvor de skal behandle flere saker. Blant annet vil det bli orienteringer om oppfølging av ENØK-planen og digitalisering i kommunen. Et viktig punkt er krav om lovlighetskontroll av bystyrets vedtak angående kommunal forkjøpsrett i Laksevåg. I tillegg skal komiteen vurdere bevilgninger knyttet til Sykkel VM 2017 og søknader om fritak for eiendomsskatt fra Bergen Rideklubb. Møtet finner sted i Kaigaten 4."
+  }
+}

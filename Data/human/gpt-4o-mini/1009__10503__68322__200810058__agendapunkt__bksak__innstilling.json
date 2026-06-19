@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10503:68322:200810058:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:42:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant environmental project with financial implications and local relevance."
+    },
+    "summary_headline": "Bergen kommune vurderer 2 millioner NOK til landstrømpilot i havnen",
+    "summary_body": "Byrådet i Bergen anbefaler å støtte etableringen av en pilot for landstrøm i Bergen havn med inntil 2 millioner NOK, som en del av et prosjekt for å redusere klimagassutslipp og forbedre luftkvaliteten. Prosjektet, som har en total kostnad på 7,46 millioner NOK, er viktig for å profilere Bergen som en miljøby. Byråden påpeker at det er nødvendig med samarbeid fra flere aktører for å realisere prosjektet, som skal være på plass før årsskiftet. Det er også foreslått at Bergen kommune knytter seg til World Ports Climate Initiative for å fremme miljøvennlig teknologi."
+  }
+}

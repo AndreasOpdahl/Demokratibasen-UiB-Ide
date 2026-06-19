@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2578:26297:200003017:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:36:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant development plans in a protected area, raising local concerns."
+    },
+    "summary_headline": "Utbyggingsplaner i Kvarven vekker bekymring blant beboere",
+    "summary_body": "Laksevåg bydelsstyre har mottatt bekymringer fra Gravdal vel angående utbyggingsplaner i Kvarvenområdet, som er merket som \"sikra friområde i strandsonen\" i kommuneplanen. Marit Haugland (RV) fremmet et oversendelsesforslag etter sterke reaksjoner fra turgåere og beboere. Det er foreslått et nytt boligområde som strekker seg fra NUTEC og sørover langs Gravdalsvannet, men det vil bli et grøntområde mellom boligfeltet og vannet. Bydelsstyret tar nå saken til orientering, og kommuneplanen er under revisjon med forventet fremleggelse høsten 2001."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10945:69541:201121502:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:45:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The case involves a local appeal regarding a construction permit, which may affect nearby residents."
+    },
+    "summary_headline": "Klage på takforhøyelse avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage på tillatelsen til å bygge et nytt tak med økt utstikk og takhøyde på 25 cm ved Nedre Slettestølen 30 i Åsane. Klagen ble behandlet i byrådsmøtet 13. februar 2014, hvor det ble besluttet å opprettholde fagetatens vedtak fra 2012. Dette kan påvirke naboer og lokalområdet, da endringer i bygningens høyde kan ha konsekvenser for utsikt og lysforhold."
+  }
+}

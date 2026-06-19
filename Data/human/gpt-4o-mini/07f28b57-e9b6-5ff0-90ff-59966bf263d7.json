@@ -1,0 +1,18 @@
+{
+  "dokument_id": "07f28b57-e9b6-5ff0-90ff-59966bf263d7",
+  "kommune_nummer": 5501,
+  "kommune_navn": "Tromsø",
+  "generated_at": "2026-02-19 15:16:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant infrastructure project that will impact local energy supply and has implications for reindeer herding."
+    },
+    "summary_headline": "Ny transformatorstasjon på Eidkjosen for bedre strømforsyning",
+    "summary_body": "Arva AS har sendt inn en konsesjonssøknad for bygging av en ny transformatorstasjon på Eidkjosen i Tromsø kommune. Den planlagte stasjonen, med en kapasitet på 49 MVA, skal avlaste Kvaløya transformatorstasjon og forbedre forsyningssikkerheten i området. Prosjektet er viktig for å møte økende energibehov og vil muliggjøre fremtidige investeringer. Det er imidlertid bekymringer knyttet til plasseringen, da den ligger innenfor en flyttlei for rein, noe som kan påvirke reindriften. Høringsuttalelser kan sendes til Norges vassdrags- og energidirektorat (NVE) innen 15. mai 2024."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4362:40146:200211720:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:15:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to approve a previously denied application for a holiday home is significant for local residents and involves a change in land use."
+    },
+    "summary_headline": "Klage fører til godkjenning av fritidsbolig i Laksevåg",
+    "summary_body": "Byrådet har besluttet å oppheve et tidligere avslag på søknaden om oppføring av fritidsbolig på gnr. 129, bnr. 157 i Håkonshella, etter at tiltakshaver Trygve F Johnsen klaget. Den nye godkjenningen innebærer dispensasjon fra både arealbruksbestemmelser og kommuneplanens retningslinjer. Dette kan påvirke lokal arealbruk og utvikling i området."
+  }
+}

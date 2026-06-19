@@ -1,0 +1,18 @@
+{
+  "dokument_id": "235924:3795459:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:19:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a new alcohol license application for a local restaurant, which is relevant to the community and involves public health considerations."
+    },
+    "summary_headline": "Mandalay Sushi & Burmese får ny skjenkebevilling",
+    "summary_body": "Bergen kommune har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 til Mandalay Sushi & Burmese, som flytter til Nedre Korskirkeallmenningen 5. Bevillingen gjelder innendørs skjenking frem til 30. september 2024. Søker, Robin Drift AS, har tidligere hatt skjenkebevilling i Sparebankgaten 4. Politiet og etat for sosiale tjenester har ingen innvendinger mot søknaden. Det er krav om gratis vann til kunder og at alle ansatte har lovlige arbeidskontrakter. Dette er et viktig tiltak for å sikre et trygt serveringsmiljø i Bergen."
+  }
+}

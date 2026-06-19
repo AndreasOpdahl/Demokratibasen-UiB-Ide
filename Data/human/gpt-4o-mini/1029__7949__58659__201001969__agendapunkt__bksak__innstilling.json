@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:7949:58659:201001969:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:34:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains routine financial reporting with no significant controversies or conflicts."
+    },
+    "summary_headline": "Kontrollutvalget godkjenner årsregnskap for Bergen Bolig og Byfornying KF",
+    "summary_body": "Kontrollutvalget har behandlet årsregnskapet for Bergen Bolig og Byfornying KF for 2009 og konkludert med at det tilfredsstiller informasjonsbehovet til brukerne. Revisjonsberetningen fra kommunerevisjonen er standard uten forbehold. Kontrollutvalget har ingen kommentarer utover det som fremgår av regnskapet og styrets beretning. Møtet for behandlingen fant sted 18. mai 2010."
+  }
+}

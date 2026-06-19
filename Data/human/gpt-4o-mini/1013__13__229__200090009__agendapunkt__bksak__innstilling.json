@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:13:229:200090009:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:03:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a local event that may interest residents but lacks significant conflict or financial implications."
+    },
+    "summary_headline": "Universitetet i Bergen får godkjent mottakelse for internasjonal konferanse",
+    "summary_body": "Universitetet i Bergen har fått innvilget søknaden om å holde en mottakelse i forbindelse med The International Water History Association 2nd Conference 2001. Mottakelsen er planlagt til 10. august 2001. Dette arrangementet kan være av interesse for lokale innbyggere som ønsker å delta i internasjonale diskusjoner om vannhistorie."
+  }
+}

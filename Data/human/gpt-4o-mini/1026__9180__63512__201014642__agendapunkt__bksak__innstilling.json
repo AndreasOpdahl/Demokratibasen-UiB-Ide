@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:9180:63512:201014642:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:22:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant dispute over a building permit affecting local residents' views and property values."
+    },
+    "summary_headline": "Klage på riving av hytte og oppføring av enebolig avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Endre Olsen på vegne av Synneva Olsen, som protesterte mot rivingen av en hytte og oppføringen av en ny enebolig på Geithusvegen 73. Klageren hevder at den nye boligen vil redusere utsikten og verdien av deres eiendom. Byrådet, støttet av fagetaten, mener at tiltaket ikke vil medføre betydelig ulempe for klageren, da det er tilstrekkelig avstand mellom eiendommene. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

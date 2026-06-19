@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5501:49252:200716941:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:11:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural information and background but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen umiddelbare beslutninger om Torget i Bergen",
+    "summary_body": "Dokumentet inneholder uttalelse fra Tilsynsutvalget for byens utseende og en oversendelse av byrådsak om delegering av fullmakter. Det er også et brev fra Bergen forhandler Forening om Torgets fremtid, men ingen konkrete beslutninger er fattet."
+  }
+}

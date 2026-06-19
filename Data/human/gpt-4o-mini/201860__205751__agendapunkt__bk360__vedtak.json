@@ -1,0 +1,18 @@
+{
+  "dokument_id": "201860:205751:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:01:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details a procedural decision with no significant local impact or controversy."
+    },
+    "summary_headline": "Enstemmig vedtak om bruksendring i Bergenhus",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig opprettholdt fagetatens vedtak om bruksendring, fasadeendring, oppdeling og ombygging av tilleggsdel for eiendommen Lappen 7. Ingen representanter tok ordet under behandlingen, og klagen ble ikke tatt til følge."
+  }
+}

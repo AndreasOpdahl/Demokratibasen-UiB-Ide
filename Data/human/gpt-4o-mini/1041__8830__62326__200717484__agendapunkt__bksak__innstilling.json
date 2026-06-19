@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:8830:62326:200717484:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:12:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant decisions regarding the upcoming municipal elections, including candidate lists and voting procedures, which directly impact local residents."
+    },
+    "summary_headline": "Valgstyret godkjenner valglistene for kommunevalget 2011",
+    "summary_body": "Valgstyret i Bergen har enstemmig godkjent de offisielle valglistene for kommunevalget 12. september 2011, som inkluderer partier som Høyre, Arbeiderpartiet, og Fremskrittspartiet. I tillegg ble det besluttet at 1,2 millioner stemmesedler skal trykkes for valget, med frist for partiene til å bestille egne stemmesedler satt til 7. juni 2011. Forhåndsstemmemottak vil bli opprettet i flere bydeler, inkludert Fana og Årstad, for å sikre at alle innbyggere, inkludert de med spesielle behov, kan delta i valget."
+  }
+}

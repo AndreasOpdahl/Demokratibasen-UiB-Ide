@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4550:41370:200503403:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:17:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes in public service delivery that could impact employment and service quality in Bergen."
+    },
+    "summary_headline": "Konkurranseutsetting av samferdselsoppgaver i Bergen kommune vedtatt",
+    "summary_body": "Byrådet i Bergen har besluttet å konkurranseutsette samferdselsoppgaver, med mål om å forbedre tjenestetilbudet og redusere kostnader. Beslutningen innebærer at eksterne leverandører kan begynne å levere tjenester fra begynnelsen av 2006, mens enkelte oppgaver vil bli konkurranseutsatt senere på grunn av eksisterende avtaler. Byråden for byutvikling, Lisbeth Iversen, understreker at ansatte ikke skal stå uten arbeid som følge av denne prosessen. Arbeidstakerorganisasjoner har uttrykt bekymring for konsekvensene for sysselsettingen, og det er planlagt videre diskusjoner om virksomhetsoverdragelse i forbindelse med anbudsprosessene."
+  }
+}

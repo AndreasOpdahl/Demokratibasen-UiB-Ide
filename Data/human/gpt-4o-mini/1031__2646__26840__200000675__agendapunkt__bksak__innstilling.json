@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1031:2646:26840:200000675:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:41:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant project on gender mainstreaming in public services, which has local relevance and potential impact on residents."
+    },
+    "summary_headline": "Bergen kommune igangsetter prosjekt for likestilling i offentlige tjenester",
+    "summary_body": "Bergen kommune, sammen med Hordaland fylkeskommune og andre samarbeidspartnere, har startet et prosjekt for å integrere kjønnsperspektiv i tjenesteproduksjonen. Prosjektet, som planlegges å starte høsten 2001, vil fokusere på hvordan offentlige tjenester tilpasses behovene til både kvinner og menn. Tre til fire tjenesteområder, inkludert kultur og helse, vil bli prioritert. Det er også søkt om midler til et UoD-prosjekt for å evaluere og dokumentere prosessen. Likestillingsutvalget har fått en statusrapport og vil bli orientert om prosjektets fremdrift."
+  }
+}

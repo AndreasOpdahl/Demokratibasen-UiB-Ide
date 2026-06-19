@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:11450:72615:201124335:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:59:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses proposed changes to absence limits in schools, which may affect local students and parents."
+    },
+    "summary_headline": "Forslag til endringer i fraværsgrenser sendes på høring",
+    "summary_body": "Forretningsutvalget har behandlet et forslag om endringer i fraværsgrenser i skoler under møtet 17. mars. Komite for oppvekst skal avgi høringsuttalelse før fristen 27. april. Dette kan påvirke elever og foreldre i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232655:2650750:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:13:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document details changes in committee memberships within the local government, which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Rokeringer i bystyreutvalgene for SV vedtatt enstemmig",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt flere rokeringer i utvalgene for finans, kultur og næring, miljø og byutvikling, helse og sosial, samt barnehage, skole og idrett. Eira Vilde Martinsen Garrido og Andreas Madsen Berg er blant de nye medlemmene. Ingen representanter tok ordet under behandlingen, og det ble ikke rapportert om noen uenighet."
+  }
+}

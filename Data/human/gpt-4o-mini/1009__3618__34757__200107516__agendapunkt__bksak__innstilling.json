@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3618:34757:200107516:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:05:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses a significant initiative to improve temporary housing for the homeless, which has a direct impact on local residents."
+    },
+    "summary_headline": "Bergen kommune innfører kvalitetskrav for midlertidige botilbud til bostedsløse",
+    "summary_body": "Byrådet i Bergen har besluttet å innføre kvalitetskrav for midlertidige botilbud til bostedsløse, etter økende behov for bedre standarder. Dette tiltaket skal sikre at private tilbydere inngår kvalitetsavtaler med kommunen, som fastsetter minimumsstandarder for hygiene, tilsyn og driftskrav. I 2002 ble 616 personer plassert i slike tilbud, med en kostnad på 24,5 millioner kroner. Byrådet, ledet av Helen Nordeide Fløisand, ønsker å redusere bruken av tilbud uten kvalitetsavtaler, og vil kun benytte disse når det ikke finnes andre alternativer. Dette tiltaket er en del av kommunens strategi for å bekjempe bostedsløshet og forbedre livskvaliteten for sårbare grupper."
+  }
+}

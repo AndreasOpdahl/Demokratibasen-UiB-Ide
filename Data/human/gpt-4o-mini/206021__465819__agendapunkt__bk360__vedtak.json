@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206021:465819:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:10:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a procedural decision regarding district heating expansion, which has limited immediate impact on residents."
+    },
+    "summary_headline": "Byrådet godkjenner høringsuttalelse for fjernvarmeutvidelse",
+    "summary_body": "Byrådet har behandlet en søknad om utvidelse av konsesjonsområder for fjernvarme i Fyllingsdalen og Paradis. I møtet 31. mai 2018 ble det besluttet å avgi en høringsuttalelse i tråd med byrådens forslag. Melding om vedtaket vil bli sendt til bystyrets kontor for orientering."
+  }
+}

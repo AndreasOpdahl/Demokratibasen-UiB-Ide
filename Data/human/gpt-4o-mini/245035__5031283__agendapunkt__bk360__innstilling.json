@@ -1,0 +1,18 @@
+{
+  "dokument_id": "245035:5031283:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:41:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The late decision regarding market vendors affects local businesses and raises questions about municipal communication."
+    },
+    "summary_headline": "Sen beslutning om torghandlere skaper frustrasjon",
+    "summary_body": "Charlotte Spurkeland (H) stiller spørsmål ved byrådets beslutning om å nekte torghandlerne bruk av Vågsallmenningen for sesongen, kun én uke før oppstart. Hun etterlyser forklaringer på hvorfor beslutningen ble tatt så sent og hvorfor kommunen ikke kommuniserte med torghandlerne tidligere. Dette reiser bekymringer om kommunens praksis og påvirker lokale næringsdrivende."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212476:1080670:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:26:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document raises a relevant question about the development of a local recycling center, which impacts community sustainability efforts."
+    },
+    "summary_headline": "Spørsmål om videreutvikling av gjenbrukssentralen",
+    "summary_body": "Sondre L. Båtstrand (UAV) har stilt et skriftlig spørsmål til klimabyråden om status for videreutviklingen av kommunens gjenbrukssentral. Dette er en del av den grønne strategien vedtatt av bystyret, som fokuserer på gjenbruk og reparasjon. Bystyret ønsker en oppdatering på arbeidet som gjøres for å gjøre gjenbrukssentralen til et ressurssenter for innbyggerne."
+  }
+}

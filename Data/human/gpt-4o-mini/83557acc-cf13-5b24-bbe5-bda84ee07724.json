@@ -1,0 +1,18 @@
+{
+  "dokument_id": "83557acc-cf13-5b24-bbe5-bda84ee07724",
+  "kommune_nummer": 4626,
+  "kommune_navn": "Øygarden",
+  "generated_at": "2026-02-19 23:09:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a local initiative for youth participation in substance abuse prevention, which is relevant to the community."
+    },
+    "summary_headline": "Ungdomsrådet deltar i nettverkssamling for rusførebygging",
+    "summary_body": "Ungdomsrådet i Øygarden har enstemmig vedtatt å delta på en nettverkssamling for rusmiddelførebygging som arrangeres av Korus Bergen på Askøy den 2. april 2025. Deltakerne fra Øygarden blir Trym Elias Lie, Rebekka Kvaal, Susanne Thorsen Berg og Alva Betine Kilvik. Samlingen vil fokusere på hvordan skolene kan styrke det rusforebyggende arbeidet, og ungdomsrådet oppfordres til å komme med innspill til dette arbeidet."
+  }
+}

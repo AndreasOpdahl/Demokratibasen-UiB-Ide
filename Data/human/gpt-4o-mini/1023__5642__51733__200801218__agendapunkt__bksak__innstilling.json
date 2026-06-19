@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:5642:51733:200801218:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:41:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposed changes to the health personnel law aim to better protect children's rights when parents are ill, which has significant implications for local families."
+    },
+    "summary_headline": "Bergen kommune støtter lovendring for bedre ivaretakelse av barn av syke foreldre",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Helse- og omsorgsdepartementet om forslag til endringer i helsepersonelloven for å styrke rettighetene til barn av pasienter. Forslaget innebærer at helsepersonell skal ivareta barns behov når foreldre er psykisk syke eller rusmiddelavhengige. Byrådet, ledet av Monica Mæland, påpeker at dette vil kreve økte ressurser og kompetanseheving, og at det er nødvendig med barneansvarlig helsepersonell også i primærhelsetjenesten. Høringen tar sikte på å forbedre oppfølgingen av barn som kan bli berørt av foreldres sykdom."
+  }
+}

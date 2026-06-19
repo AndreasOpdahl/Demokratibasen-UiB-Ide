@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2368:23917:200021929:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:43:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a sales license for alcohol is relevant to local businesses and community regulations."
+    },
+    "summary_headline": "Safari Fjøsanger får salgsbevilling for øl",
+    "summary_body": "Bergen kommune har innvilget Safari Fjøsanger A/S salgsbevilling for øl med lavere alkoholinnhold enn 4,76 volumprosent frem til 30. juni 2004. Vedtaket ble fattet av Rusmiddelpolitisk råd den 23. oktober 2000, med én stemme imot fra Kristelig Folkeparti. Einar Rognaldsen er godkjent som styrer for bevillingen, mens Svein Arne Rolland er stedfortreder. Salgstider for øl er regulert av kommunens forskrifter, og det stilles krav om dokumentasjon før bevillingsdokumentet kan utferdiges."
+  }
+}

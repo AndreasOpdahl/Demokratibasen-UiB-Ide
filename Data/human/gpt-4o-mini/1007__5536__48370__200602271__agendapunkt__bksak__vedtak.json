@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:5536:48370:200602271:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:29:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine meeting protocol with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll godkjent uten innvendinger",
+    "summary_body": "Protokollen fra møtet i Bergen og Omland havnestyre den 15. juni 2007 ble enstemmig godkjent."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5653:51603:200811328:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:14:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant planning process that affects local development and infrastructure in Askøy, which is relevant to Bergen residents."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse til Askøy kommune om ny arealplan",
+    "summary_body": "Bergen kommune har sendt høringsuttalelse til Askøy kommune angående rullering av kommuneplanens arealdel for 2009-2021. Byrådet, ledet av Monica Mæland, understreker viktigheten av å balansere boligbygging med arbeidsplasser for å redusere utpendlingen til Bergen. Planen tar sikte på å tilrettelegge for 30.000 innbyggere innen 2020, og inkluderer tiltak for økt kollektivtrafikk. Høringsfristen er 29. august 2008, og det er planlagt videre behandling av programmet i løpet av høsten."
+  }
+}

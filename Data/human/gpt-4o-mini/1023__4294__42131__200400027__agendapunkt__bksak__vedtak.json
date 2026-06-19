@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:4294:42131:200400027:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:39:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses responses from the city council regarding social issues, which are relevant to local residents."
+    },
+    "summary_headline": "Byrådet svarer på spørsmål om bostedsløse og sykehjemsplasser",
+    "summary_body": "Byråd Trude Drevland har sendt svar på anmodninger fra representanter i Komite for helse og sosial. Saken om henvisning av bostedsløse til hospits uten kommunal kvalitetsavtale ble behandlet, samt spørsmål om gjeninnføring av ventelister for sykehjemsplass. Svar til representant Glenn Reeves (FrP) utsettes til neste møte for å gi ham mulighet til å stille spørsmål."
+  }
+}

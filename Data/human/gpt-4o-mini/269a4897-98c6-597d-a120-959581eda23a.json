@@ -1,0 +1,18 @@
+{
+  "dokument_id": "269a4897-98c6-597d-a120-959581eda23a",
+  "kommune_nummer": 4632,
+  "kommune_navn": "Austrheim",
+  "generated_at": "2026-02-19 22:56:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative decisions without significant impact or controversy."
+    },
+    "summary_headline": "Formannskapet tar til vitande delegerte vedtak",
+    "summary_body": "Formannskapet har mottatt en rapport over delegerte vedtak fra perioden 12. august 2025 til 11. september 2025. Kommunedirektøren anbefaler at formannskapet tar disse vedtakene til vitende. Det er ingen kontroverser eller dissent knyttet til saken."
+  }
+}

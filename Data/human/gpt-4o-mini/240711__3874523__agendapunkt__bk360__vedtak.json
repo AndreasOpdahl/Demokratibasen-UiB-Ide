@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240711:3874523:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:30:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The appointment of a new deputy member is relevant but lacks significant conflict or impact."
+    },
+    "summary_headline": "Idun K. Bortne blir nytt varamedlem for Venstre i Bergen bystyre",
+    "summary_body": "Valgstyret i Bergen har enstemmig vedtatt å utnevne Idun K. Bortne som nytt varamedlem for Venstre i bystyret etter Ingrid Nergaard Fjeldstads overgang til byrådet. Møtet fant sted 25. oktober 2022, hvor Erlend Andreas Horn fra Venstre tok ordet før voteringen."
+  }
+}

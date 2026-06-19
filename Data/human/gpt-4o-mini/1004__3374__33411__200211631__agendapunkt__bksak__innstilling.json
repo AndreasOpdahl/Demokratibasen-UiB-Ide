@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3374:33411:200211631:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:27:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document addresses a common concern regarding property tax information, which may affect local residents."
+    },
+    "summary_headline": "Bydelsstyret diskuterer eiendomsskatt og informasjon til innbyggere",
+    "summary_body": "I et møte den 5. november 2002 stilte Siv Gørbitz Konglevoll (Frp) spørsmål om eiendomsskatt og informasjonsmangel til innbyggerne. Hun påpekte at det tok henne tre timer å få klarhet i hvordan eiendomsskatten kunne deles rettferdig i sameie, og spurte hva som gjøres for å informere folk om at de kun skal betale for sitt areal. Saken er nå oversendt Oppmålingsavdelingen, og bydelsstyret tar den til orientering."
+  }
+}

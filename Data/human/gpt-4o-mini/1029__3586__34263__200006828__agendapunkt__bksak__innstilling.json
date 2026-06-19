@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:3586:34263:200006828:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:30:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural notice for a meeting with no significant newsworthy elements."
+    },
+    "summary_headline": "Møte i Kontrollutvalget 4. mars 2003",
+    "summary_body": "Kontrollutvalget har innkalt til møte den 4. mars 2003 for å diskutere saker under eventuelt. Det er ingen spesifikke saker eller beslutninger nevnt i dokumentet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211396:1248458:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:22:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposed change to a local building plan that has implications for the community."
+    },
+    "summary_headline": "Endringer i reguleringsplan for Kalfarveien vurderes av RBA",
+    "summary_body": "Rådet for byforming og arkitektur (RBA) har behandlet forslag til reguleringsplan for Kalfarveien, Gamle Betanien, som innebærer justering av byggehøyde for nybygg BBB1. Endringen fra kote +42,5 til +45,5 har fått kritikk for å gjøre bygget massivt, og RBA ber om en estetisk vurdering av de foreslåtte endringene. Den nye høringen vil være begrenset til berørte parter, og tidligere innkomne uttalelser vil fortsatt bli vurdert. Dette kan påvirke utformingen av området og er relevant for innbyggerne i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7693:57293:201000054:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:37:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves a significant financial contribution to humanitarian aid, which is relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune bevilger 250.000 kroner til hjelpearbeid i Haiti",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 250.000 kroner, tilsvarende en krone per innbygger, til hjelpearbeidet i Haiti. Midlene skal tas fra tilleggsbevilgningskontoen og brukes til diverse tilskudd. Byrådet oppfordrer også andre kommuner til å bidra. Dette tiltaket viser Bergen kommunes engasjement for internasjonal humanitær hjelp."
+  }
+}

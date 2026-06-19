@@ -1,0 +1,18 @@
+{
+  "dokument_id": "15e4d493-bade-5fd2-a518-851bb0a379b3",
+  "kommune_nummer": 4613,
+  "kommune_navn": "Bømlo",
+  "generated_at": "2026-02-19 20:28:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The decision to set the election date is routine and lacks significant controversy or impact."
+    },
+    "summary_headline": "Stortingsvalet 2025 fastsett til 8. september i Bømlo",
+    "summary_body": "Valstyret i Bømlo kommune har vedtatt at stortingsvalet 2025 skal haldast måndag 8. september 2025. Innstillingen frå kommunedirektøren fekk støtte frå 11 representantar frå ulike parti, inkludert AP, H, og Frp. Det er ingen kjent motstand mot vedtaket."
+  }
+}

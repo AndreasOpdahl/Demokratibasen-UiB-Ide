@@ -1,0 +1,18 @@
+{
+  "dokument_id": "ef7be291-fff9-532b-9f73-3d563cb5d974",
+  "kommune_nummer": 4630,
+  "kommune_navn": "Osterøy",
+  "generated_at": "2026-02-19 23:24:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant health service agreement that impacts local healthcare planning and delivery."
+    },
+    "summary_headline": "Ny tenesteavtale for helsefellesskapet i Bergen skal signeres",
+    "summary_body": "Kommunedirektøren anbefaler å signere Tenesteavtale 12, som er en del av oppfølgingen av Nasjonal helse- og sjukehusplan. Avtalen, som skal signeres innen oktober 2025, har som mål å utvikle mer sammenhengende og bærekraftige helse- og omsorgstjenester for innbyggerne i Helsefellesskapet for bergensområdet. Den involverer flere aktører, inkludert Helse Bergen HF og lokale sykehus, og fokuserer på prioriterte grupper som skrøpelige eldre og personer med kroniske lidelser. Prosessen har vært preget av tett dialog og bred involvering."
+  }
+}

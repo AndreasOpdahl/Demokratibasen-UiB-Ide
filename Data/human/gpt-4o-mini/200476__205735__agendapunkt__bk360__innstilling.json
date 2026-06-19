@@ -1,0 +1,18 @@
+{
+  "dokument_id": "200476:205735:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:39:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a legal review of a previous decision, which may interest local residents."
+    },
+    "summary_headline": "Fylkesmannen bekrefter lovligheten av bystyrets skolebruksplan",
+    "summary_body": "Fylkesmannen har konkludert med at Bergen bystyres vedtak i sak 164-16 om skolebruksplanen 2016-2030 er lovlig. Dette følger etter krav om lovlighetskontroll fra bystyrerepresentantene Sofie Marhaug (R), Hilde Maria Boberg Andresen (SV) og Ingrid Randsdatter Fjellberg (MDG). Bystyret opprettholdt sitt vedtak i møte 21. september 2016, og fylkesmannen sendte sin vurdering til kommunen 28. februar 2017. Forslaget om å ta fylkesmannens vurderinger til orientering ble fremmet."
+  }
+}

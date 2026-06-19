@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:4849:43400:200600003:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:49:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant housing policy proposal with some dissent from political parties."
+    },
+    "summary_headline": "Rusmiddelpolitisk råd krever aktiv boligpolitikk i Bergen",
+    "summary_body": "Rusmiddelpolitisk råd har behandlet boligmeldingen for Bergen og ber Byrådet og Bystyret om å implementere en mer aktiv boligpolitikk for å oppnå velferdsmål. Rådet fremhever viktigheten av å utvikle gode bomiljøer, samarbeide med Husbanken og private investorer for å skape rimelige boliger, samt arbeide mot bostedsløshet. Vedtaket ble enstemmig vedtatt, bortsett fra to stemmer fra Senterpartiet og Rødt som var imot deler av forslaget. Dette kan påvirke boligmarkedet og velferdssituasjonen for innbyggerne i Bergen."
+  }
+}

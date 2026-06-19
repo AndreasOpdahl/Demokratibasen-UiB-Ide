@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224596:2029243:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:52:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines appointments to municipal working groups, which is routine but has local relevance."
+    },
+    "summary_headline": "Eldrerådet oppnevner nye representanter til arbeidsgrupper",
+    "summary_body": "Eldrerådet har i møte 28. oktober 2020 oppnevnt John Bugge Rasmussen til Kvalitetsutvalg for hjemmebaserte tjenester, og Jette Lunemann Hansen til flere grupper, inkludert Styringsgruppen for tillit og faglighet, fase 2, samt Brukerpanel Alrek helseklynge og Brukerrådet Frieda Fasmers minne. Dette er en rutinemessig beslutning som påvirker eldreomsorgen i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205229:269446:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:07:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a routine report with no significant newsworthy elements."
+    },
+    "summary_headline": "Eldrerådet orienterer seg om årsmelding for Smart Omsorg 2017",
+    "summary_body": "Eldrerådet har mottatt årsmeldingen for Smart omsorg 2017 fra byrådet. Det ble foreslått at rådet tar rapporten til orientering. Ingen kontroverser eller dissent ble nevnt."
+  }
+}

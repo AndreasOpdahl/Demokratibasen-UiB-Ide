@@ -1,0 +1,18 @@
+{
+  "dokument_id": "214490:1524940:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:32:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine administrative inquiry without significant newsworthy elements."
+    },
+    "summary_headline": "Skriftleg spørsmål om bufellesskap ved Fantoftåsen sjukeheim",
+    "summary_body": "Oddny Irene Miljeteig (SV) stilte et skriftlig spørsmål om den administrative og faglige organiseringen av bufellesskapene knyttet til Fantoftåsen sjukeheim. Spørsmålet ble besvart av byråd Beate Husa under møtet i Komite for helse og sosial den 28. august 2019."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50001:100023:200000694:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:30:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to the environmental plan for Bergen, which has a direct impact on local residents."
+    },
+    "summary_headline": "Bystyret vedtar endringer i Miljøplan for Bergen",
+    "summary_body": "Bystyret i Bergen har vedtatt endringer i kommunedelplanen for miljø, inkludert vurdering av avgift på piggdekk og tiltak for å redusere avfallsmengden. Forslag fra ulike partier ble diskutert, deriblant forslag om å anbefale nasjonale myndigheter å forby forurensende materialer. Miljøplanen har en samfunnsøkonomisk kostnad på over 700 millioner kroner årlig på grunn av luftforurensning. Bystyret understreker behovet for økte statlige overføringer til kollektivtrafikken for å sikre miljøvennlige transportløsninger. Neste steg inkluderer oppfølging av delplaner og tiltak på bydelsnivå."
+  }
+}

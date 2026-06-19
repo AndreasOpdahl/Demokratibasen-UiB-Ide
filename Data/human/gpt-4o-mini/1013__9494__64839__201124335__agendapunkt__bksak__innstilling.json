@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:9494:64839:201124335:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:18:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document pertains to a hearing on a regulatory change, which is routine and lacks significant local impact."
+    },
+    "summary_headline": "Høring om endring av stadnamnloven",
+    "summary_body": "Det er sendt ut høringsdokumenter angående en forskrift til endring av lov om stadnamn. Dette er en rutinemessig prosess og det er ikke rapportert om noen kontroverser eller betydelig lokal interesse."
+  }
+}

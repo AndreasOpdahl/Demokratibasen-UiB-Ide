@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221705:1838122:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:45:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant proposed changes to child welfare laws that could impact victims of crimes committed by minors."
+    },
+    "summary_headline": "Bergen kommune avviser forslag om varslingsregler i barnevernloven",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Barne- og familiedepartementet angående forslag om innføring av varslingsregler i barnevernloven for å informere fornærmede når barn under 15 år begår alvorlige lovbrudd. Byrådet mener at slike regler vil prioritere samfunnsvernet over barnets beste, og avviser derfor forslaget. De påpeker at barn som begår alvorlige lovbrudd er sårbare og at dagens unntak fra taushetsplikten allerede gir mulighet for informasjon med samtykke fra barnet og foreldrene. Høringsfristen er 30. juni 2020."
+  }
+}

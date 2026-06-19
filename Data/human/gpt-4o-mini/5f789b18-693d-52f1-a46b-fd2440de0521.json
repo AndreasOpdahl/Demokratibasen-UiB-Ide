@@ -1,0 +1,18 @@
+{
+  "dokument_id": "5f789b18-693d-52f1-a46b-fd2440de0521",
+  "kommune_nummer": 5501,
+  "kommune_navn": "Tromsø",
+  "generated_at": "2026-02-19 23:03:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document proposes a procedural change in representation that affects the functioning of the AMU, which is relevant to local governance."
+    },
+    "summary_headline": "Endring i representasjon i Arbeidsmiljøutvalget for å sikre kontinuitet",
+    "summary_body": "Arbeidsmiljøutvalget (AMU) i Tromsø kommune vurderer å endre måten arbeidsgivers representanter oppnevnes på. I stedet for å knytte representasjonen til enkeltpersoner, foreslås det at den skal følge funksjon og stilling. Dette vil forenkle prosessen ved lederskifter og sikre kontinuitet i AMUs arbeid. Kommunedirektøren vil fortsatt utpeke stedfortredere for de ulike stillingene. Forslaget skal behandles i AMU den 13. november 2025."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5543:48380:200512204:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:29:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document involves a local complaint regarding a rejected application, but lacks significant conflict or public impact."
+    },
+    "summary_headline": "Klage på avslag om bruksendring avvist av byrådet",
+    "summary_body": "Byrådet har behandlet en klage fra Årstad, Gnr 162 Bnr 4, angående avslag på bruksendring og oppføring av bod på Zinken Hopps gt. 9. I møtet den 13. september 2007 ble det besluttet å opprettholde fagetatens vedtak fra 3. oktober 2006, og klagen ble ikke tatt til følge."
+  }
+}

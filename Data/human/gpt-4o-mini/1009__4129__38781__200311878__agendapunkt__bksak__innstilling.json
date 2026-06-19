@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4129:38781:200311878:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:12:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves the demolition of a historic building, raising concerns about preservation and local heritage."
+    },
+    "summary_headline": "Byrådet gir tillatelse til riving av historisk våningshus i Fana",
+    "summary_body": "Byrådet har besluttet å tillate riving av et våningshus fra ca. 1860 på Hamrevegen 140 i Fana, etter vurdering av antikvariske bevaringshensyn. Tiltakshaver Øyvind Sætre ønsker å rive huset for å bygge nytt, og byråden for byutvikling, Lisbeth Iversen, understreker at rivingen kan gi mulighet for gjenbruk av bygningsdetaljer. Det er imidlertid ikke gitt igangsettingstillatelse før et nytt boligbygg er godkjent. Saken reiser spørsmål om bevaring av kulturminner i kommunen."
+  }
+}

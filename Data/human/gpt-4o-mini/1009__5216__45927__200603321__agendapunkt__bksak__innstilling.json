@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5216:45927:200603321:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:26:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a land division dispute with potential implications for local agricultural practices."
+    },
+    "summary_headline": "Klage på avslag om fradeling av parsell i Fana avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslag fra Grønn etat på Svein Olav Dyngelands søknad om fradeling av en parsell med et våningshus på Fjellbyrkjeland i Fana. Klagen, som ble sendt inn av advokat Ivar Winjum, argumenterer for at samfunnsutviklingen i området ikke støtter avslag, men byrådet mener deling kan skape drifts- og miljømessige ulemper for landbruket. Saken vil nå bli sendt til fylkeslandbruksstyret for endelig avgjørelse."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4554:41120:200211619:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:54:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision on the management plan for Byfjellene Vest has significant implications for local land use and environmental considerations."
+    },
+    "summary_headline": "Bystyret vedtar forvaltningsplan for Byfjellene Vest med endringer",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt forvaltningsplanen for Byfjellene Vest, som inkluderer viktige endringer i byfjellsgrensene og unntak for områder eid av stiftelsen Betanien. Planen legger føringer for fremtidig arealutnyttelse og skal brukes ved rullering av kommuneplanen. Det ble også fremmet forslag om å utvide samarbeidet med Skogselskapet for å inkludere Byfjellene. Behandlingen av planen har vært preget av diskusjoner om lokaldemokrati, da flere partier etterlyste uttalelser fra bydelsstyret før vedtaket ble fattet."
+  }
+}

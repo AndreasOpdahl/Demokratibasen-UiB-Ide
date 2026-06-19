@@ -1,0 +1,18 @@
+{
+  "dokument_id": "18a05f60-85d9-5b81-a939-34ff129e8421",
+  "kommune_nummer": 4649,
+  "kommune_navn": "Stad",
+  "generated_at": "2026-02-19 20:28:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant educational restructuring plans that will impact local schools and childcare facilities."
+    },
+    "summary_headline": "Stad kommune vurderer omfattende endringer i barnehage- og skulestruktur",
+    "summary_body": "Stad kommune har vedtatt å utrede en ny barnehage- og skulestruktur som del av Program for bærekraftig økonomi 2025-2028. Dette inkluderer vurdering av avvikling av Haugen barnehage og tilstandsvurdering av gymsalen ved samme sted. Kommunedirektøren foreslår også samordning av IKT-lisenser og innkjøp av læremidler for å oppnå kostnadsbesparelser. Prosjektgruppene forventes å levere sine anbefalinger innen høsten 2025. Dette kan få stor betydning for barn og familier i kommunen, samt for de ansatte i utdanningssektoren."
+  }
+}

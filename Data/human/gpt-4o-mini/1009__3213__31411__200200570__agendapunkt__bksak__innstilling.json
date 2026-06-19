@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3213:31411:200200570:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:01:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant financial support decision for a local food festival that aims to strengthen regional ties."
+    },
+    "summary_headline": "Bergen kommune bevilger 150.000 kroner til matfestivalen 'Bønder i byd’n'",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 150.000 kroner til matfestivalen 'Bønder i byd’n', som skal finne sted fra 12. til 14. september. Festivalen har som mål å fremme vestlandske landbruksprodukter og kultur, og vil inkludere seminarer, utstillinger og konkurranser. I tillegg foreslås det å bevilge inntil 40.000 kroner til et velkomstarrangement for deltakere. Totalt har festivalen et budsjett på 1.525.000 kroner, hvor offentlige tilskudd skal dekke halvparten av kostnadene. Ordfører Kristian Helland er en del av hovedkomiteen for festivalen, som også involverer aktører fra Sogn og Fjordane."
+  }
+}

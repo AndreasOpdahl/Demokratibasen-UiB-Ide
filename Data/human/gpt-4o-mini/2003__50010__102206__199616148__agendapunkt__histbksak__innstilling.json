@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50010:102206:199616148:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:32:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a planning case with local implications and some dissent from the developer."
+    },
+    "summary_headline": "Plan for Austre Steinsvikåsen utsettes etter protester",
+    "summary_body": "Bystyret i Bergen har enstemmig besluttet å utsette behandlingen av planene for Austre Steinsvikåsen, etter innspill fra Ytrebygda bydelsstyre og Interessentselskapet Steinsvikåsen. Det er bekymringer knyttet til økt trafikk og veialternativer, spesielt med forslag om å anlegge vei gjennom regulert friområde. Administrasjonen har konkludert med at eksisterende veialternativ opprettholdes, til tross for protester fra utbygger. Det er planlagt 19 nye boliger i området, som vil øke antallet boliger til totalt 97. Neste steg er at administrasjonen skal belyse de fremførte bekymringene før saken tas opp igjen."
+  }
+}

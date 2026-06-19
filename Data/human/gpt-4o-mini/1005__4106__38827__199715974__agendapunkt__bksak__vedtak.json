@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4106:38827:199715974:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:51:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant regulatory plan affecting local residents' views and access to the waterfront."
+    },
+    "summary_headline": "Bystyret godkjenner reguleringsplan for Damsgårdsundet Syd med fokus på beboernes utsikt",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt reguleringsplanen for Damsgårdsundet Syd, som skal sikre at byggehøyder ikke skader beboernes utsikt og sollys. Tone Salomonsen fra SV fremmet en anmodning om å prioritere allmenn tilgjengelighet til sjøfronten. Planen, som er revidert flere ganger, vil nå bli sendt til Byrådsavdeling for byutvikling for videre arbeid. Dette tiltaket er viktig for innbyggerne i området, da det påvirker både livskvalitet og tilgang til natur."
+  }
+}

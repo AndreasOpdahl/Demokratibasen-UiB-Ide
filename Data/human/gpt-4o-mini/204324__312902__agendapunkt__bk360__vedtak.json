@@ -1,0 +1,18 @@
+{
+  "dokument_id": "204324:312902:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:05:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposed regulatory change that has implications for local architecture and urban planning."
+    },
+    "summary_headline": "RBA kritiserer reguleringsplan for Fana: For massiv bebyggelse foreslått",
+    "summary_body": "Rådet for byforming og arkitektur (RBA) har behandlet en reguleringsendring for Fana og uttrykt bekymring for planforslagets massivitet. I møtet 21. mars 2018 ble det besluttet at bebyggelsesvolumene må reduseres, spesielt blokk D, som er plassert på det høyeste punktet og nær veien. RBA påpeker at den foreslåtte arkitekturen ikke samsvarer med omgivelsene og anbefaler alternative typologier for å bedre tilpasse seg det eksisterende bygningsmiljøet. Dette kan påvirke fremtidig utvikling i området, som er utsatt for støy."
+  }
+}

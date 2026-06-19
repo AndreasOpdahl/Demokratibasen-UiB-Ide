@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2009:50751:109681:199612655:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:55:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses energy utilization goals, which are relevant to local environmental and economic interests."
+    },
+    "summary_headline": "Næringsstyret vedtar mål om 80% energiutnyttelse fra forbrenningsanlegg",
+    "summary_body": "Næringsstyret i Bergen kommune har enstemmig vedtatt å ta saken om energiutnyttelse fra forbrenningsanlegget til orientering. I tillegg ble det vedtatt at administrasjonen skal fremlegge forslag til hvordan energiutnyttelsen kan nå en målsetting om 80%. Dette vil bli vurdert i forbindelse med den kommende ENERGIMELDINGEN for kommunen."
+  }
+}

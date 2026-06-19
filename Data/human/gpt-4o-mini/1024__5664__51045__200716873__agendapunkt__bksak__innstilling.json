@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1024:5664:51045:200716873:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:45:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines routine administrative decisions regarding sports funding, which have limited immediate impact."
+    },
+    "summary_headline": "Byrådet vedtar nye tilskudd til idrettslag i Bergen",
+    "summary_body": "Byrådet i Bergen har besluttet nye tilskudd til aktivitetsordninger for idrettslagene i 2008. Dette er en del av samarbeidet mellom kommunen og idretten, men det er ingen kontroverser eller dissent knyttet til avgjørelsen. Detaljer om sammensetning og mandat for samarbeidsutvalget ble også behandlet."
+  }
+}

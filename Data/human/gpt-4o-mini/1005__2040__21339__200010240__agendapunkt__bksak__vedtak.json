@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:2040:21339:200010240:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:44:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a proposal for increased planning capacity related to traffic safety and infrastructure, which is relevant to local residents."
+    },
+    "summary_headline": "Bystyret vedtar forslag om økt plankapasitet for trafikksikring",
+    "summary_body": "Bystyret i Bergen har enstemmig vedtatt å oversende et forslag fra Tom Skauge (SV) til administrasjonen. Forslaget omhandler økt plankapasitet i Bergen kommune og Hordaland Vegkontor, med fokus på trafikksikring, gang- og sykkelveger samt kollektivtrafikk. Dette kan ha betydning for innbyggerne i Bergen, da det kan forbedre sikkerheten og infrastrukturen i området."
+  }
+}

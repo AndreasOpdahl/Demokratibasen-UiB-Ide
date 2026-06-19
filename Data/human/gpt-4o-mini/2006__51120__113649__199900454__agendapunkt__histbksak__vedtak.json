@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:51120:113649:199900454:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:51:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to extend the use of Stemmemyren idrettsplass for children and youth is relevant and impacts local residents."
+    },
+    "summary_headline": "Barn og unge får utvidet tilgang til Stemmemyren idrettsplass",
+    "summary_body": "Hovedutvalg for fritid og kultur har enstemmig vedtatt å tilrettelegge for at barn og unge kan bruke Stemmemyren idrettsplass utenom faste tider for kamp og trening. Dette inkluderer at belysningen skal være på i bestemte tidsrom. Vedtaket ble gjort etter en forespørsel fra Natacha R. Vallebona (A) og vil gi bedre muligheter for aktivitet blant unge i Bergen."
+  }
+}

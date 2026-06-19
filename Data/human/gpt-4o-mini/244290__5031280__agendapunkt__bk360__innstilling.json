@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244290:5031280:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:38:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document raises significant financial concerns regarding the funding of the Åsane light rail project, which directly impacts local residents."
+    },
+    "summary_headline": "Finansieringen av Bybanen til Åsane under debatt",
+    "summary_body": "Tore Landmark (FP) har stilt spørsmål til byråden om finansieringen av Bybanen til Åsane, der det er bekymringer om at \"bompengetaket er nådd\" i Bergen. Det er usikkerhet rundt hvor stor andel av prosjektet som skal dekkes av bompenger, med forslag om både 50% og 70% statlig finansiering. Landmark ber om en redegjørelse for hvordan bompengeandelen vil påvirke den totale kostnaden og hva som kreves for å dekke utgiftene innen rimelig tid. Dette er spesielt relevant ettersom kostnadene for Bybanen vokser, inkludert tilleggsprosjekter som Fløyfjellstunnelen."
+  }
+}

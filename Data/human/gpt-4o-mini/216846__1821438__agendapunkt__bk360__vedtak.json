@@ -1,0 +1,18 @@
+{
+  "dokument_id": "216846:1821438:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:37:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a meeting agenda but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Utvalg for finans, kultur og næring diskuterer aktivitetsplan for 2020",
+    "summary_body": "Utvalg for finans, kultur og næring behandlet aktivitetsplanen for 2020 i møtet 4. desember 2019. Utvalgsleder Harald Victor Hove (H) ba om innspill til planen og tok opp UFPS sin rolle i oppfølgingen av saker relatert til Vigilo-saken."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:357:2650:200290046:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:48:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant issues regarding school construction and cultural projects, which directly affect local residents."
+    },
+    "summary_headline": "Kulturhus på Nesttun forsinket til 2006, bekymringer om Garnes skole",
+    "summary_body": "Under møtet i Komite for kultur, idrett og oppvekst ble det stilt spørsmål om forsinkelsen av kulturhuset på Nesttun, nå utsatt til 2006, uten orientering til komiteen. Byråd Per Inge Vannebo svarte på spørsmål fra Knut H. Opheim (H). I tillegg etterlyste Tor A. Woldseth (FrP) en plan mot mobbing i skolen, som byrådet vil gi skriftlig tilbakemelding om. Ragnhild Hedemann (SV) uttrykte bekymring for utbyggingen av Garnes skole, hvor det nå kun blir bygget et nytt byggetrinn uten ombygging av det gamle bygget, begrunnet med økte kostnader. Byråd Ruth Grung svarte på spørsmålene."
+  }
+}

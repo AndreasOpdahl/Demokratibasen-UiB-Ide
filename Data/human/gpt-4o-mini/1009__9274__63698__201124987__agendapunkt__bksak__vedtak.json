@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9274:63698:201124987:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:44:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant proposal for a common messaging box that could impact communication between the municipality and its residents."
+    },
+    "summary_headline": "Bergen kommune støtter felles meldingsboks for bedre kommunikasjon",
+    "summary_body": "Bergen kommune har i et møte vedtatt å støtte forslaget om en felles meldingsboks for elektronisk meldingsutveksling mellom forvaltningen, innbyggere og næringsliv. Byrådet understreker behovet for en avtalestruktur tilpasset kommunal sektor og at kommersielle aktører bør involveres i utviklingen. Det er også krav om at meldingsboksen skal være tilgjengelig uten å være tjeneste eier i Altinn. Videre påpekes viktigheten av sikkerhet og arkivering i utviklingen av løsningen."
+  }
+}

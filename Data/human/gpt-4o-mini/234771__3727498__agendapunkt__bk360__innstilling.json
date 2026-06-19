@@ -1,0 +1,18 @@
+{
+  "dokument_id": "234771:3727498:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:17:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises concerns about the welfare of foster children and the adequacy of oversight, which is a significant local issue."
+    },
+    "summary_headline": "Bekymringer om tilsyn med fosterhjem under pandemien",
+    "summary_body": "Hilde Onarheim (H) har stilt spørsmål til Utvalg for helse og sosial om bruken av telefoniske tilsyn i stedet for stedlige tilsyn med fosterhjem i Bergen. Under Covid-19-pandemien har kommunen avviklet stedlige tilsyn, noe som har ført til at 40 barn ikke fikk de lovpålagte besøkene i 2020. Spørsmålet retter oppmerksomhet mot mangelen på kvalifiserte medarbeidere og ber om en oppdatering på situasjonen for tilsyn og tiltak for å forbedre forholdene for fosterhjemsbarn."
+  }
+}

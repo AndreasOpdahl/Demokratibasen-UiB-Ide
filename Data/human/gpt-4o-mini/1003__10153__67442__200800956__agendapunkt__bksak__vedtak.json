@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1003:10153:67442:200800956:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:21:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll fra møte godkjent",
+    "summary_body": "Styret for Bergen Bolig og Byfornyelse KF har godkjent protokollen fra møtet den 19. mars 2013."
+  }
+}

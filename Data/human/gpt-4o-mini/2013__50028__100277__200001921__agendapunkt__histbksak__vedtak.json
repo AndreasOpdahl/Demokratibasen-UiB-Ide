@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2013:50028:100277:200001921:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:57:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a proposed hotel development, which has local relevance and potential impact on the community."
+    },
+    "summary_headline": "Hotellutvikling på Liland får grønt lys fra byutviklingsutvalget",
+    "summary_body": "Utvalg for byutvikling i Bergen kommune har enstemmig vedtatt at det ikke er reguleringsmessige problemer knyttet til bygging av hotell på tomtene gnr. 111 bnr. 133, 48 og 86 på Liland i Fana. Forslaget fra Monica Mæland (H) ble vedtatt, men det tas forbehold om eventuelle innsigelser i saksbehandlingsprosessen. Dette kan påvirke fremtidige utviklingsprosjekter i området."
+  }
+}

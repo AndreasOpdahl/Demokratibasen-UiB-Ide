@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:4996:44553:200506513:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:00:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a public consultation for a regulatory plan, which is relevant but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Offentlig ettersyn for utvidelse av Statsarkivet i Bergen",
+    "summary_body": "Bergen kommune legger ut forslag til reguleringsplan for utvidelse av Statsarkivet på Årstadvollen til offentlig ettersyn fra 15. februar til 16. mars. Planen omfatter en eiendom på ca. 7 daa og inkluderer et nytt parkeringsanlegg for 60-70 biler. Dokumentene kan sees på kundesenteret eller kommunens nettsider. Konsulent for prosjektet er Norconsult Bergen."
+  }
+}

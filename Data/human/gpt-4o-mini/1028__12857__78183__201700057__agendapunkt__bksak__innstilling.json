@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1028:12857:78183:201700057:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:27:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposed change in the working committee of a municipal council, which has implications for representation and political balance."
+    },
+    "summary_headline": "Endring i arbeidsutvalget for funksjonshemmede foreslås",
+    "summary_body": "Det foreslås at Siri Fransson velges som fast medlem av arbeidsutvalget i kommunalt råd for funksjonshemmede. Forslaget kommer fra SVs gruppesekretær Gabriel Steinsbekk, som mener det er naturlig at nestlederen i rådet også sitter i arbeidsutvalget. Dette kan påvirke balansen mellom politiske og brukerrepresentanter i utvalget, ettersom dagens sammensetning har to brukerrepresentanter og en politiker. Rådet for funksjonshemmede har som mål å sikre at svake gruppers interesser blir hørt i kommunen."
+  }
+}

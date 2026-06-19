@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10670:70547:201300508:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:31:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine report with no significant newsworthy elements."
+    },
+    "summary_headline": "Årsrapport for funksjonshemmede behandlet uten debatt",
+    "summary_body": "Bergen bystyre har behandlet årsrapporten for kommunalt råd for funksjonshemmede i møte 17. september 2014. Saken ble enstemmig vedtatt uten debatt, og det ble ikke reist noen innvendinger fra representantene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206484:268366:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:11:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to grant a new alcohol license is relevant to local businesses and residents."
+    },
+    "summary_headline": "Dastefano får ny skjenkebevilling i Strandgaten",
+    "summary_body": "Byrådet har innvilget Dastefano AS en ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3, både inne og utendørs, ved Strandgaten 87. Bevillingen gjelder frem til 30. juni 2020, og det er et krav om gratis vann tilgjengelig i lokalet. Styrer for bevillingen er Geir Bakke, med Frode Akse som stedfortreder. Før bevillingen kan tas i bruk, må Dastefano AS sende inn nødvendig dokumentasjon til Kontor for skjenkesaker, inkludert brukstillatelse og bekreftelse på lovlige arbeidskontrakter for ansatte."
+  }
+}

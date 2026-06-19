@@ -1,0 +1,18 @@
+{
+  "dokument_id": "249007:6296394:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:53:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant political proposals regarding the recognition of Palestine and the lighting of the city hall, which are relevant to local and international issues."
+    },
+    "summary_headline": "Bystyret i Bergen diskuterer anerkjennelse av Palestina og lyssetting av rådhuset",
+    "summary_body": "Under bystyremøtet 22. november 2023 ble det fremsatt to forslag knyttet til Palestina. Hlin-Såga Brosvik Kyrkjeøy (SV) foreslo å lyse opp rådhuset i fargene til det palestinske flagget den 29. november, men forslaget ble ikke debattert da 37 representanter fra flere partier avsto fra debatt. Magne Hagesæter (R) fremmet et forslag om å anerkjenne Palestina som stat, med henvisning til den pågående humanitære krisen i Gaza. Dette forslaget ble også ikke debattert. Diskusjonen om anerkjennelse av Palestina er relevant for mange innbyggere i Bergen, spesielt i lys av den pågående konflikten og Norges rolle i internasjonal politikk."
+  }
+}

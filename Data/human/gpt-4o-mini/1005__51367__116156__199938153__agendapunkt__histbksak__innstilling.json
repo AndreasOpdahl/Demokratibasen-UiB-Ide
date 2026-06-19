@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51367:116156:199938153:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:03:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a youth house in the old prison addresses a significant local issue regarding youth facilities and has community support."
+    },
+    "summary_headline": "Forslag om ungdomshus i det gamle fengselet vekker engasjement",
+    "summary_body": "Audun Bjørlo Lysbakken (SV) har fremmet en interpellasjon til bystyret om muligheten for å bruke det gamle fengselet som et selvstyrt ungdomshus. Han påpeker at nedskjæringer i offentlige budsjetter har svekket fritidstilbudet for ungdom i Bergen, og at mange unge nå mangler et egnet sted å være. Arkitekt Susanne Urban har allerede laget tegninger for prosjektet, og ungdomsaksjonen 'Ungdom for ungdomshus' jobber aktivt for å realisere dette. Lysbakken oppfordrer ordføreren til å ta saken opp i bystyret."
+  }
+}

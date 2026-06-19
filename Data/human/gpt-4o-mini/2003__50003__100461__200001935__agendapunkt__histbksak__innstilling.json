@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50003:100461:200001935:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:30:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the status and funding of a significant infrastructure project, which is relevant to local residents."
+    },
+    "summary_headline": "Bystyret diskuterer veitunnel gjennom Ulriken med 1,5 millioner fra bompengefondet",
+    "summary_body": "Bystyret i Bergen har vedtatt å bruke 1,5 millioner kroner fra bompengefondet til planlegging av en veitunnel gjennom Ulriken. Dette prosjektet er avhengig av samarbeid med Statens vegvesen Hordaland, som ennå ikke har bekreftet prioriteringene for arbeidet. Administrasjonen har sendt flere henvendelser til vegkontoret uten å motta svar. Bystyret vil ha rapporter om fremdriften hvert tredje måned, med første rapport planlagt i januar 2000. Uten enighet med vegkontoret kan planleggingen måtte dekkes av kommunale midler for å unngå forsinkelser."
+  }
+}

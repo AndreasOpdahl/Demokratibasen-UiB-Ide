@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:10135:66631:201206519:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:09:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines important deadlines and procedures for the upcoming elections, which are relevant to local candidates and voters."
+    },
+    "summary_headline": "Frister for Stortings- og Sametingsvalget 2013 fastsatt av valgstyret",
+    "summary_body": "Valgstyret i Bergen har fastsatt viktige frister for Stortings- og Sametingsvalget 2013. Fristen for liste stillere til å kreve gratis manntalseksemplarer er satt til 30. april, mens fristen for å kreve stemmesedler er 31. mai. Søknader om ambulerende stemmegivning må være innsendt innen 4. september. Disse beslutningene ble foreslått av bystyredirektør Roar Kristiansen og valgorganisasjonsleder Elin Solberg, og er avgjørende for å sikre at valgprosessen går smidig for både kandidater og velgere."
+  }
+}

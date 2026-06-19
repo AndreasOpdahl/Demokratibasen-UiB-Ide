@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211785:1024007:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:24:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant cost increase for a public water supply project affecting local residents."
+    },
+    "summary_headline": "Kostnadsøkning for vannforsyning til Hordnes vedtatt av byrådet",
+    "summary_body": "Byrådet har besluttet å fremme et nytt gjennomføringsvedtak for vannforsyning til Hordnes, etter at kostnadene har økt fra 19,95 millioner til 31 millioner kroner. Prosjektet, som inkluderer en 1 400 meter lang sjøledning og 1 000 meter offentlig vannledning, er nødvendig for å sikre offentlig vannforsyning og brannvanndekning i området. Oppstart er planlagt til våren 2019, med ferdigstillelse i 2021. Bystyret må godkjenne kostnadsøkningen, som overstiger 10 millioner kroner, i henhold til kommunens økonomireglement."
+  }
+}

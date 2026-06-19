@@ -1,0 +1,18 @@
+{
+  "dokument_id": "208594:888552:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:16:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the appointment of a new municipal position, which is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "Anita Giæver Hansen blir ny kemner i Bergen kommune",
+    "summary_body": "Bergen kommune ansetter Anita Giæver Hansen som ny kemner etter at Lasse Hunsrød går av med pensjon 31. desember 2018. Stillingen har vært utlyst med søknadsfrist 15. september 2018, og det er ikke innstilt noen reservekandidater. Byrådet for finans, innovasjon og eiendom, ledet av Dag Inge Ulstein, har fattet vedtak om ansettelsen."
+  }
+}

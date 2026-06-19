@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206044:257804:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:10:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural record with no significant newsworthy elements."
+    },
+    "summary_headline": "Skriftlig spørsmål fra Charlotte Spurkeland om Fincken",
+    "summary_body": "Skriftlig spørsmål nr. 35 fra Charlotte Spurkeland (H) om Fincken ble behandlet av Komite for miljø og byutvikling den 07.06.2018. Byråd Anna Elisa Tryti besvarte spørsmålet."
+  }
+}

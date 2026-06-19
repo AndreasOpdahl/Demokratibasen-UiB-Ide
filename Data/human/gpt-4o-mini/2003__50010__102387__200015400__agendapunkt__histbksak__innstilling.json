@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50010:102387:200015400:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:32:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant funding and planning issues related to a public art project, which has local relevance and financial implications."
+    },
+    "summary_headline": "Bergen kommune bevilger 497 000 kroner til kunstprosjektet 'Regnhytten'",
+    "summary_body": "Bergen kommunes formannskap har besluttet å bevilge 497 000 kroner til bygging av underdelen av kunstprosjektet 'Regnhytten' i Lungegårdsparken. Prosjektet, designet av den nederlandske kunstneren Martin Borchert, har vært avhengig av sponsormidler og har nå en finansieringsmangel på 497 000 kroner. Rådmannen foreslår at beløpet dekkes fra bykassens kapitalfond. Prosjektet må fullfinansieres før 15. september 2000 for å sikre gjennomføring i kulturbyåret."
+  }
+}

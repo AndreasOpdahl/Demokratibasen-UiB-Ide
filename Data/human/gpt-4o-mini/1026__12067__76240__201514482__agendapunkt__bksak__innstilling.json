@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12067:76240:201514482:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:58:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a building permit that affects local architectural integrity and community standards."
+    },
+    "summary_headline": "Klage på avslag om takoppløft avvist av byrådet",
+    "summary_body": "Byrådet har avvist klagen fra Johnny Sandvik om tillatelse til takoppløft og takarker på Blekenberg 56, etter at fagetaten tidligere avslo søknaden. Byrådet støtter fagetatens vurdering om at tiltaket ikke oppfyller kravene til visuelle kvaliteter og vil kunne forstyrre det arkitektoniske uttrykket i området. Byantikvaren har også frarådet tiltaket, og byrådet understreker at reguleringsplanens bestemmelser må overholdes. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

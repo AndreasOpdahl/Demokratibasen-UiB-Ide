@@ -1,0 +1,18 @@
+{
+  "dokument_id": "200464:205735:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:38:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a rejected housing development plan that raises significant concerns about environmental impact and community character."
+    },
+    "summary_headline": "Byrådet avviser boligplan i Fyllingsdalen på grunn av terrenginngrep",
+    "summary_body": "Byrådet har anbefalt at reguleringsplanen for boligbygging på Torvdalsveien i Fyllingsdalen ikke vedtas. Planen, som foreslo å rive eksisterende bygninger for å bygge to lavblokker med 10 leiligheter, ble avvist på grunn av omfattende terrenginngrep som ikke samsvarer med kommuneplanens krav til terrengtilpasning og strøkskarakter. Byrådet påpeker at utbyggingen vil føre til økt trafikk og ikke bidra til ønsket byutvikling. Det er også bekymringer om støy og luftkvalitet i området. Neste steg er at bystyret skal fatte det endelige vedtaket."
+  }
+}

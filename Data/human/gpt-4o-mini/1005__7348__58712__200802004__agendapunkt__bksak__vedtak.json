@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7348:58712:200802004:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:15:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant staffing issues in the care sector, which directly affects local residents."
+    },
+    "summary_headline": "Bystyret i Bergen tar tak i deltidsproblematikk i pleie- og omsorgssektoren",
+    "summary_body": "Bergen bystyre har behandlet en sak om deltid i pleie- og omsorgssektoren, der de anmoder byrådet om å fortsette samarbeidet med arbeidstakerorganisasjoner for å finne løsninger på uønsket deltid og helgebemanning. Bystyret merker seg at nåværende turnussystem fører til utfordringer med helgevakter og deltidsstillinger. Det ble også fremmet merknader om at forsøket med økt grunnbemanning ikke har gitt forventede resultater. Bystyret vedtok enstemmig å ta redegjørelsen til orientering og er positiv til å prøve alternative arbeidstidsordninger."
+  }
+}

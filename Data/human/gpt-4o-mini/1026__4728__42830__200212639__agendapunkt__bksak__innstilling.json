@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4728:42830:200212639:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:05:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a neighbor's appeal against a building permit, highlighting local conflict and potential impact on residents' living conditions."
+    },
+    "summary_headline": "Klage på byggeprosjekt i Laksevåg avvist av byrådet",
+    "summary_body": "Byrådet har avvist klagen fra nabo Ørnulf Sandland mot tillatelsen til å oppføre en ny enebolig med sekundærleilighet og garasje på Bjørndalsbrotet 53. Klageren hevder at bygget vil redusere solforholdene betydelig, men byrådet konkluderer med at påvirkningen ikke er større enn hva som er normalt ved nabobebyggelse. Byrådet opprettholder dermed fagetatens tidligere vedtak fra 25. mars 2003, og klagen tas ikke til følge. Dette kan påvirke solforholdene for naboer i området."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243236:5031651:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:36:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a report on employee conditions during the pandemic, but lacks significant conflict or financial implications."
+    },
+    "summary_headline": "Utvalg for finans, kultur og næring tar rapport om arbeidsforhold under pandemien til orientering",
+    "summary_body": "Utvalg for finans, kultur og næring behandlet 8. februar 2023 en rapport om ansattes arbeidsforhold under covid-19-pandemien, basert på en spørreundersøkelse. Rapporten ble tatt til orientering uten debatt, og vedtaket ble fattet enstemmig. Representanten Ove Sverre Bjørdal (Sp) fratrådte fra saken knyttet til Deloittes forvaltningsrevisjon. Byrådet hadde tidligere behandlet saken den 26. januar 2023, og innstillingen fra byrådet ble vedtatt likt av utvalget."
+  }
+}

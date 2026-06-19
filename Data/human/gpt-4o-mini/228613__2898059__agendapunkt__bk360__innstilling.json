@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228613:2898059:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:01:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines a significant plan for school development in Bergen, impacting local education and community engagement."
+    },
+    "summary_headline": "Høring om Skolebruksplan 2021-2030 i Bergen",
+    "summary_body": "Byrådet har lagt frem utkast til Skolebruksplan for Bergen 2021-2030, som nå er til høring. Planen omhandler utforming av læringsarealer og fremtidig skolestruktur, inkludert rehabilitering av eksisterende skoler og bygging av nye skoleanlegg. Ungdomsrådet har tidligere deltatt i en workshop om uteområder og vil diskutere planen med skolebyråden i et kommende møte. Dette er en viktig sak for ungdomsrådet, da planen også inkluderer tiltak for å utvikle skolene som møteplasser i nærmiljøet."
+  }
+}

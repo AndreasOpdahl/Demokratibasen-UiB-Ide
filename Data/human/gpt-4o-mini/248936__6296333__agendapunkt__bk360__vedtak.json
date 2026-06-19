@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248936:6296333:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:52:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision on a building permit that affects local residents and has political implications."
+    },
+    "summary_headline": "Klage på rammetillatelse til fasadeendring godkjent av utvalg for miljø og byutvikling",
+    "summary_body": "Utvalg for miljø og byutvikling har besluttet å oppheve fagetatens vedtak fra 18. august 2023 og godkjenne en fasadeendring på Øyjordsbotn 27. Klagen ble tatt til følge etter at utvalget vurderte at tiltaket vil forbedre boligens visuelle kvaliteter og energieffektivitet, samt gi bedre lysinnslipp og utsikt. Forslaget ble vedtatt med støtte fra flere partier, til tross for motstand fra SV, MDG og R. Dette tiltaket er viktig for å øke antallet familieboliger i Bergen."
+  }
+}

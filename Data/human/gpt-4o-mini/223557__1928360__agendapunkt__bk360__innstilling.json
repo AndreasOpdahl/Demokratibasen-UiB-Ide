@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223557:1928360:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:49:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses significant changes in workplace safety protocols due to COVID-19, impacting employees working from home."
+    },
+    "summary_headline": "Endringer i vernerunder for ansatte med hjemmekontor",
+    "summary_body": "Hovedarbeidsmiljøutvalget har vedtatt nye retningslinjer for vernerunder som følge av COVID-19. Enheter med vanlig drift skal gjennomføre vernerunde som normalt, mens enheter med ansatte på midlertidig hjemmekontor må tilrettelegge for et forsvarlig arbeidsmiljø individuelt. Bedriftshelsetjenesten (BHT) får i oppdrag å lage en sjekkliste med fokus på psykososialt og fysisk arbeidsmiljø. HR konsern vurderer behovet for en ny medarbeiderundersøkelse med fokus på det psykososiale arbeidsmiljøet for hjemmekontoransatte. Dette er viktig for å forebygge sykdom og skade blant ansatte."
+  }
+}

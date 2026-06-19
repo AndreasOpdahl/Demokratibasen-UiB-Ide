@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8381:62559:201100219:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:18:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document contains significant political debate regarding the support for the Vestlandsrådet and alternative proposals."
+    },
+    "summary_headline": "Bergen bystyre avviser forslag om å legge ned Vestlandsrådet",
+    "summary_body": "Bergen bystyre har behandlet Vestlandsrådets handlingsprogram for 2012-2015 og fattet vedtak om å avgi høringsuttalelse. Under møtet ble det fremmet alternative forslag fra Lillian Blom (SV) og Torstein Dahle (R), som begge ble avvist med 7 stemmer. Dahles forslag om å legge ned Vestlandsrådet ble også nedstemt. Det endelige vedtaket ble støttet av 60 representanter fra Høyre, Arbeiderpartiet, Fremskrittspartiet, Kristelig Folkeparti, Venstre, Senterpartiet og Partiet De Kristne."
+  }
+}

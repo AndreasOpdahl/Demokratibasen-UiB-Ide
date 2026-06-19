@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2013:50028:100052:199726433:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:57:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves a significant change in land use that affects local residents and has political dissent."
+    },
+    "summary_headline": "Politisk strid om bruksendring fra hytte til bolig i Fana",
+    "summary_body": "Utvalg for byutvikling i Bergen kommune har gitt tillatelse til å endre bruken av en hytte til bolig på Hjellestadvegen 351 B. Dette ble vedtatt i møte 27. januar 2000, men det var politisk uenighet; Tom Knudsen (A) foreslo å stryke et avsnitt i administrasjonens forslag, som ble vedtatt med 4 stemmer fra KrF, SV, V og RV. Hytten må rives før ny bolig kan oppføres, og byggetillatelse vil bli utstedt av administrasjonen. Denne saken er viktig for lokale innbyggere da den påvirker boligtilbudet i området."
+  }
+}

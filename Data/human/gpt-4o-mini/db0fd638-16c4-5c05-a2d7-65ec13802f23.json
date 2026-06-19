@@ -1,0 +1,18 @@
+{
+  "dokument_id": "db0fd638-16c4-5c05-a2d7-65ec13802f23",
+  "kommune_nummer": 4615,
+  "kommune_navn": "Fitjar",
+  "generated_at": "2026-02-19 23:22:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the appointment of new members to the conciliatory council, which is relevant to local governance."
+    },
+    "summary_headline": "Fitjar kommune må velge nye medlemmer til forliksrådet",
+    "summary_body": "Fitjar kommune skal velge nye medlemmer til forliksrådet etter at både Harald Rydland og Torill Solbakken har bedt om fritak fra sine verv. Rydland er 1. vara til Stortinget for Hordaland KrF, mens Solbakken har endret familiesituasjon. Valget av nye medlemmer skjer i kommunestyret den 6. november 2025, og det er krav om kjønnsbalanse i utvelgelsen."
+  }
+}

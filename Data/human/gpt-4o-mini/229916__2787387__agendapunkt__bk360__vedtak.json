@@ -1,0 +1,18 @@
+{
+  "dokument_id": "229916:2787387:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:06:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant concerns regarding accessibility and inclusion for students with disabilities, impacting local educational policies."
+    },
+    "summary_headline": "Kritikk av reguleringsplan for Garnes ungdomsskule: Universell utforming må prioriteres",
+    "summary_body": "Kommunalt råd for personer med funksjonsnedsettelse har uttrykt bekymring for reguleringsplanen til Garnes ungdomsskule, spesielt med hensyn til tilgjengelighet for elever med funksjonsnedsettelser. Rådet påpeker at 50% av utearealene må være universelt utformet, men nåværende planer kan føre til at dette ikke oppnås. De foreslår at tilgangen til skolen må respektere alle elever, ikke bare de med spesielle behov, og at antall HC-parkeringsplasser økes. Det er også behov for en universelt utformet overgang til idrettsbygget. Rådet ønsker å bli involvert i arbeidet med å forbedre samarbeidet mellom barneskolen og ungdomsskolen, da avstanden mellom forsterket avdeling og barneskolen er en utfordring. Dette er viktig for å sikre at alle elever kan delta på lik linje, og for å fremme et inkluderende miljø i nærmiljøet."
+  }
+}

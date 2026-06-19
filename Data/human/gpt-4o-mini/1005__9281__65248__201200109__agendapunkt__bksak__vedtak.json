@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9281:65248:201200109:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:21:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to exempt a local boat association from property tax is relevant to residents and involves public funds."
+    },
+    "summary_headline": "Bergen bystyre fritar Gravdal Båtforening for eiendomsskatt",
+    "summary_body": "Bergen bystyre har besluttet å frita Gravdal Båtforening (gnr. 146 bnr. 276) fra eiendomsskatt fra 1. januar 2012. Den årlige eiendomsskatten utgjør i dag 21 213 kroner. Fritaket bortfaller dersom eiendommen selges eller brukes til andre formål. Beslutningen ble vedtatt med 64 stemmer uten debatt."
+  }
+}

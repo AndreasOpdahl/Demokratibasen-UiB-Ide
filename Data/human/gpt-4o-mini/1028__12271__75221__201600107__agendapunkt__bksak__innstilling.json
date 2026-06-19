@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1028:12271:75221:201600107:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:26:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document highlights ongoing accessibility issues affecting residents, particularly those with disabilities, which is a significant local concern."
+    },
+    "summary_headline": "KRFF etterlyser svar på tilgjengelighet for rullestolbrukere i Bergen",
+    "summary_body": "Kommunalt råd for funksjonshemmede (KRFF) har sendt flere henvendelser angående manglende tilgjengelighet for rullestolbrukere i Bergen, inkludert frisørtilbud og tilrettelegging ved Ulsmåg skole. De har ikke mottatt svar fra Bergen Frisørlaug eller oppdateringer fra prosjektledere. KRFF etterlyser også informasjon om det nye legesenteret i Nygårdsdalen, som mangler tilgjengelighet. Rådet har foreslått oppdateringer om Trolhaugen og har vært i kontakt med KODE for videre tiltak. Fristen for høringen om skolebruksplanen er 26. februar 2016."
+  }
+}

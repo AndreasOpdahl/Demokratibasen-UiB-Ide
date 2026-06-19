@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7083:55203:200908329:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:36:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant financial support for private care institutions, impacting local residents and services."
+    },
+    "summary_headline": "Bergen kommune dekker underskudd for private omsorgsinstitusjoner",
+    "summary_body": "Byrådet i Bergen har besluttet å dekke underskudd for tre private omsorgsinstitusjoner fra regnskapsåret 2008, med et samlet beløp på 1.007.227 kroner. Nasjonalforeningen for folkehelsen, Stiftelsen Rostadheimen og Konow senter vil motta midler for å sikre videre drift. I tillegg får Det private gamlehjem beholde sitt overskudd til nødvendige oppgraderinger og som grunnkapital for overgangen til stiftelse. Byråden for helse og omsorg, Christine Meyer, fremhever viktigheten av å støtte disse institusjonene for å opprettholde kvaliteten i omsorgen for eldre og funksjonshemmede i Bergen."
+  }
+}

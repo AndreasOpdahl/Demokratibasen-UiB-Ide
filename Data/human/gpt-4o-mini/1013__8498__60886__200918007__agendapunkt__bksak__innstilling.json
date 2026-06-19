@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:8498:60886:200918007:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:16:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a legal challenge to a significant school restructuring decision, which affects local education and governance."
+    },
+    "summary_headline": "Krav om lovlighetskontroll av skolesammenslåinger i Bergen",
+    "summary_body": "Tre bystyremedlemmer, Pål Hafstad Thorsen (A), Oddny Miljeteig (SV) og Mathias Furevik (R), har fremsatt krav om lovlighetskontroll av bystyrets vedtak om sammenslåing av flere skoler i Bergen. De påpeker saksbehandlingsfeil, manglende høring av berørte parter og at vedtaket om felles rektor ikke ivaretar lovens krav til skoleledelse. Bystyredirektøren anbefaler at saken behandles i bystyret 21. februar, og at komité for oppvekst skal vurdere lovlighetskontrollkravet før en endelig avgjørelse fattes."
+  }
+}

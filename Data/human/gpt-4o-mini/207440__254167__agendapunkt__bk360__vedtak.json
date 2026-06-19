@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207440:254167:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:13:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines routine planning for meetings without significant newsworthy elements."
+    },
+    "summary_headline": "Kontrollutvalget planlegger møter for høsten",
+    "summary_body": "Kontrollutvalget har besluttet at høstens møter vil følge den vedtatte årsplan for 2018. Revisjonsstrategien for 2018 vil bli presentert i oktobermøtet, mens forslag til møte- og aktivitetsplan for 2019 vil bli lagt frem snart."
+  }
+}

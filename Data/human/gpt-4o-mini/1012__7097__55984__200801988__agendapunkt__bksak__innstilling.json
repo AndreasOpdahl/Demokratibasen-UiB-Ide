@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:7097:55984:200801988:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:55:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a public consultation for a housing development, which has local relevance but lacks significant controversy or conflict."
+    },
+    "summary_headline": "Offentlig ettersyn for boligplan i Fana",
+    "summary_body": "Fana bydelsstyre har lagt ut et planforslag for tre eneboliger på Fanahammeren til offentlig ettersyn fra 16. august til 29. september 2009. Planen inkluderer krav om to parkeringsplasser per bolig og felles grøntanlegg. Høringsuttalelser kan vedtas i møte 13. oktober 2009. Det er også krav om rassikring før midlertidig brukstillatelse kan gis. Dette kan påvirke boligmarkedet i området."
+  }
+}

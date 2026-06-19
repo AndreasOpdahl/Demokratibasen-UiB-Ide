@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228631:3105910:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:02:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant public health measures affecting local gyms amid a COVID-19 outbreak."
+    },
+    "summary_headline": "Byrådet vedtar delvis gjenåpning av treningssentre i Bergen",
+    "summary_body": "Bergen byråd har besluttet å delvis gjenåpne treningssentre fra 1. til 5. april 2021, etter en vurdering av smittesituasjonen. Treningssentre kan nå operere på oransje nivå, men med strenge smitteverntiltak, inkludert munnbindbruk og begrensninger på antall besøkende. Dette tiltaket er nødvendig for å hindre videre smittespredning, spesielt etter utbrudd knyttet til CrossFit Bryggen og andre treningssentre. Byrådet understreker at tiltakene er midlertidige og vil bli vurdert på nytt etter 5. april."
+  }
+}

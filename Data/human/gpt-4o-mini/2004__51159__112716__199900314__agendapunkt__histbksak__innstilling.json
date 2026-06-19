@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2004:51159:112716:199900314:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:40:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines administrative procedures but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Nye rutiner for utsendelse av saker til varamedlemmer",
+    "summary_body": "Hovedutvalg for administrasjon har vedtatt nye rutiner for utsendelse av saker på rødt papir til varamedlemmer i utvalg og bedrifter. Dette ble fremmet av Hans E. Seim (H) for å klargjøre prinsipper og rutiner. Administrasjonen vil anmode kommunale etater om å følge disse rutinene, som er basert på tidligere vedtak fra 1998. Det er ikke rapportert om noen uenighet eller kontrovers knyttet til denne saken."
+  }
+}

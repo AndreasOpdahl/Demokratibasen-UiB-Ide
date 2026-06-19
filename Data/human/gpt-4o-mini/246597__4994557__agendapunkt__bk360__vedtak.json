@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246597:4994557:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:45:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document contains no newsworthy elements as there were no matters discussed."
+    },
+    "summary_headline": "Ingen saker behandlet i møtet",
+    "summary_body": "Utvalg for fullmakter og politisk styringssystem hadde møte 13. juni 2023, men det ble ikke behandlet noen saker."
+  }
+}

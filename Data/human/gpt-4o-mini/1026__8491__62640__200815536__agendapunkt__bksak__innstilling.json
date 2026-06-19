@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:8491:62640:200815536:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:22:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a construction permit affecting local residents' quality of life."
+    },
+    "summary_headline": "Byrådet gir delvis dispensasjon for carport i Årstad etter klager fra naboer",
+    "summary_body": "Byrådet har besluttet å gi delvis dispensasjon for oppføring av en carport/bod på St. Olavs Vei 2 i Årstad, til tross for klager fra naboene Anne-Ma og Christian Gram-Knutsen, som hevder at tiltaket vil redusere sollys og forringe deres uteoppholdsareal. Byrådet opphever tidligere vedtak fra bydelsstyret og anbefaler at bygget reduseres i lengde, men tillater oppføring i samsvar med tidligere tillatelser fra Samferdselsetaten. Klagen fra tiltakshaver Rolf Olsen er også tatt til følge. Dette tiltaket kan påvirke livskvaliteten for naboene i området, som er regulert som boligområde."
+  }
+}

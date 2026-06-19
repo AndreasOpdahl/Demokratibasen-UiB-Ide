@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2940:30597:200018409:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:26:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses a significant issue regarding the availability of nursing home beds in Bergenhus, which affects local residents."
+    },
+    "summary_headline": "Bergenhus bydelsstyre vurderer ledige sykehjemsplasser",
+    "summary_body": "Bergenhus bydelsstyre har fått spørsmål fra representantene Bjørg Sirevåg (RV) og Irene Skarstein (A) om ledige sykehjemssenger i bydelen, til tross for ventelister. Helse- og sosialbyråd Helen Nordeide Fløisand har lovet å se på kapasiteten. Det er rapportert at 92 av 2612 sykehjemsplasser i Bergen kommune var ledige pr. 31.12.01, men det er ingen oppdatert oversikt over dette i Bergenhus. Domkirkehjemmet har 8 plasser for demente som ikke er i bruk på grunn av dårlig standard, men ombyggingsplaner er under utvikling. Bydelsstyret tar saken til orientering."
+  }
+}

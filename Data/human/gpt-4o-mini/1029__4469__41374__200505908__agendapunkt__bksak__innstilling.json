@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:4469:41374:200505908:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:32:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a municipal audit of payroll reconciliation, which has implications for financial oversight but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Revisjonsbrev avdekker svakheter i lønnsavstemming i Bergen kommune",
+    "summary_body": "Bergen kommunerevisjon har avdekket svakheter i rutinene for lønnsavstemming i kommunen etter en revisjon utført i 2004. Revisjonen, som involverte ekstern bistand fra Noraudit ANS, viste at det ikke har vært mulig å foreta fullstendig avstemming mellom lønnssystemet og regnskapssystemet. Kommunerevisjonen har foreslått forbedringer til byrådsavdelingen for finans, kultur og næring, som har vurdert tilbakemeldingen som tilfredsstillende. Kontrollutvalget vil ta orienteringen til etterretning."
+  }
+}

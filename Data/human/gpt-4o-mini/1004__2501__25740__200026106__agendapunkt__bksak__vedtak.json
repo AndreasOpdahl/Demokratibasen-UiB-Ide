@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2501:25740:200026106:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:25:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses youth recreational services and drug use, which is relevant to local community concerns."
+    },
+    "summary_headline": "Bergenhus bydelsstyre tar til orientering om fritidstilbud for ungdom",
+    "summary_body": "Bergenhus bydelsstyre behandlet en sak om fritidstilbud for ungdom den 24. april 2001. Tor Woldseth (Frp) og Henning Warloe (H) fremmet forslag om samarbeid med lokale organisasjoner for å styrke tilbudene, spesielt med tanke på økt rusmiddelbruk blant ungdom. Begge forslagene ble enstemmig vedtatt og oversendt administrasjonen for videre oppfølging. Bydelsstyret ønsker en oversikt over eksisterende fritids- og kulturtilbud for barn og ungdom i bydelen."
+  }
+}

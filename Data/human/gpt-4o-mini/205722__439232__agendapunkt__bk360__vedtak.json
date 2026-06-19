@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205722:439232:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:09:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant regulatory plan affecting a vulnerable area, with recommendations for preserving green structures and aesthetic considerations for new buildings."
+    },
+    "summary_headline": "RBA anbefaler bevaring av grønnstruktur i Ytrebygda-reguleringsplan",
+    "summary_body": "Rådet for byforming og arkitektur (RBA) behandlet reguleringsplanen for Ytrebygda den 28. mai 2018. De anbefaler å bevare grønnstrukturen i området, som er viktig for å beskytte mot næringsutvikling. RBA understreker at ny bebyggelse må ta hensyn til landskapsestetikk og ikke være for dominerende i forhold til eksisterende boliger. Det foreslås krav til takform og materialbruk for å sikre en harmonisk integrering med nærområdet. Dette er viktig for beboere i Ytrebygda, da det påvirker både miljøet og boligkvaliteten."
+  }
+}

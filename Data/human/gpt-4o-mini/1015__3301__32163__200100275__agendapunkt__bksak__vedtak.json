@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1015:3301:32163:200100275:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:20:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The approval of a new open kindergarten is relevant but lacks significant impact or controversy."
+    },
+    "summary_headline": "Fyllingsdalen bydelsstyre godkjenner SAMBA åpen barnehage",
+    "summary_body": "Fyllingsdalen bydelsstyre har enstemmig godkjent SAMBA åpen barnehage med et netto leke- og oppholdsareal på 87 m2. Vedtektene for barnehagen ble også godkjent. Dette tiltaket vil gi flere barnehageplasser i bydelen, men det er ingen kontroverser knyttet til beslutningen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:351:2381:200290058:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:27:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains administrative responses to inquiries but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Byrådet svarer på spørsmål fra SV om finansreglement og tilleggsbevilgninger",
+    "summary_body": "Byrådet har besvart flere spørsmål fra Tom Skauge (SV) i Komite for finans og næring. Spørsmålene omhandler nytt finansreglement, BIRs miljøregnskap, samordningsregler for Bergen Kommunale Pensjonskasse, og oversikt over tilleggsbevilgningskontoen. Dokumentene ble behandlet i møtet den 14. mai 2002, men det er ingen kontrovers eller dissent knyttet til svarene."
+  }
+}

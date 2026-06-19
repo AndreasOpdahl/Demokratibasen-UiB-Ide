@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:5355:47195:200610150:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:29:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant planning program for the Bergen inner harbor, which has local relevance and potential impact on transportation and tourism."
+    },
+    "summary_headline": "Planprogram for Bergen indre havn får støtte med viktige merknader",
+    "summary_body": "Bergen og Omland havnestyre har vist støtte til planprogrammet for kommunedelplanen Bergen indre havn, men har fremhevet viktige merknader. Det er behov for å utrede arealbehov for ro/ro-trafikk og vurdere alternativ plassering av terminal for utenlandsfergene i Dokkenområdet. Havnestyret understreker også at Kristiansholm bør forbli en potensiell cruisehavn, og at jernbanetilknytningen til Dokkenområdet må inkluderes i de videre planene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:7080:55407:200909753:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:14:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a rejected citizen initiative for a sports facility, which may interest local residents."
+    },
+    "summary_headline": "Innbyggerinitiativ for idrettsanlegg avvist av Forretningsutvalget",
+    "summary_body": "Forretningsutvalget har enstemmig avvist et innbyggerinitiativ for et fullverdig idrettsanlegg på Krohnsminde stadion. Saken ble tidligere behandlet i bystyret, men ble ikke godkjent. Den vil nå bli oversendt til Komite for miljø og byutvikling for videre behandling."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:11766:74340:201532272:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:47:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural note with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Komite for oppvekst",
+    "summary_body": "Dokumentet er en referat fra møtet i Komite for oppvekst den 2. november 2015, hvor saker til eventuelt ble fremmet."
+  }
+}

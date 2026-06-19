@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:7565:57702:200801526:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:16:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative matters with no significant newsworthy elements."
+    },
+    "summary_headline": "Ytrebygda bydelsstyre behandler rutinesaker",
+    "summary_body": "Ytrebygda bydelsstyre behandlet flere saker i møtet den 10. mars 2017, inkludert oppstart av privat planarbeid for Avinor AS, justering av bydelsstyrenes fullmakter, og kontorløsninger med økonomisk tilskudd til bydelsstyrelederne."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51083:113044:199902030:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:45:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The case involves a neighbor's complaint regarding a building permit, which may affect local residents."
+    },
+    "summary_headline": "Nabo klager på byggetillatelse, men klagen avvises av byutviklingsutvalget",
+    "summary_body": "Hovedutvalg for byutvikling i Bergen har enstemmig besluttet å opprettholde en tidligere byggetillatelse gitt til Brede Mathiesen for eiendommen Aurdalslia 86. Nabo Ina Taule klaget på tillatelsen, men klagen ble ikke tatt til følge, og den får ikke oppsettende virkning. Dette kan påvirke lokalsamfunnet i Fana."
+  }
+}

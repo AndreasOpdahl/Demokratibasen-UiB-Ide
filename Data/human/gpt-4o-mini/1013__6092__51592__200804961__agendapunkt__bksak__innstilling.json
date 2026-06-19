@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:6092:51592:200804961:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:12:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant public consultation regarding the Sotrasambandet, which is relevant to local residents."
+    },
+    "summary_headline": "Bystyret skal avgjøre høringsuttalelse om Sotrasambandet",
+    "summary_body": "Bystyret i Bergen skal behandle en høringsuttalelse til konseptvalgutredningen (KVU) for Sotrasambandet, som Statens vegvesen har sendt på høring. Høringsfristen er satt til 15. september 2008, og byrådet anbefaler at bystyret avgir uttalelsen, da saken er av prinsipiell karakter. Det foreslås også at byrådet kontakter Statens vegvesen for å be om en utsatt frist. Dette er en viktig sak for innbyggerne, da den omhandler fremtidige transportløsninger i regionen."
+  }
+}

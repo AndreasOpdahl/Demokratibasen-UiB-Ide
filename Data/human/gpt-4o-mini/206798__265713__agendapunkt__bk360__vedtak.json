@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206798:265713:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:12:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The proposal for interpellations related to UN Day is relevant but lacks significant conflict or impact."
+    },
+    "summary_headline": "Bystyret oppfordres til interpellasjoner på FN-dagen",
+    "summary_body": "Under møtet 21. august 2018 foreslo Idun Bortne (V) at komiteene fremmer interpellasjoner til bystyret den 24. oktober, som sammenfaller med FN-dagen. Forslaget ble godtatt som en oppfordring til arbeidsutvalgene. Byrådsleder Harald Schjelderup informerte om at byrådets møte er flyttet til 24. august."
+  }
+}

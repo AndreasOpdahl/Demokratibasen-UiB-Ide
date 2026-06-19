@@ -1,0 +1,18 @@
+{
+  "dokument_id": "219217:1969372:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:40:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains a minor correction to a previous meeting's minutes, which may interest local political observers."
+    },
+    "summary_headline": "Kontrollutvalget godkjenner protokoll med merknad om habilitet",
+    "summary_body": "Kontrollutvalget har godkjent protokollen fra møtet den 15. januar 2020, med en merknad fra Ragnhild Hedemann (SV) angående habiliteten til Henning Warloe. Hedemann påpekte at Warloe ikke skulle ha deltatt i avstemmingen om sin egen habilitet, og at stemmetallet derfor er feil. Merknaden ble enstemmig vedtatt."
+  }
+}

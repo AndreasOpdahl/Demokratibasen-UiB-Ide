@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1027:5764:49637:200610446:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:24:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a local dispute over a building permit, which affects residents' rights and local development."
+    },
+    "summary_headline": "Klage på avslag om bod i Fana avvist av underutvalg",
+    "summary_body": "Underutvalg av komite for miljø og byutvikling har enstemmig avvist klagen fra tiltakshaver om oppføring av en frittliggende bod på Øvre Kirkebirkeland 17. Fagetatens tidligere vedtak fra 2007 opprettholdes. Saken ble også utsatt for videre behandling, da byrådet ble bedt om å gi mer informasjon. Dette kan påvirke lokale innbyggere som ønsker å bygge på eiendommene sine."
+  }
+}

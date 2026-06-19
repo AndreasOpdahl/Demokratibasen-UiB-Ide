@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9030:62741:201117064:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:43:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant contract cancellations and the financial implications for a major municipal project."
+    },
+    "summary_headline": "Bergen kommune avbestiller kontrakter for parkeringsanlegg under Skansedammen",
+    "summary_body": "Bergen kommune har besluttet å avbestille gjenværende arbeider på kontrakten med Larsen og Solheim AS for parkeringsanlegget under Skansedammen, da kontrakten strider mot regelverket for offentlige anskaffelser. Kalve landskapsarkitekter må også informeres om at samarbeidet må opphøre. Prosjektet, som er kalkulert til 48,6 millioner kroner fra 2009, vil bli videreført med nye kontrakter for å sikre fremdrift. Byråden for næring, eiendomsforvaltning og samferdsel, Øistein Christoffersen, understreker viktigheten av å følge regelverket for å unngå forsinkelser."
+  }
+}

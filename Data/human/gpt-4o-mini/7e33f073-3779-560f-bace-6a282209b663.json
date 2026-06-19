@@ -1,0 +1,18 @@
+{
+  "dokument_id": "7e33f073-3779-560f-bace-6a282209b663",
+  "kommune_nummer": 4640,
+  "kommune_navn": "Sogndal",
+  "generated_at": "2026-02-19 23:08:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant funding and infrastructure plans for sports and recreation, impacting local residents."
+    },
+    "summary_headline": "Sogndal kommune prioriterer 40 anleggstiltak for idrett og friluftsliv i 2026",
+    "summary_body": "Sogndal kommune har rullet ut handlingsprogrammet for idrett, fysisk aktivitet og friluftsliv for 2026, som inkluderer 40 prioriterte anleggstiltak. Kommunedirektøren anbefaler at planperioden forlenges til 2026, ettersom arbeidet med en ny plan er forsinket. Blant de prioriterte prosjektene er rehabilitering av Sogndal skisenter og Kaupanger stadion. Dette programmet er viktig for å sikre statlig tilskudd til anlegg som fremmer fysisk aktivitet, spesielt for barn og ungdom. Innkomne søknader vil bli behandlet i november/desember 2025, med frist for innsending til fylkeskommunen 15. januar 2026."
+  }
+}

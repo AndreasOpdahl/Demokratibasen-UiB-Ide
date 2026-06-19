@@ -1,0 +1,18 @@
+{
+  "dokument_id": "231114:3273481:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:10:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The application for a new alcohol license for Falske Reker is relevant to local residents and involves public health considerations."
+    },
+    "summary_headline": "Falske Reker får skjenkebevilling frem til 2024",
+    "summary_body": "Byrådet har innvilget søknaden fra Falske Reker AS om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3, både innendørs og utendørs, ved Nye Sandviksveien 73 d. Bevillingen gjelder frem til 30. september 2024, og skjenketiden er satt til kl. 23.00 hver kveld. Det er ikke registrert merknader fra politiet eller etater som kan hindre tildelingen. Det er et krav om at det skal være gratis og lett tilgjengelig vann for kundene. Før uteserveringen kan tas i bruk, må det foreligge en gyldig leiekontrakt for området."
+  }
+}

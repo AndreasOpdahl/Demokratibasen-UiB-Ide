@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:3888:39258:200400027:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:39:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains multiple administrative responses but lacks significant newsworthy elements such as controversy or major decisions."
+    },
+    "summary_headline": "Byrådet svarer på spørsmål om helse og omsorg",
+    "summary_body": "Byrådet for helse og omsorg har sendt svar på flere anmodninger fra representanter i KHSO, inkludert spørsmål om barnevernet, registreringssystemet ved Bergen legevakt, ressursfordeling mellom politi og helsevesen, samt eldreomsorgen. Ingen kontroverser eller store beslutninger er rapportert."
+  }
+}

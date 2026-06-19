@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:7198:55572:200710908:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:03:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant urban development plan that will impact local residents and includes a new art school."
+    },
+    "summary_headline": "Ny reguleringsplan for Møllendal øst med kunsthøgskole",
+    "summary_body": "Bergen kommune har lagt frem forslag til reguleringsplan for Møllendal øst, som inkluderer bygging av en ny Kunsthøgskole, boliger og næringslokaler. Planen, som nå legges ut til offentlig ettersyn, har som mål å utvikle området til en attraktiv sjøfront med urban struktur og gode offentlige rom. Byggehøyder kan nå opp til 40 meter for kunsthøgskolen, og det åpnes for høyere utnytting enn tidligere angitt. Dette prosjektet er viktig for lokal utvikling og vil påvirke innbyggerne i Årstad."
+  }
+}

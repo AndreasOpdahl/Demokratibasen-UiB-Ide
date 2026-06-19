@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:11144:70979:201400146:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:53:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document presents an annual report which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Årsrapport fra eldrerådet legges frem for Bystyret",
+    "summary_body": "Bergen eldreråd har lagt frem sin årsrapport for 2013 til Bystyret. Saken tas til orientering, og det er ingen kontroverser eller dissent knyttet til rapporten."
+  }
+}

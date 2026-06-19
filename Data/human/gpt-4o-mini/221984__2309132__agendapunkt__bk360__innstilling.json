@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221984:2309132:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:46:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses two significant hearings that could impact local governance and legal processes."
+    },
+    "summary_headline": "Høringer om ny valglov og skrivesalær for tvangsfullbyrdelse",
+    "summary_body": "Forretningsutvalget har mottatt to høringssaker til behandling. Den første gjelder et forslag fra Justis- og beredskapsdepartementet om standard skrivesalær for tvangsfullbyrdelse, hvor det foreslås å halvere gebyret for visse begjæringer. Den andre saken omhandler NOU 2020: 6, som foreslår endringer i valgloven, inkludert klageordninger og gjennomføring av valg. Høringsfristen for skrivesalær er 5. august 2020, mens fristen for valgloven er 31. desember 2020. Bystyredirektøren anbefaler at byrådet avgir høringsuttalelse for skrivesalær, mens valgstyret bør innstille til bystyret for valgloven."
+  }
+}

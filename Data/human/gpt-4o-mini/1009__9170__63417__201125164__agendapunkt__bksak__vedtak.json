@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9170:63417:201125164:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:44:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines a significant plan for public transport improvements and reduced car usage, which affects local residents."
+    },
+    "summary_headline": "Bergen kommune vedtar tiltaksplan for bedre kollektivtransport",
+    "summary_body": "Bergen kommune har vedtatt \"Tiltaksplan 2011-2014, Bedre kollektivtransport og mindre bilbruk i Bergensområdet\". Planen inkluderer restriktive tiltak for å fremme kollektivtransport og redusere bilbruk. Dette tiltaket er viktig for innbyggerne i Bergen, da det kan påvirke både miljøet og transportmulighetene i området."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203780:297900:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:04:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new office building project with positive feedback from the architectural council, indicating local relevance and potential impact."
+    },
+    "summary_headline": "Positiv vurdering av nytt kontorbygg i Årstad",
+    "summary_body": "Rådet for byforming og arkitektur (RBA) har behandlet et forslag om nybygg av kontorbygg på Solheimsgaten 5, og gir prosjektet en positiv vurdering. De fremhever forbedringer i bygningens volum og høyde, samt kvaliteter som aktivisering av 1. etasje og bruk av tre i fasaden. RBA påpeker viktigheten av å videreføre fargeholdningen og foreslår forbedringer for å styrke byggets visuelle inntrykk fra motorveien. Prosjektet er i tråd med reguleringsplanen og kan tilføre gode kvaliteter til området."
+  }
+}

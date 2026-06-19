@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4140:39069:200400173:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:06:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses a concerning situation in Bergen's psychiatric care, prompting a proposed meeting."
+    },
+    "summary_headline": "Møte om bekymringer i psykiatrien i Bergen",
+    "summary_body": "Bystyredirektør Roar Kristiansen foreslår å ta initiativ til et møte mellom Helse Bergen og Forretningsutvalget, samt gruppeledere, for å diskutere en bekymringsfull situasjon innen psykiatrien i Bergen. Dette følger et brev fra Kjersti Toppe datert 19. august 2004. Møtet kan ha betydning for innbyggerne som er berørt av psykisk helsevern."
+  }
+}

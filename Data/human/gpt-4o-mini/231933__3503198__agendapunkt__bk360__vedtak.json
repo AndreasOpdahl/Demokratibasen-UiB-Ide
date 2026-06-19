@@ -1,0 +1,18 @@
+{
+  "dokument_id": "231933:3503198:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:11:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a procedural decision regarding questionable votes, which lacks significant local impact or controversy."
+    },
+    "summary_headline": "Valgstyret godkjenner behandling av tvilsomme stemmegivninger",
+    "summary_body": "Valgstyret i Bergen behandlet tvilsomme stemmegivninger i møte 13. september 2021 og fattet enstemmig vedtak om å godkjenne behandlingen av disse. Ingen representanter tok ordet under møtet, og rådgiver Bjarte K. Frønsdal redegjorde for saken."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4720:42694:200417116:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:20:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines a significant urban planning proposal affecting local traffic and safety, with some dissent from property owners."
+    },
+    "summary_headline": "Utvidelse av trafikkareal ved Sandviken bomstasjon legges ut til offentlig ettersyn",
+    "summary_body": "Byrådet i Bergen har besluttet å legge ut et forslag til reguleringsplan for utvidelse av trafikkareal ved Sandviken bomstasjon til offentlig ettersyn. Dette tiltaket, som er initiert for å forbedre trafikksikkerheten og avviklingen av rushtrafikken, innebærer regulering av et område på ca. 60 meter. Statens vegvesen har bedt om offentlig planarbeid etter at frivillig grunnavståelse ikke har vært vellykket. To grunneiere har uttrykt bekymring for støy og krever støytiltak, noe som er inkludert i reguleringsbestemmelsene. Byråden, Lisbeth Iversen, understreker behovet for tryggere forhold for trafikanter og anbefaler at forslaget legges ut til offentlig ettersyn."
+  }
+}

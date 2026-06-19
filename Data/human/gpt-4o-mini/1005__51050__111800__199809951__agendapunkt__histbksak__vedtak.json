@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51050:111800:199809951:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:00:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The budget decision impacts local taxes and services, affecting all residents."
+    },
+    "summary_headline": "Bystyret vedtar budsjett for 1999 med økte skatter og avgifter",
+    "summary_body": "Bystyret i Bergen har vedtatt budsjett for 1999, som inkluderer økning av eiendomsskatt og inntektsavhengige satser for tjenester. Skattene for personlige skattytere økes til 11,50%, og eiendomsskatten heves med 30% nominelt. Maksimal egenbetaling for sykehjem økes til 19.600 kr per måned. Budsjettet prioriterer også økt bemanning i helse- og sosialtjenester, samt investeringer i skoler og eldreomsorg. Dette vil påvirke alle innbyggere i Bergen, spesielt de med lav inntekt og eldre som er avhengige av kommunale tjenester."
+  }
+}

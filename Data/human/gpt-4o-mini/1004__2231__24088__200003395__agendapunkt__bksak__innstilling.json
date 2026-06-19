@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2231:24088:200003395:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:24:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant change in the operational structure of a local healthcare facility, which directly impacts residents' access to medical services."
+    },
+    "summary_headline": "Ulriksdal legesenter går fra fastlønn til driftsavtale med Bergenhus bydel",
+    "summary_body": "Legene ved Ulriksdal legesenter har bedt Bergenhus bydelsadministrasjon om å endre fra fastlønn til en driftsavtale, der bydelen tar ansvar for driften av legesenteret. Administrasjonen anbefaler å inngå avtale som innebærer at legene betaler leie basert på en prosentandel av deres trygderefusjoner. Avtalen skal iverksettes fra 1. januar 2001, og det er planlagt et nytt møte i november for å diskutere detaljene. Dette kan påvirke tilgjengeligheten av helsetjenester for innbyggerne i bydelen."
+  }
+}

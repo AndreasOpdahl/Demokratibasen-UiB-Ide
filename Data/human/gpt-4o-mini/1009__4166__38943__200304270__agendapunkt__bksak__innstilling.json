@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4166:38943:200304270:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:13:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a resident's complaint about loss of view due to a building extension, which may affect local community interests."
+    },
+    "summary_headline": "Klage på boligtilbygg avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Trygve Alvsaker angående et tillatelse til tilbygg på Godvikveien 69A. Klageren mener at ombyggingen vil medføre tap av utsikt, men byrådet konkluderer med at tapet ikke er betydelig nok til å begrunne avslag. Byråden for byutvikling, Lisbeth Iversen, støtter administrasjonens vurdering fra 16. februar 2004, som anbefalte å opprettholde tillatelsen. Saken vil bli sendt til fylkesmannen for endelig avgjørelse dersom klagen ikke tas til følge."
+  }
+}

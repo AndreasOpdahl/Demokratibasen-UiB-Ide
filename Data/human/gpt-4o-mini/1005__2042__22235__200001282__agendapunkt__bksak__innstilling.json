@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:2042:22235:200001282:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:45:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant land sale for a new courthouse, which impacts local governance and public services."
+    },
+    "summary_headline": "Bystyret godkjenner opsjonsavtale for ny rettsbygning i Rådhuskvartalet",
+    "summary_body": "Bystyret i Bergen har godkjent en opsjonsavtale som gir Statsbygg rett til å kjøpe et tomteareal på ca. 1500 kvm i Rådhuskvartalet for oppføring av en ny rettsbygning for Gulating lagmannsrett. Kjøpesummen er fastsatt til kr. 13.333,- per kvm, totalt ca. 20 millioner kroner. Byggearbeidene kan ikke starte før den nye brannstasjonen på Nygårdstangen er ferdig, noe som er planlagt til første halvdel av 2004. Statsbygg planlegger å investere ca. 250 millioner kroner i prosjektet, som vil ha stor betydning for rettsvesenet i Bergen."
+  }
+}

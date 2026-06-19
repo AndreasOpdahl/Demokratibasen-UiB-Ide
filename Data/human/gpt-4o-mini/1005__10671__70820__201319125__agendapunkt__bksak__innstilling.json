@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10671:70820:201319125:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:31:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant financial oversight and implications for local services, which affects residents."
+    },
+    "summary_headline": "Kontrollutvalget vurderer revisjon av Bergen Hjemmetjenester KF",
+    "summary_body": "Kontrollutvalget har behandlet revisors rapport om Bergen Hjemmetjenester KF for regnskapsåret 2013. I brevet fra BDO AS påpekes et akkumulert merforbruk på 10,9 millioner kroner, som vil bli dekket av bykassens budsjett. Kontrollutvalget ber om tilbakemelding fra foretakets ledelse innen utgangen av august 2014 om hvordan revisors anbefalinger vil bli fulgt opp. Dette er viktig for innbyggerne i Bergen, da det angår kvaliteten på hjemmetjenester."
+  }
+}

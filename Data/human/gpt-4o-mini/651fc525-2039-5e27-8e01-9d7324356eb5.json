@@ -1,0 +1,18 @@
+{
+  "dokument_id": "651fc525-2039-5e27-8e01-9d7324356eb5",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:04:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant regulatory plan for the Bybanen to Åsane, which has received numerous complaints and involves local community interests."
+    },
+    "summary_headline": "Klage på reguleringsplan for Bybanen til Åsane oversendes Statsforvalteren",
+    "summary_body": "Bergen byråd har besluttet å oversende 34 klager på reguleringsplanen for Fløyfjelltunnelen og rigg- og anleggsområdet til Statsforvalteren. Klagene, som omhandler alt fra trasévalg til støy og helsekonsekvenser, er omfattende og involverer flere lokale aktører, inkludert Folkeaksjonen nei til bil og bane på Bryggen. Byrådet anbefaler at bystyrets vedtak fra 27. september 2023 opprettholdes, da de mener at planvedtaket er gyldig og ikke inneholder feil. Saken har stor betydning for innbyggerne i Bergen, spesielt de som bor i nærheten av anleggsområdet, da det kan påvirke både helse og livskvalitet."
+  }
+}

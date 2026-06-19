@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232866:3478851:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:13:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The appointment of a new board member for a municipal company is relevant to local governance."
+    },
+    "summary_headline": "Ny styremedlem foreslått til ADO arena drift AS",
+    "summary_body": "Byrådet har foreslått Espen Edvardsen som nytt styremedlem i ADO arena drift AS etter at styreleder Bjart Nygaard har trukket seg. Edvardsen, som er rådgiver ved Nygård skole og leder av Sportsklubben Djerv, har erfaring fra både offentlig og privat sektor. Valget av nytt styremedlem vil bli gjort av generalforsamlingen, i tråd med selskapets vedtekter. Dette er en viktig beslutning for driften av ADO arena, som leverer svømmetjenester til Bergen kommune."
+  }
+}

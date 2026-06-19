@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:5221:46581:200700261:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:30:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant cultural and social issues, including the proposal for a public holiday for International Women's Day and the challenges facing local agriculture."
+    },
+    "summary_headline": "Bergen kommune vurderer kvinnedag som fridag og festdag i 2010",
+    "summary_body": "Komite for finans, kultur og næring har behandlet spørsmål om å gjøre 8. mars 2010 til en kommunal fridag og festdag for å markere 100-årsjubileet for kvinnedagen. Byrådet, representert ved finansbyråd Henning Warloe, mener det er for tidlig å ta stilling til dette, men stiller seg positiv til en markering. Anmodningen fra SV-representant Tina Åsgård om å legge frem en sak om dette ble enstemmig vedtatt. I tillegg ble det diskutert hvordan Bergen kommune kan støtte utviklingen av profesjonell opera og ivareta lokale landbruksinteresser, med fokus på å opprettholde verdifulle jordbruksarealer i møte med byutvikling."
+  }
+}

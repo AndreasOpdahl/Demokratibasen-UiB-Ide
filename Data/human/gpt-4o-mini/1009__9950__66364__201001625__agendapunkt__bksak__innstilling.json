@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9950:66364:201001625:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:48:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the naming of new tunnels, which is relevant to local residents but lacks significant controversy or financial implications."
+    },
+    "summary_headline": "Navn på nye tunneler på E39 foreslås av byrådet",
+    "summary_body": "Byrådet i Bergen har anbefalt navnene på fire nye tunneler langs den nye E39 fra Svegatjørn til Rådal. Tunnelene foreslås å hete Skogafjelltunnelen, Lyshorntunnelen, Råtunnelen og Søråstunnelen. Navnene er i tråd med tidligere vedtak, og kommunen har uttalerett om navnevalget. Byråden for byutvikling, klima og miljø, Filip Rygg, har ingen ytterligere kommentarer til forslagene."
+  }
+}

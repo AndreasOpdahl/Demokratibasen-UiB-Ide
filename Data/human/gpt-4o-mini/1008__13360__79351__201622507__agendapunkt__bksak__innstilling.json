@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:13360:79351:201622507:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:33:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a denied application for a new quay, impacting local residents' access to the waterfront."
+    },
+    "summary_headline": "Klage på avslag om ny kai i Laksevåg avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på en søknad om anlegging av en ny kai på Breivikstølen i Laksevåg, etter klage fra Jan Olav Enberget. Tiltaket, som omfatter en kai på 42,5 m², ble avvist av Plan- og bygningsetaten på grunn av bekymringer for privatisering av strandsonen og negative presedensvirkninger. Byrådet understreker at presset på strandsonen er stort, og at det er viktig å ivareta allmenne interesser. Klager mener at kaien vil forbedre offentlig tilgang til sjøen, men byrådet anbefaler at klagen ikke tas til følge. Saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

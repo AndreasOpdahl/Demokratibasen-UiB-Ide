@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224626:1938371:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:52:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains several written questions from politicians regarding health and social services, indicating local political engagement."
+    },
+    "summary_headline": "Politikere stiller spørsmål om helse- og omsorgstjenester i Bergen",
+    "summary_body": "Under møtet i Utvalg for helse og sosial den 2. november 2020, vil flere skriftlige spørsmål bli behandlet. Diane Alexandra Berbain (SV) har stilt spørsmål om kommunens avtaler med kommersielle leverandører og oppfølging av tannhelse for sykehjemsbeboere. Marte J. Monstad (FrP) spør om isolasjon av eldre under koronapandemien. Møtet finner sted i Det gamle Rådhus, og det er viktig for innbyggerne å følge med på hvordan helse- og omsorgstjenester utvikles i kommunen."
+  }
+}

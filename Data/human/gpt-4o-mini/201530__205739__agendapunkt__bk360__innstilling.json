@@ -1,0 +1,18 @@
+{
+  "dokument_id": "201530:205739:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:00:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a local ban on jet skis is significant due to environmental concerns and local opposition."
+    },
+    "summary_headline": "Bergen kommune vurderer forbud mot vannscootere etter protester",
+    "summary_body": "Bystyrerepresentant Sondre Båtstrand (MDG) har fremmet et forslag om å innføre et lokalt forbud mot vannscootere i Bergen kommune. Forslaget kommer etter at regjeringen opphevet vannscooterforskriften, noe som har møtt stor motstand fra 18 organisasjoner som representerer natur og friluftsliv. Bystyret skal behandle forslaget senest 22. november 2017, og byrådet er bedt om å vurdere det. Båtstrand uttrykker bekymring for konsekvensene av økt vannscooterkjøring for natur og friluftsliv."
+  }
+}

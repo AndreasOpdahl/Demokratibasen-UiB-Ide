@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7992:58816:200608743:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:39:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a controversial decision regarding outdoor alcohol serving near a cinema, affecting local residents and businesses."
+    },
+    "summary_headline": "Byrådet avslår søknad om uteservering ved Lille Escalón",
+    "summary_body": "Byrådet har besluttet å avslå søknaden fra Calamares AS om tillatelse til uteservering av alkoholholdig drikk ved Lille Escalón, Neumannsgt. 5. Søknaden ble innsendt 30. april 2010, men byråd for helse og inkludering, Christine B. Meyer, anbefaler avslag på grunn av beliggenheten nær Bergen Kino, som har høy barnefaktor. Tidligere søknader om uteservering har også blitt avslått av samme årsak. Det er ikke fremkommet nye momenter som kan endre vurderingen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:3476:34911:200002307:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:54:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative matters with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra møte om ombudsordning",
+    "summary_body": "Møtet om ny ombudsordning i Bergen kommune diskuterte utsendelse av brosjyremateriell. Det ble også utdelt protokoller fra tidligere møter og et brev fra Næringsmiddeltilsynet angående merknader til privat planarbeid i Fana."
+  }
+}

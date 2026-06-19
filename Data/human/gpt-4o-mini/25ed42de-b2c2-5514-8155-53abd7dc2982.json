@@ -1,0 +1,18 @@
+{
+  "dokument_id": "25ed42de-b2c2-5514-8155-53abd7dc2982",
+  "kommune_nummer": 4644,
+  "kommune_navn": "Luster",
+  "generated_at": "2026-02-19 22:56:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a completion certificate for a private sewage system, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ferdigattest for Nes gard hytteområde utstedt",
+    "summary_body": "Luster Trelastlager AS har fått ferdigattest for et privat avløpsanlegg i Nes gard hytteområde. Attesten ble utstedt 2. desember 2024, etter at søknaden ble sendt inn 29. november 2024. Dokumentet bekrefter at tiltaket er utført i henhold til godkjente planer, men gir ingen vurdering av byggeteknisk kvalitet."
+  }
+}

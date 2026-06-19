@@ -1,0 +1,18 @@
+{
+  "dokument_id": "235666:3702438:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:18:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to conduct a management audit on climate risk is relevant and impacts local governance."
+    },
+    "summary_headline": "Kontrollutvalget bestiller revisjon av klimarisiko",
+    "summary_body": "Kontrollutvalget i Bergen har enstemmig besluttet å bestille et forvaltningsrevisjonsprosjekt om «Klimarisiko - forebygging og beredskap» fra Deloitte. Beslutningen ble fattet under møtet 16. februar 2022, etter en presentasjon fra Mia Caroline Bratz fra Deloitte. Medlemmene Brita Toppe, Henning Warloe og Ragnhild Hedemann stilte spørsmål om prosjektet, inkludert budsjettpåvirkning. Dette prosjektet er viktig for å sikre at kommunen er forberedt på klimarelaterte utfordringer."
+  }
+}

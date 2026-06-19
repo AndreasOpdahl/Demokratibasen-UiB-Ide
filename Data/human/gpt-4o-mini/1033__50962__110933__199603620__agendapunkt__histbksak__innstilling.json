@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:50962:110933:199603620:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:51:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the rejection of multiple nightclub applications, which has significant local relevance and impact on the nightlife scene in Bergen."
+    },
+    "summary_headline": "Tre nattklubb-søknader avslått i Bergen",
+    "summary_body": "Bergen kommune har avslått søknader om drift av nattklubber fra Kafe Fincken, Joes og Hotel Ambassadeur. Alle søknader ble avslått fordi det ikke er ledige tillatelser, da det maksimale antallet på 15 allerede er tildelt. Rådmannen understreker at det ikke er spesielle forhold som rettferdiggjør en økning av tillatelser. Dette kan påvirke det lokale utelivet, spesielt for homofile og lesbiske som søker trygge møteplasser."
+  }
+}

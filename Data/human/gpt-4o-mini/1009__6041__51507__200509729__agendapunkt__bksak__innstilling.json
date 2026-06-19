@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:6041:51507:200509729:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:33:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant infrastructure project for waste collection in Bergen, with financial implications and public interest."
+    },
+    "summary_headline": "Byrådet godkjenner finansiering av rørbasert avfallssystem i Bergen sentrum",
+    "summary_body": "Byrådet i Bergen har vedtatt å akseptere BIRs forslag om finansiering av et rørbasert oppsamling- og innsamling av avfallssystem i sentrum sommeren 2008. Dette tiltaket er en oppfølging av tidligere vedtak og er nødvendig for å etablere infrastruktur i forbindelse med pågående gravearbeid. En sak om videre finansiering og eierskap vil bli lagt frem for bystyret til høsten. Høringsmøter har vist at de fleste aktører er positive til prosjektet, men det er også bekymringer knyttet til kulturminner og koordinering med andre gravearbeider."
+  }
+}

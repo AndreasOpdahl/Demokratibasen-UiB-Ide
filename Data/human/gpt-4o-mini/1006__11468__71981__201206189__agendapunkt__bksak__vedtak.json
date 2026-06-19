@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1006:11468:71981:201206189:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:27:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative information with no significant newsworthy elements."
+    },
+    "summary_headline": "Ordfører orienterer om havnerådets rolle",
+    "summary_body": "Jon Askeland informerte om sin rolle som ordfører i havnerådet og oppfordret til kontakt. Havneadministrasjonen ble bedt om å legge frem en prinsippsak angående godkjenning av BOHs prisliste."
+  }
+}

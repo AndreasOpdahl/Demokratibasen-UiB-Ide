@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11214:72167:201123264:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:32:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to allocate 53.5 million NOK for a new kindergarten is significant for local residents."
+    },
+    "summary_headline": "Bystyret bevilger 53,5 millioner til ny barnehage i Minde",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å bevilge 53,5 millioner kroner til bygging av en ny barnehage i Minde, som skal bidra til å møte behovet for flere barnehageplasser i Årstad bydel. Sofie Marhaug fra Rødt uttrykte bekymring for at utvidelse av eksisterende barnehager kan gå på bekostning av kvaliteten, og advarte mot masseproduksjon av barnehageplasser. Merknaden fra Rødt fikk støtte fra SV og MDG, men ble ikke vedtatt. Prosjektet er nå klart for gjennomføring."
+  }
+}

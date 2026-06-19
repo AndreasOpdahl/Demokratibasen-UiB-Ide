@@ -1,0 +1,18 @@
+{
+  "dokument_id": "c771ab69-b674-50d0-a0bd-ee1a83c37268",
+  "kommune_nummer": 4624,
+  "kommune_navn": "Bjørnafjorden",
+  "generated_at": "2026-02-19 23:20:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The application was rejected due to missing documentation, which may affect local residents planning similar projects."
+    },
+    "summary_headline": "Søknad om tilbygg avvist i Bjørnafjorden kommune",
+    "summary_body": "Bjørnafjorden kommune har avvist en søknad fra John Gunnar Tøsdal om tilbygg med garasje og ombygging av 1. etasje på Svegane 77. Avvisningen skyldes manglende nødvendig dokumentasjon, inkludert teikningsgrunnlag og infrastrukturtilkopling. Kommunen informerte om manglene i et brev datert 28.11.2024, men det ble ikke mottatt etterspurt informasjon innen fristen 03.01.2025. Dette kan ha konsekvenser for andre innbyggere som planlegger lignende tiltak."
+  }
+}

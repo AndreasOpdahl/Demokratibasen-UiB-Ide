@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1028:4388:40333:200400932:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:27:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines the establishment of a working committee and focus groups for a municipal council, which is relevant to local governance and community engagement."
+    },
+    "summary_headline": "Nytt arbeidsutvalg og oppmerksomhetsgrupper for funksjonshemmede i Bergen",
+    "summary_body": "Kommunalt råd for funksjonshemmede i Bergen har besluttet å konstituere et arbeidsutvalg og opprette fire oppmerksomhetsgrupper for å bedre følge med på saker som angår funksjonshemmede. Rådet ønsker å involvere flere medlemmer i arbeidet og sikre representasjon fra alle diagnosegrupper. Arbeidsutvalget vil håndtere saker mellom rådsmøtene, mens oppmerksomhetsgruppene skal overvåke kommunens nettsider for relevante saker. Dette tiltaket er en del av rådets strategi for å være mer aktive i beslutningsprosesser i kommunen."
+  }
+}

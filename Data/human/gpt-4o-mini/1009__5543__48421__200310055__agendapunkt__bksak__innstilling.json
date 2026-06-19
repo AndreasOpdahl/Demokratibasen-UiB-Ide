@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5543:48421:200310055:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:30:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document involves a routine appointment of a new representative, which is of low interest to the public."
+    },
+    "summary_headline": "Liv Glasser oppnevnt som ny representant i to styrer",
+    "summary_body": "Byrådet har besluttet å oppnevne Liv Glasser som ny representant i styret for Breistein Industrier AS og som varamedlem i styret for Stiftelsen Solhovden, etter at Tone Salomonsen ble fritatt fra sine verv. Dette er en rutinemessig beslutning fra byrådet, ledet av byrådsleder Monica Mæland."
+  }
+}

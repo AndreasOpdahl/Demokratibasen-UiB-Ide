@@ -1,0 +1,18 @@
+{
+  "dokument_id": "236068:3672114:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:19:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a meeting between the city council and the elder council, which is of local interest but lacks significant conflict or impact."
+    },
+    "summary_headline": "Eldrerådet møter byråden for dialog om eldreinteresser",
+    "summary_body": "Byråd Thor Haakon Bakke møter Eldrerådet for å informere om hvordan eldres interesser ivaretas i planprosesser. Rådet har bedt om informasjon om eldretråkk og er generelt interessert i byrådens oppdateringer. Møtet fant sted 1. mars 2022."
+  }
+}

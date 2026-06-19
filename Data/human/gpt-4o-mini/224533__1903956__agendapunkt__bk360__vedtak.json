@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224533:1903956:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:51:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The case involves a building permit appeal, but there is no significant conflict or dissent."
+    },
+    "summary_headline": "Klage på rammeløyve avvist for nybygg i Årstad",
+    "summary_body": "Utvalg for miljø og byutvikling har enstemmig avvist en klage på rammeløyve for nybygg av bustadblokk på Løbergsveien 95 D og E. Rammeløyvet, datert 09.05.2020, ble opprettholdt etter behandling i møtet 05.11.2020. Byrådet hadde tidligere innstilt på samme vedtak i sitt møte 08.10.2020."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2004:50849:109879:199508406:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:39:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant funding and plans for disaster preparedness in IT installations, which directly impacts local governance and services."
+    },
+    "summary_headline": "Bergen kommune investerer 3,5 millioner i IT-katastrofeberedskap",
+    "summary_body": "Bergen kommune har besluttet å etablere en katastrofeberedskap for sentrale IT-installasjoner, med en kostnadsramme på inntil 3,5 millioner kroner. Hovedutvalg for administrasjon anbefaler videre arbeid for å sikre at kritiske IT-funksjoner er tilgjengelige under krisesituasjoner. Prosjektet, som involverer samarbeid med kommunerevisjonen og eksterne konsulenter, har identifisert de mest kritiske systemene og foreslår tiltak for å redusere sårbarhet. Tiltakene inkluderer fysiske sikringstiltak og dubleringsløsninger. Dette arbeidet er viktig for å minimere konsekvensene av potensielle katastrofer som kan ramme kommunens IT-infrastruktur."
+  }
+}

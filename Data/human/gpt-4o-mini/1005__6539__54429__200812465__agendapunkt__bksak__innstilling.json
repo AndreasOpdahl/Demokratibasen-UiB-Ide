@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:6539:54429:200812465:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:11:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document proposes a significant change in municipal regulations affecting residents' access to district heating."
+    },
+    "summary_headline": "Bystyret vurderer tilknytningsplikt for fjernvarme i Åsane",
+    "summary_body": "Bergen byråd har foreslått at bystyret vedtar en utvidelse av tilknytningsplikten for fjernvarme til det utvidede konsesjonsområdet i Åsane. Dette følger etter at Norges vassdrags- og energidirektorat ga BKK Varme AS konsesjon for området. Byrådet, ledet av Monica Mæland, anbefaler at vedtekten fra 2006 også gjelder for Åsane, noe som kan påvirke mange innbyggere i området. Bystyret må nå ta stilling til forslaget."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10155:66704:201011706:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:56:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a critical evaluation of a housing and business area plan that affects local architecture and community structure."
+    },
+    "summary_headline": "Kritikk av reguleringsplan for Kirkebukten bolig- og næringsområde",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet detaljreguleringen for Kirkebukten bolig- og næringsområde i Laksevåg og uttrykt kritikk mot planforslaget. De mener at de foreslåtte blokkene bør ha en lamellstruktur for bedre lys og utsyn, i stedet for en bred hesteskoform. Rådet understreker også viktigheten av å bevare den eksisterende kommunehusets arkitektur fra 50-tallet, og at eventuelle endringer må respektere byggets kvaliteter. Det er enighet om at bygningens høyde mot sjøen bør forbli lav. Dette kan påvirke fremtidige byggeprosjekter i området, noe som er av interesse for innbyggerne."
+  }
+}

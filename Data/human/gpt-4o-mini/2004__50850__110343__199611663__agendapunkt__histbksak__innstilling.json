@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2004:50850:110343:199611663:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:39:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a meeting schedule, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for Hovedutvalg for administrasjon vedtatt",
+    "summary_body": "Hovedutvalg for administrasjon har vedtatt møteplanen for 2. halvår 1998, med møter i Teatersalen og Rom 225. Møtene er planlagt til 17. september, 15. oktober, 12. november og 10. desember, alle kl. 16:00."
+  }
+}

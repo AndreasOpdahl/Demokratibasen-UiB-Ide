@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4303:39912:200407705:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:14:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant local planning decision with potential impact on the community."
+    },
+    "summary_headline": "Klage på terrasseavslag avslått av byrådet",
+    "summary_body": "Byrådet har avslått klagen fra Trond Polden om oppføring av en 48 m² terrasse på Lille Skjolddalen 42. Byråden for byutvikling, Lisbeth Iversen, mener at terrassen vil være dominerende i det skrånende terrenget og ikke oppfyller kravene i plan- og bygningsloven. Klagen ble behandlet etter et tidligere avslag fra juni 2004, og byrådet anbefaler tiltakshaver å revidere søknaden. Saken kan nå sendes til fylkesmannen for endelig avgjørelse."
+  }
+}

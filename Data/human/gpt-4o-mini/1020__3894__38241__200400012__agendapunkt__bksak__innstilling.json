@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:3894:38241:200400012:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:27:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is procedural and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen dokumenter sendt ut før møtet",
+    "summary_body": "Byrådet informerer om at det ikke ble sendt ut noen dokumenter før møtet. Det henvises til saksprotokollen for eventuell informasjon som kan bli delt ut under møtet."
+  }
+}

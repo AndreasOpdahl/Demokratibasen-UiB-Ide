@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2007:50766:111250:199808899:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:53:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document details a routine budget approval for a local kindergarten project."
+    },
+    "summary_headline": "Bjørgedalen barnehage får godkjent prosjektregnskap",
+    "summary_body": "Hovedutvalg for teknisk utbygging har enstemmig godkjent prosjektregnskapet for Bjørgedalen barnehage, med en sluttsum på 6.128.608,70 kroner. Det overskytende beløpet på 1.391,30 kroner vil bli overført til ombygging av barnehager. Beslutningen ble tatt i møte den 24. september 1998."
+  }
+}

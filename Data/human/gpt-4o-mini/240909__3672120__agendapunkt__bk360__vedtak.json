@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240909:3672120:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:30:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The Eldrerådet's recommendations highlight significant needs for elderly care in urban planning, which directly impacts local residents."
+    },
+    "summary_headline": "Eldrerådet krever fokus på eldre i Mindemyren nord-planene",
+    "summary_body": "Eldrerådet har i sitt møte 2. november 2022 bedt Bergen kommune om å prioritere eldres behov i detaljreguleringsplanen for Mindemyren nord. De påpeker at denne bydelen kan få en høyere andel eldre enn andre områder, og ber om at det avsettes tomt til sykehjem og møteplasser for eldre. Eldrerådet understreker viktigheten av tilgjengelige utearealer og universell utforming, samt en sammenhengende gangvei rundt Solheimsvannet. Dette forslaget kan ha stor betydning for eldre innbyggere i Bergen."
+  }
+}

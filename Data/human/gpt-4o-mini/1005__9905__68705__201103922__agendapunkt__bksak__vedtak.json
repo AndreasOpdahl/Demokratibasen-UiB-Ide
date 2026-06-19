@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9905:68705:201103922:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:27:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a significant regulatory decision affecting local development and includes multiple proposals and votes from various political representatives."
+    },
+    "summary_headline": "Bystyret vedtar detaljregulering for Ådnavegen i Indre Arna",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt detaljregulering for Ådnavegen i Indre Arna, som omfatter eiendommer gnr. 287, bnr. 14, 20, 60 m.fl. Forslaget inkluderer endringer i parkeringsbestemmelser, med krav om at minimum 10 % av parkeringsplassene for boliger og 5 % for kontorer skal være tilrettelagt for el-bil. Flere tilleggsforslag fra ulike partier ble fremmet, men ble ikke vedtatt. Dette reguleringsvedtaket vil påvirke lokal infrastruktur og boligbygging, noe som er av stor interesse for innbyggerne i området."
+  }
+}

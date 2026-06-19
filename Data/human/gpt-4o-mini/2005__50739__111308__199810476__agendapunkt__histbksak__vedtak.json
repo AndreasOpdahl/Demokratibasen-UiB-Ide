@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50739:111308:199810476:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:42:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a minor regulatory change that was unanimously rejected, indicating low public interest."
+    },
+    "summary_headline": "Reguleringsendring avvist av byutviklingsutvalget",
+    "summary_body": "Hovedutvalg for byutvikling har enstemmig avvist en klage om en mindre vesentlig reguleringsendring for eiendommer på Bønes. Utvalget fant ikke nye momenter som kunne endre det tidligere vedtaket fra 27. mars 1996. Saken ble behandlet den 5. oktober 1998, og beslutningen ble offentliggjort 7. oktober 1998."
+  }
+}

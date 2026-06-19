@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3331:32423:200200029:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:03:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision involves a financial transaction that may impact local governance and services."
+    },
+    "summary_headline": "Bergen kommune kjøper aksjepost i Bergen Arbeidssamvirke AS",
+    "summary_body": "Bergen kommune har besluttet å kjøpe Hordaland fylkeskommunes aksjepost på 20% i Bergen Arbeidssamvirke AS for 1 krone. Beslutningen ble fattet av Byrådet den 25. september 2002. Dette kan påvirke kommunens samarbeid med arbeidsmarkedet og lokale tjenester."
+  }
+}

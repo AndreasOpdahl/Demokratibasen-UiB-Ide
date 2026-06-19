@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:8446:61007:201000824:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:21:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested decision regarding a garage placement that affects local residents and has implications for planning regulations."
+    },
+    "summary_headline": "Klage på avslag om garasjeplassering avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på en klage fra Joakim Almquist og Jannicke Reimers angående dispensasjon for oppføring av garasje på Harald Sæveruds veg 180 i Ytrebygda. Klagerne mener at garasjens plassering ikke vil endre utkjørselen fra eiendommen og at naboene støtter den foreslåtte plasseringen. Fagetaten vurderte imidlertid at den foreslåtte plasseringen strider mot reguleringsplanen, og at det ikke er grunnlag for dispensasjon. Byrådet anbefaler at klagen ikke tas til følge, og saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

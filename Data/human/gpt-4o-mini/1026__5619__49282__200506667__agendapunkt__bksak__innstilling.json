@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5619:49282:200506667:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:12:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested planning case with significant local implications and public interest."
+    },
+    "summary_headline": "Byrådet anbefaler delvis godkjenning av boligprosjekt i Møllendalsveien",
+    "summary_body": "Byrådet har anbefalt at klagen fra Strømbil Finans AS tas delvis til følge, og at det fattes vedtak om mindre vesentlig reguleringsendring for eiendommen Møllendalsveien 1. Dette åpner for bruksendring av 6. etasje fra parkeringsareal til 14 boliger, til tross for tidligere avslag grunnet manglende oppfyllelse av vilkår. Byrådet påpeker at det er behov for å bearbeide prosjektet i samsvar med eksisterende reguleringsplaner og krav. Klagen ble fremmet etter at naboeiere uttrykte bekymring for utsikt og økt trafikk. Det er fortsatt usikkerhet rundt forurensning og støy, og saken vil bli sendt videre til Komité for miljø og byutvikling for endelig avgjørelse."
+  }
+}

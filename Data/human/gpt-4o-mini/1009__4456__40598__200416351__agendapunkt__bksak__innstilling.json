@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4456:40598:200416351:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:16:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property sale is relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett ved salg av leiegård",
+    "summary_body": "Bergen kommune har besluttet å ikke benytte seg av forkjøpsretten ved salget av leiegården i Sigurdsgate 23, som selges fra Lunden AS til Hagmyr Eiendom AS for 5.639.190 kroner. Byråden for byutvikling, Lisbeth Iversen, støtter fagavdelingens vurdering, da leietakerne ikke har uttrykt interesse for å overta eiendommen. Dette kan påvirke leietakere og boligmarkedet i området."
+  }
+}

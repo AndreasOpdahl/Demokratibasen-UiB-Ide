@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:51120:113647:199706921:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:51:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine administrative decision regarding library opening hours."
+    },
+    "summary_headline": "Sommeråpningstider for Bergen Offentlige Bibliotek 1999 vedtatt",
+    "summary_body": "Hovedutvalg for fritid og kultur har enstemmig vedtatt å ta meldingen om sommeråpningstider for Bergen Offentlige Bibliotek i 1999 til orientering. Dette er en rutinemessig beslutning uten kontroverser."
+  }
+}

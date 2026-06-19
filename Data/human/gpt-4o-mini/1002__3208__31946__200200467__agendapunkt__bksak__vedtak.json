@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:3208:31946:200200467:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:19:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposed funding cut that has sparked opposition from local representatives."
+    },
+    "summary_headline": "Motstand mot kutt av driftstilskudd til Rostadheimen",
+    "summary_body": "Under møtet i Arna bydelsstyre den 27. august 2002 ble det diskutert forslag om kutt i driftstilskuddet til Rostadheimen. Geir Legreid uttrykte motstand mot forslaget, mens Stian Aadland og Gabriel Nepstad argumenterte for at klubben ikke bør legges ned. Dette kan påvirke tilbudet til innbyggerne i Arna bydel."
+  }
+}

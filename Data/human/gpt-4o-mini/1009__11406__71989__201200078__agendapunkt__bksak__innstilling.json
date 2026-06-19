@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11406:71989:201200078:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:48:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a change in municipal appointments due to a council member's relocation, which has local relevance."
+    },
+    "summary_headline": "Endringer i kommunale verv etter flytting",
+    "summary_body": "Ida Christine Gyldenløve (FrP) har flyttet til Oslo og trer ut av sine verv i kommunen. Byrådet har foreslått nye medlemmer til flere styrer og utvalg som følge av dette. Helen M. Kongshavn, Torbjørn M. Jørgensen, Marte J. Monstad og Gunnar Lian er blant de nye oppnevnte. Dette vedtaket ble innstilt av byrådsleder Martin Smith-Sivertsen den 16. desember 2014."
+  }
+}

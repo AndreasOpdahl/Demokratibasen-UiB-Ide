@@ -1,0 +1,18 @@
+{
+  "dokument_id": "247983:6058009:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:49:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The application for a new alcohol license for a restaurant is relevant and impacts local dining options."
+    },
+    "summary_headline": "Godt Brød får skjenkebevilling på Fløttmannsplassen",
+    "summary_body": "Byrådet har innvilget søknaden fra Godt Brød Damsgård AS om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Fløttmannsplassen, Damsgårdsveien 59, frem til 30. september 2024. Det omsøkte skjenkearealet er totalt 260 kvm, inkludert 95 kvm uteservering. Ingen instanser har innvendinger mot søknaden, og stedet vil fungere som et spisested med høy matomsetning. Byrådet understreker at skjenkepolitikken skal bidra til en trygg by, og det stilles krav om at det skal være gratis vann tilgjengelig for gjester."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5562:48664:200709099:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:30:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to approve a balcony extension after an appeal is relevant to local residents and involves a specific property."
+    },
+    "summary_headline": "Klage førte til godkjenning av altanutvidelse i Åsane",
+    "summary_body": "Byrådet har behandlet en klage på avslag om utvidelse av altan på Ulvhøyen 55 i Åsane. I møtet 10. oktober 2007 ble det besluttet å oppheve det tidligere avslaget og godkjenne søknaden, men med vilkår om at altanens dybde reduseres til 235/145 cm. Etat for byggesak og private planer vil utferdige nærmere tillatelse med nødvendige vilkår."
+  }
+}

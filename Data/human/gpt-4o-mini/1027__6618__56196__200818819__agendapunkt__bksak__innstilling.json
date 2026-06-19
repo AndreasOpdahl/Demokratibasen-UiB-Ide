@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1027:6618:56196:200818819:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:25:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant dispute over a construction permit affecting local regulations and community standards."
+    },
+    "summary_headline": "Klage på avslag om støttemur avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Tormod Espelid angående et avslag på søknad om legalisering av en støttemur på 1,6 meter mot Nybøvegen. Avslaget ble gitt på grunn av brudd på avstandsbestemmelser i plan- og bygningsloven. Klageren, representert av advokat Erik Jønsson, hevder at muren er bygget på gamle murlegemer og at det ikke er foretatt endringer. Fagetaten anbefaler å opprettholde avslaget, og byrådet støtter denne vurderingen. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

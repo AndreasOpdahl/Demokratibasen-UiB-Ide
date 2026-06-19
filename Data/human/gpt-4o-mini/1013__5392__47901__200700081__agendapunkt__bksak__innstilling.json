@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5392:47901:200700081:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:10:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural matters without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen kontroversielle saker fra byrådsmøtet",
+    "summary_body": "Protokollen fra byrådets møte 20. juni 2007 viser fordeling av saker til komiteene. Byrådsak 247 er tildelt Komite for finans, kultur og næring, som vil behandle den 25. juni 2007. Ingen kontroverser eller betydelige beslutninger er rapportert."
+  }
+}

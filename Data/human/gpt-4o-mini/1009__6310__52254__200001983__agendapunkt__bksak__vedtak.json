@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:6310:52254:200001983:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:34:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to grant a renewed alcohol license to Bergen Vinstuer AS is significant for local businesses and residents."
+    },
+    "summary_headline": "Bergen Vinstuer får fornyet skjenkebevilling etter klage",
+    "summary_body": "Byrådet har omgjort sitt tidligere avslag og tildelt Bergen Vinstuer AS skjenkebevilling for alkoholholdig drikk gruppe 3 ved uteserveringen. Klagen ble behandlet i byrådsmøtet 29. oktober, og bevillingen gjelder frem til 30. juni 2012. Styrer for bevillingen er Sidney Glastad, med Hege Fredheim som stedfortreder. Skjenkearealet og antall plasser forblir uendret. Dette vedtaket kan påvirke både lokale innbyggere og næringslivet i området."
+  }
+}

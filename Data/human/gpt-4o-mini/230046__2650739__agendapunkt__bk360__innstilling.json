@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230046:2650739:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:07:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant municipal decision regarding the location of key research institutions, which will impact local development and community engagement."
+    },
+    "summary_headline": "Byrådet anbefaler tomtevalg for Havforskningsinstituttet og Fiskeridirektoratet på Dokken",
+    "summary_body": "Byrådet har besluttet å gå videre med tomtealternativ A og C for samlokalisering av Havforskningsinstituttet (HI) og Fiskeridirektoratet (Fdir) på Dokken. Alternativ B er forkastet på grunn av konflikter med rekreasjonsformål og havneaktivitet. Valget av tomt er viktig for utviklingen av Havbyen Bergen, og vil bidra til 1200 arbeidsplasser og et nytt byliv. Byrådet understreker behovet for å avklare risiko knyttet til vibrasjoner fra fremtidig bybane før endelig beslutning tas. Statsbygg forplikter seg til å følge kommunens bærekraftige utviklingsmål."
+  }
+}

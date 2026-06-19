@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:9509:64592:200817339:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:23:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document primarily consists of procedural approvals without significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av protokoll fra Hovedarbeidsmiljøutvalget",
+    "summary_body": "Hovedarbeidsmiljøutvalget har godkjent protokollen fra møtet den 23. februar 2012. I tillegg ble Eli Tysnes valgt som leder for 2012, med Torill Helland som vararepresentant. Utvalget har også vedtatt møteplanen for året, med møter planlagt 24. mai, 20. september og 22. november."
+  }
+}

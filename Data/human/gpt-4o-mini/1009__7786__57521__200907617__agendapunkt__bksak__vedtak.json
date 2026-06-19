@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7786:57521:200907617:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:38:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves significant public spending for a local school project, impacting the community."
+    },
+    "summary_headline": "22 millioner til ombygging av Gamle Ulriken skole til avlastningsskole",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 22 millioner kroner til ombygging av Gamle Ulriken skole til en avlastningsskole. Dette kommer i tillegg til tidligere bevilgede 10 millioner kroner, noe som gir en totalbevilgning på 32 millioner kroner. Prosjektet er en del av en større finansieringsplan i henhold til gjeldende budsjetter. Dette tiltaket vil ha direkte innvirkning på lokalsamfunnet ved å forbedre tilbudet til barn med spesielle behov."
+  }
+}

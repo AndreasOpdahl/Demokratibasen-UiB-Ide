@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9281:65401:200813094:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:21:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant expansion plans for Bergen Airport, impacting local infrastructure and cultural heritage."
+    },
+    "summary_headline": "Storslått utvidelse av Bergen Lufthavn Flesland godkjent av byrådet",
+    "summary_body": "Byrådet i Bergen har godkjent en reguleringsplan for utvidelse av Bergen Lufthavn Flesland, som inkluderer bygging av en ny terminal og tilknyttede fasiliteter. Planen, som omfatter et område på ca. 1.450 dekar, er nødvendig for å håndtere en forventet økning i passasjertrafikken fra 5 millioner i 2011 til 10 millioner i 2025. Utvidelsen vil medføre betydelige inngrep i landskapet, inkludert sprengning av Lilandshaugen og flytting av det kulturhistoriske Lønningen lyststed. Byrådet understreker viktigheten av avbøtende tiltak for å redusere miljøpåvirkningen. Planen er en del av Nasjonal Transportplan, og Avinor vil finansiere utbyggingen. Det er også innsigelser fra Vegkontoret og Forsvarsbygg, men disse er nå trukket. Neste steg er å avklare forholdet til offentlig veisystem og Kongshaugen før byggestart."
+  }
+}

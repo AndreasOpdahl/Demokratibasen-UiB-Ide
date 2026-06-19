@@ -1,0 +1,18 @@
+{
+  "dokument_id": "54573efb-e03b-561a-90bc-3829eb263446",
+  "kommune_nummer": 4641,
+  "kommune_navn": "Aurland",
+  "generated_at": "2026-02-19 23:02:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses adjustments in financial regulations that could impact municipal investments."
+    },
+    "summary_headline": "Justering av finansreglementet i Aurland kommune",
+    "summary_body": "Aurland kommune vurderer å justere finansreglementet for å rette opp inkonsistenser i tabellene for plassering av likviditet og langsiktig kapital. Kommunedirektøren foreslår endringer i rammer for investeringer, inkludert økning av bankinnskudd fra 0% til 30% for kortsiktig likviditet. Saken skal behandles i formannskapet før den avgjøres i kommunestyret. Dette kan påvirke hvordan kommunen forvalter sine midler og dermed også innbyggernes økonomiske interesser."
+  }
+}

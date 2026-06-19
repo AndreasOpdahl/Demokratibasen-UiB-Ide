@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7211:55785:200207111:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:36:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a regulatory plan proposal that may affect local residents, but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Reguleringsplan for Vestparken sendt til høring",
+    "summary_body": "Byrådet har besluttet å sende forslag til reguleringsplan for Vestparken og tilknyttede turveier i Laksevåg til høring i bydelsstyret. Planen omfatter eiendommene gnr-bnr 124-1, 125-209, 130-1 og er datert 01.06.04. Dette gir innbyggerne i Laksevåg mulighet til å gi innspill før endelig vedtak."
+  }
+}

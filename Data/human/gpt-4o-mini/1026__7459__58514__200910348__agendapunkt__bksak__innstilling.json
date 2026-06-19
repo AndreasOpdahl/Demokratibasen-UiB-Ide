@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7459:58514:200910348:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:19:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested decision regarding a floating dock that affects local land use and community access."
+    },
+    "summary_headline": "Klage på avslag om flytebrygge avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på Arnd Wilhelmsens søknad om flytebrygge ved Botnegrenda 51. Klagen ble avvist med begrunnelse i at tiltaket strider mot arealformålet og byggeforbudet i strandsonen. Fylkesmannen og fagetaten har også uttalt seg negativt til søknaden, og det er frykt for presedens for lignende saker. Klager mener at bryggen ikke vil medføre økt privatisering og at området historisk har vært brukt til slike tiltak. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

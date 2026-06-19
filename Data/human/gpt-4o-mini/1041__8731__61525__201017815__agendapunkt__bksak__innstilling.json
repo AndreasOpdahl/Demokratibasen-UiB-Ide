@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:8731:61525:201017815:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:12:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a meeting schedule for the election committee, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for Valgstyret 2011 vedtatt",
+    "summary_body": "Valgstyret har vedtatt møteplanen for 2011, med møter den 2. mai, 23. mai, 20. juni, og 15/16 september, med mulighet for endring av dato. Møtene vil bli avholdt i Teatersalen, en time før bystyremøtene."
+  }
+}

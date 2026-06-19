@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5175:48858:200400039:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:11:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a routine administrative response with no significant newsworthy elements."
+    },
+    "summary_headline": "Svar fra byrådet om Åsane Rideklubb",
+    "summary_body": "Byrådet har svart på en anmodning fra Hans E. Seim (H) angående Åsane 205/4 og Åsane Rideklubb. Saken ble behandlet av Komite for miljø og byutvikling i møte 08.11.07."
+  }
+}

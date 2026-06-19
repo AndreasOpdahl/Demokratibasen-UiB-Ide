@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5524:48016:200700449:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:29:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to uphold the building permit despite a complaint indicates local interest and potential community impact."
+    },
+    "summary_headline": "Klage på nybygg i Haukedalsbotn avvist av byrådet",
+    "summary_body": "Byrådet har behandlet en klage på tillatelsen til nybygg på Åsane, gnr. 187, bnr. 472, Haukedalsbotn. I møtet den 7. august 2022 ble det besluttet å opprettholde fagetatens vedtak fra 5. februar 2007, og klagen ble ikke tatt til følge. Dette kan påvirke lokalsamfunnet, da det åpner for videre bygging i området."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "204172:268367:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:05:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The sale of municipal shares in a toll company is relevant and involves significant public funds."
+    },
+    "summary_headline": "Bergen kommune selger aksjer i bompengeselskap for 427 200 kroner",
+    "summary_body": "Byrådet i Bergen har besluttet å selge kommunens aksjer i Bergen-Os bompengeselskap for 427 200 kroner. I møtet den 15. mars 2018 ble det godkjent en aksjekjøpsavtale, og byråd for byutvikling får fullmakt til å gjennomføre salget. Dette salget kan påvirke inntektene fra bompenger i kommunen."
+  }
+}

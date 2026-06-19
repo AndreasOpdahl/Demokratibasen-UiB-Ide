@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221718:1838122:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:45:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a legal review of a municipal decision, which has significant implications for local development and governance."
+    },
+    "summary_headline": "Lovlighetskontroll av bystyrets vedtak om byggje- og deleforbod i Fana",
+    "summary_body": "Utvalg for miljø og byutvikling skal behandle et krav om lovlighetskontroll av bystyrets vedtak i sak 110/20, som omhandler nedlegging av byggje- og deleforbod på Lilletveitvegen i Fana. Kravet er fremmet av representanter fra Høyre, FNB, Senterpartiet og Fremskrittspartiet, og ble mottatt 7. mai 2020, innen fristen. Bystyret skal ta stilling til om de opprettholder sitt vedtak eller om det skal oppheves, med behandling planlagt 24. juni 2020. Dette kan få betydelige konsekvenser for lokal utvikling og innbyggernes rettigheter."
+  }
+}

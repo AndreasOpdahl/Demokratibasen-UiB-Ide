@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2007:50765:110916:199409250:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:53:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant funding for a local infrastructure project, which impacts residents."
+    },
+    "summary_headline": "Bergen kommune bevilger 2,29 millioner til gang- og sykkelveg",
+    "summary_body": "Hovedutvalg for teknisk utbygging i Bergen kommune har enstemmig vedtatt å bevilge 2.290.000 kroner til bygging av gang- og sykkelveg mellom Søviktjern og Fanatorget. Prosjektet inkluderer også en kontrakt for belysning tildelt Siemens AS til 270.228 kroner. Dette tiltaket vil forbedre fremkommeligheten for fotgjengere og syklister i området, noe som er viktig for lokalbefolkningen."
+  }
+}

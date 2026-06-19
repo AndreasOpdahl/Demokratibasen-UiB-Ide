@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8203:59651:200809284:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:40:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a building permit after an appeal is significant for local residents."
+    },
+    "summary_headline": "Klage på avslag om tilbygg godkjent av Byrådet",
+    "summary_body": "Byrådet i Bergen har besluttet å oppheve et tidligere avslag på en søknad om tilbygg på Koren Wibergs Plass 3. Klagen ble behandlet i møte 10. september 2022, og Byrådet ga dispensasjon fra plankravet i kommuneplanen. Fagetaten vil nå følge opp saken med tiltakshaver og Riksantikvar i henhold til Kulturminneloven."
+  }
+}

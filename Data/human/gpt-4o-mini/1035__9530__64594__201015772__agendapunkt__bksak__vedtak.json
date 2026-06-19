@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:9530:64594:201015772:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:05:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposed development in a historical area, raising concerns about its impact on the local environment."
+    },
+    "summary_headline": "Kontroversiell ballbingeplan i historisk område på Nordnes",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet detaljreguleringen for en ny ballbinge ved Nordnesoppveksttun. De er positive til planformålet, men krever betydelige endringer for å tilpasse bygget til eksisterende bebyggelse. RBA fraråder plasseringen av ballbingen nær Nordnesparken, da det kan være uheldig i et så sentrumsnært og historisk område. Videre behandling av saken er ønsket."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:3793:36564:200012689:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:39:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant police reform proposal affecting local governance and community safety."
+    },
+    "summary_headline": "Laksevåg bydelsstyre støtter ny politistruktur for bedre samarbeid",
+    "summary_body": "Laksevåg bydelsstyre har sendt inn høringsuttalelse om ny struktur for driftsenhetene i Hordaland Politidistrikt, med frist 11. november 2003. Bydelsdirektøren, George Myhrvold, anbefaler at bydelen får en administrativ samarbeidspartner og at den nye driftsenheten følger bydelsgrensene. Bydelsstyret støtter også en enhet som inkluderer Fyllingsdalen og Laksevåg. Reformen har som mål å gjøre politiet mer effektivt og publikumsorientert, noe som er viktig for å utvikle trygge lokalsamfunn."
+  }
+}

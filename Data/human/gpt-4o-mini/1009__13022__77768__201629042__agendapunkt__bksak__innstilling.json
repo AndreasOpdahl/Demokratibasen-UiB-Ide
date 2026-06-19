@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13022:77768:201629042:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:54:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new alcohol license for a local restaurant, which is relevant to the community."
+    },
+    "summary_headline": "Enjoy Saigon Restaurant får ny skjenkebevilling",
+    "summary_body": "Byråden for helse og omsorg, Vigdis Anita Gåskjenn, innstiller på at Enjoy Saigon Restaurant i Klostergaten 2 får innvilget en alminnelig skjenkebevilling for alkoholholdig drikk gruppe 3. Søknaden ble sendt inn av Krishnasamy Nelson, og restauranten forventer at 80 % av omsetningen vil komme fra mat. Bevillingen gjelder for en periode frem til 30. juni 2020, og det er et krav om at gratis vann skal være tilgjengelig i lokalet."
+  }
+}

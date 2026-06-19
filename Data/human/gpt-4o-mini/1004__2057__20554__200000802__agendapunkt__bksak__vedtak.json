@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2057:20554:200000802:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:22:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to build a new school in Sandviken is significant for local residents and addresses pressing capacity issues."
+    },
+    "summary_headline": "Bergenhus bydelsstyre vedtar bygging av ny skole i Sandviken",
+    "summary_body": "Bergenhus bydelsstyre har enstemmig vedtatt å bygge en ny skole i Sandviken for å håndtere kapasitetsproblemer i området. Forslaget ble fremmet av Tore Lervik (Ap) og inkluderer opprettelse av en grendeskole for 1. til 4. klassetrinn og et ungdomstrinn på Møhlenpris skole. Bydelsstyret ber også om at administrasjonen vurderer lokaliseringen av den nye skolen, med mål om ferdigstillelse innen høsten 2002. Dette tiltaket er viktig for å sikre et bedre skoletilbud for barn i Sandviken."
+  }
+}

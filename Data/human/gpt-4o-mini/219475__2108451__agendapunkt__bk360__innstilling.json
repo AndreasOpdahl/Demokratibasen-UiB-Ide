@@ -1,0 +1,18 @@
+{
+  "dokument_id": "219475:2108451:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:41:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines the appointment of members to various municipal boards and councils, which has local relevance and potential impact."
+    },
+    "summary_headline": "Byrådet oppnevner medlemmer til viktige styrer og utvalg i Bergen",
+    "summary_body": "Byrådet i Bergen har foreslått oppnevning av medlemmer til flere styrer, råd og utvalg for perioden 2019-2023. Blant de foreslåtte medlemmene er representanter fra ulike partier, inkludert Arbeiderpartiet, Høyre, og Miljøpartiet De Grønne. Fremskrittspartiet har ikke meldt inn kandidater til denne saken. Oppnevningene inkluderer blant annet Bergen og Omland Friluftsråd og Inspeksjonen for St. Jørgen hospital. Det er også presisert at det skal være kjønnsbalanse i representasjonen. Neste steg er at bystyret skal fatte endelig vedtak om oppnevningene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:8896:62206:201100104:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:55:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a meeting schedule for a council, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for eldrerådet høst 2011 vedtatt",
+    "summary_body": "Eldrerådet har vedtatt møteplanen for høsten 2011, med møter den 22. september, 20. oktober og 1. desember. Møtene er planlagt for å koordinere med Komite for helse og sosial. Dette er det siste halvåret for eldrerådet i denne kommunestyreperioden."
+  }
+}

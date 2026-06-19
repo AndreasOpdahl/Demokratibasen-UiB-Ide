@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:12416:77437:201600156:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:54:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document addresses a relevant issue regarding the waiting list for nursing home placements, which affects local residents."
+    },
+    "summary_headline": "Venteliste for sykehjemsplasser informeres til Bystyret",
+    "summary_body": "Eldrerådet har besluttet å sende et brev til politiske partier i Bergen bystyret for å informere om antall personer som venter på sykehjemsplass. Dette ble besluttet etter en orientering fra Byrådsavdeling for helse og omsorg. Brevet skal legges frem for vedtak den 23. november 2016."
+  }
+}

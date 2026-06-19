@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4878:46059:200613653:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:58:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses changes to the committee structure in the city council, which may affect local governance."
+    },
+    "summary_headline": "Endringer i bystyrekomiteenes sammensetning vedtatt",
+    "summary_body": "Bergen bystyre har besluttet å endre reglementet for bystyrekomiteene, som nå skal ha minst 15 medlemmer. Dette ble foreslått av bystyredirektøren Roar Kristiansen etter at det ble vurdert å utvide antallet medlemmer i KMBY til 17, men behovet ble ansett som unødvendig. Endringen innebærer at medlemmer og varamedlemmer i komiteene fortrinnsvis skal velges blant bystyrets medlemmer. Dette kan påvirke hvordan komiteene fungerer og representerer innbyggerne i Bergen."
+  }
+}

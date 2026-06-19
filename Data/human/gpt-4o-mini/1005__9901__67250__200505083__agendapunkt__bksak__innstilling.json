@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9901:67250:200505083:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:24:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant compensation payments related to a public health crisis affecting thousands of residents."
+    },
+    "summary_headline": "Bergen kommune rapporterer om erstatningsutbetalinger etter Giardia-epidemien",
+    "summary_body": "Bergen kommune har nå utbetalt erstatninger på ca. 35 millioner kroner til ofre for Giardia-epidemien fra 2004, som smittet 5000-6000 personer via drikkevannet. Kommunen erkjenner ansvar og har behandlet 493 erstatningssøknader, hvorav 421 har fått utbetaling. 63% av utbetalingene er under 10.000 kroner, knyttet til mindre refusjoner. Det gjenstår tre saker uten løsning, som vil bli håndtert av Kommuneadvokaten. Byrådet anbefaler at bystyret tar statusrapporten til orientering."
+  }
+}

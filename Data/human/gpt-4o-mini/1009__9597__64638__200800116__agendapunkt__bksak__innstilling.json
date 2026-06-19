@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9597:64638:200800116:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:46:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to deny a new outdoor serving license for alcohol near a school raises community concerns."
+    },
+    "summary_headline": "Søknad om uteservering ved Pedersen Caféen avslått på grunn av nærhet til barneskole",
+    "summary_body": "Byrådet har avslått søknaden om uteservering av alkoholholdig drikk ved Pedersen Caféen på Wolffsgt. 12. Søknaden ble innsendt 2. februar 2012, men byrådsleder Monica Mæland argumenterer for at uteserveringen, som omfatter 18 m² med 18 gjesteplasser, ikke kan innvilges på grunn av den fysiske nærheten til en barneskole og idrettsplass. Dette kan ha negative konsekvenser for barn og unge i området. Tidligere søknad om uteservering ble også avslått i 2008 av lignende grunner."
+  }
+}

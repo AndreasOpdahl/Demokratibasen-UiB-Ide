@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1015:3134:31430:200100700:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:19:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal to establish a service center in Fyllingsdalen is significant for local residents, addressing accessibility to public services."
+    },
+    "summary_headline": "Fyllingsdalen bydelsstyre avviser fullt servicekontor, men etablerer informasjonssenter",
+    "summary_body": "Fyllingsdalen bydelsstyre har besluttet å ikke etablere et fullt utbygget servicekontor av økonomiske og praktiske grunner. I stedet vil det bli opprettet et mindre informasjonssenter i Oasen helse- og sosialsenter, kombinert med en felles resepsjon. Dette tiltaket er en del av Byrådets mål om å forbedre tilgjengeligheten til kommunale tjenester. Kostnaden for ominnredningen er estimert til 530.447 kroner. Det er tydelig at det er behov for bedre samordning av offentlige tjenester i Fyllingsdalen, hvor mange tjenester i dag er spredt og vanskelig tilgjengelige."
+  }
+}

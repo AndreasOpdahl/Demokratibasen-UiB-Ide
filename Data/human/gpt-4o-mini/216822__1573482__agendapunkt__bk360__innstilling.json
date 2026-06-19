@@ -1,0 +1,18 @@
+{
+  "dokument_id": "216822:1573482:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:37:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document highlights a significant issue regarding the implementation of the 'kjærlighetsgaranti' for couples in nursing homes, which affects local residents."
+    },
+    "summary_headline": "Kjærlighetsgaranti for ektepar på sykehjem ikke etterlevd",
+    "summary_body": "Bystyret har diskutert 'kjærlighetsgaranti' som skal sikre at ektepar kan bo sammen på sykehjem, men det er rapportert om manglende etterlevelse. Hilde Onarheim (H) stiller spørsmål om hvordan kommunen informerer om mulighetene for samboere og ektepar, samt antall forespørsel om å bo sammen som har blitt avslått. En trist enkeltsak nevnes, der et ektepar som har vært sammen i 72 år, ikke får tilrettelagt for å spise sammen på sykehjemmet. Dette reiser spørsmål om kommunens praksis og støtte til eldre par."
+  }
+}

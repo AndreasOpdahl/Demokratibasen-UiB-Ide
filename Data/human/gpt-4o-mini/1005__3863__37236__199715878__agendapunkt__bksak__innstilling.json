@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:3863:37236:199715878:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:49:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant regulatory plan for a new railway route that will impact local transportation and infrastructure."
+    },
+    "summary_headline": "Reguleringsplan for ny jernbanetrasé mellom Trengereid og Takvam vedtatt av byrådet",
+    "summary_body": "Byrådet har anbefalt at bystyret vedtar reguleringsplanen for omlegging og opprustning av jernbanetraseen mellom Trengereid og Takvam. Planen inkluderer bygging av en ny tunnel for høyhastighetstog og vil medføre riving av ett bolighus. Det er ikke avsatt midler til tiltaket i Norsk Transportplan for 2002-2011, men byrådet mener at avklaring av planen kan bidra til prioritering av prosjektet. Planen har vært under behandling siden 1991, og det er nå foreslått at bystyret fatter endelig vedtak."
+  }
+}

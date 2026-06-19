@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:6376:52156:200719885:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:15:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document contains a minority opinion and a call for greater public involvement in urban development, indicating local political engagement."
+    },
+    "summary_headline": "Politisk debatt om lokalsentre og bybaneknutepunkt i Bergen",
+    "summary_body": "Komite for miljø og byutvikling har behandlet saken om lokalsentre og bybaneknutepunkt, men fattet kun en orientering. Ruth Grung (A) og Lillian Blom (SV) fremmet merknader som understreker behovet for tidlig involvering av komiteen og bydelsstyrene i prosessen. Grung og Blom fikk støtte fra flere partier, men et tilleggsforslag fra Kjersti Toppe (Sp) om å fremlegge strategiprogrammet for komiteen ble ikke vedtatt. Saken vil bli videre behandlet i KMBY-møte 15. januar 2009."
+  }
+}

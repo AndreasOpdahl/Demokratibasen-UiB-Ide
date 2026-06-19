@@ -1,0 +1,18 @@
+{
+  "dokument_id": "159f99e1-4cfa-5d9d-b474-63f2712710e8",
+  "kommune_nummer": 4626,
+  "kommune_navn": "Øygarden",
+  "generated_at": "2026-02-19 20:28:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a local construction project that may affect property owners, but lacks significant controversy or financial implications."
+    },
+    "summary_headline": "Bygging av vei godkjent i Anglevik",
+    "summary_body": "Kåre Furuholm har fått tillatelse til å bygge deler av veien KV 2 inn på sin eiendom gnr. 37, bnr. 7, med støtte fra Vidar Moen, eier av eiendom gnr. 37, bnr. 38. Byggingen skal skje i henhold til kart datert 17. juni 2024, og det er spesifisert at eksisterende avløpsledninger ikke skal skades. Prosjektet er lokalt relevant for berørte eiendomseiere."
+  }
+}

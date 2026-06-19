@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240153:4443869:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:29:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the municipal right of first refusal on a property sale, which is relevant to local housing issues."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på Fosswinckels gate 50A",
+    "summary_body": "Byrådet i Bergen har besluttet å ikke benytte seg av kommunal forkjøpsrett ved salget av eiendommen Fosswinckels gate 50A, som eies av Fosswinckelsgate 50A AS. Kjøpesummen for aksjene er NOK 22 750 000. Ingen leietakere har uttrykt ønske om at kommunen skal benytte forkjøpsretten, og høringsinstanser anbefalte også avslag. Byråden for kultur, sosial og inkludering, Katrine Berg Nødtvedt, støtter denne avgjørelsen. Dette kan påvirke boligmarkedet i området, da eiendommen har seks utleieboliger."
+  }
+}

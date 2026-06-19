@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:10600:69112:201123000:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:53:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a denied application for a garage extension, which affects local residents and has some political discussion."
+    },
+    "summary_headline": "Klage på avslag om påbygg av bod på garasje i Fyllingsdalen avvist",
+    "summary_body": "Komite for miljø og byutvikling har avvist en klage på avslag om påbygg av bod på garasje i Fyllingsdalen. I møtet 6. februar 2014 ble det besluttet at fagetatens vedtak fra 20. februar 2012 opprettholdes, da tiltaket ble ansett som for stort. Komiteen, ledet av Geir Steinar Dale (A), uttrykte imidlertid støtte for en ny søknad om en mindre bod. Saken ble behandlet enstemmig, og det er nå mulighet for å vurdere en revidert søknad."
+  }
+}

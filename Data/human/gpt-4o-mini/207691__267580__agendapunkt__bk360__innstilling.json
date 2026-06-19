@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207691:267580:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:14:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested expropriation case that affects local property owners and development plans."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på ekspropriasjonssøknad i Nyhavn",
+    "summary_body": "Byrådet i Bergen har besluttet å opprettholde sitt avslag på T. Brynjulfsen Næring AS sin søknad om ekspropriasjon av eiendommer i Nyhavn, som er nødvendig for å etablere veiadkomst til et utbyggingsprosjekt med flere hundre boliger. Klagen fra T. Brynjulfsen Næring AS ble ikke tatt til følge, da byrådet, støttet av kommuneadvokaten, mente at reguleringsplanen ikke gir tilstrekkelig grunnlag for ekspropriasjon. Sameiet Hegrenesveien 2 og Nyhavn Eiendom AS har også uttrykt motstand mot ekspropriasjonen. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

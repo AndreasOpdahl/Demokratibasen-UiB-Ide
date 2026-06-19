@@ -1,0 +1,18 @@
+{
+  "dokument_id": "0507a43a-b415-50e3-b62d-41d5481ef88e",
+  "kommune_nummer": 4618,
+  "kommune_navn": "Ullensvang",
+  "generated_at": "2026-02-19 14:30:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The application for a snowmobile trail is significant for local recreation and has broad community support."
+    },
+    "summary_headline": "Røldal Snøskuterklubb søker om skuterløype i Valldalen",
+    "summary_body": "Røldal Snøskuterklubb har sendt inn en søknad til Ullensvang kommune om å etablere en skuterløype for rekreasjonskjøring i Valldalen. Søknaden er basert på endringer i motorferdselloven som gir kommunestyret myndighet til å fastsette slike løyper. Klubben har fått positiv respons fra Røldal Grunneigarlag og berørte grunneiere. Løypen vil gi innbyggere og hytteeiere mulighet til lovlig ferdsel i området, og bidra til økt aktivitet og rekreasjon for både lokale og turister. Det er også forventet at dette vil lette arbeidet for SNO og politi ved å regulere motorisert ferdsel. Røldal Snøskuterklubb håper på en positiv behandling av søknaden fra kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211242:1024002:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:22:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses a significant policy change regarding the prohibition of private benefits for elected officials, which has local relevance and impact."
+    },
+    "summary_headline": "Bergen kommune innfører forbud mot private bonusfordeler for folkevalgte",
+    "summary_body": "Bergen kommune har besluttet at folkevalgte ikke lenger skal kunne registrere eller ta ut private bonusfordeler opparbeidet gjennom tjeneste for kommunen. Dette forbudet, som også gjelder for ansatte, trer i kraft fra 1. januar 2019, og er innført for å opprettholde en høy etisk standard og unngå skatteunndragelser. Folkevalgte må selv holde orden på eventuelle opptjente bonuspoeng og rapportere dette til Bystyrets kontor eller Byrådsleders avdeling. Dette tiltaket er en del av kommunens retningslinjer for innkjøp og bestillinger."
+  }
+}

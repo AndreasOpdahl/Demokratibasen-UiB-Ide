@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4735:42947:200500443:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:20:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to sell Forum kino and terminate the lease is significant due to its impact on local cinema operations and potential financial savings."
+    },
+    "summary_headline": "Bergen kino AS får avslutte leieforholdet for Forum kino",
+    "summary_body": "Byrådet i Bergen har besluttet å gi Bergen kino AS muligheten til å avslutte leieforholdet for Forum kino på Fjøsangerveien 28. Dette skjer etter at kinoen har vært stengt uten negative konsekvenser for kinobesøket i byen. Finansbyråden Henning Warloe foreslår at bygget selges på det åpne markedet, da driftskostnadene er høye og bygget krever betydelige investeringer. Bergen kino AS anslår at de kan spare 5 millioner kroner årlig ved å avslutte leieforholdet. Salget av Forum kino vil bli håndtert av finansbyråden, og en ny leieavtale for de øvrige eiendommene vil bli inngått etter salget."
+  }
+}

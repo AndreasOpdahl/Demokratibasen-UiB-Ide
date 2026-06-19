@@ -1,0 +1,18 @@
+{
+  "dokument_id": "236278:3727512:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:20:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises important questions about youth services in Bergen, highlighting a potential need for expansion."
+    },
+    "summary_headline": "Spørsmål om utvidelse av Ung Arena for ungdom i Bergen",
+    "summary_body": "Torunn Remme (FP) har stilt spørsmål til byråden om muligheten for å etablere flere Ung Arena-enheter i Bergen, et tilbud for ungdom som tilbyr hjelp med jobbsøking, økonomi og mer. Remme påpeker at det kun finnes én enhet på Nesttun, til tross for økt behov etter COVID-19. Hun spør også om eksisterende helsetjenester er tilstrekkelige for barn og unge. Dette reiser viktige spørsmål om ungdomshelse og tilgjengelighet i kommunen."
+  }
+}

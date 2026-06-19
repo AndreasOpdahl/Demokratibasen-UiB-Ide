@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3221:31573:200206522:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:27:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant decision regarding school quality and governance in Bergenhus, which affects local residents."
+    },
+    "summary_headline": "Bergenhus bydelsstyre vedtar økt selvstyre for grunnskolene",
+    "summary_body": "Bergenhus bydelsstyre har enstemmig vedtatt å ta saken om kvalitet i grunnskolen til orientering. I tillegg ble et forslag fra Høyre om økt selvstyre for skolene vedtatt med 7 mot 5 stemmer. Dette innebærer at hver skole får mer frihet til å utvikle seg basert på egne forutsetninger, samtidig som ekstern evaluering skal sikre kvaliteten. Dette vedtaket kan påvirke hvordan skolene i Bergenhus drives og hvordan foreldre kan velge skole for sine barn."
+  }
+}

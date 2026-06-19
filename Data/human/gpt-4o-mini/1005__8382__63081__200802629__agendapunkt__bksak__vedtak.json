@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8382:63081:200802629:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:19:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to outsource municipal auditing services is significant and has implications for local governance and employment."
+    },
+    "summary_headline": "Bergen kommune outsourcer revisjonstjenester til ekstern leverandør",
+    "summary_body": "Bergen bystyre har besluttet å konkurranseutsette revisjonstjenester som i dag utføres av kommunerevisjonen. Kontrollutvalget får fullmakt til å engasjere en ekstern leverandør basert på kriteriene pris, kompetanse og leveringshastighet. Dette vedtaket ble fattet med 33 stemmer fra Høyre, Fremskrittspartiet og Kristelig Folkeparti, mens et alternativt forslag fra Arbeiderpartiet og samarbeidspartiene falt med 32 stemmer. Nyordningen trer i kraft etter at dagens kommunerevisjon har avsluttet sitt arbeid for driftsåret 2011, noe som kan påvirke ansatte i revisjonen."
+  }
+}

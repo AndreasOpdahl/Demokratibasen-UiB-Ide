@@ -1,0 +1,18 @@
+{
+  "dokument_id": "200895:219719:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:55:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document involves a private initiative for a zoning plan that was halted, which may interest local residents."
+    },
+    "summary_headline": "Privat reguleringsplan stanset av byrådet",
+    "summary_body": "Byrådet i Bergen har besluttet å stanse et privat initiativ for detaljreguleringsplan for eiendommen på Svartediksveien 23 C, 25 og Stemmeveien 50. Beslutningen ble fattet under møtet den 5. oktober 2017, med hjemmel i plan- og bygningsloven. Dette kan påvirke fremtidige utviklingsmuligheter i området."
+  }
+}

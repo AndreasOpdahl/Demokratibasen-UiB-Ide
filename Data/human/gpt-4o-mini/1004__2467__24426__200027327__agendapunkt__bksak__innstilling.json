@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2467:24426:200027327:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:24:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses updates to a municipal sports and recreation plan, which is relevant but lacks immediate controversy or significant financial implications."
+    },
+    "summary_headline": "Bergenhus bydelsstyre ajourfører kommunedelplan for idrett og friluftsliv",
+    "summary_body": "Bergenhus bydelsstyre har fått oversikt over handlingsprogrammet for anlegg og områder for idrett og friluftsliv, samt søknader om spillemidler for 2001. Prioritering av søknadene vil bli gjort av byrådet i midten av desember, i sammenheng med økonomiplanen. Bydelsstyrene vil få en mer aktiv rolle i prioriteringen ved rulleringen av planen i 2002. Dette kan påvirke lokale idretts- og friluftslivstiltak i Bergenhus."
+  }
+}

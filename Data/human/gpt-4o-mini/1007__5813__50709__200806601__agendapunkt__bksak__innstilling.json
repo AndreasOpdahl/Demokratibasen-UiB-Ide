@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:5813:50709:200806601:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:30:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document presents the annual financial results of the harbor authority, which is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "Bergen og Omland havnestyre godkjenner årsregnskap med overskudd",
+    "summary_body": "Bergen og Omland havnestyre har godkjent årsregnskapet for 2007, som viser et overskudd på 1.637.734,93 kroner. Overskuddet er planlagt brukt til fremtidige kapitalformål. Vedtaket er betinget av at Bergen kommunerevisjon ikke fremkommer med merknader av betydning. Havnestyret anbefaler at Havnerådet godkjenner regnskapet som fremlagt."
+  }
+}

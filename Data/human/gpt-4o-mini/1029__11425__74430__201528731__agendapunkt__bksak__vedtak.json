@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:11425:74430:201528731:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:29:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a procedural decision by a municipal control committee, which is of limited local interest."
+    },
+    "summary_headline": "Kontrollutvalget godkjenner bestilling i Bergen havn",
+    "summary_body": "Kontrollutvalget i Bergen har enstemmig vedtatt å gi leder og nestleder fullmakt til å utforme og gjennomføre en bestilling i samarbeid med utvalgets sekretariat. Møtet ble lukket etter forespørsel fra lederen Robert Monsen (H)."
+  }
+}

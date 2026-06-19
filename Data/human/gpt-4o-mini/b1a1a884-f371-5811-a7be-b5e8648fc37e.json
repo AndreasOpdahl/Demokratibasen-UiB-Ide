@@ -1,0 +1,18 @@
+{
+  "dokument_id": "b1a1a884-f371-5811-a7be-b5e8648fc37e",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:16:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant challenges in elderly care, including staffing shortages and budget allocations, which directly impact local residents."
+    },
+    "summary_headline": "Bergen kommune styrker bemanningen i sykehjem med 40 millioner kroner",
+    "summary_body": "Bergen kommune rapporterer om alvorlige bemanningsutfordringer i sykehjemmene, med 123 vakante årsverk og høyt sykefravær. For å møte disse utfordringene, foreslår byrådet å styrke grunnbemanningen med 40 millioner kroner i 2024, for å ansette servicemedarbeidere som kan avlaste sykepleiere og helsefagarbeidere. Dette tiltaket er avgjørende for å sikre kvaliteten på omsorgen for eldre, ettersom antallet eldre med behov for helsehjelp øker. Byrådet innstiller til bystyret å ta statusmeldingen for sykehjem, behandlingssentre og allmennmedisinsk sengepost 2023 til orientering."
+  }
+}

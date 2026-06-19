@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8384:61717:200717715:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:19:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to the powers of the municipal council, which directly impacts local governance and citizen engagement."
+    },
+    "summary_headline": "Revisjon av byrådets fullmakter kan endre kommunal styring",
+    "summary_body": "Byrådet har lagt frem en sak for bystyret om revisjon av byrådets fullmakter, som ble vedtatt første gang i 2006. Endringene er nødvendige for å klargjøre og presisere byrådets myndighet, spesielt etter nedleggelsen av bydelsstyrene. Bystyret skal ta stilling til forslaget i sitt neste møte, og det er viktig for innbyggerne i Bergen å følge med på hvordan dette kan påvirke den politiske styringen og tjenestene i kommunen."
+  }
+}

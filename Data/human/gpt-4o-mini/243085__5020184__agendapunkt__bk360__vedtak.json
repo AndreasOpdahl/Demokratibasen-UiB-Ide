@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243085:5020184:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:36:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the location and design of mental health facilities for youth, which is relevant and impactful for the community."
+    },
+    "summary_headline": "Ungdomsrådet foreslår viktige kriterier for nye psykisk helse-lokaler",
+    "summary_body": "Ungdomsrådet i Bergen vest har behandlet saken om lokalisering av nye psykisk helse-lokaler for ungdom. De understreker viktigheten av at lokalene ligger nær kollektivtransport, men samtidig er skjermet fra innsyn og store folkemengder. Rådet mener at bygget bør være innbydende og ha et godt uteområde for å gjøre det lettere for ungdom å oppsøke hjelp. Det ble ikke fremmet noe konkret forslag til vedtak under møtet den 1. februar 2023."
+  }
+}

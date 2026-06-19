@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:11231:71920:201206485:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:54:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The case involves a rejected application for a housing permit, but lacks significant conflict or public impact."
+    },
+    "summary_headline": "Klage på avslag om enebolig i Ytrebygda avvist",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig avvist en klage på avslag på søknad om endring av rammetillatelse for oppføring av enebolig på Hjellestadvegen 191. Fagetatens vedtak fra 11. februar 2014 opprettholdes, og ingen representanter fra komiteen tok ordet under behandlingen."
+  }
+}

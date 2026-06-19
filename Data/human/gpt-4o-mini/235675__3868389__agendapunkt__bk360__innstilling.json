@@ -1,0 +1,18 @@
+{
+  "dokument_id": "235675:3868389:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:18:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant ongoing issues regarding illegal constructions in the coastal zone, which affects many residents."
+    },
+    "summary_headline": "Bergen kommune vurderer ulovlige tiltak i strandsonen",
+    "summary_body": "Byrådet i Bergen har lagt frem en orientering om strandsoneprosjektet og tilsynspraksis i kommunen, som omhandler oppfølging av ulovlige tiltak i strandsonen. Det er identifisert ca. 200 saker som gjenstår fra prosjektet, hvorav mange er ulovlige brygger og mindre bygg. Byrådet understreker at kommunen har en lovpålagt plikt til å følge opp ulovligheter, og at det ikke er mulig å innvilge et generelt amnesti for slike tiltak. Det er også påpekt at saksbehandlingstiden har vært lang, men at det nå er tilført ressurser for å håndtere de gjenstående sakene. Dette kan påvirke mange eiendomseiere langs kysten i Bergen."
+  }
+}

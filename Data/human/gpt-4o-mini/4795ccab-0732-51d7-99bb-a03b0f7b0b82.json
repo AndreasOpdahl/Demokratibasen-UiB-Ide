@@ -1,0 +1,18 @@
+{
+  "dokument_id": "4795ccab-0732-51d7-99bb-a03b0f7b0b82",
+  "kommune_nummer": 4616,
+  "kommune_navn": "Tysnes",
+  "generated_at": "2026-02-19 23:00:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant urban development plan that has local relevance and potential positive impacts on the community."
+    },
+    "summary_headline": "Ungdomsrådet støtter detaljreguleringsplan for Mandelhuset",
+    "summary_body": "Ungdomsrådet har i møte 24. september 2025 diskutert detaljreguleringsplanen for Mandelhuset og gir sin støtte til planen. Rådet mener at prosjektet vil gjøre Våge mer attraktivt for både ungdom og turister, og vil bidra til flere sommerjobber for ungdom. De ser positivt på at det nye torgområdet kan bli en inkluderende møteplass. Rådet er også enige om at de nye bygningene bør ha samme stil som Mandelhuset for å bevare områdets særpreg. Til tross for forventet bygge-støy, vurderer de fordelene som større enn ulempene."
+  }
+}

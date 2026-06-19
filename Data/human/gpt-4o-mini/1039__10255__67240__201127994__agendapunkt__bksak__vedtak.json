@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1039:10255:67240:201127994:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:06:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains updates on various projects but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Ungdommens bystyre diskuterer flere prosjekter",
+    "summary_body": "Ungdommens bystyre behandlet flere saker i sitt møte 7. mai. Narve Nilssen orienterte om muligheten for oppfølging av Affo-saken, men det ble besluttet å la den ligge for nå. Det ble også besluttet å nedsette en prosjektgruppe for Haukeland, som vil møtes etter UB-møtet. Videre ønsker UB å samarbeide med Rafto om et prosjekt, men venter på konkretisering fra Rafto. I tillegg skal UB samarbeide med byrådsavdelingen for sosial, bolig og områdesatsing om et prosjekt i Romania, også her avventes konkretisering."
+  }
+}

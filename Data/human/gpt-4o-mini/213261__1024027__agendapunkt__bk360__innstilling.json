@@ -1,0 +1,18 @@
+{
+  "dokument_id": "213261:1024027:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:29:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant architectural strategy for Bergen that impacts urban development and community engagement."
+    },
+    "summary_headline": "Bergen kommune ruller ut ny arkitekturstrategi for bærekraftig byutvikling",
+    "summary_body": "Byrådet i Bergen har foreslått en ny arkitektur- og byformingsstrategi, Arkitektur+, som skal styrke byens utvikling i tråd med visjonene i Bergen2030. Strategien fokuserer på bærekraftig byutvikling og inkluderer delmål som helhetlig utforming, estetisk opplevelse, og sosial bærekraft. Det er bred politisk enighet om strategien, som også involverer medvirkning fra ulike aktører i byutviklingen. Byrådet anbefaler at strategien vedtas og at arbeidet med digitalisering av dokumentet igangsettes for å gjøre det mer tilgjengelig. Dette tiltaket er viktig for å sikre at Bergen forblir en attraktiv og inkluderende by for innbyggerne."
+  }
+}

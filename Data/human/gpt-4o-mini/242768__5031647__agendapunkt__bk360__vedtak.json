@@ -1,0 +1,18 @@
+{
+  "dokument_id": "242768:5031647:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:35:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine inquiry without significant newsworthy elements."
+    },
+    "summary_headline": "MDG stiller spørsmål om aktivitetskortet",
+    "summary_body": "Thor Haakon Bakke fra MDG har stilt et skriftlig spørsmål til Utvalg for finans, kultur og næring angående aktivitetskortet og hensyn til barns behov. Spørsmålet vil bli besvart skriftlig."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:4725:42881:200400180:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:11:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The appointment of a new deputy member is routine but relevant to local political dynamics."
+    },
+    "summary_headline": "Sølvi Lillejord blir nytt varamedlem for Arbeiderpartiet i Bergen",
+    "summary_body": "Valgstyret i Bergen har enstemmig vedtatt å utnevne Sølvi Lillejord som nytt varamedlem for Det Norske Arbeiderparti i bystyret. Dette skjer i forbindelse med Anne-Grete Strøm-Erichsens fritak. Utnevnelsen er en del av den politiske strukturen i kommunen, men har begrenset umiddelbar innvirkning på innbyggerne."
+  }
+}

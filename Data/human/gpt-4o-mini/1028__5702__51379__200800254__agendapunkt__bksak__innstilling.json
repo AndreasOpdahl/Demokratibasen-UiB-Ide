@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1028:5702:51379:200800254:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:27:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a planned site visit to assess accessibility improvements in Bergen, which is relevant to local residents."
+    },
+    "summary_headline": "Befaring for bedre tilgjengelighet i Bergen sentrum",
+    "summary_body": "Kommunalt råd for funksjonshemmede planlegger en befaring i Bergen sentrum den 10. september for å følge opp Tilgjengelighetsmeldingen fra 2005. Rådet ønsker å samarbeide med relevante kommunale instanser for å vurdere omleggingene av gateløp, spesielt i områdene Vaskerelven, Håkonsgaten og Nygårdsgaten. En rapport fra befaringen vil bli utarbeidet for videre behandling i kommunale organer, med fokus på brukermedvirkning og forbedring av tilgjengelighet."
+  }
+}

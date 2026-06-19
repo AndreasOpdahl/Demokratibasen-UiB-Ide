@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:11016:70024:201400146:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:53:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document is a routine meeting agenda with no significant newsworthy elements."
+    },
+    "summary_headline": "",
+    "summary_body": "Dokumentet er en agenda for Eldrerådet, hvor eventuelle saker skal fremlegges i møtet den 24. mars 2014."
+  }
+}

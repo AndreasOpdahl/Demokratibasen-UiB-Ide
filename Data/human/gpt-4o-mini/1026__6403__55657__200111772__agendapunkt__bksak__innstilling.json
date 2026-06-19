@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:6403:55657:200111772:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:16:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a contested building project with significant local opposition and potential impact on the community."
+    },
+    "summary_headline": "Byrådet avviser klage på byggesak i Kalfarveien",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på byggesøknaden for et nytt boligbygg med 7 leiligheter i Kalfarveien 75. Klagen ble fremmet av ansvarlig søker Knut Wiborg etter at naboer, inkludert Torgeir Larsen og Nina Eikeland, tidligere har uttrykt bekymringer om byggets påvirkning på området. Fagetaten anbefaler at klagen ikke tas til følge, og byrådet støtter denne vurderingen. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

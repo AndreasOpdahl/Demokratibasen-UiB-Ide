@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3378:35409:200304422:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines a significant regulatory plan affecting local educational facilities and historical preservation."
+    },
+    "summary_headline": "Reguleringsplan for Årstadveien 25 kan gi bedre plass til Alrekstad skole",
+    "summary_body": "Bergenhus bydelsstyre har fått varsel om oppstart av reguleringsplan for Årstadveien 25, hvor Statsbygg ønsker å rive Preklinisk institutt for å gi plass til nye lokaler for Odontologisk institutt. Planen vil også vurdere trafikkforhold og verneinteresser, samt muligheten for å gi Alrekstad skole bedre plass, potensielt i form av et grøntanlegg. Dette tiltaket kan ha stor betydning for både skolemiljøet og bevaring av historiske verdier i området."
+  }
+}

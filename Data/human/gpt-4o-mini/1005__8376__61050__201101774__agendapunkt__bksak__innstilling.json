@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8376:61050:201101774:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:17:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine change in committee membership without significant impact or controversy."
+    },
+    "summary_headline": "Endringer i KrFs varamedlemmer i bykomiteer",
+    "summary_body": "Kristelig folkeparti har foreslått endringer i sammensetningen av varamedlemmer i Komite for helse og sosial og Komite for kultur, idrett og næring. Harald Myklebust flyttes fra Komite for helse og sosial til Komite for kultur, idrett og næring, mens Ella Ystebø flyttes i motsatt retning. Endringene gjelder for resten av valgperioden 2007-2011."
+  }
+}

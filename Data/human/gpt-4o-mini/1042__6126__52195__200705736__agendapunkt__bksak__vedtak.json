@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:6126:52195:200705736:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:15:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details a unanimous decision on a complaint regarding a terrace construction, which is of limited local interest."
+    },
+    "summary_headline": "Ytrebygda bydelsstyre avviser klage på terrassebygging",
+    "summary_body": "Ytrebygda bydelsstyre har behandlet en klage om avslag på oppføring av terrasse på Råtun 24 E. I møtet den 8. oktober 2008 ble det enstemmig besluttet å opprettholde det tidligere vedtaket fra 31. mars 2008, og klagen ble ikke tatt til følge."
+  }
+}

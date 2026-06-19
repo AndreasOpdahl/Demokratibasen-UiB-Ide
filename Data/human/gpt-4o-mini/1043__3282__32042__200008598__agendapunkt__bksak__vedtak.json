@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:3282:32042:200008598:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:18:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves a significant change to a local property, which affects residents and has seen political division."
+    },
+    "summary_headline": "Årstad bydelsstyre godkjenner tilbygg etter klage",
+    "summary_body": "Årstad bydelsstyre har besluttet å godkjenne et tilbygg på Roald Amundsens vei 21, til tross for tidligere avslag. Dette ble vedtatt etter en klage fra eierne, hvor forslaget fra Lill Karin Dale (FRP) fikk flertall med 11 stemmer. Det ble også fremmet et forslag om utsettelse av saken, men dette ble nedstemt. Beslutningen kan påvirke nabolaget, ettersom det innebærer endringer i bygningens struktur."
+  }
+}

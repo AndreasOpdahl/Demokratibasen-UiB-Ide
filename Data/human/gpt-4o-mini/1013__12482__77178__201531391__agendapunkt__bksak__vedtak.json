@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:12482:77178:201531391:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:02:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions without significant impact or controversy."
+    },
+    "summary_headline": "Saker fordelt til komiteene i byrådsmøte",
+    "summary_body": "Byrådet har fordelt flere saker til ulike komiteer under møtet den 25. oktober. Byrådssakene 358, 376, 377 og 378 vil bli behandlet av henholdsvis komiteene for miljø og byutvikling, helse og sosial, samt barnehage, skole og idrett. Sak 381 ble også inkludert i fordelingen og ble enstemmig vedtatt. Ingen kontroverser eller dissent ble rapportert."
+  }
+}

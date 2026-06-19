@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7693:56723:200900918:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:37:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to emergency services that will impact local residents."
+    },
+    "summary_headline": "Bergen kommune støtter felles nødnummer, men krever styrking av nødetatene",
+    "summary_body": "Bergen kommune har besluttet å støtte innføringen av 112 som felles nødnummer, men understreker behovet for bedre operativ koordinering mellom nødetatene. Byrådsleder Monica Mæland påpeker at dagens organisering med tre separate nødnumre ikke er tilstrekkelig for å møte befolkningens økende forventninger til nødmeldetjenesten. Det er foreslått at politiet må omstruktureres for å oppnå bedre samhandling. Høringsuttalelsen vil bli sendt til Bystyrets kontor for videre behandling."
+  }
+}

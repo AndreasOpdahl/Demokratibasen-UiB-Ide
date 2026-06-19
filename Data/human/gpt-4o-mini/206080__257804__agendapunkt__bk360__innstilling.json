@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206080:257804:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:11:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises significant financial questions regarding the ongoing development of the light rail to Fyllingsdalen, which impacts local residents."
+    },
+    "summary_headline": "Kostnader ved bybanen til Fyllingsdalen skaper forvirring",
+    "summary_body": "Ingrid Nergaard Fjeldstad (V) stiller spørsmål om de reelle kostnadene ved utbyggingen av bybanen til Spelhaugen. Det er uklart hvorfor det kun spares 330 millioner ved å stoppe utbyggingen ved Oasen, når det kreves 500 millioner for å fortsette. Bystyret har tidligere vedtatt at linjen skal realiseres så snart finansiering er på plass, men det er behov for klarhet i kostnadene for å unngå forsinkelser i prosjektet."
+  }
+}

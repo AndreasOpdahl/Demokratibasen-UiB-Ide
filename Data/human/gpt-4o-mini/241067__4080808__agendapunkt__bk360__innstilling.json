@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241067:4080808:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:31:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant measures for animal welfare in municipal procurement, which directly impacts local residents and involves public spending."
+    },
+    "summary_headline": "Bergen kommune styrker dyrevelferd i anskaffelser",
+    "summary_body": "Byrådet i Bergen har lagt frem tiltak for å styrke dyrevelferd i kommunens anskaffelser, som en oppfølging av bystyresak 195/22. Dette innebærer krav til dyrevelferd ved innkjøp av matvarer og andre produkter, med fokus på økologiske og dyrevernmerkede varer. Tiltakene er en del av byrådets politiske plattform for 2019-2023, som har som mål å gjøre Bergen til en foregangskommune for dyrevelferd. Det er imidlertid bekymringer om økte kostnader for kommunale enheter, som skoler og sykehjem, dersom dyrevennlige produkter blir dyrere. Bystyret vil bli bedt om å ta saken til orientering."
+  }
+}

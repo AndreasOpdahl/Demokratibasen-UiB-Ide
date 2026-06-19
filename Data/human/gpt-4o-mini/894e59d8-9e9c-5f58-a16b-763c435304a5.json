@@ -1,0 +1,18 @@
+{
+  "dokument_id": "894e59d8-9e9c-5f58-a16b-763c435304a5",
+  "kommune_nummer": 5524,
+  "kommune_navn": "Målselv",
+  "generated_at": "2026-02-19 23:10:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant plan to manage stormwater, which is crucial for flood prevention and infrastructure improvement in the local community."
+    },
+    "summary_headline": "Målselv kommune vedtar handlingsplan for overvann 2026",
+    "summary_body": "Målselv kommune har vedtatt en handlingsplan for overvann 2026, som har som mål å redusere flomrisiko og forbedre infrastrukturen for overvannshåndtering. Kommunedirektøren foreslår tiltak for å håndtere økte nedbørsmengder som følge av klimaendringer, med en investering på 1 million kroner for utskifting av en asbestholdig vannledning ved flyplassen. Planen er en videreføring av fjorårets tiltak og er forankret i kommunedelplanen for overvann fra 2024. Dette prosjektet vil bidra til å forebygge flomskader og sikre en bærekraftig utvikling i kommunen."
+  }
+}

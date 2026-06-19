@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5259:46215:200614329:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:26:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines a significant regional IKT initiative that will impact local municipalities and their services."
+    },
+    "summary_headline": "Bergen kommune viderefører felles IKT-satsing for Bergensregionen",
+    "summary_body": "Bergen kommune har besluttet å videreføre forprosjektet \"Felles IKT satsing i Bergensregionen\" til et hovedprosjekt. Dette innebærer opprettelsen av et interkommunalt IKT-selskap (IKS) for drift av felles IKT-tjenester. Kommunen vil også bidra med en eierpost i IKS’et. I tillegg skal det etableres et Strategiråd for å utvikle en regional IKT-strategi og koordinere anskaffelser. En sak om deltakelse i IKS’et vil bli presentert for Bystyret våren 2007."
+  }
+}

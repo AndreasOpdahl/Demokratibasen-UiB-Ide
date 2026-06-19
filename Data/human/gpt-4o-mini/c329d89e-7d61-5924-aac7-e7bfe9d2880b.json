@@ -1,0 +1,18 @@
+{
+  "dokument_id": "c329d89e-7d61-5924-aac7-e7bfe9d2880b",
+  "kommune_nummer": 4630,
+  "kommune_navn": "Osterøy",
+  "generated_at": "2026-02-19 23:19:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av møtebok uten kontroverser",
+    "summary_body": "Heradsstyret i Osterøy kommune har godkjent møteboken fra 16. oktober 2025 uten noen innvendinger."
+  }
+}

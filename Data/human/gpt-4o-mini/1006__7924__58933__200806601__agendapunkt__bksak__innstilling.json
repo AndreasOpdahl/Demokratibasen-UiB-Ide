@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1006:7924:58933:200806601:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:28:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a routine financial report with no significant newsworthy elements."
+    },
+    "summary_headline": "Årsregnskap for Bergen og Omland havn fremlagt",
+    "summary_body": "Havnerådet for Bergen og Omland havn har fremlagt årsregnskapet for 2009 for havnestyret. Det er foreslått å godkjenne regnskapet som det er presentert."
+  }
+}

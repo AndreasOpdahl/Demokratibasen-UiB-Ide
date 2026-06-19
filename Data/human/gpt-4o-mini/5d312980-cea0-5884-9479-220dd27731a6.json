@@ -1,0 +1,18 @@
+{
+  "dokument_id": "5d312980-cea0-5884-9479-220dd27731a6",
+  "kommune_nummer": 4628,
+  "kommune_navn": "Vaksdal",
+  "generated_at": "2026-02-19 23:03:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses changes to employee clothing allowances, which directly affect municipal employees and may lead to controversy."
+    },
+    "summary_headline": "Endringer i klesgodtgjørelse for ansatte i Vaksdal kommune",
+    "summary_body": "Vaksdal kommune vurderer justeringer i klesgodtgjørelse for ansatte. Kommunedirektøren foreslår at ansatte med sammenhengende fravær over 6 måneder ikke lenger skal motta klesgodtgjørelse. I tillegg skal godtgjørelsen for sko og arbeidstøy økes årlig i tråd med konsumprisindeksen (KPI). Dette vil gjelde fra 1. august hvert år, med etterjustering for 2023 og 2024. Forslaget har fått støtte fra flere enhetsledere, men det er uenighet om fraværsgrensen, der noen mener grensen bør være ett år. Saken skal behandles i administrasjonsutvalget."
+  }
+}

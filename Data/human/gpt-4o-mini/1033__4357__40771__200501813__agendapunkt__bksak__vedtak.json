@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:4357:40771:200501813:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:48:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The application for a liquor license is relevant to local businesses and has some dissent."
+    },
+    "summary_headline": "Cafe Italia får anbefalt skjenkebevilling til tross for motstand",
+    "summary_body": "Rusmiddelpolitisk råd har anbefalt å innvilge søknaden fra Cafe Italia om skjenkebevilling for øl, vin og brennevin både innendørs og ved uteserveringen frem til 30. juni 2008. Vedtaket ble fattet med 2 stemmer imot fra Kristelig Folkeparti (Krf) og Rødt Venstre (RV). Dette kan påvirke både restaurantens drift og lokalsamfunnet i Bergen."
+  }
+}

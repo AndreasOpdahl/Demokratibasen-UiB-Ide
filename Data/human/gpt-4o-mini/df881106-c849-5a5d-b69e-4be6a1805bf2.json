@@ -1,0 +1,18 @@
+{
+  "dokument_id": "df881106-c849-5a5d-b69e-4be6a1805bf2",
+  "kommune_nummer": 4649,
+  "kommune_navn": "Stad",
+  "generated_at": "2026-02-19 23:22:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant infrastructure project that will improve water supply for residents and businesses, with financial implications and a collaborative effort between municipalities."
+    },
+    "summary_headline": "Stad kommune godkjenner utbyggingsavtale for sjøvassleidninger til Stad skipstunnel",
+    "summary_body": "Stad kommune har godkjent en utbyggingsavtale for sjøvassleidninger i forbindelse med Stad skipstunnel, som vil sikre tilstrekkelig vannforsyning til byggeprosjektet og innbyggerne i Kjøde. Avtalen, som involverer Kystverket og Vanylven kommune, er nødvendig for å starte arbeidet med vannledningen før anleggsstart i 2026. Kostnadene vil i første omgang bli dekket av Kystverket, men vil senere påvirke gebyrene for innbyggerne. Kommunestyret har stilt krav om at nødvendige avklaringer om finansiering må være på plass før videre fremdrift."
+  }
+}

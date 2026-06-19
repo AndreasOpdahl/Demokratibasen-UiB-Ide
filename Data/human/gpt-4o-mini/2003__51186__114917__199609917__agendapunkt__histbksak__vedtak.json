@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51186:114917:199609917:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:37:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural decision with no significant impact or controversy."
+    },
+    "summary_headline": "Formannskapet tar sak til orientering",
+    "summary_body": "Formannskapet i Bergen kommune har enstemmig vedtatt å ta til orientering et forslag om midlertidig stilling for å videreføre Tiltakskontorets arbeid, fremsatt av Henning Warloe. Saken ble behandlet i møtet den 18. august 1999."
+  }
+}

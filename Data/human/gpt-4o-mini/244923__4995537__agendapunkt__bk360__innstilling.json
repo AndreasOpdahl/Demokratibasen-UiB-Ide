@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244923:4995537:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:40:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document raises a relevant question about the number of nursing home places in Bergen, which affects local residents."
+    },
+    "summary_headline": "Spørsmål om sykehjemsplasser i Bergen",
+    "summary_body": "Hilde Onarheim (H) har stilt et skriftlig spørsmål til byråden om antallet heldøgns sykehjemsplasser i Bergen i 2023 sammenlignet med 2016. Hun ønsker et klart svar på om det er færre eller flere plasser nå. Dette spørsmålet er relevant for innbyggerne, da det berører eldreomsorgen i kommunen."
+  }
+}

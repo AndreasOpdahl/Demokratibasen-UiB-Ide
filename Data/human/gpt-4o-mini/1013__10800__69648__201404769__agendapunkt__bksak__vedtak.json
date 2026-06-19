@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10800:69648:201404769:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:57:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for universal kindergarten access for one-year-olds is significant for local families."
+    },
+    "summary_headline": "Enstemmig forslag om barnehageplass for ettåringer legges frem for bystyret",
+    "summary_body": "Idun Bortne og Julie Andersland fra Venstre har fremmet et privat forslag om rett til barnehageplass for alle ettåringer. Forretningsutvalget behandlet saken og vedtok enstemmig å legge forslaget frem for bystyret til behandling senest 18. juni 2014. Komite for oppvekst vil være innstillende komite, og byrådet bes om å vurdere forslaget og sende sin vurdering til bystyrets kontor."
+  }
+}

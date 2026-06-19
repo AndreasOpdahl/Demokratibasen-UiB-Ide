@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10666:69645:201300141:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:30:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to the fire and rescue services in Bergen, which could impact local safety and governance."
+    },
+    "summary_headline": "Bergen kommune anbefaler omlegging av brann- og redningstjenesten",
+    "summary_body": "Bergen bystyre har vedtatt å anbefale Justis- og beredskapsdepartementet å omlegge brann- og redningstjenesten i tråd med Brannstudiens anbefalinger. Det foreslås en modell med fylkesmessig inndeling og 18-19 brann- og redningsvesen. Bystyret ønsker også supplerende utredninger om felles nødnummer og samordning av tilsynsområdene. I tillegg anmoder kommunen om å teste ut endringene i et pilotprosjekt i Bergensregionen, som er vurdert som et naturlig område for dette. Det var uenighet i bystyret, spesielt fra SV, R og Sp, som ønsket en annen modell for å sikre lokal nærhet og beslutningsmyndighet."
+  }
+}

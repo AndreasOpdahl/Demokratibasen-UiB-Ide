@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:564:3748:200390344:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:13:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant dispute over signage regulations affecting a prominent restaurant in Bergen."
+    },
+    "summary_headline": "Klage på avslag om reklameskilt ved Hotel Norge avvist av byrådet",
+    "summary_body": "Byrådet i Bergen har avvist en klage fra Radisson SAS Hotel Norge om oppsetting av tre reklameskilt på hotellets fasade mot Nedre Ole Bulls plass. Klagen ble innsendt etter at søknaden om skiltene ble delvis avslått, men byrådet mener at de tillatte skiltene er tilstrekkelige for å profilere restauranten A Hereford Beffstouw. Avslaget er begrunnet med at de foreslåtte skiltene strider mot kommunens skiltvedtekter, som har som mål å bevare det estetiske miljøet i sentrum. Byrådet anbefaler at klagen ikke tas til følge, og saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

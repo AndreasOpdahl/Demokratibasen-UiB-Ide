@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50006:101091:200000676:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:31:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a procedural decision with no significant impact or controversy."
+    },
+    "summary_headline": "Formannskapet orienterer seg om Schengenavtalens konsekvenser",
+    "summary_body": "Formannskapet i Bergen kommune har behandlet et forslag fra representantene Torstein Dahle (RV) og Oddny Miljeteig (SV) om Schengenavtalens konsekvenser for tilgang til Bergens havnearealer. Saken ble enstemmig vedtatt til orientering i formannskapets møte 29. mars 2000, etter at den ble utsatt tidligere på grunn av overskredet møtetid."
+  }
+}

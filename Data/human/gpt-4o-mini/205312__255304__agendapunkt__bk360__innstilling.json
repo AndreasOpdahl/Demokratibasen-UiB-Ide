@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205312:255304:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:08:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document raises concerns about the potential loss of childcare spots due to a new kindergarten plan, which directly affects local families."
+    },
+    "summary_headline": "Ladegården barnehage frykter tap av plasser ved ny flerbrukshall",
+    "summary_body": "Henning Warloe (H) har stilt spørsmål til byråden angående utearealene for Ladegården barnehage, som kan miste 49 plasser dersom en ny barnehage ved Varegghallen etableres. Ladegården barnehage har en muntlig avtale med Bergen kommune om bruk av utearealene i Christinegårdparken og Persenbakken, men planen for den nye barnehagen er basert på mangelfulle opplysninger. Warloe ber byråden om å sikre at eksisterende plasser opprettholdes og at nødvendige utearealer for den nye barnehagen kan løses uten å påvirke Ladegården negativt."
+  }
+}

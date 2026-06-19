@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:41:54:200090086:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:02:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a controversial decision regarding a land division application that affects local residents."
+    },
+    "summary_headline": "Klage på delingssøknad i Ytrebygda utsettes av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har besluttet å utsette behandlingen av klagen på avslag om deling av parsell til boligformål på Ytrebygda gnr. 115, bnr. 3. Byrådet anbefalte å opprettholde avslaget, men utsettelsesforslaget ble vedtatt med 5 mot 2 stemmer. Dette kan påvirke fremtidige boligprosjekter i området."
+  }
+}

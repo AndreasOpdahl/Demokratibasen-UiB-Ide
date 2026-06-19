@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:177:1124:200290137:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:42:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to replace a municipal representative is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "Arild Raftevoll fritas fra verv, Trond Wikne ny varamedlem",
+    "summary_body": "Bergen bystyre har besluttet å frita Arild Raftevoll (V) fra sine verv i kommunen for resten av valgperioden 1999-2003. Trond Wikne (V) er valgt som nytt varamedlem for Venstre i Åsane bydelsstyre. Beslutningen ble fattet enstemmig i bystyret, og det forelå ingen navneforslag i en annen sak som ble utsatt."
+  }
+}

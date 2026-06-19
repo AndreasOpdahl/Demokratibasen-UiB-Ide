@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1024:11276:72320:201124896:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:44:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses various local issues and decisions affecting the community, particularly the Veteran Plan and questions raised by committee members."
+    },
+    "summary_headline": "Komite for kultur, idrett og næring diskuterer veteranplan og lokale spørsmål",
+    "summary_body": "I møtet den 3. februar 2015 godkjente Komite for kultur, idrett og næring protokollen fra forrige møte og diskuterte flere saker. Byrådet innstiller til bystyret å vedta Veteranplan for Bergen kommune, som inkluderer tiltak for å støtte veteraner og deres familier. Komiteen behandlet også spørsmål fra medlemmer om svømmeplanen, rekreasjonsområder, parkeringsavgifter og hjemmebane for Åsane fotballklubb. Det ble uttrykt støtte for å følge opp anbefalingene fra rapporten om Fisketorget og Mathallen. Møtet ble ledet av Tor A. Woldseth (FrP)."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:6267:53152:200716937:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:13:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions without significant impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til komiteene",
+    "summary_body": "I byrådets møte den 10. desember 2008 ble det besluttet å sende flere byrådsaker til ulike komiteer. Byrådsak 485 går til Komite for oppvekst, 486 til Komite for finans, 487 til Komite for helse og sosial, og 488 til Komite for kultur, idrett og næring. I tillegg ble det enstemmig vedtatt at sak 488 også sendes som orienteringssak til Komite for miljø og byutvikling."
+  }
+}

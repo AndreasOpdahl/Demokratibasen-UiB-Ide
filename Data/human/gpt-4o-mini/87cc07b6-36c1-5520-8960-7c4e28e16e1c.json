@@ -1,0 +1,18 @@
+{
+  "dokument_id": "87cc07b6-36c1-5520-8960-7c4e28e16e1c",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 23:10:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to allow the construction of a new holiday home is significant for local development and may affect community planning."
+    },
+    "summary_headline": "Dispensasjon gitt for ny fritidsbustad i Meland",
+    "summary_body": "Utval for areal, plan og miljø har samrøystes vedteke å gi dispensasjon for riving av eksisterande fritidsbustad og oppføring av ny fritidsbustad på eigedomen gbnr 327/53 i Sjøvegen. Vedtaket er gjort med heimel i plan- og bygningslova og naturmangfaldslova. Det er stilt vilkår for løyvet, inkludert at eigedomane gbnr 327/53 og 357/175 må vera samanføyd. Saka vert sendt til Statsforvaltaren for klagevurdering, og løyvet fell bort om byggearbeidet ikkje er godkjent innan 3 år."
+  }
+}

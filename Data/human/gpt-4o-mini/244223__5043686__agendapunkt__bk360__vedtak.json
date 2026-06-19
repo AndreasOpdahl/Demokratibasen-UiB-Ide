@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244223:5043686:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:38:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a minor financial decision regarding a gift, which has limited local impact."
+    },
+    "summary_headline": "Byrådet bevilger 10.000 kroner til CARE ved åpning av Vestlandshuset",
+    "summary_body": "Byrådet har besluttet å bevilge 10.000 kroner til CARE som gave i forbindelse med åpningen av Vestlandshuset. Bevilgningen ble vedtatt i møtet den 9. mars 2023, og midlene vil bli trukket fra tilleggsbevilgningskontoen for forebyggende arbeid innen helse og sosial."
+  }
+}

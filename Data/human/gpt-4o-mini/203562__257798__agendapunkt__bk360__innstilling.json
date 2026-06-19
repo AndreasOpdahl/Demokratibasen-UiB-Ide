@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203562:257798:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:03:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a denied application for a dock, impacting local land use and public access."
+    },
+    "summary_headline": "Klage på avslag om nausttiltak i Austrevågen avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Stein Ivar Jensen, representert av Advokatfirmaet Harris, om å reversere et avslag på søknad om legalisering av en 36 m² kai og tilhørende tiltak ved naustet i Austrevågen. Avslaget ble gitt på grunn av brudd på byggeforbudet i strandsonen og manglende rettslig grunnlag for dispensasjon. Byrådet understreker at tiltakene vil ha en privatiserende effekt på strandsonen, som er viktig for allmennheten. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

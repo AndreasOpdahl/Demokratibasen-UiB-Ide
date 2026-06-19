@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12898:77913:201532150:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:59:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains multiple inquiries from local politicians regarding environmental and urban development issues, which may affect residents."
+    },
+    "summary_headline": "Politikere stiller spørsmål om miljø og byutvikling i Bergen",
+    "summary_body": "I møtet den 9. februar 2017 stilte flere politikere spørsmål til Byråd Anna Elisa Tryti om viktige saker som sortering av matavfall, trafikk på Skansemyren, og status for reguleringsplanen for Haukås våtmarkspark. Sondre L. Båtstrand (MDG) og Per-Arne Larsen (V) var blant de som tok opp spørsmål som kan påvirke lokalsamfunnet, inkludert fotgjengerfelt ved Ulsetskogen skole og private investeringer i bybanen. Byråden besvarte alle spørsmålene."
+  }
+}

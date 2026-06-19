@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2852:28348:200008526:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:18:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a denied building permit that affects a local resident and will be escalated for further review."
+    },
+    "summary_headline": "Klage på byggesak fra Arna bydelsstyre sendes til Fylkesmannen",
+    "summary_body": "Eva Nygård Djordjevic har fått avslag på sin søknad om å utvide huset på Bogane 24, da det ikke foreligger særlige grunner for dispensasjon fra plan- og bygningslovens krav om 4 meters avstand til nabo. Bydelsdirektør Paal Fennell anbefaler at avslaget opprettholdes og at saken sendes til Fylkesmannen i Hordaland for endelig avgjørelse. Dette kan få betydning for andre innbyggere som vurderer lignende byggeprosjekter."
+  }
+}

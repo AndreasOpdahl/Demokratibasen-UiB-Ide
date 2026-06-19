@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241448:4080711:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:32:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision on housing development that affects local residents and includes a partial reversal of a previous decision."
+    },
+    "summary_headline": "Delvis medhold i klage om boligtilbygg i Ny-Paradis",
+    "summary_body": "Utvalg for miljø og byutvikling har delvis innvilget en klage på avslag om etablering av ny boenhet i Ny-Paradis. I møtet 29. november 2022 ble det besluttet å oppheve et tidligere vedtak fra 7. februar 2022, og gi tillatelse til riving av et påbygg samt bygging av et karnapp. Søknaden om ny boenhet ble imidlertid avslått, da utvalget ønsket å følge søkerens ønske om å beholde boligen som én enhet. Utvalget oppfordrer fagetaten til å være mer fleksible i fremtidige saker om boformer. Dette vedtaket kan påvirke flere familier som bor i boligen, og det er viktig for lokalsamfunnet å følge med på videre utvikling."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12071:77458:201211124:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:58:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant urban planning decisions affecting local transport and logistics, with potential environmental impacts."
+    },
+    "summary_headline": "Planprogram for godsterminal på Nygårdstangen vedtatt av byrådet",
+    "summary_body": "Byrådet i Bergen har anbefalt Komite for miljø og byutvikling å fastsette planprogrammet for reguleringen av godsterminalen på Nygårdstangen. Formålet er å effektivisere arealbruken og håndtere økende godsmengder, med mål om å overføre mer gods fra vei til sjø og bane. Planprogrammet tar hensyn til viktige nasjonale og regionale transportstrategier og skal sikre at terminalen kan håndtere økt kapasitet frem til et nytt logistikk-knutepunkt er etablert. Det er ikke varslet innsigelser fra offentlige etater, men det er mottatt merknader fra 17 offentlige etater og 7 private parter. Planarbeidet er viktig for fremtidig byutvikling og transportinfrastruktur i Bergen."
+  }
+}

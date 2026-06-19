@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9950:66409:201205088:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:48:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a budget reallocation for cultural school programs, which has local relevance but lacks significant controversy or impact."
+    },
+    "summary_headline": "Omdisponering av 450.000 kroner til Den Kulturelle Skolesekken",
+    "summary_body": "Byrådet har besluttet å omdisponere 450.000 kroner innen Den Kulturelle Skolesekken for skoleåret 2012-2013. Midlene fordeles til ulike prosjekter, inkludert 200.000 kroner til «Den listige lille reven», 100.000 kroner til Foreningen Trykkeriet, 50.000 kroner til Bergen Byspill, 50.000 kroner til Norsk forfattersentrum, og 35.000 kroner til Story Art. I tillegg settes 15.000 kroner av til kompetanseheving for kulturkontaktene på skolene."
+  }
+}

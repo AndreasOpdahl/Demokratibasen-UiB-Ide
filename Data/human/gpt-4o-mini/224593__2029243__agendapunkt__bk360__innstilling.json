@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224593:2029243:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:52:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant and first-ever plan for increasing participation and diversity in Bergen's cultural sector, which has a broad impact on the community."
+    },
+    "summary_headline": "Bergen kommune lanserer ny plan for deltakelse og mangfold i kulturlivet",
+    "summary_body": "Bergen kommune har sendt ut en høringsplan for deltakelse og mangfold i kunst- og kulturfeltet for perioden 2021-2030. Dette er første gang kommunen utarbeider en slik plan, som har som mål å øke deltakelsen fra underrepresenterte grupper og speile mangfoldet i befolkningen. Eldrerådet oppfordres til å gi høringsuttalelse, som vil bli inkludert i det videre arbeidet. Planen fokuserer på universell utforming, tilgjengelighet og tilrettelegging for ulike publikumsgrupper, og vil ha betydelig innvirkning på kulturlivet i Bergen."
+  }
+}

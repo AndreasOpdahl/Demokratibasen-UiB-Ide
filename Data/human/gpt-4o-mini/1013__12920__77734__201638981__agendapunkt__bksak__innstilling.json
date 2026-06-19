@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:12920:77734:201638981:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:02:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a binding referendum on tolls in Bergen is significant due to its local relevance and potential impact on residents."
+    },
+    "summary_headline": "Bergen innbyggere krever folkeavstemning om bompenger",
+    "summary_body": "Bystyret i Bergen har mottatt et innbyggerforslag fra Minsak.no, signert av 3 848 personer, som ber om en bindende folkeavstemning om bompenger før nye bomstasjoner innføres. Forslaget, som ble sendt inn 29. desember 2016, påpeker at innbyggerne bør få si sin mening om tiltak som påvirker dem. Bystyredirektøren anbefaler at forslaget behandles som et forslag om rådgivende folkeavstemning, ettersom kommuneloven ikke tillater bindende avstemninger. Bystyret må ta stilling til forslaget innen 6 måneder, med en frist for behandling satt til 31. mai 2017."
+  }
+}

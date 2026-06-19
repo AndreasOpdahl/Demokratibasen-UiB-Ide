@@ -1,0 +1,18 @@
+{
+  "dokument_id": "218086:1926483:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:38:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a new alcohol license for a restaurant in a local area is relevant and impacts residents."
+    },
+    "summary_headline": "Ny skjenkebevilling innvilget for Utpå, Teatergaten 16",
+    "summary_body": "Byrådet har innvilget søknaden fra Teatergaten 16 Restaurant AS om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3, både innendørs og utendørs, frem til 30. juni 2020. Det totale skjenkearealet er 176 kvm, hvorav 20 kvm er uteservering. Byrådet understreker at skjenkebevillingen kun kan benyttes dersom det foreligger gyldig leiekontrakt for uteserveringen. Det er også krav om at ansatte har gjennomgått kurs i ansvarlig alkoholhåndtering. Politiet har ikke merknader til søknaden, men det er viktig å ta hensyn til beboere i området."
+  }
+}

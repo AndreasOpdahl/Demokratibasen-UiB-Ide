@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:51120:113669:199605441:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:51:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant funding reduction affecting local cultural activities, which has implications for community engagement."
+    },
+    "summary_headline": "Logen AS ber om økt støtte fra Bergen kommune for å redde frivillig kulturliv",
+    "summary_body": "Logen AS, ledet av Steinar Molland, har anmodet Bergen kommune om å reversere en planlagt reduksjon av kommunal støtte fra 500.000 til 300.000 kroner for 1999. De frykter at dette vil svekke tilbudet av frivillige kulturarrangementer, som konserter og teater for barn og unge. Administrasjonen har imidlertid avslått forespørselen om tilleggsbevilgning, og påpeker at de ikke har rom for økte bevilgninger innenfor eksisterende budsjettrammer. Logen AS advarer om at redusert støtte kan føre til at profesjonelle aktører tar overhånd, noe som vil være et dårlig signal for det frivillige kulturlivet i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9897:66213:201214942:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:23:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for expanded mother tongue education in Bergen is significant for the multicultural community and addresses educational equity."
+    },
+    "summary_headline": "Utvidet morsmålsundervisning foreslått i Bergen kommune",
+    "summary_body": "Bystyremedlem Idun Bortne (V) har fremmet et privat forslag om å utvide morsmålsundervisningen i Bergen kommune. Forslaget tar sikte på å tilby morsmålsopplæring på ettermiddagstid for elever på 5.-10. trinn, og anerkjenner den språklige kompetansen til flerspråklige elever. Venstre mener at dette vil styrke Bergens internasjonale profil og bidra til bedre integrering. Byrådet bes om å utrede omfanget og kostnadene ved en slik utvidelse. Dette forslaget kan ha stor betydning for mange elever og deres familier i Bergen."
+  }
+}

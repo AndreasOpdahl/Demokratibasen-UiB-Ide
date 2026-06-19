@@ -1,0 +1,18 @@
+{
+  "dokument_id": "216449:1690493:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:37:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant urban development project that will impact the local community."
+    },
+    "summary_headline": "Bergen kommune starter utviklingsprogram for Dokken og Jekteviken",
+    "summary_body": "Bystyret har vedtatt oppstart av et utviklingsprogram for å transformere havneområdet Dokken og Jekteviken til en ny bydel nær Bergen sentrum. Byråden for klima, miljø og byutvikling, Thor Haakon Bakke, leder arbeidet som involverer flere prosjekter, inkludert etablering av et utviklingsselskap og en offentlig arealplan. Det legges opp til en visjonskonkurranse for å engasjere innbyggerne og interessenter i prosessen. Planene skal fremmes for bystyret i løpet av 2020, med mål om å skape en bærekraftig bydel med variert boligtilbud og næringsliv. Dette prosjektet vil ha stor betydning for fremtidig byutvikling i Bergen."
+  }
+}

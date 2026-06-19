@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224873:2723779:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:53:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant public health concerns regarding overdose follow-up and proposes changes to improve treatment access for vulnerable populations."
+    },
+    "summary_headline": "Ruspolitisk råd foreslår endringer for bedre oppfølging etter rusmiddeloverdose",
+    "summary_body": "Ruspolitisk råd har sendt innspill til høringsuttalelse om oppfølging etter rusmiddeloverdose, og støtter hovedmålene om helhetlig behandling. Rådet påpeker at dagens byråkratiske terskler hindrer rusavhengige i å få nødvendig hjelp, og anbefaler at krav til henvisning og samtykke fjernes. De foreslår at oppfølging etter overdose bør være mer tilgjengelig og tilpasset brukernes behov, og at kommunen må involveres i både utredning og oppfølging. Dette er viktig for å redusere dødelighet blant rusavhengige i Bergen."
+  }
+}

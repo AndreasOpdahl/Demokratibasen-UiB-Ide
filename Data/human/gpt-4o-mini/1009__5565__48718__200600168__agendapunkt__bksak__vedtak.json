@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5565:48718:200600168:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:30:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses funding for youth organizations, which has local relevance but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Byrådet tildeler oppstartstøtte til kulturorganisasjoner for barn og unge",
+    "summary_body": "Byrådet i Bergen har godkjent fordeling av oppstartstilskudd på 44 000 kroner til kultur- og fritidsorganisasjoner for barn og unge. I tillegg får KRIK Hordvik tildelt 3 500 kroner i aktivitetstilskudd for 2007. Dette tiltaket er viktig for å støtte lokale aktiviteter for unge i kommunen."
+  }
+}

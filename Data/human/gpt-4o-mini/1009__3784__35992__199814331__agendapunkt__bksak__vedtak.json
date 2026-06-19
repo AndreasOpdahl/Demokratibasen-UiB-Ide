@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3784:35992:199814331:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:07:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a proposed regulatory plan for a significant area in Bergen, which is relevant to local residents."
+    },
+    "summary_headline": "Forslag til reguleringsplan for Bergen sentrum legges ut til offentlig ettersyn",
+    "summary_body": "Byrådet har besluttet å legge ut forslag til reguleringsplan for Bergen sentrum, inkludert Vågen, kaiene og Bryggen, til offentlig ettersyn. Dette skjer i henhold til plan- og bygningslovens § 27-1 nr.2. Planforslaget, som inkluderer plankart og reguleringsbestemmelser datert 20. august 2003, er nå tilgjengelig for innsyn."
+  }
+}

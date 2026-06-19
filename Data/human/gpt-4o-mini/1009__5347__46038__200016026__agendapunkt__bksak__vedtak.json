@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5347:46038:200016026:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:27:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to deny the outdoor serving permit for Baran Café is relevant to local residents and may lead to a potential appeal."
+    },
+    "summary_headline": "Baran Café får ikke tillatelse til uteservering av alkohol",
+    "summary_body": "Byrådet har avslått søknaden fra Baran Café om tillatelse til uteservering av alkoholholdig drikk i Sigurdsgt. 21. Avgjørelsen ble fattet i møte 7. februar 2007, og begrunnelsen for avslaget er beskrevet i saksfremstillingen. Dersom Baran Café ønsker å påklage vedtaket, må de gjøre dette innen 6 måneder."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:5640:50807:200804406:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:41:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The establishment of a working group for the municipal annual report and accounts is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Helse- og sosialkomiteen oppretter arbeidsgruppe for årsregnskap 2007",
+    "summary_body": "Komite for helse og sosial har besluttet å opprette en arbeidsgruppe for å arbeide med Bergen kommunes årsregnskap og årsmelding for 2007. Gruppen består av representanter fra Høyre, Arbeiderpartiet, Fremskrittspartiet, Kristelig Folkeparti, Sosialistisk Venstreparti og Rødt. Komiteen avholder et ekstramøte 27. mai for å innkalle virksomheter. Vedtaket ble fattet enstemmig."
+  }
+}

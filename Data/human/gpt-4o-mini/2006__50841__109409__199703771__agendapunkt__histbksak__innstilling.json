@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50841:109409:199703771:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:49:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses funding for artist studios, which has significant local impact and involves community artists."
+    },
+    "summary_headline": "Bergen kommune bevilger støtte til kunstneratelierer i C. Sundtsgt. 55",
+    "summary_body": "Hovedutvalg for fritid og kultur har besluttet å bevilge kr. 117.500 til opparbeidelse av kunstneratelierer i 8. etasje i C. Sundtsgt. 55, samt kr. 42.500 i driftsstøtte for 1998. Dette tiltaket er en erstatning for atelierene som ble mistet av syv billedkunstnere i Sandviksboder 23 og 24 etter oppsigelse fra kommunen. Kunstnerne har selv funnet nye lokaler og er i gang med ombygging til ni atelierer. Den totale husleien for etasjen er kr. 190.000 årlig, og kunstnerne søker om ytterligere støtte for å dekke kostnadene. Støtten er viktig for å sikre arbeidsplasser for kunstnere i Bergen sentrum."
+  }
+}

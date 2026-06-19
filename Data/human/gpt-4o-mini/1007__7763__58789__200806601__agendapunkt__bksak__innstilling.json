@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:7763:58789:200806601:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:30:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the annual financial report for 2009, which includes a surplus, but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Bergen og Omland havnestyre godkjenner årsregnskap med overskudd",
+    "summary_body": "Bergen og Omland havnestyre har tatt til etterretning revisjonsrapporter og godkjent årsregnskapet for 2009, som viser et overskudd på 13 181 141,01 kroner. Overskuddet er planlagt brukt til fremtidige kapitalformål. Vedtaket er betinget av at Bergen kommunerevisjon ikke fremkommer med merknader som kan påvirke regnskapet."
+  }
+}

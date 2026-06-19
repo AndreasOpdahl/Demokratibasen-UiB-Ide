@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2564:25506:200000983:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:43:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains routine administrative information without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Rusmiddelpolitisk råd",
+    "summary_body": "Referatet fra Rusmiddelpolitisk råd den 26. februar 2001 ble tatt til orientering av byrådet. Ingen vedtak eller kontroversielle saker ble diskutert."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224852:1838137:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:52:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural information regarding oral questions to the city council, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Muntlige spørsmål til bystyret 17.11.2020",
+    "summary_body": "Bystyret i Bergen vil motta muntlige spørsmål fra medlemmene under møtet den 17. november 2020. Spørsmålene må sendes elektronisk til bystyredirektør eller ordfører for å bli registrert. Dette er en rutinemessig prosedyre."
+  }
+}

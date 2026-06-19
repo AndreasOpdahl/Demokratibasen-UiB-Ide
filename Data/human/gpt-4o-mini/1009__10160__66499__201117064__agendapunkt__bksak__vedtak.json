@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10160:66499:201117064:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:40:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves significant public spending for a local parking facility, which affects residents."
+    },
+    "summary_headline": "Byrådet bevilger 68 millioner til nytt parkeringsanlegg under Skansedammen",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 68.030.000 kroner eks. MVA til bygging av et nytt parkeringsanlegg under Skansedammen. Bevilgningen vil bli finansiert gjennom midler fra boligsonefondet. Dette tiltaket er viktig for å forbedre parkeringsmulighetene i området, noe som vil påvirke innbyggerne i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:11829:73760:201200090:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:32:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document contains multiple significant decisions regarding property tax exemptions that directly affect local organizations and residents."
+    },
+    "summary_headline": "Bergen kommune innvilger eiendomsskattfritak for flere organisasjoner",
+    "summary_body": "Byrådet i Bergen har innstilt til bystyret om å frita flere eiendommer for eiendomsskatt fra 1. januar 2015. Dette inkluderer fritak for Skeie Indremisjon, Johan Langes Minde, Vindharpen barnehage SA, og Kristent Fellesskap, med årlige skatter som varierer fra 2.997 til 45.125 kroner. Fritakene gjelder kun så lenge eiendommene ikke endres i bruk. Byrådet har også avvist en søknad om fritak for eiendomsskatt for Fjellgaten 7. Disse beslutningene vil ha direkte økonomiske konsekvenser for de berørte organisasjonene og kan påvirke skatteinntektene til kommunen."
+  }
+}

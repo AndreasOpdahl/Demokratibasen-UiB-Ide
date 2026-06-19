@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11554:72087:201433565:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:48:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new alcohol serving license for a local school, which has implications for community events and education."
+    },
+    "summary_headline": "Årstad videregående skole får ny skjenkebevilling for alkoholholdig drikk",
+    "summary_body": "Byrådet har innvilget en ny skjenkebevilling for alkoholholdig drikk gruppe 1-3 ved Årstad videregående skole, Fjøsangerveien 38, frem til 30. juni 2016. Skolen, som har hatt bevilling i mange år, søker om dette etter flytting av matfagavdelingen til nye lokaler. Den totale skjenkearealet er 622 m2, og lokalene vil bli brukt til undervisning og fagprøver. Byråden for kultur, næring, idrett og kirke, Helge Stormoen, støtter søknaden, som nå må dokumenteres før den kan tas i bruk."
+  }
+}

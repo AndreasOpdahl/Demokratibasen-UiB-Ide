@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:8362:60708:200717740:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:39:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document primarily consists of procedural approvals with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll fra byrådsmøte godkjent",
+    "summary_body": "Byrådet har godkjent protokollen fra møtet den 25. november 2010. Ingen kontroverser eller dissent ble rapportert, og det ble ikke fattet noen nye vedtak som vil påvirke innbyggerne i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "e9f268ec-a87c-5479-b677-2a807fd22313",
+  "kommune_nummer": 4649,
+  "kommune_navn": "Stad",
+  "generated_at": "2026-02-19 23:23:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a routine meeting agenda with some relevant updates but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "IKT Nordfjord planlegger faste møter med kommunene for bedre samarbeid",
+    "summary_body": "IKT Nordfjord har innkalt til styremøte den 19. februar 2025, hvor de vil godkjenne møteprotokoller og diskutere faste møter med kommunene i henhold til Tenesteavtalen. Dette er viktig for å sikre bedre dialog og oppfølging av driftsstatus og spesielle hendelser. I tillegg vil de ta opp status for phishing-resistent pålogging, som er et tiltak for å forbedre IT-sikkerheten. Møtet vil også behandle orienteringssaker som bemanningssituasjonen og lønnsforhandlinger."
+  }
+}

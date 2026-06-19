@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:6429:54747:200906528:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:33:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a routine annual report with no significant newsworthy elements."
+    },
+    "summary_headline": "Kontrollutvalget godkjenner årsregnskap for 2008",
+    "summary_body": "Kontrollutvalget i Bergen kommune har behandlet årsregnskapet for 2008 og konkludert med at det tilfredsstiller informasjonsbehovet til brukerne. Det ble ikke funnet merknader til regnskapet, og revisjonsberetningen ble også godkjent uten kommentarer. Møtet fant sted 12. mai 2009."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51185:114358:199904241:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:37:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a sales license for beer is relevant to local residents and involves a minor controversy with one dissenting vote."
+    },
+    "summary_headline": "Salgsbevilling for øl innvilget til Super Spar Toppe AS med én stemmes avvik",
+    "summary_body": "Bergen Formannskap har innvilget søknaden fra Super Spar Toppe AS om salgsbevilling for øl med lavere alkoholinnhold enn 4,76 volumprosent. Bevillingen gjelder frem til 30. juni 2000. Hugo Jentoft er godkjent som styrer, mens Mona Nytveit er stedfortreder. Beslutningen ble vedtatt med én stemme imot fra Kristelig Folkeparti. Salg av øl kan skje fra kl. 08.00 til 20.00 på hverdager. Dette er relevant for innbyggerne i Mjølkeråen, da det sikrer tilgjengelighet av øl i den lokale dagligvarebutikken."
+  }
+}

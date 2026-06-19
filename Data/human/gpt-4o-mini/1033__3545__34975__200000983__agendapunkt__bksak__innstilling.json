@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3545:34975:200000983:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:46:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a meeting notice with no significant newsworthy elements."
+    },
+    "summary_headline": "Møteinnkalling for rusmiddelpolitisk råd",
+    "summary_body": "Dokumentet er en møteinnkalling for rusmiddelpolitisk råd, planlagt til 5. mai 2003."
+  }
+}

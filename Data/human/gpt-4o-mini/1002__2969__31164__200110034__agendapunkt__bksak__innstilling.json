@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2969:31164:200110034:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:18:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a traffic safety plan with proposed measures that could impact local residents."
+    },
+    "summary_headline": "Tiltak for trafikksikkerhet i Arna bydel foreslås",
+    "summary_body": "Arna bydelsstyre har behandlet en trafikksikkerhetsplan for Bergen kommune, som tar sikte på å redusere antall ulykker i bydelen. I perioden 1996-2000 skjedde det 75 trafikkulykker i Arna, hvorav 72 med personskade. Planen foreslår tre tiltak for 2002/2003, inkludert fortau langs Garnesvegen og Gjerde langs Lakslia. 22 andre tiltak vurderes, spesielt rundt skolene i Garnes. Bydelsstyret har ingen merknader til planen, som kan forbedre trafikksikkerheten for innbyggerne."
+  }
+}

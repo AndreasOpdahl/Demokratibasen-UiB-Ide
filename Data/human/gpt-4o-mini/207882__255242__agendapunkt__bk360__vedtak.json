@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207882:255242:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:15:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document involves a personnel change in local governance, which may affect political representation."
+    },
+    "summary_headline": "Karl Eidesund valgt som varamedlem for Høyre under Loftheims permisjon",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å velge Karl Eidesund som nytt varamedlem for Høyre i komiteen for finans, kultur og næring mens Elise Loftheim er i permisjon frem til 31. desember 2018. Dette ble besluttet under møtet den 24. oktober 2018, etter forslag fra Hilde Onarheim (H). Endringen kan påvirke beslutningsprosesser i komiteen i denne perioden."
+  }
+}

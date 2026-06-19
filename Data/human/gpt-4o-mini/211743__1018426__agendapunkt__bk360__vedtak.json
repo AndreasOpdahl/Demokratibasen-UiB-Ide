@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211743:1018426:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:24:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine inquiry regarding a planned development, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter om Strax-huset",
+    "summary_body": "Oddny Irene Miljeteig (SV) stilte et skriftlig spørsmål om planlagt utvikling av Strax-huset. Komite for helse og sosial behandlet saken den 27. mars 2019, hvor byråd Per-Arne Hvidsten Larsen svarte på spørsmålet."
+  }
+}

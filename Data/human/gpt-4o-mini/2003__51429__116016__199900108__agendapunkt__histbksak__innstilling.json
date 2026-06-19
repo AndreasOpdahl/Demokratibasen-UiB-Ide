@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51429:116016:199900108:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:38:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the introduction of a fee for the use of studded tires in Bergen, which has significant implications for residents and raises questions about exemptions."
+    },
+    "summary_headline": "Bergen innfører gebyr for piggdekk, men unntaksbestemmelser kan forsinke ordningen",
+    "summary_body": "Bergen kommune planlegger å innføre gebyr for bruk av piggdekk fra 1. januar 2000 for å redusere luftforurensning. Formannskapet har vedtatt å legge ut forskriften til offentlig høring, men rådmannen advarer om at unntaksbestemmelser for utrykningskjøretøy og funksjonshemmede ikke kan innføres samtidig. Dersom slike unntak skal vurderes, kan gebyrordningen bli forsinket til sesongen 2000/2001. Dette kan påvirke mange bilister i Bergen, som må forberede seg på nye kostnader."
+  }
+}

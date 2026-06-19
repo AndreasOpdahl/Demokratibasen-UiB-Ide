@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230032:2650739:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:07:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant reform in home care services that affects many residents and involves substantial funding."
+    },
+    "summary_headline": "Bergen kommune investerer 14 millioner i tillits- og faglighetsreform for hjemmebaserte tjenester",
+    "summary_body": "Bergen byråd har prioritert videreutviklingen av tillits- og faglighetsreformen i hjemmetjenestene, som ble innført i 2017. Reformen har som mål å gi medarbeidere mer tillit og ansvar, og involvere brukere i utviklingen av tjenestene. Byrådet har bevilget 14 millioner kroner for perioden 2018-2021 for å implementere reformen, som skal bidra til bedre kvalitet og økt selvhjulpenhet for brukerne. Det er etablert arbeidsgrupper med ansatte og brukerråd for å forbedre tjenestene. Neste steg inkluderer evaluering av reformens effekt og videreføring av tiltakene."
+  }
+}

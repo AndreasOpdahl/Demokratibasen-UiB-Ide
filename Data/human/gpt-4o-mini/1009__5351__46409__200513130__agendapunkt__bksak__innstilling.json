@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5351:46409:200513130:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:27:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision on a housing expansion that affects local residents and has previously faced opposition."
+    },
+    "summary_headline": "Byrådet godkjenner takoppløft i Ulsberglia til tross for tidligere avslag",
+    "summary_body": "Byrådet i Bergen har besluttet å godkjenne en klage fra Bravi arkitekt og eiendomsutvikling AS om oppføring av takoppløft på rekkehus i Ulsberglia 93. Dette tiltaket ble tidligere avslått av Etat for byggesak og private planer, men byrådet mener at det ikke vil bryte med reguleringsplanens krav til estetikk og harmonisk utforming. Klageren argumenterte for at boligen er for liten og at det ikke er innvendinger fra naboer eller borettslaget. Byrådet har derfor besluttet å oppheve det tidligere avslaget og gi dispensasjon fra reguleringsplanens bestemmelser om etasjeantall. Dette kan ha betydning for andre beboere i området, da det kan sette presedens for lignende utbygginger."
+  }
+}

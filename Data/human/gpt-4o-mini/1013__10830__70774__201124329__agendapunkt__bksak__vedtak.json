@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10830:70774:201124329:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:58:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a procedural decision with no significant impact or controversy."
+    },
+    "summary_headline": "Byrådssak sendt til komite for behandling",
+    "summary_body": "Byrådets møte den 19. juni 2014 behandlet fordelingen av saker til komiteene. Forretningsutvalget vedtok enstemmig å sende byrådssak 202-212 til Komite for miljø og byutvikling, som har avgjørelsesmyndighet i saken."
+  }
+}

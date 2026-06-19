@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:8540:62353:201004869:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:17:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines an upcoming city council meeting with a significant agenda, but lacks immediate conflict or controversy."
+    },
+    "summary_headline": "Bystyret i Bergen forbereder omfattende møte 20. juni",
+    "summary_body": "Bystyret i Bergen skal møtes 20. juni 2011 for å behandle en omfattende agenda med flere saker, inkludert godkjenning av årsregnskap og årsrapporter for ulike kommunale foretak. Bystyredirektør Roar Kristiansen foreslår en taletidsfordeling basert på partistørrelse, lik den som brukes i budsjettmøtene. Møtet finner sted i Gamle rådhus, og det er viktig for innbyggerne å følge med på beslutningene som vil påvirke kommunen."
+  }
+}

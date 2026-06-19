@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:8339:60690:200716906:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:21:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine response from the city council with no significant newsworthy elements."
+    },
+    "summary_headline": "Byrådet svarer på spørsmål om Arna sentrum",
+    "summary_body": "Byrådet har besvart spørsmål fra Geir Steinar Dale (A) angående Arna sentrum under møtet i Komite for miljø og byutvikling den 13. januar. Svarene er vedlagt saken."
+  }
+}

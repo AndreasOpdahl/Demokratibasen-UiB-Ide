@@ -1,0 +1,18 @@
+{
+  "dokument_id": "242351:4991205:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:34:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a contested decision regarding the construction of a pier and platform, which has significant implications for public access to the waterfront."
+    },
+    "summary_headline": "Byrådet gir delvis dispensasjon for utrigger ved Nordåsvatnet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om platting/brygge på 5,5 m² ved Nordåsvatnet, men gir delvis dispensasjon for en utrigger på 0,6 x 6 m. Klager Ørjan Mork Bønes argumenterer for at tiltaket er nødvendig for helse og sikkerhet, men både Bymiljøetaten og Statsforvalteren advarer mot privatisering av strandsonen. Byrådet mener at utriggeren ikke vil vesentlig påvirke strandsonens tilgjengelighet, og at fordelene ved å tillate den oppveier ulempene. Saken vil nå bli sendt til Utvalg for miljø og byutvikling for endelig avgjørelse."
+  }
+}

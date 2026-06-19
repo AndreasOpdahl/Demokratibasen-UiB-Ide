@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3727:35774:200011872:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:06:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves local environmental management and permits motorized activity in a natural area."
+    },
+    "summary_headline": "Tillatelse til motorferdsel for utbedring av turvei på Gulfjellet",
+    "summary_body": "Byrådet har gitt Stiftelsen Redningshytten tillatelse til å bruke en liten gravemaskin for å utbedre turveien mellom Osavatn og Fallgropen på Gulfjellet. Tillatelsen gjelder for én transporttur fram og tilbake i perioden juli-oktober 2003, og all motorferdsel må skje på en og samme dag. VA-etaten vil bli informert om tidspunktet for bruken av gravemaskinen, som er viktig for å beskytte drikkevannskilder."
+  }
+}

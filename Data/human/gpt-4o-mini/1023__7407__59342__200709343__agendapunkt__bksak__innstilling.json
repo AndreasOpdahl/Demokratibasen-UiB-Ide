@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:7407:59342:200709343:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:43:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines local democratic activities but lacks significant conflict or financial implications."
+    },
+    "summary_headline": "Bergen kommune deltar i Den europeiske lokaldemokratiuken 2010",
+    "summary_body": "Bergen bystyre har vedtatt at kommunen skal delta i Den europeiske lokaldemokratiuken 2010, som finner sted fra 11. til 17. oktober. Komite for helse og sosial, sammen med andre komiteer, vil arrangere åpne møter for innbyggerne for å diskutere spørsmål innen deres ansvarsområder. Det vil også bli orienteringsmøter om budsjettprosessen for 2011. Aktivitetene vil bli kunngjort på kommunens nettsider."
+  }
+}

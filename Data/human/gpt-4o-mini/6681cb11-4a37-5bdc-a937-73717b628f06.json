@@ -1,0 +1,18 @@
+{
+  "dokument_id": "6681cb11-4a37-5bdc-a937-73717b628f06",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:05:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes to the municipal land use plan, impacting housing and development in Bergen."
+    },
+    "summary_headline": "Bergen kommune ruller opp kommuneplanens arealdel for 2027",
+    "summary_body": "Byrådet har vedtatt å fastsette planprogrammet for rullering av kommuneplanens arealdel (KPA) for 2027, med mål om å forenkle bestemmelsene og legge til rette for økt boligbygging og næringsutvikling. Planprogrammet, som skal behandles av bystyret, fokuserer på å involvere innbyggere og interessenter i prosessen. Det er varslet oppstart av planarbeid for oppheving av kommunedelplanen for Birkeland, Liland, Ådland og Espeland, som skal innarbeides i KPA. Høringsperioden for planprogrammet er satt fra 8. februar til 25. mars 2025, og byrådet har som mål å vedta den nye KPA innen juni 2027."
+  }
+}

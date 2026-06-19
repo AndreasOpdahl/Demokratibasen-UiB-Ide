@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:5809:51157:200701666:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:29:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant security measures affecting international shipping and tourism in Bergen, which has local relevance and potential economic impact."
+    },
+    "summary_headline": "Bergen havnestyre ber om forlengelse av ISPS-gjerder for å opprettholde internasjonal skipsfart",
+    "summary_body": "Bergen og Omland havnestyre har søkt om forlengelse av rammetillatelsen for ISPS-gjerder ved Festningskaien, Skoltegrunnskaien og Bontelabo frem til 2017. Dette er nødvendig for å opprettholde havnens godkjenning for internasjonal skipsfart, som inkluderer cruisetrafikk og utenlandsferger. Uten gjerdene vil Bergen miste sin status som ISPS-terminal, noe som vil ha store konsekvenser for havnens aktivitet og økonomi. Havnedirektør Gunvald Isaksen understreker at gjerdene er avgjørende for å sikre havnen mot kriminalitet og opprettholde overvåkning. Bergen kommune må snarest gi tillatelse til forlengelsen."
+  }
+}

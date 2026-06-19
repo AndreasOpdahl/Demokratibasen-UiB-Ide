@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11769:73327:201512813:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:50:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant preparations for the upcoming municipal elections, including costs and logistics, which directly affect local political parties and residents."
+    },
+    "summary_headline": "Bergen kommune forbereder valgkamp med nye retningslinjer for valgboder",
+    "summary_body": "Bergen kommune legger til rette for valgkampen i forbindelse med kommune- og fylkestingsvalget 2015, med disponering av Torgallmenningen og leie av valgboder. Valgbodene vil koste 16.000 kroner hver, og kommunen dekker anslagsvis 22.125 kroner i ekstra kostnader per bod, totalt 354.000 kroner. Valgkampen starter 21. august, og partiene må søke om plass innen fristen. Dette tiltaket er viktig for å sikre at alle 16 deltakende partier får mulighet til å profilere seg i byrommene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205893:255240:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:09:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The unanimous decision to support national guidelines for health and social education with an emphasis on authorization for social workers is significant for local professionals."
+    },
+    "summary_headline": "Bergen bystyre støtter autorisasjon for barnevernspedagoger og sosionomer",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å sende en høringsuttalelse til nasjonale retningslinjer for helse- og sosialfagutdanninger. I uttalelsen krever de at barnevernspedagog- og sosionomutdanningene underlegges en autorisasjonsordning. Dette vil gi disse yrkesgruppene en anerkjennelse og kvalitetsgaranti, noe som er viktig for de sårbare menneskene de arbeider med. Forslaget ble fremsatt av Oddny Irene Miljeteig fra SV og fikk støtte fra flere partier. Dette vedtaket kan ha stor betydning for fremtidig utdanning og kvalitet i helse- og sosialsektoren i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4757:44055:200405860:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:06:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant land use decision affecting local property development and community interests."
+    },
+    "summary_headline": "Klage på avslag om deling av eiendom avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde et avslag på klage fra Eva Mørch angående deling av eiendom på Landåslien 83A. Klagen ble avvist da fagetaten vurderte at tomten, som ligger i skrånende terreng og er ca. 300 kvm, ikke oppfyller kravene for boligutvikling. Mørch argumenterte for at tomten er stor nok til et hus og at naboene ikke har innvendinger, men byrådet støttet fagetatens vurdering. Saken vil nå bli sendt til fylkesmannen for endelig avgjørelse."
+  }
+}

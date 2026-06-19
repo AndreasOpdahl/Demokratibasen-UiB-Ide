@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7461:59268:200816834:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:19:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant traffic issue affecting local residents and proposes measures to improve safety."
+    },
+    "summary_headline": "Byrådet anbefaler å holde Tellevikvegen åpen for å unngå negative konsekvenser",
+    "summary_body": "Byrådet i Bergen har besluttet å følge anbefalingen fra Statens vegvesen om å ikke stenge Fylkesvei 234 Tellevikvegen i Åsane, da stengingen kan ha negative konsekvenser for lokalsamfunnet og nødetater. I stedet foreslås det å utvide fartsgrensen til 30 km/t og installere fartshumper for å forbedre trafikksikkerheten. Dette tiltaket kommer etter en økning i trafikkvolumet, som har steget fra 1440 til 1960 kjøretøy per døgn fra 2001 til 2008. Byrådet vil også vurdere langsiktige løsninger, inkludert utbygging av ny riksvei E39."
+  }
+}

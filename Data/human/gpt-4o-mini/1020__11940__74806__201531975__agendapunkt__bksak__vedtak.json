@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:11940:74806:201531975:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:26:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to explore the establishment of a fire museum is relevant and impacts local cultural heritage."
+    },
+    "summary_headline": "Enstemmig vedtak om brannmuseum i Bergen",
+    "summary_body": "Komite for finans, kultur og næring har enstemmig besluttet å be byrådet om å legge frem en sak om eventuell etablering av et brannmuseum i Bergen. Dette forslaget tar utgangspunkt i et prosjekt som ble utarbeidet i 2009. I tillegg ble et forslag om etablering av Gestapomuseum avvist med 8 stemmer fra Høyre, Fremskrittspartiet, Sosialistisk Venstreparti, Miljøpartiet De Grønne og Senterpartiet. Det er nå opp til byrådet å vurdere mulighetene for brannmuseet, noe som kan ha betydning for lokal kultur og historie."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:5220:46035:200502662:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:29:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant decision regarding the revocation of a sales license due to alcohol sales to an intoxicated person, which affects local business operations."
+    },
+    "summary_headline": "Bystyret vurderer inndragning av salgsbevilling for Rimi Danmarksplass",
+    "summary_body": "Byrådet har besluttet å inndra salgsbevillingen for Rimi Danmarksplass i 14 dager etter at butikken solgte alkohol til en åpenbart påvirket person. Klagen fra bevillingshaver er mottatt og vil bli behandlet av bystyret, som må avgjøre om inndragningen skal opprettholdes. Byrådet anbefaler at klagen ikke tas til følge. Dette kan påvirke butikkens drift og inntekter i Bergen."
+  }
+}

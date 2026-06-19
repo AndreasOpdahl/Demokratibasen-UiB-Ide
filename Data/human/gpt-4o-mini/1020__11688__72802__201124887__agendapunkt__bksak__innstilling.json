@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:11688:72802:201124887:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:26:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document raises significant concerns regarding cost overruns and delays in essential municipal projects, impacting local residents."
+    },
+    "summary_headline": "Kostnadsoverskridelser og forsinkelser i oppgradering av renseanlegg i Bergen",
+    "summary_body": "Bergen kommune står overfor alvorlige utfordringer med oppgradering av renseanlegg, hvor kostnadene har økt fra 464 millioner kroner i 2006 til over 2,2 milliarder kroner i 2015. Høringen vil undersøke årsakene til disse overskridelsene og forsinkelsene, samt manglende rapportering til bystyret om kostnadsutviklingen. Byrådsavdelingene for byutvikling, klima og miljø, samt finans, vil bli spurt om deres håndtering av prosjektet. Fylkesmannen i Hordaland vil også vurdere kommunens fremdrift og om oppgraderingene er i tråd med gjeldende rensekrav. Dette er kritisk for innbyggerne, da det påvirker vannmiljøet og kommunens økonomi."
+  }
+}

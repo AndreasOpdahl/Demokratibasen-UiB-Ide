@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3317:32247:200108060:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:03:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a significant residential development in Tømmervågen has potential local impact and raises concerns about environmental effects and community integration."
+    },
+    "summary_headline": "Stort boligprosjekt i Tømmervågen legges ut til offentlig ettersyn",
+    "summary_body": "Bergen og Omegn Boligbyggelag har fremmet et privat forslag til reguleringsplan for 86 leiligheter på en tidligere industritomt i Tømmervågen, Eidsvåg. Planen, som anbefales utlagt til offentlig ettersyn av byråd for miljø og byutvikling, innebærer bygging av seks høye hus og har en tomteutnyttelse på 63,5 %. Det er bekymringer knyttet til byggehøyder og miljøforurensning, men tiltakene anses som håndterbare. Byråden påpeker behovet for å vurdere byggehøyder i forhold til nærområdet og foreslår at kaiområdet reguleres for bedre offentlig tilgang. Offentlig ettersyn vil gi innbyggerne mulighet til å gi tilbakemelding på prosjektet."
+  }
+}

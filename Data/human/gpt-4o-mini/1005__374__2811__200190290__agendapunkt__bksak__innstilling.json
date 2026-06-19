@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:374:2811:200190290:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:48:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document discusses a significant vote of no confidence against the city council regarding the critical issue of nursing home waiting lists, which affects many residents."
+    },
+    "summary_headline": "Mistillitsforslag mot byrådet om sykehjemsplasser",
+    "summary_body": "Pensjonistpartiet, ved Frank W. Hansen, har fremsatt et mistillitsforslag mot byrådet i Bergen på grunn av den uakseptable ventelisten for sykehjemsplasser, som står på 240 personer. Dette tallet har ikke blitt redusert siden 2001, til tross for en økning i antall eldre. Hansen påpeker at mange som er kvalifisert for sykehjemsplass dør uten å få hjelp, og kritiserer byrådet for manglende tiltak. Ordfører Kristian Helland har nå lagt frem saken for bystyret, som må ta stilling til mistillitsforslaget."
+  }
+}

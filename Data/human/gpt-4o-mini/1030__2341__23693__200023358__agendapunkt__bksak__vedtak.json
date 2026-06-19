@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2341:23693:200023358:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:36:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant decision regarding food production in local institutions, impacting elderly care."
+    },
+    "summary_headline": "Laksevåg bydelsstyre avviser forslag om sentralisert matproduksjon for eldre",
+    "summary_body": "Laksevåg bydelsstyre har avvist et forslag om å sentralisere matproduksjonen for eldre institusjoner, og understreker viktigheten av fersk matlaging for beboernes helse og velvære. Bydelsstyret, ledet av Bjørn Tore Olsen (Frp), påpekte at underernæring er et problem blant sykehjemsbeboere, og at kvaliteten på pleietilbudet er avhengig av god matlaging. Sluttrapporten fra kjøkkenprosjektet ble ansett som mangelfull, og bydelsstyret ønsker at alle institusjoner skal ha egne kjøkken for produksjon av fersk mat. Dette vedtaket ble fattet den 5. oktober 2000."
+  }
+}

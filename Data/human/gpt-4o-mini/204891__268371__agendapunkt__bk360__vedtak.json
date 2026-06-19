@@ -1,0 +1,18 @@
+{
+  "dokument_id": "204891:268371:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:06:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision not to exercise the municipal pre-emption right is relevant to local real estate and development."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på Repslagergaten 2 B",
+    "summary_body": "Bergen byråd har besluttet å ikke gjøre forkjøpsretten gjeldende ved overtakelse av Repslagergaten 2 B fra Nils Harald Kleveland til Regnbyen Utvikling. Dette ble vedtatt i møte den 19. april 2018. Beslutningen kan påvirke lokal eiendomsutvikling og boligmarkedet."
+  }
+}

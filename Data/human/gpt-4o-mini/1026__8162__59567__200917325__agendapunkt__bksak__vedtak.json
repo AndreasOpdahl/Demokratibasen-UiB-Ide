@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:8162:59567:200917325:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:21:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves a significant local planning issue with a dissenting opinion."
+    },
+    "summary_headline": "Klage over veibygging i Åsane avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har avvist en klage på avslag om anlegging av vei og mur på Dalavegen 136 i Åsane. Vedtaket fra 19. januar 2010 ble opphevet, og det ble gitt dispensasjon fra arealformålet i kommuneplanen. Komiteens flertall, bestående av representanter fra Høyre, Arbeiderpartiet, Fremskrittspartiet, SV, Kristelig Folkeparti og Venstre, stemte for innstillingen, mens Haakon L. Aarø fra Senterpartiet fremmet et alternativt forslag som fikk kun én stemme. Dette vedtaket kan påvirke lokale innbyggere som har interesser knyttet til veibygging og arealbruk i området."
+  }
+}

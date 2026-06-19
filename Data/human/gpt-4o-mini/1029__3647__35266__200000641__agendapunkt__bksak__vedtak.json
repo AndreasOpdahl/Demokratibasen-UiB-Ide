@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:3647:35266:200000641:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:31:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural item regarding the annual plan for the municipal audit, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Årsplan for kommunerevisjon behandlet",
+    "summary_body": "Kontrollutvalget i Bergen kommune har behandlet kommunerevisjonens årsplan for 2002 i møte 27. mai 2003. Saken vil bli lagt fram i junimøtet."
+  }
+}

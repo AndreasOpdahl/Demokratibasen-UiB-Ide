@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246926:5363952:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:46:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a new outdoor alcohol serving license is relevant and impacts local businesses and residents."
+    },
+    "summary_headline": "Ny skjenkebevilling for Klubb Jovial/Allmuen på Torgallmenningen",
+    "summary_body": "Byrådet har innvilget Klubb Jovial/Allmuen en ny skjenkebevilling for alkoholholdig drikk utendørs på Torgallmenningen fra 01.07.2023 til 31.07.2023. Bevillingshaver er Walkendorff AS, med Jennifer Fernandez som styrer. Det stilles krav om gratis vann til kunder og at det ikke tillates musikk etter kl. 22.00. Før bevillingen kan tas i bruk, må flere dokumenter sendes til Kontor for skjenkesaker, og det vil bli gjennomført en befaring. Dette tiltaket kan påvirke både besøkende og nærliggende beboere."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51090:114828:199920400:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:46:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant expansion of a hotel and restaurant in a historic area, which impacts local residents and businesses."
+    },
+    "summary_headline": "Utvidelse av First Hotell Marin godkjent med vilkår",
+    "summary_body": "Hovedutvalg for byutvikling har godkjent søknaden fra Bryggekvartalet AS om å endre bruken av Bryggen 7 fra kontor til hotell og restaurant. Utvidelsen inkluderer 29 hotellrom og et konferansesenter, med hovedinngang fra Rosenkrantz gaten. Det stilles krav om bedre tilgjengelighet for bevegelseshemmede. Ingen protester har blitt mottatt, men det er påpekt at hensyn til innbyggerne i området må tas. Prosjektet er en del av kommunedelplanen for Bergen sentrum, som fortsatt er under behandling."
+  }
+}

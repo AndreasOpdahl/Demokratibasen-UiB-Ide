@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:12159:75529:201600156:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:54:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is an invitation for a presentation, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Invitasjon til byråd om orientering i Eldrerådet",
+    "summary_body": "Byråden for finans, kultur og næring, Julie Andersland, er invitert til å orientere Eldrerådet om aktuelle saker. Møtet vil inkludere en åpen halvtime for spørsmål. Dette er en rutinemessig orientering uten kontroverser."
+  }
+}

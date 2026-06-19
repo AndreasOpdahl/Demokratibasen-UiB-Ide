@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5799:50393:200716937:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:11:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant municipal decisions regarding transportation infrastructure and environmental measures that will impact residents."
+    },
+    "summary_headline": "Bergen kommune krever økte statlige bevilgninger til transportprosjekter",
+    "summary_body": "Byrådet i Bergen har uttrykt bekymring for manglende statlige bevilgninger til viktige transportprosjekter i Nasjonal transportplan. De ber om at bevilgningene til Bergensprogrammet økes fra 113 millioner til minimum 150 millioner kroner årlig i perioden 2010-2019. Dette inkluderer prosjekter som bybanen og ringveg vest. I tillegg foreslås det etablering av 600 nye innfartsparkeringsplasser og 740 sykkelparkeringsplasser for å fremme miljøvennlig transport. Byrådet vil også utrede tiltak som køprising for å redusere lokal luftforurensning. Beslutningene vil bli sendt til bystyret for behandling."
+  }
+}

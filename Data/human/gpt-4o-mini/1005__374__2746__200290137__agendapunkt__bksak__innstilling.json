@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:374:2746:200290137:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:48:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The resignation of a local politician due to health reasons and the subsequent need for replacements is relevant and impactful for the community."
+    },
+    "summary_headline": "Erna Mundal Pedersen (FrP) trekker seg fra flere verv av helsemessige årsaker",
+    "summary_body": "Erna Mundal Pedersen fra Fremskrittspartiet har søkt om fritak fra vervene som medlem av Fyllingsdalen bydelsstyre, varamedlem i Bergen bystyre, og varamedlem i Komite for helse og sosial, service og utvikling og teknisk miljø, grunnet helseproblemer. Forretningsutvalget vil anbefale bystyret å godkjenne hennes søknad, og det vil bli gjennomført suppleringsvalg for å finne hennes etterfølgere i disse vervene. Dette kan påvirke representasjonen i bydelsstyret og komiteene i Bergen."
+  }
+}

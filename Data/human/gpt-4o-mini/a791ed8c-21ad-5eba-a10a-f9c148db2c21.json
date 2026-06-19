@@ -1,0 +1,18 @@
+{
+  "dokument_id": "a791ed8c-21ad-5eba-a10a-f9c148db2c21",
+  "kommune_nummer": 4635,
+  "kommune_navn": "Gulen",
+  "generated_at": "2026-02-19 23:15:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to the intermunicipal agreement affecting local governance and financial implications."
+    },
+    "summary_headline": "Gulen kommune vurderer endringer i selskapsavtalen for NGIR",
+    "summary_body": "Gulen kommune skal ta stilling til endringer i selskapsavtalen for Nordhordland og Gulen Interkommunale Renovasjonsselskap (NGIR) etter forslag fra representantskapet. Endringene inkluderer en økning av lånerammen fra 80 millioner til 180 millioner kroner, begrunnet med økte kostnader og behov for investeringer. Kommunedirektøren anbefaler godkjenning av endringene, men motsetter seg kravet om at minst to styremedlemmer skal være fra vertskommunen. Vedtak må gjøres før 1. mars 2026."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3699:35719:200203731:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:06:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision involves public spending for a specific community need, but lacks significant controversy or impact."
+    },
+    "summary_headline": "Byrådet godkjenner 2 millioner til prestebolig i Bønes sokn",
+    "summary_body": "Byrådet har besluttet å frigjøre 2 millioner kroner i investeringsrammen for 2003 til kjøp av prestebolig i Bønes sokn. Dette tiltaket er initiert av Bergen Bolig og Byfornyelse for å imøtekomme behovet for prestebolig i området."
+  }
+}

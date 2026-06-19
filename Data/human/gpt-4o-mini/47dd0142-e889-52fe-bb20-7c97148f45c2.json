@@ -1,0 +1,18 @@
+{
+  "dokument_id": "47dd0142-e889-52fe-bb20-7c97148f45c2",
+  "kommune_nummer": 4611,
+  "kommune_navn": "Etne",
+  "generated_at": "2026-02-19 23:00:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant project proposals for residential development in Etne, which will impact local housing availability and community structure."
+    },
+    "summary_headline": "To prosjekter videre i boligkonkurransen på Ivelandstomta",
+    "summary_body": "Formannskapet i Etne har besluttet å gå videre med to prosjekter i konkurransen om utviklingen av Ivelandstomta. A. Utvik AS og Tungesvik Bygg AS er valgt ut for videre vurdering, med fokus på å utvikle flere boligenheter og fellesarealer. Prosjektene skal nå forbedres før endelig tildeling i kommunestyret i september. Dette tiltaket er viktig for å møte boligbehovet i kommunen, og det er forventet at det vil påvirke innbyggerne positivt ved å tilby flere boliger."
+  }
+}

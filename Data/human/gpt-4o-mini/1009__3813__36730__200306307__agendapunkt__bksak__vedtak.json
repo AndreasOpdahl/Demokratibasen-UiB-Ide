@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3813:36730:200306307:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:08:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a new alcohol license is relevant to local businesses and residents."
+    },
+    "summary_headline": "Akropoli Plaza får ny skjenkebevilling for alkohol",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for øl, vin og brennevin ved Akropoli Plaza, eid av Idris Celep. Bevillingen gjelder frem til 30. juni 2004, og alkoholomsetningen må ikke overstige 50% av totalomsetningen. Styrer for bevillingen er Ali Celep, med Akif Celep som stedfortreder. Før bevillingen kan tas i bruk, må det sendes inn nødvendig dokumentasjon til Kontor for skjenkesaker. Klageadgang er tilgjengelig for de som ønsker å protestere mot vedtaket."
+  }
+}

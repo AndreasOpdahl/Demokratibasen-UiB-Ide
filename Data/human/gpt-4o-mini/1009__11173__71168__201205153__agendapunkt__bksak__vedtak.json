@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11173:71168:201205153:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:47:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The report addresses health behaviors of children and youth, which is relevant but lacks immediate impact or controversy."
+    },
+    "summary_headline": "Byrådet tar rapport om barn og unges helse til orientering",
+    "summary_body": "Byrådet i Bergen har behandlet en rapport om barn og unges helse og helseatferd, og besluttet å ta rapporten til orientering. Funnene fra rapporten vil bli brukt i utviklingen av tjenester for barn og unge. Rapporten vil også bli sendt til bystyrets kontor for videre oppfølging."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:6467:55587:200801546:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:20:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The evaluation of the neighborhood bench system has local relevance and suggests improvements, but lacks significant controversy or impact."
+    },
+    "summary_headline": "Evaluering av bydelsbenk i Årstad: Forslag om sjeldnere møter",
+    "summary_body": "Årstad bydelsstyre har evaluert ordningen med bydelsbenk, som ble innført for å øke innbyggerdeltakelse. Det har blitt gjennomført seks møter på Sletten Senter, men tilbakemeldingene har vært få. Flertallet av de som svarte ønsker å fortsette ordningen, men flere foreslår at møtene kan være sjeldnere og mer knyttet til spesifikke saker. Saken legges frem uten forslag til vedtak."
+  }
+}

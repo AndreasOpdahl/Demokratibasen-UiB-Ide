@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:6387:53232:200812848:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:10:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document contains multiple significant issues raised by city council members regarding waste management, tax growth, and social services, which are highly relevant to local residents."
+    },
+    "summary_headline": "Bystyret i Bergen diskuterer forsøpling, skattevekst og sosiale utfordringer",
+    "summary_body": "I det nylige bystyremøtet ble det stilt flere spørsmål om viktige saker for Bergen. Geir Kaland (H) etterlyste tiltak mot forsøpling i sentrum, og foreslo straffereaksjoner for å forbedre renholdet. Terje Ohnstad (A) kritiserte byrådet for lav skattevekst sammenlignet med andre byer, og ba om forklaring på dette. Ellinor-Therese Vorland (FrP) spurte om status for Arnatunnelen, mens Amir Payan (SV) oppfordret til vennskapsbysamarbeid med en palestinsk by. Sara Henriksen (V) uttrykte frustrasjon over forsinkelsen i åpningen av Fredriksberg fort, og Kjersti Toppe (Sp) etterlyste rapportering om omregulering av dyrka mark. Disse spørsmålene berører sentrale temaer som miljø, økonomi og sosiale forhold, og vil påvirke innbyggerne i Bergen."
+  }
+}

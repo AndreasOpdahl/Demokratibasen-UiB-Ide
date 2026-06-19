@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:8418:62051:200716852:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:51:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a committee meeting with multiple representatives addressing issues related to technology and upcoming reports."
+    },
+    "summary_headline": "Tekniske problemer med tavle-PCer diskutert i komiteen",
+    "summary_body": "I møtet den 9. juni behandlet Komite for oppvekst flere saker, inkludert påmeldinger til Storbykonferansen fra Norvald Visnes (H), Abdelmaid Jerad (H) og Tor A. Woldseth (FrP). Simen Johan Willgohs (SV) informerte om at tertialrapporten vil bli behandlet i et ekstramøte 15. juni. Flere representanter, inkludert Robert Monsen (H) og Tove Christoffersen (FrP), rapporterte om tekniske problemer med tavle-PCene."
+  }
+}

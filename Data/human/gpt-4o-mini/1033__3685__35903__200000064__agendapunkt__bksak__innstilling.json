@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3685:35903:200000064:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:46:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a local establishment's application for an extended alcohol license, which has moderate local relevance."
+    },
+    "summary_headline": "Rick's Café får anbefaling for utvidelse av skjenkebevilling",
+    "summary_body": "Rusmiddelpolitisk råd anbefaler søknaden fra Rick's Café & Salonger om utvidelse av skjenkebevilling. Dette kan påvirke serveringsmulighetene i området, men det er ingen kjent motstand mot søknaden."
+  }
+}

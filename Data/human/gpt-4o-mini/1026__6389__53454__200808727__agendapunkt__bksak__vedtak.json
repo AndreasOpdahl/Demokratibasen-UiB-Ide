@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:6389:53454:200808727:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:15:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant funding proposals for environmental initiatives and infrastructure improvements in Bergen, which directly impact local residents."
+    },
+    "summary_headline": "Bergen kommune vurderer 3,5 millioner til miljøtiltak og flomsikring",
+    "summary_body": "Komite for miljø og byutvikling har behandlet forslag fra Ruth Grung (A) om å bruke 3,5 millioner kroner fra tiltakspakken til å finansiere en ny driftsbygning på Øvre Bleken og til opprusting av turveiene på Byfjellene. Grung påpeker at dette vil styrke kommunens ambisiøse klimamål. Byrådet har tidligere avvist lignende forslag, men vil nå vurdere dette på nytt. I tillegg diskuteres flomsikringstiltak i Nesttunvassdraget, hvor det er behov for rask handling for å forebygge flomskader. Dette er relevante saker for innbyggerne i Bergen, da de berører både miljø og sikkerhet."
+  }
+}

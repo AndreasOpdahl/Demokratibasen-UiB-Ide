@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:4097:38680:200401317:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:38:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll fra byrådsmøte godkjent",
+    "summary_body": "Protokollen fra byrådsmøtet den 02. juni 2004 er blitt godkjent."
+  }
+}

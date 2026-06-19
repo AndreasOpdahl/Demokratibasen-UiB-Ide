@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246398:4901954:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:44:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document details the completion of a significant rehabilitation project for Bergen City Hall, which impacts local governance and public space."
+    },
+    "summary_headline": "Bergen Rådhus rehabilitert: Prosjektet avsluttet med økonomisk oversikt",
+    "summary_body": "Rehabiliteringen av Bergen Rådhus er nå fullført, med en total kostnad på 542 millioner kroner. Prosjektet, som startet i 2016, har inkludert både utvendig og innvendig oppgradering av det verneverdige bygget. Byrådet anbefaler at bystyret godkjenner sluttmeldingen, som også inkluderer et mindreforbruk på 2,2 millioner kroner. Prosjektet har vært utfordrende, med skjulte skader som førte til økte kostnader og forsinkelser. Rådhuset er nå modernisert og tilpasset dagens arbeidsstandarder, og vil huse ca. 150 ansatte. Innflyttingen skjedde 1. juli 2022, og bygget er nå et attraktivt sted for både offentlige og private aktører."
+  }
+}

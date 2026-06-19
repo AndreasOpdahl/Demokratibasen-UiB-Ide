@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:175:1252:200190290:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:42:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a failed vote of no confidence against the city council, highlighting political conflict and implications for elderly care funding."
+    },
+    "summary_headline": "Mistillitsforslag mot Byrådet nedstemt i Bergen bystyre",
+    "summary_body": "I Bergen bystyre ble mistillitsforslaget fra Frank W. Hansen (P) mot Byrådet nedstemt med 5 stemmer fra RV og P. Hansen kritiserte Byrådet for forsinket behandling av handlingsplanen for eldreomsorgen, noe som kan føre til tap av statlige midler til nye sykehjemsplasser. FrP uttrykte bekymring for at det planlegges for få institusjonsplasser til tross for økende behov, som vist av ventelister. Byråd Kristin Ravnanger ble spesielt kritisert for håndteringen av saken."
+  }
+}

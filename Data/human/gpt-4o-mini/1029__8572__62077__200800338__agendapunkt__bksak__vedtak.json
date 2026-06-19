@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:8572:62077:200800338:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:35:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a procedural matter without significant local impact or controversy."
+    },
+    "summary_headline": "Ingen kontrovers i budsjettjusteringer",
+    "summary_body": "Kontrollutvalget behandlet en sak om budsjettjusteringer etter 1. tertial 2010, relatert til ekstraordinært utbytte fra BKK AS. Notatet ble delt av Frode Mannsåker (R) og videresendt til finansbyråd Liv Røssland. Ingen dissent eller kontrovers ble rapportert."
+  }
+}

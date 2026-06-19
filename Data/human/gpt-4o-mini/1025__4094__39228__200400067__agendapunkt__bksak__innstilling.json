@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:4094:39228:200400067:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:49:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document addresses multiple inquiries regarding educational issues, which are relevant to local residents."
+    },
+    "summary_headline": "Byrådet svarer på spørsmål om lærerdekning og svømmeanlegg",
+    "summary_body": "Byrådet har besvart spørsmål fra Komite for oppvekst angående lærerdekning på 1. klassetrinn og behovet for minoritetsspråklige lærere. I tillegg er det gitt svar på forespørselen om et 50m svømmeanlegg med stup i Bergen. Dette er relevante saker for foreldre og elever i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51081:112412:199707357:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:43:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant municipal plan affecting local infrastructure and has received multiple objections, indicating local relevance and potential impact."
+    },
+    "summary_headline": "Kontroversiell kommunedelplan for E39 mellom Os og Bergen foreslås vedtatt",
+    "summary_body": "Hovedutvalg for byutvikling anbefaler å vedta alternativ C/E, variant 4 for E39 Svegatjørn - Rådal, til tross for tre innsigelser fra Statens vegvesen, Fylkeslandbruksstyret og Fylkesmannen i Hordaland. Innvendingene omhandler negative konsekvenser for landbruket og miljøet, spesielt ved Oselvvassdraget. Planen har vært til offentlig ettersyn og mottatt 25 merknader. Det endelige vedtaket vil bli fattet av Miljøverndepartementet etter politisk behandling i Os og Bergen. Dette prosjektet vil påvirke trafikksituasjonen og miljøet i regionen, noe som gjør det relevant for innbyggerne."
+  }
+}

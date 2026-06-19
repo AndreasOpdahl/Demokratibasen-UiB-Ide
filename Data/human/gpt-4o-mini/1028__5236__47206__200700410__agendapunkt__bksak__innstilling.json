@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1028:5236:47206:200700410:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:27:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document appears to be a routine administrative note without significant newsworthy elements."
+    },
+    "summary_headline": "Møteinnkalling for kommunalt råd for funksjonshemmede",
+    "summary_body": "Dokumentet er en møteinnkalling for Kommunalt råd for funksjonshemmede datert 11. april 2007, med en referanse til et møte den 18. april 2007."
+  }
+}

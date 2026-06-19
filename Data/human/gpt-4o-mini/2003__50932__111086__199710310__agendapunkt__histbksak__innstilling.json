@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50932:111086:199710310:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:34:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a contested expropriation decision affecting local property owners and public space development."
+    },
+    "summary_headline": "Kontroversiell ekspropriasjon for arkader på Torgalmenningen opprettholdes",
+    "summary_body": "Bergen formannskap har besluttet å opprettholde ekspropriasjonsvedtaket fra juni 1998, som berører bruksretten til festing av glasstak på Torgalmenningen 3b og 5. Dette vedtaket er omstridt av to huseiere, mens åtte andre har akseptert en minnelig avtale med kommunen. Rådmannen understreker at opprettholdelse av vedtaket er nødvendig for å sikre realiseringen av prosjektet, til tross for motstand fra et mindretall. Det er nå dialog med eierne av Torgalmenningen 3b for å finne en minnelig løsning. Saken vil bli oversendt fylkesmannen for videre behandling."
+  }
+}

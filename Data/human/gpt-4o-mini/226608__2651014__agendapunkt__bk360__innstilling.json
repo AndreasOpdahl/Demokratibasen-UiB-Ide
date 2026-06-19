@@ -1,0 +1,18 @@
+{
+  "dokument_id": "226608:2651014:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:56:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a routine activity plan for a municipal committee, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Aktivitetsplan for utvalg for miljø og byutvikling vedtatt",
+    "summary_body": "Utvalg for miljø og byutvikling har vedtatt aktivitetsplanen for første halvår 2021, som inkluderer møter og befaringer. På grunn av forventede smittevernrestriksjoner anbefales det at aktiviteten begrenses til møter. Utvalgets arbeidsutvalg vil tilpasse møteplanen etter behov."
+  }
+}

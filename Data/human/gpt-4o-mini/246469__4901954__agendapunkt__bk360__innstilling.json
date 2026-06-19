@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246469:4901954:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:45:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the quality report for kindergartens in Bergen, highlighting significant findings and future plans that impact local families."
+    },
+    "summary_headline": "Kvalitetsmelding for barnehagene i Bergen 2023 presentert for bystyret",
+    "summary_body": "Byrådet har lagt frem Kvalitetsmelding for barnehagene i Bergen 2023, som oppsummerer status og utvikling i barnehagesektoren fra 2018 til 2023. Meldingen viser at ansatte gjør et godt arbeid, men også at det er områder som trenger forbedring, spesielt i foreldresamarbeid og sykefravær. Det er planlagt en ny kvalitetsutviklingsplan som skal adresserer disse utfordringene, med forventet oppstart høsten 2023. Bystyret vil vurdere meldingen og dens implikasjoner for barnehagetilbudet i kommunen."
+  }
+}

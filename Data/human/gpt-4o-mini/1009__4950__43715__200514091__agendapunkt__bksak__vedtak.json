@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4950:43715:200514091:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:21:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to grant a new alcohol sales license is relevant to local residents and involves public regulations."
+    },
+    "summary_headline": "Lidl Godvik får salgsbevilling for alkoholholdig drikk",
+    "summary_body": "Byrådet har innvilget Lidl Godvik, Alvehaugen 2, en salgsbevilling for alkoholholdig drikk gruppe 1, som gjelder frem til 30. juni 2008. Karina Aasen er godkjent som styrer, mens Lars Hem er stedfortreder. Salg av alkohol kan skje på hverdager fra kl. 08.00 til 20.00, og det er spesifikke regler for salg på helligdager. Før bevillingen kan tas i bruk, må Lidl sende inn nødvendig dokumentasjon til kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:563:3792:200390359:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:08:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes to the powers of local district councils, which will impact governance and service delivery in Bergen."
+    },
+    "summary_headline": "Byrådet foreslår nye fullmakter for bydelsstyrene i Bergen",
+    "summary_body": "Byrådet har lagt frem forslag til nye fullmakter for bydelsstyrene i Bergen, som vil tre i kraft fra 1. november 2003. Endringene innebærer at bydelsstyrene mister ansvaret for drift og økonomi, som overføres til byrådet. Dette er en del av en større omorganisering basert på modell C, som ble vedtatt av bystyret 24. juni 2003. Bydelsstyrene vil få en mer politisk rolle, inkludert muligheten til å gi innspill i planprosesser og støtte lokale initiativer. Byrådet understreker at dette vil styrke bydelene som lokalsamfunn. Neste steg er implementeringen av de nye fullmaktene og tilpasningene i den administrative strukturen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50928:110202:199805207:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:33:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The approval of a sales license for alcohol is relevant to local businesses and community regulations."
+    },
+    "summary_headline": "Salgsbevilling for øl innvilget til O. Grotle AS i Storhammeren",
+    "summary_body": "Formannskapet i Bergen har innvilget søknaden fra O. Grotle AS om salgsbevilling for øl til dagligvareforretningen på Storhammeren 35. Vedtaket ble fattet i møte 3. juni 1998, med 18 stemmer for og 3 mot (KrF og RV). Ole Grotle vil være ansvarlig for bevillingen, med Anja Jensen som stedfortreder. Dette kan påvirke tilgjengeligheten av alkoholholdige drikker i nærområdet."
+  }
+}

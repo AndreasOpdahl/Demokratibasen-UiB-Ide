@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:3959:37141:200400489:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:28:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes in committee responsibilities affecting local cultural and youth services, which have a direct impact on residents."
+    },
+    "summary_headline": "Endringer i komiteansvarsområder påvirker kultur og oppvekst i Bergen",
+    "summary_body": "Bystyret har vedtatt endringer i ansvarsområdene for Komite for oppvekst (KOPP) og Komite for finans, kultur og næring (KFKN). KOPP får nå ansvar for flere etater, inkludert Ungdomshuset 1880 og Barnas hus, samt midler til kultur og aktiviteter for barn og unge. Det ble også vedtatt at alle kulturplansaker skal behandles av begge komiteer, med KFKN som innstillingsrett. Fellesforslaget fra Høyre, Kristelig Folkeparti, Venstre og Arbeiderpartiet ble vedtatt med 11 stemmer, mens forslag fra Sosialistisk Venstreparti fikk kun 2 stemmer. Neste steg er en ekstramøte før bystyrets møte 23. februar 2004 for videre behandling av saken."
+  }
+}

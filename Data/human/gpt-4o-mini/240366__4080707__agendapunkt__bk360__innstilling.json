@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240366:4080707:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:29:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document highlights significant challenges faced by a local agricultural producer, which could impact local food production and sustainability efforts."
+    },
+    "summary_headline": "Bønder i Bergen krever lavere gebyrer for utvidelse av landbruket",
+    "summary_body": "Jørn Erik Toppe fra Toppe Gartneri i Åsane har sendt et brev til byrådet angående høye gebyrer for byggesøknader som hindrer utvidelse av lokal matproduksjon. Toppe har investert 3,5 millioner kroner i bærekraftige løsninger, men må betale 350.000 kroner i gebyr for å bygge ut drivhus, noe som er uforholdsmessig høyt sammenlignet med gebyrene i nabokommunene. Han etterlyser endringer i bybudsjettet for 2023 for å støtte lokal matproduksjon og foreslår at gebyrene bør reflektere kostnadene ved behandling av søknader. Dette kan påvirke både matproduksjon og klima, da det vil redusere transportutslipp ved å bruke lokale ressurser."
+  }
+}

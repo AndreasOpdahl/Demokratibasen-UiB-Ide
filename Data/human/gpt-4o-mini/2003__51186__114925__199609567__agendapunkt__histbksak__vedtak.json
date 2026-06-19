@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51186:114925:199609567:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:37:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is procedural with no significant impact or controversy."
+    },
+    "summary_headline": "Formannskapet godkjenner bruk av offentlige arealer av Sommer-Bergen A/S",
+    "summary_body": "Formannskapet i Bergen kommune behandlet 18. august 1999 et forslag fra Torstein Dahle angående Sommer-Bergen A/S bruk av offentlige arealer. Rådmannens forslag ble enstemmig vedtatt, og formannskapet tar tidligere vedtak til etterretning."
+  }
+}

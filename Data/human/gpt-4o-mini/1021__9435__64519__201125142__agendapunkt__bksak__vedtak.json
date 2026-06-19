@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1021:9435:64519:201125142:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:34:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine meeting agenda without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra komiteen for fullmakter",
+    "summary_body": "Komite for fullmakter og politisk styringssystem behandlet sakene i møtet 5. juni 2012. Komiteens leder, Trude H. Drevland (H), orienterte om kjøreplanen for Bystyrets møte den 18. juni 2012, som vil bli behandlet i Forretningsutvalget den 12. juni 2012."
+  }
+}

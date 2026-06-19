@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:2543:27474:200104181:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:57:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to electronic archiving in public administration, which will impact efficiency and service delivery for residents."
+    },
+    "summary_headline": "Bergen kommune går inn for elektronisk arkivering av saksdokumenter",
+    "summary_body": "Byrådet i Bergen kommune har besluttet å støtte Riksarkivarens forslag om elektronisk arkivering av saksdokumenter. Dette tiltaket vil effektivisere saksbehandlingen og redusere papirbruk, noe som kan gi økonomiske besparelser. Byråden for service, utvikling og tekniske tjenester, Nils Arild Johnsen, understreker at kommunen må tilpasse sine systemer for å oppfylle kravene til elektronisk lagring. Det er også foreslått at byarkivaren utvikler ytterligere bestemmelser for implementeringen. Dette vil ha stor betydning for innbyggerne, da det kan forbedre servicen og redusere ventetid."
+  }
+}

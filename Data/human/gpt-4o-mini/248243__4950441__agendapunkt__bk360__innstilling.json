@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248243:4950441:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:50:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses significant changes in employment conditions for support contacts, which directly affects residents with disabilities."
+    },
+    "summary_headline": "Byrådet foreslår nytt regelverk for støttekontakter i Bergen",
+    "summary_body": "Byrådet i Bergen kommune har lagt frem et forslag om å utvikle et nytt regelverk for lønns- og arbeidsvilkår for støttekontakter. Dette er en oppfølging av en interpellasjon fra juni 2021. Saken skal nå behandles politisk, og Kommunalt råd for personer med funksjonsnedsettelse (KRPF) kan komme med innspill før den går videre til utvalg og bystyre. Dette forslaget kan ha stor betydning for personer med funksjonsnedsettelse i kommunen."
+  }
+}

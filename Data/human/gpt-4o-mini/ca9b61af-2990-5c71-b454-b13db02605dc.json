@@ -1,0 +1,18 @@
+{
+  "dokument_id": "ca9b61af-2990-5c71-b454-b13db02605dc",
+  "kommune_nummer": 4626,
+  "kommune_navn": "Øygarden",
+  "generated_at": "2026-02-19 23:21:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural information but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra tilleggsdokumentasjon for sak 20/926",
+    "summary_body": "Dokumentet er en tilleggsdokumentasjon til sak 20/926 angående GBNR 37/38 i Anglevik. Det inneholder en tverrprofil av veien som skal legges til saken, basert på tidligere innvilgede terrenginngrep. Ingen kontroverser eller beslutninger er rapportert."
+  }
+}

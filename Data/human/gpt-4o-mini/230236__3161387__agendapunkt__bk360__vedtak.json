@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230236:3161387:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:08:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The decision to name a new public space is of local interest but lacks significant impact or controversy."
+    },
+    "summary_headline": "Nytt byrom i Årstad bydel får navn",
+    "summary_body": "Byrådet har besluttet å gi det nye byrommet i Årstad bydel navnet Anna Kreetz’ plass. Dette ble vedtatt i møtet den 10. juni 2021."
+  }
+}

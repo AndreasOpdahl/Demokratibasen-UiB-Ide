@@ -1,0 +1,18 @@
+{
+  "dokument_id": "225459:1938476:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:54:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural record with no significant newsworthy elements."
+    },
+    "summary_headline": "Skriftlig spørsmål om vigilo behandlet",
+    "summary_body": "Utvalg for barnehage, skole og idrett behandlet skriftlig spørsmål nr. 83 fra Cesilie Tveit (FNB) om status for vigilo i møte 01.12.2020. Byråd Endre Tvinnereim svarte på spørsmålet."
+  }
+}

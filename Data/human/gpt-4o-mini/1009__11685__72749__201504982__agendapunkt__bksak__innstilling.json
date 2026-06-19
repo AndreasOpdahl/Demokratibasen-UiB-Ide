@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11685:72749:201504982:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:49:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The approval of a new alcohol license for a restaurant in a hotel is relevant and impactful for local residents."
+    },
+    "summary_headline": "Ny skjenkebevilling for Theatro i Bergen godkjent",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Theatro, Øvre Ole Bulls plass 5. Restauranten, som ligger i Clarion Collection Hotel Oleana, får et skjenkeareal på totalt 700 m2, inkludert 160 m2 uteservering. Bevillingen gjelder frem til 30. juni 2016, og det er stilt krav om at ansatte må ha gjennomgått kurs i ansvarlig alkoholhåndtering. Dette tiltaket er en del av kommunens praksis for å støtte nye spisesteder."
+  }
+}

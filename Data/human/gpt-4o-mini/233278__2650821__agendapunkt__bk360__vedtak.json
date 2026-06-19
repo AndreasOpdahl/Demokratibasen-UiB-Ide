@@ -1,0 +1,18 @@
+{
+  "dokument_id": "233278:2650821:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:14:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to exempt a property from property tax has significant implications for local tax policy and equity."
+    },
+    "summary_headline": "Bystyret fritar eiendom i Loddefjord for eiendomsskatt",
+    "summary_body": "Bergen bystyre har besluttet å frita eiendommen gnr. 123, bnr. 393, Vadmyrveien 91, fra eiendomsskatt. Dette vedtaket ble fattet 24. november 2021 med 58 stemmer fra flere partier, inkludert Arbeiderpartiet og Høyre. Ronny Grønsdal fra FNB uttrykte motstand mot fritaket, og argumenterte for at eiendomsskatt er usosial og øker ulikheten mellom eiere og leietakere. Fritaket kan bortfalle dersom eiendommen endrer bruksformål. Dette vedtaket kan påvirke fremtidige skattepolitikker i kommunen."
+  }
+}

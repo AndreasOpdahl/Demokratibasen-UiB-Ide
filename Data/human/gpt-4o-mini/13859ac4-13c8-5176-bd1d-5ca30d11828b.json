@@ -1,0 +1,18 @@
+{
+  "dokument_id": "13859ac4-13c8-5176-bd1d-5ca30d11828b",
+  "kommune_nummer": 5501,
+  "kommune_navn": "Tromsø",
+  "generated_at": "2026-02-19 20:27:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine meeting agenda with no significant newsworthy elements."
+    },
+    "summary_headline": "",
+    "summary_body": "Kontrollutvalget i Tromsø kommune har møte 6. november 2025 for å gjennomgå protokoll fra tidligere møte og planlegge en høring."
+  }
+}

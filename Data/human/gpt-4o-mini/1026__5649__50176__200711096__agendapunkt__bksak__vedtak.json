@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5649:50176:200711096:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:13:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The case involves a rejected appeal for a housing division, which may affect local residents but lacks significant conflict or financial implications."
+    },
+    "summary_headline": "Klage på avslag om fradeling til boligformål avvist",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig avvist en klage på avslag om fradeling av eiendom til boligformål på Østre Stiaberget i Laksevåg. Vedtaket opprettholder tidligere beslutning fra 29. oktober 2007, og ingen representanter fra komiteen tok ordet under behandlingen. Dette kan påvirke lokale boligmuligheter, men det er ingen tegn til konflikt eller dissent."
+  }
+}

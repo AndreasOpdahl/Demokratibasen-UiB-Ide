@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240847:3780734:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:30:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a potential collaboration between the Youth Council and YouthHansa, which could impact local youth engagement."
+    },
+    "summary_headline": "Ungdomsrådet vurderer samarbeid med YouthHansa",
+    "summary_body": "Ungdomsrådet i Bergen har fått en henvendelse om samarbeid med YouthHansa, ungdomsorganisasjonen i Hansabynettverket. Det planlegges diskusjoner om dette i møtet, men det skal ikke velges representanter i dag. Maja Zahl fra Byrådsavdelingen for kultur, sosial og inkludering foreslår at ungdommene som representerer Bergen på Hansadagene besøker Ungdomsrådet før og etter arrangementet for å dele innspill og erfaringer. Dette samarbeidet kan styrke ungdomsengasjementet i kommunen."
+  }
+}

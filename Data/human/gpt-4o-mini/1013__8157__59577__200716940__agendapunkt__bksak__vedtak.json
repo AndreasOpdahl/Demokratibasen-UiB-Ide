@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:8157:59577:200716940:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:16:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses procedural matters and updates without significant impact or controversy."
+    },
+    "summary_headline": "Ingen asbest i 3. etg., men revisjon av høringsregler planlegges",
+    "summary_body": "I et møte den 7. september 2010 behandlet Forretningsutvalget to saker. Hilde Onarheim (H) ba om en gjennomgang av høringsbestemmelsene etter TTT-høringen, som vil bli inkludert i revisjonen av reglementer før neste bystyreperiode. Byråd Filip Rygg informerte om at målingene i 3. etasje ikke viste forekomst av asbeststøv."
+  }
+}

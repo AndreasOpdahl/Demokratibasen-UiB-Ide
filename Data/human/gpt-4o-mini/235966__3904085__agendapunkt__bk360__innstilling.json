@@ -1,0 +1,18 @@
+{
+  "dokument_id": "235966:3904085:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:19:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a meeting agenda with the health minister but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ruspolitisk råd forbereder møte med helseministeren",
+    "summary_body": "Ruspolitisk råd har diskutert hovedmomenter for et kommende møte med helseminister Ingvild Kjerkol. Rådet vil ta beslutninger om innleggene som skal holdes under møtet. Møtet er planlagt til 23. februar 2022."
+  }
+}

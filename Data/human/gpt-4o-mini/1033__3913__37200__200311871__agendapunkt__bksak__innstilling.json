@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3913:37200:200311871:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:47:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a routine application for a beer sales license, which has limited local impact."
+    },
+    "summary_headline": "Rusmiddelpolitisk råd anbefaler salgsbevilling for øl",
+    "summary_body": "Rusmiddelpolitisk råd har anbefalt å gi Sig's Eftf. på Strandgt. 193 salgsbevilling for øl frem til 30. juni 2004. Dette gjelder en overdragelse av bevillingen. Saken er rutinemessig og forventes ikke å skape debatt eller motstand."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1028:12863:78993:201700057:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:27:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant budget request regarding housing for individuals with developmental disabilities, which is relevant to local residents."
+    },
+    "summary_headline": "Råd for funksjonshemmede ber om økt prioritering av boliger i budsjettet",
+    "summary_body": "Byråd Vigdis Anita Gåskjenn møter Kommunalt råd for funksjonshemmede for å diskutere budsjettinnspill. Rådet ber om at boliger for personer med utviklingshemming prioriteres høyere enn tidligere, og oppfordrer byrådet til å tenke kreativt og samarbeide med privat sektor for å sikre at disse personene kan leve selvstendige liv. Møtet finner sted 24. mai 2017."
+  }
+}

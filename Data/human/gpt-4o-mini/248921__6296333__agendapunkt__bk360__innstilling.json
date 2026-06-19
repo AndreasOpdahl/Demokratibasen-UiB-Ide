@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248921:6296333:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:52:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a facade change that affects cultural heritage, with strong opposition from authorities."
+    },
+    "summary_headline": "Klage på fasadeendring avvist - kulturminneverdier ivaretatt",
+    "summary_body": "Byrådet har avvist en klage på avslaget om legalisering av fasadeendringer på Strandgaten 6, som ble utført av kleskjeden Norrøna. Endringene, som inkluderer svart aluminiumsbeslag og fjerning av tredekor, er vurdert å forringe bygningens kulturhistoriske verdi. Byantikvaren og Vestland fylkeskommune har frarådet endringene, og byrådet støtter fagetatens vurderinger om at tiltaket ikke ivaretar bygningens antikvariske verdier. Byrådet anbefaler tiltakshaver å samarbeide med Byantikvaren for å finne en løsning som ivaretar både bevaring og dagens bruk. Saken er av stor betydning for bevaring av kulturmiljøet i Bergen."
+  }
+}

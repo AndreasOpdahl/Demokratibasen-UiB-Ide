@@ -1,0 +1,18 @@
+{
+  "dokument_id": "ed8b71e9-e89c-5ec2-941f-db8692604d55",
+  "kommune_nummer": 4627,
+  "kommune_navn": "Askøy",
+  "generated_at": "2026-02-19 23:24:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av møteprotokoll",
+    "summary_body": "Valgnemnda har godkjent møteprotokollen fra forrige møte, uten noen bemerkninger eller endringer."
+  }
+}

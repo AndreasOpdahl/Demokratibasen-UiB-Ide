@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3011:31308:200012489:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:24:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The decision to name a new tunnel is a routine administrative matter with low local impact."
+    },
+    "summary_headline": "Eikåstunnelen ved Vikaleitet får sitt navn",
+    "summary_body": "Åsane bydelsstyre har enstemmig vedtatt at den nye tunnelen ved Vikaleitet skal hete Eikåstunnelen. Beslutningen ble fattet i møte den 18. juni 2002, og det er ingen motforestillinger til navnevalget."
+  }
+}

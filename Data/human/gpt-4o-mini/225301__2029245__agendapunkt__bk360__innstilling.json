@@ -1,0 +1,18 @@
+{
+  "dokument_id": "225301:2029245:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:54:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av møteprotokoll i Eldrerådet",
+    "summary_body": "Eldrerådet har godkjent protokollen fra møtet den 28. oktober. Beslutningen ble fattet av leder Nils Mæhle og rådgiver Ragnhild Hvoslef Krüger den 19. november 2020. Det er ingen kontroverser eller dissent knyttet til saken."
+  }
+}

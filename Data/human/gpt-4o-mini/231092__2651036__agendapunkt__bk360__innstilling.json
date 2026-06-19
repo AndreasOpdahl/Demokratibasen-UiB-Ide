@@ -1,0 +1,18 @@
+{
+  "dokument_id": "231092:2651036:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:09:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains routine reporting with no significant newsworthy elements."
+    },
+    "summary_headline": "Byrådet presenterer tertialrapport for 1. kvartal 2021",
+    "summary_body": "Byrådet har levert tertialrapport for 1. kvartal 2021 til Utvalg for miljø og byutvikling, som anbefales å ta rapporten til orientering. Rapporteringen dekker flere etater, inkludert Bymiljøetaten og Bergen Brannvesen. Byrådet påpeker at enkelte temaer kan rapporteres mer hensiktsmessig gjennom andre kanaler, som Miljøløftet. Det er ingen kontroverser eller dissent i saken."
+  }
+}

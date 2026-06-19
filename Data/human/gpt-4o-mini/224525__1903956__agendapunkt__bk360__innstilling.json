@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224525:1903956:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:51:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested building project with significant local implications and community opposition."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på nybygg av bustadblokk i Fana",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om å bygge en bustadblokk med ni leiligheter på Sætervegen 7 i Fana. Klagen fra Tyark AS, på vegne av Bonava Norge AS, ble vurdert, men byrådet og fagetaten mener at prosjektet ikke oppfyller kravene i reguleringsplanen. Det er uttrykt bekymring for byggets arkitektoniske kvalitet og dets påvirkning på det eksisterende nabolaget. Klageren har sendt inn reviderte tegninger, men byrådet konkluderer med at endringene er så omfattende at ny søknadsbehandling er nødvendig. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1031:2429:24568:200000069:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:41:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a procedural decision regarding gender equality oversight in hiring, which has local relevance but lacks significant conflict or impact."
+    },
+    "summary_headline": "Likestillingsutvalget fortsetter med uttalelsesrett ved ansettelser",
+    "summary_body": "Likestillingsutvalget i Bergen kommune har besluttet at ordningen med uttalelse til ledige stillinger skal fortsette som tidligere. Den praktiske gjennomføringen vil bli vurdert i lys av en kommende sak om styrer, råd og utvalg, som skal behandles i bystyret."
+  }
+}

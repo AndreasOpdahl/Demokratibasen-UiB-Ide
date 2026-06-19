@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9384:63809:201009239:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:45:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a housing permit with conditions is significant for local residents and involves potential changes to the area."
+    },
+    "summary_headline": "Klage på boligprosjekt i Åsane tatt til følge",
+    "summary_body": "Byrådet har besluttet å oppheve tidligere avslag på en søknad om oppføring av et bolighus med to utleieenheter i Åsane. Den nye tillatelsen, datert 24. november 2010, gir dispensasjon fra kommuneplanens arealdel og reguleringsplanen. Søker må imidlertid ettersende dokumentasjon på bygningens høyde, og dersom den overstiger 9 meter, kreves ytterligere dispensasjon. Dette kan påvirke boligmarkedet og utformingen av området."
+  }
+}

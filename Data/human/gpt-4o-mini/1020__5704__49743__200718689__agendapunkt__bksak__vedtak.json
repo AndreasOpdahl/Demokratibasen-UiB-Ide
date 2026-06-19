@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:5704:49743:200718689:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:30:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative matters with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra finanskomiteens møte",
+    "summary_body": "Finanskomiteen behandlet flere saker i sitt møte den 13. februar 2008, inkludert høringer om garantiforskriften og myndighet til byrådet i bydelsstyrene. Det ble også utdelt notater om likestillingsprisen for 2008, men ingen kontroverser eller avgjørelser ble rapportert."
+  }
+}

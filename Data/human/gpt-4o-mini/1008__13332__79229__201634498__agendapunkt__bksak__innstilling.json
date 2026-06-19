@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:13332:79229:201634498:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:33:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The establishment of the Vest fire and rescue region is significant for local safety and involves substantial financial implications."
+    },
+    "summary_headline": "Bergen kommune vurderer deltakelse i Vest brann- og redningsregion",
+    "summary_body": "Bergen kommune vurderer å bli med i Vest brann- og redningsregion, et samarbeid mellom 32 kommuner for å styrke brann- og redningstjenester. Byrådet anbefaler deltakelse fra 1. januar 2018, med en kostnad på 11,4 millioner kroner for Bergen. Dette samarbeidet skal ikke erstatte lokale brannvesen, men forbedre beredskapen og kompetansen i regionen. Frist for politisk behandling er satt til midten av september 2017."
+  }
+}

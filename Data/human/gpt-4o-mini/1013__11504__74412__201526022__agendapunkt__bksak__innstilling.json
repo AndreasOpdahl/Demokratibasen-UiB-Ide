@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:11504:74412:201526022:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:00:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a procedural plan for upcoming elections of committee members, which is routine and lacks significant controversy."
+    },
+    "summary_headline": "Plan for valg av medlemmer til styrer og utvalg",
+    "summary_body": "Bystyret i Bergen skal den 16. desember 2015 velge medlemmer og varamedlemmer til ulike styrer, råd og utvalg. Navneforslag må leveres innen 30. november, og innstillingen behandles i forretningsutvalget senest 8. desember. Arbeidet koordineres av gruppelederne for Arbeiderpartiet og Høyre. I februar 2016 vil det også bli valgt medlemmer til samarbeidsutvalg ved skoler og barnehager."
+  }
+}

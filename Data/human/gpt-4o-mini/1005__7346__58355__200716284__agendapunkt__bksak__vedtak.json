@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7346:58355:200716284:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:14:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to appoint new city councilors is significant and has raised legal concerns regarding the legitimacy of the new council."
+    },
+    "summary_headline": "Bystyret godkjenner nye byråder, men R reiser spørsmål om lovlighet",
+    "summary_body": "Bergen bystyre har godkjent byrådets forslag om Liv Røssland og Øistein Christoffersen som nye byråder. Torstein Dahle fra R reiste imidlertid bekymringer om lovligheten av det nye byrådet, og mener at det burde vært avholdt nyvalg på grunn av endringer i det parlamentariske grunnlaget. Dette kan skape tvil om gyldigheten av vedtakene som det nye byrådet fatter. Bystyret vedtok innstillingen med 36 stemmer fra H, FrP, KrF og Pp."
+  }
+}

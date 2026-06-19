@@ -1,0 +1,18 @@
+{
+  "dokument_id": "204759:394164:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:06:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposed development of a multi-use facility in a historically significant area raises local interest and potential conflicts."
+    },
+    "summary_headline": "Ny flerbrukshall og barnehage foreslås ved Mulebanen i Sandviken",
+    "summary_body": "Rådet for byforming og arkitektur har lagt frem et forslag til reguleringsplan for et nytt flerbruksanlegg ved Mulebanen i Sandviken, som inkluderer idrettshall, ballbane, barnehage og parkeringsanlegg. Planen, som omfatter et område på 41,2 daa, er nå ute til offentlig ettersyn. Det er bekymringer knyttet til kulturminner, da området har historisk verdi, og fylkeskonservator har uttrykt skepsis til barnehagens plassering. Planen har vært under utvikling siden 2013, og det er behov for ytterligere vurderinger før endelig beslutning tas. Dette prosjektet kan ha stor betydning for innbyggerne i Bergenhus bydel, da det adresserer behovet for flere barnehageplasser og idrettsanlegg."
+  }
+}

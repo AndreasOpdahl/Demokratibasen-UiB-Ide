@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10812:70119:201124550:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:58:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural changes for a municipal meeting, which is of low news interest."
+    },
+    "summary_headline": "Revidert kjøreplan for bystyrets møte 23. april 2014 vedtatt",
+    "summary_body": "Forretningsutvalget har enstemmig vedtatt en revidert kjøreplan og taletidsdifferensiering for bystyrets møte den 23. april 2014. Endringene, foreslått av Julie Andersland (V), justerer taletiden for sakene 79 og 95 til henholdsvis 2 og 3 minutter."
+  }
+}

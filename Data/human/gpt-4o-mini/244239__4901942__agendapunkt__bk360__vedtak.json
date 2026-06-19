@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244239:4901942:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:38:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant changes in elder care policy that will impact many residents."
+    },
+    "summary_headline": "Bergen bystyre vedtar tiltak for et aldersvennlig samfunn",
+    "summary_body": "Bergen bystyre har vedtatt flere tiltak for å skape et mer aldersvennlig samfunn under møtet 29. mars 2023. Bystyret ber byrådet om å legge til rette for generasjonsmøteplasser, utvikle nye boformer for eldre, og forbedre informasjon om tilpasning av boliger for eldre. Det ble også vedtatt at byrådet skal lage en handlingsplan for å sikre gode transporttilbud og organisere forebyggende hjemmebesøk. Forslag fra SV om kommunal bygging av sykehjem og økt bemanning i eldreomsorgen ble nedstemt. Dette arbeidet vil ha stor betydning for Bergens eldre befolkning."
+  }
+}

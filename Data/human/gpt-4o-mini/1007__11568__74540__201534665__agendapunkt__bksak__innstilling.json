@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:11568:74540:201534665:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:29:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant initiative for sustainable maritime activities with potential local environmental impact and collaboration."
+    },
+    "summary_headline": "Bergen havn deltar i ZeroMaritime for bærekraftig maritim teknologi",
+    "summary_body": "Bergen og Omland havnestyre har besluttet å delta i ZeroMaritime, et forskningssenter for lav- og nullutslippsteknologier i maritim sektor, med et årlig budsjett på 40 millioner kroner. Deltakelsen vil styrke havnens satsing på miljøvennlige løsninger og elektrifisering. BOH vil bidra med 200 timer arbeid og tilgang til fasiliteter for pilotprosjekter. Prosjektet har støtte fra flere forskningsinstitusjoner og maritime bedrifter i Vestlandet, og vil være relevant for utviklingen av bærekraftige havneløsninger. Beslutning om finansiering av prosjektet tas i mai 2016."
+  }
+}

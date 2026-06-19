@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4554:41971:200105552:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:54:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to build a new fire station involves significant funding and has raised concerns about budget cuts affecting fire safety."
+    },
+    "summary_headline": "Bystyret godkjenner bygging av ny hovedbrannstasjon for 250 millioner kroner",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å bygge en ny hovedbrannstasjon på Nygårdstangen med et bruttoareal på ca. 7.800 m2. Prosjektet får en totalbevilgning på 250 millioner kroner, inkludert tidligere bevilgninger og byggelånsrenter. Det har imidlertid oppstått bekymringer fra representanter fra RV, A, SV og Sp om at driftsbudsjettet til brannvesenet reduseres med nesten 20 millioner kroner, noe som kan svekke brannberedskapen. Bystyret forutsetter at brannberedskapen opprettholdes på dagens nivå under byggingen."
+  }
+}

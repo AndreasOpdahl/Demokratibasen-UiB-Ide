@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8961:62407:201100086:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:42:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a hearing on social services regulations, which is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse om sosiale tjenester",
+    "summary_body": "Byrådet i Bergen har besluttet å avgi en høringsuttalelse til forskrift om sosiale tjenester i arbeids- og velferdsforvaltningen. Saken ble behandlet i byrådsmøtet den 28. juni, og vil bli oversendt til bystyrets kontor for orientering. Dette er en del av den pågående utviklingen av sosiale tjenester i kommunen."
+  }
+}

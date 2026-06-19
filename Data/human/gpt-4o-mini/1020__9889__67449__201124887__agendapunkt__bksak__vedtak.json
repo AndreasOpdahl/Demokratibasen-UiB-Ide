@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:9889:67449:201124887:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:33:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses administrative decisions regarding financial authority but lacks significant impact or controversy."
+    },
+    "summary_headline": "Ingen ny arbeidsgruppe for fagfullmakter i Komite for finans",
+    "summary_body": "Komite for finans har behandlet flere saker i møtet 15. mai 2013, inkludert midlertidige skoleløsninger for Damsgård skole. Det ble diskutert å opprette en arbeidsgruppe for nye fagfullmakter for byrådet, men komiteen besluttet å ikke opprette en slik gruppe. Partiene kan imidlertid sende innspill til endringer innen utgangen av juni."
+  }
+}

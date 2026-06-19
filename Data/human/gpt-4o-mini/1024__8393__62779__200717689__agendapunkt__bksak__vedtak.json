@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1024:8393:62779:200717689:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:46:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural information but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen store nyheter fra kulturkomiteen",
+    "summary_body": "Komite for kultur, idrett og næring behandlet en sak om Bergen kommunes søknad om sykkel-VM 2016 og orienterte om tidsplanen for budsjettbehandling. Det ble ikke rapportert om noen kontroverser eller uenigheter."
+  }
+}

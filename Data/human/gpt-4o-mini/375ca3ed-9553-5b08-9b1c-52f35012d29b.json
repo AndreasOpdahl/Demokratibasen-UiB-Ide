@@ -1,0 +1,18 @@
+{
+  "dokument_id": "375ca3ed-9553-5b08-9b1c-52f35012d29b",
+  "kommune_nummer": 4611,
+  "kommune_navn": "Etne",
+  "generated_at": "2026-02-19 22:58:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a revision of a crisis management plan, which is routine and lacks immediate newsworthy elements."
+    },
+    "summary_headline": "Revisjon av kriseleiingsplan i kommunen",
+    "summary_body": "Kommunestyret har mottatt en revisjon av planen for kommunal kriseleiing og beredskap. Dokumentet, datert 10. februar 2025, er utarbeidet av Eileen Selland og godkjent av fungerande kommunedirektør Åsmund Andersen Sekse. Det er ingen kontroverser eller spesielle endringer nevnt i dokumentet."
+  }
+}

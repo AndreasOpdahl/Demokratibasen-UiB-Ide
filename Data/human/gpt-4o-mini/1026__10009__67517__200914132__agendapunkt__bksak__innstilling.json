@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:10009:67517:200914132:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:52:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over the legality of a residential loft conversion, affecting local housing regulations and community standards."
+    },
+    "summary_headline": "Klage på ulovlig loftsbruk avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde et tidligere vedtak om pålegg om opphør av ulovlig bruk av loftet i Tellevikvegen 5, Åsane. Klager, representert av JIBO Consult, hevder loftet har vært bebodd siden 1958 og at det finnes godkjente tegninger som støtter dette. Imidlertid konkluderer byrådet, ledet av Monica Mæland og Filip Rygg, at det ikke er fremlagt tilstrekkelig dokumentasjon for å godkjenne bruken. Saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

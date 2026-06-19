@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:12701:77259:201428797:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:59:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant planning case regarding the future use of a green area and the rehabilitation center, which affects local community interests."
+    },
+    "summary_headline": "Plan for Nordåstunet vurderes med hensyn til samfunnsfunksjon",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet reguleringsplanen for Nordåstunet, et rehabiliteringssenter med viktig samfunnsfunksjon. De vurderer behovet for rehabiliteringssenteret opp mot fremtidig bruk av grøntområdet. Selv om den foreslåtte terrasseringen av bygget er akseptabel, bryter den med eksisterende formuttrykk og må videreutvikles. Det anbefales også å videreføre paviljonguttrykket fra det eksisterende anlegget for å styrke tilhørigheten til nybygget."
+  }
+}

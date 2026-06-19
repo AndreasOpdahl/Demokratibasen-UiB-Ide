@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:6403:55623:200809294:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:16:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document contains relevant performance reports from various municipal departments, highlighting issues such as staffing and service delivery that affect local residents."
+    },
+    "summary_headline": "Rapport om byggesak og brannvesen viser utfordringer med saksbehandling",
+    "summary_body": "Byrådet har lagt frem rapporter for 1. tertial 2009 fra Byrådsavdeling for byggesak og bydeler, som viser at saksbehandlingstiden for byggesaker er høyere enn ønsket, med en økning i klagesaker. Brannvesenet rapporterer om avvik i tilsyn på grunn av sykefravær. Byrådet anbefaler at nøkkeltallsrapportene tas til orientering av Komite for miljø og byutvikling. Det er viktig for innbyggerne i Bergen å være oppmerksomme på disse utfordringene, da de kan påvirke både byggesaksprosesser og brannsikkerhet i kommunen."
+  }
+}

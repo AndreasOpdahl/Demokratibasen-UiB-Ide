@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7088:55429:200900914:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:36:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to extend the helicopter landing permit is relevant to local residents and involves safety considerations."
+    },
+    "summary_headline": "Forlengelse av konsesjon for Bergen helikopterplass godkjent",
+    "summary_body": "Byrådet har besluttet å forlenge konsesjonen for Bergen helikopterplass på Grønneviksøren med ett år. Forlengelsen er betinget av at det ikke oppstår sikkerhetsmessige problemer knyttet til naboskapet med det nye LNG-anlegget. Melding om vedtaket vil bli sendt til bystyrets kontor."
+  }
+}

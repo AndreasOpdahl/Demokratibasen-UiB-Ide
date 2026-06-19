@@ -1,0 +1,18 @@
+{
+  "dokument_id": "a4947365-b516-55f9-8cbe-45a5d82c6f4d",
+  "kommune_nummer": 4651,
+  "kommune_navn": "Stryn",
+  "generated_at": "2026-02-19 23:14:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant changes in fees and charges for 2026, which will impact residents financially."
+    },
+    "summary_headline": "Stryn kommune vedtar gebyr og betalingssatsar for 2026",
+    "summary_body": "Stryn kommune har fastsett gebyr og betalingssatsar for 2026, med en generell økning på 3,5% basert på kommunal prisvekst. Noen satser vil øke mer enn dette, spesielt for SFO og barnehagekostnader, som er nødvendige for å dekke økte matpriser. Administrasjonen anbefaler å holde prisene for kulturskole og leie av kulturhus uendret for å sikre tilgjengelighet for barn og unge. Vedtaket ble enstemmig støttet av flere utvalg, inkludert Inkluderingsutvalet og Utval for helse og sosial. Dette vil påvirke innbyggerne økonomisk, spesielt de som benytter seg av kommunale tjenester."
+  }
+}

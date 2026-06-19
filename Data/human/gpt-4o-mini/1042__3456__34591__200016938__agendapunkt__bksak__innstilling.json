@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:3456:34591:200016938:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:15:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a local expansion of a kindergarten, which is relevant but lacks significant controversy or financial implications."
+    },
+    "summary_headline": "Utvidelse av Nordås barnehage med ni plasser",
+    "summary_body": "Ytrebygda bydelsstyre har fått en sak om utbygging av Nordås barnehage, som skal gi ni nye småbarnsplasser i henhold til Bergen kommunes utbyggingsplan. Bydelsdirektør Kjersti Skaar og oppvekst- og kultursjef Marianne M. Boge presenterer saken for bydelsstyret, som tar den til orientering."
+  }
+}

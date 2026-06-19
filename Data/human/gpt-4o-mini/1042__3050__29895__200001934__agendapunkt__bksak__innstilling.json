@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:3050:29895:200001934:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:13:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses local administrative issues regarding maintenance services and staffing at a school, which could impact residents."
+    },
+    "summary_headline": "Ytrebygda bydelsstyre krever bedre vaktmestertjenester ved Skranevatnet skole",
+    "summary_body": "I Ytrebygda bydelsstyre ble det fremsatt forslag om å forbedre vaktmestertjenester ved Skranevatnet skole. Representant Arvid Lihaug (FrP) ba om en skriftlig orientering fra Bergen Bygg og Eiendom (BBE) om hvordan deres tekniske vedlikeholdsteam fungerer, samt antall ansatte fagfolk. Bydelsstyret ber også om at skolen får en fast vaktmester fra 1. januar 2002. Administrasjonen har mottatt svar fra BBE, som nå vil bli tatt til orientering."
+  }
+}

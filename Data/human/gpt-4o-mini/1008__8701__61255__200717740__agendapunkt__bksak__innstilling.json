@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:8701:61255:200717740:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:39:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document includes budget adjustments and a new action plan for economic development, which are significant for local residents."
+    },
+    "summary_headline": "Bystyret vurderer budsjettjusteringer og handlingsplan for næringsutvikling",
+    "summary_body": "Byrådet i Bergen har innstilt til bystyret om godkjenning av budsjettjusteringer for 2011, inkludert økning av kostnadsoverslaget for prosjektet 'Ny-Krohnborg' med 6,2 millioner kroner. I tillegg foreslås det å kjøpe 16 elbiler til Bergen Hjemmetjenester KF, med en kostnad på inntil 880.000 kroner fra Klimafondet. Byrådet anbefaler også en handlingsplan for næringsutvikling som skal rulleres årlig. Disse beslutningene vil ha direkte innvirkning på innbyggerne i Bergen, spesielt innen helse og miljø."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50978:111066:199615091:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:50:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal for a toy museum in Bergen has local relevance and potential impact on children's cultural activities."
+    },
+    "summary_headline": "Bergen vurderer opprettelse av leketøymuseum",
+    "summary_body": "Hovedutvalg for fritid og kultur i Bergen har besluttet å utrede opprettelsen av et leketøymuseum, basert på en stor leketøysamling fra Gerd Wicklund-Hansen. Professor Åse Enerstvedt har levert en utredning som anbefaler videre vurdering av lokaliseringsalternativer og driftsformer. Utredningen anslår kostnader på ca. 740.000 kroner for registrering av samlingen og 637.000 kroner for fotografering. Det er en generell positiv holdning blant politikere til prosjektet, men det gjenstår mye arbeid før en endelig beslutning kan tas. Dette kan bli et viktig kulturelt tilbud for barn i Bergen."
+  }
+}

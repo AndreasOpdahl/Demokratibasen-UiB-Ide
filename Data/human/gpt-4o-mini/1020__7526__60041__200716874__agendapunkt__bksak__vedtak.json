@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:7526:60041:200716874:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:32:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines routine budget discussions with no significant newsworthy elements."
+    },
+    "summary_headline": "Budsjettbehandling for 2011 planlagt",
+    "summary_body": "Komite for finans skal i møte 1. desember 2010 behandle budsjettet for 2011 og økonomiplanen for 2011-2014. Partiene må sende sine forslag til komiteens rådgiver innen 24. november 2010. I tillegg ble det nevnt en invitasjon til julemiddag for faste representanter."
+  }
+}

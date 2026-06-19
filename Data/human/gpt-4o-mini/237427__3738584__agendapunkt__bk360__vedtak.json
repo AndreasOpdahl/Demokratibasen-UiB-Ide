@@ -1,0 +1,18 @@
+{
+  "dokument_id": "237427:3738584:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:22:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to allow the demolition of historical buildings has significant local impact and controversy."
+    },
+    "summary_headline": "Utvalg for miljø og byutvikling godkjenner riving av våningshus og løe i Fana",
+    "summary_body": "Utvalg for miljø og byutvikling har enstemmig besluttet å oppheve tidligere avslag på riving av våningshus og løe på Nedre Kirkebirkeland 23. Klagen ble tatt til følge, til tross for motstand fra Byantikvaren, som mente bygningene burde bevares. Utvalget argumenterer med at bygningene er i stort forfall og at området er regulert til småhusbebyggelse, noe som gir behov for nye familieboliger. Rivningstillatelsen gis med krav om at ny bebyggelse skal oppføres i samme stil som eksisterende bygninger. Dette vedtaket kan påvirke boligmarkedet i området, som allerede er et etablert boligfelt."
+  }
+}

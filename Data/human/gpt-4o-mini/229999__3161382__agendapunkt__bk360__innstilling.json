@@ -1,0 +1,18 @@
+{
+  "dokument_id": "229999:3161382:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:06:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a controversial decision regarding outdoor alcohol serving in a sensitive area near a cinema, impacting local community dynamics."
+    },
+    "summary_headline": "Byrådet avslår søknad om uteservering ved Royal Gourmetburger & Gin",
+    "summary_body": "Byrådet i Bergen har besluttet å avslå søknaden fra Kiosko AS om skjenkebevilling for uteservering ved Royal Gourmetburger & Gin på Neumannsgate 2A. Avslaget begrunnes med hensyn til barn og unge som ferdes i området, spesielt i nærheten av Bergen Kino. Politiet har ikke innvendinger, men Etat for sosiale tjenester har påpekt at beliggenheten er problematisk. Byrådet støtter fagetatens vurdering og opprettholder tidligere praksis med å nekte uteservering i dette området."
+  }
+}

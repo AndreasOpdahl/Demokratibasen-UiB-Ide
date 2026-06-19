@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:10909:70815:201419371:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:10:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes to advance voting locations and procedures for the upcoming municipal and county elections, impacting local residents."
+    },
+    "summary_headline": "Endringer i forhåndsstemmelokaler for valget 2015",
+    "summary_body": "Bystyredirektøren har anbefalt etablering av faste forhåndsstemmelokaler til kommunestyre- og fylkestingsvalget i 2015. Det blir tidlig forhåndsstemming i Bergen rådhus, mens NAV Årstad avvikles som stemmelokale og erstattes av Høgskolen på Kronstad. Forhåndsstemmemottakene vil være åpne fra 1. juli til 11. september, med utvidede åpningstider i kjøpesentre. Dette vil påvirke mange innbyggere, spesielt studenter og eldre, som nå får bedre tilgang til stemmegivning."
+  }
+}

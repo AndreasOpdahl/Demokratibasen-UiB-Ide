@@ -1,0 +1,18 @@
+{
+  "dokument_id": "e1f45a23-d83d-5d4d-83a9-2decaca5557d",
+  "kommune_nummer": 4628,
+  "kommune_navn": "Vaksdal",
+  "generated_at": "2026-02-19 23:22:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines the election of representatives to the youth council, which is relevant for local youth engagement."
+    },
+    "summary_headline": "Val av nye representantar til ungdomsrådet i Vaksdal for 2026",
+    "summary_body": "Vaksdal kommune har annonsert val av representantar til ungdomsrådet for 2026. Elevrådet ved Dale skule har innstilt Johanne Hesjedal, Geir Odin Dale, Heidi Nesheim, Matheo Osman Tollefsen, og Vilde Birkeland Johnsen som representantar. Vararepresentantar er Ronja Andreassen Rabben, Markus Vik-Lilletvedt, og Elias Bergo. Ungdomsrådet, som gir råd til kommunestyret, skal bestå av representantar frå Stanghelle, Stamnes, og Eksingedalen, samt to frå Dale skule. Valet er viktig for å sikre ungdoms stemme i lokale saker."
+  }
+}

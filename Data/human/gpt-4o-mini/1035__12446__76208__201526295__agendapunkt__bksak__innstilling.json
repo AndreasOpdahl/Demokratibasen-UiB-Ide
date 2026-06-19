@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:12446:76208:201526295:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:58:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a proposed development plan that has faced significant opposition and requires public input."
+    },
+    "summary_headline": "Fyllingsdalen utviklingsplan møter motstand fra byformingrådet",
+    "summary_body": "Rådet for byforming og arkitektur har avvist et planforslag for et nytt bolig- og næringsområde i Fyllingsdalen, som omfatter 50 leiligheter og en dagligvarebutikk. Forslaget fra Opus Bergen AS ble kritisert for å bryte med kommuneplanens bestemmelser om utnyttingsgrad og byggehøyder. Rådet påpeker at planområdet ikke ligger i et sentrumsområde og krever betydelige endringer, inkludert reduksjon av boligdelen og innendørs parkering. Offentlig ettersyn er satt til 16. august 2016, og det er ventet at flere innspill vil komme inn i høringsrunden."
+  }
+}

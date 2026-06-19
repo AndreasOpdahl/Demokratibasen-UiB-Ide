@@ -1,0 +1,18 @@
+{
+  "dokument_id": "9ecaa3ae-bbd8-57f2-8ebd-78e29a8c2c14",
+  "kommune_nummer": 4618,
+  "kommune_navn": "Ullensvang",
+  "generated_at": "2026-02-19 23:13:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a denied application for a new building, which affects local residents and involves historical land use rights."
+    },
+    "summary_headline": "Statskog avslår søknad om ny utedo ved Bremafotbue",
+    "summary_body": "Statskog har avslått søknaden om å bygge en ny utedo og uthus ved Bremafotbue i Eidfjord. Søknaden ble sendt inn 18. mars 2025, men Statskog mener at det ikke er tilstrekkelige grunner for å fravike eksisterende avgiftsfri erklæring knyttet til bygningen. Den gamle utedoen har råteskader, men Statskog anbefaler å vedlikeholde den eksisterende strukturen. Det er mulig å vurdere en ny plassering av utedoen dersom det dokumenteres at dette vil være mer hensiktsmessig. Denne avgjørelsen kan ikke klages på, og Statskog venter nå på behandling fra vernemyndighetene."
+  }
+}

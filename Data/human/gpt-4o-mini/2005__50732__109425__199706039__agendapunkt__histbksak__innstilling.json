@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50732:109425:199706039:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:40:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant land use decision affecting local agricultural and residential interests."
+    },
+    "summary_headline": "Klage på avslag om fradeling av landbruksareal avvist av byutviklingsutvalget",
+    "summary_body": "Hovedutvalg for byutvikling har avvist klagen fra Terje Viken på vegne av Olav Kjelby, som ønsket å fradele parsell fra gnr. 114, bnr. 6 og 40 til boligformål. Arealet er klassifisert som Landbruks-, natur og friluftsområde i kommuneplanen, og både administrasjonen og Fylkesmannens miljøvernavdeling fraråder fradeling. Utvalget opprettholder tidligere vedtak om avslag, med henvisning til vern av kulturlandskapet og restriksjoner på boligbygging i området."
+  }
+}

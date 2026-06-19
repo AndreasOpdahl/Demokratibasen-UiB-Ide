@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4530:41367:200407797:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:54:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to revoke a long-standing regulatory plan is relevant to local development and community planning."
+    },
+    "summary_headline": "Bystyret opphever reguleringsplan for Øyrane Sør i Indre Arna",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å oppheve reguleringsplan R.2.651.00.00 for Øyrane Sør i Indre Arna, som ble vedtatt i 1988, samt en mindre reguleringsendring fra 1992. Dette vedtaket ble fattet under møtet den 6. juni 2005, og er en del av bystyrets arbeid med byutvikling. Innstillingen fra Komite for miljø og byutvikling var lik byrådets forslag, noe som indikerer enighet om saken. Opphevelsen kan påvirke fremtidige utviklingsprosjekter i området."
+  }
+}

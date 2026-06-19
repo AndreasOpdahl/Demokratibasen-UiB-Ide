@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10816:70248:201124335:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:58:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines several hearings on important local regulations and strategies, which could impact residents."
+    },
+    "summary_headline": "Høringer om landbruksveier og elbil-infrastruktur i Bergen",
+    "summary_body": "Forretningsutvalget har behandlet flere høringssaker, inkludert en ny forskrift om landbruksveier og Transnovas forslag til nasjonal strategi for elbil-infrastruktur. Høringen om avfallsgebyr har fått utsatt frist til 29. april. Byrådet vil avgi høringsuttalelser på disse sakene, som kan påvirke både landbruk og miljøtiltak i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1022:5340:46491:200609300:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:36:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a decision regarding outsourcing maintenance tasks, which has local relevance but lacks significant controversy or financial impact."
+    },
+    "summary_headline": "Bergen Vann KF vurderer konkurranseutsetting av driftsoppgaver",
+    "summary_body": "Styret for Bergen Vann KF har mottatt en forespørsel fra BBY om å gi uttalelse til et notat om konkurranseutsetting av driftsoppgaver innen vann- og avløpsvirksomheten. Styret har besluttet å oversende notatet med foreslåtte endringer til videre behandling. Fristen for uttalelsen er satt til 2. februar 2007."
+  }
+}

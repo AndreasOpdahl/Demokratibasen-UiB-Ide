@@ -1,0 +1,18 @@
+{
+  "dokument_id": "219715:1903938:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:42:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a contested building permit affecting local residents, with significant implications for property rights and neighborhood dynamics."
+    },
+    "summary_headline": "Klage på bruksendring i Fredrik Meltzers gate avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde rammetillatelsen for bruksendring av bolig i Fredrik Meltzers gate 24, til tross for klage fra naboen i nr. 26. Klagen, som ble fremmet av Kaspar Knudsen, omhandler bekymringer om økt støy, innsyn og verdiforringelse. Byrådet mener at fordelene ved fortetting i sentrum oppveier ulempene, og at tiltaket ikke vil medføre vesentlige negative konsekvenser for naboeiendommene. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

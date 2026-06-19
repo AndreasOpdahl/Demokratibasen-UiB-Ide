@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7463:59236:200803541:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:19:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested building project with significant local implications and opposition from neighboring property owners."
+    },
+    "summary_headline": "Klage på avslag om riving og nybygg i Lille Øvregaten avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på riving av eksisterende bakbygning og oppføring av nytt bakbygg i Lille Øvregaten 20. Klagen fra Byggringen AS, på vegne av tiltakshaver Roar Alsaker, ble ikke tatt til følge, da fagetaten vurderte at tiltaket ville overskride maksimal BYA og ikke oppfylle kravene til felles oppholdsareal. Det er også innkommet merknader fra naboer som uttrykker bekymring for høyde og lysforhold. Byrådet, ledet av Monica Mæland, anbefaler at saken sendes til Fylkesmannen for endelig avgjørelse."
+  }
+}

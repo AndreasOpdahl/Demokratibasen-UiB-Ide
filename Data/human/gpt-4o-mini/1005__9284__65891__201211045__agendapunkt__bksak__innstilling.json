@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9284:65891:201211045:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:22:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses a significant local safety concern raised by parents, involving proposed traffic safety measures around a school."
+    },
+    "summary_headline": "Foreldreutvalget krever trafikksikring ved Nygårdslien skole",
+    "summary_body": "Foreldreutvalget ved Nygårdslien skole har fremmet et innbyggerinitiativ for å forbedre trafikksikkerheten rundt skolen. De ber om en helhetlig plan som inkluderer fortau, redusert hastighet, opphøyde gangfelt og bedre skilting. Byrådet støtter initiativet og anbefaler at tiltakene inkluderes i den kommende trafikksikkerhetsplanen for Bergen 2014-2017. Det er planlagt å innføre fartsdempende tiltak i oktober 2012, men ikke alle foreslåtte tiltak kan gjennomføres innen fristen. Bystyret må ta stilling til forslaget innen 6 måneder."
+  }
+}

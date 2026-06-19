@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244475:4932643:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:39:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a routine appointment of a new alternate member for a political party in the city council."
+    },
+    "summary_headline": "Høyre får nytt varamedlem i Bergen bystyre",
+    "summary_body": "Jacob Mæhle fra Høyre har trådt ut av sitt verv som varamedlem i Bergen bystyre etter å ha flyttet fra byen. Karl Strydom Eidesund er foreslått som hans etterfølger. Dette skjer i forbindelse med kommunestyrevalget 2019, hvor Høyre fikk 14 representanter. Den formelle beslutningen om Eidesunds inntreden vil bli tatt av valgstyret."
+  }
+}

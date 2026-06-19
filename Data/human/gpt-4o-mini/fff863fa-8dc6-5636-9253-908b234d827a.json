@@ -1,0 +1,18 @@
+{
+  "dokument_id": "fff863fa-8dc6-5636-9253-908b234d827a",
+  "kommune_nummer": 4621,
+  "kommune_navn": "Voss",
+  "generated_at": "2026-02-19 23:26:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines the school schedule for the upcoming school year, which is relevant to local families."
+    },
+    "summary_headline": "Voss herad vedtek skulerute for 2025-2026",
+    "summary_body": "Heradsstyret i Voss har samrøystes vedteke lokal forskrift om skuleruta for grunnskulane for skuleåret 2025-2026, som trer i kraft 1. august 2025. Skuleruta har vore på høyring hos skulane og tillitsvalde, og tilpassar vinterferieveka slik at den ikkje kolliderer med Bergen kommune. Dette vedtaket er viktig for lokale foreldre og elevar som planlegg skuleåret."
+  }
+}

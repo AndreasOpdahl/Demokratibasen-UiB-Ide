@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:497:3179:200290061:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:07:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural responses without significant newsworthy elements."
+    },
+    "summary_headline": "Byrådet svarer på spørsmål fra KMBT",
+    "summary_body": "Byrådet har besvart flere spørsmål fra Komite for miljø, byutvikling og tekniske tjenester (KMBT) i møte 130303. Svarene omhandler blant annet boligbygging i Bergen og spesifikke saker som Bønesstranden 66 og Amalie Skrams vei 47. Sakene ble tatt til orientering, og det er ingen kontroverser eller nye beslutninger."
+  }
+}

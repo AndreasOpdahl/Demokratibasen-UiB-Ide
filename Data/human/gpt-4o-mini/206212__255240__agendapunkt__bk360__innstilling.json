@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206212:255240:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:11:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document includes several interpellations and proposals that address local issues, making it relevant for residents."
+    },
+    "summary_headline": "Bystyret diskuterer viktige lokale saker 20. juni 2018",
+    "summary_body": "Bergen bystyre møtes 20. juni 2018 for å behandle flere interpellasjoner og saker av lokal interesse. Blant temaene er støtdempende fallunderlag av resirkulerte bildekk på lekeplasser, matkasting i kommunen, og fortetting med kvalitet. Det vil også bli diskutert forslag om bedre mobildekning i flere områder, samt en ny handlingsplan for trafikksikkerhet. Møtet finner sted i Det gamle Rådhus, og det er viktig for innbyggerne å følge med på hvordan disse sakene kan påvirke deres hverdag."
+  }
+}

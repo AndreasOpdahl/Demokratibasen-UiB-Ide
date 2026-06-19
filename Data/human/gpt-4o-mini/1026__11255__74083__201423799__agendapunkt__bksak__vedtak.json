@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:11255:74083:201423799:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:55:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document involves a local building permit appeal but lacks significant conflict or public interest."
+    },
+    "summary_headline": "Klage på nybygg av lager avvist i Åsane",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig avvist en klage på tillatelsen for nybygg av lager på Fagerdalen 8 i Åsane. Fagetatens vedtak fra 23. januar 2015 ble opprettholdt, og ingen representanter fra komiteen tok ordet under behandlingen."
+  }
+}

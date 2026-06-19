@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:5265:46077:200504322:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:32:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses an investigation into the building permit process, which is relevant to local governance and could impact residents."
+    },
+    "summary_headline": "Kontrollutvalget gir kommunerevisjonen fullmakt til å undersøke byggesaksbehandling",
+    "summary_body": "Kontrollutvalget i Bergen kommune har enstemmig vedtatt å gi kommunerevisjonen fullmakt til å undersøke saksbehandlingen i byggesaksavdelingen. Dette skjer med fokus på konkrete saker fra den senere tid, og vil involvere både planfaglige og juridiske miljøer. Saken ble tidligere behandlet i desember 2006, hvor det også ble vedtatt å vurdere skjønnsutøvelsen. Dette kan ha betydning for innbyggerne i Bergen, spesielt de som er berørt av byggesaker."
+  }
+}

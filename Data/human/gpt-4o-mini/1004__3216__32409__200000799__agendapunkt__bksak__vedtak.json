@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3216:32409:200000799:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:27:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains a minor concern raised by a politician regarding the kitchen reform, but lacks significant conflict or impact."
+    },
+    "summary_headline": "Politiker kritiserer kjøkkenreformens gevinster",
+    "summary_body": "Under møtet i Bergenhus bydelsstyre den 1. oktober 2002, ble referatsaker fra Eldrerådet og AMU behandlet. Anne Lise Kristensen fra SV uttrykte bekymring for at Kjøkkenreformen ikke vil gi de forventede gevinstene. Vedtaket var at referatsakene ble tatt til orientering."
+  }
+}

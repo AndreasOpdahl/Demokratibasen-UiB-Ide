@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:2972:30021:200013543:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:53:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is procedural and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra åpen halvtime i Fana bydelsstyre",
+    "summary_body": "Fana bydelsstyre har annonsert saker som skal tas opp under den åpne halvtimen den 5. mars 2002. Forslaget til vedtak er å ta sakene til orientering."
+  }
+}

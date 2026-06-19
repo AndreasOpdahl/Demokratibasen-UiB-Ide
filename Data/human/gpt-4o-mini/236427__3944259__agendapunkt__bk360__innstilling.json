@@ -1,0 +1,18 @@
+{
+  "dokument_id": "236427:3944259:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:20:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document addresses the urgent need for Bergen municipality to prepare for an influx of Ukrainian refugees due to the ongoing war, highlighting significant local impact and community engagement."
+    },
+    "summary_headline": "Bergen kommune forbereder seg på å ta imot flere ukrainske flyktninger",
+    "summary_body": "Bergen kommune må forberede seg på å bosette over 1000 ukrainske flyktninger som følge av krigen i Ukraina. Byrådet har foreslått å opprette et eget prosjekt for å håndtere bosetting og oppfølging av flyktningene, ettersom kommunen i dag kun er dimensjonert for 182 flyktninger. Det er allerede registrert 280 henvendelser fra innbyggere som ønsker å bidra med boliger og støtte. Byrådet planlegger å oppskalere tjenester som skole og helse for å møte behovene til de nyankomne. Det forventes at staten vil dekke merutgiftene knyttet til denne krisen."
+  }
+}

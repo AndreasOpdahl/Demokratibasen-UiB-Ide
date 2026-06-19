@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246765:5363951:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:45:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant proposal affecting healthcare costs for vulnerable groups in Bergen."
+    },
+    "summary_headline": "Bergen kommune støtter fritak for egenandel for LAR-pasienter, men krever utvidelse",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Helse- og omsorgsdepartementet om forslag til endring av pasientbetalingsforskriften, som vil frita LAR-pasienter fra egenandel for poliklinisk helsehjelp. Byrådet, ledet av Ruth Grung, støtter forslaget, men er uenig i at fritaket kun gjelder polikliniske konsultasjoner knyttet til LAR-behandling. De mener at fritaket bør omfatte all nødvendig helsehjelp for denne pasientgruppen, samt for ungdom og personer med psykiske lidelser som også sliter med egenandeler. Høringsfristen er 28. juni 2023."
+  }
+}

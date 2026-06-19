@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:3867:38233:200000114:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:50:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes to alcohol licensing regulations in Bergen, impacting local businesses and community events."
+    },
+    "summary_headline": "Bystyret vedtar nye retningslinjer for salgs- og skjenkebevillinger i Bergen",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt reviderte retningslinjer for salgs- og skjenkebevillinger, som inkluderer strengere kontrolltiltak for utesteder og spesifikasjoner for skjenketider. Endringene tillater unntak for alkoholservering ved større kulturarrangementer og folkefester, og krever at alle skjenkesteder informerer om aldersgrenser og spesielle antrekkskrav. Bystyret har også vedtatt å evaluere prikkbelastningssystemet for overtredelser etter ett år. Politisk støtte for økte ressurser til kontrollvirksomheten ble uttrykt av flere partier, inkludert SV og KrF, som understreker viktigheten av å håndheve regelverket."
+  }
+}

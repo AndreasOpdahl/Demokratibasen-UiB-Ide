@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1003:8091:60653:200818826:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:21:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a survey on external relations, which has moderate relevance and impact but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Bergen Bolig og Byfornyelse KF presenterer resultater fra ekstern relasjonsundersøkelse",
+    "summary_body": "Bergen Bolig og Byfornyelse KF (BBB KF) har gjennomført en spørreundersøkelse for å vurdere sine eksterne relasjoner, med 41 av 82 samarbeidspartnere som svarte. Resultatet viser en gjennomsnittlig score på 4,64, noe som er stabilt sammenlignet med 2008. Tilfredsheten med BBB KF som samarbeidspartner har økt til 5,0. Undersøkelsen avdekket områder for forbedring, spesielt knyttet til oppfølging av informasjon. Styret anbefaler å ta resultatene til etterretning for videre utvikling."
+  }
+}

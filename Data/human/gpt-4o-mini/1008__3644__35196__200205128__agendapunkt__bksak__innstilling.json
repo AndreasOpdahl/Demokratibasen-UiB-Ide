@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:3644:35196:200205128:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:38:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The evaluation of the fastlegeordningen (general practitioner scheme) in Bergen is significant due to its impact on healthcare accessibility and the ongoing issues with telephonic communication."
+    },
+    "summary_headline": "Evaluering av fastlegeordningen i Bergen viser forbedringer, men utfordringer gjenstår",
+    "summary_body": "Byrådet i Bergen har evaluert fastlegeordningen, som ble innført 1. juni 2001, og konkludert med at tilgjengeligheten til fastleger er god, med ventetid under to uker for konsultasjoner. Rapporten viser at presset på legevaktstasjonene har gått ned, men at telefontilgjengeligheten er variabel og må forbedres. Byrådet innstiller til bystyret at rapporten tas til etterretning og at en ny evaluering gjennomføres om to år. Dette er viktig for innbyggerne i Bergen, da bedre tilgang til fastleger kan redusere belastningen på legevaktene."
+  }
+}

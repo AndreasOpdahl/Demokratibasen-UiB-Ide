@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51081:112433:199708765:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:44:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses measures to prevent building decay, which has significant implications for public safety and urban development."
+    },
+    "summary_headline": "Tiltak for å forhindre forfall av bygninger i Bergen vedtatt",
+    "summary_body": "Hovedutvalg for byutvikling i Bergen har vedtatt tiltak for å forhindre forfall av bygninger. I møtet 11. januar 1999 ble det enstemmig besluttet å ta saken til orientering, men et tilleggsforslag fra Jon Rødseth (A) ble vedtatt med 7 mot 4 stemmer. Dette tilleggsforslaget oppfordrer bygningsmyndighetene til å bruke lovhjemmel for å pålegge utbedringer av bygninger som utgjør en fare eller ulempe. Videre vil det bli sendt en henvendelse til statlige myndigheter for å utvikle forskrifter som kan forhindre forfall av bygningsmassen. Dette er viktig for å sikre helse, miljø og sikkerhet for innbyggerne i Bergen."
+  }
+}

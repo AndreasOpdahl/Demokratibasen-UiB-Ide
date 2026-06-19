@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2787:27880:200026783:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:37:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses a local traffic safety concern affecting children in a residential area."
+    },
+    "summary_headline": "Trafikksikkerhet for barn i Kjøkkelvikveien tas opp av bydelsstyret",
+    "summary_body": "Laksevåg bydelsstyre har mottatt et forslag fra Bente Krokeide (A) om å forbedre trafikksikkerheten i Kjøkkelvikveien, et område med mange barn. Krokeide påpeker at dette området ikke er tilstrekkelig dekket i den nylig behandlete trafikksikkerhetsplanen. Bydelsadministrasjonen vil kontakte relevante instanser for å adressere problemet. Kjøkkelvikveien er knyttet til Skålevikveien, som allerede er prioritert for tiltak. Bydelsstyret tar saken til orientering."
+  }
+}

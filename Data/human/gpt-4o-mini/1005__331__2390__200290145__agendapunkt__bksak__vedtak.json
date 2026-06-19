@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:331:2390:200290145:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:47:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The sale of a municipal property for a nominal fee and its intended use for social work has significant local implications."
+    },
+    "summary_headline": "Bystyret godkjenner salg av Wollert Konowsplass 1 til Sesam for 1 krone",
+    "summary_body": "Bergen bystyre har enstemmig godkjent salget av Wollert Konowsplass 1 til stiftelsen Sesam for kun 1 krone. Eiendommen, som skal rehabiliteres i henhold til krav fra antikvariske myndigheter, vil bli brukt til sosialt arbeid for innbyggere i bydelen. Bergen kommune har forkjøpsrett ved videresalg, og dersom eiendommen ikke brukes som avtalt, kan kommunen kreve den tilbake vederlagsfritt. Dette salget kan påvirke lokalsamfunnet betydelig, da det er knyttet til sosialt arbeid."
+  }
+}

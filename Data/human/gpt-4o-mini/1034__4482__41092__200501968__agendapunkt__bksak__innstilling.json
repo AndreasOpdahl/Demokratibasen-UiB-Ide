@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:4482:41092:200501968:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:54:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines a new procedure for the Elder Council to present their views, which is significant for local seniors."
+    },
+    "summary_headline": "Eldrerådet får ny mulighet til å fremme synspunkter i Bergen",
+    "summary_body": "Komite for helse og sosial har vedtatt en ny rutine som gir Eldrerådet i Bergen tre formelle kanaler for å fremme sine synspunkter i seniorsaker. Dette inkluderer en egen sesjon under komiteens møter, der eldrerådet kan presentere sine forslag og synspunkter. Denne endringen, som ble enstemmig vedtatt, gir eldre i Bergen en sterkere stemme i politiske saker som angår dem. Eldrerådet oppfordres til å melde fra om innlegg i forkant av møtene, og det settes av tid til deres innlegg i møtene."
+  }
+}

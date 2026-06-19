@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:12492:77503:201531396:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:02:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses two significant hearings related to national security and environmental regulations, which are relevant to local residents."
+    },
+    "summary_headline": "Høringer om sikkerhet og lavutslippssoner i Bergen",
+    "summary_body": "Bystyrets kontor har mottatt to viktige høringssaker: 1) Høring om «Samhandling for sikkerhet», som omhandler beskyttelse av samfunnsfunksjoner mot trusler som terror og sabotasje, med høringsfrist 20. januar 2017. Bystyredirektøren anbefaler at komite for finans, kultur og næring avgir høringsuttalelse. 2) Høring om revidert forskrift for lavutslippssoner for biler, som nå omfatter alle biler, med høringsfrist 9. desember 2016. Byrådet anbefales å avgir høringsuttalelse. Begge saker har betydning for innbyggerne i Bergen."
+  }
+}

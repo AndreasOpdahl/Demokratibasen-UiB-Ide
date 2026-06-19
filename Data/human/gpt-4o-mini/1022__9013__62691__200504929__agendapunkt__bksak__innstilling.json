@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1022:9013:62691:200504929:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:36:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant financial decision regarding the allocation of funds for strategic development, which could impact local water management."
+    },
+    "summary_headline": "Bergen Vann KF disponerer 1,5 millioner til strategi- og forretningsutvikling",
+    "summary_body": "Styret for Bergen Vann KF har vedtatt å bruke 1,5 millioner kroner fra disposisjonsfondet til strategi- og forretningsutvikling. Dette er en del av en prosess som ble igangsatt høsten 2010 for å revidere selskapets forretningsplan. Evalueringen av interne prosesser, inkludert økonomirapportering og faktureringsprosesser, skal bidra til å forbedre rutinene. Investeringen er nødvendig for å oppnå de vedtatte målene for perioden 2011-2014."
+  }
+}

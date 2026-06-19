@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50011:102850:200004626:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:32:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to increase funding for autism treatment is relevant but lacks significant controversy or conflict."
+    },
+    "summary_headline": "Økt bevilgning til behandling av barn med autisme i Bergen",
+    "summary_body": "Formannskapet i Bergen har enstemmig vedtatt å øke budsjettrammen for behandlingsopplegget for barn med autisme med 313.083 kroner. Bevilgningen skal finansieres ved overføring fra en annen konto. Dette tiltaket er viktig for å sikre bedre behandlingstilbud for barn med autisme i kommunen."
+  }
+}

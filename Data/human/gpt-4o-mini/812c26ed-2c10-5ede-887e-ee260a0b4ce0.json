@@ -1,0 +1,18 @@
+{
+  "dokument_id": "812c26ed-2c10-5ede-887e-ee260a0b4ce0",
+  "kommune_nummer": 4649,
+  "kommune_navn": "Stad",
+  "generated_at": "2026-02-19 23:09:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains no significant newsworthy elements, as it simply records that no orientation was provided."
+    },
+    "summary_headline": "Ingen orientering fra ordføreren til formannskapet",
+    "summary_body": "Stad formannskapet mottok ingen orientering fra ordføreren under møtet den 12. juni 2025. Kommunedirektørens forslag om å ta orienteringen til vitende ble ikke behandlet, da det ikke ble presentert noen orientering."
+  }
+}

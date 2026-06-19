@@ -1,0 +1,18 @@
+{
+  "dokument_id": "bf7c1748-1817-5ce1-a043-ea07e42b54cc",
+  "kommune_nummer": 4624,
+  "kommune_navn": "Bjørnafjorden",
+  "generated_at": "2026-02-19 23:19:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document addresses significant environmental concerns and potential legal actions against a local farmer."
+    },
+    "summary_headline": "Bjørnafjorden kommune pålegger Martin Lyssand å rette opp i forurensning",
+    "summary_body": "Bjørnafjorden kommune har gitt Martin Lyssand pålegg om å iverksette tiltak for å hindre videre forurensning fra hans eiendom, gnr. 64 bnr. 5. Kommunen har dokumentert høyere verdier av E. coli og organisk materiale i nærliggende vassdrag, og manglende kontroll over gjødselhåndtering. Lyssand må gjennomføre en teknisk inspeksjon av gjødselkjelleren og kartlegge rørføringer innen 1. juli 2025, samt dokumentere lagerkapasitet for gjødsel. Dersom tiltakene ikke gjennomføres, kan kommunen ilegge tvangsmulkt. Dette er en alvorlig sak som berører både miljøet og lokalsamfunnet."
+  }
+}

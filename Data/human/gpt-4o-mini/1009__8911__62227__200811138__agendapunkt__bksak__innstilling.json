@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8911:62227:200811138:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:42:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a controversial plan proposal for residential development in Åsane, which has faced significant opposition and legal scrutiny."
+    },
+    "summary_headline": "Byrådet avviser planforslag for boligbygging i Åsane",
+    "summary_body": "Byrådet har besluttet å avvise et privat planforslag for utbygging av boliger på gnr 186, bnr 237 og 315 i Åsane. Dette følger av Miljøverndepartementets tidligere vedtak som forbyr bygging i området, og byråden understreker at forslaget ikke kan fremmes for politisk behandling uten ny offentlig høring. Forslagsstilleren har klaget på lang behandlingstid og mener at deres justerte forslag oppfyller kravene fra myndighetene, men byrådet står fast ved sin avvisning. Dette er en viktig sak for innbyggerne i Åsane, da den berører fremtidig boligbygging og arealbruk i området."
+  }
+}

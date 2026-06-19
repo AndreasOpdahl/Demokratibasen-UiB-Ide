@@ -1,0 +1,18 @@
+{
+  "dokument_id": "233367:3444365:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:15:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines several hearings relevant to public health and safety, which may impact local residents."
+    },
+    "summary_headline": "Byrådet vurderer høringsuttalelser om helse og betongproduksjon",
+    "summary_body": "Forretningsutvalget i Bergen kommune har besluttet at byrådet skal vurdere høringsuttalelser til flere saker, inkludert forskrift for betongproduksjon og forlenget rekvireringsrett for vaksiner mot covid-19. Saken om Handlingsprogram for folkehelse Vestland 2022-2025 ble sendt til utvalg for helse og sosial for orientering. Hilde Onarheim (H) fremmet et tilleggsforslag som ble vedtatt enstemmig."
+  }
+}

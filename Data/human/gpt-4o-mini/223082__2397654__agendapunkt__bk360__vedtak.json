@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223082:2397654:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:48:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines routine administrative decisions regarding public health consultations, which have limited immediate impact."
+    },
+    "summary_headline": "Byrådet avgir høringssvar om helsesykepleierutdanning og rusbehandling",
+    "summary_body": "Forretningsutvalget har enstemmig vedtatt å sende høringssvar til tre ulike høringer: forslag til forskrift om helsesykepleierutdanning, oppfølging etter rusmiddeloverdose, og nasjonal veileder for helse- og omsorgstjenester til personer med utviklingshemming. Dette kan påvirke lokale helse- og omsorgstjenester, men det er ingen kontroverser knyttet til vedtaket."
+  }
+}

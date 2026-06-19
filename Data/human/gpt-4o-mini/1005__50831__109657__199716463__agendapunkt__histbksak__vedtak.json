@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:50831:109657:199716463:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:59:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a controversial municipal sale involving significant financial implications and administrative criticism."
+    },
+    "summary_headline": "Kritikk av Bergen kommunes salg av Bergen Lysverker til BKK",
+    "summary_body": "Bystyret i Bergen har behandlet en rapport fra konsulenter om salget av Bergen Lysverker til Bergenshalvøens Kommunale Kraftselskap (BKK). Rapporten kritiserer den administrative behandlingen av salget, men bystyret avviser kritikken og konkluderer med at det ikke har vært utilbørlig sammenblanding av roller mellom ordfører, varaordfører og rådmann. Bystyret påpeker også at det foreligger rettslig grunnlag for unntakelse av visse dokumenter fra offentlighet. Salget har økonomiske konsekvenser for kommunen, som eier 71% av BKK, og bystyret ber om en sak om synergieffektene av salget. Dette er en viktig sak for innbyggerne, da den påvirker kommunens økonomi og energiforsyning."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:11157:71689:201400146:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:53:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine information about an upcoming event for the elderly, which is of limited news interest."
+    },
+    "summary_headline": "Eldrerådet forbereder arrangement for Verdens aktivitetsdag for eldre",
+    "summary_body": "Eldrerådet i Bergen har mottatt informasjon om et arrangement som skal finne sted 9. mai i forbindelse med Verdens aktivitetsdag for eldre, som er 10. mai. Rådet tar informasjonen til orientering og vil følge opp videre. Dette arrangementet er en del av arbeidet for å fremme aktivitet blant eldre i kommunen."
+  }
+}

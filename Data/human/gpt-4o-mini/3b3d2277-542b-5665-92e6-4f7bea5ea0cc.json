@@ -1,0 +1,18 @@
+{
+  "dokument_id": "3b3d2277-542b-5665-92e6-4f7bea5ea0cc",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 22:59:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document proposes significant changes to the flagging regulations in Alver municipality, which could impact local traditions and practices."
+    },
+    "summary_headline": "Alver kommune foreslår justeringer i flaggreglementet for 2025",
+    "summary_body": "Alver kommunestyre vurderer justeringer i flaggreglementet for 2025, som kan påvirke lokale flaggetradisjoner. Kommunedirektøren anbefaler å inkludere flere flaggdagar, som olsokdagen og kongefødselsdager, samt å fortsette å flagge på den internasjonale kvinnedagen og FN-dagen. Justeringen vil også tilpasse flaggingen til Alver pride-arrangementet. Økonomiske konsekvenser av de foreslåtte endringene er estimert til mellom 8 000 og 16 000 kroner. Saken skal behandles i utvalget for næring, kultur og idrett før den går til kommunestyret."
+  }
+}

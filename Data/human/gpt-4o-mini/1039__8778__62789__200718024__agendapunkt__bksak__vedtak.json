@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1039:8778:62789:200718024:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:09:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details routine elections within a youth committee, which lacks broader impact or controversy."
+    },
+    "summary_headline": "Ungdommens bystyre velger ny leder og nestleder",
+    "summary_body": "Ungdommens bystyre har valgt Brage Engebretsen fra Slåtthaug ungdomsskole som ny leder og Sander Sebastian Coates fra Eidsvåg skole som nestleder i komiteen for oppvekst og skole for resten av 2011. Valget ble enstemmig vedtatt i møtet den 15. september."
+  }
+}

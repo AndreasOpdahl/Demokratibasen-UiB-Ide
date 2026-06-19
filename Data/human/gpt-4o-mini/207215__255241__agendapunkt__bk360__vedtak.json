@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207215:255241:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:13:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant regulatory plan affecting local residents, including changes to building regulations and parking issues."
+    },
+    "summary_headline": "Bystyret vedtar reguleringsplan for Falsens vei med justeringer",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt en reguleringsplan for Årstad, gnr. 159, bnr. 396, som inkluderer justeringer av byggegrenser og mønehøyde. Det er også innført krav om universell tilkomst til felles hageanlegg og oppgradering av en eksisterende lekeplass før igangsettingstillatelse kan gis. Ruth Brudvik (A) fremhevet at fjerning av kantparkering i Falsens vei kan skape parkeringsproblemer for beboerne, noe som må vurderes i videre planlegging. Planen skal bidra til å bevare områdets grønne karakter."
+  }
+}

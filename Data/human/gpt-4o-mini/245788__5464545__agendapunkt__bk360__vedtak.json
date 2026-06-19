@@ -1,0 +1,18 @@
+{
+  "dokument_id": "245788:5464545:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:43:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant concerns regarding indoor climate issues at a local school, which affects students' health and learning."
+    },
+    "summary_headline": "Ungdomsrådet krever tiltak for inneklima ved Rothaugen skole",
+    "summary_body": "Ungdomsrådet i Bergen har sendt spørsmål til byrådene for finans, næring og eiendom, samt barnehage, skole og idrett, angående kritiske inneklimaproblemer ved Rothaugen skole. Elever rapporterer om kloakklukt og hodepine, noe som påvirker deres konsentrasjon og læring. Rådet ber om informasjon om planlagte tiltak for å forbedre inneklimaet og hvordan byrådene vil samarbeide med skolen og elevene for å løse problemet. Dette er en kjent sak blant innbyggerne og politikerne, og det er viktig for å sikre et godt læringsmiljø for elevene."
+  }
+}

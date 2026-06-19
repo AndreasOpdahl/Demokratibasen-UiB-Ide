@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51113:113791:199904063:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:01:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant transportation projects and funding issues affecting the Bergen region, highlighting local political priorities and funding disparities."
+    },
+    "summary_headline": "Bystyret i Bergen prioriterer Hardangerbrua og kritiserer statlig finansiering",
+    "summary_body": "Bystyret i Bergen har vedtatt å prioritere realiseringen av Hardangerbrua, som anses som avgjørende for Bergensregionen. De påpeker at statlige bidrag til samferdselsprosjekter er altfor lave, og at innbyggerne har måttet egenfinansiere viktige prosjekter. Bystyret fremhever også prosjektene Bogeparsellen og E39 Nyborg-Klauvaneset som viktige. Det er enighet om at veibygging i Hordaland ikke bør finansieres hovedsakelig gjennom bompenger. Saken vil bli behandlet videre av bystyret."
+  }
+}

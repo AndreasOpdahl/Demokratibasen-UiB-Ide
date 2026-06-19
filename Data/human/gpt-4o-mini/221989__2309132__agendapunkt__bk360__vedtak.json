@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221989:2309132:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:46:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a request for a reassessment of office placements for elected officials, which could impact their working environment."
+    },
+    "summary_headline": "Ny vurdering av kontorplassering for folkevalgte i Bergen",
+    "summary_body": "Ordfører Marte Mjøs Persen har bedt Bystyrets kontor om å foreta en ny helhetsvurdering av kontorplasseringen for de folkevalgte i Magistraten og Hagerupsgården. Dette for å sikre et bedre arbeidsmiljø og unngå tilfeldige tildelinger. Forretningsutvalget støttet forslaget i møtet 16. juni 2020."
+  }
+}

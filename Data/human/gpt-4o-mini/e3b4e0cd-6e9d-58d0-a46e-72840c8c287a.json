@@ -1,0 +1,18 @@
+{
+  "dokument_id": "e3b4e0cd-6e9d-58d0-a46e-72840c8c287a",
+  "kommune_nummer": 4645,
+  "kommune_navn": "Askvoll",
+  "generated_at": "2026-02-19 23:22:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses financial performance of municipal rental properties, which is relevant to local residents and involves significant public spending."
+    },
+    "summary_headline": "Kommunale utleigebustader går med underskot",
+    "summary_body": "En gjennomgang av husleieinntektene mot utgiftene for kommunale utleigebustader viser at det er et samlet underskudd fra 2017 til 2024, med spesielt høye kostnader fra Kvartetthusværa. I 2024 var overskuddet kun 148.330 kroner, mens det i 2018 var et underskudd på 629.721 kroner. Liss Merete Lien, enhetsleder for plan-, bygge- og delesak, har utarbeidet rapporten som ble etterspurt av kommunestyret. Dette kan påvirke fremtidige beslutninger om husleiesatser og vedlikehold av disse eiendommene, noe som er av stor interesse for innbyggerne."
+  }
+}

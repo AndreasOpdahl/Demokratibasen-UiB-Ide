@@ -1,0 +1,18 @@
+{
+  "dokument_id": "222562:1903946:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:47:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to grant a building permit for a boathouse extension has significant local implications and reflects a consensus among multiple political parties."
+    },
+    "summary_headline": "Enstemmig vedtak om dispensasjon for naustutvidelse i Eikeviken",
+    "summary_body": "Utvalg for miljø og byutvikling har enstemmig innvilget dispensasjon for et sidebygg på 8 m² til naustet på Eikeviken 30, etter klage på tidligere avslag. Vedtaket ble fattet 27. august 2020, og det ble vurdert at tiltaket ikke vil være i vesentlig konflikt med byggegrensebestemmelsene. Ingen negative uttalelser fra Bymiljøetaten eller Fylkesmannen ble registrert. Fordelene ved dispensasjonen, som å unngå riving av et eksisterende bygg, ble ansett som større enn ulempene. Dette tiltaket er viktig for de berørte partene, da det sikrer videre bruk av naustet som har vært i drift siden 1996."
+  }
+}

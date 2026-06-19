@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2230:23645:200000725:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:24:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a funding approval for a nursing home, which has local relevance but lacks significant controversy or financial impact."
+    },
+    "summary_headline": "Bergenhus bydelsstyre godkjenner bevilgning til Ladegården sykehjem",
+    "summary_body": "Bergenhus bydelsstyre har enstemmig godkjent et bevilgningsprosjekt for nybygg ved Ladegården sykehjem. Styret understreker at eventuelle økninger i årlig internleie ikke skal belastes bydelens driftsbudsjett. Dette tiltaket er viktig for å forbedre omsorgstilbudet i bydelen."
+  }
+}

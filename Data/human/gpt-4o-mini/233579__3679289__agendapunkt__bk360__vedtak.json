@@ -1,0 +1,18 @@
+{
+  "dokument_id": "233579:3679289:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:15:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The introduction of temporary health regulations due to increased infection rates is relevant and impactful for local residents."
+    },
+    "summary_headline": "Midlertidig smitteverntiltak innført i Bergen kommune",
+    "summary_body": "Byrådet i Bergen har vedtatt en midlertidig forskrift om smitteverntiltak som følge av økt smittepress. Forskriften trer i kraft 22. november 2021 og varer til 20. desember 2021. Dette tiltaket er viktig for å håndtere den økende smitten i kommunen."
+  }
+}

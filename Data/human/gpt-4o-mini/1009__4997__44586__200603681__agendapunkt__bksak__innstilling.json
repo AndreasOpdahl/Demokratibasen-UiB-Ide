@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4997:44586:200603681:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:23:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The application for a new alcohol license for Causi Café Bar is relevant to local residents and involves a decision by the city council."
+    },
+    "summary_headline": "Causi Café Bar får skjenkebevilling i Bergen",
+    "summary_body": "Byrådet har innvilget søknaden om alminnelig skjenkebevilling for alkoholholdig drikk ved Causi Café Bar, Øvregaten 2B, frem til 30. juni 2008. Søknaden ble sendt inn av Francis James Selvanathan, og stedet beskrives som et spisested. Byrådsleder Monica Mæland anbefaler innvilgelse, som er i tråd med kommunal praksis. Det er imidlertid registrert motstand fra KrF, Sp og RV under behandlingen. Før bevillingen kan tas i bruk, må det sendes inn nødvendig dokumentasjon til Kontor for skjenkesaker."
+  }
+}

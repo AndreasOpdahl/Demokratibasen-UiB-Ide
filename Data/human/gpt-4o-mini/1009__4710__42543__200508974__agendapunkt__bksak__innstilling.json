@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4710:42543:200508974:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:19:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a proposed regulation on sustainable forestry, which has local relevance but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Byrådet gir høringsuttalelse om bærekraftig skogbruk",
+    "summary_body": "Byrådet i Bergen har besluttet å sende en høringsuttalelse til Landbruks- og matdepartementet angående et utkast til ny forskrift om bærekraftig skogbruk. Forskriften omhandler krav til miljøhensyn og foryngelse av skogen. Grønn etat anbefaler presisering av kravene, spesielt for arealer mellom 50 og 100 dekar, men ser ikke behov for nærmere definisjoner av fagtermer. Byråden for byutvikling, Lisbeth Iversen, støtter etatens vurderinger og anbefaler at høringsuttalelsen sendes i tråd med fagnotatet."
+  }
+}

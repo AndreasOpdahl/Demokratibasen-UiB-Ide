@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:11850:73925:201200090:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:32:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document primarily consists of routine approvals and administrative decisions with little public impact."
+    },
+    "summary_headline": "Godkjenning av protokoller og eiendomsskatt-søknader",
+    "summary_body": "Byrådet i Bergen har godkjent protokoller fra tidligere møter og behandlet flere søknader om fritak for eiendomsskatt. De fleste søknadene ble avslått, med unntak av en eiendom på Nesttunbrekka som fikk fritak. Ingen kontroverser eller dissent ble rapportert."
+  }
+}

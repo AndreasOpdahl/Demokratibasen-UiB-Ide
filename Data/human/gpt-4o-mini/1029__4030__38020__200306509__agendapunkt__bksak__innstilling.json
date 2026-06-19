@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:4030:38020:200306509:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:31:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The report addresses significant issues regarding the use of conditions in social assistance, impacting many residents."
+    },
+    "summary_headline": "Kontrollutvalget anbefaler endringer i bruken av vilkår for sosialhjelp",
+    "summary_body": "Kontrollutvalget i Bergen kommune har fått lagt frem en forvaltningsrevisjonsrapport om bruken av vilkår ved tildeling av sosialhjelp. Rapporten anbefaler at bystyret tar den til etterretning og oppfordrer til en mer aktiv bruk av vilkår for å hjelpe sosialhjelpsmottakere til selvforsørgelse. Anbefalingene inkluderer forbedringer i kommunikasjonen med klientene og rutiner for oppfølging av vilkår. Rapporten er et resultat av en grundig gjennomgang av praksisen ved flere sosialkontorer og har fått støtte fra kommunerevisor Rolf Kalvø. Dette kan påvirke mange innbyggere i Bergen som mottar sosialhjelp."
+  }
+}

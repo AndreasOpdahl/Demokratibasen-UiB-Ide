@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3645:35562:200209383:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:25:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the potential for outsourcing municipal services in Åsane, which is a contentious political issue with significant implications for local residents."
+    },
+    "summary_headline": "Åsane bydelsstyre vurderer konkurranseutsetting av tjenester",
+    "summary_body": "Åsane bydelsstyre har diskutert muligheten for konkurranseutsetting av kommunale tjenester, som sykehjem og omsorg, for å forbedre tilbudet i bydelen. Bydelsdirektøren, Marit Strøm, advarer imidlertid om at det er lite realistisk å starte en lokal prosess for dette nå, gitt manglende erfaring og ressurser. Styret ber administrasjonen om å vurdere hvilke tjenester som kan konkurranseutsettes, men det er formelle begrensninger fra Bystyret som må tas i betraktning. Dette temaet er politisk omstridt og kan påvirke mange innbyggere i Åsane."
+  }
+}

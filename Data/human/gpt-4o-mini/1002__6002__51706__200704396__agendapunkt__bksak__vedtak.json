@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:6002:51706:200704396:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:20:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The plan proposal for a new development in Arna includes a unanimous decision on the necessity of a kindergarten, which is relevant to local residents."
+    },
+    "summary_headline": "Enstemmig støtte til reguleringsplan i Arna med krav om barnehage",
+    "summary_body": "Arna bydelsstyre har behandlet et planforslag for Moldalia Sør og uttrykt enstemmig støtte til forslaget. Det er enighet om at det må bygges en barnehage i området før utbyggingen kan starte. Det anbefales at barnehagen plasseres i den sørligste delen av området, B-2, eller eventuelt B-9, for å ta hensyn til lokale klimatiske forhold. Dette tiltaket er viktig for innbyggerne i Arna, da det vil bidra til bedre barnehagetilbud i området."
+  }
+}

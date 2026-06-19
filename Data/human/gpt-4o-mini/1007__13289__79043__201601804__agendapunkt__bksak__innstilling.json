@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:13289:79043:201601804:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:29:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant environmental initiatives and potential regulations affecting cruise traffic in Bergen, which are relevant to local residents."
+    },
+    "summary_headline": "Bergen havn innfører miljøvennlige tiltak for cruiseskip",
+    "summary_body": "Bergen og Omland havnestyre har vedtatt en tiltaksplan for å gjennomføre Bergen Kommunes cruisestrategi, som inkluderer utvikling av en Environmental Port Index for å vurdere cruiseskips miljøvennlighet. Resultatene fra DNVGL ventes høsten 2017, og det er planer om å skjerpe vederlagene for mindre miljøvennlige skip. Havnen blir også den første i Norge som tilbyr landstrøm til Hurtigruten, men finansieringsordningene for cruise er fortsatt utilstrekkelige. Det er planlagt et møte med ledende cruisehavner for å diskutere felles miljøtiltak. Havnestyret åpner for diskusjon om begrensninger i cruisetrafikken, et tiltak som kan påvirke luftkvaliteten i Bergen."
+  }
+}

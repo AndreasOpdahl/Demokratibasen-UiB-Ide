@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2013:50034:101561:199614488:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:58:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a controversial housing development plan that has significant local implications and has faced opposition from residents."
+    },
+    "summary_headline": "Kontroversiell reguleringsplan for boligfelt i Nils Langhelles vei forlengelse behandles igjen",
+    "summary_body": "Utvalg for byutvikling har behandlet et privat forslag til reguleringsplan for et boligfelt i Nils Langhelles veis forlengelse, som nå er til 2. gangs behandling. Planen omfatter et areal på ca. 85 daa og foreslår bygging av 40 boliger. Det har vært betydelig motstand fra lokale innbyggere og organisasjoner, som frykter for tap av friluftsområder og økt trafikkbelastning. Bystyret har tidligere vedtatt hovedprinsippene for utbyggingen, men det er fortsatt usikkerhet om hvordan dette vil påvirke området. Saken vil bli sendt til fylkesmannen for uttalelse før endelig politisk behandling."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:9710:65869:201212327:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:18:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the implementation of streaming for city council meetings, which has local relevance and potential impact."
+    },
+    "summary_headline": "Bystyremøter skal streames, men referat utsettes",
+    "summary_body": "Forretningsutvalget har enstemmig vedtatt å innføre streaming av bystyremøter, men utsetter arbeidet med referat og transkribering til streamingløsningen er på plass. Dag Skansen (H) stilte spørsmål om nødvendigheten av referat, mens Harald Schjelderup (A) mente at bystyret må ta den endelige avgjørelsen. En sak om dette vil bli lagt frem for bystyret i januar 2013."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4435:40720:200408285:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:03:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to uphold a stop order on illegal use of a residential property is relevant and impacts local residents."
+    },
+    "summary_headline": "Stoppordre opprettholdes for ulovlig pensjonat i Bergenhus",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig besluttet å opprettholde stoppordren for eiendommen Storhaugen 14, som har vært ulovlig brukt som pensjonat. Klagen på vedtaket ble ikke tatt til følge, noe som betyr at den ulovlige bruken må opphøre. Dette vedtaket kan påvirke både eieren av eiendommen og naboene i området."
+  }
+}

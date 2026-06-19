@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4065:38406:200400176:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:05:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions without significant impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til komiteene",
+    "summary_body": "I byrådets møte den 5. mai 2004 ble det enstemmig vedtatt å fordele saker til ulike komiteer. Byrådsak 110 og 117 ble sendt til komite for finans, kultur og næring, mens byrådsak 111 ble sendt til komite for oppvekst. Saken ble behandlet av Forretningsutvalget den 10. mai 2004."
+  }
+}

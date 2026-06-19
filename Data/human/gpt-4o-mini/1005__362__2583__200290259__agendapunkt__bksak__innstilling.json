@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:362:2583:200290259:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:48:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The establishment of a regional representation office in Brussels is significant for local interests and involves public funding."
+    },
+    "summary_headline": "Bergen kommune foreslår etablering av Brüsselkontor for Vest-Norge",
+    "summary_body": "Bergen kommune ønsker å opprette et informasjons- og representasjonskontor i Brüssel for å fremme vestnorske interesser innen næringsliv, forskning, kultur og offentlig sektor. Byrådet har bevilget 350 000 kroner for å vurdere dette, og en konseptskisse er utarbeidet i samarbeid med PriceWaterhouseCoopers. Kontoret skal ha offentlig eierskap og finansieres etter et per capita-prinsipp, med en foreslått øvre grense på 6 kroner per innbygger for Bergen. Bystyret skal ta stilling til saken i september, og det er forventet at flere kommuner i Vest-Norge vil delta."
+  }
+}

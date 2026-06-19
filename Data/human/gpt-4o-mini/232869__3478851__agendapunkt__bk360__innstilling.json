@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232869:3478851:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:13:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a new cultural plan for individuals with developmental disabilities, which has significant local relevance and potential impact."
+    },
+    "summary_headline": "Bergen kommune starter arbeidet med ny kulturplan for utviklingshemmede",
+    "summary_body": "Byrådet for kultur, mangfold og likestilling har besluttet å starte arbeidet med en ny kulturplan for mennesker med utviklingshemming for perioden 2022-2026. Planen skal sikre et mangfold av kulturtilbud av høy kvalitet og vil inkludere innspill fra brukerorganisasjoner og målgruppen selv. Det legges vekt på universell utforming og tilpasning til ulike behov. Planarbeidet vil bli ledet av Byrådsavdeling for kultur, og det er planlagt innspillsmøter og workshops i november og desember 2021, med politisk behandling forventet i april 2022."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246144:4944769:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:44:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines a significant plan for sustainable housing that will impact residents, particularly the elderly."
+    },
+    "summary_headline": "Eldrerådet vurderer temaplan for bærekraftig boligforsyning mot 2030",
+    "summary_body": "Byrådet har lagt frem en temaplan for bærekraftig boligforsyning mot 2030, som nå skal til politisk behandling. Eldrerådet ble informert om planen i møte 10. april og kan komme med forslag til vedtak før den videre behandlingen i utvalg og bystyre. Planen har som mål å sikre boligforsyning for fremtiden, noe som er spesielt relevant for eldre innbyggere i Bergen."
+  }
+}

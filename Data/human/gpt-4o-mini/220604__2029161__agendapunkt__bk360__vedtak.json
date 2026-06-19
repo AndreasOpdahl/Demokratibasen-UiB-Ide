@@ -1,0 +1,18 @@
+{
+  "dokument_id": "220604:2029161:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:43:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses the impact of the COVID-19 crisis on the elderly, highlighting isolation and requesting action from the city council."
+    },
+    "summary_headline": "Eldrerådet ber byrådet om tiltak for eldre under koronakrisen",
+    "summary_body": "Eldrerådet i Bergen har uttrykt bekymring for eldre som er isolert på sykehjem og hjemme under koronakrisen. I et vedtak fra møtet 6. mai 2020, ber de byrådet om å ta tak i denne uverdige situasjonen. Eldrerådet hyller også de ansatte i helsevesenet for deres innsats. Videre etterspør de en veileder for besøk på sykehjem og for eldre som sitter alene. Eldrerådet ønsker også å delta i prosjektgruppen for tillits- og faglighetsreformen, som nå har erstattet bydelsvise arbeidsgrupper."
+  }
+}

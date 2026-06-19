@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51367:116172:199711142:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:03:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision involves significant public spending and urban development, impacting local residents."
+    },
+    "summary_headline": "Bystyret godkjenner 1,5 millioner til parkeringsanlegg under Edv. Griegs Plass",
+    "summary_body": "Bystyret i Bergen har besluttet å frigjøre 1,5 millioner kroner fra kommunens parkeringsfond til forberedende planlegging av et offentlig parkeringsanlegg under Edv. Griegs Plass. Dette tiltaket skal kombinere utbedring og utsmykking av plassen med byggingen av parkeringsanlegget. Det åpnes også for bolig- og næringsutvikling ved siden av Grieghallen, noe som kan styrke områdets urbane kvaliteter. Det er forutsatt at det utarbeides en reguleringsplan, og at det vil bli forhandlinger om eierforhold og drift av anlegget. Kommunen krever regnskap for bruken av midlene."
+  }
+}

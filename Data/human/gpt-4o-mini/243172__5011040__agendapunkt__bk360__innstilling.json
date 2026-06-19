@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243172:5011040:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:36:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal addresses significant issues regarding equal access to home care services for drug-dependent individuals, highlighting a potential violation of rights."
+    },
+    "summary_headline": "Bystyret vurderer forslag om likeverdige hjemmetjenester for rusmiddelavhengige",
+    "summary_body": "Bystyremedlem Diane Alexandra Berbain (SV) har fremmet et forslag om å sikre likeverdige hjemmetjenester for rusmiddelavhengige i Bergen. Forslaget, som ble overlevert ordføreren 25. januar 2023, tar opp bekymringer fra rusorganisasjoner om at mange ikke får nødvendige tjenester på grunn av tidligere rusbruk. Bystyredirektøren anbefaler at forslaget sendes til byrådet for videre utredning, med en frist for behandling i bystyret innen 21. juni 2023. Dette kan påvirke mange innbyggere som er avhengige av helsetjenester."
+  }
+}

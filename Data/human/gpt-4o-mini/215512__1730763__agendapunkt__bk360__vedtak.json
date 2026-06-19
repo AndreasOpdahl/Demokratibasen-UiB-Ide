@@ -1,0 +1,18 @@
+{
+  "dokument_id": "215512:1730763:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:34:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to allow a change of use from outbuilding to residential has significant local implications and involves a unanimous vote."
+    },
+    "summary_headline": "Bruksendring fra uthus til bolig innvilget i Fana",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig innvilget en klage om bruksendring fra uthus til bolig på Nesttunbrekka 82. Vedtaket opphever et tidligere avslag fra 2018 og gir dispensasjon fra flere reguleringskrav, basert på at eiendommen har tilstrekkelig uteoppholdsareal og at fordelene ved endringen overstiger ulempene. Komiteen bemerker at eiendommen har vært brukt som bolig tidligere, og at det er rimelig å gi tillatelse uten å pålegge søker å søke på nytt. Dette kan påvirke boligmarkedet i området og gir muligheter for økt boligkapasitet."
+  }
+}

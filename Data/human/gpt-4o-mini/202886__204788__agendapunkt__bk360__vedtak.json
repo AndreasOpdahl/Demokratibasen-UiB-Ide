@@ -1,0 +1,18 @@
+{
+  "dokument_id": "202886:204788:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:02:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is procedural with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen kontroversiell behandling i byrådets møte",
+    "summary_body": "Protokollen fra byrådets møte den 14. desember 2017 viser at forretningsutvalget behandlet sak 265/17 den 19. desember 2017, hvor byrådssak 391 ble enstemmig sendt til komite for miljø og byutvikling."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51085:113139:199901339:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:45:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision on a housing project that affects local residents and has seen political disagreement."
+    },
+    "summary_headline": "Bygningsrådet avslår tomannsbolig med 5 leiligheter på Bønesberget",
+    "summary_body": "Bygningsrådet i Bergen har avslått søknaden om å bygge en tomannsbolig med 5 leiligheter på Bønesberget 62. Beslutningen ble fattet etter at det ble påpekt at bygget ikke er tilpasset omgivelsene, har for høy gesims, og at utnyttelsesgraden av tomten overskrider reguleringsplanen. Det ble også stilt spørsmål ved adkomstveiens stigningsforhold. Det ble imidlertid enstemmig vedtatt at søker kan fremme en ny søknad om en tomannsbolig med inntil 4 boenheter, tilpasset de eksisterende boligene i området. Dette kan påvirke boligmarkedet og utviklingen i Bønes."
+  }
+}

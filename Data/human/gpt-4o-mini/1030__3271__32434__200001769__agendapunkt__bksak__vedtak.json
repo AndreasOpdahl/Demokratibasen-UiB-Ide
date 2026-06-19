@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:3271:32434:200001769:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:38:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative updates with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen betydelige saker fra Laksevåg bydelsstyre",
+    "summary_body": "Laksevåg bydelsstyre behandlet flere meldingssaker i møte 22. oktober 2002, inkludert igangsetting av privat planarbeid og invitasjoner til ulike arrangementer. Ingen kontroverser eller beslutninger av stor offentlig interesse ble rapportert."
+  }
+}

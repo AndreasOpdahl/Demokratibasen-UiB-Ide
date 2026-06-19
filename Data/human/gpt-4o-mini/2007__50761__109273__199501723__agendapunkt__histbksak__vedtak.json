@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2007:50761:109273:199501723:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:52:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a decision regarding road lighting ownership and funding responsibilities, which could impact local governance."
+    },
+    "summary_headline": "Bergen kommune ber staten om eierskap til veglys",
+    "summary_body": "Hovedutvalg for teknisk utbygging i Bergen har enstemmig vedtatt å ta saken om vegbelysning til orientering. De ber administrasjonen om å samarbeide med andre store byer for å få staten til å vedta at vegholdere skal eie veglysinstallasjonene, og at hvert forvaltningsnivå kun skal betale for seg selv. Det er viktig at avgjørelsen fattes før utgangen av 1998, noe som kan påvirke hvordan vegbelysning finansieres i kommunen."
+  }
+}

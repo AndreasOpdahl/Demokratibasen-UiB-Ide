@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5626:51067:200718113:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:07:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the important issue of the eligibility of former council members to participate in budget discussions, which has implications for local governance and accountability."
+    },
+    "summary_headline": "Tidligere byråder anses habile til å delta i behandlingen av årsregnskap",
+    "summary_body": "Bystyret i Bergen har fått vurdert habiliteten til tidligere byråder i forbindelse med behandlingen av årsregnskap og årsmelding for 2007. Bystyredirektøren anbefaler at tidligere byråder anses habile til å delta i disse sakene, til tross for at de har hatt ansvar for de aktuelle fagområdene. Dette er i tråd med kommuneadvokatens vurderinger, som understreker at det er viktig for demokratiet at folkevalgte deltar i politiske saker. Det er imidlertid en bekymring for tilliten til bystyrets upartiskhet når tidligere byråder deltar i kontroll av egen virksomhet. Bystyret må nå ta stilling til denne anbefalingen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5325:46403:200604294:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:26:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision regarding a housing application in a school-congested area, impacting local residents."
+    },
+    "summary_headline": "Byrådet gir dispensasjon for bygging av enebolig i Søreide",
+    "summary_body": "Byrådet har besluttet å gi dispensasjon fra reguleringsplanen for oppføring av enebolig på Ytrebygda, til tross for tidligere avslag fra Etat for byggesak. Totland Bygg AS klaget på avslaget, og byråden, Lisbeth Iversen, mener at den aktuelle tomten ikke vil øke presset på skolekapasiteten i Søreide, som allerede er sprengt. Klagen ble tatt til følge, og vedtaket opphever det tidligere avslaget. Dette kan ha betydning for andre lignende byggesøknader i området."
+  }
+}

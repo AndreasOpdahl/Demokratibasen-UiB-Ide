@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11219:73394:201318846:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:33:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a detailed regulatory plan that has implications for local air quality and traffic, which is relevant to residents."
+    },
+    "summary_headline": "Bystyret vedtar detaljreguleringsplan for Thormøhlens gate",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt detaljreguleringsplan for Bergenhus, gnr. 164, bnr. 336, i Thormøhlens gate. Under behandlingen uttrykte Sondre L. Båtstrand fra MDG bekymring for luftkvaliteten i området og behovet for tiltak for å redusere trafikk og forbedre luften. Til tross for merknaden fra MDG, ble planen vedtatt uten endringer. Dette kan påvirke lokalbefolkningen, spesielt med tanke på helse og miljø."
+  }
+}

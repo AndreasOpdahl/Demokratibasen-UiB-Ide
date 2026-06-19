@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:7759:57904:200701128:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:30:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant financial implications and procedural issues regarding the Dokken Vest project, which affects local infrastructure and community."
+    },
+    "summary_headline": "Dokken Vest-prosjektet krever ny finansieringsplan etter saksbehandlingsfeil",
+    "summary_body": "Bergen og Omland havnestyre har besluttet å utarbeide en ny finansierings- og utbyggingsplan for Dokken Vest, etter at det ble avdekket saksbehandlingsfeil som har forsinket prosjektet. Kostnadene for byggetrinn 1 er estimert til 105 millioner kroner, og det er nødvendig å sikre at prosjektet følger vedtektene for havneutbygging. Havnedirektøren, Eli Glambek, har fått i oppdrag å lage en fullstendig plan som deretter skal legges frem for havnestyret og videre til Bergen bystyre for godkjennelse. Prosjektet er viktig for å utnytte kaiarealet effektivt og unngå tap av verdifulle ressurser."
+  }
+}

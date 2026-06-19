@@ -1,0 +1,18 @@
+{
+  "dokument_id": "711c076f-b06f-582d-8319-a727dbf92630",
+  "kommune_nummer": 4620,
+  "kommune_navn": "Ulvik",
+  "generated_at": "2026-02-19 23:06:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a request for action regarding a specific wildlife issue but lacks significant local impact or controversy."
+    },
+    "summary_headline": "Brev om handlingsplan for truede måker sendt til kommunen",
+    "summary_body": "Jenny Rolness fra Dyrenes Rett har sendt et brev til kommunen og statsforvaltere, der hun ber om at det blir utarbeidet en handlingsplan for utrydningstrua måker. Brevet oppfordrer til videreformidling til relevante etater som jobber med vilt og miljø."
+  }
+}

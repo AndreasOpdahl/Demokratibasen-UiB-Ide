@@ -1,0 +1,18 @@
+{
+  "dokument_id": "204524:268369:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:05:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a funding proposal for a youth congress, which is relevant for local youth engagement and education."
+    },
+    "summary_headline": "Byrådet bevilger 12.000 kroner til Ungdomskongressen i Bergen 2018",
+    "summary_body": "Byrådet har besluttet å bevilge 12.000 kroner til Ungdomskongressen i Bergen 2018, som ledes av Amanda Louise Bolann Håland. Kongressen, som skal finne sted våren 2018, har som mål å engasjere ungdom i politiske prosesser og øke kunnskapen om Europarådet. Målgruppen er elever i videregående skole, og arrangementet vil fokusere på ungdomspolitikk og samarbeid. Byrådsleder Harald Schjelderup understreker viktigheten av å styrke tilliten til demokratiet gjennom opplæring av unge."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12035:74525:201502966:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:56:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant property division decision that affects local land use and has generated dissent among committee members."
+    },
+    "summary_headline": "Klage på avslag om deling av eiendom i Fyllingsdalen godkjent av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har godkjent en klage på avslag om deling av eiendom fra gnr. 28 bnr. 276 til gnr. 28 bnr. 219. Vedtaket ble fattet med 13 stemmer mot 3, der det alternative forslaget fra Arvid Nilssen (KrF) ble vedtatt. Komiteen mener at delingen er til fordel for søkeren, til tross for at resttomten reduseres fra 947 m² til 590 m². Dette kan påvirke boligmuligheter i området, og det er viktig for innbyggerne i Fyllingsdalen å følge med på utviklingen."
+  }
+}

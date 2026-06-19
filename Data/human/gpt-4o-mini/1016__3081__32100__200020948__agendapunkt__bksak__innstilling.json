@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:3081:32100:200020948:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:22:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The report highlights a significant increase in sick leave rates in Bergen municipality, which affects local public services and employee well-being."
+    },
+    "summary_headline": "Sykefraværet i Bergen kommune øker til 10,4%",
+    "summary_body": "Bergen kommune rapporterer en sykefraværsprosent på 10,4% for første halvår 2002, en økning fra 9,8% i samme periode året før. Hovedarbeidsmiljøutvalget understreker behovet for aktive tiltak for å redusere sykefraværet, spesielt det langvarige fraværet som har økt fra 5,6% til 6,3%. Det er særlig tjenesteområder som pleie og omsorg, samt barnehager, som viser høyere sykefravær enn gjennomsnittet. Rapporten peker på at ledere har et ansvar for å følge opp og forebygge fravær. Dette kan påvirke kvaliteten på offentlige tjenester i kommunen."
+  }
+}

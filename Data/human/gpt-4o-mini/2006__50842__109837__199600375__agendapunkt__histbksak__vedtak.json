@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50842:109837:199600375:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:49:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses proposals for youth activities and cultural calendars, which are relevant to local residents."
+    },
+    "summary_headline": "Kulturkalender for hver bydel vedtatt av Hovedutvalget",
+    "summary_body": "Hovedutvalg for fritid og kultur i Bergen har vedtatt å fremme en sak om kulturkalender i hver bydel, etter forslag fra Per Inge Vannebo (Krf). Dette tiltaket skal bidra til bedre informasjon om kulturaktiviteter for ungdom. I tillegg ble det enstemmig vedtatt at administrasjonen skal evaluere hvordan informasjonen til skolene når ut til elevene. Dette er et viktig skritt for å engasjere ungdom i Fana og styrke kulturlivet i kommunen."
+  }
+}

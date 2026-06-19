@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50011:102781:200000652:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:32:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant budgetary decisions and changes in municipal governance that will impact residents."
+    },
+    "summary_headline": "Bergen kommune innfører KOSTRA-systemet med betydelig budsjettbevilgning",
+    "summary_body": "Bystyret i Bergen har besluttet at kommunen blir KOSTRA-kommune fra 2001, noe som er obligatorisk. Det settes av 4,4 millioner kroner til anskaffelse av et system for behandling av styringsinformasjon, og 3,5 millioner kroner til konvertering av fagsystemer. Forslag fra Ragnhild Hedemann om å inkludere kvalitetsmål for kommunale tjenester ble vedtatt med 11 mot 2 stemmer. Formannskapet understreker behovet for bedre språkføring i økonomisaker for å gjøre informasjonen mer tilgjengelig for innbyggerne."
+  }
+}

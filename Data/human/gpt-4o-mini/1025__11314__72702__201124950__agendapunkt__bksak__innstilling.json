@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:11314:72702:201124950:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:47:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural information regarding oral questions in a committee meeting, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra komite for oppvekst",
+    "summary_body": "Dokumentet beskriver prosedyren for muntlige spørsmål i Komite for oppvekst, hvor byråden svarer på spørsmål fra komiteens medlemmer. Det er ingen spesifikke saker eller kontroverser nevnt."
+  }
+}

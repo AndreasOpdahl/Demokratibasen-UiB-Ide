@@ -1,0 +1,18 @@
+{
+  "dokument_id": "51ee143b-68fa-5a24-91cf-3f645899481e",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:02:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines important budgetary decisions and inter-municipal agreements that affect local governance."
+    },
+    "summary_headline": "Bystyret skal behandle budsjett og brann- og redningstjenester",
+    "summary_body": "Byrådet har fordelt saker til bystyreutvalgene i møte 8. og 11. desember 2025. Byrådssak 257.1, som omhandler Handlings- og økonomiplan 2026-2029, vil bli sluttbehandlet i Bergen bystyre den 17. desember 2025. I tillegg vil sak 258, som oppdaterer avtaler om brann- og redningstjenester mellom Bergen kommune og nabokommunene Osterøy, Samnanger og Vaksdal, bli sendt til utvalg for miljø og byutvikling for orientering. Dette er viktige saker som vil påvirke innbyggerne i Bergen."
+  }
+}

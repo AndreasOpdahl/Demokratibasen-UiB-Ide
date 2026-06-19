@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3399:33215:200209209:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:04:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property sale is relevant but lacks significant controversy or public impact."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på Dokkeveien 1A",
+    "summary_body": "Bergen kommune har besluttet å ikke benytte seg av forkjøpsretten ved salget av leiegården Dokkeveien 1A, som selges for 6.817.255 kroner. Byrådet, ledet av Nils Arild Johnsen, anbefaler ikke å kjøpe eiendommen da leietakerne ikke har uttrykt interesse for å danne borettslag eller eierseksjonssameie. Ingen offentlige instanser har heller bedt om forkjøpsrett. Dette kan påvirke leietakerne, men det er ingen tegn til offentlig motstand."
+  }
+}

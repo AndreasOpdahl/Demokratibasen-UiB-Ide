@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4236:39330:200411961:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:14:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to grant a sales license for beer is relevant to local businesses and residents."
+    },
+    "summary_headline": "Rimi Håkonsgaten får salgsbevilling for øl",
+    "summary_body": "Byrådet har innvilget Rimi Håkonsgaten, Håkonsgaten 36, salgsbevilling for øl med lavere alkoholinnhold enn 4,8 volumprosent. Bevillingshaver er HP-Sønn Mat AS, med Christer Pedersen som styrer og Karianne Christoffersen som stedfortreder. Salgstider er fra kl. 08.00 til kl. 20.00 på hverdager, og det er spesifikke regler for salg på helligdager. Før bevillingen kan tas i bruk, må søker sende inn nødvendig dokumentasjon til kommunen. Klageadgang er også nevnt for eventuelle protester mot vedtaket."
+  }
+}

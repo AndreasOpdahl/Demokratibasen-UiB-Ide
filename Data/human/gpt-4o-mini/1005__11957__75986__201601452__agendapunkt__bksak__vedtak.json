@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11957:75986:201601452:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:37:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to end the agreement with Business Region Bergen AS affects local economic development and has generated significant political debate."
+    },
+    "summary_headline": "Bergen kommune avslutter avtalen med Business Region Bergen AS",
+    "summary_body": "Bergen bystyre har besluttet å avslutte avtalen om tjenestekjøp fra Business Region Bergen AS med virkning fra 1. januar 2017. Dette vedtaket ble fattet med 46 stemmer fra Arbeiderpartiet, SV, Kristelig Folkeparti, Miljøpartiet De Grønne, Venstre, Rødt og Senterpartiet. Det var motstand fra Høyre og Fremskrittspartiet, som ønsket å opprettholde avtalen. Høyres forslag om en strategi- og forretningsplan for næringsarbeidet ble også nedstemt. Beslutningen kan påvirke hvordan næringslivet i Bergen organiseres fremover."
+  }
+}

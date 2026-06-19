@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3288:32973:200200087:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:24:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The potential closure of Åsane legevakt raises significant local concern and requires further analysis."
+    },
+    "summary_headline": "Bekymring for nedleggelse av Åsane legevakt",
+    "summary_body": "Åsane bydelsstyre har uttrykt stor bekymring over vurderingen av nedleggelse av Åsane legevakt. Under møtet 19. november 2002, foreslo Arvid Blommedal (FrP) at bydelsadministrasjonen skal kontakte sentraladministrasjonen for å vurdere konsekvensene av en eventuell nedleggelse. Forslaget ble vedtatt med 7 mot 6 stemmer, og bydelsstyret ber om at informasjon om dette blir gitt før budsjettmøtet i Bystyret 16. desember 2002. Dette kan påvirke legevakttjenester for innbyggerne i Åsane."
+  }
+}

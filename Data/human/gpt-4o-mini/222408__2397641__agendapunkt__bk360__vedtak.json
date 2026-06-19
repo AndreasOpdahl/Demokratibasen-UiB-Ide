@@ -1,0 +1,18 @@
+{
+  "dokument_id": "222408:2397641:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:47:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal to consolidate the area of upbringing in municipal administration is relevant and could impact local governance."
+    },
+    "summary_headline": "Enstemmig forslag om å samle oppvekst i kommunal forvaltning",
+    "summary_body": "Hege Solbakken (Sp) har fremmet et representantforslag om å samle oppvekst som et fagområde i den kommunale forvaltningen. Forretningsutvalget behandlet saken den 11. august 2020 og vedtok enstemmig å sende forslaget videre til byrådet for vurdering. Byrådet skal levere sin vurdering til Bystyrets kontor, slik at saken kan behandles i bystyremøtet den 16. desember 2020. Dette forslaget kan ha betydning for hvordan oppvekst blir håndtert i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3288:32557:200209963:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:24:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant budgetary concerns and proposals for privatization of daycare services, which could impact local families."
+    },
+    "summary_headline": "Åsane bydelsstyre vurderer privat drift av barnehager for å spare penger",
+    "summary_body": "Under møtet 19. november 2002, ble det stilt spørsmål om detaljert regnskap for barnevern og kulturavdelingen i forbindelse med budsjett 2003. Edvard Rieber-Mohn (H) etterlyste mer innsyn i ressursbruken. Olav Lundestad (FrP) foreslo privat overtakelse av barnehager for å redusere et forventet underskudd på over 30 millioner kroner. Forslaget ble vedtatt med 7 mot 6 stemmer. Åshild Lund (A) uttrykte bekymring for avlastningstilbudet til familier med spesielle behov, og ba om tiltak for å imøtekomme deres behov. Bydelsdirektør Marit Strøm svarte på spørsmålene i møtet."
+  }
+}

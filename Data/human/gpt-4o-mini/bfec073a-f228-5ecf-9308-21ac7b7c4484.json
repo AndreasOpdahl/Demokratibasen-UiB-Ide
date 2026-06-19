@@ -1,0 +1,18 @@
+{
+  "dokument_id": "bfec073a-f228-5ecf-9308-21ac7b7c4484",
+  "kommune_nummer": 4649,
+  "kommune_navn": "Stad",
+  "generated_at": "2026-02-19 23:19:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the region's participation in a national program aimed at green transport, which has significant local relevance and potential impact."
+    },
+    "summary_headline": "Region Fjordane blir observatør i Grønt landtransportprogram",
+    "summary_body": "Regionrådet i Fjordane har besluttet å teikne observatørstatus i Grønt landtransportprogram (GLP) for å fremje grøn omstilling i transportsektoren. Dette gir regionen tilgang til partnarmøte og pilotprosjekt, samt mulighet til å påvirke nasjonal politikk for låg- og nullutsleppstransport. Administrasjonen får fullmakt til å inngå samarbeidsavtale med GLP, og det skal velges en politisk representant og vararepresentant til programmet. Deltakelsen er viktig for å styrke samarbeidet mellom næringsliv og kommuner i arbeidet med bærekraftige transportløsninger."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7348:59067:201007539:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:15:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a political change due to a council member's relocation, which has local implications."
+    },
+    "summary_headline": "Harald Kremner jr. fratrer verv i Bergen bystyre",
+    "summary_body": "Harald Kremner jr. fra Fremskrittspartiet har meldt om flytting til Oslo og fratrer derfor sine verv i Bergen kommune. Bystyrets forretningsutvalg foreslår at Silje Hjemdal tar over som nytt medlem i Bergenhus bydelstyre, mens Irene Eikeland blir nytt varamedlem. Tine Lund Ness vil også bli nytt varamedlem i Komite for oppvekst. Endringene gjelder for resten av valgperioden 2007-2011."
+  }
+}

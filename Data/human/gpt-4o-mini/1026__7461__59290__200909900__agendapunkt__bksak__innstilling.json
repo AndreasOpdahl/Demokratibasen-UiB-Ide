@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7461:59290:200909900:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:19:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision by the city council regarding a contested building permit that affects local architectural heritage."
+    },
+    "summary_headline": "Byrådet godkjenner altan på verneverdig bolig i Sandviken",
+    "summary_body": "Byrådet i Bergen har besluttet å oppheve et tidligere avslag på søknad om oppføring av altan på Hegrenesveien 34, en verneverdig bolig tegnet av Leif Grung. Klagen ble fremmet av Fylkesnes AS på vegne av Pia Katrine Berge, som argumenterer for at altanen er i tråd med kommunedelplanens bestemmelser. Byantikvaren har imidlertid sterkt motsatt seg endringer på bygningen, som har høy arkitektonisk verdi. Byrådet mener at altanen ikke vil komme i konflikt med estetikkbestemmelsene og anbefaler at klagen tas til følge. Saken vil nå bli behandlet av Komité for miljø og byutvikling."
+  }
+}

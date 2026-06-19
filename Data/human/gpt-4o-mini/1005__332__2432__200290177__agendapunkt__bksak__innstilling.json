@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:332:2432:200290177:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:47:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant financial issues and decisions affecting the municipality's budget and operations."
+    },
+    "summary_headline": "Bergen kommune må dekke inn 103 millioner kroner i underskudd innen 2005",
+    "summary_body": "Bergen kommunes byråd har innstilt til bystyret om å godkjenne årsregnskapet for 2001, som viser et samlet underskudd på 103 millioner kroner. Byrådet foreslår at dette underskuddet dekkes inn i perioden 2003-2005, da det ikke er realistisk å dekke det innen 2003. Bystyret skal behandle saken den 24. juni, men kontrollutvalgets uttalelse foreligger ikke ennå. Dette kan påvirke kommunens økonomiske situasjon og fremtidige budsjetter, noe som er av stor interesse for innbyggerne."
+  }
+}

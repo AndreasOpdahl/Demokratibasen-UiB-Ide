@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:10202:68360:201206632:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:28:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains a routine administrative decision with no significant newsworthy elements."
+    },
+    "summary_headline": "Havnestyret tar orientering til etterretning",
+    "summary_body": "Bergen og Omland havnestyre har enstemmig vedtatt å ta havnedirektørens orientering til etterretning under møtet den 13. september 2013. Orienteringen vil bli vedlagt protokollen."
+  }
+}

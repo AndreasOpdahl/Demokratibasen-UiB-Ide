@@ -1,0 +1,18 @@
+{
+  "dokument_id": "16a69a56-3e63-5645-a574-cdf8eb59874d",
+  "kommune_nummer": 4647,
+  "kommune_navn": "Sunnfjord",
+  "generated_at": "2026-02-19 20:28:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a routine approval of the youth council's annual report, which is of limited immediate impact."
+    },
+    "summary_headline": "Ungdomsrådet sin årsmelding for 2024 godkjent",
+    "summary_body": "Kommunestyret har godkjent årsmeldinga for 2024 frå Ungdomsrådet. Møtet for godkjenning fann stad den 19. mars 2025, der både Ungdomsrådet og Utvalet for oppvekst og kultur anbefalte kommunedirektørens framlegg einstemmig. Leiaren for ungdomsrådet vil bli invitert til å presentere årsmeldinga i kommunestyret den 24. april."
+  }
+}

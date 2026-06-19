@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9588:64571:200514312:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:46:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to uphold the facade change permit has local relevance and may affect residents' opinions on urban development."
+    },
+    "summary_headline": "Klage på fasadeendring avvist av byrådet",
+    "summary_body": "Byrådet har behandlet en klage på tillatelsen til fasadeendring for eiendommen Granveien 5E i Årstad. I møtet den 12. april 2019 ble det besluttet å opprettholde fagetatens vedtak fra 2011, og klagen ble ikke tatt til følge. Dette kan påvirke lokale innbyggere som er opptatt av byutvikling og estetikk."
+  }
+}

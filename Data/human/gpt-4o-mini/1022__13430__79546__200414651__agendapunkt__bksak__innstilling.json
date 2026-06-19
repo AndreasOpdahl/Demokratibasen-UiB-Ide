@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1022:13430:79546:200414651:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:35:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a meeting schedule for 2018, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for styremøter i Bergen Vann KF 2018 vedtatt",
+    "summary_body": "Styret for Bergen Vann KF har vedtatt møteplanen for 2018, som inkluderer datoer for styremøter og kjente temaer. Møtene vil finne sted den 25. januar, 22. mars, 31. mai, 30. august, 18. oktober og 13. desember, alle på torsdager fra kl. 12:30 til 14:00 i Spelhaugen 22."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1018:5412:47267:200407727:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:24:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to revert parking regulations affects local residents and their parking permits."
+    },
+    "summary_headline": "Endringer i boligsoneparkering i Bergen",
+    "summary_body": "Bergen Parkering KF har besluttet å gjeninnføre de gamle reglene for boligsoneparkering, som ble sist endret i 1996. Dette innebærer at vedtaket fra 2007 om tildeling av P-kort nå reverseres. Administrasjonen støttet styrets vedtak, som kan påvirke mange beboere i Bergen som er avhengige av P-kort for parkering."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:3709:35809:200300311:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:54:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural guidelines for submitting written questions to the administration, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter om skriftlige spørsmål til administrasjonen",
+    "summary_body": "Fana bydelsstyre har fastsatt retningslinjer for innlevering av skriftlige spørsmål til administrasjonen. Spørsmål må leveres en uke før møtet, senest kl. 12:00 samme dag."
+  }
+}

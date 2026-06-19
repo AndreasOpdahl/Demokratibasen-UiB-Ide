@@ -1,0 +1,18 @@
+{
+  "dokument_id": "237609:3917327:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:23:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal to name a street after Anna Anthoni highlights gender representation and historical recognition, which is significant for local residents."
+    },
+    "summary_headline": "Bystyret vurderer å oppkalle gate etter Anna Anthoni for å hedre kvinnehistorie",
+    "summary_body": "Bystyremedlem Odd Arild Viste (R) har fremmet et forslag om å oppkalle en gate eller plass i Bergen etter Anna Berentine Anthoni, en pioner innen fagforening og Bergens første kvinnelige stortingsrepresentant. Forslaget ble overlevert ordføreren 27. april 2022, og tar sikte på å øke kvinnerepresentasjonen i gatenavn. Bystyret ber nå byrådet vurdere forslaget og komme med en vurdering innen 26. oktober 2022. Dette initiativet er en del av et større prosjekt for å gjøre gatenavnene i Bergen mer representative for alle innbyggere."
+  }
+}

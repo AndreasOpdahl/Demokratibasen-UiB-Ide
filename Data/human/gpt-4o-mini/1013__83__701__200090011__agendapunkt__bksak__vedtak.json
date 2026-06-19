@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:83:701:200090011:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:16:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural details without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen kontroversielle saker behandlet i Forretningsutvalget",
+    "summary_body": "Forretningsutvalget har behandlet saker i møte 15. januar, inkludert en deputasjon om kommunedelplanen for Fjellsiden Sør. Det er også forventet en sak fra byrådet angående Hanøytangen. Byrådets svar på spørsmål vil ikke bli behandlet i bystyret, men fordeles til komiteene."
+  }
+}

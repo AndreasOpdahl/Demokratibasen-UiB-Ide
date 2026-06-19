@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:3873:37762:200212049:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:01:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves significant local opposition to a new building project that could alter the character of a residential area."
+    },
+    "summary_headline": "Naboer klager på nybygg i villastrøk på Årstadveien",
+    "summary_body": "Klage fra naboer over rammetillatelse til oppføring av et nybygg med 5 boenheter på Årstadveien 13 er tatt til følge av Komite for miljø og byutvikling. Komiteen mener det ikke foreligger \"særlige grunner\" for å gi dispensasjon fra kommunedelplanen og plan- og bygningsloven. Kåre H. Husabø fra Pp, støttet av A, SV og RV, argumenterte for at nybygget vil bryte med områdets villa-karakter og oppfordret til å bevare den kulturelle historien i strøket. Byrådet innstiller derimot til å opprettholde det opprinnelige vedtaket, noe som kan føre til videre konflikt."
+  }
+}

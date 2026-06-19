@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50933:111326:199806728:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:34:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a proposal regarding public transport in Åsane, which is relevant to local residents."
+    },
+    "summary_headline": "Formannskapet sender kollektivterminal-sak tilbake til administrasjonen",
+    "summary_body": "Formannskapet i Bergen har enstemmig besluttet å sende saken om kollektivterminal i Åsane tilbake til administrasjonen for videre arbeid. Forslaget fra Roald Stigum Olsen (H) ble også vedtatt, og det kreves kvalitetskontroll og undersøkelser hos kollektivselskapene samt bydelsutvalg 05 og 06. Saken skal fremmes igjen snarest, og de fem spørsmålene fra Stigum Olsen må adresseres."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "236763:3774244:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:21:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document addresses a significant increase in refugee resettlement in Bergen due to the Ukraine crisis, impacting local services and community engagement."
+    },
+    "summary_headline": "Bergen kommune skal bosette 1.000 flyktninger fra Ukraina i 2022",
+    "summary_body": "Bergen kommune har mottatt en justert anmodning fra Integrerings- og mangfoldsdirektoratet om å bosette 1.000 flyktninger i 2022, en økning fra de tidligere vedtatte 182. Dette er en direkte respons på flyktningsituasjonen etter Russlands invasjon av Ukraina. Byrådet, ledet av Roger Valhammer, anbefaler bystyret å godkjenne denne økningen, som inkluderer 14 enslige mindreårige. Det er et stort behov for boliger, helse- og utdanningstjenester, og kommunen planlegger å bruke det private boligmarkedet for å imøtekomme behovet. Bystyret vil også bli bedt om å gi fullmakt til å utvikle en ordning for livsopphold for ukrainske asylsøkere. Dette tiltaket er viktig for å sikre integrering og støtte til flyktningene som ankommer Bergen."
+  }
+}

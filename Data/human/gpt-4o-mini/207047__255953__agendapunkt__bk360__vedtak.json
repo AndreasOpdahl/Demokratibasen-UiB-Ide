@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207047:255953:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:12:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains information about upcoming meetings and discussions but lacks significant conflict or impact."
+    },
+    "summary_headline": "Orientering om HOG energi og torgsaken i Bergen",
+    "summary_body": "Komite for finans, kultur og næring diskuterte i møtet 5. september 2018 en orientering om omstruktureringen av HOG energi, foreslått av Eivind H. Hermansen (H). Hilde Onarheim (H) informerte om en byrådssak om torget som skal behandles i oktober, med et miniseminar planlagt 1. oktober fra kl. 16:00 til 18:00."
+  }
+}

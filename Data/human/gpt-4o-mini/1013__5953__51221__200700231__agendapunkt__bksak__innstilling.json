@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5953:51221:200700231:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:12:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant changes in the organizational structure of municipal committees, which will impact local governance."
+    },
+    "summary_headline": "Endringer i tilknytning av kommunale etater til bystyrekomiteer",
+    "summary_body": "Bystyredirektøren foreslår en ny tilknytningsmodell for kommunale etater og virksomheter til bystyrekomiteene, basert på faglige ansvarsområder. To modeller er presentert: Modell 1, som opprettholder fagkomiteenes ansvar for tilknyttede enheter, og Modell 2, som samler alt ansvar under Finanskomiteen. Bystyredirektøren anbefaler Modell 1, da dette sikrer politisk ansvar for hvert fagområde. Forslaget vil bli behandlet av Forretningsutvalget, og kan påvirke hvordan kommunale tjenester styres og overvåkes i Bergen."
+  }
+}

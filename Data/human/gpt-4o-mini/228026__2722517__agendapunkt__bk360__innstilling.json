@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228026:2722517:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:00:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document highlights a significant issue regarding dyslexia support in schools, with potential implications for many students in Bergen."
+    },
+    "summary_headline": "Bergen kommune oppfordres til å sertifisere alle skoler som dysleksivennlige",
+    "summary_body": "Lynghaug skole har blitt sertifisert som Norges andre dysleksivennlige skole, noe som vekker bekymring hos Senterpartiet. De påpeker at det i 2021 kun er to slike skoler i landet, og mener Bergen kommune bør bli en foregangskommune for å sikre at alle grunnskoler blir sertifisert. Byråden blir bedt om å vurdere kostnader og tidsperspektiv for sertifisering av alle skoler i kommunen. Dette er viktig for å gi tilpasset undervisning til elever med dysleksi, som kan ha stor innvirkning på deres læring."
+  }
+}

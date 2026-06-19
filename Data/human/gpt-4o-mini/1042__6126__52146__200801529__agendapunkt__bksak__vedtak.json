@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:6126:52146:200801529:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:15:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal addresses a significant safety concern for children and pedestrians in a busy area."
+    },
+    "summary_headline": "Ytrebygda bydelsstyre foreslår ny gangvei for å forbedre trafikksikkerheten",
+    "summary_body": "Ytrebygda bydelsstyre har enstemmig vedtatt å sende et forslag til Byrådsavdeling for klima, miljø og byutvikling om å vurdere flytting av fotgjengerovergangen i krysset Sandslivegen - Petedalsflaten. Dette tiltaket er nødvendig for å sikre at barn og ungdom bruker fotgjengerovergangen, da mange i stedet krysser veien på en farlig måte. I tillegg foreslås det å etablere en gangvei fra fortauet til fotballbanen, som vil forbedre sikkerheten for fotgjengere som skal til bussholdeplassen. Dette er spesielt relevant for innbyggere i området som er bekymret for trafikksikkerheten."
+  }
+}

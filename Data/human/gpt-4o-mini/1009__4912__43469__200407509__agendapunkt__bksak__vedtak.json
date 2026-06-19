@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4912:43469:200407509:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:20:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The case involves a local complaint regarding a fence permit, but lacks significant conflict or public impact."
+    },
+    "summary_headline": "Klage på gjerde i Laksevåg avvist av byrådet",
+    "summary_body": "Byrådet har behandlet en klage fra Rolf Hjertholm angående tillatelsen for oppføring av et gjerde på Ørnefjellet 17 i Laksevåg. Klagen ble ikke tatt til følge, og fagetatens vedtak fra 12. juli 2005 opprettholdes."
+  }
+}

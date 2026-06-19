@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4757:44062:200409436:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:06:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The case involves a rejected application for balcony construction, which may interest local residents but lacks significant conflict or financial implications."
+    },
+    "summary_headline": "Klage på avslag om balkongdører avvist av komiteen",
+    "summary_body": "Fredrik S. Nannestad har klaget på avslag på søknad om oppføring av balkongdører og balkong på fasaden mot sørvest på Bleketrappene 4. Komite for miljø og byutvikling behandlet saken og opprettholdt fagetatens vedtak fra 2004, som betyr at klagen ikke ble tatt til følge. Innstillingen ble vedtatt enstemmig."
+  }
+}

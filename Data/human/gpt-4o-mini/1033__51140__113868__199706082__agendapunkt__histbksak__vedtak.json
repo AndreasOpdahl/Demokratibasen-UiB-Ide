@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:51140:113868:199706082:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:52:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the allocation of significant funds for drug policy initiatives, which directly impacts local organizations and residents."
+    },
+    "summary_headline": "Bergen kommune fordeler 500.000 kroner til rusmiddelpolitisk arbeid",
+    "summary_body": "Bergen kommune har besluttet å fordele 500.000 kroner fra budsjettkontoen for rusmiddelpolitisk råd til ulike organisasjoner som arbeider med rusmiddelproblematikk. Vedtaket ble gjort i møte 4. mai 1999, hvor flere endringsforslag ble diskutert, men administrasjonens forslag ble enstemmig vedtatt. Midlene skal brukes til kompetansehevende arbeid, spesielt rettet mot barn og unge. Gjenstående midler reduseres til 290.000 kroner."
+  }
+}

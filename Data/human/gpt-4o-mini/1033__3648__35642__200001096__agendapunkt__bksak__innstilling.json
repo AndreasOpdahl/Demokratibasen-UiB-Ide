@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3648:35642:200001096:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:46:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a new alcohol license application, which has local relevance but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Akvariet i Bergen søker om ny skjenkebevilling",
+    "summary_body": "Akvariet i Bergen har sendt inn en søknad om ny skjenkebevilling for øl, vin og brennevin til sluttet selskap, som gjelder frem til 30. juni 2004. Rusmiddelpolitisk råd anbefaler søknaden. Det er ingen kjent motstand mot søknaden."
+  }
+}

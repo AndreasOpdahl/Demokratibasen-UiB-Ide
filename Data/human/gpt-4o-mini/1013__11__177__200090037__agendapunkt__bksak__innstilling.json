@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:11:177:200090037:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:01:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses the compensation of employee representatives in municipal boards, which has implications for local governance and public spending."
+    },
+    "summary_headline": "Uklart honorar for arbeidstaker-representanter i bydelsstyrene",
+    "summary_body": "Bystyrets sekretariat har foreslått at arbeidstaker-representanter i bydelsstyrene skal få honorar tilsvarende varamedlemmer, som er 650 kroner per møte. Dette forslaget gjelder fra 1. juli 2000 og vil bli vurdert på nytt når et nytt reglement for økonomisk godtgjørelse er vedtatt. Det er også foreslått at høyeste honorar for perioden 1. januar til 30. juni 2000 skal være 7.500 kroner. Ulik praksis har ført til forvirring om honorering, noe som påvirker hvordan bydelsadministrasjonene håndterer dette spørsmålet."
+  }
+}

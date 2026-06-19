@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241770:4649295:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:33:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property sale is relevant but lacks significant controversy or financial implications."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på leiegård i Skottegaten",
+    "summary_body": "Bergen kommune har besluttet å ikke benytte seg av forkjøpsretten ved overdragelse av 50% av eiendommen gnr 165, bnr 688, Skottegaten 3. Kjøpesummen er satt til NOK 10 500 000,-. Ingen av leietakerne har uttrykt ønske om at kommunen skal gripe inn, og både Boligetaten og Byrådsavdeling for kultur, sosial og inkludering anbefaler at forkjøpsretten ikke benyttes. Beslutningen ble fattet av byråd for barnevern og sosiale tjenester, Line Berggreen Jacobsen, den 29. november 2022."
+  }
+}

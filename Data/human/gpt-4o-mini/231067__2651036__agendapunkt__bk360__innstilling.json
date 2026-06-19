@@ -1,0 +1,18 @@
+{
+  "dokument_id": "231067:2651036:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:09:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over signage in a culturally sensitive area, impacting local businesses and historical preservation."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på skilt i kulturhistorisk område",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om oppføring av skilt ved Torget 2, som ble avslått 18. desember 2020. Klagen ble sendt inn av Bergen Sentrum Tomteselskap AS, men byrådet mener at skiltene vil bryte med bygningens arkitektoniske og historiske verdi, og vil dermed redusere den helhetlige opplevelsen av området. Byantikvaren og Byarkitekten har også frarådet tiltaket. Saken vil nå bli sendt til Statsforvalteren i Vestland for endelig avgjørelse."
+  }
+}

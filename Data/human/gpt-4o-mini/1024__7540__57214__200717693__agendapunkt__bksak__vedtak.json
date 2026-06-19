@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1024:7540:57214:200717693:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:45:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines proposed activities for a cultural committee, which may interest local residents."
+    },
+    "summary_headline": "Aktivitetsplan for Kultur, Idrett og Næring behandlet",
+    "summary_body": "Komite for kultur, idrett og næring har behandlet aktivitetsplanen for 2010. Saken ble trukket av komiteleder Trude Drevland (H) under møtet 9. februar, men vil bli fremmet igjen senere. I møtet 12. januar ble det foreslått flere aktiviteter, inkludert befaringer på museer og restaureringen av Mariakirken, samt initiativ til seminar om barneteater. Komiteen har en plan for å realitetsbehandle saken i neste møte."
+  }
+}

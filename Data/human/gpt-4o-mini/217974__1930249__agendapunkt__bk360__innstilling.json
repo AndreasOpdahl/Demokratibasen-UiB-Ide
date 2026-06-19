@@ -1,0 +1,18 @@
+{
+  "dokument_id": "217974:1930249:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:38:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a meeting notice with routine agenda items and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteinnkalling for Utvalg for barnehage, skole og idrett",
+    "summary_body": "Utvalg for barnehage, skole og idrett i Bergen kommune har innkalt til møte den 14. januar 2020, hvor flere saker skal behandles, inkludert strategier for barnehagedekning og revisjon av informasjonssikkerhet i skolesektoren. Møtet finner sted på Litteraturhuset, og det vil bli servert middag for komiteens medlemmer før møtet."
+  }
+}

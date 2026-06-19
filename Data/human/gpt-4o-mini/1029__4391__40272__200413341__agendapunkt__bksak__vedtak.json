@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:4391:40272:200413341:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:31:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines budgetary decisions affecting local governance, which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Kontrollutvalget enstemmig vedtar budsjettdeling for 2005",
+    "summary_body": "Kontrollutvalget har enstemmig vedtatt retningslinjer for budsjettdeling mellom kontrollutvalget og kommunerevisjonen for 2005. Det skal legges fram ulike alternativer til detaljbudsjett på neste møte, og synspunkter fra det nåværende møtet skal tas i betraktning. Det er viktig å sikre budsjettsikkerhet for kommunerevisjonen og å etablere ordninger for samhandling mellom kontrollutvalget og kommunerevisjonen. Møtet ble holdt 18. januar 2005."
+  }
+}

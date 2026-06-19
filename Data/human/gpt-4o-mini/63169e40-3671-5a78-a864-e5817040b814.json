@@ -1,0 +1,18 @@
+{
+  "dokument_id": "63169e40-3671-5a78-a864-e5817040b814",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:04:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document contains significant decisions regarding urban planning and public spending that directly affect local residents."
+    },
+    "summary_headline": "Bergen kommune vedtar ny kollektivplan og detaljregulering i Fana",
+    "summary_body": "Utvalg for miljø og byutvikling i Bergen kommune har vedtatt en ny kommunedelplan for kollektivsystemet mellom Bergen sentrum og Bergen vest, som inkluderer tiltak for bedre busstilbud og kollektivkapasitet. I tillegg ble detaljreguleringen for Jacob Kjødes veg i Fana godkjent, med krav om 10% gjesteparkering og ivaretakelse av eksisterende asketrær. Dette vil påvirke transporttilbudet og boligutviklingen i området, og det er ventet at bystyret vil behandle saken videre i løpet av 2024. Deler av planen har møtt motstand, spesielt fra MDG som ønsker mer fokus på miljøvennlige løsninger."
+  }
+}

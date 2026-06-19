@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4525:41227:200411034:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:17:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant funding for traffic regulation related to major events in Bergen, which impacts local residents."
+    },
+    "summary_headline": "Byrådet bevilger 100.000 kroner til trafikkregulering for større arrangementer i Bergen sentrum",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 100.000 kroner til trafikkregulering i forbindelse med større arrangementer i sentrum i 2005. Dette er nødvendig ettersom det ikke er avsatt midler til \"Bilfri by\"-dager i budsjettet. Arrangører av disse arrangementene må selv dekke kostnadene til trafikkregulerende tiltak, som inkluderer planlegging og informasjon. Samferdselsetaten anbefaler at arrangørene står ansvarlig for tiltakene og søker nødvendige tillatelser fra Statens vegvesen og Politiet. Dette kan påvirke arrangementer som Sjømat for alle, Nasjonaldagen og Festspillene i Bergen."
+  }
+}

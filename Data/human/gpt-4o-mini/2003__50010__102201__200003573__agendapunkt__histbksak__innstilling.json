@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50010:102201:200003573:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:31:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses a significant parking expansion proposal that could impact local residents and requires further political discussion."
+    },
+    "summary_headline": "Debatt om utvidelse av Bygarasjen før byggetillatelse",
+    "summary_body": "Ragnhild Hedemann (SV) har stilt spørsmål om utvidelsen av Bygarasjen med 750 nye parkeringsplasser, som ikke har vært behandlet i relevante politiske organer. Formannskapet ber om at denne saken diskuteres i bystyret som en del av en samlet parkeringspolitikk for Bergen før byggetillatelse gis. Administrasjonen jobber med en parkeringspolitikk for sentrum, men utvidelsen av Bygarasjen vil bli behandlet som en vanlig byggesak dersom det blir aktuelt."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:10489:68526:201300512:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:53:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses a significant issue of domestic violence, particularly against vulnerable groups, which is relevant to the local community."
+    },
+    "summary_headline": "Eldrerådet støtter handlingsplan mot vold i nære relasjoner",
+    "summary_body": "Eldrerådet i Bergen har vedtatt å støtte Handlingsplan mot vold i nære relasjoner for perioden 2013-2017. Planen, som er utarbeidet av Byrådsavdeling helse- og omsorg, fokuserer på å forebygge vold mot eldre og sårbare grupper. Den bygger på tidligere tiltak og fremhever behovet for økt kunnskap og koordinering av tjenester. Dette er et viktig skritt for å håndtere det skjulte problemet med overgrep i både institusjoner og privatlivet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3378:35179:200000799:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a request for a complaint case regarding outdoor serving at a local establishment, which may interest residents."
+    },
+    "summary_headline": "Klage på uteservering ved Scruffy-Murphy behandles av bydelsstyret",
+    "summary_body": "Bergenhus bydelsstyre behandlet en forespørsel fra Tor Woldseth (Frp) om en klagesak fra Byggesaksavdelingen angående uteserveringen ved Scruffy-Murphy. Bydelsdirektøren informerte om at saken vil bli lagt frem for bydelsstyret når administrasjonen mottar den."
+  }
+}

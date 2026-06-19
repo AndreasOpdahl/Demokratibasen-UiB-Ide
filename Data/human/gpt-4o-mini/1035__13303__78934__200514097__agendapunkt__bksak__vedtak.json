@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:13303:78934:200514097:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:59:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document raises concerns about urban planning and environmental issues, which are relevant to local residents."
+    },
+    "summary_headline": "Bekymringer om områdeplaner og fjerning av grønn vegg i Bergen",
+    "summary_body": "Representantene Knut Opheim, Tor Helge Valen og Siri Skjold Lexau stiller spørsmål om Bergen kommunes fremtidige områdeplaner og beslutninger knyttet til steindeponiet i Hordnesskogen. Valen etterspør en redegjørelse for saksgang og vurderinger fra sentrale myndigheter angående planene for godsterminalen. Lexau uttrykker bekymring over fjerningen av den grønne planteveggen utenfor DPS, som var en viktig del av fasaden og bidro til at bygget fikk arkitekturprisen i 2015. Rådet ønsker en orientering om dette og vil sende en bekymringsmelding til tilsynsavdelingen."
+  }
+}

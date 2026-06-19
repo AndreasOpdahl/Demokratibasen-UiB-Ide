@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:3250:32743:200013543:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:53:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a meeting where a representative for pensioners expressed views on home help services, but lacks significant conflict or impact."
+    },
+    "summary_headline": "Pensionister tar opp hjemmehjelp i Fana bydelsstyre",
+    "summary_body": "Under et møte i Fana bydelsstyre den 5. november 2002, fremmet Margareth Mohn synspunkter på vegne av pensjonister som benytter hjemmehjelp. Saken ble behandlet av bydelsadministrasjonen, men det er ingen indikasjoner på konflikt eller spesifikke beslutninger."
+  }
+}

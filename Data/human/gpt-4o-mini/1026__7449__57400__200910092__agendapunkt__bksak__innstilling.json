@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7449:57400:200910092:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:17:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant dispute over a housing permit that affects local residents and has implications for safety and urban planning."
+    },
+    "summary_headline": "Klage på boligbygging i Laksevåg avvist av Byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Forsvarsbygg angående tillatelsen til oppføring av enebolig på Vassendveien 39 i Laksevåg. Klagen ble innlevert etter at rammetillatelse ble gitt 18. september 2009, men Forsvarsbygg argumenterer for at området er unntatt rettsvirkning og at det er behov for strengere sikkerhetstiltak på grunn av økt aktivitet ved Haakonsvern. Byrådet, ledet av Monica Mæland, støtter fagetatens vurdering om at det ikke er behov for reguleringsplan og anbefaler at klagen ikke tas til følge. Saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

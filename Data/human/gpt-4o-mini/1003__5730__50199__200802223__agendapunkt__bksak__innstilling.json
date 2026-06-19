@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1003:5730:50199:200802223:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:21:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document presents a positive financial report with implications for local housing projects, which is relevant to residents."
+    },
+    "summary_headline": "Bergen Bolig og Byfornyelse KF rapporterer overskudd på 21,1 millioner kroner for 2007",
+    "summary_body": "Bergen Bolig og Byfornyelse KF har lagt fram årsberetning for 2007, som viser et overskudd på 21,1 millioner kroner, opp fra 18,5 millioner i 2006. Overskuddet skyldes høyere husleie og lavere vedlikeholdskostnader enn budsjettert. Styret anbefaler at overskuddet overføres til disposisjonsfond for å redusere vedlikeholdsetterslep og oppgradere boligmassen. Dette er spesielt relevant for innbyggere i Bergen, da det kan påvirke kvaliteten på boliger og vedlikehold i kommunen."
+  }
+}

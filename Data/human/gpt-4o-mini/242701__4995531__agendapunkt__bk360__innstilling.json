@@ -1,0 +1,18 @@
+{
+  "dokument_id": "242701:4995531:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:34:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises concerns about budget cuts affecting local employment and services."
+    },
+    "summary_headline": "Kutt i budsjett truer ansettelse ved Bergen inkluderingssenter",
+    "summary_body": "Christine Ødegaard (MDG) stiller spørsmål om byrådets planer for ansettelse av to personer til Bergen inkluderingssenter etter at midlene til planlegging ble kuttet i budsjettavtalen med Høyre, Sp og Krf. Kuttet tilsvarer om lag to årsverk i 2023. Ødegaard etterspør hvilken tjeneste som må redusere sitt budsjett for å finansiere disse stillingene, som i dag ikke er dekket."
+  }
+}

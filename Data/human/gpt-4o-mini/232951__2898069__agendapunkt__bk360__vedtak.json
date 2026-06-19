@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232951:2898069:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:13:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative decisions with low local impact."
+    },
+    "summary_headline": "Ungdomsrådet deltar på nettverkssamling og innspillsmøte",
+    "summary_body": "Ungdomsrådet har besluttet at Eowyn Saus og Synne Eide Frøiland skal representere dem på nettverkssamlingen for FFU den 20.-21. november. I tillegg inviteres medlemmer til et innspillsmøte om bibliotekplanen for 2022-2031, som finner sted onsdag 17. november kl. 15-16. Invitasjonen vil bli sendt ut på epost."
+  }
+}

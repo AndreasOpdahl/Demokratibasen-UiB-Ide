@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9280:65141:201125272:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:21:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves the selection of an auditor for the municipality, which has implications for governance and oversight."
+    },
+    "summary_headline": "Bergen kommune velger Deloitte som revisor til 2015",
+    "summary_body": "Bergen bystyre har besluttet å ansette Deloitte AS som revisor for forvaltningsrevisjon og selskapskontroll i kommunen fra 1. juli 2012 til 30. juni 2015, med mulighet for ett års forlengelse. Under behandlingen ble det reist spørsmål om habiliteten til representant Ove Sverre Bjørdal (Sp), som er ansatt i Deloitte og har vært involvert i anbudet. Bystyret fant ham inhabil. Det ble også fremmet forslag om å utsette saken, men dette ble nedstemt. Beslutningen er viktig for kommunens revisjon og kan påvirke tilliten til revisjonsprosessen."
+  }
+}

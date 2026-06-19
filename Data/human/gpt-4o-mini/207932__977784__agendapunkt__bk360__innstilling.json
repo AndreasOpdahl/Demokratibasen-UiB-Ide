@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207932:977784:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:15:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine meeting schedule for a municipal committee, which is of low news interest."
+    },
+    "summary_headline": "Møteplan for komite for miljø og byutvikling vedtatt for 2019",
+    "summary_body": "Komite for miljø og byutvikling har vedtatt møteplan for 2019, som inkluderer møter den 17. januar, 21. februar, 28. mars, 9. mai, 6. juni, 29. august, 3. oktober, 7. november og 5. desember. I tillegg er det planlagt formøter på spesifikke datoer. Dette er en rutinemessig beslutning som følger opp vedtatt møteplan for bystyret."
+  }
+}

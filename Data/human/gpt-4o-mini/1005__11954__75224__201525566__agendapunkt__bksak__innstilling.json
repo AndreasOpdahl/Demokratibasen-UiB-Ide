@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11954:75224:201525566:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:36:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines procedural changes to the business committee regulations, which are of limited immediate impact."
+    },
+    "summary_headline": "Justeringer i reglementet for forretningsutvalget vedtatt",
+    "summary_body": "Bergen bystyre har vedtatt forslag til justeringer i reglementet for forretningsutvalget. Endringene inkluderer presiseringer om sammensetning, behandling av høringssaker, og fullmakter til å oppnevne representanter til samarbeidsutvalg for skoler og barnehager. Justeringene er gjort for å synkronisere med reglementet for bystyrekomiteene. Dette kan påvirke hvordan saker behandles i kommunen, men har begrenset direkte innvirkning på innbyggerne."
+  }
+}

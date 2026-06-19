@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9687:64892:201111477:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:47:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant investment in children's play areas, which directly impacts local families and communities."
+    },
+    "summary_headline": "Bergen kommune investerer 90 millioner i lekeplasser for barn",
+    "summary_body": "Bergen kommune har besluttet å investere 90 millioner kroner i perioden 2012-2014 for oppgradering av lekeplasser under prosjektet \"Barnas byrom\". Byrådet, ledet av Lisbeth Iversen, har satt av 18 millioner kroner i 2012 for å ruste opp ca. 20 eksisterende lekearealer og tilføye nye aktivitetsmuligheter i tre bydeler. I tillegg skal det registreres alle offentlige lekeområder, og det vil bli tildelt midler til velforeninger for lekeplassutstyr. Prosjektet har som mål å forbedre lekemulighetene for barn og skape trygge og stimulerende miljøer. Planer for videre investeringer i 2013-2014 vil bli utarbeidet innen utgangen av 2012."
+  }
+}

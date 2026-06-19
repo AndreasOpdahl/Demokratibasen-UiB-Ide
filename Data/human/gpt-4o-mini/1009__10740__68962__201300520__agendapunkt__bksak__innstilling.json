@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10740:68962:201300520:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:44:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant environmental and financial implications regarding the replacement of artificial grass in municipal sports facilities."
+    },
+    "summary_headline": "Bergen kommune prioriterer miljø ved utskifting av kunstgressbaner",
+    "summary_body": "Bergen kommune har besluttet å følge «føre var prinsippet» ved utskifting av kunstgressbaner, med fokus på miljøvennlige materialer. Byrådet anbefaler ikke gjenbruk av nedslitt kunstgress, men åpner for unntak ved kortere levetid. Det er viktig at alle gjenbruksalternativer vurderes før nye anbud utlyses. Dette tiltaket er en del av en større idrettsplan for å forbedre aktivitetsmulighetene for barn og unge i kommunen."
+  }
+}

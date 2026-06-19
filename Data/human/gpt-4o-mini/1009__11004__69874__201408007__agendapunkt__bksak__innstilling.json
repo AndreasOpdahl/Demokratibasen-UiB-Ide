@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11004:69874:201408007:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:45:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision on extended serving hours during a local festival impacts local businesses and cultural activities."
+    },
+    "summary_headline": "Byrådet avslår søknad om utvidet skjenketid under Humorfest",
+    "summary_body": "Byrådet har besluttet å avslå søknaden fra NHO Reiseliv om utvidet skjenketid til kl. 03.00 under Humorfest i Bergen fra 22. til 26. april 2014. Byrådsleder Ragnhild Stolt-Nielsen støtter fagetatens vurdering, som konkluderer med at Humorfest ikke kvalifiserer som et byomfattende arrangement. Til tross for dette vil byrådet tillate utvidet skjenketid for Logen og Litteraturhuset, som er medarrangører av festivalen. Dette vedtaket kan føre til klager fra NHO Reiseliv, som representerer lokale virksomheter."
+  }
+}

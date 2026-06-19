@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2009:51015:112334:199708294:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:55:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The establishment of IT-Vest is a significant initiative aimed at boosting the IT sector in the region, involving public funding and collaboration."
+    },
+    "summary_headline": "Bergen kommune bevilger 100.000 kroner til etablering av IT-Vest",
+    "summary_body": "Næringsstyret i Bergen kommune har besluttet å etablere IT-Vest for å styrke IT-næringen i Bergen, Hordaland og Sogn og Fjordane. Styret bevilger 100.000 kroner til aksjekapital og 25.000 kroner til etableringsutgifter. Formålet er å fremme vekst i regionen og tiltrekke IT-kompetanse. Det vil bli opprettet et interimstyre med representanter fra utdanningssektoren, offentlig sektor og næringslivet. Dette tiltaket er viktig for å sikre at IT-miljøet forblir konkurransedyktig og attraktivt i møte med nasjonale satsinger som IT-Fornebu."
+  }
+}

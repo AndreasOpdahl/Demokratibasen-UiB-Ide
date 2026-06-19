@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8382:62940:201109945:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:19:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant local environmental and humanitarian issues, including the establishment of a hazardous waste facility and the treatment of asylum seekers."
+    },
+    "summary_headline": "Bystyret ber byrådet om oppfølging av farlig avfall-anlegg og asylpolitikk",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å be byrådet følge opp saken om SARs anlegg for farlig avfall på Laksevåg, etter bekymringer om helse- og sikkerhetsrisikoer for nærområdet. Bystyret ber også nasjonale myndigheter om å revidere asylpolitikken, spesielt for papirløse asylsøkere, for å sikre deres grunnleggende rettigheter. Dette skjer i lys av økende bekymringer for de humanitære forholdene for papirløse migranter i kommunen."
+  }
+}

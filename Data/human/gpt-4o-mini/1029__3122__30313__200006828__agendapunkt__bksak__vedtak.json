@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:3122:30313:200006828:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:30:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document contains no newsworthy elements as it simply records that no issues were raised in a meeting."
+    },
+    "summary_headline": "Ingen saker behandlet i Kontrollutvalget",
+    "summary_body": "Kontrollutvalget i Bergen kommune hadde møte den 5. mars 2002, men det ble ikke tatt opp noen saker under eventuelt."
+  }
+}

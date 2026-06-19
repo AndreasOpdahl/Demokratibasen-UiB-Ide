@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224527:1903956:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:51:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant decision regarding a floating dock that affects local business operations and has seen political disagreement."
+    },
+    "summary_headline": "Klage på avslag om flytebrygge avvist, men mulighet for mindre tiltak åpnes",
+    "summary_body": "Utvalg for miljø og byutvikling har avvist en klage på avslag om dispensasjon for en flytebrygge ved Stamneset, men åpner for muligheten for et mindre tiltak. Byrådet uttrykte støtte til forbedringer av bryggen for å sikre bedre arbeidsforhold og redusere trafikkbelastningen, men mener at det foreslåtte tiltaket er for stort. Det ble stemt over et alternativt forslag fra Høyre, som fikk 6 stemmer, men falt. Den endelige avgjørelsen ble vedtatt med 11 stemmer fra Arbeiderpartiet, MDG, SV, Senterpartiet, Rødt og Venstre."
+  }
+}

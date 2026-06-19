@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:6943:54354:200902398:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:35:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a new alcohol license is relevant to local businesses and residents."
+    },
+    "summary_headline": "Havfruenes Hemmeligheter får ny skjenkebevilling",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Havfruenes Hemmeligheter, Nygårdsgaten 53. Bevillingen gjelder både innendørs og uteservering, med totalt 70 gjesteplasser. Nygårdsgaten Røkeri Eiendom AS er bevillingshaver, med Marianne Aasen som styrer. Bevillingen er gyldig frem til 30. juni 2012, men det kreves ytterligere dokumentasjon før den kan tas i bruk."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227140:2664300:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:57:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine approval of an activity plan with no significant impact or controversy."
+    },
+    "summary_headline": "Enstemmig vedtak om aktivitetsplan for første halvår 2021",
+    "summary_body": "Utvalg for finans, kultur og næring har enstemmig vedtatt aktivitetsplanen for første halvår 2021 i møte den 10. februar 2021. Ingen motforestillinger ble reist under voteringen."
+  }
+}

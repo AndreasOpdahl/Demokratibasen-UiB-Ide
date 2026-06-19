@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:7099:56921:200907338:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:55:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a public complaint regarding a construction permit, which affects local residents and has seen political debate."
+    },
+    "summary_headline": "Klage på levegg i Fana avvist av bydelsstyret",
+    "summary_body": "Fana bydelsstyre har behandlet en klage på tillatelsen til oppføring av en levegg på Søre Renen 61. Klagen ble delvis tatt til følge, men leveggen må reduseres til 1,70 meter i høyde og 4,2 meter i lengde fra husvegg. Forslaget fra Leif Jacobsen (KrF) om ytterligere endringer fikk ingen stemmer og ble avvist. Bydelsstyret opprettholder dermed det opprinnelige vedtaket fra 25. juni 2009, og klagen tas ikke til følge. Dette kan påvirke naboer og lokalområdet, da det berører byggetillatelser."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11953:74862:201319125:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:36:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document primarily contains procedural information with no significant impact or controversy."
+    },
+    "summary_headline": "Bystyret tar til orientering revisjonsrapport for Bergen Vann KF",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å ta oppdragsansvarlig regnskapsrevisor BDO AS sin rapportering for Bergen Vann KF etter revisjonen av særregnskapet for 2014 til orientering. Ingen representanter tok ordet under behandlingen. Kontrollutvalget har også behandlet saken og videresendt rapporteringen til bystyret."
+  }
+}

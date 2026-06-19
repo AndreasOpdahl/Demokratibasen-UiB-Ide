@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:7390:57283:200716852:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:51:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine decision regarding participation in a conference, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Deltakelse på utdannings- og barnehagekonferansen vedtatt",
+    "summary_body": "Komite for oppvekst har besluttet at medlemmer som ønsker det kan delta på utdannings- og barnehagekonferansen på Solstrand 10. og 11. mars. Påmelding skjer via Bystyrets kontor."
+  }
+}

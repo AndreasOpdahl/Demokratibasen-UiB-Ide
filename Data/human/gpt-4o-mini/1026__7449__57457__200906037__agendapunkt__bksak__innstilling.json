@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7449:57457:200906037:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:17:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the allocation of space in a prominent public building, which affects local tourism and business."
+    },
+    "summary_headline": "Turistinformasjonen får plass i Mathallens 2. etasje etter avslag fra Sjømatsenteret",
+    "summary_body": "Byrådet i Bergen har besluttet å tilby Turistinformasjonen leie av arealer i 2. etasje av Mathallen, etter at Stiftelsen Norsk Sjømatsenter avslo et forslag om samlokalisering. Turistinformasjonen trekker årlig ca. 500 000 besøkende, noe byrådet mener vil være en fordel for Mathallen. Det vil også bli utlyst en konkurranse for bruken av de resterende arealene i 2. etasje, i tråd med bystyrets mål om å skape et opplevelseskonsept med smaksprøver og servering. Dette tiltaket er viktig for å styrke torgets funksjoner og tiltrekke flere besøkende."
+  }
+}

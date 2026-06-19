@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:5728:51546:200716875:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:30:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains responses to written questions but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Svar fra byrådet om finansielle spørsmål",
+    "summary_body": "Byrådet har behandlet svar på skriftlige spørsmål fra representantene Terje Ohnstad (A) og Tina Åsgård (SV) i møtet den 27. august 2008. Ohnstad stilte spørsmål om Torget, mens Åsgård spurte om Septik24 og tariffavtale i anbud. Ingen kontroverser eller beslutninger ble rapportert."
+  }
+}

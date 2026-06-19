@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223621:2029213:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:50:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document provides an update on home-based services during the pandemic but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Eldrerådet får informasjon om hjemmebaserte tjenester under koronakrisen",
+    "summary_body": "Eldrerådet har fått en orientering fra Etat for hjemmebaserte tjenester om arbeidet under første del av koronakrisen, samt evaluering og videre arbeid. Forslaget om å ta informasjonen til orientering ble godkjent. Møtet fant sted 17. september 2020."
+  }
+}

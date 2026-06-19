@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5429:47097:200702456:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:27:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a new alcohol license to City Box Cafe has local relevance and potential impact on residents due to noise regulations and community concerns."
+    },
+    "summary_headline": "City Box Cafe får skjenkebevilling med strenge regler for uteservering",
+    "summary_body": "Byrådet har innvilget søknaden om alminnelig skjenkebevilling for alkoholholdig drikk til City Box Cafe på Nygårdsgt. 31, med Minh Man Tran Eide som bevillingshaver. Bevillingen gjelder både innendørs og uteservering frem til 30. juni 2008. Det er innført restriksjoner på musikk og underholdning etter kl. 22.00 for å unngå sjenanse for naboer. Lisbeth Iversen dissenterte i saken, noe som kan indikere uenighet om bevillingen."
+  }
+}

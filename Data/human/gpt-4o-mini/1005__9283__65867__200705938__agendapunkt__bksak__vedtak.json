@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9283:65867:200705938:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:22:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document highlights significant budgetary concerns regarding cultural and sports services in Bergen."
+    },
+    "summary_headline": "Bergen kommune under ASSS-snittet på kultur og idrett",
+    "summary_body": "Bergen bystyre har behandlet ASSS-rapporten for 2011, som viser at kommunen ligger 27 % under snittet på dekningsgraden i musikk- og kulturskoler. Kine Bratli Dale (A) uttrykte bekymring over dette, mens Ove Sverre Bjørdal (Sp) påpekte at Bergen bruker 4,3 % mindre enn landsgjennomsnittet, noe som utgjør 530 millioner kroner totalt. Begge merknader fikk støtte fra flere partier, men falt i voteringen. Bystyret vedtok enstemmig å ta rapporten til orientering."
+  }
+}

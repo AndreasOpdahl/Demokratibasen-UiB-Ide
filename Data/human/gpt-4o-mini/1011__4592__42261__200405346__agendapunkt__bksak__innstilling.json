@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1011:4592:42261:200405346:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:52:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document details significant financial decisions regarding school climate improvement projects, affecting multiple schools in Bergen."
+    },
+    "summary_headline": "Avslutning av 21 inneklimaprojekter i Bergensskolene",
+    "summary_body": "Styret for Bergen Bygg og Eiendom KF har godkjent sluttregnskapet for 21 inneklimaprojekter ved skoler, med en total kostnad på 45.449.557,35 kroner. Prosjektene, som omfatter tiltak for bedre inneklima, er finansiert gjennom fondsmidler og låneopptak. 10 skoler er godkjent i henhold til forskriften, mens to skoler venter på behandling. Det er et samlet overforbruk på 29.788.557,35 kroner, som vil bli omdisponert fra et annet prosjekt. Dette er viktig for skolemiljøet i Bergen og vil påvirke mange elever."
+  }
+}

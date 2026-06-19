@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4064:38334:200400176:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:05:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural protocol with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen kontroversiell sak fra byrådsmøtet",
+    "summary_body": "Protokollen fra byrådets møte den 28. april 2004 viser at byrådsak 106 ble enstemmig sendt til komite for finans, kultur og næring. Ingen uenighet ble rapportert."
+  }
+}

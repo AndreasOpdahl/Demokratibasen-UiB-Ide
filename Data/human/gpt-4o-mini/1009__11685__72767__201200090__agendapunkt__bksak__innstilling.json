@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11685:72767:201200090:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:49:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document contains several decisions affecting local governance and public spending."
+    },
+    "summary_headline": "Byrådet godkjenner rehabiliteringstiltak og tilskudd til Funkisdagene 2015",
+    "summary_body": "Byrådet i Bergen har fattet flere viktige vedtak i sitt møte den 9. april 2015. Blant annet godkjente de rehabiliteringstiltak på Myrdalsvatnet dam med en kostnadsramme på 12 millioner kroner. I tillegg ble det bevilget 15 000 kroner til Funkisdagene 2015. Byrådet avviste også kommunal forkjøpsrett for to eiendommer i Bergenhus. Disse beslutningene vil ha direkte innvirkning på innbyggerne, både økonomisk og i forhold til lokale arrangementer."
+  }
+}

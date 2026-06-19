@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4645:42251:200500871:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:07:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine leave of absence request from a politician, which is of limited interest to the public."
+    },
+    "summary_headline": "Anne-Grete Strøm-Erichsen får ytterligere permisjon fra verv",
+    "summary_body": "Anne-Grete Strøm-Erichsen (A) har søkt om ytterligere permisjon fra sine verv i bystyret frem til 1. oktober 2005. Søknaden omfatter hennes roller som medlem/leder av KMBY, samt medlem av Forretningsutvalget og Utvidet Forretningsutvalg. Bystyrets kontor foreslår å innvilge permisjonen."
+  }
+}

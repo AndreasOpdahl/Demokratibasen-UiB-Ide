@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5171:47736:200507904:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:09:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a fee dispute that affects local residents and includes a minority opinion, indicating some level of conflict."
+    },
+    "summary_headline": "Klage på gebyrvedtak avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har behandlet klagen fra Svein og Etty Parmatasari Normann angående gebyrvedtak etter en godkjent grensejustering for eiendommen Nattlandsfjellet 48. I møtet den 28. juni 2007 ble det besluttet å opprettholde gebyrvedtaket fra 16. august 2005, og klagen ble ikke tatt til følge. Hallstein Aadland fra FrP fremmet en merknad om at gebyret kan være over selvkost og anbefalte en grundig gjennomgang av gebyrsystemet. Vedtaket ble fattet enstemmig."
+  }
+}

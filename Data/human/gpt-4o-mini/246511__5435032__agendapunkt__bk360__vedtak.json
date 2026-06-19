@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246511:5435032:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:45:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions without significant impact or controversy."
+    },
+    "summary_headline": "Byrådssaker fordelt til bystyreutvalg",
+    "summary_body": "I møtet 6. juni 2023 behandlet Forretningsutvalget fordelingen av byrådssaker til ulike bystyreutvalg. Byrådssakene 222, 224-226 ble sendt til utvalg for finans, kultur og næring, mens byrådssak 223 ble sendt til utvalg for helse og sosial. Det ble fremsatt tilleggsforslag fra Diane Alexandra Berbain (SV) og Tore Landmark (FP), som ble vedtatt enstemmig. Ingen kontroverser ble rapportert."
+  }
+}

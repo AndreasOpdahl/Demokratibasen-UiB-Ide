@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11221:73959:201527384:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:34:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a procedural approval of an election without any controversy or significant implications."
+    },
+    "summary_headline": "Bystyret godkjenner valgresultatet fra 2015",
+    "summary_body": "Bergen bystyre har godkjent kommunestyre- og fylkestingsvalget fra 2015. Det er ikke fremkommet klager eller feil som kan ha påvirket mandatfordelingen. Dette vedtaket ble fattet den 16. september 2015 av bystyredirektør Roar Kristiansen."
+  }
+}

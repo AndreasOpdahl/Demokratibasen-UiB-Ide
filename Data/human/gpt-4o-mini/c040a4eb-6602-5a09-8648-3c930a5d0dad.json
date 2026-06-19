@@ -1,0 +1,18 @@
+{
+  "dokument_id": "c040a4eb-6602-5a09-8648-3c930a5d0dad",
+  "kommune_nummer": 4646,
+  "kommune_navn": "Fjaler",
+  "generated_at": "2026-02-19 23:19:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes in local governance structure and addresses pressing issues related to public service staffing and funding."
+    },
+    "summary_headline": "Fjaler kommune avslutter komitéordningen for å styrke informasjonsdeling",
+    "summary_body": "Komité for oppvekst, integreringsteneste og kultur har enstemmig vedtatt å avslutte ordningen med kommunestyrekomitéer. Dette trer i kraft umiddelbart, og fremover vil kommunestyremøtene bli brukt som arena for informasjonsdeling og arbeidssamlinger. I tillegg ble det diskutert hvordan kommunen kan håndtere forventningsgapet i møte med innbyggerne, spesielt i lys av rekrutteringsutfordringer innen helse- og omsorgssektoren. Det er viktig for kommunen å sikre konkurransedyktige lønninger for å tiltrekke seg nødvendig arbeidskraft."
+  }
+}

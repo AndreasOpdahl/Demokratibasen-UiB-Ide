@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:51314:115007:199900101:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:52:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to fund a cultural project is relevant to local residents and involves a small public expenditure."
+    },
+    "summary_headline": "Bergen kommune bevilger 10.000 kroner til kulturprosjektet \"Bergen Kulturforum\"",
+    "summary_body": "Hovedutvalg for fritid og kultur har besluttet å bevilge 10.000 kroner til prosjektet \"Bergen Kulturforum\", etter forslag fra Per Eystein Thue (A). Dette beløpet vil bli dekket fra kommunens disposisjonskonto. Forslaget fra administrasjonen om å avslå søknaden ble nedstemt med 1 stemme fra Fremskrittspartiet. Dette prosjektet kan ha betydning for kulturlivet i Bergen."
+  }
+}

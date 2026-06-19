@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211008:1080383:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:21:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes in the whistleblowing process within Bergen municipality, which directly affects employees and workplace safety."
+    },
+    "summary_headline": "Bergen kommune forbedrer varsling av kritikkverdige forhold",
+    "summary_body": "Bergen kommune jobber med å forbedre varslingen av kritikkverdige forhold etter arbeidsmiljøloven. Byrådet har besluttet å etablere et nytt digitalt system for registrering og behandling av varsler, som forventes å være klart for drift sommeren 2019. Dette systemet skal gi bedre oversikt og støtte til ledere, samt sikre anonymitet for varslerne. Det er identifisert utfordringer med dagens løsning, inkludert manglende oversikt over varsler og behov for lederstøtte. Prosjektet ledes av Byrådsleders avdeling, og det er inngått samarbeid med Oslo kommune for å utvikle systemet. Reviderte rutiner for varsling skal også være klare før systemet testes."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "ada3042e-6ecf-5ff9-b6a7-905fc70cfd5d",
+  "kommune_nummer": 5532,
+  "kommune_navn": "Balsfjord",
+  "generated_at": "2026-02-19 23:16:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to divide agricultural land for better land use is relevant to local farmers and land management."
+    },
+    "summary_headline": "Balsfjord kommune godkjenner fradeling av landbruksareal for bedre arrondering",
+    "summary_body": "Balsfjord kommune har godkjent en søknad om fradeling av ca. 54 dekar landbruksareal fra eiendom 95/2 til eiendom 95/1. Dette tiltaket, foreslått av Roy-Helge Jørgensen, skal styrke arealgrunnlaget for et aktivt gårdsbruk og forbedre arronderingen av landbruksarealet. Fradelingen er vurdert som en god løsning for landbruket, og det er ikke forventet negative miljømessige konsekvenser. Kjøper må søke om konsesjon umiddelbart etter vedtaket, og fradelingen må være rekvirert innen tre år for å være gyldig."
+  }
+}

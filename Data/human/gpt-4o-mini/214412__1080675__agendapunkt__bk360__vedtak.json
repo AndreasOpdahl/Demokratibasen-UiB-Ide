@@ -1,0 +1,18 @@
+{
+  "dokument_id": "214412:1080675:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:32:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine inquiry about traffic safety measures, which is of limited immediate interest."
+    },
+    "summary_headline": "Spørsmål om trafikksikkerhet på Fv 193 Skålevikveien",
+    "summary_body": "Rasmus Haugen Sandvik (A) har stilt et skriftlig spørsmål om tiltak for å bedre trafikksikkerheten på Fv 193 Skålevikveien. Komite for miljø og byutvikling behandlet saken den 29. august 2019, og byråd Rune Bakervik svarte på spørsmålet."
+  }
+}

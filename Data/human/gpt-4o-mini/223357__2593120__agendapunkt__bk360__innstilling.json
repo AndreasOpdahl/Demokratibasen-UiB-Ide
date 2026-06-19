@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223357:2593120:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:49:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses rescheduling a city council meeting, which is routine but has local relevance."
+    },
+    "summary_headline": "Bystyremøte utsatt: Ny dato vurderes",
+    "summary_body": "Forretningsutvalget vurderer ny dato for det utsatte bystyremøtet fra 09.09.2020. Tre forslag er lagt frem: et ordinært fysisk møte 22.09.2020, et digitalt møte 16.09.2020, eller et fysisk møte 22.09.2020 som kan bli digitalt avhengig av restriksjoner. Beslutning om format og dato vil påvirke innbyggerne i Bergen."
+  }
+}

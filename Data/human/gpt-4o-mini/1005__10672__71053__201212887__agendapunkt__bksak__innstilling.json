@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10672:71053:201212887:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:32:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The report reveals significant issues with procurement practices in health and care services, including illegal direct purchases and lack of oversight."
+    },
+    "summary_headline": "Alvorlige svakheter i Bergen kommunes anskaffelser av helse- og omsorgstjenester",
+    "summary_body": "Kontrollutvalget har mottatt en forvaltningsrevisjonsrapport fra Deloitte AS som avdekker alvorlige svakheter i Bergen kommunes anskaffelser av helse- og omsorgstjenester. Rapporten viser at kommunen har gjennomført ulovlige direkteanskaffelser for rundt 20 millioner kroner og mangler tilstrekkelig kontroll med kvaliteten på tjenestene. Kontrollutvalget anbefaler at Bystyret vurderer tiltak for å forbedre prosessene og sikre at anskaffelser skjer i samsvar med regelverket. Byrådet må gi tilbakemelding om tiltakene innen første halvår 2015."
+  }
+}

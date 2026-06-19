@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:8166:60335:200910138:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:21:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant local dispute over a denied building permit for a boathouse, affecting community access to the shoreline."
+    },
+    "summary_headline": "Klage på avslag om naust i Fana opprettholdes av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om oppføring av naust på Hordnesvegen 140, som ble avslått på grunn av konflikt med byggeforbudet i kommuneplanen. Klagen ble fremmet av Terje Jacobsen via Ø. Helgesen Bygg- og Anleggsteknikk, men byrådet støtter fagetatens vurdering om at det ikke foreligger grunnlag for dispensasjon. Fylkesmannen fraråder også tiltaket på grunn av negative konsekvenser for grønnstruktur og offentlig tilgang til sjøen. Saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

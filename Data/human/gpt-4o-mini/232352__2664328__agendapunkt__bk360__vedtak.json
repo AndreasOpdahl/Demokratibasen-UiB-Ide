@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232352:2664328:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:12:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains routine administrative information about upcoming meetings and requests for input."
+    },
+    "summary_headline": "Innspill til aktivitetsplan og budsjettmøte i Bergen",
+    "summary_body": "Utvalg for finans, kultur og næring behandlet sak 137/21 den 6. oktober 2021. Harald Victor Hove (H) oppfordret medlemmene til å sende innspill til aktivitetsplanen, som vil bli presentert i desember. Han informerte også om at det vil bli et møte for muntlige innspill til Bergen kommunes budsjett for 2022 den 10. november kl. 12.00."
+  }
+}

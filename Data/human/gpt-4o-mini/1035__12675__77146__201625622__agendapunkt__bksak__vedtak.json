@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:12675:77146:201625622:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:58:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new building project with potential local impact and design concerns."
+    },
+    "summary_headline": "Kritikk av nybygg i Nesttun: Behov for mer vegetasjon og bedre fasadeutforming",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet planene for et nytt kontorbygg i Apeltunvegen 1 og 3. De uttrykker bekymring for at bygget vil blokkere utsikten til nærliggende grøntområder og etterlyser mer vegetasjon i området. Rådet er positive til kafe/servering i første etasje, men mener at helhetsinntrykket av bygget er utydelig. De anbefaler også forbedringer i fasadens utforming mot bybanen for å unngå en lukket følelse. Dette prosjektet kan påvirke lokalområdet betydelig, og det er viktig at innbyggerne er oppmerksomme på utviklingen."
+  }
+}

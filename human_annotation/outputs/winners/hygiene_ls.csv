@@ -1,0 +1,2900 @@
+dimension,dimension_color,annotation_prompt,source_text,summary_left,summary_right
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," Dato: 16. juni 2008
+
+ Byrådsak 1293/08
+
+Byrådet
+
+Bergen kommune; Innkjøp versus tropisk trevirke
+
+	DISN	INK-1704-200702641-49
+
+Hva saken gjelder: 
+De tropiske regnskogene omfatter jordas mest artsrike og varierte økosystemer. Artene i regnskogen er ofte meget spesialiserte og derfor meget sårbare for inngrep. 
+
+Det er viktig at Bergen kommune får på plass retningslinjer for å unngå at trevirke fra tropiske regnskoger kjøpes inn og /eller inngår i kommunens produkter eller bygninger. Som offentlig virksomhet er det spesielt viktig å gå foran som et godt eksempel, og dette er helt i samsvar med nasjonale føringer. 
+
+I juni 2007 la regjeringen frem sin treårige handlingsplan for miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet: ”Regjeringen ønsker at forbruk og produksjon skal være mest mulig bærekraftig. Offentlig sektor må gå foran og vise vei når de selv handler på markedet.” Handlingsplanen omhandler også tropisk trevirke.
+
+Gjennom å vedta retningslinjer for å unngå innkjøp av tropisk trevirke vil Bergen kommune delta aktivt i bevaring av tropisk regnskog. Samtidig må det innføres rutiner som sikrer at den enkelte innkjøper opptrer korrekt i forhold til regelverket om offentlige anskaffelser, og de lokale føringer som kommunen har vedtatt innen området samfunnsansvar. 
+
+Vedtakskompetanse:
+Byrådets fullmakter vedtatt av bystyret 24.04.2006 (b-sak 102-06) §2, 2.ledd pkt. 1, § 4 og § 12.
+
+Byråden for finans, konkurranse og omstilling innstiller til byrådet å fatte følgende vedtak:
+
+Ved Bergen kommune sine anskaffelser av varer gjelder følgende retningslinjer: 
+ 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden.
+ 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i tilbudte produkter. 
+ 3. Ved kjøp som ikke er omfattet av rammeavtaler, og som kan tenkes å inneholde tropisk tømmer, plikter den som anskaffelser å forvisse seg om at tropisk trevirke ikke inngår i produktene. 
+
+Vedtaket iverksettes med virkning fra 01.07.2008.
+
+Christine B. Meyer
+byråd for finans, konkurranse og omstilling
+Saksutredning:
+
+1. Tropisk regnskog, tømmer og trevirke
+
+Tropisk regnskog finnes kun i de fuktige områdene rundt ekvator, hovedsakelig i Sør-Amerika, Sørøst-Asia og Afrika. Tropisk regnskog betegner også den produktive naturtypen som er levested for brorparten av jordens arter. Mange av disse treslagene er harde og svært bestandige. Derfor hogges og eksporteres mengder tropisk tømmer til den rike delen av verden. Her foredeles materialene. De mest kjente trematerialer i kategorien tropisk trevirke er teak og mahogni. Det finnes imidlertid ca. 60 ulike treslag tropisk tømmer i det norske markedet.
+
+Tropisk trevirke kan inngå i en rekke ferdigprodukter som for eksempel møbler, dører, gulv, idrettsutstyr og lekeapparater. I tillegg kan tropisk tømmer inngå i byggematerialer hvor de ikke er synlige i sluttfasen.
+
+2. Hvorfor bør vi unngå tropisk trevirke?
+
+Tropisk regnskog trues og reduseres i dag i et faretruende tempo. Opprinnelig dekket naturtypen 16 mill. km2, men er i løpet av noen 10 år halvert og utgjør nå bare 6% av jordens areal. Halvparten av verdens planter, dyr og flere urbefolkninger lever i og er avhengig av tropisk regnskog. Avskoging og oppdyrking ødelegger både leveområder og kulturer. Når skogene forsvinner eroderes jorden. Jordsmonn og næring vaskes bort, og arter utryddes. 
+
+Regnskogen kalles for jordens lunger fordi den ved fotosyntesen binder svære mengder CO2. Rovdriften på tropisk regnskog betyr i praksis irreversible inngrep. Følgene av det tapet rammer oss alle - om enn i ulik grad.
+
+Regnskogens ødeleggelse har ført til stort politisk og organisatorisk engasjement. Regnskogfondet er ett av Europas ledende organisasjoner, se; www.regnskog.no
+
+Det finnes ulike typer sertifiseringsordninger som brukes for å rettferdiggjøre den bruken av tropisk tømmer som enda foregår. FSC - Forest Stewardship Council - er den eneste sertifiseringen av tropisk tømmer som stiller tilfredsstillende miljømessige og sosiale krav. Imidlertid er det ingen miljømerking som gir sikker garanti, da det har vært oppdaget manipulasjon blant alle merkeordningene. 
+
+3. Sertifiseringsordninger og plantasjedrift
+
+Tropisk trevirke kan dyrkes på plantasjer, men ifølge Regnskogfondet er plantasjedrift ingen garanti for bærekraftig skogdrift. I Regnskogfondet sin brosjyre: Gulv og grønne skoger – om tropisk tømmer i norsk byggebransje står det blant annet vedrørende plantasjedrift (s. 7): ”Det finnes en rekke tilfeller der opprinnelig regnskog er fjernet for å opprettholde plantasjer, og i mange plantasjer er utvinningstakten høyere enn forsvarlig. Plantasjene etableres som regel uten samtykke fra berørte urfolk og lokalbefolkning.”
+
+Pr i dag finnes det ingen nasjonale eller internasjonale sertifiseringsordninger som gir god nok sikkerhet for at trevirket som importeres faktisk kommer fra plantasjer. 
+
+På grunn av usikkerheten som hefter både sertifiseringsordningene og plantasjedrift bør Bergen kommune være ”føre var”. Bergen kommune bør inntil videre forholde seg til at ingen av dagens sertifiseringssystemer eller miljømerker kan garantere at tropisk trevirke er hogd forsvarlig, og på bakgrunn av dette bør kommunen ha rutiner som utelukker tropisk trevirke i forbindelse med innkjøp. 
+
+4. Relevans for Bergen
+
+Naturvernforbundet Hordaland og Fremtiden i våre hender gjennomførte i 2005 en undersøkelse om bruken av tropisk trevirke hos 11 butikker som selger hagemøbler i Bergen. Bare tre av disse hadde sagt konsekvent nei til bruk av tropisk trevirke, hovedsakelig teak. De 8 som solgte møbler av tropisk trevirke opplyste at trevirket enten var FSC-sertifisert eller kom fra plantasjehogst. Generelt var ekspeditørene lite oppdatert på problemer knyttet til tropisk regnskog. 
+
+I byrådets tiltredelseserklæring er miljøsatsingen markert. Som er stor offentlig aktør, er det derfor rimelig at Bergen kommune går foran og markerer miljøsatsingen tydelig. Med vedtak om at det ikke skal benyttes tropisk trevirke ved innkjøp signaliserer Bergen kommune en bevisst miljøprofil. Videre er kommunen med å sette standard for en konsekvent holdning blant norske kommuner. Generelt økes også folks oppmerksomhet på miljøutfordringene som knytter seg til tropisk regnskog ved en slik markering.
+
+Kommunale innkjøpere som rekvirerer bygninger, både nye og ved rennovasjon, bør spesifikt nevne at det i leveransen ikke skal inngå tropisk trevirke. Dette gjelder særlig for produkter som parkett, kryssfiner, dører, gulv, benkeplater, panel, møbler og generelt for trelast.
+
+5. Forankring og nasjonale føringer
+
+Kommunens innkjøp er omfattet av Regelverket for offentlige anskaffelser. Dette regelverket ble revidert 01.01.2007, hvorpå det offentliges ansvar om å ta samfunnshensyn ble ytterligere skjerpet. I formålbestemmelsen i Lov om offentlige anskaffelser (LOA) § 1 heter det:
+
+”Loven og tilhørende forskrift skal bidra til økt verdiskapning i samfunnet og sikre mest mulig effektiv ressursbruk ved offentlige anskaffelser basert på forretningsmessighet og likebehandling. Regelverket skal også bidra til at det offentlige opptrer med stor integritet, slik at allmennheten har tillitt til at offentlige anskaffelser skjer på en samfunnstjenelig måte.”
+
+Videre står det er LOA § 6 følgende: ”… kommunale … myndigheter … skal under planleggingen av den enkelte anskaffelse ta hensyn til livssykluskostnader, universell utforming og miljømessige konsekvenser av anskaffelsen.”
+
+21. juni 2007 la regjerningen frem handlingsplanen Miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet at ”Regjeringen mener at offentlige virksomheter bør gå foran og være ansvarlige forbrukere som etterspør miljøvennlige varer og varer som er tilvirket etter høye etiske og sosiale standarder. Regjeringen ser på tiltak for å fremme miljø- og samfunnsansvar i offentlige anskaffelser som et viktig supplement til mer strukturelle tiltak, øvrige reguleringer og økonomiske virkemidler for å fremme en mer bærekraftig samfunnsutvikling.” 
+
+Handlingsplanen omfatter også tropisk trevirke, og det står blant annet (s. 33): 
+
+”Regjeringen ønsker å stoppe all handel med tropiske skogprodukter som ikke er bærekraftig, eller som er ulovlig hugd. Det finnes i dag ingen internasjonale eller nasjonale sertifiseringsordninger som kan gi god nok sikkerhet for at trevirke som importeres er lovlig og bærekraftig hugget. Regjeringen stiller derfor krav til statlige etater og virksomheter om å ikke benytte trevirke med tropisk tømmer. 
+
+Bergen kommune bør som en kommune med store miljøambisjoner opptre som en ansvarlig aktør, og sørge for lokal oppfølging av nasjonale mål knyttet til tropisk trevirke. 
+
+6. Økonomi
+
+I følge regjeringens handlingsplan Miljø- og samfunnsansvar i offentlige anskaffelser (s. 33) vil et tiltak som stopper handel med tropiske trevirke ikke ha nevneverdige økonomiske konsekvenser. 
+
+7. Tropisk trevirke som del av kommunale innkjøp
+
+Innkjøpsavdelingen er Bergen kommune sin fremste forvalter av regelverket for offentlige anskaffelser. Det er derfor naturlig at innkjøpsavdelingen følger opp de vedtak som spesifikt angår innkjøpsområdet. Formulering vedrørende tropisk trevirke bør legges inn i aktuelle maler for konkurransegrunnlag og kontrakter. 
+
+For å sikre at tropisk tømmer ikke inngår i produkter som kjøpes av Bergen kommune, samt i Bergen kommune sine byggeprosjekter, bør følgende formulering benyttes ved tilbudsinnhenting av produkter hvor det kan tenkes at tropisk trevirke inngår helt eller delvis: 
+
+Tropisk trevirke som stammer fra området mellom vendesirklene (23 grader nordlig og sørlig bredde) samt hele Myanmar (Burma) skal ikke forekomme i tilbudte produkter.
+
+","Bergen kommune innfører retningslinjer for å unngå innkjøp av tropisk trevirke i sine produkter og bygninger. Dette tiltaket er i tråd med nasjonale føringer for bærekraftige offentlige anskaffelser og har som mål å bidra til bevaring av tropisk regnskog. Retningslinjene trer i kraft 1. juli 2008, og kommunen signaliserer en bevisst miljøprofil ved å gå foran som et godt eksempel.",Bergen kommune har en stor andel av innkjøp av varer som kan
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," Dato: 16. juni 2008
+
+ Byrådsak 1293/08
+
+Byrådet
+
+Bergen kommune; Innkjøp versus tropisk trevirke
+
+	DISN	INK-1704-200702641-49
+
+Hva saken gjelder: 
+De tropiske regnskogene omfatter jordas mest artsrike og varierte økosystemer. Artene i regnskogen er ofte meget spesialiserte og derfor meget sårbare for inngrep. 
+
+Det er viktig at Bergen kommune får på plass retningslinjer for å unngå at trevirke fra tropiske regnskoger kjøpes inn og /eller inngår i kommunens produkter eller bygninger. Som offentlig virksomhet er det spesielt viktig å gå foran som et godt eksempel, og dette er helt i samsvar med nasjonale føringer. 
+
+I juni 2007 la regjeringen frem sin treårige handlingsplan for miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet: ”Regjeringen ønsker at forbruk og produksjon skal være mest mulig bærekraftig. Offentlig sektor må gå foran og vise vei når de selv handler på markedet.” Handlingsplanen omhandler også tropisk trevirke.
+
+Gjennom å vedta retningslinjer for å unngå innkjøp av tropisk trevirke vil Bergen kommune delta aktivt i bevaring av tropisk regnskog. Samtidig må det innføres rutiner som sikrer at den enkelte innkjøper opptrer korrekt i forhold til regelverket om offentlige anskaffelser, og de lokale føringer som kommunen har vedtatt innen området samfunnsansvar. 
+
+Vedtakskompetanse:
+Byrådets fullmakter vedtatt av bystyret 24.04.2006 (b-sak 102-06) §2, 2.ledd pkt. 1, § 4 og § 12.
+
+Byråden for finans, konkurranse og omstilling innstiller til byrådet å fatte følgende vedtak:
+
+Ved Bergen kommune sine anskaffelser av varer gjelder følgende retningslinjer: 
+ 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden.
+ 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i tilbudte produkter. 
+ 3. Ved kjøp som ikke er omfattet av rammeavtaler, og som kan tenkes å inneholde tropisk tømmer, plikter den som anskaffelser å forvisse seg om at tropisk trevirke ikke inngår i produktene. 
+
+Vedtaket iverksettes med virkning fra 01.07.2008.
+
+Christine B. Meyer
+byråd for finans, konkurranse og omstilling
+Saksutredning:
+
+1. Tropisk regnskog, tømmer og trevirke
+
+Tropisk regnskog finnes kun i de fuktige områdene rundt ekvator, hovedsakelig i Sør-Amerika, Sørøst-Asia og Afrika. Tropisk regnskog betegner også den produktive naturtypen som er levested for brorparten av jordens arter. Mange av disse treslagene er harde og svært bestandige. Derfor hogges og eksporteres mengder tropisk tømmer til den rike delen av verden. Her foredeles materialene. De mest kjente trematerialer i kategorien tropisk trevirke er teak og mahogni. Det finnes imidlertid ca. 60 ulike treslag tropisk tømmer i det norske markedet.
+
+Tropisk trevirke kan inngå i en rekke ferdigprodukter som for eksempel møbler, dører, gulv, idrettsutstyr og lekeapparater. I tillegg kan tropisk tømmer inngå i byggematerialer hvor de ikke er synlige i sluttfasen.
+
+2. Hvorfor bør vi unngå tropisk trevirke?
+
+Tropisk regnskog trues og reduseres i dag i et faretruende tempo. Opprinnelig dekket naturtypen 16 mill. km2, men er i løpet av noen 10 år halvert og utgjør nå bare 6% av jordens areal. Halvparten av verdens planter, dyr og flere urbefolkninger lever i og er avhengig av tropisk regnskog. Avskoging og oppdyrking ødelegger både leveområder og kulturer. Når skogene forsvinner eroderes jorden. Jordsmonn og næring vaskes bort, og arter utryddes. 
+
+Regnskogen kalles for jordens lunger fordi den ved fotosyntesen binder svære mengder CO2. Rovdriften på tropisk regnskog betyr i praksis irreversible inngrep. Følgene av det tapet rammer oss alle - om enn i ulik grad.
+
+Regnskogens ødeleggelse har ført til stort politisk og organisatorisk engasjement. Regnskogfondet er ett av Europas ledende organisasjoner, se; www.regnskog.no
+
+Det finnes ulike typer sertifiseringsordninger som brukes for å rettferdiggjøre den bruken av tropisk tømmer som enda foregår. FSC - Forest Stewardship Council - er den eneste sertifiseringen av tropisk tømmer som stiller tilfredsstillende miljømessige og sosiale krav. Imidlertid er det ingen miljømerking som gir sikker garanti, da det har vært oppdaget manipulasjon blant alle merkeordningene. 
+
+3. Sertifiseringsordninger og plantasjedrift
+
+Tropisk trevirke kan dyrkes på plantasjer, men ifølge Regnskogfondet er plantasjedrift ingen garanti for bærekraftig skogdrift. I Regnskogfondet sin brosjyre: Gulv og grønne skoger – om tropisk tømmer i norsk byggebransje står det blant annet vedrørende plantasjedrift (s. 7): ”Det finnes en rekke tilfeller der opprinnelig regnskog er fjernet for å opprettholde plantasjer, og i mange plantasjer er utvinningstakten høyere enn forsvarlig. Plantasjene etableres som regel uten samtykke fra berørte urfolk og lokalbefolkning.”
+
+Pr i dag finnes det ingen nasjonale eller internasjonale sertifiseringsordninger som gir god nok sikkerhet for at trevirket som importeres faktisk kommer fra plantasjer. 
+
+På grunn av usikkerheten som hefter både sertifiseringsordningene og plantasjedrift bør Bergen kommune være ”føre var”. Bergen kommune bør inntil videre forholde seg til at ingen av dagens sertifiseringssystemer eller miljømerker kan garantere at tropisk trevirke er hogd forsvarlig, og på bakgrunn av dette bør kommunen ha rutiner som utelukker tropisk trevirke i forbindelse med innkjøp. 
+
+4. Relevans for Bergen
+
+Naturvernforbundet Hordaland og Fremtiden i våre hender gjennomførte i 2005 en undersøkelse om bruken av tropisk trevirke hos 11 butikker som selger hagemøbler i Bergen. Bare tre av disse hadde sagt konsekvent nei til bruk av tropisk trevirke, hovedsakelig teak. De 8 som solgte møbler av tropisk trevirke opplyste at trevirket enten var FSC-sertifisert eller kom fra plantasjehogst. Generelt var ekspeditørene lite oppdatert på problemer knyttet til tropisk regnskog. 
+
+I byrådets tiltredelseserklæring er miljøsatsingen markert. Som er stor offentlig aktør, er det derfor rimelig at Bergen kommune går foran og markerer miljøsatsingen tydelig. Med vedtak om at det ikke skal benyttes tropisk trevirke ved innkjøp signaliserer Bergen kommune en bevisst miljøprofil. Videre er kommunen med å sette standard for en konsekvent holdning blant norske kommuner. Generelt økes også folks oppmerksomhet på miljøutfordringene som knytter seg til tropisk regnskog ved en slik markering.
+
+Kommunale innkjøpere som rekvirerer bygninger, både nye og ved rennovasjon, bør spesifikt nevne at det i leveransen ikke skal inngå tropisk trevirke. Dette gjelder særlig for produkter som parkett, kryssfiner, dører, gulv, benkeplater, panel, møbler og generelt for trelast.
+
+5. Forankring og nasjonale føringer
+
+Kommunens innkjøp er omfattet av Regelverket for offentlige anskaffelser. Dette regelverket ble revidert 01.01.2007, hvorpå det offentliges ansvar om å ta samfunnshensyn ble ytterligere skjerpet. I formålbestemmelsen i Lov om offentlige anskaffelser (LOA) § 1 heter det:
+
+”Loven og tilhørende forskrift skal bidra til økt verdiskapning i samfunnet og sikre mest mulig effektiv ressursbruk ved offentlige anskaffelser basert på forretningsmessighet og likebehandling. Regelverket skal også bidra til at det offentlige opptrer med stor integritet, slik at allmennheten har tillitt til at offentlige anskaffelser skjer på en samfunnstjenelig måte.”
+
+Videre står det er LOA § 6 følgende: ”… kommunale … myndigheter … skal under planleggingen av den enkelte anskaffelse ta hensyn til livssykluskostnader, universell utforming og miljømessige konsekvenser av anskaffelsen.”
+
+21. juni 2007 la regjerningen frem handlingsplanen Miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet at ”Regjeringen mener at offentlige virksomheter bør gå foran og være ansvarlige forbrukere som etterspør miljøvennlige varer og varer som er tilvirket etter høye etiske og sosiale standarder. Regjeringen ser på tiltak for å fremme miljø- og samfunnsansvar i offentlige anskaffelser som et viktig supplement til mer strukturelle tiltak, øvrige reguleringer og økonomiske virkemidler for å fremme en mer bærekraftig samfunnsutvikling.” 
+
+Handlingsplanen omfatter også tropisk trevirke, og det står blant annet (s. 33): 
+
+”Regjeringen ønsker å stoppe all handel med tropiske skogprodukter som ikke er bærekraftig, eller som er ulovlig hugd. Det finnes i dag ingen internasjonale eller nasjonale sertifiseringsordninger som kan gi god nok sikkerhet for at trevirke som importeres er lovlig og bærekraftig hugget. Regjeringen stiller derfor krav til statlige etater og virksomheter om å ikke benytte trevirke med tropisk tømmer. 
+
+Bergen kommune bør som en kommune med store miljøambisjoner opptre som en ansvarlig aktør, og sørge for lokal oppfølging av nasjonale mål knyttet til tropisk trevirke. 
+
+6. Økonomi
+
+I følge regjeringens handlingsplan Miljø- og samfunnsansvar i offentlige anskaffelser (s. 33) vil et tiltak som stopper handel med tropiske trevirke ikke ha nevneverdige økonomiske konsekvenser. 
+
+7. Tropisk trevirke som del av kommunale innkjøp
+
+Innkjøpsavdelingen er Bergen kommune sin fremste forvalter av regelverket for offentlige anskaffelser. Det er derfor naturlig at innkjøpsavdelingen følger opp de vedtak som spesifikt angår innkjøpsområdet. Formulering vedrørende tropisk trevirke bør legges inn i aktuelle maler for konkurransegrunnlag og kontrakter. 
+
+For å sikre at tropisk tømmer ikke inngår i produkter som kjøpes av Bergen kommune, samt i Bergen kommune sine byggeprosjekter, bør følgende formulering benyttes ved tilbudsinnhenting av produkter hvor det kan tenkes at tropisk trevirke inngår helt eller delvis: 
+
+Tropisk trevirke som stammer fra området mellom vendesirklene (23 grader nordlig og sørlig bredde) samt hele Myanmar (Burma) skal ikke forekomme i tilbudte produkter.
+
+","Bergen kommune innfører retningslinjer for å unngå innkjøp av tropisk trevirke i sine produkter og bygninger. Dette tiltaket er i tråd med nasjonale føringer for bærekraftige offentlige anskaffelser og har som mål å bidra til bevaring av tropisk regnskog. Retningslinjene trer i kraft 1. juli 2008, og kommunen signaliserer en bevisst miljøprofil ved å gå foran som et godt eksempel.","Regjeringen vil derfor oppfordre til at det ikke brukes trevirke fra tropisk regnskog i offentlige bygg og anlegg, og heller ikke i andre offentlige innkjøp. Regjeringen oppfordrer også private bedrifter til å følge samme praksis.” 6. Økonomiske og administrative konsekvenser Det er vanskelig å beregne de økonomiske konsekvensene av vedtaket. Det er imidlertid klart at det vil medføre økte kostnader å velge bort tropisk trevirke. Det er likevel ikke snakk om store summer. For Bergen kommune vil det være nødvendig å etablere rutiner som sikrer at retningslinjene blir fulgt. Dette vil innebære noe merarbeid for den enkelte innkjøper. [/INKLUDERT] Bergen kommune; Innkjøp versus tropisk trevirke Bergen kommune har vedtatt retningslinjer for å unngå innkjøp av tropisk trevirke. Dette er et ledd i kommunens satsing på miljø og samfunnsansvar. Vedtaket innebærer at det ikke skal brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden. Videre må det ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå"
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," Dato: 16. juni 2008
+
+ Byrådsak 1293/08
+
+Byrådet
+
+Bergen kommune; Innkjøp versus tropisk trevirke
+
+	DISN	INK-1704-200702641-49
+
+Hva saken gjelder: 
+De tropiske regnskogene omfatter jordas mest artsrike og varierte økosystemer. Artene i regnskogen er ofte meget spesialiserte og derfor meget sårbare for inngrep. 
+
+Det er viktig at Bergen kommune får på plass retningslinjer for å unngå at trevirke fra tropiske regnskoger kjøpes inn og /eller inngår i kommunens produkter eller bygninger. Som offentlig virksomhet er det spesielt viktig å gå foran som et godt eksempel, og dette er helt i samsvar med nasjonale føringer. 
+
+I juni 2007 la regjeringen frem sin treårige handlingsplan for miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet: ”Regjeringen ønsker at forbruk og produksjon skal være mest mulig bærekraftig. Offentlig sektor må gå foran og vise vei når de selv handler på markedet.” Handlingsplanen omhandler også tropisk trevirke.
+
+Gjennom å vedta retningslinjer for å unngå innkjøp av tropisk trevirke vil Bergen kommune delta aktivt i bevaring av tropisk regnskog. Samtidig må det innføres rutiner som sikrer at den enkelte innkjøper opptrer korrekt i forhold til regelverket om offentlige anskaffelser, og de lokale føringer som kommunen har vedtatt innen området samfunnsansvar. 
+
+Vedtakskompetanse:
+Byrådets fullmakter vedtatt av bystyret 24.04.2006 (b-sak 102-06) §2, 2.ledd pkt. 1, § 4 og § 12.
+
+Byråden for finans, konkurranse og omstilling innstiller til byrådet å fatte følgende vedtak:
+
+Ved Bergen kommune sine anskaffelser av varer gjelder følgende retningslinjer: 
+ 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden.
+ 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i tilbudte produkter. 
+ 3. Ved kjøp som ikke er omfattet av rammeavtaler, og som kan tenkes å inneholde tropisk tømmer, plikter den som anskaffelser å forvisse seg om at tropisk trevirke ikke inngår i produktene. 
+
+Vedtaket iverksettes med virkning fra 01.07.2008.
+
+Christine B. Meyer
+byråd for finans, konkurranse og omstilling
+Saksutredning:
+
+1. Tropisk regnskog, tømmer og trevirke
+
+Tropisk regnskog finnes kun i de fuktige områdene rundt ekvator, hovedsakelig i Sør-Amerika, Sørøst-Asia og Afrika. Tropisk regnskog betegner også den produktive naturtypen som er levested for brorparten av jordens arter. Mange av disse treslagene er harde og svært bestandige. Derfor hogges og eksporteres mengder tropisk tømmer til den rike delen av verden. Her foredeles materialene. De mest kjente trematerialer i kategorien tropisk trevirke er teak og mahogni. Det finnes imidlertid ca. 60 ulike treslag tropisk tømmer i det norske markedet.
+
+Tropisk trevirke kan inngå i en rekke ferdigprodukter som for eksempel møbler, dører, gulv, idrettsutstyr og lekeapparater. I tillegg kan tropisk tømmer inngå i byggematerialer hvor de ikke er synlige i sluttfasen.
+
+2. Hvorfor bør vi unngå tropisk trevirke?
+
+Tropisk regnskog trues og reduseres i dag i et faretruende tempo. Opprinnelig dekket naturtypen 16 mill. km2, men er i løpet av noen 10 år halvert og utgjør nå bare 6% av jordens areal. Halvparten av verdens planter, dyr og flere urbefolkninger lever i og er avhengig av tropisk regnskog. Avskoging og oppdyrking ødelegger både leveområder og kulturer. Når skogene forsvinner eroderes jorden. Jordsmonn og næring vaskes bort, og arter utryddes. 
+
+Regnskogen kalles for jordens lunger fordi den ved fotosyntesen binder svære mengder CO2. Rovdriften på tropisk regnskog betyr i praksis irreversible inngrep. Følgene av det tapet rammer oss alle - om enn i ulik grad.
+
+Regnskogens ødeleggelse har ført til stort politisk og organisatorisk engasjement. Regnskogfondet er ett av Europas ledende organisasjoner, se; www.regnskog.no
+
+Det finnes ulike typer sertifiseringsordninger som brukes for å rettferdiggjøre den bruken av tropisk tømmer som enda foregår. FSC - Forest Stewardship Council - er den eneste sertifiseringen av tropisk tømmer som stiller tilfredsstillende miljømessige og sosiale krav. Imidlertid er det ingen miljømerking som gir sikker garanti, da det har vært oppdaget manipulasjon blant alle merkeordningene. 
+
+3. Sertifiseringsordninger og plantasjedrift
+
+Tropisk trevirke kan dyrkes på plantasjer, men ifølge Regnskogfondet er plantasjedrift ingen garanti for bærekraftig skogdrift. I Regnskogfondet sin brosjyre: Gulv og grønne skoger – om tropisk tømmer i norsk byggebransje står det blant annet vedrørende plantasjedrift (s. 7): ”Det finnes en rekke tilfeller der opprinnelig regnskog er fjernet for å opprettholde plantasjer, og i mange plantasjer er utvinningstakten høyere enn forsvarlig. Plantasjene etableres som regel uten samtykke fra berørte urfolk og lokalbefolkning.”
+
+Pr i dag finnes det ingen nasjonale eller internasjonale sertifiseringsordninger som gir god nok sikkerhet for at trevirket som importeres faktisk kommer fra plantasjer. 
+
+På grunn av usikkerheten som hefter både sertifiseringsordningene og plantasjedrift bør Bergen kommune være ”føre var”. Bergen kommune bør inntil videre forholde seg til at ingen av dagens sertifiseringssystemer eller miljømerker kan garantere at tropisk trevirke er hogd forsvarlig, og på bakgrunn av dette bør kommunen ha rutiner som utelukker tropisk trevirke i forbindelse med innkjøp. 
+
+4. Relevans for Bergen
+
+Naturvernforbundet Hordaland og Fremtiden i våre hender gjennomførte i 2005 en undersøkelse om bruken av tropisk trevirke hos 11 butikker som selger hagemøbler i Bergen. Bare tre av disse hadde sagt konsekvent nei til bruk av tropisk trevirke, hovedsakelig teak. De 8 som solgte møbler av tropisk trevirke opplyste at trevirket enten var FSC-sertifisert eller kom fra plantasjehogst. Generelt var ekspeditørene lite oppdatert på problemer knyttet til tropisk regnskog. 
+
+I byrådets tiltredelseserklæring er miljøsatsingen markert. Som er stor offentlig aktør, er det derfor rimelig at Bergen kommune går foran og markerer miljøsatsingen tydelig. Med vedtak om at det ikke skal benyttes tropisk trevirke ved innkjøp signaliserer Bergen kommune en bevisst miljøprofil. Videre er kommunen med å sette standard for en konsekvent holdning blant norske kommuner. Generelt økes også folks oppmerksomhet på miljøutfordringene som knytter seg til tropisk regnskog ved en slik markering.
+
+Kommunale innkjøpere som rekvirerer bygninger, både nye og ved rennovasjon, bør spesifikt nevne at det i leveransen ikke skal inngå tropisk trevirke. Dette gjelder særlig for produkter som parkett, kryssfiner, dører, gulv, benkeplater, panel, møbler og generelt for trelast.
+
+5. Forankring og nasjonale føringer
+
+Kommunens innkjøp er omfattet av Regelverket for offentlige anskaffelser. Dette regelverket ble revidert 01.01.2007, hvorpå det offentliges ansvar om å ta samfunnshensyn ble ytterligere skjerpet. I formålbestemmelsen i Lov om offentlige anskaffelser (LOA) § 1 heter det:
+
+”Loven og tilhørende forskrift skal bidra til økt verdiskapning i samfunnet og sikre mest mulig effektiv ressursbruk ved offentlige anskaffelser basert på forretningsmessighet og likebehandling. Regelverket skal også bidra til at det offentlige opptrer med stor integritet, slik at allmennheten har tillitt til at offentlige anskaffelser skjer på en samfunnstjenelig måte.”
+
+Videre står det er LOA § 6 følgende: ”… kommunale … myndigheter … skal under planleggingen av den enkelte anskaffelse ta hensyn til livssykluskostnader, universell utforming og miljømessige konsekvenser av anskaffelsen.”
+
+21. juni 2007 la regjerningen frem handlingsplanen Miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet at ”Regjeringen mener at offentlige virksomheter bør gå foran og være ansvarlige forbrukere som etterspør miljøvennlige varer og varer som er tilvirket etter høye etiske og sosiale standarder. Regjeringen ser på tiltak for å fremme miljø- og samfunnsansvar i offentlige anskaffelser som et viktig supplement til mer strukturelle tiltak, øvrige reguleringer og økonomiske virkemidler for å fremme en mer bærekraftig samfunnsutvikling.” 
+
+Handlingsplanen omfatter også tropisk trevirke, og det står blant annet (s. 33): 
+
+”Regjeringen ønsker å stoppe all handel med tropiske skogprodukter som ikke er bærekraftig, eller som er ulovlig hugd. Det finnes i dag ingen internasjonale eller nasjonale sertifiseringsordninger som kan gi god nok sikkerhet for at trevirke som importeres er lovlig og bærekraftig hugget. Regjeringen stiller derfor krav til statlige etater og virksomheter om å ikke benytte trevirke med tropisk tømmer. 
+
+Bergen kommune bør som en kommune med store miljøambisjoner opptre som en ansvarlig aktør, og sørge for lokal oppfølging av nasjonale mål knyttet til tropisk trevirke. 
+
+6. Økonomi
+
+I følge regjeringens handlingsplan Miljø- og samfunnsansvar i offentlige anskaffelser (s. 33) vil et tiltak som stopper handel med tropiske trevirke ikke ha nevneverdige økonomiske konsekvenser. 
+
+7. Tropisk trevirke som del av kommunale innkjøp
+
+Innkjøpsavdelingen er Bergen kommune sin fremste forvalter av regelverket for offentlige anskaffelser. Det er derfor naturlig at innkjøpsavdelingen følger opp de vedtak som spesifikt angår innkjøpsområdet. Formulering vedrørende tropisk trevirke bør legges inn i aktuelle maler for konkurransegrunnlag og kontrakter. 
+
+For å sikre at tropisk tømmer ikke inngår i produkter som kjøpes av Bergen kommune, samt i Bergen kommune sine byggeprosjekter, bør følgende formulering benyttes ved tilbudsinnhenting av produkter hvor det kan tenkes at tropisk trevirke inngår helt eller delvis: 
+
+Tropisk trevirke som stammer fra området mellom vendesirklene (23 grader nordlig og sørlig bredde) samt hele Myanmar (Burma) skal ikke forekomme i tilbudte produkter.
+
+","Bergen kommune innfører retningslinjer for å unngå innkjøp av tropisk trevirke i sine produkter og bygninger. Dette tiltaket er i tråd med nasjonale føringer for bærekraftige offentlige anskaffelser og har som mål å bidra til bevaring av tropisk regnskog. Retningslinjene trer i kraft 1. juli 2008, og kommunen signaliserer en bevisst miljøprofil ved å gå foran som et godt eksempel.","Produkter som inneholder tropisk trevirke skal merkes med opprinnelsesland. Dersom det ikke er mulig å få tak i produkter som ikke inneholder tropisk trevirke, skal det innhentes dokumentasjon fra leverandør som viser at produktet ikke inneholder tropisk trevirke. 8. Informasjon og opplæring Det er viktig at ansatte i Bergen kommune kjenner til kommunens retningslinjer for innkjøp av varer. Det er derfor nødvendig at informasjon om retningslinjene blir gitt til alle ansatte som kjøper inn varer. Det er også viktig at ansatte som arbeider med innkjøp får tilstrekkelig opplæring i hvordan man skal forholde seg til regelverket for offentlige anskaffelser. Det er utarbeidet en egen veileder for innkjøp i Bergen kommune. Denne veilederen bør oppdateres med informasjon om kommunens retningslinjer for innkjøp av varer. 9. Oppfølging Det er viktig at Bergen kommune følger opp retningslinjene for innkjøp av varer. Dette innebærer at det jevnlig foretas stikkprøver for å kontrollere at retningslinjene følges. Det er også viktig at det utarbeides rutiner for hvordan brudd på retningslinjene skal håndteres. Slike rutiner bør utarbeides i samarbeid med innkjøpsavdelingen. 10. Konklusjon Bergen kommune bør innføre retningslinjer for innkjøp av varer som hindrer bruk av tropisk trevirke. Retningslinjene bør omfatte både innkjøp av varer og bygging av kommunale anlegg. Det er viktig at Bergen kommune tar sitt ansvar som offentlig aktør og bidrar til å redusere presset mot regnskogen. På denne måten kan Bergen kommune markere en klar miljøprofil, samtidig som kommunen setter standarden for en konsekvent holdning blant norske kommuner. Vedlegg: Regnskogfondets brosjyre: Gulv og grønne skoger – om tropisk tømmer i norsk byggebransje"
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," Dato: 16. juni 2008
+
+ Byrådsak 1293/08
+
+Byrådet
+
+Bergen kommune; Innkjøp versus tropisk trevirke
+
+	DISN	INK-1704-200702641-49
+
+Hva saken gjelder: 
+De tropiske regnskogene omfatter jordas mest artsrike og varierte økosystemer. Artene i regnskogen er ofte meget spesialiserte og derfor meget sårbare for inngrep. 
+
+Det er viktig at Bergen kommune får på plass retningslinjer for å unngå at trevirke fra tropiske regnskoger kjøpes inn og /eller inngår i kommunens produkter eller bygninger. Som offentlig virksomhet er det spesielt viktig å gå foran som et godt eksempel, og dette er helt i samsvar med nasjonale føringer. 
+
+I juni 2007 la regjeringen frem sin treårige handlingsplan for miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet: ”Regjeringen ønsker at forbruk og produksjon skal være mest mulig bærekraftig. Offentlig sektor må gå foran og vise vei når de selv handler på markedet.” Handlingsplanen omhandler også tropisk trevirke.
+
+Gjennom å vedta retningslinjer for å unngå innkjøp av tropisk trevirke vil Bergen kommune delta aktivt i bevaring av tropisk regnskog. Samtidig må det innføres rutiner som sikrer at den enkelte innkjøper opptrer korrekt i forhold til regelverket om offentlige anskaffelser, og de lokale føringer som kommunen har vedtatt innen området samfunnsansvar. 
+
+Vedtakskompetanse:
+Byrådets fullmakter vedtatt av bystyret 24.04.2006 (b-sak 102-06) §2, 2.ledd pkt. 1, § 4 og § 12.
+
+Byråden for finans, konkurranse og omstilling innstiller til byrådet å fatte følgende vedtak:
+
+Ved Bergen kommune sine anskaffelser av varer gjelder følgende retningslinjer: 
+ 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden.
+ 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i tilbudte produkter. 
+ 3. Ved kjøp som ikke er omfattet av rammeavtaler, og som kan tenkes å inneholde tropisk tømmer, plikter den som anskaffelser å forvisse seg om at tropisk trevirke ikke inngår i produktene. 
+
+Vedtaket iverksettes med virkning fra 01.07.2008.
+
+Christine B. Meyer
+byråd for finans, konkurranse og omstilling
+Saksutredning:
+
+1. Tropisk regnskog, tømmer og trevirke
+
+Tropisk regnskog finnes kun i de fuktige områdene rundt ekvator, hovedsakelig i Sør-Amerika, Sørøst-Asia og Afrika. Tropisk regnskog betegner også den produktive naturtypen som er levested for brorparten av jordens arter. Mange av disse treslagene er harde og svært bestandige. Derfor hogges og eksporteres mengder tropisk tømmer til den rike delen av verden. Her foredeles materialene. De mest kjente trematerialer i kategorien tropisk trevirke er teak og mahogni. Det finnes imidlertid ca. 60 ulike treslag tropisk tømmer i det norske markedet.
+
+Tropisk trevirke kan inngå i en rekke ferdigprodukter som for eksempel møbler, dører, gulv, idrettsutstyr og lekeapparater. I tillegg kan tropisk tømmer inngå i byggematerialer hvor de ikke er synlige i sluttfasen.
+
+2. Hvorfor bør vi unngå tropisk trevirke?
+
+Tropisk regnskog trues og reduseres i dag i et faretruende tempo. Opprinnelig dekket naturtypen 16 mill. km2, men er i løpet av noen 10 år halvert og utgjør nå bare 6% av jordens areal. Halvparten av verdens planter, dyr og flere urbefolkninger lever i og er avhengig av tropisk regnskog. Avskoging og oppdyrking ødelegger både leveområder og kulturer. Når skogene forsvinner eroderes jorden. Jordsmonn og næring vaskes bort, og arter utryddes. 
+
+Regnskogen kalles for jordens lunger fordi den ved fotosyntesen binder svære mengder CO2. Rovdriften på tropisk regnskog betyr i praksis irreversible inngrep. Følgene av det tapet rammer oss alle - om enn i ulik grad.
+
+Regnskogens ødeleggelse har ført til stort politisk og organisatorisk engasjement. Regnskogfondet er ett av Europas ledende organisasjoner, se; www.regnskog.no
+
+Det finnes ulike typer sertifiseringsordninger som brukes for å rettferdiggjøre den bruken av tropisk tømmer som enda foregår. FSC - Forest Stewardship Council - er den eneste sertifiseringen av tropisk tømmer som stiller tilfredsstillende miljømessige og sosiale krav. Imidlertid er det ingen miljømerking som gir sikker garanti, da det har vært oppdaget manipulasjon blant alle merkeordningene. 
+
+3. Sertifiseringsordninger og plantasjedrift
+
+Tropisk trevirke kan dyrkes på plantasjer, men ifølge Regnskogfondet er plantasjedrift ingen garanti for bærekraftig skogdrift. I Regnskogfondet sin brosjyre: Gulv og grønne skoger – om tropisk tømmer i norsk byggebransje står det blant annet vedrørende plantasjedrift (s. 7): ”Det finnes en rekke tilfeller der opprinnelig regnskog er fjernet for å opprettholde plantasjer, og i mange plantasjer er utvinningstakten høyere enn forsvarlig. Plantasjene etableres som regel uten samtykke fra berørte urfolk og lokalbefolkning.”
+
+Pr i dag finnes det ingen nasjonale eller internasjonale sertifiseringsordninger som gir god nok sikkerhet for at trevirket som importeres faktisk kommer fra plantasjer. 
+
+På grunn av usikkerheten som hefter både sertifiseringsordningene og plantasjedrift bør Bergen kommune være ”føre var”. Bergen kommune bør inntil videre forholde seg til at ingen av dagens sertifiseringssystemer eller miljømerker kan garantere at tropisk trevirke er hogd forsvarlig, og på bakgrunn av dette bør kommunen ha rutiner som utelukker tropisk trevirke i forbindelse med innkjøp. 
+
+4. Relevans for Bergen
+
+Naturvernforbundet Hordaland og Fremtiden i våre hender gjennomførte i 2005 en undersøkelse om bruken av tropisk trevirke hos 11 butikker som selger hagemøbler i Bergen. Bare tre av disse hadde sagt konsekvent nei til bruk av tropisk trevirke, hovedsakelig teak. De 8 som solgte møbler av tropisk trevirke opplyste at trevirket enten var FSC-sertifisert eller kom fra plantasjehogst. Generelt var ekspeditørene lite oppdatert på problemer knyttet til tropisk regnskog. 
+
+I byrådets tiltredelseserklæring er miljøsatsingen markert. Som er stor offentlig aktør, er det derfor rimelig at Bergen kommune går foran og markerer miljøsatsingen tydelig. Med vedtak om at det ikke skal benyttes tropisk trevirke ved innkjøp signaliserer Bergen kommune en bevisst miljøprofil. Videre er kommunen med å sette standard for en konsekvent holdning blant norske kommuner. Generelt økes også folks oppmerksomhet på miljøutfordringene som knytter seg til tropisk regnskog ved en slik markering.
+
+Kommunale innkjøpere som rekvirerer bygninger, både nye og ved rennovasjon, bør spesifikt nevne at det i leveransen ikke skal inngå tropisk trevirke. Dette gjelder særlig for produkter som parkett, kryssfiner, dører, gulv, benkeplater, panel, møbler og generelt for trelast.
+
+5. Forankring og nasjonale føringer
+
+Kommunens innkjøp er omfattet av Regelverket for offentlige anskaffelser. Dette regelverket ble revidert 01.01.2007, hvorpå det offentliges ansvar om å ta samfunnshensyn ble ytterligere skjerpet. I formålbestemmelsen i Lov om offentlige anskaffelser (LOA) § 1 heter det:
+
+”Loven og tilhørende forskrift skal bidra til økt verdiskapning i samfunnet og sikre mest mulig effektiv ressursbruk ved offentlige anskaffelser basert på forretningsmessighet og likebehandling. Regelverket skal også bidra til at det offentlige opptrer med stor integritet, slik at allmennheten har tillitt til at offentlige anskaffelser skjer på en samfunnstjenelig måte.”
+
+Videre står det er LOA § 6 følgende: ”… kommunale … myndigheter … skal under planleggingen av den enkelte anskaffelse ta hensyn til livssykluskostnader, universell utforming og miljømessige konsekvenser av anskaffelsen.”
+
+21. juni 2007 la regjerningen frem handlingsplanen Miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet at ”Regjeringen mener at offentlige virksomheter bør gå foran og være ansvarlige forbrukere som etterspør miljøvennlige varer og varer som er tilvirket etter høye etiske og sosiale standarder. Regjeringen ser på tiltak for å fremme miljø- og samfunnsansvar i offentlige anskaffelser som et viktig supplement til mer strukturelle tiltak, øvrige reguleringer og økonomiske virkemidler for å fremme en mer bærekraftig samfunnsutvikling.” 
+
+Handlingsplanen omfatter også tropisk trevirke, og det står blant annet (s. 33): 
+
+”Regjeringen ønsker å stoppe all handel med tropiske skogprodukter som ikke er bærekraftig, eller som er ulovlig hugd. Det finnes i dag ingen internasjonale eller nasjonale sertifiseringsordninger som kan gi god nok sikkerhet for at trevirke som importeres er lovlig og bærekraftig hugget. Regjeringen stiller derfor krav til statlige etater og virksomheter om å ikke benytte trevirke med tropisk tømmer. 
+
+Bergen kommune bør som en kommune med store miljøambisjoner opptre som en ansvarlig aktør, og sørge for lokal oppfølging av nasjonale mål knyttet til tropisk trevirke. 
+
+6. Økonomi
+
+I følge regjeringens handlingsplan Miljø- og samfunnsansvar i offentlige anskaffelser (s. 33) vil et tiltak som stopper handel med tropiske trevirke ikke ha nevneverdige økonomiske konsekvenser. 
+
+7. Tropisk trevirke som del av kommunale innkjøp
+
+Innkjøpsavdelingen er Bergen kommune sin fremste forvalter av regelverket for offentlige anskaffelser. Det er derfor naturlig at innkjøpsavdelingen følger opp de vedtak som spesifikt angår innkjøpsområdet. Formulering vedrørende tropisk trevirke bør legges inn i aktuelle maler for konkurransegrunnlag og kontrakter. 
+
+For å sikre at tropisk tømmer ikke inngår i produkter som kjøpes av Bergen kommune, samt i Bergen kommune sine byggeprosjekter, bør følgende formulering benyttes ved tilbudsinnhenting av produkter hvor det kan tenkes at tropisk trevirke inngår helt eller delvis: 
+
+Tropisk trevirke som stammer fra området mellom vendesirklene (23 grader nordlig og sørlig bredde) samt hele Myanmar (Burma) skal ikke forekomme i tilbudte produkter.
+
+","Den beskriver hvordan Norge skal arbeide for mer bærekraftige offentlige anskaffelser. Planen legger vekt på at offentlige myndigheter skal bruke anskaffelsesmakt til å påvirke markedene positivt. Anskaffelsene skal bidra til bedre helse, tryggere arbeidsplasser, mindre utslipp og større mangfold. Planen viser til at det er nødvendig med konkrete tiltak for","Regjeringen vil derfor oppfordre til at det ikke brukes trevirke fra tropisk regnskog i offentlige bygg og anlegg, og heller ikke i andre offentlige innkjøp. Regjeringen oppfordrer også private bedrifter til å følge samme praksis.” 6. Økonomiske og administrative konsekvenser Det er vanskelig å beregne de økonomiske konsekvensene av vedtaket. Det er imidlertid klart at det vil medføre økte kostnader å velge bort tropisk trevirke. Det er likevel ikke snakk om store summer. For Bergen kommune vil det være nødvendig å etablere rutiner som sikrer at retningslinjene blir fulgt. Dette vil innebære noe merarbeid for den enkelte innkjøper. [/INKLUDERT] Bergen kommune; Innkjøp versus tropisk trevirke Bergen kommune har vedtatt retningslinjer for å unngå innkjøp av tropisk trevirke. Dette er et ledd i kommunens satsing på miljø og samfunnsansvar. Vedtaket innebærer at det ikke skal brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden. Videre må det ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå"
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," Dato: 16. juni 2008
+
+ Byrådsak 1293/08
+
+Byrådet
+
+Bergen kommune; Innkjøp versus tropisk trevirke
+
+	DISN	INK-1704-200702641-49
+
+Hva saken gjelder: 
+De tropiske regnskogene omfatter jordas mest artsrike og varierte økosystemer. Artene i regnskogen er ofte meget spesialiserte og derfor meget sårbare for inngrep. 
+
+Det er viktig at Bergen kommune får på plass retningslinjer for å unngå at trevirke fra tropiske regnskoger kjøpes inn og /eller inngår i kommunens produkter eller bygninger. Som offentlig virksomhet er det spesielt viktig å gå foran som et godt eksempel, og dette er helt i samsvar med nasjonale føringer. 
+
+I juni 2007 la regjeringen frem sin treårige handlingsplan for miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet: ”Regjeringen ønsker at forbruk og produksjon skal være mest mulig bærekraftig. Offentlig sektor må gå foran og vise vei når de selv handler på markedet.” Handlingsplanen omhandler også tropisk trevirke.
+
+Gjennom å vedta retningslinjer for å unngå innkjøp av tropisk trevirke vil Bergen kommune delta aktivt i bevaring av tropisk regnskog. Samtidig må det innføres rutiner som sikrer at den enkelte innkjøper opptrer korrekt i forhold til regelverket om offentlige anskaffelser, og de lokale føringer som kommunen har vedtatt innen området samfunnsansvar. 
+
+Vedtakskompetanse:
+Byrådets fullmakter vedtatt av bystyret 24.04.2006 (b-sak 102-06) §2, 2.ledd pkt. 1, § 4 og § 12.
+
+Byråden for finans, konkurranse og omstilling innstiller til byrådet å fatte følgende vedtak:
+
+Ved Bergen kommune sine anskaffelser av varer gjelder følgende retningslinjer: 
+ 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden.
+ 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i tilbudte produkter. 
+ 3. Ved kjøp som ikke er omfattet av rammeavtaler, og som kan tenkes å inneholde tropisk tømmer, plikter den som anskaffelser å forvisse seg om at tropisk trevirke ikke inngår i produktene. 
+
+Vedtaket iverksettes med virkning fra 01.07.2008.
+
+Christine B. Meyer
+byråd for finans, konkurranse og omstilling
+Saksutredning:
+
+1. Tropisk regnskog, tømmer og trevirke
+
+Tropisk regnskog finnes kun i de fuktige områdene rundt ekvator, hovedsakelig i Sør-Amerika, Sørøst-Asia og Afrika. Tropisk regnskog betegner også den produktive naturtypen som er levested for brorparten av jordens arter. Mange av disse treslagene er harde og svært bestandige. Derfor hogges og eksporteres mengder tropisk tømmer til den rike delen av verden. Her foredeles materialene. De mest kjente trematerialer i kategorien tropisk trevirke er teak og mahogni. Det finnes imidlertid ca. 60 ulike treslag tropisk tømmer i det norske markedet.
+
+Tropisk trevirke kan inngå i en rekke ferdigprodukter som for eksempel møbler, dører, gulv, idrettsutstyr og lekeapparater. I tillegg kan tropisk tømmer inngå i byggematerialer hvor de ikke er synlige i sluttfasen.
+
+2. Hvorfor bør vi unngå tropisk trevirke?
+
+Tropisk regnskog trues og reduseres i dag i et faretruende tempo. Opprinnelig dekket naturtypen 16 mill. km2, men er i løpet av noen 10 år halvert og utgjør nå bare 6% av jordens areal. Halvparten av verdens planter, dyr og flere urbefolkninger lever i og er avhengig av tropisk regnskog. Avskoging og oppdyrking ødelegger både leveområder og kulturer. Når skogene forsvinner eroderes jorden. Jordsmonn og næring vaskes bort, og arter utryddes. 
+
+Regnskogen kalles for jordens lunger fordi den ved fotosyntesen binder svære mengder CO2. Rovdriften på tropisk regnskog betyr i praksis irreversible inngrep. Følgene av det tapet rammer oss alle - om enn i ulik grad.
+
+Regnskogens ødeleggelse har ført til stort politisk og organisatorisk engasjement. Regnskogfondet er ett av Europas ledende organisasjoner, se; www.regnskog.no
+
+Det finnes ulike typer sertifiseringsordninger som brukes for å rettferdiggjøre den bruken av tropisk tømmer som enda foregår. FSC - Forest Stewardship Council - er den eneste sertifiseringen av tropisk tømmer som stiller tilfredsstillende miljømessige og sosiale krav. Imidlertid er det ingen miljømerking som gir sikker garanti, da det har vært oppdaget manipulasjon blant alle merkeordningene. 
+
+3. Sertifiseringsordninger og plantasjedrift
+
+Tropisk trevirke kan dyrkes på plantasjer, men ifølge Regnskogfondet er plantasjedrift ingen garanti for bærekraftig skogdrift. I Regnskogfondet sin brosjyre: Gulv og grønne skoger – om tropisk tømmer i norsk byggebransje står det blant annet vedrørende plantasjedrift (s. 7): ”Det finnes en rekke tilfeller der opprinnelig regnskog er fjernet for å opprettholde plantasjer, og i mange plantasjer er utvinningstakten høyere enn forsvarlig. Plantasjene etableres som regel uten samtykke fra berørte urfolk og lokalbefolkning.”
+
+Pr i dag finnes det ingen nasjonale eller internasjonale sertifiseringsordninger som gir god nok sikkerhet for at trevirket som importeres faktisk kommer fra plantasjer. 
+
+På grunn av usikkerheten som hefter både sertifiseringsordningene og plantasjedrift bør Bergen kommune være ”føre var”. Bergen kommune bør inntil videre forholde seg til at ingen av dagens sertifiseringssystemer eller miljømerker kan garantere at tropisk trevirke er hogd forsvarlig, og på bakgrunn av dette bør kommunen ha rutiner som utelukker tropisk trevirke i forbindelse med innkjøp. 
+
+4. Relevans for Bergen
+
+Naturvernforbundet Hordaland og Fremtiden i våre hender gjennomførte i 2005 en undersøkelse om bruken av tropisk trevirke hos 11 butikker som selger hagemøbler i Bergen. Bare tre av disse hadde sagt konsekvent nei til bruk av tropisk trevirke, hovedsakelig teak. De 8 som solgte møbler av tropisk trevirke opplyste at trevirket enten var FSC-sertifisert eller kom fra plantasjehogst. Generelt var ekspeditørene lite oppdatert på problemer knyttet til tropisk regnskog. 
+
+I byrådets tiltredelseserklæring er miljøsatsingen markert. Som er stor offentlig aktør, er det derfor rimelig at Bergen kommune går foran og markerer miljøsatsingen tydelig. Med vedtak om at det ikke skal benyttes tropisk trevirke ved innkjøp signaliserer Bergen kommune en bevisst miljøprofil. Videre er kommunen med å sette standard for en konsekvent holdning blant norske kommuner. Generelt økes også folks oppmerksomhet på miljøutfordringene som knytter seg til tropisk regnskog ved en slik markering.
+
+Kommunale innkjøpere som rekvirerer bygninger, både nye og ved rennovasjon, bør spesifikt nevne at det i leveransen ikke skal inngå tropisk trevirke. Dette gjelder særlig for produkter som parkett, kryssfiner, dører, gulv, benkeplater, panel, møbler og generelt for trelast.
+
+5. Forankring og nasjonale føringer
+
+Kommunens innkjøp er omfattet av Regelverket for offentlige anskaffelser. Dette regelverket ble revidert 01.01.2007, hvorpå det offentliges ansvar om å ta samfunnshensyn ble ytterligere skjerpet. I formålbestemmelsen i Lov om offentlige anskaffelser (LOA) § 1 heter det:
+
+”Loven og tilhørende forskrift skal bidra til økt verdiskapning i samfunnet og sikre mest mulig effektiv ressursbruk ved offentlige anskaffelser basert på forretningsmessighet og likebehandling. Regelverket skal også bidra til at det offentlige opptrer med stor integritet, slik at allmennheten har tillitt til at offentlige anskaffelser skjer på en samfunnstjenelig måte.”
+
+Videre står det er LOA § 6 følgende: ”… kommunale … myndigheter … skal under planleggingen av den enkelte anskaffelse ta hensyn til livssykluskostnader, universell utforming og miljømessige konsekvenser av anskaffelsen.”
+
+21. juni 2007 la regjerningen frem handlingsplanen Miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet at ”Regjeringen mener at offentlige virksomheter bør gå foran og være ansvarlige forbrukere som etterspør miljøvennlige varer og varer som er tilvirket etter høye etiske og sosiale standarder. Regjeringen ser på tiltak for å fremme miljø- og samfunnsansvar i offentlige anskaffelser som et viktig supplement til mer strukturelle tiltak, øvrige reguleringer og økonomiske virkemidler for å fremme en mer bærekraftig samfunnsutvikling.” 
+
+Handlingsplanen omfatter også tropisk trevirke, og det står blant annet (s. 33): 
+
+”Regjeringen ønsker å stoppe all handel med tropiske skogprodukter som ikke er bærekraftig, eller som er ulovlig hugd. Det finnes i dag ingen internasjonale eller nasjonale sertifiseringsordninger som kan gi god nok sikkerhet for at trevirke som importeres er lovlig og bærekraftig hugget. Regjeringen stiller derfor krav til statlige etater og virksomheter om å ikke benytte trevirke med tropisk tømmer. 
+
+Bergen kommune bør som en kommune med store miljøambisjoner opptre som en ansvarlig aktør, og sørge for lokal oppfølging av nasjonale mål knyttet til tropisk trevirke. 
+
+6. Økonomi
+
+I følge regjeringens handlingsplan Miljø- og samfunnsansvar i offentlige anskaffelser (s. 33) vil et tiltak som stopper handel med tropiske trevirke ikke ha nevneverdige økonomiske konsekvenser. 
+
+7. Tropisk trevirke som del av kommunale innkjøp
+
+Innkjøpsavdelingen er Bergen kommune sin fremste forvalter av regelverket for offentlige anskaffelser. Det er derfor naturlig at innkjøpsavdelingen følger opp de vedtak som spesifikt angår innkjøpsområdet. Formulering vedrørende tropisk trevirke bør legges inn i aktuelle maler for konkurransegrunnlag og kontrakter. 
+
+For å sikre at tropisk tømmer ikke inngår i produkter som kjøpes av Bergen kommune, samt i Bergen kommune sine byggeprosjekter, bør følgende formulering benyttes ved tilbudsinnhenting av produkter hvor det kan tenkes at tropisk trevirke inngår helt eller delvis: 
+
+Tropisk trevirke som stammer fra området mellom vendesirklene (23 grader nordlig og sørlig bredde) samt hele Myanmar (Burma) skal ikke forekomme i tilbudte produkter.
+
+","Retningslinjer for Bergen kommunes anskaffelser Som tidligere nevnt er det viktig at Bergen kommune får på plass retningslinjer for å unngå at trevirke fra tropiske regnskoger kjøpes inn og/eller inngår i kommunens produkter eller bygninger. Som offentlig virksomhet er det spesielt viktig å gå foran som et godt eksempel, og dette er helt i samsvar med nasjonale føringer. I juni 2007 la regjeringen frem sin treårige handlingsplan for miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet: ”Regjeringen ønsker at forbruk og produksjon skal være mest mulig bærekraftig. Offentlig sektor må gå foran og vise vei når de selv handler på markedet.” Handlingsplanen omhandler også tropisk trevirke. Gjennom å vedta retningslin","Regjeringen vil derfor oppfordre til at det ikke brukes trevirke fra tropisk regnskog i offentlige bygg og anlegg, og heller ikke i andre offentlige innkjøp. Regjeringen oppfordrer også private bedrifter til å følge samme praksis.” 6. Økonomiske og administrative konsekvenser Det er vanskelig å beregne de økonomiske konsekvensene av vedtaket. Det er imidlertid klart at det vil medføre økte kostnader å velge bort tropisk trevirke. Det er likevel ikke snakk om store summer. For Bergen kommune vil det være nødvendig å etablere rutiner som sikrer at retningslinjene blir fulgt. Dette vil innebære noe merarbeid for den enkelte innkjøper. [/INKLUDERT] Bergen kommune; Innkjøp versus tropisk trevirke Bergen kommune har vedtatt retningslinjer for å unngå innkjøp av tropisk trevirke. Dette er et ledd i kommunens satsing på miljø og samfunnsansvar. Vedtaket innebærer at det ikke skal brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden. Videre må det ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå"
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," Høring-Overordnet nasjonal helse-og sosialberedskapsplan versjon 2.0
+
+Byrådet behandlet saken i møtet 081208 sak 1450-08 1og fattet følgende vedtak:
+
+ 1. Bergen kommune ser at denne planen oppfyller sin hensikt, som er å synliggjøre hovedelementene i helse- og sosialsektorens beredskapsopplegg og sammenhengen mellom disse elementene. 
+ 2. Den gir et godt grunnlag for det videre arbeid med helse- og sosialberedskapen på kommunalt nivå. 
+ 3. Det sees som nyttig at denne planen vil bli revidert og oppdatert årlig.
+ 4. Melding om vedtak oversendes Bystyrets kontor.
+
+",Bergen kommune har behandlet og vedtatt den overordnede nasjonale helse- og sosialberedskapsplanen versjon 2.0. Planen skal synliggjøre hovedelementene i beredskapsopplegget og danne grunnlag for videre arbeid på kommunalt nivå. Den vil bli revidert årlig.,Bergen kommune har behandlet den overordnede nasjonale helse- og sosialberedskapsplanen og uttrykker støtte til planens formål og innhold. Planen skal bidra til å synliggjøre viktige elementer i beredskapssystemet og gi et solid grunnlag for videre arbeid på kommunalt nivå. Kommunen anbefaler også at planen blir regelmessig oppdatert.
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," Høring-Overordnet nasjonal helse-og sosialberedskapsplan versjon 2.0
+
+Byrådet behandlet saken i møtet 081208 sak 1450-08 1og fattet følgende vedtak:
+
+ 1. Bergen kommune ser at denne planen oppfyller sin hensikt, som er å synliggjøre hovedelementene i helse- og sosialsektorens beredskapsopplegg og sammenhengen mellom disse elementene. 
+ 2. Den gir et godt grunnlag for det videre arbeid med helse- og sosialberedskapen på kommunalt nivå. 
+ 3. Det sees som nyttig at denne planen vil bli revidert og oppdatert årlig.
+ 4. Melding om vedtak oversendes Bystyrets kontor.
+
+","Byrådet i Bergen har besluttet å støtte den overordnede nasjonale helse- og sosialberedskapsplanen, som skal fungere som en veileder for kommunens beredskapsarbeid innen helse- og sosialsektoren. Planen anses som et nyttig verktøy for å sikre sammenheng mellom de ulike elementene i beredskapsopplegget. Videre vil den bli oppdatert årlig for å sikre jevnlig oppfølging av beredskapsarbeidet. Vedtaket ble sendt til Bystyrets kontor for videreformidling. Dette er en del av byrådets arbeid for å sikre beredskapen i kommunen.",Bergen kommune har behandlet den overordnede nasjonale helse- og sosialberedskapsplanen og uttrykker støtte til planens formål og innhold. Planen skal bidra til å synliggjøre viktige elementer i beredskapssystemet og gi et solid grunnlag for videre arbeid på kommunalt nivå. Kommunen anbefaler også at planen blir regelmessig oppdatert.
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," Høring-Overordnet nasjonal helse-og sosialberedskapsplan versjon 2.0
+
+Byrådet behandlet saken i møtet 081208 sak 1450-08 1og fattet følgende vedtak:
+
+ 1. Bergen kommune ser at denne planen oppfyller sin hensikt, som er å synliggjøre hovedelementene i helse- og sosialsektorens beredskapsopplegg og sammenhengen mellom disse elementene. 
+ 2. Den gir et godt grunnlag for det videre arbeid med helse- og sosialberedskapen på kommunalt nivå. 
+ 3. Det sees som nyttig at denne planen vil bli revidert og oppdatert årlig.
+ 4. Melding om vedtak oversendes Bystyrets kontor.
+
+",Bergen kommune har behandlet og godkjent en overordnet nasjonal helse- og sosialberedskapsplan.,"Bergen kommune har behandlet en overordnet nasjonal helse-og sosialberedskapsplan og konkludert med at den oppfyller sitt formål om å synliggjøre hovedelementene i helse- og sosialsektorens beredskapsopplegg. Planen gir også et godt grunnlag for videre arbeid med beredskap på kommunalt nivå, og det vurderes som nyttig å oppdatere den årlig."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," 1
+Psykologisk krisehjelp til tamiler - søknad om tillegsbevilling 
+
+Byrådet behandlet saken i møtet 100609 sak 1182-09 og fattet følgende vedtak: 
+
+Byrådet bevilger 73.000.- til psykologisk krisehjelp til tamiler. Hjelpen realiseres gjennom en 
+egen avtale med Senter for krisepsykologi. Beløpet belastes tilleggsbevillingskontoen, art 
+149010, tjeneste 18090, med overføring tila rt 137010, tjeneste 23470. 
+
+ 
+
+ ","Byrådet har besluttet å bevilge 73.000 kroner til psykologisk krisehjelp for tamiler. Denne hjelpen vil bli gitt gjennom en avtale med Senter for krisepsykologi, og midlene vil bli trukket fra et spesifikt budsjettkonto. Dette vedtaket ble fattet under et byrådsmøte den 9. juni 2009.","Byrådet har besluttet å bevilge 73.000 kroner til psykologisk krisehjelp for tamiler, som skal gjennomføres i samarbeid med Senter for krisepsykologi. Midlene vil bli trukket fra tilleggsbevillingskontoen."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," 1
+Psykologisk krisehjelp til tamiler - søknad om tillegsbevilling 
+
+Byrådet behandlet saken i møtet 100609 sak 1182-09 og fattet følgende vedtak: 
+
+Byrådet bevilger 73.000.- til psykologisk krisehjelp til tamiler. Hjelpen realiseres gjennom en 
+egen avtale med Senter for krisepsykologi. Beløpet belastes tilleggsbevillingskontoen, art 
+149010, tjeneste 18090, med overføring tila rt 137010, tjeneste 23470. 
+
+ 
+
+ ","Byrådet har bevilget 73.000 kroner til psykologisk krisehjelp for tamiler, som skal","Byrådet har besluttet å bevilge 73.000 kroner til psykologisk krisehjelp til tamilske personer. Midlene vil bli brukt gjennom en spesiell avtale med Senter for krisepsykologi. secretary Byrådet har godkjent en bevilgning på 73.000 kroner for psykologisk hjelp til tamilske personer som er i nød. Midlene vil bli administrert gjennom en separat avtale med Senter for krisepsykologi. director Byrådet har gitt sin støtte til et prosjekt som skal gi psykologisk hjelp til tamilske personer i behov. Bevilget sum er 73.000 kroner, som vil bli administrert gjennom en avtale med Senter for krisepsykologi. researcher Byrådet har vedtatt å tildele midler på 73.000 kroner for å støtte"
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," 
+1 
+Dato: 14. desember 2010 
+ Byrådssak 1486/10 
+
+ 
+Byrådet 
+
+ 
+
+Salg av kommunal eiendom på Nesttun til Teigland Eiendom AS 
+
+ MEGJ BBE-1621-200814714-39 
+
+ 
+
+Hva saken gjelder: 
+Byrådet vedtok 24.01.10 (sak nr 1071-10) å gi BKB fullmakt til å forhandle om salg av 
+kommunal eiendom innenfor reguleringsplan på Nesttun (del av gnr. 42, bnr. 718, gnr. 42, 
+bnr. 633, gnr. 43, bnr. 72 og gnr. 8, bnr. 203) med Teigland Eiendom AS. Den 
+fremforhandlede kjøpekontrakten skulle så fremlegges Byrådet for godkjenning. 
+
+På bakgrunn av dette vedtaket har BKB forhandlet frem avtale om salg av overnevnte areal, i 
+tillegg til gnr.42, bnr.603, for samlet sum stor kr. 14 400 000,-. 
+
+Kjøper har tiltrådt eiendommen ihht avtale om forhåndstiltredelse (se vedlegg) og har 
+innbetalt kjøpesummen. 
+
+Kjøpekontrakt følger vedlagt. 
+
+Vedtakskompetanse: 
+Gjeldende budsjettfullmakt IV.B.1: ""Byrådet gis fullmakt til å treffe gjennomføringsvedtak 
+samt slutte de nødvendige kontrakter innenfor rammen av det av Bystyret godkjente 
+budsjettrammer slik det fremgår av vedtatt budsjett."" 
+
+ 
+Byråden for næring, eiendomsforvaltning og samferdsel innstiller til byrådet å fatte 
+følgende vedtak: 
+
+Del av gnr. 42,bnr 718, gnr. 42, bnr. 633 og bnr. 603, gnr. 43, bnr. 72 og gnr. 8, bnr. 203 
+selges til Teigland Eiendom AS for kr. 14 400 000,- i tråd med vedlagte kjøpekontrakt. 
+
+ 
+
+ 
+
+ 
+Øistein Christoffersen 
+byråd for næring, eiendomsforvaltning og samferdsel ","Dokumentet beskriver en avtale mellom Bergen kommune og Teigland Eiendom AS om salg av kommunal eiendom på Nesttun for en samlet sum på 14,4 millioner kroner. Avtalen omhandler flere eiendommer, inkludert deler av gnr. 42 og gnr. 43, samt gnr. 8. Kjøpekontrakten er allerede signert, og kjøper har også betalt kjøpesummen. Byrådet skal godkjenne avtalen. Oppsummering: Bergen kommune har inngått en avtale med Teigland Eiendom AS om salg av kommunal eiendom på Nesttun for 14,4 millioner kroner. Avtalen omfatter flere eiendommer, og kjøper har allerede signert kontrakten og betalt kjøpesummen. Byrådet må godkjenne avtalen før den kan tråde i kraft.",Byrådet har besluttet å selge et område på Nesttun til Teigland Eiendom AS for en samlet sum på 14 millioner kroner. Kjøpet er betinget av at kjøperen oppfyller sine forpliktelser i henhold til avtalen.
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie.","
+| |Dato: 19. september |
+| |2003 |
+| | |
+| | |
+| |BYGG |
+| |/03 |
+| |
+| |
+|Bergen Bygg og Eiendom KF |
+| |
+| |
+| |
+|Budsjettoppfølging - tertialrapport 2 |
+| |
+| |JUWI |BBE-1212-200205273-37|
+| |
+
+Hva saken gjelder:
+
+Tertialrapporten redegjør for foretakets økonomiske status og forventet
+utvikling i forhold til vedtatt driftsbudsjett og investeringer.
+
+Driftsregnskapet
+
+En foreløpig sluttprognose viser et postivt driftsavvik på 10, 6 mill.
+Avviket er sammensatt, men er i hovedsak knyttet til lavere låneopptak enn
+budsjettert, og periodens rentereduksjoner.
+
+Prognosen forutsetter de budsjettendringer som er foreslått i saken.
+
+Investeringer
+
+Årets investeringsramme var opprinnelig kr 630,7 mill. Budsjettet er under
+revisjon og vil sannsynligvis bli nedjustert.
+
+Pr. 2. tertial er det bokført brutto 444 mill. i investeringsutgifter inkl.
+0,7 mill. i byggelånsrente.
+
+Foreløpig selges kommunale eiendommer som er søkt solgt jfr. Styresak 05/03
+– budsjettert salg 16 mill. Bokførte salgsinntekter pr. 2. tertial utgjør
+ca 8,6 mill.
+
+Vedtakskompetanse
+
+Budsjettjusteringer gjøres i henhold til gjeldende budsjettfullmakter for
+kommunale bedrifter og foretak i Bergen Kommune –”II – fullmakter
+vedrørende driftbudsjett –2 Budsjettndringer kt. a-d”.
+
+Forslag til vedtak:
+
+ 1. Styret tar saken til etterretning.
+
+ 2. Styret slutter seg til de forslag om budsjettjusteringer slik de
+ fremkommer under pkt. 1.1 – ”justeringer mot avkastningskrav” og pkt
+ 1.2 – ”Justeringer uten konsekvenser for avkastningskravet”.
+
+Dagfinn Øvrebotten
+Direktør
+
+ Terje Nordtveit
+ Økonomisjef
+
+Trykte vedlegg:
+
+ 1. Driftsregnskap – utfyllende tabell
+ 2. Vedlikeholdsutgifter
+ 3. Investeringsutgifter – rapportering pr tjenesteområde
+ 4. Status planlagt eiendomssalg
+ 5. Administrative vedtak
+
+Saksutredning:
+
+ 0. Generelt
+ Tertialrapporten redegjør for foretakets økonomiske utvikling.
+ Rapporten er strukturert i tråd med styrets vedtak om rapportering i
+ styresak 81/00
+
+ Punktvis følger saken som følger:
+ 1. Budsjettjustering
+ 2. Driftsregnskap
+ 3. Investeringsregnskap
+ a. Investeringer
+ b. status salg av eiendom
+ 4. Rapportering
+ 1. administrative vedtak knyttet til avgjørelse av anbud og
+ tilbud i perioden.
+ 2. Samordning BBE /BBB
+ 3. Hovedmål for driften 2003 jfr forretningsplan
+
+1.0 Budsjettjusteringer
+
+ 1. Justeringer mot avkastningskravet
+ Bedriftens avkastningskrav justeres som følge av overføringer mellom
+ bykassen og BBE. Tilsvarende budsjettjustering må gjøres i bykassen.
+
+ Tertialrapporten forutsetter følgende justeringer i avkastningskravet:
+
+ 1. Renteutgifter til lånefondet reduseres
+ fra 113,5 til 91,5 – kr 22 mill
+ 2. Pensjonskostnadene økes med 0,9 mill
+ som følge av økte pensjonskostnader
+ 3. Lønnskostnadene økes med 0,48 mill som
+ følge av sentralt lønnsoppgjør
+
+ 1. Renteutgiftene til lånefondet reduseres med 22 mill fra 113,5 til
+ 91,5
+ Viser til tertialrapport 1/2003 der prognosen for BBE viste et
+ positivt driftsavvik på 22 mill, som i hovedsak var knyttet til lavere
+ rente- og avdrags utgifter enn opprinnelig budsjettert. Byrådet har i
+ sak til bystyret anbefalt at avkastningskravet justeres og at midlene
+ nyttes til dekning av mindreinntekter på skatt og rammetilskudd.
+ BBE reduserer budsjett for renteutgifter til lånefondet mot at
+ avkastningskravet øker tilsvarende.
+
+ 2. Pensjonskostnadene økes med 0,9 mill som følge av økte
+ pensjonskostnader
+ Viser til bystyresak 1347/03 der det er stipulert en merkostnad for
+ BBE på 0,9 mill som følge av økte premiesatser til pensjonskassen. BBE
+ øker budsjettpostene for sosiale kostnader med 0,9 mill mot at
+ avkastningskravet reduseres tilsvarende.
+
+ 3. Lønnskostnadene økes med 0,48 mill som følge av sentralt
+ lønnsoppgjør
+ Viser til bystyresak 1347/03 der det er beregnet en merkostnad for BBE
+ på kr 477.300 som følge av økte lønnskostnader i forbindelse med
+ lønnsoppgjør som gjelder fra hhv. 01.01.03 og 01.07.03. BBE øker
+ budjsettpostene for lønn og sosiale kostnader med kr 477.300 mot at
+ avkastningskravet reduseres tilsvarende.
+
+ Justert avkastningskrav utgjør etter ovennevnte justeringer kr
+311.540.892.
+
+ 2. Justeringer uten konsekvenser for avkastningskravet
+
+Merinntekter - økt sykepengerefusjon + kr 900.000
+
+ I hht. beregnet prognose for sykepengerefusjoner er budsjettet for
+ syke- og svangerskapsrefusjoner økt opp med 0,9 mill. Budjsettpostene
+ for lønn og sosiale kostnader er økt opp tilsvarende.
+
+ 2. Driftsregnskap
+
+2.1 Sammendrag
+ En sluttprognose viser foreløpig et positivt budsjettavvik på 10,6
+ mill.
+ Endring og kommentarer til endringer fra tertialrapport 1/2003.
+ Prognosen forutsetter de budsjettjusteringer som er foreslått i saken
+
+ |  | | bud | | 2 | pronose| avvik|
+| |2 002 |2003 |just.bud.|tertial | | |
+| | | |2003 | | | |
+| | | | | | | |
+|Driftsinntekte|633 719 |672 726 |669 669 |490 528 |668 690 |979 |
+|r | | | | | | |
+| | | | | | | |
+|Driftsutgifter|580 403 |500 723 |589 744 |402 439 |588 996 |747 |
+| | | | | | | |
+|Driftsresultat|53 316 |172 003 |79 925 |88 089 |79 694 |231 |
+| Netto finans | | | | | | |
+| |50 834 |172 003 |79 703 |9 257 |68 876 |10 827|
+| Resultat | | | | | | |
+| |2 482 |- |222 |78 832 |10 817 |-10 |
+| | | | | | |596 |
+| Avsetninger | | | | | | |
+| |1 584 |- |221 |10 |227 |(6) |
+| Regnsk. | | | | | | |
+|Resultat |1 989 |- |(0) |78 822 |10 590 |(10 |
+| | | | | | |590) |
+
+ Utfyllende tabell (vedlegg 1)
+
+2.2 Driftsinntekter
+
+ Salgs-/leieinntekter
+
+ Med unntak av internhusleie er inntektsutviklingen i henhold til
+ justert budsjett.
+
+ Budsjettet for internhusleien er tidligere nedjustert med 5,2 mill til
+ kr 639,4 mill. Beregninger viser at internhusleien vil gi en inntekt
+ på kr 638,5 mill for 2003, altså en ytterligere mindreinntekt på 0,9
+ mill.
+
+2.2 Driftsutgifter
+
+ Lønn
+
+ Utgifter til lønn- og sosiale utgifter er lavere enn budsjett – ca
+ 0,8 mill. Innsparingene skyldes i hovedsak vakante stillinger, og at
+ lønnsbudsjettet er styrket som følge av økte sykepengerefusjoner uten
+ at det er tatt inn vikarer ved langtidsfravær.
+
+ Andre driftsutgifter
+
+ Andre driftsutgifter til forsikring og kom. avgifter forventes å være
+ i tråd med budsjettrammen. Akkumulerte kostnader til energi de 8
+ første månedene er innenfor budsjettrammen, men det er knyttet
+ usikkerhet mht forbruk og priser på energi i siste kvartal.
+ Det er bokført vedlikeholdsutgifter for kr 47,4 mill. (vedlegg 2 )
+ Foreløpig ikke meldt om avvik.
+
+ Lån og avdrag – netto finansposter
+
+ Mindreutgifter knyttes til lavere låneopptak enn opprinnelig
+ budsjettert og periodens rentereduksjoner. Langsiktig rentebærende
+ gjeld utgjør pr. d.d. 1,573 mrd.
+
+ Årsprognosen for renteutgifter til lånefondet (langsiktig gjeld) er
+ nedjustert med 4 mill. fra 90 mill. til 86 mill. Prognosen for
+ renteutgifter til bank er oppjustert med 2 mill. fra 3,5 mill. til 5,5
+ mill. Dette skyldes bl.a til endringer i inn- og
+ utbetalingstidspunkter i forhold til tidligere oppsatt
+ likviditetsprognose.
+
+2.3 Likviditet
+ Likviditetssituasjonen ble som forventet negativ fra juni, og med
+ forbehold kan det antas at BBE ved årets slutt har en negativ
+ likviditetsbeholdning på ca 330 mill. Prognosen har tatt høyde for en
+ slik utvikling.
+
+ 3. Investeringsregnskap
+
+3.1 Generelt
+ Årets investeringsbudsjett var opprinnelig på 630,7 mill. Budsjettet
+ er under revisjon og vil sannsynligvis bli nedjustert.
+
+ Pr. 2 tertial er det bokført brutto 444 mill i investeringsutgifter
+ inkl. 0,7 mill i byggelånsrenter. Kalkulerte byggelånsrenter pr. d.d
+ utgjør ca 19,5 mill. Det er knyttet en viss grad av usikkerhet til
+ beregningen av kalkulerte byggelånsrenter. Beregningen er basert på at
+ kostnadene påløper jevnt i perioden, og vil derfor gi avvik i forhold
+ til bokført byggelånsrente spesielt i de tilfeller der hovedtyngden av
+ kostnadene påløper tidlig eller sent i perioden. Beregnet
+ byggelånsrente tar heller ikke hensyn til endringer i rentefoten.
+ Det er foreløpig godskrevet 107,7 mill i tilskudd og refusjoner
+
+ Det beregnes byggelånsrenter på alle investeringsutgifter som er
+ registrert fra 01.01.02. Byggelånsrenten er p.t. lik oppgitt
+ konsernkontorente – 4.96%.
+
+ En foreløpig investeringsprognose viser et forventet netto årsforbruk
+ på 512 mill.
+
+ Brutto investeringer 610 mill
+ Byggelånsrenter 2003 29 mill
+ Tilskudd og refusjon - 131 mill
+ Netto investeringsutgifter 508 mill
+
+ .
+3.2 Investeringer -
+
+ Det legges med dette fram rapport for de enkelte
+ investeringsprosjektene, i tråd med vedtak i styresak 81/00. Rapport
+ for enkeltprosjektene framgår av vedlegg 3.
+
+ De prosjekter som viser merforbruk, vil en foreslå å fullfinansiere
+ enten ved å benytte disponible midler i prosjekter med mindreforbruk,
+ eller ved å foreslå avsetninger i økonomiplanen.
+
+ Avviket mellom antatt sluttkostnad og budsjett skyldes at det i
+ rapportene er lagt inn antatt sluttkostnad på prosjekter som er så
+ vidt tidlig i beslutningsprosessen at de ikke er medtatt i forslag til
+ investeringsprogram. Avvik mellom budsjett og bevilgning skyldes i
+ hovedsak at søknad om bevilgning til en rekke større prosjekter ligger
+ noe fram i tid. Samlet aktivitet framgår av nedenforstående tabell.
+
+ I forhold til forrige rapportering er en del prosjekter som har vært
+ ferdigstilt en tid tatt ut.
+
+ |SAMMENSTILLING |  |BUDSJETT |BEVILGNI|ANTATT |
+| | | |NG |SLUTT-KOSTNAD |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 1 |  |824 469 |554 740 |907 963 152 |
+|TILTAK FOR BARN OG | |000 |000 | |
+|UNGE | | | | |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 3 |  |999 700 |638 500 |1 072 300 000 |
+|TILTA K FOR ELDRE OG| |000 |000 | |
+|SÆRLIG | | | | |
+|OMSORGSTRENGENDE | | | | |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 7 |  |20 300 |40 700 |304 000 000 |
+|BRANN- OG FEIERVESEN| |000 |000 | |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 12 |  |155 650 |150 850 |189 760 000 |
+|KULTUR | |000 |000 | |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 13 |  |23 600 |23 600 |155 206 000 |
+|IDRETT | |000 |000 | |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 16 |  |7 200 000|0 |10 200 000 |
+|ADMINISTRASJON OG | | | | |
+|FELLESFUNKSJONER | | | | |
+|  |  |  |  |  |
+|SUM |  |2 030 919|1 408 |2 639 429 152 |
+| | |000 |390 000 | |
+
+3.3 Salg av eiendom
+ I henhold til sak 05/03 - budsjettert salg 16 mill. Status salg av
+ fast eiendom pr. 2 tertial utgjør ca kr 8,6 mill. (vedlegg 4).
+ Det er knyttet en liten usikkerhet til avtale om salg av tomt til SIB
+ som skal utbygges med studentboliger. Men foreløpig opprettholder vi
+ prognosen om å nå oppsatt budsjett på 16 mill.
+
+4.0 Diverse rapportering
+
+4.1 Administrative vedtak med avgjørelse av anbud og tilbud i perioden
+(vedlegg 5 )
+ Det er fattet administrative vedtak i perioden– hittil i år 39 saker.
+ Det er det gjort vedtak for 130 mill. i perioden – hittil i år 144,1
+ mill.
+
+ Sakene er nå også tilgjengelig på internett via vår hjemmeside.
+
+ 2. Samordning BBE /BBB
+ Oppfølging av samordning mellom BBB og BBE skjer gjennom møter mellom
+ enkeltavdelinger i BBE/BBB for å jobbe videre med de forslag som ble
+ lansert i rapporten fra 2001.
+
+4.3 Hovedmål for driften i 2003 i henhold til gjeldende forretningsplan
+
+| | | |
+|Kunderelasjoner – Hovedmål |Frist |Status |
+| | |Gjennomføres|
+|Tilfredshetsindeks - Gjennomføre måling av kunders|3 |innen frist |
+|og brukeres tilfredshet |kvartal | |
+| |2003 | |
+| | | |
+|Med utgangspunkt i våre i kunder og brukeres |2 |gjennomført |
+|tilfredshet drøfte tiltak med våre kunder innen |kvartal | |
+| |2003 | |
+
+| | | |
+|Medarbeiderforhold - Hovedmål |Frist |Status |
+| | |Gjennomføre|
+|Medarbeidertilfredshetsindeks skal måles og |4 kvartal|s innen |
+|verdien skal forbedres sammenlignet med året før |2003 |frist |
+| | |Sykefravær |
+|Sykefravær – periodisk måling – redusere fravær |2 og 4 |1 halvår - |
+|sammenlignet med året før. |kvartal |8,6% |
+| |2003 | |
+
+| | | |
+|Samfunnsrelasjoner – Hovedmål |Frist |Status |
+| | |Arbeidet |
+|Energireduksjon – Vi skal etablere datagrunnlag | |pågår. Akk.|
+|for kundene om beslutninger om energireduserende | |innsp. pr. |
+|tiltak og ansvarsfordeling | |30.8. |
+| | |kalkulert |
+| | |til ca. 1 |
+| | |mill. |
+| | |Følges opp |
+|Fornybare og miljøvennlige energiformer -Vi skal | |kontinuerli|
+|etablere vannbåren varme når dette er | |g |
+|hensiktsmessig. | | |
+| | | |
+|Tilrettelegge for at betalingsansvar for varslet |i løpet |Gjennomføre|
+|forbruksbasert vannavgift overføres fra huseier |av 2003 |s innen |
+|til kunden | |frist |
+| | |Gjennomføre|
+|Kvinner i lederposisjon - Ledergruppen skal 2 |i løpet |s innen |
+|ganger pr år drøfte tiltak for øke kvinneandel i |av 2003 |frist |
+|lederstillinger i foretaket. | | |
+
+| | | |
+|Finansielle hovedmål – Hovedmål |frist |Status |
+| | | |
+|Etablere et forslag til et finansielt |i løpet |Avventer |
+|avkastningskrav |av 2003 |konklusjon |
+| | |ift |
+| | |Byrådets |
+| | |gjennomgang|
+| | |av BBE |
+
+| | | |
+|Prosessmål -Hovedmål |frist |Status |
+| | |Gjennomføre|
+|Administrasjonskostnader i forhold til forvaltet |i løpet |s innen |
+|areal skal reduseres ift. Året før. |av 2003 |frist |
+
+ Vedlegg 1
+
+Driftsregnskap - utfyllende tabell
+
+|DRIFTSREGNSKAP | |  |  |  |  |  |
+|  |Regnskap | VEDTATT | JUSTERT | Akkum. |
+| | | | |Regnskap |
+| | | | | |
+|ADR. | | | STATUS|SALGSBELØP |
+| |GNR. |BNR. | | |
+| | | | | |
+|Seismark i Arna |286 |3 |ikke | |
+| | | |solgt | |
+|Andreas Gjellseviksvei 6|286 |14 |ikke | |
+| | | |solgt | |
+|Stølsveien |286 |457 |ikke | |
+| | | |solgt | |
+| |286 |574 |ikke | |
+| | | |solgt | |
+|Landås |160 |180 |ikke | |
+| | | |solgt | |
+|Gyldenpris |158 |606 |ikke | |
+| | | |solgt | |
+|Fløenbakken |163 |75 |ikke | |
+| | | |solgt | |
+|Kanalveien |159 |136 |ikke | |
+| | | |solgt | |
+|Landås |161 |726 |ikke | |
+| | | |solgt | |
+| |161 |795 |ikke | |
+| | | |solgt | |
+| |161 |1151 |ikke | |
+| | | |solgt | |
+| |161 |1152 |ikke | |
+| | | |solgt | |
+|Skageveien, Ytreb.bydel |114 |4 |ikke | |
+| | | |solgt | |
+|Fanahammeren |97 |2 |ikke | |
+| | | |solgt | |
+|Kanalveien |17 |37 |ikke | |
+| | | |solgt | |
+|J.L.Mowinkelsv. del av |25 |278 |ikke | |
+|eiend. | | |solgt | |
+|Kirsten Flagstad vei |26 |181 |ikke | |
+| | | |solgt | |
+|Kjøkkelvik/Kjøkkelvik |123 |314 |ikke | |
+|skole | | |solgt | |
+|Vågedalen Laksevåg |151 |170 |ikke | |
+| | | |solgt | |
+|Bjørndalstræet |122 |314 |ikke | |
+|v/Bjørgeveien | | |solgt | |
+| |122 |200 |ikke | |
+| | | |solgt | |
+|Lægdesvingen 86D |161 |513 |solgt |86 400 |
+| |146 |239 |solgt |78 000 |
+|Sandviken |168 |82 |solgt |650 000 |
+|Hordagt. 26 |158 |331 |solgt |133 850 |
+|Krohnegården 165 |26 |229 |solgt |8 000 |
+|Fana |44 |664 |solgt |1 200 000 |
+| |158 |214 |solgt |14 000 |
+|Svaneviksv 13 |159 |160 |solgt |97 700 |
+|Fylllingsdalen |25 |278 |solgt |520 000 |
+|Fredlundsv |18 |279 |solgt |75 000 |
+|Løbergsv. 52 |159 |571 |solgt |66 250 |
+|Adolph Bergs vei 58 |160 |674 |solgt |700 000 |
+|Øyjordsbotten 25 |168 |1586 |solgt |82 728 |
+|Gyldenpris |158 |606/806 |solgt |2 150 000 |
+|Nygårdsgt. 12. |164 |950 |solgt |1 000 000 |
+|Bakersmuget 14 |168 |468 |solgt |29 140 |
+|Lillehatten 345 |22 |408 |solgt |75 550 |
+|Skrivergaten 31 |159 |538 |solgt |80 550 |
+|Håkonshella |129 |164 |solgt |206 400 |
+|Skansemyrveien 21 |166 |229 |solgt |150 496 |
+| |166 |675 |solgt |50 000 |
+|Svaneviksveien 19 |159 |163 |solgt |110 000 |
+|Landåslien 47 |161 |885 |solgt |222 080 |
+| |186 |355 |solgt |1 700 |
+| |8 |5 |solgt |20 000 |
+| |39 |415 |solgt |18 000 |
+|Munkebottsveien 4c |161 |881 |solgt |195 000 |
+| |25 |67 |solgt |26 000 |
+| |187 |311 |solgt |75 000 |
+|Sørhaugen bofellesskap |123/124 |92/180/251 |solgt |72 750 |
+|Sandviken Brygge ""Torg |168 |3/396/397/186|solgt |470 150 |
+|1"" | |0 | | |
+| | | | |8 664 744 |
+| | | | | |
+| | | | | |
+
+",| | | | | | | | | | | |,"Dette er i tråd med bystyrets vedtak i sak 1347/03. 3. Lønnskostnadene økes med 0,48 mill som følge av sentralt lønnsoppgjør Viser til bystyresak 1347/03 der det er stipulert en merkostnad for BBE på 0,48 mill som følge av økte lønnskostnader. 1.0 Driftsregnskap 2.0 Investeringsutgifter 3.0 Status salg av eiendom 4.0 Administrative vedtak 5.0 Hovedmål for driften 2003 jfr forretningsplan 1.0 Budsjettjusteringer 2.0 Driftsregnskap 3.0 Investeringsregnskap 4.0 Status salg av eiendom 5."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie.","
+| |Dato: 19. september |
+| |2003 |
+| | |
+| | |
+| |BYGG |
+| |/03 |
+| |
+| |
+|Bergen Bygg og Eiendom KF |
+| |
+| |
+| |
+|Budsjettoppfølging - tertialrapport 2 |
+| |
+| |JUWI |BBE-1212-200205273-37|
+| |
+
+Hva saken gjelder:
+
+Tertialrapporten redegjør for foretakets økonomiske status og forventet
+utvikling i forhold til vedtatt driftsbudsjett og investeringer.
+
+Driftsregnskapet
+
+En foreløpig sluttprognose viser et postivt driftsavvik på 10, 6 mill.
+Avviket er sammensatt, men er i hovedsak knyttet til lavere låneopptak enn
+budsjettert, og periodens rentereduksjoner.
+
+Prognosen forutsetter de budsjettendringer som er foreslått i saken.
+
+Investeringer
+
+Årets investeringsramme var opprinnelig kr 630,7 mill. Budsjettet er under
+revisjon og vil sannsynligvis bli nedjustert.
+
+Pr. 2. tertial er det bokført brutto 444 mill. i investeringsutgifter inkl.
+0,7 mill. i byggelånsrente.
+
+Foreløpig selges kommunale eiendommer som er søkt solgt jfr. Styresak 05/03
+– budsjettert salg 16 mill. Bokførte salgsinntekter pr. 2. tertial utgjør
+ca 8,6 mill.
+
+Vedtakskompetanse
+
+Budsjettjusteringer gjøres i henhold til gjeldende budsjettfullmakter for
+kommunale bedrifter og foretak i Bergen Kommune –”II – fullmakter
+vedrørende driftbudsjett –2 Budsjettndringer kt. a-d”.
+
+Forslag til vedtak:
+
+ 1. Styret tar saken til etterretning.
+
+ 2. Styret slutter seg til de forslag om budsjettjusteringer slik de
+ fremkommer under pkt. 1.1 – ”justeringer mot avkastningskrav” og pkt
+ 1.2 – ”Justeringer uten konsekvenser for avkastningskravet”.
+
+Dagfinn Øvrebotten
+Direktør
+
+ Terje Nordtveit
+ Økonomisjef
+
+Trykte vedlegg:
+
+ 1. Driftsregnskap – utfyllende tabell
+ 2. Vedlikeholdsutgifter
+ 3. Investeringsutgifter – rapportering pr tjenesteområde
+ 4. Status planlagt eiendomssalg
+ 5. Administrative vedtak
+
+Saksutredning:
+
+ 0. Generelt
+ Tertialrapporten redegjør for foretakets økonomiske utvikling.
+ Rapporten er strukturert i tråd med styrets vedtak om rapportering i
+ styresak 81/00
+
+ Punktvis følger saken som følger:
+ 1. Budsjettjustering
+ 2. Driftsregnskap
+ 3. Investeringsregnskap
+ a. Investeringer
+ b. status salg av eiendom
+ 4. Rapportering
+ 1. administrative vedtak knyttet til avgjørelse av anbud og
+ tilbud i perioden.
+ 2. Samordning BBE /BBB
+ 3. Hovedmål for driften 2003 jfr forretningsplan
+
+1.0 Budsjettjusteringer
+
+ 1. Justeringer mot avkastningskravet
+ Bedriftens avkastningskrav justeres som følge av overføringer mellom
+ bykassen og BBE. Tilsvarende budsjettjustering må gjøres i bykassen.
+
+ Tertialrapporten forutsetter følgende justeringer i avkastningskravet:
+
+ 1. Renteutgifter til lånefondet reduseres
+ fra 113,5 til 91,5 – kr 22 mill
+ 2. Pensjonskostnadene økes med 0,9 mill
+ som følge av økte pensjonskostnader
+ 3. Lønnskostnadene økes med 0,48 mill som
+ følge av sentralt lønnsoppgjør
+
+ 1. Renteutgiftene til lånefondet reduseres med 22 mill fra 113,5 til
+ 91,5
+ Viser til tertialrapport 1/2003 der prognosen for BBE viste et
+ positivt driftsavvik på 22 mill, som i hovedsak var knyttet til lavere
+ rente- og avdrags utgifter enn opprinnelig budsjettert. Byrådet har i
+ sak til bystyret anbefalt at avkastningskravet justeres og at midlene
+ nyttes til dekning av mindreinntekter på skatt og rammetilskudd.
+ BBE reduserer budsjett for renteutgifter til lånefondet mot at
+ avkastningskravet øker tilsvarende.
+
+ 2. Pensjonskostnadene økes med 0,9 mill som følge av økte
+ pensjonskostnader
+ Viser til bystyresak 1347/03 der det er stipulert en merkostnad for
+ BBE på 0,9 mill som følge av økte premiesatser til pensjonskassen. BBE
+ øker budsjettpostene for sosiale kostnader med 0,9 mill mot at
+ avkastningskravet reduseres tilsvarende.
+
+ 3. Lønnskostnadene økes med 0,48 mill som følge av sentralt
+ lønnsoppgjør
+ Viser til bystyresak 1347/03 der det er beregnet en merkostnad for BBE
+ på kr 477.300 som følge av økte lønnskostnader i forbindelse med
+ lønnsoppgjør som gjelder fra hhv. 01.01.03 og 01.07.03. BBE øker
+ budjsettpostene for lønn og sosiale kostnader med kr 477.300 mot at
+ avkastningskravet reduseres tilsvarende.
+
+ Justert avkastningskrav utgjør etter ovennevnte justeringer kr
+311.540.892.
+
+ 2. Justeringer uten konsekvenser for avkastningskravet
+
+Merinntekter - økt sykepengerefusjon + kr 900.000
+
+ I hht. beregnet prognose for sykepengerefusjoner er budsjettet for
+ syke- og svangerskapsrefusjoner økt opp med 0,9 mill. Budjsettpostene
+ for lønn og sosiale kostnader er økt opp tilsvarende.
+
+ 2. Driftsregnskap
+
+2.1 Sammendrag
+ En sluttprognose viser foreløpig et positivt budsjettavvik på 10,6
+ mill.
+ Endring og kommentarer til endringer fra tertialrapport 1/2003.
+ Prognosen forutsetter de budsjettjusteringer som er foreslått i saken
+
+ |  | | bud | | 2 | pronose| avvik|
+| |2 002 |2003 |just.bud.|tertial | | |
+| | | |2003 | | | |
+| | | | | | | |
+|Driftsinntekte|633 719 |672 726 |669 669 |490 528 |668 690 |979 |
+|r | | | | | | |
+| | | | | | | |
+|Driftsutgifter|580 403 |500 723 |589 744 |402 439 |588 996 |747 |
+| | | | | | | |
+|Driftsresultat|53 316 |172 003 |79 925 |88 089 |79 694 |231 |
+| Netto finans | | | | | | |
+| |50 834 |172 003 |79 703 |9 257 |68 876 |10 827|
+| Resultat | | | | | | |
+| |2 482 |- |222 |78 832 |10 817 |-10 |
+| | | | | | |596 |
+| Avsetninger | | | | | | |
+| |1 584 |- |221 |10 |227 |(6) |
+| Regnsk. | | | | | | |
+|Resultat |1 989 |- |(0) |78 822 |10 590 |(10 |
+| | | | | | |590) |
+
+ Utfyllende tabell (vedlegg 1)
+
+2.2 Driftsinntekter
+
+ Salgs-/leieinntekter
+
+ Med unntak av internhusleie er inntektsutviklingen i henhold til
+ justert budsjett.
+
+ Budsjettet for internhusleien er tidligere nedjustert med 5,2 mill til
+ kr 639,4 mill. Beregninger viser at internhusleien vil gi en inntekt
+ på kr 638,5 mill for 2003, altså en ytterligere mindreinntekt på 0,9
+ mill.
+
+2.2 Driftsutgifter
+
+ Lønn
+
+ Utgifter til lønn- og sosiale utgifter er lavere enn budsjett – ca
+ 0,8 mill. Innsparingene skyldes i hovedsak vakante stillinger, og at
+ lønnsbudsjettet er styrket som følge av økte sykepengerefusjoner uten
+ at det er tatt inn vikarer ved langtidsfravær.
+
+ Andre driftsutgifter
+
+ Andre driftsutgifter til forsikring og kom. avgifter forventes å være
+ i tråd med budsjettrammen. Akkumulerte kostnader til energi de 8
+ første månedene er innenfor budsjettrammen, men det er knyttet
+ usikkerhet mht forbruk og priser på energi i siste kvartal.
+ Det er bokført vedlikeholdsutgifter for kr 47,4 mill. (vedlegg 2 )
+ Foreløpig ikke meldt om avvik.
+
+ Lån og avdrag – netto finansposter
+
+ Mindreutgifter knyttes til lavere låneopptak enn opprinnelig
+ budsjettert og periodens rentereduksjoner. Langsiktig rentebærende
+ gjeld utgjør pr. d.d. 1,573 mrd.
+
+ Årsprognosen for renteutgifter til lånefondet (langsiktig gjeld) er
+ nedjustert med 4 mill. fra 90 mill. til 86 mill. Prognosen for
+ renteutgifter til bank er oppjustert med 2 mill. fra 3,5 mill. til 5,5
+ mill. Dette skyldes bl.a til endringer i inn- og
+ utbetalingstidspunkter i forhold til tidligere oppsatt
+ likviditetsprognose.
+
+2.3 Likviditet
+ Likviditetssituasjonen ble som forventet negativ fra juni, og med
+ forbehold kan det antas at BBE ved årets slutt har en negativ
+ likviditetsbeholdning på ca 330 mill. Prognosen har tatt høyde for en
+ slik utvikling.
+
+ 3. Investeringsregnskap
+
+3.1 Generelt
+ Årets investeringsbudsjett var opprinnelig på 630,7 mill. Budsjettet
+ er under revisjon og vil sannsynligvis bli nedjustert.
+
+ Pr. 2 tertial er det bokført brutto 444 mill i investeringsutgifter
+ inkl. 0,7 mill i byggelånsrenter. Kalkulerte byggelånsrenter pr. d.d
+ utgjør ca 19,5 mill. Det er knyttet en viss grad av usikkerhet til
+ beregningen av kalkulerte byggelånsrenter. Beregningen er basert på at
+ kostnadene påløper jevnt i perioden, og vil derfor gi avvik i forhold
+ til bokført byggelånsrente spesielt i de tilfeller der hovedtyngden av
+ kostnadene påløper tidlig eller sent i perioden. Beregnet
+ byggelånsrente tar heller ikke hensyn til endringer i rentefoten.
+ Det er foreløpig godskrevet 107,7 mill i tilskudd og refusjoner
+
+ Det beregnes byggelånsrenter på alle investeringsutgifter som er
+ registrert fra 01.01.02. Byggelånsrenten er p.t. lik oppgitt
+ konsernkontorente – 4.96%.
+
+ En foreløpig investeringsprognose viser et forventet netto årsforbruk
+ på 512 mill.
+
+ Brutto investeringer 610 mill
+ Byggelånsrenter 2003 29 mill
+ Tilskudd og refusjon - 131 mill
+ Netto investeringsutgifter 508 mill
+
+ .
+3.2 Investeringer -
+
+ Det legges med dette fram rapport for de enkelte
+ investeringsprosjektene, i tråd med vedtak i styresak 81/00. Rapport
+ for enkeltprosjektene framgår av vedlegg 3.
+
+ De prosjekter som viser merforbruk, vil en foreslå å fullfinansiere
+ enten ved å benytte disponible midler i prosjekter med mindreforbruk,
+ eller ved å foreslå avsetninger i økonomiplanen.
+
+ Avviket mellom antatt sluttkostnad og budsjett skyldes at det i
+ rapportene er lagt inn antatt sluttkostnad på prosjekter som er så
+ vidt tidlig i beslutningsprosessen at de ikke er medtatt i forslag til
+ investeringsprogram. Avvik mellom budsjett og bevilgning skyldes i
+ hovedsak at søknad om bevilgning til en rekke større prosjekter ligger
+ noe fram i tid. Samlet aktivitet framgår av nedenforstående tabell.
+
+ I forhold til forrige rapportering er en del prosjekter som har vært
+ ferdigstilt en tid tatt ut.
+
+ |SAMMENSTILLING |  |BUDSJETT |BEVILGNI|ANTATT |
+| | | |NG |SLUTT-KOSTNAD |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 1 |  |824 469 |554 740 |907 963 152 |
+|TILTAK FOR BARN OG | |000 |000 | |
+|UNGE | | | | |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 3 |  |999 700 |638 500 |1 072 300 000 |
+|TILTA K FOR ELDRE OG| |000 |000 | |
+|SÆRLIG | | | | |
+|OMSORGSTRENGENDE | | | | |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 7 |  |20 300 |40 700 |304 000 000 |
+|BRANN- OG FEIERVESEN| |000 |000 | |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 12 |  |155 650 |150 850 |189 760 000 |
+|KULTUR | |000 |000 | |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 13 |  |23 600 |23 600 |155 206 000 |
+|IDRETT | |000 |000 | |
+|  |  |  |  |  |
+|TJENESTEOMRÅDE 16 |  |7 200 000|0 |10 200 000 |
+|ADMINISTRASJON OG | | | | |
+|FELLESFUNKSJONER | | | | |
+|  |  |  |  |  |
+|SUM |  |2 030 919|1 408 |2 639 429 152 |
+| | |000 |390 000 | |
+
+3.3 Salg av eiendom
+ I henhold til sak 05/03 - budsjettert salg 16 mill. Status salg av
+ fast eiendom pr. 2 tertial utgjør ca kr 8,6 mill. (vedlegg 4).
+ Det er knyttet en liten usikkerhet til avtale om salg av tomt til SIB
+ som skal utbygges med studentboliger. Men foreløpig opprettholder vi
+ prognosen om å nå oppsatt budsjett på 16 mill.
+
+4.0 Diverse rapportering
+
+4.1 Administrative vedtak med avgjørelse av anbud og tilbud i perioden
+(vedlegg 5 )
+ Det er fattet administrative vedtak i perioden– hittil i år 39 saker.
+ Det er det gjort vedtak for 130 mill. i perioden – hittil i år 144,1
+ mill.
+
+ Sakene er nå også tilgjengelig på internett via vår hjemmeside.
+
+ 2. Samordning BBE /BBB
+ Oppfølging av samordning mellom BBB og BBE skjer gjennom møter mellom
+ enkeltavdelinger i BBE/BBB for å jobbe videre med de forslag som ble
+ lansert i rapporten fra 2001.
+
+4.3 Hovedmål for driften i 2003 i henhold til gjeldende forretningsplan
+
+| | | |
+|Kunderelasjoner – Hovedmål |Frist |Status |
+| | |Gjennomføres|
+|Tilfredshetsindeks - Gjennomføre måling av kunders|3 |innen frist |
+|og brukeres tilfredshet |kvartal | |
+| |2003 | |
+| | | |
+|Med utgangspunkt i våre i kunder og brukeres |2 |gjennomført |
+|tilfredshet drøfte tiltak med våre kunder innen |kvartal | |
+| |2003 | |
+
+| | | |
+|Medarbeiderforhold - Hovedmål |Frist |Status |
+| | |Gjennomføre|
+|Medarbeidertilfredshetsindeks skal måles og |4 kvartal|s innen |
+|verdien skal forbedres sammenlignet med året før |2003 |frist |
+| | |Sykefravær |
+|Sykefravær – periodisk måling – redusere fravær |2 og 4 |1 halvår - |
+|sammenlignet med året før. |kvartal |8,6% |
+| |2003 | |
+
+| | | |
+|Samfunnsrelasjoner – Hovedmål |Frist |Status |
+| | |Arbeidet |
+|Energireduksjon – Vi skal etablere datagrunnlag | |pågår. Akk.|
+|for kundene om beslutninger om energireduserende | |innsp. pr. |
+|tiltak og ansvarsfordeling | |30.8. |
+| | |kalkulert |
+| | |til ca. 1 |
+| | |mill. |
+| | |Følges opp |
+|Fornybare og miljøvennlige energiformer -Vi skal | |kontinuerli|
+|etablere vannbåren varme når dette er | |g |
+|hensiktsmessig. | | |
+| | | |
+|Tilrettelegge for at betalingsansvar for varslet |i løpet |Gjennomføre|
+|forbruksbasert vannavgift overføres fra huseier |av 2003 |s innen |
+|til kunden | |frist |
+| | |Gjennomføre|
+|Kvinner i lederposisjon - Ledergruppen skal 2 |i løpet |s innen |
+|ganger pr år drøfte tiltak for øke kvinneandel i |av 2003 |frist |
+|lederstillinger i foretaket. | | |
+
+| | | |
+|Finansielle hovedmål – Hovedmål |frist |Status |
+| | | |
+|Etablere et forslag til et finansielt |i løpet |Avventer |
+|avkastningskrav |av 2003 |konklusjon |
+| | |ift |
+| | |Byrådets |
+| | |gjennomgang|
+| | |av BBE |
+
+| | | |
+|Prosessmål -Hovedmål |frist |Status |
+| | |Gjennomføre|
+|Administrasjonskostnader i forhold til forvaltet |i løpet |s innen |
+|areal skal reduseres ift. Året før. |av 2003 |frist |
+
+ Vedlegg 1
+
+Driftsregnskap - utfyllende tabell
+
+|DRIFTSREGNSKAP | |  |  |  |  |  |
+|  |Regnskap | VEDTATT | JUSTERT | Akkum. |
+| | | | |Regnskap |
+| | | | | |
+|ADR. | | | STATUS|SALGSBELØP |
+| |GNR. |BNR. | | |
+| | | | | |
+|Seismark i Arna |286 |3 |ikke | |
+| | | |solgt | |
+|Andreas Gjellseviksvei 6|286 |14 |ikke | |
+| | | |solgt | |
+|Stølsveien |286 |457 |ikke | |
+| | | |solgt | |
+| |286 |574 |ikke | |
+| | | |solgt | |
+|Landås |160 |180 |ikke | |
+| | | |solgt | |
+|Gyldenpris |158 |606 |ikke | |
+| | | |solgt | |
+|Fløenbakken |163 |75 |ikke | |
+| | | |solgt | |
+|Kanalveien |159 |136 |ikke | |
+| | | |solgt | |
+|Landås |161 |726 |ikke | |
+| | | |solgt | |
+| |161 |795 |ikke | |
+| | | |solgt | |
+| |161 |1151 |ikke | |
+| | | |solgt | |
+| |161 |1152 |ikke | |
+| | | |solgt | |
+|Skageveien, Ytreb.bydel |114 |4 |ikke | |
+| | | |solgt | |
+|Fanahammeren |97 |2 |ikke | |
+| | | |solgt | |
+|Kanalveien |17 |37 |ikke | |
+| | | |solgt | |
+|J.L.Mowinkelsv. del av |25 |278 |ikke | |
+|eiend. | | |solgt | |
+|Kirsten Flagstad vei |26 |181 |ikke | |
+| | | |solgt | |
+|Kjøkkelvik/Kjøkkelvik |123 |314 |ikke | |
+|skole | | |solgt | |
+|Vågedalen Laksevåg |151 |170 |ikke | |
+| | | |solgt | |
+|Bjørndalstræet |122 |314 |ikke | |
+|v/Bjørgeveien | | |solgt | |
+| |122 |200 |ikke | |
+| | | |solgt | |
+|Lægdesvingen 86D |161 |513 |solgt |86 400 |
+| |146 |239 |solgt |78 000 |
+|Sandviken |168 |82 |solgt |650 000 |
+|Hordagt. 26 |158 |331 |solgt |133 850 |
+|Krohnegården 165 |26 |229 |solgt |8 000 |
+|Fana |44 |664 |solgt |1 200 000 |
+| |158 |214 |solgt |14 000 |
+|Svaneviksv 13 |159 |160 |solgt |97 700 |
+|Fylllingsdalen |25 |278 |solgt |520 000 |
+|Fredlundsv |18 |279 |solgt |75 000 |
+|Løbergsv. 52 |159 |571 |solgt |66 250 |
+|Adolph Bergs vei 58 |160 |674 |solgt |700 000 |
+|Øyjordsbotten 25 |168 |1586 |solgt |82 728 |
+|Gyldenpris |158 |606/806 |solgt |2 150 000 |
+|Nygårdsgt. 12. |164 |950 |solgt |1 000 000 |
+|Bakersmuget 14 |168 |468 |solgt |29 140 |
+|Lillehatten 345 |22 |408 |solgt |75 550 |
+|Skrivergaten 31 |159 |538 |solgt |80 550 |
+|Håkonshella |129 |164 |solgt |206 400 |
+|Skansemyrveien 21 |166 |229 |solgt |150 496 |
+| |166 |675 |solgt |50 000 |
+|Svaneviksveien 19 |159 |163 |solgt |110 000 |
+|Landåslien 47 |161 |885 |solgt |222 080 |
+| |186 |355 |solgt |1 700 |
+| |8 |5 |solgt |20 000 |
+| |39 |415 |solgt |18 000 |
+|Munkebottsveien 4c |161 |881 |solgt |195 000 |
+| |25 |67 |solgt |26 000 |
+| |187 |311 |solgt |75 000 |
+|Sørhaugen bofellesskap |123/124 |92/180/251 |solgt |72 750 |
+|Sandviken Brygge ""Torg |168 |3/396/397/186|solgt |470 150 |
+|1"" | |0 | | |
+| | | | |8 664 744 |
+| | | | | |
+| | | | | |
+
+",Dette skyldes høye strømpriser og høyt energiforbruk. 2.3 Finansposter Renteinntekter Renteinntektene er noe lavere enn budsjettert. Dette skyldes at budsjetterte renteinntekter fra bankinnskudd ikke er realisert. Renteutgifter Renteutgiftene er redusert med 22 mill. Reduksjonen skyldes at budsjetterte renteutgifter til lånefondet ikke er realisert. 2.4 Avskrivninger Avskrivningene er i tråd med budsjett. 2.5 Netto driftsresultat Netto driftsresultat er i tråd med budsjett. 2.6 Investeringer 2.6.1 Rapportering pr tjenesteområde Tjenesteområde Budsjett Forbruk Prognose Avvik 0100 Administrasjon 1 000 000 1 000 000 1 000 000 0 0200 Barnehager 1 000 000 1 000 000 1 000 0,| | | | | | | |Avkastnings | | | | | | | |krav |311 541 |311 541 |311 541 |311 541 |311 541 |0 | | | | | | | | |Netto resultat |1 989 |- |(0) |78 822 |10 590 |(10 | | | | | | | |590) | | | | | | | | | | | |
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie.","
+BERGEN KOMMUNE
+Fana bydel
+
+ Saknr 214-01
+ Emnekode 4560
+ Arkivsak 200114430
+
+Til
+Fana bydelsadministrasjon
+
+Ruspolitisk handlingsplan. Høring
+
+Saken ble behandlet av Fana bydelsstyre i møte 11.12.01.
+
+Forslag til vedtak:
+
+Saken tas til orientering.
+
+Saken utsatt.
+
+Fana bydelsadministrasjon, 13. desember 2001
+
+Kirsten Lillebergen
+sekretær
+
+","Bergen kommune har sendt ut et forslag til ruspolitisk handlingsplan for Fana bydel til høring. Saken ble behandlet av Fana bydelsstyre den 11. desember 2001, og det ble besluttet å ta saken til orientering. Forslaget ble imidlertid utsatt for videre behandling. Sekretæren for bydelsstyret opplyser at saken vil bli tatt opp igjen senere. Det er ikke gitt noen ytterligere informasjon om innholdet i planforslaget. Denne saken kan ha betydning for fremtidige beslutninger i bydelen.","Bergen kommune har sendt ut en høring om ruspolitisk handlingsplan for Fana bydel. Saken ble behandlet av Fana bydelsstyre den 11. desember 2001, men det ble besluttet å utsette saken uten videre vedtak."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie.","Dokument: Møte i Utval for samfunnsutvikling
+
+ Innkalling
+
+Utval: Utval for samfunnsutvikling
+Møtestad: Kulturhuset - møterom Skald
+Dato: 23.01.2025
+Tid: Kl. 10:30
+
+Den som har lovleg forfall, eller er ugild i nokon av sakene, må melda frå så snart råd er til
+tlf. 57 87 47 00, slik at varamedlem kan bli kalla inn.
+
+Varamedlem møter etter nærmare innkalling.
+
+Sakliste
+
+Sak nr. Sakstittel
+001/25 Godkjenning av innkalling og sakliste
+002/25 Godkjenning av protokoll frå forrige møte
+003/25 Referatsaker
+004/25 Spelemidlar 2025 - Rullering av handlingsprogram 2025-2028
+
+Stryn, 16.01.2025
+
+Arnljot Sæternes
+ -leiar-
+ Arkiv: FE-033
+ ArkivsakID: 24/2326-2
+ Saksbehandlar: Liv Oddrun Ytrebø
+
+ Saksframlegg
+
+Saksnr. Utval Møtedato
+001/25 Utval for samfunnsutvikling 23.01.2025
+
+Godkjenning av innkalling og sakliste
+ Arkiv: FE-033
+ ArkivsakID: 24/2326-1
+ Saksbehandlar: Anna Bringsvor
+ Egedahl
+
+ Saksframlegg
+
+Saksnr. Utval Møtedato
+002/25 Utval for samfunnsutvikling 23.01.2025
+
+Godkjenning av protokoll frå forrige møte
+
+Vedlegg i saka:
+ Protokoll - Utval for samfunnsutvikling - 07.11.2024 1656151
+ Arkiv: FE-033
+ ArkivsakID: 24/2326-3
+ Saksbehandlar: Liv Oddrun Ytrebø
+
+ Saksframlegg
+
+Saksnr. Utval Møtedato
+003/25 Utval for samfunnsutvikling 23.01.2025
+
+Referatsaker
+
+Underliggande sak:
+1, Vedtak om dispensasjon Dalheim - kulturminne ID 263491-1
+
+2, Vedtak om dispensasjon frå freding av Dalheim - kulturminne ID 263491-7 og 10
+ Arkiv: FA-D11
+ ArkivsakID: 24/1267-14
+ Saksbehandlar: Ingrid Heieren
+ Sølvberg
+
+ Saksframlegg
+
+Saksnr. Utval Møtedato
+004/25 Utval for samfunnsutvikling 23.01.2025
+ Formannskapet
+ Kommunestyret
+
+Spelemidlar 2025 - Rullering av handlingsprogram 2025-2028
+Bakgrunn for saka:
+
+Handlingsprogram idrett, fysisk aktivitet og friluftsliv 2025-2028 vart rullert og vedteke i KS 14.11.24.
+Etter at spelemiddelsøknadane er komne inn er det såpass store avvik frå handlingsprogrammet at
+handlingsprogrammet må oppdaterast og det vert fremma ny sak med prioritering av anlegg.
+
+Lovgrunnlag, reglar, føresegner, plandokument:
+
+Kommunedelplan for kultur, idrett, fysisk aktivitet og friluftsliv
+
+Ikkje vedlagt sakstilfang:
+
+Vedlegg i saka:
+ Handlingsprogram idrett 2025-2028 1662512
+
+Saksopplysningar:
+
+For å kunne søkje tilskot frå spelemiddelordninga er kommunen pålagt å ha ein vedteken
+kommunedelplan for idrett og fysisk aktivitet. Stryn kommune må sende inn prioritert liste over
+anlegg som søkjer spelemidlar i 2025, til fylkeskommunen.
+
+Handlingsprogrammet som no vert oppdatert var vedteke i KS 14.11.24.
+
+Vurdering:
+
+Ordinære anlegg:
+Lista over anlegg som skulle søkje spelemidlar i 2025 var på totalt 10 anlegg. Stryn Vinterski har
+endra sin søknad frå ein til to søknader. Søknad om rehabilitering av lysanlegg i hovudtraséen vert
+fremma i 2025, og Nedfart rundløype/snøproduksjon vert flytt til 2026.
+
+Seks av dei ti anlegga søkjer spelemidlar i 2025 og vert med i prioriteringa. Resten vert flytta til 2026.
+
+Prioritert liste over ordinære anlegg:
+
+ Anleggsnr Søknadsnamn Utbyggjar Status
+ 1 80393 2 tiltak på Olden skule kunstgrasbane 36x56 Olden Idrettslag Fornya
+ inkl.lys
+ 2 59339 2 tiltak på Ålandsleite skistadion – Hardbagg Fornya
+ garasje/sanitær Idettslag
+ 3 72194 2 tiltak på Avleivåsen skytebane, 100 meter Olden skyttarlag Fornya
+ 4 82683 Nybygg av Padeltennisbane 1, Innvik stadion Vikane IL Ny
+ 5 83070 Nybygg av Padeltennisbane Vikane IL Ny
+ 6 2083 Rehabilitering av lysanlegg_ute, hovudtrasé Stryn Vinterski Ny
+ nedfart
+
+Nærmiljøanlegg:
+Fire anlegg vart spelt inn at dei kunne søkje spelemidlar i 2025. Anlegg 2, Nordsida Aktivitetspark, er
+ikkje fullfinansiert, og vert flytta til 2026.
+
+Prioritert liste over nærmiljøanlegg:
+
+ Anleggsnr Søknadsnamn Utbyggjar Status
+ 1 69478 Ballbinge ved Loen Stadion, rehabilitering Loen IL Ny
+ 2 69581 Rehabilitering av fleraktivitetsområde, Markane IL Ny
+ opplæringskart Ullsheim
+ 3 26 Rehabilitering av Ballbane, Sandvolleyballbane Markane IL Ny
+ Ullsheim
+
+Kommunedirektøren sitt framlegg til vedtak:
+
+1. Handlingsprogrammet for 2025-2028 vert vedteke slik det ligg føre.
+","Utval for samfunnsutvikling har innkalt til møte den 23. januar 2025 for å godkjenne innkalling, protokoll fra forrige møte, referatsaker, samt rullering av handlingsprogrammet for spelemidler i 2025-2028. Særskilt fokus vil være på oppdatering av prioriteringer for anlegg som skal søke om støtte fra spelemiddelordningen for 2025.","Utvalget for samfunnsutvikling skal godkjenne innkallingen og protokollen fra forrige møte samt referatsakene før de tar opp rulleringen av handlingsprogrammet for idrett, fysisk aktivitet og friluftsliv for perioden 2025-2028. Det er også planlagt en oppdatering av prioriteringen av anlegg som søker om spillemidler i 2025."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," 1 
+Høringssaker 
+
+Forretningsutvalget behandlet saken i møtet 280113 sak 21-13: 
+
+Følgende dokument ble utsendt i forkant av møtet: 
+
+1. Høringsbrev om endringer i læreplaner for engelsk, matematikk, naturfag, norsk og 
+samfunnsfag - LK06 og LK06-samisk 
+
+2. Høringsbrev om syv nye læreplaner for valgfag på ungdomstrinnet fra skoleåret 2013-
+2014 
+
+ ","Forretningsutvalget har behandlet høringssaker knyttet til endringer i læreplanene for engelsk, matematikk, naturfag, norsk og samfunnsfag samt syv nye læreplaner for valgfag på ungdomstrinnet.","Forretningsutvalget har behandlet høringssaker knyttet til endringer i læreplanene for flere fag, inkludert engelsk, matematikk, naturfag, norsk og samfunnsfag, samt innføring av syv nye læreplaner for valgfag på ungdomstrinnet fra skoleåret 2013-2014."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie.","
+
+Dato: 11. oktober 2000
+
+FORUTV	/00
+
+Forretningsutvalget
+
+Søknad som mottakelse for skolekonsertfestivalen  LYDYNGEL - Deling av vertskap mellom Rikskonsertene, Hordaland fylkeskommune og Bergen kommune.
+
+(Bystyrets sekretariat)	TSHE	BYST-0042-200090009/105
+
+Hva saken gjelder:
+
+./.	Bystyrets sekretariat har mottatt søknad for Rikskonsertene om å dele vertskap med Rikskonsertene og Hordaland fylkeskommune ved mottakelsen/festen som skal arrangeres torsdag 23. november kl. 19.00 for alle de ca. 200 medvirkenede i festivalen.
+
+Lydyngel er en skolekonsertfestival som er et samabeidsprosjekt mellom Rikskonsertene, Bergen kommune, Statens utdanningskontor i Hordaland og Hordaland fylkeskommune i tillegg til Kulturby Bergen 2000.   Bergen kommune er representert i styrings- og prosjektgruppene for festivalen ved både kulturetaten og skoleetaten.
+
+I henhold til kommunenes reglement vedr. mottakelser/arrangment,
+
+ pkt. 2 Internasjonale kongressser og konferanser, 
+
+og i spesielle tillfeller også nasjonale
+
+, kan gis oppmeksomhet i form av en mottakelse etter en konkret vurdering ut fra kommunenes spesielle interesse av vedkommende arrangment............
+
+vil Bysekretæren anfefale at søknaden imøtekommes.
+
+Forslag til vedtak:
+
+1.
+
+Bergen kommune deler vertskapsrollen med Rikskonsertene og Hordaland fylke under mottakelsen/festen torsdag 23. november kl. 19.00 i forbindelse  med skolekonsertfestivalen Lydyngel
+
+.
+
+2.	Bergen kommune sin andel av utgiftene, inntil kr. 20.000,- belastes konto  for representasjon.  Beløpet faktureres Bergen kommune i etterkant av arrangmentet.
+
+BYSTYRETS SEKRETARIAT
+
+Roar Kristiansen
+
+kst. bysekretær
+
+Toril Sværen Hesjedal
+
+konsulent
+
+Saksutredning:
+
+","Dokumentet omhandler en søknad fra Rikskonsertene om å dele vertskap med Hordaland fylkeskommune og Bergen kommune under en mottakelse for skolekonsertfestivalen Lydyngel. Bystyrets sekretariat anbefaler at søknaden innvilges, og det foreslås at Bergen kommune deler kostnadene knyttet til arrangementet. Det er spesifisert at mottakelsen vil finne sted den 23. november kl. 19.00.","Bergen kommune har mottatt en søknad fra Rikskonsertene om å dele vertskap for skolekonsertfestivalen Lydyngel, som finner sted 23. november. Festivalen er et samarbeid mellom flere aktører, og kommunen anbefales å imøtekomme søknaden og dekke inntil 20.000 kroner i utgifter."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," Delegasjonsreise til OTC i Houston mai 2008.
+
+Forretningsutvalget behandlet saken i møtet 110308 sak 62-08 og fattet følgende vedtak:
+Alt 2: Forretningsutvalget gir ikke sin tilslutning til at politisk ledelse på bystyresiden deltar på OTC-konferansen 5. – 11..mai 2008.
+
+Forretningsutvalgets behandling:
+Alternativ 2 ble vedtatt enstemmig. 
+
+Forslag til vedtak:
+Alt. 1: Forretningsutvalget gir sin tilslutning til at politisk ledelse på bystyresiden deltar på OTC-konferansen 5. – 11..mai 2008. Følgende deltar:
+…………………………….
+
+Alt 2: Forretningsutvalget gir ikke sin tilslutning til at politisk ledelse på bystyresiden deltar på OTC-konferansen 5. – 11..mai 2008.
+
+","Forretningsutvalget har behandlet en sak om deltakelse av politisk ledelse fra bystyresiden på OTC-konferansen i Houston, USA, som finner sted mellom 5. og 11. mai 2008. Utvalget vedtok enstemmig å gi sin tilslutning til deltagelse for den politiske ledelsen, men det var også et alternativt forslag om å ikke delta.","Forretningsutvalget har besluttet å ikke gi sin tilslutning til at politisk ledelse fra bystyret skal delta på OTC-konferansen i Houston i mai 2008, etter en enstemmig avstemning. Det foreslåtte alternativet om deltagelse ble nedstemt."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," 1 
+Høringsuttalelse om ny adopsjonslov Høring NOU 2014:9 
+
+Komite for helse og sosial behandlet saken i møtet 040215 sak 21-15 og fattet følgende 
+vedtak: 
+1. Bergen kommune støtter i all hovedsak utvalgets utkast til ny adopsjonslov og 
+anbefalingene i utredningen. 
+
+2. Det avgis høringsuttalelse i samsvar med herværende saksutredning. 
+
+3. Oppgaver til kommunen som gir økte utgifter skal fullfinansieres. 
+
+ 
+Komiteens behandling: 
+Ingen representanter tok ordet. 
+
+Votering: 
+Innstillingen ble vedtatt enstemmig. 
+
+ 
+Byrådet innstiller til komite for helse og sosial å fatte følgende vedtak: 
+Byrådets innstilling er likelydende med komiteens vedtak. 
+
+ 
+ ","Bergen kommune har behandlet høringsuttalelsen om den nye adopsjonsloven og uttrykker støtte til utvalgets utkast og anbefalinger. Det er en enstemmig vedtak fra komite for helse og sosial, og det understrekes at oppgaver som medfører økte utgifter for kommunen skal fullfinansieres.","Bergen kommune har behandlet en høringsuttalelse angående den nye adopsjonsloven, og støtter stort sett utvalgets forslag. Komiteen for helse og sosial har enstemmig vedtatt at det avgis en høringsuttalelse i tråd med saksutredningen, samt at oppgaver som fører til økte utgifter skal fullfinansieres. Byrådet støtter også komiteens vedtak."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," 1
+Arna, gnr. 299 bnr.2, Langedalen 462. Klage over avslag til fradeling. 
+
+Bergen bystyre behandlet saken i møtet 251010 sak 260-10 og fattet følgende vedtak: 
+Fagetatens vedtak datert 26.10.09 oppheves. 
+
+Det meddeles dispensasjon fra kommuneplanens pkt. 26 for fradeling til uendret bruk, som 
+omsøkt den 29.06.09. 
+
+Klagen tas til følge. 
+
+ 
+Bystyrets behandling: 
+Følgende representanter tok ordet: 
+Ellinor-Therese Kreybu (FrP) og Lillian Blom (SV) 
+
+ 
+Bystyrets behandling: 
+Lillian Blom (SV) 
+tok opp igjen sitt alternative forslag fremsatt i Komite for miljø og 
+byutvikling: 
+
+""Fagetats vedtak datert 26.10.09 opprettholdes. Klagen tas ikke til følge."" 
+
+Votering: 
+Lillian Bloms alternative forslag fikk 7 stemmer (SV+R) og var dermed falt. 
+
+Innstillingen
+ ble vedtatt enstemmig. 
+
+ 
+Komite for miljø og byutvikling behandlet saken i møtet 071010 sak 449-10 og avga 
+følgende innstilling: 
+Komiteens innstilling er likelydende med bystyrets vedtak. 
+
+ 
+Byrådet innstiller til bystyret å fatte følgende vedtak: 
+Byrådets og komiteens innstilling er likelydende. 
+
+ 
+
+ ",Bergen bystyre har behandlet en klage på avslag til fradeling av eiendom i Arna. Bystyret har besluttet å oppheve fagetatens tidligere vedtak og gi dispensasjon fra kommuneplanen for fradelingen. Klagen ble tatt til følge etter at et alternativt forslag fra SV/R ble nedstemt.,"Bergen bystyre har behandlet en klage om avslag på fradeling av eiendom i Langedalen og har besluttet å gi dispensasjon fra kommuneplanens bestemmelser. Klagen ble tatt til følge etter en votering, der et alternativt forslag fra Lillian Blom (SV) ble nedstemt. Bystyret fattet enstemmig vedtak om å oppheve det tidligere avslag."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie.","
+| |Dato: 9. november |
+| |2004 |
+| | |
+| | |
+| |Byrådsak |
+| |/04 |
+| |
+| |
+|Byrådet |
+| |
+| |
+| |
+|Godkjenning av protokoll fra møte i byrådet 03.11.2004 |
+| |
+| |TUGU |BLED-00-200401317-140 |
+| |
+
+Hva saken gjelder:
+
+Vedtak:
+
+Protokoll fra møte i byrådet 03.11.2004 godkjennes.
+
+Monica Mæland
+byrådsleder
+
+ Saksutredning:
+
+",Byrådet har godkjent protokollen fra møtet som ble avholdt den 3. november 2004. Vedtaket ble fattet av byrådsleder Monica Mæland.,Byrådet har godkjent protokollen fra møtet den 3. november 2004. Vedtaket ble ledet av byrådsleder Monica Mæland.
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," 1 
+Mediefondet Zefyr - suppleringsvalg til styret 
+
+Byrådet behandlet saken i møtet 150916 sak 1292-16 og fattet følgende vedtak: 
+Som nytt styremedlem til Mediefondet Zefyr foreslås: Hallgeir Isdahl. 
+
+ ","Byrådet har foreslått Hallgeir Isdahl som nytt medlem av styret for Mediefondet Zefyr, etter at det tidligere medlemmet, Kjersti Kleven, trakk seg fra vervet. Saken ble behandlet i byrådsmøte den 15. september 2016, og vedtaket ble fattet. Response: Det er foreslått en ny kandidat til styret for Mediefondet Zefyr, nemlig Hallgeir Isdahl. Denne beslutningen ble tatt av byrådet under deres møte den 15. september 2016.","Byrådet har besluttet å velge Hallgeir Isdahl som nytt styremedlem for Mediefondet Zefyr, etter behandling av saken den 15. september 2016."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie.","
+| |Dato: 23. januar |
+| |2002 |
+| | |
+| | |
+| |Byrådsak |
+| |1043/02 |
+| |
+| |
+|Byrådet |
+| |
+| |
+| |
+|Bergenhus, gnr 164 bnr 904, Vaskerelven 14. Bruksendring til |
+|skjenkested. Tiltakshaver God Drikke Bergen AS |
+| |
+|Byrådsavdeling for miljø og |LNRO |BYG-5210-200115121-6 |
+|byutvikling | | |
+| |
+
+Hva saken gjelder:
+
+Det søkes om bruksendring fra lager/verksted til skjenkested i eiendommens
+underetasje. Lokalene har tidligere vært benyttet av en pianoforretning.
+
+Bruksendringen er ikke i konflikt med kommundelplan for sentrum, og
+medfører ingen fasademessige endringer.
+
+Byråden slutter seg til byggesaksavdelingens vurderinger, og anbefaler
+søknaden godkjent.
+
+Det foreligger merknad fra nabo Torggaten 11.
+
+Vedtakskompetanse:
+
+I henhold til bystyresak 145 av 5. juni 2000 pkt 2 har byrådet myndighet
+til å treffe vedtak om bruksendring til skjenkested.
+
+Byråd for miljø og byutvikling innstiller til byrådet å fatte følgende
+vedtak:
+
+Søknad mottatt 18.12.01 om bruksendring fra kjeller/lager/verksted til
+skjenkested for underetasje i eiendommen Vaskerelven 14, gnr 164 bnr 904,
+godkjennes under forutsetning av at tekniske krav for drift av virksomheten
+blir ivaretatt.
+
+Tom Knudsen
+Byråd for miljø og byutvikling
+
+Vedlegg:
+Notat fra byggesaksavdelingen datert 15.01.02.
+","Byrådet vurderer en søknad om bruksendring fra lager/verksted til skjenkested i Vaskerelven 14, som tidligere ble brukt som pianobutikk. Søknaden er ikke i strid med kommunedelplanen for sentrum og anbefales godkjent av byråden. Det er imidlertid kommet en merknad fra naboen Torggaten 11.","Byrådet i Bergen har anbefalt å godkjenne en søknad om bruksendring av eiendommen Vaskerelven 14 fra lager/verksted til skjenkested. Endringen er i tråd med kommunens planer og medfører ingen fasademessige endringer. Det foreligger merknad fra en nabo, men byrådet har myndighet til å fatte vedtaket."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie.","
+| |Dato: 9. februar |
+| |2005 |
+| | |
+| | |
+| |Byrådsak |
+| |1082/05 |
+| |
+| |
+|Byrådet |
+| |
+| |
+| |
+|Midlertidig opphevelse av kollektivfelt i Lars Hilles gate/Christies|
+|gate |
+| |
+| |SPKL |PBY-7112-200004688-108 |
+| |
+
+Hva saken gjelder:
+
+I forbindelse med rehabilitering og omlegging av vann- og avløpsnettet i
+Vestre Torggate/Vaskerelven, vil Vaskerelven bli stengt for gjennomkjøring
+i perioden 7. februar til 6. mars 2005.
+
+Konsekvensene av dette viser at det i rushtiden blir lange køer fra Lars
+Hilles gate og langt sørover.
+
+Byrådsleder innstiller derfor til Byrådet å be Statens Vegvesen, Region
+vest, som en midlertidig løsning, å åpne kollektivfeltet i Lars Hilles gate
+og Christies gate for alminnelig ferdsel.
+
+Vedtakskompetanse:
+
+Det vises til B.sak 126/00 og vedtak punkt 4 der det heter at bystyret
+delegerer til byrådet fullmakter skissert i sakens pkt. 7. – ”I henhold til
+B.sak 79/00, gis det fullmakter som tilsvarer den kompetanse dagens
+formannskap, de sentrale utvalgene og rådmannen har i dag.”
+
+Byrådslederen innstiller til byrådet å fatte følgende vedtak:
+
+Byrådet ber Statens Vegvesen, Region Vest i tidsrommet frem til arbeidet
+med rehabilitering og omlegging av vann- og avløpsnettet i Vestre
+Torggate/Vaskerelven er sluttført, om å åpne kollektivfeltet i Lars Hilles
+gate og Christies gate for alminnelig ferdsel.
+
+Monica Mæland
+byrådsleder
+",Byrådet ber Statens Vegvesen om å åpne kollektivfeltet i Lars Hilles gate og Christies gate for alminnelig ferdsel i perioden frem til rehabiliteringen av vann- og avløpsnettet i Vestre Torggate/Vaskerelven er fullført. Dette er en midlertidig løsning for å håndtere køer i rushtiden som følge av rehabiliteringsarbeidet. Vedtaket ble fattet av byrådsleder Monica Mæland.,"Byrådsleder Monica Mæland foreslår at kollektivfeltet i Lars Hilles gate og Christies gate midlertidig åpnes for alminnelig ferdsel. Dette tiltaket er nødvendig på grunn av stengingen av Vaskerelven for rehabilitering av vann- og avløpsnettet, som vil føre til lange køer i rushtiden."
+hygiene,#7b1fa2,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Norwegian language quality refers to how well-formed, clear, and readable the summary is at the surface level. This includes:
+- grammatically correct Norwegian sentences
+- complete (not truncated or broken) sentences
+- proper punctuation
+- clear and coherent sentence structure
+
+The summary should not contain:
+- incomplete or cut-off sentences
+- repeated text fragments
+- grammatically malformed phrases
+- excessive identifiers or unusual abbreviations
+- misspelled or non-Norwegian words that are not names
+- obvious formatting issues such as HTML/XML markup, long strings of hyphens or periods, or repeated ""###"" markers
+
+Formatting constraint:
+- At most one optional ""###"" may appear at the beginning and one at the end of the summary
+- No additional ""###"" markers or trailing text should appear beyond that
+- Violations should be treated as formatting issues and penalized accordingly
+
+Evaluation Steps:
+1. Read Summary A and Summary B.
+2. Evaluate each summary based on the Evaluation Criteria above.
+3. Compare the summaries and decide which one has better Norwegian language quality.
+
+Important:
+- Focus only on language quality (grammar, wording, structure, punctuation, formatting).
+- Do NOT consider factual accuracy, completeness, or content quality.
+- Prefer the summary with fewer language-quality issues.
+- If both summaries are equally well-formed or equally flawed, choose Tie."," Dato: 26. juni 2007
+
+ Byrådsak 1460/07 
+
+Byrådet
+
+Laksevåg, gnr. 137 bnr. 520 ( 137/571), Drotningsvikveien 88A. Klage over avslag på søknad om oppføring av altan. 
+
+	MBOL	NYBY-5210-200610167-8
+
+Hva saken gjelder: 
+Saken gjelder melding om oppføring av altan på 14,8 m2. Det ble gitt avslag i vedtak av 08.09.06, da tiltaket er plassert nærmere nabogrense enn 4 meter jfr. plan- og bygningslovens § 70 nr.2, og ikke oppfyller kravene i § 74 nr. 2 om å tilfredsstille rimelige skjønnhetshensyn. 
+Vedtaket ble påklaget i brev av 02.10.06. 
+
+Eiendommen er regulert til bolig ved plan R. 16470000 stadfestet 20040913.
+
+Det er foretatt nabovarsling i samsvar med bestemmelsene i pbl. § 94 nr.3, og det er ikke registrert nabomerknader. 
+
+Klager anfører at det i nabolaget er mange tilsvarende altaner på enden av bygningene, uten at dette har ødelagt husenes preg, og mener seg forskjellsbehandlet ved avslaget. Klager har vedlagt mange bilder som han mener underbygger hans påstand. 
+Klager viser til tomtedelingsplanen for rekkehus felt B4 som dokumentasjon på at altanen ikke vil overskride avstandsbestemmelsen. 
+
+Fagetaten legger til grunn at delingstillatelsen av 22.08.06 gjelder fremfor tomteplanen ved vurdering av avstand til nabogrensen. 
+Av delingskartet fremgår det at boligens sørøstre hjørne berører eiendomsgrensen, som er det arealet hvor omsøkte tiltak er planlagt plassert. Dette innebærer at omsøkte tiltak vil gå utover nabogrensen og kan slik ikke tillates. Å disponere over en annens eiendom krever særskilt grunnlag. 
+Fagetaten er etter dette kommet til at det ikke er hjemmel for å dispensere fra avstandskravet i § 70 nr. 2. 
+
+Fagetaten er videre kommet til at omsøkte tiltak ikke tilfredsstiller rimelige skjønnhetshensyn verken i forhold til seg selv eller sine omgivelser, jfr. § 74 nr. 2. 
+Fagetaten uttaler at eiendommen er en del av en rekke med 4 tilnærmet identiske enheter, hvor bygningen har en enkel form med saltak. Altanen, med en prosjektert dybde på 2,8 meter ut fra veggliv, vil bli dominerende og føre til at husrekkens preg går tapt. Tiltaket vil slik fremstå som dominerende og ikke ta hensyn til sine bebygde omgivelser. 
+Fagetaten avviser klagers påstand om usaklig forskjellsbehandling da de eksempler det her vises til ikke kan anses å være like med omsøkte i faktisk eller rettslig henseende. Omsøkte tiltak gjelder sak om tilbygg mens for de nevnte eksemplene, er altanene en del av det opprinnelige fasadeuttrykket. 
+Fagetaten opplyser for Drotningsvikveien 68 A og B at det ikke er gitt tillatelse til altanbygging, og disse vil bli fulgt opp som egen sak. 
+
+Byråden slutter seg etter dette til de vurderinger som fremkommer i fagetatens notat datert 16.03.07, og kan ikke anbefale at klagen tas til følge. 
+
+Vedtakskompetanse:
+I henhold til bystyresak 102 av 24. april 2006 (fullmaktsreglementet § 14) og bystyresak 131 av 24. mai 2004 er beslutningsmyndighet til å behandle klager på mindre byggesaker delegert til byrådet. Dersom klagen ikke tas til følge skal saken sendes til fylkesmannen for endelig avgjørelse.
+
+Byråden for byutvikling innstiller til byrådet å fatte følgende vedtak:
+
+Fagetatens vedtak datert 08.09.06 opprettholdes.
+Klagen tas ikke til følge. 
+
+Lisbeth Iversen
+byråd for byutvikling 
+
+Vedlegg ( trykte):
+Fagetatens vedtak datert 16.03.07
+
+",Byrådet har avvist en klage fra en huseier som ønsket å bygge,"Byrådet har avvist en klage på et tidligere avslag om oppføring av en altan på 14,8 m² i Laksevåg. Avslaget ble begrunnet med at altanen ville være plassert for nær nabogrensen og ikke oppfylte kravene til skjønnhetshensyn. Klageren hevdet forskjellsbehandling, men byrådet støttet fagetatens vurderinger og opprettholdt avslaget."

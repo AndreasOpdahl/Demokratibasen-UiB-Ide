@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4876:45409:200610018:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:57:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine appointment change with no significant impact or controversy."
+    },
+    "summary_headline": "Rønnaug Espevik fritas fra verv i Fana boligbyggelag",
+    "summary_body": "Rønnaug Espevik fra Fremskrittspartiet blir fritatt fra sitt verv som varamedlem i Fana boligbyggelag. Dette skjer i forbindelse med at hun er foreslått som nytt styremedlem etter Arne Voll. Harald Kremner jr. er foreslått som nytt varamedlem for resten av valgperioden 2003-2007."
+  }
+}

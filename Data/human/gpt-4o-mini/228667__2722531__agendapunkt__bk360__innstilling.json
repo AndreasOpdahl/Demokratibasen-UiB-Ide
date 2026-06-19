@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228667:2722531:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:02:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural notice with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra utvalgsmøte",
+    "summary_body": "Dokumentet er en referanse til et møte i Utvalg for barnehage, skole og idrett den 13. april 2021, hvor saker til eventuelt vil bli fremmet. Det inneholder ingen spesifikke beslutninger eller kontroverser."
+  }
+}

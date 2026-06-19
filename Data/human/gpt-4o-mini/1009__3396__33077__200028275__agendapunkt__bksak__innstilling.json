@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3396:33077:200028275:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:04:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The report highlights delays in school and kindergarten construction projects, which are relevant to local residents."
+    },
+    "summary_headline": "Forsinkelser i skole- og barnehageutbygging i Bergen",
+    "summary_body": "Byrådet har mottatt en halvårsrapport om fremdriften i skole- og barnehageutbyggingen, som viser at flere prosjekter er forsinket. Årsakene inkluderer utfordringer med grunnerverv og kapasitet i entreprenørbransjen. Det er ventet at mange barnehager ikke vil stå ferdig til skolestart høsten 2003, noe som kan påvirke tilbudet til familier i Bergen. Byrådet tar rapporten til etterretning og oversender den til bystyrekomitéen for orientering."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2940:30959:200022101:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:26:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines a funding initiative for local environmental projects, which is relevant to the community."
+    },
+    "summary_headline": "Bergenhus bydel deler ut 50.000 kroner til miljøprosjekter",
+    "summary_body": "Bergenhus bydelsstyre har besluttet å fordele 50.000 kroner til lokale frivillige organisasjoner, skoler og barnehager for miljøprosjekter under Lokal Agenda 21. Midlene, som kommer fra Byrådsavdeling for miljø og byutvikling, skal brukes til å fremme miljøbevissthet blant unge. Organisasjoner oppfordres til å søke om tilskudd, og prosjektene må være konkrete og tilpasset nærmiljøet. Annonsering av tilskuddet vil bli gjort i lokale aviser."
+  }
+}

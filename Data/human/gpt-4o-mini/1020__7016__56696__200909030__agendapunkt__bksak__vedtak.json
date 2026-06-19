@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:7016:56696:200909030:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:32:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises significant concerns regarding resident welfare and municipal accountability."
+    },
+    "summary_headline": "Beboere i Ladegårdsgaten krever svar fra kommunen",
+    "summary_body": "Under møtet i finanskomiteen ble det stilt spørsmål om situasjonen for beboerne i Ladegårdsgaten 68-72, som har opplevd skader. Mathias Hunskår Furevik (R) etterspurte hva kommunen har gjort for å hjelpe beboerne og hvilke undersøkelser som er gjort for å avklare ansvarsforhold. Byråd Harald Victor Hove vil gi en skriftlig besvarelse på dette. I tillegg ble det diskutert en rapport om bredbåndsatsing i BKK, hvor Arbeiderpartiet kritiserte byrådet for manglende informasjon til komiteen. Det ble også stilt spørsmål om muligheten for å innføre et tillitsprosjekt inspirert av Mandal kommune for å redusere sykefravær."
+  }
+}

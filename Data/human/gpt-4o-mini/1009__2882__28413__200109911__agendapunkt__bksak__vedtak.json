@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:2882:28413:200109911:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:57:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves a significant budget allocation for a new city arena, which is relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune bevilger 400.000 kroner til ny byarena",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 400.000 kroner til kartlegging av mulighetene for å realisere en ny byarena. Av dette beløpet vil 100.000 kroner bli hentet fra tilleggsbevilgningskontoen, mens de resterende 300.000 kroner skal dekkes over næringsfondet og konsulentmidler fra Byrådsavdeling for miljø og byutvikling. Totalt budsjett for kartleggingen er satt til 1.000.000 kroner, og Byrådsleders avdeling vil forvalte dette budsjettet."
+  }
+}

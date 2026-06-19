@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:4113:39077:200003533:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:47:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a significant change in alcohol licensing for a local pub, which may affect community dynamics."
+    },
+    "summary_headline": "Torget Music Pub mister skjenkebevilling for brennevin",
+    "summary_body": "Rusmiddelpolitisk råd anbefaler oppsigelse av skjenkebevillingen for brennevin ved Torget Music Pub, Torget 7. Samtidig foreslås det endringer i vilkårene for skjenkebevillingen for øl og vin. Dette kan påvirke pubens drift og tilbud til gjestene. Beslutningen er basert på et notat fra Kontor for skjenkesaker datert 18.08.04."
+  }
+}

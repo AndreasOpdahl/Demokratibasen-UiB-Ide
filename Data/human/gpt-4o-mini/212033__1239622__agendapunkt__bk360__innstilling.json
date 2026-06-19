@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212033:1239622:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:25:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document primarily contains routine administrative matters without significant newsworthy elements."
+    },
+    "summary_headline": "Kontrollutvalget tar saker til orientering",
+    "summary_body": "Kontrollutvalget har behandlet saker til gjennomsyn i april 2019, inkludert innkalling til forum for tilsyn og kontroll samt mottatte fakturaer fra BDO og Deloitte. Utvalget har besluttet å ta sakene til orientering."
+  }
+}

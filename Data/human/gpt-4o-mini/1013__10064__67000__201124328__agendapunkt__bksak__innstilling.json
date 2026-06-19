@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10064:67000:201124328:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:56:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document includes a significant decision regarding a citizen initiative and public funding for an event."
+    },
+    "summary_headline": "Bergen kommune godkjenner innbyggerinitiativ og støtter jubileumsmiddag",
+    "summary_body": "Forretningsutvalget i Bergen kommune har enstemmig vedtatt å ta opp innbyggerinitiativet \"Retten til å bo og retten til å ikke bli diskriminert\" til realitetsbehandling, og oversender det til byrådet for videre saksbehandling. Byrådet må legge frem saken for bystyret innen 26. juni 2013. I tillegg ble det innvilget en søknad fra Universitetet i Bergen om delt vertskap for en jubileumsmiddag den 11. juni 2013, med en økonomisk støtte på inntil 85.000 kroner fra kommunen. Dette er relevante saker for innbyggerne i Bergen, da de berører både rettigheter og feiringen av viktige historiske begivenheter."
+  }
+}

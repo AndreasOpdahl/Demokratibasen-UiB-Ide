@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:7565:57695:200801538:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:16:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains routine information about a local council meeting with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Ytrebygda bydelsstyre",
+    "summary_body": "Ytrebygda bydelsstyre hadde en åpen halvtime der Ingebjørg Monsen fra Amatørkulturrådet i Bergen orienterte om rådets arbeid og organisering."
+  }
+}

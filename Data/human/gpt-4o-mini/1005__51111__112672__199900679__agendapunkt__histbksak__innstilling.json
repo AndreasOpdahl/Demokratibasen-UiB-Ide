@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51111:112672:199900679:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:00:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The interpellation raises significant concerns about the management and funding of a key cultural initiative in Bergen."
+    },
+    "summary_headline": "Kritikk av Kulturby Bergen 2000: Strid om ledelse og budsjett",
+    "summary_body": "Arne Sortevik (FrP) har stilt spørsmål til ordføreren om den problematiske situasjonen i Stiftelsen Kulturby Bergen 2000, som mangler direktør og opplever strid mellom styret og administrasjonen om budsjett og program. Bergen kommune bidrar med en tredjedel av driftsmidlene, men det er uenighet om fordelingen mellom kultur og administrasjon. Dette skaper bekymring for forvaltningen av kommunale midler og byens omdømme. Sortevik ber om en oppdatering fra ordføreren i neste bystyremøte."
+  }
+}

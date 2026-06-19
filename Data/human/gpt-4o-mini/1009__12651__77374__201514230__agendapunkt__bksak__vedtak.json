@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:12651:77374:201514230:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:54:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document announces the naming of two new institutions, which is of local interest but lacks significant impact or controversy."
+    },
+    "summary_headline": "To nye institusjoner i Ytrebygda får navn",
+    "summary_body": "Byrådet har besluttet navnene på to nye institusjoner i Ytrebygda. Det nye sykehjemmet i Harald Sæverudsvei vil hete Siljuslåtthjemmet, mens sykehjemmet og Omsorg Pluss boligen i Sandslimarka 249 vil bli kalt Sandsli bo- og aktivitetssenter. Dette er et skritt mot å styrke omsorgstilbudet i området."
+  }
+}

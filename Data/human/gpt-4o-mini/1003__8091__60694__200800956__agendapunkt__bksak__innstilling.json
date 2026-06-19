@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1003:8091:60694:200800956:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:22:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine meeting schedule without significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for Bergen Bolig og Byfornyelse KF 1. halvår 2011",
+    "summary_body": "Styret for Bergen Bolig og Byfornyelse KF har lagt fram møteplan for første halvår 2011, der de har unngått å legge styremøter samtidig med bystyremøter. Møtene inkluderer behandling av årsregnskap og budsjett for 2012. Ingen kontroverser eller dissent er nevnt."
+  }
+}

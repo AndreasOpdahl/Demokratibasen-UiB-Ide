@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:6926:56165:200717192:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:12:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine appointment of a new deputy member, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ny varamedlem for Senterpartiet i Bergen bystyre",
+    "summary_body": "Eva-Marie Skjeldrum Toppe er foreslått som nytt varamedlem for Senterpartiet i Bergen bystyre etter at Kjersti Toppe har trukket seg. Håkon Lønning Aarø tar over som fast medlem. Dette er en rutinemessig endring uten kontroverser."
+  }
+}

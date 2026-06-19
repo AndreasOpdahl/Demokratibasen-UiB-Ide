@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240958:4080710:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:30:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a construction permit that affects local infrastructure and safety."
+    },
+    "summary_headline": "Klage på avslag om midlertidig brakkerigg under broene i Bergen",
+    "summary_body": "Bane Nor Eiendom AS har klaget på byrådets avslag på søknad om oppføring av en midlertidig brakkerigg for kontorer under broene på Lungegårdskaien. Byrådet opprettholder avslaget, med henvisning til sikkerhetsrisikoer og negative uttalelser fra Statens Vegvesen. Klageren, representert av Sweco Norge AS, argumenterer for at brakkene er nødvendige inntil et nytt administrasjonsbygg er ferdig i fjerde kvartal 2022. Saken vil nå bli sendt til Statsforvalteren i Vestland for endelig avgjørelse."
+  }
+}

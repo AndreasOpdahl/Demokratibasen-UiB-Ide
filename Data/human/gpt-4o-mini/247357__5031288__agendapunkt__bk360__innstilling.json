@@ -1,0 +1,18 @@
+{
+  "dokument_id": "247357:5031288:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:47:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a contested building permit affecting local residents' views and sunlight."
+    },
+    "summary_headline": "Klage på rammetillatelse til enebolig i Årstad avvist av byrådet",
+    "summary_body": "Byrådet har avvist klagen fra naboer på rammetillatelsen for oppføring av en ny enebolig i Vilhelm Bjerknes' vei 75, som ble gitt 17. mars 2023. Klagerne, Ove Thunes og Sameiet Vilhelm Bjerknes vei 71, hevder at tiltaket vil medføre betydelige ulemper, spesielt tap av sol og utsikt. Byrådet, ledet av Rune Bakervik, mener at fortetting er et politisk mål i Bergen og at tiltaket har høy arkitektonisk kvalitet. Saken vil nå bli sendt til Statsforvalteren i Vestland for endelig avgjørelse."
+  }
+}

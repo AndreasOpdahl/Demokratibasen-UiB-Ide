@@ -1,0 +1,18 @@
+{
+  "dokument_id": "217048:1821438:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:38:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a question about a destination strategy but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Behov for helhetlig destinasjonsstrategi diskutert",
+    "summary_body": "Renate Hjortland (H) stilte spørsmål om behovet for en helhetlig destinasjonsstrategi under møtet i Utvalg for finans, kultur og næring den 4. desember 2019. Byråd Erlend Horn besvarte spørsmålet."
+  }
+}

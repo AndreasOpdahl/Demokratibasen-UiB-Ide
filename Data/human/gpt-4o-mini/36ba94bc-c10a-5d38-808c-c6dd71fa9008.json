@@ -1,0 +1,18 @@
+{
+  "dokument_id": "36ba94bc-c10a-5d38-808c-c6dd71fa9008",
+  "kommune_nummer": 4624,
+  "kommune_navn": "Bjørnafjorden",
+  "generated_at": "2026-02-19 22:58:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a completion certificate for a swimming pool, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ferdigattest for nybygg av basseng på Skorvane 17",
+    "summary_body": "En ferdigattest er gitt for nybygg av basseng med platting rundt på Skorvane 17, eid av Finn Erik Hylland. Attesten ble datert 13. juni 2025, etter at søknaden ble sendt inn 6. juni 2025. Bygningen kan kun brukes til det formålet som er angitt i løyvet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:447:2970:200290414:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:04:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a neighbor's complaint about a school construction project, which affects local residents and includes a unanimous decision to address their concerns."
+    },
+    "summary_headline": "Naboer får delvis medhold i klage på ny skole i Laksevåg",
+    "summary_body": "Naboer til den planlagte skolen i Bjørndalen har klaget på byggetrinn 3, og Komite for miljø, byutvikling og tekniske tjenester har delvis imøtekommet klagen. Bergen Bygg og Eiendom KF pålegges å sette opp en levegg for å redusere støy og innsyn fra skolens område. Leveggen skal utformes i samarbeid med klagerne. Komiteen, som inkluderer representanter fra flere partier, vedtok enstemmig tiltaket for å ivareta beboernes interesser."
+  }
+}

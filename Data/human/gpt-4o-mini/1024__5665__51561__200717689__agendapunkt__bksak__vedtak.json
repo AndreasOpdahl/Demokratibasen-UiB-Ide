@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1024:5665:51561:200717689:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:45:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine inquiry with no significant impact or controversy."
+    },
+    "summary_headline": "Ingen umiddelbare tiltak for tilsynskort",
+    "summary_body": "Under møtet den 26. august behandlet Komite for kultur, idrett og næring spørsmål fra Siw Gørbitz om når medlemmene vil motta tilsynskort. Kommunaldirektør Bjørn Holmvik informerte om at byrådsavdelingen vil gi en orientering i neste møte."
+  }
+}

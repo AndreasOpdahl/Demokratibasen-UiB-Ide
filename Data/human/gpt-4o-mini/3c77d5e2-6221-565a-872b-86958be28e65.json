@@ -1,0 +1,18 @@
+{
+  "dokument_id": "3c77d5e2-6221-565a-872b-86958be28e65",
+  "kommune_nummer": 4630,
+  "kommune_navn": "Osterøy",
+  "generated_at": "2026-02-19 22:59:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant land division request that could impact local land use and agricultural practices."
+    },
+    "summary_headline": "Dispensasjon for frådeling av grunneigedom i Valestrandsfossen",
+    "summary_body": "Osterøy kommune vurderer å gi dispensasjon for frådeling av 500 m² fra grunneigedom gbnr. 2/2 i Valestrandsfossen. Kjersti Irene Småland har søkt om å opprette en ny grunneigedom for å overføre bruket til neste generasjon. Kommunedirektøren anbefaler dispensasjon, da det ikke vil medføre driftsmessige ulemper for gården. Saken skal behandles av plan- og kommunalteknisk utvalg, og vedtaket vil bli sendt til statlige myndigheter for klagevurdering. Ingen naboer har protestert mot søknaden."
+  }
+}

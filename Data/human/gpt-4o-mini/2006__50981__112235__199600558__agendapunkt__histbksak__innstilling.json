@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50981:112235:199600558:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:50:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the prioritization of significant funding for sports facilities in Bergen, which affects local sports clubs and community facilities."
+    },
+    "summary_headline": "Prioritering av spillemidler til idrettsanlegg i Bergen 1998",
+    "summary_body": "Hovedutvalg for fritid og kultur har prioritert 29 søknader om tilskudd fra spillemidler til idrettsanlegg i Bergen, med en samlet søknadssum på 23,35 millioner kroner. Prioriteringen forutsetter at alle formalia er i orden før søknadene oversendes Hordaland fylkeskommune for videre behandling. Søknadene er delt inn i grupper, og de med høyest prioritet er de anlegg som allerede er ferdige eller påbegynt. Fristen for å sende søknadene til fylkeskommunen er 15. januar 1999."
+  }
+}

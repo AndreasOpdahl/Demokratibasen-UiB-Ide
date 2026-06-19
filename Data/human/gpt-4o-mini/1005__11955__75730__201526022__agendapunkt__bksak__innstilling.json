@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11955:75730:201526022:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:36:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses the appointment of board members for KODE, which is routine but has local relevance."
+    },
+    "summary_headline": "Henning Warloe valgt som leder for KODE i Bergen",
+    "summary_body": "Bergen bystyre har besluttet å velge Henning Warloe (H) som leder for KODE, styret for stiftelsen Kunstmuseene i Bergen, for valgperioden 2015-2019. I tillegg ble Lena Grønningsæter (SV) og varamedlemmer Charlotte Spurkeland (H) og Raymond Larsen (A) valgt. Beslutningen ble tatt under bystyremøtet 16. desember 2015, men lederposten ble ikke valgt før nå. Dette valget er viktig for styringen av kunstmuseene i Bergen."
+  }
+}

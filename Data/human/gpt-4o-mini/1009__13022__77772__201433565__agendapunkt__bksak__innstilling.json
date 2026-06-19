@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13022:77772:201433565:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:54:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant change in alcohol licensing for a local school, which may impact community events."
+    },
+    "summary_headline": "Årstad videregående skole får utvidet skjenkeareal",
+    "summary_body": "Byrådet for helse og omsorg har innvilget Årstad videregående skoles søknad om utvidelse av skjenkearealet fra 622 m2 til 681 m2. Den nye bevillingen gjelder alkoholholdig drikk gruppe 1-3 og er knyttet til skolens undervisning og fagprøver i kokk- og servitørfaget. Skjenkearealet vil nå inkludere Aula, kantine og vrimleområde i A bygget. Bevillingen gjelder frem til 30. juni 2020. Dette kan påvirke arrangementer og aktiviteter ved skolen, som er et viktig samlingspunkt i lokalsamfunnet."
+  }
+}

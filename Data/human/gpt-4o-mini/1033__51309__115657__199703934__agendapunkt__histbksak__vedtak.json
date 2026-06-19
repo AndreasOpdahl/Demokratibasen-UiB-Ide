@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:51309:115657:199703934:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:52:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a proposed budget which is relevant to local governance and public spending."
+    },
+    "summary_headline": "Rusmiddelpolitisk råd godkjenner budsjettforslag for 2000",
+    "summary_body": "Rusmiddelpolitisk råd i Bergen har behandlet rådmannens forslag til årsbudsjett for 2000 og økonomiplan for 2000-2003. Rådet, ledet av Atle Raa fra Fremskrittspartiet, vedtok et fellesforslag fra alle partier om å ta budsjettforslaget til foreløpig orientering. Dette kan påvirke fremtidige tiltak innen rusmiddelpolitikk i kommunen."
+  }
+}

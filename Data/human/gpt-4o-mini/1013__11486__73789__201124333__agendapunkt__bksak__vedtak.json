@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:11486:73789:201124333:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:00:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses changes in regulations and ethical guidelines, which are relevant but not highly contentious."
+    },
+    "summary_headline": "Endringer i skjenkebestemmelser og etiske retningslinjer for folkevalgte",
+    "summary_body": "I møtet 10. september behandlet forretningsutvalget endringer i skjenkebestemmelser før helligdager og på valgdagen, presentert av den nye skjenkesjefen Terje Gjertsen. Byrådsleder Martin Smith-Sivertsen (H) introduserte Gjertsen, mens Harald Schjelderup (A) etterlyste en redegjørelse om etiske standarder for folkevalgte. Det ble enighet om å vente på behandling i kontrollutvalget, og bystyredirektør Roar Kristiansen informerte om at et forslag til etiske retningslinjer vil bli presentert før valgperiodens slutt."
+  }
+}

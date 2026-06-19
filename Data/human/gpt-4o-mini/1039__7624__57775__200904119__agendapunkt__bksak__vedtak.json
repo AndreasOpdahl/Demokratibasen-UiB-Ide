@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1039:7624:57775:200904119:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:08:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document highlights community concerns raised by youth regarding local transportation and facilities."
+    },
+    "summary_headline": "Ungdommens bystyre diskuterer busslinje og Taekwondo-lokaler",
+    "summary_body": "Under åpen halvtime i Ungdommens bystyre 10. mars 2023 ble det stilt spørsmål om behovet for en busslinje fra Åsane til Lyngbø av Øystein B. Ellingsen fra Laksevåg videregående. Isabell Schander og Idunn Hatling fra Nattland skole etterlyste lokaler til Taekwondo. Flere representanter fra videregående skoler deltok i diskusjonen, men det ble ikke fattet noen beslutninger under denne delen av møtet."
+  }
+}

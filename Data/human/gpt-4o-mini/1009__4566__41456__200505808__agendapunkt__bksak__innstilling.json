@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4566:41456:200505808:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:18:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves a new alcohol license for a gallery, which could impact local alcohol consumption and community dynamics."
+    },
+    "summary_headline": "Galleri Gathe får skjenkebevilling for øl og vin",
+    "summary_body": "Byrådet har innvilget søknaden fra Galleri Skipperud om ny skjenkebevilling for øl og vin ved Galleri Gathe, Strandgt. 86, frem til 30. juni 2008. Byrådsleder Monica Mæland anbefalte innvilgelse til tross for innvendinger fra kommunaldirektøren for helse og omsorg, som fryktet økt alkoholforbruk. Politiet hadde ingen merknader. Bevillingen er begrenset til gallerivirksomhet og selskapslokaler, og det er stilt krav om dokumentasjon før bevillingen kan tas i bruk. Dette kan påvirke alkoholforbruket i området og er relevant for lokale innbyggere."
+  }
+}

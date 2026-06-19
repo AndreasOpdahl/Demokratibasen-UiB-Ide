@@ -1,0 +1,18 @@
+{
+  "dokument_id": "233780:3478858:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:16:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The approval of a new alcohol license for a local restaurant is relevant and impacts the community."
+    },
+    "summary_headline": "Sabi Sushi Oasen får ny skjenkebevilling frem til 2024",
+    "summary_body": "Byrådet har innvilget en ny alminnelig skjenkebevilling for alkoholholdig drikk til Sabi Sushi Oasen på Folke Bernadottes vei 52, som gjelder frem til 30. september 2024. Bevillingshaver er Convenience Oasen AS, med Vitalij Podgornyj som styrer. Det stilles krav om gratis og lett tilgjengelig vann for kundene. Søknaden er i samsvar med bystyrets retningslinjer, og det er ingen kjente motforestillinger mot vedtaket."
+  }
+}

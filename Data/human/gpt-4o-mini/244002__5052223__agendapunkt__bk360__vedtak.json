@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244002:5052223:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:38:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for a new SMS service at the emergency clinic is relevant for local residents and has been unanimously approved for further consideration."
+    },
+    "summary_headline": "Enstemmig forslag om SMS-tjeneste ved Bergen legevakt",
+    "summary_body": "Christine Ødegaard og Thor Haakon Bakke fra MDG har fremmet et forslag om å innføre en SMS-tjeneste ved Bergen legevakt. Forretningsutvalget behandlet saken den 7. mars 2023 og besluttet enstemmig å sende forslaget videre til byrådet for utredning. Byrådet skal vurdere forslaget og sende sin vurdering til Bystyrets kontor, slik at saken kan behandles i bystyremøtet den 21. juni 2023. Dette tiltaket kan forbedre kommunikasjonen for innbyggerne som benytter legevakten."
+  }
+}

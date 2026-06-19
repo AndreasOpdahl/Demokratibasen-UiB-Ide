@@ -1,0 +1,18 @@
+{
+  "dokument_id": "219192:1969372:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:40:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains routine administrative decisions without significant newsworthy elements."
+    },
+    "summary_headline": "Kontrollutvalget tar saker til orientering",
+    "summary_body": "Kontrollutvalget behandlet flere saker i møtet den 19. februar 2020 og besluttet å ta dem til orientering. Det er ingen kontroverser eller dissent i denne saken."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4145:39324:200400125:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:06:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll godkjent uten innvendinger",
+    "summary_body": "Forretningsutvalget har godkjent protokollen fra møtet den 14. september 2004."
+  }
+}

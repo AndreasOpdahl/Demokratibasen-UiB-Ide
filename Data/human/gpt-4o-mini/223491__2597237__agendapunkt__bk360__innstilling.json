@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223491:2597237:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:49:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant housing development proposal that impacts local infrastructure and community planning."
+    },
+    "summary_headline": "Ny reguleringsplan for rekkehus i Arna vedtatt av byrådet",
+    "summary_body": "Byrådet har vedtatt en reguleringsplan for et nytt boligområde i Langerekkja, Arna, som omfatter bygging av sju rekkehus med tilhørende infrastruktur. Planen, som er i tråd med kommunens arealplan, åpner for 1240 kvadratmeter boligareal og inkluderer krav om felles uteoppholdsareal og lekeplass. Det er også foreslått forbedringer av tilkomstveien for å sikre trafikksikkerhet. Byrådet har imidlertid uttrykt bekymring for manglende universell utforming og deling av tilkomstveien med tungtransport. Planen vil bli sendt til bystyret for endelig vedtak."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50935:111710:199710919:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:34:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves a significant environmental concern regarding the protection of valuable waterways, which affects local residents."
+    },
+    "summary_headline": "Formannskapet ber om vurdering av verneverdige vassdrag i Bergen",
+    "summary_body": "Formannskapet i Bergen har behandlet et forslag fra bystyremedlem Berit Jacobsen om å protestere mot nedbygging av verneverdige vassdrag i BKK sitt område. I møtet 28. oktober 1998 ble det besluttet å ta saken til orientering, men også å be om en vurdering av verneverdien for seks nevnte vassdrag og eventuelle andre utbyggingsprosjekter. Denne vurderingen skal legges frem når Energimeldingen kommer tilbake til Bystyret. Atle Mildestveit fremmet tilleggsforslaget, som ble vedtatt med 11 mot 10 stemmer."
+  }
+}

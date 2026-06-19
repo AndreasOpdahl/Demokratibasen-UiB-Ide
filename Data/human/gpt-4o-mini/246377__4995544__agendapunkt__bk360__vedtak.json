@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246377:4995544:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:44:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine administrative question without significant newsworthy elements."
+    },
+    "summary_headline": "Skriftlig spørsmål om kommunal forkjøpsrett",
+    "summary_body": "Magne Hagesæter (R) stilte et skriftlig spørsmål om bruk av kommunal forkjøpsrett til leiegårder. Byråd Line Berggren Jacobsen besvarte spørsmålet under møtet i Utvalg for helse og sosial den 7. juni 2023."
+  }
+}

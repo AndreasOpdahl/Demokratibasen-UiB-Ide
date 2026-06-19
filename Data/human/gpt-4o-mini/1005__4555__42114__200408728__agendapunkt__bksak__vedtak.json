@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4555:42114:200408728:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:55:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a procedural decision with no significant impact or controversy."
+    },
+    "summary_headline": "Bergen bystyre godkjenner vedtektsendring for Vestnorsk Filmsenter AS",
+    "summary_body": "Bergen bystyre har enstemmig godkjent en endring i vedtektene for Vestnorsk Filmsenter AS, som fastsetter at styreleder i perioden 2003-2007 skal være representanten fra Bergen kommune. Endringen ble behandlet i bystyrets møte den 24. oktober 2005, og komiteen for finans, kultur og næring har også avlagt en innstilling som er lik bystyrets vedtak."
+  }
+}

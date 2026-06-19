@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:479:3049:200090008:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:08:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses proposed changes to the questioning procedures in local councils, which could significantly impact local governance."
+    },
+    "summary_headline": "Endringer i spørreordninger for bydelsstyrene foreslås",
+    "summary_body": "Forretningsutvalget har foreslått at bydelsstyrene tilpasser sine spørreordninger til de som praktiseres i bystyret for resten av valgperioden. Dette innebærer at bydelene selv kan velge om de vil ha spørsmål og anmodninger, og at de må vurdere hvordan de praktiserer disse ordningene. Forslaget skal forelegges alle bydelstyrene for vurdering, og endringer vil bli inkludert i det nye reglementet for bydelsstyrene fra neste valgperiode. Dette kan påvirke hvordan innbyggerne i Bergen kommune får stilt spørsmål til sine lokale representanter."
+  }
+}

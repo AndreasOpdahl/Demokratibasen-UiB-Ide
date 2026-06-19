@@ -1,0 +1,18 @@
+{
+  "dokument_id": "202349:204786:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:01:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a meeting schedule, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for forretningsutvalget 2018 vedtatt",
+    "summary_body": "Forretningsutvalget har vedtatt møteplanen for 2018, hvor alle møter starter kl. 09:00. Møtene vil finne sted på spesifikke datoer gjennom året, med unntak av noen dager uten møter. Dette er en rutinemessig beslutning uten kontroverser."
+  }
+}

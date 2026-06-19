@@ -1,0 +1,18 @@
+{
+  "dokument_id": "03559c2b-4df3-55ca-98bb-3c5df0021b67",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 14:30:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a political decision regarding a leave of absence, which has local relevance and involves multiple political parties."
+    },
+    "summary_headline": "Politisk permisjon søkt av Marie Mostraum avvist av Valnemnd",
+    "summary_body": "Valnemnda behandlet søknaden om permisjon fra politiske verv fra Marie Mostraum den 19. juni 2025. Kommunedirektørens forslag om å innvilge permisjonen fikk kun 2 stemmer, mens 5 stemte imot, inkludert representanter fra Rødt, Arbeiderpartiet, Senterpartiet, Venstre, og Sosialistisk Venstreparti. Dette viser en klar politisk uenighet i saken."
+  }
+}

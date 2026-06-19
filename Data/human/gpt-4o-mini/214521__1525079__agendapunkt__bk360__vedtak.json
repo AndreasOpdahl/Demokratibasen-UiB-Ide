@@ -1,0 +1,18 @@
+{
+  "dokument_id": "214521:1525079:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:32:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document addresses a specific issue but lacks significant impact or controversy."
+    },
+    "summary_headline": "Manglende personell på Bønes Arena diskutert",
+    "summary_body": "Øystein Bønes (MDG) stilte spørsmål om bemanningsproblemer ved Bønes Arena. Byråd Linn Kristin L. K. Engø svarte på spørsmålet under møtet i Komite for barnehage, skole og idrett den 27. august 2019."
+  }
+}

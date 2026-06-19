@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:8051:60000:200800340:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:34:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses various administrative matters related to the municipal control committee, which may have implications for local governance."
+    },
+    "summary_headline": "Kontrollutvalget vurderer lovlighetskontroll av bystyrevedtak",
+    "summary_body": "Kontrollutvalget i Bergen har mottatt flere dokumenter til vurdering, inkludert en oppfordring fra SV til Fylkesmannen om å vurdere lovlighetskontroll av bystyrevedtak. Dette gjelder spesielt hvordan bystyret utøver sitt kontroll- og tilsynsansvar. Rødt har også sendt inn spørsmål om skillet mellom drift og investering. Møtet finner sted den 9. september 2010, og det kan få konsekvenser for hvordan kommunen håndterer fremtidige vedtak."
+  }
+}

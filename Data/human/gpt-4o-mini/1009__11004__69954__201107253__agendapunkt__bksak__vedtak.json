@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11004:69954:201107253:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:45:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a complaint regarding a legal enforcement action, which may affect local residents."
+    },
+    "summary_headline": "Klage på tvangsmulkt avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Bergenhus, gnr 167 bnr 505, angående et pålegg om retting og ileggelse av tvangsmulkt i en ulovlighetssak. I møtet den 27. mars 2014 ble det besluttet å opprettholde fagetatens vedtak fra 6. august 2013, og klagen ble ikke tatt til følge. Dette kan ha konsekvenser for eiendommens eiere og naboer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3565:33695:200207384:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:04:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves significant local opposition and impacts on community resources."
+    },
+    "summary_headline": "Byrådet avslår søknad om barnehage i Hjorteveien etter lokal motstand",
+    "summary_body": "Byrådet har besluttet å avslå søknaden om rammetillatelse for oppføring av en privat barnehage i Hjorteveien på Skjold. Tiltaket ville redusere et viktig lekeområde og fotballbane, som er mye brukt av barn og unge i nabolaget. Det er stor lokal motstand mot prosjektet, og byråden påpeker at barnehagen vil generere økt trafikk i et etablert boligområde. Byrådet understreker at tiltaket ikke er tilpasset sine omgivelser og at det ikke gis dispensasjon fra plankravet i kommuneplanen."
+  }
+}

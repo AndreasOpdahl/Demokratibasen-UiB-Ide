@@ -1,0 +1,18 @@
+{
+  "dokument_id": "249262:6296394:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:53:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for free SFO for third graders addresses significant social equity issues and has a direct impact on families in Bergen."
+    },
+    "summary_headline": "Forslag om gratis SFO for tredje klassinger kan øke deltakelse blant lavinntektsfamilier",
+    "summary_body": "Eduardo Hans Andersen (A) har stilt interpellasjon til bystyret om å innføre gratis SFO for elever i tredje klasse. Dette tiltaket, som tidligere ble foreslått av det forrige byrådet for 19 skoler, kan øke deltakelsen blant barn fra lavinntektsfamilier, som i dag har lavere deltakelse i SFO. Statistikk viser at gratis SFO øker deltakelsen, noe som er viktig for inkludering og for å støtte foreldre i fulltidsarbeid. Bystyret må nå vurdere om de vil opprettholde denne satsingen."
+  }
+}

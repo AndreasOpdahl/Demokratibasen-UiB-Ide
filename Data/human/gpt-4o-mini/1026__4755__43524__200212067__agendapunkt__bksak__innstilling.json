@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4755:43524:200212067:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:06:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a controversial housing permit in a noise-sensitive area, impacting local residents and raising concerns from authorities."
+    },
+    "summary_headline": "Byrådet opprettholder tillatelse til boligbygging i støyutsatt område",
+    "summary_body": "Byrådet har besluttet å opprettholde tillatelsen til oppføring av en ny bolig på Fleslandsvegen 163, til tross for klage fra Fylkesmannen i Hordaland. Den tidligere boligen ble revet i 1992, men nybygging har ikke blitt igangsatt. Byrådet mener at det er spesielle grunner for å innvilge dispensasjon fra reguleringsplanen, til tross for at området er klassifisert som støyutsatt. Klagen fra Fylkesmannen ble ikke tatt til følge, og saken vil nå bli sendt videre for endelig avgjørelse."
+  }
+}

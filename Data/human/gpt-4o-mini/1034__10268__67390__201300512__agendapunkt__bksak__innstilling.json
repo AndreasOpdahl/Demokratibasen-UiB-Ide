@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:10268:67390:201300512:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:53:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a collaborative project aimed at improving services for the elderly, which is relevant to local residents."
+    },
+    "summary_headline": "Eldrerådet deltar i nytt prosjekt for eldreomsorg",
+    "summary_body": "Bergen eldreråd har akseptert at rådets sekretær, Tollak Hjelmervik, deltar i styringsgruppen for et utviklings- og forskningsprosjekt om forebyggende hjemmebesøk til eldre. Prosjektet, som involverer flere helseaktører fra Rogaland, Helse Fonna, Sogn og Fjordane, Hordaland og Senter for omsorgsforskning, varer ut 2014. Hjelmervik, med erfaring fra eldresaker og relevant utdanning, vil rapportere tilbake til eldrerådet om prosjektets fremdrift og utfordringer. Første møte i styringsgruppen finner sted i Bergen 15. mai."
+  }
+}

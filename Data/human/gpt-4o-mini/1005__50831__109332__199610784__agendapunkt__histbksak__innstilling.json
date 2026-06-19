@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:50831:109332:199610784:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:58:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the approval of outdoor serving permits for several establishments, which has significant local impact and involves public interest."
+    },
+    "summary_headline": "Bergen kommune godkjenner flere uteserveringer til sommeren",
+    "summary_body": "Bergen bystyre har vedtatt å innvilge søknader om uteservering for åtte restauranter, inkludert Høyden Vegetar og Ulriksbanen, med skjenkearealer fra 30 m² til 700 m². Behandlingen av søknaden fra Tapas A/S er utsatt for videre vurdering av konsekvenser for kirkegården. Tillatelsene gjelder fra 15. mars til 1. oktober, med spesifikke skjenketider og krav om godkjenning fra Næringsmiddeltilsynet. Dette vil gi innbyggerne flere uteplasser i sommermånedene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "208146:265732:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:15:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural information with no significant impact or conflict."
+    },
+    "summary_headline": "Kontrollutvalgssaker sendt til komite",
+    "summary_body": "Forretningsutvalget har enstemmig besluttet å sende kontrollutvalgssakene 56/18 og 58/18 til komite for finans, kultur og næring for orientering. Møtet fant sted 16. oktober 2018."
+  }
+}

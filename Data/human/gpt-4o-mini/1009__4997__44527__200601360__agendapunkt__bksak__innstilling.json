@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4997:44527:200601360:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:23:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses funding for elderly activities, which is relevant to local residents and involves a significant amount of public money."
+    },
+    "summary_headline": "Byrådet foreslår harmonisering av tilskudd til eldreformål",
+    "summary_body": "Byrådet i Bergen foreslår å harmonisere tilskuddene til eldreformål i bydelene for 2006, med en totalbevilgning på 500.000 kroner. Tidligere har det vært store forskjeller i tildelingene, der Fana og Åsane mottok 68% av midlene. I år vil de som fikk mest i fjor ikke få redusert beløp, mens andre bydeler kan få økt støtte opp til omsøkt beløp. Byråden for helse og omsorg, Trude H. Drevland, understreker viktigheten av å støtte frivillige aktiviteter for eldre."
+  }
+}

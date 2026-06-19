@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2bac0e6b-7256-5614-a101-158586d946e9",
+  "kommune_nummer": 4635,
+  "kommune_navn": "Gulen",
+  "generated_at": "2026-02-19 22:56:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant decision regarding the municipal takeover of street lighting, which affects local residents and involves financial implications."
+    },
+    "summary_headline": "Gulen kommune vurderer kommunal overtaking av veglys",
+    "summary_body": "Gulen kommune vurderer å overta ansvaret for veglys fra frivillige lag, etter en søknad fra disse lagene. Kommunedirektøren anbefaler å utsette avgjørelsen til første halvår 2027, etter at fylkeskommunen har fullført sin overtakelse av veglys langs fylkesveiene. Kommunen har budsjettert 700 000 kroner til veglys i 2025, men det er usikkerhet knyttet til kostnadene ved en eventuell overtakelse. Dette kan påvirke trafikksikkerheten og lyssettingen i kommunen, som er kjent for sine store avstander."
+  }
+}

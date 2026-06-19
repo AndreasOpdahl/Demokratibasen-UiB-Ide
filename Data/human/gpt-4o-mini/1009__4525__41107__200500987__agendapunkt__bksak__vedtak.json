@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4525:41107:200500987:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:17:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a serving license for M/S Eitrheim is relevant to local businesses and includes a dissenting opinion."
+    },
+    "summary_headline": "M/S Eitrheim får skjenkebevilling, men med dissent fra byrådmedlem",
+    "summary_body": "Byrådet har innvilget M/S Eitrheim en alminnelig skjenkebevilling for øl og vin frem til 30. juni 2008. Bevillingshaver er GPH Båtturer AS, og Svein H. Solheim er godkjent som styrer for bevillingen. Skjenkearealet er 50 m² i salong og 60 m² på dekk, med totalt 115 plasser. Skjenking ved kai er begrenset til sluttede selskap og maksimalt en time før avgang. Lisbeth Iversen dissenterte i saken, noe som kan indikere uenighet om bevillingen. Dette kan påvirke lokale innbyggere og besøkende som ønsker å benytte seg av servering på båten."
+  }
+}

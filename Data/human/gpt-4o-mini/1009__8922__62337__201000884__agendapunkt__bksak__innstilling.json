@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8922:62337:201000884:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:42:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to extend the serving hours for a local bar is relevant to residents and may affect local noise levels."
+    },
+    "summary_headline": "Utvidet skjenketid for Pergola Mat & Vinbar godkjent",
+    "summary_body": "Byrådet har innvilget søknaden fra Pergola Mat & Vinbar om utvidet skjenketid ved uteservering i bakgården. Den nye skjenketiden blir kl. 23.00 fra søndag til torsdag, og kl. 24.00 på helger og høytidsdager. Dette kan påvirke naboer i området, da det ikke er tillatt med musikk eller underholdning etter kl. 22.00. Vedtaket gjelder frem til 30. juni 2012."
+  }
+}

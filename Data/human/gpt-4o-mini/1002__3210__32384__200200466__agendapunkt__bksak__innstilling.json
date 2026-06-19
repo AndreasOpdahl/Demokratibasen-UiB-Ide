@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:3210:32384:200200466:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:19:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a procedural matter without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Arna bydelsstyre",
+    "summary_body": "Arna bydelsstyre har diskutert grunngitte spørsmål og forespørsler fra politikerne til administrasjonen. Svarene vil bli gitt mot slutten av møtet, men det er ingen spesifikke saker av stor offentlig interesse."
+  }
+}

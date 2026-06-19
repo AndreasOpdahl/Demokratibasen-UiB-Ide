@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10664:69126:201300520:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:30:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The establishment of a fund for artificial turf fields involves significant public spending and private contributions, impacting local sports facilities."
+    },
+    "summary_headline": "Bystyret etablerer kunstgressfond for oppgradering av idrettsanlegg",
+    "summary_body": "Bergen bystyre har besluttet å opprette et kunstgressfond for å finansiere utskifting av kommunale kunstgressbaner. Fondet vil inkludere både kommunale midler og private gaver, og byrådet får fullmakt til å motta slike gaver. Bystyret understreker at private bidrag ikke må erstatte kommunens egne bevilgninger til idretten. Det ble også vedtatt at kunstgressbaner skal behandles som spesialavfall ved utskifting. Bystyret ber byrådet om å vurdere spillemiddelordningen ved prioritering av prosjekter. Dette tiltaket vil ha direkte innvirkning på lokale idrettsanlegg og muligheten for oppgradering av disse."
+  }
+}

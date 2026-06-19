@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50743:111888:199812871:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:42:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant decision regarding a building permit that affects local residents."
+    },
+    "summary_headline": "Byutviklingsutvalget godkjenner byggetillatelse for naust i Fana",
+    "summary_body": "Hovedutvalg for byutvikling har besluttet å omgjøre et tidligere avslag og godkjenne søknaden fra Inge Mundal om oppføring av naust i Fana. Dette ble vedtatt med 10 mot 1 stemme etter en omstendelig behandling av klagen. Saken ble først utsett for befaring før den endelige avgjørelsen ble tatt 8. desember 1998. Dette kan ha betydning for lokale innbyggere som er interessert i utviklingen av området."
+  }
+}

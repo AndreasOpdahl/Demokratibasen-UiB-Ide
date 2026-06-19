@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1010:5508:48918:200411623:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:49:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains routine approvals of meeting minutes, which are not newsworthy."
+    },
+    "summary_headline": "Ingen nyheter fra styremøte i Bydrift Bergen KF",
+    "summary_body": "Styret for Bydrift Bergen KF har godkjent protokollene fra styremøtene den 28. august og 24. september 2007."
+  }
+}

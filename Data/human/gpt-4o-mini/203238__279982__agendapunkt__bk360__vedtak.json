@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203238:279982:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:03:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine administrative response with no significant local impact or controversy."
+    },
+    "summary_headline": "Bergen kommune støtter fredning av kulturhistoriske eiendommer",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Riksantikvaren angående fredning av statens kulturhistoriske eiendommer. I møtet 09.01.2018 fattet byrådet vedtak om at kommunen ikke har merknader til fredningen av de utvalgte byggverkene og er positiv til vern av Statsarkivet i Bergen."
+  }
+}

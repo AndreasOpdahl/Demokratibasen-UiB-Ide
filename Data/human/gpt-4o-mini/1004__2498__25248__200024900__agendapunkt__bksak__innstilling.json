@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2498:25248:200024900:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:25:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The application for a new alcohol license for Bar Sushi is relevant to local residents and involves a decision by the municipal board."
+    },
+    "summary_headline": "Bar Sushi får skjenkebevilling for øl, vin og brennevin",
+    "summary_body": "Bergenhus bydelsstyre har besluttet å gi Bar Sushi, Lodin Leppsgt. 2B, skjenkebevilling for øl, vin og brennevin. Det har tidligere vært bevilling i lokalene, og administrasjonen har ingen merknader til søknaden. Dette kan påvirke tilgjengeligheten av alkohol i området, ettersom nye bevillinger tildeles med restriktiv politikk."
+  }
+}

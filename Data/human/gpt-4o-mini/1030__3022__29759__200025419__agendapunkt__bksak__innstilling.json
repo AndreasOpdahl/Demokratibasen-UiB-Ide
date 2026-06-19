@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:3022:29759:200025419:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:38:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The budget proposal for Laksevåg bydel is significant due to its impact on local services and funding allocations."
+    },
+    "summary_headline": "Budsjettforslag for Laksevåg bydel 2002 vedtatt med økt fokus på barn og eldre",
+    "summary_body": "Laksevåg bydelsstyre har vedtatt budsjettforslaget for 2002, som tildeler 687,4 millioner kroner til ulike tjenester i bydelen. Budsjettet inkluderer økte midler til barnevern og eldreomsorg, samt tiltak for barn med spesielle behov. Bydelsdirektør George Myhrvold fremhever at budsjettet gir en vesentlig forbedring fra 2001, og at det vil bli fokusert på omstilling og kvalitet i tjenestene. Det er også planlagt å etablere tre nye barnehager i bydelen. Neste steg er at administrasjonen fordeler budsjettet videre til spesifikke tjenester."
+  }
+}

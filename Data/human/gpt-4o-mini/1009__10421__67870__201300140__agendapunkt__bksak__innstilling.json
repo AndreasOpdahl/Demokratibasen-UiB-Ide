@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10421:67870:201300140:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:42:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses funding for a popular student housing advisory project, which has local relevance and impact."
+    },
+    "summary_headline": "Byrådet bevilger 13.000 kroner til boligrådgivning for studenter",
+    "summary_body": "Byrådet i Bergen har foreslått å bevilge 13.000 kroner til boligrådgivningsprosjektet «Bergenstudenten 2013», som gir råd til studenter om boligmarkedet og leietakerrettigheter. Prosjektet har vært populært og mottatt positive tilbakemeldinger fra studenter. Totale kostnader for tiltaket er 250.000 kroner, men på grunn av tidligere overskudd søkes det om en mindre sum fra kommunen. Byrådsleder Monica Mæland ser dette tiltaket i sammenheng med kommunens studentmelding «Studenten mot 2020»."
+  }
+}

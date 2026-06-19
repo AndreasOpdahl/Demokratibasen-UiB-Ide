@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:6959:54633:200900371:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:55:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document provides information on elder care institutions but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Eldrerådet får informasjon om aldersinstitusjoner",
+    "summary_body": "Eldrerådet i Bergen kommune mottar informasjon fra rådgiver Ruth Berit Vik om aldersinstitusjonene. Temaene inkluderer medikamenthåndtering, budsjettforbruk for korttidsplasser, opplæring av ansatte og ombygging av Fyllingsdalen sykehjem. Eldrerådet tar informasjonen til orientering."
+  }
+}

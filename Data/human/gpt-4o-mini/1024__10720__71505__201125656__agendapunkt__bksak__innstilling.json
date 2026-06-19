@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1024:10720:71505:201125656:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:44:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a meeting schedule, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for Komite for kultur, idrett og næring vedtatt for 2015",
+    "summary_body": "Bystyret har vedtatt møteplanen for 2015 for Komite for kultur, idrett og næring. Møtene vil finne sted på spesifikke datoer, inkludert 6. januar, 3. februar, og 1. desember. Komiteen kan også legge til flere møter om ønskelig."
+  }
+}

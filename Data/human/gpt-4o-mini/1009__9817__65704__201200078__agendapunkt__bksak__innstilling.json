@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9817:65704:201200078:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:47:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a routine appointment change with limited impact on the community."
+    },
+    "summary_headline": "Per Sherling fritas fra Rådet for byforming og arkitektur",
+    "summary_body": "Per Sherling (Ap) har bedt om fritak fra vervet som medlem i Rådet for byforming og arkitektur på grunn av arbeidssituasjonen. Byrådsleder Monica Mæland foreslår Ole Bernhard Markussen som nytt vara medlem. Vedtaket ble fattet den 25. september 2012."
+  }
+}

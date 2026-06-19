@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3913:37171:200310830:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:46:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a routine application for a liquor license, which has limited local impact."
+    },
+    "summary_headline": "Ny skjenkebevilling anbefalt for Than Dat i Bergen",
+    "summary_body": "Rusmiddelpolitisk råd anbefaler søknaden fra Than Dat på Sparebankgt. 4 om ny alminnelig skjenkebevilling for øl og vin frem til 30. juni 2004. Dette er en standard prosess uten kontroverser eller dissent."
+  }
+}

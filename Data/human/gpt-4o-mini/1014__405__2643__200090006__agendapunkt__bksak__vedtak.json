@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1014:405:2643:200090006:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:19:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a routine meeting plan approval with no significant newsworthy elements."
+    },
+    "summary_headline": "Fullmaktskomiteen godkjenner møteplan for høsten 2002",
+    "summary_body": "Fullmaktskomiteen har enstemmig godkjent møte- og temaplanen for høsten 2002 i sitt møte den 10. september. Bystyredirektørens forslag ble vedtatt uten motforestillinger."
+  }
+}

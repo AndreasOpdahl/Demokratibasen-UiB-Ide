@@ -1,0 +1,18 @@
+{
+  "dokument_id": "204787:265649:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:06:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for Stasjonsplassen Bergen is relevant for local development and has been unanimously approved for further consideration."
+    },
+    "summary_headline": "Innbyggerforslag om Stasjonsplassen Bergen godkjent for videre behandling",
+    "summary_body": "Forretningsutvalget har enstemmig vedtatt å ta opp innbyggerforslaget «Stasjonsplassen Bergen» til realitetsbehandling. Forslaget oversendes Byrådsavdeling for byutvikling for videre saksbehandling, og Byrådet må fremlegge saken for bystyret innen 19. september 2018. Dette forslaget kan påvirke utviklingen av området og er av interesse for innbyggerne i Bergen."
+  }
+}

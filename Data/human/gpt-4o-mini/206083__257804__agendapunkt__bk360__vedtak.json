@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206083:257804:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:11:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural record with no significant newsworthy elements."
+    },
+    "summary_headline": "Skriftlig spørsmål om Åsane sand og singel",
+    "summary_body": "Skriftlig spørsmål nr. 42 fra Sondre L. Båtstrand (MDG) om Åsane sand og singel ble behandlet av Komite for miljø og byutvikling den 07.06.2018. Byråd Anna Elisa Tryti besvarte spørsmålet."
+  }
+}

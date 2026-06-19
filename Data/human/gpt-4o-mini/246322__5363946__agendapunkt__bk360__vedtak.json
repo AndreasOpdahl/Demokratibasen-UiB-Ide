@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246322:5363946:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:44:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a procedural decision regarding a hearing statement, which has limited immediate impact on residents."
+    },
+    "summary_headline": "Byrådet gir høringsuttalelse om samarbeid mellom helsetjenesten og politiet",
+    "summary_body": "Byrådet i Bergen har behandlet en høringsuttalelse om revidert rundskriv som omhandler ansvaret og samarbeidet mellom helsetjenesten og politiet for psykisk syke. Vedtaket ble fattet i møte 01.06.2023, og høringsuttalelsen vil bli sendt til Bystyrets kontor. Dette er en viktig sak for å forbedre samarbeidet mellom helse og politi, men har ikke umiddelbare konsekvenser for innbyggerne."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:50834:110268:199802843:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:59:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses the approval of an annual financial statement, which is routine and lacks significant controversy."
+    },
+    "summary_headline": "Bystyret godkjenner regnskap for Fana Stein & Gjenvinning 1997",
+    "summary_body": "Bystyret i Bergen har enstemmig godkjent regnskapet for Fana Stein & Gjenvinning for 1997. Saken ble behandlet i bystyrets møte den 31. august 1998, etter anbefaling fra Kontrollutvalget som også fattet enstemmig vedtak om godkjenning. Dette er en rutinemessig godkjenning uten kontroverser."
+  }
+}

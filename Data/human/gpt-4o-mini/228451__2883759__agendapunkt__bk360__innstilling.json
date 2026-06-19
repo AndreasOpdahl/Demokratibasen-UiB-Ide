@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228451:2883759:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:01:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant development agreement impacting local infrastructure and housing."
+    },
+    "summary_headline": "Utbyggingsavtale med Bonava Norge for Wergeland sentrum godkjent av byrådet",
+    "summary_body": "Byrådet har godkjent en utbyggingsavtale med Bonava Norge AS for felt S2 i Wergeland sentrum, som inkluderer 65 leiligheter og næringslokaler. Avtalen er nødvendig for å sikre offentlig infrastruktur og opparbeidelse av offentlige arealer, med en kostnad på 4 728 kr per m². Det er bekymringer fra naboer om tilgang til Eikeveien under byggeprosessen, men bymiljøetaten mener avtalen er forholdsmessig. Utbyggingen er en del av en større plan for området, og kommunen vil overta ansvar for flere offentlige arealer."
+  }
+}

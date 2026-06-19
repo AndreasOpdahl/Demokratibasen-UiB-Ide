@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2004:50847:109288:199612788:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:39:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the allocation of significant funds for new apprenticeship positions, which is highly relevant to local residents and addresses a pressing need in the community."
+    },
+    "summary_headline": "Bergen kommune oppretter 13 nye lærlingplasser med statlig støtte",
+    "summary_body": "Hovedutvalg for administrasjon i Bergen kommune har besluttet å opprette 13 nye lærlingplasser innen omsorgsfag og tekniske fag. Dette skjer ved å disponere 1,7 millioner kroner fra et stimuleringstilskudd fra Hordaland fylkeskommune og en fondsavsetning. Bakgrunnen for vedtaket er et økende behov for lærlinger, da mange elever med yrkesfaglig studieretning ikke fikk læreplass ved skolestart. Dette tiltaket er viktig for å sikre tilstrekkelig kompetanse i offentlig sektor, spesielt innen eldreomsorg og tekniske fag, og vil bidra til å møte fremtidige rekrutteringsutfordringer. De nye lærlingene forventes å starte fra 1. september 1998."
+  }
+}

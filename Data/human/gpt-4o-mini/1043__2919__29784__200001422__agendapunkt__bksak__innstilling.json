@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:2919:29784:200001422:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:18:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the closure of a local post office and its replacement, which affects residents."
+    },
+    "summary_headline": "Nedleggelse av Minde postkontor i Årstad bydel",
+    "summary_body": "Posten planlegger å legge ned Minde postkontor og erstatte det med Post i butikk, begrunnet med budsjettmessige hensyn. Årstad bydelsstyre vil ta planene til orientering. Innbyggere kan sende merknader til saken innen 6. februar 2002."
+  }
+}

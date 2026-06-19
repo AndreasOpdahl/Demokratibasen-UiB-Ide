@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2057:20571:200006265:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:22:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the procurement of private care services, which is relevant to local residents and involves public spending."
+    },
+    "summary_headline": "Bergenhus bydelsstyre vurderer kriterier for kjøp av private omsorgstjenester",
+    "summary_body": "Bergenhus bydelsstyre har fått spørsmål fra Hallgeir Utne Hatlevik (Ap) om hvilke kvantitative og kvalitative kriterier som benyttes ved kjøp av private institusjonsplasser, som alders- og sykehjem. Det er planlagt en gjennomgang av bestillingsprosessen for å sikre kvaliteten på tjenestene. Bystyret har vedtatt å konkurranseutsette Odinsvei sykehjem, og det arbeides med å inngå driftsavtaler med private aktører. Den første avtalen forventes å være på plass i løpet av året."
+  }
+}

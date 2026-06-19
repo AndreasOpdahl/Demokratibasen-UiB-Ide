@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2966:30095:200106866:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:18:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The budget decision for Arna bydel addresses significant financial challenges and potential impacts on local services, making it highly relevant."
+    },
+    "summary_headline": "Arna bydel vedtar budsjett med store innsparinger og usikkerhet",
+    "summary_body": "Arna bydelsstyre har vedtatt budsjett for 2002, men står overfor et underskudd på 19 millioner fra 2001, som utgjør nesten 9 % av budsjettet. Bydelsdirektøren, Paal Fennell, foreslår justeringer for å håndtere budsjettutfordringene, inkludert reduksjoner i lønnsutgifter på skolene og effektivisering av helse- og sosialtjenester. Det er planlagt en revisjon av budsjettet etter 1. kvartal, og det er stor risiko for at Arna bydel igjen vil gå i underskudd. Innbyggerne kan forvente reduserte tjenester og økt press på skolene, noe som kan påvirke kvaliteten på utdanning og omsorg i bydelen."
+  }
+}

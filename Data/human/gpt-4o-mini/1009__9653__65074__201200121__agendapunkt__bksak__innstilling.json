@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9653:65074:201200121:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:46:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant revision of a framework plan affecting building limits along major roads, which could impact local development."
+    },
+    "summary_headline": "Revisjon av rammeplan for avkjørsler og byggegrenser i region vest",
+    "summary_body": "Byrådet i Bergen har sendt inn høringsuttalelse til Statens vegvesen angående den reviderte rammeplanen for avkjørsler og byggegrenser på riks- og fylkesveiene i region vest for perioden 2012-2015. Planen, som skal erstatte den fra 2005, har som mål å skape bedre dialog mellom Statens vegvesen og kommunene i arealplanlegging. Den foreslår differensierte byggegrenser fra 15 til 50 meter fra veien, avhengig av veifunksjon. Byråden for byutvikling, klima og miljø, Filip Rygg, understreker at planen ikke er juridisk bindende, men vil veilede kommunene i behandlingen av byggesøknader. Høringsfristen er satt til 1. juni 2012."
+  }
+}

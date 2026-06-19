@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:140:1178:200090011:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:03:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines procedural recommendations for the city council, indicating potential delays and the need for better communication."
+    },
+    "summary_headline": "Bystyret krever bedre oversikt over saker før sommeren",
+    "summary_body": "Forretningsutvalget har bedt byrådet om å legge frem en oversikt over saker som skal behandles i bystyret før sommeren 2001. Det er identifisert et etterslep i sakene, og enkelte saker, som skolebehovsplanen, er utsatt til høsten. Utvalget foreslår også at byrådet etablerer rutiner for varsling om avvik fra planlagte saker. Dette er viktig for å sikre en forsvarlig behandling av sakene i komiteene."
+  }
+}

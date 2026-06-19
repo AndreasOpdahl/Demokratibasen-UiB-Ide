@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2009:51411:116265:199612282:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:56:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant proposal to relocate key fisheries institutions from Bergen to Tromsø, which has strong local implications and opposition."
+    },
+    "summary_headline": "Bergen motsetter seg flytting av Fiskeridirektoratet til Tromsø",
+    "summary_body": "Næringsutvalget i Bergen kommune har enstemmig vedtatt å motsette seg forslaget om å flytte Fiskeridirektoratet og Havforskningsinstituttets forskningsoppgaver fra Bergen til Tromsø. Utvalget advarer om at en slik flytting vil svekke Norges internasjonale posisjon innen fiskeriforskning og forvaltning. De ber Regjeringen om å endre fylkesplanen for Troms 2000-2003 for å sikre at disse institusjonene forblir i Bergen, som er Norges nest største by. Dette forslaget møter også sterk motstand fra fylkesutvalget i Hordaland."
+  }
+}

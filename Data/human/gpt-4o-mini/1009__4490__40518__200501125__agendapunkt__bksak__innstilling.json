@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4490:40518:200501125:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:16:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a controversial decision regarding a liquor license that affects local business operations."
+    },
+    "summary_headline": "Kontroversielt avslag på skjenkebevilling for Retro A/S i Bergen",
+    "summary_body": "Byrådet har innstilt på å innvilge en ny skjenkebevilling for Retro A/S ved Era Selskapsavdeling, Småstrandgt. 3, til tross for at Rusmiddelpolitisk råd har avslått søknaden med 3 stemmer. Den tidligere bevillingen faller bort 27. april 2005, og det er nødvendig med en ny bevilling for å fortsette driften. Byrådsleder Monica Mæland anbefaler at bevillingen gis frem til 30. juni 2008, med spesifikasjoner om uteservering og musikk. Det er viktig for lokalbefolkningen å følge med på denne saken, da den påvirker tilgjengeligheten av serveringstilbud i området."
+  }
+}

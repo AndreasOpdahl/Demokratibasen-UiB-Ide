@@ -1,0 +1,18 @@
+{
+  "dokument_id": "238481:3774256:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:25:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant urban development and potential economic impacts for Bergen."
+    },
+    "summary_headline": "Byrådet anbefaler tomt A for Havforskningsinstituttet og Fiskeridirektoratet",
+    "summary_body": "Byrådet i Bergen har anbefalt at Havforskningsinstituttet og Fiskeridirektoratet lokaliseres på tomt A ved Havnelageret, da dette alternativet vurderes å ha bedre synergier for byutvikling enn tomt C. Det er imidlertid usikkerhet knyttet til vibrasjoner og elektromagnetisk støy fra en fremtidig bybanelinje, som må avklares før endelig beslutning. Bystyret har tidligere vedtatt å ikke jobbe videre med tomt B. Prosjektet kan skape 1200 arbeidsplasser og er viktig for å styrke Bergens identitet som havby. Neste steg er forhandlinger om opsjonsavtale for tomt A."
+  }
+}

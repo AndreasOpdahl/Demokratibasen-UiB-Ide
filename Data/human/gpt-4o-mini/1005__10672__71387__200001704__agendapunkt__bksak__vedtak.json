@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10672:71387:200001704:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:32:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant urban planning decisions affecting public transport and cycling infrastructure in Bergen."
+    },
+    "summary_headline": "Bystyret vedtar nytt Plan- og byggeprogram for 2015 med fokus på kollektivtransport og sykkelveier",
+    "summary_body": "Bergen bystyre har vedtatt anbefalinger for Plan- og byggeprogram 2015, som inkluderer en utredning av en ny bybanetrase mot Laksevåg og Loddefjord. Bystyret ber også om at midler fra Bergensprogrammet vurderes brukt til drift av kollektivtransport. Det ble vedtatt at gang- og sykkelvei langs Bjørgeveien skal realiseres så snart økonomien tillater det. Bystyret oppfordrer til statlig finansiering av bybaneutbygging og har vedtatt flere merknader om sykkelprosjekter. Dette vil påvirke innbyggerne i Bergen ved å forbedre transporttilbudet og øke sikkerheten for syklister."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212641:1024025:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:27:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses the significant issue of child poverty in Bergen, with various political responses and proposals."
+    },
+    "summary_headline": "Bystyret diskuterer tiltak mot barnefattigdom i Bergen",
+    "summary_body": "Bergen bystyre har behandlet statusrapporten for handlingsplanen mot fattigdom med fokus på barnefamilier. Bystyret uttrykte bekymring for økningen i antall barn som lever i fattigdom og vedtok enstemmig å ta rapporten til orientering. Flere representanter fremmet merknader, blant annet fra SV som påpekte at sosialhjelp ofte er en langvarig løsning for mange familier. Sofie Marhaug fra R foreslo å avslutte praksisen med å kaste ut barn fra SFO ved utestående betaling, men forslaget fikk ikke flertall. Bystyret ber byrådet om å innarbeide tiltak i den kommende økonomiplanen for å bekjempe barnefattigdom."
+  }
+}

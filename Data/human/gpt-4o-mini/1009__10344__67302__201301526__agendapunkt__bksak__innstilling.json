@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10344:67302:201301526:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:41:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant regional planning initiative that affects local development and transportation, with implications for residents."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse til regional areal- og transportplan",
+    "summary_body": "Hordaland fylkeskommune har sendt forslag til planprogram for Regional areal- og transportplan for Bergensområdet på høring, med frist for innspill 26. april. Planen har som mål å utvikle en bærekraftig region med fokus på boligbygging, transport og næringsutvikling. Bergen kommune, ved byråd Filip Rygg, innstiller til å avgi høringsuttalelse som påpeker behovet for samordning mellom kommunene og advarer mot for tidlige konklusjoner om vekstfordeling. Planen skal vedtas i fylkestinget i juni 2015."
+  }
+}

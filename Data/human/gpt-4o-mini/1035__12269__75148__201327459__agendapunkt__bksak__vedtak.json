@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:12269:75148:201327459:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:58:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant urban planning proposal with implications for local infrastructure and community space."
+    },
+    "summary_headline": "Rådet for byforming ønsker forbedringer i reguleringsplan for Krohnsminde",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet reguleringsplanen for Krohnsminde og uttrykt positive til funksjonsblandingen, men krever en større tribuneløsning og lavere byggehøyde for å bedre tilpasse seg omgivelsene. Rådet understreker også behovet for gode sykkelfasiliteter og vurderer etablering av parkeringsetasje. Dette kan påvirke nærmiljøet og tilgjengeligheten for innbyggerne i Årstad."
+  }
+}

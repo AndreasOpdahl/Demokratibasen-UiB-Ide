@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1028:11526:72774:201500097:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:26:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains updates on municipal planning and concerns but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Råd for funksjonshemmede diskuterer universell utforming og sårbare personer",
+    "summary_body": "Kommunalt råd for funksjonshemmede har hatt møte hvor de diskuterte ombygging ved Edward Grieg Suite og planlegging av universell utforming ved Ulsmåg skole. Det ble også sendt et åpent brev angående flytting av sårbare personer til lokale medier og byråd Hilde Onarheim. Saker tas til orientering og videre oppfølging."
+  }
+}

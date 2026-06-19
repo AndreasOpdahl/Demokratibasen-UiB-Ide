@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246801:5435038:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:45:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details a routine administrative decision with no controversy or significant impact."
+    },
+    "summary_headline": "Byrådssak 239 sendt til helse- og sosialutvalget",
+    "summary_body": "Byrådet har enstemmig besluttet å sende byrådssak 239 til utvalg for helse og sosial under møtet den 20. juni 2023. Ingen representanter fra forretningsutvalget tok ordet i saken."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243988:5031280:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:37:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a rejected application for a concrete quay, which affects local development and has seen some political discussion."
+    },
+    "summary_headline": "Klage på avslag om betongkai avvist av utvalg for miljø og byutvikling",
+    "summary_body": "Utvalg for miljø og byutvikling har avvist en klage på avslag om etablering av betongkai på Fleslandsvegen 204. I møtet den 16. mars 2023 ble det besluttet å opprettholde Plan- og bygningsetatens vedtak fra 20. februar 2022. Forslaget om utsettelse for felles befaring, fremmet av Tore Landmark (FP), fikk ikke flertall og ble avvist. Saken har betydning for lokal utvikling i Ytrebygda."
+  }
+}

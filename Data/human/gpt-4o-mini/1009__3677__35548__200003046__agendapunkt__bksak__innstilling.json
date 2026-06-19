@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3677:35548:200003046:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:06:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant regulatory change proposal for Grieghallen and Edvard Griegsplass, which has implications for local parking and urban development."
+    },
+    "summary_headline": "Kontroversielt reguleringsforslag for Grieghallen legges ut til offentlig ettersyn",
+    "summary_body": "Byrådet i Bergen har besluttet å legge ut et privat forslag til reguleringsendring for Grieghallen og Edvard Griegsplass til offentlig ettersyn. Forslaget inkluderer et nytt parkeringsanlegg med 410 plasser, men byråden uttrykker bekymring for at dette kan bryte med prinsipper for samordnet areal- og transportplanlegging. Det er også bekymringer knyttet til tap av eksisterende parkeringsplasser og hvordan dette vil påvirke trafikkmønsteret i sentrum. Byråden krever at tiltakshaver dekker kostnadene for en inndragningsplan for parkeringsplasser før endelig vedtak. Dette prosjektet kan ha stor innvirkning på lokal infrastruktur og tilgjengelighet for innbyggerne."
+  }
+}

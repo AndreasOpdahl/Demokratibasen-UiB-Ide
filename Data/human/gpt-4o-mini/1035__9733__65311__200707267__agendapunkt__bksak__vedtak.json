@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:9733:65311:200707267:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:05:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a regulatory change affecting local green areas and building volumes, which is relevant to residents."
+    },
+    "summary_headline": "Reguleringsendring i Årstad kan påvirke grøntområder",
+    "summary_body": "Rådet har vurdert et reguleringsforslag for Erleveien i Årstad, som kan påvirke tilgjengeligheten til nærliggende grøntområder. Forslaget åpner for bygging mot Natlandsveien, men det er bekymringer om at dette vil stenge forbindelsen til grøntområdet. Rådet anbefaler at området G3 holdes utenfor planforslaget for å sikre offentlig tilgang. Det er også påpekt at bygningene i østlig del av området ikke tilpasser seg godt til det eksisterende bygningsmønsteret på Landås, og at gang- og sykkelstier bør separeres for å unngå farlige trafikksituasjoner."
+  }
+}

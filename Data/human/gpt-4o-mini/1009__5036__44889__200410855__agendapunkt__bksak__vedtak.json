@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5036:44889:200410855:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:24:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves significant public spending for infrastructure renewal in a local area."
+    },
+    "summary_headline": "14,1 millioner kroner til fornying av ledningsnett i Øvsttun",
+    "summary_body": "Byrådet har besluttet å bevilge 14,1 millioner kroner til fornying av ledningsnett i Øvsttun-området i Fana. Midlene kommer fra driftsbudsjettet og investeringsbudsjettet, hvor 9,3 millioner kroner er avsatt til fornying av prioriterte vassdrag, 3,5 millioner kroner til utskifting av ledninger, og 1,3 millioner kroner til nye overvannssystemer. Vann- og avløpsetaten får fullmakt til å inngå avtale med den mest fordelaktige entreprenøren. Dette tiltaket vil forbedre infrastrukturen og vannhåndteringen i området, noe som er viktig for innbyggerne."
+  }
+}

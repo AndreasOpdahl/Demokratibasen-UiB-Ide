@@ -1,0 +1,18 @@
+{
+  "dokument_id": "5de16f24-8405-555a-a7fe-f4ffebb7621a",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 23:03:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document involves a local cultural organization facing a funding denial, which may affect community activities."
+    },
+    "summary_headline": "Myrtveit bygdelag får avslag på klage om driftstilskudd",
+    "summary_body": "Utval for næring, kultur og idrett har enstemmig avvist klagen fra Myrtveit bygdelag angående driftstilskudd til kulturorganisasjoner. Dette vedtaket kan ha konsekvenser for kulturtilbudet i lokalsamfunnet."
+  }
+}

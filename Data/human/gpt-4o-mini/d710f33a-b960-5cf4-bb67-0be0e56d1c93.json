@@ -1,0 +1,18 @@
+{
+  "dokument_id": "d710f33a-b960-5cf4-bb67-0be0e56d1c93",
+  "kommune_nummer": 4644,
+  "kommune_navn": "Luster",
+  "generated_at": "2026-02-19 23:21:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines the budget planning process for 2026-2029, which is relevant and impactful for local residents."
+    },
+    "summary_headline": "Formannskapet starter budsjettarbeid for 2026-2029",
+    "summary_body": "Formannskapet i Luster har på sitt møte 24. september 2025 startet det formelle arbeidet med økonomiplanen og budsjettet for 2026-2029. Kommunedirektøren presenterte ØP-notat 1, som omhandler overordnede rammer og aktivitetsendringer. Det er identifisert en ubalanse i driftsøkonomien på 25 millioner kroner, noe som krever strammere prioriteringer. Neste møte i økonomiutvalget er 17. oktober, hvor det vil bli diskutert sentrale inntekter og utgifter, samt gebyrnivå. Dette arbeidet vil ha stor betydning for fremtidige beslutninger som påvirker innbyggerne."
+  }
+}

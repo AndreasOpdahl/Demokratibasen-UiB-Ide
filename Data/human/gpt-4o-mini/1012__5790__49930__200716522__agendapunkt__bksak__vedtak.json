@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:5790:49930:200716522:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:54:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a partial approval of a building extension, which may interest local residents."
+    },
+    "summary_headline": "Fana bydelsstyre godkjenner delvis tilbygg på bolig",
+    "summary_body": "Fana bydelsstyre har behandlet klagen fra Espen Nymark Andersen angående avslag på søknad om tilbygg til bolig på Søre Titlestad 28 A. I møtet 26. februar 2008 ble det besluttet å oppheve det tidligere vedtaket fra 20. november 2007 og godkjenne et påbygg over eksisterende carport/bod med et bruksareal på 34 m². Det ble ikke registrert klager fra naboer, og utvidelse av altan ble derimot avslått. Klagen ble dermed delvis tatt til følge, og etaten for byggesak vil utarbeide nærmere tillatelse med nødvendige vilkår."
+  }
+}

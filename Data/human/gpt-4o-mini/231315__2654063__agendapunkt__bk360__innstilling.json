@@ -1,0 +1,18 @@
+{
+  "dokument_id": "231315:2654063:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:10:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document raises significant concerns about the private care provider Stendi and its potential removal from Bergen's care services, which affects local residents."
+    },
+    "summary_headline": "Bergen vurderer å overta omsorgstjenester fra Stendi etter rettstap",
+    "summary_body": "Bystyret i Bergen vurderer å overta omsorgstjenester for utviklingshemmede fra det private firmaet Stendi, som har vært gjenstand for klager og pålegg fra Arbeidstilsynet. Byråden har indikert at dette kan bli en del av det kommende budsjettarbeidet. Det er også planer om å vurdere overtakelse av kontrakter fra andre kommersielle aktører, som Aberia, når de utløper. Dette kan ha stor betydning for innbyggerne i Bergen, spesielt de som er avhengige av omsorgstjenester."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "229650:3036296:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:05:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision not to exercise the municipal pre-emption right on a significant property sale affects local housing availability."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på leiegård i Nye Sandviksveien 18",
+    "summary_body": "Bergen kommune har besluttet å ikke gjøre forkjøpsretten gjeldende ved overdragelse av eiendommen i Nye Sandviksveien 18, som selges for NOK 90,5 millioner. Eiendommen, som inneholder ti leiligheter, er fullt utleid, og leietakerne har ikke vist interesse for å danne borettslag. Byrådet, ledet av Thor Haakon Bakke, støtter denne avgjørelsen, som kan påvirke boligsituasjonen i området."
+  }
+}

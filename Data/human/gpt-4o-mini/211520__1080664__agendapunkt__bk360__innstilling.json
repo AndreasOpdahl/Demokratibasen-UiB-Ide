@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211520:1080664:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:23:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested building permit affecting local residents' views and property rights."
+    },
+    "summary_headline": "Klage på rammetillatelse for bolighus i Åsane avvist av byrådet",
+    "summary_body": "Byrådet har avvist klagen fra naboene Kjell Hagesæter og Bente Flæsland mot rammetillatelsen for oppføring av to kjedehus i Åsane. Klagerne mener bygningene vil ødelegge utsikten og føre til økt innsyn, men byrådet konkluderer med at ulempene ikke er betydelige nok til å stoppe prosjektet. Tiltakshaver, Desmet Invest AS, har fått dispensasjon fra reguleringsplanen, og byrådet understreker at endringer i tettbygde strøk er forventet. Klagen ble behandlet til tross for at den ble sendt inn etter fristen, for å ivareta klagernes rettssikkerhet. Neste steg er at saken sendes til Fylkesmannen for endelig avgjørelse."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "208783:254170:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:17:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant administrative decisions regarding efficiency and cost-saving measures in municipal services, which directly affect residents."
+    },
+    "summary_headline": "Kontrollutvalget prioriterer prosjekter for effektivisering av kommunale tjenester",
+    "summary_body": "Kontrollutvalget i Bergen kommune har besluttet å bestille nye forvaltningsprosjekter for 2019 for å sikre effektivitet og kvalitet i kommunale tjenester. Blant de prioriterte temaene er pleie og omsorg, grunnskolen, sosiale tjenester og informasjonssikkerhet. Det er estimert at kommunen kunne spart 1,8 milliarder kroner hvis den var den mest effektive av ASSS-kommunene. Kontrollutvalget inviteres til å prioritere 4-6 prosjekter, og det vil bli lagt frem en prosjektskisse på neste møte. Dette kan ha stor betydning for innbyggerne i Bergen, da det kan føre til bedre ressursbruk og kvalitet i tjenestene."
+  }
+}

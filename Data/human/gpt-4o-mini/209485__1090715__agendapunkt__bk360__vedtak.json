@@ -1,0 +1,18 @@
+{
+  "dokument_id": "209485:1090715:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:18:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the future use of a historic building for a kindergarten, raising concerns about its suitability and potential public access."
+    },
+    "summary_headline": "Knut Opheim ber om ny vurdering av barnehage i fredet bygg",
+    "summary_body": "I et møte 25. oktober 2018 takket representanten Knut Opheim for svaret på sitt grunngitte spørsmål angående bruken av en fredet bygning som barnehage. Han uttrykte forståelse for behovet for barnehageplasser, men påpekte at bygningen kanskje ikke er best egnet til dette formålet. Opheim oppfordret kommunen til å vurdere alternative bruksområder for bygningen, slik at den kan bli mer tilgjengelig for allmennheten. Han henviste til et vellykket prosjekt, Universitets aula, som viser at ombygging av viktige offentlige bygninger kan gi dem nytt liv."
+  }
+}

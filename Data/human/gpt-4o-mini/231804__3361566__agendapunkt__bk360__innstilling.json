@@ -1,0 +1,18 @@
+{
+  "dokument_id": "231804:3361566:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:11:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a new outdoor serving permit for alcohol at a local restaurant, which is relevant to the community."
+    },
+    "summary_headline": "Damsgård Restaurant får tillatelse til uteservering av alkohol",
+    "summary_body": "Bergen kommune har innvilget Damsgård Restaurant AS tillatelse til uteservering av alkoholholdig drikk gruppe 1-3 frem til 30. september 2024. Den nye uteserveringen vil være 24 kvm og ligger på fortauet i direkte tilknytning til restauranten. Politiet har ingen merknader til søknaden, og det er stilt krav om at det skal være gratis og lett tilgjengelig vann for kundene. Før uteserveringen kan tas i bruk, må restauranten bekrefte at de har lovlig adgang til området og at nødvendige godkjenninger er på plass."
+  }
+}

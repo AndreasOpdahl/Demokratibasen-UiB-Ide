@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:11949:76956:201406364:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:27:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision involves significant public spending for local sports facilities and includes environmental considerations."
+    },
+    "summary_headline": "Bystyret bevilger 47,3 millioner til Stemmemyren fotballanlegg",
+    "summary_body": "Komite for finans, kultur og næring har besluttet å bevilge 35,9 millioner kroner til garderobebygg og 11,4 millioner kroner til kunstgressbane ved Stemmemyren. Bystyret har enstemmig vedtatt at kunstgressbanen skal bruke miljøvennlig granulat, og at granulater fra gamle bildekk ikke skal benyttes. Det er også vedtatt tiltak for å forhindre avrenning av granulater til vassdrag. Dette prosjektet vil ha stor betydning for lokalsamfunnet og idretten i Bergen."
+  }
+}

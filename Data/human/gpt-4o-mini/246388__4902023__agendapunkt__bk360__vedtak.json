@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246388:4902023:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:44:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine inquiry about indoor climate at a local school, which is of limited news interest."
+    },
+    "summary_headline": "Spørsmål om inneklima på Rothaugen skole",
+    "summary_body": "Eivind Hermansen (H) stilte spørsmål om inneklimaet på Rothaugen skole under møtet i Utvalg for barnehage, skole og idrett den 6. juni 2023. Byråd Linn Katrin Pilskog besvarte spørsmålet."
+  }
+}

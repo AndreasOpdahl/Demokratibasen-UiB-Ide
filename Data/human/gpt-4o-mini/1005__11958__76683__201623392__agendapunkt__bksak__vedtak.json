@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11958:76683:201623392:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:38:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines significant changes in committee memberships due to a temporary leave of absence, which affects local governance."
+    },
+    "summary_headline": "Hannah Atic får midlertidig fritak fra verv, nye medlemmer valgt inn",
+    "summary_body": "Bergen bystyre har besluttet at Hannah Atic (H) får midlertidig fritak fra flere verv mens hun er rådgiver for kunnskapsministeren. Henning Warloe (H) er valgt som nytt medlem og nestleder av komite for barnehage, skole og idrett, og vil også ta over flere andre verv i Atics fravær. Lise Wergeland Strømmen (H) og Norvald Visnes (H) er blant de som også får nye roller. Dette kan påvirke beslutningsprosesser i kommunen i den perioden Atic er borte."
+  }
+}

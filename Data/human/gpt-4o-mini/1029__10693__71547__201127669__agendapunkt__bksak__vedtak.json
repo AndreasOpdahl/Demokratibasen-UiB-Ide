@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:10693:71547:201127669:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:29:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine approval of a work plan with no significant impact or controversy."
+    },
+    "summary_headline": "Kontrollutvalget godkjenner virksomhetsplan for 2015",
+    "summary_body": "Kontrollutvalget har enstemmig godkjent forslagene i virksomhetsplanen med møte- og aktivitetsplan for 2015. Planen vil bli videre bearbeidet med innspill fra møtet og relevante revisjonsplaner."
+  }
+}

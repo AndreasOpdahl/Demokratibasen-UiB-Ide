@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:120:361:200090195:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:39:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant investment in elder care infrastructure, which directly impacts local residents."
+    },
+    "summary_headline": "Bystyret vurderer 45 millioner til nybygg ved Ladegården sykehjem",
+    "summary_body": "Byrådet har innstilt til bystyret om å bevilge 45 millioner kroner til bygging av et nybygg ved Ladegården sykehjem i Bergenhus bydel. Det nye bygget vil gi 30 nye plasser for heldøgns pleie og omsorg, og prosjektet er planlagt å starte i desember 2000 med ferdigstillelse i januar 2002. Tidligere bevilgninger på 2 millioner kroner er allerede innvilget, og det er nødvendig med politiske vedtak før byggestart. Dette tiltaket er en del av handlingsplanen for eldreomsorg og vil forbedre tilbudet til eldre i kommunen."
+  }
+}

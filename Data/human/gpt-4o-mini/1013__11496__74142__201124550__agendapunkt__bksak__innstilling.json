@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:11496:74142:201124550:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:00:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a meeting agenda and schedule, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Kjøreplan for bystyrets møte 21. oktober 2015",
+    "summary_body": "Bystyredirektøren har foreslått at møtet den 21. oktober 2015 starter klokken 12.00 på grunn av stor saksmengde. Representanter som ikke skal fortsette i bystyret må levere inn IKT-utstyr rett etter møtet. Forslaget til kjøreplan legges til grunn for møtet."
+  }
+}

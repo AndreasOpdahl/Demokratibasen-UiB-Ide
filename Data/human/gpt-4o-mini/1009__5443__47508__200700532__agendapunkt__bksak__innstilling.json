@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5443:47508:200700532:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:28:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant financial commitment for local infrastructure that affects residents."
+    },
+    "summary_headline": "Byrådet anbefaler finansiering av rundkjøring i Ulriksdal",
+    "summary_body": "Byrådet i Bergen anbefaler at Ulriksdal 1 AS får tillatelse til å forskuttere 3,1 millioner kroner for å bygge en rundkjøring i krysset Rv. 585 Haukelandsveien - Ulriksdal. Dette tiltaket er nødvendig for å realisere et parkeringsanlegg i området, og den totale kostnaden for prosjektet er estimert til 5,2 millioner kroner. Refusjonen av de forskotterte midlene er planlagt i perioden 2010-2013, uten renter. Byråden for byutvikling, Lisbeth Iversen, understreker at dette tiltaket ikke vil påvirke kommunens økonomi, men er viktig for fremtidig byutvikling."
+  }
+}

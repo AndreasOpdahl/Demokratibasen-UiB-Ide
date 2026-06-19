@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:4943:43711:200601278:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:00:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a proposed facade change that is opposed due to its potential negative impact on architectural integrity."
+    },
+    "summary_headline": "Fasadeendring på Van der Weldes vei 9 møter motstand",
+    "summary_body": "Tilsynsutvalget for byens utseende har behandlet en søknad om fasadeendring på Van der Weldes vei 9, og uttrykker sterk motstand mot forslaget. Utvalget mener at endringene vil ødelegge bygningens høye arkitektoniske kvaliteter, som er designet av den anerkjente arkitekten Leif Grung. De nye vindusfeltene vil skape en uheldig visuell effekt, og terrassen i nederste etasje vil bryte med byggets forhold til landskapet. Utvalget oppfordrer til en grundig vurdering av endringene for å bevare bygningens karakter."
+  }
+}

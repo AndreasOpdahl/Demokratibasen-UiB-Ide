@@ -1,0 +1,18 @@
+{
+  "dokument_id": "88de2bf4-72ae-5125-86cc-2aa02f02736f",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:10:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant findings and recommendations regarding the municipal planning process, which directly affects residents' participation and environmental considerations."
+    },
+    "summary_headline": "Bystyret krever bedre oppfølging av plansaksbehandling i Bergen",
+    "summary_body": "Kontrollutvalget har behandlet en forvaltningsrevisjon av Bergen kommunes plansaksbehandling, utført av Deloitte. Revisjonen avdekket mangler i medvirkning og dokumentasjon, spesielt med hensyn til universell utforming, naturmangfold og barn og unges interesser. Bystyret vedtok 18. juni 2025 å følge opp Deloittes anbefalinger for å forbedre prosessene, inkludert krav om medvirkningsplaner og bedre rapportering av saksbehandlingstider. Byråden, Eivind Nævdal-Bolstad, har allerede igangsatt tiltak for å øke tilgjengeligheten av plansaksdokumenter og sikre at barn og unges interesser blir ivaretatt. Det er viktig for innbyggere i Bergen å være oppmerksomme på disse endringene, da de kan påvirke hvordan deres stemmer blir hørt i fremtidige planprosesser."
+  }
+}

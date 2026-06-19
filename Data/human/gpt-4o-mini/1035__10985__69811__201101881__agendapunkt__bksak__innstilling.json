@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10985:69811:201101881:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:57:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a proposed residential development plan that could significantly impact local residents and green areas."
+    },
+    "summary_headline": "Kontroversiell reguleringsplan for boligutvikling i Ytrebygda",
+    "summary_body": "Rådet for byforming og arkitektur har sendt ut forslag til reguleringsplan for Ytrebygda, som omfatter bygging av ca. 30 nye boliger på Ormhaugen. Forslaget, fremmet av Terje J. Ledahl AS på vegne av Dolviken Eiendom AS, møter motstand fra fagetaten som advarer mot tap av verdifulle grøntområder og støyproblemer. Planen inkluderer både eneboliger, rekkehus og leiligheter, men fagetaten anbefaler å bevare deler av området som friområde. Offentlig ettersyn er nå åpnet, og innspill fra naboer og berørte parter vil bli vurdert."
+  }
+}

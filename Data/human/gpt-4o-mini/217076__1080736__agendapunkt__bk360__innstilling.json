@@ -1,0 +1,18 @@
+{
+  "dokument_id": "217076:1080736:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:38:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document raises important questions about urban development and public transport funding, which are relevant to local residents."
+    },
+    "summary_headline": "Spørsmål om fremdrift i Fyllingsdalen og bybane til Spelhaugen",
+    "summary_body": "Charlotte Spurkeland (H) har stilt spørsmål til bystyret om status for områdereguleringsplanen i Fyllingsdalen og bybanen til Spelhaugen. Regjeringen har økt finansieringen til bybanen, noe som kan fremskynde utviklingen i området. Det er viktig for lokalbefolkningen at arbeidet med områdeplanen for Fyllingsdalen intensiveres for å sikre fremdrift i byutviklingen."
+  }
+}

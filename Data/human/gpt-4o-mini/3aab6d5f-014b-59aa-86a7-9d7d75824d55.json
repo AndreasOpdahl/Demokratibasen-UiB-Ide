@@ -1,0 +1,18 @@
+{
+  "dokument_id": "3aab6d5f-014b-59aa-86a7-9d7d75824d55",
+  "kommune_nummer": 4621,
+  "kommune_navn": "Voss",
+  "generated_at": "2026-02-19 22:59:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The budget decision has significant financial implications for the local community, including tax increases and funding allocations."
+    },
+    "summary_headline": "Voss herad vedtar årsbudsjett 2026 med økte skatter og nye investeringer",
+    "summary_body": "Voss heradsstyre har vedtatt årsbudsjett for 2026 og økonomiplan for 2026-2029, som inkluderer et nytt lån på inntil 164 millioner kroner for investeringer. Budsjettet innebærer en økning i eiendomsskatten med 1 promille, og det er planlagt overføringer til Vossabadet og Voss idrettshall på 7,37 millioner kroner. Rådmannen får fullmakt til å fordele budsjettmidler og inngå låneavtaler. Budsjettet skal nå behandles av formannskapet og kommunale råd før endelig vedtak i heradsstyret 11. desember 2025."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:4744:43255:200500129:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:49:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural rules for submitting written questions to the city council, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Rutine for skriftlige spørsmål til Bystyret",
+    "summary_body": "Bystyrets kontor minner om at medlemmer kan levere skriftlige spørsmål en uke før møtet, senest kl. 1500 på møtedagen. Spørsmålene sendes til byråden, og svarene blir referert i protokollen dersom de mottas i tide."
+  }
+}

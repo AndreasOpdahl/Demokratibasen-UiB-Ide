@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:9643:65154:200808514:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:35:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The report highlights significant issues in the housing department's social measures, indicating potential improvements and existing disagreements."
+    },
+    "summary_headline": "Boligetaten må forbedre prosedyrer for boligsosiale tiltak",
+    "summary_body": "Kontrollutvalget har mottatt en forvaltningsrevisjonsrapport som vurderer Boligetatens boligsosiale tiltak. Rapporten konkluderer med at etaten må endre flere eksisterende prosedyrer for å forbedre behandlingen av boligøknader. Det påpekes at det er utfordringer knyttet til tildeling av kommunale utleieboliger, spesielt for bestemte søkergrupper. Byrådet for sosial, bolig og områdesatsing har kommentert rapporten og uttrykt uenighet med revisjonens anbefalinger, men de fleste anbefalingene er allerede under implementering. Kontrollutvalget har besluttet å oversende rapporten til Bystyret for videre behandling."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:6405:54277:200812199:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:16:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision on a building permit that affects local residents and environmental considerations."
+    },
+    "summary_headline": "Byrådet gir dispensasjon for tilbygg nær vassdrag i Åsane",
+    "summary_body": "Byrådet har besluttet å gi dispensasjon fra byggeforbudet nær Dalaelven i Åsane, til tross for tidligere avslag fra fagetaten. Klagerne, Tore Lid og Karianne Strømme, ønsket å bygge et 28 m² stort tilbygg med to soverom, men fikk først avslag på grunn av kommuneplanens restriksjoner. Byrådet mener at tiltaket ikke vil skade vassdraget eller grøntfaglige verdier, og opphever dermed fagetatens vedtak fra 22.08.08. Det er ingen registrerte merknader fra naboer, og saken vil nå bli sendt til komité for miljø og byutvikling for endelig avgjørelse."
+  }
+}

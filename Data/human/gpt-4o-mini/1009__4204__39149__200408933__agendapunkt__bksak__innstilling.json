@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4204:39149:200408933:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:13:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant licensing decision for a local hotel, which may impact residents and local businesses."
+    },
+    "summary_headline": "Best Western Hotel Hordaheimen får utvidet skjenkebevilling",
+    "summary_body": "Byrådet har innvilget Best Western Hotel Hordaheimens søknad om utvidet skjenkebevilling for øl, vin og brennevin. Hotellet får nå 48 m2 ekstra skjenkeareal og 35 flere sitteplasser, noe som kan påvirke både gjester og lokalbefolkning. Den nye bevillingen gjelder frem til 30. juni 2008. Byrådsleder Monica Mæland mener det ikke foreligger spesielle forhold som tilsier avslag. Saken har ikke vært behandlet i Rusmiddelpolitisk råd."
+  }
+}

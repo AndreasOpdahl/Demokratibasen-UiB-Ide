@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:9409:64001:201200882:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:05:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new school project with design considerations that may impact the local community."
+    },
+    "summary_headline": "Ny barneskole i Søreide får fokus på lysforhold og design",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet saken om en ny barneskole i Søreide. De understreker viktigheten av gode lysforhold i bygget og foreslår å øke bredden på passasjen og åpne opp fra 1. til 2. etasje for bedre lysinnfall. Det anbefales også å heve takoppbygg for å sikre mer lys og skape en tydelig identitet for bygget. Prosjektet får ros for farge- og materialvalg, samt den lekne utformingen av fasadene."
+  }
+}

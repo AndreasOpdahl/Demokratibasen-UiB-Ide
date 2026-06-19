@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9901:67717:201126920:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:24:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details a routine change in committee membership without significant impact or controversy."
+    },
+    "summary_headline": "Endringer i komitesammensetning i Bergen bystyre",
+    "summary_body": "Bergen bystyre har vedtatt endringer i komitesammensetningen etter at Linn Pilskog (A) gjenopptar sitt verv. Hun flytter fra Komite for helse og sosial til Komite for kultur, idrett og næring. Linda Lein blir 1. varamedlem i samme komite, og øvrige varamedlemmer rykker ned en plass. Endringene trer i kraft umiddelbart og gjelder resten av valgperioden 2011-2015."
+  }
+}

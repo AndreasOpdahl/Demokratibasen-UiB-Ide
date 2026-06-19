@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10998:69877:201330946:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:45:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a controversial approval for outdoor alcohol serving at a café, which has been previously denied."
+    },
+    "summary_headline": "Møllaren Café får tillatelse til uteservering av alkohol etter tidligere avslag",
+    "summary_body": "Byrådet har innstilt på å innvilge søknaden fra Møllaren Café AS om uteservering av alkoholholdig drikk ved Wolffs gate 12. Dette er en endring fra tidligere avslag, og beslutningen er basert på en utvikling mot mer småbypreg i bydelene. Uteserveringen vil være 20 m² stor, med skjenketid til kl. 22.00 på hverdager og kl. 23.00 i helger. Før uteserveringen kan tas i bruk, må det gjennomføres en befaring av Kontor for skjenkesaker."
+  }
+}

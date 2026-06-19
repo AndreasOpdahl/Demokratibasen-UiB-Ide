@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227496:2650721:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:59:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document details the appointment of members to a temporary committee, which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Bergen bystyre velger nytt midlertidig utvalg under koronakrisen",
+    "summary_body": "Bergen bystyre har enstemmig valgt medlemmer og varamedlemmer til det midlertidige utvalget under koronakrisen for resten av valgperioden 2019-2023. Marte Mjøs Persen (A) er valgt som leder, mens Rune Bakervik (A) blir nestleder. Utvalget består av representanter fra flere partier, inkludert Høyre, Arbeiderpartiet, og Fremskrittspartiet. Ingen debatt fant sted under behandlingen."
+  }
+}

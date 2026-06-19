@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3162:30878:200027685:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:00:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant funding and construction plans for a local nursing home, impacting residents directly."
+    },
+    "summary_headline": "Mildeheimen får midlertidig boligmodul under utbygging",
+    "summary_body": "Bergen kommune har besluttet å oppføre en midlertidig boligmodul ved Mildeheimen for å huse 6 beboere under ombyggingen av sykehjemmet. Den totale kostnaden for etableringen er estimert til 2,62 millioner kroner, inkludert driftskostnader. Byrådet har godkjent dette tiltaket for å unngå forsinkelser i byggeprosessen, som kan starte etter 3. juni 2002. Det er også foreslått å inkludere økte investeringskostnader i byggeregnskapet, med mulighet for justering av budsjettet for 2003. Dette tiltaket er viktig for å sikre at beboerne får nødvendig omsorg under byggearbeidene."
+  }
+}

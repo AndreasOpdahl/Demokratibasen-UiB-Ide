@@ -1,0 +1,18 @@
+{
+  "dokument_id": "247730:4901960:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:48:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal to test water quality for households not connected to the municipal system was rejected, highlighting a local issue."
+    },
+    "summary_headline": "Bystyret avviser forslag om vannkvalitetstesting for private husholdninger",
+    "summary_body": "Bergen bystyre avviste 27. september 2023 et forslag fra Håkon Pettersen (KrF) om å gjeninnføre testing av vannkvalitet for husholdninger uten tilknytning til det kommunale vann- og avløpssystemet. Byråden påpekte kapasitetsutfordringer ved vannlaboratoriet som grunn for avvisningen. Bystyret understreket behovet for bedre tilgjengelighet av informasjon om vannlaboratoriet, spesielt for berørte husholdninger. Forslaget fikk støtte fra 14 representanter, men falt mot 52 stemmer for innstillingen."
+  }
+}

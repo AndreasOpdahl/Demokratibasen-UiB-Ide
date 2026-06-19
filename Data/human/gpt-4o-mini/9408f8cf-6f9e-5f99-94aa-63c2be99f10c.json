@@ -1,0 +1,18 @@
+{
+  "dokument_id": "9408f8cf-6f9e-5f99-94aa-63c2be99f10c",
+  "kommune_nummer": 4643,
+  "kommune_navn": "Årdal",
+  "generated_at": "2026-02-19 23:12:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines the opening of a meeting with standard procedural items, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Årdal kommune åpner møte for samfunnsutvalget",
+    "summary_body": "Årdal kommune har innkalt til møte i Utval for Samfunn den 13. november 2025. Møtet vil omfatte godkjenning av innkalling og sakliste, samt valg av to personer som skal godkjenne møteprotokollen sammen med lederen."
+  }
+}

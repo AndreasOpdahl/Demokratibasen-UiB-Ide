@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5039:45173:200600071:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:08:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine protocol with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra byrådets møte",
+    "summary_body": "Protokoll fra byrådets møte 30. august 2006 ble behandlet, og det ble enstemmig vedtatt å sende byrådsak 259 til Komite for miljø og byutvikling."
+  }
+}

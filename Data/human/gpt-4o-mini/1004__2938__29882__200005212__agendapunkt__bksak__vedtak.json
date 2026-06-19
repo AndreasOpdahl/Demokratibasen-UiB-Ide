@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2938:29882:200005212:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:26:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant concerns regarding home care services and the reliability of municipal support, which directly affects residents."
+    },
+    "summary_headline": "Bergenhus bydelsstyre krever tiltak for å sikre hjemmetjenester",
+    "summary_body": "Bergenhus bydelsstyre har behandlet en sak om hjemmetjenester og uttrykt bekymring for at bydelsdirektøren ikke kan garantere at lovpålagte tjenester etter Sosialloven blir etterlevd. Styret har enstemmig vedtatt flere tiltak, inkludert en tiltakspakke for å forbedre regulariteten av tjenestene, en serviceerklæring for hjemmehjelpstjenesten, og en økonomisk kalkyle for å vurdere konsekvensene av nedskjæringer. Dette er viktig for innbyggerne som er avhengige av praktisk bistand."
+  }
+}

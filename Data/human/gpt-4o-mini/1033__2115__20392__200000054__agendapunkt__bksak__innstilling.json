@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2115:20392:200000054:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:42:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant event with implications for local nightlife and community regulations."
+    },
+    "summary_headline": "Begrenset utvidelse av skjenketid for 'UKEN 2000' ved NHH",
+    "summary_body": "Bergen kommune har behandlet en søknad fra Norges Handelshøyskole om utvidet skjenke- og åpningstid i forbindelse med arrangementet 'UKEN 2000'. Søknaden ble delvis innvilget; skjenketid utvides til kl. 02.00 fra søndag til torsdag, men avslag ble gitt for utvidelse til kl. 03.00 på fredager og lørdager. Også søknaden om skjenking til kl. 04.30 under klubbkvelden 15. mars ble avslått. Utvidelse av skjenkearealet ble godkjent, men ambulerende bevilling for brennevin ble avslått. Dette kan påvirke lokale arrangementer og nattelivet i Bergen."
+  }
+}

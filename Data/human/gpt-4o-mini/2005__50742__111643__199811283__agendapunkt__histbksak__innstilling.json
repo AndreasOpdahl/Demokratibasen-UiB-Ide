@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50742:111643:199811283:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:42:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a neighbor's complaint about a garage construction, which highlights local community concerns."
+    },
+    "summary_headline": "Nabo klager på garasje, men kommunen opprettholder byggetillatelse",
+    "summary_body": "Bygningsrådet har besluttet å opprettholde byggetillatelsen for en garasje på Grindhaugvegen 85, til tross for klage fra nabo Harald Bjørn Hansen. Klageren, som ikke er imot garasjen i seg selv, ønsker at den plasseres et annet sted for å unngå sjenanse og tap av utsikt. Kommunens administrasjon vurderte klagen, men fant ikke grunnlag for å nekte oppføringen. Dette kan påvirke lokalsamfunnet, da det reiser spørsmål om byggetillatelser og naboers rettigheter."
+  }
+}

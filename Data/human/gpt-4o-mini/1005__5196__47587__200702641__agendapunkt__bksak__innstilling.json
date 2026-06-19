@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5196:47587:200702641:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:04:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant procurement strategy for Bergen municipality, addressing compliance issues and aiming for improved efficiency."
+    },
+    "summary_headline": "Bergen kommune vedtar ny innkjøpsstrategi for 2007-2011",
+    "summary_body": "Bergen bystyre har godkjent en ny innkjøpsstrategi for perioden 2007-2011, som tar sikte på å forbedre kommunens anskaffelsesprosesser og sikre etterlevelse av regelverket. Strategien ble utviklet etter kritikk fra Kommunerevisjonen og omfatter tiltak som opplæring av ansatte, innføring av enhetlige rutiner og krav om offentliggjøring av anskaffelser mellom 100.000 og 500.000 kroner. Byrådet, ledet av Monica Mæland og Henning Warloe, understreker at strategien vil bidra til mer effektive innkjøp og bedre ressursbruk i kommunen. Bystyret ber om en statusrapport om fremdriften innen ett år."
+  }
+}

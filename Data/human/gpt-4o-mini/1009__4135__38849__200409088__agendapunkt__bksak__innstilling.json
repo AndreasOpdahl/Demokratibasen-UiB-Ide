@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4135:38849:200409088:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:12:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant financial implications for the municipality regarding VAT compensation for nursing home projects, affecting local residents."
+    },
+    "summary_headline": "Bergen kommune vurderer merverdiavgiftskompensasjon for sykehjemsprosjekter",
+    "summary_body": "Bergen kommune vurderer hvordan merverdiavgiftskompensasjon skal håndteres i forbindelse med bygging av sykehjem eid av ideelle organisasjoner. Byrådet anbefaler at kommunen får kompensasjonen, men at eierne får en andel tilsvarende deres finansiering av prosjektet. Det foreslås også at kompensasjonen trekkes fra ved beregning av kommunens pant i bygningene. Byrådsavdelingen for helse og bydeler får fullmakt til å forhandle med institusjonseierne om hvordan kompensasjonen skal inngå i finansieringsplanene. Dette kan påvirke kostnadene for kommunen og dermed også innbyggerne."
+  }
+}

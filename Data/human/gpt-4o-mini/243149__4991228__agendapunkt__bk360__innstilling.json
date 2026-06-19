@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243149:4991228:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:36:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document raises questions about a building case that has been sent to the Statsforvalteren without political review, indicating potential administrative oversight."
+    },
+    "summary_headline": "Klage på byggesak sendt uten politisk behandling",
+    "summary_body": "Chris Jørgen Rødland fra Høyre stiller spørsmål om byggesaken for Breiviksveien 7, 5042, som er sendt direkte til Statsforvalteren. Rødland påpeker at saken, som krever dispensasjon fra plankrav og uttalelser fra sektormyndigheter, ikke har blitt behandlet politisk til tross for tiltakshavers ønske. Saken ble avslått på grunn av visuelle kvaliteter, noe som kan påvirke fremtidige byggeprosjekter i området."
+  }
+}

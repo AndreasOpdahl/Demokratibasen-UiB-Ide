@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51090:114841:199905327:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:46:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The case involves a neighbor's complaint about a building permit, which indicates local conflict and impact."
+    },
+    "summary_headline": "Nabo klager på byggetillatelse i Fana",
+    "summary_body": "Hovedutvalg for byutvikling har besluttet å opprettholde en rammetillatelse for et nybygg med garasje på Stasjonsvegen 26, til tross for klage fra nabo Olav Nåmdal. Klageren mener bygget vil dominere hans utearealer og foreslår at bygget senkes i terrenget. Administrasjonen avviser klagen, og mener hensynet til klager allerede er ivaretatt. Saken viser lokal konflikt om byutvikling i Fana."
+  }
+}

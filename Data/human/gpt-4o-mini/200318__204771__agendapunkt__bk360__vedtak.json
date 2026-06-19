@@ -1,0 +1,18 @@
+{
+  "dokument_id": "200318:204771:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:29:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a legal review process regarding child welfare services, which is relevant to local residents."
+    },
+    "summary_headline": "Lovlighetskontroll av barnevernstjenesten behandles av bystyret",
+    "summary_body": "Forretningsutvalget har enstemmig vedtatt å oversende kravet om lovlighetskontroll av barnevernstjenesten til komité for helse og sosial. Komiteen skal behandle saken 30. august 2017, og bystyret vil ta stilling til kravet 27. september 2017. Byrådet og Bystyrets kontor bes om å gi sine vurderinger før disse møtene. Dette er en viktig sak for innbyggerne, da det angår kvaliteten på barnevernstjenestene."
+  }
+}

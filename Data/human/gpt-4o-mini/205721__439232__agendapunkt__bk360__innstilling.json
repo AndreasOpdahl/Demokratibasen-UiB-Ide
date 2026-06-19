@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205721:439232:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:09:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a controversial housing development with significant local implications and public spending."
+    },
+    "summary_headline": "Kontroversiell utbygging på Eikåsen 1 skaper debatt i Bergen",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet klager på en rammetillatelse for et nytt leilighetsbygg med 49 boenheter på Eikåsen 1. Klagerne, inkludert naboer, uttrykker bekymringer om bygningens høyde, støy og trafikksikkerhet, samt anklager om kommunens dobbeltrolle etter at de inngikk en leieavtale for 20 leiligheter før byggesaken var ferdigbehandlet. Utbyggingsavtalen med Høyanger Invest AS, som regulerer finansiering av ny infrastruktur, er nå lagt ut til offentlig ettersyn med frist 23. april 2018. Saken er under behandling i Byrådet."
+  }
+}

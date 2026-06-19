@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:509:3326:200390005:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:29:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document reports no written questions submitted, indicating low newsworthiness."
+    },
+    "summary_headline": "Ingen skriftlige spørsmål mottatt",
+    "summary_body": "Komite for finans, service og næring behandlet saken i møtet 2. april 2003, men det ble ikke innkommet noen skriftlige spørsmål til dagens møte."
+  }
+}

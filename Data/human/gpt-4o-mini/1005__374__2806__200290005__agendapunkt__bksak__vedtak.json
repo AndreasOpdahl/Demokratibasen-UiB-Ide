@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:374:2806:200290005:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:48:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant administrative decisions regarding the appointment of a director in a key municipal organization, raising concerns about transparency and local governance."
+    },
+    "summary_headline": "Kontroversiell ansettelse av direktør i Bergen Bolig og Byfornyelse",
+    "summary_body": "Bergen bystyre har behandlet ansettelsen av Audun Øiestad som direktør for Bergen Bolig og Byfornyelse (BBB), en stilling som ble fylt utenfor den pågående innstillingsprosessen. Torstein Dahle (RV) reiser spørsmål om byrådets håndtering av ansettelsen, som kan ha prinsipielle implikasjoner for kommunens ledelse. BBB forvalter store verdier og har en viktig rolle i byfornyelse, og ansettelsen har skapt debatt om prosedyrene som ble fulgt. I tillegg ble det fremsatt en anmodning fra Tom Skauge (SV) om at Bergen kommune bør bli med i folkeaksjonen for omfordeling, velferd og demokrati, som har fått støtte fra flere kommuner. Bystyret vedtok enstemmig å oversende anmodningen til byrådsleders avdeling."
+  }
+}

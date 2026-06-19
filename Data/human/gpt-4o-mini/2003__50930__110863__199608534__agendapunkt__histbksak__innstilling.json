@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50930:110863:199608534:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:34:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to discontinue school patrols and supervision due to budget constraints significantly impacts local employment and school safety."
+    },
+    "summary_headline": "Bergen kommune avvikler skolepatruljer og tilsynsvakter på grunn av budsjettkutt",
+    "summary_body": "Bergen kommune har besluttet å avvikle ordningen med skolepatruljer og tilsynsvakter som sysselsettingstiltak fra høsten 1998. Dette skyldes en stram økonomisk situasjon, hvor rådmannen ikke ser rom for tilleggsbevilgninger på 1,8 millioner kroner for høsten og 3,6 millioner for hele 1999. Tiltakene har vært i drift siden 1995, men rekrutteringsproblemer og manglende kvalifiserte søkere har gjort det vanskelig å opprettholde dem. Den reduserte tilsynsvaktordningen vil nå kun dekke eksisterende budsjettmessig dekning, og kommunen vil måtte avvikle flere oppgaver som tidligere har vært utført av sysselsatte. Dette vil påvirke både skolemiljøet og arbeidsmarkedet lokalt."
+  }
+}

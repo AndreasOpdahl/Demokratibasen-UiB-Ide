@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:5637:49753:200801920:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:41:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a public hearing on a significant issue affecting residents' transition to nursing homes."
+    },
+    "summary_headline": "Åpen høring om overgang til sykehjem vedtatt av helsekomiteen",
+    "summary_body": "Komite for helse og sosiale tjenester har besluttet å avholde en åpen høring om overgangen fra egen bolig til sykehjem. Høringen skal gi innhold og regler for prosessen, og arbeidsutvalget får fullmakt til å utarbeide programmet. Vedtaket ble fattet enstemmig av komiteen, som inkluderer representanter fra flere partier, blant annet SV, H, FrP, R og A. Dette tiltaket er viktig for mange eldre og deres familier i Bergen."
+  }
+}

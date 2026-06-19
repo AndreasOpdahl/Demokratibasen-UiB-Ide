@@ -1,0 +1,18 @@
+{
+  "dokument_id": "245424:4995541:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:42:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The meeting includes several significant questions and proposals related to health and social services that could impact local residents."
+    },
+    "summary_headline": "Helse- og sosialutvalg diskuterer viktige spørsmål om tjenester i Bergen",
+    "summary_body": "Utvalg for helse og sosial i Bergen kommune har innkalt til møte 10. mai 2023, hvor flere skriftlige spørsmål fra politikere vil bli behandlet. Blant spørsmålene er Diane A. Berbains forespørsel om MO-senter i sentrum og ferietilbud for familier. I tillegg vil det bli diskutert en statusmelding for hjemmebaserte tjenester og forslag til endringer i lovgivning knyttet til helse- og omsorgstjenester. Møtet kan påvirke tilbudene til innbyggerne i Bergen, spesielt innen helse og sosialtjenester."
+  }
+}

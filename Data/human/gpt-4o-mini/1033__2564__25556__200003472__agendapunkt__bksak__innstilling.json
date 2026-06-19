@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2564:25556:200003472:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:44:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a local restaurant's application for an alcohol license, which has moderate local relevance."
+    },
+    "summary_headline": "Zachariasbryggen søker om utvidelse av skjenkearealer",
+    "summary_body": "Rusmiddelpolitisk råd har behandlet en søknad fra Zachariasbryggen restaurant om utvidelse av skjenkearealer. Restauranten ønsker alminnelig bevilling for servering av øl, vin og brennevin både innendørs og utendørs. Rådet støtter anbefalingen fra Kontor for skjenkesaker. Dette kan påvirke lokalsamfunnet ved å endre serveringsmulighetene i området."
+  }
+}

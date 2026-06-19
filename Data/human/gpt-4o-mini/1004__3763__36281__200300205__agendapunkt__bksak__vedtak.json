@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3763:36281:200300205:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The unanimous rejection of a liquor license application due to safety concerns is significant for local businesses and residents."
+    },
+    "summary_headline": "Skjenkebevilling for Steakers avvist på grunn av gangtrafikk",
+    "summary_body": "Bergenhus bydelsstyre har enstemmig avvist søknaden om skjenkebevilling for øl og vin ved uteserveringen til Steakers på Bryggen 7. Avvisningen skyldes for små avstander for gangtrafikken utenfor det foreslåtte skjenkearealet. Dette kan påvirke uteserveringens drift og lokale besøkende."
+  }
+}

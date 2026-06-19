@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10985:69813:201007856:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:57:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a regulatory change that could impact local development and the establishment of a grocery store."
+    },
+    "summary_headline": "Reguleringsendring i Åsane åpner for dagligvarebutikk",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet en mindre endring av reguleringsplanen for Hylkjebakken i Åsane, som omfatter flytting av et isolasjonsbelte for å muliggjøre utviklingen av området som en samlet næringseiendom. Endringen legger til rette for etablering av en dagligvarebutikk. Fagetaten støtter hovedformålet med planforslaget, men ber om vurdering av de estetiske konsekvensene. Dette kan påvirke lokalbefolkningen ved å forbedre tilgjengeligheten til dagligvarer."
+  }
+}

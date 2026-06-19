@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2853:28577:200111672:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:18:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the appointment of a new cultural prize committee, which has local relevance but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Arna bydelsstyre velger ny kulturprisnemnd",
+    "summary_body": "Arna bydelsstyre har enstemmig vedtatt å opprette en ny kulturprisnemnd og valgt Yvonne Angelskår Kreybu (H) som politisk representant. Olav Magne Gjerde er valgt som leder for en periode på to år, mens Aslaug Garnes-Johnsen og Redun Bysheim er valgt som representanter for ett år. Endringer i statuttene for oppnevning av kandidater ble også vedtatt."
+  }
+}

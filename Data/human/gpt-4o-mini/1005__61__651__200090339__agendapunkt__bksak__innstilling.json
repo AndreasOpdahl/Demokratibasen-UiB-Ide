@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:61:651:200090339:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:09:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant municipal project with a deadline and potential implications for local residents."
+    },
+    "summary_headline": "Bystyret orienteres om badelandprosjekt på Nygårdstangen",
+    "summary_body": "Bystyret ble orientert om status for byggingen av et badeland med 50 meters svømmeanlegg på Nygårdstangen. Byrådet har innsett at fristen for nødvendige planer og godkjennelser, satt til 31. desember 2000, ikke kan overholdes. Det er planlagt å legge frem en sak med en fremforhandlet avtale i Bystyrets møte i februar 2001. Byrådsleder Anne-Grete Strøm-Erichsen og Byråd for tekniske tjenester Nils Arild Johnsen står bak orienteringen."
+  }
+}

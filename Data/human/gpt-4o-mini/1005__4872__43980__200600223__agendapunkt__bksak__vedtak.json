@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4872:43980:200600223:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:57:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision involves significant financial implications and affects local tenants directly."
+    },
+    "summary_headline": "Bergen kommune benytter forkjøpsrett for St. Jørgensgate 5",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å benytte kommunens forkjøpsrett ved overdragelse av St. Jørgensgate 5 for 7,5 millioner kroner. Eiendommen skal overføres direkte til leietakerne, som må oppfylle krav om bankgaranti på 8 millioner kroner innen 27. april 2006. Dersom kravene ikke oppfylles, faller vedtaket bort. Leietakerne må også inngå en utbedringsavtale med kommunen innen samme dato."
+  }
+}

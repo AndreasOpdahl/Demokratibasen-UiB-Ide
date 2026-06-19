@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11769:73458:201434789:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:50:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines budget adjustments but lacks significant controversy or impact."
+    },
+    "summary_headline": "Budsjettjusteringer vedtatt av byrådet",
+    "summary_body": "Byrådet har vedtatt flere justeringer av drifts- og investeringsbudsjettet etter 1. tertial 2015. Administrasjonen får fullmakt til å gjennomføre detaljerte justeringer i tråd med bystyrets vedtak fra 24. juni. Justeringene omfatter både drifts- og lånefondsbudsjettet, men det er ingen nevneverdige konflikter eller kontroverser knyttet til saken."
+  }
+}

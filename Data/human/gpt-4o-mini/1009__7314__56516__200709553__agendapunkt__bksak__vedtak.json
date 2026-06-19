@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7314:56516:200709553:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:37:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document details administrative changes in board memberships, which are routine and of limited public interest."
+    },
+    "summary_headline": "Endringer i styreverv i Bergen kommune",
+    "summary_body": "Byrådet har besluttet å frita Elisabeth Næverlid Johnsen fra flere verv, inkludert styret i Nordnes Verksteder AS og BIR Privat AS. Marita Moltu, Kristian Mellingen, Tomas Moltu og Jan Sverre Stray er oppnevnt som nye medlemmer og varamedlemmer i de respektive styrene. Dette er en rutinemessig administrativ beslutning uten kontrovers."
+  }
+}

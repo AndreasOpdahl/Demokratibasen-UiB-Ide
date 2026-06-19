@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4802:43062:200500944:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:20:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant decisions regarding the future development of Bergen Airport, impacting local transportation and economic growth."
+    },
+    "summary_headline": "Bystyret godkjenner masterplan for Bergen Lufthavn Flesland",
+    "summary_body": "Byrådet har godkjent masterplanen for Bergen Lufthavn Flesland og vil samarbeide med Avinor for å sikre en positiv utvikling av luftfarten i regionen. Planen vektlegger Bergen kommunes rolle i arealforvaltning, spesielt muligheten for en ny rullebane øst for den eksisterende. Byrådet understreker viktigheten av tekniske innspill fra plan- og miljøetaten for å opprettholde en regulerende rolle. Det er også bekymringer om politiske rammer som kan påvirke utviklingen av flyplassen. Dette vedtaket kan ha stor betydning for innbyggerne i Bergen og Hordaland, da det berører fremtidig transport og økonomisk vekst."
+  }
+}

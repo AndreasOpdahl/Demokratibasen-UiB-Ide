@@ -1,0 +1,18 @@
+{
+  "dokument_id": "368f19c1-1778-5740-badc-7213a86b7121",
+  "kommune_nummer": 4625,
+  "kommune_navn": "Austevoll",
+  "generated_at": "2026-02-19 22:58:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines funding decisions for local youth initiatives, which have a direct impact on community engagement and support for vulnerable groups."
+    },
+    "summary_headline": "Austevoll kommune prioriterer tilskudd til ungdomsaktiviteter",
+    "summary_body": "Austevoll kommune har rangert søknader om tilskudd til inkludering av barn og unge for 2026. Kommunedirektøren anbefaler å prioritere 'Treffpunkt' fra Austevoll Røde Kors, som tilbyr sosiale aktiviteter for ungdom, og konfirmantleir fra Austevoll Sokn. Rangeringen skal vurderes av ungdomsrådet og levekårsutvalget før endelig vedtak i kommunestyret 15. desember 2025. Dette tiltaket er viktig for å sikre at alle barn og unge får mulighet til samfunnsdeltakelse og mestring."
+  }
+}

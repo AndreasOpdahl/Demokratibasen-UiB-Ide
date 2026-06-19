@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50979:111433:199800050:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:50:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant public spending and community impact regarding the development of a public park."
+    },
+    "summary_headline": "2 millioner kroner til nytt friområde på Nordnes",
+    "summary_body": "Hovedutvalg for fritid og kultur har godkjent planer for opparbeidelse av friområdet Haugeveien 40, med en total kostnad på 2 millioner kroner. Anbudet fra Jan Askeland AS ble valgt for prosjektet, som får 80% av finansieringen fra Statens Husbank. Det er planlagt ferdigstillelse innen 1. mai 1999. Prosjektet inkluderer tiltak mot PCB-forurensning, og det er forventet økte vedlikeholdskostnader på 32.000 kroner årlig etter opparbeidelsen. Dette tiltaket vil gi innbyggerne et nytt grøntområde, noe som er viktig for lokalsamfunnet."
+  }
+}

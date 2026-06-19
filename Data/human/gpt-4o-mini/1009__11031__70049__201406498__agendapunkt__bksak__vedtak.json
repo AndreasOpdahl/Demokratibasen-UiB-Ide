@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11031:70049:201406498:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:45:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property sale has local relevance and potential impact on housing availability."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på leiegård i Vaskerelven",
+    "summary_body": "Bergen kommune har besluttet å ikke gjøre forkjøpsretten gjeldende ved overtakelse av leiegårdene Vaskerelven 3A og 3B fra Hølleland Holding AS til VH Eiendom AS. Dette kan påvirke boligmarkedet i området, da kommunen velger å ikke gripe inn i salget."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "d92c01b7-7efb-534c-a6d3-dc6f02c627ec",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 23:22:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses ongoing work on a remuneration regulation, which has implications for local politicians and administrative staff."
+    },
+    "summary_headline": "Reglementsutvalet vurderer godtgjerslereglementet for politiske verv",
+    "summary_body": "Reglementsutvalet i Alver kommune arbeider med oppfølging av godtgjerslereglementet, som skal presenteres i løpet av 2025. Kommunedirektøren har lagt fram saka utan tilråding, og utvalet har notert fleire viktige moment som skal vurderast, inkludert godtgjersle per rolle og partistøtte. Administrasjonen vil delta på neste møte for å forklare dagens rutinar knytt til utbetaling av godtgjersle. Dette arbeidet kan påverke godtgjersla til lokale politikarar og administrativt personale."
+  }
+}

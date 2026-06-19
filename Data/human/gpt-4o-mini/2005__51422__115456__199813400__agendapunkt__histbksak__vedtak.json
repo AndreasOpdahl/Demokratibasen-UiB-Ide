@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51422:115456:199813400:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:47:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to approve the subdivision of land for housing development is significant for local residents and reflects a shift in planning policy."
+    },
+    "summary_headline": "Bergen kommune godkjenner fradeling av boligtomter i Fana",
+    "summary_body": "Det faste utvalg for plansaker i Bergen kommune har omgjort et tidligere avslag fra administrasjonen og godkjent fradeling av tre boligtomter på Nedre Titlestad. Dette ble besluttet i møte 14. oktober 1999, der det ble argumentert for at området er velegnet for utbygging og kan tilpasses eksisterende bebyggelse. Beslutningen ble vedtatt med 5 stemmer fra SV, A og V mot administrasjonens forslag, som ønsket å bevare de grønne områdene langs Osbanetraseen. Dette kan påvirke boligmarkedet i området og er av interesse for innbyggere i Fana."
+  }
+}

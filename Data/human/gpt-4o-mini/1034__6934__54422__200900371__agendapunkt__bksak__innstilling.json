@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:6934:54422:200900371:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:55:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document provides information about a meeting regarding food delivery to the elderly, but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Orientering om matleveranser til eldre i Bergen",
+    "summary_body": "Eldrerådet i Bergen fikk en orientering fra Leiv Eide fra Byrådsavdeling helse og omsorg om maten som leveres til eldre. Forslaget om å ta redegjørelsen til orientering ble fremmet, men det er ingen kontrovers eller spesifikke beslutninger knyttet til saken."
+  }
+}

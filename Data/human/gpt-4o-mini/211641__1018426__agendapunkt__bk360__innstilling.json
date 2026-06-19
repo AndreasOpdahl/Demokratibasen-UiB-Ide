@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211641:1018426:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:23:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a committee meeting with several relevant health and social issues, but lacks immediate conflict or significant financial implications."
+    },
+    "summary_headline": "Møte i Komite for helse og sosial med flere saker til behandling",
+    "summary_body": "Komite for helse og sosial i Bergen kommune møtes 27. mars 2019 for å behandle flere saker, inkludert en plan for helse- og omsorgstjenester til hjemmeboende eldre fra 2019 til 2029. Møtet finner sted i Bergen rådhus, og det vil bli middag for komiteens medlemmer før møtet. Blant sakene er også statusrapporter om fattigdom og samarbeid med spesialisthelsetjenesten. Ingen kontroverser eller dissent er nevnt."
+  }
+}

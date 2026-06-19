@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51452:116089:199937694:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:48:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine maintenance request for bike and pedestrian paths, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Vedlikehold av gang- og sykkelveier i Fana tas til orientering",
+    "summary_body": "Plan- og miljøutvalget har behandlet en forespørsel fra Liv Skreden, representant for barn, om vedlikehold av gang- og sykkelveier i Fana. Saken ble enstemmig vedtatt til orientering, og oversendelsesforslaget til KTU ble også vedtatt uten realitet. Ingen konkrete tiltak ble besluttet."
+  }
+}

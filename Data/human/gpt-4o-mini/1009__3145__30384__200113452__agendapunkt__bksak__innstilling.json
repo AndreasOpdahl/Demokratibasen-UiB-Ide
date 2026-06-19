@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3145:30384:200113452:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:00:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property sale is relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på leiegård i Nykirkealmenning",
+    "summary_body": "Bergen kommune har besluttet å ikke benytte seg av forkjøpsretten ved salget av leiegården Nykirkealmenning 19, som selges av Realforum AS til Tom og Jarle Nordnes for 6.458.505 kroner. Byrådet for miljø og byutvikling støtter fagavdelingens vurdering, da leietakerne ikke har uttrykt interesse for å overta eiendommen. Dette kan påvirke leietakernes fremtidige boligforhold."
+  }
+}

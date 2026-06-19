@@ -1,0 +1,18 @@
+{
+  "dokument_id": "0d3b01f3-aa9d-518b-b95c-4faf42486d01",
+  "kommune_nummer": 4635,
+  "kommune_navn": "Gulen",
+  "generated_at": "2026-02-19 15:16:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines the establishment and election of a youth council, which is relevant to local youth engagement."
+    },
+    "summary_headline": "Valg av nytt ungdomsråd i Gulen kommune for 2025/2026",
+    "summary_body": "Gulen kommune skal opprette et nytt ungdomsråd for perioden 2025/2026, som er et rådgivende organ for ungdom. Valget av medlemmer skjer 17. oktober 2025, der hver skole er representert med to medlemmer. Rune Hjønnevåg er foreslått som nytt medlem. Kommunestyret vil formelt vedta ungdomsrådet i sitt møte 23. oktober 2025. Ungdomsrådet skal jobbe med handlingsprogrammet for dette skoleåret, som rulleres ved neste valg."
+  }
+}

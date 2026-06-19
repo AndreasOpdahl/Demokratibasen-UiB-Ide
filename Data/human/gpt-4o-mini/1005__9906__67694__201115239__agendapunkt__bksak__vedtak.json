@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9906:67694:201115239:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:27:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines procedural decisions regarding delegation of powers, which is of limited immediate interest to the public."
+    },
+    "summary_headline": "Bystyret vedtar fullmakter for kontrollutvalget",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt økonomiske og andre fullmakter for kontrollutvalget, samt rammer for videredelegering av disse fullmaktene. Kontrollutvalgets leder og nestleder får myndighet til å disponere fullmaktene når utvalget ikke er samlet, og kan delegere videre til administrasjonen. Dette vedtaket ble behandlet i møte 18. desember 2013."
+  }
+}

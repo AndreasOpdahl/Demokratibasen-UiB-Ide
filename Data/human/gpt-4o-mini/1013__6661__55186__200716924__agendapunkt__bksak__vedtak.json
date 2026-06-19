@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:6661:55186:200716924:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:14:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural decision regarding a meeting schedule, which is of low local interest."
+    },
+    "summary_headline": "Kjøreplan for bystyrets møte 22. juni 2009 vedtatt",
+    "summary_body": "Forretningsutvalget har vedtatt kjøreplanen for bystyrets møte den 22. juni 2009. I tillegg vil de ta stilling til taletid for de enkelte sakene på sitt neste møte den 16. juni. Terje Ohnstad fra Arbeiderpartiet har bedt om 3 minutters taletid i sak 119-09."
+  }
+}

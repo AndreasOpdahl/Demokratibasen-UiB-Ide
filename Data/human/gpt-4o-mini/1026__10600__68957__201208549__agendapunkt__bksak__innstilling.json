@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:10600:68957:201208549:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:53:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a contested building permit with significant local opposition and potential cultural heritage implications."
+    },
+    "summary_headline": "Klage på avslag om nybygg i Kalfaret avvist av byrådet",
+    "summary_body": "Byrådet i Bergen har besluttet å opprettholde avslaget på en klage fra Eierpart AS om oppføring av et nytt boligbygg på Kalfarlien 5. Tiltaket krever flere dispensasjoner fra gjeldende reguleringsplaner, noe byrådet mener vil undergrave bevaringsverdiene i området. Naboer har uttrykt bekymring for økt trafikk og tap av utsikt, og Byantikvaren advarer mot at nybygget vil svekke det kulturhistoriske miljøet. Byrådet anbefaler at klagen ikke tas til følge, og saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

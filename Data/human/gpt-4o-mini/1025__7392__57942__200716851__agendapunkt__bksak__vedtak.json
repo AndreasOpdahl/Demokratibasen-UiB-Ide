@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:7392:57942:200716851:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:51:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses several educational matters affecting local schools, which are relevant to the community."
+    },
+    "summary_headline": "Skoleopptaksområder og støtte til ungdomstiltak behandlet av byrådet",
+    "summary_body": "Byrådet i Bergen har behandlet flere saker som påvirker skolene i kommunen for skoleåret 2010/2011. Dette inkluderer fag- og timefordeling i bergensskolen, samt forskrift om skolens opptaksområder. Det er også foreslått støtte til barne- og ungdomstiltak i større bysamfunn. I tillegg er det åpnet for høringer om skoleplasser for elever ved Søreide skole, som kan påvirke mange familier i området. Disse beslutningene vil ha direkte innvirkning på utdanningstilbudet i Bergen."
+  }
+}

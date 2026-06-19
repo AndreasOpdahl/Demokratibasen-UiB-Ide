@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7786:57278:200918033:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:38:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a new alcohol license and expand the premises is significant for local businesses and community."
+    },
+    "summary_headline": "Galleri Nygaten får ny skjenkebevilling og utvidelse av skjenkeareal",
+    "summary_body": "Byrådet har innvilget søknaden fra Galleri Nygaten Drift AS om ny alminnelig skjenkebevilling for alkoholholdig drikk og tillatelse til å slå sammen to eksisterende bevillinger. Det søkes også om utvidelse av skjenkearealet med 550 m² og 190 gjesteplasser, noe som vil gi totalt 1600 m² og 1000 gjesteplasser. Byrådet for helse og inkludering, Christine B. Meyer, påpeker at bevillingen kan tas i bruk når nødvendige dokumenter er innsendt. Dette kan påvirke både lokale arrangementer og næringslivet i Bergen."
+  }
+}

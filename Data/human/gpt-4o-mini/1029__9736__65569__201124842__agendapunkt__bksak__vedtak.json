@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:9736:65569:201124842:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:35:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine administrative matter with no significant newsworthy elements."
+    },
+    "summary_headline": "Kontrollutvalget orienterer om møtebehandling",
+    "summary_body": "Kontrollutvalget har behandlet sak 76-12 i møte 11. september 2012 og tar fremlagte dokumenter til orientering."
+  }
+}

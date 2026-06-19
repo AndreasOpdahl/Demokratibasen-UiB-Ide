@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:8508:61295:200716939:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:17:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses routine administrative decisions with no significant impact or controversy."
+    },
+    "summary_headline": "Kontrollutvalgssaker sendt til Komite for finans",
+    "summary_body": "Forretningsutvalget i Bergen kommune har enstemmig besluttet å sende kontrollutvalgsakene 3 og 11, som omhandler revisjonsrapporten for finansreglementet og årsmeldingen for kontrollutvalget i 2010, videre til Komite for finans. Det er ingen dissent eller kontrovers knyttet til vedtaket."
+  }
+}

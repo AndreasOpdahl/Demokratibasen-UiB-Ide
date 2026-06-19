@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3938:37286:200401317:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:10:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document is a routine approval of minutes from a past meeting, lacking any significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra byrådsmøtet",
+    "summary_body": "Byrådet har godkjent protokollen fra møtet den 21. januar 2004."
+  }
+}

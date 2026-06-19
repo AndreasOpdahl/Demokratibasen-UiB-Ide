@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243450:4991228:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:36:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document raises a relevant question about the status of a public pathway affecting local residents."
+    },
+    "summary_headline": "Spørsmål om åpning av stengt gang- og sykkelsti i Fjøsangerveien",
+    "summary_body": "Katrine Nødtvedt (MDG) har stilt et skriftlig spørsmål til byråden angående den stengte sykkel- og gangveien i Fjøsangerveien, som har vært avsperret på grunn av anleggsarbeid. Hun etterspør informasjon om fremdriften og når veien kan forventes å åpne igjen. Dette berører lokalbefolkningen som er avhengig av denne stien for å ferdes trygt."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50002:100212:200000472:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:30:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a political vacancy due to a council member's relocation, which is relevant but not highly impactful."
+    },
+    "summary_headline": "Einar Tesdal (FrP) trekker seg fra verv i Bergen kommune",
+    "summary_body": "Einar Tesdal fra Fremskrittspartiet har søkt om fritak fra sine verv i Bergen kommune etter å ha flyttet til Oslo for studier. Bystyret må nå velge nye varamedlemmer for hans plasser i Bergen bystyre og Arna bydelsstyre. Eli Berg er først i køen for å rykke opp som varamedlem i Arna bydelsstyre. Dette kan påvirke representasjonen i lokale politiske organer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "7af70ea1-b864-5765-b2b6-f460b775f97f",
+  "kommune_nummer": 4627,
+  "kommune_navn": "Askøy",
+  "generated_at": "2026-02-19 23:08:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant issues affecting the elderly population, including proposed changes to postal services and health initiatives."
+    },
+    "summary_headline": "Eldrerådet protesterer mot endringer i posttjenester for eldre",
+    "summary_body": "Eldrerådet i Askøy har enstemmig vedtatt å protestere mot foreslåtte endringer i posttjenester som vil påvirke eldre negativt. De uttrykker bekymring for at overgangen fra postkasser til postpunkter vil skape problemer for eldre med nedsatt funksjonsevne, som ofte ikke bruker digitale tjenester. Eldrerådet foreslår at prosjektet «På dørterskelen» vurderes for å sikre trygghet for eldre i en digital hverdag. I tillegg ble det diskutert muligheter for å gi tilskudd til eldre for å delta på private treningstilbud, for å fremme helse og redusere kommunens utgifter til hjemmesykepleie."
+  }
+}

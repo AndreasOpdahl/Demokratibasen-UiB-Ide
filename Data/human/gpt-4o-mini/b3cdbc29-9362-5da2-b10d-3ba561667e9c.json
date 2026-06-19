@@ -1,0 +1,18 @@
+{
+  "dokument_id": "b3cdbc29-9362-5da2-b10d-3ba561667e9c",
+  "kommune_nummer": 4621,
+  "kommune_navn": "Voss",
+  "generated_at": "2026-02-19 23:16:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant issues regarding staffing and quality in local kindergartens, with implications for children's welfare and education."
+    },
+    "summary_headline": "Voss herad vedtar nye retningslinjer for barnehagebemanning",
+    "summary_body": "Heradsstyret i Voss har vedtatt at alle saker som gjelder kutt eller omorganisering i barnehagesektoren må vise hvordan pedagog- og bemanningsnormene påvirkes. Dette kommer etter en interpellasjon fra Tonje Opkvitne fra MDG, som påpekte at kun 66,7 prosent av barnehagene oppfyller normene. Ordføreren, Tonje Ljones Såkvitne fra Senterpartiet, understreket at det er et krav for kommunen å møte disse normene. Vedtaket ble enstemmig vedtatt med 41 stemmer for og 1 mot."
+  }
+}

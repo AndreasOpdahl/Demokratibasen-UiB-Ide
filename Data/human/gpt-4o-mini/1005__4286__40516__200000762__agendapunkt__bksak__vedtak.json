@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4286:40516:200000762:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:52:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes to the municipal plan for Åsane, impacting local development and community facilities."
+    },
+    "summary_headline": "Bystyret vedtar ny kommunedelplan for Åsane med endringer i arealbruk",
+    "summary_body": "Bergen bystyre har vedtatt en ny kommunedelplan for Åsane sentrale deler, som inkluderer endringer i arealbruk ved Banntjørn og regulering av parkeringsplasser. Planen åpner for utvikling av nye handelsområder og krever at det opparbeides friområder mellom handelsområder og gravplass. Det er også foreslått at det tilrettelegges for et nytt kulturhus i området. Bystyret understreker viktigheten av å håndtere økt trafikk og parkering i forbindelse med IKEAs utbygging. Vedtaket ble støttet av flertallet, men det var også alternative forslag fra flere partier som ikke ble vedtatt."
+  }
+}

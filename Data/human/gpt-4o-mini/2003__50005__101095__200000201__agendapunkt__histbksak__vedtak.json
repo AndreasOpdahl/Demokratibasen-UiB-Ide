@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50005:101095:200000201:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:30:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to connect Øykjeneset to the public water supply has significant local impact and involves public spending."
+    },
+    "summary_headline": "Øykjeneset får offentlig vanntilknytning etter enstemmig vedtak",
+    "summary_body": "Formannskapet i Bergen har besluttet å forskuttere legging av offentlig vannledning til boligområdet Øykjeneset i Ytrebygda. Dette vedtaket ble fattet enstemmig under møtet den 16. mars 2000, etter forslag fra Ingmar Ljones. Det forutsettes at det senere fremmes en refusjonssak for den verdiøkningen som vil følge med tilknytningen til det offentlige vannverket. Bevilgningssak vil bli fremmet når plangrunnlag er klart og tilbud på arbeid er innhentet."
+  }
+}

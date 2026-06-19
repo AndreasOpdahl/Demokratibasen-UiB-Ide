@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203972:269431:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:04:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a routine meeting of the Eldrerådet with no significant newsworthy elements."
+    },
+    "summary_headline": "Eldrerådet inviterer til åpen halvtime for innbyggere",
+    "summary_body": "Eldrerådet i Bergen kommune holder åpen halvtime der innbyggere kan fremme saker for rådet. Møtet finner sted den 19. februar 2018, og ledes av Inger Johanne Knudsen."
+  }
+}

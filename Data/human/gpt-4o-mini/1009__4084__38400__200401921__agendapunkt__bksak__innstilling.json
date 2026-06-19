@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4084:38400:200401921:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:12:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses funding allocations for artistic projects, which is relevant and impactful for the local arts community."
+    },
+    "summary_headline": "Bergen kommune bevilger 330 000 kroner til tverrestetiske prosjekter",
+    "summary_body": "Bergen kommune har avsatt 330 000 kroner til 16 tverrestetiske prosjekter etter å ha mottatt 20 søknader med en samlet søknadssum på 1 059 500 kroner. Byråden for finans, kultur og næring, Henning Warloe, anbefaler støtte til viktige arenaer som Landmark og Prøverommet, som er essensielle for produksjon og formidling av kunst. Fire prosjekter fikk avslag. Bevilgningen er en del av kommunens innsats for å fremme kunstnerisk samarbeid og aktivitet i lokalsamfunnet."
+  }
+}

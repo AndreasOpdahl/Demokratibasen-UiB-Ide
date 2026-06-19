@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:2707:26756:199803545:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:35:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant urban development plan with potential local impact and a pending objection from a government agency."
+    },
+    "summary_headline": "Plan for utvidelse av handelsareal i Loddefjord møter innsigelse",
+    "summary_body": "Byrådet har lagt frem en reguleringsplan for Loddefjord sentrale deler for 2. gangsbehandling, som inkluderer en foreslått utvidelse av handelsarealet i Vestkanten med 7800 m². Planen har som mål å utvikle et miljøvennlig bydelssentrum, men møter motstand fra Statens vegvesen Hordaland, som har innsigelser knyttet til kollektivtrafikk og trafikksikkerhet. Byrådet anbefaler godkjenning av planen, men påpeker at dispensasjon fra rikspolitiske retningslinjer må søkes for utvidelsen. Bystyret skal behandle saken, og det er viktig for innbyggerne i Bergen å følge med på utviklingen av dette sentrale byområdet."
+  }
+}

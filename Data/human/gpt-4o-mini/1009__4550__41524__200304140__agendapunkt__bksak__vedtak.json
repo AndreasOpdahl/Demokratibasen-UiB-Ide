@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4550:41524:200304140:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:18:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a partial approval of a housing project, which affects local residents and includes a dispute over building regulations."
+    },
+    "summary_headline": "Delvis godkjennelse av boligprosjekt i Fana",
+    "summary_body": "Byrådet i Bergen har delvis godkjent en søknad fra Alf Heine Sandven om riving av en eksisterende kårbolig og oppføring av en ny bolig på Osveien 343. Rivingen av den gamle boligen er godkjent, men det er ikke gitt dispensasjon for høyere mønehøyde enn 9 meter. Fagetaten får fullmakt til å gi rammetillatelse for et endret boligbygg, forutsatt at det nye bygget beslaglegger minst mulig dyrkbart areal. Klagen fra Sandven er delvis tatt til følge, og dersom han ønsker å fortsette klagen, vil saken bli behandlet videre av kommunen og deretter Fylkesmannen i Hordaland."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "234286:3727498:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:16:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains routine administrative decisions with no significant impact or controversy."
+    },
+    "summary_headline": "Ingen debatt i helse- og sosialutvalg",
+    "summary_body": "Utvalg for helse og sosial behandlet flere saker i møtet 12. januar 2022, men ingen representanter tok ordet, og sakene ble kun tatt til orientering."
+  }
+}

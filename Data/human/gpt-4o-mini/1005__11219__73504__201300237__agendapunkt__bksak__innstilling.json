@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11219:73504:201300237:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:34:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to dissolve Bergen og Omland Havnevesen and establish a new intermunicipal company is significant for local governance and regional development."
+    },
+    "summary_headline": "Bergen og Omland Havnevesen oppløses for å etablere nytt havneselskap",
+    "summary_body": "Byrådet i Bergen har foreslått å oppløse Bergen og Omland Havnevesen (BOH) for å etablere et nytt interkommunalt selskap, Bergen Havn IKS. Dette vedtaket er betinget av at minst 2/3 av medlemskommunene godkjenner det, og at det foreligger en avklaring om havnekapitalen. Formålet med oppløsningen er å skape en mer effektiv og moderne havnevirksomhet i Bergensregionen. Det er enighet blant de fleste kommunene om at dagens organisasjonsform er uhensiktsmessig. Det planlegges et møte i høst for å diskutere videre fremdrift."
+  }
+}

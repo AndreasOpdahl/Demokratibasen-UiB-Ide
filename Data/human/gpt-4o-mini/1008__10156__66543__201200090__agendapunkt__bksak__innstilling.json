@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:10156:66543:201200090:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:31:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document includes a significant financial guarantee for a local sports club, which impacts the community."
+    },
+    "summary_headline": "Bergen kommune gir garanti for Eidsvåg ILs klubbhus",
+    "summary_body": "Bergen bystyre vurderer å innvilge Eidsvåg Idrettslag en garanti på 1.400.000 kroner for finansiering av klubbhus og garderober ved Eidsvåg idrettsplass. Byrådet har satt flere forutsetninger for garantien, inkludert godkjenning fra Fylkesmannen og krav om pantesikring av lånet. Dette tiltaket er viktig for lokalsamfunnet, da det støtter idrettsaktivitetene i området."
+  }
+}

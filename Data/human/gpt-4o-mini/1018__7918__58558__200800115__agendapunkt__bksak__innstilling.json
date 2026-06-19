@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1018:7918:58558:200800115:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:24:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses routine company matters without significant local impact or controversy."
+    },
+    "summary_headline": "Bergen Parkering KF presenterer årsrapport og selskapsomdanning",
+    "summary_body": "Bergen Parkering KF vil på sitt møte den 3. mai 2010 presentere status for selskapsomdanning og årsrapport for 2009. Saken er av administrativ karakter og forventes ikke å ha stor innvirkning på innbyggerne."
+  }
+}

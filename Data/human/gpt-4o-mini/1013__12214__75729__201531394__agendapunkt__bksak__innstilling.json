@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:12214:75729:201531394:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:01:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document discusses routine matters without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Forretningsutvalget",
+    "summary_body": "Dokumentet omhandler saker til eventuelt som skal fremsettes i møtet den 8. april 2016, men inneholder ingen spesifikke eller nyhetsverdige elementer."
+  }
+}

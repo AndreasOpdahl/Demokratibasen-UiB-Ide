@@ -1,0 +1,18 @@
+{
+  "dokument_id": "200959:223921:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:55:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine administrative decision with no significant newsworthy elements."
+    },
+    "summary_headline": "Eldrerådet tar rapport til etterretning",
+    "summary_body": "Eldrerådet behandlet en rapport om aktivitetssenter og aktivisering av eldre i møtet 02.10.2017. Vedtaket innebærer at rådet tar rapporten og diskusjonen til etterretning."
+  }
+}

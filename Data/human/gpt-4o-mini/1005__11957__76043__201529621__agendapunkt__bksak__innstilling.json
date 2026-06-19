@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11957:76043:201529621:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:37:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural information regarding oral questions to the city council, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra bystyret om muntlige spørsmål",
+    "summary_body": "Bystyret i Bergen har behandlet muntlige spørsmål fra medlemmene, som vil bli registrert på internett. Spørsmålene må sendes elektronisk til bystyredirektør eller ordfører for å bli inkludert i spørsmålsregisteret. Dette dokumentet inneholder ingen spesifikke saker eller kontroverser."
+  }
+}

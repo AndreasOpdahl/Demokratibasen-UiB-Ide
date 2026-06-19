@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:266:1770:200190452:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:46:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant budgetary decisions regarding the maintenance of municipal buildings, which directly impacts local schools and residents."
+    },
+    "summary_headline": "Bystyret vedtar økt vedlikehold av kommunale bygninger",
+    "summary_body": "Bergen bystyre har besluttet å øke bevilgningen til vedlikehold av kommunens bygningsmasse fra 77 kr til 100 kr per m² i 2004, for å ta igjen etterslep i vedlikeholdet. Fremskrittspartiet og Senterpartiet har uttrykt bekymring for tilstanden til skolebyggene og behovet for bedre vaktmestertjenester. Bystyret anmoder byrådet om å prioritere vedlikehold av skolebygg i den kommende økonomiplanperioden. Dette vedtaket vil ha direkte innvirkning på kvaliteten av skolemiljøet for elever i Bergen."
+  }
+}

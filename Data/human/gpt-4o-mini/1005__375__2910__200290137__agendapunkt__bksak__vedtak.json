@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:375:2910:200290137:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:49:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document involves a change in local political representation, which is relevant to residents."
+    },
+    "summary_headline": "Endring i Årstad bydelsstyre: Nytt medlem valgt",
+    "summary_body": "Liv Smith (A) har fått fritak fra sitt verv som medlem i Årstad bydelsstyre for resten av valgperioden 1999-2003. I hennes sted er Karl Johan Johannessen (A) valgt som nytt medlem, mens Gunnvor Sen (A) blir nytt varamedlem. Bystyret fattet beslutningen enstemmig, noe som viser enighet om endringene i bydelsstyret."
+  }
+}

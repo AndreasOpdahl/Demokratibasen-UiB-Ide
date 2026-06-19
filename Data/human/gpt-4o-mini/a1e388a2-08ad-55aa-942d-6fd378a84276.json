@@ -1,0 +1,18 @@
+{
+  "dokument_id": "a1e388a2-08ad-55aa-942d-6fd378a84276",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:14:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant audits and reviews of local companies, which could impact municipal governance and accountability."
+    },
+    "summary_headline": "Kontrollutvalget bestiller revisjoner av Eviny AS og Bergen Sentrum AS",
+    "summary_body": "Kontrollutvalget i Bergen kommune har besluttet å bestille forvaltningsrevisjoner av både Eviny AS og Bergen Sentrum AS under møtet den 14. oktober 2025. Revisjonen av Eviny AS vil fokusere på eierskapskontroll, mens Bergen Sentrum AS vil bli vurdert for sin håndtering av tilskudd og forvaltning. Begge prosjektene skal utføres av Deloitte AS. Det ble også diskutert en ny rapport om uetisk atferd og korrupsjon, hvor Hanne Indrehus (R) foreslo at kontrollutvalget ser nærmere på varsling. Møtet ble ledet av Per-Arne Hvidsten Larsen (V) og vedtakene ble fattet enstemmig."
+  }
+}

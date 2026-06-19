@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223489:2597237:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:49:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The report highlights significant issues in child welfare and health services, including economic stress on families and high turnover rates in child protection services."
+    },
+    "summary_headline": "Bystyret bekymret for barnevern og helse i Bergen",
+    "summary_body": "Bergen bystyre har behandlet «Statusrapport 2019: Helse- og barneverntjenester i Etat for barn og familie» og uttrykt bekymring for høy turnover i barnevernet, der 17 prosent av de ansatte sluttet i 2019. Bystyret påpeker også at rapporten ikke tilstrekkelig adresserer hvordan dårlig økonomi påvirker barn og foreldres psykiske helse. Flere merknader fra SV ble vedtatt, inkludert krav om bedre omtale av LHBT-perspektivet i helsetjenester. Bystyret understreker behovet for kildehenvisninger i rapporten og ønsker en mer konkret status på tiltakene i planen «Bergens barn – byens fremtid»."
+  }
+}

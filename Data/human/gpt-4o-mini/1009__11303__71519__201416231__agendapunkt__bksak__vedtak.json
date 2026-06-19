@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11303:71519:201416231:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:47:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural decision regarding internal control without significant local impact or controversy."
+    },
+    "summary_headline": "Byrådet vedtar rammeverk for internkontroll",
+    "summary_body": "Byrådet i Bergen kommune har vedtatt et nytt rammeverk for internkontroll under møtet den 6. november 2014. Dette rammeverket skal bidra til bedre styring og kontroll innen kommunen, men det er ingen indikasjoner på konflikt eller betydelig offentlig interesse knyttet til vedtaket."
+  }
+}

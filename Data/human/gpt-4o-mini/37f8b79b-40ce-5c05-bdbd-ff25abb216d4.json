@@ -1,0 +1,18 @@
+{
+  "dokument_id": "37f8b79b-40ce-5c05-bdbd-ff25abb216d4",
+  "kommune_nummer": 4650,
+  "kommune_navn": "Gloppen",
+  "generated_at": "2026-02-19 22:58:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant licensing decision for a local business that impacts tourism and local economy."
+    },
+    "summary_headline": "Gardsbrenneriet AS får skjenke- og salsløyve i Sandane",
+    "summary_body": "Gardsbrenneriet AS har fått innvilga skjenkeløyve for eigenprodusert drikke i gruppe 1, 2 og 3, samt salsløyve for gruppe 1 og 2, for lokalet i Industrivegen 12, Sandane. Skjenkeløyvet tillater servering alle dagar mellom klokka 08.00 og 02.00, og salsløyvet er gyldig mandag til fredag mellom klokka 09.00 og 20.00, og laurdag mellom 09.00 og 18.00. Kommunedirektøren tilrår løyva, og det er ingen merknader frå politiet. Dette tiltaket er retta mot turistar og fastbuande, og kan bidra til å styrke den lokale økonomien."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4347:40607:200402750:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:07:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines an upcoming city council meeting with multiple agenda items, which may be of interest to local residents."
+    },
+    "summary_headline": "Bystyret i Bergen forbereder møte med 17 saker til behandling",
+    "summary_body": "Bystyret i Bergen skal møtes 7. mars 2005 for å behandle 17 saker, inkludert spørsmål fra innbyggerne og interpellasjoner. Møtet starter kl. 16.00, men kan forlenges til kl. 22.30 hvis tiden ikke strekker til. Blant sakene er godkjenning av protokoll fra forrige møte og flere reguleringsplaner. Bystyredirektør Roar Kristiansen og komitesekretær Ragne Rommetveit er ansvarlige for møtet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:6010:51699:200801568:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:26:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural aspect of a local council meeting with limited public engagement."
+    },
+    "summary_headline": "Åpen halvtime i bydelsstyret gir publikum mulighet til å stille spørsmål",
+    "summary_body": "Bydelsstyret i Bergen kommune starter sitt møte med en \"åpen halvtime\" der publikum kan stille spørsmål relatert til bydelsstyrets ansvarsområder. Dette gir innbyggerne en sjanse til å fremme synspunkter, men det er ingen debatt. Under resten av møtet kan ikke publikum komme med spørsmål."
+  }
+}

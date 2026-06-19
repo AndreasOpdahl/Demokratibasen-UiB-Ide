@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:9210:64974:201007808:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:23:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a denied application for a pier and floating dock, impacting local access and environmental considerations."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på kai og flytebrygge i Fyllingsdalen",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på en søknad om oppføring av kai og flytebrygge i Fyllingsdalen, som ble gitt 25. november 2010. Avslaget er begrunnet med at tiltaket strider mot reguleringsformålet og byggeforbudet i en sikringssone for forsvaret. Klageren, Per Reigstad, mener at tiltaket vil være til nytte for allmennheten og at kommunens avgjørelse er prinsipielt feil. Byrådet, ledet av Monica Mæland, vurderer at det ikke foreligger grunnlag for dispensasjon, og klagen vil ikke bli tatt til følge. Saken vil bli sendt til Fylkesmannen for endelig avgjørelse dersom klagen ikke imøtekommes."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227145:2664300:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:57:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains multiple inquiries related to the impact of COVID-19 on local services, which is relevant to residents."
+    },
+    "summary_headline": "Spørsmål om koronastøtte og kulturskole i Bergen",
+    "summary_body": "Under møtet 10. februar 2021 stilte flere representanter spørsmål til byrådet om viktige temaer. Renate Hjortland (H) spurte om støtteordninger knyttet til korona, og byråd Erlend Andreas Horn svarte. Julie Andersland (V) tok opp kulturskoletilbudet under pandemien, med svar fra byråd Katrine Nødtvedt. Anette Strand (H) spurte om smittevern på kommunale byggeplasser, som ble oversendt for skriftlig besvarelse. Harald Victor Hove (H) stilte spørsmål om utbytte fra kommunale selskaper, og Renate Hjortland (H) spurte om driftsmodellen for Sentralbadet, også besvart av Nødtvedt. Disse spørsmålene berører viktige forhold for innbyggerne i Bergen."
+  }
+}

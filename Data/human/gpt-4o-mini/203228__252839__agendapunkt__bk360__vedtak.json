@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203228:252839:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:03:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision involves significant public funding for a new cultural center, impacting local residents."
+    },
+    "summary_headline": "Bergen kommune investerer 130-140 millioner i nytt kulturhus i Åsane",
+    "summary_body": "Bergen bystyre har besluttet å gå inn i prosjektet «Nye Åsane VGS og kulturhus» med en investering på mellom 130 og 140 millioner kroner. Prosjektet innebærer at dagens kulturhusseksjon i Åsane senter vil bli solgt når det nye kulturhuset står ferdig, og salgsinntektene vil bidra til finansieringen av det nye bygget. Bystyret har også bedt byrådet om å sikre at Norsk standard for akustikk (NS 8178) blir benyttet i kulturhusdelen. Vedtaket ble fattet enstemmig, noe som viser bred politisk støtte for prosjektet som vil ha stor betydning for kulturlivet i Åsane."
+  }
+}

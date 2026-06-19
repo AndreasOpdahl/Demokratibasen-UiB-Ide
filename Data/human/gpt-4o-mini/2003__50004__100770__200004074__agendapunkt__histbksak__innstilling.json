@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50004:100770:200004074:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:30:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal addresses an important educational topic affecting youth, with unanimous support but no immediate action."
+    },
+    "summary_headline": "Bystyret vurderer kvalitetssikring av seksualitetsundervisning i ungdomsskolen",
+    "summary_body": "I et budsjettmøte 13. desember 1999 foreslo Lisbeth Iversen (KrF) at Bergen bystyre skulle vurdere en utredning av undervisningen i seksualitet og samliv på ungdomsskoletrinnet. Forslaget ble enstemmig vedtatt å oversende administrasjonen. Administrasjonen mener det ikke er hensiktsmessig å iverksette en egen utredning nå, men vil vurdere behovet for kurstilbud til lærere. Saken vil bli diskutert med oppvekstetatene i bydelene, som har ansvar for oppfølging av skolene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:375:2893:200290390:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:49:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant changes in the kindergarten needs plan that will affect many families in Bergen."
+    },
+    "summary_headline": "Bystyret vedtar rullering av barnehagebehovsplan med fokus på full behovsdekning",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å rullere barnehagebehovsplanen i løpet av 2003, med mål om at alle som ønsker barnehageplass skal få det innen utgangen av 2005. Planen inkluderer også likebehandling av offentlige og private barnehager, redusert foreldrebetaling, og evaluering av kvaliteten i barnehagetilbudet. Det skal vurderes behovet for barnehageplasser for barn med fremmedspråklig bakgrunn, spesielt i Løvstakken-området, hvor tidligere tall viste at 90 barn ikke fikk plass. En referansegruppe med representanter fra både kommunale og private barnehager vil bli opprettet for å følge opp samordnet opptak."
+  }
+}

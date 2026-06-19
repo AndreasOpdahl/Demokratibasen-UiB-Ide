@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2009:51170:112921:199611610:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:55:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for a new flybus service raises concerns about competition and public transport options."
+    },
+    "summary_headline": "Bergen kommune anbefaler ikke ny flybuss for Color Air",
+    "summary_body": "Bergen kommune har besluttet å ikke anbefale søknaden fra Color Air om konsesjon for en ny flybussrute mellom Bergen sentrum og Bergen lufthavn. Administrasjonen mener at det eksisterende flybusstilbudet allerede tilfredsstiller behovene til Color Airs passasjerer, og at det ikke er behov for en ny rute. Den foreslåtte ruten ville kun vært tilgjengelig for Color Airs kunder, noe som kan påvirke kundegrunnlaget for den nåværende flybussordningen. Color Air har fem daglige ruter mellom Oslo og Bergen."
+  }
+}

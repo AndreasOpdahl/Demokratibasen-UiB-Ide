@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:6376:53229:200819351:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:15:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant planning case that affects land use and development in Lindås, which is relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse til rullering av kommuneplan for Lindås",
+    "summary_body": "Bergen kommune har sendt høringsuttalelse til programmet for rullering av kommuneplanens arealdel for Lindås kommune, med frist 24. januar 2009. Planen, som skal vedtas i mars 2010, fokuserer på arealbruk, strandsoner, boligutvikling og næringsutvikling. Byrådet understreker viktigheten av å tilrettelegge for næringsarealer og god samordning av areal- og transportpolitikken, spesielt med tanke på økt kollektivtrafikk mellom Bergen og Lindås. Dette er relevant for innbyggere i regionen, da det vil påvirke både boligmarkedet og arbeidsmuligheter."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:9562:64436:201124948:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:51:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant decisions regarding school capacity and infrastructure that directly impact local residents."
+    },
+    "summary_headline": "Bystyret vurderer utvidelse av skoler og bygging av volleyballhall på Tunesflaten",
+    "summary_body": "Komite for oppvekst har i møte 15. mars 2012 vedtatt å utvide Søråshøgda skole med 150 plasser og Skeieskole med 50 plasser for å møte økt elevtallsbehov. I tillegg foreslås det å etablere en volleyballhall på Tunesflaten. Det er bekymringer om at nødvendige infrastrukturtiltak ikke er på plass før ny boligbygging i området. Bystyret ber byrådet om å igangsette bygging av volleyballhallen så snart området er regulert. Dette tiltaket vil påvirke mange familier i Ytrebygda bydel."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:8157:59574:201004869:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:16:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural decision with no significant impact or controversy."
+    },
+    "summary_headline": "Kjøreplan for bystyrets møte 20. september vedtatt",
+    "summary_body": "Forretningsutvalget har enstemmig vedtatt kjøreplanen for bystyrets møte den 20. september 2010. Bystyredirektør Roar Kristiansen informerte om at to tidligere utsatte saker vil bli behandlet, mens byråd Filip Rygg bekreftet at prosedyren for utdeling av budsjettdokumenter forblir uendret."
+  }
+}

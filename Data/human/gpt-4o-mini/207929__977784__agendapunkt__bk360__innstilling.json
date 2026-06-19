@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207929:977784:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:15:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested building permit affecting local residents, with significant implications for property rights and neighborhood dynamics."
+    },
+    "summary_headline": "Klage på veibygging i Åsane avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde rammetillatelsen for oppgradering av veien til eiendommen gnr 185 bnr 20 i Åsane, til tross for klage fra naboene Morten og Ingmar Morvik. Klagen, som ble fremmet av advokatfirma Stiegler AS, hevder at veiretten ikke er klar og at tiltaket vil påvirke naboeiendommene negativt. Byrådet mener imidlertid at veien har vært i bruk tidligere og at oppgraderingen ikke vil medføre vesentlige ulemper for naboene. Saken vil nå bli sendt til Komite for miljø og byutvikling for endelig avgjørelse."
+  }
+}

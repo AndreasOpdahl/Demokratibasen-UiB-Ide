@@ -1,0 +1,18 @@
+{
+  "dokument_id": "226233:2651014:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:55:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over land use and environmental concerns, affecting local residents' access to the beach."
+    },
+    "summary_headline": "Klage på avslag om murer avvist av Byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Knut Netskar angående avslaget på søknaden om å etablere murer rundt hans bolig på Markaneset. Murenes høyde og lengde, samt deres påvirkning på strandsonen og det naturlige landskapet, ble ansett som problematiske. Bymiljøetaten og Fylkesmannen har også uttalt seg negativt til tiltaket, som vil privatisere strandsonen. Byrådet anbefaler at det opprinnelige avslaget fra 1. juli 2020 opprettholdes, og saken sendes videre til Fylkesmannen for endelig avgjørelse."
+  }
+}

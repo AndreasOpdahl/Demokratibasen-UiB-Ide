@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7346:58358:201005659:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:15:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document details significant changes in committee memberships due to the entry of Frp into the city council, which affects local governance."
+    },
+    "summary_headline": "Frp trer inn i byrådet: Endringer i komiteenes sammensetning",
+    "summary_body": "Bergen bystyre har vedtatt endringer i komiteenes sammensetning etter at Fremskrittspartiet (Frp) trer inn i byrådet. Tor Woldseth er valgt som nytt medlem og leder av Komite for oppvekst, samt medlem av Forretningsutvalget. Flere andre medlemmer er også utnevnt til ulike komiteer, mens Liv Røssland og Øistein Christoffersen fritas fra sine verv i bystyret og komiteene i den perioden de sitter i byråd. Vedtaket ble fattet enstemmig uten debatt, noe som indikerer enighet om endringene."
+  }
+}

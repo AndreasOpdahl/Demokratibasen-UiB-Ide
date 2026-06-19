@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:12721:76808:200914440:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:39:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant regulatory changes affecting local development, including parking requirements and environmental considerations."
+    },
+    "summary_headline": "Bystyret vedtar områderegulering i Ytrebygda med nye parkeringskrav",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt endringer i områdereguleringen for Ytrebygda, som inkluderer utvidede krav til parkeringsplasser og krav om strømtilførsel til alle parkeringsplasser. Endringene, som også omfatter sikring av adkomst til industriområder og oppgradering av kryssløsninger, ble behandlet i bystyremøtet 17. mars. Bystyret ber om vurdering av BREEAM-sertifisering for større utbyggingsprosjekter i området. Dette vil påvirke både innbyggere og næringsliv i Ytrebygda."
+  }
+}

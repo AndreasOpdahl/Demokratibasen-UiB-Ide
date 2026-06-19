@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:594:4053:200390310:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:09:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines the selection of members for various municipal boards and committees, which is relevant to local governance."
+    },
+    "summary_headline": "Valg av medlemmer til kommunale utvalg i Bergen for perioden 2003-2007",
+    "summary_body": "Bergen bystyre skal velge medlemmer og varamedlemmer til en rekke styrer, råd og utvalg for perioden 2003-2007. Dette inkluderer blant annet Bergen og Omland Havnevesen, Ligningsnemnda, og Sentralt eldreråd. Valgene må være gjennomført innen utgangen av januar 2004. Bystyret har ansvar for å oppnevne representanter, og det er foreslått medlemmer fra ulike organisasjoner, inkludert pensjonistforbund. Dette er viktig for innbyggerne da det påvirker lokal forvaltning og tjenester."
+  }
+}

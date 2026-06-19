@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240143:3780732:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:28:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses youth council proposals but lacks significant impact or conflict."
+    },
+    "summary_headline": "Ungdomsrådet diskuterer fremtidige satsningsområder",
+    "summary_body": "Ungdomsrådet har hatt møte hvor medlemmene kan fremme forslag til uttalelser og prosjekter. Det ble diskutert status for satsningsområder og muligheter for innspill til budsjettet. Det ble også tatt opp oppfølging av styrking av elevråd, men saken ble lagt frem uten forslag til vedtak. Møtet ble ledet av Ingvild Rørtveit Digernes."
+  }
+}

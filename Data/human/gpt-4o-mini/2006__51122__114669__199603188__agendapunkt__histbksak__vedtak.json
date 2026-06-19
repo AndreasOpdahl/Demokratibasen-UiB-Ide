@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:51122:114669:199603188:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:52:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves public funding for a community project, which is relevant to local residents."
+    },
+    "summary_headline": "Bevilgning til lekeområde i Øyjorden vedtatt av Hovedutvalg for fritid og kultur",
+    "summary_body": "Hovedutvalg for fritid og kultur har besluttet å bevilge inntil 30.000 kroner til oppsetting av gjerde med låsbar port ved det nye lekeområdet i Øyjorden. Dette ble vedtatt etter en avstemning der administrasjonens forslag fikk flertall mot et alternativt forslag fra Rita Thorstenson (H). Hovedutvalget ber også administrasjonen om å gi en oversikt over øvrige kostnader knyttet til lekeområdet, basert på forslag fra Øyjorden Velforening."
+  }
+}

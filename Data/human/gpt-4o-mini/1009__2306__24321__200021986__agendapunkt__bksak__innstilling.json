@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:2306:24321:200021986:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:57:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new alcohol sales license for a local business, which has implications for local residents."
+    },
+    "summary_headline": "Midtun Mat A/S får salgsbevilling for øl",
+    "summary_body": "Byrådet har innvilget Midtun Mat A/S, beliggende i Sandbrekkeveien 96, en ny salgsbevilling for øl med lavere alkoholinnhold enn 4,76 volumprosent. Dette skjer etter at butikken har skiftet eier, og den nåværende bevillingen utløper 4. desember 2000. Politiet og Fana bydelsstyre har ikke innvendinger mot søknaden, selv om det var to stemmer imot fra KrF. Bevillingen gjelder frem til 30. juni 2004, og salgs- og utleveringstider er fastsatt i henhold til kommunens forskrifter. Midtun Mat A/S må oppfylle visse vilkår før bevillingsdokumentet kan utstedes."
+  }
+}

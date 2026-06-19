@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2004:51162:114075:199812694:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:40:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines significant organizational changes in the municipal payroll and personnel system, which could impact local employees."
+    },
+    "summary_headline": "Bergen kommune etablerer ny enhet for lønn og personal",
+    "summary_body": "Hovedutvalg for administrasjon har besluttet å etablere en ny enhet kalt Konserndrift lønn og personal i Bergen kommune, som skal organisere lønns- og personalsystemet i forbindelse med innføringen av NLP 2000. Denne enheten skal samordne driftsfunksjoner og effektivisere prosesser, med mål om å være operativ senest 1. september 1999. Det er uttrykt et klart behov for en samlokalisering av de ansatte, og høringsuttalelser fra fagforeningene YS-K og LOK er vurdert. Den nye enheten vil ha betydning for ca. 38,5 årsverk og vil bli ledet av en nyansatt leder."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240669:4649260:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:30:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant environmental issue related to construction work that could impact local water quality and recreational areas."
+    },
+    "summary_headline": "Byrådet gir høringsuttalelse til utslipp av anleggsvann fra Sotrasambandet",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til søknaden fra Sotra Link om tillatelse til utslipp av renset tunnelvann og anleggsvann fra anleggsarbeidet på Sotrasambandet, inkludert Drotningsviktunnelen og Storavatnet. Høringsfristen er utsatt til 21. oktober. Bymiljøetaten vurderer at tiltakene i søknaden er tilstrekkelige for å ivareta vannkvalitet og naturmangfold, men understreker behovet for nøye overvåking, spesielt i Storavatnet, som er en populær rekreasjonsplass. Byrådet støtter Bymiljøetatens vurderinger og anbefaler bruk av doble siltgardiner for å minimere miljøpåvirkningen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5193:46284:200600274:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:03:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant financial decision regarding the purchase of shares in a key municipal infrastructure project."
+    },
+    "summary_headline": "Bergen kommune benytter kjøpsopsjon i Klostergarasjen AS",
+    "summary_body": "Bergen kommune har besluttet å benytte sin opsjon til å kjøpe de private aksjene i Klostergarasjen AS, som er en viktig del av kommunens parkeringspolitikk. Kjøpet, som må gjennomføres innen 30. april 2007, vil koste kommunen omtrent 5,8 millioner kroner, inkludert renter. Byrådet anbefaler også at bystyret vurderer å avvikle aksjeselskapet og overføre eierskapet direkte til kommunen. Dette tiltaket er viktig for å sikre en helhetlig forvaltning av parkeringsanlegget, som har plass til 950 biler."
+  }
+}

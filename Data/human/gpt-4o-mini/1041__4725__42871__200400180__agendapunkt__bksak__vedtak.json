@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:4725:42871:200400180:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:11:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The decision is routine and involves a new alternate member for a political party without significant controversy."
+    },
+    "summary_headline": "Randi Skjold blir nytt varamedlem for Høyre i Bergen bystyre",
+    "summary_body": "Valgstyret har enstemmig vedtatt at Randi Skjold trer inn som nytt varamedlem for Høyre i Bergen bystyre, etter at Martha Berit Brunvand har trukket seg. Dette er en rutinemessig endring uten kontroverser."
+  }
+}

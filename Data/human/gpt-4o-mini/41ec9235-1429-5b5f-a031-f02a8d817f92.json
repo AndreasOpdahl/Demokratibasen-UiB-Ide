@@ -1,0 +1,18 @@
+{
+  "dokument_id": "41ec9235-1429-5b5f-a031-f02a8d817f92",
+  "kommune_nummer": 5534,
+  "kommune_navn": "Karlsøy",
+  "generated_at": "2026-02-19 22:59:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av møteprotokoll i Karlsøy kommune",
+    "summary_body": "Administrasjonsutvalget i Karlsøy kommune har godkjent protokollen fra møtet den 10. juni 2025. Dette er en rutinemessig prosedyre uten kontroverser eller betydelig innvirkning på innbyggerne."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51112:113595:199806590:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:01:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant budgetary proposals for vacation and leisure opportunities for individuals with developmental disabilities, impacting a vulnerable local population."
+    },
+    "summary_headline": "Økt ferietilbud for utviklingshemmede i Bergen foreslås",
+    "summary_body": "Bergen kommune vurderer å utvide ferietilbudet for utviklingshemmede med et budsjett på 2,2 millioner kroner. Hovedutvalget for helse og sosiale tjenester har enstemmig vedtatt å fremme saken for formannskapet, som skal vurdere kostnadsoverslag og om tilbudet skal være byomfattende. Det er stor etterspørsel etter sommerleirer, men mange søkere får avslag. I 1998 fikk 40 av 118 søkere avslag, noe som har ført til færre søkere i 1999. Det er behov for å sikre at utviklingshemmede får mulighet til ferie, og at de kan reise med ledsager. Dette tiltaket vil være viktig for å forbedre livskvaliteten til en sårbar gruppe i kommunen."
+  }
+}

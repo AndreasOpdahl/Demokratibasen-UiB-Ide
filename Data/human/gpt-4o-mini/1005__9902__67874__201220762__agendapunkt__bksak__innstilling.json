@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9902:67874:201220762:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:25:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant budgetary challenges and expected deficits across various municipal departments, which directly impacts residents and local services."
+    },
+    "summary_headline": "Bergen kommune rapporterer om betydelige budsjettavvik for 2013",
+    "summary_body": "Tertialrapport 1/2013 viser at Bergen kommune forventer et samlet negativt årsavvik på 32,56 millioner kroner. Byrådsavdelingene melder om et forventet merforbruk, særlig innen helse og omsorg (-36 millioner), barnehage og skole (-18,5 millioner), samt sosial, bolig og områdesatsing (-24 millioner). Byrådet innstiller til bystyret at statusrapporten tas til orientering, og det vil bli lagt frem forslag til justeringer av drifts- og investeringsbudsjettet i en egen sak. Dette er av stor betydning for innbyggerne, da det kan påvirke kvaliteten på kommunale tjenester."
+  }
+}

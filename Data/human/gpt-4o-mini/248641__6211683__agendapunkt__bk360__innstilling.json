@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248641:6211683:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:51:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes to the political structure and representation in Bergen, affecting local governance."
+    },
+    "summary_headline": "Bystyret vedtar ny utvalgsstruktur for perioden 2023-2027",
+    "summary_body": "Bergen bystyre har vedtatt en ny utvalgsstruktur for valgperioden 2023-2027, som inkluderer avtalevalg for alle utvalg unntatt ordfører og varaordfører. Det vil være 100% stillinger for alle ledere og nestledere i utvalgene, og ordningen med fraksjonslederstillinger utvides til å inkludere alle partier, uavhengig av antall representanter. Kontrollutvalgets leder og nestleder vil bli honorert med henholdsvis 40% og 15% stilling. Endringene er ment å sikre bedre representasjon for alle partier, inkludert mindre grupper. Dette vedtaket kan påvirke hvordan lokalpolitikken drives i Bergen, og det er viktig for innbyggerne å være oppmerksomme på disse endringene."
+  }
+}

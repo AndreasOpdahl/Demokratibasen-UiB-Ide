@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230615:3161394:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:09:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to grant a new alcohol sales license is relevant to local residents and businesses."
+    },
+    "summary_headline": "Europris Åsane får ny salgsbevilling for alkoholholdig drikk",
+    "summary_body": "Byrådet har innvilget Europris Åsane, Liamyrane 8, en ny salgsbevilling for alkoholholdig drikk gruppe 1, som gjelder frem til 31. desember 2021. Terje Sandnes er godkjent som styrer, mens Gøran Fredriksen er stedfortreder. Salgstider for alkoholholdig drikk er fra kl. 08.00 til kl. 20.00 på hverdager, med spesifikasjoner for helligdager. Før bevillingen kan tas i bruk, må Europris sende inn nødvendig dokumentasjon til Kontor for skjenkesaker."
+  }
+}

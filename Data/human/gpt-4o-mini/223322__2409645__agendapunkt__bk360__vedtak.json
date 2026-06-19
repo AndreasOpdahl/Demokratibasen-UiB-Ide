@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223322:2409645:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:49:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a public hearing for a housing report, which is relevant but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Høring om Boligmelding 2020-2026 åpnet av byrådet",
+    "summary_body": "Byrådet i Bergen har besluttet å sende utkastet til Boligmelding 2020-2026 på høring. Høringsfristen er satt til fire uker fra vedtaket, som ble fattet 10. september 2020. Dette gir innbyggerne mulighet til å gi innspill til boligpolitikken i kommunen."
+  }
+}

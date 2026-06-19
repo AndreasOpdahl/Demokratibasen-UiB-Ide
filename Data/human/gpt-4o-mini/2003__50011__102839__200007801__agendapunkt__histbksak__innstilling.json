@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50011:102839:200007801:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:32:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant public spending and involves multiple municipalities, making it relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune velger nye leverandører for kontorrekvisita og skolemateriell",
+    "summary_body": "Bergen formannskap har besluttet å fornye avtalen for kontorrekvisita og skolemateriell for perioden 01.07.2000 til 30.06.2002, med opsjonsrett for ytterligere to år. Avtalens verdi er anslått til 13,8 millioner kroner årlig. F. Beyer Engros A/S, Xerox A/S, Norsk Data Senter A/S og Nor Engros A/S er valgt som leverandører. Anbudene ble vurdert basert på kvalitet, pris og leveringstid, og det ble mottatt 17 anbud totalt. Dette vil påvirke ikke bare Bergen kommune, men også flere nabokommuner som benytter seg av avtalen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227476:2974950:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:58:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant public health measures in response to a COVID-19 outbreak, affecting local residents."
+    },
+    "summary_headline": "Bergen kommune ber regjeringen om å videreføre covid-19 tiltak",
+    "summary_body": "Byrådet i Bergen har anmodet regjeringen om å videreføre tiltak i covid-19 forskriftens kapittel 5C, etter anbefaling fra lokal smittevernmyndighet. Dette skjer på bakgrunn av en uoversiktlig smittesituasjon knyttet til det muterte viruset, med påviste smittetilfeller på byggeplasser. Tiltakene er ment å lette presset på barn og unge, og grunnskoler og barnehager kan gå tilbake til gult nivå. Byrådet understreker at situasjonen fortsatt er krevende, og tiltakene bør iverksettes for kun en uke. Beslutningen vil bli vurdert av regjeringen etter innspill fra kommunene i Bergensregionen."
+  }
+}

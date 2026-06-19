@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4942:43661:200405882:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:21:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant financial contribution to a conference that aims to enhance Bergen's profile in urban design."
+    },
+    "summary_headline": "Bergen kommune bevilger 70.000 kroner til konferanse om byutvikling",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 70.000 kroner til konferansen \"Nordic Urban Design Conference - Cities of tomorrow\", som finner sted 17. februar 2006 i Grieghallen. Byråden for byutvikling, Lisbeth Iversen, fremhever at konferansen vil bidra til å sette Bergen på kartet innen fremtidsrettet byutvikling. Konferansen har et samlet budsjett på 368.750 kroner, og kommunen er en av hovedbidragsyterne. Dette tiltaket er en del av kommunens 2020-satsing og vil styrke Bergen som en ledende aktør innen urban design."
+  }
+}

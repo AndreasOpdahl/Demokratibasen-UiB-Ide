@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10669:70441:200913750:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:31:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a proposed development that has generated public concern and opposition, particularly regarding traffic safety and preservation of the area."
+    },
+    "summary_headline": "Kontroversiell utbygging i Rådalen møter motstand",
+    "summary_body": "Byrådet har foreslått en detaljregulering for utbygging av næringsvirksomhet på et tidligere gårdsbruk i Rådalen, nær ny E39. Planen omfatter 8,8 dekar med mulighet for bygg på tre etasjer, men har møtt motstand fra både offentlige og private aktører som ønsker bevaring av området. Hordaland fylkeskommune og Byantikvaren har uttrykt bekymring for kulturminner og trafikksikkerhet. Byrådet innstiller på at utbyggingen skal ha begrensninger for å minimere trafikk og støy. Bystyret skal behandle saken, og det er ventet at det vil bli debatt om de foreslåtte endringene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1027:6130:51789:200805010:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:25:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The case involves a local complaint regarding a building permit, which may affect residents' interests."
+    },
+    "summary_headline": "Klage på garasjeplassering avvist i Ytrebygda",
+    "summary_body": "Klagen på rammetillatelsen for endring av plassering og konstruksjon av en garasje på Steinsvikskrenten 93 er avvist av underutvalg av komite for miljø og byutvikling. Vedtaket, som ble fattet enstemmig, opprettholder fagetatens tidligere avgjørelse fra mai 2008 og gir dispensasjon fra reguleringsplanen. Ingen representanter fra komiteen tok ordet under behandlingen."
+  }
+}

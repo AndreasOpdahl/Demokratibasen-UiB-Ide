@@ -1,0 +1,18 @@
+{
+  "dokument_id": "231983:3361566:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:11:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant changes to tunnel regulations that could impact local transport and environmental goals."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse om vegnormal N500 for vegtunneler",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til revisjonen av vegnormal N500 for vegtunneler, som skal bidra til et mer miljøvennlig transportsystem innen 2050. Byrådet, ledet av Thor Haakon Bakke, understreker behovet for å prioritere kollektivtransport og foreslår egne kollektivfelt i tunneler. Høringsfristen er 16. september 2021, og kommunen ønsker at kravene til tunneler tar høyde for fremtidens klima- og miljøvennlige løsninger."
+  }
+}

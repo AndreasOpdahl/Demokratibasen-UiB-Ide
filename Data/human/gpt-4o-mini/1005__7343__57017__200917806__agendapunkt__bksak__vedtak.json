@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7343:57017:200917806:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:13:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant issues regarding winter road maintenance in Bergen, highlighting public safety concerns and budget implications."
+    },
+    "summary_headline": "Bystyret krever årlig rapport om vinterveghold etter kritikk av brøyting",
+    "summary_body": "Bergen bystyre har vedtatt at byrådet skal rapportere årlig om vintervegholdet i kommunen, etter kritikk fra Torstein Dahle (R) om mangelfull brøyting og vedlikehold av veier og fortau under snøfall. Dahle påpekte at situasjonen har vært uholdbar for personer med nedsatt mobilitet, og at det er nødvendig å gjenoppta tidligere praksis med å evaluere vintervedlikeholdet. Byråd Lisbeth Iversen svarte at vintervedlikeholdet i 2009/2010 har vært utfordrende, og at kostnadene vil overstige budsjettet. Bystyret vil nå følge opp med en evaluering av vintervedlikeholdet."
+  }
+}

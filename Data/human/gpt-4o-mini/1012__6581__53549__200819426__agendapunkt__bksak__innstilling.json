@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:6581:53549:200819426:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:55:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a temporary change in school placements affecting local students, which is relevant to the community."
+    },
+    "summary_headline": "Midlertidig endring av ungdomsskoleplasser for elever fra Minde og Ny Krohnborg skole",
+    "summary_body": "Bergen kommune foreslår en midlertidig endring av ungdomsskoleplasser for elever fra Minde skole og Ny Krohnborg skole under rehabiliteringen av sistnevnte. Elevene fra Minde skole skal få plass ved Storetveit skole, og det vurderes også at Ny Krohnborgs egne elever får tilbud om ungdomsskoleplass der i rehabiliteringsperioden. Høringsfristen for innspill er satt til 25. februar 2009."
+  }
+}

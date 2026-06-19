@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248046:5031293:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:49:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision on a building permit that affects local residents and has generated political debate."
+    },
+    "summary_headline": "Utvalg for miljø og byutvikling innvilger dispensasjon for tilbygg i Fyllingsdalen",
+    "summary_body": "Utvalg for miljø og byutvikling har besluttet å oppheve tidligere avslag på en søknad om tilbygg til enebolig på Bønesstranden 80 i Fyllingsdalen. I møtet 5. oktober 2023 ble det enstemmig vedtatt å gi dispensasjon fra plankrav og tillate to tilbygg, etter at utvalget vurderte at tiltakene har gode visuelle kvaliteter og ikke vil påvirke strandsonen negativt. Byrådet hadde tidligere anbefalt å opprettholde avslag, men utvalget mente fordelene ved utbyggingen veier tyngre enn ulempene. Det ble også påpekt at tiltaket ikke vil endre bruken av eiendommen. Saken har vært omdiskutert, og det ble fremsatt merknader om bevaring av vegetasjon i byggeprosessen."
+  }
+}

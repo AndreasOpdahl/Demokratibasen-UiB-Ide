@@ -1,0 +1,18 @@
+{
+  "dokument_id": "a5a0b367-377a-5a27-8d0e-31b9ca28628b",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:14:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant budget increase for a local school sports hall project, which affects community resources and finances."
+    },
+    "summary_headline": "Økt investeringsramme for Rå skole idrettshall vedtatt av byrådet",
+    "summary_body": "Byrådet har anbefalt å øke investeringsrammen for Rå skole idrettshall fra 129,8 millioner til 145 millioner kroner. Økningen på 15,2 millioner skyldes forsinkelser og merkostnader etter avslag på rammesøknaden. Prosjektet, som inkluderer oppgradering av gymsal og lokaler for skolehelsetjenesten, forventes ferdigstilt i 2. kvartal 2026. Byrådet understreker at justeringen er nødvendig for å fullføre prosjektet i henhold til tidligere vedtak fra bystyret."
+  }
+}

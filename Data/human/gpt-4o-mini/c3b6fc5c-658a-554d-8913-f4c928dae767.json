@@ -1,0 +1,18 @@
+{
+  "dokument_id": "c3b6fc5c-658a-554d-8913-f4c928dae767",
+  "kommune_nummer": 4644,
+  "kommune_navn": "Luster",
+  "generated_at": "2026-02-19 23:20:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the planning of a local youth event, which is relevant to the community."
+    },
+    "summary_headline": "Ungdommens kommunestyre planlegger Blås grønt under Lustrabalder",
+    "summary_body": "Ungdommens kommunestyre (UK) har besluttet å arrangere Blås grønt under Lustrabalder, som finner sted fra 13. til 15. juni 2025. En arbeidsgruppe bestående av Alex Olai Sjøthun, Hans Fredrik Moe, Sølve Skjerven Oksnes og Ingrid Johanne Kvalen er opprettet for å planlegge arrangementet. Dette arrangementet har tidligere vært gjennomført i samarbeid med Parken og politiet, men ble avlyst i 2024 på grunn av manglende politiressurser. UK må nå vurdere hvordan de ønsker å gjennomføre arrangementet i 2025."
+  }
+}

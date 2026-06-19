@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:12724:78651:201125739:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:40:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a controversial urban development plan that involves the demolition of historic buildings, which has significant local implications."
+    },
+    "summary_headline": "Byrådet anbefaler ikke rivning av verneverdige villaer i Årstad",
+    "summary_body": "Byrådet i Bergen har anbefalt å ikke godkjenne et planforslag for oppføring av tre boligblokker i Årstad, som innebærer riving av to verneverdige sveitservillaer fra tidlig 1900-tall. Byrådet mener at vern av kulturminner veier tyngre enn ønsket om fortetting, og viser til byantikvarens vurdering av bygningenes verneverdi. Planforslaget har vært gjenstand for offentlig høring, hvor det kom inn flere merknader som uttrykker bekymring for kulturmiljøet og økt trafikk. Neste steg er at bystyret skal ta stilling til byrådets anbefaling."
+  }
+}

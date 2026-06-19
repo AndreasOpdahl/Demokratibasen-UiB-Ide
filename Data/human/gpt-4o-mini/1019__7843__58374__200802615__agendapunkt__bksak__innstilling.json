@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1019:7843:58374:200802615:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:25:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document provides financial insights relevant to local home care services, but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Økonomisk statusrapport for Bergen hjemmetjenester viser overskudd, men høyere kostnader enn budsjett",
+    "summary_body": "Styret for Bergen hjemmetjenester KF har presentert en økonomisk statusrapport per 31. mars 2010, som viser et akkumulert overskudd på 714.827 kroner. Rapporten indikerer imidlertid at utgiftene forventes å overstige budsjettet med ca. 2,1 millioner kroner. Inntektsprognosen er justert opp med 86.000 kroner på grunn av forventet økning i salg av tilleggstjenester. Styret tar rapporten til orientering, men det er bekymring for kostnadsoverskridelsene som kan påvirke tjenestene til innbyggerne."
+  }
+}

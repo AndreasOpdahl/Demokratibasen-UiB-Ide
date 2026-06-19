@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50740:111451:199712293:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:42:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant proposed measures to improve public transport accessibility in Bergen, involving multiple stakeholders and funding."
+    },
+    "summary_headline": "Tiltak for bedre kollektivtransport i Bergen foreslås",
+    "summary_body": "Hovedutvalg for byutvikling har fått presentert en rapport om fremkommelighetstiltak for kollektivtransport i Bergen, etter initiativ fra Miljøverndepartementet som bevilget 100.000 kroner til utredningen. Prosjektet, som har en total kostnad på over 300.000 kroner, involverer Bergen kommune, Hordaland fylkeskommune, Statens Vegvesen og kollektivselskapene. Rapporten foreslår tiltak for å forbedre bussfremkommelighet, kategorisert etter kostnader og nytteverdi. Utvalget anbefaler oppstart av reguleringsplanarbeid for å implementere tiltakene, som kan ha konsekvenser for fotgjengere. Dette er viktig for innbyggerne i Bergen, da bedre kollektivtransport kan redusere forsinkelser og forbedre reiseopplevelsen."
+  }
+}

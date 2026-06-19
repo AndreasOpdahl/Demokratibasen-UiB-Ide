@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3727:35761:200017830:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:06:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a new hearing on regulations for cleaning contaminated land, which is relevant but not highly impactful."
+    },
+    "summary_headline": "Bergen kommune støtter nytt utkast til forskrift om forurenset grunn",
+    "summary_body": "Byrådet i Bergen kommune har behandlet et nytt utkast til forskrift om opprydding av forurenset grunn ved terrenginngrep, datert juni 2003. Kommunen viser til tidligere uttalelse og slutter seg til det nye utkastet. Melding om vedtaket vil bli sendt til bystyrets kontor."
+  }
+}

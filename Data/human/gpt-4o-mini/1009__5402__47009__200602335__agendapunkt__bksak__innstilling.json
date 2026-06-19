@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5402:47009:200602335:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:27:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant expansion of a local café's alcohol serving area, which impacts local residents and businesses."
+    },
+    "summary_headline": "Kafé Knøderen får utvidet skjenkeareal og flere gjesteplasser",
+    "summary_body": "Byrådet har innvilget Kafé Knøderen, Lyder Sagensgt. 22, søknad om å utvide skjenkearealet fra 30 m² til 60 m² og øke antall gjesteplasser fra 20 til 45. Utvidelsen vil også inkludere et galleri for Galleri lokal shop. Byrådsleder Monica Mæland anbefaler innvilgelse, og vedtaket ble fattet med én stemmes avvik fra KrF. Den nye bevillingen gjelder alkoholholdig drikk gruppe 1-3 og er gyldig frem til 30. juni 2008. Dette tiltaket kan påvirke både kaféens drift og lokalsamfunnet."
+  }
+}

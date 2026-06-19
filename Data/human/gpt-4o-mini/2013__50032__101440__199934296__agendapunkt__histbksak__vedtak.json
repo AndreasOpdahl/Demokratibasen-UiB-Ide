@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2013:50032:101440:199934296:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:58:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves a significant architectural change to a local church, which affects community aesthetics and has generated political disagreement."
+    },
+    "summary_headline": "Fasadeendring ved Fyllingsdalen kirke avslått etter politisk debatt",
+    "summary_body": "Utvalg for byutvikling har avslått et forslag om vesentlig fasadeendring ved Fyllingsdalen kirke, som involverte bruk av naturfarget grå Rheinzink som taktekking. Avslaget ble begrunnet med kirkens særegne arkitektoniske kvaliteter og dens estetiske betydning i landskapet. Forslaget fra Tom Knudsen (A) om å godkjenne endringen med krav om fargejustering ble vedtatt, men fellesforslaget fra Frp og KrF om å innvilge endringen ble nedstemt. Dette vedtaket kan påvirke kirkens utseende og hvordan den oppfattes i lokalsamfunnet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:12464:76500:201531396:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:02:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a public hearing regarding military exclusion zones affecting local areas, which may impact residents."
+    },
+    "summary_headline": "Høring om endringer i militære forbudsområder i Bergen",
+    "summary_body": "Bystyrets kontor har mottatt en høringssak om endringer i forskrift om militære forbudsområder innen Sjøforsvaret, som berører Bergen. Det foreslås opprettelse av et nytt forbudsområde utenfor ubåtbunkeren på Laksevåg. Høringsfristen er 6. oktober, og byrådet anbefaler å avgi en høringsuttalelse, da saken ikke inneholder prinsipielle politiske vurderinger."
+  }
+}

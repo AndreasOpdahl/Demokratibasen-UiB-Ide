@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2013:50028:100275:199920516:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:57:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant changes to residential buildings that will affect local housing availability."
+    },
+    "summary_headline": "Endringer i rammetillatelse for boliger i Sandviken godkjent",
+    "summary_body": "Utvalg for byutvikling har godkjent endringer i rammetillatelsen for blokkene A og B i Sandviken, som vil øke antall boenheter fra 38 til 45 i blokk A og fra 28 til 39 i blokk B. Endringene inkluderer justeringer av inngangspartier, balkonger og bossboder. Administrasjonen anbefaler videre bearbeiding av planløsningene, spesielt for blokk B, for å sikre bedre kvalitet på boenhetene. Dette prosjektet vil ha betydning for boligmarkedet i Bergen, ettersom det øker antallet tilgjengelige boliger."
+  }
+}

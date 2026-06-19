@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:2111:20625:200006552:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:17:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal to preserve Forum Kino for cultural use is significant for the local community and involves public interest and potential funding."
+    },
+    "summary_headline": "Årstad bydelsstyre ønsker å bevare Forum Kino for kulturelle formål",
+    "summary_body": "Årstad bydelsstyre har uttrykt et sterkt ønske om å bevare Forum Kino som kommunal eiendom for allmennnyttige og kulturelle formål. Dette kommer etter at Bergen Kino har planer om å selge bygningen for å finansiere et nytt kinobygg. Bydelsstyret ber om at en utredning om fremtidig bruk av Forum Kino blir lagt frem til høring. Saken har vært behandlet i flere politiske organer, og det er opprettet en referansegruppe med potensielle brukere av bygget. Rapporten om mulighetene for kulturformål skal være ferdig til 11. mai 2000."
+  }
+}

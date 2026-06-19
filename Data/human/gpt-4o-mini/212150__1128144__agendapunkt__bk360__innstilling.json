@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212150:1128144:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:25:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a new alcohol license for a local restaurant is relevant and impacts the community."
+    },
+    "summary_headline": "Kolonialen får ny skjenkebevilling med utvidede åpningstider",
+    "summary_body": "Byrådet har besluttet å innvilge Kolonialen AS, beliggende på Sydneshaugen 11, en ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2, både inne og utendørs, frem til 30. juni 2020. Uteserveringen vil utgjøre 16 kvm av det totale skjenkearealet på 34 kvm. Skjenketiden er fastsatt til kl. 22.00 alle dager, noe som gir stedet mulighet til å servere lenger på fine sommerkvelder. Ingen innvendinger ble meldt fra politiet eller sosiale tjenester, men det er stilt krav om at det må være gratis vann tilgjengelig i lokalet. Kolonialen forventer at 80 % av omsetningen vil komme fra mat."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "238660:3702451:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:26:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a routine financial report and does not present significant newsworthy elements."
+    },
+    "summary_headline": "Kontrollutvalget behandler revisjonsrapport for 2021",
+    "summary_body": "Kontrollutvalget i Bergen kommune har behandlet revisjonsrapporten fra Deloitte AS for årsregnskapet 2021 i møte 15. juni 2022. Rapporten og tilbakemeldingen fra byråd for finans, innovasjon og eiendom ble enstemmig vedtatt til orientering og videresendt til bystyret for oppfølging."
+  }
+}

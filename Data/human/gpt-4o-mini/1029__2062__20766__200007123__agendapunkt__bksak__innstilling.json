@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:2062:20766:200007123:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:30:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant financial oversight and management issues affecting local governance and services."
+    },
+    "summary_headline": "Kontrollutvalget i Bergen krever bedre økonomiinstrukser og oppfølging av revisjonsrapporter",
+    "summary_body": "Kontrollutvalget i Bergen har behandlet tilleggsrapportering om økonomiinstrukser og oppfølging av revisjonsrapporter. De ber om en orientering om arbeidet med økonomiinstrukser i kommunen og oppfølging av forvaltningsrevisjonsrapport nr. 2/99, som omhandler forvaltning av pasientmidler i alders- og sykehjem. Det er bekreftet at arbeidet med økonomiinstrukser er i gang, og det er utviklet rutiner for håndkasser og kontantsalg. Formannskapet har også vedtatt retningslinjer for frivillig forvaltning av beboernes midler. Dette arbeidet er viktig for å sikre korrekt økonomisk informasjon og ansvarlig forvaltning av offentlige midler."
+  }
+}

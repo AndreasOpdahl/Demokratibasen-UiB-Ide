@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:50835:111005:199703708:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:59:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document details a significant regulatory change affecting a local church and surrounding area, with some dissent noted."
+    },
+    "summary_headline": "Bystyret godkjenner reguleringsendring for Baptistkirken på Slettebakken",
+    "summary_body": "Bystyret i Bergen har vedtatt en vesentlig reguleringsendring for området rundt Baptistkirken på Slettebakken, som omfatter gnr. 160, bnr. 180. Endringen ble godkjent med 62 mot 23 stemmer, til tross for motstand fra representanter fra SV og RV. Ragnhild Hedemann fra SV foreslo å fjerne parkeringsarealet og omregulere det til friområde, men dette forslaget fikk kun 2 stemmer. Den vedtatte reguleringen inkluderer nye reguleringsbestemmelser datert 19. januar 1998, revidert 23. mai 1998. Dette tiltaket vil påvirke lokalbefolkningen i Landås, og det er viktig for innbyggerne å være oppmerksomme på endringene i deres nærmiljø."
+  }
+}

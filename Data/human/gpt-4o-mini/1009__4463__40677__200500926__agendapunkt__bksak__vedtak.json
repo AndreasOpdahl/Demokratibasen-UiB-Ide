@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4463:40677:200500926:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:16:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a new liquor license has local relevance and some impact, but lacks significant controversy."
+    },
+    "summary_headline": "Kamelon får skjenkebevilling med restriksjoner",
+    "summary_body": "Byrådet har innvilget søknaden om alminnelig skjenkebevilling for Kamelon på Vågsalmenningen 16, som gir rett til å servere øl, vin og brennevin både innendørs og utendørs frem til 30. juni 2008. Dag Rekkedal er utnevnt som styrer, med Linda Berg som stedfortreder. Uteserveringen får ikke tillatelse til musikk etter kl. 22.00 for å unngå sjenanse for naboer. Lisbeth Iversen dissenterte i saken."
+  }
+}

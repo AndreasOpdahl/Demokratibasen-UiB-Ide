@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:13217:78414:201433729:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:59:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant housing development proposal that affects local residents and includes various planning considerations."
+    },
+    "summary_headline": "Ny reguleringsplan for 32 boliger i Øvre Tellevik",
+    "summary_body": "Rådet for byforming og arkitektur har sendt ut forslag til reguleringsplan for Øvre Tellevik i Åsane, som omfatter 32 nye boenheter, inkludert tomannsboliger, firemannsboliger, rekkehus og lavblokker. Planen, fremmet av Ard Arealplan AS på vegne av Tellevik Eiendom AS, legger til rette for en utnyttelsesgrad på 60%-BRA og inkluderer 47 parkeringsplasser. Fagetaten har uttrykt bekymring for blokkbebyggelsens tilpasning til det eksisterende bomiljøet, men anerkjenner at variasjon i boligtyper kan være positivt. Det er også krav om tilstrekkelig felles uteoppholdsareal og en småbarnslekeplass. Neste steg er 2. gangs behandling av planen."
+  }
+}

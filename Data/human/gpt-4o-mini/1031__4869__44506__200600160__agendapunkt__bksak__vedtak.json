@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1031:4869:44506:200600160:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:42:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a meeting schedule with no significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for høsten 2006 offentliggjort",
+    "summary_body": "Møteplanen for høsten 2006 er nå tilgjengelig, med møter planlagt 7. september, 12. oktober og 23. november i Rådhuset."
+  }
+}

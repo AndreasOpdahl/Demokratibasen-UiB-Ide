@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1f2f6a02-c7f6-5d41-ac86-a294ab7977b9",
+  "kommune_nummer": 4625,
+  "kommune_navn": "Austevoll",
+  "generated_at": "2026-02-19 20:29:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines the school and kindergarten schedule for 2026-2027, which affects many families in the municipality."
+    },
+    "summary_headline": "Austevoll kommune vedtar skule- og barnehagerute for 2026-2027",
+    "summary_body": "Austevoll kommune har lagt fram forslag til skule- og barnehagerute for 2026-2027, som skal vedtas av levekårsutvalet. Forslaget tar sikte på å samordne skule- og barnehageruta for å gi forutsigbare rammer for foreldre med barn i både barnehage og skole. Det har vært 10 innspill fra ulike skoler og organisasjoner, som har ført til diskusjoner om oppstartsdatoer og planleggingsdager. Kommunedirektøren anbefaler at skuleåret starter 17. august 2026, til tross for ønsker om tidligere oppstart. Neste steg er at levekårsutvalet fatter det endelige vedtaket."
+  }
+}

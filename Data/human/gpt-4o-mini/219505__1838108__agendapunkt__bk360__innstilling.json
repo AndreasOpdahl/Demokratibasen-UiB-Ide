@@ -1,0 +1,18 @@
+{
+  "dokument_id": "219505:1838108:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:41:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The interpellation raises significant concerns about public transport funding and quality, impacting local residents."
+    },
+    "summary_headline": "Bystyret krever opprusting av Bergens- og Vossabanen",
+    "summary_body": "Sofie Marhaug (R) har fremmet en interpellasjon til Bergen bystyre, hvor hun uttrykker bekymring for konsekvensene av at Vy har vunnet anbudet for drift av Bergens- og Vossabanen. Marhaug påpeker at de 2,2 milliardene som Vy betaler staten årlig må brukes til å forbedre togtilbudet, inkludert bedre togmateriell og redusert reisetid. Hun etterlyser også innsyn i avtalen mellom Jernbanedirektoratet og Vy, og foreslår at bystyret krever en storstilt opprusting av jernbanen. Dette kan ha stor betydning for innbyggerne i Bergen, som er avhengige av et godt togtilbud."
+  }
+}

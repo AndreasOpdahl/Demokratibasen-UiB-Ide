@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9783:65537:200719856:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:47:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document involves a land acquisition for a school, which has local relevance and financial implications."
+    },
+    "summary_headline": "Byrådet godkjenner grunnerverv for Nye Søreideskole",
+    "summary_body": "Byrådet har besluttet å inngå en avtale med Henry Holm om erverv av deler av gnr. 36, bnr. 204 og gnr. 36, bnr. 319, samt en garasje, for totalt 900.000 kroner. Midlene er avsatt på budsjettpost BUD326 for 2010, i henhold til økonomiplanen for 2010-2014. Dette tiltaket er en del av utviklingen av Nye Søreideskole, som vil påvirke lokalsamfunnet."
+  }
+}

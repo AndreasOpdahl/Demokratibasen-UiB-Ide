@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227777:2651023:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:59:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested decision regarding land use that affects local residents and has significant implications for traffic and green spaces."
+    },
+    "summary_headline": "Byrådet avslår dispensasjon for varelevering i Åsane",
+    "summary_body": "Byrådet i Bergen har besluttet å avslå en dispensasjonssøknad fra Arenabygg AS for varelevering og avfallshåndtering på eiendommen Myrdalsvegen 147 i Åsane. Klagen ble fremmet av styreleder Tor Bjørkås og styremedlem Knut Erik Hellebø, som argumenterte for at tiltaket vil øke biltrafikken og påvirke helse og miljø negativt. Byrådet mener at hensynene bak reguleringsplanen, som skal bevare grøntområder og sikre trafikksikkerhet, vil bli vesentlig tilsidesatt ved å gi dispensasjon. Saken har vært gjennom flere klagebehandlinger, og det er ventet at det kan komme ytterligere klager på dette vedtaket."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "222728:1938360:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:47:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The establishment of a working group to address health and social challenges is relevant to local residents."
+    },
+    "summary_headline": "Nytt arbeidsutvalg for helse og sosial opprettet",
+    "summary_body": "Utvalg for helse og sosial har besluttet å opprette et arbeidsutvalg for å diskutere og foreslå tiltak for å forbedre utfordringer som er rapportert. Arbeidsutvalget vil bestå av en representant fra hvert parti i utvalget. Forslaget fra Hilde Onarheim (H) ble vedtatt med 16 stemmer, og det er enighet blant partiene om behovet for forbedringer i helse- og sosialsektoren."
+  }
+}

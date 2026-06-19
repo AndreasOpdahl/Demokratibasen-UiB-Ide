@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:3208:31935:200106866:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:19:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant budget cuts and their impact on local services, which is highly relevant to residents."
+    },
+    "summary_headline": "Arna bydelsstyre vedtar omfattende budsjettkutt med konsekvenser for lokale tjenester",
+    "summary_body": "Arna bydelsstyre har vedtatt flere tiltak for å håndtere et betydelig budsjettunderskudd i 2002, inkludert kutt i helse- og sosialtjenester. Tiltakene omfatter salg av sykehjemsplasser og effektivisering av omsorgstjenester, som samlet skal spare 2,15 millioner kroner. Til tross for disse tiltakene, forventes det at bydelen ikke vil oppnå balanse i budsjettet. Bydelsdirektør Paal Fennell påpeker at den økonomiske situasjonen er kritisk, og at ytterligere kutt kan bli nødvendige. Dette vil påvirke tjenestetilbudet til innbyggerne i Arna, som allerede opplever ventelister for sykehjemsplasser."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:51138:113301:199805099:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:51:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant decision regarding extended alcohol serving hours during local celebrations, which affects residents' social activities."
+    },
+    "summary_headline": "Delvis innvilgelse av utvidet skjenketid på 17. mai og Festspillene",
+    "summary_body": "Rusmiddelpolitisk råd har delvis innvilget søknaden fra Reiselivsbedriftenes Landsforening om utvidet skjenke- og åpningstid på 17. mai og under Festspillene. Skjenketiden for øl og vin på 17. mai er satt til kl. 07.00-02.00, mens åpningstiden er til kl. 02.30. For Festspillene tillates skjenketid for øl og vin til kl. 02.00, med åpningstid til kl. 02.30. Søknaden om utvidelse av skjenketid for brennevin ble avslått, og nattklubber får ikke dispensasjon fra stengingskravet mellom kl. 19.00 og 22.00. Dette vedtaket er i tråd med tidligere praksis og vil bli vurdert videre i forbindelse med endringer i kommunens forskrifter."
+  }
+}

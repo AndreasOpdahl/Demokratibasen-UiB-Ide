@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2969:31210:200005311:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:18:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant funding and initiatives for mental health in Arna, which directly impacts local residents."
+    },
+    "summary_headline": "Arna bydel rapporterer om øremerkede midler til psykisk helse",
+    "summary_body": "Arna bydelsstyre har mottatt rapport om bruken av øremerkede midler til psykisk helsevern for 2001, som viser en total på 1.723.000 kroner. Det er iverksatt flere nye tiltak, inkludert økt bemanning ved dagsenteret og helsestasjonen, samt en koordinator for psykisk helsetjeneste. Det er også fokus på barn med psykisk syke foreldre, med en arbeidsgruppe som vurderer ytterligere tiltak. Imidlertid er det bekymringer om økte kostnader som kan påvirke fremtidige tjenester. Bydelsdirektør Paal Fennel og helse- og sosialsjef Helene Ve står bak rapporten."
+  }
+}

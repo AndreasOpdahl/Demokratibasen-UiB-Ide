@@ -1,0 +1,18 @@
+{
+  "dokument_id": "239626:4080788:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:28:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal addresses a significant issue affecting a vulnerable group in the community, with potential positive impacts on employment and social inclusion."
+    },
+    "summary_headline": "Bystyret vurderer utvidelse av parkeringstillatelse for forflytningshemmede",
+    "summary_body": "Bystyret i Bergen har mottatt et representantforslag fra Ronny Grønsdal og Torunn Remme (FP) om å utvide parkeringstillatelsen for forflytningshemmede. Forslaget tar sikte på å inkludere pasienter med kroniske tarmsykdommer, som ofte blir avvist for parkeringstillatelse grunnet dagens strenge definisjoner. Bystyret ber nå byrådet om å utrede mulighetene for å revidere forskriften, slik at flere pasientgrupper kan bli ivaretatt. Dette kan bidra til økt deltakelse i arbeidslivet og redusere stigma knyttet til helseproblemer. Byrådet skal legge frem en vurdering innen 22. juni 2022."
+  }
+}

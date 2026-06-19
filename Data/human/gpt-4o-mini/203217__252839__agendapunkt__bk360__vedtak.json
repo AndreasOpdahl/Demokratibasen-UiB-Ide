@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203217:252839:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:02:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to settle 200 refugees in Bergen is significant and impacts local residents, with a clear call for increased support for refugees."
+    },
+    "summary_headline": "Bergen bystyre vedtar bosetting av 200 flyktninger i 2018",
+    "summary_body": "Bergen bystyre har besluttet å bosette 200 flyktninger i 2018, inkludert 5 plasser for enslige mindreårige. Bystyret uttrykker vilje til å ta imot flere flyktninger dersom det kommer nye anmodninger fra IMDi. Det ble også vedtatt at ubrukte midler fra integreringstilskuddet skal avsettes på fond. Bystyret påpeker at kommunen har kapasitet til å ta imot flere flyktninger enn det som er anmodet om, og kritiserer regjeringen for å gjøre asylprosessen komplisert. Dette vedtaket vil påvirke lokalsamfunnet og flyktningers muligheter for integrering."
+  }
+}

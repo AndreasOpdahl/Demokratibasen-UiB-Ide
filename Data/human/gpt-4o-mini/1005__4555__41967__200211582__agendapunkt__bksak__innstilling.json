@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4555:41967:200211582:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:55:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant regulatory plan for a new kindergarten in Laksevåg, which affects local residents and involves public land use."
+    },
+    "summary_headline": "Reguleringsplan for ny barnehage i Laksevåg vedtatt av byrådet",
+    "summary_body": "Byrådet har anbefalt bystyret å vedta reguleringsplanen for en ny barnehage i Laksevåg, som omfatter bygging av barnehage, boliger og kontor/industri på Øvre Fyllingsvei. Planen, som er i tråd med barnehagebehovsplanen for Bergen, har vært gjennom en grundig vurdering av tilgjengelige tomter og forurensningsforhold. Det er ikke kommet inn vesentlige innvendinger mot prosjektet, og fagetaten anbefaler vedtak. Bystyret skal nå ta den endelige avgjørelsen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5386:47520:200700081:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:10:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details routine administrative decisions with no significant impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til komiteene",
+    "summary_body": "I byrådets møte 9. mai 2007 ble det enstemmig vedtatt å sende byrådsakene 172 – 174 til Komite for helse og sosial. Dette er en rutinemessig fordeling av saker uten kontroverser."
+  }
+}

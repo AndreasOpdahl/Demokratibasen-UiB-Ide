@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51179:113145:199901088:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:36:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a new liquor license to Schubert Restaurant has local relevance and some controversy regarding the serving conditions."
+    },
+    "summary_headline": "Ny skjenkebevilling til Schubert Restaurant, men med motstand fra FrP",
+    "summary_body": "Formannskapet i Bergen har innvilget en ny skjenkebevilling for øl, vin og brennevin til Schubert Restaurant på Kong Oscarsgt. 29. Bevillingen tillater 170 sitteplasser, men all bestilling og servering må skje ved bord. FrP stemte mot kravet om bordservering, og det var en avstemning med 18 mot 3 stemmer for de fleste punktene. Bevillingen gjelder frem til 30. juni 2000, og må forelegges gyldig serveringsbevilling før den utstedes."
+  }
+}

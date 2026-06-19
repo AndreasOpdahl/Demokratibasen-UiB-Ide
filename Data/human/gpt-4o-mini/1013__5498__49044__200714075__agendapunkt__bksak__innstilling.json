@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5498:49044:200714075:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:10:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines a significant change in the budget process that affects local governance and citizen engagement."
+    },
+    "summary_headline": "Endringer i budsjettprosessen for 2008 i Bergen",
+    "summary_body": "Forretningsutvalget har vedtatt en revidert tidsplan for budsjettarbeidet i komiteene etter at byrådet informerte om at budsjettinnstilling II ikke vil være klar før 28. november. Dette forkorter tidsvinduet for behandling av budsjettet for 2008/Økonomiplanen 2008-2011. Bystyredirektøren anbefaler at komiteene følger alternativ B, som innebærer at både fagkomiteene og finanskomiteen arbeider med budsjettinnstilling II. Dette forslaget skal behandles før bystyrets vedtak 17. desember, og det er viktig for å sikre komiteenes rolle i prosessen."
+  }
+}

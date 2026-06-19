@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2060:21963:200008517:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:23:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a proposal for an orientation meeting for new representatives, which has limited immediate impact."
+    },
+    "summary_headline": "Orienteringsmøte for nye medlemmer i samarbeidsutvalgene foreslås",
+    "summary_body": "Bergenhus bydelsstyre har fått et forslag fra representanten Irene Skarsten om å vurdere behovet for et orienteringsmøte for nyvalgte medlemmer i samarbeidsutvalgene ved skolene. Bydelsdirektøren støtter forslaget og mener at rektorene bør ha ansvar for opplæring, men er åpen for et fellesmøte for de som ønsker det. Saken ble tatt til orientering av bydelsstyret."
+  }
+}

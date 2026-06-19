@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:6112:52227:200716867:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:31:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses significant issues regarding property management and employee absenteeism in Bergen, which are relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune vurderer eiendomsforvaltning og sykefravær",
+    "summary_body": "Finanskomiteen har behandlet spørsmål fra Terje Walter Gilje (KrF) om forvaltning av kommunens arealer, og byråd Christine B. Meyer lover en sak til våren 2009 som vil dokumentere eiendommene og kostnadene knyttet til dem. Samtidig har Hallstein Aadland (FrP) stilt spørsmål om det økende sykefraværet i kommunen, som nå er over 10%. Byråden rapporterer om en nedgang i sykefraværet til 8,2% i tredje kvartal 2008, men understreker behovet for langsiktige tiltak gjennom Nærværsprosjektet for å forbedre situasjonen."
+  }
+}

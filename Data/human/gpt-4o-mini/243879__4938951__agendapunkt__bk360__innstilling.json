@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243879:4938951:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:37:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for improved support for relatives of elderly residents is relevant and could impact local families."
+    },
+    "summary_headline": "Eldrerådet foreslår bedre tilbud for pårørende i Bergen kommune",
+    "summary_body": "Eldrerådet i Bergen kommune har foreslått å etablere en pårørendekontakt som en del av budsjettinnspillene for 2022 og 2023. Under et møte 21. november diskuterte de muligheten for å utvide Innbyggerservice for å gi bedre støtte til pårørende. Dette inkluderer digital veiledning og åpne kontordager for eldre. Bergen sanitetsforening har også vist interesse for å opprette en Kløverkafé, et gratis lavterskeltilbud for pårørende. Eldrerådet vil fortsette arbeidet med dette forslaget."
+  }
+}

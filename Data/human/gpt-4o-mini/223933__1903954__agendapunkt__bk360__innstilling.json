@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223933:1903954:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:50:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the ongoing construction of the Bybanen and potential future extensions, which is relevant to local residents."
+    },
+    "summary_headline": "Politisk vilje for å forlenge Bybanen til Spelhaugen",
+    "summary_body": "Chris Jørgen Knudsen Rødland (H) har stilt spørsmål til byrådet om hva som er gjort for å sikre videre bygging av Bybanen til Spelhaugen. Bybanen til Fyllingsdalen er allerede under bygging og vil knytte øst og vest bedre sammen. Flere partier i bystyret viser politisk vilje til å forlenge banen til Spelhaugen, som er et område med stort potensial for utvikling. Dette kan påvirke fortetting og utvikling av nærområdene, noe som er av interesse for innbyggerne."
+  }
+}

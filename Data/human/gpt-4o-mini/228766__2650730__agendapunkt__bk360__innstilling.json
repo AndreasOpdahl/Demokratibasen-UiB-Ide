@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228766:2650730:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:03:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant strategy for the development of Bergen's waterfront, impacting local residents and urban planning."
+    },
+    "summary_headline": "Ny strategi for sjøfronten i Bergen vedtatt av byrådet",
+    "summary_body": "Byrådet har vedtatt en ny strategi for sjøfronten i Bergen, som har som mål å styrke byens kontakt med sjøen og sikre allmenn tilgjengelighet. Strategien omfatter områder fra Breiviken til Laksevågneset og setter fire hovedmål, inkludert bevaring av Bergens maritime identitet. Det er planlagt en handlingsplan for å utvikle en sammenhengende promenade langs sjøfronten. Byrådet understreker behovet for offentlig styring av utviklingen, ettersom private utbyggere vil spille en stor rolle. Strategien er forankret i kommuneplanen og skal bidra til en bærekraftig byutvikling."
+  }
+}

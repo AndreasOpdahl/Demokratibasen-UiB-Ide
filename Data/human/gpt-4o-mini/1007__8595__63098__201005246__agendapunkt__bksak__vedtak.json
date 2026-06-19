@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:8595:63098:201005246:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:31:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a decision to postpone a case regarding company forms, which lacks immediate impact or controversy."
+    },
+    "summary_headline": "Bergen og Omland Havnevesen utsetter sak om selskapsformer",
+    "summary_body": "Bergen og Omland Havnevesen har besluttet å utsette behandlingen av saken om alternative selskapsformer for BOH. Styret fattet enstemmig vedtak om utsettelse under møtet den 13. oktober."
+  }
+}

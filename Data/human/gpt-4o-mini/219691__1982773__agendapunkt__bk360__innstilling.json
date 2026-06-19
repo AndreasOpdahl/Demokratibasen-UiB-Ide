@@ -1,0 +1,18 @@
+{
+  "dokument_id": "219691:1982773:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:41:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines routine administrative matters with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen betydelige saker fra forretningsutvalget",
+    "summary_body": "Forretningsutvalget i Bergen kommune har innkalt til møte den 10. mars 2020, hvor flere administrative saker skal behandles, inkludert godkjenning av protokoll og valg av medlemmer til samarbeidsutvalg. Ingen kontroverser eller betydelige beslutninger er rapportert."
+  }
+}

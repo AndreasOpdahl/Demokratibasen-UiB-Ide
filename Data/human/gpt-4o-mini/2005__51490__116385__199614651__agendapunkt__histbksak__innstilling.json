@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51490:116385:199614651:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:48:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the significant decision regarding the location of Bergen University College, which impacts local education and urban development."
+    },
+    "summary_headline": "Bergen kommune anbefaler Nedre Nygård som lokalisering for Høgskolen i Bergen",
+    "summary_body": "Plan- og Miljøutvalget har godkjent konsekvensutredningen for lokalisering av Høgskolen i Bergen og anbefaler Nedre Nygård som den mest egnede tomten. Tiltakshaver, Statsbygg, støtter også Kronstad, men administrasjonen peker på Nedre Nygård som best i forhold til byplanmessige mål og kollektivtilgjengelighet. Det er kommet inn 21 merknader under høringen, hvorav flere bydelsutvalg har delt meninger om lokaliseringen. Den endelige beslutningen vil bli tatt av bystyret, med forventet godkjenning av reguleringsplanen høsten 2000."
+  }
+}

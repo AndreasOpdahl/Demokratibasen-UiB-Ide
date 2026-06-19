@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227900:2651023:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:59:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a rejected application for a housing extension, which has local implications and some political dissent."
+    },
+    "summary_headline": "Klage på avslag om tilbygg til bolig i Fyllingsdalen avvist",
+    "summary_body": "Utvalg for miljø og byutvikling har avvist en klage på et tidligere avslag om tilbygg til bolig på Bjørgegrend 67. I møtet den 11. mars 2021 ble det besluttet å opprettholde fagetatens vedtak fra 22. september 2020. Chris Jørgen K. Rødland fra Høyre fremmet merknader om uregelmessig praksis fra forsvarsdepartementet angående utvikling i hensynssoner, men denne merknaden fikk ikke flertall. Byrådet støttet utvalgets vedtak i sitt møte 25. februar 2021."
+  }
+}

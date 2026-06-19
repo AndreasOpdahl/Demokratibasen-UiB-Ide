@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221589:2250892:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:45:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine administrative update with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra byrådet om koronarelaterte saker",
+    "summary_body": "Byrådet informerte om koronarelaterte saker i møte 3. juni 2020, men det ble ikke fattet noen beslutninger."
+  }
+}

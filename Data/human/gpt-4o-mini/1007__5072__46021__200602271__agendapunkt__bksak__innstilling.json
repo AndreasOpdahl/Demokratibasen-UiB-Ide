@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:5072:46021:200602271:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:29:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural meeting agenda without significant newsworthy content."
+    },
+    "summary_headline": "Møteagenda for Bergen og Omland havnestyre",
+    "summary_body": "Dokumentet er en møteagenda for Bergen og Omland havnestyre datert 30. november 2006, hvor saker skal fremlegges, men inneholder ingen spesifikke beslutninger eller nyheter."
+  }
+}

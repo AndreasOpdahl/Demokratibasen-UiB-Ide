@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227050:2651020:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:57:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document involves a local complaint regarding a road expansion, but it was unanimously rejected with no dissent."
+    },
+    "summary_headline": "Klage på vegutvidelse avvist enstemmig av utvalg for miljø og byutvikling",
+    "summary_body": "Utvalg for miljø og byutvikling har behandlet en klage på tillatelse til utvidelse av vei på Fana, gnr 82 bnr 224. I møtet den 11. februar 2021 ble det besluttet å opprettholde fagetatens vedtak fra 3. august 2020, og klagen ble ikke tatt til følge. Ingen representanter tok ordet under behandlingen, og innstillingen ble vedtatt enstemmig."
+  }
+}

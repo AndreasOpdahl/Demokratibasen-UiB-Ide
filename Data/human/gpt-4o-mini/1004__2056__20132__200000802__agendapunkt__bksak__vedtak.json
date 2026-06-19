@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2056:20132:200000802:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:22:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant educational planning and parental involvement in school choice, which directly affects local families."
+    },
+    "summary_headline": "Bergenhus bydelsstyre vedtar foreløpig klasseordning for skoleåret 2000-2001",
+    "summary_body": "Bergenhus bydelsstyre har enstemmig vedtatt den foreløpige klasseordningen for skoleåret 2000-2001. I tillegg ble det vedtatt at foreldres ønsker om skolevalg skal imøtekommes så langt det er praktisk mulig, og at behovet for økt voksentetthet på de laveste klassetrinnene skal vurderes. Høyres forslag om å vurdere opptaksgrensen mellom Møhlenpris og Nordnes skoler ble også vedtatt. Det er en viss uenighet, da Høyres forslag om å imøtekomme foreldres ønsker ble vedtatt med 7 mot 6 stemmer. Dette har direkte betydning for familier i området, spesielt i lys av planene for ny skolebygging i Sandviken."
+  }
+}

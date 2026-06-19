@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3641:35156:200112185:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:05:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to allow outdoor serving at Jacob's is relevant to local residents and involves specific conditions."
+    },
+    "summary_headline": "Jacob's får tillatelse til uteservering med restriksjoner",
+    "summary_body": "Byrådet har innvilget Jacob's på Kong Oscarsgt. 44 tillatelse til å utvide skjenkearealet med en ny uteservering på 100 m², som kan romme 70 gjester. Uteserveringen må følge strenge regler, inkludert forbud mot musikk etter kl. 22.00 for å unngå sjenanse for naboer. Tillatelsen gjelder frem til 30. juni 2004, og før den kan tas i bruk, må søker sende inn nødvendig dokumentasjon til Kontor for skjenkesaker."
+  }
+}

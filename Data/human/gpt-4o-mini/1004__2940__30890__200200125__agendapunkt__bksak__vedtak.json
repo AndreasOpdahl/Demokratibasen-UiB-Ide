@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2940:30890:200200125:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:26:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision on alcohol licensing for a local pub has local relevance and some political conflict."
+    },
+    "summary_headline": "Bergenhus bydelsstyre avviser brennevinsbevilling til Madam Felles Jazzpub",
+    "summary_body": "Bergenhus bydelsstyre har behandlet søknaden fra Madam Felles Jazzpub om skjenkebevilling for uteservering av øl, vin og brennevin. Styret har godkjent skjenkebevilling for øl og vin, men avvist brennevinsbevilling med 8 mot 3 stemmer, etter forslag fra Frp om å tillate brennevin. Dette vedtaket kan påvirke pubens serveringstilbud og lokale innbyggere."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:11476:73380:201518342:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:59:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision involves public spending for a significant cultural event."
+    },
+    "summary_headline": "Bergen kommune arrangerer jubileumsfeiring for Filharmonisk Orkester",
+    "summary_body": "Bergen kommune har besluttet å gi en kommunal mottakelse i Grieghallen den 8. oktober 2015 for å feire Bergen Filharmoniske Orkesters 250-årsjubileum. Kostnaden for arrangementet vil bli dekket med inntil 250.000 kroner, og kommunen vil være vertskap. Beslutningen ble fattet enstemmig av Forretningsutvalget."
+  }
+}

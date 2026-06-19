@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:2260:24711:200006524:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:13:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses funding and support for mental health services, which is a significant local issue."
+    },
+    "summary_headline": "Ytrebygda bydelsstyre ber om økte midler til psykisk helsevern",
+    "summary_body": "Ytrebygda bydelsstyre har behandlet rulleringen av psykiatriplanen for perioden 2001-2003. Bydelsstyret har enstemmig vedtatt å ta planen til orientering, men det ble også fremmet forslag om økte midler til psykisk helsevern. Leif Aase fra Frp fikk støtte for sitt forslag om tilstrekkelige midler, som ble vedtatt med 7 mot 6 stemmer. Bjørn-Frode Schjelderup fra H fikk også vedtatt sitt forslag om at kriseteamet skal bli et kontaktledd for familier med psykiatriproblemer, inkludert rusproblemer. Dette er et viktig tema for innbyggerne i Ytrebygda."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:2446:24246:200006227:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:17:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The report discusses the integration of foreign-speaking children and training for youth workers, which is relevant to the local community."
+    },
+    "summary_headline": "Årstad bydelsstyre anbefaler videreføring av Frem-Løv prosjektet",
+    "summary_body": "Årstad bydelsstyre har behandlet sluttrapporten for Frem-Løv prosjektet og besluttet å ta den til orientering. De anbefaler at erfaringene fra prosjektet videreføres i arbeidet med integrering av fremmedspråklige barn og unge. I tillegg ble det vedtatt at alle som jobber med barne- og ungdomsarbeid i bydelen skal få opplæring i flerkulturell forståelse. Dette tiltaket er viktig for å styrke integreringen i lokalsamfunnet."
+  }
+}

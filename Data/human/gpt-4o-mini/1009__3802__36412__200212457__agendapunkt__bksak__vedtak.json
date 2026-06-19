@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3802:36412:200212457:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:07:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a private regulatory plan proposal that has been recommended for public review, which may affect local residents."
+    },
+    "summary_headline": "Privat reguleringsplan for Fana anbefales til offentlig ettersyn",
+    "summary_body": "Byrådet har anbefalt et privat reguleringsplanforslag for eiendommer i Fana, gnr. 13, bnr. 870 og 1029, som nå legges ut til offentlig ettersyn. Planen, datert 01.09.03, omfatter reguleringsbestemmelser og kart i målestokk 1:1000. Dette kan påvirke lokale innbyggere, som nå får mulighet til å gi innspill."
+  }
+}

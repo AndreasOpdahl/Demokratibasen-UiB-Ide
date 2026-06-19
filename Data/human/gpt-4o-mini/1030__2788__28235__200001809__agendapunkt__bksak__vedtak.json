@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2788:28235:200001809:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:37:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a building permit appeal, which has local relevance but lacks significant conflict or impact."
+    },
+    "summary_headline": "Laksevåg bydelsstyre opprettholder byggesøknad",
+    "summary_body": "Laksevåg bydelsstyre har enstemmig besluttet å opprettholde administrasjonens vedtak om tillatelse til tilbygg på Janahaugen 33, til tross for klage fra naboer. Saken ble behandlet den 2. oktober 2001, og bydelsstyret har dermed avvist klagen fra tiltakshaver Ester Tollefsen."
+  }
+}

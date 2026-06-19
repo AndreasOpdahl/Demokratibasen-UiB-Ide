@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5622:49447:200501388:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:06:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document provides detailed financial analyses and reports on municipal services, which may interest local residents but lacks immediate conflict or controversy."
+    },
+    "summary_headline": "Bergen kommune vurderer nøkkeltall for tjenesteyting i 2006",
+    "summary_body": "Byrådet i Bergen har behandlet en rapport om nøkkeltall for tjenesteyting og ressursbruk i ASSS-kommunene for 2006. Rapporten, utarbeidet av KS, analyserer kommunens finans- og regnskapsdata, samt behovs- og produksjonsanalyser. Byrådet innstiller til bystyret at saken tas til orientering. Det er ingen umiddelbare kontroverser, men rapporten avdekker at Bergen har høyere frie inntekter enn gjennomsnittet for ASSS-kommunene, noe som kan påvirke fremtidige politiske beslutninger."
+  }
+}

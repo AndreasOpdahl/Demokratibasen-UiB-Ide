@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203758:268362:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:04:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant construction project for a nursing home that affects local residents and involves substantial public funding."
+    },
+    "summary_headline": "Bergen kommune inngår avtale om byggeprosjekt ved Domkirkehjemmet",
+    "summary_body": "Bergen kommune har inngått en avtale med Stiftelsen Domkirkehjemmet om et byggeprosjekt som vil oppgradere sykehjemmet. Prosjektet, som har en total kostnad på 25,5 millioner kroner, vil redusere antall plasser fra 96 til 93, men samtidig oppgradere fasilitetene, inkludert nye beboerrom med eget bad. Husbanken har gitt tilsagn om investeringstilskudd på 7,7 millioner kroner. Byggearbeidet må starte innen november 2018, og ferdigstillelse er forventet ved årsskiftet 2019/2020. Dette prosjektet er viktig for å sikre tilstrekkelig og moderne omsorg for eldre i Bergen."
+  }
+}

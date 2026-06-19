@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7532:56893:200003452:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:37:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to expand the alcohol serving area and guest capacity at a local student venue is relevant to the community and involves public safety measures."
+    },
+    "summary_headline": "Utvidelse av skjenkeareal ved Det Akademiske Kvarter godkjent",
+    "summary_body": "Byrådet har innvilget søknaden om utvidelse av skjenkearealet og antall gjesteplasser ved Det Akademiske Kvarter, Olav Kyrresgt. 49, frem til 30. juni 2012. Utvidet skjenketid til kl. 02.30 er betinget av at en skjenkeansvarlig har gjennomgått kurs i ansvarlig alkoholhåndtering, samt at en dørvakt har fått nødvendig opplæring. Bevillingen er gitt til Studentkulturhuset i Bergen AS, med Erik Næsgaard som styrer. Det samlede maksimale personantallet i bygget er satt til 1500."
+  }
+}

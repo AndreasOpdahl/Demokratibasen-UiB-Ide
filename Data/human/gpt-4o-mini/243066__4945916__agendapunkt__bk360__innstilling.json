@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243066:4945916:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:35:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses significant issues affecting individuals with disabilities in Bergen, including proposed changes to services."
+    },
+    "summary_headline": "Byråd Grung møter rådet for personer med funksjonsnedsettelse om viktige saker",
+    "summary_body": "Byråd Ruth Grung deltar i et møte med kommunalt råd for personer med funksjonsnedsettelse for å diskutere flere aktuelle saker. Blant temaene er forslaget om å avvikle brukervalgsordningen i praktisk bistand, situasjonen for fastlegeordningen, samarbeid mellom spesialist- og primærhelsetjenesten, samt oppfølging av ferietilbudet for utviklingshemmede. Møtet finner sted 24. januar 2023, og rådet tar informasjonen til orientering."
+  }
+}

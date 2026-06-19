@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5202:48518:200613567:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:05:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The budget proposal includes significant funding changes and new initiatives that directly impact residents, making it highly newsworthy."
+    },
+    "summary_headline": "Bystyret vedtar budsjett for 2008 med økte midler til skole og eldreomsorg",
+    "summary_body": "Bergen bystyre har vedtatt budsjettet for 2008 og økonomiplanen for 2008-2011, med endringer som inkluderer 3,5 millioner kroner til leksehjelp i skolen og 500.000 kroner til miljøarbeidere i skolen. Det er også avsatt 58,5 millioner kroner til å styrke driftsoverskuddet, som skal brukes til å dekke underdekning i pensjonskostnader. I investeringsbudsjettet er det planlagt 15,5 millioner kroner til en ny idrettshall ved Bønes skole. Bystyret har også bedt byrådet om å prioritere bygging av nye sykehjemsplasser og øke tilskuddene til bydelsstyrene med 5 millioner kroner. Dette budsjettet vil ha stor innvirkning på innbyggerne i Bergen, spesielt innen utdanning og eldreomsorg."
+  }
+}

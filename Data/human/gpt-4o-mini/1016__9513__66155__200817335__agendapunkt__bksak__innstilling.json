@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:9513:66155:200817335:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:24:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document presents significant data on workplace injuries and threats in Bergen, indicating trends that affect local employees and safety measures."
+    },
+    "summary_headline": "Økning i mobbing og trusler i Bergen kommune",
+    "summary_body": "I første halvår 2012 ble det registrert 1269 meldinger om skader, trusler og vold i Bergen kommune, en liten økning fra 1245 meldinger i 2011. Spesielt bekymringsfullt er den økte rapporteringen av mobbing og trusler, som har steget fra 264 til 328 tilfeller. Samtidig viser tallene en positiv trend med en reduksjon i alvorlige skader som medfører sykefravær, fra 85 meldinger i 2011 til 73 i 2012. Hovedarbeidsmiljøutvalget tar til orientering oversikten, og det er behov for å forbedre bevisstheten om skadereduserende tiltak blant ansatte."
+  }
+}

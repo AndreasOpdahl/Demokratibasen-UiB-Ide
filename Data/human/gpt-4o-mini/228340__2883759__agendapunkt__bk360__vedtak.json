@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228340:2883759:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:01:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The establishment of a new council is relevant but lacks immediate impact or controversy."
+    },
+    "summary_headline": "Nytt råd for bærekraftig boligforsyning opprettet av byrådet",
+    "summary_body": "Byrådet i Bergen har besluttet å opprette et Råd for bærekraftig boligforsyning. Dette ble vedtatt i møtet den 25. mars 2021, i tråd med byrådens anbefaling. Rådet skal arbeide med spørsmål knyttet til boligforsyning i kommunen."
+  }
+}

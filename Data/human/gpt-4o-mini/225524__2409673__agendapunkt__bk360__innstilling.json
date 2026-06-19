@@ -1,0 +1,18 @@
+{
+  "dokument_id": "225524:2409673:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:54:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a new alcohol license for a student venue is relevant and impacts local residents."
+    },
+    "summary_headline": "Diskuterbar får ny skjenkebevilling i Fosswinckels gate",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Diskuterbar i Fosswinckels gate 6. Dette studentstedet, som tidligere har hatt bevilling i Professor Keysers gate, flytter til nye lokaler grunnet oppussing. Skjenkebevillingen gjelder for et areal på 242 kvm og er tildelt uten merknader fra politiet eller etater. Byråden, Beate Husa, støtter anbefalingen fra Kontor for skjenkesaker, og bevillingen gjelder frem til 31. desember 2020."
+  }
+}

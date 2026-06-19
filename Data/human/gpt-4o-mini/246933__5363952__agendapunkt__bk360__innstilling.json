@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246933:5363952:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:46:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant plan for sustainable forestry in Bergen, impacting local environmental and economic conditions."
+    },
+    "summary_headline": "Bergen kommune legger frem temaplan for skogbruk til offentlig høring",
+    "summary_body": "Bergen kommune har lagt frem en temaplan for skogbruk til ekstern høring, som skal utvikle og øke verdiskapingen i en bærekraftig skognæring. Planen, som er den første av sitt slag i kommunen, fokuserer på fire hovedområder: Areal og natur, Næring, Klima og Samfunn, med mål om å ivareta skogarealet, øke verdiskapingen, og bidra til klimamål. Byråden for klima, miljø og byutvikling, Ingrid Nergaard Fjeldstad, understreker viktigheten av en egen skogbruksplan for å balansere ulike verdier skogen har. Høringen er en mulighet for innspill fra allmennheten og interessenter, og vil være avgjørende for fremtidig forvaltning av skogressursene i Bergen."
+  }
+}

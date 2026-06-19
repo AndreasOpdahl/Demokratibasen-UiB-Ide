@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5173:47724:200400041:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:09:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The request for improvements at Rådhuset is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "AP ber om forbedringer ved Rådhuset",
+    "summary_body": "Arbeiderpartiet, ved Thor Brekkeflat, har anmodet byråden om å utrede forbedringer for arbeidsforholdene og det fysiske miljøet ved Rådhuset. Forslagene inkluderer innføring av trådløst internett og opprustning av utearealene ved kantinen, med fokus på beplantning og muligheter for uteservering. Dette ble behandlet av Komite for miljø og byutvikling i møte 27. september."
+  }
+}

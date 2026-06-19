@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:10952:69618:201011706:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:32:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant urban development project that has generated local interest and controversy."
+    },
+    "summary_headline": "Kontroversielt boligprosjekt i Laksevåg vedtatt med endringer",
+    "summary_body": "Byrådet har vedtatt reguleringsplanen for Kirkebukten bolig- og næringsområde i Laksevåg, som åpner for bygging av 107 nye boliger og 1500 m² forretningsareal. Planen har møtt motstand fra lokale beboere som er bekymret for byggehøyde, parkeringsmangel og tap av uteareal. Byrådet ønsker å styrke Laksevåg som lokalsenter, men har innført endringer som reduserer byggehøyden og sikrer offentlig tilgjengelighet til sjøen. Det er også foreslått tiltak for å håndtere parkeringsutfordringer i området. Neste steg er at bystyret skal fatte endelig vedtak om planen."
+  }
+}

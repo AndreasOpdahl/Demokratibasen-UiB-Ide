@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:5341:46570:200000778:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:23:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a meeting schedule, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for Hovedarbeidsmiljøutvalget 2007 vedtatt",
+    "summary_body": "Hovedarbeidsmiljøutvalget har vedtatt møteplanen for 2007, som inkluderer møter den 20. mars, 19. juni, 25. september og 4. desember. Beslutningen ble gjort av kommunaldirektør Elin Sjødin Drange."
+  }
+}

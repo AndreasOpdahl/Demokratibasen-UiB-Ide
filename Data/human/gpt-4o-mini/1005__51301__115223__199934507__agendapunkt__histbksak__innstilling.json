@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51301:115223:199934507:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:02:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The interpellation addresses significant concerns about bureaucratic inefficiencies affecting residents, highlighting a call for reform."
+    },
+    "summary_headline": "Krav om enklere kommunal saksbehandling i Bergen",
+    "summary_body": "Grete Line Simonsen (V) har fremmet en interpellasjon til bystyret, der hun uttrykker bekymring for innbyggernes opplevelse av tungvint kommunal informasjon og saksbehandling. Hun påpeker at mange føler seg frustrert over byråkratiet og foreslår at Bergen kommune bør starte et arbeid for å forenkle prosessene, inspirert av regjeringens prosjekt \"Et enklere Norge\". Simonsen etterlyser initiativ fra ordføreren for å forbedre kommunal service og gjøre hverdagen enklere for innbyggere og bedrifter."
+  }
+}

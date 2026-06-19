@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2671:26595:200001100:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:44:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a local alcohol license application with a minor dissent."
+    },
+    "summary_headline": "Søknad om skjenkebevilling for uteservering innvilget med én stemmes avvik",
+    "summary_body": "Bergen kommune har innvilget søknaden om alminnelig skjenkebevilling for brennevin ved uteserveringen på Dikterstuene. Forslaget fra Kontor for skjenkesaker ble vedtatt med 1 stemme imot, etter at Atle Raa fra FrP fremmet et alternativt forslag om å innvilge søknaden som omsøkt. Dette vedtaket kan påvirke serveringsmiljøet i området."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:570:3728:200390310:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:09:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The election of the new city council and leadership is a significant political event affecting local governance."
+    },
+    "summary_headline": "Monica Mæland gjenvalgt som byrådsleder i Bergen",
+    "summary_body": "Bergen bystyre har valgt Monica Mæland (H) som byrådsleder og Henning Warloe (H) som byrådsnestleder. I tillegg ble Trude Drevland (H), Lisbeth Iversen (KrF) og Hans-Carl Tveit (V) valgt som byråder. Forslaget fra Hilde Onarheim (H) ble vedtatt med 39 av 67 stemmer, mens 28 stemmer var blanke. Dette valget markerer en viktig politisk utvikling i Bergen som vil påvirke lokalpolitikken fremover."
+  }
+}

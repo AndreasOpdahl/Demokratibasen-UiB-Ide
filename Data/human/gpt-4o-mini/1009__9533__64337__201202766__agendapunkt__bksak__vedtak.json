@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9533:64337:201202766:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:45:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The establishment of a service concession scheme for 'Inn på tunet' is relevant for local agricultural services and may impact residents."
+    },
+    "summary_headline": "Ny tjenestekonsesjonsordning for 'Inn på tunet' vedtatt av byrådet",
+    "summary_body": "Byrådet i Bergen har vedtatt å etablere en tjenestekonsesjonsordning for 'Inn på tunet' (IPT). Ordningen vil inkludere bruk av Kvalitetssystem i Landbruket (KSL-standarder) og en standardavtale utviklet av Stiftelsen Matmerk. Dette tiltaket kan påvirke lokale bønder og innbyggere som benytter seg av IPT-tjenester."
+  }
+}

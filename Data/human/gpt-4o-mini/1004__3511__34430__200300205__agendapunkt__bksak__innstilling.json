@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3511:34430:200300205:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a controversial decision regarding a liquor license application, which could impact local alcohol consumption."
+    },
+    "summary_headline": "Bergenhus bydelsstyre anbefaler ikke skjenkebevilling til Inside",
+    "summary_body": "Bergenhus bydelsstyre har besluttet å ikke anbefale innvilgelse av skjenkebevilling for øl, vin og brennevin ved Inside, Vaskerelvsmauet 7. Administrasjonen advarer mot økt alkoholkonsum ved å tillate flere rene skjenkesteder, spesielt siden Inside har liten eller ingen matservering. Dette kan påvirke lokalsamfunnet ved å begrense tilgjengeligheten av alkohol og opprettholde en restriktiv alkoholpolitikk."
+  }
+}

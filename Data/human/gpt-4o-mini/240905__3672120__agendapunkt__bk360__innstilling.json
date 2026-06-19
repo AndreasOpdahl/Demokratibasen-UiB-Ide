@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240905:3672120:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:30:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine meeting agenda with no significant newsworthy elements."
+    },
+    "summary_headline": "Informasjonsmøte med byombudet",
+    "summary_body": "Byombud Erik Dahl møter eldrerådet for å informere om byombudets arbeid. Møtet finner sted 27. oktober 2022, og informasjonen tas til orientering av rådet."
+  }
+}

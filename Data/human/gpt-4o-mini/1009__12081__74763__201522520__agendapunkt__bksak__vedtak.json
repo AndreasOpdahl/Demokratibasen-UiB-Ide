@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:12081:74763:201522520:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:51:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to grant a new alcohol license is relevant to local businesses and residents."
+    },
+    "summary_headline": "Bastant Bryggen får ny skjenkebevilling",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Bastant Bryggen, Jacobsfjorden 4, frem til 30. juni 2016. Bevillingshaver er KAF AS, med Maren Munck som styrer og Tom Christian Lillebø som stedfortreder. Bevillingen gjelder både innendørs og uteservering. Før bevillingen kan tas i bruk, må flere dokumenter sendes inn til Etat for skjenkesaker, inkludert brukstillatelse og bekreftelse på at ansatte er registrert. Dette kan påvirke restaurantens drift og tilgjengelighet for lokalbefolkningen."
+  }
+}

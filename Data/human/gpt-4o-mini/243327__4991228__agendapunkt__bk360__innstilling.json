@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243327:4991228:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:36:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document raises a question about transparency in local governance regarding illegalities in the coastal zone."
+    },
+    "summary_headline": "Krav om oversikt over ulovlige strandsonesaker",
+    "summary_body": "Tore Landmark (FP) har stilt et skriftlig spørsmål til byråden om å legge frem en oversikt over 600 strandsonesaker med mindre overtredelser. Disse sakene er en del av de 1400 ulovlighetene kommunen avdekket etter tilsyn av 2800 strandeiendommer mellom 2009 og 2012. Landmark ønsker spesifikke gårds- og bruksnumre, adresser og begrunnelser for vedtakene. Dette spørsmålet kan påvirke innbyggernes tillit til kommunens håndtering av strandsonen."
+  }
+}

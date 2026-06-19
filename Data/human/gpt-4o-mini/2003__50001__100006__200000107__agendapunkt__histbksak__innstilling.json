@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50001:100006:200000107:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:30:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses funding for playground equipment in kindergartens, which has local relevance and potential impact."
+    },
+    "summary_headline": "Bystyret vurderer veiledningstjeneste for barnehager angående lekeapparater",
+    "summary_body": "Bystyret i Bergen har besluttet å vurdere opprettelsen av en veiledningstjeneste for barnehager, som skal gi råd om materialvalg og behandling av utelekeapparater. Det er også foreslått å gi tilskudd til barnehager som selv ønsker å oppgradere lekeapparatene. Imidlertid har rådmannen, Jan Refseth, påpekt at kostnadene ved utskifting av forurenset jord i lekeområder er så høye at det ikke er rom for slike tilskudd. Formannskapet vil ta saken til orientering."
+  }
+}

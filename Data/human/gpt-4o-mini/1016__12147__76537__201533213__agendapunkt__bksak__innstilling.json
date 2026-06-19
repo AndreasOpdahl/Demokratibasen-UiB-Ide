@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:12147:76537:201533213:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:21:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains decisions on welfare funding and a competence plan, which are relevant to local residents."
+    },
+    "summary_headline": "Hovedarbeidsmiljøutvalget tildeler velferdsmidler til lokale grupper",
+    "summary_body": "Hovedarbeidsmiljøutvalget i Bergen har godkjent tildeling av sentrale velferdsmidler for 2016, inkludert 50 000 kroner til Bergenslærerne og 19 535 kroner til IntOps Veteraner. I tillegg ble det besluttet å evaluere tildelingskriteriene for velferdsmidlene. Møtet ble ledet av Eli Tysnes, som også er leder for hovedverneombudene. Det ble ikke rapportert om uenighet i vedtakene."
+  }
+}

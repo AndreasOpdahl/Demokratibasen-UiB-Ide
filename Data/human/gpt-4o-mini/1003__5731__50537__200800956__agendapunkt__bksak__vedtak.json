@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1003:5731:50537:200800956:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:21:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative decisions with no significant impact or controversy."
+    },
+    "summary_headline": "Styremøte 6. april 2008: Rutinemessige beslutninger uten kontroverser",
+    "summary_body": "Under styremøtet 6. april 2008 ble det orientert om salg av Grensegrenden 6 av ass. direktør Bjarte Høysæter og kjøp av fire leiligheter i Åsane av direktør Audun Øiestad. Styremedlem Stein Trengereid foreslo at nye styremedlemmer skulle få tilsendt årsmelding, regnskap for 2007, budsjett for 2008 og selskapets vedtekter. Det ble også enighet om å kombinere styremøtet 3. juni med et heldags-seminar."
+  }
+}

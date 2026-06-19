@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:4357:40747:200501823:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:48:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant funding for local organizations aimed at drug prevention, which impacts community health and safety."
+    },
+    "summary_headline": "Bystyret bevilger 845.000 kroner til rusforebyggende tiltak i Bergen",
+    "summary_body": "Bystyret har besluttet å tildele 845.000 kroner til rusforebyggende tiltak for 2005, etter å ha mottatt 27 søknader med en samlet sum på nesten 1,9 millioner kroner. Midlene skal fordeles til ulike organisasjoner, inkludert Frelsesarmeen og Røde Kors, for spesifikke prosjekter rettet mot ungdom og omsorg. Det gjenstår 60.300 kroner til senere fordeling. Søkere må rapportere om bruken av midlene ved årets slutt, noe som sikrer ansvarlighet og kvalitet i tiltakene."
+  }
+}

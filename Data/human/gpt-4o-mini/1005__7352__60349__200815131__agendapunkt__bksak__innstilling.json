@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7352:60349:200815131:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:17:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document presents significant financial information regarding municipal grants, which affects local organizations and community funding."
+    },
+    "summary_headline": "Bergen kommune rapporterer om tilskuddsmottakere med 166,8 millioner kroner utdelt i 2010",
+    "summary_body": "Bergen kommune har i 2010 utbetalt tilskudd på 100.000 kroner eller mer til 178 organisasjoner, totalt 166,8 millioner kroner. Dette er en økning på 7,77 millioner kroner fra året før. Bystyret får årlig en oversikt over regnskapsinformasjon fra tilskuddsmottakere, og i år viser rapporten at 61 organisasjoner har negativt driftsresultat, og 11 har negativ egenkapital. Byrådet, ledet av Monica Mæland, anbefaler at bystyret tar informasjonen til orientering. Dette er viktig for innbyggere som er interessert i hvordan offentlige midler brukes i lokalsamfunnet."
+  }
+}

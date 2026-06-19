@@ -1,0 +1,18 @@
+{
+  "dokument_id": "7fe13d4f-c2a6-59c7-b105-7f14bc3149c1",
+  "kommune_nummer": 4633,
+  "kommune_navn": "Fedje",
+  "generated_at": "2026-02-19 23:08:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the allocation of cultural funds, which is relevant and impactful for local organizations."
+    },
+    "summary_headline": "Fedje kommune fordeler kulturmidlar for 2025",
+    "summary_body": "Fedje kommune har budsjettert med 55 000 kroner i kulturmidlar for 2025, og formannskapet skal avgjøre tildelingen den 18. desember 2025. Kommunedirektøren foreslår at Tirsdagsklubben får 25 000 kroner, Fedje Idrettslag 15 000 kroner, og mindre beløp til Stormark grendahus, Koral, Fedje bygdelag og Feiekostane. Totalt er det søkt om 86 000 kroner fra seks organisasjoner. Prioritering av barn og unge er i fokus, i tråd med tildelingsreglementet."
+  }
+}

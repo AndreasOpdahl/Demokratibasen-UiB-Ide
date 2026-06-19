@@ -1,0 +1,18 @@
+{
+  "dokument_id": "231227:2787394:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:10:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises concerns about the evaluation of special educational services during the pandemic, highlighting potential gaps in stakeholder involvement."
+    },
+    "summary_headline": "Kritikk av evaluering av spesialpedagogiske tjenester under pandemien",
+    "summary_body": "Kommunalt råd for personer med funksjonsnedsettelse (KRPF) har uttrykt bekymring for at evalueringen av spesialpedagogiske tjenester under covid-19-pandemien ikke har inkludert tilbakemeldinger fra foreldre og elever. I et møte 19. august 2021 ble det besluttet å sende et brev til utvalg for barnehage, skole og idrett, der KRPF stiller spørsmål ved om revisjonen gir et fullstendig bilde av situasjonen. De påpeker at det er viktig å vurdere hvordan lengre intervaller mellom spesialpedagogiske besøk har påvirket sårbare barn som er avhengige av hyppig oppfølging. KRPF foreslår at det må avklares om foreldrerepresentanter har vært involvert i revisjonen."
+  }
+}

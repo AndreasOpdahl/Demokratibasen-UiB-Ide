@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5743:49838:200716937:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:11:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details procedural decisions without significant local impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til komiteene",
+    "summary_body": "Byrådet har enstemmig besluttet å fordele flere saker til ulike komiteer under møtet den 6. februar 2008. Byrådsakene 51-52 og 53 sendes til Komite for finans, mens byrådsak 64 går til Komite for miljø og byutvikling. I tillegg vil byrådsak 53 også bli orientert til Komite for kultur, idrett og næring."
+  }
+}

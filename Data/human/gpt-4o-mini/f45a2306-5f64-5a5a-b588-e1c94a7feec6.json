@@ -1,0 +1,18 @@
+{
+  "dokument_id": "f45a2306-5f64-5a5a-b588-e1c94a7feec6",
+  "kommune_nummer": 4624,
+  "kommune_navn": "Bjørnafjorden",
+  "generated_at": "2026-02-19 23:24:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document involves a local building permit decision that may affect residents but lacks significant controversy or financial implications."
+    },
+    "summary_headline": "Godkjent bruksendring på Stølsvegen 46",
+    "summary_body": "Bjørnafjorden kommune har gitt løyve til bruksendring av en tilleggsdel til hoveddel i en bolig på Stølsvegen 46. Endringen omfatter opprettelse av et soverom og omfordeling av eksisterende rom. Løyvet er gyldig i tre år, og det er ikke nødvendig med nabovarsel da tiltaket ikke vil påvirke naboene. Tiltaket er vurdert til å ha gode visuelle kvaliteter og krever ikke endringer i infrastruktur."
+  }
+}

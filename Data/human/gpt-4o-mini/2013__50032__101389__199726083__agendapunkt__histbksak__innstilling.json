@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2013:50032:101389:199726083:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:58:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a neighbor's complaint about a building extension affecting their view and privacy, which is a relevant local issue."
+    },
+    "summary_headline": "Nabo klager på byggetillatelse for terrasseutvidelse i Fana",
+    "summary_body": "Utvalg for byutvikling har besluttet å opprettholde administrasjonens tidligere godkjennelse av reviderte tegninger for utvidelse av terrasse på Skjoldhøgda 3, til tross for klager fra nabo Sigurd K. Hovland. Klagen, som omhandler tap av utsikt og innsyn til eiendommen, ble vurdert, men administrasjonen fant ikke at tiltaket ville medføre vesentlig sjenanse. Klageren har allerede terrasse både mot syd og nord, og tiltaket holder lovens avstand til nabogrensen. Beslutningen ble fattet av kommunaldirektør Edel Eikeseth og byggesakssjef Per Kleve."
+  }
+}

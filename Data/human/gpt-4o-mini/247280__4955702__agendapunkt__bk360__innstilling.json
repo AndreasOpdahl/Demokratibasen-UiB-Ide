@@ -1,0 +1,18 @@
+{
+  "dokument_id": "247280:4955702:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:47:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant issue regarding the financing of environmental cleanup, which affects local residents and involves ongoing communication with governmental authorities."
+    },
+    "summary_headline": "Uklart svar fra Miljødirektoratet om avfallsdeponier skaper usikkerhet for Bergen kommune",
+    "summary_body": "Kontrollutvalget i Bergen har mottatt en foreløpig tilbakerapportering fra byråd Ingrid Neergaard Fjeldstad angående forvaltningen av nedlagte kommunale avfallsdeponier. Miljødirektoratet har svart på kommunens forespørsel om finansiering, men deres svar er uklart og gir ikke nødvendige avklaringer. Byrådet vil nå kontakte Kommunal- og distriktsdepartementet for ytterligere avklaring om selvkostregelverket. Kontrollutvalget ber om oppdatert informasjon når svar fra departementet foreligger. Saken vil bli sendt til bystyret etter fullstendig tilbakerapportering."
+  }
+}

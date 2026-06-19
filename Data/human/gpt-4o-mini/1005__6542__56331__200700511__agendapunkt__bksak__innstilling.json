@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:6542:56331:200700511:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:13:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant funding and planning for transportation projects in Bergen, which directly impacts local residents."
+    },
+    "summary_headline": "Bystyret vurderer storstilt transportplan med 3,8 milliarder kroner",
+    "summary_body": "Byrådet i Bergen har lagt frem en høring om Nasjonal transportplan for perioden 2010-2013, som inkluderer en total ramme på 3,8 milliarder kroner. Bystyret anbefaler å forlenge bompengeordningen til 2025 og krever minimum 200 millioner kroner årlig fra fylkeskommunen til Bergensprogrammet. Det foreslås en fordeling av midler til kollektivtransport, trafikksikkerhet og gang-/sykkeltiltak. Byrådet understreker behovet for økt kapasitet til planlegging og prosjektering for å sikre gjennomføring av tiltakene. Endelig behandling av handlingsprogrammet skjer i fylkestinget 8.-9. desember."
+  }
+}

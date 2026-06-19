@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9900:67228:201218300:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:24:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal to declare Bergen a tax haven-free zone addresses significant ethical and economic concerns, impacting local governance and public spending."
+    },
+    "summary_headline": "Bergen kommune kan bli skatteparadisfri sone",
+    "summary_body": "Bystyremedlemmene Tina Åsgård og Kuberan Thurairajah har fremmet et forslag om at Bergen kommune erklærer seg som skatteparadisfri sone. Forslaget, som ble behandlet av Forretningsutvalget, vil innføre krav til kommunens leverandører om å unngå skatteparadiser. Årsaken til forslaget er at skatteparadiser fører til tap av skatteinntekter og svekker offentlige tjenester. Bystyret bes om å ta stilling til forslaget, som også inkluderer initiativ til en nasjonal konferanse om temaet. Dette kan ha stor betydning for hvordan offentlige midler forvaltes i Bergen."
+  }
+}

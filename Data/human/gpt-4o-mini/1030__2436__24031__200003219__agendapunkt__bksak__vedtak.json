@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2436:24031:200003219:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:36:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision on school admission areas is significant for local families and involves a contested vote."
+    },
+    "summary_headline": "Laksevåg bydelsstyre vedtar nye opptaksområder for skoler",
+    "summary_body": "Laksevåg bydelsstyre har vedtatt nye forskrifter for skolenes opptaksområder for barnetrinnet, samt en plan for registrering av elever til 1. klasse. Forslaget fra Høyre og Fremskrittspartiet ble vedtatt med 7 stemmer, mens et alternativt forslag fra Rødt og Sosialistisk Venstreparti falt. Dette vedtaket vil påvirke hvordan barn i Laksevåg blir plassert i skoler, noe som er av stor interesse for lokale familier."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "229097:3036278:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:04:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant urban development plans that will impact local residents and includes a controversial element regarding the proposed 'Sjøstjernen'."
+    },
+    "summary_headline": "Byrådet avviser sjøstjernen, men viderefører kafébygget i Lungegårdsparken",
+    "summary_body": "Byrådet har besluttet å ikke gå videre med forprosjektet for 'Sjøstjernen', et utendørs basseng, på grunn av kostnader og negative konsekvenser for naturverdier. I stedet vil kafébygget bli videreført som en del av forprosjektet for Bystrand og ny Lungegårdspark. Dette prosjektet, som skal gi bedre tilgang til sjø og rekreasjonsmuligheter for Bergens befolkning, har en total kostnad på 234 millioner kroner, med byggestart planlagt fra 2022. Byråden understreker viktigheten av medvirkning fra innbyggerne i prosessen."
+  }
+}

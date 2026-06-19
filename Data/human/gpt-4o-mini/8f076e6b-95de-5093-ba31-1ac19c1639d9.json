@@ -1,0 +1,18 @@
+{
+  "dokument_id": "8f076e6b-95de-5093-ba31-1ac19c1639d9",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:11:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant citizen proposal regarding the relocation of a school, which affects many residents and involves substantial financial implications."
+    },
+    "summary_headline": "Innbyggerforslag om flytting av Åstveit skole til Garnesstølen tas opp til behandling",
+    "summary_body": "Bystyrets kontor har mottatt et innbyggerforslag fra Odd Erik Aasen Wolff, signert av 476 personer, som krever en utredning av flyttingen av Åstveit skole til Garnesstølen. Forslaget tar opp bekymringer om lange reiseveier for elever, med opp til én time hver vei, og ber om en full konsekvensutredning. Byrådet har besluttet å ta forslaget opp til realitetsbehandling og vil fremlegge saken for bystyret innen 27. februar 2026. Det er estimert at transportløsningen vil koste kommunen om lag 27 millioner kroner i løpet av byggeperioden. Byrådet mener flyttingen er nødvendig for å rehabilitere Åstveit skole, men møter motstand fra foreldre og FAU-er som har klaget på avgjørelsen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51189:115724:199935897:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:37:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a proposal for urban development in Fana, which may affect local residents."
+    },
+    "summary_headline": "Bystyret vurderer fortetting i Fana med fokus på nærmiljøet",
+    "summary_body": "I et svar på et forslag fra Lars Steinar Hauge (H) om fortetting og byutvikling i Fana, ble det enstemmig vedtatt å oversende saken til administrasjonen for vurdering. Høyres forslag understreker at fortetting skal skje med respekt for nærmiljøet og baseres på frivillig medvirkning fra eiendomsbesittere. Rådmannen vil ta dette med i arbeidet med kommunedelplanen for Fjøsanger/Nesttun."
+  }
+}

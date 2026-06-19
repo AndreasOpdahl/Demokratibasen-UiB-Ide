@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2232:24417:200002119:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:24:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the organization of child welfare services, which has significant implications for local families and children."
+    },
+    "summary_headline": "Bergenhus bydelsstyre vedtar ny organisering av barnevernet",
+    "summary_body": "Bergenhus bydelsstyre har enstemmig vedtatt administrasjonens forslag til organisering av barnevernstjenestene, som inkluderer etablering av samarbeidsfora for bedre tverrfaglig arbeid med barn og unge. Det ble også vedtatt at det skal gjennomføres en løpende evaluering av organiseringen, med ny politisk behandling om to år. Forslag fra Fremskrittspartiet om forbehold for endringer ble nedstemt, mens Høyres forslag om evaluering ble enstemmig vedtatt."
+  }
+}

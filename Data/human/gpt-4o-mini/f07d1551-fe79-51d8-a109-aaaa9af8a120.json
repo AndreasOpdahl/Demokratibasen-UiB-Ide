@@ -1,0 +1,18 @@
+{
+  "dokument_id": "f07d1551-fe79-51d8-a109-aaaa9af8a120",
+  "kommune_nummer": 4626,
+  "kommune_navn": "Øygarden",
+  "generated_at": "2026-02-19 23:24:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a significant local issue regarding a shared sewage line affecting multiple properties, with potential legal and environmental implications."
+    },
+    "summary_headline": "RAN Seilforening krever klarhet i avløpsledning for 16 eiendommer",
+    "summary_body": "RAN Seilforening har sendt en henvendelse til Øygarden kommune angående en avløpsledning fra Vidar Moen sin eiendom (Gnr. 37 Bnr. 67) over deres eiendom (Gnr. 37 Bnr. 226). Foreningen påpeker at ledningen, som opprinnelig kun var godkjent for én eiendom, nå benyttes av 16 husstander uten nødvendig tillatelse. De stiller krav om erklæring for rettighet til ledningen, samt spesifikasjoner for traseen både på land og i sjø. RAN Seilforening har ikke mottatt nabovarsel i saken, til tross for at de er direkte berørt. De ønsker at kommunen tar hensyn til deres krav før eventuell godkjenning av ledningen."
+  }
+}

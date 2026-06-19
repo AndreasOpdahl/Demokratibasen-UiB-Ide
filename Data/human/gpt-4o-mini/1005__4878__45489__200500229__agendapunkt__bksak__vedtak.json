@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4878:45489:200500229:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:57:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision on the regulatory plan for a kindergarten includes conditions that could affect local infrastructure."
+    },
+    "summary_headline": "Bystyret vedtar reguleringsplan for Krokusbakken barnehage med krav om fortau",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt reguleringsplanen for Krokusbakken barnehage i Ytrebygda. Planen inkluderer en betingelse om at fortau langs Mildevegen må etableres av Blia Eiendom og Hadra Utbygging, ellers vil brukstillatelsen til barnehagen bli trukket tilbake. Dette kan påvirke sikkerheten for barn som skal til barnehagen, og det er viktig for lokalbefolkningen å følge med på utviklingen av fortauet."
+  }
+}

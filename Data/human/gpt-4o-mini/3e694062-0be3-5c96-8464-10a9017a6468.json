@@ -1,0 +1,18 @@
+{
+  "dokument_id": "3e694062-0be3-5c96-8464-10a9017a6468",
+  "kommune_nummer": 1870,
+  "kommune_navn": "Sortland - Suortá",
+  "generated_at": "2026-02-19 22:59:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The removal of a fire door at Sortland barneskole has implications for safety and building usage."
+    },
+    "summary_headline": "Fjerning av branndør ved Sortland barneskole godkjent",
+    "summary_body": "Arbeidsmiljøutvalget har godkjent fjerning av en branndør i A-bygget ved Sortland barneskole. Døren, som tidligere førte inn til et klasserom, er nå unødvendig og hindrer rømning til det nye HC WC. Fjerningen er nødvendig for å forbedre bruken av bygget og vil bli fulgt opp med et brannteknisk notat. Dette tiltaket er finansiert av vedtatte midler til skolen."
+  }
+}

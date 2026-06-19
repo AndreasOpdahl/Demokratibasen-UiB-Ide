@@ -1,0 +1,18 @@
+{
+  "dokument_id": "249911:6318355:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:55:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal to permanently protect the Sandviksbodene is significant for local heritage and has implications for future development."
+    },
+    "summary_headline": "Bystyret vurderer fredning av Sandviksbodene 12-24 i Bergen",
+    "summary_body": "Bystyret i Bergen skal behandle et forslag om permanent fredning av Sandviksbodene 12-24, som omfatter 12 sjøboder med stor kulturhistorisk verdi. Forslaget, som er forberedt av Vestland fylkeskommune, har vært midlertidig fredet siden 1992. Fredningen skal sikre bygningene og deres kulturhistoriske betydning, og det er viktig for å bevare Bergens maritime arv. Byrådet anbefaler at bystyret godkjenner fredningen, som vil hindre inngrep i området. Det er også planlagt nye boliger i nærheten, og det er viktig at utviklingen tar hensyn til de fredede sjøbodene. Bystyret skal ta stilling til forslaget den 5. desember 2023."
+  }
+}

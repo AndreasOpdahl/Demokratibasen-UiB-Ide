@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:565:3902:200390406:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:15:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to allow a change of use from assembly hall to apartments is significant for local residents and involves specific conditions."
+    },
+    "summary_headline": "Klage over avslag på bruksendring godkjent i Bergen",
+    "summary_body": "Komite for miljø, byutvikling og tekniske tjenester har enstemmig besluttet å oppheve et tidligere avslag på søknad om bruksendring av Skuteviksboder 10 fra forsamlingslokale til leiligheter. Det gis dispensasjon fra tekniske krav, men med vilkår om at eiendommene må overdras samlet og at garasjeplasser skal forbeholdes beboerne. Dette vedtaket kan påvirke boligmarkedet i området og gir mulighet for nye leiligheter."
+  }
+}

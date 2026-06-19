@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3835:36939:200206576:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:46:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses funding for a youth center's new activities, which is relevant and impactful for local youth."
+    },
+    "summary_headline": "V-13 Kirkens kontaktsenter får 121.900 kroner til databaserte aktiviteter for ungdom",
+    "summary_body": "Rusmiddelpolitisk råd har anbefalt å bevilge 121.900 kroner til V-13 Kirkens kontaktsenter for barn og unge til databaserte aktiviteter. Søknaden ble lagt frem etter at det ikke ble mottatt andre søknader om midler i 2003. V-13, som jobber med ungdom i alderen 13-18 år, ønsker å tilby aktiviteter som filmproduksjon, digital bildebehandling og design. Midlene skal brukes til utstyr og lokaler, og rapport om bruken av midlene skal sendes til rådet ved utgangen av 2004. Dette tiltaket er viktig for å gi ungdommer i Bergen nye muligheter til kreativ utfoldelse."
+  }
+}

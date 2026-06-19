@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227051:2651020:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:57:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested building permit with multiple complaints from neighbors, highlighting local community concerns."
+    },
+    "summary_headline": "Klage på tomannsbolig i Fana avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde tillatelsen til oppføring av en tomannsbolig på Sagstadvegen 7B i Fana, til tross for klager fra naboene Lars Kongsvik, Bjørn Ole Raknes og Thomas Nordeng. Klagerne mener at tiltaket vil føre til uønsket fortetting og tap av utsikt, men byrådet vurderer at fordelene ved tiltaket klart overstiger ulempene. Den foreslåtte tomannsboligen vil ha en utnyttingsgrad på 18,4 %, innenfor reguleringsplanens rammer. Byrådet understreker at det ikke er grunnlag for å ta klagene til følge, og saken vil bli sendt til Statsforvalteren for endelig avgjørelse."
+  }
+}

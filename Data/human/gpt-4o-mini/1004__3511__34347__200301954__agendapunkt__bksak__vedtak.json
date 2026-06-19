@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3511:34347:200301954:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision on bus parking locations in Bergen has local relevance and potential impact on traffic and tourism."
+    },
+    "summary_headline": "Bergenhus bydelsstyre godkjenner hovedparkering for turbusser på Koengen",
+    "summary_body": "Bergenhus bydelsstyre har enstemmig vedtatt å lokalisere en hovedparkering for turbusser på Koengen i Bergen sentrum. Planen skal kombineres med andre aktiviteter for å minimere belastningen på Bryggen. I tillegg anbefales det å etablere en parkeringsplass for turbusser på Nordnes, spesielt i kaiområdet langs C.Sundtsgate, for å støtte hotellene i området. Dette tiltaket kan påvirke både turister og lokalbefolkningen."
+  }
+}

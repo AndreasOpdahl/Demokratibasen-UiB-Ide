@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11222:74210:201222251:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:34:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a municipal plan for traffic safety, which is relevant to local residents and involves budget considerations."
+    },
+    "summary_headline": "Bystyret vedtar trafikksikkerhetsprogram for 2016",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt plan- og byggeprogrammet for kommunale veier for 2016. Under behandlingen fremmet Sondre L. Båtstrand fra MDG to merknader om å sikre bruken av tildelte midler og øke budsjettet ved neste rullering, men disse ble ikke vedtatt. Dette programmet er viktig for trafikksikkerheten i Bergen og vil påvirke veiforholdene for innbyggerne."
+  }
+}

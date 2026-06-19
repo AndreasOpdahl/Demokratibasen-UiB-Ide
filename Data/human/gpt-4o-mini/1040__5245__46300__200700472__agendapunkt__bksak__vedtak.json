@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1040:5245:46300:200700472:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:09:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The establishment of a political working group to review governance structures is relevant to local politics."
+    },
+    "summary_headline": "Politisk arbeidsgruppe opprettes for å vurdere styrer og utvalg",
+    "summary_body": "Det utvidete forretningsutvalget har besluttet å opprette en politisk arbeidsgruppe som skal vurdere prinsippene for folkevalgtes deltakelse i styrer, råd og utvalg, utvalgstrukturen på bystyresiden, samt honorarsystemet. Arbeidsgruppen, ledet av Hilde Onarheim (H), skal levere et samlet forslag innen 13. april 2007. Alle forslag ble vedtatt enstemmig, noe som viser enighet blant politikerne om behovet for en gjennomgang av disse strukturene."
+  }
+}

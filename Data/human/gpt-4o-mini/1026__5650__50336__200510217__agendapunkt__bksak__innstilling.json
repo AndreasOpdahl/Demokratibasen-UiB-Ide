@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5650:50336:200510217:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:14:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a critical infrastructure project with potential financial implications and a tight deadline."
+    },
+    "summary_headline": "Tidskritisk forlengelse av gangtunnel under Bystasjonen foreslås av Byrådet",
+    "summary_body": "Byrådet i Bergen har foreslått en forlengelse av gangtunnelen under Bystasjonen, som er avgjørende for å unngå forsinkelser i bybaneprosjektet. Det er estimert at kostnadene vil ligge på 26 millioner kroner, men finansieringen er ikke avklart. Hordaland fylkeskommune vil være ansvarlig for prosjektet og må sørge for nødvendige tillatelser. Tiltaket må være gjennomført innen februar 2009 for å unngå konflikter med bybanens bygging. Byrådet understreker viktigheten av universell utforming og trafikksikkerhet i utviklingen av terminalområdet."
+  }
+}

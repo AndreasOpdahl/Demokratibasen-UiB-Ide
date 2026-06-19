@@ -1,0 +1,18 @@
+{
+  "dokument_id": "213276:1024027:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:29:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves a significant land use change and community impact."
+    },
+    "summary_headline": "Bystyret gir dispensasjon for nytt våningshus i Fyllingsdalen",
+    "summary_body": "Bergen bystyre har vedtatt å gi dispensasjon for bygging av et nytt våningshus på Rosenlundveien 31 i Fyllingsdalen, til tross for reguleringer knyttet til byfjellsgrensen. Det nye huset må plasseres på samme sted som det eksisterende, som må rives dersom det er rettslig grunnlag for det. I tillegg må turstien til Løvstakken ivaretas. Vedtaket ble fattet med 63 stemmer fra en bred koalisjon av partier, og det er enstemmighet om vilkårene for dispensasjonen."
+  }
+}

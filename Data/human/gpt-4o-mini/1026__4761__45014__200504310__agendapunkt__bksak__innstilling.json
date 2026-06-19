@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4761:45014:200504310:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:06:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a dispute over balcony extensions that affects local residents and has implications for property rights and urban planning."
+    },
+    "summary_headline": "Klage på balkongutvidelse i Bergenhus avvist av byrådet",
+    "summary_body": "Byrådet i Bergen har avvist klager fra Sylvi Ann Harila og Marianne Yrvin angående vedtak om balkongutvidelse på Øvre Blekeveien. Byrådet opprettholder etatens avslag på utvidelse av balkongen i 2. etasje, begrunnet med at tiltaket overskrider eiendomsgrensen og strider mot reguleringsplanen. Samtidig er en ny balkong i 1. etasje godkjent, men med vilkår om redusert dybde. Byrådet mener at godkjennelsen av balkongen i 1. etasje ikke vil medføre betydelige naboulempene. Saken vil bli sendt til fylkesmannen for endelig avgjørelse."
+  }
+}

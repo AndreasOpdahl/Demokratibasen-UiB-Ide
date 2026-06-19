@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241932:4974005:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:33:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The budget decision involves significant public spending and impacts local services."
+    },
+    "summary_headline": "Bystyret vurderer budsjett på over 3 milliarder kroner for 2023",
+    "summary_body": "Byrådet har innstilt til bystyret om å vedta årsbudsjettet for 2023, som inkluderer et netto budsjettbeløp på 2.267.900.000 kroner til investeringsformål og 800.000.000 kroner i Startlån fra Husbanken. Dette vil påvirke tjenesteområdene i Bergen kommune. Bystyret skal også godkjenne oppdaterte lånevedtak som gir byrådet fullmakt til å inngå låneavtaler. Vedtaket er en del av Handlings- og økonomiplan 2023-2026, og det er viktig for innbyggerne å følge med på hvordan disse midlene vil bli brukt."
+  }
+}

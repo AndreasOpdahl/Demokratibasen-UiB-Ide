@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3779:36336:200300079:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:07:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a significant financial transaction affecting local governance and public transport."
+    },
+    "summary_headline": "Bergen kommune øker eierandelen i Gaia Trafikk AS",
+    "summary_body": "Bergen kommune planlegger å kjøpe 9.600 aksjer i Gaia Trafikk AS for totalt 240.000 kroner, noe som vil øke kommunens eierandel fra 43,43% til 43,64%. Finansbyråden Trond Tystad anbefaler aksjekjøpet for å styrke kommunens innflytelse over kollektivtransporten, som er viktig for luftkvalitet og fremkommelighet i Bergen. Kjøpet er avhengig av politisk godkjenning og vil bli gjennomført dersom byrådet gir sin tillatelse."
+  }
+}

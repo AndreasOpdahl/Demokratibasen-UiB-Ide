@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:8947:62535:201018481:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:17:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines a training program for newly elected representatives, which is relevant for local governance and citizen engagement."
+    },
+    "summary_headline": "Nytt opplæringsprogram for bystyrets nye representanter",
+    "summary_body": "Forretningsutvalget har godkjent et opplæringsprogram for nye folkevalgte i Bergen bystyre for perioden 2011-2015. Opplæringen inkluderer en grunnopplæring den 31. oktober og et todagers seminar 11. og 12. november, hvor temaer som det parlamentariske systemet og lokaldemokrati vil bli diskutert. Bystyredirektør Roar Kristiansen fremhever at programmet vil fokusere på erfaringsoverføring og politisk rolleforståelse. Det legges opp til gruppearbeid og paneldiskusjoner med både politikere og fagpersoner. Dette er en viktig mulighet for nye representanter til å forstå sine roller og ansvar i kommunen."
+  }
+}

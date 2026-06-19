@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12904:78054:201620958:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:59:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The case involves a complaint over a land transfer application denial, which has local relevance and some political discussion."
+    },
+    "summary_headline": "Klage på avslag om arealoverføring avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig avvist en klage på avslag om arealoverføring for eiendommen Kjelånæ i Arna. Klagen ble behandlet i møtet 11. mai, hvor komiteen opprettholdt fagetatens vedtak fra 6. oktober 2016. Saken har vært utsatt flere ganger for befaring og diskusjon, men ble nå endelig avgjort. Dette kan påvirke lokale eiendomsutviklere og innbyggere i området."
+  }
+}

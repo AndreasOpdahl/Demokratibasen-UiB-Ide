@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8375:59911:200901538:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:17:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to a municipal advisory council, which impacts local governance and urban development."
+    },
+    "summary_headline": "Bystyret endrer navnet og mandatet til Tilsynsutvalget for byens utseende",
+    "summary_body": "Bergen bystyre har besluttet å endre navnet på Tilsynsutvalget for byens utseende til Rådet for byforming og arkitektur (RBA). Rådet skal fungere som et rådgivende organ for byrådet og kommunens plan- og byggesaksadministrasjon. Mandatet utvides for å inkludere et bredere arkitekturbegrep. Det er fortsatt politisk representasjon med to medlemmer, men det er foreslått at en kvalifisert person fra Bergens Designmiljø også bør være med. Endringene trer i kraft fra rådets første møte i 2011, og det vil bli en evaluering av ordningen ved slutten av året."
+  }
+}

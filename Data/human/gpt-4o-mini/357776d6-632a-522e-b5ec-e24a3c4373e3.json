@@ -1,0 +1,18 @@
+{
+  "dokument_id": "357776d6-632a-522e-b5ec-e24a3c4373e3",
+  "kommune_nummer": 4624,
+  "kommune_navn": "Bjørnafjorden",
+  "generated_at": "2026-02-19 22:58:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to approve a new residential building is relevant to local residents and involves public infrastructure connections."
+    },
+    "summary_headline": "Godkjent nybygg av bustadhus i Eikelandsosen",
+    "summary_body": "Bjørnafjorden kommune har gitt løyve til oppføring av et nytt bustadhus på Stallabrotvegen, med bruksareal på 226 m². Byggmester Svenn Storum As er ansvarlig søker, og tiltakshaver er Kathrine Kvamme Tveitnes. Løyvet er gyldig i tre år, og tiltaket må knyttes til offentlig vann- og avløpssystem. Det er ingen merknader fra naboer, og tiltaket vurderes å være i samsvar med reguleringsplanen for området."
+  }
+}

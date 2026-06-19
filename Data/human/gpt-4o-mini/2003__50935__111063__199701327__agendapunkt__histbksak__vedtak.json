@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50935:111063:199701327:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:34:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to join a European network of cultural cities has local relevance and potential impact on cultural initiatives."
+    },
+    "summary_headline": "Bergen blir med i europeisk nettverk for kulturbyer",
+    "summary_body": "Bergen formannskap har besluttet å inkludere byen i et nettverk av kulturbyer og regioner, og gir sin tilslutning til det europeiske charteret for kulturbyer. Beslutningen ble fattet i møte 28. oktober 1998, med 16 stemmer for og 5 mot fra FrP, SV og RV. Dette kan åpne for nye kulturelle initiativer og samarbeid i regionen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:7384:59808:201013811:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:20:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant educational infrastructure decisions and budget implications for local schools, which are relevant to residents."
+    },
+    "summary_headline": "Arna bydelsstyre enstemmig vedtar skolestruktur og oppussing av skolebygg",
+    "summary_body": "Arna bydelsstyre har enstemmig vedtatt å opprettholde dagens skolestruktur og prioritere rehabilitering av Garnes ungdomsskule. Det er også besluttet at oppussing av fasader på alle gjenværende skolebygg skal være ferdig innen sommeren 2011. Bydelsstyret ønsker full barnehagedekning for alle barn i Arna og stiller krav om kvalitet i SFO-tilbudet. Et forslag om å øke SFO-priser ble avvist, mens det ble fremmet et ønske om at Indre Arna skule forblir i kommunalt eie og vurderes som kulturhus. Dette er viktige saker for innbyggerne i Arna, da de direkte påvirker utdanningstilbudet og barnehagedekningen."
+  }
+}

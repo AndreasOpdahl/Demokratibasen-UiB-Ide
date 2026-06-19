@@ -1,0 +1,18 @@
+{
+  "dokument_id": "226486:2722507:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:56:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a written question regarding differential treatment in children's sports, but lacks significant conflict or impact."
+    },
+    "summary_headline": "Spørsmål om forskjellsbehandling i barneidretten",
+    "summary_body": "Marte Leirvåg (H) har stilt et skriftlig spørsmål om forskjellsbehandling i barneidretten til Utvalg for barnehage, skole og idrett. Byråd Endre Tvinnereim svarte på spørsmålet under møtet den 12. januar 2021."
+  }
+}

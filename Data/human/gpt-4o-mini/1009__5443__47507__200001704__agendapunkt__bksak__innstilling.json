@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5443:47507:200001704:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:28:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant investments in local infrastructure and public transport, which directly affect residents."
+    },
+    "summary_headline": "Byrådet godkjenner bygge- og planprogram for 2007 med stor satsing på kollektivtransport",
+    "summary_body": "Byrådet i Bergen har vedtatt bygge- og planprogrammet for 2007, som inkluderer investeringer på over 1 milliard kroner i riksveger, med 75 prosent av midlene rettet mot bybanen og ringveg vest. Det foreslås også å bruke 22 millioner kroner årlig til driftstiltak for kollektivtransport, til tross for at fylkeskommunen trekker seg fra finansieringen av Sandsli/Kokstad-prosjektet. Byråden anbefaler at bruken av bompengefondet og midler fra 2001-avtalen utsettes til 2008. Dette programmet vil ha stor innvirkning på transportinfrastrukturen i Bergen, og det er planlagt videre tiltak for Håkonsgatens forlengelse, som vil koste kommunen 10 millioner kroner."
+  }
+}

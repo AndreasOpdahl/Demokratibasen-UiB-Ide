@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:12794:78573:201528718:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:10:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The decision is routine and lacks significant impact or controversy."
+    },
+    "summary_headline": "Dagny Elise Gullaksen blir nytt varamedlem for Arbeiderpartiet",
+    "summary_body": "Valgstyret har enstemmig vedtatt at Dagny Elise Gullaksen trer inn som siste varamedlem for Arbeiderpartiet i Bergen bystyre etter at Natalie Milde har trukket seg. Ingen representanter tok ordet under behandlingen av saken."
+  }
+}

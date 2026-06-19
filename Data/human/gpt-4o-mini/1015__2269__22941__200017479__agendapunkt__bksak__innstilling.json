@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1015:2269:22941:200017479:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:19:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the ongoing efforts and challenges in securing funding for a cultural house in Fyllingsdalen, which is a significant local issue."
+    },
+    "summary_headline": "Kulturhus i Fyllingsdalen fortsatt uten finansiering",
+    "summary_body": "Fyllingsdalen bydelsstyre har fått en oppdatering fra bydelsdirektør Harald Inge Anderssen om status for kulturhuset i Fyllingsdalen. Til tross for at kulturhuset har vært prioritert i kommunale planer, er det fortsatt ikke fattet et forpliktende vedtak om finansiering. Bydelsdirektøren anbefaler at bydelsstyret tar saken opp i bystyret for videre behandling. Det er ventet at spørsmålet om finansiering vil bli reaktivert når byrådet legger frem sitt forslag til økonomiplan i oktober. Kostnadene for kulturhuset er anslått til 84 millioner kroner, og det er bekymring for hvordan dette vil påvirke eksisterende velferdstilbud i bydelen."
+  }
+}

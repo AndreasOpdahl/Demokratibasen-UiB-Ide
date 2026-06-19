@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5532:48324:200700582:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:29:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a funding decision for a conference, which has limited local impact."
+    },
+    "summary_headline": "Byrådet bevilger 35.000 kroner til konferansen 'Zweifel 2007'",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 35.000 kroner til konferansen 'Zweifel 2007', som finner sted i Berlin fra 4. til 7. oktober 2007. Bevilgningen kommer fra tilleggsbevilgningskontoen. Dette tiltaket har begrenset lokal relevans, men viser kommunens støtte til internasjonale arrangementer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244839:5238327:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:40:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses a significant legal ruling affecting local business operations and public access."
+    },
+    "summary_headline": "Loulou fjerner aldersgrense etter diskrimineringsvedtak",
+    "summary_body": "Byrådet har besluttet å oppheve aldersgrensene for skjenking ved Loulou, Nedre Ole Bulls Plass 4, etter at Diskrimineringsnemnda konkluderte med at 23-års grensen var diskriminerende. Dette følger en klage fra en 22-åring som ble nektet adgang i mars 2022. Loulou må nå endre sine vilkår innen 11. april 2023 for å unngå daglig tvangsmulkt på 2000 kroner. Byråden for finans, næring og eiendom, Per-Arne Hvidsten Larsen, støtter denne endringen, som vil påvirke både gjester og driften av skjenkestedet."
+  }
+}

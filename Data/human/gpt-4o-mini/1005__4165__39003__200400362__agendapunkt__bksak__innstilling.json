@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4165:39003:200400362:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:51:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes in municipal competition policy that could impact service delivery and costs for residents."
+    },
+    "summary_headline": "Bergen kommune innfører nye konkurranseprinsipper for bedre tjenestekvalitet",
+    "summary_body": "Byrådet i Bergen kommune har lagt frem en sak som konkretiserer prinsipper for bruk av konkurranse i kommunens tjenester. Målet er å forbedre kvaliteten og redusere kostnader ved å vurdere ulike former for konkurranse, inkludert anbud og fritt brukervalg. Bystyret oppfordres til å godkjenne byrådets fullmakter til å innføre konkurranseutsetting, unntatt for primærtjenester innen helse og omsorg. Byrådet mener at dette vil stimulere til økt effektivitet og innovasjon i tjenesteproduksjonen, noe som vil komme innbyggerne til gode."
+  }
+}

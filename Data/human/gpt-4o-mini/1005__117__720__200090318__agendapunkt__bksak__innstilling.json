@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:117:720:200090318:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:35:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant municipal guarantee for a local sports facility, which has implications for community development and financial management."
+    },
+    "summary_headline": "Bystyret vurderer kommunal garanti for Nordneshallen",
+    "summary_body": "Stiftelsen Nordneshallen har søkt Bergen kommune om en kommunal garanti for lån på inntil 7 millioner kroner for å fullfinansiere byggingen av en idrettshall. Byggearbeidene har allerede startet, men banken krever garantien før de kan utbetale lån, noe som har ført til en likviditetskrise for stiftelsen. Idrettshallen, som er planlagt ferdig til skolestart i august 2001, er viktig for å møte det økende behovet for aktivitetsanlegg i Nordnesområdet, som har fått mange nye barnefamilier. Byrådet anbefaler bystyret å innvilge garantien, men understreker at det haster med en avklaring for å unngå kontraktsheving fra entreprenøren Selmer ASA."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3366:32778:200200045:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:03:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the merger of two church parishes, which has local relevance and potential impact on community services."
+    },
+    "summary_headline": "Sammenslåing av St. Markus og Solheim menigheter foreslås",
+    "summary_body": "Bergen byråd har gitt sin tilslutning til sammenslåing av St. Markus og Solheim menigheter til én menighet og ett prestegjeld fra 1. januar 2003. Bispedømmerådet ønsker å revitalisere kirkelivet i Løvstakkområdet, men det er uenighet om fordelingen av gudstjenester mellom de to kirkene. Solheim menighetsråd ønsker flere gudstjenester i sin kirke, mens bispedømmerådet insisterer på lik fordeling. Den endelige avgjørelsen skal fattes av departementet, og Bergen kirkelige fellesråd vil redegjøre for budsjettmessige konsekvenser."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243006:4901900:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:35:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details a routine internal reshuffling of representatives within a political party, which is of low public interest."
+    },
+    "summary_headline": "Rokering av MDG-representanter i bystyreutvalgene",
+    "summary_body": "Miljøpartiet De Grønne (MDG) har foreslått en rokering av to av sine representanter i bystyreutvalgene. Mona Høgli vil bytte fra utvalg for helse og sosial til utvalg for miljø og byutvikling, mens Eline Aresdatter Haakestad gjør det motsatte. Endringene gjelder for resten av valgperioden 2019-2023."
+  }
+}

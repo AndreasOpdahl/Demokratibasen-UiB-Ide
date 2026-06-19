@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227952:2851548:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:00:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural decision for a future meeting, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Kjøreplan for bystyremøte 24. mars 2021 vedtatt",
+    "summary_body": "Forretningsutvalget har enstemmig vedtatt kjøreplanen for bystyremøtet som skal avholdes 24. mars 2021. Møtet vil finne sted som fjernmøte."
+  }
+}

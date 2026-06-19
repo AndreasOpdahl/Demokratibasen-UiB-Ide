@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:6178:51781:200710435:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:34:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant regulatory plan affecting a large area in Bergen, with potential environmental impacts and community involvement."
+    },
+    "summary_headline": "Reguleringsplan for Nøstet godkjent med fokus på havnivåstigning",
+    "summary_body": "Byrådet har godkjent forslag til reguleringsplan for Nøstet, som omfatter kontor, lager, bolig og kulturformål. Planområdet, som strekker seg over ca. 25 daa, vil inkludere utfyllinger i sjø og utvidelser av kaiarealer. Byråden understreker viktigheten av å vurdere konsekvenser av havnivåstigning på 50-70 cm innen 2100 i risiko- og sårbarhetsanalysen. Dette tiltaket kan påvirke lokalsamfunnet betydelig, spesielt med tanke på infrastruktur og miljø."
+  }
+}

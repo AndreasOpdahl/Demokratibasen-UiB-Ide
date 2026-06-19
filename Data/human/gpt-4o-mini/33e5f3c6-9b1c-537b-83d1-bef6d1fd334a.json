@@ -1,0 +1,18 @@
+{
+  "dokument_id": "33e5f3c6-9b1c-537b-83d1-bef6d1fd334a",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 22:58:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines a significant meeting regarding land use planning, which affects local residents."
+    },
+    "summary_headline": "Politisk styringsgruppe for kommuneplanen møtes om arealbruk",
+    "summary_body": "Den 18. juni 2025 møtes den politiske styringsgruppen for areal, plan og miljø i Knarvik Rådhus for å diskutere endringer i kommuneplanens arealdel. Møtet vil fokusere på bolig, næring, fritidsboliger og turistformål. Kommunedirektøren anbefaler at gruppen fatter vedtak om eventuelle endringer i plankartet, basert på tidligere innspill og konsekvensutredninger. Dette er et viktig steg før første gangs behandling av planforslaget, og vil påvirke fremtidig arealbruk i Alver kommune."
+  }
+}

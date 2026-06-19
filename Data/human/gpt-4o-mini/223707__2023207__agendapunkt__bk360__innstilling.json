@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223707:2023207:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:50:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant changes to the BPA system that impact residents with disabilities, highlighting local relevance and potential improvements."
+    },
+    "summary_headline": "Bergen kommune vurderer forbedringer i BPA-ordningen for personer med funksjonsnedsettelse",
+    "summary_body": "Bystyret i Bergen har bedt byrådet om en grundig gjennomgang av Brukerstyrt personlig assistanse (BPA) for å sikre at ordningen fungerer som et frigjørings- og likestillingsverktøy. Dette inkluderer vurdering av muligheter for studenter med funksjonsnedsettelse og eldre over 67 år. Byrådet foreslår tiltak som anonymisering av brukerundersøkelser og økt kompetanse blant saksbehandlere. Det er også et ønske om endringer i tildelingspraksis, men byrådet vil avvente endringer til en ny NOU foreligger. Dette kan påvirke mange innbyggere i Bergen som er avhengige av BPA."
+  }
+}

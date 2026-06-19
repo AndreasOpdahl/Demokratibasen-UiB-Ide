@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3048:29584:200100509:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:59:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses funding for sports facilities, which is relevant to local residents but lacks significant controversy or high financial impact."
+    },
+    "summary_headline": "Byrådet prioriterer spillemidler til idrettsanlegg i Bergen",
+    "summary_body": "Byrådet i Bergen har besluttet å prioritere søknader om tilskudd fra spillemidler til idrettsanlegg i 2002. Vedtaket ble gjort i møte 23. januar 2002, og prioriteringen avhenger av at alle formalia for hver søknad er i orden før de sendes videre til Hordaland fylkeskommune. Dette kan påvirke lokale idrettsanlegg og deres utvikling."
+  }
+}

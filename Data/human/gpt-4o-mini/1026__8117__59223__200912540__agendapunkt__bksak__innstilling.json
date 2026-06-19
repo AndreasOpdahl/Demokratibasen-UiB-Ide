@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:8117:59223:200912540:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:20:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a controversial decision regarding the construction of a new boathouse that has significant implications for local land use and community interests."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på naust i Fana",
+    "summary_body": "Byrådet har besluttet å opprettholde et tidligere avslag på en klage om oppføring av et nytt naust i Fana, som er større og har en annen utforming enn det tidligere godkjente. Grønn Etat og Fylkesmannen har uttrykt bekymring for at det nye naustet kan føre til økt privatisering av strandsonen og ikke samsvarer med tradisjonell byggestil. Klageren hevder at det nye naustet er likt det som ble godkjent i 1972, men byrådet anbefaler at klagen ikke tas til følge. Saken vil bli sendt til Fylkesmannen for endelig avgjørelse dersom klagen ikke blir godkjent."
+  }
+}

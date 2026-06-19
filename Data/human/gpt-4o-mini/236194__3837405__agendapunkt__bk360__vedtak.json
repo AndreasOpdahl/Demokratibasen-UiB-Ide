@@ -1,0 +1,18 @@
+{
+  "dokument_id": "236194:3837405:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:20:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposal for reconsideration of a previous decision, which may affect local residents."
+    },
+    "summary_headline": "Ny behandling av klage på bruksendring i Fana",
+    "summary_body": "Utvalg for miljø og byutvikling har besluttet å ta opp klagen på avslag om bruksendring, altan og kai ved Hardangerveien 277 til ny behandling. Forslaget ble fremmet av Tore Landmark (FP) og fikk støtte fra hele utvalget under møtet 15. mars 2022. Dette kan påvirke lokale innbyggere i Fana."
+  }
+}

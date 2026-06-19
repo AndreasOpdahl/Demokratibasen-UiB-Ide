@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:6541:55330:200412316:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:12:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant regulatory change for residential development in a local area, addressing community concerns and safety measures."
+    },
+    "summary_headline": "Reguleringsendring for boligbygging i Arna vedtatt med nye sikkerhetskrav",
+    "summary_body": "Byrådet har vedtatt en reguleringsendring for boligbygging på Opetveitveien 5 i Arna, som omfatter oppføring av 19 boenheter i 2-3 etasjer. Endringen innebærer en tettere utnyttelse av området enn tidligere planlagt, noe som har skapt bekymringer om økt trafikk og tap av uteareal. For å imøtekomme innspill fra både offentlige instanser og naboer, er antallet bygninger redusert fra 23 til 19. Det er også innført krav om at utbyggingen ikke kan starte før det er dokumentert tilstrekkelig barnehage- og skolekapasitet i området. I tillegg må det gjennomføres en grundig vurdering av rasfare før byggestart. Dette tiltaket er viktig for å sikre at utviklingen skjer på en trygg og bærekraftig måte for lokalsamfunnet."
+  }
+}

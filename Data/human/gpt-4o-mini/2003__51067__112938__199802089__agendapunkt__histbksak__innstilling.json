@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51067:112938:199802089:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:35:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document provides a routine financial update without significant controversy or immediate impact."
+    },
+    "summary_headline": "Økning i skatteinngang for Bergen i januar 1999",
+    "summary_body": "Formannskapet i Bergen har mottatt en rapport om skatteinngangen pr. 31. januar 1999, som viser en økning på 6,4% sammenlignet med januar 1998. Inngangen for januar var 373,4 millioner kroner, som er 7,9 millioner kroner over budsjett. Rådmannen foreslår at saken tas til orientering, men påpeker at tallene inneholder usikkerhetsmomenter og at det er vanskelig å trekke konklusjoner for hele året basert på januarresultatet."
+  }
+}

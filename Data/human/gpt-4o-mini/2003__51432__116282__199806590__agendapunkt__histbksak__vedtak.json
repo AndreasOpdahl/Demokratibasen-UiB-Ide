@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51432:116282:199806590:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:38:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant proposals for improving elderly care in Bergen, which directly impacts local residents."
+    },
+    "summary_headline": "Bergen kommune vedtar handlingsplan for eldreomsorg med fokus på rekruttering og kvalitet",
+    "summary_body": "Bystyret i Bergen har godkjent en handlingsplan for eldreomsorgen som tar sikte på å forbedre kvaliteten og rekrutteringen av sykepleiere. Planen inkluderer samarbeid med Betanien sykepleierhøgskole for å finansiere 10 sykepleierplasser, samt utvikling av kompetanseprogrammer for pleiepersonell. Det foreslås også økt brukermedvirkning gjennom individuelle omsorgsplaner. Flere representanter har fremmet forslag om økt legetilsyn og bedre bemanning i sykehjem. Bystyret vil også lage en behovsanalyse for institusjonsplasser for eldre de neste 10 årene. Dette tiltaket er viktig for å sikre at eldre i Bergen får den omsorgen de trenger."
+  }
+}

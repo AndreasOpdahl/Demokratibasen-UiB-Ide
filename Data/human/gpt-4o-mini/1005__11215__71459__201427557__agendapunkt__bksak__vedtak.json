@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11215:71459:201427557:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:32:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant environmental measures regarding cruise tourism in Bergen, which directly impacts local residents."
+    },
+    "summary_headline": "Bergen bystyre vedtar tiltak for å redusere cruiseturisme og utslipp",
+    "summary_body": "Bergen bystyre har vedtatt flere tiltak for å håndtere cruiseturisme og redusere miljøpåvirkningen fra cruiseskip. Bystyret ber byrådet om å fortsette arbeidet med å etablere landsstrøm i Bergen Havn og følge opp den helhetlige miljøplanen. Det ble også vedtatt å innføre miljødifferensierte havneavgifter. Et forslag fra SV om å sette en grense for antall cruiseskip i havnen ble avvist, men det er enighet om å prioritere miljøvennlige skip. Dette arbeidet er viktig for å sikre en bærekraftig turistmengde og redusere utslipp i sentrum av Bergen."
+  }
+}

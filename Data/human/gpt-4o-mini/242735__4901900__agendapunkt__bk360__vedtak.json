@@ -1,0 +1,18 @@
+{
+  "dokument_id": "242735:4901900:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:35:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a friendship city agreement with a Palestinian city is significant and controversial, reflecting local political dynamics."
+    },
+    "summary_headline": "Bergen bystyre vedtar å utrede vennskapsbyavtale med palestinsk by",
+    "summary_body": "Bergen bystyre har besluttet å be byrådet om å utrede muligheten for å inngå en vennskapsbyavtale med en palestinsk by eller kommune. Forslaget, fremmet av Magne Hagesæter (R) på vegne av Sp og R, ble vedtatt med 38 stemmer, mens et alternativt forslag fra Høyre og FrP falt med 27 stemmer. Saken skal legges frem for bystyret før sommeren 2023. Ove Sverre Bjørdal (Sp) understreket at en slik avtale må ha bred støtte blant befolkningen og de folkevalgte, for å unngå å bli oppfattet som en aktiv rolle i konflikten."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "209528:943003:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:19:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The approval of a new alcohol license for a local restaurant is relevant and impactful for the community."
+    },
+    "summary_headline": "Creperia får ny skjenkebevilling i Strandgaten",
+    "summary_body": "Byrådet har innvilget søknaden fra Creperia AS om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 inne og utendørs ved Strandgaten 85. Bevillingen gjelder frem til 30. juni 2020, og stedet forventes å ha 80 % av omsetningen fra mat. Politiet har ikke innvendinger mot søknaden, og byråden støtter fagetatens anbefaling. Før bevillingen kan tas i bruk, må Creperia AS sende inn nødvendig dokumentasjon til Kontor for skjenkesaker."
+  }
+}

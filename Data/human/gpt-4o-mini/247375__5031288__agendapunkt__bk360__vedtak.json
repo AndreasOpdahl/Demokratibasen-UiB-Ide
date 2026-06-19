@@ -1,0 +1,18 @@
+{
+  "dokument_id": "247375:5031288:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:47:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant environmental issue regarding the coastal zone, which affects local residents."
+    },
+    "summary_headline": "Miljøutvalg ber om oppfølging av strandsonehøring",
+    "summary_body": "Utvalg for miljø og byutvikling behandlet strandsonehøringen i møte 31. august 2023. De vedtok enstemmig å be arbeidsutvalget om å legge frem en sak om oppfølging av høringen til neste møte. Forslaget om å evaluere strandsoneprosjektet fikk kun støtte fra Høyre og falt. Dette er viktig for innbyggere i Bergen som er berørt av kystforvaltning."
+  }
+}

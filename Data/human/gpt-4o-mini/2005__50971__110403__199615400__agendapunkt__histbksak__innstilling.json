@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50971:110403:199615400:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:43:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a proposed change in industrial building placement and traffic safety measures, but lacks significant controversy or impact."
+    },
+    "summary_headline": "Endring av plassering for industribygg i Laksevåg vurderes",
+    "summary_body": "Hovedutvalg for byutvikling har behandlet en sak om endret plassering av et sorteringsanlegg for H. Nicolaysen A/S i Laksevåg. Forslaget innebærer at bygget flyttes nærmere Janaflaten, noe som vil øke avstanden til Alvøen skole. Administrasjonen har imidlertid konkludert med at det ikke er grunnlag for å omgjøre den tidligere godkjente plasseringen, da avstanden til skolen er ca. 100 meter. I tillegg foreslås det å sikre skoleveien med fysisk skille på grunn av økt tungtrafikk. Saken tas til orientering."
+  }
+}

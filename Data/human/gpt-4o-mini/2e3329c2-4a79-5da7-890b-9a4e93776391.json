@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2e3329c2-4a79-5da7-890b-9a4e93776391",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:56:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses multiple significant legislative hearings that could impact local regulations and residents."
+    },
+    "summary_headline": "Bergen kommune vurderer høringssvar til viktige lovforslag",
+    "summary_body": "Forretningsutvalget i Bergen kommune skal behandle tre høringssaker den 4. november 2025, som kan påvirke innbyggerne. Først er det et forslag til ny lov om justering av karbonpris ved import av varer til EØS (CBAM-loven), som har som mål å motvirke karbonlekkasje. Dernest foreslås endringer i forskrifter knyttet til innkreving av avgifter, som trer i kraft 1. januar 2026. Til slutt vurderes endringer i barnehageloven som kan påvirke familiebarnehager. Høringsfrister er henholdsvis 2. januar, 3. desember, og 9. desember 2025. Byrådet anbefales å avgi høringssvar på vegne av kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7451:57745:200811202:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:18:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision regarding the construction of a boathouse, which has local relevance and impacts residents."
+    },
+    "summary_headline": "Klage på naustbygging godkjent med betingelser i Fana",
+    "summary_body": "Komite for miljø og byutvikling har besluttet å gi dispensasjon fra kommuneplanen for oppføring av naust i Fana, men med krav om at bruksarealet reduseres til 40 kvm. Klagen ble tatt til følge etter at et tidligere avslag ble opphevet. Komiteen, med støtte fra Høyre og Kristelig Folkeparti, mener tiltaket vil være i tråd med gjeldende retningslinjer og ikke vil øke belastningen på området. Det ble stemt over et fellesforslag som ble vedtatt med 12 stemmer, mens et annet forslag fra SV, V og Sp falt. Dette kan påvirke lokale innbyggere som ønsker å bygge i strandsonen."
+  }
+}

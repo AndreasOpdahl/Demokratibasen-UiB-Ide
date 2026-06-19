@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10766:69223:201334652:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:44:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new alcohol license application for a local restaurant, which is relevant to the community."
+    },
+    "summary_headline": "Brød & Vin Restaurant får ny skjenkebevilling",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Brød & Vin Restaurant i Christiesgate 13. Søknaden ble sendt inn etter en overdragelse av virksomheten den 9. oktober 2013. Bevillingen gjelder for et spisested med et skjenkeareal på 90 m2 og er gyldig frem til 30. juni 2016. Styrer for bevillingen er Dun My Tieu, med My Hanh Thi Huynh som stedfortreder. Før bevillingen kan tas i bruk, må restauranten sende inn nødvendig dokumentasjon til Kontor for skjenkesaker."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "216172:1573526:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:36:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The prolongation of the quality development plan for Bergen schools is significant for local education and involves public spending."
+    },
+    "summary_headline": "Kvalitetsutviklingsplan for bergensskolen forlenges ett år",
+    "summary_body": "Byrådet har besluttet å forlenge kvalitetsutviklingsplanen \"Sammen for kvalitet – læring\" for bergensskolen med ett skoleår, til ut skoleåret 2020/21. Dette er nødvendig for å gi skolene mer tid til å implementere læringsprosesser og strategier. Planen, som ble vedtatt av bystyret i 2016, har fått støtte fra lærere og skoleledere, og fokuserer på elevens læring som hovedmålsetting. Bystyret skal behandle forslaget i løpet av 2020, og det er viktig for å sikre kvaliteten i skolens pedagogiske arbeid."
+  }
+}

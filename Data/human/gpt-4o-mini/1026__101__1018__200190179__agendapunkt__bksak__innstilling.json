@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:101:1018:200190179:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:53:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property sale is relevant to local residents and involves a significant financial transaction."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på leiegård i Rogagaten",
+    "summary_body": "Bergen kommune har besluttet å ikke benytte sin forkjøpsrett ved overdragelsen av leiegården i Rogagaten 21, gnr. 158, bnr. 245, fra Alf Landås til Embla Eiendom AS for 2.794.020 kroner. Ifølge Planavdelingen har leierne ikke ønsket å overta eiendommen som borettslag eller eierseksjonssameie, noe som er grunnen til at kommunen ikke vil benytte forkjøpsretten. Byrådet, ledet av Anne-Grete Strøm-Erichsen, støtter denne vurderingen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9760:65402:201018119:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:47:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision regarding a road width exemption that affects local traffic safety and urban development."
+    },
+    "summary_headline": "Byrådet innvilger dispensasjon for redusert veibredde i Ytrebygda",
+    "summary_body": "Byrådet i Bergen har besluttet å innvilge en dispensasjon fra regulert veibredde for veien i Ytrebygda, som opprinnelig skulle være 6 meter bred. Stoltz Bolig AS har klaget på et tidligere avslag, og byråden mener at en vei med ett kjørefelt vil ivareta trafikksikkerheten bedre. Det er innkommet merknader fra Golfkollen Sameie, som stiller spørsmål ved grunnlaget for dispensasjonen. Byråden anbefaler at klagen tas til følge, og dispensasjonen er nå innvilget i henhold til plan- og bygningsloven. Dette vil ha betydning for trafikksituasjonen i området, som er under utvikling."
+  }
+}

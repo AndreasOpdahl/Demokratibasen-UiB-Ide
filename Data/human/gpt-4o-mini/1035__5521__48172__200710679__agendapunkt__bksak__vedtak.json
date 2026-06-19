@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:5521:48172:200710679:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:00:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a new building project and its visual impact, which is relevant to local residents."
+    },
+    "summary_headline": "Tilsynsutvalget ber om mer informasjon om nybygg på Torborg Nedreaas vei",
+    "summary_body": "Tilsynsutvalget for byens utseende har behandlet nybygg på Torborg Nedreaas vei 29 og besluttet å be om ytterligere tegningsmateriale for å vurdere byggets visuelle sammenheng, spesielt fra Hurtigruteterminalen. Utvalget ønsker også å kartlegge konsekvensene for lys og skygge for nærliggende boliger."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:3259:31962:200200241:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:14:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document highlights significant community concerns regarding budget cuts affecting schools and cultural activities."
+    },
+    "summary_headline": "Beboere i Ytrebygda protesterer mot budsjettkutt i skoler og kulturtilbud",
+    "summary_body": "Under åpen halvtime i Ytrebygda bydelsstyre 27. august 2002, uttrykte flere innbyggere bekymring for foreslåtte budsjettkutt. Reider Trefall fra Sørås borettslag motsatte seg plasseringen av en ny barnehage, mens flere foreldre og ledere fra skoler og kulturorganisasjoner kritiserte kutt i skolebudsjettet og kulturbudsjettet. Det ble påpekt at kuttene vil påvirke barnas skolevei og redusere aktiviteter for ungdom. Beboerne oppfordret politikerne til å ta deres protester med videre i prosessen."
+  }
+}

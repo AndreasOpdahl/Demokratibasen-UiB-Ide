@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4444:41770:200413184:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:04:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision on a building permit that affects local land use and community interests."
+    },
+    "summary_headline": "Byrådet gir dispensasjon for ny bolig på Mildehalvøya",
+    "summary_body": "Byrådet har besluttet å gi dispensasjon fra byggeforbudet i 100-metersbeltet langs sjøen for Trond og Mette Mohns søknad om å oppføre en ny bolig på Mildehalvøya. Dette til tross for tidligere avslag fra 'Etat for byggesak og private planer' og motstand fra Fylkesmannen i Hordaland, som advarte mot negative virkninger for friluftsinteresser og landskapsverdier. Byrådet mener at den foreslåtte boligen vil ha en mindre eksponert plassering og vil ikke ha betydelige negative konsekvenser for allmennheten. Klagen tas til følge, og 'Etat for byggesak og private planer' får fullmakt til å behandle søknaden videre."
+  }
+}

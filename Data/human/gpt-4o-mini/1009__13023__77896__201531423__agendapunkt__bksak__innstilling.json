@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13023:77896:201531423:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:54:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains several administrative decisions, including approvals for alcohol licenses, which may interest local residents."
+    },
+    "summary_headline": "Byrådet godkjenner flere skjenkebevillinger i Bergen",
+    "summary_body": "Byrådet i Bergen har godkjent flere søknader om skjenkebevillinger for alkoholholdige drikker, inkludert Enjoy Saigon Restaurant, Scandic Flesland Airport, og Kaffelade. Disse bevillingene gjelder frem til 30. juni 2020. Byrådet har også innvilget en utvidelse av skjenkearealet ved Årstad videregående skole. Beslutningene ble fattet under møtet den 26. januar 2017, ledet av byrådsleder Harald Schjelderup."
+  }
+}

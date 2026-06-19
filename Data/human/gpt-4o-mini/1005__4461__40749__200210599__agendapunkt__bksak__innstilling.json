@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4461:40749:200210599:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:53:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant regulatory change affecting local industry and public access to recreational areas."
+    },
+    "summary_headline": "Byrådet anbefaler reguleringsendring for Åstvedt AS i Åsane",
+    "summary_body": "Byrådet har anbefalt bystyret å godkjenne en reguleringsendring for Åstvedt AS, som vil utvide industriområdet med 12,5 dekar inn i et friluftsområde. Dette området er i dag delvis brukt til parkering og lager. Åstvedt AS, som tilbyr yrkesrettet opplæring for personer med yrkeshemminger, planlegger å bruke friluftsområdet til rehabilitering og attføring. Det er også planlagt en ny friidrettshall i nærheten, men det er ikke avdekket interessekonflikter mellom prosjektene. Reguleringsplanen inkluderer krav om landskapsmessig tilpasning for å ivareta stier og friluftsinteresser. Bystyret skal behandle saken videre."
+  }
+}

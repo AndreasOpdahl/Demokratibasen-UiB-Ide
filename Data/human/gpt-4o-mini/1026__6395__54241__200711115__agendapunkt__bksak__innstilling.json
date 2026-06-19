@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:6395:54241:200711115:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:15:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant dispute over a public utility requirement affecting many residents."
+    },
+    "summary_headline": "Klage på avslag om dispensasjon fra fjernvarme i Damsgårdssundet avvist",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på Bergen og Omegn Boligbyggelags (BOB) søknad om dispensasjon fra tilknytning til fjernvarme for 41 boliger i Damsgårdssundet Sør. BKK Varme AS og Norsk Energi frarådet dispensasjon, med henvisning til at området er godt egnet for fjernvarme og at dispensasjon kan hindre realiseringen av fjernvarmeanlegget. BOB argumenterer for at kostnadene ved vannbåren oppvarming er urimelig høye, men kommunen mener at gjeldende regelverk må følges. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

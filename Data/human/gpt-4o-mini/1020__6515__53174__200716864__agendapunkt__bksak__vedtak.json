@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:6515:53174:200716864:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:31:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses significant issues in municipal services and management, particularly regarding home care services and cybersecurity, which are relevant to local residents."
+    },
+    "summary_headline": "Hjemmetjenester i Bergen sliter med ledelse og sykefravær",
+    "summary_body": "Bergen hjemmetjenester KF står overfor alvorlige utfordringer med høy sykefravær på 17 prosent og et forestående underskudd, noe som har ført til at direktøren har sagt opp. Margunn Rognås (A) etterspør tiltak fra byråden for å forbedre ledelsen og om det vil bli endringer i vedtektene for ansettelse av daglig leder. I tillegg ble det stilt spørsmål om evalueringen av prosjektet med sekstimersdag. Finansbyråd Christine B. Meyer svarte på spørsmålene. I en annen sak ble det også stilt spørsmål om Bergen kommunes IKT-systemer etter et datavirusangrep som rammet Helse Bergen, og hva kommunen vil gjøre for å forhindre lignende hendelser."
+  }
+}

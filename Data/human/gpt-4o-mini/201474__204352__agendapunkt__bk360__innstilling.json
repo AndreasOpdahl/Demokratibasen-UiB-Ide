@@ -1,0 +1,18 @@
+{
+  "dokument_id": "201474:204352:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:00:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to allocate significant funding for the rehabilitation of Skjold skole is highly relevant and impactful for local residents."
+    },
+    "summary_headline": "Skjold skole får 40 millioner til rehabilitering",
+    "summary_body": "Byrådet har anbefalt å gjennomføre rehabilitering av Skjold skole med et kostnadsestimat på 40 millioner kroner. Prosjektet, som inkluderer oppgradering av tak og ventilasjon, er nødvendig da bygget er i dårlig forfatning og har høy verneverdi. Det er bevilget 19 millioner kroner fra budsjettet, men det gjenstår et udekket behov på 18 millioner kroner som må innarbeides i fremtidige planer. Arbeidet skal pågå frem til jul 2017, og det haster med oppgraderingen for å sikre et trygt læringsmiljø for elevene."
+  }
+}

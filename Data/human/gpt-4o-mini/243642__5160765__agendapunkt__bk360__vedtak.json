@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243642:5160765:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:37:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant architectural proposal that impacts local business and community design."
+    },
+    "summary_headline": "Utvidelse av butikk ved Jonas Lies vei 62 får anbefalinger fra RBA",
+    "summary_body": "Rådet for byforming og arkitektur (RBA) har behandlet en søknad om utvidelse av en butikk ved Jonas Lies vei 62. I møtet 20. februar 2023 anbefalte RBA at utvidelsen tilpasses bedre til eksisterende bygning og omgivelsene, med fokus på tilgjengelighet og estetikk. RBA foreslår endringer som inkluderer en ny inngangsløsning og muligheten for å rive det gamle taket for å skape en mer harmonisk helhet. Tiltaket ligger i en hensynssone for kulturmiljø, og det stilles krav til utformingen i henhold til kommunens arkitekturstrategi."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228828:2654031:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:04:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document raises significant concerns about the treatment of vulnerable elderly during the pandemic, highlighting accountability issues and potential systemic failures."
+    },
+    "summary_headline": "Kritikk av eldreomsorgen under pandemien: Spørsmål om alenedødsfall",
+    "summary_body": "Diane Berbain (SV) stiller spørsmål til byråden om alenedødsfall på sykehjem i Bergen under pandemien, etter at 97 år gamle Hjørdis døde alene. Berbain påpeker at pandemien kan ha avdekket eksisterende svakheter i helsevesenet, der eldre ofte blir nedprioritert. Hun ber om en undersøkelse av hvor mange som har dødd alene og hva kommunen gjør for å forhindre slike hendelser i fremtiden. Dette reiser viktige spørsmål om omsorg og verdighet for eldre i livets sluttfase."
+  }
+}

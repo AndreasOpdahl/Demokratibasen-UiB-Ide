@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1015:3426:35442:200100907:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:20:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for a cultural center at Sælen school is relevant and has potential local impact, but there are concerns about funding and execution."
+    },
+    "summary_headline": "Planer om kulturhus ved Sælen skole får støtte fra bydelsstyret",
+    "summary_body": "Bydelsstyret i Fyllingsdalen har besluttet å støtte planene om å bygge et kulturhus i en fløy av Sælen skole. Bydelsdirektør Harald Inge Anderssen fremhever at skolen ligger sentralt og er lett tilgjengelig for innbyggerne. Det er behov for rehabilitering av skolen, og kulturhuset vil kombinere gymnastikk og kultur. Det er imidlertid usikkerhet rundt finansieringen, da midler fra bystyret og statlige tilskudd er nødvendige for å realisere prosjektet. Bydelsdirektøren uttrykker bekymring for at planen kan ende i skuffen på grunn av bykassens økonomiske situasjon."
+  }
+}

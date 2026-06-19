@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2589:25170:200000355:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:37:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision impacts local childcare availability and involves budget considerations."
+    },
+    "summary_headline": "Laksevåg bydelsstyre avviser overtakelse av Nygård menighets barnehage",
+    "summary_body": "Laksevåg bydelsstyre har besluttet at de ikke har budsjettrammer til å overta driften av Nygård menighets barnehage. Dette ble vedtatt i møte 30. januar 2001, der det også ble fremmet forslag om å kontakte Byrådsavdeling for kultur, idrett og oppvekst for å sikre ekstra midler til å opprettholde barnehagetilbudet i bydelen. Forslaget fra SV og RV om å overta driften ble avvist. Bydelsstyret planlegger å samarbeide med byrådet for å øke barnehagetilbudet når barnehagebehovsplanen for 2001-2003 er vedtatt."
+  }
+}

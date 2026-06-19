@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2013:50030:100885:199920331:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:58:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a neighbor's complaint about a garage construction that could impact property values, making it relevant to local residents."
+    },
+    "summary_headline": "Nabo klager på garasje, men kommunen avviser protesten",
+    "summary_body": "Utvalg for byutvikling har besluttet å opprettholde byggetillatelsen for en dobbeltgarasje på Grøvlesvingen 29, til tross for klage fra nabo Karen Fuglseth. Fuglseth frykter at garasjen vil påvirke verdien av hennes eiendom negativt, da den ligger kun 2 meter fra nabogrensen. Kommunens administrasjon har vurdert klagen og konkludert med at garasjen ikke er for høy og at den oppfyller kravene i plan- og bygningsloven. Klagen ble derfor ikke tatt til følge."
+  }
+}

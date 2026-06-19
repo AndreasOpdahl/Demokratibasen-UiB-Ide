@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4997:44583:200507368:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:23:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a funding decision for a cultural event, which has local relevance but lacks significant controversy or impact."
+    },
+    "summary_headline": "Byrådet bevilger 150.000 kroner til Bergen Filharmoniske Orkesters turné",
+    "summary_body": "Byrådet har besluttet å bevilge 150.000 kroner til Bergen Filharmoniske Orkesters turné til København og fire tyske byer i november 2006. Bevilgningen er delt mellom internasjonal kunst- og kulturutveksling og en tilleggsbevilgningskonto. Dette tiltaket støtter lokal kultur og gir mulighet for internasjonal eksponering."
+  }
+}

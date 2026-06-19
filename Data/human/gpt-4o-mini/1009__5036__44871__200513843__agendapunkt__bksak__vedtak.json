@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5036:44871:200513843:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:23:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves significant funding for a pressing social issue affecting local residents."
+    },
+    "summary_headline": "Bystyret bevilger 250.000 kroner til tiltak mot vold mot kvinner og barn",
+    "summary_body": "Byrådet har besluttet å bevilge 250.000 kroner til informasjonstiltak knyttet til Handlingsplanen mot vold mot kvinner og barn. Bevilgningen ble vedtatt under møtet 5. juli 2006, og midlene vil bli overført fra tilleggsbevilgningskontoen til de aktuelle utgiftskontoene. Dette tiltaket er viktig for å styrke arbeidet mot vold i nære relasjoner i Bergen."
+  }
+}

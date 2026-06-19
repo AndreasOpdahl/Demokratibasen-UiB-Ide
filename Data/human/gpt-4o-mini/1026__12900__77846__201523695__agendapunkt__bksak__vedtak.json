@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12900:77846:201523695:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:59:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision involves a significant change to a historical property, impacting local residents and community character."
+    },
+    "summary_headline": "Klage på avslag om bruksendring av historisk eiendom godkjent",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig vedtatt å oppheve et tidligere avslag på søknad om bruksendring av en historisk eiendom på Lamberts Vei 7. Den nye leiligheten på 47 m² i 1. etasje vil forbedre lysforholdene og gi bygningen et mer levende preg. Byrådet anbefaler også dispensasjon fra krav om uteoppholdsareal. Dette tiltaket er støttet av byantikvaren og vil bidra til å bevare eiendommens historiske verdi."
+  }
+}

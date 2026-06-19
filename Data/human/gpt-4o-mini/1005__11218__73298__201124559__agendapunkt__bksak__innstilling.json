@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11218:73298:201124559:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:33:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document contains significant decisions regarding public spending and local governance that directly affect residents."
+    },
+    "summary_headline": "Bystyret vedtar omfattende tiltak for miljø og skoleutvikling i Bergen",
+    "summary_body": "Bergen bystyre har i sitt møte 28. mai 2015 fattet flere viktige vedtak som vil påvirke innbyggerne. Blant annet ble det bevilget 239 millioner kroner til nybygg av Damsgård skole, til tross for en kostnadssprekk på 54 millioner. Bystyret har også vedtatt en folkehelseplan for 2015-2025, som fokuserer på å forbedre helsen til bergensere gjennom økt fysisk aktivitet og bedre mattilbud i skoler. Videre ble det besluttet å gjøre forkjøpsretten gjeldende for flere leiegårder i Kirkegaten, noe som sikrer boliger for leietakere. Bystyret ber om at tiltakene for miljøforbedringer i Bergen havn prioriteres, med mål om å redusere miljøgifter i Byfjorden. Disse beslutningene vil ha direkte innvirkning på lokalsamfunnet og krever oppfølging fra byrådet."
+  }
+}

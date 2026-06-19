@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:60:360:200090193:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:09:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The establishment of Vestlandsrøyret AS for natural gas distribution is significant for local economic development and environmental improvements."
+    },
+    "summary_headline": "Bergen kommune investerer i naturgassprosjekt med Vestlandsrøyret AS",
+    "summary_body": "Bergen kommune har mottatt en invitasjon til å delta i etableringen av aksjeselskapet Vestlandsrøyret AS, som har som mål å utvikle et distribusjonssystem for naturgass i Hordaland. Byrådet foreslår å kjøpe 100 aksjer for totalt 10 000 kroner, finansiert av Nærings- og kunnskapsfondet. Prosjektet er en del av byrådets strategi for å erstatte oljeforbruk med naturgass og fjernvarme, og vil bidra til økt verdiskaping og nye arbeidsplasser i regionen. Initiativet er i tråd med pågående arbeid i Rogaland og Trøndelag for legging av naturgassledninger."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2091:20530:200004518:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:17:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the future status of working committees in the district council, which may affect local governance."
+    },
+    "summary_headline": "Arna bydelsstyre vurderer fremtidig status for arbeidsutvalg",
+    "summary_body": "Arna bydelsstyre har mottatt et notat fra prosjektdirektør Finn Strand som vurderer behovet for arbeidsutvalg i bydelene. Notatet konkluderer med at det kun er begrenset behov for slike utvalg, noe som kan påvirke hvordan bydelsstyret organiserer sitt arbeid. Bydelsdirektør Paal Fennell har ikke tilføyd noe til notatet. Styret har besluttet å ta notatet til orientering og opprettholde tidligere vedtak om arbeidsutvalgets fullmakter."
+  }
+}

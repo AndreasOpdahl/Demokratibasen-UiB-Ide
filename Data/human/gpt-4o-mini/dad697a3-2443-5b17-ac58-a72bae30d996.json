@@ -1,0 +1,18 @@
+{
+  "dokument_id": "dad697a3-2443-5b17-ac58-a72bae30d996",
+  "kommune_nummer": 4641,
+  "kommune_navn": "Aurland",
+  "generated_at": "2026-02-19 23:22:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant intermunicipal collaboration for child welfare services, which is highly relevant to local governance and community welfare."
+    },
+    "summary_headline": "Aurland kommune vedtar samarbeid om felles barnevernsteneste i Sogn",
+    "summary_body": "Aurland kommune har besluttet å inngå et vertskommunesamarbeid om en felles barnevernsteneste med Sogndal kommune som vertskommune. Dette samarbeidet skal styrke kvaliteten og effektiviteten i barnevernstjenestene for å sikre likeverdige tjenester til barn og familier i regionen. Kommunestyret har delegert alle rettigheter og plikter etter barnevernsloven til Sogndal kommune, og oppstart er planlagt til 1. januar 2027. Det vil også bli etablert et avdelingskontor i Lærdal dersom alle seks kommuner deltar. Dette tiltaket er viktig for å møte nasjonale krav og lokale behov."
+  }
+}

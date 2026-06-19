@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224856:1838137:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:52:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document is a procedural note with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra bystyremøtet",
+    "summary_body": "Dokumentet er en referanse til et møte i Bergen bystyre den 17. november 2020, hvor saker til eventuelt vil bli fremmet. Det inneholder ingen beslutninger eller kontroverser."
+  }
+}

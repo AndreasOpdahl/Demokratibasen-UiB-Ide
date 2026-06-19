@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4461:41035:200405917:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:53:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant municipal initiative focusing on mental health and cultural engagement for vulnerable groups, with broad political support."
+    },
+    "summary_headline": "Bystyret viderefører prosjekt for kunst, kultur og psykisk helse med fokus på barn og unge",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å videreføre prosjektet \"Kunst, kultur og psykisk helse\" fra 2005 til 2008, med særlig fokus på barn, unge, eldre og flyktninger. Bystyret forutsetter at statlige midler skal være hovedfinansieringen, og ber byrådet utvikle planen i samarbeid med fagmiljøer, inkludert barne- og ungdomspsykiatrisk avdeling i Helse Bergen. Prosjektet skal også involvere kommunens kulturinstitusjoner som kulturskolen og Barnas hus. Dette tiltaket er viktig for å styrke psykisk helse og kulturell deltakelse blant sårbare grupper i Bergen."
+  }
+}

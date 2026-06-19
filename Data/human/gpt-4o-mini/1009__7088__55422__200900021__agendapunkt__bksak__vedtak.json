@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7088:55422:200900021:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:36:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document involves a minor budget decision for a local event, which has limited impact and relevance."
+    },
+    "summary_headline": "Byrådet bevilger 15.000 kroner til leie av Torgallmenningen",
+    "summary_body": "Byrådet har besluttet å bevilge 15.000 kroner til dekning av leie av Torgallmenningen i forbindelse med Nordiske Mediedager. Bevilgningen ble gjort fra tilleggsbevilgningskontoen og vil bli belastet diverse tilskudd. Dette er en del av byens støtte til lokale arrangementer."
+  }
+}

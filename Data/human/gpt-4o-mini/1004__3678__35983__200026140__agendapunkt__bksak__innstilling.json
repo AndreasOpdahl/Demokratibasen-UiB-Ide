@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3678:35983:200026140:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for a local drug policy plan is relevant and may impact residents, but lacks immediate controversy."
+    },
+    "summary_headline": "Bergenhus bydel foreslår ny ruspolitisk handlingsplan",
+    "summary_body": "Bergenhus bydelsstyre har lagt frem et forslag til en ruspolitisk handlingsplan som bygger på Bergen kommunes strategi for 2002-2005. Planen tar sikte på å forbedre koordineringen og samarbeidet innen rusfeltet i bydelen. Behandlingen av Rusreform II er utsatt til november 2003, og handlingsplanen vil bli justert i henhold til de sentrale vedtakene. Bydelsdirektør Ole Vorland og spesialrådgiver Steinar Løland står bak forslaget."
+  }
+}

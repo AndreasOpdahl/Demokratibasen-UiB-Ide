@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:567:4068:200390489:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:15:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a rejected application for a construction project, which has implications for local residents and reflects political disagreement."
+    },
+    "summary_headline": "Klage på avslag om murbygging avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har avvist en klage fra Stein-Eirik Selheim angående Bergen kommunes avslag på søknad om oppføring av mur på Fredlundveien 23. Klagen ble behandlet 11. desember 2003, og komiteen opprettholdt administrasjonens vedtak fra 20. juni 2003. Forslaget fra Sigurd Galtung Døsvig (FrP) om å returnere saken til byrådet ble nedstemt med 3 mot 12 stemmer. Dette vedtaket kan påvirke lokale innbyggere som har interesse i byggeprosjekter i området."
+  }
+}

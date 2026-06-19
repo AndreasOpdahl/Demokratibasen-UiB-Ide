@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:6538:54568:200904445:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:11:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a temporary leave of absence for a city council member, which has moderate local relevance."
+    },
+    "summary_headline": "Chiku Ali (R) får permisjon fra verv i bystyret",
+    "summary_body": "Chiku Ali fra Rødt har søkt om permisjon fra sine verv i Bergen bystyre og Komite for kultur, idrett og næring fra 1. april til 31. desember 2009. Hun begrunner søknaden med mange tjenestereiser knyttet til regjeringens arbeid mot kjønnslemlestelse. Bystyret vil vurdere søknaden, og Mathias Hunskår Furevik foreslås som nytt medlem i komiteen i hennes fravær."
+  }
+}

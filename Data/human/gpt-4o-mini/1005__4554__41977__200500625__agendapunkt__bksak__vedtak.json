@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4554:41977:200500625:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:55:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to implement a trial model for portfolio assessment in schools has significant implications for education in Bergen."
+    },
+    "summary_headline": "Bystyret vedtar forsøksmodell for mappevurdering i skolen",
+    "summary_body": "Bergen bystyre har besluttet å innføre en forsøksmodell med mappevurdering i undervisningen, men avviser å bruke det som alternativ til skriftlig eksamen. Bystyret ber byrådet om å søke statlig støtte på 100.000 kroner for gjennomføring og evaluering av prosjektet, som skal evalueres innen 2006. Det er enighet om at ressursbruken må holdes lav og ikke gå på bekostning av skolens opplæring. Kjersti Toppe fra Sp understreker viktigheten av god informasjon til elever og foreldre før prosjektet settes i gang."
+  }
+}

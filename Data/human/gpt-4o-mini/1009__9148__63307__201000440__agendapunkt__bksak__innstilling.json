@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9148:63307:201000440:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:44:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant funding decision for an environmentally impactful project in Bergen."
+    },
+    "summary_headline": "Bergen kommune bevilger 250.000 kroner til flytende kraftverk",
+    "summary_body": "Bergen kommune har besluttet å bevilge 250.000 kroner til etablering av et flytende kraftverk i Bergen havn, som en del av et prosjekt ledet av Eidesvik Offshore og HOG energi. Prosjektet, som har en total kostnadsramme på 18 millioner kroner, har som mål å redusere forurensning fra skip ved å levere strøm til andre fartøy. Byråden for byutvikling, klima og miljø, Filip Rygg, understreker prosjektets viktighet for næringsutvikling og miljø. Før utbetaling av tilskuddet kreves en statusrapport om prosjektets fremdrift og finansiering."
+  }
+}

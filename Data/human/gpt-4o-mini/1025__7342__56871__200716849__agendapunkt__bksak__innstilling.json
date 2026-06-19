@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:7342:56871:200716849:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:50:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant issues regarding child welfare and education in Bergen, including budget implications and potential conflicts over barnehage placements."
+    },
+    "summary_headline": "Bergen kommune vurderer barnehagedekning og tiltak mot mobbing i skolen",
+    "summary_body": "Komite for oppvekst i Bergen kommune har behandlet flere viktige saker i sitt møte den 26. november 2009. Blant annet ble det vedtatt å starte regulering av tomten i Nygårdsparken til barnehageformål, og det ble uttrykt bekymring over den lave andelen kommunale barnehager. Det ble også diskutert tiltak for å oppnå nulltoleranse mot mobbing i skolene, etter rapporter om alvorlige mobbesaker. Byråd Filip Rygg svarte på spørsmål om brudd på opplæringsloven og bekreftet at Bergen ikke var med i det nasjonale tilsynet. Komiteen vil følge opp med en sak om barnehagestruktur og behov i 2010."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:7373:59776:200801553:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:27:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative matters with no significant impact or controversy."
+    },
+    "summary_headline": "Ingen store saker fra Åsane bydelsstyre",
+    "summary_body": "Åsane bydelsstyre behandlet flere skriftlige spørsmål i møtet 5. oktober 2010, inkludert spørsmål fra Åse Simonsen (SV) om forlengelse av turvei i Hjortlandsdalen og Berit Jakobsen (V) om gangsti langs elven mellom Liavatnet og Gullgruven. Ingen kontroverser eller store beslutninger ble rapportert."
+  }
+}

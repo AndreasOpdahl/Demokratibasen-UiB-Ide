@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5169:47022:200609828:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:08:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a significant legal dispute over property rights affecting local residents."
+    },
+    "summary_headline": "Klage på ekspropriasjon av grunn til skytebane oversendes Fylkesmannen",
+    "summary_body": "Byrådet har mottatt en klage fra advokat Ståle Eeg Nielsen på vegne av grunneierne angående ekspropriasjonsvedtaket for reguleringsplanen til skytebanen på Kismul. Klagen hevder at ekspropriasjonen påfører grunneierne store ulemper og at det foreligger saksbehandlingsfeil. Kommuneadvokaten anbefaler at klagen ikke tas til følge, og byrådet støtter denne anbefalingen. Saken vil nå bli oversendt Fylkesmannen i Hordaland for endelig avgjørelse."
+  }
+}

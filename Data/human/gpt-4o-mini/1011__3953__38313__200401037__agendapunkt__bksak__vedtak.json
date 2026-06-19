@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1011:3953:38313:200401037:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:51:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative updates with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen store nyheter fra styremøtet i Bergen Bygg og Eiendom KF",
+    "summary_body": "Styret i Bergen Bygg og Eiendom KF godkjente møteplanen for høsten 2004. Administrasjonen vil presentere en sak om internhusleie i neste møte. Byråd Lisbeth Iversen har innkalt til foretaksmøte 26. mai 2004. Årsrapporten for 2003 ble utdelt under møtet."
+  }
+}

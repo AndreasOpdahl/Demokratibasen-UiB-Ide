@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224893:2712662:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:53:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant budgetary decisions impacting accessibility and support for individuals with disabilities in Bergen."
+    },
+    "summary_headline": "Budsjettvedtak for personer med funksjonsnedsettelse i Bergen kommune",
+    "summary_body": "Kommunalt råd for personer med funksjonsnedsettelse har behandlet budsjettforslag for 2021 og fremmet flere viktige forslag til bystyret. Rådet krever kartlegging av universell utforming i kulturbygg og utbedring av sentrale kulturbygg i 2021/2022. De påpeker også behovet for tilrettelagt transport for VTA-brukere fra 2021, samt flere fysioterapeuter med refusjonsrett. Rådet ønsker utvidelse av rådgivningskontoret for hørsels- og synshemmede, og uttrykker bekymring for økt effektivisering som kan gå på bekostning av relasjonell omsorg. Totalt styrkes budsjettet for tjenester til personer med utviklingshemming med 21 millioner kroner, men det er bekymringer rundt besparelser på Fana dagsenter. Bystyret oppfordres til å ta hensyn til disse forslagene i videre behandling."
+  }
+}

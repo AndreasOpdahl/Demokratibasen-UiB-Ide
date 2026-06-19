@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:8510:61323:200719292:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:17:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses proposed changes to the remuneration regulations that could significantly impact local politicians and their compensation."
+    },
+    "summary_headline": "Forslag om endringer i honorarreglementet kan påvirke lokale politikere",
+    "summary_body": "Forretningsutvalget har bedt om en ny vurdering av avkortingsreglene i honorarreglementet etter at flere har opplevd reglene som urimelige. Bystyredirektøren anbefaler å fjerne avkortingsbestemmelsene for det faste honoraret med tilbakevirkende kraft for inneværende valgperiode, noe som kan berøre 14 representanter og innebære en kostnad på ca. 350 000 kroner. Endringen vil bli fremmet for bystyret, og det er viktig for innbyggerne å følge med på hvordan dette kan påvirke politisk representasjon og økonomi."
+  }
+}

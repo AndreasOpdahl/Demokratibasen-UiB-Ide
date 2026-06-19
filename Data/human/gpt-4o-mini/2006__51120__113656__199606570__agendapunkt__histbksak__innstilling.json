@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:51120:113656:199606570:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:51:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant budget allocation for integration initiatives, impacting various cultural and sports departments in Bergen."
+    },
+    "summary_headline": "Bergen kommune fordeler 220.000 kroner til integreringstiltak for innvandrere",
+    "summary_body": "Hovedutvalg for fritid og kultur i Bergen har godkjent en fordeling av 220.000 kroner til integreringstiltak for fremmedkulturelle grupper. Midlene fordeles med 70.000 kroner til Idrettavdelingen, 55.000 kroner til Bergen offentlige bibliotek og 95.000 kroner til Kulturavdelingen. Tiltakene er en del av handlingsplanen \"Mangfold gir muligheter\" og inkluderer aktiviteter for barn, ungdom og kvinner med innvandrerbakgrunn. Hovedutvalget ber om en evaluering av tiltakene ved årets slutt, noe som understreker kommunens fokus på integrering og kulturelt mangfold."
+  }
+}

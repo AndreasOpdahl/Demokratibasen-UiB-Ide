@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9898:66749:201124559:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:23:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document contains significant decisions regarding public funding and community services that directly impact residents."
+    },
+    "summary_headline": "Bystyret vedtar lån til Kulturhuset USF og ettergir gjeld til Vil Vite",
+    "summary_body": "Bergen bystyre har besluttet å gi Stiftelsen Kulturhuset USF et lån på 3,9 millioner kroner for ombygging, uten krav om pantesikkerhet. Samtidig ettergis lån på 1,45 millioner og 6,75 millioner kroner til Vil Vite, Bergen Vitensenter AS. Dette vil dekke påløpte renteutgifter og tap på hovedstol. Bystyret understreker at disse tiltakene er viktige for å støtte kultur- og utdanningssektoren i Bergen. Lånet til Kulturhuset USF vil bli finansiert gjennom ubundet kapitalfond, og byrådet får fullmakt til nødvendige budsjettjusteringer."
+  }
+}

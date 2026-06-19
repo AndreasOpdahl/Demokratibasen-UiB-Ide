@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212433:1080670:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:26:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a significant dispute over a building permit affecting local residents."
+    },
+    "summary_headline": "Byrådet avviser klage på dispensasjon for nybygg i Fana",
+    "summary_body": "Byrådet har besluttet å opprettholde dispensasjonen fra reguleringsplanen for nybygg av boliger på Statsminister Michelsens veg 67 C, til tross for klage fra nabo Christian Irgens. Irgens hevder at manglende nabovarsling og feil i byggesaken har redusert verdien på hans eiendom. Byrådet, ledet av Harald Schjelderup, konkluderer med at klagen ikke tas til følge, da de mener at tiltaket ikke vil påvirke naboene negativt. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

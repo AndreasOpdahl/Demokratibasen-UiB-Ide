@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:2674:25945:200004841:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:17:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a procedural response with no significant newsworthy elements."
+    },
+    "summary_headline": "Årstad bydelsstyre tar spørsmål fra RV til orientering",
+    "summary_body": "Årstad bydelsstyre har enstemmig besluttet å ta til orientering svaret på grunngitt spørsmål fra Aslaug Eide (RV) angående Kirkens Bymisjon. Saken ble behandlet i møte den 20. mars 2001."
+  }
+}

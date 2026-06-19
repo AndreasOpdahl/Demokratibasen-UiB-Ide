@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:2280:24357:199920885:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:22:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a significant dispute affecting access to a property, with legal implications and a public interest in ensuring compliance with building regulations."
+    },
+    "summary_headline": "Nabotvist om mur i Åsane: Muren må flyttes for å gjenopprette atkomst",
+    "summary_body": "Eier av Lokketona 16 har plassert en mur i nabogrensen som hindrer bilatkomst til Lokketona 14. Bygningsrådet har tidligere pålagt eier av nr. 16 å flytte muren, men dette vedtaket ble opphevet av Fylkesmannen. Nå har kommunen besluttet at muren må flyttes minst 1 meter inn på egen eiendom for å gjenopprette atkomsten til nr. 14. Fristen for gjennomføring av pålegget er satt til to måneder fra vedtaket er meddelt tiltakshaver. Saken har stor lokal betydning da den berører adgangen til boliger i området."
+  }
+}

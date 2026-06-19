@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2007:50761:109265:199803102:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:52:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant procurement decisions related to environmentally friendly vehicles, which impacts local residents and aligns with ongoing environmental initiatives."
+    },
+    "summary_headline": "Bergen kommune vurderer anskaffelse av miljøvennlige biler",
+    "summary_body": "Hovedutvalg for teknisk utbygging i Bergen har besluttet å ta orienteringen om anskaffelser av biler og maskiner til etterretning. Det ble enstemmig vedtatt å arbeide videre med bruk av alternative drivstoff, som gass, i kommunens tjenestebiler, i tråd med bystyrets miljøtiltak. Administrasjonen får fullmakt til å gjennomføre anskaffelsene innenfor vedtatte budsjettrammer. Det er også besluttet at anskaffelse av en ny slambil skal fremlegges som egen sak. Dette tiltaket er viktig for å redusere CO2-utslippene i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11340:71792:201200090:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:48:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document contains several decisions affecting local businesses and public services, particularly regarding alcohol licenses and public transport planning."
+    },
+    "summary_headline": "Byrådet godkjenner skjenkebevillinger og kollektivplaner",
+    "summary_body": "Byrådet i Bergen har godkjent flere viktige saker i sitt møte 27. november 2014. Blant annet ble det innvilget skjenkebevillinger for Bergen Vinstuer og Munken Bistro, som nå kan servere alkohol frem til 30. juni 2016. I tillegg ble oppstart av kommunedelplan for kollektivsystemet fra Bergen sentrum til Bergen vest vedtatt, samt reguleringsarbeid for Bybanen fra sentrum til Fyllingsdalen. Disse beslutningene vil påvirke både lokale næringsdrivende og kollektivtransporten i kommunen."
+  }
+}

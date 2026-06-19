@@ -1,0 +1,18 @@
+{
+  "dokument_id": "213496:1449689:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:29:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines the approval of regulations regarding harbor fees and usage, which is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "Godkjente forskrifter om havneavgifter i Bergen og omland",
+    "summary_body": "Representantskapet i Bergen og Omland Farvannsforvaltning IKS har enstemmig godkjent nye forskrifter om saksbehandlingsgebyr, anløpsavgift, samt bruk og orden i havner og farvann for flere kommuner, inkludert Bergen. Dette gjelder Askøy, Austrheim, Fedje, Fjell, Lindås, Meland, Os, Radøy, Sund og Øygarden. Forskriftene ble behandlet i møtet den 5. juni 2019."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4445:41905:200304592:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:04:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant dispute over a housing application that affects local land use and community planning."
+    },
+    "summary_headline": "Klage på byggesøknad avvist av byrådet",
+    "summary_body": "Byrådet har avvist klagen fra Normann Fjelltvedt og Karl Petersen om dispensasjon for oppføring av bolig på Hordnesveien, som ble avslått av byggesaksavdelingen i 2003. Klagerne argumenterte for at tomten har rettigheter til vei, vann og avløp, og at huset vil være skjult bak en fjellvegg. Byrådet, ledet av Monica Mæland og Lisbeth Iversen, støtter fagetatens vurdering om at det ikke foreligger særlige grunner for dispensasjon, og klagen tas derfor ikke til følge. Saken vil bli sendt til fylkesmannen for endelig avgjørelse."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11961:77307:201601646:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:39:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant proposed ban on the use of mineral oil for heating, which has substantial implications for climate policy and local residents."
+    },
+    "summary_headline": "Bergen kommune støtter forbud mot fyring med mineralolje",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Klima- og Miljødepartementet om forbud mot fyring med mineralolje til oppvarming, med mål om å bli fossilfri innen 2030. Byrådet, ledet av Harald Schjelderup, mener at forbudet bør inkludere spisslast for å oppmuntre til permanente løsninger uten fossil olje. Høringsfristen er 11. januar 2017, og kommunen understreker viktigheten av strenge nasjonale krav for å oppnå sine klimamål."
+  }
+}

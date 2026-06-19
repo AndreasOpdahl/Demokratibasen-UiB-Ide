@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:50830:109065:199703315:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:58:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a contested proposal to rezone industrial land for residential use, which has significant implications for local residents and businesses."
+    },
+    "summary_headline": "Kontroversiell omregulering av Breiviken 1 til boligformål foreslås",
+    "summary_body": "Bystyret skal vurdere et privat planforslag fra Nydalen Compagnie ASA om å omregulere Breiviken 1 fra industri til boligformål, som inkluderer 54 boliger og en privat båthavn. Forslaget har tidligere blitt avvist av det faste utvalg for plansaker, men rådmannen anbefaler nå godkjenning. Det er motstand fra lokale aktører som frykter interessekonflikter med eksisterende næringsvirksomhet. Saken har vært behandlet flere ganger, og det er innkommet flere henvendelser fra både naboer og institusjoner som ønsker å påvirke utfallet. Neste steg er behandling i bystyret."
+  }
+}

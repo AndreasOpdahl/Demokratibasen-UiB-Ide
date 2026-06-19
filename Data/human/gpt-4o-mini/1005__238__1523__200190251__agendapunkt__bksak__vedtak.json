@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:238:1523:200190251:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:45:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant regulatory plan affecting local development, with political debate and differing opinions from parties."
+    },
+    "summary_headline": "Bystyret godkjenner reguleringsplan for Bjørndalspollen og Håkonsvern",
+    "summary_body": "Bergen bystyre har enstemmig godkjent reguleringsplanen for Bjørndalspollen og Håkonsvern, som omfatter deler av gnr. 122, 124, 125 og 126. Planen, som er revidert 10. april 2001, åpner for fortetting og utbygging i området. FrP har uttrykt støtte til utbygging, men understreker viktigheten av å ivareta eksisterende beboeres bomiljø. Det er også fremmet forslag om endringer i reguleringsformål, som bystyret ber byrådet prioritere. Dette kan påvirke boligmarkedet og utviklingen i Laksevåg, noe som er av stor interesse for innbyggerne."
+  }
+}

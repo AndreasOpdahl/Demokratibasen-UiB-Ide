@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3136:30398:200028275:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:00:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to expand Skeie school is relevant to local residents and involves significant public investment."
+    },
+    "summary_headline": "Skeie skole får godkjent utvidelse til 14 klasser",
+    "summary_body": "Byrådet i Bergen har godkjent utvidelsen av Skeie skole, som vil bli utvidet med 1.230 m² for å kunne ta imot 14 klasser. Dette tiltaket er en del av kommunens satsing på utdanning og vil påvirke lokalsamfunnet ved å øke kapasiteten i skolen. Utvidelsen ble vedtatt i byrådsmøte den 20. mars 2002."
+  }
+}

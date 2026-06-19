@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232656:2650750:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:13:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document details changes in committee memberships which may interest local residents."
+    },
+    "summary_headline": "Rødt får nye medlemmer i bystyreutvalgene",
+    "summary_body": "Bergen bystyre har vedtatt flere rokeringer i utvalgene for miljø og byutvikling, helse og sosial, samt barnehage, skole og idrett. Mailiss Solheim-Åkerblom (R) blir nytt medlem i utvalget for miljø og byutvikling, mens Jonas Svendsen (R) rykker opp til 2. varamedlem. I helse og sosial utvalget er Åsne Hagen (R) ny 3. varamedlem. Endringene gjelder for resten av valgperioden 2019-2023 og ble vedtatt enstemmig uten debatt."
+  }
+}

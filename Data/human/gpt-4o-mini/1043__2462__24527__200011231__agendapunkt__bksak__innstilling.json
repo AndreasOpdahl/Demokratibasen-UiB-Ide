@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:2462:24527:200011231:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:17:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural matter regarding the approval of a meeting agenda."
+    },
+    "summary_headline": "Innkalling og dagsorden godkjent av Årstad bydelsstyre",
+    "summary_body": "Årstad bydelsstyre har godkjent innkallingen og dagsorden for sitt møte. Saken er rutinemessig og inneholder ingen kontroverser eller spesielle beslutninger."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "247511:4995546:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:48:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document addresses staffing concerns in healthcare during holidays, which is relevant but lacks significant conflict or impact."
+    },
+    "summary_headline": "Spørsmål om bemanning i sykehjem under ferieavvikling",
+    "summary_body": "Christine Henriksen Ødegaard (MDG) stilte skriftlig spørsmål om bemanning i sykehjem og hjemmesykepleien under ferieavvikling. Byråd Ruth Grung svarte på spørsmålet i møtet i Utvalg for helse og sosial den 30. august 2023."
+  }
+}

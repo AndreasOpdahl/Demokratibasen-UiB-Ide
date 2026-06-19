@@ -1,0 +1,18 @@
+{
+  "dokument_id": "245686:4901946:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:43:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant changes in laws affecting the treatment of inmates, highlighting human rights concerns and the need for better staffing in correctional facilities."
+    },
+    "summary_headline": "Bergen bystyre krever endringer i straffegjennomføringsloven for bedre behandling av innsatte",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å avgi høringsuttalelse til forslag om endringer i straffegjennomføringsloven og helse- og omsorgstjenesteloven. Bystyret uttrykker bekymring for at personer med alvorlige mentale lidelser ikke bør være i fengsel, men heller motta behandling. Det ble også fremmet et forslag fra Fremskrittspartiet om å sikre innsattes menneskerettigheter, men dette ble nedstemt. Bystyret påpeker behovet for å styrke bemanningen i kriminalomsorgen for å sikre trygg oppfølging av både innsatte og ansatte."
+  }
+}

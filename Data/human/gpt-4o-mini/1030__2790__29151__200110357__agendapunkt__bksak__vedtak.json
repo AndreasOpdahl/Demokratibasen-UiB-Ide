@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2790:29151:200110357:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:37:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains no newsworthy elements, as it simply records that no questions were raised during a meeting."
+    },
+    "summary_headline": "Ingen spørsmål fra bydelsstyret",
+    "summary_body": "Dokumentet er en referat fra Laksevåg bydelsstyre, datert 13. desember 2001, som bekrefter at det ikke ble stilt noen spørsmål under møtet den 11. desember."
+  }
+}

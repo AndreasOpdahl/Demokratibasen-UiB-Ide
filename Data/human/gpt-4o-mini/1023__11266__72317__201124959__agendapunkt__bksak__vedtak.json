@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:11266:72317:201124959:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:37:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains routine questions from committee members but lacks significant conflict or impact."
+    },
+    "summary_headline": "Muntlige spørsmål om belysning og studentboliger i Bergen",
+    "summary_body": "I møtet den 11. mars 2015 stilte flere medlemmer av Komite for helse og sosial muntlige spørsmål. Geir Kaland (H) spurte om belysning ved Fløysvingene, mens Emelin dos Santos Dias (A) etterspurte status for Sandvikspilen bosenter. Marte Mjøs Persen (A) stilte spørsmål om ombygging av Håsteinsgaten 9 til studentboliger for SiB. Byråd Eiler Macody Lund besvarte alle spørsmålene."
+  }
+}

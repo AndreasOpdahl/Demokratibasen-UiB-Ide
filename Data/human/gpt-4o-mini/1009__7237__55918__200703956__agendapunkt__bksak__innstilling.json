@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7237:55918:200703956:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:37:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new alcohol license for a local venue, which has implications for community events."
+    },
+    "summary_headline": "Nye Brann Stadion får skjenkebevilling for alkoholholdig drikk",
+    "summary_body": "Byrådet har innvilget søknaden om skjenkebevilling for alkoholholdig drikk gruppe 3 til sluttet lag ved Allmenningen, Nye Brann Stadion, som gjelder frem til 30. juni 2012. Dette innebærer at stedet kan servere alkohol i forbindelse med konferanser og selskapsvirksomhet, men ikke på kampdager. Bevillingen er innstilt av byråd for helse og omsorg, Christine B. Meyer, og er i tråd med reguleringsvedtak fra bystyret. Bevillingshaver er Stadion Event AS, med Jarle Espelid som styrer."
+  }
+}

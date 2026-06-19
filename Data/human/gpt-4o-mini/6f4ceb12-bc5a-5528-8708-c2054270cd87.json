@@ -1,0 +1,18 @@
+{
+  "dokument_id": "6f4ceb12-bc5a-5528-8708-c2054270cd87",
+  "kommune_nummer": 4612,
+  "kommune_navn": "Sveio",
+  "generated_at": "2026-02-19 23:06:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the need for new elections in local government due to the passing of a council member, which affects local political representation."
+    },
+    "summary_headline": "Nyvalg i Sveio kommune etter bortgang av Arne Valen",
+    "summary_body": "Sveio kommune må gjennomføre nyvalg i formannskapet og hovedutvalget for helse og omsorg etter Arne Valens bortgang. Kommunestyret skal velge nytt varamedlem i formannskapet, ny leder i hovedutvalget for helse/omsorg, samt en ny møtefullmektig til forliksrådet. Valen, som representerte Senterpartiet, hadde flere politiske verv, og hans bortgang fører til at første vararepresentant, Endre Hetlesæter, rykker opp i kommunestyret. Valget av nye representanter vil skje i løpet av 2025, med mulighet for valg av faste medlemmer i juni eller til høsten."
+  }
+}

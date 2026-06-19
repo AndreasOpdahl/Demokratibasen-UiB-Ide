@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4446:42187:200311526:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:04:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a rejected application for land division, which affects local residents and has political implications."
+    },
+    "summary_headline": "Klage på avslag om fradeling av tomter avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har avvist en klage på avslag om fradeling av 5 nøstetomter på Espelandsvegen 258. Byrådet anbefalte å opprettholde fagetatens vedtak fra 29. juni 2004, og komiteen stemte med 12 mot 3 stemmer for å ikke ta klagen til følge. Hallstein Aadland (FrP) erklærte seg inhabil under behandlingen, mens Sigurd Galtung Døsvig (FrP) fremmet et alternativt forslag om dispensasjon, som ble nedstemt. Dette vedtaket kan påvirke lokale eiendomseiere og utviklingen i området."
+  }
+}

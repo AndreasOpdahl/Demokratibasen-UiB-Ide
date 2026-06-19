@@ -1,0 +1,18 @@
+{
+  "dokument_id": "245674:4901946:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:43:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the evaluation of new toll stations in Bergen, which has significant local relevance and impact on residents."
+    },
+    "summary_headline": "Bystyret ber om evaluering av bomstasjoner i Bergen",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å be byrådet informere innbyggerne om funnene fra evalueringen av de nye bomstasjonene. Representanter fra MDG, SV og Rødt fremhevet at bomringen har redusert trafikken og forbedret luftkvaliteten, men også påpekt at bompenger kan være usosiale. Det ble fremmet alternative forslag, men disse ble avvist. Neste steg er at byrådet skal legge frem en sak med oppdatert evaluering av bomstasjonene."
+  }
+}

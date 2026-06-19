@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248497:5995228:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:51:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains no significant newsworthy elements, as it simply reports that cases were taken for orientation without discussion."
+    },
+    "summary_headline": "Ingen debatt i Forretningsutvalget",
+    "summary_body": "Forretningsutvalget behandlet flere saker i møte 03.10.2023, men ingen representanter tok ordet, og sakene ble kun tatt til orientering."
+  }
+}

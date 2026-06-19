@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:240:1180:200190011:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:00:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses several inquiries and requests to the city council, highlighting issues of local governance and accountability."
+    },
+    "summary_headline": "Byrådet besvarer spørsmål om politiske vedtak og kollektivfelt i Bergen",
+    "summary_body": "Under dagens møte i komiteen ble det stilt flere spørsmål til byrådet, ledet av byråd Tom Knudsen. Blant annet ble det diskutert hvordan lovlig fattede politiske vedtak med tvangsgrunnlag skal effektueres, og det ble enstemmig vedtatt å be byrådet om å informere komiteen om status for slike vedtak. Det ble også stilt spørsmål om fremdriften for bruk av Osbanens gamle trase og status for kollektivfelt i Bergen sentrum. I tillegg ble det anmodet om at voteringsresultater fra bydelsstyrene alltid skal vedlegges vedtak for å gi bedre oversikt over flertall og mindretall. Dette viser en økt fokus på å sikre at politiske vedtak blir fulgt opp og at innbyggernes interesser blir ivaretatt."
+  }
+}

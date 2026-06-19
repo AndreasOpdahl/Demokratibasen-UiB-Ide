@@ -1,0 +1,18 @@
+{
+  "dokument_id": "b4204202-db80-58c0-93de-284aaca1fc89",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 23:17:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to dental health services in the region, which directly impacts local residents."
+    },
+    "summary_headline": "Alver kommune støtter opprettholdelse av Lindås tannklinikk i ny tannhelseplan",
+    "summary_body": "Alver kommune har sendt sin høyringsuttale til Vestland fylkeskommune angående tenestestrukturen for tannhelsetenesta 2026-2036. Kommunen understreker viktigheten av å opprettholde Lindås tannklinikk som et lokalt helsetilbud, og ser positivt på en omstrukturering som kan gi mer robuste og bærekraftige enheter. Det er bekymring for rekruttering av tannhelsepersonell og behovet for større klinikker, men kommunen ønsker å bidra til en løsning som sikrer nærhet til brukerne og kvalitet i tjenestene. Høyringen vil bli behandlet i flere råd før endelig vedtak i kommunestyret."
+  }
+}

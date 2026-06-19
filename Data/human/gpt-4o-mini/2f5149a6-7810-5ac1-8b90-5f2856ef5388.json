@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2f5149a6-7810-5ac1-8b90-5f2856ef5388",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 22:57:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine decision regarding a communication plan, lacking significant impact or controversy."
+    },
+    "summary_headline": "Kommunikasjonsplan vedteken utan motstand",
+    "summary_body": "Utval for areal, plan og miljø har samrøystes vedteke kommunikasjonsplanen for høyringsperioden den 16. september 2025. Det er ingen rapportert motstand eller kontrovers knytt til vedtaket."
+  }
+}

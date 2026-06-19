@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9902:67668:200815472:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:24:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document addresses a significant legal dispute regarding property regulations that affects local residents."
+    },
+    "summary_headline": "Bergen kommune avviser Sameiet Montana Terrasses vedtektsendringer",
+    "summary_body": "Bergen kommune har avvist Sameiet Montana Terrasses ensidige vedtektsendringer fra 30. oktober 2012, som ville ha fjernet kommunens forkjøpsrett og prisregulering. Byrådet, ledet av Monica Mæland, understreker at endringene krever kommunens samtykke, noe som ikke er gitt. Dette er en viktig sak for de 62 seksjonseierne, da endringene kan påvirke boligprisene og tilgjengeligheten av rimelige boliger for eldre. Tidligere har bystyret enstemmig motarbeidet lignende endringer, og kommunen advarer om at en godkjenning kan skape presedens for andre eiendomssalg."
+  }
+}

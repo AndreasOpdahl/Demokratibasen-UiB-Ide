@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1022:11826:73723:200509057:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:35:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a routine administrative decision regarding a biogas facility, which has limited immediate impact on residents."
+    },
+    "summary_headline": "Styret ber om tilleggsprosjekt for biogassanlegg",
+    "summary_body": "Styret har besluttet å opprette et tilleggsprosjekt for forberedelse til drift av biogassanlegget, og ber administrasjonen om å sende en ny anmodning til VA-etaten. Dette tiltaket er en del av den pågående driften av anlegget, men har ikke umiddelbare konsekvenser for innbyggerne."
+  }
+}

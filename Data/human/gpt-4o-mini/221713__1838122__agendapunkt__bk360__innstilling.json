@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221713:1838122:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:45:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document is an annual report which provides an overview of activities but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Årsmelding 2019 for Bystyret presentert",
+    "summary_body": "Bystyredirektøren har lagt fram årsmelding for 2019 som gir en oversikt over bystyrets organers aktiviteter og regnskapsresultat. Rapporten inkluderer informasjon om organiseringen av bystyret, aktiviteter i politiske utvalg, og administrasjonens arbeid. Det er også verdt å merke seg at sekretariatfunksjonen for Ungdommens bystyre ble overført til Byrådsleders avdeling fra 1. januar 2020. Bystyret skal ta årsmeldingen til orientering."
+  }
+}

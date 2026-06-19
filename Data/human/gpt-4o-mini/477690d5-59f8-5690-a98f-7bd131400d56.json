@@ -1,0 +1,18 @@
+{
+  "dokument_id": "477690d5-59f8-5690-a98f-7bd131400d56",
+  "kommune_nummer": 4651,
+  "kommune_navn": "Stryn",
+  "generated_at": "2026-02-19 23:00:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines the activities and structure of the youth council, which is relevant to local youth and community engagement."
+    },
+    "summary_headline": "Stryn ungdomsråd presenterer årsmelding for 2024",
+    "summary_body": "Stryn ungdomsråd har lagt fram sin årsmelding for 2024, som viser deres rolle som talerør for ungdom i kommunen. Rådet, bestående av 9 faste medlemmer fra lokale skoler, har hatt fokus på medvirkning i kommunale planer og prosjekter. I løpet av året har de diskutert fordeling av kulturmidler, planlagt ungdomskonferanser og uttalt seg i flere saker som angår ungdom. Rådet har også rett til å uttale seg i alle saker som berører ungdom, og har fire møter i året. Dette arbeidet er viktig for å sikre at ungdoms stemmer blir hørt i lokale beslutningsprosesser."
+  }
+}

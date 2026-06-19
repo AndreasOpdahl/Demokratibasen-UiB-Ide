@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:5861:50499:200613542:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:29:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines a significant regulatory change proposal affecting local school facilities and urban development."
+    },
+    "summary_headline": "Reguleringsendring for utvidelse av skolevirksomhet i Bergenhus",
+    "summary_body": "Bergenhus bydelsstyre har sendt et planforslag til offentlig ettersyn for reguleringsendring av kvartalet som inkluderer Lars Hilles gate 12-16. Forslaget, fremmet av LOF Arkitekter AS på vegne av Lars Hilles gate 14-16 AS, har som mål å utvide skolevirksomheten i Lars Hilles gate 16A og B. Det foreslås å rive eksisterende bygninger på Lars Hilles gate 16B og Vestre Strømkaien 3C for å bygge nye strukturer på opptil 23.300 m², med en maksimal byggehøyde på 29 meter. Offentlig ettersyn varer fra 30. mars til 29. april 2008, med frist for innspill 29. april."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:5607:49115:200717192:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:11:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a routine appointment of a new deputy member, which has limited impact and conflict."
+    },
+    "summary_headline": "Ny varamedlem for Fremskrittspartiet i Bergen bystyre",
+    "summary_body": "Fremskrittspartiet har valgt Leif Ivar Bakke som nytt varamedlem i Bergen bystyre etter at Petter Kvinge Tvedt har gått over til byrådet. Bakke vil tre inn i vervet mens Tvedt fungerer som rådgiver. Dette er en rutinemessig endring uten kontroverser."
+  }
+}

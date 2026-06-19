@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11685:72757:201506113:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:49:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new alcohol license application for a local restaurant, which has implications for local business and community regulations."
+    },
+    "summary_headline": "Ny skjenkebevilling innvilges til BARE Vestland",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 ved BARE Vestland, Vågsallmenningen 1. Bevillingssøker er BARE Vestland AS, og bevillingen gjelder både innendørs og uteservering frem til 30. juni 2016. Byråden for kultur, næring, idrett og kirke, Helge Stormoen, anbefaler innvilgelse basert på gjeldende retningslinjer for spisesteder. Før bevillingen kan tas i bruk, må søker sende inn nødvendig dokumentasjon til Kontor for skjenkesaker."
+  }
+}

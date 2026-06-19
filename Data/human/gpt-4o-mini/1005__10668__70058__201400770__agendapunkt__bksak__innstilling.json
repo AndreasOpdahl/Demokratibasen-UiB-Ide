@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10668:70058:201400770:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:30:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a tax exemption for a local kindergarten, which has significant financial implications for the municipality and affects local residents."
+    },
+    "summary_headline": "Einerhaugen Barnehage får fritak for eiendomsskatt",
+    "summary_body": "Bergen bystyre har besluttet å frita Einerhaugen Barnehage SA for eiendomsskatt på Gnr. 39 Bnr. 429, Sakshaugen 124, fra 1. januar 2014. Barnehagen, som drives som et samvirkeforetak, oppfyller kravene for fritak ifølge eiendomsskatteloven, da den har allmennyttige formål. Den årlige eiendomsskatten utgjør 26 965 kroner, og fritaket vil bortfalle dersom eiendommen endres til annet formål. Dette vedtaket er viktig for å støtte barnehagedrift i kommunen."
+  }
+}

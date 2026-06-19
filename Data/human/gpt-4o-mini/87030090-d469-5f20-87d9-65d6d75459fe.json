@@ -1,0 +1,18 @@
+{
+  "dokument_id": "87030090-d469-5f20-87d9-65d6d75459fe",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 23:10:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a contested decision regarding a wastewater discharge permit that affects local water quality, which is highly relevant to residents."
+    },
+    "summary_headline": "Klagenemnda opprettholder avslag på utslippstillatelse for sanitært avløpsvann",
+    "summary_body": "Klagenemnda i Alver kommune har besluttet å opprettholde kommunedirektørens avslag på søknaden om utslippstillatelse for sanitært avløpsvann fra en minireinseanlegg på gbnr. 200/2. Avslaget, datert 16. desember 2024, begrunnes med risiko for forurensning av drikkevann fra Sjausetvatnet, ettersom utslippet kan medføre fare for forurensning. Tiltakshaver, Bjarte Haga Lunde, har klaget på vedtaket og hevder at anlegget tilfredsstiller kravene til renseeffekt. Kommunen har imidlertid fått negative uttalelser fra både Miljøretta helsevern og Samferdsel, veg, vatn og avløp, som understreker at tiltaket ikke er i samsvar med gjeldende forskrifter. Saken vil bli vurdert videre i klagenemnda den 26. august 2025."
+  }
+}

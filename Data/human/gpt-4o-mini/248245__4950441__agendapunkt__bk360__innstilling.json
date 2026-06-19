@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248245:4950441:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:50:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses changes in voting assistance laws affecting residents with disabilities, which is relevant and impactful."
+    },
+    "summary_headline": "Endringer i stemmeassistanse for personer med funksjonsnedsettelse",
+    "summary_body": "Eldrerådet og Kommunalt råd for personer med funksjonsnedsettelse diskuterer endringer i valgloven som påvirker stemmerettighetene til personer med funksjonsnedsettelse. Forskere fra NORCE ønsker å samle erfaringer fra kommunevalget og stortingsvalget i 2021 for å evaluere hvordan de nye reglene har fungert. Rådet vil gi tilbakemelding basert på samtalen, og to representanter fra hvert råd vil delta i en gruppesamtale for å utdype erfaringene. Dette er viktig for å sikre at stemmerettighetene til alle innbyggere blir ivaretatt."
+  }
+}

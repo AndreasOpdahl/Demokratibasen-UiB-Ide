@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:202:1422:200090024:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:04:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the establishment of a new subsidiary by Bergen Kino AS, which may impact local cinema operations."
+    },
+    "summary_headline": "Bergen Kino AS oppretter datterselskap Norsk Kino AS",
+    "summary_body": "Forretningsutvalget i Bergen har enstemmig vedtatt at saken om opprettelse av datterselskapet Norsk Kino AS under Bergen Kino AS skal behandles av komite for finans og næring, samt oversendes til komite for kultur, idrett og oppvekst. Dette kan påvirke kinoopplevelsen for innbyggerne, ettersom det kan føre til endringer i tilbudet."
+  }
+}

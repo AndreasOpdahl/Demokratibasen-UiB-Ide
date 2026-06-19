@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205144:257802:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:07:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant dispute over a building permit affecting local residents' views and property rights."
+    },
+    "summary_headline": "Klage på rammetillatelse for tilbygg i Laksevåg avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde rammetillatelsen for tilbygg og påbygg på bolig i Wallemsskogen, til tross for klager fra naboer som mener tiltaket vil bryte med husrekken og redusere solforholdene. Klagerne, Bente Skjelbred og Johan J. Meyer, uttrykker bekymring for innsyn og ulemper ved økt byggehøyde. Byrådet vurderer at tiltaket er innenfor reguleringsplanens rammer og ikke vil medføre vesentlige ulemper for naboene. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

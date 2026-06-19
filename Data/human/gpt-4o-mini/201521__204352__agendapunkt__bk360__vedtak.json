@@ -1,0 +1,18 @@
+{
+  "dokument_id": "201521:204352:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:00:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine question and answer session without significant newsworthy elements."
+    },
+    "summary_headline": "Spørsmål om aktivitetskort fra SVs Marianne Sæhle",
+    "summary_body": "Marianne Sæhle fra SV stilte spørsmål om aktivitetskort under møtet i Komite for finans, kultur og næring den 08.11.2017. Byråd Julie Andersland svarte på spørsmålet."
+  }
+}

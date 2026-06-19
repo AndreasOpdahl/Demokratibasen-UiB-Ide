@@ -1,0 +1,18 @@
+{
+  "dokument_id": "229677:3222662:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:06:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document outlines significant changes to local COVID-19 restrictions, impacting residents' daily lives."
+    },
+    "summary_headline": "Bergen kommune justerer smitteverntiltak: Flere gjester og åpning av svømmehaller",
+    "summary_body": "Byrådet i Bergen har besluttet å endre smitteverntiltakene i kommunen, gjeldende til 26. mai 2021. Antallet tillatte gjester i private hjem økes fra to til fem, og svømmehaller og fornøyelsesparker kan åpne igjen. Det innføres fortsatt krav om munnbind og avstand på serveringssteder. Tiltakene er nødvendige for å håndtere smittesituasjonen, som fortsatt er på risikonivå 3. Byrådet understreker at endringene ikke er en generell lemping, men en justering for å bedre etterlevelse under høytider. Smittetrykket er fortsatt høyt, og tiltakene vurderes som nødvendige for å redusere smittespredning."
+  }
+}

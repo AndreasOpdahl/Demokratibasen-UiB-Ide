@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230078:2654050:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:07:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant proposal for the authorization of new health professions, impacting patient safety and healthcare quality."
+    },
+    "summary_headline": "Bergen kommune støtter autorisasjon av naprapater og osteopater",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Helse- og omsorgsdepartementet om endringer i helsepersonelloven, som foreslår autorisasjon av naprapater, osteopater, logopeder og paramedisinere. Byrådet, ledet av Roger Valhammer, mener at autorisasjonen vil forbedre pasientsikkerheten og kvaliteten på helsetjenester. Høringsfristen er 4. juni 2021, og kommunen påpeker at Helsedirektoratet ikke anbefalte autorisasjon for naprapater og osteopater, men at Stortinget har vedtatt at de skal autoriseres. Dette kan ha stor betydning for innbyggerne i Bergen som benytter seg av disse tjenestene."
+  }
+}

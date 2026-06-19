@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:8086:60168:200801492:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:56:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document highlights community opposition to proposed budget cuts affecting local governance."
+    },
+    "summary_headline": "Fana bydelsstyre møter motstand mot nedleggelse av bydelsstyrene",
+    "summary_body": "Under møtet i Fana bydelsstyre ble det uttrykt sterk støtte for å opprettholde bydelsstyrene, som byrådet foreslår å legge ned i budsjettforslaget for 2011. Gyri Skre fra Venstre, Harald Bastiansen fra FAU ved Skjold skole, Arne Johannesen fra Fana Pensjonistforening, og Arthur Brekke fra Kalandseidet I.L. fremførte innlegg mot nedleggelsen. Dette viser at det er betydelig motstand i lokalsamfunnet mot byrådets forslag."
+  }
+}

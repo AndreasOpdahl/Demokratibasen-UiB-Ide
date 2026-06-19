@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:87:834:200190078:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:17:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses a potential violation of meeting obligations by a political representative, raising issues of gender equality and accountability."
+    },
+    "summary_headline": "Likestillingsutvalget reagerer på FrP-representants møteplikt",
+    "summary_body": "Likestillingsutvalget har sendt en henvendelse til ordføreren angående en kvinnelig representant fra Fremskrittspartiet (FrP) som angivelig har blitt oppfordret til å unngå møter uten gyldig forfall. Saken er nå behandlet av Forretningsutvalget, som har bekreftet viktigheten av at folkevalgte følger både Likestillingsloven og kommunelovens krav om møteplikt. Det er innhentet uttalelse fra FrP i saken. Dette kan påvirke hvordan politiske partier håndterer representasjon og likestilling i kommunen."
+  }
+}

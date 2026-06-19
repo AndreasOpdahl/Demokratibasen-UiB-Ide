@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:7145:55552:200714579:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:03:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document indicates a request for better documentation but lacks significant conflict or impact."
+    },
+    "summary_headline": "Tilsynsutvalget krever bedre dokumentasjon for reguleringsendring i Åsane",
+    "summary_body": "Tilsynsutvalget for byens utseende har behandlet reguleringsendringen for Åsane, gnr. 170, bnr. 59, Breistein, og etterlyser bedre grunnlagsmateriale for å kunne gi en uttalelse. Dette kan forsinke prosessen med reguleringsendringen."
+  }
+}

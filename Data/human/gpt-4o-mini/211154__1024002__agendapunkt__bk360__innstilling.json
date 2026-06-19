@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211154:1024002:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:22:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant traffic safety concerns affecting children near schools, which is a pressing local issue."
+    },
+    "summary_headline": "Bystyret krever tiltak for trafikksikkerhet ved Rolland, Kollåsen og Storåsen skoler",
+    "summary_body": "Bystyret har vedtatt en interpellasjon fra Per-Arne Hvidsten Larsen (V), Lillian Vangberg (A) og Harald Berge Breistein (KrF) som tar opp trafikksikkerheten ved Rolland, Kollåsen og Storåsen skoler. Det er bekymringer for farlige trafikksituasjoner, spesielt ved Kollåsen og Rolland, hvor barn må krysse travle veier. Bystyret ber byrådet om å iverksette tiltak som merking av gangarealer, oppsetting av bommer for å hindre uønsket trafikk, og vurdering av lyssetting i området. Det er enighet om at tiltakene må settes i gang raskt for å sikre barnas trygghet."
+  }
+}

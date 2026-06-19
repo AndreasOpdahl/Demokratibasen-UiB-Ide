@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:2890:28504:200003299:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:57:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines significant changes to the management plan for the city mountains, impacting outdoor activities and resource allocation."
+    },
+    "summary_headline": "Endringer i forvaltningsplanen for byfjellene i Bergen",
+    "summary_body": "Bergen kommune har besluttet å oppdatere forvaltningsplanen for byfjellene, med fokus på jakt, fiske og hestetransport. Byrådet har vedtatt å kartlegge behov for tilrettelegging av fritidsfiske og ridestier, samt å tilføre ressurser til drift og vedlikehold av disse aktivitetene. Det vil også bli vurdert muligheter for økt jakt basert på en kommende faunakartlegging. Disse endringene kan påvirke innbyggernes tilgang til friluftsliv og rekreasjon i byfjellene."
+  }
+}

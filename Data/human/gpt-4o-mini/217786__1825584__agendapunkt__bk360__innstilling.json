@@ -1,0 +1,18 @@
+{
+  "dokument_id": "217786:1825584:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:38:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines routine administrative matters with no significant newsworthy elements."
+    },
+    "summary_headline": "Innkalling til møte i Forretningsutvalget",
+    "summary_body": "Forretningsutvalget i Bergen kommune har innkalt til møte den 17. desember 2019, hvor flere saker skal behandles, inkludert godkjenning av protokoll fra tidligere møte og oppnevning av medlemmer til Verdensarvråd for Bryggen."
+  }
+}

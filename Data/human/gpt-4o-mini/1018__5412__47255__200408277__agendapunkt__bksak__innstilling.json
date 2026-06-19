@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1018:5412:47255:200408277:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:24:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document provides a detailed overview of the personnel situation at Bergen Parkering KF, which may interest local residents due to its implications for employment and public services."
+    },
+    "summary_headline": "Bergen Parkering KF rapporterer om personalsituasjonen for 2006",
+    "summary_body": "Bergen Parkering KF har lagt frem en rapport om personalsituasjonen for 2006, som viser at selskapet har 67,15 stillingshjemler, men at to stillinger som trafikkbetjent er ubesatt. Totalt er det 70 ansatte, med en turnover på 11,9 %. Sykefraværet er på 9,1 %, og det er rapportert om tre arbeidsulykker og ni tilfeller av trusler/vold. Styret tar rapporten til orientering, og den kan påvirke hvordan virksomheten håndterer bemanning og arbeidsmiljø fremover."
+  }
+}

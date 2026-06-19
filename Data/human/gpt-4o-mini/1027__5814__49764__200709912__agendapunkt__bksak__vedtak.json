@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1027:5814:49764:200709912:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:24:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a local resident's successful appeal for a garage construction, which has implications for local building regulations."
+    },
+    "summary_headline": "Klage på avslag om garasje godkjent i Fana",
+    "summary_body": "Underutvalg av komite for miljø og byutvikling har godkjent en klage fra en innbygger i Fana om oppføring av garasje på Nedre Nattland 9. Den tidligere avgjørelsen fra fagetaten datert 18. juni 2007 er opphevet, og søknaden fra 11. juni 2007 er nå godkjent, forutsatt at tiltakshaver tinglyser en erklæring om fraskrivelse av erstatningsrett. Det ble stemt over et alternativt forslag fra Lillian Blom (SV), men dette fikk kun én stemme. Den endelige avgjørelsen ble vedtatt med støtte fra Høyre, Arbeiderpartiet, Fremskrittspartiet og Kristelig Folkeparti."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4490:40685:200502588:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:16:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a new liquor license is relevant to local businesses and residents."
+    },
+    "summary_headline": "Ny skjenkebevilling for Fusion Kaffe & Bar innvilget",
+    "summary_body": "Byrådet har innvilget søknaden fra Crowded House Håkonsgaten A/S om ny skjenkebevilling for øl, vin og brennevin ved Fusion Kaffe & Bar, Håkonsgt. 27, frem til 30. juni 2008. Dette skjer etter en overdragelse av eierandelene i selskapet. Kommunaldirektøren for helse og omsorg samt Hordaland politidistrikt har ikke innvendinger mot søknaden. Byrådsleder Monica Mæland anbefaler innvilgelse, som ble vedtatt med to stemmer imot fra KrF og RV. For å kunne ta i bruk bevillingen må søker sende inn nødvendig dokumentasjon til Kontor for skjenkesaker."
+  }
+}

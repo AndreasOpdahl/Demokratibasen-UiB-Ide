@@ -1,0 +1,18 @@
+{
+  "dokument_id": "216261:1847882:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:36:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine budget meeting with no significant newsworthy elements."
+    },
+    "summary_headline": "Bystyreutvalg for barnehage, skole og idrett inviterer til budsjettinnspill",
+    "summary_body": "Bystyreutvalg for barnehage, skole og idrett avholder møte 12. november 2019 kl. 16:00 i Kaigaten 4 for å motta muntlige innspill til budsjettforslaget for 2020. Organisasjoner og foreninger oppfordres til å delta. Det serveres middag før møtet."
+  }
+}

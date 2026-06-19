@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230152:2650739:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:07:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details routine appointments with no significant impact or controversy."
+    },
+    "summary_headline": "Bystyret velger midlertidige medlemmer til utvalg",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å velge Stig Torgersen som nytt midlertidig medlem for Senterpartiet i utvalg for barnehage, skole og idrett, samt Torunn Herfindal som nytt midlertidig andre varamedlem i utvalg for finans, kultur og næring. Begge valg gjelder fra 19. mai 2021 til 31. mai 2022."
+  }
+}

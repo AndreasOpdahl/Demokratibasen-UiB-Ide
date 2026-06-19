@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241063:4080808:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:31:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The proposal for a community park has significant local support and funding implications."
+    },
+    "summary_headline": "Byrådet anbefaler etablering av nærmiljøpark i Stemmemyren",
+    "summary_body": "Byrådet har anbefalt å etablere en nærmiljøpark ved Stemmemyren idrettspark, etter et innbyggerforslag støttet av 416 personer. Parken skal være et aktivitetsområde for barn og unge, med ulike soner for lek og idrett, og vil bli finansiert med 8 millioner kroner fra kommunens budsjett. Bystyret skal ta stilling til forslaget, som er i tråd med kommunens planer for å fremme fysisk aktivitet i lokalmiljøet. Dette tiltaket vil gi et viktig samlingspunkt for innbyggerne i Ytre Sandviken."
+  }
+}

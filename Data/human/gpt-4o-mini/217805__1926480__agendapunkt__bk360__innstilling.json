@@ -1,0 +1,18 @@
+{
+  "dokument_id": "217805:1926480:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:38:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a strategic plan for the development of Loddefjord, addressing social sustainability and urban planning, which is highly relevant to local residents."
+    },
+    "summary_headline": "Strategisk planprogram for Loddefjord vedtatt av byrådet",
+    "summary_body": "Byrådet har besluttet å starte arbeidet med et strategisk planprogram (SPP) for Loddefjord, som skal bidra til bærekraftig utvikling og fortetting av området. Planen fokuserer på å utvikle Loddefjord som en gåby med bilfrie soner, attraktive møtesteder, og god tilgang til offentlig tjenestetilbud. Det er identifisert behov for å forbedre levekårene i området, og det legges vekt på samarbeid med innbyggerne for å sikre at deres behov blir ivaretatt. Planarbeidet er en del av en større områdesatsing for Loddefjord, som også inkluderer tiltak for å utjevne sosiale ulikheter."
+  }
+}

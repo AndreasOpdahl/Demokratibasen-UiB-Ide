@@ -1,0 +1,18 @@
+{
+  "dokument_id": "247477:5031661:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:48:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The inquiry addresses significant municipal spending on sick leave, which affects local budgets and services."
+    },
+    "summary_headline": "Bergen kommune gransker utgifter til sykefravær i 2022",
+    "summary_body": "Eivind Nævdal-Bolstad (H) har stilt et skriftlig spørsmål til byråden om hvor mye Bergen kommune brukte på sykefravær i 2022. Han ber om en detaljert oversikt over kostnadene, inkludert den kommunale andelen og besparelser ved reduksjon av sykefravær med opptil 20 prosent. Dette kan ha betydelig innvirkning på kommunens økonomi og ressursfordeling."
+  }
+}

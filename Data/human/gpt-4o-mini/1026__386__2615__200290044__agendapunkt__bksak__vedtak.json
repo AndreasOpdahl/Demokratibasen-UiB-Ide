@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:386:2615:200290044:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:01:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses multiple local issues affecting residents, including noise pollution, safety concerns, and green space preservation."
+    },
+    "summary_headline": "Støyplager og sikkerhet i Bergen: Byråden må handle",
+    "summary_body": "I et møte i Komite for miljø og byutvikling ble flere viktige spørsmål diskutert. Liv Skreden (barn- og unges representant) uttrykte bekymring for støyplager fra byggingen av Fantoft sykehjem, som påvirker Fantoft Gård barnehage. Det er foreslått et støyreduserende tiltak, men dette er ennå ikke iverksatt. Arvid Blommedal (FrP) tok opp sikkerheten ved undergrunnstunnelene på Danmarksplass, som er preget av kriminalitet og dårlig vedlikehold. Han ba om tiltak for å gjøre tunnelene tryggere. Hans-Carl Tveit (V) etterlyste en rammeplan for reguleringsplan 377.00.01 for å beskytte verneverdig bebyggelse i Bergen sentrum. Kjersti Toppe (Sp) stilte spørsmål om bebyggelse av Monsamarken på Tertnes, et viktig grøntområde for lokale skoler og barnehager. Byråd Tom Knudsen har bedt om skriftlige svar på disse spørsmålene."
+  }
+}

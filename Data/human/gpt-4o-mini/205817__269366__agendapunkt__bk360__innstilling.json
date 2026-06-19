@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205817:269366:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:09:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a hearing statement regarding inclusion for children and youth, which has local relevance but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Høringsuttalelse om inkludering av barn og unge",
+    "summary_body": "Kommunalt råd for funksjonshemmede har mottatt høringsuttalelsen fra byrådet angående rapporten \"Inkluderende felleskap for barn og unge\". Rapporten er sendt på høring av Kunnskapsdepartementet og utdanningsdirektoratet. Rådet vil ta uttalelsen til orientering før den behandles i komite for barnehage, skole og idrett og i bystyret. Dette er et viktig steg for å sikre bedre tilrettelegging for barn og unge med spesielle behov."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2007:51071:113163:199608499:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:54:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant financial decisions regarding the expansion of a local school, which impacts the community."
+    },
+    "summary_headline": "Skeie skole får bevilgning til tomteutvidelse",
+    "summary_body": "Hovedutvalg for teknisk utbygging har besluttet å bevilge 350.537 kroner til restutbetaling for kjøp av tomt til Skeie skole, samt 49.463 kroner til oppstart av planleggingsarbeidene for utvidelsen. Dette er nødvendig på grunn av økte fødselstall og boligbygging i området. Totale kostnader for tomtekjøpet er 850.537 kroner, og bevilgningene dekkes fra budsjettposter knyttet til skolen. Beslutningen vil bidra til å sikre plass til flere elever i fremtiden."
+  }
+}

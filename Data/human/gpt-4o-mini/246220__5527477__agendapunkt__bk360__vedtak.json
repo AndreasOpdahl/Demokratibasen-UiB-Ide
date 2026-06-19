@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246220:5527477:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:44:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural notice with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen merknader til innkalling",
+    "summary_body": "Utvalg for miljø og byutvikling hadde møte 14. juni 2023, hvor det ikke ble fremmet noen merknader til innkallingen."
+  }
+}

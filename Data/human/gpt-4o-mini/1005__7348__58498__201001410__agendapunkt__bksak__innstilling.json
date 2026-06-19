@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7348:58498:201001410:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:15:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the financial results and future plans of a municipal service, which is relevant to local residents."
+    },
+    "summary_headline": "Bergen Hjemmetjenester KF rapporterer overskudd og fremmer planer for kompetanseheving",
+    "summary_body": "Bergen Hjemmetjenester KF har lagt frem sitt årsregnskap for 2009 med et overskudd på 5,2 millioner kroner. Byrådet, ledet av Monica Mæland, anbefaler at 2 millioner kroner overføres til bykassen, mens 3,2 millioner kroner settes av til disposisjonsfond for fremtidige tiltak. Dette overskuddet er delvis et resultat av tilbakeføring av pensjonskostnader. Byrådet ser positivt på styrets planer om å bruke midlene til kompetanseheving og rasjonalisering av virksomheten."
+  }
+}

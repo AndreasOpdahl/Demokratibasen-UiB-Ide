@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:6153:52680:200800334:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:33:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a routine meeting schedule with no significant newsworthy elements."
+    },
+    "summary_headline": "Kontrollutvalget vedtar møtedatoer for 1. halvår 2009",
+    "summary_body": "Kontrollutvalget har enstemmig vedtatt møtedatoer for 1. halvår 2009. Møtene vil finne sted 27. januar, 24. februar, 31. mars, 12. mai og 16. juni."
+  }
+}

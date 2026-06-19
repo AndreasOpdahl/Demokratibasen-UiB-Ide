@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11955:75430:201600085:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:36:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant national guideline affecting local health services for children, which has implications for community health and welfare."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse til nasjonal retningslinje for helsestasjoner",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Helsedirektoratet angående den nasjonale faglige retningslinjen for helsestasjoner for barn 0-5 år. Byrådet er generelt positiv til retningslinjen, men påpeker behovet for mer forskningsbaserte anbefalinger og tydeligere samarbeid med andre aktører. Høringsfristen er 15. april 2016, og bystyret vil behandle saken på grunn av dens prinsipielle karakter. Byrådet understreker viktigheten av å styrke psykisk helse og samarbeid med barnehager for å forbedre tjenestene for barn og familier."
+  }
+}

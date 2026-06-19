@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:3248:32136:200004262:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:53:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a proposed regulatory plan that has raised local concerns about its impact on the community."
+    },
+    "summary_headline": "Fana bydelsstyre støtter reguleringsplan til tross for lokal skepsis",
+    "summary_body": "Fana bydelsstyre har vedtatt å støtte et forslag om fortetting av ubebygde arealer på Brennhaugen ved Storetveit. Planen inkluderer utbygging av tre mindre områder med ny bebyggelse, samt forbedringer av vegsystemet og gangveier, inkludert den gamle 'Kjærlighetsstien'. Til tross for dette har arbeidsutvalget i Fana uttrykt skepsis, og advarer om at utbyggingen kan skade bomiljøet og grøntområdene. Det er foreslått trafikksikringstiltak og stenging av en farlig avkjørsel. Dette kan påvirke lokalsamfunnet betydelig."
+  }
+}

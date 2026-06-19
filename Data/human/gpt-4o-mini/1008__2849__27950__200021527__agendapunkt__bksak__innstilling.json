@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:2849:27950:200021527:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:35:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant changes in governance structures that could impact local political dynamics."
+    },
+    "summary_headline": "Byrådet foreslår omfattende endringer i styrer, råd og utvalg",
+    "summary_body": "Byrådet har lagt frem en sak for bystyret som foreslår en gjennomgang og avvikling av flere styrer, råd og utvalg i Bergen kommune. Dette inkluderer delegasjon av valgmyndighet til byrådet for en rekke organer, som Landbruksnemnda og Likestillingsutvalget. Byrådet ønsker å opprettholde dagens sammensetning frem til neste valgperiode, men vil starte en evaluering av mandatene og oppgavene til disse organene. Høyre har imidlertid fremmet forslag om å opprettholde bystyrets valgmyndighet for enkelte organer, noe som kan skape politisk debatt. Endringene kan påvirke hvordan kommunen styres og hvordan politiske partier rekrutterer medlemmer."
+  }
+}

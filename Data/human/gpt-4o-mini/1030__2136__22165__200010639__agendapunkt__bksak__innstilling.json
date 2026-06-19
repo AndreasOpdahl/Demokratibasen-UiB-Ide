@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2136:22165:200010639:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:35:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses traffic conditions in a local area, which is relevant to residents."
+    },
+    "summary_headline": "Endringer i trafikkforholdene i Kringsjåveien vurderes",
+    "summary_body": "Laksevåg bydelsstyre har bedt administrasjonen om å kontakte Statens vegvesen angående trafikkforholdene i Kringsjåveien, som har endret seg etter åpningen av tunnelen gjennom Damsgårdsfjellet. Det vurderes muligheter for å forbedre forholdene for syklister, endre parkeringsmuligheter, og tillate høyresving fra Stadionveien. Statens vegvesen har avsatt ressurser i sitt årsprogram for 2000 for å se nærmere på disse forholdene, og vil kontakte Bergen kommune for videre samarbeid."
+  }
+}

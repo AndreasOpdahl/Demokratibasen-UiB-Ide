@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1006:10507:68431:201210861:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:27:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a routine operational report with no significant newsworthy elements."
+    },
+    "summary_headline": "Havnerådet mottar driftsrapport for 1. halvår 2013",
+    "summary_body": "Havnerådet for Bergen og Omland havn har mottatt driftsrapporten for 1. halvår 2013, som ble behandlet av havnestyret 13. september 2013. Rapporten ble tatt til etterretning, og det ble bedt om ettersending av et justert driftsregnskap for havneavgifter og gebyrer."
+  }
+}

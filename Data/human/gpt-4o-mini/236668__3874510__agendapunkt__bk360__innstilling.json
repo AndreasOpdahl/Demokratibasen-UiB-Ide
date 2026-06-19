@@ -1,0 +1,18 @@
+{
+  "dokument_id": "236668:3874510:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:21:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a meeting notice with routine agenda items and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Innkalling til møte i valgstyret",
+    "summary_body": "Valgstyret i Bergen kommune har innkalt til møte den 29. mars 2022 kl. 09:15 i Det gamle Rådhus. Møtet vil behandle godkjenning av protokoll fra tidligere møte, evaluering av stortings- og sametingsvalget 2021, samt kåring av nytt varamedlem for Sosialistisk Venstreparti etter at Vigdis Irene Vestvik har trukket seg. Ingen kontroverser eller dissent er nevnt."
+  }
+}

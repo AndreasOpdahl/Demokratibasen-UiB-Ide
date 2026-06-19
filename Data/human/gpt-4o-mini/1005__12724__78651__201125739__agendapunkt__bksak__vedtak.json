@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:12724:78651:201125739:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:40:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a detailed regulatory plan that was unanimously approved, indicating local relevance but lacking controversy."
+    },
+    "summary_headline": "Bystyret godkjenner detaljregulering for Årstad",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt detaljreguleringsplanen for Årstad, gnr. 160 bnr. 369, ved Schweigårds vei 22. Behandlingen fant sted under møtet 21. juni 2017, hvor ingen representanter tok ordet. Komite for miljø og byutvikling har også behandlet saken og støttet bystyrets vedtak. Detaljreguleringen er basert på plan- og bygningslovens bestemmelser, og det er ingen kjent motstand mot planen."
+  }
+}

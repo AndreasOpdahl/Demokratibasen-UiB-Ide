@@ -1,0 +1,18 @@
+{
+  "dokument_id": "249729:6344856:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:55:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines procedural details regarding public hearings, which may be of interest but lacks immediate conflict or significant impact."
+    },
+    "summary_headline": "Byrådet redegjør for høringsuttaler",
+    "summary_body": "Byrådet har lagt frem en redegjørelse for hvordan Bergen kommune håndterer høringsuttaler, etter at det ble påpekt at kommunen ikke kunne gi uttalelse til NOU 2023:13 innen fristen. I løpet av 2022 og 2023 har kommunen gitt 73 høringsuttaler, noe som utgjør 20,8 prosent av byrådets vedtak. Byrådsleder Christine B. Meyer anbefaler at forretningsutvalget tar redegjørelsen til orientering."
+  }
+}

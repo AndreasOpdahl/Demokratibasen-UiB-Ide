@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:574:3789:200390324:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:30:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant decisions regarding municipal ownership and management of various companies, impacting local governance and services."
+    },
+    "summary_headline": "Bystyret godkjenner eierskapsmelding for kommunale virksomheter",
+    "summary_body": "Bergen bystyre har vedtatt byrådets eierskapsmelding som omhandler kommunens eierskap i ulike virksomheter. Bystyret har enstemmig sluttet seg til flere tiltak, inkludert evaluering av Bergen Bygg og Eiendom KF, samt mål for effektiv drift og service i kommunale selskaper. Det er også enighet om å opprettholde aksjemajoriteten i Bergenshalvøens Kommunale Kraftselskap AS. Byrådet, ledet av Anne-Grete Strøm-Erichsen, får fullmakt til å vurdere mindre eierporteføljer. Dette vil påvirke hvordan kommunen forvalter sine eierskapsinteresser og sikrer tjenester til innbyggerne."
+  }
+}

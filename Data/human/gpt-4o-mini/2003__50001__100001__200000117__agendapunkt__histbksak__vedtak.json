@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50001:100001:200000117:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:30:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines routine appointments for jury members, which is a standard administrative matter."
+    },
+    "summary_headline": "Bystyret oppnevner meddommere for perioden 2000-2004",
+    "summary_body": "Bystyret i Bergen skal oppnevne meddommere for perioden 2000-2004, basert på forslag fra formannskapet. Det foreslås 60 meddommere med kompetanse innen handel, 54 innen sjøvesen, 40 innen bygningsvesen, 30 innen håndverk, 30 innen industri, og 40 innen regnskap og finans. I tillegg foreslås to utvalg med 250 lagrettemedlemmer og to utvalg med 1400 meddommere til byretten, samt 34 jordskiftemeddommere. Forslaget ble enstemmig vedtatt av formannskapet."
+  }
+}

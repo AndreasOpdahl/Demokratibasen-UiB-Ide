@@ -1,0 +1,18 @@
+{
+  "dokument_id": "220366:1903938:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:42:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document raises significant concerns about the planning process of a costly bike bridge affecting local residents."
+    },
+    "summary_headline": "Kostbar sykkelbro i Fløen skaper debatt om planlegging og konsekvenser",
+    "summary_body": "Charlotte Spurkeland (H) har stilt spørsmål til byrådet om sykkelbroen i Fløen, som nå er under bygging. Broen har ført til tap av lys og utsikt for naboer, og det hevdes at en alternativ løsning kunne spart kommunen 300 millioner kroner. Spørsmålene retter seg mot prosessen rundt planleggingen, politisk ledelse og om endringer burde vært forelagt bystyret. Dette reiser bekymringer om hvordan slike prosjekter påvirker lokalsamfunnet og om de er i tråd med kommunens ønsker."
+  }
+}

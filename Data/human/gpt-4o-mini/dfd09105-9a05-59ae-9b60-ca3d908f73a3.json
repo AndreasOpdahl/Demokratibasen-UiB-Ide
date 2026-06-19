@@ -1,0 +1,18 @@
+{
+  "dokument_id": "dfd09105-9a05-59ae-9b60-ca3d908f73a3",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:22:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines a proposed activity plan for a municipal health and social committee, which includes budget considerations and scheduled meetings."
+    },
+    "summary_headline": "Helse- og sosialutvalget foreslår aktivitetsplan for 2026",
+    "summary_body": "Utvalg for helse og sosial har fremmet en aktivitetsplan for 2026, som inkluderer ordinære møter og befaringer. Planen er utarbeidet med bakgrunn i gjeldende reglement og budsjettkrav, som innebærer innsparinger på fire millioner kroner. Utvalget skal vedta planen, og arbeidsutvalget får fullmakt til å justere aktiviteter etter behov. Dette kan påvirke hvordan helse- og sosialtjenester tilbys i Bergen."
+  }
+}

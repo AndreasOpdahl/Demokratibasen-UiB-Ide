@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:8050:59685:200802629:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:34:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is an informational update without any proposals or decisions."
+    },
+    "summary_headline": "Orientering om Bystyrets behandling av Kontrollutvalgets saker",
+    "summary_body": "Kontrollutvalget gir en orientering om Bystyrets behandling av saker fra Kontrollutvalget i møtet den 20. september 2010. Saken legges frem uten forslag til vedtak."
+  }
+}

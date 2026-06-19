@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2061:22815:200008703:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:23:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to place a ballbinge at Skansendammen has local relevance and involves community input."
+    },
+    "summary_headline": "Bergenhus bydelsstyre vedtar ballbinge ved Skansendammen",
+    "summary_body": "Bergenhus bydelsstyre har besluttet å plassere en ballbinge ved Skansendammen, med oppgradering av hele området for allmenn bruk. Beslutningen ble fattet med 7 mot 6 stemmer, der administrasjonens forslag ble vedtatt til tross for motstand fra SV, som ønsket å bevare områdets naturlige utseende. Skoler og velforeninger i området skal involveres i den videre planleggingen."
+  }
+}

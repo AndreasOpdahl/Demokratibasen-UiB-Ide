@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5168:46609:200200740:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:08:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The case involves a rejected application for a driveway, which may affect local residents."
+    },
+    "summary_headline": "Klage på avslag om avkjørsel avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig avvist en klage på avslag om etablering av avkjørsel mot Storetveitvegen for eiendommen Fana, gnr 12 bnr 2. Fagetatens vedtak fra 16. november 2005 opprettholdes, noe som kan påvirke innbyggerne i området som ønsker bedre tilgang."
+  }
+}

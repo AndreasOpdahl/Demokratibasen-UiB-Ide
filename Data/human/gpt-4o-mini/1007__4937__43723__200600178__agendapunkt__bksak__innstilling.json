@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:4937:43723:200600178:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:29:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant public safety and environmental concerns regarding a new swimming facility, which could impact local residents."
+    },
+    "summary_headline": "Usikkerhet rundt badeanlegg ved Nøsteboden",
+    "summary_body": "Bergen og Omland havnevesen har besluttet å etablere et prosjekt for å vurdere nødvendige tiltak for badeaktiviteter ved Nøsteboden, men tar ikke på seg drifts- eller sikkerhetsansvar. Prosjektet, som har en kostnad på 435.000 kroner, skal håndtere forurensning fra sedimenter, men det er bekymringer om forurensning fra tungmetaller som kan påvirke badevannskvaliteten. Havneadministrasjonen uttrykker stor usikkerhet om prosjektets suksess og ber Bergen kommune om å avklare ansvarsforholdene før bassenget åpnes. Arbeidet startet i januar og skal være ferdig i juni."
+  }
+}

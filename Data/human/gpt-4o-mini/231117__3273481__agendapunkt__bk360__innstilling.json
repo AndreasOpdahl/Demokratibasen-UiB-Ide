@@ -1,0 +1,18 @@
+{
+  "dokument_id": "231117:3273481:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:10:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses delegated authority for alcohol licensing during a specific period, which is relevant to local businesses and public health."
+    },
+    "summary_headline": "Byrådet delegerer skjenkebevillinger under ferieavvikling",
+    "summary_body": "Byrådet har delegert myndighet til byråd for eldre, helse og frivillighet, Beate Husa, til å behandle søknader om skjenkebevillinger fra 2. juli til 1. august 2021. I løpet av denne perioden ble det fattet vedtak i fire saker, inkludert utvidelse av skjenkeareal for flere serveringssteder som Agave og Theatro Bergen. Dette tiltaket er en respons på konsekvenser av covid-19 og smitteverntiltak. Byrådet vil få en oversikt over disse vedtakene på sitt første møte etter sommeren."
+  }
+}

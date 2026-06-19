@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50863:109182:199706947:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:33:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines various legal cases involving the municipality, which may interest residents but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Bergen kommune orienterer om utfallet av flere rettssaker",
+    "summary_body": "Bergen Formannskap har mottatt en orientering om utfallet av flere rettssaker som ikke tidligere er rapportert. Saker inkluderer oppsigelser av leietakere og tvister om husleie og erstatning. Blant annet ble Trans-Hydrema enige med kommunen om utflytting etter en tvilsom oppsigelse, og en familie fikk ny bolig før rettssak. Ingen av sakene medførte store kostnader for kommunen, og de ble hevet som forlikte."
+  }
+}

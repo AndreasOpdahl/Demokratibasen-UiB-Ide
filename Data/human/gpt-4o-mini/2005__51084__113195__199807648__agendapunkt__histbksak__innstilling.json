@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51084:113195:199807648:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:45:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a proposed regulatory plan for residential development, which may impact local land use and community planning."
+    },
+    "summary_headline": "Plan for boligutvikling i Fana kan skape konflikt med eksisterende arealplaner",
+    "summary_body": "Eierne av gnr 49 bnr 1 og 61 i Fana ønsker å utarbeide en forenklet reguleringsplan for 100 dekar av sine eiendommer, med mål om å regulere området til boliger. Planområdet er delt, der østlig del er regulert til boligformål, mens vestlig del er klassifisert som LNF-område, noe som kan skape konflikt. Kommunens administrasjon anbefaler at planavgrensingen mot vest vurderes nærmere. Det er også foreslått å regulere en grønn sone mellom eksisterende og nye boliger. Videre planprosess vil avklare om det er tilstrekkelig med en forenklet reguleringsplan."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50007:101553:200004781:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:31:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision involves significant public spending for safety improvements at a local government building."
+    },
+    "summary_headline": "Bystyret bevilger 800 000 kroner til brannsikring av Bergen Rådhus",
+    "summary_body": "Formannskapet har enstemmig anbefalt at bystyret bevilger 800 000 kroner til nye trapperomsdører med adgangskontrollsystem i Bergen Rådhus. Dette tiltaket er en del av brannsikringen av bygningen og ble behandlet i formannskapets møte den 12. april 2000. Bevilgningen vil bli dekket budsjettmessig i budsjettrapport 2/00."
+  }
+}

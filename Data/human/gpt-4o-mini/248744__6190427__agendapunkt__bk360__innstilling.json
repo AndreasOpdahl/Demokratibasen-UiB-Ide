@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248744:6190427:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:51:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant funding applications for innovative projects that will impact local services and community welfare."
+    },
+    "summary_headline": "Bergen kommune søker midler til innovative prosjekter for 2024",
+    "summary_body": "Bergen kommune planlegger å søke om skjønnsmidler fra Statsforvalteren for 2024 for flere innovative prosjekter som skal forbedre kommunale tjenester. Prosjektene inkluderer digital dobbeltkontroll av legemiddeladministrasjon, innføring av et elektronisk pasientflytsystem på legevakten, og tiltak for å redusere sykefravær i barnehagesektoren. Søknadsfristen er 1. november 2023, og det er prioritert å støtte prosjekter med høy egenfinansiering og samarbeid mellom kommuner. Totalt søkes det om over 5 millioner kroner i prosjektmidler."
+  }
+}

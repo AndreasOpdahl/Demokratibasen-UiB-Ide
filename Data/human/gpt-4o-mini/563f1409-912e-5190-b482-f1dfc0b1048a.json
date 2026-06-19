@@ -1,0 +1,18 @@
+{
+  "dokument_id": "563f1409-912e-5190-b482-f1dfc0b1048a",
+  "kommune_nummer": 5501,
+  "kommune_navn": "Tromsø",
+  "generated_at": "2026-02-19 23:02:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a meeting agenda with routine items and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteinnkalling til Arbeidsmiljøutvalget",
+    "summary_body": "Arbeidsmiljøutvalget har møte 12. juni 2025, hvor de skal godkjenne innkalling, saksliste og protokoll. Det er også en sak om omstilling av stab for organisasjonen som skal behandles."
+  }
+}

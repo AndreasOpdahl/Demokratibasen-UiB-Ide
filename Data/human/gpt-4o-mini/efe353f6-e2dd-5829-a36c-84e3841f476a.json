@@ -1,0 +1,18 @@
+{
+  "dokument_id": "efe353f6-e2dd-5829-a36c-84e3841f476a",
+  "kommune_nummer": 5530,
+  "kommune_navn": "Senja",
+  "generated_at": "2026-02-19 23:24:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document involves a change in management for a local business's alcohol license, which has moderate local relevance."
+    },
+    "summary_headline": "Endring av styrer for skjenkebevilling i Hamn i Senja",
+    "summary_body": "Senja kommunestyre har godkjent endringen av styrer og stedfortreder for skjenkebevillingen til Senja Reiseliv AS i Hamn i Senja. Harald Kuraas er utnevnt som ny styrer, mens Espen Hansen blir stedfortreder, med forbehold om at Hansen består kunnskapsprøven i alkoholloven. Skjenkebevillingen gjelder til 30. juni 2028, og det er ikke fremkommet bemerkninger fra politiet eller skatteetaten i forbindelse med søknaden."
+  }
+}

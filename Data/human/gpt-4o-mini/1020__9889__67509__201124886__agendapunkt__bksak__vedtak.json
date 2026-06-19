@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:9889:67509:201124886:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:33:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll godkjent uten innvendinger",
+    "summary_body": "Protokollen fra møtet i Komite for finans den 15. mai 2013 ble godkjent uten innvendinger."
+  }
+}

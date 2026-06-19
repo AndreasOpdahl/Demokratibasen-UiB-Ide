@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1011:3952:37753:200403900:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:51:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines an administrative decision with no significant impact or controversy."
+    },
+    "summary_headline": "Sammenslåing av avdelinger i Bergen Bygg og Eiendom KF",
+    "summary_body": "Bergen Bygg og Eiendom KF har enstemmig besluttet å slå sammen Forvaltningsavdelingen og Markedsavdelingen, med virkning fra 1. april 2004. Dette er en administrativ endring uten omstridte elementer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9900:67075:200820130:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:24:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The establishment of a new kindergarten in Fana is significant for local families and addresses a growing need for childcare."
+    },
+    "summary_headline": "Ny barnehageplan i Fana godkjent av byrådet",
+    "summary_body": "Byrådet har godkjent reguleringsplanen for Birk barnehage på Kirkebirkeland i Fana, som vil gi rundt 83 barnehageplasser. Planen inkluderer riving av et eldre bolighus og oppføring av et nytt barnehagebygg med uteområder. Fylkesmannen og Riksantikvaren har tidligere hatt innsigelser, men disse er nå trukket etter endringer i planen. Barnehagen er viktig for å møte det økende behovet for barnehageplasser i området, hvor antallet barn forventes å øke med over 12 prosent frem mot 2024. Bystyret skal nå ta endelig stilling til reguleringsplanen."
+  }
+}

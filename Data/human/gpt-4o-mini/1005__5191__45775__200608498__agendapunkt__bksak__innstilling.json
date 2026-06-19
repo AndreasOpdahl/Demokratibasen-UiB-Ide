@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5191:45775:200608498:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:03:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant action plan for integration and diversity in Bergen, impacting many residents."
+    },
+    "summary_headline": "Bergen kommune vedtar handlingsplan for integrering og mangfold 2007-2010",
+    "summary_body": "Byrådet i Bergen har lagt frem en handlingsplan for integrering og mangfold for perioden 2007-2010, som tar sikte på å forbedre inkluderingen av innvandrere og flyktninger i samfunnet. Planen fokuserer på flere områder, inkludert arbeidsliv, offentlige tjenester, bolig, og helse. Bystyret har bedt om en helhetlig integreringspolitikk, og planen er utarbeidet med innspill fra ulike aktører og har vært til høring. Byrådet anbefaler at Bystyret godkjenner planen, som vil kreve samarbeid mellom offentlige etater, frivillige organisasjoner og innvandrere selv for å oppnå vellykkede resultater. Dette tiltaket er viktig for å sikre et inkluderende samfunn i Bergen."
+  }
+}

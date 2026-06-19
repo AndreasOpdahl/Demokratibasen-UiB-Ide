@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:3273:33290:200110038:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:38:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision involves a significant proposed investment in local housing, which may affect residents."
+    },
+    "summary_headline": "Laksevåg bydelsstyre avviser ombygging av Håsteinsgt.9",
+    "summary_body": "Laksevåg bydelsstyre behandlet 17. desember 2002 saken om videre utvikling av Håsteinsgt.9. Bydelsstyret vedtok å ta saken til orientering, til tross for et forslag fra Frank W. Hansen (P) om full ombygging til omsorgsboligstandard med en kostnad på 25 millioner kroner. Dette forslaget fikk kun én stemme og ble dermed avvist. Beslutningen kan påvirke fremtidige boligprosjekter i området."
+  }
+}

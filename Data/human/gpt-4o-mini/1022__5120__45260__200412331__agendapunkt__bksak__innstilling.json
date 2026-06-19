@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1022:5120:45260:200412331:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:36:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is routine and procedural with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra styremøtet i Bergen Vann KF",
+    "summary_body": "Styret for Bergen Vann KF har hatt et møte der saker ble lagt frem, men det er ingen spesifikke vedtak eller kontroverser å rapportere om."
+  }
+}

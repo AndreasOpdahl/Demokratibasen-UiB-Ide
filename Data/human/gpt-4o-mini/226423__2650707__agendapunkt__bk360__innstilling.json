@@ -1,0 +1,18 @@
+{
+  "dokument_id": "226423:2650707:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:56:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant hearing related to local economic policies, which could impact residents."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse til NOU om næringslivets betydning",
+    "summary_body": "Byrådet i Bergen anbefaler bystyret å avgi høringsuttalelse til NOU 2020:12, som vurderer næringslivets rolle for bærekraftige lokalsamfunn. Selv om utredningen har begrenset relevans for Bergen, påpekes viktigheten av samarbeid mellom distriktene og byene for næringsutvikling. Høringsfristen er 28. januar 2021, og saken vil bli behandlet av bystyret."
+  }
+}

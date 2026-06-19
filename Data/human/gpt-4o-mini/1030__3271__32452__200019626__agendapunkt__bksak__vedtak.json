@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:3271:32452:200019626:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:38:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document addresses a local issue but lacks significant impact or controversy."
+    },
+    "summary_headline": "Kloakklekkasje i Damsgårdselven tas til orientering",
+    "summary_body": "Laksevåg bydelsstyre har enstemmig vedtatt å ta til orientering en anmodning fra Bente Krokeide (A) om kloakklekkasje i Damsgårdselven. Saken ble behandlet i møte den 22. oktober 2002, men det er ingen umiddelbare tiltak eller kontrovers knyttet til vedtaket."
+  }
+}

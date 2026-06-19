@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4236:39479:200403148:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:14:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant change in the operational model of a key cultural institution in Bergen, impacting local governance and community involvement."
+    },
+    "summary_headline": "Ny driftsmodell for Bergen Internasjonale Kultursenter godkjent av byrådet",
+    "summary_body": "Byrådet har godkjent en ny brukerstyrt driftsmodell for Bergen Internasjonale Kultursenter (BIKS), som innebærer økt brukerstyring og redusert bemanning. Modellen, som ble presentert av byråd Henning Warloe, gir et demokratisk oppnevnt brukerstyre ansvar for driften, mens Bergen kommune kun ivaretar forholdet til huseier og budsjettansvar. Bystyrets vedtak fra juni 2004 om å opprettholde nåværende lokaler for BIKS med krav om innsparing på 1 million kroner for 2005, er en del av bakgrunnen for denne omleggingen. Den nye modellen har fått stor oppslutning fra involverte parter, og det er forventet at den vil styrke brukerengasjementet i driften av kultursenteret."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3175:31033:200001246:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:01:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the allocation of funds for urban renewal projects, which has local relevance and financial implications."
+    },
+    "summary_headline": "Bergen kommune fordeler 16,3 millioner til byfornyelse",
+    "summary_body": "Bergen kommune foreslår å fordele 16,3 millioner kroner fra byfornyelsesfondet for å ferdigstille pågående byfornyelsesprosjekter. Midlene stammer fra avkastning på tidligere statlige tilskudd, og byrådet har fått fullmakt til å gjøre nødvendige budsjettjusteringer. Byråd for miljø og byutvikling, Tom Knudsen, anbefaler at midlene brukes i tråd med retningslinjene fra Husbanken. Dette tiltaket er viktig for å sikre at uferdige prosjekter blir fullført, noe som vil ha direkte innvirkning på lokalsamfunnet."
+  }
+}

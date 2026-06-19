@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4934:43631:200514139:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:21:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The demolition of three residential houses for the expansion of a shopping center is a significant local issue."
+    },
+    "summary_headline": "Byrådet godkjenner riving av tre eneboliger for utvidelse av Vestkanten kjøpesenter",
+    "summary_body": "Byrådet har godkjent søknaden om riving av tre eneboliger på Elvetun 3, 7 og 9 i Laksevåg, som skal gi plass til en utvidelse av Vestkanten kjøpesenter. Boligene, som har stått ubebodd, er regulert til park og forretning/kontor i reguleringsplanen fra 2002. Byantikvaren har ikke innvendinger mot rivingen, og det er ikke kommet inn merknader fra naboer. Byråden for byutvikling, Lisbeth Iversen, anbefaler rivingen for å unngå at bygningene brukes av uønskede personer. Det er ikke gjort vurderinger om fremtidig utnyttelse av eiendommene."
+  }
+}

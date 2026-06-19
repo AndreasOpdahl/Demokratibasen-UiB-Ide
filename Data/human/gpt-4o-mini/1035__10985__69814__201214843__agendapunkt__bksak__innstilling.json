@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10985:69814:201214843:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:57:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant regulatory change affecting a large area in Ytrebygda, which could impact local businesses and employment."
+    },
+    "summary_headline": "Reguleringsendring i Ytrebygda kan skape 2800 nye arbeidsplasser",
+    "summary_body": "Bergen Tomteselskap og Backer AS har fremmet et forslag om reguleringsendring for et næringsområde i Ytrebygda, som kan gi plass til 150 000 m² med ny bebyggelse, inkludert kontorer, industri og lager. Planen, som er under offentlig ettersyn, kan skape omtrent 2800 nye arbeidsplasser. Fagetaten er positiv til fortetting, men uttrykker bekymring for den høye andelen kontorbygg og anbefaler at kontorer kun tillates i tilknytning til produksjon. Det er også foreslått forbedringer av kollektivtilbudet i området. Før videre behandling må flere detaljer avklares, inkludert byggehøyder og spesifikasjoner for de ulike formålene."
+  }
+}

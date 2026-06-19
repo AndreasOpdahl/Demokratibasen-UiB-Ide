@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:6193:51760:200709553:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:34:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a leadership change in a municipal board, which may affect local governance."
+    },
+    "summary_headline": "Endring i styret for Kystkultursenteret AS",
+    "summary_body": "Atle Raa (FrP) har søkt om fritak fra vervet som medlem og nestleder av styret for Fellesenheten for Kystkultursenteret AS av personlige og arbeidsmessige årsaker. Byrådsleder Monica Mæland anbefaler at søknaden imøtekommes og foreslår Ragnar Berg-Hansen som ny nestleder. I tillegg oppnevnes Tore R. Solberg og Bjørn Djupevåg som representanter for brukerne av kystkultursenteret. Dette kan påvirke driften og representasjonen ved senteret, som er viktig for lokalsamfunnet."
+  }
+}

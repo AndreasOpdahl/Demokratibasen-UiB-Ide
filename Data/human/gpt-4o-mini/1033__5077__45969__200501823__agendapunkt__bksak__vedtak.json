@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:5077:45969:200501823:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:50:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative decisions without significant impact or controversy."
+    },
+    "summary_headline": "Rusmiddelpolitisk råd godkjenner regnskapsprognose",
+    "summary_body": "Rusmiddelpolitisk råd har behandlet regnskapsprognosen for 2006 pr. 1. november og besluttet å ta orienteringen til etterretning. Rådet ber om at regnskapsprognoser fremlegges ved hver tertialrapportering fra neste år."
+  }
+}

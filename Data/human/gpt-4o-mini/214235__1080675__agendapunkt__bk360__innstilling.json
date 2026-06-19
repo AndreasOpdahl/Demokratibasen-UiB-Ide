@@ -1,0 +1,18 @@
+{
+  "dokument_id": "214235:1080675:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:31:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested building permit denial that affects local residents' property rights and urban development."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på garasje- og parkeringssøknad i Årstad",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på en søknad om bygging av garasje og parkeringsplass på Søndre Skogveien 35 A i Årstad. Klagen, fremmet av S.J Eriksen Boligutvikling, ble avvist da tiltaket krever dispensasjon fra reguleringsplanens byggegrenser, noe som ikke er søkt om. Byrådet påpeker at tiltaket vil overskride tillatt utnyttelsesgrad og kan skape presedensvirkninger i området. Saken sendes videre til Fylkesmannen for endelig avgjørelse."
+  }
+}

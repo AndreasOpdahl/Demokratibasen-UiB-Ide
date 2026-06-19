@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:458:3219:200390008:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:40:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document highlights a significant issue regarding the allocation of resources for vulnerable groups in Bergen, raising moral and political concerns."
+    },
+    "summary_headline": "Kontroversiell inntaksstopp for psykisk utviklingshemmede i Arna bydel",
+    "summary_body": "Arna bydelsstyre har besluttet å la en plass i bofellesskapet for eldre ressurskrevende psykisk utviklingshemmede stå tom, begrunnet med at plassen ikke passer for noen i bydelen. Dette skjer samtidig som Bergen bystyre prioriterer bygging av 75 nye leiligheter for utviklingshemmede. Liv Røssland (FrP) reiser spørsmål om byrådens tiltak for å åpne plassen og håndtere inntaksstoppet, og anmoder om at saken legges frem for videre behandling. Komiteen for helse, sosial og bydeler har enstemmig vedtatt å oversende anmodningen til byrådsavdelingen."
+  }
+}

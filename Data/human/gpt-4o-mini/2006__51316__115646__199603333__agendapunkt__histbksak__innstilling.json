@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:51316:115646:199603333:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:52:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant funding decision for youth and integration programs, which impacts local residents."
+    },
+    "summary_headline": "Bergen kommune bevilger 300.000 kroner til Hordaland Idrettskrets for ungdom og integrering",
+    "summary_body": "Hovedutvalg for fritid og kultur har innvilget et rammetilskudd på 300.000 kroner til Hordaland Idrettskrets (HIK) for 1999. Midlene skal brukes til tiltak rettet mot barn og ungdom, integrering av funksjonshemmede, samt voksenidrett og mosjonsidrett. HIK har utarbeidet handlingsplaner for disse områdene, og administrasjonen støtter søknaden. Dette tilskuddet er viktig for å bekjempe frafall blant ungdom og fremme inkludering i idretten."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:7810:57807:201001532:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:04:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposed housing development that raises concerns about architectural style and landscape integration."
+    },
+    "summary_headline": "Kritikk av boligbygging i Fana: Behov for bedre tilpasning til kulturlandskapet",
+    "summary_body": "Tilsynsutvalget for byens utseende har behandlet en sak om et nytt boligbygg i Fana, som omfatter 16 leiligheter fordelt på fire etasjer. Utvalget uttrykker bekymring for at den foreslåtte blokkbebyggelsen ikke passer inn i det etablerte kulturlandskapet, og stiller spørsmål ved om dette er riktig bebyggelsesform gitt lokal topografi. De etterlyser også bedre tilpasning av bygget til landskapet, spesielt med hensyn til parkeringsetasjen."
+  }
+}

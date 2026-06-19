@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10664:69297:201221663:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:30:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant proposals regarding renewable energy and library services, which are relevant to local residents."
+    },
+    "summary_headline": "Bystyret vedtar tiltak for jordvarme og bibliotekstyrking i Bergen",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt to forslag for å fremme jordvarme som teknologi og fornybar eksportvare fra Bergen. Bystyret ber byrådet om å gå i dialog med forskningsmiljøer og bedrifter, samt arbeide for at forskningssenteret for miljøvennlig energi for geotermisk energi legges til Bergen. I tillegg ble et forslag om å utrede opprettelsen av et bydelsbibliotek i Indre Laksevåg og en bibliotekfilial i nye Landås skole avvist med 32 stemmer. Dette viser bystyrets fokus på både bærekraftig energi og kulturtilbud i kommunen."
+  }
+}

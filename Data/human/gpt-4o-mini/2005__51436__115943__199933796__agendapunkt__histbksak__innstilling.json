@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51436:115943:199933796:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:47:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a municipal decision regarding the right of first refusal on a property sale, which has local relevance and potential impact on residents."
+    },
+    "summary_headline": "Bergen kommune avviser forkjøpsrett på leiegård i Laksevåg",
+    "summary_body": "Bergen kommune har besluttet å ikke benytte sin forkjøpsrett ved salget av leiegården på Herman Gransvei 51 A, som selges for 2.380.000 kroner. Selgerne, Fritjof og Solveig Larsen, har inngått avtale med Tom-Erik Ingebrigtsen, men leietakerne har ikke uttrykt ønske om å danne borettslag eller eierseksjonssameie. Kommunens administrasjon, ledet av Edel Eikeseth, vurderer at det ikke foreligger grunnlag for å benytte forkjøpsretten, da det ikke er kommet innspill fra leietakerne. Fristen for å benytte forkjøpsretten utløper 26. desember 1999."
+  }
+}

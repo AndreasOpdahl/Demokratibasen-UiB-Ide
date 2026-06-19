@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51050:111683:199812723:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:00:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant proposal regarding the handling of local site selection processes, which could impact future developments in Bergen."
+    },
+    "summary_headline": "Bystyret ber om ny vurdering av lokaliseringssaker etter Telenor-prosjektet",
+    "summary_body": "Bystyret i Bergen har behandlet en interpellasjon fra Gunn-Vivian Eide angående lokaliseringen av Telenors nybygg. Eide foreslo at rådmannen skal vurdere hvordan større lokaliseringssaker bør håndteres i kommunen, samt kriterier for kostnadsoverslag for å unngå unødvendige konsekvensutredninger. Forslaget ble vedtatt med 83 mot 1 stemme og oversendt administrasjonen for videre behandling. Dette kan få betydning for fremtidige byggeprosjekter i kommunen."
+  }
+}

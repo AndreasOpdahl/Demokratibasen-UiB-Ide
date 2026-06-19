@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2094:21961:200002691:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:17:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a routine administrative decision regarding the approval of a financial report."
+    },
+    "summary_headline": "Arna bydelsstyre godkjenner rekneskapsutgreiing for 1999",
+    "summary_body": "Arna bydelsstyre behandla rekneskapsutgreiinga for 1999 i møte 23. mai 2000 og vedtok samrøystes å ta den til etterretning. Bydelsdirektøren skal greie ut om deler av rekneskapen i eit ekstraordinært møte 13. juni 2000."
+  }
+}

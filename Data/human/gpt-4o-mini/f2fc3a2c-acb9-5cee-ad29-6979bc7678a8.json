@@ -1,0 +1,18 @@
+{
+  "dokument_id": "f2fc3a2c-acb9-5cee-ad29-6979bc7678a8",
+  "kommune_nummer": 5530,
+  "kommune_navn": "Senja",
+  "generated_at": "2026-02-19 23:24:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine meeting of the Working Environment Committee with no significant decisions or controversies."
+    },
+    "summary_headline": "Arbeidsmiljøutvalget tar avvik til orientering",
+    "summary_body": "Arbeidsmiljøutvalget (AMU) behandlet avvik fra Compilo i sitt møte den 1. oktober 2025. Saken ble tatt til orientering, og det ble diskutert om det er for få avvik meldt for samfunnsutvikling. Alle kommunalområder deltok i diskusjonen om sine avvik."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50935:111712:199606476:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:34:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant funding proposals for youth projects in Bergen, impacting local communities."
+    },
+    "summary_headline": "Bergen kommune søker 2,8 millioner til ungdomsprosjekter",
+    "summary_body": "Bergen formannskap har besluttet å søke Barne- og familiedepartementet om 2,8 millioner kroner til 14 nye ungdomsprosjekter for 1999. Prosjektene inkluderer blant annet Kystkultursenteret og ungdomssenteret Ulriken, som skal gi ungdommer i Bergen bedre fritidstilbud. I tillegg foreslås det midler til igangsatte prosjekter som Blokkhaugen skole og Håstein. Dette tiltaket er viktig for å styrke ungdomsaktiviteter og forebygge sosiale problemer i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:6397:54686:200812559:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:16:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a procedural decision with no significant local impact or controversy."
+    },
+    "summary_headline": "Klage på deling av grunneiendom avvist enstemmig",
+    "summary_body": "Komite for miljø og byutvikling har behandlet en klage over avslag på søknad om deling av grunneiendom i Ytre Arna. Klagen ble enstemmig avvist, og fagetatens tidligere vedtak fra 17. oktober 2008 ble opprettholdt. Ingen representanter tok ordet under behandlingen."
+  }
+}

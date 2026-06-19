@@ -1,0 +1,18 @@
+{
+  "dokument_id": "abe65e7c-30a5-5214-a8bf-41a24ea39d88",
+  "kommune_nummer": 4651,
+  "kommune_navn": "Stryn",
+  "generated_at": "2026-02-19 23:16:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant interregional collaboration addressing livestock losses due to predators, which directly impacts local farmers."
+    },
+    "summary_headline": "Stryn kommune deltar i interregionalt samarbeid om beitedyr og jerv",
+    "summary_body": "Stryn kommune skal delta i et interregionalt samarbeid om beitedyr og jerv sammen med 13 andre kommuner i Møre og Romsdal, Vestland og Innlandet. Dette samarbeidet ble initiert etter store tap av lam og sau til jerv. Kommunestyret skal behandle saken den 30. oktober 2025, hvor de også vil vedta en felles erklæring og bevilge 8000 kroner til en sekretærfunksjon for prosjektet. Målet er å redusere jervbestanden til vedtatt nivå innen 2026, noe som er viktig for lokale bønder og landbruket i regionen."
+  }
+}

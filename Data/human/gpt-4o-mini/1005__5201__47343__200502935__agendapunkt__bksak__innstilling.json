@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5201:47343:200502935:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:05:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant quality improvements and measures in services for the developmentally disabled, impacting local residents."
+    },
+    "summary_headline": "Byrådet innfører nye kvalitetskrav for tjenester til utviklingshemmede",
+    "summary_body": "Byrådet i Bergen har lagt frem en melding om kvalitetskrav og oppfølging i tjenesteområdet for utviklingshemmede. Det foreslås tiltak som sikrer at alle tjenestemottakere får tilbud om kvalitetssamtale og individuell plan, samt et omfattende opplæringsprogram for assistenter. I 2006 ble det registrert 1206 årsverk, en økning på 50 fra året før, og det er planlagt å øke andelen hele stillinger for å forbedre rekrutteringen. Økningen i meldinger etter kapittel 4A i sosialtjenesteloven viser behov for bedre oppfølging. Bystyret skal ta meldingen til orientering i sitt neste møte."
+  }
+}

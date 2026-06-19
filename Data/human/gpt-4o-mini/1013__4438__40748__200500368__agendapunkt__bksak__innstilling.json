@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4438:40748:200500368:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:07:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions without significant impact or controversy."
+    },
+    "summary_headline": "Saker fra byrådsmøte fordelt til komiteer",
+    "summary_body": "Protokollen fra byrådets møte 28. februar 2005 viser fordelingen av saker til ulike komiteer. Byrådsakene 46, 49, 51-53 går til komite for miljø og byutvikling, mens saker 47-48 og 50 sendes til komite for finans, kultur og næring. Sak 54 går til komite for oppvekst. Ingen kontroverser eller dissent er nevnt."
+  }
+}

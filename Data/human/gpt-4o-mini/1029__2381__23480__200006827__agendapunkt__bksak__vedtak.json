@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:2381:23480:200006827:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:30:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains administrative decisions but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Kontrollutvalget etterlyser svar fra helse- og sosialbyrået",
+    "summary_body": "Kontrollutvalget i Bergen kommune behandlet orienteringssaker den 19. september 2000. De har enstemmig vedtatt å be revisjonssjefen om å etterlyse svar på et brev sendt til Byrådsavdelingen for helse og sosial den 3. august 2000, angående oppfølging etter revisjon av pasientregnskapet for 1998. Saken om valg av nytt medlem til kontrollutvalget ble også tatt til orientering."
+  }
+}

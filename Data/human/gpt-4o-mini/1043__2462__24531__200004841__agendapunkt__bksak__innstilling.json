@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:2462:24531:200004841:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:17:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document appears to be procedural with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Årstad bydelsstyre",
+    "summary_body": "Dokumentet inneholder grunngitte spørsmål og forespørsler fra Årstad bydelsstyre, men det er ingen spesifikke vedtak eller saker av offentlig interesse."
+  }
+}

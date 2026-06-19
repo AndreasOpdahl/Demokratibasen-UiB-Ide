@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211975:1024007:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:25:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains multiple questions raised by council members, indicating ongoing discussions on various local issues."
+    },
+    "summary_headline": "Bystyret diskuterer viktige lokale spørsmål",
+    "summary_body": "Under møtet i Bergen bystyre 10. april 2019 ble det stilt flere spørsmål av representanter fra ulike partier. Temaene inkluderte skjenkepolitikk, datasikkerhet i kommunens IKT-system, utleie av Haugland skole, hogst og naturverdier, samt mangel på fastlegeplasser. Byrådsleder Harald Schjelderup og flere byråder besvarte spørsmålene, som viser at det er en aktiv debatt om viktige saker som påvirker innbyggerne i Bergen."
+  }
+}

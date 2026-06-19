@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:3448:34154:200212843:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:19:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses an internal proposal for closure but lacks significant public impact or controversy."
+    },
+    "summary_headline": "Forslag om nedleggelse av bydelsstyrets arbeidsutvalg",
+    "summary_body": "Arna bydelsstyre har mottatt et forslag om nedleggelse av arbeidsutvalget, basert på intern korrespondanse fra Byrådsavdelingen for finans og service. Det er foreløpig ingen offentlig debatt eller motstand mot forslaget."
+  }
+}

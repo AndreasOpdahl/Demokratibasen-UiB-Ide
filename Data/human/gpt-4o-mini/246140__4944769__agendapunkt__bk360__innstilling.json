@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246140:4944769:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:44:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant strategy for rehabilitation affecting the elderly, highlighting the need for user involvement."
+    },
+    "summary_headline": "Eldrerådet krever endringer i rehabiliteringsstrategi",
+    "summary_body": "Eldrerådet har diskutert oppstarten av en ny rehabiliteringsstrategi og fremhevet viktigheten av brukermedvirkning. I møtet 4. januar 2023 foreslo de å fjerne ordet «eventuelt» fra setningen om samarbeid med pårørende, da ikke alle eldre har pårørende. Planleder vil komme tilbake til rådet for videre innspill. Dette arbeidet er relevant for mange eldre i kommunen."
+  }
+}

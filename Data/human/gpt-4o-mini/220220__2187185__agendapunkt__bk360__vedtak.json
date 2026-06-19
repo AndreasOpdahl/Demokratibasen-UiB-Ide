@@ -1,0 +1,18 @@
+{
+  "dokument_id": "220220:2187185:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:42:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines the extension and renewal of alcohol licenses, which affects local businesses and residents."
+    },
+    "summary_headline": "Skjenkebevillinger forlenges til 2021 med nye søknader etterpå",
+    "summary_body": "Byrådet har besluttet å forlenge alle skjenkebevillinger frem til 30. september 2020, med automatisk fornyelse til 31. desember 2021. I denne perioden vil Kontor for skjenkesaker gjennomføre kontroller. Etter 31. desember 2021 må alle bevillinger søkes på nytt, og det vil bli gjennomført vandelsvurdering. Dette påvirker lokale serveringssteder i Bergen."
+  }
+}

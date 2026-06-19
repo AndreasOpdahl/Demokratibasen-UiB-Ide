@@ -1,0 +1,18 @@
+{
+  "dokument_id": "229984:2722534:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:06:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises concerns about delays and costs related to a municipal kindergarten project, which is relevant to local residents."
+    },
+    "summary_headline": "Forsinkelse av Damsgårdssundet barnehage vekker spørsmål",
+    "summary_body": "Eivind Nævdal-Bolstad (H) stiller spørsmål til Bergen kommune om forsinkelsen av Damsgårdssundet barnehage, som ble kjøpt for 40,5 millioner kroner. Han etterspør årsaken til forsinkelsen, om det skyldes uenighet i avtalen eller lang saksbehandlingstid, samt kostnadene for ferdigstillingen av barnehagen og utearealene. Dette er relevant for innbyggerne i Bergen, da det påvirker tilgjengeligheten av barnehageplasser."
+  }
+}

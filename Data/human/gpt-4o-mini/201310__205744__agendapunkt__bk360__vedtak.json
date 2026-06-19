@@ -1,0 +1,18 @@
+{
+  "dokument_id": "201310:205744:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:57:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a complaint regarding a housing permit, but there is no dissent or controversy."
+    },
+    "summary_headline": "Klage på boligprosjekt avvist i Åsane",
+    "summary_body": "Komite for miljø og byutvikling har behandlet en klage på rammetillatelsen for oppføring av bolig på Morviklien, gnr. 185 bnr. 169. I møtet den 9. november 2017 ble det enstemmig besluttet å opprettholde fagetatens vedtak fra 28. mars 2017, og klagen ble ikke tatt til følge. Ingen representanter fra komiteen tok ordet under behandlingen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5402:47066:200500697:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:27:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document involves a budget reallocation that affects local cultural investment."
+    },
+    "summary_headline": "Omdisponering av 6 millioner til paviljong på Edvard Griegs plass",
+    "summary_body": "Byrådet har besluttet å omdisponere 6 millioner kroner fra Edvard Grieg museum til investering i en paviljong på Edvard Griegs Plass 1. Dette ble vedtatt i møtet den 26. mars 2007. Omdisponeringen skjer fra tjeneste 37520 til tjeneste 38520, og vil påvirke kulturtilbudet i området."
+  }
+}

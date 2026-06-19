@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:11971:77202:201532255:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:48:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine activity plan for a municipal committee without significant newsworthy elements."
+    },
+    "summary_headline": "Aktivitetsplan for Komite for barnehage, skole og idrett vedtatt for våren 2017",
+    "summary_body": "Komite for barnehage, skole og idrett har vedtatt sin aktivitetsplan for 1. halvår 2017, som inkluderer møter og seminarer om etikk og lokaldemokratireformen. Planen er utarbeidet av komiteens arbeidsutvalg og kan endres ved behov. Det er ikke rapportert om noen kontroverser eller dissent i forbindelse med vedtaket."
+  }
+}

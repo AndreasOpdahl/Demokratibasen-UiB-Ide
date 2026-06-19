@@ -1,0 +1,18 @@
+{
+  "dokument_id": "242112:4995053:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:33:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document is a routine approval of minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Ruspolitisk råd",
+    "summary_body": "Møtet i Ruspolitisk råd den 13. desember 2022 handlet om godkjenning av protokoll, som ble enstemmig godkjent."
+  }
+}

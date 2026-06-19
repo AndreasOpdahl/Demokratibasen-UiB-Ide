@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4135:38878:200304446:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:13:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to uphold the building permit despite a complaint indicates local interest, but lacks significant conflict or financial implications."
+    },
+    "summary_headline": "Klage på tilbygg til bolig avvist av byrådet",
+    "summary_body": "Byrådet har behandlet en klage fra Åge Lie og Lotte Iren Larsen angående tillatelsen til et tilbygg på eiendommen Morvikbotn 355 i Åsane. I møtet 7. juli 2004 ble det besluttet å opprettholde administrasjonens vedtak fra 10. september 2003, og klagen ble ikke tatt til følge. Dette betyr at byggeprosjektet kan fortsette som planlagt."
+  }
+}

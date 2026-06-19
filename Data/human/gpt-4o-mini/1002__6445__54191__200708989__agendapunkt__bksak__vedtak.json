@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:6445:54191:200708989:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:20:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a local planning proposal with community interest but lacks significant conflict or financial implications."
+    },
+    "summary_headline": "Arna bydelsstyre støtter regulering av idrettsanlegg",
+    "summary_body": "Arna bydelsstyre har enstemmig vedtatt å støtte reguleringen av et område til privat idrettsanlegg og landbruk på Unnelandsvegen. Det ble understreket at trafikksikkerhetstiltak må være på plass før området kan tas i bruk. Dette forslaget ble fremsatt av Kristin Akselberg (A) og behandlet i bydelsstyrets møte den 9. april 2022."
+  }
+}

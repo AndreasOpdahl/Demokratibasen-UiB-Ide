@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1019:5300:47578:200504058:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:25:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines a significant plan to address employee sick leave and improve working conditions for home care workers, which directly impacts local residents."
+    },
+    "summary_headline": "Tiltaksplan mot sjukefravær for hjemmehjelpere diskuteres 20. juni",
+    "summary_body": "Den 20. juni 2007 avholdes en fagdag på Bergen Kongressenter for styret, soneledere og administrasjon i Bergen hjemmetjenester KF. Hovedtemaet vil være en gjennomgang av tiltak mot sykefravær, inkludert en handlingsplan for 2007. Blant tiltakene er opplæring av vikarer og forbedring av arbeidsforholdene for hjemmehjelpere. Det er også foreslått å redusere effektivitetskravene og vurdere en sekstimers arbeidsdag. Dette kan ha stor betydning for både ansatte og brukere av hjemmetjenester i Bergen."
+  }
+}

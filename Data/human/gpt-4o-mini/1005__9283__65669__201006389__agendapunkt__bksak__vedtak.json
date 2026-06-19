@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9283:65669:201006389:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:22:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant municipal plan affecting cultural institutions, with various political discussions and proposals."
+    },
+    "summary_headline": "Bystyret vedtar ABM-plan for kulturinstitusjoner i Bergen",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt ABM-planen for perioden 2012-2021, som skal styrke arkiv, bibliotek og museer i kommunen. Bystyret ber om en rapport etter tre år for å vurdere effekten av tiltakene. Det er også foreslått bedre skilting til kulturinstitusjoner og en vurdering av hvordan samarbeidet mellom biblioteker kan forbedres. Flere representanter, inkludert Charlotte Spurkeland (H) og Ruth Sølvi Brudvik (A), har fremmet merknader om viktigheten av tilgjengelighet og ressurser til bibliotekene. Dette vedtaket vil ha direkte innvirkning på kulturtilbudet i Bergen, noe som er av stor interesse for innbyggerne."
+  }
+}

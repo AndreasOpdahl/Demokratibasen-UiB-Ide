@@ -1,0 +1,18 @@
+{
+  "dokument_id": "bd13738e-5ccb-5231-8e36-064376bd650b",
+  "kommune_nummer": 4649,
+  "kommune_navn": "Stad",
+  "generated_at": "2026-02-19 23:18:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant regulatory decision affecting local business development, with potential impacts on traffic and community planning."
+    },
+    "summary_headline": "Vedtak om detaljregulering for Lundastranda næringsområde vedtatt til tross for motsegn",
+    "summary_body": "Stad kommune har vedtatt detaljregulering for Lundastranda næringsområde, til tross for motsegn fra Statens vegvesen. Planen, som har vært under behandling siden 2021, åpner for etablering av Nordfjord Vegservice AS med hovedkontor og verksted i området. Statens vegvesen har uttrykt bekymringer om trafikksikkerhet og avstand til kollektivtransport, men kommunen mener at etableringen er nødvendig for lokal næringsutvikling. Saken vil bli sendt til departementet for endelig avgjørelse, ettersom den vedtatte planen strider mot gjeldende kommuneplan. Dette kan påvirke innbyggerne i Kjølsdalen og Stårheim, som vil oppleve økt trafikk og mulige endringer i lokal infrastruktur."
+  }
+}

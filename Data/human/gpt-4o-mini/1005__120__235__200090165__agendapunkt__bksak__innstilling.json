@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:120:235:200090165:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:39:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a contested regulatory plan affecting local traffic and environmental concerns, which is highly relevant to residents."
+    },
+    "summary_headline": "Kontroversiell reguleringsplan for Austre Steinsvikåsen vedtatt med innsigelser",
+    "summary_body": "Byrådet har vedtatt en reguleringsplan for Austre Steinsvikåsen, til tross for protester fra Steinsvikgrend velforening og Ytrebygda bydelsutvalg som ønsker alternativ atkomst via Feråsen. Byrådet advarer mot økt trafikk i et etablert boligområde og understreker behovet for å bevare friområder. Planen vil nå sendes til bystyret for endelig godkjenning. Protester fra innbyggerne er delvis tatt til følge, men flere innsigelser er avvist. Dette kan påvirke trafikksikkerhet og miljøforhold i området, noe som er av stor interesse for lokale innbyggere."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:2042:21697:200001303:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:44:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a legal review of a municipal decision regarding a controversial parking project, which affects local residents."
+    },
+    "summary_headline": "Lovlighetskontroll av parkeringslekter på Nøstet",
+    "summary_body": "Tre representanter har bedt om lovlighetskontroll av formannskapets vedtak om en flytende parkeringslekter på Nøstet, fattet 26. januar 2000. Rådmannen mener vedtaket ikke lenger eksisterer etter et senere vedtak 23. februar 2000, som avviser avtale med Eide Marine Service AS. Bystyret vil vurdere formannskapets innstilling om å anse det opprinnelige vedtaket som opphevet. Saken er viktig for innbyggerne på Nøstet, da den omhandler parkeringsforholdene i området."
+  }
+}

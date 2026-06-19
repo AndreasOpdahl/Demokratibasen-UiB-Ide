@@ -1,0 +1,18 @@
+{
+  "dokument_id": "ffe9a5be-245f-5d63-9da0-c8cf182ba5c7",
+  "kommune_nummer": 4624,
+  "kommune_navn": "Bjørnafjorden",
+  "generated_at": "2026-02-19 23:26:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document details a local building permit approval, which is relevant but not highly impactful."
+    },
+    "summary_headline": "Godkjent byggeløyve for ny garasje med hagestove i Bjørnafjorden",
+    "summary_body": "Bjørnafjorden kommune har godkjent byggeløyve for Johan Dankert Eide til å rive en eksisterende garasje og oppføre en ny garasje med hagestove på Austre Lurane 14. Den nye garasjen vil ha et bruksareal på 35 m². Løyvet er gyldig i tre år, og tiltaket må plasseres i henhold til situasjonsplanen. Det er ikke innkommet merknader fra naboer, og tiltaket vurderes å være i samsvar med reguleringsplanen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:281:2035:200090074:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:27:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document reports a routine approval of minutes with no significant implications."
+    },
+    "summary_headline": "Protokoll fra Komite for finans og næring godkjent",
+    "summary_body": "Protokollen fra møtet i Komite for finans og næring den 30. januar 2022 ble enstemmig godkjent. Ingen kontroverser eller dissent ble rapportert."
+  }
+}

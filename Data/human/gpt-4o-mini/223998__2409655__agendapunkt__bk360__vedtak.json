@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223998:2409655:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:51:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The decision not to exercise the municipal pre-emption right is relevant but lacks significant conflict or impact."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på eiendom",
+    "summary_body": "Bergen byråd har besluttet å ikke gjøre forkjøpsrett gjeldende for eiendommen på Aad Gjelles gate 13, gnr 168, bnr 638, under møtet den 8. oktober 2020. Dette betyr at kommunen ikke vil kjøpe eiendommen ved overdragelse, noe som kan påvirke fremtidige eierskapsforhold i området."
+  }
+}

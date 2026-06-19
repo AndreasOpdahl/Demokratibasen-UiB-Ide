@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:7881:58689:201000194:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:15:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses potential strike preparations that could significantly impact municipal operations and political meetings."
+    },
+    "summary_headline": "Mulig streik kan ramme Bystyrets kontor i Bergen",
+    "summary_body": "Det pågår mekling mellom KS og fagforeninger i kommunal sektor, med frist for en eventuell streik 26. mai. En streik kan påvirke Bystyrets kontor og avvikling av politiske møter i mai og juni. Bystyredirektør Roar Kristiansen informerer om at ansatte må forberede seg på en mulig arbeidsstans, og det er sendt betinget permitteringsvarsel til alle ansatte. Informasjon til media vil bli håndtert av Bystyredirektøren, og det vil bli opprettet temasider på kommunens nettsider dersom streik inntreffer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2673:27314:200000339:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:44:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural decision without significant local impact or controversy."
+    },
+    "summary_headline": "Sommerfullmakt for Rusmiddelpolitisk råd",
+    "summary_body": "Rusmiddelpolitisk råd har vedtatt å gi leder og nestleder fullmakt til å gi uttalelser i sommer, dersom det oppstår saker som ikke kan vente til møtet i august. Dette tiltaket er foreslått av Rusmiddelsekretariatet, ledet av Liv Skreden."
+  }
+}

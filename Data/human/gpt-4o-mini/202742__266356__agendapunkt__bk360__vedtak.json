@@ -1,0 +1,18 @@
+{
+  "dokument_id": "202742:266356:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:02:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a rejected building proposal that affects local urban development."
+    },
+    "summary_headline": "Byformingrådet avviser nytt boligprosjekt i Fana",
+    "summary_body": "Rådet for byforming og arkitektur i Bergen har behandlet en søknad om bygging av et fjerde blokkbygg i Fana, men anbefaler ikke tiltaket som omsøkt. Rådet påpeker at det foreslåtte bygget er for massivt og mangler arkitektoniske kvaliteter. De mener at bygget må tilpasses bedre til området, med mindre fotavtrykk og mer grøntareal. Dette kan påvirke fremtidige boligplaner i området."
+  }
+}

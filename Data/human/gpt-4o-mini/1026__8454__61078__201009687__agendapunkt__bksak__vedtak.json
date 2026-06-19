@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:8454:61078:201009687:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:21:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a local complaint regarding a garage permit, but there is no significant conflict or dissent."
+    },
+    "summary_headline": "Klage på garasjeoppføring avvist i Laksevåg",
+    "summary_body": "Komite for miljø og byutvikling har behandlet en klage på tillatelse til oppføring av garasje på Riplegården 37, Laksevåg. I møtet 10. mars 2011 ble det enstemmig vedtatt å opprettholde fagetatens vedtak fra 10. september 2010, og klagen ble ikke tatt til følge. Ingen representanter fra komiteen tok ordet under behandlingen."
+  }
+}

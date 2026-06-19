@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203017:257797:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:02:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a building permit in a protected coastal area, affecting local residents' access to public spaces."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på byggesøknad i strandsonen",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på Tormod Engelsens søknad om dispensasjon for å bygge en ny bolig på Nedre Slettestølen 38 i Åsane. Avslaget, som ble fattet 26. oktober 2016, er begrunnet i at tiltaket strider mot byggegrensen langs sjøen og reguleringsplanen for området. Klageren, advokat Steinulf Tungesvik, argumenterer for at avslaget er basert på feilaktige vurderinger og saksbehandlingsfeil. Byrådet understreker at en tillatelse kan skape presedens for lignende saker, noe de ønsker å unngå for å bevare strandsonen for allmennheten. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

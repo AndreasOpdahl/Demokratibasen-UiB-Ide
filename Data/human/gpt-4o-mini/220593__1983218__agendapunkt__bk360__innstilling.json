@@ -1,0 +1,18 @@
+{
+  "dokument_id": "220593:1983218:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:43:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine meeting agenda with no significant newsworthy elements."
+    },
+    "summary_headline": "Rutinemøte i Forretningsutvalget",
+    "summary_body": "Forretningsutvalget i Bergen kommune har innkalt til møte den 28. april 2020, hvor flere saker skal behandles, inkludert godkjenning av protokoll fra tidligere møte og forslag til budsjett for 2020. Ingen kontroversielle saker er nevnt."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:6542:55889:200901543:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:12:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant tax exemption request that impacts local community services."
+    },
+    "summary_headline": "Frelsesarmeen søker om fritak for eiendomsskatt i Bergen",
+    "summary_body": "Frelsesarmeen har søkt om fritak for eiendomsskatt på to seksjoner i Ladegårdsgaten 8, som brukes til aktiviteter for vanskeligstilte, ungdom og eldre. Byrådet anbefaler at bystyret godkjenner fritaket, som vil gjelde fra 1. januar 2009, og som kan bortfalle dersom eiendommene endres i bruk. Den årlige eiendomsskatten for disse seksjonene utgjør 19.449.000 kroner. Bystyret må ta stilling til søknaden, som er i tråd med eiendomsskatteloven § 7a."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9166:63505:201104908:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:44:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for reduced port fees for environmentally friendly ships is relevant and could impact local shipping practices."
+    },
+    "summary_headline": "Bergen kommune foreslår lavere havneavgift for miljøvennlige skip",
+    "summary_body": "Bergen kommune har ingen merknader til forslaget om nye forskrifter for anløpsavgift og saksbehandlingsgebyr fra Bergen og omland havnevesen. Imidlertid anbefaler byråden for finans, eiendom og eierskap, Liv Røssland, at det innføres lavere anløpsavgift for miljøvennlige skip, inspirert av Oslo havn KF's system med 30 prosent reduksjon for skip som oppfyller miljøkrav. Dette kan bidra til å fremme mer bærekraftige maritime aktiviteter i kommunen."
+  }
+}

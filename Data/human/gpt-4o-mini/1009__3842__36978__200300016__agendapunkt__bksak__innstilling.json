@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3842:36978:200300016:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:09:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant funding and development for a local transportation terminal, impacting residents' access to public transport."
+    },
+    "summary_headline": "Byrådet bekrefter finansiering for 2. byggetrinn av Nonneseter kollektivterminal",
+    "summary_body": "Byrådet i Bergen har besluttet å bekrefte finansieringen av 2. byggetrinn av kollektivterminalen på Nonneseter, med en egenandel fra kommunen begrenset til 15,3 millioner kroner. Dette følger opp tidligere vedtak fra 1998, men den økonomiske situasjonen har ført til en reduksjon i kommunens bidrag. Det er planlagt å utlyse anbud for byggetrinnet innen årets utgang, og det er viktig for innbyggerne da prosjektet vil forbedre kollektivtransporten i området."
+  }
+}

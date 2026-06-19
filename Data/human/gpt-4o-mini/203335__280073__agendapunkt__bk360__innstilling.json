@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203335:280073:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:03:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a proposed regulatory plan that affects local business and police facilities, which is relevant to residents."
+    },
+    "summary_headline": "Ny reguleringsplan for næringsområde i Laksevåg legges ut til høring",
+    "summary_body": "Rådet for byforming og arkitektur har besluttet å legge ut forslag til reguleringsplan for et område ved Godviksvingene i Laksevåg til offentlig ettersyn. Planen, fremmet av Opus Bergen AS på vegne av Godviksvingene AS, omfatter eiendommene gnr 139 bnr 198 m.fl. og har som mål å videreføre næringsformål med vekt på lager og industri. Politiet har signalisert behov for bedre fasiliteter, og planen åpner for oppgradering av eksisterende bygninger. Det er foreslått en utbygging på inntil 30 000 m², men det er også bekymringer om økt trafikk og påvirkning på nærområdet. Fagetaten anbefaler endringer i planforslaget før 2. gangs behandling, inkludert reduksjon av antall bygninger og styrking av krav til grøntarealer."
+  }
+}

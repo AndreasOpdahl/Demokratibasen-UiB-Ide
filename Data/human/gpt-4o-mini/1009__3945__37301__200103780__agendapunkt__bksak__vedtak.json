@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3945:37301:200103780:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:10:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a sales license for beer at a local store is relevant to the community and involves local businesses."
+    },
+    "summary_headline": "Rema 1000 Kjøkkelvik får salgsbevilling for øl",
+    "summary_body": "Byrådet har innvilget Rema 1000 Kjøkkelvik, beliggende på Nedbergveien 7, en salgsbevilling for øl med lavere alkoholinnhold enn 4,76 volumprosent. Bevillingen gjelder fra nå og frem til 30. juni 2004, samt for perioden 1. juli 2004 til 30. juni 2008. Svein Davidsen AS er bevillingshaver, med Svein Davidsen som styrer og Øyvind Davidsen som stedfortreder. Salg av øl kan skje på hverdager fra kl. 08.00 til 20.00, men ikke på søn- og helligdager. Det er også krav om at det må sendes inn egenerklæring og dokumentasjon før bevillingen kan tas i bruk."
+  }
+}

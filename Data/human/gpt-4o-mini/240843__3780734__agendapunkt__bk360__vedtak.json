@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240843:3780734:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:30:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The concerns raised by the Youth Council about increased travel times and traffic safety are significant for local residents."
+    },
+    "summary_headline": "Ungdomsrådet advarer mot økt reisetid og trafikkfare i Åsane og Sandviken",
+    "summary_body": "Ungdomsrådet har uttrykt bekymring for hvordan utbyggingen av bybanen til Åsane og den forlengede Fløyfjellstunnelen vil påvirke kollektivtilbudet og reisetiden for unge. De frykter at reisetiden mellom Åsane og Bergen sentrum vil øke, spesielt for busslinjene 3 og 4, noe som kan føre til lengre skoleveier. I tillegg advarer de om økt trafikk i Sandviken, som kan gjøre skoleveien farlig for barn og unge. Rådet understreker behovet for å forbedre trafikksikkerheten med tiltak som fartsdumper og fotgjengerfelter. Saken ble behandlet i møte 02.11.2022, men legges frem uten forslag til vedtak."
+  }
+}

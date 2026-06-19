@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:5240:46386:200700414:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:55:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document appears to be a routine administrative note without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra det sentrale eldreråd",
+    "summary_body": "Dokumentet er en rutinemessig referanse fra det sentrale eldreråd datert 17. januar 2007."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50864:109034:199603044:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:33:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a sales license for beer is relevant to local businesses and community interests."
+    },
+    "summary_headline": "Salgsbevilling for øl innvilget til Brødrene Haque AS i Bergen",
+    "summary_body": "Bergen formannskap har innvilget søknaden fra Brødrene Haque AS om salgsbevilling for øl til deres dagligvareforretning i Skottegt. 13. Vedtaket ble fattet etter at bydelsutvalg 01 Sentrum ikke hadde merknader, og politiet ikke hadde innvendinger. Anjuara Parun Haque er oppnevnt som styrer for bevillingen. Det ble fremmet et alternativt forslag om å avslå søknaden, men dette ble nedstemt. Den nye bevillingspraksisen trådte i kraft 1. januar 1998, og det vil bli innhentet informasjon om stedfortreder for styreren før neste møte."
+  }
+}

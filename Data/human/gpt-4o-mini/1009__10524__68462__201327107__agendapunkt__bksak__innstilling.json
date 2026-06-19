@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10524:68462:201327107:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:43:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a new alcohol license for a hotel ship, which is relevant to local residents and involves public safety and regulatory compliance."
+    },
+    "summary_headline": "Ny skjenkebevilling for MS Nordstjernen ved Bryggen innvilges",
+    "summary_body": "Byrådsleder Monica Mæland har innstilt på å innvilge en ny alminnelig skjenkebevilling for alkoholholdig drikk til MS Nordstjernen, som skal ligge til kai i Bergen, primært ved Bryggen. Søknaden, fra Indre Nordhordland Dampskipslag AS, gjelder både innendørs og uteservering, og dekker et areal på totalt 915 m2. Bevillingen er nødvendig for at skipet kan operere som hotell og restaurant i vinterhalvåret. Det er krav om at nødvendige tillatelser fra andre myndigheter må være på plass før bevillingen kan tas i bruk."
+  }
+}

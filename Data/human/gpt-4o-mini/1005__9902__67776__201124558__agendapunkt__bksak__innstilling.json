@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9902:67776:201124558:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:25:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural information about oral questions in a city council meeting, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Muntlige spørsmål til bystyrets møte",
+    "summary_body": "Bystyret i Bergen har mottatt muntlige spørsmål fra medlemmene som vil bli besvart av byrådene. Spørsmålene vil bli registrert på internett etter møtet. Dette er en rutinemessig prosedyre for å sikre åpenhet i bystyrets arbeid."
+  }
+}

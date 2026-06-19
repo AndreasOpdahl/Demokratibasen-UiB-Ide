@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8381:62478:200603885:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:18:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant urban planning initiatives and controversies regarding parking and land use in Bergen."
+    },
+    "summary_headline": "Bystyret diskuterer parkeringsstrategi og luftkvalitet i Bergen",
+    "summary_body": "Bergen bystyre har behandlet flere viktige saker knyttet til byutvikling og miljø. Det ble fremsatt merknader fra Lillian Blom (SV) om behovet for en inndragningsplan for gateparkering og en utredning av køprising, som ennå ikke er behandlet. Bystyret uttrykte også bekymring over luftkvaliteten, med 191 timer overskridelser av NO2-nivåer i 2010. Haakon Lønning Aarø (Sp) påpekte at byrådet ønsker å gjøre Åsane til pilotbydel i prosjektet 'Framtidas byar', men at dette ikke ble nevnt i statusrapporten. Bystyret vedtok enstemmig å be byrådet om en strategiplan for fortetting av boligbygging, med mål om at 80% av nybygg skal skje i fortettingsområder. Det er også bekymring for tap av dyrkbar mark, med oppfordring til byrådet om å ta grep for å snu utviklingen."
+  }
+}

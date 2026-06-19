@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240229:4685456:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:29:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains procedural information regarding budget input but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra helse- og sosialutvalget",
+    "summary_body": "Dokumentet fra Utvalg for helse og sosial omhandler presentasjoner og dokumenter knyttet til innspill til budsjett, men inneholder ingen avgjørelser eller kontroverser."
+  }
+}

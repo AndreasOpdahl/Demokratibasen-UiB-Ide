@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:12480:77063:201531391:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:02:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions with no significant impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til komiteene",
+    "summary_body": "Byrådet har enstemmig besluttet å sende byrådssakene 335 og 350 til komite for miljø og byutvikling, samt byrådssak 351 til komite for finans, kultur og næring. Øvrige komiteer får også orientering om sakene."
+  }
+}

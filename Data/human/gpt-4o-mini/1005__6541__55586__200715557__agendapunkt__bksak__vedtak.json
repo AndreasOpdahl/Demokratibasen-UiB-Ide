@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:6541:55586:200715557:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:12:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant area analysis that could impact future development in the region."
+    },
+    "summary_headline": "Bystyret godkjenner arealanalyse for byggesone sør for Flyplassvegen",
+    "summary_body": "Bergen bystyre har behandlet en arealanalyse sør for Flyplassvegen, som nå tas til orientering. I kommuneplanens arealdel skal det vurderes hvilke LNF-områder som kan inkluderes i byggesonen, samt fastsettelse av en langsiktig jordverngrense. Vedtaket ble enstemmig godkjent for punkt 1, mens punkt 2 fikk støtte fra 54 representanter fra flere partier, inkludert Høyre, Arbeiderpartiet og SV. Dette kan få betydning for fremtidig byutvikling i Ytrebygda."
+  }
+}

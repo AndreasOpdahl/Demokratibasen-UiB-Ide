@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51367:116164:199611375:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:03:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant decisions regarding the establishment and governance of Bergen Bygg og Eiendom, impacting local property management and financial accountability."
+    },
+    "summary_headline": "Bystyret vedtar nye vedtekter for Bergen Bygg og Eiendom med krav om offentlighet og økonomisk godtgjørelse",
+    "summary_body": "Bystyret i Bergen har vedtatt nye vedtekter for Bergen Bygg og Eiendom, som inkluderer krav om økonomisk godtgjørelse for ekstra arbeidsoppgaver og prinsipper for offentlighet. Det ble understreket at det haster med å få på plass årsbudsjett og åpningsbalanse for selskapet. Rådmannen skal rapportere om fremdriften i etableringen av selskapet. Vedtaket ble fattet med 58 stemmer for og 9 mot, og det er betydelig lokal interesse knyttet til eiendomsforvaltning i kommunen."
+  }
+}

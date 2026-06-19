@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:8162:59503:200907721:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:21:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to grant a dispensation for property division is significant due to its impact on local housing development and community planning."
+    },
+    "summary_headline": "Byrådet gir dispensasjon for deling av eiendom i Ytrebygda",
+    "summary_body": "Byrådet har besluttet å oppheve et tidligere avslag og gi dispensasjon fra kommuneplanens plankrav for deling av eiendommen på Søvikhaugen 30 i Ytrebygda. Klager Bjarte Lien ønsket å dele eiendommen for oppføring av to eneboliger, men fikk først avslag på grunn av manglende oppfyllelse av plankrav. Byrådet vurderte imidlertid at hensynene bak plankravet ikke vil bli skadelidende, da området allerede er utbygd til boligformål og det finnes tilstrekkelige lekearealer for barn i nærheten. Dette vedtaket kan påvirke boligmarkedet i området, som har få ubebygde tomter igjen."
+  }
+}

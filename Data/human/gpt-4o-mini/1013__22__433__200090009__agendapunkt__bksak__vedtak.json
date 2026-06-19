@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:22:433:200090009:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:04:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to host a reception for an international conference is relevant but lacks significant conflict or impact."
+    },
+    "summary_headline": "Bergen kommune arrangerer mottakelse for kardiologikonferanse",
+    "summary_body": "Bergen kommune vil holde en mottakelse torsdag 3. mai 2001 i forbindelse med konferansen \"European Society of Cardiology - Conference 2001\". Forslaget ble vedtatt av Forretningsutvalget med én stemme imot fra Fremskrittspartiet."
+  }
+}

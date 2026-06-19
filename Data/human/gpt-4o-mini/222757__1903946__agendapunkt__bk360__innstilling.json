@@ -1,0 +1,18 @@
+{
+  "dokument_id": "222757:1903946:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:48:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines multiple appeals against planning decisions, indicating local conflicts and significant community interest."
+    },
+    "summary_headline": "Flere klager på avslag av byggeprosjekter i Bergen",
+    "summary_body": "Utvalg for miljø og byutvikling i Bergen kommune skal behandle flere klager på avslag på byggesøknader under møtet 27. august 2020. Blant klagene er søknader om rivning og oppføring av nye boliger, samt klager på avslag for flytebrygger og tilbygg. Dette kan påvirke mange innbyggere i Bergen, spesielt de som har sendt inn klager. Møtet finner sted i Det gamle Rådhus, og det er ventet muntlige innlegg fra berørte parter."
+  }
+}

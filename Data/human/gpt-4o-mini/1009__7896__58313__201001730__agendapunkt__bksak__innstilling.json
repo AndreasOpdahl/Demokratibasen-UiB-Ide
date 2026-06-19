@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7896:58313:201001730:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:39:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses proposed changes to regulations affecting parental involvement in schools, which is highly relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune støtter endringer i forskrift om foreldresamarbeid i skolen",
+    "summary_body": "Bergen kommune har avgitt høringssvar til Utdanningsdirektoratet om forslag til endringer i forskrift til opplæringsloven som skal styrke foreldresamarbeidet i grunnskolen og videregående opplæring. Forslagene inkluderer krav om foreldremøter ved skoleårets start og tydeliggjøring av foreldres rettigheter. Byrådet, ledet av Filip Rygg, mener endringene vil forbedre oppfølgingen av elever og motvirke frafall i videregående opplæring. Høringsfristen er 24. april 2010."
+  }
+}

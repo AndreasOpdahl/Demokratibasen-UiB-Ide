@@ -1,0 +1,18 @@
+{
+  "dokument_id": "200473:205735:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:39:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a legal review of a municipal decision affecting child welfare services, raising significant concerns and potential implications for local governance."
+    },
+    "summary_headline": "Lovlighetskontroll av barnevernvedtak i Bergen bystyre",
+    "summary_body": "Bergen bystyre står overfor en lovlighetskontroll av vedtakspunkt 2 i interpellasjon nr 19, som omhandler kvalitetssikring i barnevernstjenesten. Kravet er fremmet av representanter fra Venstre, som mener vedtaket er ugyldig på grunn av manglende saksbehandling og myndighet. Det er bekymringer knyttet til hvordan en ekstern gjennomgang av barnevernssaker vil påvirke familienes og barnas beste, samt risikoen for brudd på taushetsplikt. Bystyret skal behandle kravet om lovlighetskontroll den 27. september 2017, etter at helse- og sosialkomiteen har vurdert saken."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:6988:54850:200717740:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:39:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document primarily consists of procedural approvals with no significant newsworthy elements."
+    },
+    "summary_headline": "Byrådet godkjenner protokoll fra møte 6. mai 2009",
+    "summary_body": "Byrådet i Bergen har godkjent protokollen fra møtet den 6. mai 2009. Møtet ble ledet av byrådsleder Monica Mæland, og det var ingen kontroverser eller dissent. Protokollen inneholder også innstillinger til bystyret om årsberetninger og regnskap for flere kommunale foretak, men ingen av disse sakene har umiddelbar lokal relevans."
+  }
+}

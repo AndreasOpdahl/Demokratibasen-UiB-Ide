@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:3371:32566:200202082:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:37:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal for residential development in a protected area raises significant local interest and potential impact on infrastructure."
+    },
+    "summary_headline": "Byrådet anbefaler reguleringsplan for boligfelt i LNF-område",
+    "summary_body": "Bergen kommune har mottatt en forespørsel fra Geir Totland om å regulere 10-12 daa til boligfelt på gnr 57 bnr 1, et område klassifisert som LNF. Byrådet anbefaler oppstart av reguleringsplan, til tross for tidligere vurderinger som frarådet dette. Argumentene for boligbygging inkluderer behovet for å unngå 'forgubbing' i området. Spørsmål om offentlig infrastruktur, som skolekapasitet, må avklares i planprosessen. Saken skal behandles av det faste utvalget for plansaker."
+  }
+}

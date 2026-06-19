@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2375:23253:200015794:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:24:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant changes to church organization in Bergen, which affects local community services."
+    },
+    "summary_headline": "Bergenhus bydelsstyre vedtar ny organisering av kirker i sentrum",
+    "summary_body": "Bergenhus bydelsstyre har besluttet å ta rapporten om prosjektet \"Kirken i Bergen i indre by\" til orientering, og foretrekker alternativ 2 fremfor alternativ 1. Korskirken vil bli tilgjengelig for Kirkens bymisjon som Åpen kirke, mens St Jacobs kirke skal brukes til student- og ungdomsarbeid. Mariakirken vil bli disponert for spesielle formål, inkludert turistbesøk. Bydelsstyret understreker at økonomi ikke bør være den eneste grunnen til omorganisering, og at nødvendige stillinger for å revitalisere menighetsarbeidet må bevilges."
+  }
+}

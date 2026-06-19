@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10664:68918:201316546:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:29:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to remain in ECAD and reject the Frankfurt resolution reflects significant political debate and local implications for drug policy."
+    },
+    "summary_headline": "Bergen bystyre beholder medlemskapet i ECAD etter politisk debatt",
+    "summary_body": "Bergen bystyre har besluttet å beholde medlemskapet i ECAD (European Cities Against Drugs) med 36 stemmer for, mens et forslag om å slutte seg til Frankfurt-resolusjonens prinsipper om skadereduksjon ble avvist med 32 stemmer mot. Bystyret understreker viktigheten av å være en del av et nasjonalt nettverk for erfaringsutveksling innen rusfeltet og ber byrådet om å gjennomgå ECADs charter på neste nasjonale møte. Dette vedtaket har betydning for hvordan Bergen vil håndtere ruspolitikk fremover."
+  }
+}

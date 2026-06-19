@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5983:51034:200720842:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:33:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves the relocation of students, which affects local families and schools."
+    },
+    "summary_headline": "Søreide skole flytter 7. klassinger til Rådalslien skole",
+    "summary_body": "Byrådet har besluttet at Søreide skole skal leie en fløy ved Rådalslien skole for 7. klassetrinn i skoleåret 2008/09. Elevene og lærerne vil fortsatt være under Søreide skoles ledelse, men må følge Rådalslien skoles ordensreglement. Elevene får rett til skoleskyss og ungdomsskoleplass ved Rådalslien til juni 2012. En arbeidsgruppe skal også vurdere opptaksgrensene i Fana og Ytrebygda bydel."
+  }
+}

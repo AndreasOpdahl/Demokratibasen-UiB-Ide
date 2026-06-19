@@ -1,0 +1,18 @@
+{
+  "dokument_id": "229102:3036278:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:04:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a municipal decision regarding the non-exercise of pre-emption rights on a property sale, which may affect local housing availability."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett ved salg av leiegård",
+    "summary_body": "Bergen kommune har besluttet å ikke gjøre forkjøpsrett gjeldende ved salget av leiegården på Voldene 7 B, som selges for NOK 10 500 000. Eiendommen, som inneholder fem leiligheter, har ikke fått støtte fra leietakerne til å danne borettslag, og kommunen vurderer beliggenheten som ikke prioritert for boligbygging. Byrådet for klima, miljø og byutvikling, ledet av Thor Haakon Bakke, anbefaler denne avgjørelsen, som ble fattet den 20. april 2021."
+  }
+}

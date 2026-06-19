@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3378:35333:200005212:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses changes in home care services with differing opinions on efficiency versus quality, indicating local relevance and potential impact."
+    },
+    "summary_headline": "Uenighet om effektivitet i hjemmetjenestene i Bergenhus",
+    "summary_body": "Bergenhus bydelsstyre har behandlet tiltak for å sikre effektivitet i hjemmetjenestene. Mens bydelsstyret enstemmig vedtok å ta saken til orientering, uttrykte Jan O. Jacobsen (RV) bekymring for at maksimal kvalitet og omsorg ikke blir prioritert. Han påpekte også at bruken av dyre konsulentfirmaer kan være en ineffektiv bruk av midler. Høyres forslag ble enstemmig vedtatt, og det ble besluttet å inkludere en hjemmehjelper i referansegruppen for videre diskusjon. Dette kan påvirke hvordan hjemmetjenester tilbys i kommunen."
+  }
+}

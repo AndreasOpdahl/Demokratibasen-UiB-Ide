@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:11231:72111:201124915:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:54:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural guidelines for submitting written questions to a municipal meeting, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra KMBY-møte",
+    "summary_body": "Dokumentet beskriver retningslinjene for innlevering av skriftlige spørsmål til Komite for miljø og byutvikling før møtet den 5. februar 2015. Medlemmer kan sende inn spørsmål til Bystyrets kontor senest en uke før møtet."
+  }
+}

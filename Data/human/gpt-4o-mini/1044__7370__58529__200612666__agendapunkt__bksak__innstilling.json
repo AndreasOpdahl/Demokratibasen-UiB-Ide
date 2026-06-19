@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:7370:58529:200612666:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:27:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a planning proposal for a commercial area, which is relevant to local residents but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Planforslag for Myrdalsvegen kontor og forretning legges ut til offentlig ettersyn",
+    "summary_body": "Opus Bergen AS har på vegne av Bergen Nord-Eiendom AS sendt inn et planforslag for et område på ca 3,7 daa ved Myrdalsvegen i Åsane bydel. Området er avgrenset av kommunale veier og inkluderer parkeringsareal både under bygget og på bakkeplan. Planen er nå til offentlig ettersyn frem til 14. juni 2010, men det legges ikke frem forslag til vedtak."
+  }
+}

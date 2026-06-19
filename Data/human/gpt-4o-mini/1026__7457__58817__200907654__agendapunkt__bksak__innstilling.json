@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7457:58817:200907654:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:19:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a controversial decision regarding a terrace construction that impacts local environmental regulations."
+    },
+    "summary_headline": "Byrådet anbefaler dispensasjon for terrasse i vernesone",
+    "summary_body": "Byrådet i Bergen har anbefalt å gi dispensasjon for bygging av en 27 m² terrasse på Herlandsvegen 129, til tross for tidligere avslag fra fagetaten. Terrassen, som vil bli plassert nær sjøen, har fått motstand fra Grønn Etat som advarer mot økt privatisering av strandsonen. Byrådet mener terrassen vil ha liten synlighet og privatiserende effekt, og at det foreligger særlige grunner for dispensasjon. Saken skal nå behandles av Komite for miljø og byutvikling."
+  }
+}

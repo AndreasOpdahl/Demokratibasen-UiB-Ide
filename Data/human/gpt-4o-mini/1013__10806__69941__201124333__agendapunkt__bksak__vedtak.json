@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10806:69941:201124333:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:58:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a coordinated proposal regarding teachers' working hours, which is relevant to local education policy."
+    },
+    "summary_headline": "Koordinert forslag om lærernes arbeidstid behandles i bystyret",
+    "summary_body": "Forretningsutvalget har behandlet interpellasjonene 8 og 9 om KS og lærernes arbeidstid, med et samordnet forslag fra Arbeiderpartiet, SV og Rødt. Interpellasjonen fra Sondre L. Båtstrand er trukket. Bystyret skal behandle disse interpellasjonene i morgen, og byrådet får to minutter til å svare."
+  }
+}

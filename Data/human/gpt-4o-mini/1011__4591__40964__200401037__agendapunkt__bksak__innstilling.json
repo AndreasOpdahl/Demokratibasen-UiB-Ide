@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1011:4591:40964:200401037:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:52:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document lacks specific details and does not present any newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra styret for Bergen Bygg og Eiendom KF",
+    "summary_body": "Dokumentet er en referanse til et møte i styret for Bergen Bygg og Eiendom KF, men inneholder ingen konkrete beslutninger eller saker av offentlig interesse."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "26fe8c1b-1e2c-58e1-96e3-60b77febde66",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:56:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines an upcoming meeting with several relevant topics, including a proposal for an anonymous reporting channel in schools."
+    },
+    "summary_headline": "Forslag om anonym varslingskanal i skoler diskuteres i Bergen",
+    "summary_body": "Utvalg for barnehage, skole og idrett i Bergen kommune skal møtes 4. november 2025 for å behandle flere saker. Blant dem er et representantforslag fra Camilla Nøttveit (H) og andre om å etablere en anonym varslingskanal i barne- og ungdomsskolene. Møtet vil også inkludere orientering om budsjettforslaget fra byrådene. Dette kan ha betydning for hvordan elever kan rapportere om problemer i skolen."
+  }
+}

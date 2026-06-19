@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227252:2651020:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:58:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a written question regarding a strategy, but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Skriftlig spørsmål om Dokken-strategi",
+    "summary_body": "Sofie Marhaug (R) har stilt et skriftlig spørsmål om den overordnede strategien for Dokken til byråd Thor Haakon Bakke. Saken ble behandlet av Utvalg for miljø og byutvikling den 11. februar 2021."
+  }
+}

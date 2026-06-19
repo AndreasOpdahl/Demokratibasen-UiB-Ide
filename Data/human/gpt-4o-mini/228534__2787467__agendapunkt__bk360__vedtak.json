@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228534:2787467:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:01:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal addresses future care needs for the elderly population in Bergen, highlighting a significant local issue."
+    },
+    "summary_headline": "Eldrerådet foreslår omsorgsboliger på Dokken for 2050",
+    "summary_body": "Eldrerådet har i sitt møte 7. april 2021 behandlet en strategi for Dokken 2050, hvor de foreslår å sette av plass til omsorgsboliger og sykehjem. De understreker at selv om eldre blir friskere, vil behovet for omsorg og boliger øke ettersom befolkningen eldes. Eldrerådet ønsker en samlokalisering av omsorgsboliger med aktiviteter for barn og unge, for å sikre at eldre kan bo sentralt og opprettholde kontakten med pårørende."
+  }
+}

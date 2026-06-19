@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:11535:73309:201518130:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:29:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposed changes to the pricing list for 2016 include environmental incentives, which could impact local shipping practices."
+    },
+    "summary_headline": "Miljørabatt på anløpsavgift vedtatt av Havnestyret",
+    "summary_body": "Havnestyret i Bergen og Omland Havnevesen har vedtatt en ny prisliste for 2016 som inkluderer miljørabatt på anløpsavgift for skip som benytter landsstrøm eller LNG. Rabatten på kaivederlag økes med 20 prosent for miljøvennlige skip, mens det foreslås en generell økning på 3-4 prosent i kaivederlag. I tillegg fjernes varevederlaget for sjøuavhengig last. Endringene har som mål å redusere luftutslippene i Bergen. Det planlegges en større revisjon av prislisten fra 2017."
+  }
+}

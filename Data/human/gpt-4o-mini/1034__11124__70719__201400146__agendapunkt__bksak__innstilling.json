@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:11124:70719:201400146:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:53:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a meeting plan for the Elder Council, which has limited immediate impact on the broader community."
+    },
+    "summary_headline": "Eldrerådet vedtar møteplan for høsten 2014",
+    "summary_body": "Eldrerådet i Bergen har vedtatt møteplanen for 2. halvår 2014, som inkluderer temamøte om Morgendagens aktivitetssenter den 18. august. Møtene er planlagt i samsvar med Komite for helse og sosial sine datoer. Temamøtet vil også inkludere deltakelse fra kommunalråd og direktører for samarbeid om et forskningsprosjekt fra Norsk pensjonsforbund."
+  }
+}

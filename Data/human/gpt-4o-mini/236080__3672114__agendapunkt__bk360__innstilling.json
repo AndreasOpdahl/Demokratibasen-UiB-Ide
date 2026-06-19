@@ -1,0 +1,18 @@
+{
+  "dokument_id": "236080:3672114:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:20:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural changes in the Elder Council but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Eldrerådet innfører muntlige innlegg i møter",
+    "summary_body": "Eldrerådet har besluttet å innføre en ordning med forberedte muntlige innlegg fra medlemmene i hvert møte, med to innspill per møte. Dette ble vedtatt under møtet den 23. september. Medlemmene, inkludert Ellinor Hjertaas og Knut Gullaksen, vil bidra med innspill til relevante saker, som kan påvirke fremtidige rådssaker. Informasjonen fra møtet tas til orientering."
+  }
+}

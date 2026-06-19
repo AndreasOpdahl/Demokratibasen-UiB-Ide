@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:11307:71575:200514097:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:57:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses procedural changes and minor inquiries but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Endringer i møteinnkallinger og spørsmål om bebyggelse i C.Sundtsgate 15",
+    "summary_body": "Bergen kommunes råd har foreslått en møteplan for våren 2015, med møter planlagt fra januar til juni. Administrasjonen informerte om at møteinnkallinger fremover vil bli sendt ut digitalt for å redusere kostnader og avfall, et tiltak i tråd med kommunens papirløse politikk. Representant Glambek Bøe stilte spørsmål ved rivingen av bygningen i C.Sundtsgate 15 og foreslo at området kunne brukes som fellesarealer i stedet for reetablering."
+  }
+}

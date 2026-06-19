@@ -1,0 +1,18 @@
+{
+  "dokument_id": "ae3096fe-bd14-5414-9a4c-7f216f606f03",
+  "kommune_nummer": 4627,
+  "kommune_navn": "Askøy",
+  "generated_at": "2026-02-19 23:16:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine administrative matter with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Askøyhallene KF",
+    "summary_body": "Dokumentet er en samlesak for referatsaker fra Askøyhallene KF, datert 6. november 2025, og skal behandles den 12. november 2025."
+  }
+}

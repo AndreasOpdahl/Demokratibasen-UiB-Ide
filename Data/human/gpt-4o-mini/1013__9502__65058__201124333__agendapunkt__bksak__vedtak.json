@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:9502:65058:201124333:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:18:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document highlights concerns about meeting overload and potential impacts of a strike on municipal meetings."
+    },
+    "summary_headline": "Frustrasjon over saksmengde i KMBY og streikeeffekter på møter",
+    "summary_body": "Under møtet i Forretningsutvalget ble det uttrykt frustrasjon over den store saksmengden i KMBY, med Julie Andersland (V) som påpekte at mange saker kommer for sent til behandling. Dag Skansen (H) nevnte muligheten for ekstra møter for å håndtere sakene. I tillegg ble det informert om at streiken kan påvirke møtene de kommende ukene, men at Rådhuset vil være åpent under komitemøtene i uke 23."
+  }
+}

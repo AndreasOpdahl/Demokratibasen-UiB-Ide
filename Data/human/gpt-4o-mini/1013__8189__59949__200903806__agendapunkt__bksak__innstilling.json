@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:8189:59949:200903806:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:16:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines several hearings but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Høringer om familievern og retningslinjer for gravide i LAR",
+    "summary_body": "Bergen kommune har sendt ut høringer om flere saker, inkludert samordning av Familievernkontoret i Fana og Straume, samt utkast til nasjonal retningslinje for gravide i LAR. Høringen omfatter også revidert håndbok for rekkverk og vegens sideområder, samt GeoIntegrasjon. Disse høringene er viktige for berørte familier og kan påvirke lokale tjenester."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3543:34676:200003826:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:46:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a new alcohol serving license application, which is relevant to local businesses and residents."
+    },
+    "summary_headline": "Ny skjenkebevilling for Teatergarasjen vurderes",
+    "summary_body": "Rusmiddelpolitisk råd anbefaler å gi Teatergarasjen i Nøstegaten 54 ny alminnelig skjenkebevilling for øl, vin og brennevin, samt utvidelse av skjenkearealet. Dette kan påvirke lokale innbyggere og næringsliv, og saken er nå til vurdering av byrådsavdelingen for finans."
+  }
+}

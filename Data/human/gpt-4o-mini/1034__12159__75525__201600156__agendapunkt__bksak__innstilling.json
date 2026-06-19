@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:12159:75525:201600156:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:54:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of minutes from a past meeting, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av protokoll fra eldrerådsmøtet",
+    "summary_body": "Protokollen fra eldrerådsmøtet den 24. februar 2016 ble godkjent. Dette er en rutinemessig godkjenning uten kontroverser eller nye beslutninger."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "237268:3774249:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:22:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The interpellation addresses outdoor opportunities for residents but lacks a decision or controversy."
+    },
+    "summary_headline": "Interpellasjon om friluftsmuligheter i Bergen uten vedtak",
+    "summary_body": "Grete Line Simonsen og Julie Andersland fra Venstre har stilt spørsmål til byrådet om hvordan de jobber for å tilrettelegge for gode tur- og friluftsmuligheter for hele Bergens befolkning. Byrådet, representert ved Thor Haakon Bakke, svarte på interpellasjonen under bystyremøtet 27. april 2022, men det ble ikke fattet noe vedtak i saken."
+  }
+}

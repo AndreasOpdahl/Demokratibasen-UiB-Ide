@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:2043:22745:200000472:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:45:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document details the appointment of new members to various committees following a political change, which is relevant to local governance."
+    },
+    "summary_headline": "Nils Arild Johnsen fratrer verv og nye medlemmer velges i Årstad bydelsstyre",
+    "summary_body": "Bystyret i Bergen har enstemmig vedtatt å godta Nils Arild Johnsen (SP) sin fratredelse fra kommunale verv i forbindelse med hans oppnevnelse som byråd. Som følge av dette er det valgt nye medlemmer til Årstad bydelsstyre og andre komiteer for den perioden Johnsen fungerer som byråd. Øydis Rydland (Sp) er blant de som er valgt inn i flere av disse vervene. Dette skiftet i ledelse kan påvirke lokalpolitikken i Årstad og er av interesse for innbyggerne."
+  }
+}

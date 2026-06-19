@@ -1,0 +1,18 @@
+{
+  "dokument_id": "229172:2851558:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:05:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a legal review of a city council decision regarding a significant infrastructure project."
+    },
+    "summary_headline": "Lovlighetskontroll av bystyrets vedtak om Bybanen til Åsane",
+    "summary_body": "Forretningsutvalget har enstemmig besluttet å oversende kravet om lovlighetskontroll av bystyrets vedtak i sak 82/21, som omhandler trasévurderingen for Bybanen til Åsane. Byrådet skal vurdere kravet og sende et notat før det behandles av utvalg for miljø og byutvikling den 6. mai 2021. Bystyret vil ta stilling til kravet i sitt møte den 20. mai 2021. Dette kan påvirke fremdriften av Bybanen, et prosjekt som er av stor interesse for innbyggerne i Bergen."
+  }
+}

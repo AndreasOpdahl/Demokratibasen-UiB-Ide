@@ -1,0 +1,18 @@
+{
+  "dokument_id": "245684:4901946:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:43:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document outlines significant urban development plans for the Bybanen project, which will impact transportation, environment, and local communities in Bergen."
+    },
+    "summary_headline": "Bybanen til Åsane: Stort reguleringsprosjekt vedtatt av byrådet",
+    "summary_body": "Byrådet har vedtatt reguleringsplaner for Bybanen fra sentrum til Åsane, inkludert forlengelse av Fløyfjellstunnelen og hovedsykkelrute. Prosjektet, som er en del av Miljøløftet, vil forbedre kollektivtransporten og redusere biltrafikken i Bergen. Det er planlagt riving av 29 boligeiendommer og 24 næringseiendommer for å realisere prosjektet. Bybanen forventes å betjene 60 000 reisende daglig innen 2040. Kostnadene er estimert til 21,2 milliarder NOK. Byrådet understreker prosjektets betydning for bærekraftig byutvikling og miljøvennlig transport."
+  }
+}

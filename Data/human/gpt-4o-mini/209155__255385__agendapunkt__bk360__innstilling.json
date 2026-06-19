@@ -1,0 +1,18 @@
+{
+  "dokument_id": "209155:255385:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:18:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses a significant issue regarding Kurdish language education in Bergen, affecting a notable portion of the population."
+    },
+    "summary_headline": "Manglende kurdisk morsmålsopplæring bekymrer Rødt i Bergen",
+    "summary_body": "Rødt har stilt spørsmål til byråden om kurdisk morsmålsopplæring i Bergen kommune, da mange kurdiskspråklige innbyggere ikke får tilbud om undervisning. Ifølge kommunen mangler det lærere i 31 språk, og det er usikkerhet om behovet for morsmålsundervisning. Rødt frykter at opp mot 120 elever kan kvalifisere for kurdisk undervisning, men kommunen har ikke kapasitet til å tilby dette. Rødt etterspør kartlegging av interessen for kurdisk opplæring og muligheten for å lyse ut stillinger for kurdiske lærere."
+  }
+}

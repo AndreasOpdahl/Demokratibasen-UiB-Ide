@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:577:3972:200390439:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:09:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to the toll system in Bergen, which will impact residents financially and logistically."
+    },
+    "summary_headline": "Bystyret vedtar nytt takst- og rabattsystem for bompengeringen i Bergen",
+    "summary_body": "Bergen bystyre har vedtatt et nytt takst- og rabattsystem for bompengeringen, som inkluderer et tak på 50 passeringer per måned for storbrukere og fritak for bompenger på søndager og helligdager. Bystyret understreker at inntektene fra bompengeavtalen skal støtte Bergensprogrammet, som omfatter bygging av Bybanen og Ringvei Vest. Det er også enighet om å evaluere systemet etter ett år. FrP uttrykte motstand mot bompengefinansiering, mens SV og RV ønsker at inntektene skal gå til kollektivtransport og miljøtiltak. Vedtaket kan påvirke mange innbyggere i Bergen, spesielt de som bruker bomstasjonene hyppig."
+  }
+}

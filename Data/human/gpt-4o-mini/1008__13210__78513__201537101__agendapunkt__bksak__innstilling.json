@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:13210:78513:201537101:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:33:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document contains significant decisions regarding public spending and community impact."
+    },
+    "summary_headline": "Bergen kommune godkjenner eiendomsskattfritak for flere organisasjoner",
+    "summary_body": "Bergen bystyre har vedtatt å frita Alvøen Roklubb, Salhus båtlag og Skjoldtun barnehage for eiendomsskatt fra 1. januar 2017. Alvøen Roklubb får fritak på eiendom med en skattetakst på 2.229.000 kroner, mens Salhus båtlag og Skjoldtun barnehage får fritak på henholdsvis 1.313.000 kroner og 8.286.000 kroner. Fritakene bortfaller dersom eiendommene endres i bruk. Dette tiltaket vil ha direkte økonomisk innvirkning på de berørte organisasjonene og kan påvirke lokalsamfunnet i Bergen."
+  }
+}

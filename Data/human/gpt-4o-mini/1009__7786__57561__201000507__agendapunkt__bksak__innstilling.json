@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7786:57561:201000507:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:38:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a new alcohol license for a restaurant in a central location is relevant and impactful for local residents."
+    },
+    "summary_headline": "Ny skjenkebevilling innvilget for Espressamente Illy på Torget 2",
+    "summary_body": "Byrådet har innvilget søknaden fra Torget Kaffehus AS om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Espressamente Illy, Torget 2, frem til 30. juni 2012. Det omsøkte arealet, som tidligere var Baker Brun og Åpen Bar(t), vil ha 130 gjesteplasser, hvorav 30 er til uteservering. Byråden for helse og inkludering, Christine B. Meyer, støtter innstillingen basert på at stedet vil ha en forventet matomsetning på 35 %. Før bevillingen kan tas i bruk, må flere dokumenter sendes inn til Kontor for skjenkesaker."
+  }
+}

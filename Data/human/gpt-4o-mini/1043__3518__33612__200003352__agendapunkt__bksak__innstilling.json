@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:3518:33612:200003352:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:19:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine application for a sales license without any significant controversy or impact."
+    },
+    "summary_headline": "Ingen merknader til salgsbevilling for øl i Årstad",
+    "summary_body": "Årstad bydelsstyre har behandlet en søknad om salgsbevilling for øl ved Kiwi 865 på Bjørnsonsgt. 29, som er nødvendig i forbindelse med overdragelse av virksomheten. Det er tidligere vært bevilling på stedet, og bydelsstyret har ingen merknader til søknaden. Beslutningen ble fattet den 20. januar 2003."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:6391:52446:200711084:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:15:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision regarding building regulations and local heritage preservation, impacting the homeowner's rights and community standards."
+    },
+    "summary_headline": "Byrådet gir dispensasjon for takreparasjon i Åsane",
+    "summary_body": "Byrådet har besluttet å oppheve tidligere avslag på en søknad om reparasjon av taket på Tellevikvegen 1 i Åsane. Klageren, representert av Jussformidlingen, ønsket å bytte fra skifer til sementtakstein og installere tre takvinduer. Byrådet innvilget dispensasjon fra reguleringsplanens bevaringsbestemmelser, men krever at vinduene plasseres i samsvar med byantikvarens anbefalinger. Dette vedtaket kan påvirke andre eiendommer i området og setter presedens for fremtidige saker om bygningstilpasninger."
+  }
+}

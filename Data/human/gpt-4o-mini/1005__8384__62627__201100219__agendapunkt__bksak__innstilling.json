@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8384:62627:201100219:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:19:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant infrastructure planning for the E39 highway, which will impact local transportation and economic integration."
+    },
+    "summary_headline": "Bergen kommune støtter indre konsept for E39 mellom Stord og Bergen",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til konseptvalgsutredningen (KVU) for E39 Aksdal - Bergen, hvor de anbefaler det indre konseptet K5B for videre arbeid. Dette alternativet vil styrke kommunikasjonen mellom Stavanger og Bergen, og er i tråd med tidligere anbefalinger fra Stortinget. Byrådet understreker behovet for rask avklaring av trasevalget og høy prioritet for Kyststamvegen, som er avgjørende for regional utvikling. Fristen for uttalelse er 1. november 2011."
+  }
+}

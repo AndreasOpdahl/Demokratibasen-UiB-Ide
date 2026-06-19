@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10503:68332:201300152:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:42:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The sale of shares is a routine administrative decision with low local impact."
+    },
+    "summary_headline": "Bergen kommune selger aksjer i Novel Diagnostics AS",
+    "summary_body": "Bergen kommune har besluttet å selge sin aksjepost i Novel Diagnostics AS til styremedlem Christian Horn for 3,90 kroner. Dette ble vedtatt av byrådet i møte den 13. september 2019."
+  }
+}

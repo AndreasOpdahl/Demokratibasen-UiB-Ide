@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10671:70865:201412314:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:31:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision on advance voting locations and the evaluation of the election process is significant for local residents."
+    },
+    "summary_headline": "Bystyret vedtar forhåndsstemmelokaler for valget 2015",
+    "summary_body": "Bergen bystyre har besluttet at kommunestyre- og fylkestingsvalget skal avholdes mandag 14. september 2015. Bystyret ber valgstyret vurdere flere forhåndsstemmelokaler, inkludert Strax-huset, Haukeland Universitetssykehus, Fanatorget og Kulturhuset i Ytre Arna, for å gjøre det lettere for innbyggerne å stemme. Det ble også vedtatt at gjennomføringen av valget skal evalueres for å forbedre tilgjengeligheten i fremtiden. Torstein Dahles forslag om å avholde valget over to dager fikk kun to stemmer og ble forkastet."
+  }
+}

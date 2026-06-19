@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1015:3424:34291:200104841:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:20:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a positive decision regarding educational inclusivity, which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Fyllingsdalen bydelsstyre prioriterer inkluderende læringsmiljø",
+    "summary_body": "Fyllingsdalen bydelsstyre har enstemmig vedtatt å støtte arbeidet med å utvikle et inkluderende skolemiljø for elever med samhandlingsvansker. Bydelsstyret anerkjenner viktigheten av å behandle problemstillingene knyttet til læringsmiljøet grundig. Dette vedtaket vil påvirke skolene i Fyllingsdalen, som fortsetter å prioritere inkludering av alle elever."
+  }
+}

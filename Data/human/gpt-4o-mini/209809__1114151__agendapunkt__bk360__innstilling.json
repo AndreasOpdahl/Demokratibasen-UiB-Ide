@@ -1,0 +1,18 @@
+{
+  "dokument_id": "209809:1114151:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:19:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a new alcohol license application for a local venue, which has implications for community safety and local nightlife."
+    },
+    "summary_headline": "Loulou får skjenkebevilling med aldersgrenser og vakthold",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Loulou på Nedre Ole Bulls Plass 4, tidligere kjent som Metro. Bevillingshaver er Rekom Norge Drift AS, og skjenketiden er satt til kl. 02.30. Det er innført aldersgrenser på 21 år etter kl. 21.00 natt til lørdag og 23 år natt til søndag. Politiet har anbefalt vilkår om vakthold etter kl. 23.00. Søknaden gjelder frem til 30. juni 2020, og det er krav om gratis vann i lokalet."
+  }
+}

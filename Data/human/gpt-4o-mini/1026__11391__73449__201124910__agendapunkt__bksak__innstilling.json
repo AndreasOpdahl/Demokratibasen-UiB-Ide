@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:11391:73449:201124910:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:56:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural information regarding oral questions in a committee meeting, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Muntlige spørsmål til KMBY-møte",
+    "summary_body": "Dokumentet beskriver prosedyren for muntlige spørsmål som stilles til byråden under møtet i Komite for miljø og byutvikling. Spørsmålene må sendes elektronisk for å bli registrert, og det er ingen spesifikke saker eller kontroverser nevnt."
+  }
+}

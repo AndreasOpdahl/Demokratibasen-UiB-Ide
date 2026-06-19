@@ -1,0 +1,18 @@
+{
+  "dokument_id": "219590:1926533:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:41:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses funding for youth initiatives, which is relevant but not highly controversial or impactful."
+    },
+    "summary_headline": "Byrådet anbefaler tilskudd til åpne møteplasser for barn og unge",
+    "summary_body": "Byrådet i Bergen har i møte 12. mars 2020 behandlet saken om støtte til «Åpne møteplasser for barn og unge». De anbefaler Barne-, ungdoms- og familiedirektoratet (Bufdir) å tildele tilskudd til årets søkere. Dette tiltaket er viktig for å skape trygge og inkluderende møteplasser for unge i kommunen."
+  }
+}

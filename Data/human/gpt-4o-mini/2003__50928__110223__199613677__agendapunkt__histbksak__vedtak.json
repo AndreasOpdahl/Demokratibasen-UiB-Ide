@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50928:110223:199613677:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:33:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves significant public spending and environmental responsibility, impacting local transport."
+    },
+    "summary_headline": "Bergen kommune krever refusjon for miljødiesel fra Hordaland fylkeskommune",
+    "summary_body": "Formannskapet i Bergen kommune har enstemmig vedtatt å ta opp igjen saken om refusjon for merkostnader knyttet til bruk av miljødiesel og trolleybusser. Dette skjer etter at Hordaland fylkeskommune tidligere avslo søknaden fra busselskapene Vest Trafikk, Pan Trafikk og Bergen Sporvei. Formannskapet forventer at fylkeskommunen tar ansvar for å redusere utslippene fra kollektivtrafikken i Bergensområdet. Saken vil bli fremmet for behandling i de relevante organene i fylkeskommunen."
+  }
+}

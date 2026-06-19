@@ -1,0 +1,18 @@
+{
+  "dokument_id": "249250:6296376:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:53:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural decision regarding the budget process, which is routine and lacks significant controversy."
+    },
+    "summary_headline": "Bystyret enstemmig vedtar budsjettopplegg for 2024",
+    "summary_body": "Forretningsutvalget i Bergen kommune har enstemmig vedtatt opplegget for behandling av budsjettet for 2024 i bystyrets organer. Møtet fant sted 14. november 2023, hvor representantene Ingrid Nergaard Fjeldstad (V) og Trond Tystad (BL) deltok. Det er ingen dissent eller kontrovers knyttet til vedtaket."
+  }
+}

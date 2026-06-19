@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212599:1018427:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:27:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document raises significant concerns about the transition from AAP to social assistance, highlighting a lack of data and potential insensitivity towards affected individuals."
+    },
+    "summary_headline": "Kritikk av byrådets håndtering av AAP-overganger til sosialhjelp",
+    "summary_body": "Oddny Irene Miljeteig (SV) stiller spørsmål til byråden om antallet personer som har måttet gå fra arbeidsavklaringspenger (AAP) til økonomisk sosialhjelp siden 1. januar 2018. Hun uttrykker bekymring over manglende registrering av disse tallene hos NAV og kritiserer byrådets forslag om tiltak for å øke sosial kompetanse hos de berørte. Miljeteig påpeker at mange av disse personene ikke mangler sosial kompetanse, men rett og slett trenger økonomisk støtte. Hun ber om konkrete svar fra byråden om antall overganger og hvilke tiltak kommunen tilbyr for å hjelpe disse innbyggerne."
+  }
+}

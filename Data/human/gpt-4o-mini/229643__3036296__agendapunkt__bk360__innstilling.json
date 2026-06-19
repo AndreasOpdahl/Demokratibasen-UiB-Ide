@@ -1,0 +1,18 @@
+{
+  "dokument_id": "229643:3036296:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:05:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant extension of a liquor license for a local café, which impacts local residents and businesses."
+    },
+    "summary_headline": "Café Ambrosia får utvidet skjenkeareal med trikkevogn",
+    "summary_body": "Byrådet har innvilget søknaden fra Café Ambrosia om utvidelse av skjenkearealet innendørs med en trikkevogn på 22 kvm. Utvidelsen, som gjelder fra kl. 18.00 alle dager, er godkjent uten merknader fra politiet eller sosiale tjenester. Den totale skjenkearealet vil nå være 115 kvm, og bevillingen gjelder frem til 31. desember 2021. Byråden, Beate Husa, understreker at dette tiltaket er i tråd med kommunens retningslinjer for skjenking av alkohol."
+  }
+}

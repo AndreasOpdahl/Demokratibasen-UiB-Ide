@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:6539:54064:200603885:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:11:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant climate action program with various projects affecting local residents."
+    },
+    "summary_headline": "Bystyret godkjenner handlingsprogram for Framtidens byer med fokus på klima",
+    "summary_body": "Bergen bystyre har vedtatt \"Handlingsprogram for Framtidens byer\" for perioden 2009-2014, som omfatter tiltak innen areal og transport, stasjonær energi, forbruksmønster og avfall, samt tilpasning til klimaendringer. Bystyret vil årlig rapportere om fremdrift og resultater. Det ble fremsatt merknader fra Geir Steinar Dale (A) som fikk støtte fra SV, KrF og V, om å inkludere Ungdommens bystyre i prosjektgjennomføringen. Flere ambisiøse tiltak ble foreslått, inkludert reguleringsplaner for bybane og tiltak for å redusere lokal luftforurensning. Bystyret vil også sikre åpenhet og demokratisk deltakelse i prosessen."
+  }
+}

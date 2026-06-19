@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:2913:28947:200101079:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:36:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant proposal to change land use from public green space to residential housing, which could impact local residents."
+    },
+    "summary_headline": "Byrådet vurderer endring av friluftsområde til boligformål på Landås",
+    "summary_body": "Byrådet har besluttet å ta opp forespørselen fra Kristi Fantoft Tuastad om å endre kommunedelplanen for Landås, som i dag avsetter gnr. 12, bnr. 255 til friluftsområde, til boligformål. Dette området ligger mellom studentbyene på Fantoft og Nattland. Planavdelingen har advart mot endringen, da området brukes til lek og opphold for studentene, men Byrådet mener det er rimelig å vurdere saken på nytt, gitt tidligere reguleringer og avtaler med grunneier. Neste steg er at komiteen for miljø og byutvikling skal behandle saken."
+  }
+}

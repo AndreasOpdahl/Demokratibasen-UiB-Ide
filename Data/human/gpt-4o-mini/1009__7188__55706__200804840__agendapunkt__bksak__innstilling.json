@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7188:55706:200804840:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:36:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The project aims to engage children in urban planning, which has significant local relevance and impact."
+    },
+    "summary_headline": "Barnetråkkregistrering videreføres i Bergen for å styrke barns medvirkning",
+    "summary_body": "Byrådet i Bergen har besluttet å videreføre prosjektet \"Barnetråkkregistrering\", som involverer barn og unge i kartlegging av deres bruk av offentlige uterom. Prosjektet, som er et samarbeid med Norsk form, har som mål å gi barn en stemme i planleggingen av deres nærmiljø. Tidligere registreringer har blitt gjennomført ved Ny Krohnborg skole og Søreide skole, og denne våren ble det også gjort på Gimle, Slettebakken og Paradis skoler. Flere skoler er invitert til å delta i høst. Byrådet ser dette som en viktig strategi for å ivareta barn og unges interesser, spesielt i områder med lavere levekårsindikatorer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:4042:38136:200403974:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:31:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document presents an informational presentation without any significant decisions or controversies."
+    },
+    "summary_headline": "Orientering om forvaltningsrevisjonsprosjektet i Bergen kommune",
+    "summary_body": "Kontrollutvalget har fått en orientering om forvaltningsrevisjonsprosjektet knyttet til økonomistyring i Bergen kommune. Presentasjonen ble gjennomført via PowerPoint, men det foreligger ingen saksutredning eller innstilling."
+  }
+}

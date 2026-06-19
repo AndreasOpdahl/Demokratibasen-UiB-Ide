@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5649:50438:200716892:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:13:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document contains multiple inquiries from council members regarding local issues, indicating ongoing discussions that may affect residents."
+    },
+    "summary_headline": "Spørsmål om Kaland gård og strandsonen preger møte i Komite for miljø og byutvikling",
+    "summary_body": "I møtet 10. april 2008 stilte flere medlemmer i Komite for miljø og byutvikling spørsmål til byråden om aktuelle saker. Wencke Hystad (H) etterlyste status for familiene fra Hatlestad-ulykken som venter på å etablere seg på Kaland gård, og spurte om det har vært avholdt meglingsmøte med fylkesmannen. Idar Nummedal (FrP) tok opp behovet for å fullføre Møhlenpris fotballbane, mens Åge Chr. Jacobsen (SV) spurte om byrådens holdning til et nytt lovforslag om forvaltning av strandsonen. Ruth Grung (A) ønsket informasjon om Sotra sambandet og prosessen videre. Byrådene Øistein Christoffersen og Lisbeth Iversen besvarte spørsmålene, men det ble ikke rapportert om spesifikke beslutninger eller tidsrammer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212418:1109062:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:26:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal to reverse the cut in the area norm for children in kindergartens raises significant health concerns and has a history of controversy."
+    },
+    "summary_headline": "Forslag om å reversere arealnorm for barnehagebarn avvist av forretningsutvalget",
+    "summary_body": "Forretningsutvalget har avvist et privat forslag fra Sofie Marhaug (R) om å reversere kuttet i arealnormen for barn under tre år i barnehager. Forslaget, som skulle heve arealnormen fra 5 til 5,3 kvadratmeter per barn, ble ansett som ikke i samsvar med de formelle kravene for private forslag. Bystyredirektøren påpekte at forslaget ikke kunne fremmes da det ligner på tidligere behandlede saker. Bakgrunnen for forslaget er bekymringer fra fagforeninger og helseetat om at redusert areal kan være helsemessig uforsvarlig. Dette er relevant for foreldre og barnehageansatte i Bergen, spesielt med tanke på barnas trivsel og helse."
+  }
+}

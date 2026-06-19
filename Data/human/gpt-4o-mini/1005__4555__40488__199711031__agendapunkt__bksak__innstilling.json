@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4555:40488:199711031:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:55:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant urban development project that will convert industrial land to residential use, impacting local housing availability."
+    },
+    "summary_headline": "Reguleringsplan for Håkonshella: 110 nye boliger foreslås i Laksevåg",
+    "summary_body": "Byrådet har innstilt til bystyret om å vedta en reguleringsplan som omregulerer industriområder til boligformål i Håkonshella, Laksevåg. Planen innebærer bygging av ca. 110 nye boligenheter og er et resultat av en langvarig prosess som startet i 1998. Det er også planlagt areal for allmennyttige formål og oppgradering av Håkonshellavegen. Byrådet understreker viktigheten av å sikre trafikksikring og håndtering av forurensning før byggestart. Planen vil bli behandlet av bystyret, og det er forventet at utbyggingen vil påvirke boligmarkedet i området."
+  }
+}

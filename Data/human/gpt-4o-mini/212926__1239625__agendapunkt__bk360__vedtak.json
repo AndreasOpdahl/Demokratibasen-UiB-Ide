@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212926:1239625:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:28:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is procedural with no significant impact or controversy."
+    },
+    "summary_headline": "Kontrollutvalget godkjenner KPMG-rapport om innkjøp",
+    "summary_body": "Kontrollutvalget behandlet KPMG sin evaluering av innkjøpsområdet i møte 21. mai 2019. Rapporten, datert 11. februar 2019, ble enstemmig tatt til orientering uten noen dissent eller kontrovers."
+  }
+}

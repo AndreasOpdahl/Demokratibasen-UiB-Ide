@@ -1,0 +1,18 @@
+{
+  "dokument_id": "f2f86e62-1918-5f1f-a1c3-7daeec18926d",
+  "kommune_nummer": 4623,
+  "kommune_navn": "Samnanger",
+  "generated_at": "2026-02-19 23:24:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural approval with no significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av innkalling og sakliste i Formannskapet",
+    "summary_body": "Formannskapet i Samnanger godkjente innkallingen og saklista under møtet den 5. juni 2025. Ordfører Karl Bård Kollbotn (FRP) foreslo endringer i rekkefølgen av sakene, som ble enstemmig vedtatt. Det var ingen kommentarer eller spørsmål til innkallingen."
+  }
+}

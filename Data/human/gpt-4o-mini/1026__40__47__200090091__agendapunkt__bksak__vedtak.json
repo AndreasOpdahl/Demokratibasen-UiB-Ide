@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:40:47:200090091:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:02:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property sale is significant for local housing policy."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på leiegård i Lyder Sagensgate 20",
+    "summary_body": "Bergen kommune har besluttet å ikke gjøre forkjøpsrett gjeldende ved overdragelse av leiegården i Lyder Sagensgate 20. Byrådet anbefalte ikke kjøpet, og komiteen for miljø og byutvikling vedtok dette med 1 stemme imot (RV). Dette kan påvirke boligmarkedet i området, og beslutningen ble fattet under møte 24. august 2000."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:5836:50303:200801463:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:19:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a local activity plan for the Arna district council, which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Arna bydelsstyre vedtar aktivitetsplan for 2008",
+    "summary_body": "Arna bydelsstyre har vedtatt en aktivitetsplan for 2008, som inkluderer møter og temamøter for bydelsrepresentantene. Planen er et levende dokument som kan justeres etter behov, og det er lagt opp til felles opplæringssamlinger for alle bydelsstyrerepresentanter. Det er også planlagt temamøter med politiske organer for å avklare samarbeidet mellom dem. Neste steg er å tilpasse aktivitetene i tråd med innspill fra bydelsstyret."
+  }
+}

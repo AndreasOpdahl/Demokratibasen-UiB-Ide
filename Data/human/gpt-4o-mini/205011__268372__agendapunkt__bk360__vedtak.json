@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205011:268372:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:06:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal for a new collective terminal in Laksevåg has significant local relevance and potential impact on residents."
+    },
+    "summary_headline": "Ny kollektivterminal i Laksevåg på høring",
+    "summary_body": "Byrådet har besluttet å sende forslag til områderegulering for en ny kollektivterminal i Laksevåg ut på høring. Dette inkluderer også en grønnstruktur ved Rv 555 Storavatnet. Det er planlagt videre arbeid for å redusere terrenginngrepene knyttet til terminalen, og et alternativ B for utfylling i Storavatnet skal utarbeides og legges ut til offentlig ettersyn. Innbyggerne i Laksevåg oppfordres til å delta i høringen."
+  }
+}

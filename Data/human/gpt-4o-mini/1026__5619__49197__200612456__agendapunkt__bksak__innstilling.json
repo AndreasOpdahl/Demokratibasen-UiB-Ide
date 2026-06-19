@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5619:49197:200612456:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:12:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision regarding land use and potential development in a protected coastal area, which affects local residents."
+    },
+    "summary_headline": "Byrådet anbefaler dispensasjon for fradeling av parsell ved Sørfjorden",
+    "summary_body": "Byrådet har anbefalt å gi dispensasjon fra plan- og bygningsloven for fradeling av en parsell på 520 m² ved Sørfjorden, til tross for tidligere avslag. Klagen ble sendt inn av Aqua Farms AS og Jon Henry Arnesen etter at søknaden ble avslått på grunn av reguleringer mot bygging i 100-metersbeltet langs sjøen. Byrådet mener at formålet med delingen, som ikke er å bebygge tomten, ikke vil skade intensjonen bak reguleringen. Saken vil bli behandlet av Komité for miljø og byutvikling, og en eventuell fremtidig byggesøknad vil fortsatt kreve dispensasjon."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8545:60823:200709553:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:40:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a change in board membership for a municipal company, which has moderate local relevance."
+    },
+    "summary_headline": "Endring i styret for Bergen Bydrift AS",
+    "summary_body": "Ståle Skarsten fratrer som styremedlem i Bergen Bydrift AS for å begynne i ny stilling hos Deloitte, som er selskapets revisor. Byrådet foreslår Arne Namdal som hans etterfølger, da han har relevant kompetanse. Styret vil nå bestå av Christine Kahrs, Eva Løkeland Lerøy, Harald von der Fehr og Arne Namdal. Dette vedtaket er en del av byrådets ansvar for å sikre kompetanse i styrende organer."
+  }
+}

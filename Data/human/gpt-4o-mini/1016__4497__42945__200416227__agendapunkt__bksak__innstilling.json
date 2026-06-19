@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:4497:42945:200416227:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:23:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The report on sick leave statistics is relevant to local public health and employment policies."
+    },
+    "summary_headline": "Sykefraværet i Bergen kommune viser en liten nedgang til 9,1 % i 3. kvartal 2005",
+    "summary_body": "Bergen kommune rapporterer om sykefraværet for 3. kvartal 2005, som er på 9,1 %, en nedgang fra 9,2 % i 2. kvartal. Dette skyldes en reduksjon i mellomlangt og langtidsfravær, mens korttidsfraværet har vært stabilt. Sammenlignet med 3. kvartal 2004 er det en økning på 0,7 prosentpoeng. Hovedarbeidsmiljøutvalget tar til orientering at sykefraværet for kvinner er høyere enn for menn, med henholdsvis 9,8 % og 7,0 %. Det er også fokus på resultatenhetsledernes rolle i å redusere sykefraværet. Ambisjonen for 2005 er å nå en sykefraværsprosent på 8,8 %."
+  }
+}

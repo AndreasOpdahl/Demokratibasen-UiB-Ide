@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10830:70739:201124335:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:58:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a hearing on proposed changes to building regulations, which is of limited immediate interest."
+    },
+    "summary_headline": "Høring om endringer i byggteknisk forskrift",
+    "summary_body": "Forretningsutvalget har sendt ut et dokument for høring angående forslag til endringer i byggteknisk forskrift. Høringen ble datert 13. juni 2014, men det er ingen spesifikke detaljer om innholdet eller eventuelle kontroverser."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:2122:21840:200008050:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:13:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant crime prevention initiatives proposed by the Ytrebygda district council, which directly impacts local youth and community safety."
+    },
+    "summary_headline": "Ytrebygda bydelsstyre lanserer tiltak mot ungdomskriminalitet",
+    "summary_body": "Ytrebygda bydelsstyre har vedtatt å fremme tiltak mot kriminalitet i nærmiljøet, med fokus på å utvikle alternativer til ungdomskriminalitet. Tiltakene inkluderer bygging av nærmiljøanlegg, etablering av moderne møtesteder for unge, og styrking av frivillig innsats. Bydelsstyret ønsker også å videreutvikle samarbeidet med frivillighetssentralen og lensmannsetaten for å skape tryggere lokalmiljøer. Dette initiativet er en direkte respons på et tidligere forslag fra bystyret, og har som mål å engasjere ungdom i positive aktiviteter."
+  }
+}

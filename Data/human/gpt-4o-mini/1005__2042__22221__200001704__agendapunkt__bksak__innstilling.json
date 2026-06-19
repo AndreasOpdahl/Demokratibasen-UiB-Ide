@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:2042:22221:200001704:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:44:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant new traffic payment system in Bergen that will impact local residents and involves financial implications."
+    },
+    "summary_headline": "Bergen innfører nytt trafikantbetalingssystem med økte takster",
+    "summary_body": "Bystyret i Bergen har besluttet å arbeide videre med planlegging av et nytt trafikantbetalingssystem som skal erstatte det eksisterende bompengesystemet ved årsskiftet 2001/2002. Det foreslås å innføre en ytre ring med utvidede betalingsintervaller og takster på 12 kroner for små biler og 24 kroner for store, for å sikre årlige inntekter på 200 millioner kroner. Administrasjonen vil også implementere nødvendige lokale trafikkreguleringer for å sikre at bomringene fungerer effektivt. Dette tiltaket er viktig for å finansiere transport- og byutviklingsprosjekter i Bergen, og det er ventet at det vil påvirke mange bilister i kommunen."
+  }
+}

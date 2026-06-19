@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10076:67426:201124335:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:56:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document lists several hearings but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Høringer om helsevern og valgforskrifter",
+    "summary_body": "Forretningsutvalget har behandlet flere høringssaker i møte 13. april 2023, inkludert revidering av veileder for miljørettet helsevern i barnehager og skoler, sluttrapport fra utviklingsprosjektet ved Nordfjord sjukehus, samt endringer i valgforskriften. Ingen kontroverser eller spesifikke beslutninger ble nevnt."
+  }
+}

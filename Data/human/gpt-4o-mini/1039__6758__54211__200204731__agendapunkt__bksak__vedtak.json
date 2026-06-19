@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1039:6758:54211:200204731:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:08:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for a new bike and pedestrian path is relevant to local residents and has been unanimously supported by the Youth City Council."
+    },
+    "summary_headline": "Ungdommens bystyre anbefaler gang- og sykkelveg fra Blomsterdalen til Hjellestad ferjekai",
+    "summary_body": "Ungdommens bystyre har enstemmig anbefalt bygging av en gang- og sykkelveg fra Blomsterdalen til Hjellestad ferjekai, med valg av alternativ 1 - dagløsningen. Dette ble vedtatt i møter den 2. og 9. april 2009. Den foreslåtte løsningen anses som den beste for å sikre tryggere ferdsel for fotgjengere og syklister. Det er ingen motforestillinger mot forslaget, og saken vil bli lagt fram uten forslag til vedtak."
+  }
+}

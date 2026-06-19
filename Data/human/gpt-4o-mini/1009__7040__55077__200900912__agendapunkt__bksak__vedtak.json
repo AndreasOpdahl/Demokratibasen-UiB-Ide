@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7040:55077:200900912:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:36:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a municipal response to a national plan, but lacks significant local impact or controversy."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse til nasjonal handlingsplan for habilitering",
+    "summary_body": "Byrådet i Bergen har behandlet en høringsuttalelse til den nasjonale handlingsplanen for habilitering av barn og unge. Vedtaket ble fattet i møte 17. juni 2009, og saken sendes videre til bystyrets kontor for orientering. Dette tiltaket er en del av kommunens arbeid for å forbedre habiliteringstjenester for unge i Bergen."
+  }
+}

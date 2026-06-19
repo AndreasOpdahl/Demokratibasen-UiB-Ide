@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203126:257797:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:02:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines multiple appeals regarding construction denials, which directly impact local residents and involve significant community interest."
+    },
+    "summary_headline": "Flere klager på avslag om byggeprosjekter i Bergen",
+    "summary_body": "Komite for miljø og byutvikling i Bergen kommune skal behandle en rekke klager på avslag om byggeprosjekter under møtet 18. januar 2018. Blant sakene er klager på nybygg og tilbygg i Årstad, Fana, Ytrebygda og Fyllingsdalen. Disse klagene kan påvirke boligmarkedet og lokal utvikling, og det er ventet muntlige innlegg fra berørte parter. Befaringer vil bli gjennomført før møtet for å vurdere sakene nærmere."
+  }
+}

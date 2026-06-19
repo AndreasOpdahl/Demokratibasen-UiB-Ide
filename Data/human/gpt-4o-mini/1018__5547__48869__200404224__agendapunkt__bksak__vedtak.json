@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1018:5547:48869:200404224:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:24:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document reports on a procedural matter with no decisions made due to lack of quorum."
+    },
+    "summary_headline": "Ingen vedtak om lån til Klostergarasjen",
+    "summary_body": "Bergen Parkering KF behandlet saken om overtakelse av lån til Klostergarasjen, men det ble ikke fattet vedtak da styret ikke var vedtaksfør med kun to medlemmer til stede."
+  }
+}

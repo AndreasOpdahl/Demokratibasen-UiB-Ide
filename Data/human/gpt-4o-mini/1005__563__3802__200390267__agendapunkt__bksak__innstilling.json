@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:563:3802:200390267:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:08:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant budget proposals and resolutions affecting various public services in Bergen, highlighting local political consensus and concerns."
+    },
+    "summary_headline": "Bystyret tar stilling til 94 tekstforslag i budsjettbehandlingen",
+    "summary_body": "Bystyret i Bergen har behandlet 94 tekstforslag og 20 merknader knyttet til Budsjett 2003/Økonomiplan 2003-2006. Flertallet av forslagene har fått støtte fra flere partier, inkludert Høyre, FrP, SV, og KrF. Blant de viktigste forslagene er tiltak for å styrke barnevern, opprettholde sykehjemsplasser, og forbedre hjemmetjenester for eldre. Bystyret uttrykker bekymring for manglende svar fra byrådsavdelingene og ber om at tiltakene blir fulgt opp. Dette er av stor betydning for innbyggerne i Bergen, spesielt de som er avhengige av offentlige tjenester."
+  }
+}

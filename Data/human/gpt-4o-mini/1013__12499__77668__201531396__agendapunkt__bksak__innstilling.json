@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:12499:77668:201531396:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:02:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant proposed changes to health and education regulations that could impact local residents."
+    },
+    "summary_headline": "Høringer om helse og barnehagebemanning i Bergen",
+    "summary_body": "Bystyrets forretningsutvalg har mottatt to høringssaker som kan påvirke innbyggerne i Bergen. Den første gjelder en revidert nasjonal faglig retningslinje for forebygging av hjerte- og karsykdom, med mål om å redusere for tidlig død av slike sykdommer med 25 prosent innen 2025. Høringsfristen er 15. mars 2017. Den andre saken omhandler endringer i forskrift om pedagogisk bemanning i barnehager, som foreslår å samle eksisterende forskrifter og endre normene for pedagogisk bemanning. Bystyredirektøren anser denne saken som prinsipiell, og høringsfristen er 10. mars 2017. Begge saker vil bli behandlet av bystyret."
+  }
+}

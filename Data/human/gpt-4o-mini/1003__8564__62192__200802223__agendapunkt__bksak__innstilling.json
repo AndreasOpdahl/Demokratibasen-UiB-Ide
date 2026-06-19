@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1003:8564:62192:200802223:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:22:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the completion of three investment projects with significant cost savings and evaluations, which is relevant to local residents."
+    },
+    "summary_headline": "Bergen Bolig og Byfornyelse avslutter tre byggeprosjekter med 3,8 millioner i mindreforbruk",
+    "summary_body": "Styret for Bergen Bolig og Byfornyelse KF har godkjent avslutningen av tre byggeprosjekter, som samlet har resultert i et mindreforbruk på 3,8 millioner kroner, eller 8,2 % under budsjett. Prosjektene, som omfatter boliger for psykiatrisk langtidspasienter og utleieboliger, har fått evalueringer som ligger over minimumskravet. Mindreforbruket vil bli tilbakeført til investeringsrammene for boligformålene. Dette er gode nyheter for innbyggerne i Bergen, da det viser effektiv bruk av offentlige midler."
+  }
+}

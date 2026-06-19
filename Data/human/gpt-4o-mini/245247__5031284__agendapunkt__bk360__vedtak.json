@@ -1,0 +1,18 @@
+{
+  "dokument_id": "245247:5031284:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:42:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision regarding land use change that affects local residents and has generated political debate."
+    },
+    "summary_headline": "Klage på avslag om bruksendring av løe til bolig avvist av utvalg for miljø og byutvikling",
+    "summary_body": "Utvalg for miljø og byutvikling har avvist en klage på avslag om bruksendring av en løe til boligformål på Alvøveien 166. I møtet 11. mai 2023 ble det besluttet å opprettholde fagetatens vedtak fra 18. august 2022. Didrik Fasmer (H) ble kjent inhabil i saken, da han er medeier i Alvøen Eiendommer AS. Forslaget fra Høyre og Fremskrittspartiet om å innvilge dispensasjon ble nedstemt med 7 mot 10 stemmer. Utvalget mener at tiltaket vil gi løen nytt liv og bedre utnyttelse av eiendommen, til tross for at området er regulert til grønnstruktur."
+  }
+}

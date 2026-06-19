@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51084:113219:199900958:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:45:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant urban development plan that will impact local housing and community infrastructure."
+    },
+    "summary_headline": "Ny bebyggelsesplan for Sandviken brygge anbefales med 105 boliger",
+    "summary_body": "Hovedutvalg for byutvikling har anbefalt en bebyggelsesplan for Sandviken brygge felt A, som omfatter 105 boliger fordelt på tre blokker. Planen, fremmet av Selmer Bolig AS, er i tråd med reguleringsplanen og inkluderer fellesarealer og offentlig promenade. Det er stilt krav om tilrettelegging for funksjonshemmede, og det er planlagt 84 parkeringsplasser. Riving av eksisterende bygninger kan starte i april 1999, med utbygging av felt A fra oktober 1999 til august 2001. Dette prosjektet vil ha stor betydning for boligmarkedet i Bergen sentrum."
+  }
+}

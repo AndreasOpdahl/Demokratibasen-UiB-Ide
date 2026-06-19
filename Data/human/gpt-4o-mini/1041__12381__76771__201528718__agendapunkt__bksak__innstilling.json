@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:12381:76771:201528718:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:10:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine appointment of a new deputy member, which is of limited interest to the public."
+    },
+    "summary_headline": "Ny varamedlem for Arbeiderpartiet i Bergen bystyre",
+    "summary_body": "Bergen bystyre har kåret Fartein Øysteinson Undertun som nytt varamedlem for Arbeiderpartiet etter at Siw-Anita Lien fikk midlertidig fritak fra vervet. Lien har vært permisjonert siden 1. september 2016, og Linda Lein har trådt inn som fast medlem. Dette er en rutinemessig beslutning uten kontroverser."
+  }
+}

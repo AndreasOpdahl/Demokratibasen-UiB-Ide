@@ -1,0 +1,18 @@
+{
+  "dokument_id": "06772e08-57d6-5887-9345-76e3fe373974",
+  "kommune_nummer": 4626,
+  "kommune_navn": "Øygarden",
+  "generated_at": "2026-02-19 14:30:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant safety concerns regarding a public road that affects multiple households and requires municipal action."
+    },
+    "summary_headline": "Krav om utbedring av farlig fellesvei i Øygarden",
+    "summary_body": "Innbyggerne i Øygarden krever at kommunen tar ansvar for utbedring av felles vei KV2, som er eneste adkomstvei til flere boliger og en båthavn. Veien er bratt og farlig ved glatt føre, noe som hindrer renovasjonsvesenet ØYVAR i å hente avfall. Møtet den 9. januar 2024 har som mål å fremskynde nødvendige tiltak for å sikre veien i henhold til reguleringsplanen. Det er bekymringer om at veien ikke er bygget i samsvar med tidligere vedtak, og at det er avvik fra reguleringsplanen. Innbyggerne etterlyser en tidsfrist for når utbedringene skal være ferdige."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:9736:65574:201125272:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:35:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses significant delays in auditing municipal accounts, which could impact financial oversight."
+    },
+    "summary_headline": "Forsinket revisjon av beboer- og menighetsregnskaper i Bergen kommune",
+    "summary_body": "Kontrollutvalget har avdekket betydelige restanser i revisjonen av beboerregnskapene for 2010 og 2011, samt menighetsrådsregnskapene for 2011. 16 institusjoner har ikke fått sine beboerregnskaper revidert, og av 25 menigheter er 21 forsinket. Innkjøpssjefen foreslår å konkurranseutsette revisjonen av beboerregnskapene, mens menighetsregnskapene kan revideres gjennom eksisterende kontrakt med BDO AS. Saken skal drøftes videre uten forslag til vedtak."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:3702:36424:200002949:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:19:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to grant a temporary alcohol license for an event is of local interest but lacks significant conflict or impact."
+    },
+    "summary_headline": "Skjenkebevilling innvilget for revy i Arna",
+    "summary_body": "Arna bydelsstyre har godkjent en skjenkebevilling for øl og vin under revyen med Arne Sangforening i Kulturhuset Sentrum den 14. og 15. november 2003. Vedtaket ble fattet med 12 stemmer for og 1 imot (KrF). Dette gir mulighet for alkoholservering under arrangementet, noe som kan øke opplevelsen for deltakerne."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3652:35230:200007189:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:05:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a financial allocation from a legacy fund, which has local relevance but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Årlig tildeling fra legat til Elina Almasy",
+    "summary_body": "Byrådet har besluttet å tildele Elina Almasy kr. 30.000 årlig fra Kjøbmand E. Engelsen og hustru Petra, f. Wieses legat for årene 2003, 2004 og 2005. Byrådsleder Anne-Grete Strøm-Erichsen støtter tildelingen, som er i tråd med kommuneadvokatens vurderinger. Dette legatet administreres av Bergen Overformynderi, og beslutningen er i samsvar med tidligere vedtak fra bystyret."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:12722:78195:201700366:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:40:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to deny a tax exemption for a local kindergarten is relevant and impacts the community."
+    },
+    "summary_headline": "Bystyret avslår eiendomsskattfritak for Krohnegården barnehage",
+    "summary_body": "Bergen bystyre har enstemmig avslått søknaden om fritak for eiendomsskatt for Krohnegården FUS barnehage AS. Lillian Vangberg (A), leder av Eiendomsskattekontoret, ble ansett som inhabil i saken. Dette vedtaket kan påvirke driften av barnehagen og økonomien til foreldrene. Bystyret fattet avgjørelsen etter anbefaling fra komite for finans, kultur og næring."
+  }
+}

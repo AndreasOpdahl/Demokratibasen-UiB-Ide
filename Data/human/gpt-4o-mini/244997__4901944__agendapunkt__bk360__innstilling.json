@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244997:4901944:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:41:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The report highlights significant financial developments and risks for the municipality, which are relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune rapporterer om økte renteutgifter og gjeld i 2022",
+    "summary_body": "Bergen kommune har i sin årlige finansrapport for 2022 rapportert om en betydelig økning i renteutgifter, som nå er 189 millioner kroner høyere enn året før. Dette skyldes økte renter og høyere gjeld, som ved utgangen av året var på 24,3 milliarder kroner. Til tross for dette har kommunen opprettholdt god likviditet og lavere netto renteutgifter enn budsjettert. Byrådet anbefaler bystyret å ta rapporten til orientering, som er i tråd med kommuneloven. Rapporten gir også innsikt i kommunens finansielle risiko og sammenligner kostratall med andre større kommuner."
+  }
+}

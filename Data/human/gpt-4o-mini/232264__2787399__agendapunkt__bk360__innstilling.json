@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232264:2787399:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:12:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a planning case for a cultural house, which has local relevance but lacks significant controversy or impact."
+    },
+    "summary_headline": "Fyllingsdalen kulturhus under planlegging",
+    "summary_body": "Det pågår arbeid med skisseprosjekt og detaljregulering av Fyllingsdalen kulturhus. Kommunalt råd for personer med funksjonsnedsettelse (KRPF) får informasjon om planene og kan komme med innspill. Forslaget til vedtak er at informasjonen tas til orientering."
+  }
+}

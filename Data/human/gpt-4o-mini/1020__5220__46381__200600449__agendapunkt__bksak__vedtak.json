@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:5220:46381:200600449:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:30:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to exempt a school from property tax is relevant to local residents and involves public spending."
+    },
+    "summary_headline": "Bjørkåsen skole fritas for eiendomsskatt",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å frita Bjørkåsen skole (gnr-bnr 044-0273-0000) fra eiendomsskatt på grunn og bygg fra 18. mai 2006. Fritaket bortfaller dersom eiendommen selges, leies ut eller brukes til andre formål. Ingen representanter fra komiteen tok ordet under behandlingen."
+  }
+}

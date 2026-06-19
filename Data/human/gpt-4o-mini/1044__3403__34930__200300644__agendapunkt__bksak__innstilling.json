@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3403:34930:200300644:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:25:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a public hearing and a specific event that may interest local residents."
+    },
+    "summary_headline": "Søknad om skjenkebevilling for konsert i Åsane",
+    "summary_body": "Åsane bydelsstyre vurderer en søknad om skjenkebevilling for en konsert med Olav Stedje den 24. april 2003 i Kulturhuset i Åsane Senter. I tillegg er det saker til gjennomsyn knyttet til offentlighet i bydelsstyrenes høring av kommunedelplanen og en anmodning om lokaler for forhåndstemmegivning fra Kristian Helland (KrF). Dette kan påvirke innbyggerne i Åsane, spesielt de som ønsker å delta på konserten."
+  }
+}

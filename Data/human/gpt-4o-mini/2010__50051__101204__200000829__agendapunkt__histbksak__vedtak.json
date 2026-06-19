@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2010:50051:101204:200000829:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:56:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The decision is routine and lacks significant controversy or impact."
+    },
+    "summary_headline": "Næringsutvalget godkjenner ilandføring av olje fra Grane til Stureterminalen",
+    "summary_body": "Næringsutvalget i Bergen kommune har enstemmig godkjent at oljen fra Grane-feltet skal ilandføres til Stureterminalen, med drift fra Bergen. Saken ble behandlet den 21. mars 2000, og utvalget tar saken til orientering."
+  }
+}

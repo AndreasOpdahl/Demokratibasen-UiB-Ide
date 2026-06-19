@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:10758:71766:201221972:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:28:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The budget proposal is routine and lacks significant controversy or impact."
+    },
+    "summary_headline": "Bergen og Omland havnestyre godkjenner budsjett for 2015",
+    "summary_body": "Bergen og Omland havnestyre har godkjent budsjettforslaget for 2015, som nå sendes til Havnerådet for endelig vedtak. Havnedirektør Inge Tangerås og økonomisjef Ulrik Jørgensen står bak forslaget. Dette er en rutinemessig prosess uten kontroverser."
+  }
+}

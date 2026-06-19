@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:5642:51733:200801218:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:42:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a proposed change to the health personnel law that affects children's rights, which is relevant but lacks significant controversy or dissent."
+    },
+    "summary_headline": "Bergen kommune støtter endring av helsepersonelloven for barns rettigheter",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til forslag om endringer i helsepersonelloven for å styrke rettsstillingen til barn av pasienter. Komite for helse og sosial behandlet saken enstemmig den 27. august, med støtte fra representanter som Birthe Taraldset (H) og Oddny Irene Miljeteig. Byrådet og komiteen er enige om innstillingen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "49153121-1529-598c-a159-2d0dfec44542",
+  "kommune_nummer": 4635,
+  "kommune_navn": "Gulen",
+  "generated_at": "2026-02-19 23:01:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines routine delegation matters for an upcoming council meeting, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Delegasjonssaker til kommunestyret 11. desember 2025",
+    "summary_body": "Gulen kommune presenterer en rapport om delegerte saker til kommunestyret den 11. desember 2025. Kommunedirektøren anbefaler at de delegerte sakene tas til orientering. Det er ingen kontroverser eller dissent knyttet til saken."
+  }
+}

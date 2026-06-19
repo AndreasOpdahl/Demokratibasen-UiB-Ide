@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:2544:27501:200107538:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:57:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposed changes to waste collection regulations are relevant to local residents and may lead to more efficient waste management."
+    },
+    "summary_headline": "Bergen kommune vurderer revidering av avfallsforskrifter for BIR",
+    "summary_body": "Bergen kommune har mottatt et høringsforslag fra Bergensområdets Interkommunale Renovasjonsselskap (BiR) om revidering av forskriften for innsamling av forbruksavfall. Forslaget, som har høringsfrist 31. juli, inkluderer presiseringer av definisjoner, opprettelse av en felles klagenemnd, og økt delegering av myndighet til BiR. Byrådet, ledet av Tom Knudsen, støtter endringene som vil bidra til lik behandling av abonnenter uten økonomiske konsekvenser. Det endelige utkastet vil bli behandlet i BiRs styre til høsten."
+  }
+}

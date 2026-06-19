@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:6921:54689:200717481:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:12:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural information without significant local impact or controversy."
+    },
+    "summary_headline": "Orientering fra valgstyret om legitimasjon til bostedsløse",
+    "summary_body": "Valgstyret i Bergen behandlet en orienteringssak om legitimasjon til bostedsløse i møtet den 25. mai 2009. Saken omhandler dokumenter fra Kommunaldirektøren og informasjon fra Høylandet kommune angående Demokrati Mesterskapet 2009. Det er ingen kontrovers eller betydelig lokal påvirkning knyttet til denne saken."
+  }
+}

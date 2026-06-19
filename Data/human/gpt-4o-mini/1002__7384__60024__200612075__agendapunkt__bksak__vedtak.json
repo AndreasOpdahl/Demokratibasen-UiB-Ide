@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:7384:60024:200612075:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:20:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant urban planning issue with potential impact on local residents."
+    },
+    "summary_headline": "Kritikk mot riving av garasjeanlegg i Arna under utvidelse av krysningsspor",
+    "summary_body": "Arna bydelsstyre har behandlet reguleringsplanen for utvidet krysningsspor i Ulriken. De understreker behovet for god tilgang, parkeringsforhold og variert boligbygging. Det foreslås også en ny mini-terminal for bedre overgang mellom tog og buss. Bydelsstyret er kritisk til rivingen av garasjeanlegget på Mjeldheim, som representerer et historisk minne fra 1940-45. Forslagene ble vedtatt enstemmig, men saken legges fram uten forslag til vedtak."
+  }
+}

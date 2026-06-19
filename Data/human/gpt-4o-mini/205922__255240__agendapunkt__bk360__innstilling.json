@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205922:255240:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:10:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a maintenance plan for municipal buildings, which is relevant but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Vedlikeholdsplan for kommunale bygg presentert for bystyret",
+    "summary_body": "Byrådet har lagt frem vedlikeholdsplanen for kommunens bygg for perioden 2018-2021 til orientering for bystyret. Planen omfatter status og tiltak for nesten 1000 bygg i Bergen, og er et resultat av tidligere tilstandskartlegginger etter kritikk fra Arbeidstilsynet. Byrådet anser planen som nyttig for å opprettholde byggenes kvalitet, men påpeker usikkerhet knyttet til kostnader og tiltak. Det er ingen dissent eller kontrovers knyttet til saken."
+  }
+}

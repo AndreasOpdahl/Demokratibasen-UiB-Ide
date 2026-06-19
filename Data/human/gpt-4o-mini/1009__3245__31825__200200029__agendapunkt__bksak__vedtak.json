@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3245:31825:200200029:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:02:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision impacts local businesses and involves public funding."
+    },
+    "summary_headline": "Bergen kommune gir nye forskrifter for vernede bedrifter",
+    "summary_body": "Bergen kommune har besluttet at Breistein Industrier AS og Nordnes Verksteder AS får adgang til en ny ordning for arbeidsmarkedstiltak fra 1. juli 2002. Byrådet har delegert til finansbyråden å inngå avtale om medfinansiering med Aetat og de to bedriftene. Andre vernede bedrifter vil bli vurdert i budsjettbehandlingen til høsten."
+  }
+}

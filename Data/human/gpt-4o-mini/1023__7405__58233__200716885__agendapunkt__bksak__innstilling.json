@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:7405:58233:200716885:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:43:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant issues regarding healthcare services and community infrastructure in Bergen, which are highly relevant to local residents."
+    },
+    "summary_headline": "Bystyret avviser utvidet skjenketid for Bergenfest 2010",
+    "summary_body": "Komite for helse og sosial har behandlet klagen om utvidet skjenketid for Bergenfest 2010, men avviste den med 10 stemmer mot 1. Byrådet opprettholder sitt vedtak om å ikke innvilge søknaden om skjenking til kl. 03.00 den 30. april og 1. mai. Dette er en viktig beslutning for lokalsamfunnet, da det påvirker både arrangementets gjennomføring og nattesikkerheten i Bergen."
+  }
+}

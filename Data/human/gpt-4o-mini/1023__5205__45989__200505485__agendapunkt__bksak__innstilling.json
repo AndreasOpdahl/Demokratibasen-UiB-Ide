@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:5205:45989:200505485:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:40:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a session for the Elder Council to present viewpoints, which is relevant but lacks significant impact or controversy."
+    },
+    "summary_headline": "Eldrerådet i Bergen presenterer synspunkt til helse- og sosialkomiteen",
+    "summary_body": "Eldrerådet i Bergen har fått en egen sesjon for å fremføre sine synspunkt og forslag til helse- og sosialkomiteen. Dette møtet er atskilt fra det ordinære møtet, og gir eldrerådet mulighet til å påvirke beslutninger som angår eldre i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2963:30473:200009318:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:37:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document contains no newsworthy elements or decisions."
+    },
+    "summary_headline": "Ingen saker meldt før møtet i Laksevåg bydelsstyre",
+    "summary_body": "Møtet i Laksevåg bydelsstyre den 19. mars 2002 hadde ingen saker meldt før møtet."
+  }
+}

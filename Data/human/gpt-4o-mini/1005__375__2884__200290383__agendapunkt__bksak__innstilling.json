@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:375:2884:200290383:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:49:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant tax exemption for a historic building, which affects local finances and has implications for residents."
+    },
+    "summary_headline": "Fritak for eiendomsskatt på Sundt bygget innvilges",
+    "summary_body": "Bystyret har fått en søknad fra Vital Eiendomsforvaltning AS om fritak for eiendomsskatt for bygningen Torgallmenningen 14, kjent som Sundt bygget, med en takstverdi på 20.629.000 kroner. Den årlige eiendomsskatten utgjør 144.403 kroner. Byrådet anbefaler å innvilge søknaden, da bygningen er fredet og har historisk verdi. Vedtaket vil gjelde fra 2002, og bystyret har myndighet til å fatte beslutningen."
+  }
+}

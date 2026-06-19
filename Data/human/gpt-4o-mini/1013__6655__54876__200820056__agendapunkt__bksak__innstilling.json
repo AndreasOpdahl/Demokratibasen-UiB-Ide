@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:6655:54876:200820056:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:14:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document contains significant financial decisions and a proposal for addressing overdose deaths, which are relevant to local residents."
+    },
+    "summary_headline": "Bystyret vurderer tiltak mot overdosedødsfall og øker pensjonskassens egenkapital",
+    "summary_body": "Byrådet i Bergen har innstilt til bystyret om å opprette en analysegruppe for overdosedødsfall, med mål om å forbedre offentlige tjenester for rusavhengige. I tillegg foreslås det å bevilge 25 millioner kroner til økt egenkapital for Bergen kommunale pensjonskasse. Disse sakene vil bli behandlet av bystyret i nær fremtid, og kan ha stor betydning for innbyggerne i Bergen."
+  }
+}

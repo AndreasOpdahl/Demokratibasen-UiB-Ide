@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1003:10449:69115:200819079:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:21:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant organizational changes and a proposed action plan that will impact local housing and social services."
+    },
+    "summary_headline": "Bergen Bolig og Byfornyelse avvikles, ny handlingsplan for 2014 foreslås",
+    "summary_body": "Styret for Bergen Bolig og Byfornyelse KF har fått presentert en handlingsplan for 2014, som skal fungere som et styringsverktøy etter at foretaket avvikles og virksomheten overføres til byrådsavdelingen for sosial, bolig og områdesatsing. Administrasjonen ønsker å sikre at handlingsplanen fortsatt prioriterer effektiv eiendomsforvaltning og tilrettelegger for samarbeid mellom kommunale aktører. Det er bekymringer knyttet til tap av effektive dataverktøy og usikkerhet blant ansatte om konsekvensene av omorganiseringen. Planen adresserer også behovet for å redusere vedlikeholdsetterslep og styrke arbeidsmiljøet for de ansatte."
+  }
+}

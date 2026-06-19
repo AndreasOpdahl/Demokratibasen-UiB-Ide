@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5169:47156:200416269:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:08:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a complaint regarding a building permit, but there is no significant conflict or dissent."
+    },
+    "summary_headline": "Klage over rammetillatelse avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har behandlet en klage fra Vestlandsbygg AS angående rammetillatelsen for eiendommen på Søndre Skogveien 60. I møtet 3. mai 2007 ble det enstemmig vedtatt å opprettholde fagetatens vedtak fra 21. juli 2005, og klagen ble ikke tatt til følge. Dette betyr at byggetiltakene kan fortsette som planlagt."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "215293:1107909:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:33:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant initiatives for inclusion and diversity in the workplace, which are relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune satser på inkludering og mangfold i arbeidslivet",
+    "summary_body": "Byrådet i Bergen kommune har lagt frem en HR-melding som fokuserer på inkludering, mangfold og likestilling i arbeidslivet. Meldingens hovedmål er å gjøre kommunen til en inkluderende organisasjon som gir like muligheter for alle, spesielt for utsatte grupper. Det planlegges tiltak som inkluderer anonyme søknader og oppfølging av sykefravær. Kommunalt råd for funksjonshemmede vil gi sin uttalelse før saken behandles videre i komite og bystyre. En handlingsplan for oppfølging av satsingsområdene vil bli utarbeidet høsten 2019."
+  }
+}

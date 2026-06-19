@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:3801:36706:200001422:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:19:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a proposal regarding the preservation of a local library, which has limited immediate impact or controversy."
+    },
+    "summary_headline": "Forslag om bevaring av Landås bibliotekfilial",
+    "summary_body": "Årstad bydelsstyre har fremmet et forslag om bevaring av Landås bibliotekfilial. Saken er viktig for lokalsamfunnet, men det er ingen kjent motstand eller kontrovers knyttet til forslaget. Detaljer om saksutredningen er ikke tilgjengelige i dokumentet."
+  }
+}

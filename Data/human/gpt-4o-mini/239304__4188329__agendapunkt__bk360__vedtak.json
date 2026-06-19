@@ -1,0 +1,18 @@
+{
+  "dokument_id": "239304:4188329:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:27:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a routine administrative decision regarding a land use plan, which has limited immediate impact on residents."
+    },
+    "summary_headline": "Endring av reguleringsplan for Lilletveit gård vedtatt av byrådet",
+    "summary_body": "Byrådet har vedtatt endringer i reguleringsplanen for Lilletveit gård i Fana, som omfatter oppheving av deler av planen. Beslutningen ble fattet i møte den 18. august 2022, og gjelder arealplan-ID 16650002. Dette er en administrativ prosess i henhold til plan- og bygningsloven."
+  }
+}

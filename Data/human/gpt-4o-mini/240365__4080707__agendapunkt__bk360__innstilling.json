@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240365:4080707:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:29:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses pedestrian safety concerns in Bergen, highlighting specific locations and the need for action."
+    },
+    "summary_headline": "Bystyret etterlyser rapport om fotgjengeroverganger i Bergen sentrum",
+    "summary_body": "Charlotte Spurkeland (H) har stilt spørsmål til bystyret om status på fotgjengerovergangsanalyse i Bergen sentrum, som skulle rapporteres innen utgangen av 2021. Bystyret har tidligere bedt byrådet om å vurdere flere kritiske steder uten fotgjengeroverganger, inkludert Rasmus Meyers Allé og Vetrlidsallmenningen, der mange fotgjengere opplever farlige situasjoner. Det er også spørsmål om forlengelse av grønn lys-tid i kryss som ved Grieghallen og Strandgaten. Dette er viktig for å forbedre sikkerheten for fotgjengere i byen."
+  }
+}

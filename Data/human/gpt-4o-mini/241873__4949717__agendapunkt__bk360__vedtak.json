@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241873:4949717:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:33:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a hearing statement regarding a marine filling application, which has local relevance but lacks significant controversy or impact."
+    },
+    "summary_headline": "Byrådet gir høringsuttalelse til utfylling i sjø ved Simonsviken",
+    "summary_body": "Byrådet har behandlet søknaden fra Simonsviken Næringspark AS om utfylling i sjø og har besluttet å avgi en høringsuttalelse. Vedtaket ble fattet i møtet den 1. desember 2022, og meldingen om vedtaket vil bli sendt til Bystyrets kontor."
+  }
+}

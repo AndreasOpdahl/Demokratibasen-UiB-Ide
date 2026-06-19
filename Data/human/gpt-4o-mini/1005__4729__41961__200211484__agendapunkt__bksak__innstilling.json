@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4729:41961:200211484:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:56:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a revised zoning plan that has undergone multiple reviews and adjustments, impacting local development."
+    },
+    "summary_headline": "Revidert reguleringsplan for Fantoftveien 40-42 anbefales av byrådet",
+    "summary_body": "Byrådet har anbefalt at bystyret vedtar en revidert reguleringsplan for Fantoftveien 40-42, etter flere behandlinger i Komité for miljø og byutvikling (KMBY). Den nye planen reduserer høyden og omfanget av bygningene, spesielt Hus C, som nå er trukket tilbake og redusert med én etasje. Det totale boligarealet er satt til maksimalt 1650 m2. Byrådet mener at de foreslåtte endringene er akseptable og følger opp tidligere vedtak. Bystyret skal nå ta den endelige avgjørelsen."
+  }
+}

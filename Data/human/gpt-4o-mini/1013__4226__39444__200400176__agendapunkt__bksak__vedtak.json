@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4226:39444:200400176:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:06:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions with no significant impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til komiteene",
+    "summary_body": "Byrådet har enstemmig vedtatt å fordele saker til ulike komiteer under møtene 29. og 30. september 2004. Byrådsakene 226 og 228 går til komite for finans, kultur og næring, mens byrådsak 227 sendes til komite for helse og sosial. Byrådsak 231 vil bli behandlet av det utvidete forretningsutvalg."
+  }
+}

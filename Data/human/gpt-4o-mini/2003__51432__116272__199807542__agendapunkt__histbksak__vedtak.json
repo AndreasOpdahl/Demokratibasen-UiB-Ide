@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51432:116272:199807542:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:38:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The budget change has local relevance and involves a significant amount of money, but lacks controversy."
+    },
+    "summary_headline": "Budsjettendring i Kulturavdelingen vedtatt av formannskapet",
+    "summary_body": "Bergen formannskap har vedtatt en budsjettendring for Kulturavdelingen i møte 15. desember 1999. Kulturbyggs budsjett reduseres med 450.000 kroner, mens avsetningen til disposisjonsfond økes med samme beløp. Forslaget fra rådmannen ble vedtatt med 11 mot 2 stemmer, der Fremskrittspartiet stemte imot."
+  }
+}

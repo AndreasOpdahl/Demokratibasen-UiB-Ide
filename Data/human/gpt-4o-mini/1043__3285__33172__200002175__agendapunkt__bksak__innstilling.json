@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:3285:33172:200002175:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:19:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document pertains to a public hearing regarding a municipal plan, but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Høring om kommunedelplan for idrett og friluftsliv i Årstad",
+    "summary_body": "Årstad bydelsstyre har sendt ut forslag til høring om hovedrullering av kommunedelplanen for anlegg og områder for idrett og friluftsliv. Bydelsdirektør Ågot Himle og spesialkonsulent Kjersti Ulriksen står bak saken. Høringen gir innbyggerne mulighet til å gi innspill, men det er ingen umiddelbare kontroverser knyttet til forslaget."
+  }
+}

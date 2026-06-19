@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203334:265625:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:03:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine meeting notice with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen merknader til innkalling",
+    "summary_body": "Forretningsutvalget hadde møte den 16. januar 2018, hvor det ikke ble fremmet noen merknader til innkallingen eller sakskartet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:13387:79414:201638017:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:59:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant urban planning decision affecting local development in Paradis."
+    },
+    "summary_headline": "Fortetting i Paradis krever varsomhet og estetiske hensyn",
+    "summary_body": "Rådet for byforming og arkitektur har vedtatt fortetting i Paradis, men understreker viktigheten av varsomhet i overgangssoner for å sikre god utnyttelse og estetikk. Det er behov for bedre samordning av detaljreguleringsplaner for området, da nåværende planer hindrer sammenhengende utvikling. Rådet anbefaler høyere krav til materialbruk, som bruk av tre og naturmaterialer, og foreslår at bygningene avtrappes for å unngå skygge på inngangspartiene. Dette tiltaket vil påvirke bokvaliteten for innbyggerne i området."
+  }
+}

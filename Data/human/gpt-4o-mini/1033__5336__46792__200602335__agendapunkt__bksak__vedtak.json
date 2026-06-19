@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:5336:46792:200602335:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:52:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to expand the alcohol serving area at Kafé Knøderen has local relevance and some dissent."
+    },
+    "summary_headline": "Utvidelse av skjenkeareal ved Kafé Knøderen innvilget til tross for dissent",
+    "summary_body": "Rusmiddelpolitisk råd har anbefalt å innvilge søknaden fra Kafé Knøderen om utvidelse av skjenkearealet for alkoholholdig drikk gruppe 1-3 frem til 30. juni 2008. Vedtaket ble fattet med 1 stemme imot fra Kristelig Folkeparti (KrF). Denne beslutningen kan påvirke lokale innbyggere og besøkende i området."
+  }
+}

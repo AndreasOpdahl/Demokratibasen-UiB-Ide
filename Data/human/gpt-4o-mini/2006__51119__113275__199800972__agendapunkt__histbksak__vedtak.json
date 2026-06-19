@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:51119:113275:199800972:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:51:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a funding decision for a cultural preservation project, which has local relevance but lacks significant conflict or impact."
+    },
+    "summary_headline": "Bevilget 20.000 kroner til kulturverntiltak",
+    "summary_body": "Hovedutvalg for fritid og kultur har enstemmig besluttet å bevilge 20.000 kroner til utredningsarbeidet for et pilotprosjekt innen kulturvern. Midlene vil bli trukket fra konto nr. 1522.346. Dette tiltaket er viktig for å bevare kulturarven i Bergen."
+  }
+}

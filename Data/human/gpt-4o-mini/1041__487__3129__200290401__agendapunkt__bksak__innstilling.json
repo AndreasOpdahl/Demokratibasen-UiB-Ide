@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:487:3129:200290401:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:11:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a routine participation in a seminar, which has limited immediate impact on residents."
+    },
+    "summary_headline": "Bergen deltar på valgforum i Sarpsborg",
+    "summary_body": "Bergen valgstyre har besluttet at valgsekretariatet deltar på valgforum i Sarpsborg fra 3. til 5. mars 2003. Dette forumet samler representanter fra de største kommunene for å diskutere felles utfordringer knyttet til valgarbeid. Deltakelsen er en del av en langvarig tradisjon for samarbeid mellom kommunene i forbindelse med valg."
+  }
+}

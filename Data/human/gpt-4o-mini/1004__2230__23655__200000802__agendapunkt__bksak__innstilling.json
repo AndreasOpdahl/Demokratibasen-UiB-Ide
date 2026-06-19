@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2230:23655:200000802:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:24:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the future use of former caretaker homes at schools, which affects local education and community services."
+    },
+    "summary_headline": "Bergenhus bydelsstyre vurderer bruk av vaktmesterboliger til skoleformål",
+    "summary_body": "Bergenhus bydelsstyre har behandlet et forslag fra Henning Warloe (H) om å bruke tidligere vaktmesterboliger ved Hellen skole til undervisning eller SFO. Vaktmesterboligen ved Christi Krybbe skole er kondemnabel og vil trolig bli revet, mens Krohnengen skole har en bygning i dårlig forfatning som ikke kan brukes. Hellen skole har en utleid bolig som bydelsstyret ønsker å bruke til skoleformål fra neste skoleår. Rothaugen skole vurderer også sin bolig for utviklingshemmete elever. Bydelsdirektøren vil ta en ny gjennomgang av saken."
+  }
+}

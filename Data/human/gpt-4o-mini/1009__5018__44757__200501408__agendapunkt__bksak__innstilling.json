@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5018:44757:200501408:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:23:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant infrastructure project that will impact local residents and requires public input."
+    },
+    "summary_headline": "Offentlig høring om E16 Arnatunnelen starter snart",
+    "summary_body": "Byrådet har besluttet å legge forslag til kommunedelplan for E16 Arnatunnelen ut til offentlig ettersyn. Dette tiltaket, som er sendt fra Statens vegvesen, er viktig for utviklingen av byens infrastruktur. Høringen vil gi innbyggerne mulighet til å gi tilbakemeldinger før endelig behandling i bystyret. Byråden for byutvikling, Lisbeth Iversen, understreker at alle relevante forhold vil bli vurdert før den endelige planen legges frem. Høringen er en del av prosessen for å sikre at prosjektet er i tråd med nye forskrifter."
+  }
+}

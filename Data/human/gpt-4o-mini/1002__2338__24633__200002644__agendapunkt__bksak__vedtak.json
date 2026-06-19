@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2338:24633:200002644:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:17:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to potentially dissolve Arna as a separate district administration is significant and affects local governance."
+    },
+    "summary_headline": "Arna bydelsstyre utsetter budsjettvedtak med mulighet for nedleggelse av bydelen",
+    "summary_body": "Arna bydelsstyre har besluttet å utsette behandlingen av budsjett 2001, med bakgrunn i en foreløpig konsekvensanalyse som antyder nedleggelse av bydelen som egen administrasjon. Dette ble vedtatt med 11 mot 2 stemmer, der Arbeiderpartiet, Kristeleg folkeparti, Senterpartiet, Venstre, Høgre og Framstegspartiet støttet utsettelsen. Bydelsdirektøren må nå lage et nytt budsjettforslag når det tildelte budsjettet er kjent. Dette kan få store konsekvenser for innbyggerne i Arna, som kan oppleve reduksjoner i tjenester og aktiviteter."
+  }
+}

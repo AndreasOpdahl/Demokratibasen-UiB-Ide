@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4285:40330:200500703:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:52:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The decision is procedural and lacks significant local impact or controversy."
+    },
+    "summary_headline": "Bergen kommune avviser deltakelse i Stiftelsen Albatross",
+    "summary_body": "Bergen bystyre har enstemmig besluttet at kommunen ikke vil delta i representantskapet for Stiftelsen Albatross. Beslutningen ble behandlet i bystyrets møte den 5. mars 2007, og komite for helse og sosial hadde tidligere gitt en lik innstilling."
+  }
+}

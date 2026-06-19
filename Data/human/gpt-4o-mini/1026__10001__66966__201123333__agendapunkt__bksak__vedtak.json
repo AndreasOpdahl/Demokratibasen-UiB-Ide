@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:10001:66966:201123333:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:52:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The case involves a rejected application for a housing project in a protected area, but lacks significant public dissent or financial implications."
+    },
+    "summary_headline": "Klage på avslag om enebolig i LNF-område avvist",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig avvist en klage på avslag om dispensasjon for oppføring av enebolig på Haukåsvegen, Åsane. Fagetatens vedtak fra 21. desember 2011 opprettholdes, og ingen representanter tok ordet under behandlingen. Dette betyr at det ikke blir noen endringer i reguleringen av området."
+  }
+}

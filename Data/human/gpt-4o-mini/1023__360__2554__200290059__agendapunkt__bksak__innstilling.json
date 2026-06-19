@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:360:2554:200290059:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:39:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains administrative responses but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Byrådet svarer på forespørsel om hospitsplasser og sengeplasser",
+    "summary_body": "Byråd Helen Noreide Fløisand har sendt svar på forespørsel fra Knut Vidar Schjenken (FrP) om hospitsplasser og ledige sengeplasser i Bergen, samt fra Liv Røssland (FrP) om egenandel på varm mat. Dokumentene er datert mellom juni og mars 2002."
+  }
+}

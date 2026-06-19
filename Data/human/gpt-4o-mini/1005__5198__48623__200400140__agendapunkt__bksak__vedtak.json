@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5198:48623:200400140:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:04:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine listing of responses to inquiries and does not contain significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra bystyret",
+    "summary_body": "Bergen bystyre har behandlet en sak som inneholder svar på spørsmål og anmodninger til Bystyrets kontor. Saken er av administrativ karakter uten betydelig offentlig interesse."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:6587:53504:200820056:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:13:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions with no significant impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til komiteene",
+    "summary_body": "Byrådet har i møter den 19. og 21. januar 2009 besluttet å fordele flere saker til ulike komiteer. Byrådsak 16 sendes til Komite for oppvekst, mens sakene 17, 18 og 19 sendes til Komite for kultur, idrett og næring og Komite for finans. Alle forslag ble vedtatt enstemmig, og det er ingen dissent eller kontrovers knyttet til beslutningene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "791be61c-4fa6-5b5c-acb7-d963f63d8ea5",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:07:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a complaint against a building permit, which may affect local residents."
+    },
+    "summary_headline": "Klage på rammetillatelse avvist av byrådet",
+    "summary_body": "Byrådet har behandlet en klage på rammetillatelsen for eiendommen Tveiteråsvegen 22 i Fana. I møtet den 16. oktober 2025, sak 203/25, innstilte byrådet til utvalg for miljø og byutvikling om å opprettholde Plan- og bygningsetatens vedtak fra 28. mars 2025. Klagen ble dermed ikke tatt til følge."
+  }
+}

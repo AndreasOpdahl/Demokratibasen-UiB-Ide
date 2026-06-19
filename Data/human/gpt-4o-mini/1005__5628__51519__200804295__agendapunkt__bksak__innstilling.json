@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5628:51519:200804295:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:07:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The proposal for a 24/7 social service in Bergen raises significant local interest and addresses a potential gap in emergency support services."
+    },
+    "summary_headline": "Byrådet avviser forslag om døgnåpen sosial vakttjeneste i Bergen",
+    "summary_body": "Byrådet i Bergen har avvist et forslag fra Hallgeir Utne Hatlevik (A) om å opprette en døgnåpen sosial vakttjeneste. Byrådet mener at eksisterende tjenester, som Livskrisehjelpen og Barnevernvakten, allerede dekker akutte behov utenom sosialkontorenes åpningstider. Forslaget ble fremmet for å møte behovet for hjelp i krisesituasjoner, men Byrådet vurderer at kostnadene ved en ny tjeneste ikke står i forhold til behovet. Det er ikke planlagt noen utvidelse av åpningstidene for NAV-kontorene, men Byrådet vil årlig vurdere behovet for tilpasninger av eksisterende tjenester."
+  }
+}

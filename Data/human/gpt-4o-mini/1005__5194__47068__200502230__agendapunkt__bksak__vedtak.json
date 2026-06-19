@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5194:47068:200502230:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:04:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant strategies for youth substance abuse prevention, impacting local communities."
+    },
+    "summary_headline": "Bergen kommune styrker rusforebyggende arbeid blant ungdom",
+    "summary_body": "Bergen bystyre har vedtatt å styrke det rusforebyggende arbeidet blant ungdom gjennom en rekke tiltak i rusmiddelpolitisk strategi- og handlingsplan for 2007-2009. Blant tiltakene er økt satsing på lokale forebyggende tiltak, utvikling av fritids- og aktivitetstilbud for ungdom, samt fokus på å motvirke frafall i skolen. Bystyret ber også byrådet om å legge inn midler til rusfrie arrangementer i ungdomsskolene, slik at alle bydeler kan tilby dette. Det er enighet om at tiltakene må ledes av kompetente fagpersoner og frivillige for å fange opp ungdom i risikosonen."
+  }
+}

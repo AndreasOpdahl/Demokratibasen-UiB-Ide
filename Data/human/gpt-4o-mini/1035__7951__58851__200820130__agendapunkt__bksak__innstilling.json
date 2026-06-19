@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:7951:58851:200820130:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:04:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal for a new kindergarten in Fana involves significant local development and potential aesthetic and cultural concerns."
+    },
+    "summary_headline": "Ny barnehageplan i Fana møter estetiske og kulturminneutfordringer",
+    "summary_body": "Det er foreslått en reguleringsplan for en ny barnehage på Kirkebirkeland i Fana, som vil ha plass til ca 83 barn. Planen innebærer riving av et eldre bolighus og bygging av et to-etasjers barnehagebygg med tilhørende uteområder. Fagetaten er positiv til hovedformålet, men uttrykker bekymringer om byggets estetikk, kulturminner og trafikksikkerhet. Det er behov for ytterligere vurderinger før endelig beslutning tas."
+  }
+}

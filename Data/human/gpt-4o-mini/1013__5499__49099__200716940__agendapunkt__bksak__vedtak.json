@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5499:49099:200716940:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:11:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a planned meeting and coordination efforts, but lacks significant conflict or impact."
+    },
+    "summary_headline": "Planlagt møte med Hordalandsbenken i januar 2008",
+    "summary_body": "Forretningsutvalget har behandlet spørsmålet om et møte med Hordalandsbenken i januar 2008. Byrådsleder Monica Mæland etterspurte status, og ordfører Gunnar Bakke orienterte om saken. Utvalget ga sin tilslutning til at ordføreren samarbeider med byrådslederen for å avklare detaljer og mulige alternative løsninger, samt vurdere møtested mellom Bergen og Oslo."
+  }
+}

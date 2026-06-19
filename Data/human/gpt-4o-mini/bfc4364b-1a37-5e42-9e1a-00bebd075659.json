@@ -1,0 +1,18 @@
+{
+  "dokument_id": "bfc4364b-1a37-5e42-9e1a-00bebd075659",
+  "kommune_nummer": 4602,
+  "kommune_navn": "Kinn",
+  "generated_at": "2026-02-19 23:19:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the annual financial report of a local facility, which has implications for community funding and maintenance."
+    },
+    "summary_headline": "Havhesten Kinn kommune KF godkjenner årsrekneskap med mindreforbruk",
+    "summary_body": "Styret i Havhesten Kinn kommune KF møtes 17. mars 2025 for å godkjenne årsrekneskapen for 2024, som viser et mindreforbruk på 56 000 kroner. Anlegget har hatt vekst i billettinntektene, men sliter med høye driftskostnader og har ikke mottatt tilskudd i 2024. Det er bekymringer om vedlikeholdet av anlegget, spesielt siden 7 millioner kroner i spelemidler fortsatt ikke er utbetalt. Dette kan påvirke driften og kvaliteten på tilbudet til innbyggerne i Kinn kommune."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244942:5031283:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:40:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a written question regarding a local issue but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Spørsmål om stupebrett i Nordåsvannet",
+    "summary_body": "Mailiss Solheim-Åkerblom (R) har stilt et skriftlig spørsmål om stupebrett i Nordåsvannet. Utvalg for miljø og byutvikling behandlet saken den 20. april 2023, hvor byråd Ingrid Nergaard Fjeldstad svarte."
+  }
+}

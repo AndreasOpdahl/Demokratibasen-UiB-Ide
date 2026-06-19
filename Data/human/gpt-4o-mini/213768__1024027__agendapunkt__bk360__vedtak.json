@@ -1,0 +1,18 @@
+{
+  "dokument_id": "213768:1024027:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:29:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The declaration of a climate crisis by the municipality is highly relevant and impactful for local residents."
+    },
+    "summary_headline": "Bergen kommune erklærer klimakrise",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å erklære klimakrise i kommunen. Forslaget ble fremmet av Øystein Bønes fra MDG og fikk støtte fra 62 representanter fra ulike partier. Bystyret ber byrådet om å oppfordre andre kommuner og myndigheter til å følge etter, og forplikter seg til å implementere bærekraftige tiltak for å begrense den globale oppvarmingen til under 1,5 grader. Dette vedtaket markerer et viktig skritt for Bergen som en klimasmart kommune."
+  }
+}

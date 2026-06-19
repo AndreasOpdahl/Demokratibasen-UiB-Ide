@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:3865:37819:200400504:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:49:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The decision is routine and lacks significant impact or controversy."
+    },
+    "summary_headline": "Berit Hella valgt som nestleder i Bergen kommunale pensjonskasse",
+    "summary_body": "Bergen bystyre har enstemmig valgt Berit Hella fra Høyre som nestleder i styret for Bergen kommunale pensjonskasse for resten av valgperioden 2003-2007. Valget ble behandlet i bystyremøtet den 29. mars 2004."
+  }
+}

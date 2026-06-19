@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5631:52177:200501666:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:08:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the restructuring of foundations in Bergen, which has significant implications for local governance and community representation."
+    },
+    "summary_headline": "Bystyret vedtar omdanning av stiftelser i Bergen",
+    "summary_body": "Bergen bystyre har besluttet å fortsette arbeidet med omdanning av stiftelser tilknyttet Bergen Legatinspeksjon, og oppretter to nye stiftelser for trengende og utdannelse/forskning. Bystyret ønsker at styrene for de nye stiftelsene skal oppnevnes av et folkevalgt organ for å sikre demokratisk kontroll. Det ble også vedtatt å kontakte stiftelser som ikke har svart tidligere for å inkludere dem i prosessen. Byrådet foreslår imidlertid å stanse omdanningen og legge ned Bergen Legatinspeksjon, noe som kan skape debatt om fremtidig forvaltning av legatene."
+  }
+}

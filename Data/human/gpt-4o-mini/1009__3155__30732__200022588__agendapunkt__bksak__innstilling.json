@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3155:30732:200022588:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:00:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant environmental remediation efforts and associated costs that will impact local residents."
+    },
+    "summary_headline": "Bergen kommune søker 50 millioner til opprydding av Kollevågen avfallsdeponi",
+    "summary_body": "Bergen kommune har besluttet å sende en søknad til Miljøverndepartementet om dekning av 50 % av kostnadene knyttet til opprydding av Kollevågen avfallsdeponi, som er estimert til 50 millioner kroner. Dette tiltaket er nødvendig for å hindre lekkasje av miljøgifter til fjorden. Kommunens andel av kostnadene vil være 25 millioner kroner, som skal dekkes gjennom avfallsgebyret for forbruksavfall. Byrådet ønsker å starte arbeidet med anbudsprosessen snarest, og vil orientere bystyret om status når tilbud er innhentet."
+  }
+}

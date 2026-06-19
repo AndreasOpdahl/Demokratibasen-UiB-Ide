@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3202:33090:200003580:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:45:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a recommendation for a land expansion proposal, but lacks significant controversy or impact."
+    },
+    "summary_headline": "Anbefaling om arealutvidelse for Roof Garden",
+    "summary_body": "Rusmiddelpolitisk råd anbefaler en søknad om arealutvidelse for Roof Garden. Forslaget kommer fra Kontor for skjenkesaker, men det er ingen indikasjoner på motstand eller kontrovers rundt saken."
+  }
+}

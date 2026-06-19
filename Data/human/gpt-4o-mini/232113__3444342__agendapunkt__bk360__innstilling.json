@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232113:3444342:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:12:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The resignation of a prominent local politician from multiple roles is significant for local governance."
+    },
+    "summary_headline": "Marte Mjøs Persen fratrer verv i Bergen bystyre etter valg til Stortinget",
+    "summary_body": "Marte Mjøs Persen (A) har søkt om fritak fra sine verv i Bergen bystyre etter å ha blitt valgt inn på Stortinget. Fritaket trer i kraft fra 22. september 2021, når bystyret velger ny ordfører. Persen har vært ordfører og leder av flere utvalg, og hennes avgang kan påvirke den politiske balansen i kommunen. Dette skjer i en periode med viktige beslutninger for Bergen, og innbyggerne bør følge med på hvem som blir hennes etterfølger."
+  }
+}

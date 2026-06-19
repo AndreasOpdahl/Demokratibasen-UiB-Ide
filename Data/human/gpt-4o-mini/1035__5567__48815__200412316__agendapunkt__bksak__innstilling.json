@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:5567:48815:200412316:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:01:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposed regulatory change for residential development in Arna has significant local implications and involves public consultation."
+    },
+    "summary_headline": "Reguleringsendring for boligbygging i Arna legges ut til offentlig ettersyn",
+    "summary_body": "Forslaget til reguleringsendring for eiendommen gnr. 288, bnr. 3, Oppetveitveien 5 i Arna legges nå ut til offentlig ettersyn fra 23. september til 23. oktober 2007. Fortunen AS, på vegne av Trident Eiendom AS, ønsker å bygge 23 boenheter fordelt på 9 bygninger i 2 til 3 etasjer. Fagetaten er positiv til fortetting, men mener utnyttelsesgraden er for høy og anbefaler færre bygg for å sikre bedre kvalitet på utearealene. Dette kan påvirke boligmarkedet og nabolaget i Arna, og innbyggerne oppfordres til å gi tilbakemelding på forslaget."
+  }
+}

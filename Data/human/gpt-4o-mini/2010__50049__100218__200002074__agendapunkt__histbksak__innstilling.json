@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2010:50049:100218:200002074:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:56:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant funding request for a project that aims to enhance Bergen's tourism and economic development."
+    },
+    "summary_headline": "Bergen kommune vurderer å bevilge 470.000 kroner til utvikling av technical visits",
+    "summary_body": "Bergen Reiselivslag har søkt Bergen kommune om 370.000 kroner for å utvikle prosjektet technical visits, som er en del av kommunens næringsplan. Næringsutvalget anbefaler å bevilge totalt 470.000 kroner, inkludert 100.000 kroner til utvikling av programpakker. Prosjektet er viktig for å styrke Bergens posisjon i det internasjonale markedet for faglige studieturer. Det foreslås også å opprette et interimstyre for prosjektet. Endelig beslutning om bevilgningen vil bli tatt i Næringsutvalget."
+  }
+}

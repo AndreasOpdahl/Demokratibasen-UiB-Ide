@@ -1,0 +1,18 @@
+{
+  "dokument_id": "a5a5ca69-84a8-5ce5-ad5b-184e6dc75f0c",
+  "kommune_nummer": 5501,
+  "kommune_navn": "Tromsø",
+  "generated_at": "2026-02-19 23:15:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested building permit and delegation of authority, impacting local residents and raising questions about administrative procedures."
+    },
+    "summary_headline": "Klage på byggeforbud: Naboer protesterer mot unntak for enebolig i Austadvegen 4A",
+    "summary_body": "Administrasjonen i Tromsø kommune har innvilget rammetillatelse for oppføring av enebolig på Austadvegen 4A, til tross for et midlertidig byggeforbud. Naboer har klaget og hevder at unntaket fra forbudet ikke er gyldig, da det kun skulle gjelde Austadvegen 4B. Saken er nå sendt til Statsforvalteren for avgjørelse. Kommunedirektøren har delegert myndighet til administrasjonen for å gi unntak, men det er usikkerhet om denne fullmakten gjelder for flere eiendommer. Dette kan få konsekvenser for fremtidige byggeprosjekter i området."
+  }
+}

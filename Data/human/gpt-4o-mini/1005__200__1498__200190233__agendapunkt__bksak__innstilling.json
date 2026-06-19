@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:200:1498:200190233:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:43:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a resignation from municipal positions, which may affect local governance."
+    },
+    "summary_headline": "Inger-Lill Gaarder Skjæraasen trekker seg fra verv i Bergen kommune",
+    "summary_body": "Inger-Lill Gaarder Skjæraasen (KrF) har søkt om fritak fra alle verv i Bergen kommune for resten av valgperioden 1999-2003, grunnet usikkerhet om hun vil flytte tilbake til Bergen. Bystyret tar til etterretning at hun trer ut av vervene i Bergen Bolig og Byfornyelse, Torget A/S, samt som varamedlem i bystyret og komiteer. Det vil bli valgt nye varamedlemmer fra KrF for de berørte vervene."
+  }
+}

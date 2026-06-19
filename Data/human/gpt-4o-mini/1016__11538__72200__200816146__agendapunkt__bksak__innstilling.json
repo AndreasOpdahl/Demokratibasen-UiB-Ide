@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:11538:72200:200816146:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:21:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document presents annual sick leave statistics for Bergen municipality, which is relevant but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Sykefraværet i Bergen kommune øker i 2014",
+    "summary_body": "Sykefraværet i Bergen kommune har økt til 9,5 % i 2014, en økning på 0,3 prosentpoeng fra året før. Dette er under målet om 92,1 % nærvær. Langtidsfraværet over 56 dager har økt markant, noe som er bekymringsfullt. Det er iverksatt tiltak for å redusere sykefraværet, inkludert implementering av HMS-instruks. Kommunaldirektør Ove Foldnes og HR-sjef Bjørg Lædre presenterte oversikten, som viser at kvinner har høyere sykefravær enn menn. Det er viktig for kommunen å fortsette arbeidet med å forbedre nærværet."
+  }
+}

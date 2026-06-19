@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2579:26362:200024168:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:36:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines various complaints and their outcomes, which may affect local residents' access to social services and education."
+    },
+    "summary_headline": "Laksevåg bydelsstyre behandler klagesaker fra 2000",
+    "summary_body": "Laksevåg bydelsstyre har behandlet klagesaker fra 2000, inkludert 44 klager på avslag om sosialhjelp, hvor 9 ble omgjort. Det ble også registrert 128 klager på saksbehandling i sosialtjenesten. I barnehagesaker ble tre klager på ekstraressurser imøtekommet, og i skolesaker er det fortsatt uavklarte saker om spesialundervisning. Bydelsstyret tar saken til orientering, noe som kan påvirke innbyggernes tilgang til nødvendige tjenester."
+  }
+}

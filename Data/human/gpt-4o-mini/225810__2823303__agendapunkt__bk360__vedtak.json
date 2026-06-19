@@ -1,0 +1,18 @@
+{
+  "dokument_id": "225810:2823303:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:55:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes to public health regulations affecting gatherings and businesses in Bergen."
+    },
+    "summary_headline": "Strenge smitteverntiltak videreføres i Bergen kommune",
+    "summary_body": "Byrådet for eldre, helse og frivillighet har innstilt på at gjeldende smitteverntiltak videreføres til 20. desember med flere endringer. Private sammenkomster begrenses til ti personer, og det er kun tillatt med arrangementer på offentlig sted med maks 20 deltakere. Idrettshaller og treningssentre kan holde åpent for individuell trening, men gruppetrening er forbudt. Serveringssteder må stenge senest kl. 23.00, og alkoholservering må avsluttes kl. 22.30. Endringene trer i kraft 7. desember 2020, og er viktige for å begrense smittespredning i kommunen."
+  }
+}

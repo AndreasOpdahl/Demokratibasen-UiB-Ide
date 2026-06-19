@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2829:28036:200003483:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:44:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to deny a liquor license to The English Pub has local relevance and potential impact on the business and community."
+    },
+    "summary_headline": "The English Pub får ikke skjenkebevilling for brennevin",
+    "summary_body": "Bergen kommune har avslått søknaden om alminnelig skjenkebevilling for brennevin ved The English Pub, Øvre Ole Bullsplass 3. Rusmiddelpolitisk råd anbefalte avslaget, som ble vedtatt med 2 stemmer mot. Henning Warloe (H) fremmet et alternativt forslag om å innvilge bevillingen, men dette ble ikke vedtatt. Puben kan klage på avgjørelsen, men må gjøre det innen 6 måneder."
+  }
+}

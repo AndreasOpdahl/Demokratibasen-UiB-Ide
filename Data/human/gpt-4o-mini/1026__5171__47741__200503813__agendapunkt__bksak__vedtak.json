@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5171:47741:200503813:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:09:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document involves a property division complaint but lacks significant conflict or public impact."
+    },
+    "summary_headline": "Klage på eiendomsdeling avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig avvist klagen fra Aagot Falck Notevarp angående deling av eiendom på Ytrebygda, gnr 104 bnr 15. Klagen ble behandlet i møte 28. juni 2007, og komiteen opprettholdt det administrative vedtaket fra 10. august 2006. Ingen representanter tok ordet under behandlingen."
+  }
+}

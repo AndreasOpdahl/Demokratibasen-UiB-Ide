@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3795:36503:200300418:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:07:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The funding decision for the seafood event is significant for local economic development and community engagement."
+    },
+    "summary_headline": "Bergen kommune bevilger 450.000 kroner til Sjømat for alle 2004",
+    "summary_body": "Bergen byråd har besluttet å bevilge 450.000 kroner til Fiskeriforum Vest for prosjektledelse og administrasjon av arrangementet Sjømat for alle 2004. Arrangementet, som finner sted fra oktober 2003 til september 2004, har som mål å fremme Norges posisjon som kompetansesenter innen sjømat og vil inkludere både en folkefest og en faglig konferanse. Dette er tredje gang arrangementet gjennomføres, og kommunen har tidligere støttet det økonomisk. Byrådsleder Anne-Grete Strøm-Erichsen understreker viktigheten av arrangementet for regionens marin sektor."
+  }
+}

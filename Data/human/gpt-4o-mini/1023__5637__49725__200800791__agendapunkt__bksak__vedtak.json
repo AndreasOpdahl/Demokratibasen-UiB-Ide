@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:5637:49725:200800791:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:41:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposed seminar addressing the needs of elderly refugees, which is relevant to local residents."
+    },
+    "summary_headline": "Komite for helse og sosial vedtar aktivitetsplan med fokus på eldre flyktninger",
+    "summary_body": "Komite for helse og sosial har enstemmig vedtatt en aktivitetsplan i møte 13. februar 2008. Trygve Birkeland (KrF) foreslo at arbeidsutvalget vurderer å gjennomføre et seminar om \"Alderdom i et flerkulturelt samfunn\" for å belyse utfordringer knyttet til eldre flyktninger som kom til Norge på 70-tallet. Dette temaet er viktig for å forstå behovene til en voksende gruppe eldre i kommunen."
+  }
+}

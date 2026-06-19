@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:3210:32382:200200467:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:19:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a public meeting but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Åpen halvtime for innspill til politikerne",
+    "summary_body": "Arna bydelsstyre inviterer til åpen halvtime den 17. september 2002, fra kl. 18.00 til 18.30, hvor publikum kan komme med innlegg til politikerne og administrasjonen."
+  }
+}

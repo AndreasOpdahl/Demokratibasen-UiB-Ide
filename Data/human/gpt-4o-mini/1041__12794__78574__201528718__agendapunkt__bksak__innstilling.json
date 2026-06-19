@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:12794:78574:201528718:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:10:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "This document details a routine appointment within a political party, which has limited immediate impact on the broader community."
+    },
+    "summary_headline": "Ny varamedlem for Miljøpartiet De Grønne i Bergen bystyre",
+    "summary_body": "Miljøpartiet De Grønne har kåret Aslaug Moi Frøysnes som nytt varamedlem i Bergen bystyre etter at Ingrid Randisdatter Fjellberg fikk fritak fra vervet. Øystein Bønes rykker opp som fast medlem. Dette er en rutinemessig endring som ikke forventes å påvirke byens innbyggere i stor grad."
+  }
+}

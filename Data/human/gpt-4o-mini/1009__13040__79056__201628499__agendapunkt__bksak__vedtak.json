@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13040:79056:201628499:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:56:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves public spending and changes to election infrastructure, which are relevant to local residents."
+    },
+    "summary_headline": "Nye valgboder på Torgallmenningen for valget 2017",
+    "summary_body": "Byrådet har besluttet å tilrettelegge for valgkamp på Torgallmenningen i 2017 ved å bytte ut dagens valgboder med en containerbasert løsning. Det er avsatt 0,5 millioner kroner til investering i de nye valgbodene, finansiert gjennom omdisponering innen naturforvaltning og parkdrift. De politiske partiene må betale en leie på 13.486 kroner per bod. Byrådet vil informere bystyret om saken i 1. tertialrapport 2017."
+  }
+}

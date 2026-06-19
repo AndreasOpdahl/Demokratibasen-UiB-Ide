@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:12196:75064:201531396:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:01:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses multiple hearings on significant topics affecting local governance and education."
+    },
+    "summary_headline": "Høringer om naturskadeerstatning og lærerutdanning i Bergen",
+    "summary_body": "Bystyrets kontor har mottatt tre høringssaker som skal behandles. Den første omhandler dekning av tomteerstatning under naturskadeforsikringsordningen, hvor det vurderes om erstatning også skal gjelde tomter der gjenoppbygging ikke er tilrådelig. Høringsfristen er 20. april 2016. Den andre saken gjelder en klageordning for kommuner ved endringer i politi- og lensmannsetatens tjenestestedsstruktur, med høringsfrist 29. april 2016. Den tredje høringen omhandler rammeplan for femårige grunnskolelærerutdanninger, som trer i kraft høsten 2017, med høringsfrist 1. april 2016. Komiteene anbefaler bystyret å avgi uttalelser i disse sakene."
+  }
+}

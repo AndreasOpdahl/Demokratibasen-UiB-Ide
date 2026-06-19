@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8385:63557:201107589:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:19:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant changes to waste management fees and includes dissenting opinions from various political parties."
+    },
+    "summary_headline": "Bystyret vedtar renovasjonsgebyrer for 2012, men det er uenighet om avfallshåndtering",
+    "summary_body": "Bergen bystyre har vedtatt renovasjonsgebyrene for 2012, men det er uenighet om avfallshåndteringen. Hallgeir Utne Hatlevik (A) fremmet et alternativt forslag om å innføre elektronisk tømmeregistrering og opprettholde rabattordninger, men dette ble nedstemt. Flere partier, inkludert A, V, SV, R, MDG, Sp og BY, uttrykte bekymring for avfallshåndteringen under BIR-systemet og ba om at Bergen kommune vurderer å trekke seg ut av BIR, med unntak av Bossnett AS. Bystyret understreker også behovet for to ukentlige avfallsinnsamlinger i sentrum inntil bedre løsninger er på plass."
+  }
+}

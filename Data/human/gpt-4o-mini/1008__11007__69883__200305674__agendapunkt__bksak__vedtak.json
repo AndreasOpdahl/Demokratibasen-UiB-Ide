@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:11007:69883:200305674:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:32:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document indicates a postponement of a planning case, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Saken om detaljregulering utsettes",
+    "summary_body": "Saken om detaljregulering for Årstad, gnr. 13, bnr. 1045 m.fl. i Storetveitåsen ble utsatt under den andre behandlingen."
+  }
+}

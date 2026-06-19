@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248927:6296333:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:52:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves a significant local issue regarding a complaint against a council decision, with political dissent and implications for land use."
+    },
+    "summary_headline": "Klage på byrådens vedtak om pir i Fleslandsvika avvist",
+    "summary_body": "Utvalg for miljø og byutvikling har avvist klagen på byrådens fullmaktvedtak om dispensasjon for plassering av pir i Fleslandsvika. I møtet 09.11.2023 ble det besluttet å opprettholde byrådets vedtak fra 25.04.2023, til tross for et alternativt forslag fra Lillian Blom (SV) som fikk støtte fra 4 representanter, men falt mot 13 stemmer fra H, A, FrP, BL, V, INP og Sp. Saken har betydning for kommuneplanens arealdel og kan påvirke lokal utvikling i området."
+  }
+}

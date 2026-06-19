@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1027:6131:52000:200706656:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:25:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant local dispute over a construction permit affecting neighbors and community planning."
+    },
+    "summary_headline": "Klage på høydeendring av forstøtningsmur avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra naboer angående tillatelsen til å endre høyden på en forstøtningsmur ved Persenbakken 20, som nå kan bli inntil 4 meter høy. Klagen ble sendt inn etter at tillatelsen ble gitt 29. februar 2008, og naboene uttrykte bekymringer om ulempene ved en takterrasse som lekeareal. Byrådet støtter fagetatens vurdering om at endringen vil sikre terrenget mot ras og gi tilstrekkelige utearealer for barnehagen. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51050:112149:199814444:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:00:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains a budget correction proposal that affects public finances, but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Bystyret må korrigere kjernekapitalinnskudd til pensjonskassen",
+    "summary_body": "Bystyret i Bergen skal korrigere et tidligere vedtak om kjernekapitalinnskudd til Bergen Kommunale Pensjonskasse. Rådmannen foreslår at innskuddet pr. 31. desember 1998 skal være 113.742.000 kroner, fordelt på 1.137.420 innskuddsbevis. Dette er en justering fra det tidligere vedtatte beløpet på 108.000.000 kroner. Korrigeringen er nødvendig for å inkludere andeler fra alle medlemmer av pensjonskassen."
+  }
+}

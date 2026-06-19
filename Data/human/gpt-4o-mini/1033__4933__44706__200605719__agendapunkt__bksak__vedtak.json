@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:4933:44706:200605719:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:50:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves a controversial recommendation regarding a local alcohol sales permit, which affects community regulations."
+    },
+    "summary_headline": "Rusmiddelpolitisk råd anbefaler å avslå alkoholsøknad fra ICA Supermarked",
+    "summary_body": "Rusmiddelpolitisk råd har anbefalt å avslå søknaden fra ICA Supermarked Sandviksveien om ny salgsbevilling for alkoholholdig drikk gruppe 1 frem til 30. juni 2008. Dette ble vedtatt med leders dobbeltstemme, mot tre stemmer fra Fremskrittspartiet og Høyre. Administrasjonen foreslo opprinnelig å innvilge søknaden, men forslaget falt. Denne avgjørelsen kan påvirke tilgjengeligheten av alkohol i området."
+  }
+}

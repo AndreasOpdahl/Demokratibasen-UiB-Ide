@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4021:37548:200302533:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:11:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a new outdoor serving license is relevant to local businesses and residents, with specific conditions that may affect the community."
+    },
+    "summary_headline": "Ny uteservering tillatt ved Bar & Restaurant på Torget 13",
+    "summary_body": "Byrådet har innvilget søknaden om uteservering for Bar & Restaurant på Torget 13, med plass til 20 gjester. Tillatelsen kan ikke tas i bruk før fortauet er utvidet. Det er forbudt med musikk etter kl. 22.00, og uteserveringen må ikke være til sjenanse for naboer. Før oppstart må søker sende inn egenerklæring og få godkjennelse fra relevante myndigheter. Bevillingen gjelder frem til 30. juni 2004."
+  }
+}

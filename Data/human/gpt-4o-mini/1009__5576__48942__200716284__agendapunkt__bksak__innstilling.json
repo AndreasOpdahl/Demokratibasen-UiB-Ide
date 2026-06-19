@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5576:48942:200716284:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:30:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines administrative changes that affect local governance but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Byrådet utvider med to nye avdelinger",
+    "summary_body": "Byrådet i Bergen har besluttet å utvide administrasjonen fra fem til syv byrådsavdelinger. Dette inkluderer opprettelsen av nye avdelinger for byggesak og bydeler, samt kultur, næring og idrett. Petter Wiberg og Bjørn Holmvik er konstituert som kommunaldirektører for disse avdelingene i inntil 12 måneder. Byrådsleder Monica Mæland står bak vedtaket."
+  }
+}

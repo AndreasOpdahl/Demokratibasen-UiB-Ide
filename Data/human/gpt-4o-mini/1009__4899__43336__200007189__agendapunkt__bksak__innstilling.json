@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4899:43336:200007189:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:20:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposed changes to dog ownership regulations are relevant to local residents and aim to enhance public safety."
+    },
+    "summary_headline": "Bergen kommune vurderer nye regler for hundehold",
+    "summary_body": "Byrådet i Bergen har besluttet å utrede behovet for egne forskrifter om hundehold i kommunen, i lys av innføringen av en ny hundelov. Formålet med loven er å samle eksisterende regler og forbedre sikkerheten rundt hundehold, samt å motvirke problematisk hundehold. Byråden for byutvikling, Lisbeth Iversen, har innstilt på at gjeldende politivedtekter om hundehold oppheves fra 2007. Dette kan påvirke hundeeiere og innbyggere i Bergen, da nye regler kan bli innført for å sikre trygghet i lokalsamfunnet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2564:25508:200100318:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:43:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new alcohol license application for a restaurant, which has local relevance and potential impact on the community."
+    },
+    "summary_headline": "Københavnerkroen AS får ny skjenkebevilling for Pianofabrikken",
+    "summary_body": "Københavnerkroen AS har fått innvilget søknad om ny alminnelig skjenkebevilling for øl, vin og brennevin ved Pianofabrikken, Daniel Hansensgt. 9. Den nye bevillingen gjelder for perioden frem til 30. juni 2004, og det er Anne Lise Steiro som er utpekt som styrer. Politiet og bydelsstyret har ikke hatt merknader til søknaden, som ble behandlet av Bergenhus bydelsstyre med 11 mot 1 stemme. Den nye bevillingen er viktig for å sikre fortsatt drift av spisestedet, som vil fokusere på servering av mat med biff som spesialitet."
+  }
+}

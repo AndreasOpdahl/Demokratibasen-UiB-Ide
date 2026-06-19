@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:12385:75911:201523862:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:53:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The approval of a new alcohol license for a local café is relevant and impacts the community."
+    },
+    "summary_headline": "Tipp Topp Kafe og Bar får skjenkebevilling",
+    "summary_body": "Byrådet for helse og omsorg har innvilget søknaden fra Tipp Topp Kafe og Bar AS om ny alminnelig skjenkebevilling for alkoholholdig drikk inne og utendørs. Kafeen, som ligger i Sparebankgaten 4, planlegger å tilby lette matretter og drikke. Bevillingen gjelder et totalt areal på 100 m², inkludert uteservering. Skjenking i bakgården er tillatt til kl. 23.00 på hverdager og til kl. 24.00 i helgene. Før bevillingen kan tas i bruk, må flere dokumenter sendes inn til Kontor for skjenkesaker."
+  }
+}

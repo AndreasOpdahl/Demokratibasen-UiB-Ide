@@ -1,0 +1,18 @@
+{
+  "dokument_id": "16cdf7b0-8e12-59d9-a129-a970883e10fb",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:28:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document contains significant decisions regarding urban planning and public safety that directly impact local residents."
+    },
+    "summary_headline": "Bergen kommune vurderer flere reguleringsplaner og innbyggerforslag",
+    "summary_body": "Utvalg for miljø og byutvikling i Bergen kommune behandlet flere saker den 10. april 2025, inkludert reguleringsplaner for Dokken sør og Hegreneset, samt innbyggerforslag om droppsone ved Ulsmåg skole. Det ble vedtatt at krav til parkeringsdekning for Dokken sør skal settes til minimum 0,4 pr. 100 m2 bolig. I tillegg ble det fremmet forslag om å oppkalle en plass etter Reidar Olsen, som fikk støtte fra flere partier. Innbyggerforslaget om droppsone ble også positivt vurdert, med oppfordring til byrådet om å inkludere det i Miljøløftets portefølje. Saken om hotell i Strandgaten 223 ble avvist, men det ble uttrykt støtte for innbyggernes bekymringer."
+  }
+}

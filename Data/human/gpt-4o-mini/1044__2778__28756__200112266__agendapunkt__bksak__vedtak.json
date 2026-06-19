@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:2778:28756:200112266:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:23:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural rules for a local council meeting, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Åsane bydelsstyre godkjenner forretningsorden",
+    "summary_body": "Åsane bydelsstyre har godkjent innkalling og sakskart i møte den 13. november 2001. Det ble foreslått nye regler for innlegg under møtene, hvor ingen representant kan ha innlegg mer enn to ganger i samme sak, med tidsfrister for innlegg. Forslaget fra Arvid Blommedal (FrP) om endringer fikk kun 3 stemmer og ble avvist. Møtet ble avsluttet med godkjenning av sakskartet."
+  }
+}

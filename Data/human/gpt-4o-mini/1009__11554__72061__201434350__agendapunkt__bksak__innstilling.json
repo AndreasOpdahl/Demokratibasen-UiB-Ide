@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11554:72061:201434350:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:48:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property sale has implications for local housing and development."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på Munkebotn 49",
+    "summary_body": "Bergen kommune har besluttet å ikke benytte sin forkjøpsrett ved salget av Munkebotn 49, en leiegård med fem boenheter, for NOK 9.226.222. Byrådet for byutvikling, klima og miljø, ledet av Henning Warloe, anbefalte dette etter vurderinger fra fagetater som påpekte at bygningen er gammel og krever omfattende rehabilitering. Det er ingen leietakere på eiendommen, og kommunen vurderer at forkjøpsretten ikke vil gagne boligsøkere i nær fremtid. Beslutningen ble fattet 13. januar 2015."
+  }
+}

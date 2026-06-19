@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228787:2650730:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:03:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a regional plan for innovation and economic development, highlighting significant local political debate and differing opinions."
+    },
+    "summary_headline": "Bystyret vedtar høringsuttalelse til regional plan for innovasjon, men FrP fremmer alternativt forslag",
+    "summary_body": "Bergen bystyre har vedtatt å avgi høringsuttalelse til den regionale planen for innovasjon og næringsutvikling 2021-2033, som fremgår av byrådets forslag. Under behandlingen ble det fremmet et alternativt forslag fra FrP, som ønsket å inkludere mer fokus på petroleumsnæringens rolle i fremtidens næringsliv, men dette forslaget ble nedstemt. Bystyret understreket viktigheten av høy kompetanse og samarbeid mellom akademia og næringsliv, og merknader om transportutfordringer ble også diskutert. Vedtaket ble fattet med 66 stemmer for og 11 mot."
+  }
+}

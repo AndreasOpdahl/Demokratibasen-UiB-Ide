@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1027:6618:56269:200815193:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:25:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a contested land division case with implications for local housing development."
+    },
+    "summary_headline": "Byrådet snur i klagesak om fradeling i Fyllingsdalen",
+    "summary_body": "Byrådet har endret sin innstilling og anbefaler at klagen fra Kristine Nordlinders dødsbo om fradeling av parsell til boligformål i Fyllingsdalen tas til følge. Dette skjer etter at Fylkesmannen i Hordaland opphevet en tidligere avgjørelse fra komiteen for miljø og byutvikling. Den nye parsellen vil være ca. 550 m² stor, og byrådet mener at den kan utvikles uten å skape sjenerende innsyn. Saken vil bli behandlet politisk på nytt, og det er viktig for innbyggerne i Bergen å følge med på utviklingen av boligmarkedet i området."
+  }
+}

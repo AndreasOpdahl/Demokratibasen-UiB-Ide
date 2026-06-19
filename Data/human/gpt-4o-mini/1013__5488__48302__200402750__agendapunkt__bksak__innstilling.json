@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5488:48302:200402750:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:10:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a meeting schedule without significant newsworthy elements."
+    },
+    "summary_headline": "Kjøreplan for bystyrets møte 17. september 2007",
+    "summary_body": "Bystyredirektør Roar Kristiansen har fremlagt en kjøreplan for bystyrets møte den 17. september 2007. Møtet starter med opprop kl. 10:00, etterfulgt av budsjettpresentasjon fra byrådet kl. 10:10. Det er planlagt behandling av ca. 20 saker, hvorav mange forventes å gå raskt. En mer detaljert kjøreplan vil bli presentert neste uke."
+  }
+}

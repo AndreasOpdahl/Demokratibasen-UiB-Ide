@@ -1,0 +1,18 @@
+{
+  "dokument_id": "249506:4803095:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:54:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines changes to the working environment committees in Bergen, which is of limited local interest."
+    },
+    "summary_headline": "Endringer i arbeidsmiljøutvalg i Bergen kommune",
+    "summary_body": "Bergen kommune har oppdatert oversikten over arbeidsmiljøutvalgene fra november 2023, etter konstitueringen av det nye byrådet. Det er nå flere nye utvalg under ulike byrådsavdelinger, inkludert barnevern, kultur og idrett, samt eldre og helse. Forslaget om å ta denne oversikten til etterretning ble fremmet av Barbro Sofie Lie, leder av Hovedarbeidsmiljøutvalget."
+  }
+}

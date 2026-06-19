@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:3110:31771:200022628:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:18:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal for increased self-governance in schools is significant and could impact local educational governance."
+    },
+    "summary_headline": "Årstad bydel anbefaler økt selvstyre for skolene",
+    "summary_body": "Årstad bydelstyre har diskutert forslag om endring av styringsstruktur for grunnskolene i Bergen kommune. Tre modeller er foreslått: videreføring av dagens samarbeidsutvalg, delegering av myndighet til dette utvalget, og en ny styreordning med mulighet for eksterne medlemmer og foreldreflertall. Bydelsstyret anbefaler at Bergen kommune prøver ut alle tre modellene for å få erfaring med dem, men hvis en modell skal velges, foretrekkes dagens modell. Dette kan påvirke hvordan skolene styres og involverer lokalsamfunnet mer i beslutningsprosesser."
+  }
+}

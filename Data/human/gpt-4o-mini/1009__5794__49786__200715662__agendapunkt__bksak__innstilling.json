@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5794:49786:200715662:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:32:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant policy change aimed at enhancing social engagement through reserved contracts for businesses employing individuals with disabilities."
+    },
+    "summary_headline": "Bergen kommune innfører reserverte kontrakter for arbeidsmarkedstiltaksbedrifter",
+    "summary_body": "Bergen kommune har besluttet å aktivt bruke reserverte kontrakter i anskaffelsesprosesser for å styrke samfunnsengasjementet. Byrådet, ledet av Christine B. Meyer, innfører retningslinjer som gir prioritet til arbeidsmarkedstiltaksbedrifter innen syv spesifikke områder, inkludert transport og vaskeri. Dette tiltaket trer i kraft 1. mars 2008, og unntak fra denne praksisen må begrunnes. Målet er å skape forutsigbarhet for disse bedriftene og fremme inkludering av personer med funksjonsnedsettelser i arbeidslivet."
+  }
+}

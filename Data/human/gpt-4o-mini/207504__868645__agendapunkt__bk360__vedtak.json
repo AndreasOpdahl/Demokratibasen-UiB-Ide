@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207504:868645:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:13:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is an informational update with no significant newsworthy elements."
+    },
+    "summary_headline": "Orientering om plan mot vold i nære relasjoner",
+    "summary_body": "Bergen kommune informerer om arbeidet med planen mot vold i nære relasjoner, behandlet av Ruspolitisk råd den 9. oktober 2018. Rådet har tatt orienteringen til etterretning."
+  }
+}

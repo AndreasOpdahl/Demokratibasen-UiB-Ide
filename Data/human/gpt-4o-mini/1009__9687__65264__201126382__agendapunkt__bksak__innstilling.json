@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9687:65264:201126382:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:47:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the renewal of alcohol licenses for local restaurants, which is relevant to residents and involves public regulations."
+    },
+    "summary_headline": "Byrådet vurderer fornyelse av skjenkebevillinger for lokale restauranter",
+    "summary_body": "Byrådet i Bergen har behandlet søknader om fornyelse av skjenkebevillinger for Teaterrestauranten og Arti Indisk Restaurant for perioden 1. juli 2012 til 30. juni 2016. Byrådsleder Monica Mæland støtter anbefalingene fra Kontor for skjenkesaker, som vurderer søknadene i henhold til gjeldende regelverk. Det presiseres at alle bevillinger kan innvilges med vilkår, og at det er mulig å klage på vedtaket. Dette er viktig for lokale innbyggere som ønsker å følge med på serveringssteder i kommunen."
+  }
+}

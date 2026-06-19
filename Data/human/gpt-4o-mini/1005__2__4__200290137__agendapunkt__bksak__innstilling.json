@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:2:4:200290137:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:46:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a change in committee membership which may affect local governance."
+    },
+    "summary_headline": "Stine Akre trekker seg fra Kontrollutvalget, Bente Skibenes Meen inn som nytt medlem",
+    "summary_body": "Stine Akre fra Rød Valgallianse har søkt om fritak fra sitt verv i Kontrollutvalget for å bli medlem av en ny komité. Bystyret har godkjent hennes avgang og valgt Bente Skibenes Meen som nytt medlem i Kontrollutvalget for resten av valgperioden 1999-2003. Dette kan påvirke hvordan kontrollutvalget fungerer i Bergen kommune."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1028:10462:68827:201300508:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:26:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural notice with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen saker fremmet for kommunalt råd",
+    "summary_body": "Møtet i Kommunalt råd for funksjonshemmede den 30. oktober 2013 hadde ingen spesifikke saker til behandling."
+  }
+}

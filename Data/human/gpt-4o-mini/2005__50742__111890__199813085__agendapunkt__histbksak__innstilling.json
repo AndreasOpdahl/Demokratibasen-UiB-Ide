@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50742:111890:199813085:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:42:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a new residential building project that has undergone revisions and has local significance, impacting housing availability."
+    },
+    "summary_headline": "Godkjenning av nytt boligbygg i Thormøhlens gate 9",
+    "summary_body": "Hovedutvalg for byutvikling har anbefalt godkjenning av et nytt boligbygg i Thormøhlens gate 9, som vil bestå av 39 leiligheter fordelt på 5 og 7 etasjer. Prosjektet har blitt revidert etter innspill fra byantikvaren og andre instanser, og det er nå planlagt med 27 parkeringsplasser. Det er ingen innsigelser fra naboer på det reviderte prosjektet, men Havnevesenet har uttrykt bekymring for støy fra havneaktivitet. Byggetillatelse vil bli gitt av administrasjonen med tekniske vilkår."
+  }
+}

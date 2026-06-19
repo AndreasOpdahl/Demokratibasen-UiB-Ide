@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51111:113017:199901955:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:01:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The interpellation addresses a significant issue regarding the availability of local fruit for elderly institutions, impacting local residents' nutrition."
+    },
+    "summary_headline": "Krav om norsk frukt til eldreinstitusjoner i Bergen",
+    "summary_body": "Ragnhild Hedemann fra SV har stilt spørsmål til bystyret om innkjøp av norsk frukt til eldreinstitusjoner i Bergen. Hun påpeker at mange institusjoner ikke får tilgang til norske epler og pærer, til tross for at lagrene er fulle. Hedemann mener det er viktig for kostholdet til eldre at de får fersk, lokal frukt, og ber ordføreren om å ta initiativ til å reforhandle avtaler med grossister for å sikre tilgjengelighet av norsk frukt i høstmånedene."
+  }
+}

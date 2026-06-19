@@ -1,0 +1,18 @@
+{
+  "dokument_id": "4632e7b6-2b5b-58da-84b7-6e9b7de9dd07",
+  "kommune_nummer": 4615,
+  "kommune_navn": "Fitjar",
+  "generated_at": "2026-02-19 23:00:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant changes in school organization affecting local students, highlighting potential challenges and resource allocation."
+    },
+    "summary_headline": "Flytting av elevar frå Øvrebygda til Rimbareid skule skaper utfordringar",
+    "summary_body": "Fitjar kommune planlegg å flytte elevar frå Øvrebygda skule til Rimbareid skule for 5.–7. trinn frå hausten 2024. Dette er ein del av etableringa av eit nytt oppvekstsenter i Øvrebygda som skal stå klart hausten 2026. Rimbareid skule har kapasitet til å ta imot elevane, men det er identifisert utfordringar med lydisolasjon og romkapasitet som må løysast. Kommunedirektør Steinar Dalland understrekar at det vil bli arbeidd vidare med desse utfordringane for å sikre eit godt læringsmiljø."
+  }
+}

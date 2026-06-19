@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3403:34909:200107755:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:25:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The report discusses a significant local project with potential implications for community development."
+    },
+    "summary_headline": "Åsane bydelsstyre vurderer forlengelse av Modellbydelen-prosjektet",
+    "summary_body": "Åsane bydelsstyre har mottatt årsrapporten for 2002 om prosjektet \"Modellbydelen Åsane\", som ble igangsatt i 2001. Prosjektet har vurdert 65 ideer og forslag, og det er ønskelig å forlenge prosjektet til første kvartal 2004 for bedre integrasjon av metodikken. Det er imidlertid usikkert om finansiering for forlengelsen er mulig. Bydelsdirektør Marit Strøm understreker at erfaringene fra prosjektet må brukes i videre endringsarbeid i bydelen."
+  }
+}

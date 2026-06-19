@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50980:112016:199601831:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:50:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a research project on youth culture and local cultural policy, which has implications for community engagement and cultural offerings."
+    },
+    "summary_headline": "Bergen deltar i forskningsprosjekt om ungdomskultur",
+    "summary_body": "Hovedutvalg for fritid og kultur i Bergen har fått orientering om et forskningsprosjekt om ungdomskultur og lokal kulturpolitikk, utført av Østlandsforskning på oppdrag fra Norsk Kulturråd. Prosjektet involverer fem kommuner og en bydel i Oslo, og har som mål å kartlegge ungdomsmiljøer og kulturtilbud for barn og unge. Hovedutvalget ber om å få presentert resultatene når prosjektet er avsluttet, noe som kan påvirke fremtidige kulturtiltak for ungdom i Bergen."
+  }
+}

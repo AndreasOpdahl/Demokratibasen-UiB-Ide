@@ -1,0 +1,18 @@
+{
+  "dokument_id": "233618:2651090:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:15:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a facade change in a historically sensitive area, impacting local cultural heritage."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på fasadeendring i kulturhistorisk område",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om fasadeendring av næringsbygget Torggaten 7, som omfatter installasjon av nye inngangsdører og vinduer. Avslaget, datert 25. mars 2021, ble påklaget av Torggaten 5 AS, men byrådet støtter fagetatens vurdering om at tiltaket ikke ivaretar de visuelle kvaliteter og kulturelle verdier i området. Byantikvaren har frarådet endringene, og byrådet understreker at de omsøkte bygningene ligger i et kulturmiljø som krever strengere vurderinger. Saken vil nå bli sendt til Statsforvalteren i Vestland for endelig avgjørelse."
+  }
+}

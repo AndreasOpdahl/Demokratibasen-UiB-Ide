@@ -1,0 +1,18 @@
+{
+  "dokument_id": "59ab02ed-02fd-5125-87af-905b1ba3e2f7",
+  "kommune_nummer": 4624,
+  "kommune_navn": "Bjørnafjorden",
+  "generated_at": "2026-02-19 23:03:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a local dispute over a building permit that affects neighbors and has been contested."
+    },
+    "summary_headline": "Klage på nybygg i Øyrsmoget sendt til Statsforvaltaren",
+    "summary_body": "Plan-, bygg- og miljøutvalet i Bjørnafjorden kommune har stadfestet vedtaket om dispensasjon og rammeløyve for ein einebustad på Øyrsmoget 3, til tross for klage fra en nabo. Klageren mener at bygget vil forringe området og ønsker synfaring før videre behandling. Saken er nå sendt til Statsforvaltaren i Vestland for videre vurdering."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:3568:33730:199935376:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:37:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses a significant planning issue affecting local development and community interests."
+    },
+    "summary_headline": "Klagesak om Bispengsgaten 23 avgjort av Fylkesmannen",
+    "summary_body": "Fylkesmannen i Hordaland har avgjort klagesaken vedrørende Bispengsgaten 23, og konkludert med at det ikke er grunnlag for dispensasjon fra plankravet. Dette betyr at eiendommen ikke omfattes av kommunedelplan Sentrum, som ble vedtatt av bystyret. Byrådet, ledet av Anne-Grete Strøm-Erichsen, innstiller til komiteen for miljø, byutvikling og tekniske tjenester om ikke å starte offentlig planarbeid for området. Kime AS, tiltakshaver, kan imidlertid fremme en privat reguleringsplan. Saken er av betydning for lokal utvikling og kan påvirke fremtidige byggeprosjekter i området."
+  }
+}

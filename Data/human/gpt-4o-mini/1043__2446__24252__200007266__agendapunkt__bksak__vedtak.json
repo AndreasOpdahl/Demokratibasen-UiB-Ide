@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:2446:24252:200007266:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:17:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The establishment of a new department for immigrants and refugees in Årstad is significant due to its financial implications and local relevance."
+    },
+    "summary_headline": "Årstad bydelsstyre oppretter avdeling for innvandrere og flyktninger til tross for økonomiske bekymringer",
+    "summary_body": "Årstad bydelsstyre har vedtatt å opprette en egen avdeling for kvalifisering av innvandrere og flyktninger, til tross for advarsler om en vanskelig økonomisk situasjon. Den nye avdelingen vil ha to stillinger med en årlig kostnad på 700.000 kroner, finansiert gjennom økt rammetilskudd. Det ble uttrykt bekymring fra Fremskrittspartiet om at dette vil forverre det allerede eksisterende budsjettunderskuddet på over 22 millioner kroner. Avdelingen skal evalueres etter ett år med økonomirapportering til bydelsstyret."
+  }
+}

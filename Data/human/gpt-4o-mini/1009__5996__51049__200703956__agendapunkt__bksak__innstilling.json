@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5996:51049:200703956:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:33:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to expand the alcohol serving area at a local stadium is relevant and impacts local residents, but lacks significant controversy."
+    },
+    "summary_headline": "Utvidelse av skjenkeareal ved Nye Brann Stadion godkjent",
+    "summary_body": "Byrådet har innvilget en søknad om utvidelse av skjenkearealet ved Nye Brann Stadion, Idrettsveien 47, til å inkludere tribunen i tilknytning til Losjeavdelingen i 4. etg. Utvidelsen gjelder alkoholholdig drikk gruppe 1-3 og er godkjent frem til 30. juni 2008. Byråd for helse og omsorg, Liv Røssland, anbefaler innvilgelse, og det er lagt vekt på at alkoholkonsumet ikke vil øke, da de samme gjestene oppholder seg både i losjene og på tribunen. Det er krav om at matomsetningen skal utgjøre minst 25 % av totalomsetningen i skjenkearealene."
+  }
+}

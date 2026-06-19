@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206275:268384:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:11:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to revoke the liquor license due to non-use is relevant to local businesses and residents."
+    },
+    "summary_headline": "Skjenkebevilling inndratt for Munken Bistro",
+    "summary_body": "Byrådet har besluttet å inndra skjenkebevillingen for Munken Bistro i Klostergaten 12 frem til 30. juni 2020, da bevillingen ikke har vært benyttet det siste året. Bevillingshaver er Storevik & Martinez AS, med Mats Ekeberg som styrer. Etter inndragelsen vil restauranten kun ha skjenkeareal i 1. etasje på 32 m². Dette kan påvirke restaurantens drift og tilbud til gjester."
+  }
+}

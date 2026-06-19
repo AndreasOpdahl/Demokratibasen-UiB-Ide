@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10683:69046:200815542:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:57:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a planning case with some positive feedback but lacks significant conflict or impact."
+    },
+    "summary_headline": "Positiv vurdering av nybygg på Kokstadvegen",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet et forslag om nybygg på Kokstadvegen 23. I møtet 4. desember 2013 ble det besluttet at en reduksjon av høyden på prosjektet vil gi en mer homogen gesimsflate, noe som ble ansett som positivt. Det er ingen nevnte motsetninger eller kontroverser i saken."
+  }
+}

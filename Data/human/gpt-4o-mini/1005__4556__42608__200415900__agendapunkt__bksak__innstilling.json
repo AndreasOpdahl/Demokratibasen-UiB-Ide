@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4556:42608:200415900:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:55:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to regional governance that could impact local political structures and citizen representation."
+    },
+    "summary_headline": "Bergen bystyre støtter ny regionalpolitikk med fokus på storbyutfordringer",
+    "summary_body": "Bergen bystyre har avgitt høringsuttalelse til NOU 2004:19, som foreslår en ny trenivåmodell for regionalisering. Bystyret støtter kommisjonens forslag om å overføre mer makt til folkevalgte organer, men understreker behovet for å styrke det kommunale selvstyret, spesielt for storbyer som Bergen. Det påpekes at endringer i forvaltningsstrukturen må ivareta kommunens nåværende funksjoner. Høringsuttalelsen ble vedtatt enstemmig av forretningsutvalget, og det er viktig for innbyggerne at deres stemme blir hørt i denne prosessen."
+  }
+}

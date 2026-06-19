@@ -1,0 +1,18 @@
+{
+  "dokument_id": "208582:266632:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:16:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a meeting and activity plan for a municipal committee, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for komiteen for fullmakter og politisk styringssystem vedtatt for 2019",
+    "summary_body": "Komite for fullmakter og politisk styringssystem (KFPS) har vedtatt møteplan for 2019 med datoer som 15. januar, 19. februar, og 26. mars. Aktivitetsplanen dekker perioden fra november 2018 til juni 2019, med fokus på oppfølging av vedtak fra bystyret. Temaene inkluderer bydelsstyrer og revisjon av reglementsbestemmelser."
+  }
+}

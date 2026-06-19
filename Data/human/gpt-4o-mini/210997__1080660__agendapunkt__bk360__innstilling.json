@@ -1,0 +1,18 @@
+{
+  "dokument_id": "210997:1080660:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:21:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The inquiry raises concerns about compliance with procurement regulations, which could affect public trust."
+    },
+    "summary_headline": "Spørsmål om innkjøp av konsulenttjenester i Laksevåg",
+    "summary_body": "Norvald B. Visnes (H) har stilt spørsmål til byråden om hvordan innkjøpet av konsulenttjenester til «Strategisk planprogram for Laksevåg» er gjennomført. Visnes påpeker at dokumentasjon mangler for denne saken, til tross for at kommunen har bekreftet at reglene for anskaffelser følges. Byråden må redegjøre for prosessen og oppgi hvor dokumentene kan finnes. Dette kan påvirke innbyggernes tillit til kommunens håndtering av offentlige midler."
+  }
+}

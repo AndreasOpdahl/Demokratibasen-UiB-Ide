@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5172:47975:200700712:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:09:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document contains multiple inquiries regarding local infrastructure and public access issues, which are relevant to residents."
+    },
+    "summary_headline": "Bystyret diskuterer småbåtplasser, strandtilgang og rutetilbud i Bergen",
+    "summary_body": "I møtet 30. august behandlet Komite for miljø og byutvikling flere viktige spørsmål. Christopher Brun (H) spurte om byråden kan hjelpe med å etablere flere småbåtplasser i Sandviken. Margunn Rognås (A) uttrykte bekymring over at båtforhandleren Viksund har stengt tilgangen til strandsonen ved Øyrane Torg, noe som hindrer lokalbefolkningen i å sette ut båtene sine. Hallstein Aadland (FrP) ba om at kommunen vurderer å la avfallet bli liggende på Slettebakken i stedet for å flytte det til Stend. Kristian Helland (KrF) oppfordret til bevaring av reperbanen i Sandviken, mens Marte Mjøs Persen (RV) etterlyste forbedringer i rutetilbudet fra TIDE. Anmodningen fra Arne Jakobsen (A) om finansiering av 2. etappe av Ringveg Vest ble enstemmig vedtatt for videre behandling. Disse sakene berører direkte innbyggernes hverdag og tilgang til offentlige områder."
+  }
+}

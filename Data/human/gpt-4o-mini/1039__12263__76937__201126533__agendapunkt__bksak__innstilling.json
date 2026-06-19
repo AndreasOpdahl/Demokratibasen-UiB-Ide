@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1039:12263:76937:201126533:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:07:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a procedural aspect of a meeting without significant newsworthy elements."
+    },
+    "summary_headline": "Åpen halvtime for Ungdommens bystyre",
+    "summary_body": "Ungdommens bystyre inviterer til «åpen halvtime» der publikum kan stille spørsmål relatert til deres ansvarsområde. Dette skjer 22. september 2016, men det er ingen debatt under møtet."
+  }
+}

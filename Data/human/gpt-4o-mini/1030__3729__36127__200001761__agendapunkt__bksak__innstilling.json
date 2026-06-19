@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:3729:36127:200001761:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:39:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of minutes from a local council meeting, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Laksevåg bydelsstyre",
+    "summary_body": "Laksevåg bydelsstyre har godkjent protokollen fra en fullmaktssak. Saken er rutinemessig og inneholder ingen kontroverser eller betydelige beslutninger."
+  }
+}

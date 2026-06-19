@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4715:42745:200207309:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:19:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves expropriation for a public project, which has significant local impact."
+    },
+    "summary_headline": "Byrådet vedtar ekspropriasjon for reguleringsplan i Bergen",
+    "summary_body": "Byrådet i Bergen har besluttet å ekspropriere nødvendige grunner og rettigheter for å gjennomføre reguleringsplan P. 3.947.02.00, som berører RV 580 Flyplassvegen. Dette ble vedtatt i møte 2. november 2005. Byrådet gir også fullmakt til å søke om forhåndstiltredelse, og kommuneadvokaten skal sende søknaden til fylkesmannen i Hordaland. Staten deltar som hjelpeintervenient i skjønnsaken. Dette tiltaket vil ha betydelig innvirkning på lokal infrastruktur og transport."
+  }
+}

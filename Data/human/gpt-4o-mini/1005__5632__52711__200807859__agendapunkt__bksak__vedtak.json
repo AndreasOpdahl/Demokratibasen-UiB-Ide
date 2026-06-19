@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5632:52711:200807859:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:08:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine decision regarding fees with no controversy or significant impact."
+    },
+    "summary_headline": "Bystyret vedtar feie- og tilsynsavgift for 2009",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt feie- og tilsynsavgiften ved Bergen brannvesen for 2009, i samsvar med innstillingen fra komite for finans. Ingen representanter tok ordet under behandlingen, og saken ble også orientert i komite for miljø og byutvikling."
+  }
+}

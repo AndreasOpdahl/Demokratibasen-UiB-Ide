@@ -1,0 +1,18 @@
+{
+  "dokument_id": "a6a0f1ed-0f4b-53f6-9e93-94d28db9e508",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 23:15:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av møteprotokoll i Alver kommune",
+    "summary_body": "Valnemnda i Alver kommune har godkjent møteprotokollen fra 28. november 2025. Kommunedirektøren foreslo godkjenning, og saken ble behandlet i valnemnda."
+  }
+}

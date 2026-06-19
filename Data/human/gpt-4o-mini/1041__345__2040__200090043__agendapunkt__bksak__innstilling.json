@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:345:2040:200090043:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:10:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a routine political appointment within the local party structure."
+    },
+    "summary_headline": "Atle Grimstad kåres som nytt varamedlem for Arbeiderpartiet",
+    "summary_body": "Bergen bystyre har kåret Atle Grimstad som nytt siste varamedlem for Arbeiderpartiet etter at Ingvild Helland Fiksdal ble fritatt fra sine verv. Grimstad, som fikk 28,795 stemmer ved kommunevalget i 1999, vil nå tre inn i rollen for resten av valgperioden 1999-2003. Dette er en intern partibeslutning som kan påvirke Arbeiderpartiets representasjon i bystyret."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243626:4932640:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:37:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines the decision on polling locations for the upcoming elections, which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Valgstyret vedtar nye valglokaler for 2023",
+    "summary_body": "Valgstyret har besluttet at Alrek helseklynge, Fyllingsdalen idrettshall og Kalvatræet skole skal brukes som valglokaler for henholdsvis stemmekretsene Haukeland, Ortun og Eidsvåg under kommunestyre- og fylkestingsvalget 2023. Beslutningen ble fattet enstemmig uten debatt."
+  }
+}

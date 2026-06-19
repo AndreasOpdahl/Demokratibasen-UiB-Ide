@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:6677:53565:200716874:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:31:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses routine committee matters without significant conflict or impact."
+    },
+    "summary_headline": "Finanskomiteen forbereder evaluering av budsjettsprosess",
+    "summary_body": "Finanskomiteen, ledet av Hilde Onarheim, har behandlet oppfølging av evalueringen av fjorårets budsjettsprosess. Innspill til et spørreskjema må sendes til Bystyrets kontor innen 12. februar, og spørreskjemaet vil bli sendt til komiteens medlemmer i uke 8. Komiteen planlegger å diskutere evalueringen på sitt møte 11. mars. Det vil også bli behandlet en aktivitetsplan på et ekstramøte 17. februar. Geir Kaland (H) og Terje Walter Gilje (KrF) stilte spørsmål om komiteens navn og reise til Brussel, henholdsvis."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11953:75050:201212327:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:36:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to introduce sign language interpretation for city council meetings is significant for accessibility and inclusion."
+    },
+    "summary_headline": "Bystyret innfører tegnspråktolking for bystyremøter",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å innføre tegnspråktolking av bystyremøtene som en prøveordning. Ordningen skal iverksettes så raskt som mulig og evalueres etter to år. Bystyret vil også vurdere behovet for justeringer underveis, og det kommunale råd for funksjonshemmede skal involveres i evalueringsarbeidet. Dette tiltaket er viktig for å sikre bedre tilgjengelighet for hørselshemmede innbyggere i Bergen."
+  }
+}

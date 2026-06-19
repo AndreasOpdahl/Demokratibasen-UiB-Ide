@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9148:63306:201100075:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:44:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses significant infrastructure projects that may impact local residents."
+    },
+    "summary_headline": "Byrådet godkjenner utslipp for ny tunnel og rundkjøring på E 39",
+    "summary_body": "Byrådet i Bergen kommune har behandlet søknader om utslipp knyttet til bygging av en ny tunnel på E 39 ved Eikås og utfylling i Langavatnet for en ny rundkjøring i Vågsbotn. Vedtaket ble fattet i møte 17. november 2011, og kommunens synspunkt vil bli oversendt til Bystyret. Disse prosjektene kan påvirke trafikksituasjonen og miljøet i området, noe som er av interesse for innbyggerne."
+  }
+}

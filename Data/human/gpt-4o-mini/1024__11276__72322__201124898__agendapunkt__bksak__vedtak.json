@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1024:11276:72322:201124898:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:44:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains multiple questions raised by politicians but lacks significant conflict or impact."
+    },
+    "summary_headline": "Politikere stiller spørsmål om kultur og idrettsfinansiering",
+    "summary_body": "I møtet i Komite for kultur, idrett og næring ble det stilt flere muntlige spørsmål. Ruth Sølvi Brudvik (A) spurte om fordeling av midler til dirigent skolekorps og om revisjon av Amatørkulturplanen. Åsta Årøen (V) stilte spørsmål om parkeringsavgift ved idrettsanlegg, bruk av Damsgård skoles svømmebasseng, og finansiering av Sentralbadet. Byråd Helge Stormoen besvarte spørsmålene, men flere politikere ba om skriftlige svar."
+  }
+}

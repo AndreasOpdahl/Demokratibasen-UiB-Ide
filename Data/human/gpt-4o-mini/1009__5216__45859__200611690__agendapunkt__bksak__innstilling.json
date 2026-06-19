@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5216:45859:200611690:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:25:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a new alcohol license for a ship in Bergen has local relevance and potential impact on events and tourism."
+    },
+    "summary_headline": "Ny skjenkebevilling for MS 'Princess of Norway' innvilget",
+    "summary_body": "Byrådet har innvilget DFDS Seaways AS en ny alminnelig skjenkebevilling for alkoholholdig drikk om bord i MS 'Princess of Norway' når skipet ligger ved kai i Bergen, frem til 30. juni 2008. Bevillingen gjelder restaurantområder på dekk 6, 7, 8 og 11, og er ment for kurs- og konferansegjester samt passasjerer. Byrådsleder Henning Warloe understreker at matomsetningen må utgjøre minst 25 % av totalomsetningen. Det er allerede uttrykt motstand fra Rusmiddelpolitisk råd, som anbefalte å ikke innvilge søknaden."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "234513:3680855:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:16:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a municipal council's decision regarding sidewalk accessibility, which is relevant but lacks significant conflict or financial implications."
+    },
+    "summary_headline": "Råd for funksjonshemmede følger opp fortau i Nye Sandviksvei",
+    "summary_body": "Kommunalt råd for personer med funksjonsnedsettelse har besluttet å følge opp spørsmålet om fortauet i Nye Sandviksvei etter en orientering fra Kristine Klubben, en beboer i Sandviken. Det nye fortauet har høy fortauskant, noe som kan påvirke tilgjengeligheten for personer med funksjonsnedsettelse."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1037:6507:53959:200804467:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:06:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is procedural and does not contain significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra møtet om skriftlige spørsmål.",
+    "summary_body": "Dokumentet omhandler muligheten for å fremme skriftlige spørsmål i et møte, uten spesifikke forslag eller beslutninger."
+  }
+}

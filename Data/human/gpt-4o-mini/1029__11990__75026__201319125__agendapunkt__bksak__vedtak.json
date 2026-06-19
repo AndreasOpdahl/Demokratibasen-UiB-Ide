@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:11990:75026:201319125:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:29:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural information with no significant impact or controversy."
+    },
+    "summary_headline": "Kontrollutvalget mottar rapport fra BDO AS",
+    "summary_body": "Kontrollutvalget har behandlet rapporten fra BDO AS om prosjekter og særattestasjoner fra januar 2016. Rapporten ble enstemmig tatt til orientering, og utvalget har sendt den videre til Byrådet for kommentarer, med frist innen utgangen av mars 2016."
+  }
+}

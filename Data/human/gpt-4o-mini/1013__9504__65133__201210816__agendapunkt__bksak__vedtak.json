@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:9504:65133:201210816:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:18:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal addresses a significant local issue regarding homelessness and public facilities."
+    },
+    "summary_headline": "Enstemmig forslag om overnattingstilbud for hjemløse oversendes byrådet",
+    "summary_body": "Forretningsutvalget har enstemmig vedtatt å oversende et privat forslag fra bystyrerepresentant Oddny Miljeteig (SV) til byrådet. Forslaget omhandler etablering av et overnattingstilbud samt gratis toalett- og dusjtilbud for mellombels bustadlause og tiggarar. Byrådet bes om å fremme saken til bystyret for videre behandling. Dette tiltaket kan ha stor betydning for de som er hjemløse i Bergen."
+  }
+}

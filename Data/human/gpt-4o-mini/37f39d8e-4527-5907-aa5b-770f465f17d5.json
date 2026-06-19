@@ -1,0 +1,18 @@
+{
+  "dokument_id": "37f39d8e-4527-5907-aa5b-770f465f17d5",
+  "kommune_nummer": 4624,
+  "kommune_navn": "Bjørnafjorden",
+  "generated_at": "2026-02-19 22:58:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document involves a local building permit for a facade change, which may interest residents but lacks significant controversy or financial implications."
+    },
+    "summary_headline": "Godkjent fasadeendring på Ferstadvegen 136",
+    "summary_body": "Bjørnafjorden kommune har gitt løyve til Johannes Laupsa-Vartdal for å endre fasaden på ein einebustad på Ferstadvegen 136. Endringane inkluderer utskifting av vindauge og ny kledning, og tiltaket er vurdert å ha gode visuelle kvalitetar. Løyvet er gyldig i tre år, og det er ingen merknader frå naboar. Dette tiltaket kan påvirke nabolaget ved å forbedre bygningens utseende."
+  }
+}

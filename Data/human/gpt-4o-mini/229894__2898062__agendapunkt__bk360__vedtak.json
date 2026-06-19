@@ -1,0 +1,18 @@
+{
+  "dokument_id": "229894:2898062:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:06:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to form a working group to address youth facility needs is relevant but lacks immediate impact or controversy."
+    },
+    "summary_headline": "Ungdomsrådet oppretter arbeidsgruppe for ungdomsfasiliteter",
+    "summary_body": "Ungdomsrådet har besluttet å opprette en arbeidsgruppe bestående av Åsmund, Hedda og Eowyn for å utarbeide et forslag til hvilke fasiliteter ungdom i bydelen trenger. Dette ble vedtatt under møtet den 25. mai 2021, med presentasjon fra Victor Paulsen fra Byrådsavdelingen for kultur, mangfold og likestilling."
+  }
+}

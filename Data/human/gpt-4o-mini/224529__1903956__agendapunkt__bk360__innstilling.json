@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224529:1903956:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:51:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a denied application for a floating dock, impacting local residents' access to recreational areas."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på legalisering av flytebrygge i Nordeidvika",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om legalisering av en flytebrygge i Nordeidvika, som ble avslått tidligere på grunn av manglende rettslig grunnlag for dispensasjon fra reguleringsplanen. Klagerne, Kenneth Brevik og Gerhard Kasper Skadal, representert av Harris Advokatfirma, argumenterer for at bryggen har vært i bruk siden 80-tallet og ikke påvirker området negativt. Fylkesmannen har imidlertid frarådet dispensasjon, og byrådet mener at en tillatelse vil kunne føre til presedens for lignende saker, noe som kan undergrave strandsonevernet. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

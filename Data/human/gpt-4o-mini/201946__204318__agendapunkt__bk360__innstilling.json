@@ -1,0 +1,18 @@
+{
+  "dokument_id": "201946:204318:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:01:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is routine and procedural with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Komite for helse og sosial",
+    "summary_body": "Komite for helse og sosial har behandlet saker til eventuelt i møte den 6. desember 2017. Forslaget om at sakene tas til orientering ble fremmet, men det er ingen spesifikke saker av offentlig interesse."
+  }
+}

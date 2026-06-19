@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:11312:72149:201124583:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:47:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine activity plan for a municipal committee without significant newsworthy elements."
+    },
+    "summary_headline": "Aktivitetsplan for Komite for oppvekst vedtatt",
+    "summary_body": "Komite for oppvekst har vedtatt aktivitetsplanen for 1. halvår 2015, som inkluderer møter og seminarer om ulike temaer som aktivitetsskole og overganger i grunnskolen. Planen er utarbeidet av komiteens arbeidsutvalg og tar hensyn til behov for informasjon og opplæring innen komiteens ansvarsområder."
+  }
+}

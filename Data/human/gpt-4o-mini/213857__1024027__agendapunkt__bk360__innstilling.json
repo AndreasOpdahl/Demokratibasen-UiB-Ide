@@ -1,0 +1,18 @@
+{
+  "dokument_id": "213857:1024027:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:30:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document outlines a significant new urban growth agreement for Bergen, involving substantial state funding and commitments to sustainable transport."
+    },
+    "summary_headline": "Ny byvekstavtale for Bergen med 11,3 milliarder i statlig støtte",
+    "summary_body": "Byrådet har inngått en ny byvekstavtale for Bergensområdet for perioden 2019-2029, som forplikter partene til nullvekst i personbiltransporten. Avtalen, som involverer Samferdselsdepartementet, Kommunal- og moderniseringsdepartementet, Hordaland fylkeskommune og kommunene Bergen, Lindås, Askøy, Fjell og Os, sikrer over 11,3 milliarder kroner i statlig støtte. Dette inkluderer 303,5 millioner kroner årlig til Bergen kommune, som vil finansiere Bybanen til Fyllingsdalen og andre infrastrukturtiltak. Bystyret forventer at neste reforhandling i 2021 vil sikre ytterligere midler til Bybanen til Åsane. Avtalen er viktig for å oppnå en mer bærekraftig transportpolitikk i regionen."
+  }
+}

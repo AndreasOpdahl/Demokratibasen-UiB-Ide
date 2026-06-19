@@ -1,0 +1,18 @@
+{
+  "dokument_id": "237283:3774249:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:22:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document addresses a significant environmental issue with potential impact on local agriculture and community."
+    },
+    "summary_headline": "Bystyret prioriterer vern av matjord i Bergen",
+    "summary_body": "Bystyret i Bergen har vedtatt å prioritere vern av matjord og motsette seg nedbygging av dyrket mark. Dette kommer som svar på interpellasjon fra Mailiss Solheim-Åkerblom (R), som påpeker at kun 3 % av Norges areal er egnet for matproduksjon, og at klimaendringer og utbygging truer matjorden. Bystyret ber byrådet om å legge frem en plan for vern av all matjord innen våren 2023, og avviser traseene for Ringvei Øst som vil ødelegge matjord i Haugland, Blindheim, Vågsbotn og Birkeland. Dette tiltaket er kritisk for å sikre norsk selvforsyning og bærekraftig landbruk."
+  }
+}

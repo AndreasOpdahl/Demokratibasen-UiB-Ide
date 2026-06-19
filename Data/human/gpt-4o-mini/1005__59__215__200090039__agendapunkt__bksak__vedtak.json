@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:59:215:200090039:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:09:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant local issues regarding youth centers and parking policy in Bergen."
+    },
+    "summary_headline": "Bystyret diskuterer ungdomshus og parkeringspolitikk i Bergen sentrum",
+    "summary_body": "Bergen bystyre har behandlet interpellasjoner om lokalisering av ungdomshus og parkeringspolitikk i sentrum. Josephine Munch Rasmussen (RV) etterlyste rask avklaring av ungdomshusets plassering, parallelt med etableringen av et vitensenter i det gamle fengselet. Bystyret vedtok enstemmig å sende forslag til byrådet om å vurdere alternative lokasjoner for ungdomshuset. Tom Skauge (SV) stilte spørsmål ved byrådets parkeringspolitikk, som er uklar, til tross for mål om redusert trafikk. Byrådet må svare på hvordan de vil kombinere økt kollektivsatsing med parkeringsplasser i sentrum."
+  }
+}

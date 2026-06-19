@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2007:50766:111268:199715468:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:53:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision involves significant funding for a local school construction project, impacting the community."
+    },
+    "summary_headline": "25 millioner kroner bevilget til Skranevatnet skole",
+    "summary_body": "Hovedutvalg for teknisk utbygging har godkjent kontraktsforhandlinger med Fyllingen Maskinstasjon for grunn- og betongarbeidene ved Skranevatnet skole btr.2. Dersom tilfredsstillende vilkår ikke oppnås, kan administrasjonen forhandle med nest laveste anbyder. Formannskapet bevilger 25 millioner kroner til byggearbeidene, som sammen med tidligere bevilgning gir totalt 28 millioner kroner til prosjektet. Dette er en viktig investering for lokalsamfunnet, som vil forbedre skolefasilitetene."
+  }
+}

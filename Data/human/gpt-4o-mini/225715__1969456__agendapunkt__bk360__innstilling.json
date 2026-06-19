@@ -1,0 +1,18 @@
+{
+  "dokument_id": "225715:1969456:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:55:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses an interim audit, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Interimsrevisjon 2020 presenteres for kontrollutvalget",
+    "summary_body": "Deloitte AS vil presentere status for interimsrevisjonen 2020 i Bergen kommune under møtet 9. desember 2020. Revisjonen har som mål å kontrollere at interne rutiner og kontroller fungerer som de skal. Forslaget om å ta Deloittes oppsummering til orientering vil bli vurdert av kontrollutvalget."
+  }
+}

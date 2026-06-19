@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51065:112544:199503065:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:35:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines financial guidelines for the municipality's surplus liquidity, which is relevant but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Bergen kommune vedtar retningslinjer for overskuddslikviditet",
+    "summary_body": "Formannskapet i Bergen kommune har enstemmig vedtatt retningslinjer for plassering av kommunens overskuddslikviditet. Rådmannen får fullmakt til å investere i ulike rentebærende verdipapirer og bankinnskudd, med spesifikasjoner for hvilke typer investeringer som er tillatt og beløpsgrenser. Retningslinjene skal sikre at investeringene er trygge og i samsvar med kommunens krav til sikkerhet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4153:39137:200400035:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:02:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses multiple pressing local issues, including traffic safety, school planning, and community concerns about development."
+    },
+    "summary_headline": "Kritiske spørsmål om trafikksikkerhet og skoleplanlegging i Bergen",
+    "summary_body": "I møtet 30. september 2004 stilte flere representanter spørsmål til byråd Lisbeth Iversen om viktige lokale saker. Arne Jakobsen (A) etterlyste trafikksikringstiltak på Sælenveien, som har blitt farlig med økt trafikk. Hallstein Aadland (FrP) spurte om status for reguleringsplanen for en nærkirke i Ytrebygda, der det er samlet inn 3,7 millioner kroner. Tor Sundby (RV) uttrykte bekymring for motstanden mot en ny skole i Indre Sædalen og ba om avklaring av alternative lokaliseringer. Anne-Grethe Strøm-Erichsen (A) foreslo å vurdere en ny plassering av et svømmeanlegg for å redusere trafikkbelastningen i Nymarksområdet. Byråden vil oversende spørsmålene til Byrådsavdeling for byutvikling for skriftlig besvarelse."
+  }
+}

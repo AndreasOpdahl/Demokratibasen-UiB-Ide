@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212866:1109066:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:28:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposed revision of the funding distribution key for a cultural program, which could impact local schools."
+    },
+    "summary_headline": "Høring om ny fordelingsnøkkel for Den kulturelle skolesekken",
+    "summary_body": "Forretningsutvalget har mottatt en høringssak angående en ny fordelingsnøkkel til Den kulturelle skolesekken, som Kulturtanken har vurdert. Den nåværende modellen har ikke vært revidert siden oppstarten av ordningen. Bystyredirektøren anbefaler at byrådet avgir en høringsuttalelse, da saken ikke anses som prinsipiell. Høringsfristen er 31. mai 2019, og endringer kan påvirke tilskuddsmidler til lokale skoler."
+  }
+}

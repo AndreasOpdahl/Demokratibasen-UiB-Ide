@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51089:114243:199709538:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:46:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant change in a local development plan for care homes, which has generated considerable public interest and opposition."
+    },
+    "summary_headline": "Kontroversiell reguleringsplan for omsorgsboliger i Løbergsalleen",
+    "summary_body": "Hovedutvalg for byutvikling anbefaler en vesentlig endring av reguleringsplanen for 22 omsorgsboliger i Løbergsalleen, etter omfattende merknader fra naboer og offentlige instanser. Enehaug Arkitekter a/s har moderert planene fra 33 til 22 boliger i et 3-etasjes bygg, men møter fortsatt motstand fra Løvstakken bydelsutvalg og flere naboer som frykter økt trafikk og forringelse av det grønne området. Planen legges nå ut til offentlig ettersyn, og det er krav om videre utredning av trafikksikkerhet og støytiltak før 2. gangs behandling."
+  }
+}

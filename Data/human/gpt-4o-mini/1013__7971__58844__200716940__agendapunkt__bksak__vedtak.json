@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:7971:58844:200716940:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:15:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains administrative discussions but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen endringer i møteplikt for byrådet",
+    "summary_body": "Under møtet i Forretningsutvalget ble det diskutert møteplikt for byrådene, men ordfører Gunnar Bakke mente det ikke er behov for endringer i reglementet. Byrådsleder Monica Mæland informerte om Bergensprogrammets behandling på nasjonalt nivå og oppfordret partiene til å kontakte sine representanter. Det ble også nevnt at søknader om fritak vil bli behandlet etter streiken, og Ruth Grung (A) etterlyste informasjon til de som ikke har fått invitasjon til bybanelunsj."
+  }
+}

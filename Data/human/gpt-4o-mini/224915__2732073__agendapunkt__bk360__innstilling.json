@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224915:2732073:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:53:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant procurement of infection control equipment, impacting public health and finances."
+    },
+    "summary_headline": "Bergen kommune forbereder seg på smittevernutstyr for åtte måneder",
+    "summary_body": "Bergen kommune planlegger å anskaffe smittevernutstyr for å dekke et estimert behov for åtte måneder, i tråd med Helsedirektoratets anbefalinger. Det er behov for 6 millioner hansker, 500 000 munnbind, 40 000 operasjonsluer og 300 000 smittefrakker. Kostnadene er estimert til 12,4 millioner kroner, som vil bli dekket av statlige midler. Byrådsleder Roger Valhammer anbefaler at byrådet gir fullmakter til byråd for eldre, helse og frivillighet for å lede prosjektet og sikre tilstrekkelig lagerkapasitet. Dette tiltaket er viktig for å unngå fremtidige leveranseproblemer og sikre helsetjenesten i Bergen."
+  }
+}

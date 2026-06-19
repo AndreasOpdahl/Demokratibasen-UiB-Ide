@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4802:43259:200503719:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:20:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document involves a significant budget allocation for a community safety initiative, which is relevant to local residents."
+    },
+    "summary_headline": "Byrådet bevilger 171.691 kroner til 'Safe Communities'",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 171.691 kroner til prosjektet 'Safe Communities', som har påløpt utgifter på 186.513,25 kroner i år. Byrådsleder Monica Mæland foreslår å dekke disse kostnadene fra tilleggsbevilgningskontoen, et tiltak som er viktig for lokalsamfunnet. Dette viser kommunens engasjement for å forbedre sikkerheten i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "202875:266471:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:02:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a training plan for elected officials, which is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "Bystyret vedtar folkevalgtopplæring for 2018",
+    "summary_body": "Komite for fullmakter og politisk styringssystem har enstemmig vedtatt en rammeplan for folkevalgtopplæring i 2018. Det vil bli avholdt en halvdagssamling om lokaldemokrati den 11. juni, og bystyret skal på befaring til bydelene Fana og Ytrebygda den 26. september. I tillegg vil finansbyråden gi en gjennomgang av kommunerapporten fra ASSS-nettverket før bystyrets møte 31. januar 2018."
+  }
+}

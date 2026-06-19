@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50732:109617:199616516:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:40:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a local resident's appeal regarding land division, which has implications for community planning and land use."
+    },
+    "summary_headline": "Klage på delingssøknad avvist av byutviklingsutvalget",
+    "summary_body": "Det faste utvalg for plansaker har avvist klagen fra Per J. Sørbø om deling av en parsell fra hans eiendom på Mildestveit til boligformål. Avslaget er begrunnet med at området er regulert som landbruks-, natur- og friluftsområde i kommuneplanen, og at det ikke er ønskelig med fortetting. Fylkesmannens miljøvernavdeling fraråder også deling. Sørbø argumenterer for at delingen vil være til fordel for hans sønn, men administrasjonen mener det ikke foreligger særlige grunner for å dispensere fra planen."
+  }
+}

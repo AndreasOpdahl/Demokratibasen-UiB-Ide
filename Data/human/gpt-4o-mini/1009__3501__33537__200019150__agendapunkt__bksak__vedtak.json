@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3501:33537:200019150:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:04:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a routine appointment with no significant impact or controversy."
+    },
+    "summary_headline": "Bergen kommune oppnevner representanter til Sambandet styret",
+    "summary_body": "Byrådet i Bergen har oppnevnt Arne Jakobsen og Mette Nora Sætre som kommunens representanter i styret for Sambandet Sotra/Øygarden-Bergen AS for resten av valgperioden 1999-2003. Heidi Havelin og Hans Edvard Seim er oppnevnt som varamedlemmer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1006:6432:53052:200817231:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:28:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant land purchase that could impact local port operations."
+    },
+    "summary_headline": "Havnerådet vurderer kjøp av 8.000 kvm på Mongstad",
+    "summary_body": "Bergen og Omland havneråd skal 5. desember 2008 behandle en avtale om kjøp av 8.000 kvm fra Mongstad Eiendomsselskap. Havnevesenet har allerede 16.000 kvm og ønsker å utvide for å imøtekomme økt etterspørsel etter utleie og skipsanløp. Prisen for eiendommen er fastsatt i en tidligere avtale fra 2006. Vedtaket kan påvirke havnens fremtidige utvikling og drift."
+  }
+}

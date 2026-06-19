@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:6543:56259:200718080:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:13:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal to dissolve Gullstølen Kjøkken and transfer its operations to a municipal department is significant due to its impact on local governance and public services."
+    },
+    "summary_headline": "Byrådet foreslår nedleggelse av Gullstølen Kjøkken, Bergen KF",
+    "summary_body": "Byrådet i Bergen anbefaler å legge ned Gullstølen Kjøkken, Bergen KF, og overføre virksomheten til Byrådsavdeling for helse og inkludering fra 1. januar 2010. Styret i foretaket har konkludert med at den nåværende organisasjonsformen er uholdbar, og at det er behov for å styrke matsikkerheten. Det er ikke meldt om motstand fra de ansatte, som vil beholde sine stillinger i kommunen. Byrådet ser dette som en nødvendig omorganisering for å håndtere utfordringer knyttet til administrasjon og drift."
+  }
+}

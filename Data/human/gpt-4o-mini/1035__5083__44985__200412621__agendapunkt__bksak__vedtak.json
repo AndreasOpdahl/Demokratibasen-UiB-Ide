@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:5083:44985:200412621:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:00:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant urban planning decision regarding residential development and the opposition to high-rise buildings."
+    },
+    "summary_headline": "Motstand mot høyhus i Laksevåg-reguleringsplan",
+    "summary_body": "Tilsynsutvalget for byens utseende (TFBU) har behandlet reguleringsplanen for Laksevåg og støtter i hovedsak fagetatens vurdering om at området kan utvikles til boligformål med høy utnyttelse. Imidlertid er TFBU imot høyhus i området, da de mener det er viktig å avtrappe bygningsvolumene mot nord. Dette kan påvirke fremtidige byggeprosjekter og byutviklingen i Laksevåg."
+  }
+}

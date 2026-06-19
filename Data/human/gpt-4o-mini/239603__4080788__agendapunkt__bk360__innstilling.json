@@ -1,0 +1,18 @@
+{
+  "dokument_id": "239603:4080788:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:28:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant action plan for the maintenance of municipal roads, impacting local residents' mobility and environmental concerns."
+    },
+    "summary_headline": "Bergen kommune vedtar handlingsplan for veinett 2022-2025",
+    "summary_body": "Byrådet i Bergen har lagt frem en handlingsplan for drift og vedlikehold av det kommunale veinettet for perioden 2022-2025. Planen, som følger opp strategien vedtatt av bystyret i 2019, har som mål å forbedre forholdene for myke trafikanter, sikre miljøvennlige driftsmetoder og effektivisere ressursbruken. Bymiljøetaten anbefaler å prioritere tiltak som øker tilgjengelighet og reduserer negative miljøkonsekvenser. Det er anslått at vedlikeholdsetterslepet på veinettet ligger mellom 350-535 millioner kroner. Byrådet mener planen vil bidra til å gjøre Bergen til en mer attraktiv by for gående og syklende, og vil bli behandlet av bystyret for vedtak."
+  }
+}

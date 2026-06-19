@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2009:51409:115640:199612282:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:56:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document reports on a routine status update with no significant newsworthy elements."
+    },
+    "summary_headline": "Statusrapport om Prosjekt Euromat godkjent av Næringsstyret",
+    "summary_body": "Næringsstyret i Bergen kommune har enstemmig godkjent statusrapporten for Prosjekt Euromat i møte den 18. oktober 1999. Styret ser frem til at Norsk Sjømatsenter vil bli brukt som arena for prosjektets aktiviteter."
+  }
+}

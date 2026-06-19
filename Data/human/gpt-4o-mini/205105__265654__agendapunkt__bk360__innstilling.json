@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205105:265654:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:07:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines procedural decisions without significant controversy or impact."
+    },
+    "summary_headline": "Saker fra byrådets møte fordelt til komiteer",
+    "summary_body": "Byrådet har fordelt saker fra møtet 19. april 2018 til komiteene. Saker 91-92 og 94 skal til bystyret, mens sak 93, som omhandler klage over tillatelse til anlegging av rør og vei, er under behandling av komite for miljø og byutvikling. Ingen kontroverser eller dissent er nevnt."
+  }
+}

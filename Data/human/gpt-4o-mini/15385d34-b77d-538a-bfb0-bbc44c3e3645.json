@@ -1,0 +1,18 @@
+{
+  "dokument_id": "15385d34-b77d-538a-bfb0-bbc44c3e3645",
+  "kommune_nummer": 4628,
+  "kommune_navn": "Vaksdal",
+  "generated_at": "2026-02-19 20:27:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av møteprotokoll for Bygdeutviklingsutvalet",
+    "summary_body": "Bygdeutviklingsutvalet i Vaksdal kommune har godkjent møteprotokollen fra møtet den 23. september 2025. Kommunedirektøren, Lars Sveinung Lid, fremmet forslaget om godkjenning."
+  }
+}

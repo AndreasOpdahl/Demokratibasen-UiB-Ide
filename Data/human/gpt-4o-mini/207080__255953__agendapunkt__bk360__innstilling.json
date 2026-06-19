@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207080:255953:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:12:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises concerns about the hiring process of a fire chief, which could impact public trust in municipal governance."
+    },
+    "summary_headline": "Kritikk av ansettelsesprosess for brannsjef i Bergen",
+    "summary_body": "Geir Kaland (H) har stilt spørsmål til byrådet angående ansettelsen av brannsjef i Bergen kommune, etter uttalelser fra kommunaldirektør Robert Rastad i BT. Rastad har offentliggjort sin mening om at den aktuelle kandidaten ikke er egnet, noe som reiser spørsmål om Bergen kommunes verdigrunnlag og praksis for offentlig vurdering av søkere. Kaland etterspør også informasjon om bruken av hodejegerfirmaer for interne kandidater og hvor mange som har gjennomført slike tester de siste tre årene. Dette kan påvirke tilliten til kommunens ansettelsesprosesser."
+  }
+}

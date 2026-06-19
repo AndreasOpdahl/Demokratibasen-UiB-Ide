@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51082:112711:199715502:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:44:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a legal cost claim related to a controversial building permit decision, which may interest local residents."
+    },
+    "summary_headline": "Kostnader knyttet til omgjøring av bygningsrådets vedtak",
+    "summary_body": "Bygningsrådet i Bergen har fått en sak til orientering angående dekning av sakskostnader for Levende Ord Bibelsenter. Etter at fylkesmannen omgjorde bygningsrådets avslag på flytting av møtesalen, har advokatfirmaet WIKBORG, REIN & CO krevd 26.090 kroner for advokatbistand. Fylkesmannen har imidlertid redusert kravet til 12.000 kroner, som kommunen nå må betale. Saken er av interesse for innbyggerne da den omhandler bruksendring av et lokalt samlingssted."
+  }
+}

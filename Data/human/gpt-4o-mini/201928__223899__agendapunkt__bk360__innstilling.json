@@ -1,0 +1,18 @@
+{
+  "dokument_id": "201928:223899:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:01:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the appointment of a member to a reference group for a significant public transport project, which has local relevance."
+    },
+    "summary_headline": "Medlem fra Kommunalt råd for funksjonshemmede foreslås til referansegruppe for Bybanen",
+    "summary_body": "Kommunalt råd for funksjonshemmede i Bergen foreslår en kandidat til referansegruppen for Bybanen byggetrinn 4. Dette initiativet er viktig for å sikre at personer med nedsatt funksjonsevne blir hørt i utviklingen av kollektivtransporten i regionen. Rådet for mennesker med nedsatt funksjonsevne i Hordaland fylkeskommune har bedt om forslag til kandidater, og det er enighet om at en representant fra Bergen bør inkluderes."
+  }
+}

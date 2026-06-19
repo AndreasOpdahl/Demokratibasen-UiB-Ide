@@ -1,0 +1,18 @@
+{
+  "dokument_id": "35c985c4-4fae-525b-8277-7bae626f5d7e",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:58:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a scheduled inspection by the health and social committee, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Befaring for helse- og sosialutvalget 26. november 2025",
+    "summary_body": "Utvalg for helse og sosial i Bergen kommune har innkalt til befaring den 26. november 2025, med oppstart i bystyresalen kl. 09:00. Programmet inkluderer temaer som aggresjonsproblematikk og ungdomshelse, samt besøk til Bergen fengsel og Bjørgvin fengsel. Lunsj vil bli servert under transport. Møtet er en del av utvalgets arbeid med å håndtere samfunnsproblemer knyttet til helse og sikkerhet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12063:76594:201513163:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:57:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a contested building permit with significant local implications and community opposition."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på byggesøknad i Vestre Storheilia",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om oppføring av en ny enebolig på Vestre Storheilia 48, etter klage fra Bjørge Forvaltning AS på vegne av tiltakshaver Lars Rasmussen. Klagen ble avvist grunnet bekymringer om skredfare og at tiltaket ikke oppfyller kravene til uteoppholdsareal og visuelle kvaliteter i området. Nabomerknader har også påpekt usikkerhet om avstand til nabogrense og at boligen vil virke dominerende. Byrådet understreker at det ikke foreligger tilstrekkelig dokumentasjon for å sikre tiltaket mot skred. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

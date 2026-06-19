@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2060:21998:200006044:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:23:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to grant a temporary alcohol license for an event on a historic ship is of local interest."
+    },
+    "summary_headline": "Bergenhus bydelsstyre gir skjenkebevilling til Christian Radich",
+    "summary_body": "Bergenhus bydelsstyre har besluttet å gi skjenkebevilling til fullriggeren Christian Radich for perioden 08. juni til 11. juni 2000, i forbindelse med fjordturer. Beslutningen ble fattet i møte 23. mai 2000, hvor forslaget fra administrasjonen ble vedtatt med 12 mot 1 stemme, der KrF stemte imot. Dette gir mulighet for servering av alkohol under arrangementene, noe som kan påvirke både besøkende og lokale innbyggere."
+  }
+}

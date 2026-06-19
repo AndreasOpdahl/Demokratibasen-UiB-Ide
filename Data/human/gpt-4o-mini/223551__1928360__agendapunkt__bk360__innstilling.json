@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223551:1928360:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:49:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses workplace safety and health issues, which are relevant to local employees but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Hovedarbeidsmiljøutvalget godkjenner protokoll og diskuterer HMS-hendelser",
+    "summary_body": "Hovedarbeidsmiljøutvalget har godkjent protokollen fra møtet 19. mai 2020, der de også diskuterte sykefravær og HMS-hendelser i Bergen kommune. Utvalget oppfordrer arbeidsmiljøutvalgene til å prioritere innkommende HMS-meldinger og minne ansatte om viktigheten av å rapportere slike hendelser. Det ble også uttrykt ønske om en evaluering av håndteringen av koronapandemien i kommunen, med fokus på samarbeidet mellom hovedverneombud og ledelsen. Dette er viktig for å sikre et trygt arbeidsmiljø for kommunens ansatte."
+  }
+}

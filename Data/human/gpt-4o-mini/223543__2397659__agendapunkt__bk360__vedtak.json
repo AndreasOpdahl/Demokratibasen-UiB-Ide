@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223543:2397659:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:49:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines logistical decisions for meeting spaces, which have local relevance but lack significant impact or controversy."
+    },
+    "summary_headline": "Bystyreutvalgene får nye møtelokaler",
+    "summary_body": "Forretningsutvalget har besluttet at det kan leies møtelokale til ett av bystyreutvalgene. Inntil dette er klart, vil utvalg for helse og sosial holde sine møter i bystyresalen. Ordfører Marte Mjøs Persen foreslo en endring som ble enstemmig vedtatt, som åpner for bruk av midlertidige møtelokaler i Strømgaten 1 dersom kostnadene er akseptable."
+  }
+}

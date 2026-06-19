@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:45:346:200090189:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:05:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a rejected application for a community activity house, which has local relevance and potential community impact."
+    },
+    "summary_headline": "Klage på avslag om aktivitetshus i Ytrebygda avvist",
+    "summary_body": "Byrådet har anbefalt å opprettholde avslaget på søknaden om oppføring av et aktivitetshus ved Saksarhaugen terrasse. Søknaden ble avslått av administrasjonen da tiltaket ville bli plassert delvis på et regulert friområde, noe som strider mot reguleringsplanen. Borettslaget har klaget på avslaget, men byrådet mener at plasseringen vil hindre områdets bruk som friområde. Saken sendes nå til Fylkesmannen i Hordaland for endelig avgjørelse."
+  }
+}

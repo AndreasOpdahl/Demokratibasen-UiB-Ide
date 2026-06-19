@@ -1,0 +1,18 @@
+{
+  "dokument_id": "7652817c-f598-536e-9d9b-33f283f0c087",
+  "kommune_nummer": 4621,
+  "kommune_navn": "Voss",
+  "generated_at": "2026-02-19 23:07:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document contains significant decisions regarding local funding and policies that directly affect residents."
+    },
+    "summary_headline": "Heradsstyret vedtar tilskot for fastlegeheimlar og endringer i kulturskoleplanen",
+    "summary_body": "I møte den 4. september 2025 vedtok Heradsstyret i Voss å opprette en engangs tilskotsordning på inntil 2,7 millioner kroner for å dekke kostnader til etablering av to fastlegeheimlar fra 2026. Rådmannen får fullmakt til å lyse ut og tildele tilskot. I tillegg ble det vedtatt endringer i kommunedelplanen for Myrkdalen, som inkluderer krav til infrastruktur før rammetillatelse kan gis. Heradsstyret godkjente også en ny rammeplan for kulturskolen, som skal sikre et balansert tilbud til elevene. Disse beslutningene vil ha direkte innvirkning på helsetjenester og kulturtilbud i kommunen."
+  }
+}

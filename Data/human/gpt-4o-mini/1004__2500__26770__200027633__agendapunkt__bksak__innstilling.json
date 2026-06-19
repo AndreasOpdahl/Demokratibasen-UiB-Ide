@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2500:26770:200027633:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:25:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a proposed building plan that has raised concerns about height and parking needs, which affects local residents."
+    },
+    "summary_headline": "Bergenhus bydelsstyre krever reguleringsendring for Sandviken Brygge",
+    "summary_body": "Bergenhus bydelsstyre har behandlet et forslag til bebyggelsesplan for Sandviken Brygge, som inkluderer parkeringsanlegg, kontorbygg og boliger. Styret uttrykker bekymring for byggehøyden og parkeringsbehovet, og ber om reguleringsendring for å begrense høyden til maksimalt fem etasjer. Det er også foreslått å vurdere en lekeplass på taket av bygget for å møte behovet for lekearealer i området. Merknader fra innbyggerne vil bli vurdert før 2. gangs behandling."
+  }
+}

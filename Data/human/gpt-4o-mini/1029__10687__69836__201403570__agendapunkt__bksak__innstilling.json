@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:10687:69836:201403570:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:28:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses follow-up actions on an internal control audit, which has implications for local governance and accountability."
+    },
+    "summary_headline": "Kontrollutvalget følger opp internkontroll i kultur- og næringsbyrået",
+    "summary_body": "Kontrollutvalget har fått informasjon fra Byrådsavdeling for kultur, næring, idrett og kirke om oppfølgingen av anbefalingene fra forvaltningsrevisjonsrapporten om internkontroll. Rapporten avdekket mangler i internkontrollsystemet, og byrådsavdelingen planlegger å iverksette tiltak, inkludert mulig anskaffelse av konsulentbistand. Kontrollutvalget ber om en oppdatering innen 1. oktober 2014."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:4779:43407:200400030:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:40:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine information about upcoming events but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra helse- og sosialkomiteen",
+    "summary_body": "Helse- og sosialkomiteen behandlet saker om kommende arrangementer, inkludert jubileumsseminar for Hordaland barnevernsamband den 19. og 20. april, samt en invitasjon til konferansen \"Internasjonal kommune\" den 13. februar 2006."
+  }
+}

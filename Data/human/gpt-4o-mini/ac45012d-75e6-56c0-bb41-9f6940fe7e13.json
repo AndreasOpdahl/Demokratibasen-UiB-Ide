@@ -1,0 +1,18 @@
+{
+  "dokument_id": "ac45012d-75e6-56c0-bb41-9f6940fe7e13",
+  "kommune_nummer": 4638,
+  "kommune_navn": "Høyanger",
+  "generated_at": "2026-02-19 23:16:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative information without significant newsworthy elements."
+    },
+    "summary_headline": "Eldrerådet orienterer om kommende møte",
+    "summary_body": "Eldrerådet i Høyanger kommune har referert saker og meldinger i sitt møte den 11. november 2025. Det ble informert om Eldrerådskaffe med temaet fremtidsfullmakt, som vil finne sted samme dag. Ingen vedtak ble fattet, og referatsakene ble tatt til orientering."
+  }
+}

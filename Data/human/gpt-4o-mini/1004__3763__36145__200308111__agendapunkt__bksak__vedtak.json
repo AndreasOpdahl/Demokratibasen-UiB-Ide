@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3763:36145:200308111:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant urban planning proposal with community implications and some dissent."
+    },
+    "summary_headline": "Bergenhus bydelsstyre godkjenner reguleringsplan med miljøhensyn, men møter motstand fra SV",
+    "summary_body": "Bergenhus bydelsstyre har behandlet et forslag til reguleringsplan for Kalfarveien 76, som vektlegger miljøhensyn og tilstrekkelig uteoppholdsareal for barn. Planen inkluderer også tiltak for å dempe biltrafikken. SV uttrykte bekymring over utbyggerens stengte Hansapark og foreslo at parken må åpnes for allmennheten. Flertallet i bydelsstyret vedtok administrasjonens forslag, men SVs tillegg ble nedstemt. Dette kan påvirke lokalsamfunnet, spesielt barn og unge, som vil ha behov for lekeareal og aktiviteter."
+  }
+}

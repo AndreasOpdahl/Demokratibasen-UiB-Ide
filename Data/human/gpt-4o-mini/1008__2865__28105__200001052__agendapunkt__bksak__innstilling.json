@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:2865:28105:200001052:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:35:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the implementation of a significant healthcare reform affecting local residents."
+    },
+    "summary_headline": "Fastlegeordningen i Bergen: Kapasitet og utfordringer for legevakt",
+    "summary_body": "Byrådet i Bergen har informert bystyret om fastlegeordningen som ble innført 1. juni 2001. Det er inngått 188 fastlegeavtaler som gir kommunen ca. 260.000 listeplasser, og 235.000 innbyggere er nå registrert hos fastleger. Det er identifisert ledig listekapasitet for studenter og for innbyggere som ønsker å bytte lege. Byrådet har også nedsatt en arbeidsgruppe for å vurdere legevakttjenesten, som anbefaler styrking av legevakt på kvelder og netter. Det er planlagt en evaluering av legevaktstjenesten i løpet av høsten 2001 og våren 2002. Merkostnadene ved innføringen av fastlegeordningen er estimert til 7,5 millioner kroner for 2002."
+  }
+}

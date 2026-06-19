@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:5728:51548:200716867:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:30:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal to make International Women's Day a public holiday in Bergen is significant and relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune vurderer kvinnedagen som offentlig fridag i 2010",
+    "summary_body": "Finanskomiteen har behandlet et forslag fra SV-representant Tina Åsgård om å gjøre 8. mars 2010 til en offentlig fridag for å markere 100-årsjubileet for kvinnedagen. Byrådet, ledet av finansbyråd Christine B. Meyer, avviser forslaget om fridag, men åpner for en særskilt markering. Dette kan være av interesse for innbyggere som engasjerer seg i kvinne- og likestillingsspørsmål."
+  }
+}

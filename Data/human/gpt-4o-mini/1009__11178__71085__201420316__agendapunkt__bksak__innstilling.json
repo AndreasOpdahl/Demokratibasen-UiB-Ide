@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11178:71085:201420316:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:47:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant budget adjustments for a new caretaker service affecting schools, kindergartens, and nursing homes in Bergen."
+    },
+    "summary_headline": "Bergen kommune omorganiserer vaktmestertjenesten med budsjettjusteringer",
+    "summary_body": "Bergen bystyre har vedtatt en ny organisering av vaktmestertjenesten, som nå legges under Etat for bygg og eiendom. Fra 1. september 2014 overføres 11,4 millioner kroner fra Byrådsavdelingene for barnehage, skole og helse til finans, eiendom og eierskap for å støtte den nye ordningen. Dette vil påvirke vaktmestertjenester ved skoler, barnehager og sykehjem, og er en del av en større budsjettjustering som også vil bli vurdert i rulleringen for 2015. Byråden for finans, eiendom og eierskap, Liv Røssland, står bak innstillingen."
+  }
+}

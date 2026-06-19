@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:331:2308:200290137:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:47:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The request for exemption from duties due to childcare responsibilities highlights a personal situation affecting local governance."
+    },
+    "summary_headline": "Monica Rivedal (FrP) søker fritak fra verv i Bergen kommune",
+    "summary_body": "Monica Rivedal fra Fremskrittspartiet har søkt om fritak fra alle sine verv i Bergen kommune for resten av valgperioden 1999-2003, begrunnet med omsorg for to små barn. Rivedal har verv som varamedlem i Bergen bystyre, Laksevåg bydelsstyre, samt i samarbeidsutvalgene for Sæterdalen barnehage og Sandgotna Skole. Kommunestyret vil behandle søknaden, og det vil bli gjennomført suppleringsvalg for å erstatte henne i vervene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "7cd89a82-e6f3-5292-a1ae-3d041420250c",
+  "kommune_nummer": 4626,
+  "kommune_navn": "Øygarden",
+  "generated_at": "2026-02-19 23:08:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a significant fee dispute affecting a local resident, which has implications for municipal processes."
+    },
+    "summary_headline": "Statsforvalteren stadfester gebyr fra Øygarden kommune",
+    "summary_body": "Statsforvalteren i Vestland har stadfestet Øygarden kommunes vedtak om et gebyr på 51 700 kroner knyttet til en klage fra en innbygger angående byggesøknad. Klageren hevdet at gebyret burde reduseres på grunn av overskridelse av saksbehandlingstid og at søknaden var komplett ved innlevering. Statsforvalteren konkluderte med at kommunen hadde handlet korrekt, og klagen ble avvist. Dette vedtaket er endelig og kan ikke påklages, noe som kan påvirke innbyggernes tillit til kommunens gebyrpraksis."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:3443:34427:200002182:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:19:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant changes in educational support for students with learning difficulties, impacting local schools and families."
+    },
+    "summary_headline": "Årstad bydelsstyre støtter høring om læringsmiljø for elever med samhandlingsvansker",
+    "summary_body": "Årstad bydelsstyre har sendt ut høringsuttalelse om læringsmiljøet for elever med samhandlingsvansker, som er en del av et større arbeid fra Byrådsavdeling for barnehage, skole og idrett. Høringen tar opp hvordan grunnskoler kan utvikle varierte læringsarenaer og hvordan alternative skoler kan tilby fleksible løsninger. Bydelsdirektør Ågot Himle og oppvekst- og kultursjef Odd Harald Hundvin understreker behovet for økte ressurser for å forbedre tilbudet. Dette arbeidet vil påvirke mange elever og familier i Bergen, spesielt de som trenger spesialtilpasset opplæring."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8726:61268:200917352:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:41:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant change in alcohol licensing for a local restaurant, which affects the community."
+    },
+    "summary_headline": "Cornelia Restauranter får ny skjenkebevilling i Kjøttbasaren",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Cornelia Restauranter i Kjøttbasaren, Vetrlidsallmenningen 2. Den nye bevillingen, som gjelder både innendørs og uteservering, er et resultat av en overdragelse av virksomheten og sammenslåing av tidligere bevillinger fra Nye Havets Grøde og Raadmandsstuen/Biblioteket. Det totale skjenkearealet er på ca. 1000 m² med plass til 400 gjester. Byrådet for helse og inkludering, Hilde Onarheim, anbefaler denne endringen, som vil bidra til å styrke restaurantens tilbud i området. Bevillingen gjelder frem til 30. juni 2012."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1024:6416:53081:200717701:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:45:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural details for oral questions but lacks significant newsworthy content."
+    },
+    "summary_headline": "Ingen nyheter fra byråden om muntlige spørsmål",
+    "summary_body": "Dokumentet beskriver prosedyren for muntlige spørsmål i komiteen, hvor byråden svarer på spørsmål fra komiteens medlemmer. Svarene blir ikke referert i protokollen, og spørsmålene registreres etter møtet. Det er ingen kontrovers eller spesifikke saker av interesse."
+  }
+}

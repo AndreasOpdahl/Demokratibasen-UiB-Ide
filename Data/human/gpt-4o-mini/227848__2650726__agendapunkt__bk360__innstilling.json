@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227848:2650726:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:59:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant regulatory plan affecting local environmental and traffic safety issues."
+    },
+    "summary_headline": "Utvidelse av Arna jordsorteringsanlegg godkjent med trafikksikkerhet i fokus",
+    "summary_body": "Byrådet har anbefalt bystyret å godkjenne reguleringsplanen for Arna jordsorteringsanlegg, som utvider arealet for råstoffutvinning fra 110 daa til 155 daa. Planen, som har vært under behandling siden 2015, tar hensyn til viktige spørsmål om trafikksikkerhet og forurensning, spesielt med tanke på barn som bruker fylkesvei 5294 som skolevei. Det er innført nye bestemmelser for å sikre utbedring av veibelysning og avkjørsel til anlegget før igangsettingstillatelse kan gis. Byrådet understreker behovet for massedeponi i Bergen og vurderer utvidelsen som samfunnsnyttig."
+  }
+}

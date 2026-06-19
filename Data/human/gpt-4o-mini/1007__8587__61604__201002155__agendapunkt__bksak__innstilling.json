@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1007:8587:61604:201002155:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:31:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant administrative changes and improvements in the Bergen and Omland Port Authority, which directly affect local governance and operations."
+    },
+    "summary_headline": "Bergen og Omland Havnevesen forbedrer virksomhetsstyring etter PWC-rapport",
+    "summary_body": "Bergen og Omland Havnevesen har besluttet å følge opp anbefalingene fra en PWC-rapport for å forbedre virksomhetsstyringen. Havnestyret ber administrasjonen om å prioritere implementeringen av et internkontrollsystem, oppdatere statusrapporter med realistiske tidsfrister, og sikre at alle avdelinger leverer kvartalsvise tiltaksrapporter. Det er også fokus på å forbedre innkjøpsprosedyrer og vedlikehold av havnearealer. Havnedirektøren skal holde styret løpende orientert om fremdriften. Dette arbeidet er viktig for å sikre effektiv drift og overholdelse av regelverk, noe som vil påvirke både ansatte og brukere av havnen."
+  }
+}

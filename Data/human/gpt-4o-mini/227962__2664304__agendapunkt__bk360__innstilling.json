@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227962:2664304:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:00:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The inquiry addresses the important issue of youth employment and the follow-up on a significant financial commitment."
+    },
+    "summary_headline": "Spørsmål om lærlingplasser i Bergen etter koronakrisen",
+    "summary_body": "Rune Bakervik (A) har stilt spørsmål til byråden om oppfølgingen av tiltak for lærlinger i Bergen, som ble vedtatt i lokal tiltakspakke under koronakrisen. Bystyret avsatte 4 millioner kroner for å øke lærlingplasser og sysselsetting for ungdom. Bakervik etterspør informasjon om hvordan tiltakene har blitt fulgt opp og hva som er planene fremover. Dette er viktig for unge som trenger å fullføre læretiden for å komme inn i arbeidslivet."
+  }
+}

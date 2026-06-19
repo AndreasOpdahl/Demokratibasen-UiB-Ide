@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2007:51125:113083:199815662:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:54:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to fund repairs for a local community facility is relevant and impacts residents."
+    },
+    "summary_headline": "Bergen kommune bevilger 32.000 kr til takreparasjon av Espelandshallen",
+    "summary_body": "Hovedutvalg for teknisk utbygging i Bergen kommune har besluttet å bevilge 32.000 kr til reparasjon av taket på Espelandshallen. Forslaget ble fremmet av Bente Krokeide (A) og fikk flertall med 2 stemmer, mens administrasjonens forslag om avslag fikk 1 stemme. Denne bevilgningen er viktig for å opprettholde et lokalt idrettsanlegg som benyttes av innbyggerne."
+  }
+}

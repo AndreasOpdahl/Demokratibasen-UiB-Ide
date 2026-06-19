@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8381:62559:201100219:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:18:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant transport infrastructure plans for the Vestlandet region, which will impact local residents and the economy."
+    },
+    "summary_headline": "Bergen kommune støtter Vestlandsrådets handlingsprogram for transport 2012-2015",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Vestlandsrådets handlingsprogram for transport 2012-2015, som fokuserer på å etablere en ferjefri E39 og forbedre kollektivtransporten. Byrådet understreker behovet for økte bevilgninger og raskere gjennomføring av prosjektene, som vil påvirke 1,7 millioner innbyggere i regionen. Det anbefales å investere 5 milliarder kroner årlig over 20 år for å realisere Kyststamvegen, som er avgjørende for næringsliv og transportforhold. Bystyret skal behandle saken, som er av prinsipiell karakter."
+  }
+}

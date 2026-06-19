@@ -1,0 +1,18 @@
+{
+  "dokument_id": "6c297279-e3f1-5009-a48f-0ed0ae736d5d",
+  "kommune_nummer": 4627,
+  "kommune_navn": "Askøy",
+  "generated_at": "2026-02-19 23:05:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av møteprotokoll",
+    "summary_body": "Møteprotokollen fra Råd for personer med funksjonsnedsettelse ble godkjent i møtet den 27. oktober 2025."
+  }
+}

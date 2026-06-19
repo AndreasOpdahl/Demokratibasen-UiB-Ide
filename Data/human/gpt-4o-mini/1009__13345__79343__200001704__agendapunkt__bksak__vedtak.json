@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13345:79343:200001704:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:56:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses budgetary concerns and future planning for public transport and infrastructure, which are relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune tar grep om inntektsbortfall i Bergensprogrammet",
+    "summary_body": "Byrådet i Bergen har besluttet å støtte Hordaland fylkeskommunes forslag for å oppnå balanse mellom inntekter og utgifter i Bergensprogrammet for 2017. De uttrykker bekymring for gjentakende mindreforbruk innen kollektivtiltak og gang- og sykkeltiltak, og påpeker behovet for felles fokus i arbeidet med ny bypakke og byvekstavtale. Dette kan påvirke innbyggernes transportmuligheter og infrastruktur i fremtiden."
+  }
+}

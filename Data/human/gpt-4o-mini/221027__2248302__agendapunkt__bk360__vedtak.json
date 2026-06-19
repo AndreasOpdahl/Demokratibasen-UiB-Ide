@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221027:2248302:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:44:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details a routine administrative decision with no significant impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til bystyreutvalgene",
+    "summary_body": "I byrådets møte 7. mai 2020 ble det besluttet at byrådssak 145 skal sendes til utvalg for miljø og byutvikling. Forslaget ble vedtatt enstemmig av forretningsutvalget i møtet 12. mai 2020."
+  }
+}

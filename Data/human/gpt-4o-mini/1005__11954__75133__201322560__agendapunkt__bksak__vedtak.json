@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11954:75133:201322560:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:36:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant regulatory changes affecting local development and community amenities."
+    },
+    "summary_headline": "Bystyret vedtar reguleringsplan for Haukelandsbakken med nye krav til kvalitet og tilgjengelighet",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt en detaljregulering for Haukelandsbakken, som inkluderer krav til høy kvalitet på takterrasser og materialer, samt tilrettelegging for el-bil lading og HC-parkeringsplasser. Endringene, som også omfatter trygge turdrag og avfallshåndtering, ble behandlet i bystyremøtet 16. mars 2016. Dette vil påvirke både byggetekniske standarder og tilgjengeligheten for innbyggerne i området."
+  }
+}

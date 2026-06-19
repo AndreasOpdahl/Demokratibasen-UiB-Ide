@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4559:41616:200212067:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:18:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant decision regarding a housing application near an airport, with potential impacts on local residents."
+    },
+    "summary_headline": "Byrådet vurderer dispensasjon for boligbygging nær Flesland Flyplass",
+    "summary_body": "Byrådet har innstilt på å godkjenne en klage fra Linda Helene Fyllingsnes om dispensasjon for oppføring av ny bolig på Fleslandsvegen 163, til tross for tidligere avslag. Området er regulert som landbruk og natur, og ligger innenfor flystøysone IV, hvor boligbygging normalt ikke tillates. Byråden mener det foreligger særlige grunner for dispensasjon, da det tidligere har stått en bolig på eiendommen. Klagen anbefales tatt til følge, og det forutsettes at det settes vilkår for støyskjerming. Dette kan påvirke lokale innbyggere som er bekymret for støy og arealbruk."
+  }
+}

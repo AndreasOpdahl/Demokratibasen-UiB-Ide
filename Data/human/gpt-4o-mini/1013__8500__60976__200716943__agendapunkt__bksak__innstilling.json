@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:8500:60976:200716943:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:16:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document contains significant decisions regarding political appointments and a legal review that could impact local governance."
+    },
+    "summary_headline": "Endringer i politiske verv og lovlighetskontroll i Bergen kommune",
+    "summary_body": "Forretningsutvalget i Bergen kommune har godkjent flere endringer i politiske verv etter at Hilde Onarheim (H) tiltrer som byråd. Ragnhild Stolt-Nielsen (H) blir ny leder av Komite for finans og medlem av Forretningsutvalget. I tillegg ble det vedtatt å oversende krav om lovlighetskontroll av tidligere vedtak til Komite for finans og byrådet for vurdering. Dette kan få betydning for hvordan bystyret håndterer tidligere beslutninger, noe som er av stor interesse for innbyggerne i Bergen."
+  }
+}

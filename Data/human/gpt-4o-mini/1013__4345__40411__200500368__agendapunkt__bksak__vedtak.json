@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4345:40411:200500368:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:07:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural decisions without significant local impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til komiteene",
+    "summary_body": "Byrådet har i møte 26. januar 2005 besluttet å fordele flere saker til ulike komiteer. Byrådsakene 23, 26 og 27 sendes til komite for miljø og byutvikling, sak 24 til det utvidete forretningsutvalg, og sak 25 til komite for oppvekst. Vedtaket ble fattet enstemmig."
+  }
+}

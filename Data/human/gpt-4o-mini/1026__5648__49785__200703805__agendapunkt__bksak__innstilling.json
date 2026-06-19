@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5648:49785:200703805:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:13:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested decision regarding a floating dock that affects local residents' access to public areas."
+    },
+    "summary_headline": "Byrådet avslår klage på flytebrygge ved Nordåsvannet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om utlegging av en 10x2 meter flytebrygge ved Nordåsvannet, etter klage fra Chris Olsson-Hagan. Avslaget er begrunnet med at tiltaket strider mot reguleringsplanen og kommuneplanens arealdel, som beskytter området som friområde. Det er innkommet merknader fra naboer som motsetter seg byggingen, og Grønn etat fraråder dispensasjon på grunn av risiko for privatisering av strandsonen. Byrådet anbefaler at klagen ikke tas til følge, og saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212677:1080670:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:27:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a written question regarding a concrete factory, but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Skriftlig spørsmål om betongfabrikken på Haukås",
+    "summary_body": "Sondre L. Båtstrand (UAV) stilte et skriftlig spørsmål om betongfabrikken på Haukås til Komite for miljø og byutvikling. Byråd Anna Elisa Tryti besvarte spørsmålet under møtet den 9. mai 2019."
+  }
+}

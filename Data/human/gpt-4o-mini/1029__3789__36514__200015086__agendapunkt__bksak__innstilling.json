@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:3789:36514:200015086:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:31:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The report summarizes the activities of the municipal audit committee, which is relevant for local governance and accountability."
+    },
+    "summary_headline": "Kontrollutvalget oppsummerer revisjonsarbeidet for perioden 1999-2003",
+    "summary_body": "Kontrollutvalget i Bergen kommune har avsluttet sin funksjonsperiode for 1999-2003 og presenterer en oppsummering av revisjonsarbeidet. Rapporten, utarbeidet av kommunerevisor Rolf Kalvø, fremhever viktige mål og utviklingsområder for kommunerevisjonen, inkludert fokus på kvalitet og effektivitet. Det er også nevnt at administrasjonen har blitt mer responsiv til revisjonens henvendelser. Kontrollutvalget tar rapporten til etterretning, noe som kan være nyttig for det nye kontrollutvalget. Dette er relevant for innbyggerne i Bergen, da det påvirker hvordan kommunens forvaltning og revisjon fungerer."
+  }
+}

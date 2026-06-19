@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:10025:68631:201128404:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:52:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested land division request with implications for local housing and noise regulations."
+    },
+    "summary_headline": "Klage på avslag om deling av tomt i Åsane opprettholdes",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på Knut Rundhovdes søknad om deling av eiendom gnr 197 bnr 45 i Åsane til boligformål. Klagen ble sendt inn etter at søknaden ble avslått i 2012, men byrådet mener at tiltaket strider mot kommuneplanens bestemmelser om støy og plankrav. Det er ikke søkt om dispensasjon fra støybestemmelsene, og byrådet vurderer at fordelene ved å gi dispensasjon ikke oppveier ulempene. Saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

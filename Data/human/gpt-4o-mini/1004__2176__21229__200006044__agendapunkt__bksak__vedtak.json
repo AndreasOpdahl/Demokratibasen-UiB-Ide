@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2176:21229:200006044:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:23:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a local liquor license application, which has limited impact and interest."
+    },
+    "summary_headline": "Bergenhus bydelsstyre godkjenner skjenkebevilling for Sze Chuan House",
+    "summary_body": "Bergenhus bydelsstyre har behandlet en søknad om skjenkebevilling for øl og vin til Sze Chuan House. I møtet den 28. mars 2000 ble det vedtatt å ikke ha merknader til søknaden, med 12 stemmer for og 1 imot fra KrF. Dette betyr at restauranten kan servere alkohol frem til 30. juni 2000."
+  }
+}

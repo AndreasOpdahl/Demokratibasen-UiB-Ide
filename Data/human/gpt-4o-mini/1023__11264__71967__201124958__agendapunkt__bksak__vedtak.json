@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:11264:71967:201124958:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:37:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains multiple administrative items but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Helse- og sosialkomiteen vurderer flere høringsuttalelser",
+    "summary_body": "Komite for helse og sosial har behandlet flere saker i møtet 070115, inkludert høringsuttalelser om tannhelsetjenesten i Hordaland og utvidet rekvireringsrett for helsesøstre og jordmødre. Det ble også diskutert en delrapport fra Akuttutvalget til Helse- og omsorgsdepartementet. Ingen kontroverser eller avstemninger ble rapportert."
+  }
+}

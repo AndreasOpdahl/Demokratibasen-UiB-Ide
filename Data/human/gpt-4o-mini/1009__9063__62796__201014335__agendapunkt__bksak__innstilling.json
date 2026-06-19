@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9063:62796:201014335:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:43:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant changes to the regulations governing the use of municipal sports facilities, which will impact local sports organizations and residents."
+    },
+    "summary_headline": "Nytt reglement for kommunale idrettsanlegg vedtatt av byrådet",
+    "summary_body": "Byrådet i Bergen har vedtatt et nytt \"Administrasjons- og utleiereglement for kommunale idrettsanlegg\" som samler tidligere regler i ett dokument. Reglementet, som trer i kraft i forbindelse med den nye bestillingstjenesten \"Aktiv by\", gjelder for både innendørs og utendørs idrettsanlegg. Idrettsrådet har gitt sin tilslutning til reglementet, som skal sikre en mer effektiv forvaltning av anleggene. Dette vil påvirke hvordan idrettslag og organisasjoner kan booke og bruke kommunale idrettsanlegg, og det er viktig for alle som benytter seg av disse fasilitetene."
+  }
+}

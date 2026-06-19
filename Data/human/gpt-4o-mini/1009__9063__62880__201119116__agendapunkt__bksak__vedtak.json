@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9063:62880:201119116:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:43:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision involves a local property transfer that may affect housing availability."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på leiegård i Jonas Reinsgate 9",
+    "summary_body": "Bergen kommune har besluttet å ikke gjøre forkjøpsretten gjeldende ved overdragelse av 100% av aksjene i Jonas Reinsgate 9 AS fra Las Holding AS til Bjørn Kåre Vågenes. Dette kan påvirke boligmarkedet i området, da kommunen velger å ikke gripe inn i salget."
+  }
+}

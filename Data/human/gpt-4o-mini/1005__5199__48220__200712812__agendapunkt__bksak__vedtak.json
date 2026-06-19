@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5199:48220:200712812:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:05:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The election of the mayor is a significant political event with implications for local governance."
+    },
+    "summary_headline": "Gunnar Bakke (FrP) valgt som ordfører i Bergen for perioden 2007-2011",
+    "summary_body": "Bergen bystyre har valgt Gunnar Bakke fra Fremskrittspartiet som ordfører for perioden 2007-2011. Valget ble avgjort i et møte den 29. oktober 2007, hvor det ble stemt over flere forslag. Terje Ohnstad fra Arbeiderpartiet foreslo Ruth Grung, mens Anders Skoglund fra Venstre foreslo Hans-Carl Tveit. Bakke ble valgt med 37 stemmer, mens de andre forslagene fikk henholdsvis 26 og 4 stemmer. Dette valget vil påvirke den politiske retningen i Bergen kommune de kommende årene."
+  }
+}

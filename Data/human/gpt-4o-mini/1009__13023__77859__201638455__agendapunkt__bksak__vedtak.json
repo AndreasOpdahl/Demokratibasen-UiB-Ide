@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13023:77859:201638455:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:54:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to grant a new alcohol license to Hotel Zander K is relevant to local residents and businesses."
+    },
+    "summary_headline": "Hotel Zander K får ny skjenkebevilling for alkohol",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1-3 ved Hotel Zander K, Zander Kaaes gate 8, frem til 30. juni 2020. Bevillingshaver er Hotel Zander K AS, med Maria Salfatte Lervik som styrer. Det er et krav om gratis vann tilgjengelig i lokalene. Før bevillingen kan tas i bruk, må hotellet sende inn dokumentasjon til Kontor for skjenkesaker."
+  }
+}

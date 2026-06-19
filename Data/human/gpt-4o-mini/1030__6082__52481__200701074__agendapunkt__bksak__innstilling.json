@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:6082:52481:200701074:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:40:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant infrastructure project with potential local impact and a public hearing."
+    },
+    "summary_headline": "Høring om Fastlandssambandet Sotra-Bergen åpner for innspill",
+    "summary_body": "Byrådet har vedtatt å legge kommunedelplanen for Fastlandssambandet Sotra-Bergen ut til høring, med frist for merknader 26. november 2008. Prosjektet, som omfatter tre delprosjekter, har som mål å forbedre transportforbindelsen mellom Sotra og Bergen. Statens vegvesen har utarbeidet planen i samarbeid med kommunene Bergen, Fjell og Sund. En tilleggsrapport foreslår en ny kombinasjonsløsning som inkluderer en kort tunnel og nytt kryss i Drotningsvik, som kan påvirke arealbruk og nærmiljø. Innbyggere oppfordres til å gi tilbakemeldinger på planen."
+  }
+}

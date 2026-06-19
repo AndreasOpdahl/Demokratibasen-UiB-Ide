@@ -1,0 +1,18 @@
+{
+  "dokument_id": "8e0e511b-07d6-5c80-9e0c-570b0c9bab88",
+  "kommune_nummer": 4640,
+  "kommune_navn": "Sogndal",
+  "generated_at": "2026-02-19 23:11:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses workplace safety and organizational changes, which are relevant to local employees and management."
+    },
+    "summary_headline": "Fokus på arbeidsmiljø og sikkerhet i Sogndal kommune",
+    "summary_body": "Arbeidsmiljøutvalet i Sogndal kommune har diskutert flere viktige saker i sitt møte den 25. november 2025. Blant annet ble det presentert statistikk om ulykker og sjukefråvær, samt status på risikovurderingsmodulen. Det ble også orientert om bekymringsmeldinger fra Bu- og miljø Balestrand og utbyggingen av Saften. Utvalet foreslår felles opplæring for politisk og administrativ leiing for å styrke samhandling og tillit. Videre ble behovet for revidering av «Personal- og arbeidstidsreglementet» diskutert, spesielt med tanke på bruk av røyk og mobiltelefoner i arbeidstiden. Neste møte i kontrollutvalet vil ta opp uromeldinger fra AMU."
+  }
+}

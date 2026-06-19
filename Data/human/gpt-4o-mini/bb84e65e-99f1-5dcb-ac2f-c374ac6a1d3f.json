@@ -1,0 +1,18 @@
+{
+  "dokument_id": "bb84e65e-99f1-5dcb-ac2f-c374ac6a1d3f",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:18:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses multiple significant cases affecting local residents, including housing developments and environmental regulations."
+    },
+    "summary_headline": "Utvalg for miljø og byutvikling behandler flere viktige saker 23. oktober 2024",
+    "summary_body": "Under møtet 23. oktober 2024, behandlet Utvalg for miljø og byutvikling i Bergen kommune flere saker med stor betydning for innbyggerne. Blant annet ble det besluttet å utsette behandlingen av klager på byggesøknader, inkludert en klage om oppføring av et nytt boligbygg i Bergenhus. Utvalget diskuterte også en ny reguleringsplan for Mindemyren, som har fått kritikk for antall parkeringsplasser. I tillegg ble det fremsatt forslag om å forbedre kollektivtilbudet i Vestland, som ble vedtatt med støtte fra flere partier. Møtet viste tydelig at det er en aktiv debatt om byutvikling og miljøspørsmål i kommunen."
+  }
+}

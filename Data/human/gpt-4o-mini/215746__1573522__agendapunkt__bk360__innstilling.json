@@ -1,0 +1,18 @@
+{
+  "dokument_id": "215746:1573522:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:35:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines the selection of members for a municipal health and social committee, which is relevant to local governance."
+    },
+    "summary_headline": "Bystyret velger nytt utvalg for helse og sosial",
+    "summary_body": "Bergen bystyre har valgt medlemmer til utvalg for helse og sosial for perioden 2019-2023. Hilde Onarheim (H) blir leder, mens Diane Berbain (SV) er valgt som nestleder. Utvalget består av 17 medlemmer fra ulike partier, inkludert Høyre, Arbeiderpartiet, og Fremskrittspartiet. Valget er i tråd med kommuneloven og tar hensyn til kjønnsfordeling. Dette utvalget vil ha betydning for helse- og sosialpolitikken i kommunen."
+  }
+}

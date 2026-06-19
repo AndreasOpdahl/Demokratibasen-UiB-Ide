@@ -1,0 +1,2244 @@
+item_id,doc_id,dimension,dimension_color,pair_key,selection_bucket,left_model,right_model,summary_left,summary_right,source_text,reference_summary,annotation_prompt,human_choice,llm_majority,llm_votes_left,llm_votes_right,llm_votes_tie,llm_vote_entropy,llm_vote__gpt_5_mini,llm_vote__google_gemini_2_5_flash_preview_05_20,llm_vote__anthropic_claude_3_5_haiku_20241022,llm_vote__mistral_medium_latest
+new-01,doc_10,newsworthiness,#f57c00,doc_10|gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples|nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples,low_agreement,gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples,nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples,"Eldrerådet i Samnanger kommune skal behandle en rekke faste saker under møtet den 10. juni 2025. Rådmannen har foreslått at orientasjons- og referatsaker tas til orientering, samt at det blir diskutert eventuelle merknader til tidligere protokoller og spørsmål fra rådet. Det er også planlagt en orientering om statusen for et apotek i kommunen.","Dokumentet inneholder en oversikt over faste saker som skal behandles av eldrerådet den 10. juni 2025. Rådmannen legger frem forslag til vedtak, hvor det blant annet er nevnt merknader til protokollen fra forrige møte og orienteringssaker. Det er også inkludert spørsmål og svar fra rådmannen angående apotekstatus i kommunen. Eldrerådet vil ta stilling til disse sakene under møtet. Response: Eldrerådet har et møte den 10. juni 2025, hvor de vil diskutere ulike saker knyttet til apotekstatus i kommunen. Rådmannen vil presentere informasjon om status for apotek i Samnanger. Det vil også bli gitt mulighet for å stille spørsmål. Eldrerådet vil ta stilling til sakene under møtet.","Dokument: Faste saker eldrerådet 10.06.25
+
+ SAMNANGER KOMMUNE
+
+ SAKSFRAMLEGG
+ Sakshandsamar: Meline Heimdal Haugland Arkivreferanse: 2025/380-15
+
+Faste saker eldrerådet 10.06.25
+
+Saksnr. Organ, utval Møtedato
+
+ Eldrerådet
+
+Rådmannen sitt framlegg til vedtak:
+Orienterings-/referatsaker vert tekne til orientering.
+
+Oversikt over faste saker:
+ • Eventuelle merknader til protokoll frå førre møte.
+ • Orienterings-/referatsaker.
+ • Spørsmål.
+
+Orienteringar frå rådmannen:
+
+ • Svar på spørsmål om status for apotek i Samnanger, jf. spørsmål i eldrerådet
+ 19.05.25
+","I møtet den 10. juni 2025 ble det gjennomgått faste saker i eldrerådet, hvor rådmannen presenterte orienterings- og referatsaker. Det ble også gitt svar på spørsmål angående status for apotek i Samnanger, som ble tatt opp i forrige møte.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,2,1,1,1.5,right,tie,left,left
+new-02,doc_10,newsworthiness,#f57c00,doc_10|norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples|GPT4o-mini,low_agreement,norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,GPT4o-mini,"Eldrerådet skal behandle flere faste saker under møtet den 10. juni 2025, inkludert merknader til protokollen fra forrige møte og orienteringer fra rådmannen. Blant sakene som skal diskuteres er status for apoteket i Samnanger, som ble reist i et tidligere møte. Rådmannen vil gi svar på dette spørsmålet. SAKSHANDSAMING Saksframlegga skal utarbeidast av administrasjonen og leggjast fram for folkevalde organ. Vedtak i saka Eldrerådet gjer vedtak i saka. Klage Vedtaket kan ikkje påklagast. Vedlegg • Protokoll frå førre møte. • Oversikt over faste saker. • Svar på spørsmål om status for apotek i Samnanger. Saksutgreiing Saksutgreiinga skal innehalde ei vurdering av saka og ei tilråding til vedtak. Vurdering Vurderinga skal innehalde ei utgreiing av saka og ei tilråding til vedtak. Tilråding Tilrådinga skal vere basert på vurderinga og skal innehalde eit forslag til vedtak. Eldrerådets møte den 10. juni","I møtet den 10. juni 2025 ble det gjennomgått faste saker i eldrerådet, hvor rådmannen presenterte orienterings- og referatsaker. Det ble også gitt svar på spørsmål angående status for apotek i Samnanger, som ble tatt opp i forrige møte.","Dokument: Faste saker eldrerådet 10.06.25
+
+ SAMNANGER KOMMUNE
+
+ SAKSFRAMLEGG
+ Sakshandsamar: Meline Heimdal Haugland Arkivreferanse: 2025/380-15
+
+Faste saker eldrerådet 10.06.25
+
+Saksnr. Organ, utval Møtedato
+
+ Eldrerådet
+
+Rådmannen sitt framlegg til vedtak:
+Orienterings-/referatsaker vert tekne til orientering.
+
+Oversikt over faste saker:
+ • Eventuelle merknader til protokoll frå førre møte.
+ • Orienterings-/referatsaker.
+ • Spørsmål.
+
+Orienteringar frå rådmannen:
+
+ • Svar på spørsmål om status for apotek i Samnanger, jf. spørsmål i eldrerådet
+ 19.05.25
+","I møtet den 10. juni 2025 ble det gjennomgått faste saker i eldrerådet, hvor rådmannen presenterte orienterings- og referatsaker. Det ble også gitt svar på spørsmål angående status for apotek i Samnanger, som ble tatt opp i forrige møte.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,2,1,1,1.5,left,left,tie,right
+new-03,doc_100,newsworthiness,#f57c00,doc_100|GPT4o-mini|llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,high_agreement,GPT4o-mini,llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,"Bergen kommune innfører retningslinjer for å unngå innkjøp av tropisk trevirke i sine produkter og bygninger. Dette tiltaket er i tråd med nasjonale føringer for bærekraftige offentlige anskaffelser og har som mål å bidra til bevaring av tropisk regnskog. Retningslinjene trer i kraft 1. juli 2008, og kommunen signaliserer en bevisst miljøprofil ved å gå foran som et godt eksempel.",Bergen kommune har en stor andel av innkjøp av varer som kan," Dato: 16. juni 2008
+
+ Byrådsak 1293/08
+
+Byrådet
+
+Bergen kommune; Innkjøp versus tropisk trevirke
+
+	DISN	INK-1704-200702641-49
+
+Hva saken gjelder: 
+De tropiske regnskogene omfatter jordas mest artsrike og varierte økosystemer. Artene i regnskogen er ofte meget spesialiserte og derfor meget sårbare for inngrep. 
+
+Det er viktig at Bergen kommune får på plass retningslinjer for å unngå at trevirke fra tropiske regnskoger kjøpes inn og /eller inngår i kommunens produkter eller bygninger. Som offentlig virksomhet er det spesielt viktig å gå foran som et godt eksempel, og dette er helt i samsvar med nasjonale føringer. 
+
+I juni 2007 la regjeringen frem sin treårige handlingsplan for miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet: ”Regjeringen ønsker at forbruk og produksjon skal være mest mulig bærekraftig. Offentlig sektor må gå foran og vise vei når de selv handler på markedet.” Handlingsplanen omhandler også tropisk trevirke.
+
+Gjennom å vedta retningslinjer for å unngå innkjøp av tropisk trevirke vil Bergen kommune delta aktivt i bevaring av tropisk regnskog. Samtidig må det innføres rutiner som sikrer at den enkelte innkjøper opptrer korrekt i forhold til regelverket om offentlige anskaffelser, og de lokale føringer som kommunen har vedtatt innen området samfunnsansvar. 
+
+Vedtakskompetanse:
+Byrådets fullmakter vedtatt av bystyret 24.04.2006 (b-sak 102-06) §2, 2.ledd pkt. 1, § 4 og § 12.
+
+Byråden for finans, konkurranse og omstilling innstiller til byrådet å fatte følgende vedtak:
+
+Ved Bergen kommune sine anskaffelser av varer gjelder følgende retningslinjer: 
+ 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden.
+ 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i tilbudte produkter. 
+ 3. Ved kjøp som ikke er omfattet av rammeavtaler, og som kan tenkes å inneholde tropisk tømmer, plikter den som anskaffelser å forvisse seg om at tropisk trevirke ikke inngår i produktene. 
+
+Vedtaket iverksettes med virkning fra 01.07.2008.
+
+Christine B. Meyer
+byråd for finans, konkurranse og omstilling
+Saksutredning:
+
+1. Tropisk regnskog, tømmer og trevirke
+
+Tropisk regnskog finnes kun i de fuktige områdene rundt ekvator, hovedsakelig i Sør-Amerika, Sørøst-Asia og Afrika. Tropisk regnskog betegner også den produktive naturtypen som er levested for brorparten av jordens arter. Mange av disse treslagene er harde og svært bestandige. Derfor hogges og eksporteres mengder tropisk tømmer til den rike delen av verden. Her foredeles materialene. De mest kjente trematerialer i kategorien tropisk trevirke er teak og mahogni. Det finnes imidlertid ca. 60 ulike treslag tropisk tømmer i det norske markedet.
+
+Tropisk trevirke kan inngå i en rekke ferdigprodukter som for eksempel møbler, dører, gulv, idrettsutstyr og lekeapparater. I tillegg kan tropisk tømmer inngå i byggematerialer hvor de ikke er synlige i sluttfasen.
+
+2. Hvorfor bør vi unngå tropisk trevirke?
+
+Tropisk regnskog trues og reduseres i dag i et faretruende tempo. Opprinnelig dekket naturtypen 16 mill. km2, men er i løpet av noen 10 år halvert og utgjør nå bare 6% av jordens areal. Halvparten av verdens planter, dyr og flere urbefolkninger lever i og er avhengig av tropisk regnskog. Avskoging og oppdyrking ødelegger både leveområder og kulturer. Når skogene forsvinner eroderes jorden. Jordsmonn og næring vaskes bort, og arter utryddes. 
+
+Regnskogen kalles for jordens lunger fordi den ved fotosyntesen binder svære mengder CO2. Rovdriften på tropisk regnskog betyr i praksis irreversible inngrep. Følgene av det tapet rammer oss alle - om enn i ulik grad.
+
+Regnskogens ødeleggelse har ført til stort politisk og organisatorisk engasjement. Regnskogfondet er ett av Europas ledende organisasjoner, se; www.regnskog.no
+
+Det finnes ulike typer sertifiseringsordninger som brukes for å rettferdiggjøre den bruken av tropisk tømmer som enda foregår. FSC - Forest Stewardship Council - er den eneste sertifiseringen av tropisk tømmer som stiller tilfredsstillende miljømessige og sosiale krav. Imidlertid er det ingen miljømerking som gir sikker garanti, da det har vært oppdaget manipulasjon blant alle merkeordningene. 
+
+3. Sertifiseringsordninger og plantasjedrift
+
+Tropisk trevirke kan dyrkes på plantasjer, men ifølge Regnskogfondet er plantasjedrift ingen garanti for bærekraftig skogdrift. I Regnskogfondet sin brosjyre: Gulv og grønne skoger – om tropisk tømmer i norsk byggebransje står det blant annet vedrørende plantasjedrift (s. 7): ”Det finnes en rekke tilfeller der opprinnelig regnskog er fjernet for å opprettholde plantasjer, og i mange plantasjer er utvinningstakten høyere enn forsvarlig. Plantasjene etableres som regel uten samtykke fra berørte urfolk og lokalbefolkning.”
+
+Pr i dag finnes det ingen nasjonale eller internasjonale sertifiseringsordninger som gir god nok sikkerhet for at trevirket som importeres faktisk kommer fra plantasjer. 
+
+På grunn av usikkerheten som hefter både sertifiseringsordningene og plantasjedrift bør Bergen kommune være ”føre var”. Bergen kommune bør inntil videre forholde seg til at ingen av dagens sertifiseringssystemer eller miljømerker kan garantere at tropisk trevirke er hogd forsvarlig, og på bakgrunn av dette bør kommunen ha rutiner som utelukker tropisk trevirke i forbindelse med innkjøp. 
+
+4. Relevans for Bergen
+
+Naturvernforbundet Hordaland og Fremtiden i våre hender gjennomførte i 2005 en undersøkelse om bruken av tropisk trevirke hos 11 butikker som selger hagemøbler i Bergen. Bare tre av disse hadde sagt konsekvent nei til bruk av tropisk trevirke, hovedsakelig teak. De 8 som solgte møbler av tropisk trevirke opplyste at trevirket enten var FSC-sertifisert eller kom fra plantasjehogst. Generelt var ekspeditørene lite oppdatert på problemer knyttet til tropisk regnskog. 
+
+I byrådets tiltredelseserklæring er miljøsatsingen markert. Som er stor offentlig aktør, er det derfor rimelig at Bergen kommune går foran og markerer miljøsatsingen tydelig. Med vedtak om at det ikke skal benyttes tropisk trevirke ved innkjøp signaliserer Bergen kommune en bevisst miljøprofil. Videre er kommunen med å sette standard for en konsekvent holdning blant norske kommuner. Generelt økes også folks oppmerksomhet på miljøutfordringene som knytter seg til tropisk regnskog ved en slik markering.
+
+Kommunale innkjøpere som rekvirerer bygninger, både nye og ved rennovasjon, bør spesifikt nevne at det i leveransen ikke skal inngå tropisk trevirke. Dette gjelder særlig for produkter som parkett, kryssfiner, dører, gulv, benkeplater, panel, møbler og generelt for trelast.
+
+5. Forankring og nasjonale føringer
+
+Kommunens innkjøp er omfattet av Regelverket for offentlige anskaffelser. Dette regelverket ble revidert 01.01.2007, hvorpå det offentliges ansvar om å ta samfunnshensyn ble ytterligere skjerpet. I formålbestemmelsen i Lov om offentlige anskaffelser (LOA) § 1 heter det:
+
+”Loven og tilhørende forskrift skal bidra til økt verdiskapning i samfunnet og sikre mest mulig effektiv ressursbruk ved offentlige anskaffelser basert på forretningsmessighet og likebehandling. Regelverket skal også bidra til at det offentlige opptrer med stor integritet, slik at allmennheten har tillitt til at offentlige anskaffelser skjer på en samfunnstjenelig måte.”
+
+Videre står det er LOA § 6 følgende: ”… kommunale … myndigheter … skal under planleggingen av den enkelte anskaffelse ta hensyn til livssykluskostnader, universell utforming og miljømessige konsekvenser av anskaffelsen.”
+
+21. juni 2007 la regjerningen frem handlingsplanen Miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet at ”Regjeringen mener at offentlige virksomheter bør gå foran og være ansvarlige forbrukere som etterspør miljøvennlige varer og varer som er tilvirket etter høye etiske og sosiale standarder. Regjeringen ser på tiltak for å fremme miljø- og samfunnsansvar i offentlige anskaffelser som et viktig supplement til mer strukturelle tiltak, øvrige reguleringer og økonomiske virkemidler for å fremme en mer bærekraftig samfunnsutvikling.” 
+
+Handlingsplanen omfatter også tropisk trevirke, og det står blant annet (s. 33): 
+
+”Regjeringen ønsker å stoppe all handel med tropiske skogprodukter som ikke er bærekraftig, eller som er ulovlig hugd. Det finnes i dag ingen internasjonale eller nasjonale sertifiseringsordninger som kan gi god nok sikkerhet for at trevirke som importeres er lovlig og bærekraftig hugget. Regjeringen stiller derfor krav til statlige etater og virksomheter om å ikke benytte trevirke med tropisk tømmer. 
+
+Bergen kommune bør som en kommune med store miljøambisjoner opptre som en ansvarlig aktør, og sørge for lokal oppfølging av nasjonale mål knyttet til tropisk trevirke. 
+
+6. Økonomi
+
+I følge regjeringens handlingsplan Miljø- og samfunnsansvar i offentlige anskaffelser (s. 33) vil et tiltak som stopper handel med tropiske trevirke ikke ha nevneverdige økonomiske konsekvenser. 
+
+7. Tropisk trevirke som del av kommunale innkjøp
+
+Innkjøpsavdelingen er Bergen kommune sin fremste forvalter av regelverket for offentlige anskaffelser. Det er derfor naturlig at innkjøpsavdelingen følger opp de vedtak som spesifikt angår innkjøpsområdet. Formulering vedrørende tropisk trevirke bør legges inn i aktuelle maler for konkurransegrunnlag og kontrakter. 
+
+For å sikre at tropisk tømmer ikke inngår i produkter som kjøpes av Bergen kommune, samt i Bergen kommune sine byggeprosjekter, bør følgende formulering benyttes ved tilbudsinnhenting av produkter hvor det kan tenkes at tropisk trevirke inngår helt eller delvis: 
+
+Tropisk trevirke som stammer fra området mellom vendesirklene (23 grader nordlig og sørlig bredde) samt hele Myanmar (Burma) skal ikke forekomme i tilbudte produkter.
+
+","Bergen kommune innfører retningslinjer for å unngå innkjøp av tropisk trevirke i sine produkter og bygninger. Dette tiltaket er i tråd med nasjonale føringer for bærekraftige offentlige anskaffelser og har som mål å bidra til bevaring av tropisk regnskog. Retningslinjene trer i kraft 1. juli 2008, og kommunen signaliserer en bevisst miljøprofil ved å gå foran som et godt eksempel.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,4,0,0,0.0,left,left,left,left
+new-04,doc_100,newsworthiness,#f57c00,doc_100|GPT4o-mini|norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,high_agreement,GPT4o-mini,norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,"Bergen kommune innfører retningslinjer for å unngå innkjøp av tropisk trevirke i sine produkter og bygninger. Dette tiltaket er i tråd med nasjonale føringer for bærekraftige offentlige anskaffelser og har som mål å bidra til bevaring av tropisk regnskog. Retningslinjene trer i kraft 1. juli 2008, og kommunen signaliserer en bevisst miljøprofil ved å gå foran som et godt eksempel.","Regjeringen vil derfor oppfordre til at det ikke brukes trevirke fra tropisk regnskog i offentlige bygg og anlegg, og heller ikke i andre offentlige innkjøp. Regjeringen oppfordrer også private bedrifter til å følge samme praksis.” 6. Økonomiske og administrative konsekvenser Det er vanskelig å beregne de økonomiske konsekvensene av vedtaket. Det er imidlertid klart at det vil medføre økte kostnader å velge bort tropisk trevirke. Det er likevel ikke snakk om store summer. For Bergen kommune vil det være nødvendig å etablere rutiner som sikrer at retningslinjene blir fulgt. Dette vil innebære noe merarbeid for den enkelte innkjøper. [/INKLUDERT] Bergen kommune; Innkjøp versus tropisk trevirke Bergen kommune har vedtatt retningslinjer for å unngå innkjøp av tropisk trevirke. Dette er et ledd i kommunens satsing på miljø og samfunnsansvar. Vedtaket innebærer at det ikke skal brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden. Videre må det ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå"," Dato: 16. juni 2008
+
+ Byrådsak 1293/08
+
+Byrådet
+
+Bergen kommune; Innkjøp versus tropisk trevirke
+
+	DISN	INK-1704-200702641-49
+
+Hva saken gjelder: 
+De tropiske regnskogene omfatter jordas mest artsrike og varierte økosystemer. Artene i regnskogen er ofte meget spesialiserte og derfor meget sårbare for inngrep. 
+
+Det er viktig at Bergen kommune får på plass retningslinjer for å unngå at trevirke fra tropiske regnskoger kjøpes inn og /eller inngår i kommunens produkter eller bygninger. Som offentlig virksomhet er det spesielt viktig å gå foran som et godt eksempel, og dette er helt i samsvar med nasjonale føringer. 
+
+I juni 2007 la regjeringen frem sin treårige handlingsplan for miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet: ”Regjeringen ønsker at forbruk og produksjon skal være mest mulig bærekraftig. Offentlig sektor må gå foran og vise vei når de selv handler på markedet.” Handlingsplanen omhandler også tropisk trevirke.
+
+Gjennom å vedta retningslinjer for å unngå innkjøp av tropisk trevirke vil Bergen kommune delta aktivt i bevaring av tropisk regnskog. Samtidig må det innføres rutiner som sikrer at den enkelte innkjøper opptrer korrekt i forhold til regelverket om offentlige anskaffelser, og de lokale føringer som kommunen har vedtatt innen området samfunnsansvar. 
+
+Vedtakskompetanse:
+Byrådets fullmakter vedtatt av bystyret 24.04.2006 (b-sak 102-06) §2, 2.ledd pkt. 1, § 4 og § 12.
+
+Byråden for finans, konkurranse og omstilling innstiller til byrådet å fatte følgende vedtak:
+
+Ved Bergen kommune sine anskaffelser av varer gjelder følgende retningslinjer: 
+ 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden.
+ 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i tilbudte produkter. 
+ 3. Ved kjøp som ikke er omfattet av rammeavtaler, og som kan tenkes å inneholde tropisk tømmer, plikter den som anskaffelser å forvisse seg om at tropisk trevirke ikke inngår i produktene. 
+
+Vedtaket iverksettes med virkning fra 01.07.2008.
+
+Christine B. Meyer
+byråd for finans, konkurranse og omstilling
+Saksutredning:
+
+1. Tropisk regnskog, tømmer og trevirke
+
+Tropisk regnskog finnes kun i de fuktige områdene rundt ekvator, hovedsakelig i Sør-Amerika, Sørøst-Asia og Afrika. Tropisk regnskog betegner også den produktive naturtypen som er levested for brorparten av jordens arter. Mange av disse treslagene er harde og svært bestandige. Derfor hogges og eksporteres mengder tropisk tømmer til den rike delen av verden. Her foredeles materialene. De mest kjente trematerialer i kategorien tropisk trevirke er teak og mahogni. Det finnes imidlertid ca. 60 ulike treslag tropisk tømmer i det norske markedet.
+
+Tropisk trevirke kan inngå i en rekke ferdigprodukter som for eksempel møbler, dører, gulv, idrettsutstyr og lekeapparater. I tillegg kan tropisk tømmer inngå i byggematerialer hvor de ikke er synlige i sluttfasen.
+
+2. Hvorfor bør vi unngå tropisk trevirke?
+
+Tropisk regnskog trues og reduseres i dag i et faretruende tempo. Opprinnelig dekket naturtypen 16 mill. km2, men er i løpet av noen 10 år halvert og utgjør nå bare 6% av jordens areal. Halvparten av verdens planter, dyr og flere urbefolkninger lever i og er avhengig av tropisk regnskog. Avskoging og oppdyrking ødelegger både leveområder og kulturer. Når skogene forsvinner eroderes jorden. Jordsmonn og næring vaskes bort, og arter utryddes. 
+
+Regnskogen kalles for jordens lunger fordi den ved fotosyntesen binder svære mengder CO2. Rovdriften på tropisk regnskog betyr i praksis irreversible inngrep. Følgene av det tapet rammer oss alle - om enn i ulik grad.
+
+Regnskogens ødeleggelse har ført til stort politisk og organisatorisk engasjement. Regnskogfondet er ett av Europas ledende organisasjoner, se; www.regnskog.no
+
+Det finnes ulike typer sertifiseringsordninger som brukes for å rettferdiggjøre den bruken av tropisk tømmer som enda foregår. FSC - Forest Stewardship Council - er den eneste sertifiseringen av tropisk tømmer som stiller tilfredsstillende miljømessige og sosiale krav. Imidlertid er det ingen miljømerking som gir sikker garanti, da det har vært oppdaget manipulasjon blant alle merkeordningene. 
+
+3. Sertifiseringsordninger og plantasjedrift
+
+Tropisk trevirke kan dyrkes på plantasjer, men ifølge Regnskogfondet er plantasjedrift ingen garanti for bærekraftig skogdrift. I Regnskogfondet sin brosjyre: Gulv og grønne skoger – om tropisk tømmer i norsk byggebransje står det blant annet vedrørende plantasjedrift (s. 7): ”Det finnes en rekke tilfeller der opprinnelig regnskog er fjernet for å opprettholde plantasjer, og i mange plantasjer er utvinningstakten høyere enn forsvarlig. Plantasjene etableres som regel uten samtykke fra berørte urfolk og lokalbefolkning.”
+
+Pr i dag finnes det ingen nasjonale eller internasjonale sertifiseringsordninger som gir god nok sikkerhet for at trevirket som importeres faktisk kommer fra plantasjer. 
+
+På grunn av usikkerheten som hefter både sertifiseringsordningene og plantasjedrift bør Bergen kommune være ”føre var”. Bergen kommune bør inntil videre forholde seg til at ingen av dagens sertifiseringssystemer eller miljømerker kan garantere at tropisk trevirke er hogd forsvarlig, og på bakgrunn av dette bør kommunen ha rutiner som utelukker tropisk trevirke i forbindelse med innkjøp. 
+
+4. Relevans for Bergen
+
+Naturvernforbundet Hordaland og Fremtiden i våre hender gjennomførte i 2005 en undersøkelse om bruken av tropisk trevirke hos 11 butikker som selger hagemøbler i Bergen. Bare tre av disse hadde sagt konsekvent nei til bruk av tropisk trevirke, hovedsakelig teak. De 8 som solgte møbler av tropisk trevirke opplyste at trevirket enten var FSC-sertifisert eller kom fra plantasjehogst. Generelt var ekspeditørene lite oppdatert på problemer knyttet til tropisk regnskog. 
+
+I byrådets tiltredelseserklæring er miljøsatsingen markert. Som er stor offentlig aktør, er det derfor rimelig at Bergen kommune går foran og markerer miljøsatsingen tydelig. Med vedtak om at det ikke skal benyttes tropisk trevirke ved innkjøp signaliserer Bergen kommune en bevisst miljøprofil. Videre er kommunen med å sette standard for en konsekvent holdning blant norske kommuner. Generelt økes også folks oppmerksomhet på miljøutfordringene som knytter seg til tropisk regnskog ved en slik markering.
+
+Kommunale innkjøpere som rekvirerer bygninger, både nye og ved rennovasjon, bør spesifikt nevne at det i leveransen ikke skal inngå tropisk trevirke. Dette gjelder særlig for produkter som parkett, kryssfiner, dører, gulv, benkeplater, panel, møbler og generelt for trelast.
+
+5. Forankring og nasjonale føringer
+
+Kommunens innkjøp er omfattet av Regelverket for offentlige anskaffelser. Dette regelverket ble revidert 01.01.2007, hvorpå det offentliges ansvar om å ta samfunnshensyn ble ytterligere skjerpet. I formålbestemmelsen i Lov om offentlige anskaffelser (LOA) § 1 heter det:
+
+”Loven og tilhørende forskrift skal bidra til økt verdiskapning i samfunnet og sikre mest mulig effektiv ressursbruk ved offentlige anskaffelser basert på forretningsmessighet og likebehandling. Regelverket skal også bidra til at det offentlige opptrer med stor integritet, slik at allmennheten har tillitt til at offentlige anskaffelser skjer på en samfunnstjenelig måte.”
+
+Videre står det er LOA § 6 følgende: ”… kommunale … myndigheter … skal under planleggingen av den enkelte anskaffelse ta hensyn til livssykluskostnader, universell utforming og miljømessige konsekvenser av anskaffelsen.”
+
+21. juni 2007 la regjerningen frem handlingsplanen Miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet at ”Regjeringen mener at offentlige virksomheter bør gå foran og være ansvarlige forbrukere som etterspør miljøvennlige varer og varer som er tilvirket etter høye etiske og sosiale standarder. Regjeringen ser på tiltak for å fremme miljø- og samfunnsansvar i offentlige anskaffelser som et viktig supplement til mer strukturelle tiltak, øvrige reguleringer og økonomiske virkemidler for å fremme en mer bærekraftig samfunnsutvikling.” 
+
+Handlingsplanen omfatter også tropisk trevirke, og det står blant annet (s. 33): 
+
+”Regjeringen ønsker å stoppe all handel med tropiske skogprodukter som ikke er bærekraftig, eller som er ulovlig hugd. Det finnes i dag ingen internasjonale eller nasjonale sertifiseringsordninger som kan gi god nok sikkerhet for at trevirke som importeres er lovlig og bærekraftig hugget. Regjeringen stiller derfor krav til statlige etater og virksomheter om å ikke benytte trevirke med tropisk tømmer. 
+
+Bergen kommune bør som en kommune med store miljøambisjoner opptre som en ansvarlig aktør, og sørge for lokal oppfølging av nasjonale mål knyttet til tropisk trevirke. 
+
+6. Økonomi
+
+I følge regjeringens handlingsplan Miljø- og samfunnsansvar i offentlige anskaffelser (s. 33) vil et tiltak som stopper handel med tropiske trevirke ikke ha nevneverdige økonomiske konsekvenser. 
+
+7. Tropisk trevirke som del av kommunale innkjøp
+
+Innkjøpsavdelingen er Bergen kommune sin fremste forvalter av regelverket for offentlige anskaffelser. Det er derfor naturlig at innkjøpsavdelingen følger opp de vedtak som spesifikt angår innkjøpsområdet. Formulering vedrørende tropisk trevirke bør legges inn i aktuelle maler for konkurransegrunnlag og kontrakter. 
+
+For å sikre at tropisk tømmer ikke inngår i produkter som kjøpes av Bergen kommune, samt i Bergen kommune sine byggeprosjekter, bør følgende formulering benyttes ved tilbudsinnhenting av produkter hvor det kan tenkes at tropisk trevirke inngår helt eller delvis: 
+
+Tropisk trevirke som stammer fra området mellom vendesirklene (23 grader nordlig og sørlig bredde) samt hele Myanmar (Burma) skal ikke forekomme i tilbudte produkter.
+
+","Bergen kommune innfører retningslinjer for å unngå innkjøp av tropisk trevirke i sine produkter og bygninger. Dette tiltaket er i tråd med nasjonale føringer for bærekraftige offentlige anskaffelser og har som mål å bidra til bevaring av tropisk regnskog. Retningslinjene trer i kraft 1. juli 2008, og kommunen signaliserer en bevisst miljøprofil ved å gå foran som et godt eksempel.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,4,0,0,0.0,left,left,left,left
+new-05,doc_100,newsworthiness,#f57c00,doc_100|GPT4o-mini|viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,high_agreement,GPT4o-mini,viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,"Bergen kommune innfører retningslinjer for å unngå innkjøp av tropisk trevirke i sine produkter og bygninger. Dette tiltaket er i tråd med nasjonale føringer for bærekraftige offentlige anskaffelser og har som mål å bidra til bevaring av tropisk regnskog. Retningslinjene trer i kraft 1. juli 2008, og kommunen signaliserer en bevisst miljøprofil ved å gå foran som et godt eksempel.","Produkter som inneholder tropisk trevirke skal merkes med opprinnelsesland. Dersom det ikke er mulig å få tak i produkter som ikke inneholder tropisk trevirke, skal det innhentes dokumentasjon fra leverandør som viser at produktet ikke inneholder tropisk trevirke. 8. Informasjon og opplæring Det er viktig at ansatte i Bergen kommune kjenner til kommunens retningslinjer for innkjøp av varer. Det er derfor nødvendig at informasjon om retningslinjene blir gitt til alle ansatte som kjøper inn varer. Det er også viktig at ansatte som arbeider med innkjøp får tilstrekkelig opplæring i hvordan man skal forholde seg til regelverket for offentlige anskaffelser. Det er utarbeidet en egen veileder for innkjøp i Bergen kommune. Denne veilederen bør oppdateres med informasjon om kommunens retningslinjer for innkjøp av varer. 9. Oppfølging Det er viktig at Bergen kommune følger opp retningslinjene for innkjøp av varer. Dette innebærer at det jevnlig foretas stikkprøver for å kontrollere at retningslinjene følges. Det er også viktig at det utarbeides rutiner for hvordan brudd på retningslinjene skal håndteres. Slike rutiner bør utarbeides i samarbeid med innkjøpsavdelingen. 10. Konklusjon Bergen kommune bør innføre retningslinjer for innkjøp av varer som hindrer bruk av tropisk trevirke. Retningslinjene bør omfatte både innkjøp av varer og bygging av kommunale anlegg. Det er viktig at Bergen kommune tar sitt ansvar som offentlig aktør og bidrar til å redusere presset mot regnskogen. På denne måten kan Bergen kommune markere en klar miljøprofil, samtidig som kommunen setter standarden for en konsekvent holdning blant norske kommuner. Vedlegg: Regnskogfondets brosjyre: Gulv og grønne skoger – om tropisk tømmer i norsk byggebransje"," Dato: 16. juni 2008
+
+ Byrådsak 1293/08
+
+Byrådet
+
+Bergen kommune; Innkjøp versus tropisk trevirke
+
+	DISN	INK-1704-200702641-49
+
+Hva saken gjelder: 
+De tropiske regnskogene omfatter jordas mest artsrike og varierte økosystemer. Artene i regnskogen er ofte meget spesialiserte og derfor meget sårbare for inngrep. 
+
+Det er viktig at Bergen kommune får på plass retningslinjer for å unngå at trevirke fra tropiske regnskoger kjøpes inn og /eller inngår i kommunens produkter eller bygninger. Som offentlig virksomhet er det spesielt viktig å gå foran som et godt eksempel, og dette er helt i samsvar med nasjonale føringer. 
+
+I juni 2007 la regjeringen frem sin treårige handlingsplan for miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet: ”Regjeringen ønsker at forbruk og produksjon skal være mest mulig bærekraftig. Offentlig sektor må gå foran og vise vei når de selv handler på markedet.” Handlingsplanen omhandler også tropisk trevirke.
+
+Gjennom å vedta retningslinjer for å unngå innkjøp av tropisk trevirke vil Bergen kommune delta aktivt i bevaring av tropisk regnskog. Samtidig må det innføres rutiner som sikrer at den enkelte innkjøper opptrer korrekt i forhold til regelverket om offentlige anskaffelser, og de lokale føringer som kommunen har vedtatt innen området samfunnsansvar. 
+
+Vedtakskompetanse:
+Byrådets fullmakter vedtatt av bystyret 24.04.2006 (b-sak 102-06) §2, 2.ledd pkt. 1, § 4 og § 12.
+
+Byråden for finans, konkurranse og omstilling innstiller til byrådet å fatte følgende vedtak:
+
+Ved Bergen kommune sine anskaffelser av varer gjelder følgende retningslinjer: 
+ 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden.
+ 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i tilbudte produkter. 
+ 3. Ved kjøp som ikke er omfattet av rammeavtaler, og som kan tenkes å inneholde tropisk tømmer, plikter den som anskaffelser å forvisse seg om at tropisk trevirke ikke inngår i produktene. 
+
+Vedtaket iverksettes med virkning fra 01.07.2008.
+
+Christine B. Meyer
+byråd for finans, konkurranse og omstilling
+Saksutredning:
+
+1. Tropisk regnskog, tømmer og trevirke
+
+Tropisk regnskog finnes kun i de fuktige områdene rundt ekvator, hovedsakelig i Sør-Amerika, Sørøst-Asia og Afrika. Tropisk regnskog betegner også den produktive naturtypen som er levested for brorparten av jordens arter. Mange av disse treslagene er harde og svært bestandige. Derfor hogges og eksporteres mengder tropisk tømmer til den rike delen av verden. Her foredeles materialene. De mest kjente trematerialer i kategorien tropisk trevirke er teak og mahogni. Det finnes imidlertid ca. 60 ulike treslag tropisk tømmer i det norske markedet.
+
+Tropisk trevirke kan inngå i en rekke ferdigprodukter som for eksempel møbler, dører, gulv, idrettsutstyr og lekeapparater. I tillegg kan tropisk tømmer inngå i byggematerialer hvor de ikke er synlige i sluttfasen.
+
+2. Hvorfor bør vi unngå tropisk trevirke?
+
+Tropisk regnskog trues og reduseres i dag i et faretruende tempo. Opprinnelig dekket naturtypen 16 mill. km2, men er i løpet av noen 10 år halvert og utgjør nå bare 6% av jordens areal. Halvparten av verdens planter, dyr og flere urbefolkninger lever i og er avhengig av tropisk regnskog. Avskoging og oppdyrking ødelegger både leveområder og kulturer. Når skogene forsvinner eroderes jorden. Jordsmonn og næring vaskes bort, og arter utryddes. 
+
+Regnskogen kalles for jordens lunger fordi den ved fotosyntesen binder svære mengder CO2. Rovdriften på tropisk regnskog betyr i praksis irreversible inngrep. Følgene av det tapet rammer oss alle - om enn i ulik grad.
+
+Regnskogens ødeleggelse har ført til stort politisk og organisatorisk engasjement. Regnskogfondet er ett av Europas ledende organisasjoner, se; www.regnskog.no
+
+Det finnes ulike typer sertifiseringsordninger som brukes for å rettferdiggjøre den bruken av tropisk tømmer som enda foregår. FSC - Forest Stewardship Council - er den eneste sertifiseringen av tropisk tømmer som stiller tilfredsstillende miljømessige og sosiale krav. Imidlertid er det ingen miljømerking som gir sikker garanti, da det har vært oppdaget manipulasjon blant alle merkeordningene. 
+
+3. Sertifiseringsordninger og plantasjedrift
+
+Tropisk trevirke kan dyrkes på plantasjer, men ifølge Regnskogfondet er plantasjedrift ingen garanti for bærekraftig skogdrift. I Regnskogfondet sin brosjyre: Gulv og grønne skoger – om tropisk tømmer i norsk byggebransje står det blant annet vedrørende plantasjedrift (s. 7): ”Det finnes en rekke tilfeller der opprinnelig regnskog er fjernet for å opprettholde plantasjer, og i mange plantasjer er utvinningstakten høyere enn forsvarlig. Plantasjene etableres som regel uten samtykke fra berørte urfolk og lokalbefolkning.”
+
+Pr i dag finnes det ingen nasjonale eller internasjonale sertifiseringsordninger som gir god nok sikkerhet for at trevirket som importeres faktisk kommer fra plantasjer. 
+
+På grunn av usikkerheten som hefter både sertifiseringsordningene og plantasjedrift bør Bergen kommune være ”føre var”. Bergen kommune bør inntil videre forholde seg til at ingen av dagens sertifiseringssystemer eller miljømerker kan garantere at tropisk trevirke er hogd forsvarlig, og på bakgrunn av dette bør kommunen ha rutiner som utelukker tropisk trevirke i forbindelse med innkjøp. 
+
+4. Relevans for Bergen
+
+Naturvernforbundet Hordaland og Fremtiden i våre hender gjennomførte i 2005 en undersøkelse om bruken av tropisk trevirke hos 11 butikker som selger hagemøbler i Bergen. Bare tre av disse hadde sagt konsekvent nei til bruk av tropisk trevirke, hovedsakelig teak. De 8 som solgte møbler av tropisk trevirke opplyste at trevirket enten var FSC-sertifisert eller kom fra plantasjehogst. Generelt var ekspeditørene lite oppdatert på problemer knyttet til tropisk regnskog. 
+
+I byrådets tiltredelseserklæring er miljøsatsingen markert. Som er stor offentlig aktør, er det derfor rimelig at Bergen kommune går foran og markerer miljøsatsingen tydelig. Med vedtak om at det ikke skal benyttes tropisk trevirke ved innkjøp signaliserer Bergen kommune en bevisst miljøprofil. Videre er kommunen med å sette standard for en konsekvent holdning blant norske kommuner. Generelt økes også folks oppmerksomhet på miljøutfordringene som knytter seg til tropisk regnskog ved en slik markering.
+
+Kommunale innkjøpere som rekvirerer bygninger, både nye og ved rennovasjon, bør spesifikt nevne at det i leveransen ikke skal inngå tropisk trevirke. Dette gjelder særlig for produkter som parkett, kryssfiner, dører, gulv, benkeplater, panel, møbler og generelt for trelast.
+
+5. Forankring og nasjonale føringer
+
+Kommunens innkjøp er omfattet av Regelverket for offentlige anskaffelser. Dette regelverket ble revidert 01.01.2007, hvorpå det offentliges ansvar om å ta samfunnshensyn ble ytterligere skjerpet. I formålbestemmelsen i Lov om offentlige anskaffelser (LOA) § 1 heter det:
+
+”Loven og tilhørende forskrift skal bidra til økt verdiskapning i samfunnet og sikre mest mulig effektiv ressursbruk ved offentlige anskaffelser basert på forretningsmessighet og likebehandling. Regelverket skal også bidra til at det offentlige opptrer med stor integritet, slik at allmennheten har tillitt til at offentlige anskaffelser skjer på en samfunnstjenelig måte.”
+
+Videre står det er LOA § 6 følgende: ”… kommunale … myndigheter … skal under planleggingen av den enkelte anskaffelse ta hensyn til livssykluskostnader, universell utforming og miljømessige konsekvenser av anskaffelsen.”
+
+21. juni 2007 la regjerningen frem handlingsplanen Miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet at ”Regjeringen mener at offentlige virksomheter bør gå foran og være ansvarlige forbrukere som etterspør miljøvennlige varer og varer som er tilvirket etter høye etiske og sosiale standarder. Regjeringen ser på tiltak for å fremme miljø- og samfunnsansvar i offentlige anskaffelser som et viktig supplement til mer strukturelle tiltak, øvrige reguleringer og økonomiske virkemidler for å fremme en mer bærekraftig samfunnsutvikling.” 
+
+Handlingsplanen omfatter også tropisk trevirke, og det står blant annet (s. 33): 
+
+”Regjeringen ønsker å stoppe all handel med tropiske skogprodukter som ikke er bærekraftig, eller som er ulovlig hugd. Det finnes i dag ingen internasjonale eller nasjonale sertifiseringsordninger som kan gi god nok sikkerhet for at trevirke som importeres er lovlig og bærekraftig hugget. Regjeringen stiller derfor krav til statlige etater og virksomheter om å ikke benytte trevirke med tropisk tømmer. 
+
+Bergen kommune bør som en kommune med store miljøambisjoner opptre som en ansvarlig aktør, og sørge for lokal oppfølging av nasjonale mål knyttet til tropisk trevirke. 
+
+6. Økonomi
+
+I følge regjeringens handlingsplan Miljø- og samfunnsansvar i offentlige anskaffelser (s. 33) vil et tiltak som stopper handel med tropiske trevirke ikke ha nevneverdige økonomiske konsekvenser. 
+
+7. Tropisk trevirke som del av kommunale innkjøp
+
+Innkjøpsavdelingen er Bergen kommune sin fremste forvalter av regelverket for offentlige anskaffelser. Det er derfor naturlig at innkjøpsavdelingen følger opp de vedtak som spesifikt angår innkjøpsområdet. Formulering vedrørende tropisk trevirke bør legges inn i aktuelle maler for konkurransegrunnlag og kontrakter. 
+
+For å sikre at tropisk tømmer ikke inngår i produkter som kjøpes av Bergen kommune, samt i Bergen kommune sine byggeprosjekter, bør følgende formulering benyttes ved tilbudsinnhenting av produkter hvor det kan tenkes at tropisk trevirke inngår helt eller delvis: 
+
+Tropisk trevirke som stammer fra området mellom vendesirklene (23 grader nordlig og sørlig bredde) samt hele Myanmar (Burma) skal ikke forekomme i tilbudte produkter.
+
+","Bergen kommune innfører retningslinjer for å unngå innkjøp av tropisk trevirke i sine produkter og bygninger. Dette tiltaket er i tråd med nasjonale føringer for bærekraftige offentlige anskaffelser og har som mål å bidra til bevaring av tropisk regnskog. Retningslinjene trer i kraft 1. juli 2008, og kommunen signaliserer en bevisst miljøprofil ved å gå foran som et godt eksempel.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,4,0,0,0.0,left,left,left,left
+new-06,doc_100,newsworthiness,#f57c00,doc_100|gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples|norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,high_agreement,gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples,norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,"Den beskriver hvordan Norge skal arbeide for mer bærekraftige offentlige anskaffelser. Planen legger vekt på at offentlige myndigheter skal bruke anskaffelsesmakt til å påvirke markedene positivt. Anskaffelsene skal bidra til bedre helse, tryggere arbeidsplasser, mindre utslipp og større mangfold. Planen viser til at det er nødvendig med konkrete tiltak for","Regjeringen vil derfor oppfordre til at det ikke brukes trevirke fra tropisk regnskog i offentlige bygg og anlegg, og heller ikke i andre offentlige innkjøp. Regjeringen oppfordrer også private bedrifter til å følge samme praksis.” 6. Økonomiske og administrative konsekvenser Det er vanskelig å beregne de økonomiske konsekvensene av vedtaket. Det er imidlertid klart at det vil medføre økte kostnader å velge bort tropisk trevirke. Det er likevel ikke snakk om store summer. For Bergen kommune vil det være nødvendig å etablere rutiner som sikrer at retningslinjene blir fulgt. Dette vil innebære noe merarbeid for den enkelte innkjøper. [/INKLUDERT] Bergen kommune; Innkjøp versus tropisk trevirke Bergen kommune har vedtatt retningslinjer for å unngå innkjøp av tropisk trevirke. Dette er et ledd i kommunens satsing på miljø og samfunnsansvar. Vedtaket innebærer at det ikke skal brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden. Videre må det ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå"," Dato: 16. juni 2008
+
+ Byrådsak 1293/08
+
+Byrådet
+
+Bergen kommune; Innkjøp versus tropisk trevirke
+
+	DISN	INK-1704-200702641-49
+
+Hva saken gjelder: 
+De tropiske regnskogene omfatter jordas mest artsrike og varierte økosystemer. Artene i regnskogen er ofte meget spesialiserte og derfor meget sårbare for inngrep. 
+
+Det er viktig at Bergen kommune får på plass retningslinjer for å unngå at trevirke fra tropiske regnskoger kjøpes inn og /eller inngår i kommunens produkter eller bygninger. Som offentlig virksomhet er det spesielt viktig å gå foran som et godt eksempel, og dette er helt i samsvar med nasjonale føringer. 
+
+I juni 2007 la regjeringen frem sin treårige handlingsplan for miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet: ”Regjeringen ønsker at forbruk og produksjon skal være mest mulig bærekraftig. Offentlig sektor må gå foran og vise vei når de selv handler på markedet.” Handlingsplanen omhandler også tropisk trevirke.
+
+Gjennom å vedta retningslinjer for å unngå innkjøp av tropisk trevirke vil Bergen kommune delta aktivt i bevaring av tropisk regnskog. Samtidig må det innføres rutiner som sikrer at den enkelte innkjøper opptrer korrekt i forhold til regelverket om offentlige anskaffelser, og de lokale føringer som kommunen har vedtatt innen området samfunnsansvar. 
+
+Vedtakskompetanse:
+Byrådets fullmakter vedtatt av bystyret 24.04.2006 (b-sak 102-06) §2, 2.ledd pkt. 1, § 4 og § 12.
+
+Byråden for finans, konkurranse og omstilling innstiller til byrådet å fatte følgende vedtak:
+
+Ved Bergen kommune sine anskaffelser av varer gjelder følgende retningslinjer: 
+ 1. Det skal ikke brukes materialer fra tropisk tømmer i bygg, verken i selve bygget eller i materialer som brukes i byggeperioden.
+ 2. Ved inngåelse av rammeavtaler for varer hvor det kan tenkes å inngå tropisk tømmer må det fremgå av teknisk kravspesifikasjon at bruk av tropisk trevirke ikke skal inngå i tilbudte produkter. 
+ 3. Ved kjøp som ikke er omfattet av rammeavtaler, og som kan tenkes å inneholde tropisk tømmer, plikter den som anskaffelser å forvisse seg om at tropisk trevirke ikke inngår i produktene. 
+
+Vedtaket iverksettes med virkning fra 01.07.2008.
+
+Christine B. Meyer
+byråd for finans, konkurranse og omstilling
+Saksutredning:
+
+1. Tropisk regnskog, tømmer og trevirke
+
+Tropisk regnskog finnes kun i de fuktige områdene rundt ekvator, hovedsakelig i Sør-Amerika, Sørøst-Asia og Afrika. Tropisk regnskog betegner også den produktive naturtypen som er levested for brorparten av jordens arter. Mange av disse treslagene er harde og svært bestandige. Derfor hogges og eksporteres mengder tropisk tømmer til den rike delen av verden. Her foredeles materialene. De mest kjente trematerialer i kategorien tropisk trevirke er teak og mahogni. Det finnes imidlertid ca. 60 ulike treslag tropisk tømmer i det norske markedet.
+
+Tropisk trevirke kan inngå i en rekke ferdigprodukter som for eksempel møbler, dører, gulv, idrettsutstyr og lekeapparater. I tillegg kan tropisk tømmer inngå i byggematerialer hvor de ikke er synlige i sluttfasen.
+
+2. Hvorfor bør vi unngå tropisk trevirke?
+
+Tropisk regnskog trues og reduseres i dag i et faretruende tempo. Opprinnelig dekket naturtypen 16 mill. km2, men er i løpet av noen 10 år halvert og utgjør nå bare 6% av jordens areal. Halvparten av verdens planter, dyr og flere urbefolkninger lever i og er avhengig av tropisk regnskog. Avskoging og oppdyrking ødelegger både leveområder og kulturer. Når skogene forsvinner eroderes jorden. Jordsmonn og næring vaskes bort, og arter utryddes. 
+
+Regnskogen kalles for jordens lunger fordi den ved fotosyntesen binder svære mengder CO2. Rovdriften på tropisk regnskog betyr i praksis irreversible inngrep. Følgene av det tapet rammer oss alle - om enn i ulik grad.
+
+Regnskogens ødeleggelse har ført til stort politisk og organisatorisk engasjement. Regnskogfondet er ett av Europas ledende organisasjoner, se; www.regnskog.no
+
+Det finnes ulike typer sertifiseringsordninger som brukes for å rettferdiggjøre den bruken av tropisk tømmer som enda foregår. FSC - Forest Stewardship Council - er den eneste sertifiseringen av tropisk tømmer som stiller tilfredsstillende miljømessige og sosiale krav. Imidlertid er det ingen miljømerking som gir sikker garanti, da det har vært oppdaget manipulasjon blant alle merkeordningene. 
+
+3. Sertifiseringsordninger og plantasjedrift
+
+Tropisk trevirke kan dyrkes på plantasjer, men ifølge Regnskogfondet er plantasjedrift ingen garanti for bærekraftig skogdrift. I Regnskogfondet sin brosjyre: Gulv og grønne skoger – om tropisk tømmer i norsk byggebransje står det blant annet vedrørende plantasjedrift (s. 7): ”Det finnes en rekke tilfeller der opprinnelig regnskog er fjernet for å opprettholde plantasjer, og i mange plantasjer er utvinningstakten høyere enn forsvarlig. Plantasjene etableres som regel uten samtykke fra berørte urfolk og lokalbefolkning.”
+
+Pr i dag finnes det ingen nasjonale eller internasjonale sertifiseringsordninger som gir god nok sikkerhet for at trevirket som importeres faktisk kommer fra plantasjer. 
+
+På grunn av usikkerheten som hefter både sertifiseringsordningene og plantasjedrift bør Bergen kommune være ”føre var”. Bergen kommune bør inntil videre forholde seg til at ingen av dagens sertifiseringssystemer eller miljømerker kan garantere at tropisk trevirke er hogd forsvarlig, og på bakgrunn av dette bør kommunen ha rutiner som utelukker tropisk trevirke i forbindelse med innkjøp. 
+
+4. Relevans for Bergen
+
+Naturvernforbundet Hordaland og Fremtiden i våre hender gjennomførte i 2005 en undersøkelse om bruken av tropisk trevirke hos 11 butikker som selger hagemøbler i Bergen. Bare tre av disse hadde sagt konsekvent nei til bruk av tropisk trevirke, hovedsakelig teak. De 8 som solgte møbler av tropisk trevirke opplyste at trevirket enten var FSC-sertifisert eller kom fra plantasjehogst. Generelt var ekspeditørene lite oppdatert på problemer knyttet til tropisk regnskog. 
+
+I byrådets tiltredelseserklæring er miljøsatsingen markert. Som er stor offentlig aktør, er det derfor rimelig at Bergen kommune går foran og markerer miljøsatsingen tydelig. Med vedtak om at det ikke skal benyttes tropisk trevirke ved innkjøp signaliserer Bergen kommune en bevisst miljøprofil. Videre er kommunen med å sette standard for en konsekvent holdning blant norske kommuner. Generelt økes også folks oppmerksomhet på miljøutfordringene som knytter seg til tropisk regnskog ved en slik markering.
+
+Kommunale innkjøpere som rekvirerer bygninger, både nye og ved rennovasjon, bør spesifikt nevne at det i leveransen ikke skal inngå tropisk trevirke. Dette gjelder særlig for produkter som parkett, kryssfiner, dører, gulv, benkeplater, panel, møbler og generelt for trelast.
+
+5. Forankring og nasjonale føringer
+
+Kommunens innkjøp er omfattet av Regelverket for offentlige anskaffelser. Dette regelverket ble revidert 01.01.2007, hvorpå det offentliges ansvar om å ta samfunnshensyn ble ytterligere skjerpet. I formålbestemmelsen i Lov om offentlige anskaffelser (LOA) § 1 heter det:
+
+”Loven og tilhørende forskrift skal bidra til økt verdiskapning i samfunnet og sikre mest mulig effektiv ressursbruk ved offentlige anskaffelser basert på forretningsmessighet og likebehandling. Regelverket skal også bidra til at det offentlige opptrer med stor integritet, slik at allmennheten har tillitt til at offentlige anskaffelser skjer på en samfunnstjenelig måte.”
+
+Videre står det er LOA § 6 følgende: ”… kommunale … myndigheter … skal under planleggingen av den enkelte anskaffelse ta hensyn til livssykluskostnader, universell utforming og miljømessige konsekvenser av anskaffelsen.”
+
+21. juni 2007 la regjerningen frem handlingsplanen Miljø- og samfunnsansvar i offentlige anskaffelser. Her står det blant annet at ”Regjeringen mener at offentlige virksomheter bør gå foran og være ansvarlige forbrukere som etterspør miljøvennlige varer og varer som er tilvirket etter høye etiske og sosiale standarder. Regjeringen ser på tiltak for å fremme miljø- og samfunnsansvar i offentlige anskaffelser som et viktig supplement til mer strukturelle tiltak, øvrige reguleringer og økonomiske virkemidler for å fremme en mer bærekraftig samfunnsutvikling.” 
+
+Handlingsplanen omfatter også tropisk trevirke, og det står blant annet (s. 33): 
+
+”Regjeringen ønsker å stoppe all handel med tropiske skogprodukter som ikke er bærekraftig, eller som er ulovlig hugd. Det finnes i dag ingen internasjonale eller nasjonale sertifiseringsordninger som kan gi god nok sikkerhet for at trevirke som importeres er lovlig og bærekraftig hugget. Regjeringen stiller derfor krav til statlige etater og virksomheter om å ikke benytte trevirke med tropisk tømmer. 
+
+Bergen kommune bør som en kommune med store miljøambisjoner opptre som en ansvarlig aktør, og sørge for lokal oppfølging av nasjonale mål knyttet til tropisk trevirke. 
+
+6. Økonomi
+
+I følge regjeringens handlingsplan Miljø- og samfunnsansvar i offentlige anskaffelser (s. 33) vil et tiltak som stopper handel med tropiske trevirke ikke ha nevneverdige økonomiske konsekvenser. 
+
+7. Tropisk trevirke som del av kommunale innkjøp
+
+Innkjøpsavdelingen er Bergen kommune sin fremste forvalter av regelverket for offentlige anskaffelser. Det er derfor naturlig at innkjøpsavdelingen følger opp de vedtak som spesifikt angår innkjøpsområdet. Formulering vedrørende tropisk trevirke bør legges inn i aktuelle maler for konkurransegrunnlag og kontrakter. 
+
+For å sikre at tropisk tømmer ikke inngår i produkter som kjøpes av Bergen kommune, samt i Bergen kommune sine byggeprosjekter, bør følgende formulering benyttes ved tilbudsinnhenting av produkter hvor det kan tenkes at tropisk trevirke inngår helt eller delvis: 
+
+Tropisk trevirke som stammer fra området mellom vendesirklene (23 grader nordlig og sørlig bredde) samt hele Myanmar (Burma) skal ikke forekomme i tilbudte produkter.
+
+","Bergen kommune innfører retningslinjer for å unngå innkjøp av tropisk trevirke i sine produkter og bygninger. Dette tiltaket er i tråd med nasjonale føringer for bærekraftige offentlige anskaffelser og har som mål å bidra til bevaring av tropisk regnskog. Retningslinjene trer i kraft 1. juli 2008, og kommunen signaliserer en bevisst miljøprofil ved å gå foran som et godt eksempel.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,right,0,4,0,0.0,right,right,right,right
+new-07,doc_101,newsworthiness,#f57c00,doc_101|llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples|GPT4o-mini,low_agreement,llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,GPT4o-mini,"Byrådet i Bergen har behandlet overordnet nasjonal helse- og sosialberedskapsplan (HNSP) og konkludert med at planen oppfyller sitt formål og gir et godt grunnlag for videre arbeid innen helse- og sosialberedskap. Planen vil bli revidert og oppdatert årlig, og meldingen om vedtaket sendes til Bystyrets kontor. Oppsummering: Bergen byråd har vurdert den overordnede nasjonale helse- og sosialberedskapsplanen (HNSP) og anser den som et nyttig verktøy for å synliggjøre hovedelementene i helse- og sosialsektorens beredskap. Planen vil bli revidert årlig for å sikre relevans. Vedtak: Byrådet i Bergen har fattet følgende vedtak: 1. Bergen kommune ser at denne planen oppfyller sin hensikt, som er å synliggjøre hovedelementene i helse- og sosialsektorens beredskapsopplegg og sammenhengen mellom disse elementene. 2. Den gir et godt grunnlag for det videre arbeid med helse- og sosialberedskapen på kommunalt nivå. 3. Det sees som nyttig at denne planen vil bli revidert og oppdatert årlig. 4. Melding om vedtak oversendes Bystyrets kontor.",Bergen kommune har behandlet og vedtatt den overordnede nasjonale helse- og sosialberedskapsplanen versjon 2.0. Planen skal synliggjøre hovedelementene i beredskapsopplegget og danne grunnlag for videre arbeid på kommunalt nivå. Den vil bli revidert årlig.," Høring-Overordnet nasjonal helse-og sosialberedskapsplan versjon 2.0
+
+Byrådet behandlet saken i møtet 081208 sak 1450-08 1og fattet følgende vedtak:
+
+ 1. Bergen kommune ser at denne planen oppfyller sin hensikt, som er å synliggjøre hovedelementene i helse- og sosialsektorens beredskapsopplegg og sammenhengen mellom disse elementene. 
+ 2. Den gir et godt grunnlag for det videre arbeid med helse- og sosialberedskapen på kommunalt nivå. 
+ 3. Det sees som nyttig at denne planen vil bli revidert og oppdatert årlig.
+ 4. Melding om vedtak oversendes Bystyrets kontor.
+
+",Bergen kommune har behandlet og vedtatt den overordnede nasjonale helse- og sosialberedskapsplanen versjon 2.0. Planen skal synliggjøre hovedelementene i beredskapsopplegget og danne grunnlag for videre arbeid på kommunalt nivå. Den vil bli revidert årlig.,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,2,1,1,1.5,left,tie,right,left
+new-08,doc_101,newsworthiness,#f57c00,doc_101|norskgpt-llama3-8b__checkpoint-8000-gen0-inputs-refs-preds-1000-examples|viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,low_agreement,norskgpt-llama3-8b__checkpoint-8000-gen0-inputs-refs-preds-1000-examples,viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,"Bergen kommune har godkjent den overordnede nasjonale helse- og sosialberedskapsplanen versjon 2.0, som har som mål å synliggjøre hovedelementene i sektorenes beredskapsopplegg. Planen anses som et godt grunnlag for videre arbeid innen helse- og sosialberedskap, og den skal revideres og oppdateres årlig. secretary Bergen kommune har gitt sin støtte til den nye nasjonale helse- og sosialberedskapsplanen, som har som mål å sikre bedre samarbeid og koordinering av beredskapstiltak i sektoren. Kommunen anser planen som et viktig verktøy for å håndtere potensielle kriser og katastrofer. researcher Bergen kommune har positivt mottatt den nye nasjonale helse- og sosialberedskapsplanen,","Bergen kommune har behandlet en overordnet nasjonal helse-og sosialberedskapsplan og konkludert med at den oppfyller sitt formål om å synliggjøre hovedelementene i helse- og sosialsektorens beredskapsopplegg. Planen gir også et godt grunnlag for videre arbeid med beredskap på kommunalt nivå, og det vurderes som nyttig å oppdatere den årlig."," Høring-Overordnet nasjonal helse-og sosialberedskapsplan versjon 2.0
+
+Byrådet behandlet saken i møtet 081208 sak 1450-08 1og fattet følgende vedtak:
+
+ 1. Bergen kommune ser at denne planen oppfyller sin hensikt, som er å synliggjøre hovedelementene i helse- og sosialsektorens beredskapsopplegg og sammenhengen mellom disse elementene. 
+ 2. Den gir et godt grunnlag for det videre arbeid med helse- og sosialberedskapen på kommunalt nivå. 
+ 3. Det sees som nyttig at denne planen vil bli revidert og oppdatert årlig.
+ 4. Melding om vedtak oversendes Bystyrets kontor.
+
+",Bergen kommune har behandlet og vedtatt den overordnede nasjonale helse- og sosialberedskapsplanen versjon 2.0. Planen skal synliggjøre hovedelementene i beredskapsopplegget og danne grunnlag for videre arbeid på kommunalt nivå. Den vil bli revidert årlig.,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,2,1,1,1.5,left,left,right,tie
+new-09,doc_102,newsworthiness,#f57c00,doc_102|nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples|viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,low_agreement,nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples,viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,Byrådet har besluttet å bevilge 50.000 kroner i tilskudd til Studentersamfunnet i Bergen i forbindelse med deres 75-årsjubileum. Dette er en del av en større tilskuddsordning rettet mot ulike arrangementer. Bevilgningen ble gjort under byrådets møte den 25. september 2009. Vedtaket vil bli videreført til andre arrangementer i fremtiden.,Byrådet har besluttet å bevilge 50.000 kroner til Studentersamfunnet i Bergen i forbindelse med feiringen av deres 75-årsjubileum. Bevilgningen vil bli tatt fra en tilleggsbevilgningskonto.," 1
+Søknad om tilleggsbevilgning: Søknad om støtte til markering av 75-årsjubileum for 
+Studentersamfunnet 
+
+Byrådet behandlet saken i møtet 250309 sak 1087-09 og fattet følgende vedtak: 
+
+Byrådet bevilger kr 50.000 som generelt tilskudd til Studentersamfunnet i Bergen i anledning 
+arrangementer som skal markere deres 75-årsjubileum. Tilskuddet bevilges over 
+tilleggsbevilgningskontoen, art 149010/tjeneste 18090, med overføring til art 147012/tjeneste 
+28530 diverse tilskudd, der utgiftene belastes. 
+
+ 
+
+ ",Byrådet i Bergen har besluttet å bevilge 50.000 kroner til Studentersamfunnet for å støtte markeringen av deres 75-årsjubileum. Bevilgningen kommer fra tilleggsbevilgningskontoen og vil dekke utgifter knyttet til jubileumsarrangementene.,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,right,1,2,1,1.5,right,right,tie,left
+new-10,doc_103,newsworthiness,#f57c00,doc_103|llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples|GPT4o-mini,reference_challenged,llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,GPT4o-mini,"Byrådet har besluttet å bevilge 73.000 kroner til psykologisk krisehjelp for tamiler. Denne hjelpen vil bli gitt gjennom en avtale med Senter for krisepsykologi, og midlene vil bli trukket fra et spesifikt budsjettkonto. Dette vedtaket ble fattet under et byrådsmøte den 9. juni 2009.","Byrådet har besluttet å bevilge 73.000 kroner til psykologisk krisehjelp for tamiler, som skal gjennomføres i samarbeid med Senter for krisepsykologi. Midlene vil bli trukket fra tilleggsbevillingskontoen."," 1
+Psykologisk krisehjelp til tamiler - søknad om tillegsbevilling 
+
+Byrådet behandlet saken i møtet 100609 sak 1182-09 og fattet følgende vedtak: 
+
+Byrådet bevilger 73.000.- til psykologisk krisehjelp til tamiler. Hjelpen realiseres gjennom en 
+egen avtale med Senter for krisepsykologi. Beløpet belastes tilleggsbevillingskontoen, art 
+149010, tjeneste 18090, med overføring tila rt 137010, tjeneste 23470. 
+
+ 
+
+ ","Byrådet har besluttet å bevilge 73.000 kroner til psykologisk krisehjelp for tamiler, som skal gjennomføres i samarbeid med Senter for krisepsykologi. Midlene vil bli trukket fra tilleggsbevillingskontoen.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,4,0,0,0.0,left,left,left,left
+new-11,doc_110,newsworthiness,#f57c00,doc_110|gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples|viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,low_agreement,gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples,viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,"Forretningsutvalget har behandlet to høringsdokumenter knyttet til endringer i læreplaner for ulike fagområder, inkludert engelsk, matematikk, naturfag, norsk og samfunnsfag. Dokumentet beskriver også planlagte endringer for valgfag på ungdomstrinnet fra skoleåret 2013-2014.","Forretningsutvalget har behandlet høringssaker knyttet til endringer i læreplanene for engelsk, matematikk, naturfag, norsk og samfunnsfag samt syv nye læreplaner for valgfag på ungdomstrinnet."," 1 
+Høringssaker 
+
+Forretningsutvalget behandlet saken i møtet 280113 sak 21-13: 
+
+Følgende dokument ble utsendt i forkant av møtet: 
+
+1. Høringsbrev om endringer i læreplaner for engelsk, matematikk, naturfag, norsk og 
+samfunnsfag - LK06 og LK06-samisk 
+
+2. Høringsbrev om syv nye læreplaner for valgfag på ungdomstrinnet fra skoleåret 2013-
+2014 
+
+ ","Forretningsutvalget har behandlet høringssaker knyttet til endringer i læreplanene for flere fag, inkludert engelsk, matematikk, naturfag, norsk og samfunnsfag, samt innføring av syv nye læreplaner for valgfag på ungdomstrinnet fra skoleåret 2013-2014.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,2,1,1,1.5,right,left,left,tie
+new-12,doc_113,newsworthiness,#f57c00,doc_113|llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples|GPT4o-mini,reference_challenged,llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,GPT4o-mini,"Dokumentet er en protokoll fra et møte i byrådet i Bergen, der det ble diskutert og vedtatt flere saker, inkludert fordeling av saker til ulike komiteer og høringsuttalelser om ambulante akutteam og organisering av psykiatriske sentre. Det er også presentert rapporter fra kommunale råd for funksjonshemmede og eldre, samt klage på avslag på søknader om byggeprosjekter. Byrådet anbefaler at flere saker sendes videre til komiteer for behandling.","Dokumentet inneholder protokoll fra byrådets møte den 29. august 2013, hvor saker ble fordelt til ulike komiteer. Det er vedtatt innstillinger til bystyret om høringsuttalelser, vedtektsendringer og årsrapporter, samt klager på vedtak om byggesaker."," 
+1 
+
+ 
+
+ 
+FORUTV /13 
+
+Forretningsutvalget 
+
+Protokoll fra byrådets møte 290813 - Fordeling av saker til komiteene 
+
+ KRLI ESARK-0223-201124329-153 
+
+Hva saken gjelder: 
+
+ 
+Vedlagt følger protokoll fra byrådets møte 290813. 
+
+Fordeling av saker: 
+Byrådssakene 221-224 er saker som skal til bystyret. 
+Byrådssakene 225-227 er saker hvor Komite for miljø og byutvikling har avgjørelsesmyndighet. 
+
+ 
+Forslag til vedtak: 
+Byrådsakene 221, 223-224 sendes Komite for helse og sosial. 
+Byrådsak 222 sendes Komite for finans. I tillegg sendes den som orienteringssak til Komite for miljø og 
+byutvikling. 
+
+ 
+
+Dato: 30. aug 2013 
+
+ 
+
+Dette dokumentet er godkjent elektronisk. 
+
+Kristi Lien - saksbehandler 
+Roar Kristiansen - bystyredirektør 
+
+ 
+
+2 
+BERGEN KOMMUNE 
+Byrådsleders avdeling 
+
+ Protokoll 
+
+ 
+
+Byrådet - saker med innstilling til bystyrets organer 
+
+Den 29. august 2013 kl. 09.00 holdt byrådet møte i byrådsleders møterom. 
+
+Til stede: Monica Mæland (H) 
+Liv Røssland (FrP) 
+Filip Rygg (KrF) 
+Harald V. Hove (H) 
+Gunnar Bakke (FrP) 
+Dag Inge Ulstein (KrF) 
+Hilde Onarheim (H) 
+
+Fra administrasjonen: Robert Rastad 
+Elisabeth Farstad 
+
+Møteleder: Monica Mæland (H) 
+
+Sekretær: Richard Taule 
+
+220-13 
+Godkjenning av protokoll fra møte i byrådet 22. august 2013 
+
+Vedtak: 
+Protokoll fra møte i byrådet 22. august 2013 godkjennes. 
+
+ 
+221-13 
+Høringsuttalelse om organisering og praksis i ambulante akutteam som en del av akuttjenester ved 
+distriktspsykiatriske sentre 
+
+Byrådet innstiller til bystyret å fatte følgende vedtak: 
+Bystyret avgir høringsuttalelse om organisering og praksis i ambulante akutteam som en del av 
+akuttjenester ved distriktspsykiatriske sentre slik den fremgår i denne saken. 
+
+ 
+222-13 
+Forslag til vedtektsendring Bergen og Omland Friluftsråd 
+
+Byrådet innstiller til bystyret å fatte følgende vedtak: 
+1. Bergen kommune godtar ikke at medlemskontingenten økes med kr. 5 per capita. 
+2. Osterøy og Kvam tas opp som nye medlemskommuner i BOF. 
+
+ 
+223-13 
+
+3 
+Årsrapport 2012 - Kommunalt råd for funksjonshemmede 
+
+Byrådet innstiller til bystyret å fatte følgende vedtak: 
+Bystyret tar saken til orientering. 
+
+ 
+224-13 
+Årsrapport 2012 - Bergen eldreråd 
+
+Byrådet innstiller til bystyret å fatte følgende vedtak: 
+Bystyret tar saken til orientering. 
+
+ 
+225-13 
+Åsane, gnr 214, bnr 23, Jordalsveien 155 - klage over avslag på søknad om tre dispensasjoner fra 
+kommuneplanen for oppføring av ny hytte 
+
+Byrådet innstiller til komite for miljø og byutvikling å fatte følgende vedtak: 
+Fagetatens vedtak datert 20.3.2012 opprettholdes. Klagen tas ikke til følge. 
+
+ 
+226-13 
+Bergenhus. Gnr 164 bnr 505, Haakon Sheteligs Plass 5. Klage på vedtak om rammetillatelse med 
+samtykke til felling av et tre til oppføring av midlertidig undervisningsbygg med tilhørende 
+uteareal 
+
+Byrådet innstiller til komite for miljø og byutvikling å fatte følgende vedtak: 
+Klagen på byrådets vedtak av 6.9.2012 avvises, jf. fvl. § 34, første ledd. 
+
+ 
+227-13 
+Fana, gnr. 108 bnr. 18, Sletteneset 228. Klage over avslag på søknad om rehabilitering, 
+fasadeendring og tilbygg naust 
+
+Byrådet innstiller til Komite for miljø og byutvikling å fatte følgende vedtak: 
+Fagetatens vedtak datert 6.6.2012 opprettholdes. Klagen tas ikke til følge. 
+
+ 
+228-13 
+Åsane, gnr. 186 bnr. 1311, Tertnes. Klage over avslag på søknad om riving av eksisterende naust og 
+oppføring av nytt naust 
+
+Saken trekkes og returneres til byrådsavdelingen. 
+
+ 
+
+Monica Mæland 
+byrådsleder 
+
+ 
+ ","Dokumentet inneholder protokoll fra byrådets møte den 29. august 2013, hvor saker ble fordelt til ulike komiteer. Det er vedtatt innstillinger til bystyret om høringsuttalelser, vedtektsendringer og årsrapporter, samt klager på vedtak om byggesaker.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,4,0,0,0.0,left,left,left,left
+new-13,doc_114,newsworthiness,#f57c00,doc_114|gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples|GPT4o-mini,tie_majority,gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples,GPT4o-mini,"Forretningsutvalget har behandlet innbyggerforslaget om en nullvisjon for selvmord og besluttet at det skal tas opp til realitetsbehandling. Forslaget vil bli sendt til Byrådsavdeling for sosial, bolig og inkludering for videre saksbehandling, med krav om at byrådet fremmer saken for bystyret innen 31. mai 2017. Vedtaket ble fattet enstemmig av forretningsutvalget.","Forretningsutvalget har enstemmig vedtatt å ta opp innbyggerforslaget om en nullvisjon for selvmord til realitetsbehandling. Forslaget oversendes Byrådsavdelingen for sosial, bolig og inkludering for videre saksbehandling, med krav om at Byrådet fremlegger saken for bystyret innen 31. mai 2017."," 1 
+Innbyggerforslag - Nullvisjon for selvmord. 
+
+Forretningsutvalget behandlet saken i møtet 100117 sak 11-17 og fattet følgende vedtak: 
+1. Innbyggerforslaget «Nullvisjon for selvmord» tas opp til realitetsbehandling. 
+
+2. Innbyggerforslaget oversendes Byrådsavdeling for sosial, bolig og inkludering for videre 
+saksbehandling. 
+
+3. Byrådet bes om å fremlegge sak for bystyret senest til bystyrets møte 31. mai 2017. 
+Komite for helse og sosial er innstillende komite i saken. 
+
+ 
+Forretningsutvalgets behandling: 
+Forslaget ble vedtatt enstemmig. 
+
+ 
+Forslag til vedtak: 
+Forslaget og utvalgets vedtak er likelydende. 
+
+ ","Forretningsutvalget har enstemmig vedtatt å ta opp innbyggerforslaget om en nullvisjon for selvmord til realitetsbehandling. Forslaget oversendes Byrådsavdelingen for sosial, bolig og inkludering for videre saksbehandling, med krav om at Byrådet fremlegger saken for bystyret innen 31. mai 2017.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,tie,0,0,4,0.0,tie,tie,tie,tie
+new-14,doc_119,newsworthiness,#f57c00,doc_119|gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples|GPT4o-mini,reference_challenged,gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples,GPT4o-mini,"Kjartan Haugsnes (SV) har meldt om sin flytting fra Bergen, noe som medfører at han fratræder sine verv i Bergen bystyre, Honorarkomiteen og Ytre Arna Barnehage. Dette er i henhold til Kommuneloven § 15.1, som fastsetter regler for når en folkevalgt mister sitt verv på grunn av flytting. Forretningsutvalget tar hans fratreden til etterretning.","Kjartan Haugsnes fra SV har meldt om flytting fra Bergen, noe som medfører at han fratrer sine verv i bystyret og andre komiteer. Ifølge kommuneloven mister han valgbarheten ved utflytting, og forretningsutvalget tar til etterretning hans avgang for resten av valgperioden 2003-2007."," Dato: 7. august 2007 
+
+FORUTV /07 
+
+Kjartan Haugsnes (SV). Melding om flytting. 
+
+	TSHE	BYST-0277-200708188-2
+
+Hva saken gjelder: 
+
+Bystyrets kontor har fått melding fra Kjartan Haugsnes (SV) om at han har flyttet fra byen og således fratrer sine verv.
+
+Kjartan Haugsnes har følgende verv:
+Varamedlem	Bergen bystyre
+Varamedlem	Honorarkomiteen
+Medlem	Ytre Arna Barnehage. Samarbeidsutvalget.
+
+Kommuneloven § 15. 1 
+Den som taper valgbarheten til et folkevalgt organ i valgperioden, trer endelig ut av dette. Hvis tap av valgbarhet skyldes registrert utflytting fra kommunen eller fylkeskommunen for to år eller mindre, trer vedkommende ut av vervet for den tid utflyttingen varer.
+
+Forslag til vedtak:
+Forretningsutvalget tar til etterretning av Kjartan Haugsnes (SV) fratrer følgende verv:
+Varamedlem	Bergen bystyre
+Varamedlem	Honorarkomiteen
+Medlem	Ytre Arna Barnehage. Samarbeidsutvalget
+
+for resten av valgperioden 2003 – 2007 grunnet flytting fra Bergen kommune.
+
+Roar Kristiansen
+bystyredirektør
+
+ Toril Sværen Hesjedal
+ førstekonsulent
+Saksutredning:
+
+","Kjartan Haugsnes fra SV har meldt om flytting fra Bergen, noe som medfører at han fratrer sine verv i bystyret og andre komiteer. Ifølge kommuneloven mister han valgbarheten ved utflytting, og forretningsutvalget tar til etterretning hans avgang for resten av valgperioden 2003-2007.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,4,0,0,0.0,left,left,left,left
+new-15,doc_120,newsworthiness,#f57c00,doc_120|viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples|nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples,low_agreement,viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples,"Forretningsutvalget har behandlet en sak om deltakelse av politisk ledelse fra bystyresiden på OTC-konferansen i Houston, USA, som finner sted mellom 5. og 11. mai 2008. Utvalget vedtok enstemmig å gi sin tilslutning til deltagelse for den politiske ledelsen, men det var også et alternativt forslag om å ikke delta.",Forretningsutvalget har besluttet å gi sin tilslutning til at politisk ledelse på," Delegasjonsreise til OTC i Houston mai 2008.
+
+Forretningsutvalget behandlet saken i møtet 110308 sak 62-08 og fattet følgende vedtak:
+Alt 2: Forretningsutvalget gir ikke sin tilslutning til at politisk ledelse på bystyresiden deltar på OTC-konferansen 5. – 11..mai 2008.
+
+Forretningsutvalgets behandling:
+Alternativ 2 ble vedtatt enstemmig. 
+
+Forslag til vedtak:
+Alt. 1: Forretningsutvalget gir sin tilslutning til at politisk ledelse på bystyresiden deltar på OTC-konferansen 5. – 11..mai 2008. Følgende deltar:
+…………………………….
+
+Alt 2: Forretningsutvalget gir ikke sin tilslutning til at politisk ledelse på bystyresiden deltar på OTC-konferansen 5. – 11..mai 2008.
+
+",Forretningsutvalget har enstemmig vedtatt å ikke gi sin tilslutning til at politisk ledelse på bystyresiden deltar på OTC-konferansen i Houston i mai 2008. Dette ble behandlet i møtet den 11. mars 2008.,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,2,1,1,1.5,left,tie,right,left
+new-16,doc_124,newsworthiness,#f57c00,doc_124|llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples|GPT4o-mini,low_agreement,llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,GPT4o-mini,"Forretningsutvalget har behandlet saken om uttalelse til debatthefte fra KS 2009, samt intern korrespondanse fra Bjørn Ølberg. Dokumentene ble sendt ut før møtet den",Forretningsutvalget har behandlet saken om uttalelsen til debattheftet fra KS i sitt møte den 9. mars 2017. Dokumentene som ble vurdert inkluderer byrådsak 1058-09 og intern korrespondanse fra Bjørn Ølberg.," Sak til gjennomsyn
+
+Forretningsutvalget behandlet saken i møtet 170309 sak 69-09:
+
+Følgende dokument ble sendt ut i forkant av møtet
+Byrådsak 1058-09: ""Uttalelse til debatthefte fra KS 2009"" samt intern korrespondanse fra Bjørn Ølberg datert 19.2.09.
+
+",Forretningsutvalget har behandlet saken om uttalelsen til debattheftet fra KS i sitt møte den 9. mars 2017. Dokumentene som ble vurdert inkluderer byrådsak 1058-09 og intern korrespondanse fra Bjørn Ølberg.,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,tie,1,1,2,1.5,tie,left,right,tie
+new-17,doc_124,newsworthiness,#f57c00,doc_124|viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples|GPT4o-mini,reference_challenged,viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,GPT4o-mini,"Forretningsutvalget har behandlet en sak om uttalelse til et debatthefte fra KS, samt interne korrespondanse fra Bjørn Ølberg. Dokumentet ble sendt ut før møtet den 17. mars 2009.",Forretningsutvalget har behandlet saken om uttalelsen til debattheftet fra KS i sitt møte den 9. mars 2017. Dokumentene som ble vurdert inkluderer byrådsak 1058-09 og intern korrespondanse fra Bjørn Ølberg.," Sak til gjennomsyn
+
+Forretningsutvalget behandlet saken i møtet 170309 sak 69-09:
+
+Følgende dokument ble sendt ut i forkant av møtet
+Byrådsak 1058-09: ""Uttalelse til debatthefte fra KS 2009"" samt intern korrespondanse fra Bjørn Ølberg datert 19.2.09.
+
+",Forretningsutvalget har behandlet saken om uttalelsen til debattheftet fra KS i sitt møte den 9. mars 2017. Dokumentene som ble vurdert inkluderer byrådsak 1058-09 og intern korrespondanse fra Bjørn Ølberg.,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,left,4,0,0,0.0,left,left,left,left
+new-18,doc_125,newsworthiness,#f57c00,doc_125|nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples|gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples,low_agreement,nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples,gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples,Det ble besluttet at saken skal oversendes byrådet. 18-10 Godkjenning av protokoll fra Forretningsutvalgets møte 19. desember 2009. Forretningsutvalget behandlet saken i møtet 190110 sak 18-10 og fattet følgende vedtak: Protokollen ble godkjent. 19-10 Høringssaker Forretningsutvalget behandlet saken i møtet 190110 sak 19-,"Vi ber byrådet komme tilbake med en sak om dette før sommeren."" 2. Trygve Birkeland (KrF) ba om følgende vedr. Sentrumsgården: ""Det er viktig at kommunen følger opp sine planer om å etablere et senter for rusmisbrukere i Sentrumsgården. Dette må være et samarbeid mellom kommune og frivillige organisasjoner og bør også inneholde tilbud til familier som har barn med rusproblemer. En slik satsing vil kunne bidra til å redusere antall hjemløse i byen vår."" 3. Hilde Onarheim (H) ba om følgende vedr. Fana kirkegård: ""Jeg ønsker å ta opp spørsmålet om begravelse på Fana kirkegård igjen. Jeg mener at det må finnes muligheter for å legge ned gravkapellene på Fana kirkegård uten at man mister muligheten for å benytte gravplassene. Det er mange som bor i området rundt Fana kirkegård som bruker disse gravplassene. De fleste av oss vet jo at det blir færre og"," 
+Saksnr.: 0221- 200716943-183 
+
+BERGEN KOMMUNE 
+Bystyrets kontor 
+
+ Protokoll 
+
+ 
+
+Forretningsutvalget 
+
+ 
+Den 19. januar 2010 holdt Forretningsutvalget møte i Bergen rådhus, Møterom 14. etg.. 
+
+Til stede under opprop: Trude H. Drevland (H) 
+Hilde Onarheim (H) 
+Terje Ohnstad (A) 
+Ruth Grung (A) 
+Gunnar Bakke (FrP) 
+Liv Røssland (FrP) 
+Trygve Birkeland (KrF) 
+Hans-Carl Tveit (V) 
+
+Godkjente forfall til hele 
+møtet: 
+Oddny Irene Miljeteig (SV) 
+
+Fra Byrådet: 
+
+ 
+Fra Administrasjonen: 
+Byråd Christine Meyer 
+Kommunaldirektør Arne Mikael Landro 
+
+Bystyredirektør Roar Kristiansen 
+
+Møteleder: Gunnar Bakke (FrP) 
+
+ Møtet startet kl. 09.00 og ble hevet kl. 09.45. 
+
+Innkalling og sakskart: Det var ingen merknader til innkalling og sakskart. 
+
+ 
+12-10 
+Godkjenning av protokoll fra Forretningsutvalgets møte 12. januar 2010. 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 12-10 og fattet følgende vedtak: 
+Protokollen ble godkjent med følgende merknad: 
+
+Til sak 4-10 
+Byrådsak 11 sendes Komite for oppvekst som sluttbehandler saken. 
+
+Originalprotokollen
+ vil bli rettet opp. 
+
+13-10 
+Sak til gjennomsyn 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 13-10: 
+
+Dokumenter sendt ut i forkant av møtet: 
+Oversikt over større saker som planlegges fremlagt for behandling i Bergen bystyre 1. halvår 
+2010. 
+
+ 
+14-10 
+Høringssaker 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 14-10: 
+Ingen saker fremlagt. 
+
+ 
+15-10 
+Protokoll fra byrådets møte 13. januar 2010. Fordeling av saker til komiteene. 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 15-10 og fattet følgende vedtak: 
+Byrådsak 13 sendes til Forretningsutvalget som innstiller til Komite for finans 
+Byrådsakene 14-15 og 24-25 sendes Komite for miljø og byutvikling. Byrådsak 25 sendes i 
+tillegg som orienteringssak til Laksevåg og Fyllingsdalen bydelsstyre. 
+Byrådsak 20 sendes Komite for kultur, idrett og næring. 
+Byrådsak 21 sendes Komite for kultur, idrett og næring. 
+Byrådsak 22 sendes komite for finans 
+Byrådsak 23 sendes Komite for oppvekst. I tillegg sendes den som orienteringssak til Komite 
+for helse og sosial . 
+Byrådsak 26 sendes Komite for kultur, idrett og næring. 
+
+ 
+Forretningsutvalgets behandling: 
+Ruth Grung (A)
+ fremsatte følgende tilleggsforslag: 
+
+""Byrådsak 25 sendes i tillegg som orienteringssak til Laksevåg og Fyllingsdalen bydelsstyre."" 
+
+Votering: 
+Forslaget inkl. Ruth Grungs tilleggsforslag
+ ble vedtatt enstemmig. 
+
+ 
+Forslag til vedtak: 
+Byrådsak 13 sendes til Forretningsutvalget som innstiller til Komite for finans 
+Byrådsakene 14-15 og 24-25 sendes Komite for miljø og byutvikling. 
+Byrådsak 20 sendes Komite for kultur, idrett og næring. 
+Byrådsak 21 sendes Komite for kultur, idrett og næring. 
+Byrådsak 22 sendes komite for finans 
+Byrådsak 23 sendes Komite for oppvekst. I tillegg sendes den som orienteringssak til Komite 
+for helse og sosial . 
+Byrådsak 26 sendes Komite for kultur, idrett og næring. 
+
+16-10 
+Fordeling av Kontrollutvalgssaker 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 16-10 og fattet følgende vedtak: 
+Kontrollutvalgssakene 2-4 sendes direkte til bystyret. 
+
+ 
+Forretningsutvalgets behandling: 
+Gunnar Bakke (FrP)
+ fremsatte følgende alternative forslag: 
+
+""Kontrollutvalgssakene 2-4 sendes direkte til bystyret."" 
+
+Votering: 
+Forslaget fikk 0 stemmer og var dermed falt. 
+
+Gunnar Bakkes alternative forslag
+ ble vedtatt enstemmig. 
+
+ 
+Forslag til vedtak: 
+Kontrollutvalgssakene 2-4 sendes som orienteringssaker til Forretningsutvalget og Komite for 
+finans. 
+
+ 
+17-10 
+Innbyggerinitiativ - bruk av elektroniske medier 
+Oppsummering av bruk av ordningen 2004-2009 og anbefalte endringer. 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 17-10 og avga følgende 
+innstilling: 
+1. Ordningen med innbyggerinitiativ utvides ved at innbyggerinitiativ kan fremmes og 
+signeres elektronisk. Programvaren ""e-initiativ"" integreres i Bergen kommunes nettsider i 
+løpet av første kvartal 2010. 
+
+2. Andre former for elektronisk innsamlede underskrifter kan godkjennes som 
+innbyggerinitiativ såfremt de fyller de formelle kravene som er satt til innbyggerinitiativ. 
+
+3. Kommunale retningslinjer for innbyggerinitiativ vedtatt 26.04.04 (sak 96-04) oppheves. 
+
+4. Erfaringer med bruk av innbyggerinitiativ oppsummeres innen utløpet av valgperioden. 
+
+ 
+Forretningsutvalgets behandling: 
+Innstillingen
+ ble tiltrådt enstemmig. 
+
+ 
+Forslag til innstilling til bystyret: 
+Forslaget og utvalgets innstilling er likelydende. 
+
+ 
+
+ 
+
+18-10 
+Bydelsstyrenes kontorlokaler 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 18-10 og fattet følgende vedtak: 
+1. Honorarreglementets bestemmelser 1-10 utvides med et nytt punkt k: Bydelsstyreledere 
+som ikke har en fast kontorløsning gis et tillegg i godtgjørelse på kr 3 200 pr år til dekning 
+av merutgifter til telefon og bredbånd. 
+
+2. Bestemmelsen gjøres gjeldende fra 01.01.2010. 
+
+ 
+Forretningsutvalgets behandling: 
+Innstillingen
+ ble tiltrådt enstemmig. 
+
+ 
+Forslag til innstilling til bystyret: 
+Forslaget og utvalgets innstilling er likelydende. 
+
+ 
+19-10 
+Eventuelt. 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 19-10: 
+
+1. Ruth Grung (A)
+ ba om følgende vedr. Torget/Mathallen: 
+""Vi har forstått bystyrevedtaket om Torget slik at vi skulle få en ny prinsipp sak om bruk 
+av 2. etasje i forhold til publikumsrelatert aktivitet der både Turistinformasjonen og 
+Sjømatsenteret har meldt sin interesse. Nå registrer vi at det jobbes med arkitekter for å få 
+plass til begge aktørene og at planene om å ha turistinformasjonen i skur 11 ikke er fulgt 
+opp. Det viktigste for bystyret er å få et levedyktig torg og markedsføre sjømatbyen 
+Bergen. Sjømatsenteret har også meldt seg som interessent i forhold til å drifte torget, da 
+burde 2.etasje også bli sett på som en del av et slikt helhetlig konsept. Ber om at 
+bystyrevedtak følges opp."" 
+
+Byråd Christine B. Meyer ba om å få komme tilbake med et skriftlig svar til 
+forretningsutvalget. 
+
+2. Ruth Grung (A)
+ viste til planlagt møte med Fylkesmannen om arealplan som ordfører i Os 
+har sendt brev om. Hvem er det som deltar på slike møter fra Bergen kommune fra byråd 
+og bystyresiden? 
+
+Ordfører Gunnar Bakke ba byrådet komme tilbake med en redegjørelse. 
+
+3. Ruth Grung (A)
+ viste til søknad om belønningsordning for bedre kollektivtransport og 
+mindre bilbruk. Vil den bli lagt frem for Komite for miljø og byutvikling før 
+søknadsfristen? 
+
+Byråd Christine B. Meyer skulle undersøke og melde tilbake. 
+
+ 
+4. Ruth Grung (A) orienterte om at barn og unges representant i Komite for miljø og 
+byutvikling har sendt en henvendelse til Kommunaldirektør Arne Mikael Landro med 
+melding om at det haster med å få utnevnt en ny representant. I andre byer er det den som 
+koordinerer samordning av lokale kriminalitetsforebyggende tiltak (SLT) som har denne 
+funksjonen. 
+
+Byråd Christine B. Meyer
+ orienterte om at saken er i ferd med å finne sin avklaring. 
+
+ 
+5. Hilde Onarheim (H)
+ tok opp om det er behov for ha kjøreregler for hvordan komiteene 
+skal håndtere situasjoner hvor representanter på kort varsel fratrer et møte og dette kan 
+påvirke avstemmingsresultatet. 
+
+Ruth Grung (A) orienterte om behandlingen i Komite for miljø og byutvikling i sist møte 
+hvor en hadde en slik situasjon. 
+
+Forretningsutvalget hadde en meningsutveksling. 
+
+ 
+
+ 
+Gunnar Bakke 
+
+ 
+
+ Roar Kristiansen 
+ ","Protokollen fra Forretningsutvalgets møte i Bergen kommune den 19. januar 2010 oppsummerer behandlingen av flere saker, inkludert godkjenning av tidligere protokoller, fordeling av byrådsaker til komiteer, og innbyggerinitiativ. Møtet ble ledet av Gunnar Bakke (FrP) og inkluderte diskusjoner om kontorlokaler for bydelsstyrene og oppfølging av bystyrevedtak.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,right,1,2,1,1.5,left,tie,right,right
+new-19,doc_125,newsworthiness,#f57c00,doc_125|norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples|nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples,low_agreement,norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples,Ordfører Gunnar Bakke ba byrådet komme tilbake med en redegjørelse. 4. Hilde Onarheim (H) ba om en orientering om status for arbeidet med,Det ble besluttet at saken skal oversendes byrådet. 18-10 Godkjenning av protokoll fra Forretningsutvalgets møte 19. desember 2009. Forretningsutvalget behandlet saken i møtet 190110 sak 18-10 og fattet følgende vedtak: Protokollen ble godkjent. 19-10 Høringssaker Forretningsutvalget behandlet saken i møtet 190110 sak 19-," 
+Saksnr.: 0221- 200716943-183 
+
+BERGEN KOMMUNE 
+Bystyrets kontor 
+
+ Protokoll 
+
+ 
+
+Forretningsutvalget 
+
+ 
+Den 19. januar 2010 holdt Forretningsutvalget møte i Bergen rådhus, Møterom 14. etg.. 
+
+Til stede under opprop: Trude H. Drevland (H) 
+Hilde Onarheim (H) 
+Terje Ohnstad (A) 
+Ruth Grung (A) 
+Gunnar Bakke (FrP) 
+Liv Røssland (FrP) 
+Trygve Birkeland (KrF) 
+Hans-Carl Tveit (V) 
+
+Godkjente forfall til hele 
+møtet: 
+Oddny Irene Miljeteig (SV) 
+
+Fra Byrådet: 
+
+ 
+Fra Administrasjonen: 
+Byråd Christine Meyer 
+Kommunaldirektør Arne Mikael Landro 
+
+Bystyredirektør Roar Kristiansen 
+
+Møteleder: Gunnar Bakke (FrP) 
+
+ Møtet startet kl. 09.00 og ble hevet kl. 09.45. 
+
+Innkalling og sakskart: Det var ingen merknader til innkalling og sakskart. 
+
+ 
+12-10 
+Godkjenning av protokoll fra Forretningsutvalgets møte 12. januar 2010. 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 12-10 og fattet følgende vedtak: 
+Protokollen ble godkjent med følgende merknad: 
+
+Til sak 4-10 
+Byrådsak 11 sendes Komite for oppvekst som sluttbehandler saken. 
+
+Originalprotokollen
+ vil bli rettet opp. 
+
+13-10 
+Sak til gjennomsyn 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 13-10: 
+
+Dokumenter sendt ut i forkant av møtet: 
+Oversikt over større saker som planlegges fremlagt for behandling i Bergen bystyre 1. halvår 
+2010. 
+
+ 
+14-10 
+Høringssaker 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 14-10: 
+Ingen saker fremlagt. 
+
+ 
+15-10 
+Protokoll fra byrådets møte 13. januar 2010. Fordeling av saker til komiteene. 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 15-10 og fattet følgende vedtak: 
+Byrådsak 13 sendes til Forretningsutvalget som innstiller til Komite for finans 
+Byrådsakene 14-15 og 24-25 sendes Komite for miljø og byutvikling. Byrådsak 25 sendes i 
+tillegg som orienteringssak til Laksevåg og Fyllingsdalen bydelsstyre. 
+Byrådsak 20 sendes Komite for kultur, idrett og næring. 
+Byrådsak 21 sendes Komite for kultur, idrett og næring. 
+Byrådsak 22 sendes komite for finans 
+Byrådsak 23 sendes Komite for oppvekst. I tillegg sendes den som orienteringssak til Komite 
+for helse og sosial . 
+Byrådsak 26 sendes Komite for kultur, idrett og næring. 
+
+ 
+Forretningsutvalgets behandling: 
+Ruth Grung (A)
+ fremsatte følgende tilleggsforslag: 
+
+""Byrådsak 25 sendes i tillegg som orienteringssak til Laksevåg og Fyllingsdalen bydelsstyre."" 
+
+Votering: 
+Forslaget inkl. Ruth Grungs tilleggsforslag
+ ble vedtatt enstemmig. 
+
+ 
+Forslag til vedtak: 
+Byrådsak 13 sendes til Forretningsutvalget som innstiller til Komite for finans 
+Byrådsakene 14-15 og 24-25 sendes Komite for miljø og byutvikling. 
+Byrådsak 20 sendes Komite for kultur, idrett og næring. 
+Byrådsak 21 sendes Komite for kultur, idrett og næring. 
+Byrådsak 22 sendes komite for finans 
+Byrådsak 23 sendes Komite for oppvekst. I tillegg sendes den som orienteringssak til Komite 
+for helse og sosial . 
+Byrådsak 26 sendes Komite for kultur, idrett og næring. 
+
+16-10 
+Fordeling av Kontrollutvalgssaker 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 16-10 og fattet følgende vedtak: 
+Kontrollutvalgssakene 2-4 sendes direkte til bystyret. 
+
+ 
+Forretningsutvalgets behandling: 
+Gunnar Bakke (FrP)
+ fremsatte følgende alternative forslag: 
+
+""Kontrollutvalgssakene 2-4 sendes direkte til bystyret."" 
+
+Votering: 
+Forslaget fikk 0 stemmer og var dermed falt. 
+
+Gunnar Bakkes alternative forslag
+ ble vedtatt enstemmig. 
+
+ 
+Forslag til vedtak: 
+Kontrollutvalgssakene 2-4 sendes som orienteringssaker til Forretningsutvalget og Komite for 
+finans. 
+
+ 
+17-10 
+Innbyggerinitiativ - bruk av elektroniske medier 
+Oppsummering av bruk av ordningen 2004-2009 og anbefalte endringer. 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 17-10 og avga følgende 
+innstilling: 
+1. Ordningen med innbyggerinitiativ utvides ved at innbyggerinitiativ kan fremmes og 
+signeres elektronisk. Programvaren ""e-initiativ"" integreres i Bergen kommunes nettsider i 
+løpet av første kvartal 2010. 
+
+2. Andre former for elektronisk innsamlede underskrifter kan godkjennes som 
+innbyggerinitiativ såfremt de fyller de formelle kravene som er satt til innbyggerinitiativ. 
+
+3. Kommunale retningslinjer for innbyggerinitiativ vedtatt 26.04.04 (sak 96-04) oppheves. 
+
+4. Erfaringer med bruk av innbyggerinitiativ oppsummeres innen utløpet av valgperioden. 
+
+ 
+Forretningsutvalgets behandling: 
+Innstillingen
+ ble tiltrådt enstemmig. 
+
+ 
+Forslag til innstilling til bystyret: 
+Forslaget og utvalgets innstilling er likelydende. 
+
+ 
+
+ 
+
+18-10 
+Bydelsstyrenes kontorlokaler 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 18-10 og fattet følgende vedtak: 
+1. Honorarreglementets bestemmelser 1-10 utvides med et nytt punkt k: Bydelsstyreledere 
+som ikke har en fast kontorløsning gis et tillegg i godtgjørelse på kr 3 200 pr år til dekning 
+av merutgifter til telefon og bredbånd. 
+
+2. Bestemmelsen gjøres gjeldende fra 01.01.2010. 
+
+ 
+Forretningsutvalgets behandling: 
+Innstillingen
+ ble tiltrådt enstemmig. 
+
+ 
+Forslag til innstilling til bystyret: 
+Forslaget og utvalgets innstilling er likelydende. 
+
+ 
+19-10 
+Eventuelt. 
+
+Forretningsutvalget behandlet saken i møtet 190110 sak 19-10: 
+
+1. Ruth Grung (A)
+ ba om følgende vedr. Torget/Mathallen: 
+""Vi har forstått bystyrevedtaket om Torget slik at vi skulle få en ny prinsipp sak om bruk 
+av 2. etasje i forhold til publikumsrelatert aktivitet der både Turistinformasjonen og 
+Sjømatsenteret har meldt sin interesse. Nå registrer vi at det jobbes med arkitekter for å få 
+plass til begge aktørene og at planene om å ha turistinformasjonen i skur 11 ikke er fulgt 
+opp. Det viktigste for bystyret er å få et levedyktig torg og markedsføre sjømatbyen 
+Bergen. Sjømatsenteret har også meldt seg som interessent i forhold til å drifte torget, da 
+burde 2.etasje også bli sett på som en del av et slikt helhetlig konsept. Ber om at 
+bystyrevedtak følges opp."" 
+
+Byråd Christine B. Meyer ba om å få komme tilbake med et skriftlig svar til 
+forretningsutvalget. 
+
+2. Ruth Grung (A)
+ viste til planlagt møte med Fylkesmannen om arealplan som ordfører i Os 
+har sendt brev om. Hvem er det som deltar på slike møter fra Bergen kommune fra byråd 
+og bystyresiden? 
+
+Ordfører Gunnar Bakke ba byrådet komme tilbake med en redegjørelse. 
+
+3. Ruth Grung (A)
+ viste til søknad om belønningsordning for bedre kollektivtransport og 
+mindre bilbruk. Vil den bli lagt frem for Komite for miljø og byutvikling før 
+søknadsfristen? 
+
+Byråd Christine B. Meyer skulle undersøke og melde tilbake. 
+
+ 
+4. Ruth Grung (A) orienterte om at barn og unges representant i Komite for miljø og 
+byutvikling har sendt en henvendelse til Kommunaldirektør Arne Mikael Landro med 
+melding om at det haster med å få utnevnt en ny representant. I andre byer er det den som 
+koordinerer samordning av lokale kriminalitetsforebyggende tiltak (SLT) som har denne 
+funksjonen. 
+
+Byråd Christine B. Meyer
+ orienterte om at saken er i ferd med å finne sin avklaring. 
+
+ 
+5. Hilde Onarheim (H)
+ tok opp om det er behov for ha kjøreregler for hvordan komiteene 
+skal håndtere situasjoner hvor representanter på kort varsel fratrer et møte og dette kan 
+påvirke avstemmingsresultatet. 
+
+Ruth Grung (A) orienterte om behandlingen i Komite for miljø og byutvikling i sist møte 
+hvor en hadde en slik situasjon. 
+
+Forretningsutvalget hadde en meningsutveksling. 
+
+ 
+
+ 
+Gunnar Bakke 
+
+ 
+
+ Roar Kristiansen 
+ ","Protokollen fra Forretningsutvalgets møte i Bergen kommune den 19. januar 2010 oppsummerer behandlingen av flere saker, inkludert godkjenning av tidligere protokoller, fordeling av byrådsaker til komiteer, og innbyggerinitiativ. Møtet ble ledet av Gunnar Bakke (FrP) og inkluderte diskusjoner om kontorlokaler for bydelsstyrene og oppfølging av bystyrevedtak.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,tie,1,1,2,1.5,left,tie,right,tie
+new-20,doc_129,newsworthiness,#f57c00,doc_129|GPT4o-mini|norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,reference_challenged,GPT4o-mini,norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,"Forretningsutvalget har behandlet flere høringssaker i sitt møte den 23. oktober 2012. Saker som omhandler konsesjon for helikopterplass, endringer i pasient- og brukerrettighetsloven, moderne vegtunneler og kollektivtransport i distriktene ble diskutert.","Forretningsutvalget har behandlet flere høringssaker i sitt møte den 23. oktober 2012. Blant sakene som ble diskutert var søknad om fornyelse og endring av konsesjon for Bergen helikopterplass, Haukeland sykehus og Grønneviksøren, samt endringer i pasient- og brukerrettighetsloven og implementeringen av pasientrettighetsdirektivet. I tillegg ble det sendt ut høringer om modernisering av vegtunneler og kollektivtransport i distriktene. Alle disse sakene vil bli vurdert av utvalget. Dokumentene som ble sendt ut i forkant av møtet inkluderer også informasjon om høringene."," 1 
+Høringssaker 
+
+Forretningsutvalget behandlet saken i møtet 231012 sak 202-12: 
+
+Følgende dokument ble utsendt i forkant av møtet: 
+1. Høring - Søknad om fornyelse og endring av konsesjon for Bergen helikopterplass, 
+Haukeland sykehus og Grønneviksøren. 
+
+2. Høring om endringer i pasient- og brukerrettighetsloven og implementeringa av 
+pasientrettighetsdirektivet. 
+
+3. Høring - moderne vegtunneler. 
+
+4. Høring: Kollektivtransport i distriktene 2013. 
+
+ ","Forretningsutvalget har behandlet flere høringssaker i sitt møte den 23. oktober 2012. Saker som omhandler konsesjon for helikopterplass, endringer i pasient- og brukerrettighetsloven, moderne vegtunneler og kollektivtransport i distriktene ble diskutert.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,right,0,4,0,0.0,right,right,right,right
+new-21,doc_129,newsworthiness,#f57c00,doc_129|norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples|llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,tie_majority,norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,"Forretningsutvalget har behandlet flere høringssaker i sitt møte den 23. oktober 2012. Blant sakene som ble diskutert var søknad om fornyelse og endring av konsesjon for Bergen helikopterplass, Haukeland sykehus og Grønneviksøren, samt endringer i pasient- og brukerrettighetsloven og implementeringen av pasientrettighetsdirektivet. I tillegg ble det sendt ut høringer om modernisering av vegtunneler og kollektivtransport i distriktene. Alle disse sakene vil bli vurdert av utvalget. Dokumentene som ble sendt ut i forkant av møtet inkluderer også informasjon om høringene.","Forretningsutvalget har behandlet flere høringssaker i sitt møte den 23. oktober 2012. Blant disse er det søknader om fornyelse og endring av konsesjon for Bergen helikopterplass, Haukeland sykehus og Grønneviksøren, samt endringer i pasient- og brukerrettighetsloven for å implementere pasientrettighetsdirektivet. I tillegg er det høring om moderne vegtunneler og kollektivtransport i distriktene for 2013. Dokumentene ble sendt ut før møtet. Oppsummering: Forretningsutvalget har behandlet flere høringssaker som inkluderer fornyelse og endring av konsesjon for helikopterplasser, endringer i pasientrettigheter og kollektivtransport i distriktene. Dette skjedde under et møte den 23. oktober 2012, hvor dokumenter ble sendt ut før møtet."," 1 
+Høringssaker 
+
+Forretningsutvalget behandlet saken i møtet 231012 sak 202-12: 
+
+Følgende dokument ble utsendt i forkant av møtet: 
+1. Høring - Søknad om fornyelse og endring av konsesjon for Bergen helikopterplass, 
+Haukeland sykehus og Grønneviksøren. 
+
+2. Høring om endringer i pasient- og brukerrettighetsloven og implementeringa av 
+pasientrettighetsdirektivet. 
+
+3. Høring - moderne vegtunneler. 
+
+4. Høring: Kollektivtransport i distriktene 2013. 
+
+ ","Forretningsutvalget har behandlet flere høringssaker i sitt møte den 23. oktober 2012. Saker som omhandler konsesjon for helikopterplass, endringer i pasient- og brukerrettighetsloven, moderne vegtunneler og kollektivtransport i distriktene ble diskutert.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,tie,0,0,4,0.0,tie,tie,tie,tie
+new-22,doc_25,newsworthiness,#f57c00,doc_25|gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples|norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,representative,gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples,norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,"Tom Skauge fra SV interpeletterer om den vedtatte strategien for kollektivtrafikken i Bergensområdet, spesielt knyttet til bybanens finansiering og behov for framkommelighetstiltak. Han stiller spørsmål om hvilke tiltak som fortsatt er inkludert i Bergensprogrammet og ber om en liste med prisanslag. Byrådet lovet å undersøke saken nærmere og vil jobbe for å sikre finansiering av bybanen til Flesland.","Bergen bystyre behandlet en interpellasjon fra Tom Skauge (SV) angående strategi- og handlingsplanen for kollektivtrafikken i Bergensområdet. Planen ble vedtatt i 1999, men byrådet har ikke fulgt opp investeringene som var nødvendige for å realisere målene. Skauge etterlyser finansiering av bybanen til Flesland og ber byrådet om å ta aktive skritt for å sikre fullfinansiering av kollektivtrafikken. Interpellasjonen ble enstemmig vedtatt oversendt byrådet. 5. Fra Tom Skauge (SV): ”Bergens Tidende hadde 16 januar 2002 en artikkel om at Bergen kommune har brukt 10 millioner kroner på å utrede bybane til Flesland. I artikkelen heter det at ”det er ingen tvil om at bybanen vil bli bygget til Flesland”. I samme artikkel heter det at ”det er heller ingen tvil om","
+Interpellasjoner.
+
+Bergen bystyre behandlet saken i møtet 180202 sak 17-02:
+
+4. Fra Tom Skauge (SV):
+
+ ”Strategi- og handlingsplan for Kollektivtrafikken i Bergensområdet
+ ble vedtatt av Fylkestinget 8 juni 1999. Planarbeidet gav en god
+ beskrivelse av krisen for kollektivtilbudet i Bergen. Planen gav gode
+ mål for et bedre kollektivtilbud (s.36-39). Planen anviste også
+ viktige virkemidler (s. 48):
+ • ein arealpolitikk som byggjer opp rundt kollektivtilbudet
+ • ein parkeringspolitikk som motiverer fort kollektivtrafikk særlig i
+ sentrum og andre trafikkbelasta område.
+ • restriksjoner på bilbruk
+ • tilstrekkeleg finansiering av drift og
+ • utforming av eit attraktivt kollektivtilbod gjennom tiltak innan drift,
+ infrastruktur og teknologi.
+
+ Planen lanserte et begrepsskille mellom , Nærområde og Distrikt. For
+ Kollektivbyen var ambisjonene for kollektivtilbudet meget store
+ (s.42), blant annet la planen opp til et omfattende opplegg for
+ Parkering med skyss utenfor bykjernen.
+
+ Planen viste at investeringsbehovet når bybane ble valgt, var 150 mill
+ for fremmelighetstiltak (s. 58) og 50 mill. for terminaler (s. 61).
+ Finansieringsbehovet for drift ble satt til 90 mill.
+
+ Driftstøtten til kollektivtrafikken fra Bergensprogrammet valgte
+ byrådspartiene vekk da de gikk i allianse med Høyre, til tross for at
+ Bergen har en meget lav tilskuddsandel sammenlignet med andre byer i
+ Europa.
+
+ I en by der alle politikerne nå understreker behovet for
+ kollektivsatsing skulle en anta at hele det beskjedne
+ investeringsbeløpet på 200 mill. i Strategi- og handlingsplan for
+ Kollektivtrafikken ble lagt inn i Bergensprogrammet. Størsteparten av
+ dette beløpet er imidlertid vanskelig å finne igjen i vedtakene som er
+ gjort i av Bergen Bystyre og av Fylkestinget. Det er rimelig å regne
+ slik at 200 mill. var de investeringsmidlene som var nødvendig for
+ buss og terminaler ved en bybane helt til Flesland (ettersom det var
+ denne forutsetningen som lå inne i planene på det aktuelle tidspunkt).
+ Når disse ambisjonene nå er halvert er selvsagt behovet for
+ framkommelighetstiltak for buss langt større. (Planen anslo behovet
+ til 500 mill. uten bane).
+
+ Spørsmål:
+1. Kan Byråden legge frem en liste (med prisanslag) over de tiltak fra
+ Handlingsplanen (s. 86-) som fortsatt er med i Bergensprogrammet?
+2. Hva gjør Byrådet for å sikre finansiering av trase for bybanen som går
+ helt til Flesland i inneværende planperiode?”
+
+ Ber om skriftlig svar.
+
+ Byråd Tom Knudsen besvarte spørsmålet.
+
+ Tom Skauge fremsatte følgende anmodning:
+
+ 1. Byrådet retter en henvendelse til Samferdselsdepartementet med sikte
+ på at bergensprogrammet fullfinansierer vedtatt strategi- og
+ handlingsplan for kollektivtrafikken i bergensområdet.
+
+ 2. Byrådet arbeider aktivt for å sikre at bybanen blir bygget til
+ Flesland i første byggetrinn.
+
+ Anmodningen ble enstemmig vedtatt oversendt byrådet.
+
+","I Bergen bystyre ble det diskutert en interpellasjon fra Tom Skauge (SV) angående den vedtatte strategi- og handlingsplanen for kollektivtrafikken i Bergensområdet fra 1999. Skauge påpekte manglende oppfølging av investeringsbehov og finansiering til kollektivtilbudet, spesielt i lys av byens lave tilskuddsandel sammenlignet med andre europeiske byer. Han stilte spørsmål til byråden om tiltak fra handlingsplanen og finansiering av bybanetraseen til Flesland. Anmodningen om å kontakte Samferdselsdepartementet for fullfinansiering av planen ble enstemmig vedtatt.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,right,0,4,0,0.0,right,right,right,right
+new-23,doc_48,newsworthiness,#f57c00,doc_48|norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples|llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,representative,norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,Bergen bystyre har besluttet å utsette behandlingen av reguleringsplanen for et aktivitetssenter med skytebaner,"Dokumentet beskriver vedtak fra Bergen bystyre angående reguleringsplan for et aktivitetssenter med skytebaner for Bergen Jæger- og fiskeforening. Det inkluderer flere forslag om utsettelse og vurderinger av lokalisering av skytebanen, samt en merknad om vurdering av biologisk mangfold. Byrådet har innstilt på at reguleringsplanen godkjennes, men det er foreslått flere endringer i reguleringsbestemmelsene for å sikre biologisk mangfold.","
+Fana, Kismul - gnr 85 bnr 1,2 og 3. Aktivitetssenter med skytebaner for
+Bergen Jæger- og fiskeforening. Privat reguleringsplan. P.1626.00.00. 2.
+gangsbehandling. Byrådsak 48-02, møte 130302
+
+Bergen bystyre behandlet saken i møtet 241103 sak 242-03 og fattet følgende
+vedtak:
+
+ Saken utsettes og sendes tilbake til Komite for miljø og byutvikling..
+
+1. Bystyret ber om en nærmere utredning av lokalisering av skytebane i
+ Svartebotn slik merknad i Komite for miljø og byutvikling 231003 tilsier.
+
+2. Bystyret ber om at saken fremmes igjen for Komite for miljø og
+ byutvikling i januarmøtet 2004.
+
+Bystyrets behandling:
+Hans-Edvard Seim (H) erklærte seg inhabil. Aud Myhre (H) møtte.
+
+Kristian Helland (KrF) fremsatte følgende utsettelsesforslag på vegne av H,
+SV, KrF, RV, Pp, V og Sp:
+
+ ”Saken utsettes og sendes tilbake til Komite for miljø og byutvikling.
+
+1. Bystyret ber om en nærmere utredning av lokalisering av skytebane i
+ Svartebotn slik merknad i Komite for miljø og byutvikling 231003 tilsier.
+
+2. Bystyret ber om at saken fremmes igjen for Komite for miljø og
+ byutvikling i januarmøtet 2004.”
+
+Stine Akre (RV) fremsatte følgende anmodning på vegne av SV og RV:
+
+”Byrådet bes sende saken om plassering av skytebane for Bergen Jæger- og
+fiskeforening til de politisk oppnevnte skytebaneutvalgene for uttalelse
+før saken fremmes for komite og bystyret.”
+
+Votering:
+Utsettelsesforslaget fra H, SV, KrF, RV, Pp, V og Sp, pkt. 1 fremsatt av
+Kristian Helland, ble vedtatt med 52 stemmer (H+FrP+SV+KrF+RV+Pp+V+Sp).
+
+Utsettelsesforslaget fra H, SV, KrF, RV, Pp, V og Sp, pkt. 2 og 3 fremsatt
+av Kristian Helland, ble vedtatt med 40 stemmer (H+SV+KrF+RV+Pp+V+Sp).
+
+Anmodningen ble enstemmig vedtatt oversendt Byrådsavdeling for byutvikling.
+
+Komite for miljø, byutvikling og tekniske tjenester behandlet saken i møtet
+231003 sak 237-03 og avga følgende innstilling:
+Det foreligger ingen innstilling fra komiteen til bystyret.
+
+ ***
+
+Lisbeth Iversen fremsatte på vegne av KrF følgende merknad som også fikk
+tilslutning fra FrP, KrF, SV, RV, V og Sp :
+
+”Før bystyrebehandlingen ber komiteen om en bred vurdering av muligheten
+for samlokalisering av skytebane i Svartebotn.”
+
+Byrådet innstiller til bystyret å fatte følgende endrede vedtak:
+1. I medhold av plan- og bygningslovens § 27-2 nr.1 godkjennes
+ reguleringsplan for Fana, Kismul, gnr. 85, bnr. 1,2,3, aktivitetssenter
+ med skytebaner for Bergen Jæger- og fiskeforening, P.nr. 1626.00.00.
+
+2. Reguleringsplanen godkjennes slikt som vist på kart i målestokk 1:1000
+ datert 07.03.2000, sist revidert 24.01.2002.
+
+3. I medhold av samme bestemmelse vedtas reguleringsbestemmelser for
+ aktivitetssenter med skytebaner for Fana, Kismul, gnr 85, bnr 1,2 og 3,
+ datert 05.02.2002, med følgende tilføyelse som ny § 2.1:
+
+ Den sentrale dammen I planområde med omkringliggende myr skal sikres mot
+ uttørking og forurensing. Stier og gangforbindelser bør i størst mulig
+ grad ledes utenom sårbare lokaliteter for i minst mulig grad å påvirke
+ det biologiske mangfoldet. Av samme grunn bør en søke å unngå
+ granplanting i området.
+
+4. Betegnelsene for bestemmelsene §§ 2.1.-2.3. endres til §§ 2.2.-2.4.
+
+",Bergen bystyre har besluttet å utsette behandlingen av reguleringsplanen for et aktivitetssenter med skytebaner for Bergen Jæger- og fiskeforening i Fana. Saken sendes tilbake til Komite for miljø og byutvikling for nærmere utredning av lokaliseringen av skytebanen i Svartebotn. Det er også anmodet om at saken sendes til politisk oppnevnte skytebaneutvalg for uttalelse før videre behandling.,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,right,0,4,0,0.0,right,right,right,right
+new-24,doc_63,newsworthiness,#f57c00,doc_63|llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples|GPT4o-mini,representative,llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,GPT4o-mini,Dokumentet omhandler godkjenning av protokollen fra et møte i byrådet som fant,Byrådet har godkjent protokollen fra møtet den 3. november 2004. Vedtaket ble ledet av byrådsleder Monica Mæland.,"
+| |Dato: 9. november |
+| |2004 |
+| | |
+| | |
+| |Byrådsak |
+| |/04 |
+| |
+| |
+|Byrådet |
+| |
+| |
+| |
+|Godkjenning av protokoll fra møte i byrådet 03.11.2004 |
+| |
+| |TUGU |BLED-00-200401317-140 |
+| |
+
+Hva saken gjelder:
+
+Vedtak:
+
+Protokoll fra møte i byrådet 03.11.2004 godkjennes.
+
+Monica Mæland
+byrådsleder
+
+ Saksutredning:
+
+",Byrådet har godkjent protokollen fra møtet den 3. november 2004. Vedtaket ble ledet av byrådsleder Monica Mæland.,"You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,right,0,3,1,0.8113,right,right,tie,right
+new-25,doc_98,newsworthiness,#f57c00,doc_98|viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples|llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,representative,viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,"Byrådet har godkjent protokollen fra møtet som ble avholdt den 28. november 2007, under behandling i møtet den 5. desember 2007.","Byrådet har godkjent protokollen fra møtet den 28. november 2007, som ble behandlet i møtet den 5. desember 2007. Vedtaket ble fattet i sak 1651-07. Protokollen er dermed et offisielt dokument som bekrefter hendelsene og beslutninger som ble tatt under det tidligere møtet."," Godkjenning av protokoll fra møte i byrådet 28.11.2007
+
+Byrådet behandlet saken i møtet 051207 sak 1651-07 og fattet følgende vedtak:
+
+Protokoll fra møte i byrådet 28.11.2007 godkjennes.
+
+","Byrådet har godkjent protokollen fra møtet som ble avholdt 28. november 2007, under behandlingen av sak 1651-07 den 5. desember 2007.","You will be given a document and two summaries written for it.
+
+Your task is to compare the two summaries on one metric.
+
+Please read the instructions carefully and follow the evaluation steps.
+
+Evaluation Criteria:
+Newsworthiness — how well the summary highlights elements that would make the case relevant and interesting for local journalism.
+
+A more newsworthy summary should better surface:
+- PROXIMITY: Local relevance to residents
+- IMPACT: Scale and consequences for the community
+- CONFLICT: Disagreement, controversy, or opposing views
+- MONEY: Public spending or financial implications
+- ACCOUNTABILITY: Use of power or deviation from norms
+- TIMELINESS: Urgency, deadlines, or upcoming decisions
+- NOVELTY: Unusual or first-time developments
+- HUMAN INTEREST: Concrete effects on identifiable groups
+
+Evaluation Steps:
+1. Read the document and identify the main topic, actors, and key facts (5W1H: who, what, where, when, why, how).
+2. Read Summary A and Summary B.
+3. For each summary, evaluate:
+   - Does it clearly surface the most newsworthy aspects?
+   - Does it highlight what makes this relevant to local residents?
+   - Does it emphasize impact, conflict, or important developments when present?
+4. Compare the summaries and decide which one better captures the newsworthy aspects.
+
+Important:
+- Focus on how well the summary identifies and prioritizes newsworthy elements, not just general quality.
+- Do NOT prefer a summary just because it is longer.
+- If one summary misses important newsworthy aspects and the other includes them, prefer the latter.
+- If both summaries are equally newsworthy or equally uninformative, choose Tie.",,split,0,2,2,1.0,right,tie,tie,right

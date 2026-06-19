@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:6594:55410:200714579:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:26:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a regulatory change with unanimous support, focusing on traffic safety and infrastructure for a small housing development."
+    },
+    "summary_headline": "Bydelsstyret enstemmig vedtar trafikksikkerhet i reguleringsplan for Breistein",
+    "summary_body": "Åsane bydelsstyre har behandlet reguleringsendringen for Breistein, som omfatter bygging av 8 bolighus. Bydelsstyret, ledet av Stig Morten Frøiland (A), har enstemmig vedtatt at trafikksikkerhet skal inkluderes i planen, med særlig fokus på myke trafikkanter og gode løsninger for gang- og sykkelveier. Dette tiltaket er viktig for å sikre tryggere forhold for myke trafikanter i området."
+  }
+}

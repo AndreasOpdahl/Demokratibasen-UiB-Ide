@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1003:9749:66408:200817302:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:22:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses employee satisfaction survey results and their implications for workplace conditions, which are relevant to local employees and residents."
+    },
+    "summary_headline": "Ny medarbeiderundersøkelse viser utfordringer i Bergen Bolig og Byfornyelse",
+    "summary_body": "Bergen Bolig og Byfornyelse KF har gjennomført en ny medarbeiderundersøkelse med en svarprosent på 75,6 %. Resultatene viser en gjennomsnittlig score på 4,4, noe som er likt med Bergen kommune samlet. Undersøkelsen avdekket utfordringer knyttet til stress og intern samhandling, samt påvirkning fra byggearbeider i Allehelgens gate 2. For å forbedre arbeidsmiljøet vil det bli opprettet en arbeidsgruppe som skal se på kontaktpunkter og telefontider for ansatte og beboere."
+  }
+}

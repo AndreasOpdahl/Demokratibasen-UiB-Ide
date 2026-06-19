@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51432:116298:199933530:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:38:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines routine appointments to various boards and committees without any notable controversy or significant impact."
+    },
+    "summary_headline": "Valg av medlemmer til styrer og utvalg i Bergen for perioden 1999-2003",
+    "summary_body": "Bergen formannskap har besluttet å oppnevne medlemmer og varamedlemmer til en rekke styrer, råd og utvalg for perioden 1999-2003. Dette inkluderer blant annet Gaia Trafikk A/S og Komite for integrering av flyktninger og innvandrere. Ingen kontroverser eller dissent er rapportert i forbindelse med valgene."
+  }
+}

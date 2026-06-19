@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211619:1107880:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:23:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document highlights significant concerns regarding the implementation of a new advisory office for the visually and hearing impaired, which could impact local services."
+    },
+    "summary_headline": "KRFF krever ansettelser for å styrke tilbudet til syns- og hørselshemmede",
+    "summary_body": "Kommunalt råd for funksjonshemmede uttrykker bekymring over at tiltak 33 i seniorplanen for Bergen kommune ikke kan gjennomføres uten ansettelse av en psykolog og en synspedagog. De påpeker at flyttingen av synspedagoger til det nye rådgivningskontoret vil svekke tilbudet til synshemmede, som allerede er underdimensjonert. KRFF ber bystyret om å ta hensyn til deres høringsinnspill og understreker viktigheten av å vente på evalueringen av prosjektet Samordnet innsats for personer med sansetap før beslutninger tas."
+  }
+}

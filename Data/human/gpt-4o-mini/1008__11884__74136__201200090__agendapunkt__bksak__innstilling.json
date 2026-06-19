@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:11884:74136:201200090:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:32:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains several administrative decisions, but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Byrådet godkjenner protokoller og gir innstillinger til bystyret",
+    "summary_body": "Byrådet i Bergen har godkjent protokollen fra møtet 8. oktober 2015. I tillegg har de innstilt på flere saker til bystyret, inkludert godkjenning av protokoller fra tidligere møter, en årsmelding om luftkvalitet, og forslag til detaljregulering av eiendom i Sandviksveien. Byrådet har også behandlet klager over avslag på søknader om bruksendringer, og gitt høringsuttalelse til Miljødirektoratet angående forurensningslovens § 34. Ingen av sakene har frembrakt betydelig motstand eller kontrovers."
+  }
+}

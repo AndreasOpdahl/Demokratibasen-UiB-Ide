@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:371:2959:200290046:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:48:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document contains inquiries about local sports facilities and funding, which are relevant to the community."
+    },
+    "summary_headline": "Spørsmål om golfanlegg og Vitalitetssenteret i Bergen kommune",
+    "summary_body": "Under møtet i Komite for kultur, idrett og oppvekst ble det stilt flere spørsmål av representanter om lokale idrettsanlegg. Knut H. Opheim (H) etterspurte status for et foreslått golftrening- og opplæringssenter på Bønes, som kan gjøre golf mer tilgjengelig. Byråd Ruth Grung vil komme tilbake med mer informasjon. Henning Warloe (H) spurte om manglende driftsmidler til Vitalitetssenteret på Møhlenpris for 2003, til tross for at senteret åpner i januar. Byråd Grung bekreftet at de jobber med en løsning. Veslemøy Gullachsen (A) foreslo sprøyting av mindre anlegg for skøytebruk, og Byråd Grung vil ta dette videre med Idrettsavdelingen. Disse spørsmålene berører viktige lokale idretts- og fritidstilbud."
+  }
+}

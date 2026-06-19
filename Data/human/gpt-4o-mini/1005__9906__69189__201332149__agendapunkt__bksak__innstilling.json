@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9906:69189:201332149:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:27:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document addresses a procedural oversight in the appointment of a board leader, which is relevant but not highly impactful."
+    },
+    "summary_headline": "Alfa Merete Sefland valgt som leder av Frøkenstiftelsen",
+    "summary_body": "I bystyrets møte 30. oktober 2013 ble Alfa Merete Sefland valgt som nytt medlem av Høyre i styret for Frøkenstiftelsen. Det ble imidlertid oppdaget at bystyret også må velge styreleder, noe som ikke ble gjort. Nå foreslås det at Sefland også velges som leder av styret i Frøkenstiftelsen mens Ragnhild Stolt-Nielsen fungerer som byrådsleder."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "245879:5258031:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:43:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves significant financial reallocations affecting multiple municipal departments."
+    },
+    "summary_headline": "Ny finansieringsmodell for Ansattservice vedtatt med omfordeling av 83,5 millioner kroner",
+    "summary_body": "Byrådet i Bergen har vedtatt en ny finansieringsmodell for Ansattservice i møte 25. mai 2023. Modellen innebærer en omfordeling av 83,5 millioner kroner fra ulike byrådsavdelinger til grunnfinansiering av fellestjenester innen IKT- og digitalisering. De største bidragene kommer fra byrådsavdelingen for barnehage, skole og idrett med 39 millioner kroner, og helse og omsorg med 13 millioner kroner. Denne modellen vil også påvirke prisingen av nye tjenester fra Ansattservice. Beslutningen sendes til Bystyrets kontor."
+  }
+}

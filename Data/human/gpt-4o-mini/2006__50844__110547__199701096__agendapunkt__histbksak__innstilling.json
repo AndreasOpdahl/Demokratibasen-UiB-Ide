@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50844:110547:199701096:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:49:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant parking issues at a local bathing area, which affects residents and involves community opposition."
+    },
+    "summary_headline": "Parkeringsproblemer ved Tennebekktjern badeplass krever tiltak",
+    "summary_body": "Hovedutvalg for fritid og kultur har diskutert parkeringsproblemene ved Tennebekktjern badeplass etter klager fra Øvre Nipedalen og Lyngbøkollen Velforening. Administrasjonen foreslår tiltak for å forbedre situasjonen, inkludert alternative parkeringsplasser og informasjonskampanjer. Velforeningen motsetter seg parkering ved badeplassen, og det er foreslått at politiet overvåker trafikken på travle dager. Tiltakene kan iverksettes i løpet av sommeren, men det er usikkerhet om finansiering og ansvar for gjennomføringen."
+  }
+}

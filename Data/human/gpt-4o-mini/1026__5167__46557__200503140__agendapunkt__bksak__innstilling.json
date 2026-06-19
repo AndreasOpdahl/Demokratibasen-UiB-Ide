@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5167:46557:200503140:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:07:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a controversial decision regarding a housing project that affects local residents and requires a deviation from existing land use plans."
+    },
+    "summary_headline": "Klage på boligblokkavslag avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Eiendomsutvikling AS om avslag på rammetillatelse for oppføring av en boligblokk med 8 leiligheter på Østre Nattlandsfjellet. Klagen ble sendt inn etter at kommunen tidligere hadde avslått søknaden, da eiendommen i stor grad er regulert til offentlig friområde. Byrådet støtter fagetatens vurdering om at tiltaket ikke er tilpasset nærliggende bebyggelse og anbefaler at klagen ikke tas til følge. Saken vil nå bli sendt til fylkesmannen for endelig avgjørelse."
+  }
+}

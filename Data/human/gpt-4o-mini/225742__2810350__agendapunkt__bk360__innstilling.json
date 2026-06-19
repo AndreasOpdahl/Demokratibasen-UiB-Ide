@@ -1,0 +1,18 @@
+{
+  "dokument_id": "225742:2810350:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:55:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses a potential violation of building regulations regarding color use on a noise barrier, which could impact local residents."
+    },
+    "summary_headline": "Mulig ulovlighet ved fargebruk på støyskjerm i Grønstølen",
+    "summary_body": "Rådet for byforming og arkitektur har stilt spørsmål om fargebruken på et nylig oppsatt støygjerde i Grønstølen, som kan være i strid med byggetillatelsen. Kommunens tilsynsmyndighet har bekreftet at de vil undersøke saken nærmere, da det er indikasjoner på at fargen avviker fra det som ble godkjent. Det er ventet at en vurdering vil bli gjort innen 2-3 måneder. Dette kan påvirke både estetikk og reguleringer i boligområdet."
+  }
+}

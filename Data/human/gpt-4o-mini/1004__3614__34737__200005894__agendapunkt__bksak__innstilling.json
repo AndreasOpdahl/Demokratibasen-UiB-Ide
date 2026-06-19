@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3614:34737:200005894:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine application for a temporary alcohol license with no objections."
+    },
+    "summary_headline": "Skjenkebevilling for M/S Nordnorge under Åpent skip",
+    "summary_body": "Bergenhus bydelsstyre har godkjent søknaden om skjenkebevilling for øl, vin og brennevin om bord på M/S Nordnorge under arrangementet Åpent skip den 11. og 12. april 2003. Administrasjonen har ikke innvendinger mot søknaden."
+  }
+}

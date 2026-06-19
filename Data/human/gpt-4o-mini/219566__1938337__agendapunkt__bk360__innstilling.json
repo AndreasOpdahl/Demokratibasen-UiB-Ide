@@ -1,0 +1,18 @@
+{
+  "dokument_id": "219566:1938337:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:41:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses a relevant local initiative regarding youth health services, which may impact the community."
+    },
+    "summary_headline": "Spørsmål om styrking av helsestasjon for ungdom i Regnbuebyen",
+    "summary_body": "Diane Alexandra Berbain (SV) har stilt spørsmål til Bystyret om tiltakene for å styrke helsestasjonen for ungdom og studenter i Bergen, som en del av planen \"Regnbuebyen\". Hun etterspør spesifikke tiltak og resultater knyttet til samtaler om kropp, forelskelse, seksualitet og kjønnsidentitet, samt hvordan helsestasjonen har fått økte ressurser og kompetanse på disse områdene. Dette er en viktig sak for ungdom i Bergen, da det berører deres tilgang til helsetjenester."
+  }
+}

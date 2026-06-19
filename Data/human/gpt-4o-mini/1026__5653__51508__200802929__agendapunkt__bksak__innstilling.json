@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5653:51508:200802929:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:14:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant planning dispute over a proposed building extension that affects local residents' living conditions."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på tilbygg i Bergenhus",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på en klage om oppføring av et tilbygg til et eksisterende leilighetsbygg i Rosenbergsgaten 24. Klagen ble sendt inn etter at søknaden ble avslått 23. april 2008, med begrunnelse i at tiltaket strider mot reguleringsbestemmelser om uteoppholdsarealer og bygningens utforming. Klageren argumenterer for at tilbygget vil forbedre lysforholdene i bakgården, men fagetaten fastholder at kvaliteten på uteoppholdsarealet ikke vil oppfylles. Byrådet, ledet av Monica Mæland, anbefaler at klagen ikke tas til følge, og saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

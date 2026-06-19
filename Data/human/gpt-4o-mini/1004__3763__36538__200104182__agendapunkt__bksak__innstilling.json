@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3763:36538:200104182:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant urban development project at Festplassen, which has implications for local residents and community activities."
+    },
+    "summary_headline": "Bergenhus bydelsstyre støtter utviklingen av Festplassen med krav om aktivitetsplan",
+    "summary_body": "Bergenhus bydelsstyre har gitt sin støtte til anleggsprosjektet for Festplassen, som skal bli en sentral møteplass i Bergen. Prosjektet inkluderer granittplater, en mobil scene for arrangementer, og en skulpturell kiosk. Bydelsdirektøren, Ole Vorland, etterlyser imidlertid en aktivitets- og driftsplan som tar hensyn til barn og unges behov, samt vedlikehold av plassen. Det er også bekymringer om hvordan Festplassen vil fungere i forhold til Torvalmenningen. Bydelsstyret ber om at planen utarbeides snarest mulig."
+  }
+}

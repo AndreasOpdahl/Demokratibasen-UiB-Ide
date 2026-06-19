@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:11454:72737:201124333:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:59:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a request for more cases to be presented to a committee, which is a routine administrative matter."
+    },
+    "summary_headline": "Forespørsel om flere saker til komite for oppvekst",
+    "summary_body": "Under møtet den 7. april 2015 ba Pål Hafstad Thorsen fra Arbeiderpartiet byrådet om å vurdere muligheten for å fremlegge flere saker til behandling i komite for oppvekst, som for tiden har svært få saker."
+  }
+}

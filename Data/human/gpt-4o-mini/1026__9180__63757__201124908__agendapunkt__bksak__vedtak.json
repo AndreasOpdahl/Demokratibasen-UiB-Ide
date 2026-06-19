@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:9180:63757:201124908:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:22:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural details with minor dissent but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll fra møte godkjent med merknader",
+    "summary_body": "Komite for miljø og byutvikling har godkjent protokollen fra møte 12. januar 2012. Julie Andersland fra Venstre bemerket at partiet ikke stemte i sak 364-11, mens Harald Berge Breistein fra KrF påpekte en feil i merknaden til sak 363-11, som nå skal referere til Høgstølen."
+  }
+}

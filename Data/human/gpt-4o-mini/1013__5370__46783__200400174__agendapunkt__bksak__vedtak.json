@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5370:46783:200400174:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:09:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains multiple updates on local initiatives and events, but lacks significant conflict or financial implications."
+    },
+    "summary_headline": "Bergen kommune jobber med erstatningslokaler for moskeen og kulturarrangementer",
+    "summary_body": "Finansbyråd Henning Warloe orienterte i møtet om flere saker. Det arbeides med å finne erstatningslokaler for moskeen. Videre forsøker kommunen å få Staten til å øke støtten til Grieg 07. Stiftelsen Nansen Human Foundation er under etablering, og det planlegges et arrangement med russiske kulturutøvere den 19. april, i forbindelse med en delegasjon fra Russland som besøker Bergen 20.-22. april. Roar Kristiansen delte også informasjon om et besøk fra Århus kommune den 30. mars."
+  }
+}

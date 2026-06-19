@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2134:21126:200001761:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:35:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine approval of meeting minutes with minor amendments."
+    },
+    "summary_headline": "Godkjennelse av protokoll fra bydelsstyremøte",
+    "summary_body": "Laksevåg bydelsstyre godkjente protokollen fra møtet 22. februar 2000, med en merknad om at setningen i forslaget fra Arvid Nilssen (Krf) angående utbygging av Mathopen skole skal rettes. Dette er en rutinemessig sak uten større kontrovers."
+  }
+}

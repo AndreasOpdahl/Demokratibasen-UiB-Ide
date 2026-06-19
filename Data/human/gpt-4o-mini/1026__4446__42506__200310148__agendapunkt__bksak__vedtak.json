@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4446:42506:200310148:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:04:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a neighborhood dispute over a housing development, which affects local residents."
+    },
+    "summary_headline": "Naboer klager på boligbygg, men klagen avvises av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har avvist klager fra naboer angående oppføring av et frittliggende boligbygg med to boenheter på Skanselien 14, foreslått av Carl Fredrik Joys. I møtet 3. november ble det besluttet å opprettholde tidligere tillatelser, til tross for et alternativt forslag fra Thor Brekkeflat (A) om å ta klagen til følge, som fikk støtte fra flere partier, men falt med 6 mot 9 stemmer. Dette vedtaket kan påvirke lokalsamfunnet, da det berører boligutvikling i området."
+  }
+}

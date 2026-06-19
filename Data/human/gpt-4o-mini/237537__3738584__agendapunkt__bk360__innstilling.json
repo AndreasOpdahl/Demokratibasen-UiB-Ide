@@ -1,0 +1,18 @@
+{
+  "dokument_id": "237537:3738584:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:23:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a contested decision regarding a business permit that affects local residents and has generated significant public interest."
+    },
+    "summary_headline": "Klage på treningssenter i Åsane avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde rammetillatelsen for bruksendring av et lokale i Hylkjebakken fra butikk til treningssenter, til tross for klager fra både naboer og advokatfirma. Klagerne, inkludert Ina Martine Søvik, hevder at treningssenteret vil føre til økt støy og trafikk, samt at det ikke er tilstrekkelig skjermet fra boliger. Byrådet, ledet av Roger Valhammer, konkluderte med at vilkårene for åpningstid og støyreduksjon er nødvendige for å ivareta naboenes interesser. Saken vil nå bli sendt til Statsforvalteren for endelig avgjørelse."
+  }
+}

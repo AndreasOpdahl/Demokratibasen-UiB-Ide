@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:22:456:200090007:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:04:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The budget proposal includes significant increases in funding for the city council and its administration, impacting local governance and services."
+    },
+    "summary_headline": "Bystyret foreslår budsjettøkning på 3,8 millioner kroner for 2001",
+    "summary_body": "Bysekretæren har lagt frem et budsjettforslag for bystyret og dets organer for 2001, som inkluderer en økning på 3 819 600 kroner sammenlignet med byrådets forslag. Økningen er nødvendig for å opprettholde aktivitetsnivået og dekke økte kostnader knyttet til komiteenes arbeid og administrasjon. Forslaget innebærer blant annet flere stillinger og justeringer i honorarene for politikerne. Det er også foreslått økte midler til representasjon og tjenester. Bystyrets sekretariat vil bli styrket med én ny stilling for å håndtere det økte presset. Dette budsjettforslaget vil bli vurdert av Komite for finans og næring."
+  }
+}

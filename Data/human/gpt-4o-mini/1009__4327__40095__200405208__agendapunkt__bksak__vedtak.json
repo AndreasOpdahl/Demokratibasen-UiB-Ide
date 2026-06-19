@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4327:40095:200405208:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:15:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses proposed changes to child welfare law, which affects local families."
+    },
+    "summary_headline": "Byrådet støtter endringer i barnevernloven",
+    "summary_body": "Byrådet i Bergen har behandlet et forslag om endringer i barnevernloven og har besluttet å støtte den framlagte høringsuttalelsen. Vedtaket ble fattet i møte 201204 sak 1705-04, og meldingen om vedtaket vil bli sendt til Bystyrets kontor. Endringene kan ha betydning for lokale familier og barn i kommunen."
+  }
+}

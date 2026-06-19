@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:7560:59777:200917107:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:29:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The decision to uphold a building permit is routine but may affect local residents."
+    },
+    "summary_headline": "Bergenhus bydelsstyre opprettholder byggetillatelse til påbygg",
+    "summary_body": "Bergenhus bydelsstyre har enstemmig besluttet å opprettholde tillatelsen til påbygg og fasadeendring for eiendommen på Fjellveien 66, til tross for innkomne klager. Vedtaket ble fattet i møte 4. oktober 2010, og klagene ble ikke tatt til følge."
+  }
+}

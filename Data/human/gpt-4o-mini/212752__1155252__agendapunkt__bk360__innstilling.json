@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212752:1155252:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:28:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a new alcohol license for a local cruise boat, which is relevant to residents and involves public interest."
+    },
+    "summary_headline": "Ny skjenkebevilling for MS Lykkeper innvilget av byrådet",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for alkoholholdig drikk om bord på MS Lykkeper, som skal brukes til havne- og charterturer med Bergen som utgangspunkt. Søknaden ble sendt inn av Fish Me Fjordcruise AS, og det er ingen merknader fra politiet eller sosiale tjenester. Bevillingen gjelder frem til 30. juni 2020, og det er stilt krav om dokumentasjon før den kan tas i bruk."
+  }
+}

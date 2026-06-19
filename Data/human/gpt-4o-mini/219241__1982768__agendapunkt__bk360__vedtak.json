@@ -1,0 +1,18 @@
+{
+  "dokument_id": "219241:1982768:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:41:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines routine administrative decisions with no significant impact or controversy."
+    },
+    "summary_headline": "Enstemmig vedtak om høringsuttalelser fra forretningsutvalget",
+    "summary_body": "Forretningsutvalget behandlet høringssaker den 18. februar 2020 og fattet enstemmig vedtak om å avgi høringsuttalelser til to saker. Den første gjelder en forskrift til avhendingslova for tryggere bolighandel, og den andre er utdanningsdirektoratets forslag til nye lærerplaner i valgfag for ungdomstrinnet. Det er ingen dissent eller kontrovers knyttet til vedtakene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10962:69710:201200090:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:45:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document primarily consists of procedural approvals with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll fra byrådsmøte godkjent",
+    "summary_body": "Byrådet i Bergen har godkjent protokollen fra møtet den 20. februar 2014. Det ble også behandlet flere saker, inkludert klager på byggetillatelser og høringer om skiltforskrifter og opptaksområder for skoler. Ingen kontroverser eller dissent ble rapportert."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11219:73289:201221245:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:33:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant cost increase in the upgrade of wastewater treatment plants, which impacts local budgets and residents."
+    },
+    "summary_headline": "Kostnadsøkning på 168 millioner for oppgradering av renseanlegg",
+    "summary_body": "Bystyret i Bergen får nå en oppdatert kostnadsprognose for oppgradering av fire store renseanlegg, som viser en økning fra 1,552 milliarder til 1,720 milliarder kroner. Økningen på 168 millioner kroner skyldes blant annet lengre byggetid og endringer i prosjektet, spesielt ved Flesland renseanlegg, hvor kostnadene alene har økt med 96 millioner. Byrådet anbefaler at denne kostnadsøkningen innarbeides i budsjettprosessen for 2016. Dette prosjektet er av stor betydning for innbyggerne, da det sikrer bedre vann- og avløpstjenester i kommunen."
+  }
+}

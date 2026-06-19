@@ -1,0 +1,18 @@
+{
+  "dokument_id": "246335:5363946:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:44:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposed action plan for child welfare involves significant funding and aims to improve services for vulnerable children and families in Bergen."
+    },
+    "summary_headline": "Bergen kommune foreslår ny handlingsplan for barnevernet med tiltak til 23,9 millioner kroner",
+    "summary_body": "Byråd for barnevern og sosiale tjenester, Line Berggreen Jacobsen, har lagt frem et utkast til handlingsplan for barnevernet i Bergen. Planen, som er estimert å koste 23,9 millioner kroner, tar sikte på å forbedre kvaliteten på tjenestene til barn og unge. Den skal sendes på høring fra 1. til 30. juni 2023. Tiltakene inkluderer kompetanseutvikling og styrking av samarbeid med andre instanser. Byråden understreker at alle innspill til planen er velkomne, og at det er et samfunnsansvar å sikre at barn får den hjelpen de trenger."
+  }
+}

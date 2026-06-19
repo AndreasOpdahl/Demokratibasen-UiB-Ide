@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206479:268366:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:11:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The decision to name a new school and sports hall is of local interest but lacks significant impact or controversy."
+    },
+    "summary_headline": "Ny skole og idrettshall i Ytrebygda får navnet Zinken Hopp",
+    "summary_body": "Byrådet har besluttet at den nye skolen og idrettshallen i Ytrebygda bydel, beliggende på Steinsvikvegen 278, skal hete Zinken Hopp skole og idrettshall. Beslutningen ble fattet i møtet den 28. juni 2018."
+  }
+}

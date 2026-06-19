@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50979:111421:199707292:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:50:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a funding proposal for a local cultural initiative, which has significant implications for education and heritage preservation."
+    },
+    "summary_headline": "Bergen kommune vurderer tilskudd til Tellevik kystfort for undervisningslokale",
+    "summary_body": "Hovedutvalg for fritid og kultur i Bergen kommune vurderer å gi et tilskudd på 12.000 kroner til Stiftelsen Tellevik kystfort for å dekke gjeld knyttet til restaurering av krigsminner. Stiftelsen har søkt om 200.000 kroner til et nytt undervisningslokale for å forbedre undervisningen for lokale skoler og universitet. Administrasjonen anser prosjektet som prisverdig, men avventer politisk behandling av museumsplanen før endelig beslutning. Tellevik kystfort er en viktig ressurs for å formidle lokal krigshistorie og har allerede vært i bruk for undervisning siden 1997."
+  }
+}

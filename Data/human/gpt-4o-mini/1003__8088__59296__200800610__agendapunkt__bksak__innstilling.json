@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1003:8088:59296:200800610:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:21:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document provides important insights into housing statistics and trends in Bergen compared to other cities, which is relevant for local residents."
+    },
+    "summary_headline": "Bergen har lavere boligdekning enn Trondheim, men høyere venteliste",
+    "summary_body": "Styret for Bergen Bolig og Byfornyelse KF har gjennomgått KOSTRA-tallene for 2009, som viser at Bergen har en synkende boligdekning for kommunale utleieleiligheter, betydelig lavere enn Trondheim, men på nivå med Oslo. I 2009 ble det tildelt 548 boliger i Bergen, mens 390 nye husstander står på venteliste. Til tross for lavere antall søknader om kommunal bolig enn i Oslo og Trondheim, har Bergen en høyere venteliste. Det er også en nedgang i antall husstander som mottar kommunal bostøtte i Bergen, som nå er 3313. Dette kan påvirke mange innbyggere som er avhengige av kommunal boligstøtte."
+  }
+}

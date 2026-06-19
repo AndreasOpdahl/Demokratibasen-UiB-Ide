@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224922:1903956:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:53:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant regulatory issue with potential local impact and a request for mediation."
+    },
+    "summary_headline": "Innsigelse mot detaljregulering for Ådland kan føre til mekling",
+    "summary_body": "Charlotte Spurkeland (H) har stilt spørsmål til byrådet om de vil be om mekling i saken om detaljregulering for Ådland. Fylkesmannen har fremmet innsigelse, og mener at støy- og transportløsninger ikke er tilstrekkelig ivaretatt. Dette kan påvirke utviklingen av området, som er regulert i henhold til tidligere vedtak fra KMD. Byrådet må nå vurdere neste steg i prosessen."
+  }
+}

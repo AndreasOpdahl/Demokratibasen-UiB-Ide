@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205528:254162:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:08:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document reveals significant findings regarding the municipality's contract management, which affects public spending and accountability."
+    },
+    "summary_headline": "Deloitte avdekker mangler i Bergen kommunes kontraktsoppfølging",
+    "summary_body": "Kontrollutvalget har mottatt en foreløpig rapport fra Deloitte om kvalitet og effektivitet i kontraktsoppfølgingen i Bergen kommune. Rapporten viser at kommunen ikke har et tilfredsstillende system for å sikre kvalitet og effektivitet, med en modenhetsvurdering på nivå 2 av 5. Dette gjelder kontrakter verdt nærmere 9 milliarder kroner av et totalbudsjett på 24 milliarder. Byrådet har som mål å forbedre anbuds- og innkjøpskompetansen, men rapporten indikerer at det er betydelige forbedringsbehov. Høringsuttalelser fra byrådsavdelingene er ventet innen 15. mai."
+  }
+}

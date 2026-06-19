@@ -1,0 +1,18 @@
+{
+  "dokument_id": "218563:1977777:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:39:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a denied application for a dock, impacting local land use and public access."
+    },
+    "summary_headline": "Klage på avslag om kai i Ytrebygda opprettholdes av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om legalisering av en 44 m² kai på Grimseidvegen 369, etter klage fra tiltakshaver Tore Røen. Byrådet viser til at tiltaket vil medføre nedbygging av verdifull strandsone og er i strid med statlige retningslinjer. Fylkesmannen har også uttalt seg negativt om saken. Klager har foreslått å redusere kaien til 14,5 m², men byrådet mener at det ikke foreligger rettslig grunnlag for dispensasjon. Saken sendes nå videre til Fylkesmannen for endelig avgjørelse."
+  }
+}

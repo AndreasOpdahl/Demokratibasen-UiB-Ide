@@ -1,0 +1,18 @@
+{
+  "dokument_id": "214324:1489356:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:31:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant municipal planning case that impacts local development and infrastructure."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse til Lindås' kommunedelplan for Knarvik-Alversund",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Lindås kommune angående kommunedelplanen for Knarvik-Alversund med Alverstraumen for perioden 2019-2031. Planen tar sikte på å håndtere forventet befolkningsvekst og forberede kommunesammenslåingen i 2020. Byråden for byutvikling, Rune Bakervik, understreker viktigheten av regionalt samarbeid og at boligbygging prioriteres i sentrumsområder for å redusere biltrafikk til Bergen. Høringsfristen for innspill er 27. august 2019."
+  }
+}

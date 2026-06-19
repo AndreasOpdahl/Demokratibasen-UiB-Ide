@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:2662:27261:200104058:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:22:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine approval of a cultural plan with no significant controversy or impact."
+    },
+    "summary_headline": "Åsane bydelsstyre godkjenner handlingsplan for kulturskolen",
+    "summary_body": "Åsane bydelsstyre har enstemmig vedtatt handlingsplanen for Bergen Kulturskole for perioden 2001-2006. Planen ble presentert av bydelsadministrasjonen og ble tatt til orientering uten noen innvendinger. Dette vedtaket er en del av den løpende utviklingen av kulturskoletilbudet i Åsane."
+  }
+}

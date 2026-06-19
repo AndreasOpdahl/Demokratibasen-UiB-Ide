@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:10624:70875:201319076:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:54:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The case involves a rejected application for a new building, which may affect local residents' property rights."
+    },
+    "summary_headline": "Klage på avslag om nybygg avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har avvist en klage på avslag om oppføring av et nytt uthus på Steinestøvegen 584. Byrådet opprettholder fagetatens vedtak fra 28. august 2013. Komiteen, ledet av Geir Steinar Dale (A), understreker at tiltakshaver kan søke om mindre tiltak på eiendommen for å få godkjent en ny søknad. Vedtaket ble fattet enstemmig."
+  }
+}

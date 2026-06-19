@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10792:69387:201124329:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:57:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details procedural decisions without significant impact or controversy."
+    },
+    "summary_headline": "Byrådssaker fordelt til komiteer",
+    "summary_body": "I byrådets møte 15. januar ble det enstemmig vedtatt å sende byrådssakene 2 og 4 til Komite for finans, mens byrådssak 3 sendes til Komite for fullmakter og politisk styringssystem. Julie Andersland (V) påpekte en feil i fordelingen, som ble rettet før vedtaket."
+  }
+}

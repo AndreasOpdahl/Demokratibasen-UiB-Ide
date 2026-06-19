@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5285:46412:200400174:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:09:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains several updates and discussions relevant to local governance, but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Forretningsutvalget diskuterer viktige saker og kommende rettssak",
+    "summary_body": "Forretningsutvalget i Bergen behandlet flere saker i sitt møte, inkludert åpningen av Grieg 07 i Tromsø og Astrup-samlingene. Byråd Hans Carl Tveit informerte om muligheten for å lage en sak om KS-debattheftet til bystyret i mars. Det ble også avklart at notatet om ordførerens rolle i bystyremøtene vil bli behandlet senere. Liv Røssland etterspurte informasjon om Clear Channel-rettssaken, som er planlagt å starte i mai. Kontrollutvalgets leder, Geir Steinar Dale, orienterte om situasjonen i Kontrollutvalget og Kommunerevisjonen."
+  }
+}

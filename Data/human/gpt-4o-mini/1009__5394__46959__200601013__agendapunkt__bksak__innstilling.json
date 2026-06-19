@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5394:46959:200601013:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:27:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant cultural project with local relevance and funding implications."
+    },
+    "summary_headline": "Bergen kommune bevilger 400 000 kroner til dramadokumentar om Edvard Grieg",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 400 000 kroner til Tellus Works AS for produksjon av en dramadokumentar om Edvard Grieg. Filmen, som er en del av serien \"Norwegian Masters\", vil ha premiere under Bergen internasjonale filmfestival 2007. Produksjonen vil sysselsette lokale filmarbeidere og bidra til å fremme Bergens kultur internasjonalt. Byrådet stiller krav om at prosjektet må være fullfinansiert før utbetaling, og at materialet fra filmen kan brukes av kommunen til ikke-kommersielle formål."
+  }
+}

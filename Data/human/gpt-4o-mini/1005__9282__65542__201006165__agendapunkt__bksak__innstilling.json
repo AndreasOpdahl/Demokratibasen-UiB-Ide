@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9282:65542:201006165:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:21:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the annual cultural report for Bergen, highlighting significant financial data and changes in cultural funding."
+    },
+    "summary_headline": "Bergen kulturårbok 2011 viser økt besøk og endringer i tilskudd",
+    "summary_body": "Kulturårboken for 2011 oppsummerer kulturlivet i Bergen og viser en total omsetning på 2,3 milliarder kroner, støttet av 352 millioner kroner i kommunale tilskudd. Årboken inkluderer for første gang en samlet oversikt over både offentlige og private opplæringstilbud, samt frivilligsentre og seniorsentre. Besøkene til registrerte aktører økte med 5 % fra 2010 til 2011, med 8,2 millioner besøk totalt. Byrådet, ledet av Monica Mæland, anbefaler bystyret å ta kulturårboken til orientering og takker alle aktører for deres bidrag til kulturlivet i Bergen."
+  }
+}

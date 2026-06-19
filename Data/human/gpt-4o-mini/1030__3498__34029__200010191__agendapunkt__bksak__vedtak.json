@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:3498:34029:200010191:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:39:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to install speed bumps and a reduced speed limit is relevant to local residents and involves some dissent."
+    },
+    "summary_headline": "Laksevåg bydelsstyre vedtar fartsdempere i Gjerdehaugene til tross for motstand",
+    "summary_body": "Laksevåg bydelsstyre har besluttet å installere fartsdempere og innføre en 30 km/t fartsgrense i Gjerdehaugene. Vedtaket ble fattet i møte 11. mars, hvor administrasjonens forslag ble vedtatt med 2 stemmer imot fra Fremskrittspartiet. Dette tiltaket er ment å øke trafikksikkerheten i området, noe som vil påvirke beboerne direkte."
+  }
+}

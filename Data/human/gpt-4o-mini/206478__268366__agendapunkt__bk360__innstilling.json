@@ -1,0 +1,18 @@
+{
+  "dokument_id": "206478:268366:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:11:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant financial support for a major cultural institution facing a serious economic crisis."
+    },
+    "summary_headline": "Bergen kommune bevilger 7 millioner til KODE Kunstmuseer for å redde økonomien",
+    "summary_body": "Byrådet i Bergen har besluttet å gi et engangstilskudd på 7 millioner kroner til Stiftelsen KODE Kunstmuseer og komponisthjem for å håndtere en alvorlig økonomisk krise. KODE har opplevd betydelige driftsunderskudd og manglende finansiering av investeringer, og har søkt om både tilskudd og lån. Byrådet avslo søknaden om likviditetslån på 14,5 millioner kroner, men økte det opprinnelige tilskuddet med 2 millioner kroner for å styrke likviditeten. KODEs økonomiske situasjon er kritisk, og kommunen vil foreslå en endelig finansiering i forbindelse med tertialrapport 2."
+  }
+}

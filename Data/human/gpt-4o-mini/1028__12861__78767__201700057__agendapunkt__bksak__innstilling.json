@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1028:12861:78767:201700057:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:27:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal for new care homes in Nesttun is significant for local residents and involves public spending."
+    },
+    "summary_headline": "Nye omsorgsboliger planlegges på Nesttun",
+    "summary_body": "Bergen kommune har lagt frem et planforslag for bygging av 12 omsorgsboliger på Nesttun, som skal eies og driftes av kommunen. Planområdet, som omfatter gamle Fana heradshus, er på ca. 15 dekar. Bygget vil bli tre etasjer høyt, med en maksimal høyde på kote +53. I tillegg vil det bli utbedringer av kryssene ut i Hardangervegen og deler av Midtunvegen. Offentlig ettersyn pågår med svarfrist 23. mai. Rådet har bedt om informasjon om hvilke grupper som vil dra nytte av boligmassen."
+  }
+}

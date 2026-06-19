@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230609:3161394:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:08:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant funding allocations for climate and environmental initiatives, impacting local organizations and residents."
+    },
+    "summary_headline": "Bergen kommune tildeler 5,1 millioner kroner til klima- og miljøtiltak",
+    "summary_body": "Byrådet i Bergen har besluttet å fordele 4 098 500 kroner til klima- og miljøtiltak og 1 017 000 kroner til drift av miljøorganisasjoner for 2021. Totalt er det registrert 35 søknader om tilskudd, som overstiger det tilgjengelige beløpet. Byråden anbefaler tildeling av midler til flere lokale prosjekter, inkludert Klimafestivalen og Naturvernforbundet. Dette tiltaket er en del av kommunens Grønn strategi for bærekraftig utvikling, og vil ha direkte innvirkning på miljøarbeidet i Bergen."
+  }
+}

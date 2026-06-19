@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9279:64496:201002239:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:20:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to establish a permanent workshop and depot for the Bybanen is significant for local infrastructure and has implications for environmental protection."
+    },
+    "summary_headline": "Bystyret vedtar permanent verksted for Bybanen på Kokstad",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt reguleringsplanen for et permanent verksted og depot for Bybanen, lokalisert i Ytrebygda, Kokstad. Planen inkluderer tiltak for å beskytte biologisk mangfold og sikre områdene mot flom. Per E. Stiegler fra Arbeiderpartiet understreket at utbyggingen må skje parallelt med Bybanens utvikling. Vedtaket ble støttet av flere partier, men merknaden fra Sosialistisk Venstreparti om utvidede vernesoner ble ikke vedtatt."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2502:27105:200107474:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:25:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal for two residential blocks raises concerns about density and impact on local views, making it a significant local issue."
+    },
+    "summary_headline": "Bergenhus bydelsstyre fraråder høyere boligblokker i Nordnesveien",
+    "summary_body": "Bergenhus bydelsstyre har behandlet en rammesøknad for oppføring av to boligblokker med 26 leiligheter i Sparresgate/Nordnesveien. Bydelsdirektøren, Ole Vorland, fraråder prosjektet på grunn av høy tetthet og potensiell negativ innvirkning på utsikten for naboene. Det kreves også at prosjektet dokumenterer tilstrekkelig felles uteareal. Det er usikkerhet om dispensasjon fra reguleringsplanen for høyere bygninger vil bli innvilget."
+  }
+}

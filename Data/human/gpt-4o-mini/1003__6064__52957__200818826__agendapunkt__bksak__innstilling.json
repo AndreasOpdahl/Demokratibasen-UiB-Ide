@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1003:6064:52957:200818826:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:21:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The survey results indicate improved resident satisfaction, which is relevant for local residents and highlights ongoing challenges."
+    },
+    "summary_headline": "Beboertilfredsheten blant BBBs beboere har økt i 2008",
+    "summary_body": "Bergen Bolig og Byfornyelse KF (BBB) har gjennomført en beboertilfredshetsundersøkelse i 2008, hvor 502 beboere ble intervjuet. Resultatet viser en gjennomsnittlig tilfredshetsscore på 3,3, opp fra 2,95 i 2007. Undersøkelsen, som ble utført via telefonintervjuer, gir et mer representativt bilde av beboernes opplevelser. Til tross for forbedringen, er det fortsatt utfordringer knyttet til tilgjengelighet og informasjon. BBB planlegger å iverksette tiltak for å ytterligere forbedre beboertilfredsheten i 2009."
+  }
+}

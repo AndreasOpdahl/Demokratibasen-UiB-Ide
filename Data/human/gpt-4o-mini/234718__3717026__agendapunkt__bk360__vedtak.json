@@ -1,0 +1,18 @@
+{
+  "dokument_id": "234718:3717026:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:17:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains information about upcoming events and meetings but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Utvalg for finans, kultur og næring forbereder seg til LitFestBergen",
+    "summary_body": "Utvalg for finans, kultur og næring behandlet i møtet 12. januar 2022 sak 9/22, hvor Harald Victor Hove (H) informerte om invitasjon til åpningen av LitFestBergen den 9. februar. Påmeldingsfristen er 1. februar. Utvalgsleder vil sørge for at møtet avsluttes i tide for deltakelse. Det planlegges også et digitalt ekstramøte før bystyremøtet den 26. januar for å diskutere fordeling av midler til koronatiltak."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "70c3e4f4-f49e-514e-ab29-72364191eb2f",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 23:06:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a procedural change with limited impact on residents."
+    },
+    "summary_headline": "Ruspolitisk råd vurderer nye møtetidspunkter for 2026",
+    "summary_body": "Ruspolitisk råd diskuterer nye møtetidspunkter for 2026 etter forespørsel fra byråden, som har utfordringer med å delta på rådets møter på grunn av tirsdagskonferanser. Rådet vil vedta nytt møtetidspunkt for å sikre bedre deltakelse."
+  }
+}

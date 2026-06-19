@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3511:34551:200005894:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document involves a routine approval for a temporary alcohol license with no controversy."
+    },
+    "summary_headline": "Bergenhus bydelsstyre godkjenner skjenkebevilling for solidaritetsselskap",
+    "summary_body": "Bergenhus bydelsstyre har enstemmig godkjent en søknad om skjenkebevilling for øl og vin ved Bergen Internasjonale Kultursenter, Olav Kyrresgate 28, i forbindelse med et solidaritetsselskap den 29. mars 2003. Det ble ikke fremmet noen merknader til administrasjonens forslag."
+  }
+}

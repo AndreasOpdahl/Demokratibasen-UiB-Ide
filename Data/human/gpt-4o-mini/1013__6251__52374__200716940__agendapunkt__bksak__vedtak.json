@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:6251:52374:200716940:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:12:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses ongoing administrative matters and requests for clarity on processes, which are relevant to local governance."
+    },
+    "summary_headline": "Diskusjoner om reguleringsplan og retningslinjer for private forslag",
+    "summary_body": "I møtet 21. oktober behandlet Forretningsutvalget flere saker av lokal interesse. Byrådsleder Monica Mæland informerte om reguleringsplanen for Skansen, som nå er til første gangs behandling. Det ble også diskutert behovet for retningslinjer for behandling av private forslag, hvor Hallgeir Utne Hatlevik etterlyste bedre oversikt og registrering. Bystyredirektøren bekreftet at dette arbeidet er i gang og forventes ferdigstilt innen året. Videre ble det enighet om å ta opp spørsmål om bydelsstyrenes rolle og oppfølging av Brussel-turen neste uke."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "214982:1667600:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:33:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant planning case that has implications for local development and community safety."
+    },
+    "summary_headline": "Byrådet avviser planforslag for 80 boliger i Åsane",
+    "summary_body": "Byrådet har besluttet å ikke legge ut et planforslag for 80 boliger på Langåsen i Åsane til offentlig ettersyn. Plan- og bygningsetaten advarer mot at utbyggingen vil føre til økt biltrafikk og ikke ivareta trafikksikkerheten for myke trafikanter, spesielt barn. Byråden påpeker at forslaget strider mot kommunens mål om bærekraftig utvikling og kompakte bystrukturer. Det er også bekymringer knyttet til miljøpåvirkning og nedbygging av grøntarealer. Dette vedtaket er viktig for innbyggerne i Åsane, da det påvirker fremtidig boligbygging og trafikksikkerhet i området."
+  }
+}

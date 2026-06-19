@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:6542:56164:200907960:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:12:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant regulatory plan for student housing that impacts local residents and involves public input and potential changes."
+    },
+    "summary_headline": "Reguleringsplan for studenthybler på Grønneviksøren vedtatt av byrådet",
+    "summary_body": "Byrådet har anbefalt bystyret å vedta reguleringsplanen for studenthybler på Grønneviksøren i Møllendal. Planen omfatter bygging av 543 hybelenheter og har vært gjenstand for offentlig høring, hvor det kom inn 21 merknader fra både offentlige etater og privatpersoner. Byrådet foreslår å tillate en økning i byggehøyden til 26,5 meter for å imøtekomme Studentsamskipnaden i Bergens behov for flere hybelenheter. Det er også foreslått endringer i parkeringsbestemmelser for å sikre tilstrekkelig plass for bevegelseshemmede. Planen er viktig for å øke tilbudet av studentboliger i Bergen, hvor dekningsgraden er under 20 prosent."
+  }
+}

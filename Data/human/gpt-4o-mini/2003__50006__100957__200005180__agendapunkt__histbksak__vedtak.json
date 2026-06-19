@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50006:100957:200005180:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:31:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves a significant licensing approval for a local business, impacting residents and tourism."
+    },
+    "summary_headline": "Polarcruise får skjenkebevilling for M/S Christian Børs",
+    "summary_body": "Formannskapet i Bergen har innvilget Polarcruise skjenkebevilling for øl og vin om bord på M/S Christian Børs frem til 30. juni 2000. Søknaden om skjenkebevilling for brennevin ble derimot avslått. Bevillingshaver må oppfylle flere krav før bevillingen kan tas i bruk, inkludert dokumentasjon på registrering og bestått kunnskapsprøve for styrer og stedfortreder. Vedtaket ble fattet med 10 mot 3 stemmer for øl og vin, mens brennevinssøknaden fikk 8 mot 5 stemmer mot. Dette kan påvirke tilbudet til turister og lokale innbyggere."
+  }
+}

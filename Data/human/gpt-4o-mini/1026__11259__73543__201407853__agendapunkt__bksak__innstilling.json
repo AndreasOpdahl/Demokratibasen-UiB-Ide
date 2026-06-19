@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:11259:73543:201407853:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:55:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a road construction application that affects local historical considerations and property development."
+    },
+    "summary_headline": "Klage på avslag om tilførselsvei i Fana opprettholdes av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om anleggelse av en tilførselsvei til eiendommene gnr 10 bnr 869 og 870 i Fana. Klagen ble sendt inn av Sentra Eigedom AS etter at fagetaten avslo søknaden den 7. oktober 2014, med henvisning til at veien ville komme i strid med reguleringsplanen og hensynssonen for historisk veifar. Byantikvaren har uttalt at veien kan anlegges dersom det gamle veifaret ivaretas, men byrådet mener at det er behov for ytterligere utredning av veifaret før noen tillatelse kan gis. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "4b21f917-1bf0-5ab1-8512-1450ffdf1723",
+  "kommune_nummer": 4637,
+  "kommune_navn": "Hyllestad",
+  "generated_at": "2026-02-19 23:01:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document provides information about ongoing forestry assessments, which may be of interest to local landowners but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Taksering av skogareal i Hyllestad pågår",
+    "summary_body": "Taksering av skogareala i Askvoll, Fjaler og Hyllestad er i gang, og AT Skog har allerede taksert mange eigedomar. Skogeigarar kan bestille skogbruksplan fram til månadsskiftet januar/februar, som vil gjere det mogleg å omsette tømmer i dei neste 20 åra. Planane vil bli sendt ut etter sommaren."
+  }
+}

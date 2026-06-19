@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:3474:34194:200300309:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:54:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the implementation of eFaktura in Fana, which has local relevance and potential impact on residents."
+    },
+    "summary_headline": "Fana bydel vurderer innføring av eFaktura for enklere betaling",
+    "summary_body": "Fana bydelsstyre har fått svar fra bydelsdirektøren om planer for innføring av eFaktura, en løsning som vil forenkle elektronisk betaling og oppfølging av innbetalinger fra beboerne. Bydelsdirektøren, Nina Solberg Nygaard, fremhever fordelene med eFaktura, som kostnadsreduksjon og færre feil. Bergen kommune er i ferd med å anskaffe et nytt økonomisystem som vil muliggjøre eFaktura, med testing i 2. halvår 2003 og full implementering fra 2005. Dette kan ha betydelig innvirkning på hvordan innbyggere i Fana håndterer regninger."
+  }
+}

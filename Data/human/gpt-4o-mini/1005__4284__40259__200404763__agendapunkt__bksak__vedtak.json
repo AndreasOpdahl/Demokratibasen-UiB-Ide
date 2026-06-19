@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4284:40259:200404763:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:51:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant budgetary decisions affecting elder care services, which directly impact local residents."
+    },
+    "summary_headline": "Bystyret vedtar kostnadsreduserende tiltak i pleie- og omsorgssektoren",
+    "summary_body": "Bergen bystyre har vedtatt kostnadsreduserende tiltak i pleie- og omsorgssektoren, som inkluderer opprettholdelse av 28,3 pleienære stillinger i institusjoner og 12,8 stillinger i åpen omsorg. Bystyret avviste byrådets forslag om bemanningsreduksjoner ved institusjoner, og understreket viktigheten av aktivitører i omsorgstilbudet. Det ble også vedtatt at en handlingsplan for eldreomsorg skal vurderes på nytt. Dette tiltaket er en del av budsjettforliket som styrker eldreomsorgen med 9,8 millioner kroner."
+  }
+}

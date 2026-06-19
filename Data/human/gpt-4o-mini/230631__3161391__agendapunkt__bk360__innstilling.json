@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230631:3161391:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:09:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a new alcohol serving license for a cinema, which has implications for local regulations and community safety."
+    },
+    "summary_headline": "NFKino Lagunen får skjenkebevilling for alkohol",
+    "summary_body": "Byrådet har innvilget søknaden fra Nordisk Film Kino AS om ny alminnelig skjenkebevilling for alkoholholdig drikk ved NFKino Lagunen, Laguneveien 1. Skjenkebevillingen gjelder for to kinosaler med et totalt areal på 231 kvm, og skjenking kan starte fra kl. 19.30. Politiet og etaten for sosiale tjenester har gitt innspill, men ingen har avvist søknaden. Det er et vilkår at det tilbys gratis vann til kundene, og at aldersgrensen for å drikke alkohol i kinosalene settes til 18 år. Bevillingen gjelder frem til 31. desember 2021."
+  }
+}

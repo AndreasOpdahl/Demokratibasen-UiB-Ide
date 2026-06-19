@@ -1,0 +1,18 @@
+{
+  "dokument_id": "212574:1394187:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:26:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The project involves significant public spending and impacts local residents through environmental improvements and recreational facilities."
+    },
+    "summary_headline": "Byrådet vedtar 10,5 millioner til Sælenvassdraget del 1 – Lynghaugparken",
+    "summary_body": "Byrådet har fattet et gjennomføringsvedtak for prosjektet Sælenvassdraget del 1, som inkluderer utviklingen av Lynghaugparken. Prosjektet, som har en total kostnad på 10,5 millioner kroner, omfatter elveåpning, oppgradering av dreneringskanaler, samt etablering av en skatepark. Arbeidet vil starte med anbudskonkurranse våren 2019, og byggingen er planlagt å pågå høsten 2019 til våren 2020, med ferdigstillelse i juni 2020. Prosjektet er viktig for å forbedre biologisk mangfold og skape attraktive friluftsområder for innbyggerne i Fyllingsdalen."
+  }
+}

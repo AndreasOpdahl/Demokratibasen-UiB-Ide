@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50742:111955:199813830:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:42:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a controversial application for land reclamation in a public water area, with protests from local residents."
+    },
+    "summary_headline": "Kontroversiell utfylling i Store Lungegårdsvann godkjent med forbehold",
+    "summary_body": "Hovedutvalg for byutvikling har gitt betinget tillatelse til utfylling i Store Lungegårdsvann, til tross for protester fra Fløen og Nubben Velforeninger som mener utfyllingen bryter med reguleringsplanen. Tillatelsen er avhengig av at søknaden revideres i henhold til Miljøverndepartementets avgjørelse. Bydelsutvalg 01 Sentrum har ingen innvendinger, men advarer mot ytterligere utfylling for å bevare bo- og rekreasjonsmiljøet. Neste steg avhenger av Miljøverndepartementets behandling av reguleringsplanen."
+  }
+}

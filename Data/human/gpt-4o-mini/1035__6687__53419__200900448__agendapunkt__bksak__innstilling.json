@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:6687:53419:200900448:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:02:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a new building project in a central area of Bergen, which may impact local residents."
+    },
+    "summary_headline": "Nybygg av gjestehus i sentrum av Bergen foreslått",
+    "summary_body": "Det er sendt inn en søknad om oppføring av et nytt gjestehus med parkeringsanlegg i underetasjen på eiendommen gnr 166 bnr 571, Domkirkegaten 5. Bygningen er planlagt i henhold til reguleringsplanen for Vågsbunnen og kommunedelplanen for sentrum, som tillater blandet sentrumsformål. Eiendommen er i dag ubebygd. Søknaden er signert av overarkitekt Åge Vallestad."
+  }
+}

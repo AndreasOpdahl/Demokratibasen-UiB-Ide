@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13023:77844:201635013:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:54:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The approval of a new alcohol license for Cafe Sanaa is relevant to local residents and involves public interest."
+    },
+    "summary_headline": "Cafe Sanaa får ny skjenkebevilling i Kaigaten 22",
+    "summary_body": "Byråden for helse og omsorg, Vigdis Anita Gåskjenn, har innstilt på at Cafe Sanaa i Kaigaten 22 får innvilget ny alminnelig skjenkebevilling for alkoholholdig drikk. Dette skjer etter at cafeen har flyttet fra tidligere lokaler i Marken. Den totale skjenkearealet er 91 m², inkludert 21 m² uteservering. Det er et vilkår at det er gratis vann tilgjengelig i lokalet. Bevillingen gjelder frem til 31. desember 2017, og det stilles krav om dokumentasjon før den kan tas i bruk."
+  }
+}

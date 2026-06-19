@@ -1,0 +1,18 @@
+{
+  "dokument_id": "224620:2397679:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:52:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions without significant impact or controversy."
+    },
+    "summary_headline": "Byrådssaker fordelt til bystyreutvalg",
+    "summary_body": "I byrådets møte 22. oktober 2020 ble det besluttet å fordele flere byrådssaker til ulike bystyreutvalg. Sakene 317 og 318 går til utvalg for miljø og byutvikling, mens sakene 313, 316, 319, 320 og 322 sendes til utvalg for finans, kultur og næring. I tillegg ble det enstemmig vedtatt at sak 320 også sendes til utvalg for helse og sosial for orientering. Ingen kontroverser ble rapportert."
+  }
+}

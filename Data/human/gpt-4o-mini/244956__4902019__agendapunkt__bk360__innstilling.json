@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244956:4902019:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:40:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses a pressing issue regarding teacher safety and mental health support in Bergen schools."
+    },
+    "summary_headline": "Krav om samtaleterapi for lærere etter voldshendelser",
+    "summary_body": "Håkon Opedal fra MDG har stilt spørsmål til byråden om tilgjengeligheten av samtaleterapi for lærere som har opplevd vold og trusler i Bergensskolen. Han etterlyser tiltak for å gi lærere rask hjelp gjennom bedriftshelsetjenesten. Byråden har bekreftet at det er et systematisk arbeid på området, men det er usikkert hvor mange lærere som får tilbudet i dag, og når det vil være fullt implementert. Dette er en viktig sak for lærere og skolen i Bergen, spesielt med økningen av vold i skolen."
+  }
+}

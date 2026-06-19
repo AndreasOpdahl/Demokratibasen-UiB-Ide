@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11159:70931:200904538:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:47:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a significant decision to revoke a liquor license due to violations, impacting local businesses and public safety."
+    },
+    "summary_headline": "Skjenkebevillingen til Pianoclub inndras etter brudd på alkoholloven",
+    "summary_body": "Byrådet har besluttet å inndra skjenkebevillingen for Pianoclub, eid av Utsikten Restaurantdrift AS, i 14 dager etter at kontrollørene rapporterte om skjenking til åpenbart påvirkede gjester. Dette skjedde under en kontroll 14. juni 2014, hvor det ble avdekket at gjester ikke ble bortvist fra lokalet. Byrådsleder Ragnhild Stolt-Nielsen understreker viktigheten av å følge opp bevillingshaverne for å sikre overholdelse av alkoholloven. Inndragningen trer i kraft innen 60 dager etter vedtaket."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "218866:1926513:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:39:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposed changes to school district boundaries are significant for local families and involve the redistribution of students."
+    },
+    "summary_headline": "Endringer i skolekretsgrenser i Bergen kommune foreslås på høring",
+    "summary_body": "Byråd for barnehage, skole og idrett, Katrine Nødtvedt, har lagt frem forslag om å sende endringer av forskrift om skolekretsgrenser i Bergen kommune på høring. Endringene, som gjelder fra skoleåret 2020/2021, vil påvirke 114 barn som skal overføres fra Ytrebygda til Skranevatnet skole, samt 33 barn fra Skjold til Søråshøgda skole. Høringsfristen er satt til 6. mars 2020. Forslagene er i tråd med nærskolerett og tar sikte på å bedre tilgangen til nærskoler for berørte elever."
+  }
+}

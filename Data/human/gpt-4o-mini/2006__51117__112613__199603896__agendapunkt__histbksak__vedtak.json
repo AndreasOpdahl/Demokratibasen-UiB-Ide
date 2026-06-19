@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:51117:112613:199603896:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:50:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the importance of cultural policy in the context of municipal reorganization, highlighting a political debate."
+    },
+    "summary_headline": "Kulturpolitikken i Bergen må bli synlig etter omorganisering",
+    "summary_body": "Hovedutvalg for fritid og kultur har enstemmig vedtatt å ta administrasjonens orientering til etterretning, men understreker viktigheten av at den byomfattende kulturpolitikken blir synlig i det nye organisasjonsmønsteret etter bydelsreformen. Hans Carl Tveit (V) fremmet et tillegg som ble vedtatt med én stemme imot fra FrP, som viser at det er politisk uenighet om hvordan kultursektoren skal håndteres i fremtiden."
+  }
+}

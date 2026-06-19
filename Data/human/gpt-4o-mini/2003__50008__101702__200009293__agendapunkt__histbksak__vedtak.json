@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50008:101702:200009293:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:31:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a sales license for alcohol is relevant to local businesses and community regulations."
+    },
+    "summary_headline": "Tippestuene AS får salgsbevilling for øl i Bergen",
+    "summary_body": "Formannskapet i Bergen har innvilget søknaden fra Tippestuene AS om salgsbevilling for øl med lavere alkoholinnhold enn 4,76 volumprosent. Bevillingen gjelder frem til 30. juni 2000, med spesifikke salgstider. Styrer for bevillingen er Åge Midtun, mens Grete Ottesen er stedfortreder. Før bevillingsdokumentet kan utferdiges, må flere vilkår oppfylles, inkludert dokumentasjon på godkjente lokaler og ansatte. Vedtaket ble fattet med 11 mot 2 stemmer, der KrF stemte imot."
+  }
+}

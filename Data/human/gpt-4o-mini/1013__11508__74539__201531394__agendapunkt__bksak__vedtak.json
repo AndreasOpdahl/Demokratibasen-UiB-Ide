@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:11508:74539:201531394:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:01:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine update about upcoming matters to be discussed in a future meeting."
+    },
+    "summary_headline": "Byrådet forbereder saker til desembermøte",
+    "summary_body": "Byrådsleder Harald Schjelderup informerte om at byrådet vil behandle to saker på torsdag, som de ønsker å ta opp i bystyremøtet i desember."
+  }
+}

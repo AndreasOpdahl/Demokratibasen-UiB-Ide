@@ -1,0 +1,18 @@
+{
+  "dokument_id": "222330:1926586:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:47:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a procedural decision regarding emergency preparedness but lacks significant controversy or impact."
+    },
+    "summary_headline": "Bystyret godkjenner beredskapsplan for koronahåndtering",
+    "summary_body": "Byrådet i Bergen har vedtatt den Overordnede Beredskapsplanen for kommunen under håndteringen av koronapandemien. I møtet 25. juni 2020 ble det besluttet at ordningen med vakthavende byråd som stedfortreder for byrådsleder i kriser forblir uendret. Melding om vedtaket vil bli sendt til Bystyrets kontor."
+  }
+}

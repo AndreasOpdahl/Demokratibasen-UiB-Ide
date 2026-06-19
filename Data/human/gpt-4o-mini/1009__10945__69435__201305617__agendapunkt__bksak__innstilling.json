@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10945:69435:201305617:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:45:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a new cultural and sports building in Fyllingsdalen has significant local relevance and financial implications."
+    },
+    "summary_headline": "Felles kultur- og idrettsbygg foreslås i Fyllingsdalen",
+    "summary_body": "Byrådet har foreslått å bygge et nytt felles kultur- og idrettsbygg på tomten til den eksisterende Fyllingsdalen Idrettshall. Dette tiltaket er nødvendig på grunn av store utfordringer med den nåværende hallen, som anbefales revet. Kostnadene for rehabilitering er estimert til mellom 61 og 79 millioner kroner, mens det nye bygget har en investeringsramme på 200 millioner kroner. Samlokaliseringen av kultur- og idrettsbygg vil gi innsparinger på 10-20 % og skape en attraktiv møteplass for innbyggerne. Byrådet planlegger å innarbeide prosjektet i økonomiplanen for 2015-2018, med 1 million kroner avsatt til planlegging i 2014."
+  }
+}

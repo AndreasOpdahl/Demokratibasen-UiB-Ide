@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207860:255242:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:14:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document outlines a significant inclusion and diversity plan for Bergen, addressing local demographic changes and community needs."
+    },
+    "summary_headline": "Bergen kommune vedtar inkluderingsplan for innvandrere 2018-2022",
+    "summary_body": "Bergen byråd har lagt frem planen \"Verden i Bergen\" for inkludering og mangfold 2018-2022, som tar sikte på å forbedre inkluderingen av innvandrere i kommunen. Planen, som er en oppfølging av byrådets plattform, adresserer behovene til den økende innvandrerbefolkningen, som har vokst fra 2800 i 1970 til 49 200 i 2018. Den inneholder tiltak for å tilpasse kommunale tjenester til en mangfoldig befolkning, fremme deltakelse i arbeidslivet, og motvirke segregering. Byrådet anbefaler at bystyret vedtar planen, som vil bli finansiert gjennom eksisterende budsjettmidler og statlige tilskudd. Planen er viktig for å sikre en positiv utvikling i Bergen, og tiltakene vil bli iverksatt i løpet av planperioden."
+  }
+}

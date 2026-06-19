@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:2648:25480:200004841:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:17:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a contentious issue regarding social welfare spending, with differing opinions among political parties."
+    },
+    "summary_headline": "Kontroversiell økning i sosialhjelpsutgifter diskutert i Årstad bydelsstyre",
+    "summary_body": "Årstad bydelsstyre har behandlet et forslag om økning i sosialhjelpsutgiftene, fremmet av Laila K. Olsen (H). Forslaget ble vedtatt til foreløpig orientering med enstemmig støtte fra administrasjonen, mens det fikk 7 stemmer fra Høyre, Fremskrittspartiet og Senterpartiet mot 6 stemmer fra Arbeiderpartiet, Rødt, Sosialistisk Venstreparti og Kristelig Folkeparti. Dette viser en politisk splittelse i spørsmålet om sosialhjelp, som kan påvirke mange innbyggere i kommunen."
+  }
+}

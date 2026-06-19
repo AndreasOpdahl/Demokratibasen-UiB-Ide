@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5157:45785:200401125:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:25:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to deny funding for the summer opera is relevant to local cultural events and public spending."
+    },
+    "summary_headline": "Byrådet avslår tilskudd til sommeropera 2006",
+    "summary_body": "Byrådet i Bergen har besluttet å avslå søknaden fra Vest Norges Opera om et tilskudd på 500 000 kroner til sommeroperaene i 2006. Dette vedtaket ble fattet under møtet den 15. november 2006. Avslaget kan påvirke det lokale kulturlivet og tilgjengeligheten av sommerforestillinger for innbyggerne."
+  }
+}

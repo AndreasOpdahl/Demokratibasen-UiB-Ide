@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:6253:52538:200815963:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:12:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a proposal that was unanimously approved, but lacks significant conflict or impact."
+    },
+    "summary_headline": "Enstemmig forslag om reklame sendt til byrådet",
+    "summary_body": "Forretningsutvalget har enstemmig vedtatt å sende Lillian Bloms private forslag \"Reklame - nei takk og reklame ja takk\" til byrådet for videre behandling. Forslaget ble behandlet i møtet den 28. oktober 2008."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:6350:52707:200814054:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:34:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant funding for environmental management initiatives in Bergen, which directly impacts local governance and sustainability efforts."
+    },
+    "summary_headline": "Bergen kommune bevilger 1,1 millioner til miljøledelse",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 1,1 millioner kroner til innføring av miljøledelse i kommunens virksomhet. Dette tiltaket, som koordineres av byrådsavdelingen for klima, miljø og byutvikling, er en del av en større satsing på klimatiltak og skal bidra til å oppfylle kommunens miljømål. Midlene vil bli brukt til å ansette en medarbeider som skal lede sertifiseringsarbeidet, med fokus på ordninger som Miljøfyrtårn og Grønt flagg. Rapportering om fremdriften i arbeidet er planlagt ved årsskiftet 2009/2010."
+  }
+}

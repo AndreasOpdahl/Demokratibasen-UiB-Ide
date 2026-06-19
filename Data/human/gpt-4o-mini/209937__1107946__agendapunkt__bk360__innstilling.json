@@ -1,0 +1,18 @@
+{
+  "dokument_id": "209937:1107946:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:19:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses a local issue regarding the lack of educational opportunities for activity leaders, which affects healthcare services."
+    },
+    "summary_headline": "Eldrerådet ber om aktivitørutdanning i Hordaland",
+    "summary_body": "Eldrerådet i Bergen har identifisert mangelen på aktivitørutdanning i Hordaland som et problem for rekruttering av aktivitører, en viktig faggruppe i helse- og omsorgstjenestene. De foreslår å sende en henvendelse til fylkeseldrerådet for å oppfordre til opprettelse av en aktivitørutdanning, samt til Bergen kommune for å tilby lærlingeplasser som aktivitør. Dette tiltaket kan forbedre kvaliteten på omsorgstjenester i kommunen."
+  }
+}

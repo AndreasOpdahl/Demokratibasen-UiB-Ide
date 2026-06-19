@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9277:64322:200608373:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:20:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a significant regulatory change affecting local housing development, with a notable dissenting proposal."
+    },
+    "summary_headline": "Reguleringsendring i Laksevåg vedtatt med minoritetsforslag fra SV",
+    "summary_body": "Bergen bystyre har vedtatt en reguleringsendring for Laksevåg, som inkluderer reduksjon av høyden på boligblokker i felt BB. Forslaget fra Tina Åsgård (SV) om å redusere høyden på alle tre boligblokkene ble nedstemt. Vedtaket ble fattet med 66 stemmer for og 7 mot, og vil påvirke boligutviklingen i området. Neste steg er implementering av de nye reguleringsbestemmelsene."
+  }
+}

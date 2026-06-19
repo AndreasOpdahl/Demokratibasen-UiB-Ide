@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:3508:33595:200202080:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:37:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a municipal guarantee for a significant loan to establish a new kindergarten, which has local relevance and financial implications."
+    },
+    "summary_headline": "Bergen kommune vurderer kommunal garanti for Kjøkkelvik barnehage",
+    "summary_body": "Byrådet i Bergen anbefaler bystyret å gi kommunal garanti for lån på inntil 7.332.000 kroner til Stien Eiendom AS for bygging av Kjøkkelvik barnehage i Laksevåg. Barnehagen vil ha plass til 82 barn og er en del av en plan for utbygging av barnehagetilbudet i kommunen. Det er usikkerhet knyttet til kommunens erfaring med byggelånsgarantier, da det ikke har blitt gitt slike garantier siden 1972. Bystyret må ta stilling til forslaget, som også krever godkjenning fra fylkesmannen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1028:7289:56399:200900364:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:28:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new inclusive information sign for a local beach, which has relevance for residents with disabilities."
+    },
+    "summary_headline": "Inkluderende informasjonsskilt for Krohnegården badeplass foreslås",
+    "summary_body": "Kommunalt råd for funksjonshemmede har foreslått et nytt informasjonsskilt for Krohnegården badeplass, designet for å være tilgjengelig for alle, inkludert svaksynte, blinde og rullestolbrukere. Skiltet vil være i A2-format, plassert 90 cm over bakken og skråne 45 grader utover. Rådet har allerede gitt innspill til Grønn Etat og ønsker flere tilbakemeldinger før endelig beslutning. Dette tiltaket vil forbedre tilgjengeligheten for funksjonshemmede i Bergen."
+  }
+}

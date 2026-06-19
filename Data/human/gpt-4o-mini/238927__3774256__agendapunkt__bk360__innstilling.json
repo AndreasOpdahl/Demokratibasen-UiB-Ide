@@ -1,0 +1,18 @@
+{
+  "dokument_id": "238927:3774256:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:26:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a change in a municipal committee member, which has moderate local relevance."
+    },
+    "summary_headline": "Endring i helse- og sosialutvalget: Tora Hodneland Kildehaug trekker seg",
+    "summary_body": "Tora Hodneland Kildehaug (H) har bedt om fritak fra vervet som andre varamedlem i utvalg for helse og sosial, da møtene er vanskelige å kombinere med hennes arbeid. Høyre foreslår Karl Strydom Eidesund (H) som hennes etterfølger. Fritaket gjelder for resten av valgperioden 2019-2023."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "235888:3702443:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:19:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses ongoing audits related to kindergartens, which is relevant to local residents."
+    },
+    "summary_headline": "Kontrollutvalget godkjenner revisjon av barnehagekvalitet",
+    "summary_body": "Kontrollutvalget i Bergen kommune behandlet status for forvaltningsrevisjoner i sitt møte 23. mars 2022. De godkjente operasjonaliseringen av problemstillinger knyttet til kvaliteten i barnehager, som ble bestilt tidligere. Revisjonen er viktig for å sikre kvaliteten i barnehagetilbudet i kommunen."
+  }
+}

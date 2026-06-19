@@ -1,0 +1,18 @@
+{
+  "dokument_id": "208977:269463:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:17:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant decision regarding the establishment of a freight terminal in a popular area for seniors, which has local implications."
+    },
+    "summary_headline": "Eldrerådet sier nei til godsterminal på Koengen",
+    "summary_body": "Eldrerådet har besluttet å støtte Bergen pensjonistforenings uttalelse om å ikke etablere en godsterminal på Koengen, et populært turområde for eldre. Dette ble vedtatt i møtet 28. november 2018, og arbeidsutvalget vil følge opp saken videre. Innspill til tiltak for å forbedre Bergen vil bli offentliggjort 6. desember."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "209809:1114151:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:19:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The approval of a new alcohol license for a local venue is relevant to residents and may impact community dynamics."
+    },
+    "summary_headline": "Nytt skjenkebevilling for Loulou i Bergen innvilget",
+    "summary_body": "Byrådet har innvilget en ny alminnelig skjenkebevilling for alkoholholdig drikk ved Loulou, Nedre Ole Bulls Plass 4, frem til 30. juni 2020. Bevillingshaver er Rekom Norge Drift AS, med Dennis Thomas Hallberg som styrer. Det er satt aldersgrenser på 21 år etter kl. 21.00 på lørdager og 23 år på søndager. Skjenketiden er tillatt til kl. 02.30, forutsatt at ansatte har gjennomgått kurs i ansvarlig alkoholhåndtering. Innbyggerne bør merke seg at det er krav om gratis vann i lokalet."
+  }
+}

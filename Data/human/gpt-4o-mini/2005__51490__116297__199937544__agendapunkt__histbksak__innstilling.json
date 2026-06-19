@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51490:116297:199937544:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:48:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant land acquisition proposal that has been recommended for denial due to zoning regulations, impacting local land use."
+    },
+    "summary_headline": "Bergen kommune anbefaler avslag på konsesjon for eiendom i Fana",
+    "summary_body": "Plan- og miljøutvalget i Bergen kommune har anbefalt å avslå søknaden fra Tor Brekke og andre om konsesjon for erverv av en ubebygd eiendom i Fana, vurdert til 750 000 kroner. Eiendommen er klassifisert som landbruks-, natur- og friluftsområde, og kommunen mener at den ikke kan utnyttes til det foreslåtte formålet. Den endelige avgjørelsen vil bli tatt av fylkeslandbruksstyret. Dette kan påvirke fremtidige utbyggingsmuligheter i området."
+  }
+}

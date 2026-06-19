@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3183:31243:200205267:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:01:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a funding decision for a cultural event addressing important social issues related to immigrants."
+    },
+    "summary_headline": "Byrådet bevilger 4000 kroner til kvinnefellesskap for kulturarrangement",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 4000 kroner til Multinasjonalt kvinnefellesskap for et kulturarrangement som ble avholdt den 25. april. Arrangementet, som samlet over 100 deltakere, fokuserte på innvandreres situasjon i arbeidsmarkedet og utdanningsgodkjenning. Byråd for service, utvikling og tekniske tjenester, Nils-Arild Johnsen, understreker viktigheten av å sette fokus på disse temaene. Tidligere har organisasjonen mottatt støtte fra fylket og Røde Kors."
+  }
+}

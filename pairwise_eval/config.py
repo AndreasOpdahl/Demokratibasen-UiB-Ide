@@ -124,7 +124,7 @@ LOCAL_LLM_TIMEOUT_S = 300.0
 # First N documents (by first-seen ``doc_id`` order). None = use the full loaded corpus.
 # For per-model checkpoint selection, keep None so Bradley–Terry / win rates use every example
 # in that model folder’s JSONL files.
-MAX_DOCUMENTS: int | None = 150
+MAX_DOCUMENTS: int | None = 200
 
 # Random model pairs sampled per document (capped by available combinations); see :func:`pairwise_eval.pairs.build_pairs_table`.
 N_PAIRS_PER_DOCUMENT: int = 8

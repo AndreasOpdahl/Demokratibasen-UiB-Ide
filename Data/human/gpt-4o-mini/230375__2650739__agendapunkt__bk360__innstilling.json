@@ -1,0 +1,18 @@
+{
+  "dokument_id": "230375:2650739:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:08:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant rehabilitation project for a historical dam that impacts local infrastructure and recreation."
+    },
+    "summary_headline": "Byrådet anbefaler dispensasjon for rehabilitering av kulturminne ved Hjortlandsstemmen",
+    "summary_body": "Byrådet i Bergen har anbefalt at det gis dispensasjon fra kommuneplanens bestemmelser for rehabilitering av dammen ved Hjortlandsstemmen. Dammen, som er et kulturminne fra 1872, trenger oppgradering for å møte kravene fra NVE om sikkerhet mot dambrudd. Arbeidet vil vare i ca. 6-8 måneder og omfatter blant annet etablering av en ny betongplate og oppstrøms mur. Det er stilt vilkår for å ivareta friluftslivet og minimere negative effekter under anleggsperioden. Tiltaket er viktig for å sikre både infrastruktur og tilgjengelighet for lokalbefolkningen."
+  }
+}

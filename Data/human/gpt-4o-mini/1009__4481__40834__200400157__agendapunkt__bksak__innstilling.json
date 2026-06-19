@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4481:40834:200400157:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:16:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines the status and future plans for a significant community project, which is relevant to local residents."
+    },
+    "summary_headline": "Fremdrift for Aktivitetshuset FYSAK i Bergen",
+    "summary_body": "Byrådet informerer om fremdriften av Aktivitetshuset FYSAK på Slettebakken, et prosjekt som er delvis finansiert av Det kongelige kultur- og kirkedepartementet med inntil 12,5 millioner kroner. Prosjektet, som har vært forsinket, er nå i gang igjen etter godkjenning av investeringsprogrammet. Det er planlagt byggestart i august/september 2005, med ferdigstillelse i juni 2006. Det er enighet om å bruke en totalentreprisemodell, men budsjettbegrensninger kan påvirke prosjektets omfang. Det er viktig for kommunen å opprettholde de opprinnelige funksjonene i prosjektet, som inkluderer skatehall, aktivitetsrom og kafe."
+  }
+}

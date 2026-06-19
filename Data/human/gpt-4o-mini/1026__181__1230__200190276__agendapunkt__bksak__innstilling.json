@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:181:1230:200190276:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:59:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property sale is significant for local residents."
+    },
+    "summary_headline": "Bergen kommune avviser forkjøpsrett på leiegård i Tidemands gate",
+    "summary_body": "Bergen kommune har besluttet å ikke benytte seg av forkjøpsretten ved salget av leiegården på Tidemands gate 3, eid av Herleiv Valdersnes dødsbo, til Binh Than Tran for 3.619.232 kroner. Byrådet, ledet av Anne-Grete Strøm-Erichsen, begrunner avgjørelsen med at leietakerne ikke kan dokumentere tilstrekkelig finansiering for å overta eiendommen som borettslag eller eierseksjonssameie. Dette kan påvirke leietakerne som har uttrykt ønske om å kjøpe eiendommen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:7135:56757:200716939:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:15:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is procedural and lacks significant impact or controversy."
+    },
+    "summary_headline": "Kontrollutvalgssak om informasjonssikkerhet sendt til komiteer",
+    "summary_body": "Forretningsutvalget har enstemmig besluttet å sende Kontrollutvalgssak 88-09, som omhandler revisjonsrapporten om informasjonssikkerhet og behandling av personopplysninger i Bergen kommune, videre til Komite for finans og Komite for oppvekst som en orienteringssak."
+  }
+}

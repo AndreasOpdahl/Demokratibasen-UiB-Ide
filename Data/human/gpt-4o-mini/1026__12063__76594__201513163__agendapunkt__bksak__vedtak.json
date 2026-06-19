@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12063:76594:201513163:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:57:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a procedural matter with no ongoing conflict or significant implications."
+    },
+    "summary_headline": "Klage trukket i Ytrebygda",
+    "summary_body": "Saken om klage på avslag for oppføring av enebolig på Vestre Storheilia 48 er trukket."
+  }
+}

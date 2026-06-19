@@ -1,0 +1,18 @@
+{
+  "dokument_id": "226632:2650707:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:56:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for year-round operation of Nordnes Sjøbad is significant for local residents and involves public funding."
+    },
+    "summary_headline": "Forslag om helårsdrift av Nordnes Sjøbad kan bli realitet",
+    "summary_body": "Eivind Nævdal-Bolstad (H) har fremmet en interpellasjon til Bergen bystyre om helårsdrift av Nordnes Sjøbad, som nylig feiret sitt 110-årsjubileum. Han påpeker at med innføring av fjernvarme er det nå mulig å holde badet åpent hele året, noe som vil være til stor nytte for både bergensere og Nordnes skole. Nævdal-Bolstad oppfordrer byrådet til å sikre nødvendige midler og budsjettjusteringer for å realisere dette. Forslaget har fått støtte fra flere partier, og det er en forventning om at politiske løfter ikke skal bli brutt."
+  }
+}

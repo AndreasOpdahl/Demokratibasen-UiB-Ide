@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10670:70410:201408553:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:31:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for increased physical activity in schools addresses a significant public health issue and has local relevance."
+    },
+    "summary_headline": "Bystyret vurderer økt fysisk aktivitet i skolen",
+    "summary_body": "Bystyrepolitiker Ove Sverre Bjørdal (Sp) har fremmet et forslag om å etablere en forsøksordning for økt fysisk aktivitet i skolene i Bergen. Forslaget innebærer at hver bydel skal ha en skole med daglig fysisk aktivitet for elevene, inspirert av vellykkede prosjekter i Sogndal og Søndre Land. Forretningsutvalget har besluttet at forslaget skal behandles i bystyret senest 17. september 2014, til tross for at fristen overskrides med 10 dager. Dette tiltaket tar sikte på å bekjempe barneovervekt og forbedre læringsmiljøet, og det er ventet en evaluering etter forsøket. Forslaget er relevant for alle foreldre og elever i Bergen, da det kan påvirke helse og trivsel i skolen."
+  }
+}

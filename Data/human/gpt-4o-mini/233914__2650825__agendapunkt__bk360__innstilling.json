@@ -1,0 +1,18 @@
+{
+  "dokument_id": "233914:2650825:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:16:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal addresses public safety concerns regarding electric scooters, which is a relevant and impactful issue for local residents."
+    },
+    "summary_headline": "Forslag om nattestenging av el-løperhjul i Bergen for å øke trafikksikkerheten",
+    "summary_body": "Bystyremedlemmer Stig Torgersen og Steinulf Tungesvik fra Senterpartiet har fremmet et forslag om å stenge el-løperhjulene i Bergen sentrum fra midnatt til 06:00 i helgene. Dette forslaget kommer som respons på økende bekymringer om trafikksikkerhet, spesielt etter rapporter om ulykker og farlig kjøring med el-sparkesykler. Forslaget ble behandlet av Forretningsutvalget 22. juni 2021 og oversendt byrådet for videre vurdering, med en frist for behandling i bystyret innen 15. desember 2021. Byrådet har imidlertid ikke sendt inn sitt notat til saken på grunn av sykdom, men vil gjøre dette så snart som mulig."
+  }
+}

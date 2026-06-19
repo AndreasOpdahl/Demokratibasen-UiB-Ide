@@ -1,0 +1,18 @@
+{
+  "dokument_id": "d7bb4d86-ab1b-5492-8dbd-06d6f7add221",
+  "kommune_nummer": 4644,
+  "kommune_navn": "Luster",
+  "generated_at": "2026-02-19 23:21:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines multiple public hearings relevant to local residents, particularly concerning community planning and services."
+    },
+    "summary_headline": "Eldrerådet og Rådet for personar med funksjonsnedsetting vurderer høyringssaker",
+    "summary_body": "Eldrerådet og Rådet for personar med funksjonsnedsetting i Luster kommune skal vurdere fem aktive høyringssaker på møtet 17. november 2025. Sakene inkluderer revisjon av detaljregulering for Hestnes, oppstart av helsebygg i Gaupne sentrum, mulig sammenslåing av Solvorn oppvekstsenter med Hafslo, samt tiltak for tryggere trafikk ved Indre Hafslo oppvekstsenter. I tillegg er det en søknad om dispensasjon for etablering av Viaferrata-anlegg. Rådene vil beslutte om de ønsker å gi innspill til noen av sakene."
+  }
+}

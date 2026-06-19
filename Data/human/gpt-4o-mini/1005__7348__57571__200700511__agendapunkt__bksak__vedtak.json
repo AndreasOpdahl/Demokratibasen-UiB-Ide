@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7348:57571:200700511:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:15:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant funding allocations for urban development and traffic safety, which are highly relevant to local residents."
+    },
+    "summary_headline": "Bystyret vedtar Bergensprogrammet med fokus på trafikksikring og sykkelveier",
+    "summary_body": "Bystyret i Bergen har godkjent plan- og byggeprogrammet for 2010, som inkluderer en total ramme på 600 millioner kroner. Det er en sterk oppfordring til å prioritere trafikksikring av Hjellestadvegen, som er en viktig skole- og riksvei med høy trafikk. Bystyret uttrykker bekymring for finansieringen av trafikksikringstiltak og ber om alternative finansieringsmodeller. Det er også enighet om å øke innsatsen for gang- og sykkelveier, med 180 millioner kroner avsatt til dette formålet. Bystyret vil komme tilbake til midler til sykkelformål i 2011, og det er en klar forventning om at bydelsstyrenes innspill blir vurdert i fremtidige handlingsprogrammer."
+  }
+}

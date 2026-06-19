@@ -1,0 +1,18 @@
+{
+  "dokument_id": "235481:3795455:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:18:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision not to exercise the municipal pre-emption right on a property is relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på leiegård",
+    "summary_body": "Bergen kommune har besluttet å ikke gjøre forkjøpsrett gjeldende for eiendommen på Hans Tanks gate 5, gnr 164 bnr 1317, i henhold til lov om kommunal forkjøpsrett. Beslutningen ble fattet av byrådet under møtet den 10. februar 2022. Dette kan påvirke boligmarkedet i området, da kommunen ikke vil ha mulighet til å kjøpe eiendommen før den overdras til en ny eier."
+  }
+}

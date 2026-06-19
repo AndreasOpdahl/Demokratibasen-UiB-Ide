@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51436:115921:199705995:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:47:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant regulatory change affecting local industry and environmental considerations, which is highly relevant to residents."
+    },
+    "summary_headline": "Vesentlig reguleringsendring for Flesland industrikai legges ut til offentlig ettersyn",
+    "summary_body": "Fana Stein & Gjenvinning AS har søkt om en vesentlig endring av reguleringsplanen for Flesland, som ble vedtatt i 1983. Den nye planen, som anbefales lagt ut til offentlig ettersyn, reduserer kailengden fra 1000 til 400 meter og inkluderer miljøtilpassede tiltak for å sikre flysikkerheten ved Bergen Lufthavn. Det foreslås også å omregulere et nærliggende område til spesialområde for bevaring av kulturminner. Planen har fått støtte fra Luftfartsverket, men møter motstand fra lokale beboere som frykter økt støy og tap av rekreasjonsområder. Neste steg er offentlig høring av forslaget."
+  }
+}

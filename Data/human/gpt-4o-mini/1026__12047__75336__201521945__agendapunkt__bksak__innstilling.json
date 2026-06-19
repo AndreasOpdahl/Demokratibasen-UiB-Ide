@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12047:75336:201521945:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:57:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a denied application for a change of use that affects local housing availability and compliance with noise regulations."
+    },
+    "summary_headline": "Klage på avslag om loftsleilighet i Bergenhus opprettholdes av byrådet",
+    "summary_body": "Byrådet i Bergen har besluttet å opprettholde avslaget på en søknad om bruksendring av loftet i Helleveien 131 fra tilleggsdel til selvstendig boenhet. Klagen ble fremmet av sivilingeniør Atle Sundal på vegne av tiltakshaver Gisle Haugland, som argumenterer for at avslaget er basert på feilaktige støyvurderinger. Fagetaten har imidlertid konkludert med at tiltaket ikke oppfyller kravene til støy, romhøyde og uteoppholdsareal, og at en dispensasjon vil kunne medføre helseskader. Byrådet understreker at det ikke foreligger en tidligere tillatelse til loftsleilighet, og at klagerens argumenter ikke gir grunnlag for å endre vedtaket. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

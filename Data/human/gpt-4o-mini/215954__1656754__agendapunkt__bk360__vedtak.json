@@ -1,0 +1,18 @@
+{
+  "dokument_id": "215954:1656754:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:35:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses logistical arrangements and an invitation to a friendship city gathering, which lacks significant local impact or controversy."
+    },
+    "summary_headline": "Bergen vurderer deltakelse på vennskapsbysamling i Gøteborg",
+    "summary_body": "Bystyredirektør Roar Kristiansen informerte om invitasjon fra Gøteborg til vennskapsbysamling 14. og 15. november. Partiene vil sjekke med sine representanter om deltakelse. Kristiansen orienterte også om logistikk for kontorbytter i Magistraten."
+  }
+}

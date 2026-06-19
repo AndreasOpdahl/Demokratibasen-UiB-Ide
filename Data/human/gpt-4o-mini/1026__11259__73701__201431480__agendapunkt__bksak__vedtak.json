@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:11259:73701:201431480:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:55:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a significant decision regarding a local property that affects public access and land use."
+    },
+    "summary_headline": "Klage på kai og brygge godkjent med vilkår i Åsane",
+    "summary_body": "Komite for miljø og byutvikling har delvis innvilget en klage på avslag om legalisering av kai, flytebrygge og tilbygg på Vollane 28 i Åsane. Tiltakene inkluderer heving av eksisterende kai med 30 cm, anlegg av pir og flytebrygge, samt fasadeendringer. Komiteen vurderte at tiltakene ikke vil ha en negativ innvirkning på landskapsbildet eller allmennhetens ferdsel. Vedtaket ble fattet med 14 stemmer fra A, H, FrP, KrF og V, mens SV og MDG stemte imot. Det er nå opp til fagetaten å utarbeide de nærmere vilkårene for tillatelsen."
+  }
+}

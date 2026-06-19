@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9903:66998:201011967:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:25:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to public access to information in Bergen, impacting local governance and transparency."
+    },
+    "summary_headline": "Bergen kommune reviderer reglement for merinnsyn og åpenhet",
+    "summary_body": "Bystyret i Bergen kommune vurderer nå nye retningslinjer for merinnsyn og åpenhet i forvaltningen, som skal sikre økt offentlighet og innsyn i kommunale dokumenter. Byrådet, ledet av Monica Mæland, fremhever at økt åpenhet er et demokratisk prinsipp som styrker rettssikkerheten og kontrollen med forvaltningen. Det foreslås at alle saksdokumenter skal være offentlige, med unntak av taushetsbelagte opplysninger. Dette kan føre til en betydelig økning i innsynsbegjæringer, som allerede har vært høyt, med 60-80 forespørsel per uke i 2010. Bystyret skal ta stilling til saken i sitt kommende møte."
+  }
+}

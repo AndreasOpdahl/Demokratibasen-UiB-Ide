@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:2598:25385:200001530:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:13:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The establishment of a working group to address traffic safety is relevant and impacts local residents."
+    },
+    "summary_headline": "Ytrebygda bydelsstyre oppretter arbeidsgruppe for trafikksikkerhet",
+    "summary_body": "Ytrebygda bydelsstyre har enstemmig vedtatt å opprette en arbeidsgruppe som skal identifisere og prioritere de 15 mest utrygge trafikkområdene i bydelen. Arbeidsgruppen ledes av Lise Wergeland Strømmen (H) og inkluderer medlemmer fra flere partier samt Atle Myking, rektor ved Søreide skole. Forslaget fra arbeidsgruppen vil bli presentert for politisk behandling den 14. mars 2001. Dette tiltaket er viktig for å forbedre trafikksikkerheten i Ytrebygda og vil direkte påvirke innbyggernes hverdag."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10667:69624:200812280:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:30:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document outlines a significant urban development plan that will impact housing and employment in Bergen."
+    },
+    "summary_headline": "Stort utviklingsprosjekt på Mindemyren kan skape 22.000 arbeidsplasser og 1.400 boliger",
+    "summary_body": "Bergen kommune har vedtatt en områdereguleringsplan for Mindemyren som åpner for utvikling av et urbant næringsområde med plass til 22.000 arbeidsplasser og 1.400 boliger. Planen, som omfatter et areal på 487 daa, er en respons på forventet befolkningsvekst på 75.000 innbyggere frem til 2040. Utviklingen vil skje over 25 år og inkluderer krav om felles infrastruktur og kollektivtilbud. Det er registrert innsigelser fra Jernbaneverket og Statens vegvesen, som må løses i den videre prosessen. Planen er viktig for å møte behovet for boliger og arbeidsplasser i Bergen."
+  }
+}

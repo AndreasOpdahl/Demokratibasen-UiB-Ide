@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:10454:68243:201326670:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:09:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a procedural decision with no significant impact or controversy."
+    },
+    "summary_headline": "Valgstyret tar klage til orientering",
+    "summary_body": "Valgstyret har behandlet en klage på forhåndsstemmegivning ved Oasen forhåndsstemmemottak. Saken ble behandlet i møte 27. august 2013, og vedtaket ble fattet enstemmig. Klagen tas til orientering, og det er ingen dissent eller kontrovers knyttet til saken."
+  }
+}

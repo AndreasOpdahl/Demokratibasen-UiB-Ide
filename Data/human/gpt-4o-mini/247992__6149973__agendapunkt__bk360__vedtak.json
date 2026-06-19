@@ -1,0 +1,18 @@
+{
+  "dokument_id": "247992:6149973:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:49:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines the formal establishment of the new city council under Rune Bakervik, which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Byrådet Bakervik konstituert med nye ledere",
+    "summary_body": "Byrådet i Bergen har konstituert seg under ledelse av Rune Bakervik, som også får ansvar for finans og næring. Linn Katrin Pilskog er utnevnt som nestleder og leder av byrådsavdelingen for barnehage, skole og idrett. De øvrige byrådsmedlemmene har fått tildelt spesifikke ansvarsområder. Dette vedtaket ble fattet i byrådsmøtet den 15. september 2023, og meldingen om vedtaket vil bli sendt til bystyret."
+  }
+}

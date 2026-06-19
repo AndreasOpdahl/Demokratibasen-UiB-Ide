@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4582:41729:200404687:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:18:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a dispute over building permits that affects local residents' living conditions."
+    },
+    "summary_headline": "Klage på garasje og vinterhage i Åsane avvist av byrådet",
+    "summary_body": "Byrådet har avvist klager fra Bekkjarvikveien borettslag angående tillatelse til oppføring av garasje og vinterhage på eiendommen Kipo 4, eid av Jan Hausken. Klagen omhandler bekymringer for lysforholdene for borettslagets beboere, ettersom tiltakene vil redusere sollyset betydelig. Byråden, Lisbeth Iversen, støtter administrasjonens vurdering om at tiltakene ikke utgjør en vesentlig ulempe og opprettholder tidligere vedtak om forlengelse av tillatelse til garasje og samtykke til vinterhage. Saken kan nå sendes til fylkesmannen for endelig avgjørelse."
+  }
+}

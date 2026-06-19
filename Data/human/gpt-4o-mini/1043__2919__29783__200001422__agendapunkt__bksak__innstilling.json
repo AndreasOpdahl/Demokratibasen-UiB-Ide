@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:2919:29783:200001422:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:18:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a strategic plan for a local district but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Strategisk plan for Årstad bydel 2002-2005 vedtatt",
+    "summary_body": "Årstad bydelsstyre har tatt til orientering den strategiske planen for Årstad bydel for perioden 2002-2005. Planen er utarbeidet for å styre utviklingen i bydelen, men det er ingen kontroverser eller dissent knyttet til vedtaket."
+  }
+}

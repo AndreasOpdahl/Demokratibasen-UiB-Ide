@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5505:48023:200700493:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:29:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision involves public funding for a local cultural event, which is relevant to the community."
+    },
+    "summary_headline": "Byrådet bevilger 40.000 kroner til Bergen Matfestival",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 40.000 kroner til en kulturkveld i forbindelse med Bergen Matfestival. Midlene vil bli dekket over tjeneste 32550, art 147010. Dette tiltaket er en del av byens innsats for å støtte lokale kulturarrangementer."
+  }
+}

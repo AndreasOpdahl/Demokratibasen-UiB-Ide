@@ -1,0 +1,18 @@
+{
+  "dokument_id": "00ac9fa8-b365-571f-9a7c-877a8082dd4b",
+  "kommune_nummer": 4651,
+  "kommune_navn": "Stryn",
+  "generated_at": "2026-02-19 14:30:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the continuation of a significant regional collaboration that impacts local tourism and sustainability efforts."
+    },
+    "summary_headline": "Nordfjordkommunene vedtar videreføring av samarbeid om bærekraftig reiseliv",
+    "summary_body": "Kommunestyret i Stryn har enstemmig vedtatt å videreføre Samarbeid i Nordfjord (SIN) med en lik kontingent på 200 000 kroner fra hver kommune. Dette samarbeidet er avgjørende for å opprettholde sertifiseringen som bærekraftig reisemål, som er viktig for regionens reiseliv. Kommunene vil også fortsette som medlemmer av Visit Nordfjord, som spiller en sentral rolle i markedsføringen av regionen. Det er planlagt en egen sak om organisering og handlingsplan for videre sertifisering, som vil bli presentert dersom de andre kommunene også vedtar det."
+  }
+}

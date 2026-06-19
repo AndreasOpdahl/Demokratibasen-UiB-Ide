@@ -1,0 +1,18 @@
+{
+  "dokument_id": "217036:1573528:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:37:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to exempt a property from property tax has implications for local funding and reflects a political debate."
+    },
+    "summary_headline": "Bergen bystyre fritar Stiftelsen Klosteret 17 for eiendomsskatt",
+    "summary_body": "Bergen bystyre har besluttet å frita Stiftelsen Klosteret 17 (gnr. 165 bnr. 294) fra eiendomsskatt på 42 020 kroner fra 1. juli 2019. Fritaket bortfaller dersom eiendommen endres i bruk eller leies ut til andre. Stian Harborg Skare fra FNB uttrykte motstand mot slike fritak, og foreslo at kommunen heller bør støtte idretts- og kulturtiltak gjennom støtteordninger. Bystyret vedtok fritaket med 56 stemmer, til tross for FNBs innvendinger. Dette kan påvirke kommunens inntekter og reise spørsmål om rettferdighet i skattepolitikken."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "77cb284d-1d9e-5958-b361-9d9423bcba7e",
+  "kommune_nummer": 4629,
+  "kommune_navn": "Modalen",
+  "generated_at": "2026-02-19 23:07:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant proposed changes to election regulations that could impact local election processes."
+    },
+    "summary_headline": "Modalen kommune protesterer mot krav om personlig pålogging ved valg",
+    "summary_body": "Modalen kommune har sendt inn en høyringsuttalelse til Kommunal- og distriktsdepartementet, hvor de støtter forslag om å begrense funksjonalitet på maskiner brukt til det elektroniske valgjennomføringssystemet, men motsier seg kravet om personlig pålogging. Kommunen mener at dette kravet vil komplisere valgjennomføringen og øke ressursbehovet, spesielt siden det kommer sent i prosessen. Høyringsfristen er 10. juni, og kommunen ber om at unntak fra kravet vurderes, da de ser flere ulemper enn fordeler med den foreslåtte endringen."
+  }
+}

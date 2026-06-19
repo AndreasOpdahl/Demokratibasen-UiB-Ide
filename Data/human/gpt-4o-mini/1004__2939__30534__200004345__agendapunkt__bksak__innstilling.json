@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2939:30534:200004345:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:26:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant restructuring of school health services, which affects local students and families."
+    },
+    "summary_headline": "Bergenhus bydelsstyre utsetter omorganisering av skolehelsetjenesten",
+    "summary_body": "Bergenhus bydelsstyre har besluttet å utsette omorganiseringen av skolehelsetjenesten i påvente av en revidert forskrift som trer i kraft 1. januar 2003. Dette følger et tidligere vedtak om å avvikle skolelegeordningen og styrke helsesøstertjenesten. Bydelsdirektøren, Ole Vorland, har opprettet en arbeidsgruppe for å utrede saken, som også tar hensyn til erfaringene fra et prøveprosjekt i Fana. Den reviderte forskriften vil gi nye retningslinjer for hvordan skolehelsetjenesten skal organiseres, noe som er viktig for å sikre tilstrekkelig helsehjelp til elever."
+  }
+}

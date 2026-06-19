@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:5932:50779:200701494:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:02:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a procedural decision with low local impact and no controversy."
+    },
+    "summary_headline": "Reguleringsendring i Bjørkhaugen boligområde behandlet",
+    "summary_body": "Tilsynsutvalget for byens utseende har behandlet reguleringsendringen for Bjørkhaugen boligområde i Ytrebygda. Utvalget fattet vedtak om å ta saken til etterretning og ber om å få oversendt byggesaken."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:11312:72093:201300286:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:47:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant changes to the regulations on parental payments in kindergartens, which will impact many families in Bergen."
+    },
+    "summary_headline": "Bergen kommune støtter nasjonal reduksjon av foreldrebetaling i barnehager",
+    "summary_body": "Bergen kommune har gitt høringsuttalelse til Kunnskapsdepartementets forslag om endringer i forskrift om foreldrebetaling i barnehager. Forslaget innebærer en nasjonal maksgrense på 6 % av inntekt for foreldrebetaling, som vil gi rett til reduksjon for familier med inntekt opp til 473 000 kroner. Byrådet er positivt til ordningen, men advarer om økt saksbehandling og behov for økonomisk kompensasjon for kommunen. Høringsfristen er 23. februar 2015."
+  }
+}

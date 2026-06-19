@@ -1,0 +1,18 @@
+{
+  "dokument_id": "226879:2851526:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:57:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine procedural decision with no significant impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til bystyreutvalgene",
+    "summary_body": "I byrådets møte 21. januar 2021 ble det besluttet at byrådssak 4 skal sendes til utvalg for miljø og byutvikling. Beslutningen ble fattet enstemmig av forretningsutvalget i møtet 26. januar 2021."
+  }
+}

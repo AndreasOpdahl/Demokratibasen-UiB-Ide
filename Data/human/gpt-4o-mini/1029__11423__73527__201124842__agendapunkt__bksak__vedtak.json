@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:11423:73527:201124842:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:29:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural information without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra kontrollutvalget",
+    "summary_body": "Kontrollutvalget har behandlet flere saker i sitt møte den 22. september 2015, inkludert vedtak om hovedplan for avløp og vannmiljø, samt dokumenter knyttet til byggesak og valg av kontrollutvalg. Ingen kontroverser eller beslutninger av stor offentlig interesse ble rapportert."
+  }
+}

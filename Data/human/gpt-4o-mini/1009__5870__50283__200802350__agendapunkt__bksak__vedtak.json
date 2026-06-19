@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5870:50283:200802350:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:32:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision involves funding for local cultural buildings, which is relevant to the community."
+    },
+    "summary_headline": "Byrådet innstiller tilskudd til lokale kulturbygg",
+    "summary_body": "Byrådet i Bergen har innstilt tilskudd til lokale kulturbygg i sitt møte den 26. mars 2008. De foreslår støtte til Ny Krohnborg Grendahus og et forprosjekt for fornyelse av teknisk infrastruktur ved Grieghallen AS. Dette tiltaket er viktig for å styrke kulturtilbudet i kommunen."
+  }
+}

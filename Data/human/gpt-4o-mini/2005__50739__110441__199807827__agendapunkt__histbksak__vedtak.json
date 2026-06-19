@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50739:110441:199807827:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:42:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves a significant regulatory change in a protected area, which could impact local development."
+    },
+    "summary_headline": "Byutvalget ber om avklaring av reguleringsendringer i verneverdige områder",
+    "summary_body": "Hovedutvalg for byutvikling i Bergen har enstemmig vedtatt å be administrasjonen kontakte Miljøverndepartementet for å avklare reglene for reguleringsendringer ved økning fra 3 til 4 etasjer i verneverdige områder. Dette følger en uttalelse fra Riksantikvaren datert 17. september 1998. Forslaget ble fremsatt av Gunn-Vivian Eide (V) og støttet av Roald Stigum Olsen (H), som også foreslo å innhente kommentarer fra Fylkesmannen. Denne saken kan påvirke fremtidige byggeprosjekter i området."
+  }
+}

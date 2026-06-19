@@ -1,0 +1,18 @@
+{
+  "dokument_id": "215118:1239629:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:33:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a request for feedback on a complaint regarding the election in Bergen, which has local relevance."
+    },
+    "summary_headline": "Kontrollutvalget ber om tilbakemelding på valgklage i Bergen",
+    "summary_body": "Kontrollutvalget i Bergen behandlet flere saker den 24. september 2019, inkludert en forespørsel om tilbakemelding fra Kommunaldepartementet angående en klagesak vedrørende valget i Bergen. I tillegg ble det stilt spørsmål vedrørende en ekstraregning fra BDO, hvor det ble foreslått at sekretariatet skal identifisere bestiller og sende regningen til byrådet dersom de er bestiller. Begge forslagene ble enstemmig vedtatt."
+  }
+}

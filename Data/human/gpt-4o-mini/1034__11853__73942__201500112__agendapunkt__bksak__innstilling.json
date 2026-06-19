@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:11853:73942:201500112:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:53:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses a significant issue regarding land allocation for elder care facilities, which is relevant to the local community."
+    },
+    "summary_headline": "Eldrerådet krever tomter til sykehjem i Bergen",
+    "summary_body": "Eldrerådet i Bergen har fremmet krav om at reguleringsmyndigheten i kommunen tidligst mulig setter av tomter til eldreformål og institusjoner. Dette er nødvendig for å unngå forsinkelser i bygging og ombygging av sykehjem. Forslaget ble diskutert den 16. september 2015, og understreker viktigheten av å planlegge for eldreomsorg i fremtidige utbyggingsplaner."
+  }
+}

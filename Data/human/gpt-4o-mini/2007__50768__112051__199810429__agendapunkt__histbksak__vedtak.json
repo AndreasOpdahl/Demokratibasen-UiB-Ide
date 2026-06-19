@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2007:50768:112051:199810429:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:54:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant proposal for advertising financing of public furniture, which could impact local residents."
+    },
+    "summary_headline": "Bergen kommune vurderer reklamefinansiering av gatemøbler",
+    "summary_body": "Hovedutvalg for teknisk utbygging i Bergen har enstemmig anbefalt opprettelsen av en tverretatlig arbeidsgruppe for å utvikle planer for reklamefinansierte gatemøbler og byutstyr. Forslaget skal legges frem for politisk behandling før sommerferien 1999. Dette kan påvirke hvordan offentlige rom i Bergen utformes og finansieres."
+  }
+}

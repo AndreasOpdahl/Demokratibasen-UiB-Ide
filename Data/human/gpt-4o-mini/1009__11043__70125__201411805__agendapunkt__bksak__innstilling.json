@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11043:70125:201411805:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:45:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant increase in funding for a school project that affects local education capacity."
+    },
+    "summary_headline": "Økt investering til paviljong ved Ulriken avlastningsskole for Landås skole",
+    "summary_body": "Byrådet har besluttet å øke investeringsrammen for etablering av en paviljong ved Ulriken avlastningsskole fra 6 millioner til 11,5 millioner kroner. Dette er nødvendig for å håndtere en forventet økning i elevtallet ved Landås skole. Paviljongen vil inkludere elevgarderober, toaletter og arbeidsplasser for lærere. Økningen i kostnader skyldes høyere markedspriser enn antatt. Investeringen dekkes ved omdisponering av midler fra prosjektet «innvendig oppgradering». Det er viktig å få paviljongen klar til skolestart høsten 2014."
+  }
+}

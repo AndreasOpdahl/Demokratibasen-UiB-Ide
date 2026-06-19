@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11219:73551:201117855:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:34:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant infrastructure improvements with a substantial budget that will impact local water supply and sewage systems."
+    },
+    "summary_headline": "Bystyret godkjenner 140 millioner til VA-anlegg for E39 Hamre – Rådal",
+    "summary_body": "Bystyret i Bergen har fått innstilling fra byrådet om å fatte et gjennomføringsvedtak for VA-anlegg i forbindelse med utbyggingen av E39 fra Hamre til Rådal. Prosjektet har en kostnadsramme på 140 millioner kroner, hvorav 100 millioner skal gå til vannforsyning og 40 millioner til avløpssystem. Arbeidet vil pågå fra 2015 til 2022, med hovedtyngden av arbeidet i 2017-2018. Dette tiltaket vil styrke vannforsyningen i området og legge til rette for sanering av avløp til Fanafjorden. Martin Smith-Sivertsen, byrådsleder, og Henning Warloe, byråd for byutvikling, klima og miljø, står bak innstillingen."
+  }
+}

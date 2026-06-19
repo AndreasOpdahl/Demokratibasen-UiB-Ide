@@ -1,0 +1,18 @@
+{
+  "dokument_id": "39886f37-c8d0-5778-9856-e8fe779822cb",
+  "kommune_nummer": 4625,
+  "kommune_navn": "Austevoll",
+  "generated_at": "2026-02-19 22:58:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves a significant change to local infrastructure with conditions for pedestrian safety."
+    },
+    "summary_headline": "Dispensasjon for vegbreidde med krav om fotgjengarovergangar",
+    "summary_body": "Utval for plan- og byggesak har enstemmig vedtatt å gi dispensasjon fra reguleringsplanen for forbedring av fylkesveg 546 på eiendom gbnr. 43/546. Vedtaket inkluderer krav om at det skal etableres minst to fotgjengerovergangsfelt langs traseen, samt at overvann skal håndteres på en trygg måte. I tillegg må områdene avsatt til grøntareal opparbeides med vegetasjon for å opprettholde et grønt preg langs veien. Dette tiltaket vil påvirke trafikksikkerheten for fotgjengere i området."
+  }
+}

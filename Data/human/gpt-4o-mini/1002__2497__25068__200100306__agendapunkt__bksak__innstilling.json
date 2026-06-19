@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2497:25068:200100306:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:17:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a proposal for a five-year concession for local cinema venues, which has local relevance and potential impact on cultural activities."
+    },
+    "summary_headline": "Arna bydelsstyre anbefaler fem års konsesjon for bygdekinoen",
+    "summary_body": "Arna bydelsstyre har anbefalt å gi Bygdekinoen konsesjon for spelestadene i Arna bydel, inkludert Kulturhuset Sentrum og Trengereid forsamlingshus, for en periode på fem år fra 2001 til 2005. Dette forslaget skal nå videre til Byrådsavdeling for kultur, idrett og skole for endelig behandling. Bydelsadministrasjonen mener at en femårsperiode vil forenkle prosessen og unngå å måtte behandle saken årlig."
+  }
+}

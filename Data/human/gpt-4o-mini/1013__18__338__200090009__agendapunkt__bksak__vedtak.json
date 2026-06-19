@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:18:338:200090009:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:03:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The decision is routine and lacks significant local impact or controversy."
+    },
+    "summary_headline": "Søknad om kursavslag enstemmig vedtatt",
+    "summary_body": "Forretningsutvalget har enstemmig vedtatt å avslå søknaden om mottakelse for kurset \"European Diploma in cultural project management 2000/2001\". Beslutningen ble fattet i møte 241000."
+  }
+}

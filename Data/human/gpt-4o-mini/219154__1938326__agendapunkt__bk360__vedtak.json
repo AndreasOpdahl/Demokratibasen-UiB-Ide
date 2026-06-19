@@ -1,0 +1,18 @@
+{
+  "dokument_id": "219154:1938326:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:40:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant delay in the student plan, which affects a large group of residents."
+    },
+    "summary_headline": "Studentmeldingen 2020 utsettes for forbedring",
+    "summary_body": "Utvalg for helse og sosial har besluttet å utsette behandlingen av «Student i Bergen – Studentmeldingen 2020» og sende den tilbake til byrådet for forbedring. Utvalget mener planen mangler helhet og forpliktelser fra byrådsavdelingene, samt nødvendige mål og ressurser. Forslaget om utsettelse ble vedtatt med 11 stemmer fra Høyre, Fremskrittspartiet, Sosialistisk Venstreparti, Rødt og Pensjonistpartiet. Byrådet hadde tidligere innstilt på at bystyret skulle ta meldingen til orientering, men nå må en forbedret plan fremmes i bystyreutvalg og ungdomsråd."
+  }
+}

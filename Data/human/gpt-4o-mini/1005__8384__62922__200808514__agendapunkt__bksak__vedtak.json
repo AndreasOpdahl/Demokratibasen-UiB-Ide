@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8384:62922:200808514:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:19:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses internal control weaknesses but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Bystyret tar revisjonsrapport om intern kontroll til orientering",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å ta revisjonsrapporten om intern kontroll i Etat for byggvedlikehold til orientering. Bystyret ber Byrådsavdelingen om å gi tilbakemelding til Kontrollutvalget om oppfølging av revisors anbefalinger innen februar 2012. Kontrollutvalget har også merket seg svakheter i internkontrollen og understreker behovet for tiltak."
+  }
+}

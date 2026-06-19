@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223466:2597237:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:49:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a safety concern regarding city bikes but lacks immediate action or controversy."
+    },
+    "summary_headline": "Sikkerhet ved bysykkel diskutert, men ikke behandlet",
+    "summary_body": "Bergen bystyre mottok interpellasjon nr. 34 fra Cesilie Tveit (FNB) om sikkerhet ved bruk av bysykkel under møtet 22. september 2020. Saken ble imidlertid ikke behandlet på grunn av overskredet tid."
+  }
+}

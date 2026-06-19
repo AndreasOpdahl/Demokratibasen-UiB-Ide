@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1031:2843:27914:200102606:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:41:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines a significant initiative to address eating disorders, which is relevant to local health and community services."
+    },
+    "summary_headline": "Likestillingsutvalget planlegger konferanse om spiseforstyrrelser",
+    "summary_body": "Likestillingsutvalget har besluttet å arrangere en dagskonferanse om spiseforstyrrelser i februar 2002, med mål om å informere og skape holdninger rundt temaet. Arbeidsgruppen, ledet av Tina Åsgård og Silja Ekland, skal utarbeide en arbeidsplan og foreslå deltakere fra skoler, helsevesen og idrett. Konferansen vil fokusere på omfanget av spiseforstyrrelser og behandlingsmuligheter, og utvalget oppfordrer til innspill fra medlemmene."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "236171:3837405:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:20:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to grant a dispensation for waste placement in a public area affects local residents and involves a significant change in waste management."
+    },
+    "summary_headline": "Dispensasjon for avfallshåndtering i Bergenhus innvilget",
+    "summary_body": "Utvalg for miljø og byutvikling har besluttet å innvilge dispensasjon fra KDP sentrum § 3.2 for plassering av avfall til fire nye boenheter på Danckert Krohns gate 1. Dette ble vedtatt i møte 15. mars 2022, etter at klagen på tidligere avslag ble tatt til følge. Den nye løsningen vil redusere størrelsen på avfallscontainere og forbedre situasjonen på fortauet, noe som gagner både estetikk og tilgjengelighet. Byrådet hadde tidligere anbefalt å opprettholde avslaget, men utvalget stemte for dispensasjonen med 14 stemmer mot 3."
+  }
+}

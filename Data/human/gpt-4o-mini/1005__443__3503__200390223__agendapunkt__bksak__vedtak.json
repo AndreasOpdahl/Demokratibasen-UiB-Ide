@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:443:3503:200390223:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:53:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to integrate the cultural school bag into various municipal strategies has significant implications for local education and culture."
+    },
+    "summary_headline": "Bystyret vedtar handlingsplan for Den kulturelle skolesekken",
+    "summary_body": "Bergen bystyre har vedtatt en strategisk handlingsplan for Den kulturelle skolesekken, som skal integreres i kommunens strategi for grunnskolen, kulturstrategi, og utviklingen av Bergen kulturskole. Dette innebærer også en styrking av skolefritidsordningen (SFO). Bystyret vil følge opp gjennomføringen av planen med økonomiske rammer i årsbudsjettet. Det ble fremmet flere anmodninger om å sikre at alle skoler får tilgang til kulturbilletter og at barnas kunst kan vises i Bergens kunstinstitusjoner. Dette tiltaket vil ha stor betydning for kulturtilbudet til barn i kommunen."
+  }
+}

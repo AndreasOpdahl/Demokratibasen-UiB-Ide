@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:7372:59473:200805509:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:27:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant local dispute over a garage construction that affects multiple residents."
+    },
+    "summary_headline": "Klage på garasjeprosjekt i Trolldalen avvist av Åsane bydelsstyre",
+    "summary_body": "Åsane bydelsstyre har avvist klagen fra Elina og Eivind Hansen, Anne-Lise Melheim og Espen Hansen angående oppføring av en garasje med terrasse på Trolldalen 5. Klagerne mener bygningen vil dominere deres eiendom og redusere utsikten. Byggetillatelsen ble opprinnelig gitt 13. januar 2010, men klagerne har uttrykt bekymring for høyden og plasseringen av tiltaket. Bydelsstyret konkluderte med at ulempene ikke er betydelige nok til å nekte tillatelsen, og klagen ble derfor ikke tatt til følge. Dette tiltaket kan påvirke nabolaget og er av interesse for innbyggere i området."
+  }
+}

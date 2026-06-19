@@ -1,0 +1,18 @@
+{
+  "dokument_id": "238489:3774256:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:25:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The establishment of Dokken utvikling AS is significant for local urban development and involves substantial public funding."
+    },
+    "summary_headline": "Bystyret skal opprette Dokken utvikling AS med 10 millioner kroner i aksjekapital",
+    "summary_body": "Byrådet foreslår å opprette Dokken utvikling AS for å utvikle de kommunalt eide eiendommene på Dokken. Selskapet skal stiftes med en aksjekapital på 10 millioner kroner, finansiert av disposisjonsfond. Bystyret vedtok tidligere at selskapet skal være et verktøy for bærekraftig byutvikling, og det forventes at det vil bidra til transformasjonen av området fra havn til bydel. Byrådet vil komme tilbake med forslag til driftstilskudd for 2023. Dette tiltaket er viktig for innbyggerne i Bergen, da det vil påvirke utviklingen av boligmarkedet og bymiljøet."
+  }
+}

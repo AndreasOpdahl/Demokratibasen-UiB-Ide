@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1024:10721:71685:201124901:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:44:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine administrative matter with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter om Reeperbanen",
+    "summary_body": "Komite for kultur, idrett og næring behandlet en sak om Reeperbanen der Ruth Sølvi Brudvik (A) etterlyste skriftlig svar på et muntlig spørsmål. Administrasjonen informerte om at svaret er mottatt og tilgjengelig i spørsmålsregisteret."
+  }
+}

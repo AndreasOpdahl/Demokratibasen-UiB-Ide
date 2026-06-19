@@ -1,0 +1,18 @@
+{
+  "dokument_id": "203498:269430:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:03:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a planned conference for elder councils, which has local relevance but lacks significant impact or controversy."
+    },
+    "summary_headline": "Eldrerådet planlegger Storbykonferansen 2018",
+    "summary_body": "Eldrerådet i Bergen kommune skal organisere Storbykonferansen for eldreråd i juni 2018. Under møtet den 19. januar 2018 ble den praktiske gjennomføringen og invitasjonen til konferansen diskutert. Eldrerådet har besluttet å ta opp saken på hvert møte frem mot konferansen."
+  }
+}

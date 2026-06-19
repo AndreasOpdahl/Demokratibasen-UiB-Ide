@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:6084:51961:200810646:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:19:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a change in membership of a local political committee, which has moderate local relevance."
+    },
+    "summary_headline": "Endring i arbeidsutvalget for Årstad bydelsstyre",
+    "summary_body": "Årstad bydelsstyre har besluttet å velge Roar Kristiansen som nytt medlem av arbeidsutvalget etter at Bjarne Andreas Larsen fra FrP ikke kunne fortsette. Dette skjer etter at Lill Karin Dale også ble fritatt fra sitt verv. Arbeidsutvalget, ledet av Bjørn Kolstad (SV), har som oppgave å tilrettelegge for bydelsstyrets arbeid."
+  }
+}

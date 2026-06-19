@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5557:48589:200700245:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:30:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested land use decision affecting a family's housing situation, which has local relevance and potential impact."
+    },
+    "summary_headline": "Klage på avslag om omdisponering av landbruksareal til bolig avvist",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på en søknad om omdisponering av 800 kvm dyrket areal til boligformål i Langedalen. Søknaden ble avslått 27. mars 2007, men er påklaget av en familie på syv som ønsker å bygge nytt hus på gården. Grønn etat mener omdisponeringen vil bryte opp tunstrukturen og ikke er nødvendig for driften av bruket, som i dag ikke er i drift. Byråden, Lisbeth Iversen, anerkjenner familiens behov for bedre boligforhold, men anbefaler at klagen ikke tas til følge. Saken har betydning for lokalbefolkningen, spesielt i forhold til landbruk og boligpolitikk."
+  }
+}

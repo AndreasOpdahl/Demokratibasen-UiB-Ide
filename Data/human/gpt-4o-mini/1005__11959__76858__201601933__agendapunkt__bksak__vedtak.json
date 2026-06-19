@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11959:76858:201601933:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:38:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant political decision regarding welfare regulations affecting asylum seekers, which has local implications."
+    },
+    "summary_headline": "Bergen kommune avviser endringer i trygderegelverket for asylsøkere",
+    "summary_body": "Bergen bystyre har besluttet å ikke støtte forslagene til endringer i trygderegelverket knyttet til asylsøkersituasjonen. Bystyret ber i stedet Arbeids- og sosialdepartementet om å utrede saken på nytt for å unngå økt fattigdom blant barnefamilier og avhengighet av sosialhjelp. Forslaget fra Høyre og Fremskrittspartiet om å støtte endringene ble nedstemt med 21 stemmer, mens flertallet (46 stemmer) bestående av Arbeiderpartiet, SV, KrF, MDG, Venstre, Rødt og Senterpartiet støttet den opprinnelige innstillingen. Dette vedtaket har direkte konsekvenser for hvordan asylsøkere vil bli behandlet i Bergen."
+  }
+}

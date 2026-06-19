@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3754:36030:200205897:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:07:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document proposes a significant regulatory change for a public area, impacting local residents and involving public consultation."
+    },
+    "summary_headline": "Reguleringsendring for barnehage i Åsane legges ut til offentlig ettersyn",
+    "summary_body": "Byrådet har besluttet å legge ut forslag til reguleringsendring for Hylkje industriområde i Åsane til offentlig ettersyn. Endringen innebærer omregulering fra industriområde til offentlig byggeområde, inkludert en barnehagetomt som kan romme 144 barn og 24 ansatte. Det er foreslått å opprettholde gjeldende reguleringsbestemmelser, med tillegg for å sikre støysituasjonen. Ingen naboer har protestert mot planene, men det er mottatt uttalelser fra syv offentlige instanser. Byråden for byutvikling, Nils Arild Johnsen, anbefaler at forslaget legges ut til offentlig ettersyn, noe som gir lokalbefolkningen mulighet til å gi tilbakemelding."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "215504:1730763:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:34:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant construction project with local opposition and potential impacts on residents."
+    },
+    "summary_headline": "Byrådet opprettholder tillatelse til ombygging av aldershjem til tross for klager",
+    "summary_body": "Byrådet har besluttet å opprettholde tillatelsen til et tilbygg og ombygging av et aldershjem i Thormøhlens gate 5, til tross for klager fra naboer som frykter økt innsyn og reduserte lysforhold. Prosjektet, som omfatter 41 omsorgsboliger og fellesarealer, har fått dispensasjon fra reguleringsplanen. Klagerne, som mener at balkongene vil medføre uakseptable naboulemper, fikk ikke medhold. Byrådet understreker at tiltaket er i tråd med gjeldende reguleringsplan og at klagene ikke oppfyller kravene for å avslå prosjektet. Neste steg er at saken sendes til Fylkesmannen for endelig avgjørelse."
+  }
+}

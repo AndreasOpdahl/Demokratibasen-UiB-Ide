@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:6452:54833:200811196:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:26:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested building permit affecting local residents' living conditions."
+    },
+    "summary_headline": "Klage på avslag om utvidelse av altan i Åsane opprettholdes",
+    "summary_body": "Åsane bydelsstyre har besluttet å opprettholde avslaget på en klage fra Rune Tveit om utvidelse av en altan på Kolåshøyen 50. Utvidelsen på 2 meter, som vil gi en total dybde på 3,6 meter, ble ansett å stride mot kravene til dagslys og utsyn i plan- og bygningsloven. Naboer har samtykket til tiltaket, men bydelsstyret mener at det vil gi en innestengtfølelse i underetasjen. Saken har også blitt vurdert i lys av tidligere avgjørelser om lignende tiltak i området, og det er konkludert med at det ikke foreligger usaklig forskjellsbehandling. Dette kan påvirke andre beboere i området som vurderer lignende utvidelser."
+  }
+}

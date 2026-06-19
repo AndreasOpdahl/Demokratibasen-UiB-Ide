@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:4575:41973:200400187:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:32:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses budget proposals for municipal oversight bodies, which could impact local governance."
+    },
+    "summary_headline": "Kontrollutvalget foreslår økt budsjett for 2006",
+    "summary_body": "Kontrollutvalget har lagt frem forslag til budsjett for 2006, som inkluderer en økning på 900.000 kroner til kommunerevisjonen og 80.000 kroner til møtegodtgjørelse for kontrollutvalgsmedlemmer. Det er også foreslått merbehov på 50.000 kroner til seminarer, opplæring og trykking av rapporter. Sekretariatsleder Rolf Kalvø presenterer saken for kontrollutvalget, som skal ta orienteringen til etterretning. Dette budsjettforslaget vil bli sendt til byrådet før deres endelige budsjettforslag i september."
+  }
+}

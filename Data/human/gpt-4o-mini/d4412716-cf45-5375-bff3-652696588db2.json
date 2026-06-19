@@ -1,0 +1,18 @@
+{
+  "dokument_id": "d4412716-cf45-5375-bff3-652696588db2",
+  "kommune_nummer": 4628,
+  "kommune_navn": "Vaksdal",
+  "generated_at": "2026-02-19 23:21:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The budget decision has significant financial implications for residents, including property tax rates and public spending."
+    },
+    "summary_headline": "Vaksdal kommune vedtar budsjett for 2026 med økte eiendomsskatter",
+    "summary_body": "Vaksdal kommune har lagt frem sitt budsjett for 2026 og økonomiplan for 2026-2029, som nå skal behandles av kommunestyret. Budsjettet inkluderer en eiendomsskatt på 7 promille for faste eiendommer, med reduserte satser for boliger og fritidseiendommer. Kommunen planlegger å ta opp lån på inntil 24,84 millioner kroner for investeringer. Det er også foreslått økte gebyrer for vann- og avløpstjenester. Kommunedirektøren anbefaler at budsjettet vedtas, til tross for et negativt netto driftsresultat på -0,9% av brutto driftsinntekter, som er under kommunens målsetting."
+  }
+}

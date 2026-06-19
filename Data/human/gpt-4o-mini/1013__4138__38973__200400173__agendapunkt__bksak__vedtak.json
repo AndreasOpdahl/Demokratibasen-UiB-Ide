@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4138:38973:200400173:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:06:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses administrative matters but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Orientering om pensjonsordning for heltidspolitikere",
+    "summary_body": "Forretningsutvalget behandlet sakene i møte 100804, hvor de tok til orientering notater om arbeidsdelingen mellom ordføreren og byrådet, samt en pensjonsordning for heltidspolitikere. Pensjonsordningen vil bli diskutert videre i møte 17. august 2004, hvor byrådsleder vil gi en orientering om bakgrunnen for henvendelsen."
+  }
+}

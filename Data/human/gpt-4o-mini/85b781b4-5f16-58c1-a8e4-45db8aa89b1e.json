@@ -1,0 +1,18 @@
+{
+  "dokument_id": "85b781b4-5f16-58c1-a8e4-45db8aa89b1e",
+  "kommune_nummer": 4612,
+  "kommune_navn": "Sveio",
+  "generated_at": "2026-02-19 23:09:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a strategic decision on digitalization which is relevant but lacks significant controversy or immediate impact."
+    },
+    "summary_headline": "Formannskapet vedtar strategi for digitalisering",
+    "summary_body": "Formannskapet har enstemmig anbefalt kommunestyret å vedta en strategi for digitalisering, utvikling og transformasjon. Strategien ble presentert som en referatsak, da den ikke var klar for behandling i hovedutvalgene. Dette tiltaket er viktig for kommunens fremtidige utvikling, men det er ingen umiddelbare kontroverser knyttet til vedtaket."
+  }
+}

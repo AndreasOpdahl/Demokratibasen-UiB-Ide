@@ -1,0 +1,18 @@
+{
+  "dokument_id": "249441:5020245:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:54:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine meeting procedure without significant newsworthy elements."
+    },
+    "summary_headline": "Ungdomsrådet inviterer til Åpen halvtime",
+    "summary_body": "Ungdomsrådet i Bergen kommune holder Åpen halvtime i starten av sitt møte den 21. november 2023. Her kan ungdommer legge frem saker for rådet. For å delta må innlegg sendes til ungdomsrådets sekretariat via epost."
+  }
+}

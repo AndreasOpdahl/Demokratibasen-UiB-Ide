@@ -1,0 +1,18 @@
+{
+  "dokument_id": "f9e13625-46d3-53a5-b975-02d04179dad9",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 23:25:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine procedural matter with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Formannskapet",
+    "summary_body": "Formannskapet har samrøystes godkjent innkalling og saksliste for møtet den 11. september 2025."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "200958:205737:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:55:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document raises significant environmental concerns regarding plastic pollution and potential explosive residues in a local water body."
+    },
+    "summary_headline": "Bekymringer om plast og sprengstoff i Store Lungegårdsvann",
+    "summary_body": "Bystyret har mottatt spørsmål fra Sondre Båtstrand (MDG) om utfylling i Store Lungegårdsvann, hvor det er tillatt å bruke inntil en million m3 steinmasser. Det er bekymring for plastrester og sprengstoff i massene, med potensielt over ett tonn plast som kan havne i vannet. Naturvernforbundet kritiserer oppsamlingen av plast som ikke er tilstrekkelig, da det kun ryddes én gang i uken. Båtstrand stiller spørsmål om rutiner for oppsamling av plast og sprengstoff, samt muligheten for å kreve bruk av elektroniske tennere for å redusere plastmengden. Dette er en viktig sak for innbyggerne i Bergen, da det kan påvirke dyrelivet i området."
+  }
+}

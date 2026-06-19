@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:389:1708:200190457:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:02:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a proposed housing development that has been recommended against due to infrastructure and environmental concerns, which is relevant to local residents."
+    },
+    "summary_headline": "Byrådet anbefaler ikke boligplan i Åsane på grunn av infrastrukturproblemer",
+    "summary_body": "Byrådet i Bergen har anbefalt komiteen for miljø og byutvikling å ikke igangsette reguleringsarbeid for boligbebyggelse på Åsane, gnr 170 bnr 2. Planen omfatter 90 nye boliger, men mangler tilfredsstillende infrastruktur og har dårlige solforhold. Det pågående planarbeidet for et asfaltverk i nærheten gjør at de to planene utelukker hverandre. Grunneierne ønsker boligutvikling, men byrådet peker på at området ikke er vurdert som fremtidig boligområde i kommuneplanen."
+  }
+}

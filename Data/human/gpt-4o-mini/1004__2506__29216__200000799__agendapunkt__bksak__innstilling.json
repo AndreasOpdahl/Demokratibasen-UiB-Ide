@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2506:29216:200000799:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:25:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative matters with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Bergenhus bydelsstyre",
+    "summary_body": "Bergenhus bydelsstyre har behandlet referatsaker fra møter, inkludert protokoller fra eldrerådet og AMU, samt flere brev til og fra ulike foreninger og avdelinger. Forslaget om å ta referatsakene til etterretning ble vedtatt."
+  }
+}

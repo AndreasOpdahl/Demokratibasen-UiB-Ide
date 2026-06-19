@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5576:48939:200716284:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:30:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines significant changes to the regulations governing political advisors, which may impact local governance."
+    },
+    "summary_headline": "Endringer i reglement for politiske rådgivere i Bergen",
+    "summary_body": "Byrådet i Bergen har vedtatt endringer i reglementet for godtgjørelse og arbeidsvilkår for politiske rådgivere. Byrådsleder Monica Mæland får nå fullmakt til å oppnevne rådgivere og fastsette deres godtgjørelse. Rådgivere som fratrer etter kortere enn tre måneder vil motta etterlønn i én måned. Dette kan påvirke hvordan politiske rådgivere ansettes og kompenseres i kommunen."
+  }
+}

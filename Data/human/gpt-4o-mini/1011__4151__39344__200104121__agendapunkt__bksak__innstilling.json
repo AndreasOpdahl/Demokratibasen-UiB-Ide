@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1011:4151:39344:200104121:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:52:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for Kirkens Bymisjon to lease or purchase the old Betanien hospital is significant for local homelessness initiatives and involves public property."
+    },
+    "summary_headline": "Kirkens Bymisjon får opsjon på leie eller kjøp av gamle Betanien sykehus",
+    "summary_body": "Kirkens Bymisjon har fått åpnet muligheten for å leie eller kjøpe den gamle delen av Betanien sykehus i Kalfarveien 20, med planer om å etablere et prosjekt for bostedsløse i Bergen. Byrådsleder har støttet forespørselen, og administrasjonen i Bergen Bygg og Eiendom (BBE) foreslår at Bymisjonen gis en opsjon på leie eller kjøp til markedsmessige vilkår, med en frist til 31. mars 2005. Eiendommen, som har stått tom i flere år og er i dårlig forfatning, har en takstverdi på 4,5 millioner kroner. Dette tiltaket kan ha stor betydning for personer med rusproblemer uten fast bopel i Bergen."
+  }
+}

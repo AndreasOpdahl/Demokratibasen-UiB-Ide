@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4754:43239:200213041:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:05:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a rejected building application, which may interest local residents but lacks significant conflict or financial implications."
+    },
+    "summary_headline": "Klage på avslag om påbygging avvist enstemmig",
+    "summary_body": "Komite for miljø og byutvikling har behandlet klagen fra Svendsen Glass AS angående avslag på søknad om påbygging av en etasje på Apeltunveien 33. I møtet 02.06.202, ble det besluttet å opprettholde fagetatens vedtak fra 08.06.2004, og klagen ble enstemmig avvist. Dette betyr at det ikke blir noen endringer i bygningens høyde, noe som kan påvirke lokale innbyggere."
+  }
+}

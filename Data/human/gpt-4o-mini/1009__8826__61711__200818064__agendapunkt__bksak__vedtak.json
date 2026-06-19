@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8826:61711:200818064:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:41:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves a partial acceptance of a complaint regarding a temporary structure, which may affect local access."
+    },
+    "summary_headline": "Delvis medhold i klage om midlertidig lagerhall i Fana",
+    "summary_body": "Byrådet har behandlet en klage angående samtykke til oppføring av en midlertidig lagerhall på Totlandsvegen 8, gnr 44 bnr 889. Klagen ble delvis tatt til følge, og det ble besluttet at det må sikres en alternativ adkomst for gnr 44 bnr 125 før tiltaket kan påbegynnes. Dette kan påvirke tilgangen for naboene i området."
+  }
+}

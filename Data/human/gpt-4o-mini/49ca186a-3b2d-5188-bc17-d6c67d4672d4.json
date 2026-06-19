@@ -1,0 +1,18 @@
+{
+  "dokument_id": "49ca186a-3b2d-5188-bc17-d6c67d4672d4",
+  "kommune_nummer": 4613,
+  "kommune_navn": "Bømlo",
+  "generated_at": "2026-02-19 23:01:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a property concession which may affect local land use and ownership."
+    },
+    "summary_headline": "Konsesjon for overtaking av fast eigedom i Bømlo kommune godkjent",
+    "summary_body": "Naturbruksutvalet har den 27. november 2025 godkjent konsesjon for overtaking av fast eigedom gnr.94 bnr.50 i Bømlo kommune. Dette kan påvirke lokal arealbruk og eierskap, men det er ingen kjent motstand mot avgjørelsen."
+  }
+}

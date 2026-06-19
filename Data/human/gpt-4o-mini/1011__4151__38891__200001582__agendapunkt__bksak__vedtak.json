@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1011:4151:38891:200001582:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:52:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses indoor climate results and ongoing programs, which are relevant but not highly impactful."
+    },
+    "summary_headline": "Bergen Bygg og Eiendom viderefører Frisk pust-programmet",
+    "summary_body": "Bergen Bygg og Eiendom KF har enstemmig besluttet å videreføre \"Frisk pust-programmet\" for å forbedre inneklimaet i kommunens bygninger. Styret tok også orientering om inneklimaresultater i forhold til opprinnelige kriterier. Videre vil status for inneklima i skoler og barnehager bli behandlet 1. juni 2004."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:12677:77822:201532002:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:38:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses several health and social issues relevant to the local community."
+    },
+    "summary_headline": "Nytt sykehjem og endringer i fysioterapistønad diskutert i helsekomiteen",
+    "summary_body": "Komite for helse og sosial behandlet flere saker i møtet 8. februar, inkludert orientering om et nytt sykehjem på Sandsli og livsglede for eldre. Det ble også diskutert avsluttet tilsyn med botjenester for utviklingshemmede i Bergenhus og Laksevåg. I tillegg ble det presentert forslag om å oppheve henvisningskravet for fysioterapistønad, som kan påvirke innbyggernes tilgang til behandling."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:12533:76498:201507955:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:53:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant initiative for tree management in Bergen, which has ecological and community implications."
+    },
+    "summary_headline": "Bergen kommune starter arbeid med forvaltningsplan for bytrær",
+    "summary_body": "Bergen kommune har besluttet å utarbeide en forvaltningsplan for bytrær, som er avgjørende for å ivareta trærnes økologiske, estetiske og kulturelle funksjoner i bymiljøet. Byråden for byutvikling, Harald Schjelderup, understreker at planen vil bidra til å redusere miljøproblemer og forbedre byluften. Planen vil også inkludere strategier for nyplanting av trær og vil bli koordinert med rulleringen av kommuneplanens arealdel. Dette arbeidet er viktig for å sikre at trær får nødvendig beskyttelse i lys av kommunens fortettingsstrategi."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:431:3008:200290006:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:06:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural details for a municipal meeting, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Kjøreplan for bystyrets møte 9. desember 2002 fastsatt",
+    "summary_body": "Forretningsutvalget har fastsatt kjøreplanen for bystyrets møte 9. desember 2002. Sakene vil bli behandlet i oppsatt rekkefølge, med endringer i taletid: 3 minutter for sakene 246-255 og 267, og 2 minutter for sakene 256-266, 268-296. Det er varslet 3 deputasjoner som vil bli behandlet under de skriftlige spørsmålene."
+  }
+}

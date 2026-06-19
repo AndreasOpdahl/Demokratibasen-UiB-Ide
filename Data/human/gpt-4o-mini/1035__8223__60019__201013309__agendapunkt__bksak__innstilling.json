@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:8223:60019:201013309:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:04:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a proposed facade change for a cinema, which may interest local residents."
+    },
+    "summary_headline": "Fasadeendring for kino i Bergenhus vurderes",
+    "summary_body": "Tilsynsutvalget for byens utseende vurderer en søknad om fasadeendring av inngangspartiet og lobbyarealet, samt sammenbygning av kinosaler på Neumans gate 1. Eiendommen er uregulert, men omfattes av Kommunedelplan Sentrum. Endringene kan påvirke bybildet og kinoens funksjon i området."
+  }
+}

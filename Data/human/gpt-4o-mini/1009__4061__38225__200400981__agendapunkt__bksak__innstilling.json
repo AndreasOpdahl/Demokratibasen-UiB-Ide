@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4061:38225:200400981:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:11:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new alcohol sales license application, which is relevant to local residents."
+    },
+    "summary_headline": "Nær-Mat AS får salgsbevilling for øl i Møhlenpris Mat",
+    "summary_body": "Byrådet har innvilget Nær-Mat AS sin søknad om salgsbevilling for øl ved Møhlenpris Mat, Welhavensgt. 52, som gjelder fra 21. april 2004 til 30. juni 2008. Det er tidligere vært bevilling i lokalet, men den er nå opphørt. Politiet og Bergenhus bydelsstyre har ikke innvendinger mot søknaden. Salg av øl kan skje på hverdager fra kl. 08.00 til 20.00. Byrådsleder Monica Mæland opplyser at bevillingen må godkjennes av Kontor for skjenkesaker før den kan tas i bruk."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8865:61865:200815283:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:42:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant funding for youth projects in Bergen, impacting local communities."
+    },
+    "summary_headline": "Bergen kommune tildeler 2,3 millioner kroner til ungdomsprosjekter",
+    "summary_body": "Byrådet i Bergen har besluttet å tildele 2,3 millioner kroner til ulike ungdomsprosjekter i kommunen for 2011. Dette er en økning på 100.000 kroner fra året før. Midlene skal brukes til tiltak som fremmer sosial inkludering og motvirker fattigdom blant ungdom i alderen 12-25 år. Blant de støttede prosjektene er \"Urban Jungle\" og \"X3m youth\", som fokuserer på digitale medier og fysisk aktivitet. Totalt ble det sendt inn 15 søknader, som viser en økning i interessen for slike tiltak. Byrådet understreker viktigheten av å gi ungdom muligheter til å delta i meningsfulle aktiviteter og utvikle sine ferdigheter."
+  }
+}

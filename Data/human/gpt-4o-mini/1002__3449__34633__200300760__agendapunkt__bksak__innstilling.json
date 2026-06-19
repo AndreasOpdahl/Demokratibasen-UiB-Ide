@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:3449:34633:200300760:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:19:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document is a procedural note with no significant newsworthy elements."
+    },
+    "summary_headline": "",
+    "summary_body": "Dokumentet er en referat fra Arna bydelsstyre som omhandler muligheten for medlemmene å ta opp saker utenom sakskartet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "248814:4950466:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:52:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the upcoming municipal budget proposal, which is relevant but lacks immediate controversy or significant financial implications."
+    },
+    "summary_headline": "Budsjettforslag for 2024 legges frem av byrådet",
+    "summary_body": "Byrådet har lagt frem sitt forslag til budsjett for 2024 i bystyremøte den 27. september. Budsjettet skal behandles i utvalgsmøter i november og i bystyremøte i desember. Kommunalt råd for personer med funksjonsnedsettelse (KRPF) har mulighet til å foreslå endringer i budsjettet, som vil bli delt med partigruppene og aktuelle utvalg. Det er ingen spesifikke forslag til vedtak i denne saken."
+  }
+}

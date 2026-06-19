@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1038:6859:55752:200805003:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:06:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal to lower the age limit for youth cards is relevant and could significantly impact local youth transportation."
+    },
+    "summary_headline": "Ungdommens bystyre vil senke aldersgrensen for ungdomskort",
+    "summary_body": "Ungdommens bystyre har vedtatt å jobbe for å senke aldersgrensen for ungdomskort på offentlig transport i Hordaland til det året en fyller 13 år. Dette tiltaket har som mål å oppmuntre flere ungdommer til å bruke buss i stedet for privatbil. Bystyret ønsker å samarbeide med andre ungdomsråd i fylket for å fremme dette forslaget. I tillegg ønsker de at ungdomskortet også skal gjelde for nattbusser i Bergen kommune og for hele videregående skole, inkludert lærlinger. Arbeidet vil bli ledet av medlemmer fra komiteen for miljø og byutvikling (KMB)."
+  }
+}

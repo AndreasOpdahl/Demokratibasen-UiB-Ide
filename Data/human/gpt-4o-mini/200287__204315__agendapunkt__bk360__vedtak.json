@@ -1,0 +1,18 @@
+{
+  "dokument_id": "200287:204315:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:29:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document contains multiple inquiries from politicians regarding health and social issues, indicating local relevance and potential impact."
+    },
+    "summary_headline": "Politikere stiller spørsmål om helse og sikkerhet i Bergen",
+    "summary_body": "I møtet den 30. august 2017 stilte flere politikere spørsmål til byrådet om viktige helse- og sosialspørsmål. Jana Midelfart Hoff (H) tok opp avvik ved MO-senteret, mens Silje Hjemdal (FrP) spurte om gjengoppgjør og knivstikking ved Møhlenpris skole. Randi Elisabeth Amundsen (MDG) stilte spørsmål om forvaltningens samhandling og rusplanen, samt flytting av luftmålerstasjon. Byrådene Erlend Andreas Horn og Vigdis Anita Gåskjenn besvarte spørsmålene, og noen ble oversendt for skriftlig svar. Dette viser at helse og sikkerhet er aktuelle temaer for innbyggerne i Bergen."
+  }
+}

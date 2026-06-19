@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211398:1248458:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:22:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal for a new residential area with 12 family homes is significant for local development and has undergone changes based on previous feedback."
+    },
+    "summary_headline": "Nytt boligprosjekt med 12 enheter foreslås i Fana",
+    "summary_body": "Rådet for byforming og arkitektur har lagt frem et forslag til reguleringsplan for bygging av 12 familieboliger på 2,5 dekar i Fana, nær nye Nesttunhallen. Planen, som nå legges ut til offentlig ettersyn, har blitt justert etter tidligere tilbakemeldinger, og det er nå enighet om byggehøyder og antall boenheter. Det er også planlagt felles uteoppholdsareal og sykkelverksted. Dette prosjektet kan påvirke boligmarkedet i området og er et ledd i moderat fortetting av bydelen."
+  }
+}

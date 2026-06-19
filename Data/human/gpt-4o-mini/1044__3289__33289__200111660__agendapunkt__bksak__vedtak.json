@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3289:33289:200111660:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:25:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses support for local organizations but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Støtte til lokale lag og organisasjoner i Åsane",
+    "summary_body": "Åsane bydelsstyre behandlet flere saker om støtte til lokale lag og organisasjoner i møte 18. desember 2002. Blant annet ble det diskutert støtte til Tellevik Kystfort, Åsane bygdebok II, og Åsane Seeahawks (amerikansk fotball). Det ble også mottatt en søknad om midler fra ungdomsrådet i Åsane menighet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:594:4078:200290039:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:09:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant changes to political compensation in Bergen, which affects local politicians and party funding."
+    },
+    "summary_headline": "Bystyret vedtar revidert honorarreglement med økte satser for politikere",
+    "summary_body": "Bergen bystyre har vedtatt et revidert honorarreglement som trer i kraft fra 1. januar 2004. Ordføreren vil motta en godtgjørelse på 666 250 kroner, mens medlemmer av bystyret får 20 000 kroner årlig. Partistøtten er fastsatt til 150 000 kroner per parti, med tillegg for representanter. Flere forslag fra opposisjonen, inkludert reduksjon av godtgjørelser, ble nedstemt. Justeringene i honorarene skjer årlig basert på lønnsvekst i kommunal sektor."
+  }
+}

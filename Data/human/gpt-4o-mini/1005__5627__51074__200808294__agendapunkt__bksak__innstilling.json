@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:5627:51074:200808294:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:07:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document provides an annual report on the activities of the municipal ombudsman, which is relevant but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Byombudet presenterer årsmelding for 2007 til bystyret",
+    "summary_body": "Bergen bystyre mottok byombudets årsmelding for 2007, som oppsummerer ombudets arbeid og henvendelser fra innbyggerne. I 2007 ble det registrert ca. 1200 henvendelser, hvorav 395 resulterte i konkrete saker. Byombudet, ledet av Erik Dahl, fokuserer spesielt på eldre og pleietrengende samt barn og unge. Det ble også rapportert om en nedgang i antall henvendelser fra året før, noe som kan tilskrives et bedre arbeidsmarked. Bystyret tar rapporten til orientering, men det er ingen umiddelbare vedtak eller kontroverser knyttet til saken."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:7117:56044:200716943:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:14:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses an extraordinary city council meeting to elect a new city councilor, which is relevant and impactful for local governance."
+    },
+    "summary_headline": "Ekstraordinært bystyremøte for valg av ny byråd i Bergen",
+    "summary_body": "Forretningsutvalget i Bergen kommune har enstemmig besluttet å avholde et ekstraordinært bystyremøte i uke 40 for å velge ny byråd etter Henning Warloe. Byrådsleder Monica Mæland fremmet anmodningen, og ordføreren vil finne et passende tidspunkt for møtet. Dette er en viktig beslutning som vil påvirke den politiske ledelsen i kommunen."
+  }
+}

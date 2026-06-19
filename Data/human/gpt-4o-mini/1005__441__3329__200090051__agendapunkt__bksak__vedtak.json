@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:441:3329:200090051:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:53:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Bystyret godkjenner protokoll fra møte",
+    "summary_body": "Bergen bystyre har enstemmig godkjent protokollen fra møtet 31. mars 2003. Henning Warloe (H) stilte spørsmål om den korrigerte protokollen, og ordfører Kristian Helland forklarte endringene."
+  }
+}

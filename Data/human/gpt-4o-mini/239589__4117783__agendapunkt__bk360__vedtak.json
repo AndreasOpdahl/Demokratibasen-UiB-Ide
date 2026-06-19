@@ -1,0 +1,18 @@
+{
+  "dokument_id": "239589:4117783:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:27:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions with no significant local impact or controversy."
+    },
+    "summary_headline": "Enstemmig vedtak om høringssvar fra Bergen kommune",
+    "summary_body": "Forretningsutvalget i Bergen kommune behandlet høringssaker den 30. august 2022. Utvalget vedtok enstemmig å sende høringssvar til to saker: en om endringer i forskrift om nasjonale e-helseløsninger og en ny boklov. Ingen representanter tok ordet under behandlingen."
+  }
+}

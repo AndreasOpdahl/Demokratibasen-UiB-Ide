@@ -1,0 +1,18 @@
+{
+  "dokument_id": "249888:6320404:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:55:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document reports on a meeting where no decisions were made, indicating low newsworthiness."
+    },
+    "summary_headline": "Ingen vedtak fra kontrollutvalget om forvaltningsrevisjon",
+    "summary_body": "Kontrollutvalget behandlet saken om forvaltningsrevisjon og eierskapskontroll i møte 12. desember 2023, men fattet ingen vedtak. Møtet ble strømmet, men strømmingen ble avsluttet før risikospillet ble gjennomført, da det ikke var vanlig saksbehandling."
+  }
+}

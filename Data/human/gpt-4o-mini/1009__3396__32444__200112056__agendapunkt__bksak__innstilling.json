@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3396:32444:200112056:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:03:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant financial commitments and plans for temporary and permanent solutions affecting local fishmongers and the cultural heritage site Bryggen."
+    },
+    "summary_headline": "Bergen kommune investerer 2,9 millioner i midlertidige lagerløsninger for fiskehandlere",
+    "summary_body": "Bergen kommune har besluttet å investere 2,9 millioner kroner i midlertidige lagerløsninger for fiskehandlere på Torget, som må flytte fra skur 10 for å forbedre forholdene rundt verdenskulturminnet Bryggen. Arbeidene, som inkluderer riving av skur 10 og oppsetting av nye lagerhaller, skal være ferdige innen sommeren 2003. Byrådet har fått fullmakt til å forhandle om avtaler med driftselskapet Torget i Bergen AS, og det er planlagt en permanent løsning for Torget i fremtiden. Dette tiltaket er viktig for å sikre driften av lokale fiskehandlere og bevare Bryggens kulturhistoriske verdi."
+  }
+}

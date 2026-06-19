@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9281:65437:201012486:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:21:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines changes to the handling of private proposals in the city council, which may affect local governance."
+    },
+    "summary_headline": "Endringer i behandlingen av private forslag i Bergen bystyre",
+    "summary_body": "Bergen bystyre har vedtatt endringer i reglementet for behandling av private forslag. Nå skal private forslag legges fram for behandling senest seks måneder etter at de er fremmet, og byrådets vurdering av forslagene skal følge som vedlegg. Oddny Irene Miljeteig (SV) foreslo at forslagsstillere skal få særskilt melding om planlagt behandling, men dette forslaget ble ikke vedtatt. Endringene trer i kraft umiddelbart, og bystyret vil motta en rapport om effekten av disse endringene i løpet av 2014."
+  }
+}

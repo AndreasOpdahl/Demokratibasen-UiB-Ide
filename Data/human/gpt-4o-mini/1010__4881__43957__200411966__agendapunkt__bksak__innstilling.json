@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1010:4881:43957:200411966:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:49:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a routine update on health, safety, and environment (HMS) work, which is standard administrative practice."
+    },
+    "summary_headline": "Bydrift Bergen KF oppdaterer HMS-systemet",
+    "summary_body": "Styret for Bydrift Bergen KF har tatt til orientering en beskrivelse av HMS-arbeidet som ble påbegynt høsten 2005. Målet er å skape et trygt arbeidsmiljø for ansatte, med fokus på opplæring og ansvar for HMS-arbeidet. Det er utarbeidet dokumentasjon og prosedyrer i tråd med Bergen kommunes overordnede HMS-retningslinjer. Brannvernledere er utnevnt for ulike leieobjekter, og det vil bli lagt vekt på kontinuerlig forbedring av arbeidsmiljøet."
+  }
+}

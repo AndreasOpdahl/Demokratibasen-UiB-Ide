@@ -1,0 +1,18 @@
+{
+  "dokument_id": "226369:2787361:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:56:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses accessibility issues in cultural events, which is relevant to local residents."
+    },
+    "summary_headline": "Krav om HC-parking for bedre kulturtilgang",
+    "summary_body": "Kommunalt råd for personer med funksjonsnedsettelse har foreslått at det må legges til rette for HC-parking ved alle kulturarenaer i Bergen. Dette forslaget ble sendt til utvalg for finans, kultur og næring etter behandling i møte 07.01.2021. Rådet påpeker at fysisk tilgjengelighet er viktig for å sikre at alle kan delta på kulturarrangementer, men at HC-parking er en viktig del som mangler i den nåværende planen. Dette tiltaket vil kunne øke tilgangen til kultur for personer med funksjonsnedsettelse."
+  }
+}

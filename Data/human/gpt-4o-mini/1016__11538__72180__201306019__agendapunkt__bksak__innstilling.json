@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:11538:72180:201306019:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:21:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document primarily consists of procedural approvals with no significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av protokoll fra Hovedarbeidsmiljøutvalget",
+    "summary_body": "Hovedarbeidsmiljøutvalget har enstemmig godkjent protokollen fra møtet den 4. desember 2014. Møtet, som ble ledet av Eli Tysnes, omhandlet også orienteringer om oppfølging av saker og vedtatt møteplan for 2015. Det ble ikke rapportert om noen kontroverser eller dissent."
+  }
+}

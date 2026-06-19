@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:4294:42135:200505485:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:39:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document indicates a lack of proposals or viewpoints from the Elder Council, which is not newsworthy."
+    },
+    "summary_headline": "Ingen forslag fra Eldrerådet i Bergen",
+    "summary_body": "Komite for helse og sosial behandlet saken i møtet 28. september 2005, men det forelå ingen synspunkt eller forslag fra Eldrerådet."
+  }
+}

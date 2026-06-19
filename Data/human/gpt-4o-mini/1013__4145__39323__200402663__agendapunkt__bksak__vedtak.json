@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4145:39323:200402663:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:06:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines procedural decisions regarding the distribution of audit cases, which is of limited immediate interest."
+    },
+    "summary_headline": "Saker fra Kommunerevisjonen sendt til komiteer",
+    "summary_body": "Forretningsutvalget har behandlet fordeling av saker fra Kommunerevisjonen i møte 4. september 2021. Sakene om skatteregnskap og forvaltningsrevisjon sendes til komite for finans, kultur og næring, mens prosjektet om barnevern i barnehager sendes til komite for oppvekst og orienteres til komite for helse og sosial. Bystyredirektørens forslag ble vedtatt enstemmig."
+  }
+}

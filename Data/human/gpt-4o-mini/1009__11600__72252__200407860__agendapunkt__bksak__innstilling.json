@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11600:72252:200407860:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:48:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses budget adjustments for a significant municipal project, which may impact local residents."
+    },
+    "summary_headline": "Byrådet godkjenner sluttregnskap for ny hovedbrannstasjon med mindreforbruk",
+    "summary_body": "Byrådet i Bergen har godkjent sluttregnskapet for tre prosjekter innen brannberedskap, inkludert den nye hovedbrannstasjonen, med en samlet kostnad på 303 millioner kroner. Prosjektet har et mindreforbruk på 650 936 kroner, som foreslås omdisponert til oppfølging av vinduer og glass i brannstasjonen. Dette kan påvirke brannberedskapen i kommunen, og administrasjonen får fullmakt til nødvendige budsjettjusteringer."
+  }
+}

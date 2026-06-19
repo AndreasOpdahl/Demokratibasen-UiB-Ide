@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50843:110144:199717042:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:49:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant urban renewal project with substantial funding and community involvement."
+    },
+    "summary_headline": "Godkjent byfornyingsprosjekt for Tullinsgate på Møhlenpris",
+    "summary_body": "Hovedutvalg for fritid og kultur har godkjent opparbeidelsen av gatetun i Tullinsgate på Møhlenpris, med totale kostnader på 1.697.700 kroner. Anbudet er tildelt Arne Wikholm AS, som kom med det laveste tilbudet. Prosjektet finansieres delvis gjennom husbanktilskudd og lånefond, med bidrag fra Statens vegvesen. Målet er å skape attraktive uteområder for beboerne, som har etterspurt bedre oppholdsplasser. Ferdigstillelse er planlagt til 15. november 1998, og prosjektet vil bli videre behandlet i Bydelsutvalg 01 den 20. mai 1998."
+  }
+}

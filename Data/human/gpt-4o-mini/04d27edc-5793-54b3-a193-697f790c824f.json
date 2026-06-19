@@ -1,0 +1,18 @@
+{
+  "dokument_id": "04d27edc-5793-54b3-a193-697f790c824f",
+  "kommune_nummer": 4627,
+  "kommune_navn": "Askøy",
+  "generated_at": "2026-02-19 14:30:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a meeting notice with routine agenda items and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteinnkalling for Råd for personer med funksjonsnedsettelse",
+    "summary_body": "Råd for personer med funksjonsnedsettelse har innkalt til møte i Formannskapssalen den 27. oktober 2025 kl. 14:30. Agendaen inkluderer godkjenning av innkalling og saksliste, samt forlengelse av samarbeidsavtale med Blå Kors Barnas stasjon for perioden 2026-2028."
+  }
+}

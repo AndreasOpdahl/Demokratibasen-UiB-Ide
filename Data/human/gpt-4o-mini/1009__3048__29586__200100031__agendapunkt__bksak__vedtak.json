@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3048:29586:200100031:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:59:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves public space rental for various cultural events, impacting local community engagement."
+    },
+    "summary_headline": "Festplassen leies ut til kulturelle arrangementer i 2002",
+    "summary_body": "Byrådet i Bergen har besluttet å leie ut Festplassen til flere kulturelle arrangementer i 2002, inkludert konserter og tivoli. Arrangementene omfatter blant annet Bergen Brandkorps Musikkorps og Festspillene i Bergen. Leien for Festplassen er satt til 12.000 kroner per dag, og frivillige organisasjoner må også betale. Det er planlagt oppsett av skilt for alternative parkeringsmuligheter under arrangementene."
+  }
+}

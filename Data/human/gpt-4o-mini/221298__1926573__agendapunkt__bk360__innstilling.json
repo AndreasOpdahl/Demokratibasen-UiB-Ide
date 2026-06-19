@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221298:1926573:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:44:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses the allocation of significant funding to local health and care organizations, which impacts many residents."
+    },
+    "summary_headline": "Bergen kommune bevilger 894 000 kroner til frivillige helseorganisasjoner",
+    "summary_body": "Byrådet i Bergen har besluttet å fordele 894 000 kroner til frivillige organisasjoner innen helse- og omsorgssektoren for 2020. Dette er en økning i antall søknader fra 21 til 25, hvor flere organisasjoner vil motta lavere tilskudd enn i fjor på grunn av økt konkurranse. Byrådet har også vedtatt at tilskudd ikke skal tilbakebetales dersom prosjekter påvirkes av koronarestriksjoner, og oppfordrer organisasjonene til å utvikle alternative løsninger. Dette tiltaket er viktig for å støtte frivillig innsats som fremmer helse og aktivitet blant innbyggerne."
+  }
+}

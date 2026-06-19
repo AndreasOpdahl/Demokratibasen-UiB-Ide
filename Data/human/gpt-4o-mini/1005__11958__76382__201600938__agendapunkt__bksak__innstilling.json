@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11958:76382:201600938:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:38:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant proposed changes to the education laws affecting school environments, which have a direct impact on students and parents."
+    },
+    "summary_headline": "Bergen kommune støtter endringer i opplæringsloven for bedre skolemiljø",
+    "summary_body": "Bergen kommune avgir høringsuttalelse til Kunnskapsdepartementets forslag om endringer i opplæringsloven og friskoleloven, som inkluderer et nytt kapittel om skolemiljø. Byrådet støtter hovedsakelig forslagene, som innfører skjerpet aktivitetsplikt for skolene ved krenkelser og en ny håndhevingsordning. Det foreslås også tvangsmulkt for å sikre at pålegg om tiltak blir fulgt. Byrådet uttrykker bekymring for bruken av tvangsmulkt og ønsker at dette kun skal brukes i spesielle tilfeller. Høringsfristen er 1. august 2016."
+  }
+}

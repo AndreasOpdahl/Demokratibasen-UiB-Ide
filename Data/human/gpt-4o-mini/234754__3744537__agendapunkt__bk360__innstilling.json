@@ -1,0 +1,18 @@
+{
+  "dokument_id": "234754:3744537:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:17:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses significant issues affecting low-income families in Bergen regarding reduced fees for childcare, highlighting ongoing challenges and the need for municipal support."
+    },
+    "summary_headline": "Krav om enklere søknadsprosess for lavinntektsfamilier i Bergen",
+    "summary_body": "Camilla Ahamath (SV) har stilt spørsmål til bystyret om redusert foreldrebetaling i SFO og barnehage, og om tilbakeføring ved glemte søknader. Hun påpeker at lavinntektsfamilier opplever unødvendig stress og økonomiske belastninger når de må søke sosialhjelp for å dekke barnehagefakturaer. Byrådet har tidligere lovet å gjøre prosessen enklere, men Ahamath får fortsatt tilbakemeldinger om at problemene ikke er løst. Hun etterspør status i saken, som berører mange familier i Bergen."
+  }
+}

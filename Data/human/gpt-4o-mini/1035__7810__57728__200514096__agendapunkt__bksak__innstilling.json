@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:7810:57728:200514096:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:03:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen kommentarer til protokoll fra tilsynsutvalg",
+    "summary_body": "Tilsynsutvalget for byens utseende har godkjent protokollen fra møtet den 10. februar 2010 uten kommentarer."
+  }
+}

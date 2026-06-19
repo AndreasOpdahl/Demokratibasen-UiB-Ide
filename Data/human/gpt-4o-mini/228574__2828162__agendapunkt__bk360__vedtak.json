@@ -1,0 +1,18 @@
+{
+  "dokument_id": "228574:2828162:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:01:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document details a routine meeting agenda approval with no significant newsworthy elements."
+    },
+    "summary_headline": "Kontrollutvalget godkjenner dagsorden for møte",
+    "summary_body": "Kontrollutvalget behandlet innkallingen og dagsorden i møtet den 7. april 2021, hvor de godkjente dagsorden uten innvendinger. Henning Warloe foreslo å flytte sak 28/21 til behandling rett etter sak 25/21, og byråd Lubna Jaffery fikk ordet, men det var ingen motforestillinger."
+  }
+}

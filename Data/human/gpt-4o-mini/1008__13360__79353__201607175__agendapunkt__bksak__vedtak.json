@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:13360:79353:201607175:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:33:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document involves a complaint regarding a building permit, which may affect local residents."
+    },
+    "summary_headline": "Klage på rammetillatelse avvist av byrådet",
+    "summary_body": "Byrådet har innstilt til komité for miljø og byutvikling om å opprettholde vedtaket fra 19. desember 2016, og avvise klagen på rammetillatelsen for nybygg av bolig på Statsminister Michelsens veg 67 C. Dette kan påvirke beboere i området, da klagen ikke tas til følge."
+  }
+}

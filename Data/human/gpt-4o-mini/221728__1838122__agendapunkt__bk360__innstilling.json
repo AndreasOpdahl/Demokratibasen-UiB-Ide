@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221728:1838122:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:46:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant urban development plan that affects local business and environmental interests."
+    },
+    "summary_headline": "Ny næringsutvikling i Arnadalsflaten vedtatt av byrådet",
+    "summary_body": "Byrådet har vedtatt detaljregulering for Arnadalsflaten i Indre Arna, som åpner for utvikling av 37,6 daa næringsareal. Planen inkluderer bygging av industri og lager, samt tilrettelegging for samferdselsanlegg og grønnstruktur. Det er lagt vekt på å ivareta biologisk mangfold og friluftsinteresser, spesielt i forhold til Storelva, som er en viktig fiskeelv. Planen har fått støtte fra Plan- og bygningsetaten, men det er også uttrykt bekymring for miljøpåvirkningen. Byrådet understreker at tiltakene må sikre en bærekraftig utvikling og ivareta lokale interesser."
+  }
+}

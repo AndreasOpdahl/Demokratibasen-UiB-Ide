@@ -1,0 +1,18 @@
+{
+  "dokument_id": "238397:3672117:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:25:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant issues of age discrimination affecting a large demographic in Bergen, with implications for political representation and public policy."
+    },
+    "summary_headline": "Eldrerådet krever handling mot aldersdiskriminering før kommunevalget 2023",
+    "summary_body": "Eldrerådet i Bergen har sendt et brev til forretningsutvalget etter sitt møte 1. juni 2022, der de tar opp aldersdiskriminering som et alvorlig problem. Rådet påpeker at eldre over 65 år, som utgjør nær 50 000 innbyggere i Bergen, er dårlig representert i politiske organer. De oppfordrer politiske partier til å ta dette på alvor før kommunevalget i 2023. Eldrerådet har også samarbeidet med universiteter for å belyse digitale utfordringer for eldre og har identifisert uheldige sider ved fastlegeordningen og pasientreiser. De ber bystyret om å prioritere disse sakene."
+  }
+}

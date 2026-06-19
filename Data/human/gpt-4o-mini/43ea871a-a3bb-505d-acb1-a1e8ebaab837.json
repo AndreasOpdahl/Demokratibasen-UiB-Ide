@@ -1,0 +1,18 @@
+{
+  "dokument_id": "43ea871a-a3bb-505d-acb1-a1e8ebaab837",
+  "kommune_nummer": 1870,
+  "kommune_navn": "Sortland - Suortá",
+  "generated_at": "2026-02-19 23:00:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The budget proposal for Sortland municipality has significant financial implications and affects local services."
+    },
+    "summary_headline": "Sortland kommune foreslår budsjett og økonomiplan for 2026-2029 med økt lånegjeld",
+    "summary_body": "Sortland kommune har lagt frem forslag til budsjett og økonomiplan for perioden 2026-2029, som inkluderer en økning i lånegjeld på rundt 373 millioner kroner. Budsjettet foreslår også en eiendomsskatt på 4 ‰ for bolig- og fritidseiendom og 7 ‰ for andre eiendommer. Kommunedirektøren anbefaler at kommunestyret vedtar budsjettet, som vil bli behandlet av formannskapet 27. november og kommunestyret 11. desember. Det er bekymringer om kommunens økonomiske bærekraft, da netto driftsresultat forventes å være negativt i flere år fremover."
+  }
+}

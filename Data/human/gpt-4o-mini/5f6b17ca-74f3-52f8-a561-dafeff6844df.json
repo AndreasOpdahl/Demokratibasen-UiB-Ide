@@ -1,0 +1,18 @@
+{
+  "dokument_id": "5f6b17ca-74f3-52f8-a561-dafeff6844df",
+  "kommune_nummer": 4634,
+  "kommune_navn": "Masfjorden",
+  "generated_at": "2026-02-19 23:03:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a budget decision but lacks significant controversy or impact."
+    },
+    "summary_headline": "Kraftfondstyret anbefaler saldert budsjett for 2025",
+    "summary_body": "Kraftfondstyret har enstemmig anbefalt et justert kraftfondsbudsjett for 2025 til kommunestyret. Rådmannen la frem et nytt forslag under møtet den 4. april 2025, som ble godkjent uten motforestillinger. Det salderte budsjettet vil nå bli vurdert av kommunestyret."
+  }
+}

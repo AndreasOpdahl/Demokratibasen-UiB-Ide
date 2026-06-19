@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3511:34368:200209643:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:28:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision involves financial management of municipal services, which affects local governance and budgeting."
+    },
+    "summary_headline": "Bergenhus bydelsstyre viderefører ordningen med overføring av overskudd/underskudd",
+    "summary_body": "Bergenhus bydelsstyre har besluttet å videreføre ordningen med overføring av overskudd og underskudd for tjenesteenheter i 2003. Dette ble vedtatt i møte 25. mars 2003, hvor et fellesforslag fra Fremskrittspartiet, Høyre og Kristelig Folkeparti fikk flertall med 8 stemmer. Forslaget fra Arbeiderpartiet, Rødt, Sosialistisk Venstreparti og Venstre fikk 5 stemmer og ble dermed avvist. Denne beslutningen har betydning for hvordan de enkelte tjenesteenhetene håndterer sine økonomiske resultater."
+  }
+}

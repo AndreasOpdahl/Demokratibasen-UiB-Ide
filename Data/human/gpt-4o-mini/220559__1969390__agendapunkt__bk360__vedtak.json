@@ -1,0 +1,18 @@
+{
+  "dokument_id": "220559:1969390:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:43:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the municipal financial report and audit findings, which are relevant but not highly contentious."
+    },
+    "summary_headline": "Kontrollutvalget utsetter behandling av årsregnskap for 2019",
+    "summary_body": "Kontrollutvalget i Bergen kommune har besluttet å utsette behandlingen av årsregnskapet og årsmeldingen for 2019 til neste møte, etter at medlemmene ikke hadde tilstrekkelig tid til å gjennomgå dokumentene. Revisors beretning viser et mindreforbruk på 394 millioner kroner, og byrådet foreslår at dette avsettes til disposisjonsfond. Kontrollutvalget har ingen innvendinger mot dette forslaget, og revisors konklusjon er uten bemerkninger."
+  }
+}

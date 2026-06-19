@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:6380:52751:200801218:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:42:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a controversial proposal regarding the establishment of permanent injection rooms, which has significant implications for public health and local drug policy."
+    },
+    "summary_headline": "Bergen kommune støtter sprøyteromslov til tross for motstand fra KrF",
+    "summary_body": "Bergen kommune har gitt sin tilslutning til endringer i sprøyteromsloven, som ble behandlet av Komite for helse og sosial. I voteringen fikk et alternativt forslag fra Kristelig Folkeparti, som motsatte seg sprøyterom, kun 1 stemme. Flertallet, bestående av Høyre, Arbeiderpartiet, Fremskrittspartiet, Sosialistisk Venstreparti og Rødt, støttet innstillingen med 9 stemmer. Byrådet vil nå fremme dette for bystyret for endelig vedtak."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1021:11559:72740:201125137:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:34:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a significant decision regarding the repeal of a chapter in the municipal law, which could impact local governance."
+    },
+    "summary_headline": "Bergen kommune støtter oppheving av kommunelovens kapittel om samkommuner",
+    "summary_body": "Komite for fullmakter og politisk styringssystem i Bergen kommune har enstemmig vedtatt å støtte Kommunal- og moderniseringsdepartementets forslag om å oppheve kommunelovens kapittel 5 B, som omhandler samkommuner. Ove Sverre Bjørdal fra Senterpartiet fremmet et alternativt forslag som ble nedstemt. Han uttrykte bekymring for at samkommunemodellen, som har vært en god løsning for interkommunalt samarbeid, nå ser ut til å forsvinne. Vedtaket kan påvirke hvordan kommuner samarbeider i fremtiden, noe som er relevant for innbyggerne i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5036:44912:200002978:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:24:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document involves a local business seeking a permit for outdoor alcohol service, which may affect community regulations and local residents."
+    },
+    "summary_headline": "Villa Skjoldnes får tillatelse til uteservering av alkohol",
+    "summary_body": "Byrådet har innvilget søknaden fra Villa Skjoldnes AS om tillatelse til uteservering av alkoholholdig drikk for sluttede lag ved Sundts vei 57. Den nye uteserveringen vil ha et areal på 800 m2 med plass til 120 gjester. Byrådsleder Henning Warloe understreker at dette ikke vil utvide alkoholtilbudet i Bergen kommune vesentlig, da det kun gjelder private arrangementer. Tillatelsen gjelder frem til 30. juni 2008, men krever at søker dokumenterer lovlig adgang til arealet og nødvendige godkjenninger fra plan- og bygningsmyndighetene samt Mattilsynet."
+  }
+}

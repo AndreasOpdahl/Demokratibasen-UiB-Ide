@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10985:69816:200514097:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:57:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document raises concerns about planning processes that could affect local development."
+    },
+    "summary_headline": "Rådet for byforming og arkitektur kritiserer planprosesser",
+    "summary_body": "Rådet for byforming og arkitektur uttrykker bekymring over at detaljreguleringsplaner, som for Espehaugen, blir behandlet uten avklaring av overordnede planer for Birkeland, Liland, Ådland og Espeland. Rådet mener det er uheldig å vurdere enkeltplaner uten å forstå de overordnede føringene, og oppfordrer til at planforslagene bør forelegges i riktig rekkefølge for å ivareta samfunnsmessige interesser."
+  }
+}

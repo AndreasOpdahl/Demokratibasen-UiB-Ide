@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:7372:59499:200918007:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:27:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a public hearing for a school usage plan, which is relevant but lacks immediate controversy or significant financial implications."
+    },
+    "summary_headline": "Høring om Skolebruksplan 2010-2024 i Åsane",
+    "summary_body": "Åsane bydelsstyre har fått tilsendt Skolebruksplanen 2010-2024 for høring, med frist 24. september 2010. Planen har som mål å sikre et godt skoletilbud og arbeidsmiljø, samt oppdatere skoleanleggene. Det er ingen forslag til vedtak i saken, og bydelsstyret oppfordres til å gi sin uttalelse."
+  }
+}

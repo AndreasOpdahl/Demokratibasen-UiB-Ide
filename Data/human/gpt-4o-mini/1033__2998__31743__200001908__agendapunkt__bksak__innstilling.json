@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:2998:31743:200001908:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:45:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a routine application for a change in a liquor license, which has limited local impact."
+    },
+    "summary_headline": "Endring i skjenkebevilling for Peppes Pizza",
+    "summary_body": "Rusmiddelpolitisk råd anbefaler en søknad fra Peppes Pizza Finnegaarden om endring i eksisterende skjenkebevilling. Forslaget er sendt fra Kontor for skjenkesaker til byrådsavdeling for finans. Det er ingen kjent motstand eller kontrovers knyttet til saken."
+  }
+}

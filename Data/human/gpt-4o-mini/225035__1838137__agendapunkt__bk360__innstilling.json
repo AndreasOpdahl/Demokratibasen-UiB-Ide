@@ -1,0 +1,18 @@
+{
+  "dokument_id": "225035:1838137:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:53:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The interpellation raises significant safety concerns regarding cycling in Bergen, which affects local residents."
+    },
+    "summary_headline": "Sikkerhet ved bruk av bysykkel i Bergen under lupen",
+    "summary_body": "Cesilie Tveit (FNB) har stilt spørsmål til byrådet om hvordan Bergen kommune sikrer et trygt sykkelmiljø, med fokus på økende sykkelbruk og trafikksikkerhet. Tveit påpeker at til tross for sykkelsatsingen i Miljøløftet, er det en negativ utvikling i antall sykkelulykker. Hun etterlyser en undersøkelse av ulykkesstatistikken før og etter innføringen av bysykkeltilbudet, for å forstå om tiltakene har hatt ønsket effekt. Bystyret vil vurdere forslaget om å gjennomføre en slik undersøkelse."
+  }
+}

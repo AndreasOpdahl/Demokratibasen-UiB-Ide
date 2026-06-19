@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9280:64910:201000695:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:21:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses quality requirements for services for the developmentally disabled, which is a significant local issue."
+    },
+    "summary_headline": "Bystyret vedtar kvalitetskrav for tjenester til utviklingshemmede",
+    "summary_body": "Bergen bystyre har behandlet kvalitetskrav og oppfølging for tjenester til utviklingshemmede. Bystyret vedtok en melding til orientering, men det ble også fremmet tilleggsforslag fra Oddny Irene Miljeteig (SV) om å forbedre støttekontaktordningen og gjennomgå avlastningsordningen. Disse forslagene fikk støtte fra flere partier og ble vedtatt. Lillian Vangberg (A) påpekte behovet for å heve kvaliteten i private institusjoner. Dette er et viktig tema for mange familier i Bergen, da det berører livskvaliteten til utviklingshemmede og deres pårørende."
+  }
+}

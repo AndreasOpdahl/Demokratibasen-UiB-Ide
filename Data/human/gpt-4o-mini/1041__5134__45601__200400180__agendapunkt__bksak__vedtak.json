@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:5134:45601:200400180:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:11:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The decision is routine and lacks significant impact or controversy."
+    },
+    "summary_headline": "Rolf Lønningen blir nytt varamedlem for Arbeiderpartiet",
+    "summary_body": "Valgstyret har enstemmig vedtatt at Rolf Lønningen trer inn som nytt varamedlem for Arbeiderpartiet i Bergen bystyre etter at Frank Mikkelsen har fått fritak. Dette er en rutinemessig beslutning uten kontroverser."
+  }
+}

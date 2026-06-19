@@ -1,0 +1,18 @@
+{
+  "dokument_id": "220117:1838113:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:42:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the repeal of a local development plan, which affects future urban planning and development in the area."
+    },
+    "summary_headline": "Byrådet foreslår oppheving av kommunedelplan for Mildehalvøya",
+    "summary_body": "Byrådet i Bergen har anbefalt oppheving av kommunedelplanen for Mildehalvøya, planID 15740000, da hovedtrekkene i planen er innarbeidet i KPA2018. Opphevingen er en del av kommunens arbeid med å rydde i planarkivet for å gjøre planhierarkiet mer oversiktlig. Bystyret skal nå behandle saken, og det er viktig for innbyggerne i Ytrebygda, da det kan påvirke fremtidige utviklingsprosjekter i området."
+  }
+}

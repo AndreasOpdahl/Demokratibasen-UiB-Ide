@@ -1,0 +1,18 @@
+{
+  "dokument_id": "19122d3c-a6b6-5116-8184-0b6fb33e8eec",
+  "kommune_nummer": 5530,
+  "kommune_navn": "Senja",
+  "generated_at": "2026-02-19 20:28:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a supplementary election for a local council, which is relevant to the community."
+    },
+    "summary_headline": "Herdis Myrvang fritatt fra verv i Senja forliksråd",
+    "summary_body": "Senja kommunestyre har innvilget Herdis Myrvang fritak som møtefullmektig i Senja forliksråd for resten av valgperioden 2025–2028. Myrvang har søkt om fritak på grunn av helsegrunner. Kommunestyret skal oppnevne et nytt medlem i forliksrådet under møtet 06.11.2025, da det er krav om minst tre medlemmer i forliksrådet. Dette valget er viktig for å sikre at forliksrådet kan fungere effektivt i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "238826:4029570:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:26:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposed merger of two significant cultural institutions in Bergen is highly relevant and impactful for the local community."
+    },
+    "summary_headline": "Bergen kommune støtter fusjon mellom Hordamuseet og Bymuseet",
+    "summary_body": "Bergen kommune gir sin støtte til fusjonen mellom Stiftinga Hordamuseet og Stiftelsen Bymuseet i Bergen, som begge har vedtatt dette i sine styrer. Byrådet mener at en sammenslåing vil forenkle eierstrukturen og forbedre driften av museene. Høringsfristen for innspill er 17. juni 2022. Dette tiltaket er en del av en større strategi for å forbedre samarbeidet mellom museene og deres eierstiftelser, og følger anbefalinger fra tidligere evalueringer av museumsreformen."
+  }
+}

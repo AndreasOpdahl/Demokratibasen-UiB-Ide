@@ -1,0 +1,18 @@
+{
+  "dokument_id": "222767:2023205:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:48:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine procedural matter with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra kommunalt råd for personer med funksjonsnedsettelse",
+    "summary_body": "Dokumentet omhandler godkjenning av innkalling og saksliste for kommunalt råd for personer med funksjonsnedsettelse, datert 14. august 2020. Det er ingen kontroverser eller viktige beslutninger knyttet til saken."
+  }
+}

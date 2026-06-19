@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7345:57385:200900920:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:14:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a municipal statement regarding the use of freelance musicians, which has local relevance."
+    },
+    "summary_headline": "Bergen kommune støtter frilansmusikere i Rikskonsertene",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt en uttalelse til rapporten \"Nye tider - nye takter? En gjennomgang av Rikskonsertene\". Uttalelsen fremhever viktigheten av å bruke frilansmusikere fra hele landet og å bygge på lokal kompetanse og ressurser. Bystyret tar uttalelsen til orientering, og både byrådet og Komite for kultur, idrett og næring støtter dette vedtaket."
+  }
+}

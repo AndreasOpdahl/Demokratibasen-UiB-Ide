@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207396:265719:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:13:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a community sports facility is highly relevant and impactful for local residents, addressing a significant need for recreational space."
+    },
+    "summary_headline": "Innbyggerforslag om nærmiljøanlegg ved Haukedalen skole tas opp til behandling",
+    "summary_body": "Bystyret har mottatt et innbyggerforslag fra FAU ved Haukedalen skole om å etablere et nærmiljøanlegg ved den gamle grusbanen. Anlegget skal inkludere en idretts- og aktivitetspark for alle aldersgrupper, med fasiliteter som kunstgressbane, klatreapparater og lysanlegg. Forslaget er støttet av 385 underskrifter og vil bli behandlet av bystyret, med frist for videre saksgang satt til 30. januar 2019. Dette tiltaket er viktig for å møte behovet for utendørs aktivitetstilbud i området, spesielt med økende barnefamilier."
+  }
+}

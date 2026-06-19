@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5682:49387:200514081:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:32:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves financial implications for a local care institution, affecting community services."
+    },
+    "summary_headline": "Nykirkens alders- og sykehjem får beholde overskudd på 110.703 kroner",
+    "summary_body": "Byrådet har besluttet at Nykirkens alders- og sykehjem kan beholde et driftsoverskudd på 110.703 kroner fra 2006, forutsatt at beløpet settes av til disposisjonsfond. Dette følger av at institusjonen nå har inngått avtale med Bergen kommune fra 1. januar 2007. Byråden for helse og omsorg, Liv Røssland, fremhever at virksomheten har god økonomistyring, men også er økonomisk sårbar. Beslutningen er viktig for å sikre videre drift av omsorgstjenester i lokalsamfunnet."
+  }
+}

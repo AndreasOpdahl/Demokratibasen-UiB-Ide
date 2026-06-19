@@ -1,0 +1,18 @@
+{
+  "dokument_id": "e5a47ea2-be97-5898-9f43-abf207cf8a47",
+  "kommune_nummer": 4649,
+  "kommune_navn": "Stad",
+  "generated_at": "2026-02-19 23:23:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant proposed structural changes to schools and kindergartens in Stad municipality, which could impact local families and education."
+    },
+    "summary_headline": "Stad kommune vurderer omfattende endringer i skolestrukturen",
+    "summary_body": "Stad kommunestyre har vedtatt å utrede en ny barnehage- og skulestruktur som en del av Program for bærekraftig økonomi 2025-2028. Dette inkluderer forslag om sammenslåing av flere skoler, som Eid ungdomsskole med Nordfjordeid skole, samt vurdering av endringer i Haugen, Stårheim, Flatraket, Selje og Stadlandet skulekretser. Kommunedirektøren skal legge frem en innstilling til kommunestyret i løpet av høsten 2025. Endringene kan føre til lengre reiseveier for elever og vil ha betydelig innvirkning på lokalsamfunnene. Ungdomsrådet har uttrykt motstand mot enkelte av forslagene, spesielt i Stårheim og Flatraket, og det er bekymringer om hvordan dette vil påvirke barn med spesielle behov."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4710:42591:200112715:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:19:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a resident's appeal against a municipal decision regarding property development, which has local relevance and potential impact."
+    },
+    "summary_headline": "Klagers søknad om terrasser avvist av byrådet",
+    "summary_body": "Byrådet har avvist klagen fra May Britt Wik angående delvis omgjøring av avslag på søknad om tillatelse til å oppføre to terrasser på Krohnegården 37 B i Fyllingsdalen. I møtet den 26. oktober 2005 ble det besluttet at klagene ikke tas til følge, men at det gis dispensasjon fra avstandsbestemmelsene for oppføring av terrasse på husets sørsiden. Dette kan påvirke både eiendommens utseende og naboenes utsikt."
+  }
+}

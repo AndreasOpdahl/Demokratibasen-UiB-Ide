@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:51117:112616:199609022:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:51:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a funding decision for a local historical publication, which has limited impact and interest."
+    },
+    "summary_headline": "Bergen kommune bevilger 15.000 kroner til historisk skrift",
+    "summary_body": "Hovedutvalg for fritid og kultur har enstemmig besluttet å bevilge 15.000 kroner til delvis finansiering av Bergen Historiske Forenings skrift nr. 93 fra 1998. Bevilgningen er en del av kommunens kulturvern og vil bli belastet konto nr. 1.522.345."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "236308:3795463:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:20:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant proposed changes to biodiesel regulations that could impact local climate efforts and public spending."
+    },
+    "summary_headline": "Bergen kommune kritiserer forslag til omsetningskrav for biodrivstoff",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Miljødirektoratets forslag om innføring av omsetningskrav for avansert biodrivstoff til ikke-veigående maskiner fra 1. juli 2022. Kommunen er positiv til tiltakene, men mener de ikke adresserer grunnleggende utfordringer med dagens krav, som reduserer insentivene for økt bruk av biodrivstoff. Byråden, Thor Haakon Bakke, påpeker at uten endringer kan ikke biodrivstoff være den beste løsningen for å nå klimamålene. Høringsfristen er 13. mars 2022."
+  }
+}

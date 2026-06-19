@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:3455:34183:200300302:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:14:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains discussions and requests from local politicians, indicating some local relevance and interest."
+    },
+    "summary_headline": "Politikere diskuterer bydelsbrosjyre og politiske ressurser på nett",
+    "summary_body": "Under et seminar den 25. mars 2002 diskuterte lokale politikere fra ulike partier, inkludert KrF, H, Sp, SV, A, og FrP, flere saker. Arvid Lihaug (FrP) etterlyste svar på sitt forslag om at Ytrebygda også bør lage en bydelsbrosjyre, lik de i Oslo. Bjørn-Frode Schjelderup (H) ba om en lenke til politiske sider fra Ytrebygda bydels hjemmeside. Leif Aase (FrP) etterlyste fremdrift i møtet med samferdselsministeren. Dette viser at det er et aktivt engasjement blant politikerne for å forbedre informasjon og ressurser for innbyggerne."
+  }
+}

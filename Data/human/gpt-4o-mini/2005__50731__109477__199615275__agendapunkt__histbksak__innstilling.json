@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50731:109477:199615275:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:40:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a contested land division request that affects local property development."
+    },
+    "summary_headline": "Klage på avslag om fradeling av eiendom i Arna opprettholdes",
+    "summary_body": "Hovedutvalg for byutvikling har besluttet å opprettholde administrasjonens avslag på en søknad om fradeling av en tilleggsparsell på ca. 2,5 daa i Arna. Klagen, fremmet av advokat Ingvar Pilskog på vegne av eieren, ble avslått med henvisning til plan- og bygningslovens krav om reguleringsplan. Området er uregulert og inngår i en pågående kommunedelplan. Dette kan påvirke fremtidige byggeprosjekter i området."
+  }
+}

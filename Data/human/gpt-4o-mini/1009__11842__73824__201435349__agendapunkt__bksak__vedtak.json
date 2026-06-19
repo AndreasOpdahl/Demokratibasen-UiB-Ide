@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11842:73824:201435349:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:50:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a development agreement that has local relevance but lacks significant controversy or financial impact."
+    },
+    "summary_headline": "Utbyggingsavtale for Flesland næringsområde godkjent av byrådet",
+    "summary_body": "Byrådet i Bergen har godkjent en utbyggingsavtale for Flesland næringsområde, som involverer Bergen kommune, Flesland Property AS og Statens vegvesen. Byråd for byutvikling, klima og miljø får myndighet til å signere avtalen. Dette kan påvirke utviklingen av næringsområdet i Ytrebygda."
+  }
+}

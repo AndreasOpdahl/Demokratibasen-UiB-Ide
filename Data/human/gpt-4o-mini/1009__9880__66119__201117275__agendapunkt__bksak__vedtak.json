@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9880:66119:201117275:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:48:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to uphold the previous ruling on the balcony construction may affect local residents and reflects community concerns."
+    },
+    "summary_headline": "Klage på altan i Fana avvist av byrådet",
+    "summary_body": "Byrådet har behandlet klagen på tillatelsen til oppføring av altan på Helldalsstølen 62A og har besluttet å opprettholde det tidligere vedtaket fra 12. april 2012. Klagen tas ikke til følge, noe som kan påvirke naboer og lokale innbyggere som har uttrykt bekymringer."
+  }
+}

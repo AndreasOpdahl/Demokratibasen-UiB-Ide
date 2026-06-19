@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:11247:72691:201324124:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:55:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The case involves a rejected complaint regarding a pier construction, which may affect local residents' access to the waterfront."
+    },
+    "summary_headline": "Klage på kai-anlegg avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig avvist en klage på avslag om anlegging av kai ved Kyrkjetangen 16 i Fyllingsdalen. Klagen ble behandlet i møte 11. juni, hvor komiteen opprettholdt fagetatens vedtak fra 7. januar 2014. Tidligere ble saken utsatt for befaring etter forslag fra Asle Steiestøl Wingsternes (H) i mai. Ingen representanter tok ordet under den siste voteringen."
+  }
+}

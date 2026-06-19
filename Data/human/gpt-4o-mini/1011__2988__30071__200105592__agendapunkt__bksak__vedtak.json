@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1011:2988:30071:200105592:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:50:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to sell municipal property for care homes is relevant and impacts local residents."
+    },
+    "summary_headline": "Bergen kommune gir grønt lys for salg av eiendom til omsorgsboliger",
+    "summary_body": "Bergen Bygg og Eiendom KF har enstemmig vedtatt å gi administrasjonen fullmakt til å fremforhandle en kjøpsavtale med VESTBO for eiendom gnr. 24, bnr. 17 i Fyllingsdalen. Dette salget er en del av kommunens plan for å utvikle omsorgsboliger, noe som vil ha direkte innvirkning på lokalsamfunnet. Kjøpsavtalen og taksten vil bli lagt frem for styret for endelig behandling."
+  }
+}

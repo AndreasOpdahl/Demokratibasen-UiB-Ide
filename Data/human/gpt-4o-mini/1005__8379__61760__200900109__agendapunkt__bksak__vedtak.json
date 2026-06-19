@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8379:61760:200900109:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:17:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a unanimous decision on funding changes for local cultural work, but lacks controversy or significant impact."
+    },
+    "summary_headline": "Bystyret vedtar endringer i tilskuddsordninger for kulturarbeid",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt endringer i tilskuddsordningene for lokalt kulturarbeid. Ingen representanter tok ordet under behandlingen, og både byrådet og komiteen for kultur, idrett og næring støttet forslaget. Endringene vil påvirke hvordan kulturprosjekter finansieres i kommunen."
+  }
+}

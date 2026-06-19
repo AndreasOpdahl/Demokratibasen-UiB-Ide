@@ -1,0 +1,18 @@
+{
+  "dokument_id": "204204:255237:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:05:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a contested building application with significant cultural and environmental implications."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på nybygg av våningshus i Åsane",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om rivning av et eksisterende våningshus og oppføring av et nytt på Selvikveien 94, Åsane. Klager, Thomas Byrkjeland, mener tiltaket oppfyller kravene til vann og avløp, men byrådet viser til bekymringer fra Byantikvaren om kulturhistorisk verdi og miljøhensyn. Det er også påpekt at eiendommen ligger i et LNF-område, og at det kreves dispensasjon for å bygge. Byrådet oppfordrer tiltakshaver til å utarbeide et bedre tilpasset prosjekt i samarbeid med Byantikvaren. Saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

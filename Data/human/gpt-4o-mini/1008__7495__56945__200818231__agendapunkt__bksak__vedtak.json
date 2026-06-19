@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:7495:56945:200818231:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:39:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural updates to the budget but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Byrådet foreslår justeringer i budsjettinnstillingen for 2010",
+    "summary_body": "Byrådet har sendt en tilleggsinnstilling til bystyret angående Budsjett 2010 og Økonomiplan 2010-2013. De foreslår at bystyret godkjenner vurderingene fra finansbyråden i et notat datert 4. desember 2009, som inneholder endringer og justeringer til den opprinnelige innstillingen."
+  }
+}

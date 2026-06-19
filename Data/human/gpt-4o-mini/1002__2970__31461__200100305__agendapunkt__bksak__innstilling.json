@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:2970:31461:200100305:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:18:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a regional sports and outdoor activity plan that affects local residents and includes specific challenges for the Arna district."
+    },
+    "summary_headline": "Arna bydelsstyre tar opp utfordringer med nytt idrettsanlegg",
+    "summary_body": "Arna bydelsstyre har fått til behandling fylkesdelplanen for idrett, fysisk aktivitet og friluftsliv for perioden 2002-2005. Planen er en oppfølging av Kulturdepartementets krav om fylkesvise sektorplaner og rulleres hvert fjerde år. Bydelsstyret påpeker spesifikke utfordringer knyttet til planene om et nytt idrettsanlegg på Seimsmyrene, som kan påvirke innbyggerne i Arna. Det er viktig for lokalbefolkningen å være oppmerksom på hvordan disse planene kan utvikle seg."
+  }
+}

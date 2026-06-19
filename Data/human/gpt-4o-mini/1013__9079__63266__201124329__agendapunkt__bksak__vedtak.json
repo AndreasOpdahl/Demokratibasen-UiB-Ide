@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:9079:63266:201124329:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:17:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document details procedural decisions without significant impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til komiteene",
+    "summary_body": "Byrådet har enstemmig besluttet å sende byrådsakene 287, 288, 291 og 301 til Komite for finans, mens byrådsak 292 går til Komite for fullmakter og politisk styringssystem. Ragnhild Stolt-Nielsen påpekte en feil i fordelingen, som ble rettet opp under møtet."
+  }
+}

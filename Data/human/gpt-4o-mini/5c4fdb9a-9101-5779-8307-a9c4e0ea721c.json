@@ -1,0 +1,18 @@
+{
+  "dokument_id": "5c4fdb9a-9101-5779-8307-a9c4e0ea721c",
+  "kommune_nummer": 4626,
+  "kommune_navn": "Øygarden",
+  "generated_at": "2026-02-19 23:03:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant planning case with local implications regarding the establishment of a small boat facility, which has been met with administrative resistance and community interest."
+    },
+    "summary_headline": "Plan- og miljøutvalet anbefaler endring av reguleringsplan for Søra Sundet",
+    "summary_body": "Plan- og miljøutvalet har vedtatt å anbefale at forslagsstillar går videre med endring av reguleringsplanen for Søra Sundet, som åpner for etablering av en flytebrygge med landgang. Dette ble vedtatt med 6 mot 3 stemmer, etter at det ble stilt spørsmål ved tidligere avslag på lignende initiativ. Kommunedirektøren har tidligere stanset planinitiativet, men utvalet mener at dette bør innarbeides som småbåtanlegg i kommende kommuneplan. Endringen kan ha betydning for tilgangen til sjøen for lokalbefolkningen."
+  }
+}

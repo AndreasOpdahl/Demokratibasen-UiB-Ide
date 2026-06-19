@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1011:3604:34587:200105917:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:51:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant financial decisions and implications for public spending."
+    },
+    "summary_headline": "Bergen Bygg og Eiendom KF foreslår disponering av overskudd til vedlikehold og kompetanseutvikling",
+    "summary_body": "Bergen Bygg og Eiendom KF har lagt frem et justert årsregnskap for 2002, som viser et driftsoverskudd på 1.989.623 kroner. Styret anbefaler at overskuddet settes av til disposisjonsfond for å dekke ekstraordinære vedlikeholdsoppgaver og kompetanseutvikling for ansatte. Dette forslaget kommer etter en økning i investeringsaktiviteten, spesielt innen skoler og sykehjem. Det er også en omtvistet fordring mot bykassen på 1.488.867 kroner som påvirker regnskapet. Styret vil at bystyret godkjenner forslaget før fristen 1. mai."
+  }
+}

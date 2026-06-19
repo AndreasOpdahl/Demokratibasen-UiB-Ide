@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4631:41943:200505966:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:19:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to approve the demolition of a residential house is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "Godkjent riving av bolighus i Fyllingsdalen",
+    "summary_body": "Byrådet har godkjent rivingen av et bolighus på Øvre Fyllingsveien 172, gnr. 25, bnr. 32, etter plan- og bygningslovens § 91 a, bokstav b. Det er tiltakshaver Thor Lihaug som har søkt om rivingen. Igangsettingstillatelse for riving vil ikke bli gitt før det foreligger godkjenning for nybygg på tomten."
+  }
+}

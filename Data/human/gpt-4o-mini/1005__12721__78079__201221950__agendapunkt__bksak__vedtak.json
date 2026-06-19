@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:12721:78079:201221950:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:40:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision involves significant changes to a local kindergarten's area plan, impacting community infrastructure and environmental considerations."
+    },
+    "summary_headline": "Bystyret vedtar reguleringsplan for barnehage på Sletten med miljøkrav",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt reguleringsplanen for barnehagen på Sletten, som inkluderer nye krav for redusert klimagassutslipp og tilrettelegging for sykkelparkering. Planen, som omfatter Årstad, gnr. 160, bnr. 180, innfører tiltak som lysregulering av avkjørsel og opparbeidelse av fortau. Tilleggsforslag fra SV og MDG om endringer i parkeringskrav ble avvist. Dette vedtaket vil påvirke både barn og foreldre i området, og sikrer at barnehagen oppfyller moderne miljøstandarder."
+  }
+}

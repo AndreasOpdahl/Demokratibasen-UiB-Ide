@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11952:74810:201301217:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:36:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The revision of guidelines regarding kindergarten payment is relevant to local parents and may impact their financial obligations."
+    },
+    "summary_headline": "Bergen kommune reviderer retningslinjer for barnehagebetaling",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å revidere retningslinjene for manglende betaling for plass i barnehage, ved å fjerne punktene om oppsigelse. De nye retningslinjene vil bli evaluert etter ett år. Sofie Marhaug fra Rødt foreslo at byrådet også vurderer lignende regler for utestående betaling i SFO, men dette forslaget ble nedstemt. Endringen kan påvirke mange familier i Bergen, som nå slipper oppsigelse ved betalingsproblemer."
+  }
+}

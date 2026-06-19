@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244859:4955700:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:40:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine compliance control with no significant impact or controversy."
+    },
+    "summary_headline": "Kontrollutvalget godkjenner etterlevelseskontroll av sykepenger",
+    "summary_body": "Kontrollutvalget i Bergen kommune behandlet den forenklede etterlevelseskontrollen av økonomiforvaltningen for 2022, spesielt knyttet til refusjon av sykepenger, i sitt møte den 26. april 2023. Regnskapsrevisor Unni-Renate Moe fra Deloitte orienterte om resultatene, og vedtaket ble enstemmig godkjent uten noen dissent. Dette er en rutinemessig kontroll uten betydelig innvirkning på innbyggerne."
+  }
+}

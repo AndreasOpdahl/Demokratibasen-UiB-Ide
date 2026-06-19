@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50740:111376:199807826:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:42:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a denied building permit and a complaint from the builder, highlighting local planning issues."
+    },
+    "summary_headline": "Byggherre klager på avslag om garasje i Fana",
+    "summary_body": "Byggherren Per Terje Svalland har klaget på kommunens avslag av 12. mars 1998 om oppføring av garasje på Søråshøgda 240. Bygningsrådet har besluttet å opprettholde avslaget, med begrunnelse i at det vil redusere kvaliteten på utomhusområdet og at det foreligger en søknad om felles garasjeanlegg i området. Klageren mener han vil bidra til å løse parkeringsproblemer og påpeker forskjellsbehandling, da andre i nabolaget har fått tillatelse til utbygging. Saken er relevant for innbyggerne i Fana, da den berører lokale bygge- og reguleringsplaner."
+  }
+}

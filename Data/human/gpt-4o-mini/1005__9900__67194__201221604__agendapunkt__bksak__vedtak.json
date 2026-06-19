@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9900:67194:201221604:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:24:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision on upgrading Fyllingsdalen stadium with artificial grass is significant for local sports and community engagement."
+    },
+    "summary_headline": "Bystyret vedtar oppgradering av Fyllingsdalen stadion med kunstgress",
+    "summary_body": "Bergen bystyre har besluttet å oppgradere Fyllingsdalen stadion med kunstgress, i tråd med kommunale planer. Vedtaket ble fattet med 35 stemmer fra Høyre, Fremskrittspartiet og Kristelig Folkeparti, mens alternative forslag fra Sondre L. Båtstrand (MDG) og Ove Sverre Bjørdal (Sp) ble nedstemt. Bystyret ber også om tiltak for å redusere konflikter mellom brukergrupper og åpner for at friidretten kan bidra til finansiering av flere løpebaner. Dette tiltaket er viktig for å øke bruken av anlegget og styrke idrettsmiljøet i Fyllingsdalen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:5636:49322:200716889:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:41:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a request for clarity on healthcare services, which is relevant to local residents."
+    },
+    "summary_headline": "KHSO ber byråden om klarhet i legetjenester ved sykehjem",
+    "summary_body": "Komite for helse og sosial (KHSO) har enstemmig vedtatt å sende en anmodning til byråden om å sikre ensartede opplysninger om legetjenester ved sykehjem. Anmodningen, fremmet av Hallgeir Utne Hatlevik (A), adresserer motstridende informasjon som har kommet frem i tidligere rapportering. KHSO ønsker at byråden skal redegjøre for hvordan legetjenestene ved sykehjem er i tråd med bystyrets vedtak. Dette er viktig for innbyggerne i Bergen, da det angår kvaliteten på helsetjenester i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205891:255240:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:09:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant cultural heritage preservation case that affects local historical interests."
+    },
+    "summary_headline": "Bergen kommune støtter fredning av MIL Veteranstasjon",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til fredning av MIL Veteranstasjon i Lars Hilles gate 27, og støtter forslaget etter at tidligere merknader er imøtekommet. Byrådet anbefaler bystyret å godkjenne fredningsforslaget, som nå sendes til Riksantikvaren for endelig vedtak. Høringsfristen utløper 30. mai 2018, og bystyret må behandle saken før denne datoen. Dette tiltaket er viktig for å bevare lokal kulturhistorie og vil påvirke beboere og besøkende i området."
+  }
+}

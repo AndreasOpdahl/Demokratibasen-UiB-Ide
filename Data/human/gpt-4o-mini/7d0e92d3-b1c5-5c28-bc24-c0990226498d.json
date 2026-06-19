@@ -1,0 +1,18 @@
+{
+  "dokument_id": "7d0e92d3-b1c5-5c28-bc24-c0990226498d",
+  "kommune_nummer": 4635,
+  "kommune_navn": "Gulen",
+  "generated_at": "2026-02-19 23:08:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines a significant administrative collaboration that could improve efficiency and services for residents."
+    },
+    "summary_headline": "Gulen kommune deltar i forsøksordning for vertskommunesamarbeid om arkiv",
+    "summary_body": "Gulen kommune har besluttet å delta i en forsøksordning for administrativt vertskommunesamarbeid på arkivområdet, som varer i inntil fire år. Dette samarbeidet, ledet av Vestland fylkeskommune, har som mål å effektivisere administrasjonen og redusere kostnader ved å erstatte dagens organisering med en enklere modell. Ingen av de 18 kommunene som deltar har uttrykt motstand mot forsøket. Kommunestyret har vedtatt å støtte søknaden til Kommunal- og distriktsdepartementet (KDD) og godkjent forskriften for samarbeidet. Dette tiltaket kan føre til bedre tjenester for innbyggerne i Gulen."
+  }
+}

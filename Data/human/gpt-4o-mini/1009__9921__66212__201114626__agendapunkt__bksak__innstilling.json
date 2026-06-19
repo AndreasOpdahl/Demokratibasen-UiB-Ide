@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9921:66212:201114626:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:48:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant local dispute over a construction permit affecting residents' access and land use."
+    },
+    "summary_headline": "Klage på rammetillatelse til vei- og vannanlegg avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra nabo Keidy Aasheim angående rammetillatelsen for anleggelse av veier, vann- og avløpsanlegg på Kaland gård. Klageren mener at vedtaket ikke lenger er gyldig, da de opprinnelige forutsetningene har falt bort, og uttrykker bekymring for at veien vil beslaglegge privat vei og påvirke avløpskapasiteten ved Kaland skole. Byrådet, ledet av Filip Rygg, anbefaler at klagen ikke tas til følge, og saken vil bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

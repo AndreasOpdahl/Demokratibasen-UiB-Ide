@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:8735:61375:200901180:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:04:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a planning case with implications for local sports and school facilities."
+    },
+    "summary_headline": "Støtte til plan for Leikvang idretts- og skoleområde",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet planforslaget for Leikvang idretts- og skoleområde og støtter fagetatens vurderinger. De understreker viktigheten av å unngå store terrenginngrep og sikre tilstrekkelig areal mellom friidrettshallen og flerbrukshallen. Dette kan påvirke fremtidige utviklinger i området."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:51301:114725:199900912:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:01:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision involves significant public funding and support for a local school, which affects the community."
+    },
+    "summary_headline": "Bergen kommune gir 6 millioner i lånegaranti til Rudolf Steinerskolen",
+    "summary_body": "Bergen formannskap har besluttet å gi en kommunal garanti for et lån på 6 millioner kroner til Rudolf Steinerskolen i Bergen for finansiering av nybygg. Garantien gjelder i opptil 20 år, og kommunen vil også dekke 50% av lånets kapitalkostnader gjennom tilskudd, som skal innarbeides i driftsbudsjettet for 2000. Vedtaket ble fattet med 19 mot 2 stemmer, der SV og RV stemte imot. Dette tiltaket vil ha betydelig innvirkning på skolens økonomi og rammebetingelser."
+  }
+}

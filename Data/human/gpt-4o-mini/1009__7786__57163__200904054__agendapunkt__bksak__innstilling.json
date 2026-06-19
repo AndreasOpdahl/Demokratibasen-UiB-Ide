@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:7786:57163:200904054:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:38:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant investment in local education infrastructure, which will create new childcare spaces and involves substantial public funding."
+    },
+    "summary_headline": "22 millioner til nytt oppveksttun på Gimle skole",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 22 millioner kroner til etablering av et oppveksttun ved Gimle skole. Dette inkluderer 20 millioner til ombygging av eksisterende skolearealer til barnehageformål, som vil gi 60 nye barnehageplasser. I tillegg bevilges 2 millioner til tilrettelegging av skolearealer. Prosjektet forventes å være ferdigstilt i 2009, og vil bidra til å møte behovet for flere barnehageplasser i kommunen."
+  }
+}

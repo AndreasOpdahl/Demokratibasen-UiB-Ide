@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1021:9433:64221:201125142:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:34:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document contains discussions about social media use and a trip related to local cultural activities, but lacks significant conflict or impact."
+    },
+    "summary_headline": "Diskusjon om sosiale medier og reise til Århus",
+    "summary_body": "Under møtet i Komite for fullmakter og politisk styringssystem ble det diskutert bruk av sosiale medier under bystyremøter, fremmet av Oddny Irene Miljeteig (SV). Trude H. Drevland (H) informerte om sin deltakelse på fiskerimessen i Brussel og en planlagt reise til Århus med representanter for buekorpsene, samt ønsket om å bruke ordførerkjeden i denne sammenhengen."
+  }
+}

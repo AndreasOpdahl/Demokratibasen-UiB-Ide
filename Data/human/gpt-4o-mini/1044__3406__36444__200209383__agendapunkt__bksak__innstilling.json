@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3406:36444:200209383:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:25:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The report highlights significant budgetary challenges and cost-saving measures in Åsane, which are relevant to local residents."
+    },
+    "summary_headline": "Åsane bydelsstyre tar regnskapsrapport til orientering med budsjettutfordringer",
+    "summary_body": "Åsane bydelsstyre har mottatt regnskapsrapporten etter august 2003, som viser en forverret budsjettsituasjon. Bydelen har iverksatt kostnadsreduserende tiltak, men møter fortsatt utfordringer, spesielt innen barnevern og omsorg, med forventede avvik på henholdsvis 11,1 millioner og 21,1 millioner kroner. Det er også bekymringer knyttet til skoler og barnehager som sliter med stramme budsjetter. Bydelsledelsen har foreslått ytterligere tiltak, men disse har ikke fått politisk støtte. Rapporten er viktig for innbyggerne i Åsane, da den påvirker tjenestetilbudet og ressursfordelingen i bydelen."
+  }
+}

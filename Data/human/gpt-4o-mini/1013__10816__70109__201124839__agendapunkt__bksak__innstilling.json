@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10816:70109:201124839:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:58:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines improvements in communication strategies for the municipal council, which is relevant to local residents."
+    },
+    "summary_headline": "Forbedret informasjonsdekning for Bystyrets aktiviteter",
+    "summary_body": "Bystyrets kontor og Seksjon informasjon har samarbeidet for å forbedre informasjonsdekningen av politiske aktiviteter i Bergen kommune. I et møte 9. april 2014 ble det besluttet at informasjon om bystyrets aktiviteter skal være lett tilgjengelig for innbyggerne. Det er enighet om at både posisjon og opposisjon skal dekkes i kommunikasjonen. Forretningsutvalget tar saken til orientering og godkjenner kjørereglene for informasjonsdekning. Dette tiltaket er viktig for å øke synligheten av politiske prosesser og beslutninger i kommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1043:3107:30376:200018755:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:18:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a local political appointment which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Årstad bydelsstyre oppnevner ny representant etter avgang",
+    "summary_body": "Årstad bydelsstyre har besluttet å oppnevne Magnar Lid (Frp) som ny representant etter at Bjørnar Solvang (Frp) ble fritatt fra verv på grunn av flytting fra kommunen. Lid vil være medlem i Konows Senter og i samarbeidsutvalget på Fridalen skole, samt varamedlem i samarbeidsutvalget på Mannsverk barnehage. Dette er en rutinemessig oppnevnelse som påvirker lokale institusjoner."
+  }
+}

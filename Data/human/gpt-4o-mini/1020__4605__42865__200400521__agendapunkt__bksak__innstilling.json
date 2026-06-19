@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:4605:42865:200400521:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:29:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a meeting plan with some minor controversy regarding scheduling around International Women's Day."
+    },
+    "summary_headline": "Bystyret vedtar møteplan for 2006 med endringer for kvinnedagen",
+    "summary_body": "Bystyret har vedtatt møteplanen for 2006, som inkluderer møter den 11. januar, 1. februar, 7. mars, og flere andre datoer. Det ble imidlertid fremmet merknader fra Stine Akre (RV) og Kjersti Toppe (Sp) om at komitemøter ikke bør avholdes 8. mars, den internasjonale kvinnedagen, og at møter ikke bør legges til samme uke som bystyremøtene. Som følge av dette er komitemøtet 8. mars foreslått flyttet til 7. mars. Den endelige møteplanen vil bli sendt ut etter at alle utvalg har vedtatt sine planer."
+  }
+}

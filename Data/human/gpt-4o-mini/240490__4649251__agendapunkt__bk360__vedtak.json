@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240490:4649251:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:29:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document involves a new alcohol license for a local restaurant, which has implications for community regulations and public access to water."
+    },
+    "summary_headline": "Engen Restaurant får ny skjenkebevilling frem til 2024",
+    "summary_body": "Byrådet har innvilget søknaden om ny alminnelig skjenkebevilling for Engen Restaurant, Engen 30, som gjelder alkoholholdige drikker innendørs frem til 30. september 2024. Bevillingshaver er Social Dining AS, og styrer er foreløpig ikke ansatt, men Jarl Raymond Lien fungerer som stedfortreder. Det stilles krav om at restauranten skal tilby gratis og lett tilgjengelig vann til kundene. Før bevillingen kan tas i bruk, må flere dokumenter sendes inn til Kontor for skjenkesaker."
+  }
+}

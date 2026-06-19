@@ -1,0 +1,18 @@
+{
+  "dokument_id": "41dd57f9-e015-5921-a973-c6fefb7628b4",
+  "kommune_nummer": 4649,
+  "kommune_navn": "Stad",
+  "generated_at": "2026-02-19 22:59:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a building permit affecting local residents, with potential implications for agricultural practices."
+    },
+    "summary_headline": "Klage på byggeløyve for driftsbygning i Hjalmavegen avvist av Stad kommune",
+    "summary_body": "Stad kommune har avvist en klage fra Agnes Maria Sætre Hjelmeland angående byggeløyve for en ny driftsbygning på Hjalmavegen 343, søkt av Kjørstad Samdrift DA. Klagen ble sendt etter at naboen oppdaget at merknaden deres ikke ble vurdert før vedtaket ble fattet. Kommunedirektøren anbefalte å ikke ta klagen til følge, og saken sendes nå videre til Statsforvaltaren i Vestland for endelig avgjørelse. Bygningen vil bli plassert på dyrket mark, noe som har skapt bekymringer om støy og lukt for naboene."
+  }
+}

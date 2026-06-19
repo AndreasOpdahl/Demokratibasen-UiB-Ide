@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:9661:65083:201104700:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:05:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a proposed zoning plan for a significant industrial area in Åsane, which could impact local development and land use."
+    },
+    "summary_headline": "Ny reguleringsplan for Ulsetstemma næringspark i Åsane legges ut til offentlig ettersyn",
+    "summary_body": "Rådet for byforming og arkitektur har lagt frem forslag til reguleringsplan for Ulsetstemma næringspark i Åsane, som nå legges ut til offentlig ettersyn. Planen, utarbeidet av Rambøll Norge AS på vegne av Svendsen Eiendom AS, omfatter et ubebygget område på ca. 100 daa, og foreslår utvikling av kombinert bebyggelse og anlegg for forretning, industri, kontor og lager. Fagetaten har påpekt behovet for å ivareta grønne verdier og unngå avrenning til Ulsetstemma. Høringen vil gi grunnlag for videre behandling av planalternativ A eller B, men Statens vegvesen ønsker utsatt behandling i påvente av ny E39-plan."
+  }
+}

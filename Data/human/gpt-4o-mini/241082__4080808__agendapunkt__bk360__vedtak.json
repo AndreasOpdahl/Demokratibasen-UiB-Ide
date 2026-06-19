@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241082:4080808:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:31:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to legalize a kiosk and provide public restroom access is significant for local residents."
+    },
+    "summary_headline": "Bystyret godkjenner legalisering av kiosk med offentlig toalett i Bergenhus",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å legalisere kioskbygget på gnr 166 bnr 116, som også vil inkludere et offentlig tilgjengelig toalett. Vedtaket ble fattet under møtet 23. november 2022, og det stilles krav om samtykke fra Arbeidstilsynet før igangsettingstillatelse kan gis. Bystyret oppfordrer byrådet til å vurdere løsninger for å holde toalettet åpent utenfor kioskens åpningstider, noe som vil være til fordel for innbyggerne i området."
+  }
+}

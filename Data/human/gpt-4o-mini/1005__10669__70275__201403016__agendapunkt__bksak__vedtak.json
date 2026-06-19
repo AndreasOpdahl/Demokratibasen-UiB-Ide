@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:10669:70275:201403016:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:31:09",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document reports on a unanimous decision regarding a survey, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Bystyret tar resultater fra spørreundersøkelse til orientering",
+    "summary_body": "Bergen bystyre har enstemmig besluttet å ta resultatene fra en elektronisk spørreundersøkelse om papirløs saksbehandling til orientering. Dette ble behandlet i bystyremøtet den 14. juni 2018. Ingen kontroverser eller dissent ble rapportert."
+  }
+}

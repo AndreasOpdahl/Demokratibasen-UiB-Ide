@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50930:110859:199712689:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:33:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a new ice rink in Loddefjord involves significant public investment and collaboration with a housing cooperative, impacting local residents."
+    },
+    "summary_headline": "Ny ishall i Loddefjord kan realiseres med samarbeid fra Stor-Bergen Boligbyggelag",
+    "summary_body": "Bergen Formannskap har fått en invitasjon fra Stor-Bergen Boligbyggelag om samarbeid om bygging av en ny ishall i Loddefjord. Dette prosjektet kan redusere kommunens investeringsbehov med 15 millioner kroner, og det er foreslått at ishallen integreres med et nytt aktivitetsenter. Hovedutvalget for fritid og kultur har allerede uttrykt interesse for prosjektet, som kan gi lavere driftskostnader for kommunen. Det er imidlertid usikkert når prosjektet kan innarbeides i økonomiplanen, og rådmannen presiserer at samarbeidet ikke bør fremmes før dette er avklart."
+  }
+}

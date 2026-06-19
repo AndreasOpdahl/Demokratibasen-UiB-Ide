@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11220:73858:201300295:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:34:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines a significant urban planning decision with various proposals and dissenting opinions."
+    },
+    "summary_headline": "Bystyret vedtar Sentrumsplan for Bergen, men etterlyser konkretisering av tiltak",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt Sentrumsplanen for perioden 2015-2020, men uttrykker bekymring for manglende konkretisering av tiltak. Flere representanter, inkludert Tina Åsgård (SV), fremmet alternative forslag for å styrke planen, som inkluderer tiltak for klima, miljø, og bolig for barnefamilier. Bystyret ønsker også å unngå søndagsåpne butikker for å beskytte småbutikker. Det ble vedtatt at en statusrapport skal legges frem etter planperioden, men det er usikkerhet om hvordan de foreslåtte tiltakene vil bli realisert. Dette er viktig for innbyggerne i Bergen, da det påvirker byens utvikling og livskvalitet."
+  }
+}

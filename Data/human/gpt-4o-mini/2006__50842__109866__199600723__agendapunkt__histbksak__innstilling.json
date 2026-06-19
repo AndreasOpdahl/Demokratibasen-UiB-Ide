@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50842:109866:199600723:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:49:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant reallocation of funds affecting local sports and youth programs."
+    },
+    "summary_headline": "Omdisponering av midler til barne- og ungdomsidrett i Bergen",
+    "summary_body": "Hovedutvalg for fritid og kultur har enstemmig besluttet å omdisponere 700.000 kroner fra tilsynsmidler til barne- og ungdomsmidler for idrett i Bergen. Dette skjer etter at det har vært lite interesse fra idrettslagene for tilsynsvaktordningen. Midlene skal blant annet brukes til innkjøp av fotballmål og støtte til Eikås Motorsportsenter. Administrasjonen får fullmakt til å vurdere prosjektsøknader fra HIK innenfor rammen av de omdisponerte midlene."
+  }
+}

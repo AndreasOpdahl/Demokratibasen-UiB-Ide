@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:5645:52485:200416844:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:42:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision to uphold the revocation of a liquor license is relevant to local businesses and community standards."
+    },
+    "summary_headline": "Skjenkebevilling inndratt i to uker etter klage",
+    "summary_body": "Komite for helse og sosial har behandlet en klage angående inndragning av skjenkebevilling for en periode på to uker. Klagen ble ikke tatt til følge, og byrådets vedtak fra 13. august 2008 ble opprettholdt. Behandlingen var enstemmig, med innspill fra representanter fra Høyre, Arbeiderpartiet og SV. Dette vedtaket kan påvirke lokale serveringssteder og deres drift."
+  }
+}

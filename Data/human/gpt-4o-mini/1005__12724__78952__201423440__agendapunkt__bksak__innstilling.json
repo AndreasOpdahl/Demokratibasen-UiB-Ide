@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:12724:78952:201423440:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:42:01",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document outlines a significant urban development project that will impact public transport and urban planning in Bergen."
+    },
+    "summary_headline": "Bybanen fra sentrum til Fyllingsdalen: Ny reguleringsplan vedtatt",
+    "summary_body": "Bystyret har vedtatt reguleringsplanen for delstrekning 1 av Bybanen fra Nonneseter til Kronstad, som inkluderer fire nye holdeplasser: Lungegårdskaien, Møllendal, Haukeland og Kronstad. Prosjektet, som har en total kostnad på ca. 6,2 milliarder kroner, vil forbedre kollektivtransporten i Bergen og forventes å generere opptil 40 000 daglige passasjerer innen 2040. Det er imidlertid fortsatt en innsigelse fra Statsbygg som må løses før byggestart kan finne sted i 2018. Bybanen vil knytte sammen bydeler og forbedre tilgjengeligheten til Haukeland sykehus, som er en av de største arbeidsplassene i regionen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:161:887:200090011:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:03:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural details of a meeting without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra forretningsutvalget",
+    "summary_body": "Forretningsutvalget behandlet flere saker i møte 190201, men det er ingen vesentlige beslutninger eller kontroverser å rapportere om. Sakene ble behandlet i rekkefølge, med enkelte saker utsatt til 26. februar."
+  }
+}

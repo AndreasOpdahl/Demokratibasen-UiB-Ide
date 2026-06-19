@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50935:111715:199612592:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:34:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the continuation of a political register, which has limited public engagement and relevance."
+    },
+    "summary_headline": "Politikerregisteret videreføres uten endringer",
+    "summary_body": "Formannskapet har enstemmig besluttet å sende videre et forslag fra Ragnhild Hedemann (SV) om å oppdatere politikerregisteret jevnlig. Registeret, som ble innført for å registrere økonomiske interesser og verv for folkevalgte og administrative ledere, har hatt begrenset bruk og få henvendelser fra media. Rådmannen foreslår at registeret videreføres i kommende valgperiode, til tross for lav svarprosent fra de folkevalgte. Dette kan påvirke hvordan habilitetsspørsmål håndteres i kommunen."
+  }
+}

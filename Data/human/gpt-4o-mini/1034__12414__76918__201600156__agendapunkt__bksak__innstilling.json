@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:12414:76918:201600156:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:54:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document raises concerns about fire safety in care homes, which is a significant issue for local residents."
+    },
+    "summary_headline": "Eldrerådet krever svar om brannsikring i omsorgsboliger",
+    "summary_body": "Eldrerådet i Bergen har uttrykt bekymring for brannsikringen i omsorg+ boliger og omsorgsboliger for eldre. De har bedt om at Bergen Brannvesen undersøker om disse boligene oppfyller kravene i risikoklasse 6, som gjelder for de mest sårbare bygningene. Eldrerådet ønsker også informasjon om hvor ofte brannvesenet kontrollerer brannsikringen. Dette er en viktig sak for eldre og deres pårørende i Bergen."
+  }
+}

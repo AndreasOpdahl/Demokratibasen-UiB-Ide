@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51184:114381:199902363:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:36:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant budgetary challenges and proposed actions affecting local services."
+    },
+    "summary_headline": "Bergen kommune vurderer budsjettkutt og tiltak for å håndtere økonomiske utfordringer",
+    "summary_body": "Formannskapet i Bergen kommune har behandlet rådmannens orientering om det økonomiske hovedopplegget for perioden 2000-2003. På grunn av en varslet reduksjon i budsjettrammen på 150 millioner kroner, ber bystyret om at foreslåtte tiltak stoppes eller utsettes, med særlig fokus på Kulturbyåret og bydelsreformen. Det er også foreslått omfattende konkurranseutsetting av tjenester og kapitalfrigjøring for å øke inntektene. Formannskapet understreker behovet for bedre statlige rammebetingelser for storbyene, som står overfor kostnadskrevende oppgaver, inkludert bygging av eldreinstitusjoner. Dette kan påvirke tjenestetilbudet til barn, unge, funksjonshemmede og eldre i kommunen."
+  }
+}

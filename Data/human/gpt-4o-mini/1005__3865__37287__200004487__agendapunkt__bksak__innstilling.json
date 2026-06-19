@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:3865:37287:200004487:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:49:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The report provides relevant data on alcohol sales and serving controls in Bergen, which affects local businesses and public health."
+    },
+    "summary_headline": "Årsrapport om kontroll av salgs- og skjenkesteder i Bergen",
+    "summary_body": "Byrådet har lagt frem årsrapporten for 2003 om kontroll av salgs- og skjenkesteder i Bergen. Rapporten viser at det ble utført 638 kontroller av salgssteder og 1061 kontroller av skjenkesteder. Til tross for en nedgang i gjennomsnittlig kontrollfrekvens for skjenkesteder, er det registrert en økning i antall kontroller av salgssteder. Budsjettet for kontrollene var på 600.000 kroner. Rusmiddelpolitisk råd anbefalte enstemmig at saken tas til orientering."
+  }
+}

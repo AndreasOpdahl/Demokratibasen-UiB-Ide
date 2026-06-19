@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:7393:58353:200905840:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:51:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses budget cuts affecting kindergarten quality, raising concerns from multiple representatives."
+    },
+    "summary_headline": "Kutt i barnehagebudsjettet skaper bekymring for kvaliteten",
+    "summary_body": "Under møtet i Komite for oppvekst ble det stilt flere spørsmål om skolebruksplanen og kvaliteten i barnehagene. Idun Kristine Bortne (V) etterspurte tidslinjen for høringen av skolebruksplanen, mens Simen Johan Willgohs (SV) uttrykte bekymring for at budsjettkuttene i barnehagene vil føre til kvalitetsreduksjoner. Han refererte til konkrete eksempler fra en barnehage i Fana som opplever alvorlige konsekvenser av kuttene, inkludert manglende midler til vikarer og aktiviteter. Byråd Filip Rygg svarte på spørsmålene, men det er usikkert om han anerkjenner de negative konsekvensene av kuttene. Dette er en viktig sak for foreldre og ansatte i barnehagene i Bergen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:4185:39181:200411476:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:10:58",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses accessibility improvements for polling stations, which is a significant local issue affecting residents."
+    },
+    "summary_headline": "Tilrettelegging av valglokaler for bevegelseshemmede i Bergen",
+    "summary_body": "Bergen kommune har besluttet å tilrettelegge valglokaler for bevegelseshemmede før valget 15. september 2003. Av de 58 valglokalene er 51 allerede tilpasset, mens syv fortsatt trenger utbedringer. Møhlenpris skole og Kronstad skole foreslås flyttet til bedre egnede lokaler. Utbedringer ved Hellen skole, Minde skole og Landåshallen er allerede igangsatt med et budsjett på mellom 400 000 og 500 000 kroner. Det er imidlertid ikke avsatt midler til utbedring av forhåndsstemmelokaler for 2004. Valgstyret har tatt redegjørelsen til etterretning, og det er viktig for beboere med nedsatt mobilitet å få tilgang til bedre valglokaler."
+  }
+}

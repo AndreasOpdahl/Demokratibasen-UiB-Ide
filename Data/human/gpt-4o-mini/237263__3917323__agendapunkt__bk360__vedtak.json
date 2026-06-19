@@ -1,0 +1,18 @@
+{
+  "dokument_id": "237263:3917323:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:22:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines procedural decisions with no significant impact or controversy."
+    },
+    "summary_headline": "Byrådet fordeler saker til bystyreutvalgene",
+    "summary_body": "I byrådets møte 21. april 2022 ble det enstemmig vedtatt å fordele flere byrådssaker til ulike bystyreutvalg. Sak 125 går til utvalg for miljø og byutvikling, mens sakene 127, 128 og 129 sendes til utvalg for finans, kultur og næring. Sakene 130 og 131 går til utvalg for helse og sosial, og sak 136 til utvalg for barnehage, skole og idrett. Ingen debatt fant sted under behandlingen."
+  }
+}

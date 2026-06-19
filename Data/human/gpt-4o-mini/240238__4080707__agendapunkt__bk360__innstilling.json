@@ -1,0 +1,18 @@
+{
+  "dokument_id": "240238:4080707:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:29:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a building permit affecting local residents and historical preservation."
+    },
+    "summary_headline": "Klage på avslag om bruksendring i Laksevåg avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Bg Vest Eiendom AS angående avslag på søknad om bruksendring og fasadeendringer på Øvre Stadionveien 110 i Laksevåg. Klagen, som ble sendt inn av advokatfirmaet Harris, omhandlet legalisering av endringer i bygningens fasade og bruk av loftet som ny boenhet. Byrådet støtter fagetatens vurdering om at tiltaket ikke oppfyller kravene til visuelle kvaliteter og sikkerhet. Det er også påpekt at tidligere godkjente rømningsveier ikke er i samsvar med gjeldende forskrifter. Saken vil nå bli sendt til Statsforvalteren i Vestland for endelig avgjørelse."
+  }
+}

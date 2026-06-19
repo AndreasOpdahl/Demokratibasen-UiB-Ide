@@ -1,0 +1,18 @@
+{
+  "dokument_id": "239295:4188326:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:26:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses proposed name changes for public transport stops, which could impact local residents and tourists."
+    },
+    "summary_headline": "Byrådet fraråder navneendring av Nonneseter til Jernbanestasjonen",
+    "summary_body": "Bergen byråd har mottatt forslag fra Vestland fylkeskommune om å endre navn på fem bybanestopp for å gjøre dem mer forståelige for turister. Byrådet støtter endringene for Bystasjonen, Nesttun, Lagunen og Birkelandsskiftet, men fraråder at Nonneseter endres til Jernbanestasjonen. Byråden mener at dette vil redusere kjennskapen til kulturminnet Nonneseter kloster, som har historisk betydning. Høringsfristen for innspill var 12. august 2022."
+  }
+}

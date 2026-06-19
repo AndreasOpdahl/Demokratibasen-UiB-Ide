@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7457:58597:200909696:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:18:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a controversial decision regarding the construction of boat houses in a sensitive coastal area, which has implications for local residents and environmental considerations."
+    },
+    "summary_headline": "Klage på avslag om bygging av naust avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på søknaden om bygging av tre naust i Ytrebygda, etter anbefaling fra fagetaten. Klagen fra Hammarsland Gård ble ikke tatt til følge, til tross for argumenter om at tiltaket ville støtte stedbunden næring. Fylkesmannen og Grønn Etat advarte mot tiltaket, som de mente ville privatisere strandsonen og skape presedens for fremtidige utbygginger. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

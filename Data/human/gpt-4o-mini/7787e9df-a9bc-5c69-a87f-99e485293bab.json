@@ -1,0 +1,18 @@
+{
+  "dokument_id": "7787e9df-a9bc-5c69-a87f-99e485293bab",
+  "kommune_nummer": 4615,
+  "kommune_navn": "Fitjar",
+  "generated_at": "2026-02-19 23:07:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines routine administrative decisions without significant controversy or impact."
+    },
+    "summary_headline": "Rutinemessige saker behandlet av utvalget for oppvekst og omsorg",
+    "summary_body": "Fitjar kommune har behandlet flere saker etter delegering i utvalget for oppvekst og omsorg. Blant sakene er fornying av parkeringsløyve for rørslehemma, vedtak om deltakelse i norskopplæring, og innvilgelse av skjenkeløyve for Korpub den 30. april 2025. Kommunedirektøren, Steinar Dalland, anbefaler at utvalget tar disse sakene til vitande."
+  }
+}

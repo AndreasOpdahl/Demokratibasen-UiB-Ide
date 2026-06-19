@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:7453:58273:201004767:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:18:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant issues regarding municipal planning and budget allocations that directly affect residents."
+    },
+    "summary_headline": "Byrådet forsinker rullering av kommuneplanens arealdel",
+    "summary_body": "I et møte i Komite for miljø og byutvikling ble det stilt spørsmål om forsinkelsen av rulleringen av kommuneplanens arealdel. Byråden forklarte at forsinkelsen skyldes avventing av avgjørelse fra Miljøverndepartementet angående innsigelser. Det er planlagt å sende nytt planforslag på høring etter sommerferien, men det er usikkert om tidsplanen kan overholdes. I tillegg er det bekymringer rundt kostnadene for en planlagt bybanefest, som er estimert til 2 millioner kroner, finansiert av bompenger, noe som har møtt kritikk fra opposisjonen."
+  }
+}

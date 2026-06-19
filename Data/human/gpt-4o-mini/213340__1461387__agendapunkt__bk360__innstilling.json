@@ -1,0 +1,18 @@
+{
+  "dokument_id": "213340:1461387:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:29:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant action plan addressing open drug scenes, which has a direct impact on local communities and involves multiple stakeholders."
+    },
+    "summary_headline": "Ruspolitisk råd støtter handlingsplan mot åpne russcener",
+    "summary_body": "Ruspolitisk råd har avgitt høringsuttalelse til Handlingsplan mot åpne russcener, som de anser som viktig for å håndtere utfordringer knyttet til rusavhengige og deres nærmiljø. Rådet påpeker at ansvaret for å redusere åpne russcener må deles mellom politiet, spesialisthelsetjenesten og kommunen. De fremhever behovet for økt politinærvær og rask tilgang til døgnbehandling for rusavhengige. Rådet uttrykker også bekymring for at tiltakene i planen i stor grad kan bli et kommunalt ansvar, og understreker viktigheten av samarbeid mellom alle parter for å oppnå planens mål."
+  }
+}

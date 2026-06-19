@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4361:40181:200400627:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:15:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant financial contribution from the municipality to aid efforts following a natural disaster, which is highly relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune bevilger 237.000 kroner til hjelpearbeid etter naturkatastrofen i Asia",
+    "summary_body": "Bergen kommune har besluttet å bevilge 237.000 kroner til hjelpearbeid etter naturkatastrofen i Asia, som tilsvarer 1 krone per innbygger. Av dette går 20.000 kroner til Kirkens Nødhjelps vannprosjekt, mens 217.000 kroner går til hjelpeorganisasjonenes felleskonto. Byrådsleder Monica Mæland har innstilt til byrådet om denne tilleggsbevilgningen, som vil støtte viktige humanitære tiltak."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4249:39749:200400137:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:51:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural rules for oral questions in city council meetings, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra bystyrets muntlige spørsmål",
+    "summary_body": "Bystyret har fastsatt retningslinjer for hvordan muntlige spørsmål skal stilles og protokolleres under møtene. Spørsmålene må leveres skriftlig til Bystyrets kontor for å bli protokollert."
+  }
+}

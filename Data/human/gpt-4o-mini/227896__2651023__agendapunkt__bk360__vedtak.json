@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227896:2651023:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:59:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The case involves a rejected building extension, but lacks significant conflict or public impact."
+    },
+    "summary_headline": "Klage på avslag om takopplett og takterrasse avvist",
+    "summary_body": "Utvalg for miljø og byutvikling har enstemmig opprettholdt avslaget på klagen for påbygg til bolig på Thormøhlens gate 16. Klagen ble behandlet i møte 11. mars 2021, og ingen representanter tok ordet under voteringen. Byrådet hadde tidligere innstilt på samme vedtak. Dette betyr at det ikke blir noen endringer i byggetillatelsen."
+  }
+}

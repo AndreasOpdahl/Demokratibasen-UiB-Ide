@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:7517:57031:200718689:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:32:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative updates without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen betydelige saker behandlet av finanskomiteen",
+    "summary_body": "Finanskomiteen behandlet flere saker i møte 13. januar 2010, inkludert notater om skatteinngang for desember 2009 og en oversikt over saker som skal behandles i bystyret i første halvår 2010. Ingen kontroverser eller betydelige beslutninger ble rapportert."
+  }
+}

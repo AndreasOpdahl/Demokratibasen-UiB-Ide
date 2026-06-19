@@ -1,0 +1,18 @@
+{
+  "dokument_id": "c1b1d9cf-07d5-5779-a9f3-8b7cebe9b761",
+  "kommune_nummer": 4634,
+  "kommune_navn": "Masfjorden",
+  "generated_at": "2026-02-19 23:19:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the appointment of representatives to a regional fire and rescue council, which is relevant but not highly impactful."
+    },
+    "summary_headline": "Ordførar Erlend Kvamsdal utpekes som representant til Vest brann- og redningsregion KO",
+    "summary_body": "Masfjorden kommune har valgt ordførar Erlend Kvamsdal (H) som representant til representantskapet i Vest brann- og redningsregion KO for perioden 2023-2027, med varaordførar Geir Egil Haugsvær (Sp) som vara. Valget skjer i forbindelse med kommunens formelle deltakelse i brann- og redningsregionen fra 20. mars 2025. Det er planlagt et møte for representantskapet den 24. april."
+  }
+}

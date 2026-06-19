@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3914:37478:200401343:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:47:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a routine application for a sales license, which has limited impact and relevance."
+    },
+    "summary_headline": "Rema 1000 søker om salgsbevilling for øl",
+    "summary_body": "Rusmiddelpolitisk råd anbefaler søknaden fra Rema 1000 Danmarksplass om salgsbevilling for øl frem til 30. juni 2004. Søknaden gjelder overdragelse av salgsrettigheter ved Fjøsangerveien 32 C. Det er ikke rapportert om noen motstand eller kontrovers knyttet til saken."
+  }
+}

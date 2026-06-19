@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:9947:66353:201200090:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:40:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains administrative decisions regarding property tax exemptions and appeals, which may affect local residents."
+    },
+    "summary_headline": "Byrådet innstiller fritak for eiendomsskatt til Dræggens Buekorps",
+    "summary_body": "Byrådet har godkjent protokoller fra møter den 4. og 6. desember 2012. I tillegg innstiller byrådet til bystyret om å frita Dræggens Buekorps for eiendomsskatt fra 1. januar 2012, som utgjør 7.074 kroner årlig. Fritaket bortfaller dersom eiendommen endres i bruk. Dette kan ha betydning for lokale innbyggere som er interessert i kultur- og fritidsaktiviteter."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1039:12261:75892:201127996:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:07:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural questions for a youth council meeting, lacking significant newsworthy elements."
+    },
+    "summary_headline": "Ungdommens bystyre forbereder skriftlige spørsmål",
+    "summary_body": "Ungdommens bystyre har utarbeidet forslag til skriftlige spørsmål som skal oversendes byrådet før møtet. Dokumentet er en del av forberedelsene til møtet og inneholder ingen kontroverser eller spesifikke beslutninger."
+  }
+}

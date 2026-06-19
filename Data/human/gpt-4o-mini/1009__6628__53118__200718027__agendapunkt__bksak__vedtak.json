@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:6628:53118:200718027:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:34:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The decision to adopt the Regensburg Recommendations is relevant but lacks significant impact or controversy."
+    },
+    "summary_headline": "Bergen kommune slutter seg til Regensburg Recommendations",
+    "summary_body": "Bergen kommune har besluttet å slutte seg til \"Regensburg Recommendations\" under behandling i byrådsmøtet 9. januar 2021. Dette vedtaket, som ble fattet uten motstand, er en del av kommunens arbeid med bevaring av kulturarv og er basert på anbefalinger fra Organization of World Heritage Cities. Det er uklart hvilke konkrete tiltak som vil følge av denne tilslutningen."
+  }
+}

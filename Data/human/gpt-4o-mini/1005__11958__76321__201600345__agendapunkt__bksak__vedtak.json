@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11958:76321:201600345:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:38:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to exempt a property from property tax is relevant to local residents and involves public funds."
+    },
+    "summary_headline": "Bystyret fritar Bymuseet i Bergen for eiendomsskatt",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt å frita Bymuseet i Bergen, beliggende på Jordalsveien 42, for eiendomsskatt fra 1. januar 2016. Eiendommen har en skattetakst på 4 435 000 kroner, og den årlige eiendomsskatten utgjør 22 175 kroner. Fritaket bortfaller dersom eiendommen selges eller brukes til andre formål. Lillian Vangberg fra Eiendomsskattekontoret ble ansett som inhabil i saken."
+  }
+}

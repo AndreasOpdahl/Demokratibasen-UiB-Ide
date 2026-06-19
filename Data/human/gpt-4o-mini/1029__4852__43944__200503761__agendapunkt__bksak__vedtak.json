@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1029:4852:43944:200503761:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:32:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains procedural information but lacks significant newsworthy elements."
+    },
+    "summary_headline": "Kontrollutvalget inviterer til orientering om økonomisystemet Agresso",
+    "summary_body": "Kontrollutvalget har behandlet sak 23-06 i møte 6. mars 2022. Finansdirektøren er invitert til å orientere om økonomisystemet Agresso i et møte 3. eller 30. mai. I tillegg er lederen av kontrollutvalget invitert til å delta i finanskomiteens møte med Oslo kommune i slutten av april for å diskutere kontroll og tilsyn i et parlamentarisk system."
+  }
+}

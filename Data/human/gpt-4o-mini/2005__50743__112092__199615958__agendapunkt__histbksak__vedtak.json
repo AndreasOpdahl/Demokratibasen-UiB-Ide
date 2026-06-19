@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50743:112092:199615958:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:43:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a procedural decision with no significant impact or controversy."
+    },
+    "summary_headline": "Forslag om lokkløsninger over havneområdet tas til orientering",
+    "summary_body": "Hovedutvalg for byutvikling har behandlet et forslag fra Gunn-Vivian Eide (V) om lokkløsninger for boliger og kontorer over havneområdet Dokken-Nøstebukten. Forslaget ble enstemmig vedtatt til orientering, mens Eides tilleggsforslag om å inkludere dette i kommuneplanens arealdel falt med 2 stemmer. Saken ble behandlet 8. desember 1998."
+  }
+}

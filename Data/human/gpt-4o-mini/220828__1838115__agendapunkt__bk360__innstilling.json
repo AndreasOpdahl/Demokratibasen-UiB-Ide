@@ -1,0 +1,18 @@
+{
+  "dokument_id": "220828:1838115:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:43:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a comprehensive youth plan addresses significant social issues affecting local youth, making it highly relevant."
+    },
+    "summary_headline": "Bystyret vurderer helhetlig ungdomsplan for Bergen",
+    "summary_body": "Bystyrerepresentant Camilla Ahamath (SV) har fremmet et forslag om at byrådet skal utvikle en helhetlig ungdomsplan for Bergen innen utgangen av 2020. Planen skal fokusere på å styrke kommunens arbeid med unge, spesielt med tanke på utfordringer som vold, rus og psykiske plager. Forretningsutvalget har sendt forslaget videre til byrådet for vurdering, med en frist for behandling i bystyret den 27. mai 2020. Dette initiativet er viktig for å forbedre levekårene for ungdom i alle bydeler."
+  }
+}

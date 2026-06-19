@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3537:33632:200008444:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:25:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a local alcohol license application, which has limited impact and interest."
+    },
+    "summary_headline": "Søknad om skjenkebevilling for konsert i Åsane",
+    "summary_body": "Åsane bydel har sendt inn en søknad om skjenkebevilling for en enkelt anledning i Kulturhuset i Åsane Senter 40, planlagt for 30. januar 2003. Bydelsdirektør Marit Strøm og helse- og sosialsjef Christen A. Larsen har ingen merknader til søknaden. Dette arrangementet kan være av interesse for lokale innbyggere som ønsker å delta på visekvelden."
+  }
+}

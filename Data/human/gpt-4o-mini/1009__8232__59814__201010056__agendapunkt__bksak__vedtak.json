@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8232:59814:201010056:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:40:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision not to exercise the municipal pre-emption right is relevant to local real estate transactions."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på Hordagaten 24",
+    "summary_body": "Bergen kommune har besluttet å ikke gjøre forkjøpsretten gjeldende ved salg av leiegården Hordagaten 24, gnr. 158 bnr. 329, fra Bjørgvin Utleie AS til Gobo bygg og bolig AS. Dette ble vedtatt av byrådet i møte den 10. oktober 2007. Beslutningen kan påvirke lokale boligmarkedet og eiendomshandler."
+  }
+}

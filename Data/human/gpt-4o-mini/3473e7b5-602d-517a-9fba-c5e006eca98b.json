@@ -1,0 +1,18 @@
+{
+  "dokument_id": "3473e7b5-602d-517a-9fba-c5e006eca98b",
+  "kommune_nummer": 4650,
+  "kommune_navn": "Gloppen",
+  "generated_at": "2026-02-19 22:58:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant changes to local healthcare services and governance affecting the community."
+    },
+    "summary_headline": "Eldrerådet vurderer flytting av legevakt til Gloppen omsorgssenter",
+    "summary_body": "Eldrerådet i Gloppen kommune har diskutert flytting av legevakt til midlertidige lokaler ved Gloppen omsorgssenter for å sikre bedre arbeidsforhold for legene og pasientsikkerhet. Kommunedirektøren anbefaler tiltaket, som er planlagt gjennomført i 2026, med en kostnad på 1 million kroner for nødvendige ombygginger. Dette tiltaket er en del av en større samhandlingsplan og har som mål å unngå aleinearbeid for legene og forbedre pasientbehandlingen. Eldrerådet godkjente også en samhandlingsplan med Pensjonistlaga og oppdaterte reglement for rådene, som vil styrke medvirkning fra eldre og personer med nedsatt funksjonsevne."
+  }
+}

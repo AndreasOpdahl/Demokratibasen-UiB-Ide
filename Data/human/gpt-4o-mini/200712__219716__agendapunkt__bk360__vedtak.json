@@ -1,0 +1,18 @@
+{
+  "dokument_id": "200712:219716:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:52:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines significant funding allocations for climate and environmental initiatives, which directly impact local organizations and residents."
+    },
+    "summary_headline": "Bergen kommune tildeler 1,1 millioner til klima- og miljøtiltak",
+    "summary_body": "Bergen byråd har besluttet å fordele 1,1 millioner kroner i tilskudd til ulike klima- og miljøtiltak for 2017. Midlene går til prosjekter som Plastjakten Hordaland og Klimafestivalen, blant andre. Byrådet opphevet tidligere vedtak i sak 1247-17, og Vigdis Anita Gåskjenn ble erklært inhabil under behandlingen av saken. Dette tiltaket er finansiert gjennom kommunens klima- og miljøfond."
+  }
+}

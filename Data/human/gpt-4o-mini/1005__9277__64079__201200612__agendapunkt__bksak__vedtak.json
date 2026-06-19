@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9277:64079:201200612:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:20:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses changes to compensation for elected officials, which affects local governance and public spending."
+    },
+    "summary_headline": "Bystyret vedtar endringer i godtgjørelse til folkevalgte",
+    "summary_body": "Bergen bystyre har vedtatt endringer i reglementet for godtgjørelse til folkevalgte. Ordføreren vil nå motta 120% av godtgjørelsen for komiteledere, som er 901080 kr fra 1. januar 2012. Komiteledere i hel stilling vil få 100% av stortingsrepresentantenes godtgjørelse, fratrukket diettkompensasjon. Det ble fremmet alternative forslag fra SV og R, men disse ble nedstemt. Endringene kan påvirke hvordan folkevalgte kompenseres og kan ha betydning for kommunens budsjett."
+  }
+}

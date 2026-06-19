@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:67:244:200090058:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:31:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative responses without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen store nyheter fra Komite for finans og næring",
+    "summary_body": "Komite for finans og næring har behandlet flere anmodninger og spørsmål fra medlemmer, inkludert svar på spørsmål fra Torstein Dahle (RV) om vedlikeholdsprogram og eierstruktur for Hanøytangen, samt spørsmål fra Gunnar Bakke (FrP) om salg av Hanøytangen AS. Det ble også diskutert budsjettarbeid i komiteene. Ingen kontroverser eller betydelige beslutninger ble rapportert."
+  }
+}

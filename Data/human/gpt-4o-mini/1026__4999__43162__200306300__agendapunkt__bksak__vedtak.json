@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4999:43162:200306300:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:07:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant organizational changes in municipal property management, impacting local governance and employment."
+    },
+    "summary_headline": "Bergen kommune reorganiserer bygg- og eiendomsforvaltningen",
+    "summary_body": "Bystyret i Bergen har vedtatt omfattende endringer i bygg- og eiendomsforvaltningen. En ny enhet for strategisk byggforvaltning opprettes i byrådsavdelingen for finans, kultur og næring, og BBE KF slås sammen med Byggvedlikehold til en ny Etat for byggvedlikehold og drift. Dette vedtaket, som trer i kraft 1. januar 2007, har som mål å effektivisere forvaltningen av kommunale eiendommer. Det ble også vedtatt at ansatte som blir overtallige skal tilbys andre stillinger i kommunen. Det var en stemmesplittning, der det alternative forslaget fra FrP fikk kun 2 stemmer, mens det opprinnelige forslaget fikk støtte fra 10 representanter."
+  }
+}

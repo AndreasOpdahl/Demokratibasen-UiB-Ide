@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10410:67747:201121437:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:41:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses a significant regulatory plan affecting a local business area with environmental concerns and community opposition."
+    },
+    "summary_headline": "Reguleringsplan for Haugane næringsområde i Arna vedtatt med miljøhensyn",
+    "summary_body": "Bergen kommune har vedtatt et forslag til planprogram for regulering av Haugane næringsområde i Arna, som omfatter eksisterende næringsvirksomhet og nødvendige konsekvensutredninger. Planen, som er utarbeidet av Plan Vest Bergen AS på vegne av Rivenes eiendom AS, tar sikte på å lovliggjøre tidligere ulovlige tiltak og vurdere tilbakeføring av grøntarealer mot Kolsåsvannet. Det er uttrykt bekymring fra naboer om støy, forurensning og trafikk, samt behovet for å ivareta det biologiske mangfoldet i området. Byrådet anbefaler at fagetatens merknader blir fulgt opp i det videre planarbeidet."
+  }
+}

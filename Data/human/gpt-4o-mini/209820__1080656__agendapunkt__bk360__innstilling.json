@@ -1,0 +1,18 @@
+{
+  "dokument_id": "209820:1080656:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:19:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a building permit affecting local residents' views and property rights."
+    },
+    "summary_headline": "Klage på rammetillatelse for firemannsbolig avvist av byrådet",
+    "summary_body": "Byrådet har avvist klagen fra nabo Eli Karin Reigstad mot rammetillatelsen for oppføring av en firemannsbolig på Stølsvegen 43, gitt til Arna Bolig Utvikling AS. Klageren hevder at bygget vil redusere hennes utsikt og skape innsyn, men byrådet støtter fagetatens vurdering om at bygget ikke vil være dominerende i området. Klagen ble ansett som rettidig, men byrådet konkluderte med at klagerens ulemper er innenfor det som er påregnelig i et tettbygd strøk. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

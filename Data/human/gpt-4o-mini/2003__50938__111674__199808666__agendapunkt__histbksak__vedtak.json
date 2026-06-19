@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50938:111674:199808666:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:34:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to grant a new liquor license for Haukeland Hotel is relevant to local residents and involves public interest."
+    },
+    "summary_headline": "Haukeland Hotel får ny skjenkebevilling for øl og vin",
+    "summary_body": "Formannskapet i Bergen har innvilget søknaden fra Haukeland Hotel om skjenkebevilling for øl og vin, samt uteservering, med 17 mot 4 stemmer. Bevillingen, som gjelder frem til 30. juni 2000, tillater uteservering fra 15. mars til 1. oktober, med skjenketid fra kl. 08.00 til midnatt. Irene Heggelund er godkjent som styrer, med Mona Ljosheim som stedfortreder. Dette kan påvirke både hotellets drift og lokale innbyggere som ønsker å benytte seg av uteserveringen."
+  }
+}

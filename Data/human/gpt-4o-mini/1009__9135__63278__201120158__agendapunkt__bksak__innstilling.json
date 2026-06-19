@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9135:63278:201120158:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:44:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine decision regarding the number of political advisors, which lacks significant newsworthy elements."
+    },
+    "summary_headline": "Byrådet fastsetter antall politiske rådgivere til 8",
+    "summary_body": "Byrådet har besluttet at antall politiske rådgivere for byråd Mæland III settes til inntil 8. Dette er en rutinemessig avgjørelse, og bystyret vil bli orientert om vedtaket."
+  }
+}

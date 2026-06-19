@@ -1,0 +1,18 @@
+{
+  "dokument_id": "6ac9d189-3b25-5b27-8efc-07f175baf928",
+  "kommune_nummer": 4625,
+  "kommune_navn": "Austevoll",
+  "generated_at": "2026-02-19 23:05:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant economic restructuring plans that will impact the local community."
+    },
+    "summary_headline": "Austevoll kommune går inn i fase 2 av omstillingsprosjektet",
+    "summary_body": "Austevoll kommune har vedtatt å gå videre med fase 2 av omstillingsprosjektet \"Framtid Austevoll\", som fokuserer på økonomiske innsparinger og organisatoriske endringer. Kommunestyret har fått presentert delrapporter som viser potensielle besparelser på over 38 millioner kroner de kommende årene. Kommunedirektøren skal legge frem en konkret plan for gjennomføring av tiltakene i løpet av høsten 2025, med mål om å redusere driftskostnadene med minst 50 millioner kroner. Det er også planlagt organisatoriske endringer som skal være på plass innen mai 2026. Dette prosjektet er av stor betydning for innbyggerne, da det vil påvirke kommunens økonomiske bæreevne og tjenestetilbud."
+  }
+}

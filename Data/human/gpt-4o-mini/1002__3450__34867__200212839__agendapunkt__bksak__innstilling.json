@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1002:3450:34867:200212839:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:19:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines a public forum for citizen input, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Åpen halvtime for innspill til politikerne",
+    "summary_body": "Arna bydelsstyre inviterer til åpen halvtime hvor publikum kan komme med innlegg til politikerne og administrasjonen. Arrangementet finner sted 22. april 2003 fra kl. 18.00 til 18.30."
+  }
+}

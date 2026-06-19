@@ -1,0 +1,18 @@
+{
+  "dokument_id": "d08cf5f4-b3d1-51fe-a3e7-34bd0472c2f0",
+  "kommune_nummer": 4611,
+  "kommune_navn": "Etne",
+  "generated_at": "2026-02-19 23:21:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document contains significant decisions regarding the resettlement of refugees, which has a direct impact on the local community."
+    },
+    "summary_headline": "Etne kommune vedtar å busetje 15 flyktningar i 2025",
+    "summary_body": "Etne kommune har beslutta å busetje 15 flyktningar i 2025, som svar på oppmoding frå Integrerings- og mangfaldsdirektoratet (IMDi). Kommunestyret gir kommunedirektøren fullmakt til å disponera integreringstilskot for å sikre ein god integreringsprosess. Det er også vurdert at kommunen ikkje kan ta imot einslege mindreårige flyktningar utan følgjeperson. Busetjinga kan skje både i Etne sentrum og i Skånevik, avhengig av behov. Fristen for tilbakemelding til IMDi er 14. mars 2025."
+  }
+}

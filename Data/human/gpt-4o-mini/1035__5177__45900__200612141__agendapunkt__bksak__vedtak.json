@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:5177:45900:200612141:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:00:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant urban development proposal with dissenting opinions from the review committee."
+    },
+    "summary_headline": "Kritikk av nybygg i Nonneseter: TFBU anbefaler avslag",
+    "summary_body": "Tilsynsutvalget for byens utseende (TFBU) har behandlet søknaden om nybygg i Nonneseter og anbefaler avslag. Utvalget mener bygget ikke passer inn i den planlagte kvartalsstrukturen mot Store Lungegårdsvann og fremstår som et selvstendig bygg uten tilpasning til nabobyggene. Spesielt kritiseres den høye veggskiven mot Statens Hus og den massive formen på bygget. Punkt 1 og 3 ble vedtatt enstemmig, mens punkt 2 fikk 4 stemmer mot 1, med Arent Kragh som dissent. TFBU påpeker at bygget mangler de arkitektoniske kvaliteter som kreves for et sentralt bygg i Bergen."
+  }
+}

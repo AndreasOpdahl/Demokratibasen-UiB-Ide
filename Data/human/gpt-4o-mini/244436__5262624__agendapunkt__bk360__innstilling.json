@@ -1,0 +1,18 @@
+{
+  "dokument_id": "244436:5262624:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:39:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a meeting notice with routine agenda items and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Innkalling til møte i utvalg for fullmakter og politisk styringssystem",
+    "summary_body": "Bystyrets kontor har sendt ut innkalling til møte i utvalg for fullmakter og politisk styringssystem den 22. mars 2023. Møtet vil finne sted i Rådstuen i Bergen rådhus. Agendaen inkluderer godkjenning av protokoll fra tidligere møte, status for folkevalgtopplæring, samt eventuelle saker til behandling."
+  }
+}

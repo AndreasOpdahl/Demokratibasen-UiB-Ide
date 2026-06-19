@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11828:73806:201500255:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:50:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The proposal to merge courts has local relevance and potential impact on residents."
+    },
+    "summary_headline": "Bergen kommune støtter sammenslåing av tingretter",
+    "summary_body": "Bergen kommune har gitt sin tilslutning til et høringsforslag fra Justis- og beredskapsdepartementet om å slå sammen Bergen tingrett med Nordhordland tingrett. Dette vedtaket ble fattet av byrådet i møte den 3. september 2015. Melding om vedtaket vil bli sendt til bystyrets kontor."
+  }
+}

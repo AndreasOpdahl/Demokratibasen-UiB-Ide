@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:5015:44785:200000778:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:23:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses significant issues related to employee health and safety in Bergen municipality, which affects local workers."
+    },
+    "summary_headline": "Bekymring for sykefravær i Bergen kommune",
+    "summary_body": "Hovedarbeidsmiljøutvalget i Bergen kommune har behandlet sykefraværet for 2005, som er på 9,6 %, og uttrykker bekymring for utviklingen innen Bergen Hjemmetjenester KF. Det er registrert en økning i meldinger om personskader, trusler og vold, med 6786 meldinger i 2005, opp fra 6009 i 2004. Utvalget understreker behovet for forebyggende tiltak og oppfølging av arbeidsmiljøet. Det vil bli lagt frem ny sak om oppnevning av eget AMU ved Bergen brannvesen i neste møte."
+  }
+}

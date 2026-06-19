@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:7073:56790:200801529:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:16:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal for reduced speed limits and safety measures is relevant and impacts local residents."
+    },
+    "summary_headline": "Ytrebygda bydelsstyre ber om lavere fartsgrenser og sikkerhetstiltak på Grimseidvegen",
+    "summary_body": "Ytrebygda bydelsstyre har enstemmig vedtatt å be byrådet om å sette ned fartsgrensen til 40 km/t på Grimseidvegen, og 30 km/t der fortau mangler. I tillegg ønsker de å etablere humper og en fotgjengerovergang ved Grimseidvegen 102 a, nær Fana stadion. Dette tiltaket er viktig for å øke trafikksikkerheten i området."
+  }
+}

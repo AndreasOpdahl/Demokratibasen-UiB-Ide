@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2501:25817:200006076:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:25:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses a significant issue regarding the allocation of special educational resources, highlighting gender disparities that affect local children."
+    },
+    "summary_headline": "Kjønnsforskjeller i spesialpedagogisk hjelp til barn i Bergenhus bydel",
+    "summary_body": "Bergenhus bydelsstyre har diskutert fordelingen av spesialpedagogisk hjelp til barn i barnehager og skoler, etter forslag fra Anne-Line Thingnes Førsund (SV) og Einar R. Johansen (H). Det er påpekt at bare 16% av de som får spesialpedagogisk hjelp er jenter, til tross for at mange jenter også har behov for støtte. Bydelsdirektøren foreslår en omlegging av ressurstilgangen for å bedre ivareta behovene til alle barn, uavhengig av kjønn. Dette kan påvirke hvordan ressurser fordeles i fremtiden, og det vil bli fokusert på innholdet i opplæringen i kommende skoleår."
+  }
+}

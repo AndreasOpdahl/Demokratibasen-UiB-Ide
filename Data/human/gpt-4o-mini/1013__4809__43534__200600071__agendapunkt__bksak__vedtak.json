@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:4809:43534:200600071:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:08:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document outlines procedural decisions without significant newsworthy elements."
+    },
+    "summary_headline": "Byrådet fordeler saker til komiteene",
+    "summary_body": "Byrådet har enstemmig vedtatt fordelingen av saker til komiteene under møtet 25. januar 2006. Byrådsak 34, 35 og 36 er sendt til Komite for miljø og byutvikling, mens Byrådsak 37 er sendt til Komite for finans, kultur og næring."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223872:1838133:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:50:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes, which is not newsworthy."
+    },
+    "summary_headline": "Ingen nyheter fra bystyremøtet",
+    "summary_body": "Bystyret godkjente protokollen fra møtet den 22. september 2020."
+  }
+}

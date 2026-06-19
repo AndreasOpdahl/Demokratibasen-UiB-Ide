@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10251:66953:200514097:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:56:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document raises a question about building regulations and practices, but lacks significant conflict or impact."
+    },
+    "summary_headline": "Spørsmål om søknadsplikt for lyssetting i Bergen sentrum",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet et spørsmål fra representanten Eirik Glambek Bøe angående søknadsplikt for lyssetting av bygninger i sentrum. Bøe etterspør om kommunen har en generell praksis for slike saker og om det er sanksjonsmuligheter. Han spør også om de rosa lysene på Frescohallen har vært omsøkt i den aktuelle byggesaken."
+  }
+}

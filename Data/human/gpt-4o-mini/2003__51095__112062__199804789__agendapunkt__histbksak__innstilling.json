@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51095:112062:199804789:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:35:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document primarily serves as an informational update with no significant impact or controversy."
+    },
+    "summary_headline": "Sak om Norges Miljøvernforbund avsluttet uten videre konflikt",
+    "summary_body": "Bergen formannskap har mottatt orientering om at rettssaker mot Bergen kommune fra Norges Miljøvernforbund er avsluttet. Saken om fravikelse av lokaler i Sandviksboder 15-17 ble løst gjennom en minnelig avtale, og byretten avviste krav om ugyldighet av leieoppsigelse. Bergen kommune ble tilkjent saksomkostninger på 3.000 kroner."
+  }
+}

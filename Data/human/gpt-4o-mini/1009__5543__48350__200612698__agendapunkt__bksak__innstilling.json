@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5543:48350:200612698:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:29:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested building permit that affects local residents and has implications for urban planning."
+    },
+    "summary_headline": "Klage på avslag om altan i Årstad avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde avslaget på Atle Kvammes søknad om å bygge en altan på 6,9 m² på Ole Irgens vei 33 i Årstad. Klagen ble avvist til tross for at nærmeste nabo har gitt samtykke. Byrådet viser til estetiske hensyn og at altanen vil forringe fasadens balanse. Tilsynsutvalget for byens utseende anbefalte også avslag, og byråden for byutvikling, Lisbeth Iversen, støtter fagetatens vurderinger. Saken vil bli sendt til fylkesmannen for endelig avgjørelse."
+  }
+}

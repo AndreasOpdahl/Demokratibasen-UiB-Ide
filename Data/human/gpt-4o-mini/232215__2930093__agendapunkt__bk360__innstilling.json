@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232215:2930093:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:12:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document primarily consists of procedural approvals and updates without significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll fra Hovedarbeidsmiljøutvalget godkjent",
+    "summary_body": "Hovedarbeidsmiljøutvalget har godkjent protokollen fra møtet den 24. juni 2021, som ble utsatt fra 27. mai på grunn av streik. Møtet omhandlet flere orienteringer, inkludert status for HMS-avvik og sykefravær i Bergen kommune, samt behovet for psykologbistand for ansatte som opplever vold eller trusler. Det ble også diskutert oppfølging av AKAN-arbeidet og planlegging av en arbeidsmiljøutvalgskonferanse til høsten."
+  }
+}

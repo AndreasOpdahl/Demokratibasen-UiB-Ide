@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:51431:116148:199935897:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:38:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses procedural issues in the city council that could affect local governance."
+    },
+    "summary_headline": "Bystyret vurderer forbedringer i behandlingen av interpellasjoner",
+    "summary_body": "I et svar fra rådmannen til bystyret, adresseres utfordringer knyttet til behandling av interpellasjoner, som ofte blir forsinket og dermed mister relevans. Henning Warloe (H) påpekte i desember 1998 at dette fratar bystyremedlemmene muligheten til å ta opp aktuelle saker. Rådmannen foreslår at spørsmålet vurderes i forbindelse med en kommende revisjon av bystyrets arbeidsmetoder, spesielt med tanke på innføring av parlamentarisme. Saken tas til orientering."
+  }
+}

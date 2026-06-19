@@ -1,0 +1,18 @@
+{
+  "dokument_id": "ab20a453-dd0f-50fc-bcc0-d9d9fa04d08f",
+  "kommune_nummer": 4617,
+  "kommune_navn": "Kvinnherad",
+  "generated_at": "2026-02-19 23:15:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant environmental dispute regarding land use and local wildlife protection."
+    },
+    "summary_headline": "Kvinnherad forvaltningsutval avviser dispensasjon for terrenginngrep på Varaldsøy",
+    "summary_body": "Kvinnherad forvaltningsutval har avvist en klage fra Byggadministrasjon Harald Bjørndal AS på vegne av Arve Kjærland, som søkte om dispensasjon for vesentlige terrenginngrep på eiendom 176/2 i Varaldsøy. Utvalget opprettholder sitt tidligere vedtak fra 6. november 2024, som nektet dispensasjon fra kommuneplanens arealføremål og naturmiljøhensyn. Avslaget er begrunnet med at tiltaket vil vesentlig sette til side hensynene bak reglene. Det er også bekymringer knyttet til truede arter som rødstilk i området. Klagen vil nå bli sendt til Statsforvaltaren i Vestland for endelig avgjørelse."
+  }
+}

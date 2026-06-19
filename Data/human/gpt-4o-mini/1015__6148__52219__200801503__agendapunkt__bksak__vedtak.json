@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1015:6148:52219:200801503:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:20:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The establishment of a new kindergarten impacts local cultural plans and has generated community interest."
+    },
+    "summary_headline": "Ny barnehage i Løvås skole setter kulturhusplaner i fare",
+    "summary_body": "Fyllingsdalen bydelsstyre har behandlet spørsmålet om etablering av en ny barnehage i Løvås skole, som vil gi 50-60 nye plasser. Byråd Tomas Moltu bekrefter at dette vil hindre muligheten for å lokalisere Fyllingsdalen kulturhus på samme sted. Lokale lag og organisasjoner har uttrykt støtte for kulturhusplanene, som har vært ventet i flere tiår. Det er usikkert hvordan dette vil påvirke kulturtilbudet for barn og unge i området."
+  }
+}

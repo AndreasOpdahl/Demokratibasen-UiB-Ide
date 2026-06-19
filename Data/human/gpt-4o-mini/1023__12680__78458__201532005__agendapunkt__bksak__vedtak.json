@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:12680:78458:201532005:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:38:31",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains multiple questions raised by politicians regarding health and social services, indicating local concerns."
+    },
+    "summary_headline": "Politikere stiller spørsmål om helse- og omsorgstjenester i Bergen",
+    "summary_body": "I et møte i Komite for helse og sosial ble flere spørsmål stilt av politikere om helse- og omsorgstjenester i Bergen. Jana Midelfart Hoff (H) spurte om tilbud for demente, psykisk utviklingshemmede, og planer for Storetveit sykehjem, samt kommunal bruk av bassenget ved Barnas Energisenter. Silje Hjemdal (FrP) tok opp opphør av varmmat og foreslo en rosa brannbil for å rette fokus på kreftsaken. Byråd Vigdis Anita Gåskjenn besvarte de fleste spørsmålene, mens Torstein Dahle (R) fikk svar fra Byråd Erlend Andreas Horn angående tilskudd til SEIF. Dette viser at helse- og omsorgstjenester er et aktuelt tema for innbyggerne."
+  }
+}

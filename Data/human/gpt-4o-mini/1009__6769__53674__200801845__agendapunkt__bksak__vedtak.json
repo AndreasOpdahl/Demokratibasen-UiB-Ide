@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:6769:53674:200801845:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:35:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The case involves a complaint about a denied application for land division, which affects local residents."
+    },
+    "summary_headline": "Klage på avslag om deling av eiendom avvist av byrådet",
+    "summary_body": "Byrådet har behandlet en klage fra Ytrebygda angående avslag på søknad om deling av eiendom på Kletteveien 100. Klagen ble ikke tatt til følge, og byrådet opprettholder avslaget i henhold til jordlovens § 12. Saken oversendes nå Fylkesmannen for endelig avgjørelse, noe som kan påvirke lokale eiendomseiere."
+  }
+}

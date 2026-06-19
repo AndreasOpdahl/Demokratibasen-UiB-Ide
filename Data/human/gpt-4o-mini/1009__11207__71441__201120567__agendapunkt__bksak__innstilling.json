@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11207:71441:201120567:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:47:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The establishment of a new company and its board members is relevant to local governance and community events."
+    },
+    "summary_headline": "Nytt arrangementselskap opprettes i Bergen med fem styremedlemmer",
+    "summary_body": "Bystyret har besluttet å opprette Bergen City Event AS med en aksjekapital på 1 million kroner. Byrådsleder Ragnhild Stolt-Nielsen foreslår fem styremedlemmer: Jacob Lund, Marianne Nielsen, Beathe Knudstad-Lopez, Arne J. Haugervaag og Karen Sofie Sørensen. Selskapet skal fungere som en prosjektorganisasjon og vil håndtere oppstartskostnader i forbindelse med etableringen. Dette tiltaket er viktig for å styrke arrangementer i Bergen."
+  }
+}

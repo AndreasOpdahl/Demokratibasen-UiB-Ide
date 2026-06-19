@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1031:5103:45170:200600160:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:42:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant action plan for integration and diversity that affects a large segment of the local population."
+    },
+    "summary_headline": "Likestillingsutvalget støtter handlingsplan for integrering og mangfold i Bergen",
+    "summary_body": "Likestillingsutvalget har gitt sin høringsuttalelse til handlingsplanen for integrering og mangfold 2006-2009, som skal behandles politisk høsten 2006. Utvalget understreker viktigheten av å inkludere et kjønnsperspektiv i kommunens tiltak for innvandrere, med særlig fokus på kvinners situasjon. Planen tar sikte på å forbedre integreringen av innvandrere i Bergen, hvor 8,1 % av befolkningen er innvandrere. Det er foreslått en egen handlingsplan for rekruttering og inkludering av arbeidstakere med innvandrerbakgrunn, som skal behandles tidlig i 2007."
+  }
+}

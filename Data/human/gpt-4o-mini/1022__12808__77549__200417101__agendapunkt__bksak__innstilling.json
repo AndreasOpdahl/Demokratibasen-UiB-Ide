@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1022:12808:77549:200417101:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:35:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a budget adjustment for investments in Bergen Vann, which affects local infrastructure."
+    },
+    "summary_headline": "Bergen Vann justerer investeringsbudsjettet med 441 300 kroner",
+    "summary_body": "Styret for Bergen Vann KF har vedtatt et justert investeringsbudsjett på 441 300 kroner for 2016, finansiert gjennom disposisjonsfond for driftsutstyr. Investeringene inkluderer utstyr for lekkasjepåvisning og en mannskapsbrakke. Dette vedtaket er nødvendig da det ikke tidligere er vedtatt noe investeringsbudsjett for året. Fondet har en saldo på 2 352 939 kroner, som gjør dette mulig."
+  }
+}

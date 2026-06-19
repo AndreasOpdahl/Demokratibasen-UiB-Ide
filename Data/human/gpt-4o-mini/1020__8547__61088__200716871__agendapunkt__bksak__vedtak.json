@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:8547:61088:200716871:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:32:42",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll godkjent uten bemerkninger",
+    "summary_body": "Protokollen fra Komite for finans sitt møte den 12. januar 2011 ble godkjent i møtet den 9. februar 2011."
+  }
+}

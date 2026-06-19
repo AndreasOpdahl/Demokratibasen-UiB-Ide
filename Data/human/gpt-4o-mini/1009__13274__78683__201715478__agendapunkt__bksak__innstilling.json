@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13274:78683:201715478:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:56:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document addresses a serious issue of potential neglect in a private kindergarten regarding the reporting of suspected domestic violence, which has significant implications for child welfare."
+    },
+    "summary_headline": "Bergen kommune anmelder privat barnehage for svikt i varsling om vold",
+    "summary_body": "Bergen kommune har besluttet å anmelde en privat barnehage for manglende oppfølging av varsler om mulig vold i nære relasjoner. Byrådet, ledet av byrådsleder Harald Schjelderup, mener det er nødvendig å avklare om barnehagen har ivaretatt avvergingsplikten etter straffelovens § 196. Anmeldelsen kommer etter at kommunen ble kjent med alvorlige bekymringer fra ansatte om barnas situasjon. Barnevernet har allerede anmeldt faren til politiet, og kommunen ønsker nå å undersøke om barnehagen har oppfylt sine plikter i henhold til barnehageloven. Dette tiltaket er et klart signal om at barns beste må prioriteres i alle tjenester."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "210082:950120:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:19:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses a significant local issue regarding the Strax-huset and its impact on the community."
+    },
+    "summary_headline": "Bystyret vurderer avvikling av Strax-huset etter innbyggerforslag",
+    "summary_body": "Bystyrets kontor har mottatt et innbyggerforslag fra Minsak.no om å avvikle Strax-huset på Damsgård, som har blitt kritisert for å skape et problematisk rusmiljø. Forslaget, som ble sendt inn av Elisabeth Faye, krever en plan for avvikling innen 31. desember 2018, og har som mål å fordele rusmiljøet på flere bydeler. Byrådet har besluttet å ta forslaget opp til behandling, men anbefaler at det ikke imøtekommes, med henvisning til at Strax-huset er en viktig del av kommunens ruspolitikk. Byrådet vil fremlegge saken for bystyret senest 30. januar 2019."
+  }
+}

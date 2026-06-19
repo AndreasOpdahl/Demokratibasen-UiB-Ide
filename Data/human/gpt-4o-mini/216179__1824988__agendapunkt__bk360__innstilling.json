@@ -1,0 +1,18 @@
+{
+  "dokument_id": "216179:1824988:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:36:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine meeting schedule without significant newsworthy elements."
+    },
+    "summary_headline": "Kjøreplan for bystyrets møte 20. november 2019",
+    "summary_body": "Bystyredirektøren har lagt frem en foreløpig kjøreplan for bystyrets møte den 20. november 2019, som inkluderer 28 saker og 3 interpellasjoner. Møtet anbefales å starte klokken 12.00."
+  }
+}

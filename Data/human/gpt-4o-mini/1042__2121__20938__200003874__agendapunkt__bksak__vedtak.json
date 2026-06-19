@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:2121:20938:200003874:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:13:05",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to renew alcohol sales licenses has local relevance and potential impact on community health."
+    },
+    "summary_headline": "Ytrebygda bydelsstyre fornyer salgsbevillinger for øl til flere butikker",
+    "summary_body": "Ytrebygda bydelsstyre har besluttet å forny salgsbevillinger for øl til 12 næringsdrivende frem til 30. juni 2004. Dette inkluderer butikker som Blomsterdalen Handel A/S og Rimi Sandsli. Bydelsstyret stemte over et forslag fra Trygve Birkeland (Krf) om å stoppe nye salgsbevillinger, men forslaget ble nedstemt med 12 mot 1 stemme. Beslutningen kan påvirke tilgjengeligheten av alkohol i bydelen, noe som er relevant for innbyggerne."
+  }
+}

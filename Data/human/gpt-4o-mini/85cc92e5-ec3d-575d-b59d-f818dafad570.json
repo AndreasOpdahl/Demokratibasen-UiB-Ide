@@ -1,0 +1,18 @@
+{
+  "dokument_id": "85cc92e5-ec3d-575d-b59d-f818dafad570",
+  "kommune_nummer": 4629,
+  "kommune_navn": "Modalen",
+  "generated_at": "2026-02-19 23:09:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a temporary exemption from political duties due to health issues, which affects local governance."
+    },
+    "summary_headline": "Kjetil Eikefet får fritak fra politiske verv grunnet helseutfordringer",
+    "summary_body": "Kjetil Eikefet fra Samlingslista har søkt om fritak fra sine politiske verv i Modalen kommune fra 31. oktober 2025 til 30. juni 2026 på grunn av helsemessige utfordringer. Kommunestyret vurderer søknaden og anbefaler at den innvilges. I Eikefets fravær vil Marit Kristin Nese, første vara for Samlingslista, møte fast i kommunestyret. I tillegg må kommunestyret velge nye medlemmer til kontrollutvalget, ettersom Eikefet er leder der. Dette kan påvirke lokalpolitikken i Modalen, da det er viktig å ha stabile ledere i politiske verv."
+  }
+}

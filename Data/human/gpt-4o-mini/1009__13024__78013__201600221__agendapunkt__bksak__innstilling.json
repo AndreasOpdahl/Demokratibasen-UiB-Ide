@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13024:78013:201600221:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:55:02",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses proposed changes to important environmental laws affecting local water and land management, which could significantly impact residents."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse om endringer i vannressursloven og jordlova",
+    "summary_body": "Bergen kommune har avgitt høringsuttalelse til Olje- og energidepartementet angående foreslåtte endringer i vannressursloven og jordlova. Forslagene inkluderer økt beskyttelse av laks i vassdrag, endringer i konsesjonsplikt for grunnvann, og at kommunene skal kunne fatte vedtak om konsesjon til vannkraftverk med inntil 1 MW. Bymiljøetaten støtter flere av endringene, men er skeptisk til å gi kommunene konsesjonsmyndighet for vannkraftverk, da dette kan føre til økte kostnader og lengre saksbehandling. Etat for landbruk uttrykker bekymring for at endringer kan svekke jordvernet. Høringsfristen er 10. februar 2017."
+  }
+}

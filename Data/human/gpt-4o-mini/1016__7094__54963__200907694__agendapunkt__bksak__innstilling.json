@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:7094:54963:200907694:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:23:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The establishment of the Gulltempen awards is relevant to local workplaces and promotes employee well-being."
+    },
+    "summary_headline": "Nye priser for arbeidsplasser i Bergen: Gulltempen skal deles ut årlig",
+    "summary_body": "Hovedarbeidsmiljøutvalget (HAMU) har besluttet å dele ut to priser, Gulltempen, til arbeidsplasser i Bergen som reduserer sykefravær eller opprettholder høyt nærvær. Hver pris er på 50 000 kroner og skal utdeles årlig i forbindelse med nærværsdagen. Alle kan foreslå kandidater, og fristen for innsendelse av forslag er 15. september hvert år. Dette tiltaket er en del av Nærværsprosjektet, som har som mål å fremme et inkluderende arbeidsmiljø."
+  }
+}

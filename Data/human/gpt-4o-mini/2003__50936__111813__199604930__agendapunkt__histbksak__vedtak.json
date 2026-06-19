@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2003:50936:111813:199604930:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:34:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document reports on a routine approval of a financial report with no significant impact or controversy."
+    },
+    "summary_headline": "Formannskapet godkjenner regnskap for TV-aksjonen 1997",
+    "summary_body": "Formannskapet i Bergen kommune behandlet den 11. november 1998 regnskapet for TV-aksjonen 1997, \"Krafttak mot kreft\", og vedtok enstemmig å ta meldingen til etterretning. Det er ingen dissent eller kontrovers knyttet til saken."
+  }
+}

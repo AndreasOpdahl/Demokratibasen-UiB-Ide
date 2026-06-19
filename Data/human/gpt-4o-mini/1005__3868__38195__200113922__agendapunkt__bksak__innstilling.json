@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:3868:38195:200113922:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:50:54",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant change in zoning that could impact local housing and community structure."
+    },
+    "summary_headline": "Planforslag for boligbygging på Sollien 132-134 anbefales av byrådet",
+    "summary_body": "Byrådet anbefaler en vesentlig endring av reguleringsplanen for Sollien 132-134, som i dag er regulert til forretning. Det foreslås å omregulere eiendommen til boligformål, med plan om å rive eksisterende bygg og erstatte det med et bolighus med fem leiligheter. Planforslaget har vært til offentlig ettersyn, og det er mottatt flere uttalelser fra både offentlige instanser og private. Byrådet mener at solinnfall, utsiktsforhold og lokale trafikkforhold er ivaretatt. Bystyret skal fatte det endelige vedtaket."
+  }
+}

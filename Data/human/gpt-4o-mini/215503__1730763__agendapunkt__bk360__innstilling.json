@@ -1,0 +1,18 @@
+{
+  "dokument_id": "215503:1730763:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:34:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested planning case with significant implications for local housing and urban development."
+    },
+    "summary_headline": "Klage på avslag om tilbygg og leiligheter i Ladegårdsgaten avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Ladegårdsgaten 22 A AS på et tidligere avslag om bygging av to nye leiligheter og tilbygg i Ladegårdsgaten. Klagen ble sendt inn etter at søknaden ble avslått 13. november 2018, med begrunnelse i manglende oppfyllelse av krav til uteoppholdsareal, parkering og leilighetsstørrelse. Byrådet, ledet av Roger Valhammer, understreker at de omsøkte boenhetene ikke tilfredsstiller nødvendige kvalitetskrav, og at dispensasjon fra reguleringsplanen ikke kan gis. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

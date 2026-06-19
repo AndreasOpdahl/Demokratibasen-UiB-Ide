@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5176:48880:200607351:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:12:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a contested land division case with significant implications for local residents."
+    },
+    "summary_headline": "Klage på boligdelingsprosjekt avvist av byrådet",
+    "summary_body": "Byrådet har besluttet å opprettholde tillatelsen til fradeling av et utmarksområde til boligformål i Nestet, til tross for klager fra Sivilforsvaret og tre grunneiere. Klagerne hevder at området er feilaktig klassifisert som byggeområde og at delingen vil påvirke deres eiendommer negativt. Byrådet anbefaler at klagen ikke tas til følge, og gir dispensasjon fra plankravet i kommuneplanen. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

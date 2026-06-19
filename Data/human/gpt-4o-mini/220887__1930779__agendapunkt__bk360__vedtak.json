@@ -1,0 +1,18 @@
+{
+  "dokument_id": "220887:1930779:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:43:50",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision involves significant public spending and local impact, with some dissent regarding budget control."
+    },
+    "summary_headline": "Hjellestadvika fase 2 vann- og avløpsanlegg vedtatt med budsjettkontroll i fokus",
+    "summary_body": "Utvalg for finans, kultur og næring har enstemmig vedtatt gjennomføringsvedtak for Hjellestadvika fase 2 vann- og avløpsanlegg med en kostnadsramme på 25,8 millioner kroner. Prosjektet finansieres over tidligere års investeringsbudsjett. Steinulf Tungesvik fra Senterpartiet uttrykte bekymring for budsjettoverskridelser i VA-etatens prosjekter og understreket behovet for budsjettkontroll. Ingen habilitetsproblemer ble funnet for de involverte politikerne, og prosjektet er nå klart for videre fremdrift."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "242795:4991205:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:35:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The issue of inadequate lighting in Nygårdsparken affects public safety and has been raised by a city council member."
+    },
+    "summary_headline": "Mørke i Nygårdsparken: Spørsmål om belysning fra Rødt-representant",
+    "summary_body": "Mailiss Solheim-Åkerblom fra Rødt har stilt spørsmål til byråden om manglende belysning i Nygårdsparken, som har vært mørk på ettermiddagen og kvelden. Dette skaper utrygghet for mange som bruker parken som gjennomfartsåre. Solheim-Åkerblom etterspør hvorfor gatelyktene ikke er tent, og når de kan forventes å bli tent igjen. Byråden bes om å ta tak i problemet for å sikre trygg ferdsel i området."
+  }
+}

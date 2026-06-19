@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:2940:30905:200204756:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:26:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document addresses significant issues regarding overcrowding and facility conditions for SFO at local schools, which directly impacts families in the community."
+    },
+    "summary_headline": "Bergenhus bydelsstyre tar opp SFO-arealer ved Christi Krybbe og Krohnengen skoler",
+    "summary_body": "Bergenhus bydelsstyre har vedtatt å be om en sak om SFO-arealene ved Christi Krybbe og Krohnengen skoler, etter forslag fra Bjørg Sirevåg (RV). Skolefritidsordningen (SFO) ved Christi Krybbe har i dag 135 barn, men lokalene er ikke tilstrekkelige, og klasserom brukes som avlastning. Krohnengen skole opplever også plassproblemer med 140 barn i SFO og leier lokaler i Menighetshuset. Det er behov for en vurdering av SFO-situasjonen i Bergen kommune, og bydelsstyret vil ta saken opp igjen etter at totalsituasjonen er behandlet i bystyret."
+  }
+}

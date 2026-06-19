@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4135:38899:200208899:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:13:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses proposed structural changes to Eurocities, which could significantly impact Bergen's participation in European urban policy."
+    },
+    "summary_headline": "Bergen kommune støtter ny struktur i Eurocities",
+    "summary_body": "Bergen kommune vurderer en ny organisasjonsstruktur for Eurocities, som kan styrke byens innflytelse i europeisk politikk. Byrådsleder Monica Mæland har gitt sin støtte til forslaget, men påpeker behovet for klarere retningslinjer og bedre samarbeid mellom eksekutivkomiteen og de foreslåtte tematiske forumene. Høringen er åpen frem til 31. juli, og endelig vedtak vil bli fattet på generalforsamlingen i Wien i november."
+  }
+}

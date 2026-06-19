@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:8378:61702:200814334:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:17:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document outlines a significant regional museum plan that affects local cultural policy and funding."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse til ny museumspolitikk",
+    "summary_body": "Bergen kommune har sendt sin høringsuttalelse til Hordaland fylkeskommunes \"Regionplan for museum 2011-2015\". Planen, som skal erstatte den tidligere fylkesdelplanen, omhandler museenes samfunnsrolle og foreslår fire satsingsfelt: kystkultur, industri, kunst og ikke-materiell kulturarv. Byrådet, ledet av Monica Mæland, innstiller til bystyret å godkjenne høringsuttalelsen, som også påpeker behovet for økonomiske rammer for tiltakene. Høringsfristen er 15. april 2011, og planen er viktig for fremtidig samarbeid mellom kommunen og fylkeskommunen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1027:5815:50328:200612874:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:24:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant dispute over a housing development that affects local residents and raises safety concerns."
+    },
+    "summary_headline": "Klage på boligprosjekt i Laksevåg avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage fra Tom Ove og Valentina Knutsen angående rammetillatelse for oppføring av bolig på Skarehaugane 94 i Laksevåg. Klagerne mener at tiltaket strider mot reguleringsplanen og at det vil føre til økt fare for ulykker. Byrådet, ledet av Monica Mæland, støtter fagetatens vurdering om at det foreligger 'særlige grunner' for å gi dispensasjon fra reguleringsplanen. Saken vil nå bli sendt til Fylkesmannen i Hordaland for endelig avgjørelse."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "249575:6318340:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:54:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The decision not to exercise the municipal pre-emption right is relevant but lacks significant controversy or financial implications."
+    },
+    "summary_headline": "Bergen kommune avstår fra forkjøpsrett på Fosswinckels gate 67",
+    "summary_body": "Byrådet i Bergen har besluttet å ikke benytte kommunal forkjøpsrett ved overdragelse av eiendommen Fosswinckels gate 67, som selges for 15,35 millioner kroner. Dette fordi det ikke er leieforhold knyttet til eiendommen, og ingen offentlige instanser har bedt om at forkjøpsretten gjøres gjeldende. Byråden for barnevern, sosiale tjenester og mangfold, Charlotte Spurkeland, støtter denne anbefalingen. Beslutningen ble fattet den 28. november 2023."
+  }
+}

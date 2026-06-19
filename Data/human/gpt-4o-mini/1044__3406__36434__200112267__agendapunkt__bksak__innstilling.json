@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3406:36434:200112267:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:25:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine protocol presentation with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Åsane bydelsstyre",
+    "summary_body": "Åsane bydelsstyre ble orientert om protokollen for saker vedtatt på fullmakt den 16. september 2003. Det ble ikke fremmet noen nye forslag eller beslutninger."
+  }
+}

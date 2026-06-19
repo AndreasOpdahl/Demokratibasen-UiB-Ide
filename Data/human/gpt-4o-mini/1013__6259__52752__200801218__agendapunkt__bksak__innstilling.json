@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:6259:52752:200801218:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:13:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses proposed changes to pharmacy laws, which could impact local residents."
+    },
+    "summary_headline": "Høring om endringer i apotekloven kan påvirke Bergen kommune",
+    "summary_body": "Helse- og omsorgsdepartementet har sendt på høring forslag til endringer i apotekloven og apotekforskriften, med frist for innspill 12. januar 2009. Byrådet anbefaler å avgi høringsuttalelse, da saken anses å ha prinsipiell karakter og politiske avveininger. Bystyredirektøren, Roar Kristiansen, understreker at bystyret vil bli orientert om høringsuttalelsene."
+  }
+}

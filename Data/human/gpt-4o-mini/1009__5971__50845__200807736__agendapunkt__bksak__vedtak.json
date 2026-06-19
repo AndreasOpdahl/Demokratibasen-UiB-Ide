@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5971:50845:200807736:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:33:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a municipal project for archive management, which has limited immediate impact on residents."
+    },
+    "summary_headline": "Byrådet igangsetter prosjekt for avlastning av bortsettingsarkiver",
+    "summary_body": "Byrådet har besluttet å igangsette prosjektet \"Avlastning / eliminering av kommunens bortsettingsarkiver ved overføring til byarkivet\". Dette innebærer fristilling av midler fra byarkivets investeringsbudsjett, som vil muliggjøre inngåelse av leieavtaler for arbeidslokaler og hall. Prosjektet forventes å starte sommeren 2008."
+  }
+}

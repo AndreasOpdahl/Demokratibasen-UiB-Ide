@@ -1,0 +1,18 @@
+{
+  "dokument_id": "fded393e-51bc-5596-b3c6-2652d3d9bc3d",
+  "kommune_nummer": 4632,
+  "kommune_navn": "Austrheim",
+  "generated_at": "2026-02-19 23:25:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Godkjenning av møteprotokoll fra 6. mai",
+    "summary_body": "Rådet for mennesker med nedsatt funksjonsevne har godkjent møteprotokollen fra sitt møte den 6. mai. Kommunedirektøren anbefalte godkjenning, og det ble ikke rapportert om noen uenighet."
+  }
+}

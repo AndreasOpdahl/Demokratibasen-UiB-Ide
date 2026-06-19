@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:9902:67642:201205969:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:24:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The report highlights significant developments in home care services in Bergen, including increased user numbers and service hours, which directly impact residents."
+    },
+    "summary_headline": "Økning i brukere og timer for hjemmesykepleien i Bergen",
+    "summary_body": "Bergen kommune rapporterer om en økning i antall brukere av hjemmesykepleie og tildelte timer i 2012, noe som indikerer at flere får nødvendig hjelp. Antall brukere økte fra 4,089 i 2011 til 4,252 i 2012, og timetallet økte med 13,2%. Byrådet, ledet av Monica Mæland og Hilde Onarheim, fremhever at dette er i tråd med målet om å gi bedre tjenester til de med størst behov. Det er også fokusert på å redusere antall hjelpere per bruker for å sikre kontinuitet og trygghet. Videre planlegges det tiltak for å forbedre tjenestene, inkludert en ny alarmløsning for økt trygghet."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "241383:3680881:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:32:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a routine planning process for a municipal council, which is of limited immediate impact."
+    },
+    "summary_headline": "Årsplan for 2023 for kommunalt råd for personer med funksjonsnedsettelse under arbeid",
+    "summary_body": "Kommunalt råd for personer med funksjonsnedsettelse har startet arbeidet med årsplanen for 2023. Forslag fra møtet 1. november er inkludert i utkastet som nå er under utvikling. Årsplanen skal oppdateres gjennom året, og arbeidet fortsetter basert på rådets samtaler. Dette er et viktig dokument for å sikre at behovene til personer med funksjonsnedsettelse blir ivaretatt."
+  }
+}

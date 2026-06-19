@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1025:4747:43913:200600085:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:49:39",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses significant issues regarding mother tongue education and student discounts, which have direct implications for local families and students."
+    },
+    "summary_headline": "Kritikk av morsmålsundervisning og forespørsel om studentrabatt i Bergen",
+    "summary_body": "Komite for oppvekst har behandlet spørsmål fra Stine Akre (RV) om organiseringen av morsmålsundervisningen, der foreldre rapporterer om manglende tilbud for enkelte språkgrupper. Byråden bekrefter at det ikke er ansatt morsmålslærere for enkelte språk på grunn av kvalifiserte søkere, og en evaluering av omorganiseringen vil bli lagt frem våren 2007. Akre har også bedt om en oversikt over elever uten morsmålsundervisning. I tillegg har Akre foreslått studentrabatt i kommunale svømmeanlegg, men byråden avviser dette på grunn av budsjettbegrensninger. Begge saker har stor betydning for byens innbyggere, spesielt studenter og familier med minoritetsspråklige barn."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:2252:22639:199934699:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:21:41",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine administrative decision with no significant impact or controversy."
+    },
+    "summary_headline": "Åsane bydelsstyre opprettholder administrasjonens avgjørelse",
+    "summary_body": "Åsane bydelsstyre har enstemmig vedtatt å opprettholde administrasjonens avgjørelse fra 20. mars 2000, og klagen som ble fremmet anbefales ikke tatt til følge. Det er ingen oppsettende virkning på klagen."
+  }
+}

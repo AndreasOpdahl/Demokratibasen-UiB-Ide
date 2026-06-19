@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1022:11584:72212:200413399:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:35:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document contains routine administrative information without significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Bergen Vann KF",
+    "summary_body": "Styret for Bergen Vann KF ble orientert om faste poster av daglig leder, og vedtaket var å ta orienteringen til etterretning."
+  }
+}

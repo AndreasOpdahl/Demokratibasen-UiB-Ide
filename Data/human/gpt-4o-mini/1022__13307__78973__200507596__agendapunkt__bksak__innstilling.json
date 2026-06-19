@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1022:13307:78973:200507596:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:35:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document provides a financial overview of Bergen Vann KF, which is relevant but lacks significant conflict or immediate impact."
+    },
+    "summary_headline": "Bergen Vann KF rapporterer om økonomisk status med negativt resultat",
+    "summary_body": "Styret for Bergen Vann KF har presentert en økonomisk statusrapport pr 30. april 2017, som viser totale inntekter på 90 millioner kroner, men et negativt resultat på 4,4 millioner kroner. Dette er likevel 0,9 millioner kroner bedre enn budsjettert. Omsetningen innenfor selvkostområdet er 80,2 millioner kroner, mens ekstern omsetning er 9,3 millioner kroner, hovedsakelig fra Os kommune. Det rapporteres om lavere lønnskostnader og et mindreforbruk på driftsavtalen, men også høyere strømutgifter. Bergen Vann KF har en positiv banksaldo på 5,6 millioner kroner."
+  }
+}

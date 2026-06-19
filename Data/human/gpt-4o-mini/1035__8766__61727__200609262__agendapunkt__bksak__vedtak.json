@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:8766:61727:200609262:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:04:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a local planning decision that affects the community's landscape and parking solutions."
+    },
+    "summary_headline": "Rådet anbefaler parkeringsløsning i Holmevika",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet reguleringsplanen for Ytrebygda og anbefaler parkeringsløsning alternativ 1, som er best tilpasset terrenget. Alternativ 2 vil være mer synlig, mens alternativ 3 påvirker naturområdet negativt. Dette vedtaket kan påvirke lokalbefolkningens tilgang til området."
+  }
+}

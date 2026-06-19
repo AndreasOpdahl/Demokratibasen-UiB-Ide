@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10876:69329:201313170:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:57:12",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant urban planning changes that could impact public access and the visual impression of Bergen."
+    },
+    "summary_headline": "Rådet for byforming advarer mot omregulering i Solheimsviken",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet reguleringsendringen for Solheimsviken næringspark og understreker viktigheten av å opprettholde den offentlige passasjen som hovedinngang til området. De advarer om at en omregulering kan skape presedensvirkninger og barriereeffekter som vil påvirke hele bydelen negativt. Rådet peker på at gangtraséen fra Solheimslien til messesenteret og hotellet er avgjørende for byutviklingen. Dette området er også viktig for det visuelle inntrykket av Bergen, som innfartsportalen fra sør."
+  }
+}

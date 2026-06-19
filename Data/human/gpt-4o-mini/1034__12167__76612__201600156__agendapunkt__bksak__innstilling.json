@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1034:12167:76612:201600156:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:54:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document lacks substantive content and details."
+    },
+    "summary_headline": "Ingen nyheter å rapportere.",
+    "summary_body": "Dokumentet inneholder ikke nyhetsverdig informasjon."
+  }
+}

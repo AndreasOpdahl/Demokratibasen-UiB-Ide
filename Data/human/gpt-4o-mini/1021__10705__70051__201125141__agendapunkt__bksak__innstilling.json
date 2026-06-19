@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1021:10705:70051:201125141:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:34:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document is a procedural notice with no significant newsworthy elements."
+    },
+    "summary_headline": "",
+    "summary_body": "Dokumentet er en sak til gjennomsyn fra Komite for fullmakter og politisk styringssystem, datert 26. mars 2014."
+  }
+}

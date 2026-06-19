@@ -1,0 +1,18 @@
+{
+  "dokument_id": "76babcc7-88a2-5623-8477-b9400654ad7c",
+  "kommune_nummer": 4624,
+  "kommune_navn": "Bjørnafjorden",
+  "generated_at": "2026-02-19 23:07:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document contains a decision on a building permit which may affect local residents."
+    },
+    "summary_headline": "Ferdigattest gitt for nybygg av einebustad på Borgavegen 80",
+    "summary_body": "Bjørnafjorden kommune har gitt ferdigattest for nybygg av einebustad på Borgavegen 80, etter søknad fra Arkit As ved Jan Terje Lund. Vedtaket ble fattet 1. juli 2025, og tiltaket må ikke brukes til annet enn det som er godkjent i byggeløyvet. Huseigar må også sørge for å sette opp husnummerskilt og bestille bossabonnement hos BIR. Klage på vedtaket kan sendes kommunen innen tre uker."
+  }
+}

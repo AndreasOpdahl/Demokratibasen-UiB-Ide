@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:13191:79205:201722580:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:56:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses the extension of a municipal director's term, which is relevant but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Forlengelse av åremål for kommunaldirektør Harm Christian Tolden",
+    "summary_body": "Byrådet har besluttet å forlenge åremålet til Harm Christian Tolden som kommunaldirektør i Bergen kommune med ytterligere 6 år, fra 1. august 2018. Dette ble anbefalt av byrådsleder Harald Schjelderup basert på Toldens arbeid. Hovedsammenslutningene ble informert om prosessen i et møte 22. juni 2017. Den nye arbeidsavtalen vil bli inngått i henhold til gjeldende retningslinjer."
+  }
+}

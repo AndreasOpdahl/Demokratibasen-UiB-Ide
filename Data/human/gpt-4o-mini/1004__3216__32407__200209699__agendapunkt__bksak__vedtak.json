@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3216:32407:200209699:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:27:04",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision involves significant local planning and community engagement regarding a proposed parking facility and recreational area."
+    },
+    "summary_headline": "Bergenhus bydelsstyre avventer beslutning om parkeringsanlegg ved Skansendammen",
+    "summary_body": "Bergenhus bydelsstyre har besluttet å ikke ta stilling til det foreslåtte parkeringsanlegget og ny Skansendam før det foreligger en nærmere utredning om et fjellanlegg i bakkant av Skansendammen. Dette er i tråd med Kommunedelplan Sandviken-Fjellsiden Nord. Videre må spørsmålet om bading utredes, da området er regulert til offentlig park og rekreasjonsområde. Bydelsstyret ønsker også at grøntområdet utformes i samarbeid med beboerne. Vedtaket ble fattet enstemmig den 3. oktober 2002."
+  }
+}

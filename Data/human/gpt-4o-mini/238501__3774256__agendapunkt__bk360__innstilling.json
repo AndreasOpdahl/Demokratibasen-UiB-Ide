@@ -1,0 +1,18 @@
+{
+  "dokument_id": "238501:3774256:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:25:49",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a zero vision on sexual assault is significant for public health and safety, addressing a critical societal issue."
+    },
+    "summary_headline": "Bystyret vurderer nullvisjon for seksuelle overgrep",
+    "summary_body": "Bystyrerepresentant Miriam Akkouche (MDG) har fremmet et forslag om å innføre en nullvisjon for seksuelle overgrep i Bergen. Forslaget, som ble overlevert ordføreren 23. februar 2022, tar sikte på å forebygge overgrep og sende et klart signal om at hvert overgrep er ett for mye. Bystyret skal behandle saken senest 22. juni 2022, etter at byrådet har vurdert forslaget. Dette initiativet kan ha stor betydning for folkehelsen og samfunnets ansvar for å beskytte utsatte grupper."
+  }
+}

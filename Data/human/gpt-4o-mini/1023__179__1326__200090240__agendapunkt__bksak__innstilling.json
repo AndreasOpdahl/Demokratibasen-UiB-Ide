@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:179:1326:200090240:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:38:35",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines a proposed program for a municipal committee, which includes various activities and meetings, but lacks significant controversy or financial implications."
+    },
+    "summary_headline": "Helse- og sosialkomiteen vedtar program for høstsesjonen 2001",
+    "summary_body": "Helse- og sosialkomiteen har godkjent et justert program for høstsesjonen 2001, som inkluderer faste møter, kurs og befaringer. Programmet omfatter blant annet et miniseminar om fattige barn i Bergen og et besøk til Oslo kommune for å diskutere felles problemstillinger. Komiteen vil også behandle budsjett og økonomiplan i oktober og november. Det er foreslått justeringer i programmet, og arbeidsutvalget har fått myndighet til å tilpasse det videre."
+  }
+}

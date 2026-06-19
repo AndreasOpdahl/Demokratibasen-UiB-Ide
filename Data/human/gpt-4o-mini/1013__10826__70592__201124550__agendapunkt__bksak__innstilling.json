@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10826:70592:201124550:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:58:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a meeting agenda without significant newsworthy elements."
+    },
+    "summary_headline": "Kjøreplan for bystyrets møte 18. juni 2014",
+    "summary_body": "Bystyredirektør Roar Kristiansen har lagt frem en kjøreplan for bystyrets møte den 18. juni 2014. Møtet vil inkludere saker som 1. tertialrapport, budsjettjusteringer og Byproposisjon 2015. Det vil bli vurdert behov for differensiert taletid på forretningsutvalgets møte 10. juni."
+  }
+}

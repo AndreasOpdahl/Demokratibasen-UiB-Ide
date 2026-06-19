@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50743:112230:199802865:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:43:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a controversial construction activity affecting local residents, with legal implications and future planning considerations."
+    },
+    "summary_headline": "Kontroversiell anleggsvirksomhet i Fyllingsdalen kan stanses",
+    "summary_body": "Bygningsrådet i Bergen har besluttet å forberede en sak for å stanse anleggsvirksomheten på Barliveien 21, etter klager fra beboerne i Tjernet borettslag. Anleggsvirksomheten, drevet av Magne Løvaas A/S, er ifølge advokat Ståle Eeg Nielsen lovlig, men har vært kilde til konflikt. Det er foreslått en reguleringsendring for å omgjøre området til boligformål, noe som kan løse konflikten. Planarbeidet for denne reguleringen forventes å starte i juni 1999."
+  }
+}

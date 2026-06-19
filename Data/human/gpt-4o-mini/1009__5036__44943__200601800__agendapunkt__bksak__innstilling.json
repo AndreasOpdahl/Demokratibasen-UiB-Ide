@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:5036:44943:200601800:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:24:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant funding decision for a major art festival that could impact the local cultural scene."
+    },
+    "summary_headline": "Bergen kommune bevilger 200 000 kroner til kunstfestivalen 'Parklife' i 2009",
+    "summary_body": "Byrådet i Bergen har besluttet å bevilge 200 000 kroner til Artlab AS for et forprosjekt til kunstfestivalen 'Parklife', planlagt i 2009. Festivalen, med en paviljong av kunstneren Olafur Eliasson som hovedattraksjon, skal plasseres på Lille Lungegårdsvann. Kulturbyråden, Henning Warloe, ser prosjektet som en viktig del av Bergens kulturpolitiske visjon og forventer positive ringvirkninger for byens kulturliv og næringsliv. Det er også planlagt å opprette en nasjonal referansegruppe for å sikre prosjektets kvalitet og forankring i samtidskunstmiljøet."
+  }
+}

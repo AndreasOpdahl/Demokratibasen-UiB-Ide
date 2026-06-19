@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:9563:64471:201013289:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:45:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant changes to a major road plan affecting local traffic and infrastructure."
+    },
+    "summary_headline": "Endringer i reguleringsplan for Rådalskrysset legges ut til høring",
+    "summary_body": "Byrådet i Bergen har lagt frem et forslag til revidert reguleringsplan for Rådalskrysset, som nå skal ut på offentlig høring. Endringene er nødvendige på grunn av oppdaterte vegnormaler og nytt regelverk for det trans-europeiske veinettet. Den foreslåtte løsningen vil koste omtrent 150 millioner kroner mer enn den opprinnelige planen fra 2007. Bystyret har tidligere vedtatt at E39 skal bli gjennomgående, mens Rv 580 fra Flyplassvegen skal kobles til E39. Høringen er en del av prosessen for å oppdatere reguleringsplanen, og det er ventet at en ny plan vil bli lagt frem for bystyret i løpet av første halvår 2012."
+  }
+}

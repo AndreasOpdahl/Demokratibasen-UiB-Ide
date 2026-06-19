@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10344:67358:201222762:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:41:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a new alcohol license application for a local bar, which is relevant to residents and involves public regulations."
+    },
+    "summary_headline": "Harbour Bar & Dancing får ny skjenkebevilling",
+    "summary_body": "Byrådet har innvilget søknaden fra Harbour Cayo AS om ny alminnelig skjenkebevilling for alkoholholdig drikk ved Harbour Bar & Dancing på Torget 7. Søknaden ble nødvendig etter en overdragelse av virksomheten 1. januar 2013, som medførte at den gamle bevillingen falt bort. Den nye bevillingen gjelder både innendørs og uteservering, og er gitt for perioden frem til 30. juni 2016. Styrer for bevillingen er Kjetil Lien, med Kjell Fredheim som stedfortreder. Før bevillingen kan tas i bruk, må søker sende inn nødvendig dokumentasjon til Kontor for skjenkesaker."
+  }
+}

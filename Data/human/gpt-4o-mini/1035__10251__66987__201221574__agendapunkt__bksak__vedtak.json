@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10251:66987:201221574:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:56:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a regulatory change that affects local building plans, which may interest residents."
+    },
+    "summary_headline": "Reguleringsendring for Hopsmyren Sør foreslås av byformingsrådet",
+    "summary_body": "Rådet for byforming og arkitektur har behandlet reguleringsendringen for Hopsmyren Sør og foreslår å innføre reguleringsbestemmelser for å sikre fellesfunksjoner i området. Endringen innebærer at bygningsvolumet har mistet noen opprinnelige kvaliteter sammenlignet med planforslaget fra 2009. Dette kan påvirke det lokale miljøet og beboernes opplevelse av området."
+  }
+}

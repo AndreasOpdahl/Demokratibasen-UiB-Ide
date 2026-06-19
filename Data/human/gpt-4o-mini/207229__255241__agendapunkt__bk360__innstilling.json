@@ -1,0 +1,18 @@
+{
+  "dokument_id": "207229:255241:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:13:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the oversight of health and social committee decisions, which is relevant to local governance."
+    },
+    "summary_headline": "Bystyret vurderer oppfølging av helse- og sosialvedtak",
+    "summary_body": "Bergen bystyre har behandlet en sak om oppfølging av vedtak og merknader fra komite for helse og sosial for rapporteringsårene 2016 og 2017. Bystyrets kontor har vurdert hvilke vedtak som er tilfredsstillende fulgt opp, og fra 2018 skal de folkevalgte selv avgjøre når et vedtak er besvart. Det er laget en egen sak for hvert utvalg for å sikre hensiktsmessig behandling av tilbakemeldingene. Nye merknader kan fremmes, og punkter som ikke blir kvittert ut vil bli med i neste års rapportering."
+  }
+}

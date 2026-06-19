@@ -1,0 +1,18 @@
+{
+  "dokument_id": "216719:1107922:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:37:29",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a routine meeting with no significant newsworthy elements."
+    },
+    "summary_headline": "Åpen halvtime for innbyggere i kommunalt råd for funksjonshemmede",
+    "summary_body": "Kommunalt råd for funksjonshemmede inviterer innbyggere til å delta i åpen halvtime for å fremme saker. Møtet finner sted 21. november 2019."
+  }
+}

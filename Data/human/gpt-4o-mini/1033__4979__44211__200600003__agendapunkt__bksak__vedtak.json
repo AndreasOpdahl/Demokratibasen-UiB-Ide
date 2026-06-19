@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:4979:44211:200600003:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:50:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant decisions regarding support for volunteer organizations in Bergen, which directly impacts local communities."
+    },
+    "summary_headline": "Bergen etablerer nytt frivillighetsråd for bedre støtte til frivillige organisasjoner",
+    "summary_body": "Rusmiddelpolitisk råd har enstemmig vedtatt flere tiltak for å styrke frivilligheten i Bergen. Det skal opprettes et frivillighetsråd med 6-8 medlemmer, inkludert en kommunal representant, for å gi råd om økonomiske saker og overvåke tilskuddsordninger. Rådet skal også sikre at frivillige organisasjoner får tilpasset støtte og at tilskuddsordningene koordineres. FrP fremmet tillegg om honorar til rådet, som skal finansieres av kommunen. Dette tiltaket er viktig for å sikre at frivillige organisasjoner i Bergen får nødvendig støtte og informasjon."
+  }
+}

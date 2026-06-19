@@ -1,0 +1,18 @@
+{
+  "dokument_id": "3d8251c8-74db-5262-9bd1-2c1aa95bebc2",
+  "kommune_nummer": 4626,
+  "kommune_navn": "Øygarden",
+  "generated_at": "2026-02-19 22:59:20",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses the election of new members to the Forliksråd, which is relevant to local governance and community representation."
+    },
+    "summary_headline": "Nyvalg til Forliksrådet i Øygarden",
+    "summary_body": "Kommunestyret i Øygarden skal 19. juni 2025 velge nytt medlem, varamedlem og ny leder til Forliksrådet, etter at tidligere valg ble underkjent på grunn av alderskrav. Joar Midttun er foreslått som ny leder. Valget gjelder fra 19. juni 2025 til 31. desember 2028, og det stilles krav om godkjent vandel for kandidatene."
+  }
+}

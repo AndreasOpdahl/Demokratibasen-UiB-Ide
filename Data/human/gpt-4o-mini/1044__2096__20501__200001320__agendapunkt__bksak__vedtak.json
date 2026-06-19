@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:2096:20501:200001320:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:21:00",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document contains a decision by the local council with a close vote and differing opinions, making it relevant for local residents."
+    },
+    "summary_headline": "Åsane bydelsstyre vedtar administrativ organisering med knapt flertall",
+    "summary_body": "Åsane bydelsstyre har behandlet administrativ organisering av den nye Åsane bydel fra 1. januar 2000. I møtet 22. februar 2000 ble bydelsdirektørens redegjørelse vedtatt med 7 mot 6 stemmer, til tross for forslag om utsettelse og alternative modeller fra flere bydelsrepresentanter. Dette vedtaket kan påvirke hvordan lokale tjenester organiseres fremover."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "218905:2022839:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:40:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant initiative to provide housing for individuals with developmental disabilities, which has a direct impact on the local community."
+    },
+    "summary_headline": "Boligløftet: 130 nye boliger for utviklingshemmede i Bergen",
+    "summary_body": "Byrådet i Bergen har lagt frem en statusrapport om boligløftet, som har som mål å etablere 130 nye boliger for utviklingshemmede. Kommunalt råd for personer med funksjonsnedsettelse (KRPF) uttrykker bekymring for at antallet boenheter i bofellesskap kan bli for høyt, noe som kan føre til institusjonalisering. Rådet anbefaler å begrense antall boenheter til 6-8 per bofellesskap og understreker viktigheten av brukermedvirkning i planleggingen. Det er også foreslått at gamle kommunale bygg skal renoveres for å bli attraktive boliger. Videre dialog med byrådsavdelingen er ønsket for å sikre at prosjektet møter behovene til målgruppen."
+  }
+}

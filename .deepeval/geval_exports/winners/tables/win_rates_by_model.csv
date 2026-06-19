@@ -1,8 +1,8 @@
 model,n_pairwise_human,win_rate_human,n_pairwise_llm,win_rate_llm_pooled
-GPT4o-mini,0,,5472,0.8157894736842105
-gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples,0,,5488,0.6745626822157434
-llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,0,,5488,0.4634657434402332
-nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples,0,,5488,0.3450255102040816
-norskgpt-llama3-8b__checkpoint-8000-gen0-inputs-refs-preds-1000-examples,0,,5488,0.24535349854227406
-norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,0,,5488,0.35550291545189505
-viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,0,,5488,0.6012208454810496
+GPT4o-mini,0,,7312,0.8125
+gemma-2-9b__checkpoint-2500-inputs-refs-preds-1000-examples,0,,7312,0.6785421225382933
+llama2-13b-chat-norwegian__checkpoint-5500-gen0-inputs-refs-preds-1000-examples,0,,7312,0.4641001094091904
+nb-gpt-j-6b__checkpoint-9500-gen0-inputs-refs-preds-1000-examples,0,,7312,0.3394420131291028
+norskgpt-llama3-8b__checkpoint-8000-gen0-inputs-refs-preds-1000-examples,0,,7312,0.24541849015317288
+norwai-mistral-7b__checkpoint-9000-inputs-refs-preds-1000-examples,0,,7328,0.34347707423580787
+viking-13b__checkpoint-3500-inputs-refs-preds-1000-examples,0,,7312,0.6168626914660832

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51304:114705:199705400:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:47:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant urban development plan with local implications and community opposition."
+    },
+    "summary_headline": "Kontroversiell reguleringsplan for Fyllingsdalen anbefales med justeringer",
+    "summary_body": "Hovedutvalg for byutvikling anbefaler en revidert reguleringsplan for Rosenlund, Krohnegården og deler av Nils Langhelles vei, som åpner for 10 nye boliger. Planen er en mellomløsning mellom to tidligere alternativer, etter omfattende innspill fra beboere og grunneiere. Det har vært stor motstand mot utbygging, spesielt fra velforeninger som frykter økt trafikk og dårligere veistandard. Administrasjonen har vurdert at veien må oppgraderes før flere boliger kan bygges, og det er foreslått en justering av LNF-grensen. Planen vil bli sendt til bystyret for endelig vedtak."
+  }
+}

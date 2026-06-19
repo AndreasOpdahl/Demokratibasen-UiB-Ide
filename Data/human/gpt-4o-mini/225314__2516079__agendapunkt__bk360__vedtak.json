@@ -1,0 +1,18 @@
+{
+  "dokument_id": "225314:2516079:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:54:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document outlines significant budget decisions impacting youth culture and activities in Bergen."
+    },
+    "summary_headline": "Bergen kommune øker budsjettet for ungdoms kulturtilbud",
+    "summary_body": "Ungdomsrådet i Bergen kommune har besluttet å gjøre Kultursommerjobb til en fast budsjettpost med 1 million kroner årlig i fire år, for å gi unge arbeidserfaring og kulturelle opplevelser. I tillegg opprettes en pott for U18 kulturarrangementer, og budsjettet til kulturskolen økes for å møte økt etterspørsel. Støtten til digitalisering av aktivitetskortet opprettholdes, og det settes av midler til en ny elevrådshåndbok og et elevrådsseminar. Disse tiltakene er viktige for å styrke ungdoms deltakelse i kulturlivet og fremme inkludering."
+  }
+}

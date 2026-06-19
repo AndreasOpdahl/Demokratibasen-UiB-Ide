@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:4327:40032:200414883:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:15:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to grant a new alcohol license to Slottskroen is significant for local business and community regulations."
+    },
+    "summary_headline": "Slottskroen får skjenkebevilling for øl, vin og brennevin",
+    "summary_body": "Byrådet har innvilget Slottskroen A/S en ny skjenkebevilling for øl, vin og brennevin både inne og ved uteserveringen frem til 30. juni 2008. Dette følger etter en overdragelse av virksomheten fra Svendsgården A/S. Kommunaldirektøren anbefaler skjenkebevilling for øl og vin, men ikke brennevin ved uteserveringen for å unngå økt alkoholkonsum. Det er satt spesifikasjoner for uteserveringen, inkludert restriksjoner på musikk etter kl. 22.00. Innstillingen fra byrådsleder Monica Mæland ble godkjent uten merknader fra politiet."
+  }
+}

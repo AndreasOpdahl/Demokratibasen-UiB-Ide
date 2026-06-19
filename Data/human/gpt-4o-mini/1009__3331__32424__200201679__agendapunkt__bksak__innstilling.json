@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3331:32424:200201679:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:03:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to continue funding and develop the Alrekstad alternative school has significant implications for local students with behavioral challenges."
+    },
+    "summary_headline": "Byrådet vedtar videreføring av Alrekstad alternativ skole med nytt tilsyn",
+    "summary_body": "Byrådet i Bergen har besluttet å videreføre bo- og miljøtilbudet ved Alrekstad alternativ skole, som er viktig for elever med atferdsvansker. Det ble vedtatt å overføre 1,25 millioner kroner fra barnevernsbudsjettet til skolebudsjettet for å sikre driften. I tillegg vil 350.000 kroner bli innarbeidet i tertialrapport nr. 2 for å opprettholde driftsvolumet. Byrådet ber også om at det etableres en tilfredsstillende tilsynsordning for tilbudet. Dette tiltaket er avgjørende for å støtte elever med spesielle behov og sikre deres rett til utdanning."
+  }
+}

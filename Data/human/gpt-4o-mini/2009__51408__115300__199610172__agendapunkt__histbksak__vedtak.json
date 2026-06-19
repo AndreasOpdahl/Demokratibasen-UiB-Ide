@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2009:51408:115300:199610172:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:56:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The decision to transform Nordiske TV Dager into a foundation involves public funding and local governance, which is relevant to residents."
+    },
+    "summary_headline": "Bergen kommune omdanner Nordiske TV Dager til stiftelse med 25.000 kroner i kapital",
+    "summary_body": "Bergen kommune har besluttet å omdanne Nordiske TV Dager til en stiftelse, med en stiftelseskapital på 25.000 kroner. Dette ble vedtatt av formannskapet, med Frp som eneste motstandere. Kommunen vil også oppnevne medlemmer til representantskapet for stiftelsen. Bevilgningen vil bli belastet konto 1.188.291 for tilfeldige utgifter. Dette tiltaket kan påvirke medie- og næringslivet i Bergen."
+  }
+}

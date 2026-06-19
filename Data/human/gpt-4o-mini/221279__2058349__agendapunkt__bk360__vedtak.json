@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221279:2058349:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:44:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines logistical decisions for an upcoming election, which is routine and lacks significant controversy."
+    },
+    "summary_headline": "Grieghallen valgt som valglokale for Bergen sentrum",
+    "summary_body": "Valgstyret har besluttet at Grieghallen skal brukes som valglokale for Bergen sentrum under stortings- og sametingsvalget i 2021. I tillegg vil Strømgaten 1 bli benyttet til administrasjon av forhåndsstemmegivning og valgoppgjør. Beslutningen ble fattet enstemmig uten debatt."
+  }
+}

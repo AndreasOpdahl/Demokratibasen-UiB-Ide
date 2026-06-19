@@ -1,0 +1,18 @@
+{
+  "dokument_id": "204759:394164:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:06:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant urban planning decisions affecting a protected historical site and local community facilities."
+    },
+    "summary_headline": "Rådet anbefaler å fjerne barnehage fra reguleringsplan for Christinegård",
+    "summary_body": "Rådet for byforming og arkitektur (RBA) har behandlet reguleringsplanen for Mulebanen og anbefaler å fjerne barnehageformålet fra planen for å bevare det fredede hageanlegget mellom Christinegård og Mon Plaisir. RBA mener at en barnehage vil forringe opplevelseskvaliteten i området og øke trafikkmengden. I stedet foreslås det at et idrettsanlegg kan etableres, noe som vil gi positive kvaliteter for bydelens beboere. RBA anbefaler også å redusere parkeringsanlegget til én etasje og vurdere beboerparkering. Dette forslaget vil bli vurdert videre i den kommende høringsprosessen."
+  }
+}

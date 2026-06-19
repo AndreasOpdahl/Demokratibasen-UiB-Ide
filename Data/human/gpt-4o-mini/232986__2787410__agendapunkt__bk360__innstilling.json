@@ -1,0 +1,18 @@
+{
+  "dokument_id": "232986:2787410:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:14:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document outlines a meeting and annual plan for a municipal council, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteplan for kommunalt råd for personer med funksjonsnedsettelse vedtatt for 2022",
+    "summary_body": "Det kommunale rådet for personer med funksjonsnedsettelse (KRPF) har vedtatt sin møteplan for 2022, som inkluderer møter den 6. januar, 3. februar, 10. mars, og flere andre datoer. Rådet planlegger også å utarbeide en årsplan som kan inkludere opplæring og temamøter. Det foreslås at møtene flyttes til tirsdager for å gi politikerne mer tid til å forberede seg. Det er planlagt ett ekstra møte og minst en opplæringsdag i 2022."
+  }
+}

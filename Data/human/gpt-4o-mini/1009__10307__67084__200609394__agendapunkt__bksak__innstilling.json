@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10307:67084:200609394:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:40:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a local pub's application for outdoor serving of alcohol, which affects local residents and businesses."
+    },
+    "summary_headline": "Vaagen Pub får delvis tillatelse til uteservering",
+    "summary_body": "Byrådet har innvilget Vaagen Pub, Strandkaien 12, tillatelse til uteservering av alkoholholdig drikk på 22 m2, mens søknaden om uteservering på det resterende arealet på 26 m2 ble avslått. Dette er en fornyelse av en tidligere tillatelse, og uteserveringen må opprettholde en fri ferdsel på 5 meter på fortauet. Tillatelsen gjelder frem til 30. juni 2016. Byrådsleder Monica Mæland står bak vedtaket."
+  }
+}

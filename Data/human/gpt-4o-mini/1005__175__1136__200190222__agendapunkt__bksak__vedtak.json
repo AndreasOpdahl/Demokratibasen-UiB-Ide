@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:175:1136:200190222:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:42:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document details a unanimous decision on a local regulatory plan, which is relevant but lacks significant controversy or impact."
+    },
+    "summary_headline": "Bystyret vedtar reguleringsplan for Eikhaugen enstemmig",
+    "summary_body": "Bergen bystyre har enstemmig vedtatt et privat forslag til reguleringsplan for Eikhaugen, gnr 287 bnr 232. Planen, merket P.2.1586.00.00, ble behandlet i bystyremøtet 28. mai 2001, etter anbefaling fra Komite for miljø og byutvikling. Dette vedtaket er en del av den pågående utviklingen i Arna, og det er viktig for innbyggerne i området."
+  }
+}

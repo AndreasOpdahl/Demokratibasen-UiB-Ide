@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3914:37485:200003501:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:47:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a denied application for a liquor license, which has local relevance but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Hotel Bristol får ikke skjenkebevilling for uteservering",
+    "summary_body": "Rusmiddelpolitisk råd har anbefalt å avslå søknaden fra Hotel Bristol avd. Portofino om skjenkebevilling for øl og vin ved ny uteservering. Beslutningen ble fattet etter en vurdering fra Kontor for skjenkesaker. Dette kan påvirke hotellets muligheter for utvidet servering og tiltrekking av gjester."
+  }
+}

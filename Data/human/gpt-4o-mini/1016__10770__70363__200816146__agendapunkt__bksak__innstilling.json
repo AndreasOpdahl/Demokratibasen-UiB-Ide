@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1016:10770:70363:200816146:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:21:16",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The report on employee attendance and sick leave rates in Bergen municipality is relevant and shows trends that affect local public services."
+    },
+    "summary_headline": "Sykefraværet i Bergen kommune lavest på ti år",
+    "summary_body": "Bergen kommune rapporterer om en samlet nærværsprosent på 90,2 % for 1. kvartal 2014, noe som tilsvarer et sykefravær på 9,8 %. Dette er det laveste sykefraværet registrert siden 2004, men kommunen klarte ikke å nå sitt mål på 92,1 % nærvær. Sykefraværet har økt i barnehagene med 2,4 prosentpoeng sammenlignet med 2013, mens det har vært en betydelig reduksjon i byrådsavdelingen for sosial, bolig og områdesatsing med 9,2 prosentpoeng. Kommunen fortsetter arbeidet med å redusere sykefraværet gjennom systematisk innsats og opplæring av ledere."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227975:2654029:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:00:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document addresses a significant public health issue regarding body pressure and cosmetic procedures, with broad political support and implications for local youth."
+    },
+    "summary_headline": "Bergen kommune støtter forbud mot markedsføring av kosmetiske inngrep for å beskytte unge",
+    "summary_body": "Utvalg for helse og sosial i Bergen kommune har vedtatt å avgi høringsuttalelse til lovforslag som regulerer kosmetiske inngrep og injeksjoner. Bystyret ønsker et forbud mot markedsføring av slike behandlinger for å beskytte barn og unge mot kroppspress. Det ble fremhevet at det er vanskelig å hindre at markedsføring når personer under 18 år, og at lovforslaget bør reflektere dette. Flere partier, inkludert Høyre, Arbeiderpartiet og SV, støtter forslaget, mens Fremskrittspartiet fremmet et alternativt forslag som ikke fikk flertall. Neste steg er at byrådet behandler høringsuttalelsen."
+  }
+}

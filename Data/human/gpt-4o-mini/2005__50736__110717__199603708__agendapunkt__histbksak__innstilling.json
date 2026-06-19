@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50736:110717:199603708:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:41:45",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant urban development project with potential impacts on local residents."
+    },
+    "summary_headline": "Høringsprosess for konsekvensutredning av bybane i Bergen igangsettes",
+    "summary_body": "Hovedutvalg for Byutvikling har enstemmig vedtatt å sende Melding om konsekvensutredning og Forslag til utredningsprogram for bybanen i Bergen på høring. Høringsfristen er satt til 14. august 1998, og innspill fra høringen vil bli vurdert før det endelige utredningsprogrammet godkjennes i oktober. Dette tiltaket kan påvirke transport og byutvikling i Bergen, og det er viktig for innbyggerne å delta i høringen for å påvirke beslutningene som tas."
+  }
+}

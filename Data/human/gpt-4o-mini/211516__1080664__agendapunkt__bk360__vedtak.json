@@ -1,0 +1,18 @@
+{
+  "dokument_id": "211516:1080664:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:23:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document involves a significant decision regarding illegal construction, affecting local regulations and community standards."
+    },
+    "summary_headline": "Klage på ulovlig tiltak i Ytrebygda godkjent av Komite for miljø og byutvikling",
+    "summary_body": "Komite for miljø og byutvikling har besluttet å oppheve fagetatens vedtak fra 4. desember 2017 og ta klagen fra tiltakshaver til følge. Komiteen mener at godkjenning av det ulovlig oppførte tiltaket vil undergrave respekten for kommunale vedtak. Det ble også uttrykt bekymring for manglende oppfølging av ulovligheter, og byrådet ble bedt om å sikre snarlig handling. Forslaget fra Sondre L. Båtstrand (UAV) ble vedtatt med 12 stemmer, mens byrådets innstilling om å opprettholde det tidligere vedtaket fikk kun 5 stemmer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3347:32369:200206770:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:03:28",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The decision to deny a liquor license application has local relevance and potential impact on community dynamics."
+    },
+    "summary_headline": "Landås Grill & Café får ikke skjenkebevilling",
+    "summary_body": "Byrådet har besluttet å ikke innvilge søknaden om alminnelig skjenkebevilling for øl og vin ved Landås Grill & Café, Hagerupsvei 32 X, som ble søkt av Fazli Ugur. Finansbyråden Trond Tystad anbefaler å opprettholde en restriktiv bevillingspolitikk for å unngå nye skjenkesteder i boligområder utenfor sentrum. Anbefalingen er i tråd med råd fra Kontor for skjenkesaker og Rusmiddelpolitisk råd. Søker kan påklage vedtaket innen 6 måneder."
+  }
+}

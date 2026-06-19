@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:50743:112124:199707794:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:43:11",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a new nursing home and service apartments is significant for local residents, addressing elder care needs."
+    },
+    "summary_headline": "Nytt sykehjem og serviceboliger foreslås i Fana",
+    "summary_body": "Bergen Bolig og Byfornyelse har fremmet forslag om regulering av eiendommer ved Odinsveg for å bygge et nytt sykehjem med 32 plasser og 34 serviceboliger for eldre. Planen, som er i tråd med Handlingsplan for eldrepolitikk, ble enstemmig vedtatt av Hovedutvalget for byutvikling. Det er ikke innkommet protester mot oppstarten, og prosjektet er prioritert med forventet byggestart i 1999. Dette tiltaket vil bidra til å forbedre tilbudet til eldre i Fana, et område med økende behov for slike tjenester."
+  }
+}

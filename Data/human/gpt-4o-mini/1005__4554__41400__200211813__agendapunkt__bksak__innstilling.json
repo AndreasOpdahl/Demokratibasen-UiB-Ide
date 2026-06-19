@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:4554:41400:200211813:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:54:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The proposal for a significant regulatory change to allow a Lidl store in Kjøkkelvikdalen has local relevance and potential impact on traffic and community structure."
+    },
+    "summary_headline": "Reguleringsendring for Lidl-butikk i Kjøkkelvikdalen foreslås",
+    "summary_body": "Byrådet har anbefalt bystyret å godkjenne en reguleringsendring i Kjøkkelvikdalen for å tillate bygging av en Lidl-butikk. Forslaget innebærer omregulering av områder fra erverv til forretning og fra friområde til industri. Det planlegges også et nytt veikryss for å håndtere økt trafikk. Endringen kan påvirke trafikksituasjonen ved Kjøkkelvik skole, men tiltak for trafikksikkerhet er vurdert som tilstrekkelige. Bystyret skal ta endelig beslutning om reguleringsforslaget."
+  }
+}

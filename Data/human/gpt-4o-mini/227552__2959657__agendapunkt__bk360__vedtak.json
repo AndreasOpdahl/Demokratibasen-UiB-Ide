@@ -1,0 +1,18 @@
+{
+  "dokument_id": "227552:2959657:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:59:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new school building project with architectural considerations and community impact."
+    },
+    "summary_headline": "Ny skolebygging i Fana får positive tilbakemeldinger fra Rådet for byforming og arkitektur",
+    "summary_body": "Rådet for byforming og arkitektur (RBA) behandlet den nye skolebygningen på Haakon Sæthres veg 42 den 23. februar 2021. RBA er positiv til prosjektet, som er designet av Helge Borgen fra Cubus arkitekter, og understreker viktigheten av at bygget harmonerer med det eksisterende terrenget. Rådet anbefaler mer glass i fasaden for å forbedre lysinnslipp og kontakt mellom inne- og uteområder. Det er også bekymringer om bygningens nærhet til naboeiendommene og foreslår en større buffersone. RBA etterspør illustrasjoner av bygningens fjernvirkning for å vurdere påvirkningen på nærområdet."
+  }
+}

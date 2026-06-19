@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3166:30787:200019505:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:00:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a municipal response to proposed changes in planning laws, which may affect local development."
+    },
+    "summary_headline": "Bergen kommune gir høringsuttalelse om endringer i plan- og bygningsloven",
+    "summary_body": "Bergen kommune har sendt en høringsuttalelse til forslag om endringer i plan- og bygningsloven, som omhandler tidsfrister og forenklinger. Uttalelsen ble vedtatt av Byrådet den 29. april 2002, og er signert av Svein Klæboe fra Byrådsleders avdeling. Endringene kan påvirke lokale byggeprosjekter og utvikling i kommunen."
+  }
+}

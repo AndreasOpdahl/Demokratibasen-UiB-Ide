@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:6413:53042:200819175:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:02:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The application for a new IKEA store is significant due to its large scale and potential impact on the local economy and community."
+    },
+    "summary_headline": "Ny IKEA-butikk planlegges i Åsane med stort bruksareal",
+    "summary_body": "Det er sendt inn en søknad om rammetillatelse for oppføring av et nytt varehus for IKEA på Sauråsbakken i Åsane. Det nye bygget vil ha et bruksareal på 63.295 m² fordelt over tre etasjer, samt et parkeringsareal på 12.001 m². Dette tiltaket kan få stor betydning for lokal handel og sysselsetting i området."
+  }
+}

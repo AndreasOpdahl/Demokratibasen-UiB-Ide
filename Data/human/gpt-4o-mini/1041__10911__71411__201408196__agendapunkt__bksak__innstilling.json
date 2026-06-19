@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1041:10911:71411:201408196:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:10:08",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document outlines the recruitment process for election workers, which is relevant to local governance and community involvement."
+    },
+    "summary_headline": "Bergen kommune rekrutterer 1000 valgmedarbeidere til kommende valg",
+    "summary_body": "Bergen kommune planlegger å rekruttere ca. 1000 valgmedarbeidere til ulike oppgaver ved kommende valg. Rekrutteringen skjer både internt og eksternt, med fokus på å speile befolkningen. Prosessen er delt opp i tre faser, og det er spesifikke krav til kandidatene, som erfaring med PC og at de ikke kan være listekandidater. Valgstyret har delegert oppnevning av stemmestyrer til valgstyret, og det er utarbeidet retningslinjer for utlån av medarbeidere fra kommunen. Rekrutteringen starter i mars og varer frem til valgdagen."
+  }
+}

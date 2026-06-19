@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:12081:74766:201535055:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:51:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses the completion of a significant school demolition project with budget implications."
+    },
+    "summary_headline": "Sluttmelding for riving av Landås skole godkjent med mindreforbruk",
+    "summary_body": "Byrådet har godkjent sluttregnskapet for rivingen av Landås skole, som har en budsjettramme på 10,9 millioner kroner. Det endelige forbruket ble 10,7 millioner kroner, noe som gir et mindreforbruk på 176 422 kroner. Rivingen ble utført i kommunal regi og ble betydelig rimeligere enn forventet på grunn av et gunstig marked. Mindreforbruket foreslås brukt til oppbudsjettering av investeringsbudsjettet i 2016. Dette prosjektet er relevant for innbyggerne i Bergen, da det påvirker skoleinfrastruktur og fremtidige investeringer."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "233891:2930095:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:16:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document provides a routine overview of health and safety incidents without significant newsworthy elements."
+    },
+    "summary_headline": "Oversikt over HMS-avvik i Bergen kommune for 3. kvartal 2021",
+    "summary_body": "Hovedarbeidsmiljøutvalget har mottatt en oversikt over HMS-avvik og uønskede hendelser i Bergen kommune for 3. kvartal 2021. Forslaget om å ta oversikten til orientering ble presentert av avdelingsleder Per Terje Engedal og saksbehandler Margrethe Ringen Fauske. Dokumentet inneholder ingen kontroverser eller spesifikke tiltak."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8709:61231:200810383:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:41:15",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant environmental issues related to pollution and waste management in Bergen, which directly impacts local residents."
+    },
+    "summary_headline": "Bergen kommune tar grep mot forurensning fra byggeprosjekter",
+    "summary_body": "Bergen kommune har mottatt to NGU-rapporter som belyser forurensning fra rivemasser og kvaliteten på salgsjord i regionen. Rapportene, som dekker perioden 2008-2010, viser at PCB og andre miljøgifter fortsatt er til stede i byggeavfall, noe som kan ha alvorlige konsekvenser for miljø og helse. Byrådet, ledet av Lisbeth Iversen, anbefaler økt tilsyn og etablering av bedre deponikapasitet for svakt forurensede masser. Dette tiltaket er nødvendig for å forhindre forurensning av Byfjorden og sikre trygg håndtering av avfall. Kommunen vil også gi innspill til høringen av NOU-2010-9, som har som mål å stanse utslipp av skadelige stoffer innen 2020."
+  }
+}

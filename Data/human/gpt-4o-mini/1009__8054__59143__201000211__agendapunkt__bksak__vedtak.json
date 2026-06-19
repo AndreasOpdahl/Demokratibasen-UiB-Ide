@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8054:59143:201000211:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:39:48",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains a routine decision regarding a tariff revision with no significant impact or controversy."
+    },
+    "summary_headline": "Bergen kommune godkjenner tariffrevisjon",
+    "summary_body": "Byrådet i Bergen kommune har vedtatt å stemme JA til det anbefalte forslaget til tariffrevisjon fra 1. mai 2010. Det er ingen kjent motstand eller kontrovers knyttet til vedtaket."
+  }
+}

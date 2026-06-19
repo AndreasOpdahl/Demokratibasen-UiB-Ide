@@ -1,0 +1,18 @@
+{
+  "dokument_id": "233111:2654077:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:14:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll fra møte godkjent",
+    "summary_body": "Utvalg for helse og sosial har godkjent protokollen fra møtet den 6. oktober 2021. Ingen kontroverser eller endringer ble rapportert."
+  }
+}

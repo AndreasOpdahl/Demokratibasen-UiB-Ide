@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:3498:34200:200003500:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:39:24",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The proposal to dissolve the Laksevåg district council's working committee is significant due to its implications for local governance and decision-making."
+    },
+    "summary_headline": "Laksevåg bydelsstyre foreslår nedleggelse av arbeidsutvalg",
+    "summary_body": "Laksevåg bydelsstyre har foreslått å legge ned sitt arbeidsutvalg med virkning fra 1. januar 2003. Dette forslaget, som ble diskutert i bydelsstyrets møte, innebærer at bydelsleder og nestleder får fullmakt til å ta avgjørelser i hastesaker mellom bydelsmøtene. Bakgrunnen for forslaget er at arbeidsutvalget har hatt varierende møtehyppighet og at de fleste saker har vært knyttet til skjenkesaker. Forslaget vil bli behandlet i bydelsstyrets første møte etter nyttår."
+  }
+}

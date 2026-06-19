@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1044:3776:36295:200300434:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:25:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a local alcohol license application, which has limited impact and no controversy."
+    },
+    "summary_headline": "Åsane bydelsstyre godkjenner skjenkebevilling for enkelt anledning",
+    "summary_body": "Åsane bydelsstyre har behandlet en søknad om skjenkebevilling for en enkelt anledning den 1. november 2003 i Åsatun. Bydelsstyret fattet vedtak uten merknader, og administrasjonens forslag ble vedtatt likt. Dette betyr at arrangementet kan servere alkohol uten innvendinger fra kommunen."
+  }
+}

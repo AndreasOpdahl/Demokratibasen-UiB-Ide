@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1023:5644:51874:200809168:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:42:10",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a significant health service proposal with unanimous support for further review, indicating local relevance and potential impact."
+    },
+    "summary_headline": "Saken om lege i arrestlokalene utsettes for videre utredning",
+    "summary_body": "Komite for helse og sosial har besluttet å utsette behandlingen av forslaget om å etablere en legetjeneste i arrestlokalene ved politihuset i Bergen. Dette ble gjort enstemmig under møtet 22. oktober, da komiteen mente at saksfremstillingen og utredningen var mangelfull. Forslaget ble sendt tilbake til byrådet for videre arbeid. Pål Hafstad Thorsen (A) fremhevet behovet for bedre saksbehandling og tilgang til relevante dokumenter fra tidligere møter med politiet og legevaktsjefen. Byrådet har tidligere konkludert med at det ikke er grunnlag for å etablere en slik tjeneste."
+  }
+}

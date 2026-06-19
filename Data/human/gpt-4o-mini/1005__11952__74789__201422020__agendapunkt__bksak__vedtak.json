@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:11952:74789:201422020:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:35:57",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The decision to reconstruct the historic Ekserserhuset has significant local relevance and involves public interest."
+    },
+    "summary_headline": "Bystyret vedtar gjenreisning av Ekserserhuset",
+    "summary_body": "Bergen bystyre har besluttet å gjenreise Ekserserhuset, med fokus på det opprinnelige bygningsmiljøet. Bystyret ber byrådet om å legge frem en sak om aktuelle tomter og mulig bruk av bygget, når bruken av Sentralbadet er avklart. Vedtaket ble støttet av flertallet i bystyret, mens et tilleggsforslag fra SV ble nedstemt. Dette prosjektet er viktig for lokal kultur og vil bidra til feiringen av byggets 200-årsjubileum i 2021."
+  }
+}

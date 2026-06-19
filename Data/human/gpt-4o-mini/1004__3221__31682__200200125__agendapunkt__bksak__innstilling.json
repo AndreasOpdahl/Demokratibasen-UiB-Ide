@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1004:3221:31682:200200125:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:27:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a local establishment's application for an alcohol license, which has implications for community alcohol policy."
+    },
+    "summary_headline": "TGI Friday's får skjenkebevilling for øl og vin, men ikke brennevin på uteservering",
+    "summary_body": "Bergenhus bydelsstyre har behandlet søknaden fra TGI Friday's om skjenkebevilling for øl, vin og brennevin ved Nedre Ole Bullsplass. Styret anbefaler å innvilge bevilling for øl og vin ved uteserveringen, men avviser brennevin på grunn av restriktiv alkoholpolitikk. Dette kan påvirke tilbudet til gjester og er relevant for lokalbefolkningen."
+  }
+}

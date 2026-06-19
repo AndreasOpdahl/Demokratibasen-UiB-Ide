@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:44:401:200090070:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:05:14",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a procedural request without significant implications or controversy."
+    },
+    "summary_headline": "Fremleggelse av protokollutskrift etterlyst av Frp-representant",
+    "summary_body": "Under møtet i Komite for miljø og byutvikling etterlyste Arvid Blommedal fra Fremskrittspartiet fremleggelse av protokollutskriften for tidligere politisk behandling i komiteens saker. Dette er en rutinemessig forespørsel uten større konsekvenser."
+  }
+}

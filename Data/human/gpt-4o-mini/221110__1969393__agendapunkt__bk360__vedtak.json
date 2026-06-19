@@ -1,0 +1,18 @@
+{
+  "dokument_id": "221110:1969393:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:44:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is an announcement of a lecture, which is of low news value."
+    },
+    "summary_headline": "Foredrag om varsling avholdes av advokat Birthe Eriksen",
+    "summary_body": "Kontrollutvalget har behandlet saken om et foredrag av advokat Birthe M. Eriksen om varsling i sitt møte den 20. mai 2020."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:11320:71647:201425708:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:48:06",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a new alcohol serving license for a local brewery, which has local relevance and potential impact on community events."
+    },
+    "summary_headline": "7 Fjell Bryggeri får ny skjenkebevilling for Tap Room",
+    "summary_body": "Byrådet har innvilget søknaden fra 7 Fjell Bryggeri AS om ny alminnelig skjenkebevilling for alkoholholdig drikk gruppe 1 og 2 ved Tap Room i Fjellsdalen 5. Bevillingen gjelder kun innendørs og er gyldig frem til 30. juni 2016. Stedet vil ha 1-2 arrangementer i uken, med fokus på omvisninger og ølsmaking. Byråden for kultur, næring, idrett og kirke, Helge Stormoen, støtter innstillingen fra fagetaten. Det er allerede gitt en lignende bevilling til Kalfaret Brygghus."
+  }
+}

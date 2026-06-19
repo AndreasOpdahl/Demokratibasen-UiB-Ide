@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:12830:77418:201604031:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:58:53",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document details a unanimous decision on a housing development, but lacks significant controversy or public impact."
+    },
+    "summary_headline": "Enstemmig vedtak om nybygg i Sandviken",
+    "summary_body": "Komite for miljø og byutvikling har enstemmig opprettholdt tidligere vedtak om nybygg av boliger på Sandviksveien 160. Ingen representanter tok ordet under behandlingen, og klagen ble ikke tatt til følge. Byrådet anbefaler at komiteen fatter vedtak i tråd med deres innstilling."
+  }
+}

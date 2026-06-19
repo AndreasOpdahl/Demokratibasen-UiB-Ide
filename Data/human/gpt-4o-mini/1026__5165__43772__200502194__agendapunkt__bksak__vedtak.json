@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:5165:43772:200502194:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:07:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a rejected application for a terrace, which has local relevance and political conflict."
+    },
+    "summary_headline": "Klage på terrasseavslag avvist av komiteen",
+    "summary_body": "Klagen fra Rolf Hall Hansen og Gudrun Elise Kahrs om avslag på oppføring av en terrasse på 38 m2 i Fyllingsdalen ble ikke tatt til følge av Komite for miljø og byutvikling. Komiteen opprettholdt fagetatens vedtak fra 2005 med 11 stemmer mot 4 for et alternativt forslag fra Hallstein Aadland (FrP) om å gi tillatelse. Saken har vært behandlet flere ganger, og det ble tidligere vedtatt å utsette den for befaring."
+  }
+}

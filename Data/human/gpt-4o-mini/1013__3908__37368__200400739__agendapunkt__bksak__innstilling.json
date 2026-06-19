@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:3908:37368:200400739:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:05:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document outlines a leadership development program for the municipal council, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Lederutviklingsprogram for forretningsutvalget foreslått",
+    "summary_body": "Bystyredirektøren har fremmet et forslag til et lederutviklingsprogram for forretningsutvalget, som skal vare over hele valgperioden med fokus på de to første årene. Programmet inkluderer fire samlinger i 2004, tilpasset folkevalgtopplæringen. Forretningsutvalget skal ta stilling til forslaget."
+  }
+}

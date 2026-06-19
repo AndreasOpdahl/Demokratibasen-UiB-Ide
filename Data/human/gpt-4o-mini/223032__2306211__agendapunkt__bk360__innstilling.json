@@ -1,0 +1,18 @@
+{
+  "dokument_id": "223032:2306211:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:48:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a controversial decision regarding outdoor alcohol serving near a cinema, affecting local residents and businesses."
+    },
+    "summary_headline": "Byrådet avslår uteservering av alkohol ved Lucky på Neumanns gate",
+    "summary_body": "Byrådet i Bergen har besluttet å avslå søknaden fra Lucky, Neumanns gate 8, om tillatelse til uteservering av alkoholholdig drikk gruppe 1-3. Byrådet begrunner avslaget med stedets nære beliggenhet til kinoområdet, hvor det ferdes mange barn og unge. Til tross for anbefaling fra Kontor for skjenkesaker om å innvilge søknaden, mener byråden at hensynet til barn og unge må veie tyngst. Dette vedtaket kan påvirke lokale skjenkesteder og deres muligheter for uteservering."
+  }
+}

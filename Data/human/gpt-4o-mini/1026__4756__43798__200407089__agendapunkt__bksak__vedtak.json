@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1026:4756:43798:200407089:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:06:19",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a denied appeal against a housing project, highlighting local regulatory conflicts."
+    },
+    "summary_headline": "Klage på bolighus i Fyllingsdalen avvist av komiteen",
+    "summary_body": "Komite for miljø og byutvikling har avvist en klage på tillatelsen til oppføring av et bolighus med fire boenheter på Sælenveien 55 A i Fyllingsdalen. Klagen ble fremmet av Loftaas Bygg & Betongarbeid as, men komiteen opprettholdt fagetatens vedtak fra 22. juni 2004. Thor Brekkeflat fra Arbeiderpartiet foreslo å oppheve vedtaket, men forslaget ble nedstemt med 6 mot 9 stemmer. Dette betyr at prosjektet kan fortsette som planlagt, til tross for motstand fra deler av komiteen."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "214228:1080675:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:31:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over a building permit that affects local architectural heritage and community aesthetics."
+    },
+    "summary_headline": "Byrådet opprettholder avslag på pergola i Bergen sentrum",
+    "summary_body": "Byrådet i Bergen har besluttet å opprettholde et avslag på en søknad om å etablere en motorisert pergola på takterrassen til en bygning i sentrum. Avslaget, som ble gitt i juli 2018, er basert på vurderinger fra Byantikvaren og fagetaten, som mener at tiltaket vil endre bygningens visuelle kvaliteter og redusere dens verneverdi. Klageren, SE-Arkitektur AS på vegne av Xhibition AS, argumenterer for at tiltaket vil forbedre bruken av takterrassen, men Byrådet er bekymret for presedensvirkninger og estetiske konsekvenser. Saken vil nå bli sendt til Fylkesmannen for endelig avgjørelse."
+  }
+}

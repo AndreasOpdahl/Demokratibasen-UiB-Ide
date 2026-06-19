@@ -1,0 +1,18 @@
+{
+  "dokument_id": "494c2a04-ea65-5733-897f-a5f21caa1aa4",
+  "kommune_nummer": 1870,
+  "kommune_navn": "Sortland - Suortá",
+  "generated_at": "2026-02-19 23:01:07",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine agenda for a meeting and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Møteagenda for Arbeidsmiljøutvalget",
+    "summary_body": "Saksliste for Arbeidsmiljøutvalget i Sortland kommune er publisert for møtet den 17. november 2025. Dokumentet inneholder referanse til sak nummer FS - 010/25, men gir ingen ytterligere detaljer om saker som skal diskuteres."
+  }
+}

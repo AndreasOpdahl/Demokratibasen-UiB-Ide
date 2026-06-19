@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1020:6680:54475:200716874:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:31:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses procedural matters regarding the annual report, which is routine and lacks significant newsworthy elements."
+    },
+    "summary_headline": "Årsmelding for Bergen kommune behandles i komiteen",
+    "summary_body": "Komite for finans har behandlet saken om årsmeldingen for Bergen kommune i møte 6. mai. Hilde Onarheim redegjorde for den planlagte behandlingen i de ulike politiske organene. Komiteen avgir innstilling 10. juni og oppfordrer øvrige komiteer til å sende uttalelser snarest."
+  }
+}

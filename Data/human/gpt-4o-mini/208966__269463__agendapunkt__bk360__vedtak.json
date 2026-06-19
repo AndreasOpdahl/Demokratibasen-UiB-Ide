@@ -1,0 +1,18 @@
+{
+  "dokument_id": "208966:269463:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:17:46",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document contains routine administrative information with no significant newsworthy elements."
+    },
+    "summary_headline": "Eldrerådet diskuterer brukerundersøkelse i hjemmesykepleien",
+    "summary_body": "Eldrerådet behandlet en sak om en kommende brukerundersøkelse i hjemmesykepleien i møte 28. november 2018. Rådgiver Ann Kristin Akselberg ba om innspill til spørreskjemaet, og rådet besluttet å samle innspillene skriftlig for å sende dem til byrådsavdelingen. Dette er en rutinemessig prosess for å forbedre tjenestene for eldre."
+  }
+}

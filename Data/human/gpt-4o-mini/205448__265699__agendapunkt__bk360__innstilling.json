@@ -1,0 +1,18 @@
+{
+  "dokument_id": "205448:265699:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:08:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses significant legislative proposals affecting local governance and healthcare, which are relevant to residents."
+    },
+    "summary_headline": "Høring om ny havne- og farvannslov og helsepersonell-lisens i Bergen",
+    "summary_body": "Forretningsutvalget i Bergen kommune skal behandle to høringssaker på sitt møte 15. mai 2018. Den første saken gjelder NOU 2018: 4 Sjøveien videre, som foreslår endringer i havne- og farvannsloven, inkludert muligheten for kommuner å ta utbytte fra havnevirksomhet. Bystyret må avgi høringsuttalelse før fristen 15. juni, og det anbefales at komite for finans, kultur og næring innstiller til bystyret. Den andre saken omhandler forslag til endringer i forskrift om lisens til helsepersonell, som kan påvirke medisinske kandidater fra EØS. Høringsfristen for denne saken er 22. juni."
+  }
+}

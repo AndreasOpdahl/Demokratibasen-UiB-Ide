@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:6102:52059:200804440:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:12:38",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a regulatory hearing on hazardous materials, which has local relevance but lacks significant controversy or conflict."
+    },
+    "summary_headline": "Bergen kommune vurderer høringsuttalelse om håndtering av farlige stoffer",
+    "summary_body": "Forretningsutvalget i Bergen kommune har besluttet at byrådet skal avgi høringsuttalelse til to tilleggsforslag om håndtering av brannfarlige og trykksatte stoffer. Forslagene omhandler lagring av LPG-gassflasker og tilstandskontroll av energigassanlegg i boliger. Bystyredirektøren mener saken ikke er av prinsipiell karakter, og det anbefales at byrådet avgir uttalelse på vegne av kommunen. Dette kan påvirke sikkerhetsprosedyrer for innbyggere i Bergen."
+  }
+}

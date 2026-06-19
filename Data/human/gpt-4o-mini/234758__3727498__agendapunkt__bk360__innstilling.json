@@ -1,0 +1,18 @@
+{
+  "dokument_id": "234758:3727498:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:17:34",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The inquiry about Bergen's participation in a charitable project raises local interest but lacks immediate impact or controversy."
+    },
+    "summary_headline": "Bergen kommune vurderer deltakelse i 'Gi en Jul'-prosjektet",
+    "summary_body": "Diane Berbain (SV) har stilt et skriftlig spørsmål til bystyret om Bergen kommune har deltatt i 'Gi en Jul'-prosjektet, som samarbeider med NAV og barnevernet i andre kommuner. Prosjektet involverer anonymisering av familier som ønsker hjelp til jul. Spørsmålet ble sendt til Byrådsavdeling for arbeid, sosial og bolig for vurdering."
+  }
+}

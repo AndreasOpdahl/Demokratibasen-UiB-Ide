@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:2021:20047:200001275:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 15:43:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant decision regarding the location of a major educational institution, which will impact local residents and urban development."
+    },
+    "summary_headline": "Bergen kommune anbefaler lokalisering av Høgskolen på Damsgård",
+    "summary_body": "Bergen kommunes formannskap har anbefalt at Høgskolen i Bergen lokaliseres på Damsgård av utdanningspolitiske og byutviklingsmessige grunner. Dersom dette ikke lar seg realisere, støtter de Nedre Nygård som reservealternativ. Statsbygg vurderer Kronstad som best egnet for høgskoleformål, men formannskapets flertall, bestående av A, H og V, har tiltrådt Damsgård. Det er ventet at reguleringsplanen for den valgte tomten vil bli videreført, med godkjenning forventet høsten 2000. Denne beslutningen vil ha betydelig innvirkning på byutviklingen og utdanningstilbudet i Bergen."
+  }
+}

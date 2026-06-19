@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:5932:50782:200716723:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:02:17",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document discusses a new housing development with positive architectural qualities, which is relevant to local residents."
+    },
+    "summary_headline": "Positivt vedtak for nybygg i Fana",
+    "summary_body": "Tilsynsutvalget for byens utseende har godkjent et nytt boligprosjekt på Kloppedalsvegen 13 i Fana. I møtet den 29. april 2008 ble det fremhevet at tiltaket har svært gode arkitektoniske kvaliteter og fungerer som et forbilledlig eksempel på boligfortetting i området. Dette kan påvirke boligmarkedet og lokalsamfunnet i Fana."
+  }
+}

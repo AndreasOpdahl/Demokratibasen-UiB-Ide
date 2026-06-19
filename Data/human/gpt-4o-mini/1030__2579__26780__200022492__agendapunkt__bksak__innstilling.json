@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:2579:26780:200022492:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:36:33",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document addresses the situation of multicultural children in kindergartens, which is relevant to local residents."
+    },
+    "summary_headline": "Laksevåg bydelsstyre vurderer flerkulturelle barn i barnehagene",
+    "summary_body": "Laksevåg bydelsstyre har mottatt et forslag fra Thor Chr. Schmidt (SV) om å undersøke situasjonen for barn med flerkulturell bakgrunn i barnehagene. Det er rapportert at 42 barn med annet morsmål enn norsk er registrert i barnehagene, men det er usikkert hvor mange som får tilbud om plass. Det er også 42 fremmedspråklige barn på venteliste for kommunale barnehager. Bydelsstyret tar nå saken til orientering, og det er viktig for lokalsamfunnet å følge med på hvordan barnehagene håndterer mangfoldet."
+  }
+}

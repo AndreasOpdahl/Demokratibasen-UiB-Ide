@@ -1,0 +1,18 @@
+{
+  "dokument_id": "4790b117-64b3-5d71-a75c-baec503d8c32",
+  "kommune_nummer": 4618,
+  "kommune_navn": "Ullensvang",
+  "generated_at": "2026-02-19 23:00:43",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a routine building permit decision with no significant impact or controversy."
+    },
+    "summary_headline": "Ullensvang kommune gir løyve til rehabilitering av pipe",
+    "summary_body": "Ullensvang kommune har gitt løyve til Gunn Kari Hauge for rehabilitering av en pipe på Haukelivegen 77, gnr. 23, bnr. 17. Løyvet ble gitt i henhold til plan- og bygningslova og er basert på en søknad mottatt 29. august 2025. Det er ikke nødvendig med nabovarsling, da tiltaket ikke vil påvirke naboene. Klagefristen for vedtaket er tre uker."
+  }
+}

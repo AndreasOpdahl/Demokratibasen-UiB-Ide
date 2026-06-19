@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:8803:61513:201018967:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:41:37",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant budget increase for a local project that impacts community health and well-being."
+    },
+    "summary_headline": "Byrådet bevilger 3,76 millioner til Nærværsprosjektet",
+    "summary_body": "Byrådet i Bergen har besluttet å øke budsjettet for Nærværsprosjektet med 3,762 millioner kroner for 2011. Dette inkluderer midler til lønn for prosjektleder og aktiviteter som Gulltempen og Nærværsdagen. Finansbyråd Liv Røssland fremhever prosjektets positive resultater for lokalsamfunnet. Midlene vil bli dekket av en avsetning på 3 millioner fra disposisjonsfondet og 762.000 fra strukturtiltak. Dette tiltaket er viktig for å styrke nærværsarbeidet i kommunen."
+  }
+}

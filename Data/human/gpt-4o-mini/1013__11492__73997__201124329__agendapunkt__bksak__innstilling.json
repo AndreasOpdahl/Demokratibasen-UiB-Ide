@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:11492:73997:201124329:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:00:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines the distribution of various municipal matters to committees, which is routine but relevant for local governance."
+    },
+    "summary_headline": "Saker fra byrådets møte fordelt til komiteer",
+    "summary_body": "Protokollen fra byrådets møte 17. september 2015 viser fordelingen av saker til ulike komiteer i Bergen. Byrådssakene 317-328 og 340-342 skal behandles av bystyret, mens byrådssak 329 og 343 krever høringsuttalelser fra henholdsvis komite for miljø og byutvikling og komite for oppvekst. Flere søknader om fritak for eiendomsskatt er også inkludert i saken. Dette er en viktig prosess for lokalpolitikken, da det påvirker hvordan saker blir behandlet i kommunen."
+  }
+}

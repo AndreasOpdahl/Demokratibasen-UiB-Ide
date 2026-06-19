@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:7499:58179:200716909:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:40:36",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document discusses a significant regulatory change regarding the expansion of Alvøen school, which affects local residents."
+    },
+    "summary_headline": "Enstemmig vedtak om utvidelse av Alvøen skole i Laksevåg",
+    "summary_body": "Laksevåg bydelsstyre har enstemmig vedtatt å støtte planforslaget for utvidelse av Alvøen skole med ca. 2000 m². Det ble også besluttet å forlenge av- og påstigningsfeltet ved Janaflaten og anbefale en separat sykkelvei. Forslag fra Arbeiderpartiet og Venstre om å omorganisere parkeringsplasser ble nedstemt. Dette tiltaket er viktig for å forbedre skolemiljøet og tilgjengeligheten for elever og foresatte."
+  }
+}

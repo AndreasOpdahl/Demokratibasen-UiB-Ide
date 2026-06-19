@@ -1,0 +1,18 @@
+{
+  "dokument_id": "249510:6296379:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:54:30",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The document outlines the selection of officiants for civil weddings, which is relevant to local residents."
+    },
+    "summary_headline": "Bystyret i Bergen skal velge vigslere for perioden 2024-2027",
+    "summary_body": "Bystyret i Bergen skal velge personer med vigselsfullmakt for perioden 1. januar 2024 til 31. desember 2027. Ordfører Marit Warncke og varaordfører Thomas Flesland er allerede tildelt vigselsmyndighet, og alle partier er invitert til å foreslå kandidater. Blant de foreslåtte er Eivind Nævdal-Bolstad (H), Rune Bakervik (A) og Eira Garrido (SV). Valget av vigslere vil bli gjort i forbindelse med kommunevalget."
+  }
+}

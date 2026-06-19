@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:3664:35535:200112356:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:38:18",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a dispute over a building permit that affects local residents and includes administrative errors and appeals."
+    },
+    "summary_headline": "Klage på bruksendring av loft i Laksevåg avvist av byrådet",
+    "summary_body": "Byrådet har avvist en klage på tillatelsen til å endre loftet til boligformål i Lyngbøveien 90, som ble gitt rammetillatelse i 2001. Klageren, eier av naboeiendommen, påpekte manglende nabovarsel og ulemper ved tiltaket. Byrådet konkluderte med at klagen ikke hadde tilstrekkelig grunnlag, og at dispensasjon fra plankravet var berettiget. Saken vil bli sendt tilbake til administrasjonen for videre behandling av parkeringsspørsmål."
+  }
+}

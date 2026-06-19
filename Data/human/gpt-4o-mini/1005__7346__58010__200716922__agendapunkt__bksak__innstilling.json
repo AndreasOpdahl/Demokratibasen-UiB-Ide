@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1005:7346:58010:200716922:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:14:44",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses significant decisions regarding infrastructure and environmental concerns that directly impact local residents."
+    },
+    "summary_headline": "Bystyret godkjenner Sotrasambandet med fokus på kollektivtransport og miljøtiltak",
+    "summary_body": "Bergen bystyre har besluttet å gå videre med planene for Sotrasambandet, som inkluderer utvidelse av eksisterende vei og ny bro med kollektivfelt. Bystyret uttrykker bekymring for økt biltrafikk i Loddefjord sentrum og krever at kollektivtransport prioriteres. Det ble også vedtatt å utrede nye tunnelløsninger for vegtrafikken. Byrådet skal nå arbeide med å sikre at kollektivtilbudet er på plass før prosjektet fullføres. Dette tiltaket er viktig for innbyggerne i Bergen, da det vil påvirke både trafikksikkerhet og miljø."
+  }
+}

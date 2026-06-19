@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:2898:28568:200107404:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:35:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 9,
+      "justification": "The document outlines a significant plan for expanding kindergarten services in Bergen, addressing a critical local need."
+    },
+    "summary_headline": "Bergen kommune planlegger 1 002 nye barnehageplasser innen 2003",
+    "summary_body": "Byrådet i Bergen har lagt frem en plan for utbygging av barnehagetilbudet som skal gi 1 002 nye barnehageplasser innen utgangen av 2003. Planen inkluderer bygging av 12 nye barnehager, hvorav 3 kommunale og 9 private. Dette tiltaket er en respons på en behovsundersøkelse som viste at 76% av barnehagebehovet ikke er dekket. Byrådet, ledet av Anne-Grete Strøm-Erichsen og Anne Gine Hestetun, har også foreslått kommunal garanti for lån til private utbyggere. Dette er et stort løft for barnehagesektoren i Bergen, og det er forventet at det vil ha betydelig innvirkning på familier i kommunen."
+  }
+}

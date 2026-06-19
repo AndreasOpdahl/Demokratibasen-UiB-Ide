@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1012:3251:33069:200002483:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:54:13",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested building permit with significant local implications and a formal complaint."
+    },
+    "summary_headline": "Klage på byggetillatelse i Fana avvist av bydelsstyret",
+    "summary_body": "Fana bydelsstyre har avvist en klage fra AS Tveiterås Gård angående rammetillatelsen for oppføring av en ny enebolig på Brøggers veg 8. Klageren hevdet saksbehandlingsfeil og at byggetillatelsen strider mot en eksisterende \"villaklausul\". Byggesaksavdelingen konkluderte med at klagen ikke hadde tilstrekkelig grunnlag for å endre det opprinnelige vedtaket fra 22. november 2001. Det er nå opp til tiltakshaver å fortsette med byggeprosessen, til tross for klagerens innsigelser."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2005:51091:115152:199811164:agendapunkt:histbksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:46:52",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document proposes a municipal regulation that mandates new buildings in certain areas to connect to a district heating system, which has significant implications for energy policy and urban development."
+    },
+    "summary_headline": "Bergen innfører tilknytningsplikt til fjernvarme for nye bygg",
+    "summary_body": "Bergen kommune foreslår en ny vedtekt som pålegger tilknytningsplikt til fjernvarmeanlegg for alle nye bygg i fjernvarmeområder. Dette er et tiltak for å sikre energiriktig byutvikling og oppfylle miljømål. Forslaget ble behandlet av Hovedutvalg for byutvikling og vil bli sendt videre til formannskapet og bystyret dersom det ikke kommer vesentlige merknader. BKK AS har søkt om konsesjon for bygging av fjernvarmeanlegg, og vedtaket kan påvirke energiforsyningen i Bergen betydelig."
+  }
+}

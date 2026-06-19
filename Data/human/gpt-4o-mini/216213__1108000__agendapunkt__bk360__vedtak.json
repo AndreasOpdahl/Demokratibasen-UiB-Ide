@@ -1,0 +1,18 @@
+{
+  "dokument_id": "216213:1108000:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:36:25",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The document discusses a decision regarding the rehabilitation of a local elder care facility, which is relevant to the community."
+    },
+    "summary_headline": "Eldrerådet krever at rehabilitering av Metodisthjemmet ikke utsettes",
+    "summary_body": "Eldrerådet behandlet saken om rehabiliteringen av Stiftelsen Metodisthjemmet den 13. november 2019, og vedtok at prosjektet må følge den opprinnelige tidsplanen. Utsettelse av prosjektet er ikke akseptabelt, og kommunen må rette opp i tidligere feil. Dette er viktig for eldreomsorgen i Bergen."
+  }
+}

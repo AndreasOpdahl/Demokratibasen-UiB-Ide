@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:5042:45291:200400174:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 18:08:56",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document discusses a routine administrative matter regarding a meeting schedule."
+    },
+    "summary_headline": "Møteplan for bystyret i 2007 etterlyst",
+    "summary_body": "I et møte den 6. september 2019 etterlyste Liv Røssland møteplanen for bystyret i 2007. Bystyredirektøren informerte om at planen vil bli presentert for forretningsutvalget i et av de kommende møtene, og sluttbehandlet i bystyrets møte i oktober."
+  }
+}

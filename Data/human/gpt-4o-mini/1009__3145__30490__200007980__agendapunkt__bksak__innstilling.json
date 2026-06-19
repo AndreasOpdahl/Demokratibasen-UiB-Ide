@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:3145:30490:200007980:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:00:23",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The document involves a legal case with potential financial implications for the municipality and raises questions about human rights."
+    },
+    "summary_headline": "Bergen kommune krever saksomkostninger i menneskerettighetssak",
+    "summary_body": "Bergen kommune vurderer å legge ned påstand om at to tidligere beboere ved Morgensol barnehjem skal dekke kommunens saksomkostninger i forbindelse med en kjæremålssak. Dette skjer etter at beboerne har anlagt sak mot kommunen for brudd på Den europeiske menneskerettighetskonvensjon. Byrådet, ledet av helse- og sosialbyråd Helen Nordeide Fløisand, anbefaler at kommunen krever dekning av kostnader dersom kjæremålet ikke fører frem. Saken har betydning for kommunens økonomi og reiser spørsmål om ansvar i menneskerettighetssaker."
+  }
+}

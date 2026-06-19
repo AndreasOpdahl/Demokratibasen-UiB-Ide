@@ -1,0 +1,18 @@
+{
+  "dokument_id": "243059:5012131:agendapunkt:bk360:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 22:35:55",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document addresses a local administrative decision regarding school district boundaries, which has moderate relevance to residents."
+    },
+    "summary_headline": "Endringer i skolekretsgrenser for 2023-2024 vedtatt av byrådet",
+    "summary_body": "Byrådet i Bergen kommune har vedtatt revidert forskrift om skolekretsgrenser for skoleåret 2023-2024. Vedtaket ble fattet i møte 2. februar 2023, og følger byrådens vurdering og anbefaling. Dette kan påvirke skoleplasseringen for elever i kommunen."
+  }
+}

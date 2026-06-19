@@ -1,0 +1,18 @@
+{
+  "dokument_id": "25d94408-9257-5500-966c-490f4da16f45",
+  "kommune_nummer": 4631,
+  "kommune_navn": "Alver",
+  "generated_at": "2026-02-19 22:56:22",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 3,
+      "justification": "The document is a routine administrative report with no significant newsworthy elements."
+    },
+    "summary_headline": "HMS-avvik for 3. kvartal 2025 presentert for administrasjonsutvalet",
+    "summary_body": "Alver kommune har lagt frem HMS-avvik for 3. kvartal 2025, som skal tas til orientering av administrasjonsutvalet. Saken er rutinemessig og det er ingen kontroverser eller spesielle beslutninger knyttet til den."
+  }
+}

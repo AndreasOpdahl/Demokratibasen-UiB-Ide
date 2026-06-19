@@ -1,0 +1,18 @@
+{
+  "dokument_id": "6f8f3b18-f583-570f-b980-1a203ac4cc8a",
+  "kommune_nummer": 4627,
+  "kommune_navn": "Askøy",
+  "generated_at": "2026-02-19 23:06:26",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine reference case with no significant newsworthy elements."
+    },
+    "summary_headline": "Ingen nyheter fra Råd for personer med funksjonsnedsettelse",
+    "summary_body": "Dokumentet er en samlesak for referatsaker fra Råd for personer med funksjonsnedsettelse, datert 20. oktober 2025. Det inneholder ingen nye beslutninger eller kontroverser."
+  }
+}

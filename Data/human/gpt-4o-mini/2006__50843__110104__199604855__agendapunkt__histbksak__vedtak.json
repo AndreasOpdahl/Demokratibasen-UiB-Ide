@@ -1,0 +1,18 @@
+{
+  "dokument_id": "2006:50843:110104:199604855:agendapunkt:histbksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:49:32",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 6,
+      "justification": "The budget decision involves reallocating funds for cultural initiatives targeting immigrant groups, which is relevant to local residents."
+    },
+    "summary_headline": "Bergen kommune omfordeler midler til tiltak for innvandrerkvinner",
+    "summary_body": "Hovedutvalg for fritid og kultur i Bergen kommune har enstemmig vedtatt en budsjettendring som reduserer midlene til asylsøkere og innvandrere med 150.000 kroner, samtidig som de øker andre driftsutgifter med 100.000 kroner og annen lønn med 50.000 kroner. Utvalget ber rådmannen om å fokusere spesielt på tiltak rettet mot innvandrerkvinner. Dette vedtaket kan påvirke hvordan ressurser fordeles til kulturelle aktiviteter for fremmedkulturelle grupper i kommunen."
+  }
+}

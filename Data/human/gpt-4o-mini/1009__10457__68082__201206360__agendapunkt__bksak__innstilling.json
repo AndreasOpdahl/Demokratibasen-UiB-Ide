@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1009:10457:68082:201206360:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:42:27",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The case involves a significant dispute over housing development that affects local residents and community planning."
+    },
+    "summary_headline": "Byrådet gir dispensasjon for firemannsbolig i Arna til tross for nabomotstand",
+    "summary_body": "Byrådet i Bergen har besluttet å gi dispensasjon for oppføring av en firemannsbolig i Tuftadalen, Arna, til tross for tidligere avslag og nabomerknader. Klagen fra H-Hemre Byggefirma ble vurdert, og byråden mener at prosjektet ikke vil skille seg vesentlig fra eksisterende bebyggelse og støtter politiske mål om fortetting. Fagetaten hadde tidligere avvist søknaden på grunn av brudd på kommuneplanens bestemmelser, men byråden argumenterer for at det er behov for flere boliger i området. Det er registrert bekymringer fra naboer om tap av utsikt og sol, men byråden vurderer at disse ulempene er akseptable i lys av fortettingspolitikken. Neste steg er at Etat for byggesak og private planer utarbeider rammetillatelse basert på den godkjente søknaden."
+  }
+}

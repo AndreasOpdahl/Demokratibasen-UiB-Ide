@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1030:3022:29607:200001809:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:38:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 7,
+      "justification": "The case involves a contested building permit for a boathouse, which has implications for local aesthetics and regulations."
+    },
+    "summary_headline": "Klage på avslag om bygging av naust med terrasse i Laksevåg",
+    "summary_body": "Laksevåg bydelsstyre har opprettholdt byggesaksavdelingens avslag på bygging av naust med terrasse for tiltakshaver Leif Rise. Klagen ble sendt inn etter at tillatelse ble gitt med vilkår, men uten terrasse. Administrasjonen mener at terrassen ikke oppfyller estetiske krav i henhold til plan- og bygningsloven. Det er ikke innkommet protester fra naboer, men det påpekes at flere naust med terrasser allerede er bygget i Bergen. Saken reiser spørsmål om estetikk og bruken av naustet, som tradisjonelt er ment for oppbevaring av båter."
+  }
+}

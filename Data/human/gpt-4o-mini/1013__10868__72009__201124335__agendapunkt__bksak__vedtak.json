@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1013:10868:72009:201124335:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 17:59:03",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document discusses a public hearing on a national emergency plan, which has local relevance but lacks significant conflict or controversy."
+    },
+    "summary_headline": "Høring om Nasjonal Beredskapsplan mot ebola",
+    "summary_body": "Forretningsutvalget har behandlet høringen om den interimversjonen av Nasjonal Beredskapsplan mot ebola. Byrådet vil avgi en høringsuttalelse før fristen 1. februar 2015. Dette kan påvirke hvordan Bergen kommune forbereder seg på helsekriser."
+  }
+}

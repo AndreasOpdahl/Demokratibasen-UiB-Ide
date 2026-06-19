@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1033:3915:37822:200000125:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:47:21",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 5,
+      "justification": "The application for outdoor serving of alcohol is relevant to local businesses and residents."
+    },
+    "summary_headline": "Tillatelse til uteservering av øl og vin ved Steakers på Bryggen anbefales",
+    "summary_body": "Rusmiddelpolitisk råd har anbefalt at Steakers, beliggende på Bryggen 7, får tillatelse til å servere øl og vin utendørs. Dette kan påvirke både restaurantens drift og opplevelsen for besøkende i området. Det er nå opp til byrådsavdelingen å ta en endelig beslutning om søknaden."
+  }
+}

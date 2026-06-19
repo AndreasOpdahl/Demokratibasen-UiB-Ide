@@ -1,0 +1,18 @@
+{
+  "dokument_id": "209522:943001:agendapunkt:bk360:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 21:18:59",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 8,
+      "justification": "The document discusses a significant change in hunting regulations that affects local farmers and hunters."
+    },
+    "summary_headline": "Bergen kommune vurderer endring av minsteareal for hjortejakt",
+    "summary_body": "Byrådet i Bergen kommune foreslår å endre minstearealet for fellingstillatelser på hjort fra 750 dekar til 500 dekar i sammenhengende landbruksområder. Bymiljøetaten mener dette vil gi en mer fleksibel forvaltning av hjorteviltet og bedre håndtering av den store hjortebestanden. Forslaget sendes nå ut på høring, og må vedtas innen 15. mars for å gjelde jaktsesongen 2019. Byråden støtter endringen, som forventes å gagne både grunneiere og jegere."
+  }
+}

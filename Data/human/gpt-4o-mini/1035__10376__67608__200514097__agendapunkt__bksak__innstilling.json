@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1035:10376:67608:200514097:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 19:56:47",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 4,
+      "justification": "The document addresses a request for improved accessibility to municipal planning information, which is relevant but lacks significant impact or controversy."
+    },
+    "summary_headline": "Ønske om bedre tilgang til byggesaker i Bergen",
+    "summary_body": "Representanten Eirik Glambek Bøe har stilt spørsmål om en mer tilgjengelig internettløsning for å finne byggesaker og plansaker som skal legges frem i Rådet for byforming og arkitektur (RBA). Dagens løsning er vurdert som utilstrekkelig, og ønsket er nå videreformidlet til Seksjon Informasjon i Bergen kommune for vurdering. Neste møte i RBA er planlagt til 29. mai 2013."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1008:4219:39421:200401317:agendapunkt:bksak:innstilling",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 16:38:40",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 2,
+      "justification": "The document is a routine approval of meeting minutes with no significant newsworthy elements."
+    },
+    "summary_headline": "Protokoll fra byrådsmøte godkjent",
+    "summary_body": "Byrådet har godkjent protokollen fra møtet den 22. september 2004. Vedtaket ble ledet av byrådsleder Monica Mæland."
+  }
+}

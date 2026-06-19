@@ -1,0 +1,18 @@
+{
+  "dokument_id": "1042:3455:34182:200300300:agendapunkt:bksak:vedtak",
+  "kommune_nummer": 4601,
+  "kommune_navn": "Bergen",
+  "generated_at": "2026-02-19 20:14:51",
+  "model": "gpt-4o-mini",
+  "temperature": 0.1,
+  "max_output_tokens": 1000,
+  "max_input_text_tokens": null,
+  "response": {
+    "newsworthiness_score": {
+      "value": 1,
+      "justification": "The document contains no newsworthy elements as there were no matters for consideration."
+    },
+    "summary_headline": "Ingen saker til behandling i Ytrebygda bydelsstyre",
+    "summary_body": "Ytrebygda bydelsstyre hadde ingen saker til behandling i sitt møte."
+  }
+}
