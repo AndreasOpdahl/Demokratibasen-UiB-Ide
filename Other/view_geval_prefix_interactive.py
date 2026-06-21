@@ -261,14 +261,17 @@ def rows_to_compact_payload(
     mi = {m: i for i, m in enumerate(model_list)}
 
     checkpoints = sorted(
-        # Accept both plain ids ("checkpoint-3500-...") and prefixed ids
-        # ("model__checkpoint-3500-..."), used by Data/winners flat exports.
-        (m for m in model_list if checkpoint_step(m) is not None),
-        key=lambda m: checkpoint_step(m) or 0,
+        # Accept both checkpoint ids ("checkpoint-3500-...") and arbitrary
+        # candidate ids ("GPT4o-mini", prompt variants, etc.). Newer flat
+        # evaluation folders may compare a small fixed candidate set rather
+        # than a numeric checkpoint sweep.
+        model_list,
+        key=lambda m: (
+            0 if checkpoint_step(m) is not None else 1,
+            checkpoint_step(m) if checkpoint_step(m) is not None else model_list.index(m),
+            m,
+        ),
     )
-    # Also expose the reference (gold) model as a normal selectable trace.
-    if REFERENCE_SUMMARY_MODEL_ID in mi and REFERENCE_SUMMARY_MODEL_ID not in checkpoints:
-        checkpoints.append(REFERENCE_SUMMARY_MODEL_ID)
 
     judges = sorted({str(r["judge_id"]) for r in kept})
     human_set = frozenset(str(h) for h in HUMAN_JUDGES)

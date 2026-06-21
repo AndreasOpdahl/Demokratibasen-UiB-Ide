@@ -109,7 +109,18 @@ def _model_display_name(model_id: str) -> Optional[str]:
     if "__checkpoint-" in mid:
         base = mid.split("__checkpoint-", 1)[0].strip()
         return base or None
+    if mid:
+        return mid
     return None
+
+
+def _model_sort_key(model_id: str, row_index: int) -> int:
+    step = _checkpoint_step(model_id)
+    if step is not None:
+        return step
+    # Keep non-checkpoint candidates (reference summaries, prompt variants,
+    # etc.) visible after numeric checkpoints, preserving table/model order.
+    return 10**9 + row_index
 
 
 def _resolve_leaf_path(arg: str, export_root: Path) -> Path:
@@ -146,13 +157,11 @@ def _load_theta_curves(leaf_path: Path, dimensions: Tuple[str, ...]) -> Dict[str
         for jc in judge_cols:
             judge_id = str(jc)[: -len("_theta")]
             pts: List[Tuple[int, float, str, Optional[str]]] = []
-            for row in rows:
+            for row_idx, row in enumerate(rows):
                 mid = str(row.get("model", "")).strip()
-                if "checkpoint-" not in mid:
+                if not mid:
                     continue
-                st = _checkpoint_step(mid)
-                if st is None:
-                    continue
+                st = _model_sort_key(mid, row_idx)
                 gen = _checkpoint_generation(mid)
                 model_label = _model_display_name(mid)
                 raw = (row.get(jc) or "").strip()
@@ -207,6 +216,7 @@ def _parse_win_rates_from_summary(
         per_judge: Dict[str, List[Tuple[int, float, str, Optional[str]]]] = {
             jc[: -len("_win_rate")]: [] for jc in judge_cols
         }
+        row_idx = 0
         for ln in lines[1:]:
             if re.match(r"\|\s*---", ln):
                 continue
@@ -215,11 +225,10 @@ def _parse_win_rates_from_summary(
                 continue
             row = dict(zip(header, cells))
             mid = str(row.get("model", "")).strip()
-            if "checkpoint-" not in mid:
+            if not mid:
                 continue
-            st = _checkpoint_step(mid)
-            if st is None:
-                continue
+            st = _model_sort_key(mid, row_idx)
+            row_idx += 1
             gen = _checkpoint_generation(mid)
             model_label = _model_display_name(mid)
             for jc in judge_cols:
@@ -739,7 +748,7 @@ function render() {
             const xVal = useModelLabels && label ? label : step;
             fX.push(xVal);
             fVals.push(d.values[i]);
-            fText.push(Number.isFinite(Number(step)) ? chLab(step) : String(step));
+            fText.push(label || (Number.isFinite(Number(step)) ? chLab(step) : String(step)));
           }
           if (!fX.length) continue;
           const glab = gen === "gen1" ? "Gen1" : "Legacy";

@@ -6,34 +6,34 @@ Gold summaries use the label `GPT4o-mini` (text from JSONL `reference`). β is s
 
 | model | gpt-5-mini_theta | google/gemini-2.5-flash-preview-05-20_theta | anthropic/claude-3-5-haiku-20241022_theta | mistral-medium-latest_theta |
 | --- | --- | --- | --- | --- |
-| GPT4o-mini | 1.4363 | 1.7262 | 1.8028 | 1.5633 |
-| gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples | 0.8690 | 0.8396 | 0.9326 | 0.8814 |
-| gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples | 1.2189 | 1.0135 | 0.9111 | 0.9887 |
-| viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples | 0.6573 | 0.6808 | 0.6528 | 0.7340 |
+| GPT4o-mini | 1.6265 | 1.8115 | 1.9203 | 1.7317 |
+| gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples | 0.8901 | 0.8754 | 0.8284 | 0.8461 |
+| gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples | 1.1613 | 0.9801 | 0.9891 | 0.9999 |
+| viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples | 0.5948 | 0.6434 | 0.6356 | 0.6826 |
 
 ### Consistency
 
 | model | gpt-5-mini_theta | google/gemini-2.5-flash-preview-05-20_theta | anthropic/claude-3-5-haiku-20241022_theta | mistral-medium-latest_theta |
 | --- | --- | --- | --- | --- |
-| GPT4o-mini | 1.5205 | 1.5943 | 1.6371 | 1.5703 |
-| gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples | 0.9964 | 1.0324 | 0.9339 | 0.9538 |
-| gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples | 0.8465 | 0.7372 | 0.8738 | 0.8480 |
-| viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples | 0.7798 | 0.8241 | 0.7485 | 0.7873 |
+| GPT4o-mini | 1.6382 | 1.7085 | 1.7430 | 1.7718 |
+| gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples | 1.0053 | 1.0100 | 0.9085 | 0.9183 |
+| gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples | 0.7939 | 0.7573 | 0.9322 | 0.8830 |
+| viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples | 0.7648 | 0.7652 | 0.6775 | 0.6960 |
 
 ### Newsworthiness
 
 | model | gpt-5-mini_theta | google/gemini-2.5-flash-preview-05-20_theta | anthropic/claude-3-5-haiku-20241022_theta | mistral-medium-latest_theta |
 | --- | --- | --- | --- | --- |
-| GPT4o-mini | 0.9857 | 0.9402 | 1.0734 | 1.0416 |
-| gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples | 0.8054 | 0.8101 | 0.7282 | 0.7447 |
-| gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples | 2.2193 | 2.5345 | 2.2399 | 2.3154 |
-| viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples | 0.5676 | 0.5180 | 0.5711 | 0.5568 |
+| GPT4o-mini | 1.0284 | 0.9892 | 1.0483 | 1.0520 |
+| gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples | 0.8577 | 0.7810 | 0.7588 | 0.7600 |
+| gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples | 2.2025 | 2.6462 | 2.4118 | 2.3919 |
+| viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples | 0.5147 | 0.4892 | 0.5212 | 0.5229 |
 
 ### Hygiene
 
 | model | gpt-5-mini_theta | google/gemini-2.5-flash-preview-05-20_theta | anthropic/claude-3-5-haiku-20241022_theta | mistral-medium-latest_theta |
 | --- | --- | --- | --- | --- |
-| GPT4o-mini | 1.2843 | 1.2795 | 1.3988 | 1.5178 |
-| gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples | 0.8074 | 0.8267 | 0.9951 | 0.9601 |
-| gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples | 1.2842 | 1.1972 | 1.0311 | 1.0553 |
-| viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples | 0.7510 | 0.7896 | 0.6967 | 0.6503 |
+| GPT4o-mini | 1.2553 | 1.2082 | 1.4457 | 1.4976 |
+| gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples | 0.8024 | 0.8143 | 0.9003 | 0.8881 |
+| gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples | 1.2038 | 1.1911 | 1.0724 | 1.1331 |
+| viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples | 0.8248 | 0.8533 | 0.7164 | 0.6635 |
