@@ -1,0 +1,119 @@
+<View>
+  <Header value="Source Document" size="2"/>
+
+  <View style="box-shadow: 2px 2px 5px #999; padding: 20px; margin-bottom: 2em; border-radius: 5px; background-color: #f9f9f9; max-height: 350px; overflow-y: auto;">
+    <Header value="Original Article" size="4"/>
+    <Text name="original_article" value="$source_text"/>
+  </View>
+
+  <View style="border:1px solid #ddd; border-radius:8px; padding:16px; margin-bottom:24px; background:#ffffff;">
+    <Header value="Comparison 1 of 3" size="3"/>
+
+    <View style="display:flex; gap:20px; margin-bottom:1em;">
+      <View style="flex:1; box-shadow:2px 2px 5px #999; padding:16px; border-radius:5px; background-color:#ffffff; max-height:350px; overflow-y:auto;">
+        <Header value="Left Summary" size="4" style="color:#0066cc;"/>
+        <Text name="pair_1_left_text" value="$pair_1_left"/>
+      </View>
+
+      <View style="flex:1; box-shadow:2px 2px 5px #999; padding:16px; border-radius:5px; background-color:#ffffff; max-height:350px; overflow-y:auto;">
+        <Header value="Right Summary" size="4" style="color:#cc6600;"/>
+        <Text name="pair_1_right_text" value="$pair_1_right"/>
+      </View>
+    </View>
+
+    <View style="background-color:#f0f7ff; padding:12px; border-radius:5px; text-align:center;">
+      <Header value="Which summary is better for local journalism?" size="4"/>
+      <Choices name="pair_1_choice" toName="pair_1_left_text" showInline="false" required="true">
+        <View style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:10px;">
+          <Choice value="Left clearly better"/>
+          <Choice value="Left slightly better"/>
+          <Choice value="Right slightly better"/>
+          <Choice value="Right clearly better"/>
+        </View>
+        <View style="display:flex; gap:12px; justify-content:center;">
+          <Choice value="Flag left"/>
+          <Choice value="Flag right"/>
+        </View>
+      </Choices>
+    </View>
+  </View>
+
+  <View style="border:1px solid #ddd; border-radius:8px; padding:16px; margin-bottom:24px; background:#ffffff;">
+    <Header value="Comparison 2 of 3" size="3"/>
+
+    <View style="display:flex; gap:20px; margin-bottom:1em;">
+      <View style="flex:1; box-shadow:2px 2px 5px #999; padding:16px; border-radius:5px; background-color:#ffffff; max-height:350px; overflow-y:auto;">
+        <Header value="Left Summary" size="4" style="color:#0066cc;"/>
+        <Text name="pair_2_left_text" value="$pair_2_left"/>
+      </View>
+
+      <View style="flex:1; box-shadow:2px 2px 5px #999; padding:16px; border-radius:5px; background-color:#ffffff; max-height:350px; overflow-y:auto;">
+        <Header value="Right Summary" size="4" style="color:#cc6600;"/>
+        <Text name="pair_2_right_text" value="$pair_2_right"/>
+      </View>
+    </View>
+
+    <View style="background-color:#f0f7ff; padding:12px; border-radius:5px; text-align:center;">
+      <Header value="Which summary is better for local journalism?" size="4"/>
+      <Choices name="pair_2_choice" toName="pair_2_left_text" showInline="false" required="true">
+        <View style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:10px;">
+          <Choice value="Left clearly better"/>
+          <Choice value="Left slightly better"/>
+          <Choice value="Right slightly better"/>
+          <Choice value="Right clearly better"/>
+        </View>
+        <View style="display:flex; gap:12px; justify-content:center;">
+          <Choice value="Flag left"/>
+          <Choice value="Flag right"/>
+        </View>
+      </Choices>
+    </View>
+  </View>
+
+  <View style="border:1px solid #ddd; border-radius:8px; padding:16px; margin-bottom:24px; background:#ffffff;">
+    <Header value="Comparison 3 of 3" size="3"/>
+
+    <View style="display:flex; gap:20px; margin-bottom:1em;">
+      <View style="flex:1; box-shadow:2px 2px 5px #999; padding:16px; border-radius:5px; background-color:#ffffff; max-height:350px; overflow-y:auto;">
+        <Header value="Left Summary" size="4" style="color:#0066cc;"/>
+        <Text name="pair_3_left_text" value="$pair_3_left"/>
+      </View>
+
+      <View style="flex:1; box-shadow:2px 2px 5px #999; padding:16px; border-radius:5px; background-color:#ffffff; max-height:350px; overflow-y:auto;">
+        <Header value="Right Summary" size="4" style="color:#cc6600;"/>
+        <Text name="pair_3_right_text" value="$pair_3_right"/>
+      </View>
+    </View>
+
+    <View style="background-color:#f0f7ff; padding:12px; border-radius:5px; text-align:center;">
+      <Header value="Which summary is better for local journalism?" size="4"/>
+      <Choices name="pair_3_choice" toName="pair_3_left_text" showInline="false" required="true">
+        <View style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:10px;">
+          <Choice value="Left clearly better"/>
+          <Choice value="Left slightly better"/>
+          <Choice value="Right slightly better"/>
+          <Choice value="Right clearly better"/>
+        </View>
+        <View style="display:flex; gap:12px; justify-content:center;">
+          <Choice value="Flag left"/>
+          <Choice value="Flag right"/>
+        </View>
+      </Choices>
+    </View>
+  </View>
+</View>
+
+<!-- Sample task:
+{
+  "batch_id": "batch_01",
+  "block_id": "block_001",
+  "document_id": "doc_46",
+  "source_text": "...viser Gnr. 174, bnr. 39\nEtat for byggesak og private planers fagnotat datert 31.05.2006, med bilag.\n",
+  "pair_1_left": "..., men byrådet har konkludert med at planen er forsvarlig og i tråd med kommunens planer for området.",
+  "pair_1_right": "...trekkelig barnehagedekning i området, ettersom det planlegges totalt 120 nye boenheter i nærområdet.",
+  "pair_2_left": "...trekkelig barnehagedekning i området, ettersom det planlegges totalt 120 nye boenheter i nærområdet.",
+  "pair_2_right": "... også tatt hensyn til bekymringer fra naboer og Rolls-Royce Marine angående støy og miljøpåvirkning.",
+  "pair_3_left": "... også tatt hensyn til bekymringer fra naboer og Rolls-Royce Marine angående støy og miljøpåvirkning.",
+  "pair_3_right": "...l eventuelle fremtidige planer for etablering av kollektivtrafikklinje langs kystsiden av Bergenhalv"
+}
+-->
