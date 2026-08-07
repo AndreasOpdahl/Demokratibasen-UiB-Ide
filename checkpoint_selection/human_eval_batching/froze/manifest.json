@@ -1,0 +1,124 @@
+{
+  "description": "Human pairwise annotation batch design for four 2500-human-candidates summaries.",
+  "seed": 42,
+  "eval_dir": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\Data\\eval\\2500-human-cadidates",
+  "export_json_dir": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\.deepeval\\geval_exports\\2500-human-cadidates\\json",
+  "n_documents": 192,
+  "n_models": 4,
+  "model_ids": [
+    "GPT4o-mini",
+    "gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples",
+    "gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples",
+    "viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples"
+  ],
+  "model_aliases": {
+    "GPT4o-mini": "gpt4o_baseline",
+    "gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples": "gemma_cp2500",
+    "viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples": "viking_cp3500",
+    "gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples": "gpt4o_elaborate"
+  },
+  "n_blocks": 192,
+  "pairs_per_block": 3,
+  "blocks_per_batch": 24,
+  "n_batches": 8,
+  "pilot_batches": 8,
+  "pilot_documents": 192,
+  "stable_design_batches": 24,
+  "stable_design_documents": 576,
+  "requested_batches": 8,
+  "start_batch_number": 1,
+  "excluded_document_count": 0,
+  "exclude_documents_from": [],
+  "annotators": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+  ],
+  "assignments_per_batch": 3,
+  "n_assignments": 24,
+  "labelstudio_tasks": 576,
+  "labelstudio_tasks_by_block": 192,
+  "labelstudio_tasks_by_batch_files": 8,
+  "selection_bucket_counts": {
+    "gpt4o_challenged": 48,
+    "elaborate_interesting": 38,
+    "high_llm_disagreement": 77,
+    "representative": 29
+  },
+  "pair_selection_method": "Rank document/model-pairs by pair-level criteria; select documents by accumulated priority from high-ranked pairs; choose each block's three pairs to include as many high-ranked selected-document pairs as possible while preserving within-block exposure constraints and global pair/left balance.",
+  "pair_selection_criteria": [
+    "low_agreement",
+    "high_agreement",
+    "gpt4o_challenged",
+    "elaborate_interesting"
+  ],
+  "pair_high_rank_cutoff": 0.8,
+  "selected_high_rank_pair_slots": 576,
+  "selected_pair_reason_counts": {
+    "high_agreement": 360,
+    "elaborate_interesting": 304,
+    "low_agreement": 166,
+    "gpt4o_challenged": 169
+  },
+  "model_pair_counts": {
+    "GPT4o-mini :: gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples": 73,
+    "GPT4o-mini :: gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples": 103,
+    "GPT4o-mini :: viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples": 104,
+    "gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples :: gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples": 115,
+    "gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples :: viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples": 34,
+    "gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples :: viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples": 147
+  },
+  "left_position_counts": {
+    "viking-13b__checkpoint-3500-gen0-inputs-refs-preds-2500-examples": 145,
+    "gpt-4o-mini-elaborate__inputs-refs-preds-2500-examples": 144,
+    "GPT4o-mini": 144,
+    "gemma-2-9b__checkpoint-2500-gen0-inputs-refs-preds-2500-examples": 143
+  },
+  "assignment_counts_by_annotator": {
+    "A": 4,
+    "B": 4,
+    "C": 4,
+    "D": 4,
+    "E": 4,
+    "F": 4
+  },
+  "annotator_pair_counts": {
+    "AB": 4,
+    "AC": 1,
+    "AD": 1,
+    "AE": 1,
+    "AF": 1,
+    "BC": 1,
+    "BD": 1,
+    "BE": 1,
+    "BF": 1,
+    "CD": 2,
+    "CE": 2,
+    "CF": 2,
+    "DE": 2,
+    "DF": 2,
+    "EF": 2
+  },
+  "files": {
+    "documents": "documents.jsonl",
+    "summaries": "summaries.jsonl",
+    "blocks": "blocks.jsonl",
+    "batches": "batches.jsonl",
+    "assignments": "assignments.jsonl",
+    "labelstudio_tasks": "labelstudio_tasks.json",
+    "labelstudio_tasks_by_block": "labelstudio_tasks_by_block.json",
+    "labelstudio_tasks_by_batch": {
+      "batch_01": "labelstudio_tasks_by_batch\\batch_01_labelstudio_tasks_by_block.json",
+      "batch_02": "labelstudio_tasks_by_batch\\batch_02_labelstudio_tasks_by_block.json",
+      "batch_03": "labelstudio_tasks_by_batch\\batch_03_labelstudio_tasks_by_block.json",
+      "batch_04": "labelstudio_tasks_by_batch\\batch_04_labelstudio_tasks_by_block.json",
+      "batch_05": "labelstudio_tasks_by_batch\\batch_05_labelstudio_tasks_by_block.json",
+      "batch_06": "labelstudio_tasks_by_batch\\batch_06_labelstudio_tasks_by_block.json",
+      "batch_07": "labelstudio_tasks_by_batch\\batch_07_labelstudio_tasks_by_block.json",
+      "batch_08": "labelstudio_tasks_by_batch\\batch_08_labelstudio_tasks_by_block.json"
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "seed": 42,
+  "per_dimension_requested": 25,
+  "per_dimension_selected": {
+    "relevance": 25,
+    "consistency": 25,
+    "newsworthiness": 25,
+    "hygiene": 25
+  },
+  "total_rows_exported": 100,
+  "selection_unit": "pair_per_dimension",
+  "dimensions": [
+    "relevance",
+    "consistency",
+    "newsworthiness",
+    "hygiene"
+  ],
+  "pair_overlap_between_dimensions": {
+    "relevance__consistency": 8,
+    "relevance__newsworthiness": 10,
+    "relevance__hygiene": 4,
+    "consistency__newsworthiness": 6,
+    "consistency__hygiene": 7,
+    "newsworthiness__hygiene": 5
+  },
+  "by_dimension": {
+    "relevance": {
+      "dimension": "relevance",
+      "seed": 1594155382,
+      "total_requested": 25,
+      "total_selected": 25,
+      "pool_size": 1199,
+      "excluded_identical_summary_items": 1,
+      "ratios": {
+        "low_agreement": 0.4,
+        "tie_majority": 0.1,
+        "high_agreement": 0.15,
+        "reference_challenged": 0.2,
+        "representative": 0.15
+      },
+      "counts_by_bucket": {
+        "high_agreement": 4,
+        "low_agreement": 10,
+        "tie_majority": 2,
+        "representative": 4,
+        "reference_challenged": 5
+      }
+    },
+    "consistency": {
+      "dimension": "consistency",
+      "seed": 1200369223,
+      "total_requested": 25,
+      "total_selected": 25,
+      "pool_size": 1199,
+      "excluded_identical_summary_items": 1,
+      "ratios": {
+        "low_agreement": 0.4,
+        "tie_majority": 0.1,
+        "high_agreement": 0.15,
+        "reference_challenged": 0.2,
+        "representative": 0.15
+      },
+      "counts_by_bucket": {
+        "high_agreement": 4,
+        "low_agreement": 10,
+        "tie_majority": 2,
+        "reference_challenged": 5,
+        "representative": 4
+      }
+    },
+    "newsworthiness": {
+      "dimension": "newsworthiness",
+      "seed": 1385144163,
+      "total_requested": 25,
+      "total_selected": 25,
+      "pool_size": 1199,
+      "excluded_identical_summary_items": 1,
+      "ratios": {
+        "low_agreement": 0.4,
+        "tie_majority": 0.1,
+        "high_agreement": 0.15,
+        "reference_challenged": 0.2,
+        "representative": 0.15
+      },
+      "counts_by_bucket": {
+        "low_agreement": 10,
+        "high_agreement": 4,
+        "reference_challenged": 5,
+        "tie_majority": 2,
+        "representative": 4
+      }
+    },
+    "hygiene": {
+      "dimension": "hygiene",
+      "seed": 2094637316,
+      "total_requested": 25,
+      "total_selected": 25,
+      "pool_size": 1199,
+      "excluded_identical_summary_items": 1,
+      "ratios": {
+        "low_agreement": 0.4,
+        "tie_majority": 0.1,
+        "high_agreement": 0.15,
+        "reference_challenged": 0.2,
+        "representative": 0.15
+      },
+      "counts_by_bucket": {
+        "high_agreement": 4,
+        "low_agreement": 10,
+        "reference_challenged": 5,
+        "tie_majority": 2,
+        "representative": 4
+      }
+    }
+  },
+  "ratios": {
+    "low_agreement": 0.4,
+    "tie_majority": 0.1,
+    "high_agreement": 0.15,
+    "reference_challenged": 0.2,
+    "representative": 0.15
+  },
+  "checkpoint_dir": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\.deepeval\\geval_judgment_checkpoints\\winners",
+  "context_export_dir": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\.deepeval\\geval_exports\\winners",
+  "distinct_doc_ids": 150,
+  "distinct_pairs": 1200,
+  "pair_dimension_items": 4800,
+  "missing_context_pairs": 0,
+  "source": "judgment_checkpoints",
+  "per_dimension_requested_by_user": 25,
+  "dimension_colors": {
+    "relevance": "#1976d2",
+    "consistency": "#388e3c",
+    "newsworthiness": "#f57c00",
+    "hygiene": "#7b1fa2"
+  },
+  "outputs": {
+    "relevance": {
+      "csv": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\relevance.csv",
+      "csv_ls": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\relevance_ls.csv",
+      "json": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\relevance.json"
+    },
+    "consistency": {
+      "csv": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\consistency.csv",
+      "csv_ls": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\consistency_ls.csv",
+      "json": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\consistency.json"
+    },
+    "newsworthiness": {
+      "csv": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\newsworthiness.csv",
+      "csv_ls": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\newsworthiness_ls.csv",
+      "json": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\newsworthiness.json"
+    },
+    "hygiene": {
+      "csv": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\hygiene.csv",
+      "csv_ls": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\hygiene_ls.csv",
+      "json": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\hygiene.json"
+    },
+    "all": {
+      "csv": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\all.csv",
+      "csv_ls": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\all_ls.csv",
+      "json": "C:\\Users\\fatemi\\Desktop\\demokratibasen_checkpoint_selection - Copy\\human_annotation\\outputs\\winners\\all.json"
+    }
+  }
+}
