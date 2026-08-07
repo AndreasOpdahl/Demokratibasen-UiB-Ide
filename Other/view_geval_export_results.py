@@ -7,11 +7,11 @@ Interactive HTML viewer for **this repo's** G-Eval **export** results.
 - **Bradley–Terry θ** — from ``tables/bradley_terry_theta__<dimension>.csv``
 - **Win rate** — per-judge columns from ``reports/results_summary.md`` (§1 Pairwise win rates)
 
-**Models:** By default, discovers every subfolder of ``Data/eval/`` that contains ``*.jsonl`` and has a
+**Models:** By default, discovers every subfolder of ``DATA_ROOT/eval/`` that contains ``*.jsonl`` and has a
 matching export under ``.deepeval/geval_exports/<same_name>/``. The folder named ``25`` is skipped.
 If you only have one such eval folder (e.g. only ``llama-2-13b``) but **many** export trees under
 ``.deepeval/geval_exports/``, use ``--all_export_leaves`` to list **every** export leaf there (not
-tied to ``Data/eval``).
+tied to ``DATA_ROOT/eval``).
 
 **Mean (selected judges):** When the checkbox is on, adds a curve that averages per-judge values
 at each checkpoint **only over judges that are checked** in the sidebar (it updates as you change
@@ -36,6 +36,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -44,7 +45,20 @@ from typing import Any, Dict, List, Optional, Tuple
 _SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = _SCRIPT_DIR.parent
 _DEFAULT_EXPORT_ROOT = REPO_ROOT / ".deepeval" / "geval_exports"
-_DATA_EVAL_ROOT = REPO_ROOT / "Data" / "eval"
+# Data moved out of the repo (2026-06) into the shared OneDrive folder. Override with
+# CHECKPOINT_SELECTION_DATA_DIR if your OneDrive root or the dataset snapshot name differs.
+DATA_ROOT = Path(
+    os.environ.get("CHECKPOINT_SELECTION_DATA_DIR")
+    or (
+        Path(os.environ.get("ONEDRIVE", str(Path.home() / "OneDrive")))
+        / "Shared"
+        / "Demokratibasen-UiB-Ide"
+        / "EvaluationDatasets"
+        / "CheckpointSelection"
+        / "Data_202606"
+    )
+)
+_DATA_EVAL_ROOT = DATA_ROOT / "eval"
 _IGNORE_EVAL_DIR_NAMES = frozenset({"25"})
 # Subdirs of export_root that are not summarization-model export trees (plots, scratch, etc.).
 _IGNORE_EXPORT_LEAF_NAMES = frozenset({"images"})
@@ -323,7 +337,7 @@ def discover_export_leaves_under_export_root(
 ) -> List[Path]:
     """Every immediate subdirectory of ``export_root`` that looks like a G-Eval export (has ``tables/``).
 
-    Use this when exports exist for many models under ``.deepeval/geval_exports/`` but ``Data/eval``
+    Use this when exports exist for many models under ``.deepeval/geval_exports/`` but ``DATA_ROOT/eval``
     only mirrors one folder (so :func:`discover_export_leaves_from_data_eval` would return a single leaf).
     """
     if not export_root.is_dir():
@@ -456,7 +470,7 @@ const leafNames = DATA.leaf_order.slice();
 const leafColors = DATA.leaf_colors || {};
 const dimColors = DATA.dimension_colors || {};
 
-let selectedLeaves = new Set(leafNames);
+let selectedLeaves = new Set();  // none selected by default; user picks models to plot
 let selectedDims = new Set(DATA.dimensions);
 let selectedJudges = new Set(DATA.judges);
 let showMeanJudges = false;
@@ -837,7 +851,7 @@ def main() -> None:
         "--eval_root",
         type=str,
         default=str(_DATA_EVAL_ROOT),
-        help=f"Data/eval root for auto-discovery (default: {_DATA_EVAL_ROOT})",
+        help=f"DATA_ROOT/eval root for auto-discovery (default: {_DATA_EVAL_ROOT})",
     )
     ap.add_argument(
         "--export_leaf",
@@ -856,7 +870,7 @@ def main() -> None:
     ap.add_argument(
         "--no_auto_eval",
         action="store_true",
-        help="Do not fall back to discovering all models under Data/eval (requires --export_leaf or --export_dir)",
+        help="Do not fall back to discovering all models under DATA_ROOT/eval (requires --export_leaf or --export_dir)",
     )
     ap.add_argument(
         "--all_export_leaves",
@@ -864,7 +878,7 @@ def main() -> None:
         help=(
             "Discover every export leaf under --export_root (subdirs with tables/ + summary or BT CSV). "
             "Ignores names like 'images'. Use when many models exist under .deepeval/geval_exports but "
-            "Data/eval does not list them all."
+            "DATA_ROOT/eval does not list them all."
         ),
     )
     ap.add_argument(
@@ -903,7 +917,7 @@ def main() -> None:
     if not paths:
         print(
             "Error: no export folders found. Use --all_export_leaves, pass --export_leaf / --export_dir, "
-            f"or ensure Data/eval/<model>/*.jsonl exists with matching {export_root}/<model>/ "
+            f"or ensure DATA_ROOT/eval/<model>/*.jsonl exists with matching {export_root}/<model>/ "
             f"(skipped eval dirs: {_IGNORE_EVAL_DIR_NAMES}).",
             file=sys.stderr,
         )

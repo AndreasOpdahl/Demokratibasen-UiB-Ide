@@ -2,9 +2,24 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+
+# Data moved out of the repo (2026-06) into the shared OneDrive folder. Override with
+# CHECKPOINT_SELECTION_DATA_DIR if your OneDrive root or the dataset snapshot name differs.
+DATA_ROOT: Path = Path(
+    os.environ.get("CHECKPOINT_SELECTION_DATA_DIR")
+    or (
+        Path(os.environ.get("ONEDRIVE", str(Path.home() / "OneDrive")))
+        / "Shared"
+        / "Demokratibasen-UiB-Ide"
+        / "EvaluationDatasets"
+        / "CheckpointSelection"
+        / "Data_202606"
+    )
+)
 
 DEFAULT_CHECKPOINT_DIR = REPO_ROOT / ".deepeval" / "geval_judgment_checkpoints" / "winners"
 DEFAULT_CONTEXT_EXPORT_DIR = REPO_ROOT / ".deepeval" / "geval_exports" / "winners"

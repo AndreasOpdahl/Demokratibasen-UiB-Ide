@@ -28,11 +28,11 @@ even when eval settings are correct.
 
 When the default checkpoint root contains **only subfolders** with ``*.jsonl`` (same layout as
 ``python -m pairwise_eval`` per model), this script scans **every** such leaf folder, retries
-lines in each, reloads ``Data/eval/<folder_name>/`` for matching keys, and refreshes exports
+lines in each, reloads ``DATA_ROOT/eval/<folder_name>/`` for matching keys, and refreshes exports
 under ``.deepeval/<GEVAL_EXPORT_DIRNAME>/<folder_name>/`` for each touched model. You can still
 point ``--checkpoint-dir`` at a single model folder to scope work to that run.
 
-**No ``Data/eval`` for that leaf:** if ``Data/eval/<judgment_leaf>/`` is missing (or you pass
+**No ``DATA_ROOT/eval`` for that leaf:** if ``DATA_ROOT/eval/<judgment_leaf>/`` is missing (or you pass
 ``--geval-export-leaf``), the script loads pairwise rows from
 ``.deepeval/geval_exports/<export_leaf>/json/geval__<judge>__<dim>.json`` instead, matching the
 same ``judgment_stable_key`` as the checkpoint lines. Export refresh then uses
@@ -433,9 +433,9 @@ def _load_pairs_and_long_from_geval_export(export_dir: Path) -> tuple[pd.DataFra
     pairs_path = jdir / "pairs_table.json"
     long_path = jdir / "summarization_long.json"
     if not long_path.is_file():
-        raise FileNotFoundError(f"Missing {long_path} (needed to refresh exports without Data/eval).")
+        raise FileNotFoundError(f"Missing {long_path} (needed to refresh exports without DATA_ROOT/eval).")
     if not pairs_path.is_file():
-        raise FileNotFoundError(f"Missing {pairs_path} (needed to refresh exports without Data/eval).")
+        raise FileNotFoundError(f"Missing {pairs_path} (needed to refresh exports without DATA_ROOT/eval).")
     long_df = cast(pd.DataFrame, pd.read_json(long_path))
     pairs_df = load_pairs_table_json(pairs_path)
     return pairs_df, long_df
@@ -463,12 +463,12 @@ def _resolve_retry_context_root(
         gdir = _resolve_geval_export_for_leaf(judgment_leaf, geval_exports_root, None)
         if gdir is None:
             raise FileNotFoundError(
-                f"No eval data for judgment leaf {judgment_leaf.name!r} under Data/eval, and no "
+                f"No eval data for judgment leaf {judgment_leaf.name!r} under DATA_ROOT/eval, and no "
                 f"fallback under {geval_exports_root / judgment_leaf.name!r} with json/geval__*.json. "
                 f"Pass --geval-export-leaf <name> where <name> is a folder under {geval_exports_root}."
             ) from None
         print(
-            f"[info] No Data/eval/{judgment_leaf.name}; using G-Eval export context from {gdir}",
+            f"[info] No DATA_ROOT/eval/{judgment_leaf.name}; using G-Eval export context from {gdir}",
             flush=True,
         )
         return ("geval", gdir)
@@ -568,7 +568,7 @@ def main() -> int:
         help=(
             "Force this export root for every refreshed model (overwrites same tree each time). "
             "Omit for per-model exports under <repo>/.deepeval/<GEVAL_EXPORT_DIRNAME>/<model>/ "
-            "when judgment folders match Data/eval/<model>/."
+            "when judgment folders match DATA_ROOT/eval/<model>/."
         ),
     )
     parser.add_argument(
@@ -584,8 +584,8 @@ def main() -> int:
         metavar="NAME",
         help=(
             "Folder name under geval_exports (e.g. gemma-2-9b) used to load json/geval__*.json "
-            "for retries when Data/eval/<checkpoint_leaf> is absent, or to force this export even "
-            "if Data/eval exists (e.g. checkpoint leaf gemma-2-9b_combined_topup_min25 vs export gemma-2-9b)."
+            "for retries when DATA_ROOT/eval/<checkpoint_leaf> is absent, or to force this export even "
+            "if DATA_ROOT/eval exists (e.g. checkpoint leaf gemma-2-9b_combined_topup_min25 vs export gemma-2-9b)."
         ),
     )
     parser.add_argument(
@@ -710,7 +710,7 @@ def main() -> int:
             if _leaf_is_per_model_judgment_subfolder(leaf) and eval_dir.name != leaf.name:
                 print(
                     f"[warn] Judgment folder {leaf.name!r} but eval data loaded from {eval_dir} "
-                    f"(expected ``Data/eval/{leaf.name}/`` with at least one *.jsonl). "
+                    f"(expected ``DATA_ROOT/eval/{leaf.name}/`` with at least one *.jsonl). "
                     "Stable keys will often not match — align folder names or set EVAL_DATA_DIR.",
                     file=sys.stderr,
                 )
@@ -735,7 +735,7 @@ def main() -> int:
             geval_df_cache: dict[tuple[str, str], pd.DataFrame | None] = {}
             print(
                 f"Context [{leaf.name}]: geval_export={export_dir} "
-                f"(lookup in json/geval__*__*.json; no Data/eval rebuild)",
+                f"(lookup in json/geval__*__*.json; no DATA_ROOT/eval rebuild)",
                 flush=True,
             )
 
@@ -767,7 +767,7 @@ def main() -> int:
                 print(
                     f"[skip] leaf={leaf.name!r} no matching row for key "
                     f"(j={judge_id!r} d={dimension!r}) — "
-                    "check keys vs geval JSON (or eval / pair seed if using Data/eval).",
+                    "check keys vs geval JSON (or eval / pair seed if using DATA_ROOT/eval).",
                     flush=True,
                 )
                 skipped.append(key_str[:120])

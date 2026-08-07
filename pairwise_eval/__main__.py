@@ -1,6 +1,6 @@
 """Run the pairwise G-Eval pipeline and write exports under ``.deepeval/<GEVAL_EXPORT_DIRNAME>/``.
 
-If ``Data/eval`` (or :data:`~pairwise_eval.config.EVAL_DATA_DIR`) contains only subfolders with
+If ``DATA_ROOT/eval`` (or :data:`~pairwise_eval.config.EVAL_DATA_DIR`) contains only subfolders with
 ``*.jsonl`` (one folder per base model / checkpoint family), the CLI runs the same pipeline once per
 subfolder and writes ``<repo>/.deepeval/<GEVAL_EXPORT_DIRNAME>/<folder_name>/`` plus matching judgment
 checkpoints under ``<repo>/.deepeval/geval_judgment_checkpoints/<folder_name>/`` when checkpoints are
@@ -29,6 +29,7 @@ from pairwise_eval.config import (
     ANTHROPIC_API_KEY,
     ANTHROPIC_JUDGE_IDS,
     BALANCED_PAIR_SAMPLING,
+    DATA_ROOT,
     EXTEND_PAIRS_TABLE_JSON,
     GEMINI_JUDGE_IDS,
     GOOGLE_API_KEY,
@@ -298,7 +299,7 @@ def main() -> None:
     else:
         hint = (
             f"No *.jsonl under {eval_root.resolve()} and no model subfolders with JSONL. "
-            f"Expected either flat `*.jsonl` here or subfolders like `{REPO_ROOT / 'Data' / 'eval' / '<model>'}/*.jsonl`."
+            f"Expected either flat `*.jsonl` here or subfolders like `{DATA_ROOT / 'eval' / '<model>'}/*.jsonl`."
         )
         raise FileNotFoundError(hint)
 

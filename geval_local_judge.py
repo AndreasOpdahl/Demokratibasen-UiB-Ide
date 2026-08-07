@@ -19,6 +19,7 @@ Typical use:
 
 from __future__ import annotations
 
+import os
 import re
 from pathlib import Path
 from typing import Any, Callable, Dict, Optional, Union
@@ -26,7 +27,20 @@ from typing import Any, Callable, Dict, Optional, Union
 import requests
 
 _REPO_ROOT = Path(__file__).resolve().parent
-_DEFAULT_PROMPTS_DIR = _REPO_ROOT / "Data" / "prompts" / "geval"
+# Data moved out of the repo (2026-06) into the shared OneDrive folder. Override with
+# CHECKPOINT_SELECTION_DATA_DIR if your OneDrive root or the dataset snapshot name differs.
+_DATA_ROOT = Path(
+    os.environ.get("CHECKPOINT_SELECTION_DATA_DIR")
+    or (
+        Path(os.environ.get("ONEDRIVE", str(Path.home() / "OneDrive")))
+        / "Shared"
+        / "Demokratibasen-UiB-Ide"
+        / "EvaluationDatasets"
+        / "CheckpointSelection"
+        / "Data_202606"
+    )
+)
+_DEFAULT_PROMPTS_DIR = _DATA_ROOT / "prompts" / "geval"
 
 
 def _resolved_default_prompts_dir() -> Path:
@@ -67,7 +81,7 @@ def load_geval_template(
     *,
     prompts_dir: Optional[Path] = None,
 ) -> str:
-    """Load a G-Eval prompt from ``prompts_dir`` (default ``Data/prompts/geval``).
+    """Load a G-Eval prompt from ``prompts_dir`` (default ``DATA_ROOT/prompts/geval``).
 
     A dimension string ``d`` resolves to ``<prompts_dir>/{d}.txt`` (same names as
     :data:`pairwise_eval.config.EVAL_DIMENSIONS`). Absolute paths are used as-is; a relative
@@ -97,7 +111,7 @@ def load_geval_template(
     except FileNotFoundError as e:
         raise FileNotFoundError(
             f"G-Eval template not found: {path}. "
-            "Create it under Data/prompts/geval/ or set GEVAL_PROMPTS_DIR in pairwise_eval/config.py."
+            "Create it under DATA_ROOT/prompts/geval/ or set GEVAL_PROMPTS_DIR in pairwise_eval/config.py."
         ) from e
 
 

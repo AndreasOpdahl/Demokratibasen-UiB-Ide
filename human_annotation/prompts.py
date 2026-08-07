@@ -5,9 +5,9 @@ from __future__ import annotations
 from functools import lru_cache
 from pathlib import Path
 
-from human_annotation.config import REPO_ROOT
+from human_annotation.config import DATA_ROOT
 
-DEFAULT_PROMPTS_DIR = REPO_ROOT / "Data" / "prompts" / "geval"
+DEFAULT_PROMPTS_DIR = DATA_ROOT / "prompts" / "geval"
 
 # Everything from the document/summary placeholders through output format is excluded.
 _DOCUMENT_SECTION_MARKERS = (

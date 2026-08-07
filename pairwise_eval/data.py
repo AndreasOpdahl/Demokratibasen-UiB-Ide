@@ -7,7 +7,13 @@ from pathlib import Path
 
 import pandas as pd
 
-from pairwise_eval.config import EVAL_DATA_DIR, GEVAL_EXPORT_DIRNAME, REFERENCE_SUMMARY_MODEL_ID, REPO_ROOT
+from pairwise_eval.config import (
+    DATA_ROOT,
+    EVAL_DATA_DIR,
+    GEVAL_EXPORT_DIRNAME,
+    REFERENCE_SUMMARY_MODEL_ID,
+    REPO_ROOT,
+)
 
 
 def append_gold_summary_as_model_rows(checkpoint_long_df: pd.DataFrame) -> pd.DataFrame:
@@ -93,7 +99,7 @@ def resolve_eval_dir_for_judgment_leaf(
 
     Resolution order:
 
-    1. ``<repo>/Data/eval/<leaf_name>/`` if it exists and contains at least one ``*.jsonl``.
+    1. ``DATA_ROOT/eval/<leaf_name>/`` if it exists and contains at least one ``*.jsonl``.
     2. :func:`resolve_eval_data_dir` if that directory itself contains ``*.jsonl`` (flat layout).
     3. Immediate subdirectories of the eval root that contain ``*.jsonl``: use the subfolder
        whose name equals ``leaf_dir.name`` (case-sensitive, then case-insensitive).
@@ -101,13 +107,13 @@ def resolve_eval_dir_for_judgment_leaf(
        one such subdir under the eval root, return that directory (with :func:`warnings.warn`).
        Use only when you know that single corpus matches the judgments (e.g. one machine,
        judgments moved under a different leaf name). Otherwise set ``EVAL_JSONL_LEAF`` in the
-       notebook or add ``Data/eval/<leaf_name>/*.jsonl``.
+       notebook or add ``DATA_ROOT/eval/<leaf_name>/*.jsonl``.
 
-    This avoids returning a bare ``Data/eval`` directory that only holds per-model subfolders
-    (no JSONL at the top level), which would make :func:`load_eval_jsonl_long_df` fail.
+    This avoids returning a bare ``DATA_ROOT/eval`` directory that only holds per-model
+    subfolders (no JSONL at the top level), which would make :func:`load_eval_jsonl_long_df` fail.
     """
     name = leaf_dir.name
-    repo_eval = REPO_ROOT / "Data" / "eval"
+    repo_eval = DATA_ROOT / "eval"
     candidate = repo_eval / name
     if candidate.is_dir() and any(candidate.glob("*.jsonl")):
         return candidate.resolve()
@@ -144,7 +150,7 @@ def resolve_eval_dir_for_judgment_leaf(
         f"No eval data for judgment leaf {name!r}: missing or empty {candidate}, "
         f"and no subfolder under {eval_root} matches that name. "
         f"Available eval subdirs (with *.jsonl): {choices}. "
-        f"Set CHECKPOINT_LEAF_NAME to match one of these, add Data/eval/{name}/*.jsonl, "
+        f"Set CHECKPOINT_LEAF_NAME to match one of these, add DATA_ROOT/eval/{name}/*.jsonl, "
         f"or call resolve_eval_dir_for_judgment_leaf(..., fallback_single_eval_subdir=True) "
         f"when exactly one eval subdir exists and is the correct corpus."
     )
@@ -187,7 +193,7 @@ def resolve_export_dir_for_judgment_leaf(leaf_dir: Path) -> Path:
     from pairwise_eval.io_export import resolve_geval_export_dir
 
     name = leaf_dir.name
-    candidate = REPO_ROOT / "Data" / "eval" / name
+    candidate = DATA_ROOT / "eval" / name
     if candidate.is_dir() and any(candidate.glob("*.jsonl")):
         leaf = GEVAL_EXPORT_DIRNAME.strip()
         return (REPO_ROOT / ".deepeval" / leaf / name).resolve()
@@ -197,8 +203,8 @@ def resolve_export_dir_for_judgment_leaf(leaf_dir: Path) -> Path:
 def discover_eval_model_subdirs(eval_root: Path) -> list[Path]:
     """Return immediate child directories of ``eval_root`` that contain at least one ``*.jsonl``.
 
-    Used when checkpoints live under ``Data/eval/<model_name>/*.jsonl`` instead of flat
-    ``Data/eval/*.jsonl``. Output: sorted paths (each is a directory to pass to
+    Used when checkpoints live under ``DATA_ROOT/eval/<model_name>/*.jsonl`` instead of flat
+    ``DATA_ROOT/eval/*.jsonl``. Output: sorted paths (each is a directory to pass to
     :func:`load_eval_jsonl_long_df`).
     """
     if not eval_root.is_dir():
@@ -213,28 +219,30 @@ def discover_eval_model_subdirs(eval_root: Path) -> list[Path]:
 def resolve_eval_data_dir() -> Path:
     """Locate the eval JSONL directory.
 
-    Uses :data:`pairwise_eval.config.EVAL_DATA_DIR` when set; otherwise ``REPO_ROOT / "Data" / "eval"``
+    Uses :data:`pairwise_eval.config.EVAL_DATA_DIR` when set; otherwise ``DATA_ROOT / "eval"``
     or cwd fallbacks. Output: existing directory path.
     """
     if EVAL_DATA_DIR is not None:
         p = Path(EVAL_DATA_DIR)
         if not p.is_absolute():
-            p = REPO_ROOT / p
+            p = DATA_ROOT / p
         p = p.resolve()
         if not p.is_dir():
             raise FileNotFoundError(
                 f"EVAL_DATA_DIR is set to {p} but that path is not an existing directory."
             )
         return p
-    repo_eval = REPO_ROOT / "Data" / "eval"
-    if repo_eval.is_dir():
-        return repo_eval
+    data_root_eval = DATA_ROOT / "eval"
+    if data_root_eval.is_dir():
+        return data_root_eval
     cwd = Path.cwd()
     for candidate in (cwd / "Data" / "eval", cwd.parent / "Data" / "eval"):
         if candidate.is_dir():
             return candidate
     raise FileNotFoundError(
-        "Could not find Data/eval. Expected at <repo>/Data/eval or ./Data/eval."
+        f"Could not find eval data. Expected at {DATA_ROOT / 'eval'} "
+        "(set ONEDRIVE or CHECKPOINT_SELECTION_DATA_DIR if that's not your OneDrive layout), "
+        "or a legacy Data/eval under cwd."
     )
 
 

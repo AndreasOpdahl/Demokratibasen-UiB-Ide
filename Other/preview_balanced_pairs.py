@@ -26,7 +26,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from pairwise_eval.config import DEFAULT_PAIR_SEED, N_PAIRS_PER_DOCUMENT
+from pairwise_eval.config import DATA_ROOT, DEFAULT_PAIR_SEED, N_PAIRS_PER_DOCUMENT
 from pairwise_eval.data import load_eval_jsonl_long_df, long_df_head_documents
 from pairwise_eval.pairs import build_pairs_table
 
@@ -65,7 +65,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument(
         "folder",
-        help="Eval-data folder name under Data/eval (e.g. 'norwai-mistral-7b').",
+        help="Eval-data folder name under DATA_ROOT/eval (e.g. 'norwai-mistral-7b').",
     )
     parser.add_argument(
         "--n-pairs",
@@ -103,7 +103,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    eval_dir = REPO_ROOT / "Data" / "eval" / args.folder
+    eval_dir = DATA_ROOT / "eval" / args.folder
     if not eval_dir.is_dir():
         raise SystemExit(f"Eval folder not found: {eval_dir}")
 

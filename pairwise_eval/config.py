@@ -8,6 +8,20 @@ from pathlib import Path
 # Repository root (parent of the `pairwise_eval` package)
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
+# Data moved out of the repo (2026-06) into the shared OneDrive folder. Override with
+# CHECKPOINT_SELECTION_DATA_DIR if your OneDrive root or the dataset snapshot name differs.
+DATA_ROOT: Path = Path(
+    os.environ.get("CHECKPOINT_SELECTION_DATA_DIR")
+    or (
+        Path(os.environ.get("ONEDRIVE", str(Path.home() / "OneDrive")))
+        / "Shared"
+        / "Demokratibasen-UiB-Ide"
+        / "EvaluationDatasets"
+        / "CheckpointSelection"
+        / "Data_202606"
+    )
+)
+
 
 def _load_dotenv_file(path: Path) -> None:
     """Set ``os.environ`` from ``KEY=VALUE`` lines in ``.env`` (does not override existing vars)."""
@@ -42,7 +56,7 @@ def _env_float(key: str, default: float) -> float:
     return float(str(raw).strip())
 
 
-# Each name must have a template ``Data/prompts/geval/{name}.txt`` (or set overrides in ``geval_local_judge._GEVAL_PROMPT_FILE_OVERRIDES``).
+# Each name must have a template ``DATA_ROOT/prompts/geval/{name}.txt`` (or set overrides in ``geval_local_judge._GEVAL_PROMPT_FILE_OVERRIDES``).
 EVAL_DIMENSIONS: tuple[str, ...] = (
     "relevance",
     "consistency",
@@ -152,13 +166,13 @@ EXTEND_PAIRS_TABLE_JSON: Path | None = None
 # EXTEND_PAIRS_TABLE_JSON = REPO_ROOT / ".deepeval" / "geval_exports" / "gemma-2b" / "json" / "pairs_table.json"
 
 # --- Eval JSONL directory ---
-# ``None`` → auto-detect ``REPO_ROOT / "Data" / "eval"`` (with cwd fallbacks in
+# ``None`` → auto-detect ``DATA_ROOT / "eval"`` (with cwd fallbacks in
 # :func:`pairwise_eval.data.resolve_eval_data_dir`). If set: absolute paths are used as-is;
-# relative paths are resolved under ``REPO_ROOT``.
+# relative paths are resolved under ``DATA_ROOT``.
 EVAL_DATA_DIR: Path | None = None
 
-# Winners / alternate corpus (uncomment). Keeps ``Data/eval`` as the default when this is ``None``.
-# EVAL_DATA_DIR = Path("Data/winners")  # flat dir; each *.jsonl stem is <model>__checkpoint-...
+# Winners / alternate corpus (uncomment). Keeps ``DATA_ROOT/eval`` as the default when this is ``None``.
+# EVAL_DATA_DIR = Path("winners")  # flat dir; each *.jsonl stem is <model>__checkpoint-...
 
 # --- Export root ---
 # Artifacts go under ``<cwd>/.deepeval/<GEVAL_EXPORT_DIRNAME>/`` (see
@@ -172,7 +186,7 @@ GEVAL_EXPORT_DIRNAME: str = "geval_exports"
 GEVAL_CHECKPOINT_DIR: Path | None = REPO_ROOT / ".deepeval" / "geval_judgment_checkpoints"
 # GEVAL_CHECKPOINT_DIR = REPO_ROOT / ".deepeval" / "geval_judgment_checkpoints_winners"
 
-# Multi-model CLI (``Data/eval/<model>/``): skip a leaf when its checkpoint folder already shows
+# Multi-model CLI (``DATA_ROOT/eval/<model>/``): skip a leaf when its checkpoint folder already shows
 # at least as many distinct ``doc_id`` values (union across ``*.jsonl``) as this run's subset
 # after ``MAX_DOCUMENTS``. Avoids re-running and overwriting exports when ``MAX_DOCUMENTS`` was
 # lowered while checkpoints still reflect more documents. **Heuristic only** — it does not

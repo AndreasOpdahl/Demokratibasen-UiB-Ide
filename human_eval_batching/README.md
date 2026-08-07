@@ -1,7 +1,10 @@
 # Human Evaluation Batching
 
 Standalone tooling for creating human annotation batches from the
-`Data/eval/2500-human-cadidates` four-candidate evaluation set.
+`DATA_ROOT/eval/2500-human-cadidates` four-candidate evaluation set, where
+`DATA_ROOT` defaults to
+`$ONEDRIVE/Shared/Demokratibasen-UiB-Ide/EvaluationDatasets/CheckpointSelection/Data_202606`
+(override with `CHECKPOINT_SELECTION_DATA_DIR`; see `build_batches.py`).
 
 This directory is intentionally separate from the existing pairwise evaluation
 and human annotation code. Regenerating these files should not modify the

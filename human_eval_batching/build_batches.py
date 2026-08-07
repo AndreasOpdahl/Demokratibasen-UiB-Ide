@@ -18,6 +18,7 @@ import argparse
 import itertools
 import json
 import math
+import os
 import random
 from collections import Counter, defaultdict
 from dataclasses import dataclass
@@ -26,9 +27,22 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_EVAL_DIR = REPO_ROOT / "Data" / "eval" / "2500-human-cadidates"
+# Data moved out of the repo (2026-06) into the shared OneDrive folder. Override with
+# CHECKPOINT_SELECTION_DATA_DIR if your OneDrive root or the dataset snapshot name differs.
+DATA_ROOT = Path(
+    os.environ.get("CHECKPOINT_SELECTION_DATA_DIR")
+    or (
+        Path(os.environ.get("ONEDRIVE", str(Path.home() / "OneDrive")))
+        / "Shared"
+        / "Demokratibasen-UiB-Ide"
+        / "EvaluationDatasets"
+        / "CheckpointSelection"
+        / "Data_202606"
+    )
+)
+DEFAULT_EVAL_DIR = DATA_ROOT / "eval" / "2500-human-cadidates"
 DEFAULT_EXPORT_JSON_DIR = REPO_ROOT / ".deepeval" / "geval_exports" / "2500-human-cadidates" / "json"
-DEFAULT_TEST_JSONL = REPO_ROOT / "Data" / "human" / "149978_text_summary_examples_test.jsonl"
+DEFAULT_TEST_JSONL = DATA_ROOT / "human" / "149978_text_summary_examples_test.jsonl"
 DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parent / "outputs"
 
 REFERENCE_MODEL_ID = "GPT4o-mini"
