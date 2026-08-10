@@ -8,7 +8,7 @@ rater matrix with shared-pair counts).
 
 Usage:
     python report_snapshots.py
-    python report_snapshots.py --outlier-multiplier 3
+    python report_snapshots.py --outlier-multiplier 5
     python report_snapshots.py --pattern 'batch0[1-8].*onlyids.*\\.json$'
     python report_snapshots.py --folder /some/other/snapshot/folder
 """
