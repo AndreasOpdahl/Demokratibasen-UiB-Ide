@@ -11,8 +11,47 @@
       "Bash(git -C checkpoint_selection stash list)",
       "Bash(git --version)",
       "Bash(git subtree *)",
-      "Bash(git log *)"
+      "Bash(git log *)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(npm run:*)",
+      "Bash(npm test:*)",
+      "Read(./**)",
+      "Read(//media/disk_7300G/sinoa/OneDrive/**)",
+      "Bash(python3 -c ' *)",
+      "Bash(/home/sinoa/Local/Tools/GitProjects/Demokratibasen-UiB-Ide/venv/bin/python -c ' *)",
+      "Read(//home/sinoa/Local/Tools/GitProjects/Demokratibasen-UiB-Ide/model_fine_tuning_olivia/scripts/**)",
+      "Read(//media/disk_7300G/sinoa/Local/Tools/GitProjects/Demokratibasen-UiB-Ide/model_fine_tuning_olivia/scripts/**)",
+      "Skill(fewer-permission-prompts)",
+      "Skill(fewer-permission-prompts:*)",
+      "Bash(git rev-list *)",
+      "Bash(awk '$1==\"blob\"{print $NF, $\\(NF-1\\)}')",
+      "Bash(awk '$1==\"blob\"{s+=$NF} END{print s/1024/1024\" MB total \\(sum of all blob revisions\\)\"}')",
+      "Bash(ssh -T git@github.com)",
+      "Bash(HOME=/home/sinoa USER=sinoa LOGNAME=sinoa ssh -T git@github.com)",
+      "WebFetch(domain:github.com)"
     ],
-    "deny": []
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(git push --force:*)",
+      "Read(./.env*)"
+    ],
+    "ask": [
+      "Bash(git push:*)"
+    ],
+    "defaultMode": "acceptEdits",
+    "additionalDirectories": [
+      "/home/sinoa/Local/Tools/GitProjects/Demokratibasen-UiB-Ide/human_evaluations/humeval_202607_08",
+      "/media/disk_7300G/sinoa/Local/Tools/GitProjects/Demokratibasen-UiB-Ide/human_evaluations/humeval_202607_08"
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowedDomains": []
+    }
   }
 }
