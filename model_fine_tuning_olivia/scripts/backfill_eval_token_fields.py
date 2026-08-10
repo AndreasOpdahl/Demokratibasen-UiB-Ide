@@ -3,9 +3,9 @@
 Backfill token-count summary fields in checkpoint eval JSON files.
 
 Targets:
-  models/<model_name>/<results_dir>/checkpoint-N-eval-results-X-examples.json
+  models/<model_name>/<results_dir>/checkpoint-N-genG-eval-results-X-examples.json
 Using:
-  models/<model_name>/<results_dir>/checkpoint-N-inputs-refs-preds-X-examples.jsonl
+  models/<model_name>/<results_dir>/checkpoint-N-genG-inputs-refs-preds-X-examples.jsonl
 
 Rules:
   - Only update checkpoints that already have the matching JSONL file.
@@ -25,7 +25,7 @@ from typing import Dict, Iterable, List, Tuple
 
 from transformers import AutoTokenizer
 
-PRED_FILE_RE = re.compile(r"^checkpoint-(\d+)-inputs-refs-preds-(\d+)-examples\.jsonl$")
+PRED_FILE_RE = re.compile(r"^checkpoint-(\d+)-gen(\d+)-inputs-refs-preds-(\d+)-examples\.jsonl$")
 WORD_RE = re.compile(r"\w+", re.UNICODE)
 NEW_FIELD_KEYS = [
     "eval_mean_input_tokens",
@@ -149,14 +149,15 @@ def iter_groups(results_dir: Path) -> Dict[str, List[Tuple[int, Path, Path]]]:
     Each value: list[(checkpoint_step, eval_json_path, preds_jsonl_path)].
     """
     groups: Dict[str, List[Tuple[int, Path, Path]]] = {}
-    for pred_path in results_dir.glob("checkpoint-*-inputs-refs-preds-*-examples.jsonl"):
+    for pred_path in results_dir.glob("checkpoint-*-gen*-inputs-refs-preds-*-examples.jsonl"):
         m = PRED_FILE_RE.match(pred_path.name)
         if not m:
             continue
         step = int(m.group(1))
-        x = m.group(2)
+        gen = int(m.group(2))
+        x = m.group(3)
         suffix = f"{x}-examples"
-        eval_path = results_dir / f"checkpoint-{step}-eval-results-{suffix}.json"
+        eval_path = results_dir / f"checkpoint-{step}-gen{gen}-eval-results-{suffix}.json"
         if not eval_path.exists():
             continue
         groups.setdefault(suffix, []).append((step, eval_path, pred_path))

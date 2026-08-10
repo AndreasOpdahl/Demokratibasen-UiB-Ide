@@ -60,7 +60,7 @@ EVAL_RESULTS_TOKEN_SUBDIR_RE = re.compile(r"^eval_results_min\d+_max\d+_tokens$"
 
 def extract_checkpoint_step(filename: str) -> Optional[int]:
     """Extract checkpoint step number from filename."""
-    match = re.search(r'checkpoint-(\d+)-eval-results', filename)
+    match = re.search(r'checkpoint-(\d+)-gen\d+-eval-results', filename)
     if match:
         return int(match.group(1))
     return None
@@ -114,16 +114,9 @@ def load_checkpoint_results(model_dir: str, results_subdir: str = "all_eval_resu
     """
     results_dir = os.path.join(model_dir, results_subdir)
     warn_missing = results_subdir == "all_eval_results"
-    # Canonical 500-example filenames: checkpoint-N-eval-results-500-examples.json
-    results = _load_results_by_pattern(
-        results_dir, "checkpoint-*-eval-results-500-examples.json", warn_if_missing_dir=warn_missing
-    )
-    if results:
-        return results
-    # Backward compatibility: unsuffixed files were commonly 500-example outputs.
+    # Canonical 500-example filenames: checkpoint-N-genG-eval-results-500-examples.json
     return _load_results_by_pattern(
-        results_dir, "checkpoint-*-eval-results.json",
-        exclude_pattern="examples_", warn_if_missing_dir=False,
+        results_dir, "checkpoint-*-gen*-eval-results-500-examples.json", warn_if_missing_dir=warn_missing
     )
 
 
@@ -135,15 +128,9 @@ def load_checkpoint_results_1000(model_dir: str, results_subdir: str = "all_eval
     """
     results_dir = os.path.join(model_dir, results_subdir)
     warn_missing = results_subdir == "all_eval_results"
-    # Canonical 1000-example filenames: checkpoint-N-eval-results-1000-examples.json
-    results = _load_results_by_pattern(
-        results_dir, "checkpoint-*-eval-results-1000-examples.json", warn_if_missing_dir=warn_missing
-    )
-    if results:
-        return results
-    # Backward compatibility with legacy suffix.
+    # Canonical 1000-example filenames: checkpoint-N-genG-eval-results-1000-examples.json
     return _load_results_by_pattern(
-        results_dir, "checkpoint-*-eval-results-examples_1000.json", warn_if_missing_dir=False,
+        results_dir, "checkpoint-*-gen*-eval-results-1000-examples.json", warn_if_missing_dir=warn_missing
     )
 
 

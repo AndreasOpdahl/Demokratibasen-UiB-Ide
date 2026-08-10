@@ -9,6 +9,8 @@ This module provides shared functions for tokenizing examples:
 from typing import Dict, List, Any, Optional
 from transformers import AutoTokenizer
 
+_max_length_warned = False
+
 
 def _find_last_subsequence(haystack: List[int], needle: List[int]) -> Optional[int]:
     """
@@ -207,8 +209,11 @@ def tokenize_train_examples(
             # Conservative default - use 8192 for most models
             model_max_length = 8192
         
-        print(f"⚠ WARNING: Tokenizer model_max_length not found or too large. Inferred {model_max_length} from model name/config.")
-    
+        global _max_length_warned
+        if not _max_length_warned:
+            print(f"⚠ WARNING: Tokenizer model_max_length not found or too large. Inferred {model_max_length} from model name/config.")
+            _max_length_warned = True
+
     # Calculate desired max length, but don't exceed model's limit
     # CRITICAL: Ensure we never exceed the model's actual context window
     # OPTIMIZATION: Cap max_length at a reasonable value even for large context models
@@ -267,30 +272,52 @@ def tokenize_train_examples(
                 tokenized["input_ids"][idx] = input_ids[:max_length]
         print(f"⚠ WARNING: {sequences_exceeding_limit} example(s) exceeded max_length {max_length} and were manually truncated.")
     
-    # Exact prompt length from known markers. If not found, fall back to 0
-    # (no masking) instead of a fixed-ratio guess.
-    prompt_lengths = []
-    unresolved_count = 0
-    for input_ids in input_ids_list:
-        exact = _compute_prompt_length_chat(input_ids, tokenizer)
-        if exact is not None:
-            prompt_lengths.append(exact)
-        else:
-            exact_plain = _compute_prompt_length_plain(input_ids, tokenizer)
-            if exact_plain is not None:
-                prompt_lengths.append(exact_plain)
-            else:
-                exact_alpaca = _compute_prompt_length_alpaca(input_ids, tokenizer)
-                if exact_alpaca is not None:
-                    prompt_lengths.append(exact_alpaca)
-                else:
-                    unresolved_count += 1
-                    prompt_lengths.append(0)
-    if unresolved_count:
-        print(
-            f"⚠ WARNING: Could not detect prompt boundary for {unresolved_count} training example(s); "
-            "using prompt_length=0 (no masking) for those examples."
+    prompt_texts = examples.get("prompt_text")
+    if prompt_texts is not None:
+        # Robust path: format_train emits the prompt separately, so prompt_length
+        # does not depend on rediscovering tokenizer-specific marker tokens after
+        # long-example truncation.
+        truncated_prompts = [
+            text[:max_chars_estimate] if len(text) > max_chars_estimate else text
+            for text in prompt_texts
+        ]
+        tokenized_prompts = tokenizer(
+            truncated_prompts,
+            truncation=True,
+            max_length=max_length,
+            padding=False,
+            return_overflowing_tokens=False,
         )
+        prompt_lengths = [
+            min(len(prompt_ids), len(input_ids))
+            for prompt_ids, input_ids in zip(tokenized_prompts["input_ids"], input_ids_list)
+        ]
+    else:
+        # Backwards-compatible fallback for old cached/externally formatted data:
+        # exact prompt length from known markers. If not found, fall back to 0
+        # (no masking) instead of a fixed-ratio guess.
+        prompt_lengths = []
+        unresolved_count = 0
+        for input_ids in input_ids_list:
+            exact = _compute_prompt_length_chat(input_ids, tokenizer)
+            if exact is not None:
+                prompt_lengths.append(exact)
+            else:
+                exact_plain = _compute_prompt_length_plain(input_ids, tokenizer)
+                if exact_plain is not None:
+                    prompt_lengths.append(exact_plain)
+                else:
+                    exact_alpaca = _compute_prompt_length_alpaca(input_ids, tokenizer)
+                    if exact_alpaca is not None:
+                        prompt_lengths.append(exact_alpaca)
+                    else:
+                        unresolved_count += 1
+                        prompt_lengths.append(0)
+        if unresolved_count:
+            print(
+                f"⚠ WARNING: Could not detect prompt boundary for {unresolved_count} training example(s); "
+                "using prompt_length=0 (no masking) for those examples."
+            )
     tokenized["prompt_length"] = prompt_lengths
     
     return tokenized
@@ -360,7 +387,10 @@ def tokenize_eval_examples(
             # Conservative default - use 8192 for most models
             model_max_length = 8192
         
-        print(f"⚠ WARNING: Tokenizer model_max_length not found or too large. Inferred {model_max_length} from model name/config.")
+        global _max_length_warned
+        if not _max_length_warned:
+            print(f"⚠ WARNING: Tokenizer model_max_length not found or too large. Inferred {model_max_length} from model name/config.")
+            _max_length_warned = True
     
     # Ensure we don't exceed model's context window
     max_prompt_length = min(max_input_prompt_tokens, model_max_length)

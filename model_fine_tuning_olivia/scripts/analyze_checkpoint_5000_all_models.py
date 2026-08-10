@@ -122,7 +122,7 @@ def off_topic_indicators(pred: str, input_snippet: str) -> List[str]:
 
 
 def analyze_file(filepath: str) -> Dict:
-    """Analyze a single checkpoint-N-inputs-refs-preds.jsonl file."""
+    """Analyze a single checkpoint-N-genG-inputs-refs-preds-X-examples.jsonl file."""
     model_name = Path(filepath).parent.parent.name  # e.g. normistral-7b-apptainer-fsdp
     model_base = model_name.replace("-apptainer-fsdp", "")
     
@@ -202,14 +202,14 @@ def analyze_file(filepath: str) -> Dict:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Analyze checkpoint-N inputs-refs-preds across all models")
+    parser = argparse.ArgumentParser(description="Analyze checkpoint-N genG inputs-refs-preds across all models")
     parser.add_argument("--checkpoint", type=int, default=5000,
                         help="Checkpoint number to analyze (default: 5000)")
     args = parser.parse_args()
     checkpoint = args.checkpoint
 
     base = Path(__file__).resolve().parent.parent / "models"
-    pattern = str(base / "*" / "all_eval_results" / f"checkpoint-{checkpoint}-inputs-refs-preds.jsonl")
+    pattern = str(base / "*" / "all_eval_results" / f"checkpoint-{checkpoint}-gen*-inputs-refs-preds-*-examples.jsonl")
     files = sorted(glob.glob(pattern))
     
     print(f"Found {len(files)} checkpoint-{checkpoint} files\n")

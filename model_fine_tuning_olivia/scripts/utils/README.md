@@ -59,16 +59,16 @@ Shared utilities for fine-tuning and evaluation. Import via `from utils import .
 
 ### eval_results.py
 
-**Description:** Handles evaluation results file I/O. Manages paths for the centralized `all_eval_results/` layout (e.g. `model_dir/all_eval_results/checkpoint-500-eval-results.json`) and legacy per-checkpoint locations. Loads and saves eval JSON, predictions JSONL, and the `evaluation_summary.json` that aggregates metrics across checkpoints. Used by the evaluation and monitor scripts.
+**Description:** Handles evaluation results file I/O. Manages paths for the centralized `all_eval_results/` layout (e.g. `model_dir/all_eval_results/checkpoint-500-gen0-eval-results-1000-examples.json`) and legacy per-checkpoint locations. Loads and saves eval JSON, predictions JSONL, and the `gen0_evaluation_summary.json`/`genN_evaluation_summary.json` files that aggregate metrics across checkpoints. Used by the evaluation and monitor scripts.
 
 **Important functions:**
-- `get_eval_results_path(checkpoint_dir, model_dir, examples_suffix)` — Path to `checkpoint-N-eval-results.json` (or `-examples_1000` variant).
-- `get_predictions_file_path(checkpoint_dir, model_dir, examples_suffix)` — Path to `checkpoint-N-inputs-refs-preds.jsonl`.
+- `get_eval_results_path(checkpoint_dir, model_dir, examples_suffix)` — Path to `checkpoint-N-genG-eval-results-X-examples.json`.
+- `get_predictions_file_path(checkpoint_dir, model_dir, examples_suffix)` — Path to `checkpoint-N-genG-inputs-refs-preds-X-examples.jsonl`.
 - `get_old_eval_results_path(checkpoint_dir)` — Legacy path: `checkpoint_dir/eval_results/eval_results.json`.
 - `load_eval_results(checkpoint_dir, model_dir)` — Loads eval JSON; falls back to old location if needed.
 - `save_eval_results(checkpoint_dir, results, model_dir, examples_suffix)` — Saves to centralized location.
 - `get_evaluated_checkpoint_steps(model_dir)` — Returns set of step numbers that have eval results.
-- `update_evaluation_summary(model_dir, checkpoint_name, results, examples_suffix)` — Updates `evaluation_summary.json` with latest checkpoint metrics.
+- `update_evaluation_summary(model_dir, checkpoint_name, results, examples_suffix)` — Updates `genN_evaluation_summary.json` with latest checkpoint metrics.
 
 **Local dependencies:** `checkpoint_utils` (for `get_model_dir_from_checkpoint`)
 

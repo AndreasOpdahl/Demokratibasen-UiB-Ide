@@ -4,12 +4,14 @@
 Produces per-example metrics, hygiene-good/hygiene-bad JSONL outputs, and
 filter stats for both checkpoint predictions and (once) reference summaries.
 
-The optional ``gen<M>-`` fragment in the input filename is propagated to all
+The required ``gen<M>`` fragment in the input filename is propagated to all
 checkpoint output filenames, allowing iterative hygiene-regenerate loops.
+Both hyphenated and underscore prediction filenames are accepted.
 
 Usage:
-    python report_hygiene.py test_data/llama-3.1-8b-instruct-checkpoint-1000-inputs-refs-preds-1000-examples.jsonl
-    python report_hygiene.py some_folder/checkpoint-500-gen1-inputs-refs-preds-1000-examples.jsonl
+    python report_hygiene.py test_data/llama-3.1-8b-instruct-checkpoint-1000-gen0-inputs-refs-preds-1000-examples.jsonl
+    python report_hygiene.py --gen 1 some_folder/checkpoint-500-gen1-inputs-refs-preds-1000-examples.jsonl
+    python report_hygiene.py --gen 1 some_folder/checkpoint-500-gen1_inputs_refs_preds-1000-examples.jsonl
 """
 
 import argparse
@@ -42,28 +44,27 @@ CRITERIA = [
 
 
 def parse_filename(path: str):
-    """Parse ``[<prefix>]checkpoint-<N>-[gen<M>-]inputs-refs-preds-<suffix>.jsonl``.
+    """Parse prediction JSONL filenames.
 
     Returns (prefix, checkpoint_tag, gen_part, suffix) where:
     - *prefix* includes the trailing hyphen when present
       (e.g. ``"llama-3.1-8b-instruct-"``).
-    - *gen_part* is ``""`` for gen0 (implicit or explicit ``gen0-``),
-      or ``"gen<M>-"`` for M >= 1.
+    - *gen_part* is ``"gen<M>-"``.
     """
     basename = os.path.basename(path)
     m = re.match(
-        r"^(.*?)(checkpoint-\d+)-(gen(\d+)-)?inputs-refs-preds-(.+)\.jsonl$",
+        r"^(.*?)(checkpoint-\d+)-gen(?P<gen_num>\d+)[-_]inputs[-_]refs[-_]preds[-_](.+)\.jsonl$",
         basename,
     )
     if not m:
         raise ValueError(
             f"Filename does not match "
-            f"[<prefix>]checkpoint-<N>-[gen<M>-]inputs-refs-preds-<suffix>.jsonl: {basename}"
+            f"[<prefix>]checkpoint-<N>-gen<M>-inputs-refs-preds-<suffix>.jsonl "
+            f"or [<prefix>]checkpoint-<N>-gen<M>_inputs_refs_preds-<suffix>.jsonl: {basename}"
         )
-    gen_part = m.group(3) or ""
-    if gen_part == "gen0-":
-        gen_part = ""
-    return m.group(1), m.group(2), gen_part, m.group(5)
+    gen_num = int(m.group("gen_num"))
+    gen_part = f"gen{gen_num}-"
+    return m.group(1), m.group(2), gen_num, gen_part, m.group(4)
 
 
 def evaluate_summary(doc, summary, ref, nlp_parser):
@@ -162,7 +163,9 @@ def build_stats(input_file, counters, args):
 def main():
     parser = argparse.ArgumentParser(description="Per-example hygiene evaluation.")
     parser.add_argument("input_file",
-                        help="JSONL file matching [<prefix>]checkpoint-<N>-[gen<M>-]inputs-refs-preds-<suffix>.jsonl")
+                        help="JSONL file matching [<prefix>]checkpoint-<N>-gen<M>-inputs-refs-preds-<suffix>.jsonl")
+    parser.add_argument("--gen", type=int, default=0,
+                        help="Generation number expected in input_file (default: 0).")
     parser.add_argument("--max_rep_3gram", type=float, default=0.2)
     parser.add_argument("--min_compression_ratio", type=float, default=1.0)
     parser.add_argument("--min_pred_chars", type=int, default=50)
@@ -175,11 +178,22 @@ def main():
                         help="Path to external Norwegian lexicon file (one word per line).")
     parser.add_argument("--spacy-model", type=str, default="nb_core_news_md",
                         help="spaCy model for sentence parsing.")
-    parser.add_argument("--overwrite", action="store_true",
-                        help="Allow overwriting existing output files.")
+    exist_group = parser.add_mutually_exclusive_group()
+    exist_group.add_argument("--overwrite", action="store_true",
+                             help="Allow overwriting existing output files.")
+    exist_group.add_argument("--skip-existing", action="store_true",
+                             help="Exit cleanly if checkpoint outputs already exist (resume mode).")
     args = parser.parse_args()
 
-    prefix, ckpt_tag, gen_part, suffix = parse_filename(args.input_file)
+    if args.gen < 0:
+        raise SystemExit("--gen must be a non-negative integer")
+
+    prefix, ckpt_tag, input_gen, gen_part, suffix = parse_filename(args.input_file)
+    if input_gen != args.gen:
+        raise SystemExit(
+            f"--gen {args.gen} does not match input filename generation gen{input_gen}: "
+            f"{os.path.basename(args.input_file)}"
+        )
     out_dir = os.path.dirname(args.input_file) or "."
 
     def out(tag, kind, ext, gen=""):
@@ -195,21 +209,28 @@ def main():
     ref_bad_path        = out("reference", "bad", "jsonl")
     ref_stats_path      = out("reference", "filter-stats", "json")
 
-    _script_mtime = os.path.getmtime(__file__)
-    need_ref = (not os.path.exists(ref_metrics_path)
-                or os.path.getmtime(ref_metrics_path) < _script_mtime)
+    ref_outputs = [ref_metrics_path, ref_good_path, ref_bad_path, ref_stats_path]
+    need_ref = args.overwrite or not all(os.path.exists(p) for p in ref_outputs)
 
-    # --- Pre-flight: refuse to overwrite existing outputs ---
-    planned_outputs = [ckpt_metrics_path, ckpt_good_path, ckpt_bad_path, ckpt_stats_path]
+    # --- Pre-flight: check for existing checkpoint outputs ---
+    ckpt_outputs = [ckpt_metrics_path, ckpt_good_path, ckpt_bad_path, ckpt_stats_path]
+    planned_outputs = list(ckpt_outputs)
     if need_ref:
-        planned_outputs += [ref_metrics_path, ref_good_path, ref_bad_path, ref_stats_path]
+        planned_outputs += ref_outputs
     existing = [p for p in planned_outputs if os.path.exists(p)]
-    if existing and not args.overwrite:
-        print("ERROR: the following output files already exist:", file=sys.stderr)
-        for p in existing:
-            print(f"  {p}", file=sys.stderr)
-        print("Use --overwrite to replace them.", file=sys.stderr)
-        sys.exit(1)
+    if existing:
+        if args.skip_existing and all(os.path.exists(p) for p in ckpt_outputs):
+            print(f"Checkpoint outputs already exist (--skip-existing): {ckpt_metrics_path}")
+            sys.exit(0)
+        if not args.overwrite and not args.skip_existing:
+            print("ERROR: the following output files already exist:", file=sys.stderr)
+            for p in existing:
+                print(f"  {p}", file=sys.stderr)
+            print(
+                "Use --skip-existing to resume, or --overwrite to replace them.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
 
     lexicon = load_lexicon(args.lexicon) if args.lexicon else None
     nlp_parser = NorwegianLightParser(lexicon=lexicon, model=args.spacy_model)

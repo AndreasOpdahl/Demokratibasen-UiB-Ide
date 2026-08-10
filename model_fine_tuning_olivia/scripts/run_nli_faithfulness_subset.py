@@ -8,23 +8,28 @@ of examples from the evaluation predictions JSONL file.
 Usage:
     # Run on first 100 examples from a checkpoint's predictions file:
     python run_nli_faithfulness_subset.py \
-        --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \
+        --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-gen0-inputs-refs-preds-1000-examples.jsonl \
         --subset_size 100 \
-        --output_file models/gemma-7b-it/all_eval_results/checkpoint-100-nli-faithfulness.json
+        --output_file models/gemma-7b-it/all_eval_results/checkpoint-100-gen0-nli-faithfulness-1000-examples.json
 
     # Run on all examples:
     python run_nli_faithfulness_subset.py \
-        --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \
-        --output_file models/gemma-7b-it/all_eval_results/checkpoint-100-nli-faithfulness.json
+        --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-gen0-inputs-refs-preds-1000-examples.jsonl \
+        --output_file models/gemma-7b-it/all_eval_results/checkpoint-100-gen0-nli-faithfulness-1000-examples.json
 """
 
 import argparse
 import json
 import os
 import random
+import re
 from pathlib import Path
 
 from utils.faithfulness import NLIFaithfulnessGate
+
+PREDICTIONS_FILE_RE = re.compile(
+    r"^(?P<prefix>.*?checkpoint-\d+)-gen(?P<gen>\d+)-inputs-refs-preds-(?P<suffix>\d+-examples)\.jsonl$"
+)
 
 
 def load_predictions_from_jsonl(predictions_file: str, subset_size: int = None, random_seed: int = 42):
@@ -68,18 +73,18 @@ def main():
 Examples:
   # Run on first 100 examples:
   python run_nli_faithfulness_subset.py \\
-    --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \\
+    --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-gen0-inputs-refs-preds-1000-examples.jsonl \\
     --subset_size 100
 
   # Run on all examples:
   python run_nli_faithfulness_subset.py \\
-    --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl
+    --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-gen0-inputs-refs-preds-1000-examples.jsonl
 
   # Specify output file:
   python run_nli_faithfulness_subset.py \\
-    --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl \\
+    --predictions_file models/gemma-7b-it/all_eval_results/checkpoint-100-gen0-inputs-refs-preds-1000-examples.jsonl \\
     --subset_size 50 \\
-    --output_file results/nli_checkpoint_100.json
+    --output_file results/checkpoint-100-gen0-nli-faithfulness-1000-examples.json
         """
     )
     
@@ -102,7 +107,16 @@ Examples:
     # Determine output file
     if args.output_file is None:
         base_path = Path(args.predictions_file)
-        output_file = base_path.parent / f"{base_path.stem}-nli-faithfulness.json"
+        match = PREDICTIONS_FILE_RE.match(base_path.name)
+        if not match:
+            print(
+                "ERROR: predictions_file must match "
+                "[<prefix>]checkpoint-<N>-gen<M>-inputs-refs-preds-<suffix>.jsonl"
+            )
+            return 1
+        output_file = base_path.parent / (
+            f"{match.group('prefix')}-gen{match.group('gen')}-nli-faithfulness-{match.group('suffix')}.json"
+        )
     else:
         output_file = Path(args.output_file)
     

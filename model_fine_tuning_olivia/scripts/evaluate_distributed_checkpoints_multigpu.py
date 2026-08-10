@@ -99,6 +99,11 @@ from utils import (
     NLI_DEFAULT_SUBSET_SIZE,
     format_eval_example,
 )
+from utils.generation import (
+    extract_generated_continuations,
+    make_inputs_refs_preds_record,
+    postprocess_generated_summary_text,
+)
 
 # Import extended evaluation metrics (hygiene, BERTScore, NLI faithfulness)
 try:
@@ -303,6 +308,151 @@ def sample_validation_data_reproducibly(
     extra_idx = sorted(random.sample(remaining, add_count))
     all_indices = sorted(first_500_idx) + extra_idx
     return [val_data[i] for i in all_indices]
+
+
+# ---------------------------------------------------------------------------
+# Extend-evaluation helpers
+# ---------------------------------------------------------------------------
+# "Extend" lets a larger evaluation (e.g. 2500 examples) reuse the predictions
+# already generated for a smaller run (e.g. 1000 examples) at the same gen0
+# checkpoint. The smaller predictions file is the source of truth for which
+# examples were already done; we only generate predictions for the additional
+# examples and then recompute all aggregate metrics over the combined set.
+
+def _extend_text(value: Any) -> str:
+    """Normalize a value to a stripped string for stable matching."""
+    if isinstance(value, str):
+        return value.strip()
+    if value is None:
+        return ""
+    return str(value).strip()
+
+
+def _extend_example_key(input_text: Any, reference: Any) -> Tuple[str, str]:
+    """Stable identity key (input_text + reference) for matching examples."""
+    return (_extend_text(input_text), _extend_text(reference))
+
+
+def load_inputs_refs_preds_records(predictions_file: str) -> List[Dict[str, str]]:
+    """Load full inputs-refs-preds records from a JSONL predictions file.
+
+    Unlike load_predictions_jsonl (which drops the prompt), this keeps every
+    field so reused examples can be re-emitted verbatim into the combined file.
+    """
+    records: List[Dict[str, str]] = []
+    with open(predictions_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                obj = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            records.append({
+                "input_text": obj.get("input_text", "") or "",
+                "prompt": obj.get("prompt", "") or "",
+                "reference": obj.get("reference", "") or "",
+                "prediction": obj.get("prediction", "") or "",
+            })
+    return records
+
+
+def find_extend_source_predictions(
+    checkpoint_dir: str,
+    model_dir: str,
+    results_subdir: str,
+    target_size: int,
+    extend_from: Optional[int] = None,
+) -> Tuple[Optional[str], Optional[int]]:
+    """Locate the gen0 predictions JSONL to reuse when extending.
+
+    With extend_from set, only that size is considered. Otherwise auto-detect
+    the largest existing gen0 predictions file whose size is strictly smaller
+    than target_size. Legacy unmarked (no "gen<N>-") files are treated as gen0.
+
+    Returns (source_path, source_size) or (None, None) when nothing is found.
+    """
+    def _gen0_path(size: int) -> str:
+        return get_predictions_file_path(
+            checkpoint_dir, model_dir,
+            examples_suffix=f"{size}-examples",
+            results_subdir=results_subdir,
+            generation_num=0,
+        )
+
+    if extend_from is not None:
+        size = int(extend_from)
+        path = _gen0_path(size)
+        if os.path.exists(path):
+            return path, size
+        # Fall back to a legacy unmarked file at the same size.
+        legacy = path.replace("-gen0-inputs-refs-preds-", "-inputs-refs-preds-")
+        if legacy != path and os.path.exists(legacy):
+            return legacy, size
+        return None, None
+
+    # Auto-detect: scan the results directory for this checkpoint's gen0 files.
+    sample_path = _gen0_path(target_size)
+    results_dir = os.path.dirname(sample_path)
+    sample_base = os.path.basename(sample_path)
+    if not os.path.isdir(results_dir):
+        return None, None
+
+    # sample_base looks like "<checkpoint>-gen0-inputs-refs-preds-<target>-examples.jsonl"
+    marker = "-gen0-inputs-refs-preds-"
+    legacy_marker = "-inputs-refs-preds-"
+    prefix = sample_base.split(marker)[0]  # "<checkpoint>"
+    best_path: Optional[str] = None
+    best_size: Optional[int] = None
+    for fname in os.listdir(results_dir):
+        if not fname.endswith("-examples.jsonl"):
+            continue
+        if marker in fname:
+            head, tail = fname.split(marker, 1)
+        elif legacy_marker in fname and "-gen" not in fname.split(legacy_marker, 1)[0][-6:]:
+            head, tail = fname.split(legacy_marker, 1)
+        else:
+            continue
+        if head != prefix:
+            continue
+        size_part = tail[:-len("-examples.jsonl")]
+        if not size_part.isdigit():
+            continue
+        size = int(size_part)
+        if size >= target_size:
+            continue
+        if best_size is None or size > best_size:
+            best_size = size
+            best_path = os.path.join(results_dir, fname)
+    return best_path, best_size
+
+
+def select_extend_new_examples(
+    full_val_data: list,
+    reused_keys: Set[Tuple[str, str]],
+    num_new: int,
+    seed: int,
+) -> list:
+    """Deterministically pick `num_new` validation examples disjoint from reused.
+
+    Examples whose (input, output) key is already in `reused_keys` are skipped.
+    A seeded permutation of the full set gives a reproducible draw; fewer than
+    `num_new` are returned only when the pool is exhausted (shortfall).
+    """
+    candidate_indices = []
+    for i, ex in enumerate(full_val_data):
+        if not (isinstance(ex, dict) and ex.get('input') and ex.get('output')):
+            continue
+        key = _extend_example_key(ex.get('input'), ex.get('output'))
+        if key in reused_keys:
+            continue
+        candidate_indices.append(i)
+
+    rng = random.Random(seed + 7919)  # distinct stream from the base sampler
+    rng.shuffle(candidate_indices)
+    chosen = candidate_indices[:num_new]
+    return [full_val_data[i] for i in chosen]
 
 
 # Add a custom exception at the top of the file (near other imports)
@@ -817,7 +967,7 @@ class CausalLMTrainer(Trainer):
         if generated_ids.shape[0] > 1:
             # Batch-safe boundary: generated sequence starts after input_length for every row.
             # Format-specific extraction below relies on row 0 tokens and is unsafe for mixed batches.
-            generated_ids = generated_ids[:, input_length:]
+            generated_ids = extract_generated_continuations(generated_ids, input_length)
             extraction_successful = True
         
         # First, try to find [/INST] token position (Mistral format)
@@ -860,13 +1010,13 @@ class CausalLMTrainer(Trainer):
                         generated_ids = generated_ids[:, use_pos:]
                         extraction_successful = True
                     else:
-                        generated_ids = generated_ids[:, input_length:]
+                        generated_ids = extract_generated_continuations(generated_ids, input_length)
                 else:
                     # No [/INST] in full sequence, use original slice
-                    generated_ids = generated_ids[:, input_length:]
+                    generated_ids = extract_generated_continuations(generated_ids, input_length)
             else:
                 # No [/INST] in input, use original slice
-                generated_ids = generated_ids[:, input_length:]
+                generated_ids = extract_generated_continuations(generated_ids, input_length)
         else:
             # No [/INST] token found or not Mistral format, try other formats
             if not extraction_successful and generated_ids.shape[0] > 0:
@@ -1106,7 +1256,7 @@ class CausalLMTrainer(Trainer):
                 
                 # Fallback: Use simple input_length slice if no format-specific extraction worked
                 if not extraction_successful:
-                    generated_ids = generated_ids[:, input_length:]
+                    generated_ids = extract_generated_continuations(generated_ids, input_length)
                     
                     # Additional check: If model seems to be copying input (includes instruction prompt),
                     # try to find where actual content starts by looking for repeated instruction text
@@ -1208,7 +1358,7 @@ class CausalLMTrainer(Trainer):
                         try:
                             generated_ids_force = model.generate(**generation_kwargs_force)
                             # Check if this produced better results
-                            generated_ids_force = generated_ids_force[:, input_length:]
+                            generated_ids_force = extract_generated_continuations(generated_ids_force, input_length)
                             non_pad_eos_mask_force = (generated_ids_force != pad_token_id) & (generated_ids_force != eos_token_id)
                             num_valid_force = non_pad_eos_mask_force.sum().item()
                             if num_valid_force > 0:
@@ -1263,114 +1413,9 @@ class CausalLMTrainer(Trainer):
         else:
             decoded_predictions = [""] * generated_ids.shape[0]
         
-        # Clean up decoded predictions - remove special tokens and backslashes (same as in compute_metrics)
-        def clean_text(text):
-            """Clean decoded text by removing special tokens and unwanted characters."""
-            # Truncate at [/SAK] - Normistral sometimes emits this instead of EOS and repeats it
-            if '[/SAK]' in text:
-                text = text.split('[/SAK]')[0].strip()
-            # Plain/Gemma format sometimes has trailing separator blocks.
-            # Only trim explicit trailing separator patterns; never split at the first "###"
-            # because many valid generations can begin with markdown headings.
-            text = re.sub(r'(\n\s*)#{3,}\s*$', '', text).strip()
-            # Remove common chat format tokens (Llama-2)
-            text = text.replace('[/INST]', '').replace('[INST]', '')
-            text = text.replace('</s>', '').replace('<s>', '')
-            # Remove Llama-3 specific tokens
-            text = text.replace('<|begin_of_text|>', '')
-            text = text.replace('<|end_of_text|>', '')
-            text = text.replace('<|eot_id|>', '')
-            text = text.replace('<|start_header_id|>', '')
-            text = text.replace('<|end_header_id|>', '')
-            # Remove user/assistant header markers (with any content between)
-            # This regex removes patterns like <|start_header_id|>assistant<|end_header_id|>
-            text = re.sub(r'<\|start_header_id\|>.*?<\|end_header_id\|>', '', text)
-            # ChatML tokens (EuroLLM and similar)
-            text = text.replace('<|im_start|>', '').replace('<|im_end|>', '')
-            # Strip leading <unk> (tokenizer often decodes pad/special as <unk>)
-            while text.startswith('<unk>'):
-                text = text[5:].lstrip()
-            # Also remove standalone "assistant" text that might appear at the start (from header)
-            # Remove "assistant\n\n" or "assistant " at the beginning
-            text = re.sub(r'^assistant\s*\n*\s*', '', text, flags=re.IGNORECASE)
-            # Plain/Gemma format: strip echoed "Oppsummering:" or "###" at start
-            if text.lstrip().startswith('Oppsummering:'):
-                text = text.lstrip()[len('Oppsummering:'):].lstrip()
-            # Plain template ends with "###" delimiters; models often echo 1–3 of them. Cap iterations
-            # so markdown summaries that start with "### Title" are not consumed as repeated strips.
-            for _ in range(6):
-                if not text.startswith('###'):
-                    break
-                text = text[3:].lstrip()
-            # Remove backslashes (common issue with Llama-2 chat models)
-            text = text.replace('\\', '')
-            # Strip trailing ### or ## (Gemma/plain format end markers)
-            text = re.sub(r'\s*#+\s*$', '', text)
-            # Remove multiple spaces
-            text = ' '.join(text.split())
-            return text.strip()
-        
-        def truncate_repeated_paragraphs(text, min_words=12):
-            """Truncate at first repeated paragraph (model sometimes repeats same content 2-4x)."""
-            if not text or len(text.split()) < min_words * 2:
-                return text
-            words = text.split()
-            # Look for a chunk of min_words that appears again later (repetition)
-            for i in range(0, len(words) - min_words):
-                chunk = ' '.join(words[i:i + min_words])
-                # Check if this chunk appears again later
-                rest = ' '.join(words[i + min_words:])
-                if len(rest) < len(chunk) * 0.5:
-                    continue
-                if chunk in rest:
-                    return ' '.join(words[:i + min_words]).strip()
-            return text
-        
-        def fix_mid_sentence_start(text):
-            """Try to fix predictions that start mid-sentence by finding the first complete sentence."""
-            if not text or len(text.strip()) < 10:
-                return text
-            
-            # If text starts with lowercase letter, comma, period, or space, it's likely mid-sentence
-            first_char = text.strip()[0] if text.strip() else ''
-            if first_char in [',', '.', ' ', '\n'] or (first_char and first_char.islower()):
-                # Try to find the first sentence boundary (period, exclamation, question mark followed by space and capital)
-                # Look for patterns like ". [A-Z]" or "! [A-Z]" or "? [A-Z]"
-                sentence_end_pattern = r'[.!?]\s+[A-ZÆØÅ]'
-                match = re.search(sentence_end_pattern, text)
-                if match:
-                    # Found a sentence boundary, start from there
-                    start_pos = match.end() - 1  # Position of the capital letter
-                    fixed_text = text[start_pos:].strip()
-                    return fixed_text
-                else:
-                    # No clear sentence boundary, try to find first capital letter
-                    capital_match = re.search(r'[A-ZÆØÅ]', text)
-                    if capital_match:
-                        start_pos = capital_match.start()
-                        fixed_text = text[start_pos:].strip()
-                        return fixed_text
-            
-            return text
-        
         cleaned_predictions = []
         for i, pred in enumerate(decoded_predictions):
-            cleaned = clean_text(pred)
-            # Fallback: if aggressive cleaning dropped everything, keep minimally-cleaned text.
-            if not cleaned and pred and pred.strip():
-                fallback = pred.replace('[/INST]', '').replace('[INST]', '')
-                fallback = fallback.replace('</s>', '').replace('<s>', '')
-                fallback = fallback.replace('<|begin_of_text|>', '').replace('<|end_of_text|>', '').replace('<|eot_id|>', '')
-                fallback = re.sub(r'<\|start_header_id\|>.*?<\|end_header_id\|>', '', fallback)
-                fallback = fallback.replace('<|im_start|>', '').replace('<|im_end|>', '')
-                fallback = fallback.replace('\\', '')
-                fallback = ' '.join(fallback.split()).strip()
-                cleaned = fallback
-            # Truncate at first repeated paragraph (fixes Arna-style repetition)
-            cleaned = truncate_repeated_paragraphs(cleaned)
-            # Try to fix mid-sentence starts
-            fixed = fix_mid_sentence_start(cleaned)
-            cleaned_predictions.append(fixed)
+            cleaned_predictions.append(postprocess_generated_summary_text(pred))
         
         # Check for empty predictions (warn once per eval run to avoid log spam; always warn if all empty)
         empty_count = sum(1 for p in cleaned_predictions if not p)
@@ -1427,6 +1472,7 @@ def load_model_and_peft_checkpoint(
     force_recompute: bool = False,  # If True, skip "already evaluated" check and load model for re-evaluation
     examples_suffix: Optional[str] = None,  # canonical: "<N>-examples" (e.g. "1000-examples")
     results_subdir: str = "all_eval_results",
+    generation_num: Optional[int] = None,
 ):
     """Load base model and PEFT checkpoint for inference.
     
@@ -1600,7 +1646,8 @@ def load_model_and_peft_checkpoint(
     # Skip when force_recompute=True (monitor detected checkpoint newer than stale eval)
     # When examples_suffix is set, check the suffixed file so different val_data_size runs do not overwrite each other.
     eval_results_file = get_eval_results_path(
-        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir,
+        generation_num=generation_num,
     )
     old_eval_results_file = get_old_eval_results_path(checkpoint_dir)
     
@@ -1625,7 +1672,8 @@ def load_model_and_peft_checkpoint(
             if EXTENDED_EVAL_AVAILABLE:
                 try:
                     existing_results = load_eval_results(
-                        checkpoint_dir, model_dir, results_subdir=results_subdir
+                        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                        generation_num=generation_num,
                     )
                     if existing_results is None:
                         pass  # Can't parse, allow re-evaluation
@@ -1633,7 +1681,8 @@ def load_model_and_peft_checkpoint(
                     else:
                         # Check if this is a major checkpoint that should have BERTScore
                         existing_results = load_eval_results(
-                            checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+                            checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                            generation_num=generation_num,
                         )
                         
                         # Check if extended metrics are missing
@@ -1658,6 +1707,7 @@ def load_model_and_peft_checkpoint(
                                 existing_results, checkpoint_dir, model_dir,
                                 examples_suffix=examples_suffix,
                                 results_subdir=results_subdir,
+                                generation_num=generation_num,
                             ):
                                 raise AlreadyEvaluatedError(
                                     f"Checkpoint {checkpoint_dir} appears to be already evaluated "
@@ -1690,7 +1740,8 @@ def load_model_and_peft_checkpoint(
             if EXTENDED_EVAL_AVAILABLE:
                 try:
                     existing_results_old = load_eval_results(
-                        checkpoint_dir, model_dir, results_subdir=results_subdir
+                        checkpoint_dir, model_dir, results_subdir=results_subdir,
+                        generation_num=generation_num,
                     )
                     if existing_results_old is not None:
                         is_major_old = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
@@ -1711,6 +1762,7 @@ def load_model_and_peft_checkpoint(
                                 existing_results_old, checkpoint_dir, model_dir,
                                 examples_suffix=examples_suffix,
                                 results_subdir=results_subdir,
+                                generation_num=generation_num,
                             ):
                                 raise AlreadyEvaluatedError(
                                     f"Checkpoint {checkpoint_dir} appears to be already evaluated "
@@ -2117,6 +2169,9 @@ def evaluate_checkpoint(
     predict_only: bool = False,
     metrics_only: bool = False,
     update_metrics: Optional[Set[str]] = None,  # e.g. {"rouge", "hygiene", "bertscore", "faithfulness"}
+    generation_num: int = 0,
+    extend: bool = False,  # Reuse a smaller gen0 run and only generate the additional examples
+    extend_from: Optional[int] = None,  # Source example count to extend (auto-detect when None)
 ):
     """Load a PEFT checkpoint and run evaluation with model parallelism support.
 
@@ -2172,15 +2227,63 @@ def evaluate_checkpoint(
     
     # Always include val_data_size suffix in filenames (e.g. "500-examples", "1000-examples").
     examples_suffix = f"{val_data_size}-examples"
+    generation_num = int(generation_num)
+    if generation_num < 0:
+        raise ValueError("generation_num must be non-negative")
+
+    # ------------------------------------------------------------------
+    # Extend setup: reuse a smaller gen0 run and only generate the extra examples
+    # ------------------------------------------------------------------
+    # reused_records holds the verbatim source triples (input/prompt/reference/
+    # prediction); reused_keys is used to keep the new draw disjoint. These are
+    # populated here and consumed at the sampling + post-generation stages.
+    reused_records: List[Dict[str, str]] = []
+    reused_keys: Set[Tuple[str, str]] = set()
+    extend_num_new = 0
+    if extend:
+        if generation_num != 0:
+            raise ValueError(
+                "--extend is only supported for gen0 (the new examples are generated "
+                "with this script's decoding). Re-run regeneration separately for other generations."
+            )
+        if metrics_only or update_metrics:
+            raise ValueError("--extend generates new predictions and cannot be combined with --metrics_only/--update_*.")
+
+        source_path, source_size = find_extend_source_predictions(
+            checkpoint_dir, model_dir_eval, results_subdir, val_data_size, extend_from=extend_from,
+        )
+        if source_path is None:
+            raise FileNotFoundError(
+                f"--extend: no gen0 predictions file found to extend from for {checkpoint_name} "
+                f"(target {val_data_size}-examples, results_subdir={results_subdir}). "
+                f"Specify --extend_from=<N> or generate a smaller run first."
+            )
+        if source_size is None or source_size >= val_data_size:
+            raise ValueError(
+                f"--extend: source size ({source_size}) must be smaller than the target "
+                f"val_data_size ({val_data_size})."
+            )
+        reused_records = load_inputs_refs_preds_records(source_path)
+        if not reused_records:
+            raise ValueError(f"--extend: source predictions file is empty: {source_path}")
+        reused_keys = {
+            _extend_example_key(r.get("input_text"), r.get("reference")) for r in reused_records
+        }
+        extend_num_new = val_data_size - len(reused_records)
+        print(
+            f"--extend: reusing {len(reused_records)} predictions from {os.path.basename(source_path)}; "
+            f"will generate up to {extend_num_new} additional examples to reach {val_data_size}."
+        )
     
     # Get results file path using utility function
     results_file = get_eval_results_path(
-        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+        generation_num=generation_num,
     )
     predictions_file = get_predictions_file_path(
-        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+        generation_num=generation_num,
     )
-
     # ---------------------------------------------------------------
     # Early-return paths for --metrics-only and --update-* modes
     # (no model loading, no prediction generation)
@@ -2191,8 +2294,10 @@ def evaluate_checkpoint(
                 f"JSONL predictions file not found: {predictions_file}\n"
                 f"Run --predict_only first to generate predictions."
             )
-        input_texts, prediction_texts, reference_texts = load_predictions_jsonl(predictions_file)
-        print(f"Loaded {len(prediction_texts)} predictions from {predictions_file}")
+        else:
+            predictions_file_for_read = predictions_file
+        input_texts, prediction_texts, reference_texts = load_predictions_jsonl(predictions_file_for_read)
+        print(f"Loaded {len(prediction_texts)} predictions from {predictions_file_for_read}")
 
         from utils.metrics import compute_metrics_from_texts
 
@@ -2216,11 +2321,13 @@ def evaluate_checkpoint(
                     if metric_name == "faithfulness":
                         details_path = get_faithfulness_details_path(
                             checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                            generation_num=generation_num,
                         )
                         if should_skip_faithfulness_update(
                             existing_results, checkpoint_dir, model_dir_eval,
                             examples_suffix=examples_suffix,
                             results_subdir=results_subdir,
+                            generation_num=generation_num,
                         ):
                             print(
                                 f"⚠ Skipping faithfulness: aggregates and details file already present "
@@ -2266,6 +2373,7 @@ def evaluate_checkpoint(
                 nli_pred = [prediction_texts[i] for i in nli_indices]
                 faith_details = get_faithfulness_details_path(
                     checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                    generation_num=generation_num,
                 )
                 if force_recompute and os.path.exists(faith_details):
                     try:
@@ -2290,6 +2398,7 @@ def evaluate_checkpoint(
             existing_results.setdefault("_timing", {}).update(result["timing"])
             existing_results["checkpoint_name"] = checkpoint_name
             existing_results["checkpoint_step"] = checkpoint_step_int
+            existing_results["generation"] = generation_num
             with open(results_file, 'w', encoding='utf-8') as f:
                 json.dump(existing_results, f, indent=2, ensure_ascii=False, default=str)
             print(f"Updated metrics {actually_update} in {results_file}")
@@ -2297,6 +2406,15 @@ def evaluate_checkpoint(
 
         else:
             # metrics_only: compute all applicable metrics from JSONL
+            if os.path.exists(results_file) and not force_recompute:
+                print(
+                    f"⚠ Skipping metrics-only recompute for {checkpoint_name}: "
+                    f"{os.path.basename(results_file)} already exists "
+                    f"(use --force_recompute or --overwrite to overwrite)."
+                )
+                with open(results_file, 'r', encoding='utf-8') as f:
+                    return json.load(f), None
+
             is_major = is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval)
             nli_in = nli_pred = None
             nli_indices = None
@@ -2314,6 +2432,7 @@ def evaluate_checkpoint(
                 nli_pred = [prediction_texts[i] for i in nli_indices]
                 faith_details = get_faithfulness_details_path(
                     checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                    generation_num=generation_num,
                 )
                 if force_recompute and os.path.exists(faith_details):
                     try:
@@ -2336,6 +2455,7 @@ def evaluate_checkpoint(
             all_results["checkpoint_name"] = checkpoint_name
             all_results["checkpoint_step"] = checkpoint_step_int
             all_results["is_major_checkpoint"] = is_major
+            all_results["generation"] = generation_num
             with open(results_file, 'w', encoding='utf-8') as f:
                 json.dump(all_results, f, indent=2, ensure_ascii=False, default=str)
             print(f"Saved metrics-only results to {results_file}")
@@ -2349,7 +2469,8 @@ def evaluate_checkpoint(
         print(f"⚠ Checkpoint {checkpoint_name} already evaluated. Loading existing results...")
         if keep_existing:
             existing_results = load_eval_results(
-                checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+                checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                generation_num=generation_num,
             )
             if existing_results is None:
                 print(f"✓ keep_existing enabled and results file exists. Skipping checkpoint {checkpoint_name} without overwriting.")
@@ -2363,10 +2484,12 @@ def evaluate_checkpoint(
             # If faithfulness is requested and details JSONL is missing, continue evaluation.
             if include_nli_faithfulness and is_major_checkpoint(checkpoint_step_int, major_checkpoint_interval):
                 if not should_skip_faithfulness_update(
-                    existing_results, checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+                    existing_results, checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                    generation_num=generation_num,
                 ):
                     details_path = get_faithfulness_details_path(
-                        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+                        checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                        generation_num=generation_num,
                     )
                     print(
                         "⚠ keep_existing override: faithfulness details missing; "
@@ -2381,7 +2504,8 @@ def evaluate_checkpoint(
         
         try:
             existing_results = load_eval_results(
-                checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+                checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                generation_num=generation_num,
             )
             if existing_results is None:
                 print(f"⚠ Warning: Could not load existing results from {results_file}")
@@ -2424,6 +2548,7 @@ def evaluate_checkpoint(
                             existing_results, checkpoint_dir, model_dir_eval,
                             examples_suffix=examples_suffix,
                             results_subdir=results_subdir,
+                            generation_num=generation_num,
                         ):
                             missing_extended_metrics = True
                             print(
@@ -2460,6 +2585,7 @@ def evaluate_checkpoint(
                     # 500 vs 1000 examples → separate wandb runs so metrics don't mix
                     model_dir_eval_cached = get_model_dir_from_checkpoint(checkpoint_dir)
                     wandb_run_id_suffix_cached = f"_{examples_suffix}" if examples_suffix else ""
+                    wandb_run_id_suffix_cached = f"{wandb_run_id_suffix_cached}_gen{generation_num}"
                     wandb_run_id_file_cached = os.path.join(
                         model_dir_eval_cached, results_subdir, f".wandb_run_id{wandb_run_id_suffix_cached}"
                     )
@@ -2486,6 +2612,7 @@ def evaluate_checkpoint(
                     wandb_group_cached = wandb_group or f"{clean_model_name}_eval"
                     if examples_suffix:
                         wandb_group_cached = f"{wandb_group_cached}_{examples_suffix}"
+                    wandb_group_cached = f"{wandb_group_cached}_gen{generation_num}"
                     wandb_kwargs_cached = {
                         "project": wandb_project,
                         "entity": wandb_entity,
@@ -2496,6 +2623,7 @@ def evaluate_checkpoint(
                             "all_checkpoints",
                             "cached",
                             f"val_{val_data_size}_examples",
+                            f"gen{generation_num}",
                         ],
                         "config": {
                             "model": model_name,
@@ -2506,6 +2634,7 @@ def evaluate_checkpoint(
                             "max_output_tokens": max_output_summary_tokens,
                             "num_gpus": num_gpus,
                             "major_checkpoint_interval": major_checkpoint_interval,
+                            "generation": generation_num,
                         },
                         "reinit": True,
                     }
@@ -2543,7 +2672,7 @@ def evaluate_checkpoint(
                     print(f"   ROUGE-1: {rouge1:.2f}, ROUGE-2: {rouge2:.2f}, ROUGE-L: {rougeL:.2f}, ROUGE-Lsum: {rougeLsum:.2f}")
                     
                     # Update evaluation summary JSON file even for cached results
-                    summary_file = os.path.join(output_dir, "evaluation_summary.json")
+                    summary_file = os.path.join(output_dir, f"gen{generation_num}_evaluation_summary.json")
                     
                     # Load existing summary or create new one
                     if os.path.exists(summary_file):
@@ -2567,7 +2696,8 @@ def evaluate_checkpoint(
                         "status": "success",
                         "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
                         "result_file": results_file,
-                        "from_cache": True
+                        "from_cache": True,
+                        "generation": generation_num,
                     }
                     
                     # Add all metrics from existing_results
@@ -2807,6 +2937,7 @@ def evaluate_checkpoint(
     # 500 vs 1000 examples → separate wandb runs so metrics don't mix
     model_dir_eval = get_model_dir_from_checkpoint(checkpoint_dir)
     wandb_run_id_suffix = f"_{examples_suffix}" if examples_suffix else ""
+    wandb_run_id_suffix = f"{wandb_run_id_suffix}_gen{generation_num}"
     wandb_run_id_file = os.path.join(model_dir_eval, results_subdir, f".wandb_run_id{wandb_run_id_suffix}")
     
     # Use provided run_name or create one based on model (without checkpoint step)
@@ -2846,6 +2977,7 @@ def evaluate_checkpoint(
         wandb_group_val = wandb_group or f"{clean_model_name}_eval"
         if examples_suffix:
             wandb_group_val = f"{wandb_group_val}_{examples_suffix}"
+        wandb_group_val = f"{wandb_group_val}_gen{generation_num}"
         wandb_kwargs = {
             "project": wandb_project,
             "entity": wandb_entity,
@@ -2855,6 +2987,7 @@ def evaluate_checkpoint(
                 "evaluation",
                 "all_checkpoints",
                 f"val_{val_data_size}_examples",
+                f"gen{generation_num}",
             ],
             "config": {
                 "model": model_name,
@@ -2866,6 +2999,7 @@ def evaluate_checkpoint(
                 "max_output_tokens": max_output_summary_tokens,
                 "num_gpus": num_gpus,
                 "major_checkpoint_interval": major_checkpoint_interval,
+                "generation": generation_num,
                 "metrics": {
                     "rouge": True,
                     "hygiene": True,
@@ -2928,6 +3062,7 @@ def evaluate_checkpoint(
             force_recompute=force_recompute,
             examples_suffix=examples_suffix,
             results_subdir=results_subdir,
+            generation_num=generation_num,
         )
     except AlreadyEvaluatedError:
         # Re-raise to be caught by the main block
@@ -2964,13 +3099,44 @@ def evaluate_checkpoint(
     if is_main_process:
         print(f"Successfully loaded {len(val_data)} validation examples")
 
-    # Sample validation examples (reproducible; 1000 = canonical 500 + 500 more for comparison)
-    val_data = sample_validation_data_reproducibly(
-        val_data, min(val_data_size, len(val_data)), seed=val_data_seed
-    )
-    
-    # Filter out examples with missing input or output
-    val_data = [ex for ex in val_data if ex.get('input') and ex.get('output')]
+    # Examples whose metadata is recovered for reused predictions (extend mode only),
+    # used so the combined doc-type distribution covers the full set.
+    extend_reused_meta_examples: List[dict] = []
+
+    if extend:
+        # Reuse the source predictions verbatim; only generate the additional examples.
+        # Recover reused examples' metadata (e.g. doc_type) by matching back to the full set.
+        full_val_by_key: Dict[Tuple[str, str], dict] = {}
+        for ex in val_data:
+            if isinstance(ex, dict) and ex.get('input') and ex.get('output'):
+                full_val_by_key.setdefault(
+                    _extend_example_key(ex.get('input'), ex.get('output')), ex
+                )
+        extend_reused_meta_examples = [
+            full_val_by_key[k] for k in reused_keys if k in full_val_by_key
+        ]
+
+        new_examples = select_extend_new_examples(
+            val_data, reused_keys, extend_num_new, seed=val_data_seed
+        )
+        if len(new_examples) < extend_num_new:
+            effective_total = len(reused_records) + len(new_examples)
+            print(
+                f"⚠ --extend: validation set could only supply {len(new_examples)} new examples "
+                f"(requested {extend_num_new}). Producing a {effective_total}-examples set instead "
+                f"of {val_data_size}; output files are suffixed accordingly."
+            )
+            val_data_size = effective_total
+            examples_suffix = f"{val_data_size}-examples"
+        val_data = new_examples
+    else:
+        # Sample validation examples (reproducible; 1000 = canonical 500 + 500 more for comparison)
+        val_data = sample_validation_data_reproducibly(
+            val_data, min(val_data_size, len(val_data)), seed=val_data_seed
+        )
+
+        # Filter out examples with missing input or output
+        val_data = [ex for ex in val_data if ex.get('input') and ex.get('output')]
     
     val_df = pd.DataFrame(val_data)
     val_dataset = Dataset.from_pandas(val_df)
@@ -3096,6 +3262,46 @@ def evaluate_checkpoint(
     prediction_start_time = time.time()
     eval_results = trainer.evaluate()
     prediction_time = time.time() - prediction_start_time
+
+    # ------------------------------------------------------------------
+    # Extend: merge reused predictions with the freshly generated ones
+    # ------------------------------------------------------------------
+    # Reused examples are kept first (so NLI first-N subsets stay nested), then
+    # the newly generated examples. Downstream token stats, the combined JSONL
+    # write, and the JSONL-driven extended metrics (hygiene/BERTScore/NLI) all
+    # operate on the merged lists; ROUGE is recomputed over the full set since
+    # trainer.evaluate() only saw the newly generated examples.
+    if extend and reused_records:
+        reused_examples_jsonl = [
+            {
+                "input_text": r.get("input_text", ""),
+                "prompt": r.get("prompt", ""),
+                "reference": r.get("reference", ""),
+            }
+            for r in reused_records
+        ]
+        reused_predictions = [r.get("prediction", "") for r in reused_records]
+        original_examples_for_jsonl = reused_examples_jsonl + original_examples_for_jsonl
+        trainer._eval_predictions = reused_predictions + list(trainer._eval_predictions)
+        # Combined example list for the doc-type distribution summary.
+        val_data = extend_reused_meta_examples + val_data
+
+        try:
+            combined_preds = [_extend_text(p) for p in trainer._eval_predictions]
+            combined_refs = [
+                _extend_text(ex.get("reference", "")) for ex in original_examples_for_jsonl
+            ]
+            n_rouge = min(len(combined_preds), len(combined_refs))
+            rouge_scores = compute_rouge(combined_preds[:n_rouge], combined_refs[:n_rouge])
+            for k, v in rouge_scores.items():
+                eval_results[f"eval_{k}"] = v * 100  # 0-1 → 0-100 to match Trainer
+            print(
+                f"--extend: recomputed ROUGE over combined {n_rouge} examples "
+                f"({len(reused_predictions)} reused + {len(trainer._eval_predictions) - len(reused_predictions)} new)."
+            )
+        except Exception as rouge_err:
+            print(f"Warning: --extend ROUGE recompute over combined set failed: {rouge_err}")
+        eval_results["eval_num_examples"] = len(original_examples_for_jsonl)
     
     # ------------------------------------------------------------------
     # Enrich eval_results with clearer runtime and cardinality metadata
@@ -3199,13 +3405,15 @@ def evaluate_checkpoint(
 
     eval_results.setdefault("eval_num_examples_by_doc_type", doc_type_counts)
     eval_results.setdefault("eval_num_examples_by_doc_type_norwegian", doc_type_nor_counts)
+    eval_results["generation"] = generation_num
     
     # Save inputs, references, and predictions to JSONL file for ALL checkpoints.
     # Required for --metrics-only and --update-* modes to work on any checkpoint.
     predictions_file = None
     if is_main_process:
         predictions_file = get_predictions_file_path(
-            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir
+            checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+            generation_num=generation_num,
         )
         os.makedirs(os.path.dirname(predictions_file), exist_ok=True)
         
@@ -3215,12 +3423,12 @@ def evaluate_checkpoint(
             num_to_save = min(num_examples, num_predictions)
             
             for i in range(num_to_save):
-                entry = {
-                    "input_text": original_examples_for_jsonl[i].get("input_text", ""),
-                    "prompt": original_examples_for_jsonl[i].get("prompt", ""),
-                    "reference": original_examples_for_jsonl[i].get("reference", ""),
-                    "prediction": trainer._eval_predictions[i] if i < len(trainer._eval_predictions) else "",
-                }
+                entry = make_inputs_refs_preds_record(
+                    input_text=original_examples_for_jsonl[i].get("input_text", ""),
+                    prompt=original_examples_for_jsonl[i].get("prompt", ""),
+                    reference=original_examples_for_jsonl[i].get("reference", ""),
+                    prediction=trainer._eval_predictions[i] if i < len(trainer._eval_predictions) else "",
+                )
                 f.write(json.dumps(entry, ensure_ascii=False) + '\n')
         
         print(f"Saved predictions to: {predictions_file}")
@@ -3245,6 +3453,7 @@ def evaluate_checkpoint(
             if force_recompute and include_nli_faithfulness:
                 faith_details_file = get_faithfulness_details_path(
                     checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                    generation_num=generation_num,
                 )
                 if os.path.exists(faith_details_file):
                     try:
@@ -3312,6 +3521,7 @@ def evaluate_checkpoint(
                         gate = NLIFaithfulnessGate()
                         faith_details_file = get_faithfulness_details_path(
                             checkpoint_dir, model_dir_eval, examples_suffix=examples_suffix, results_subdir=results_subdir,
+                            generation_num=generation_num,
                         )
                         faithfulness_out = gate.eval_faithfulness_incremental(
                             nli_input_texts, nli_prediction_texts,
@@ -3425,6 +3635,7 @@ def evaluate_checkpoint(
             save_to_old_location=not (c200k_min_new_tokens is not None and c200k_max_new_tokens is not None),
             examples_suffix=examples_suffix,
             results_subdir=results_subdir,
+            generation_num=generation_num,
         )
         print(f"Per-checkpoint results saved to: {saved_path}")
         
@@ -3437,6 +3648,7 @@ def evaluate_checkpoint(
             model_dir=model_dir_eval,
             examples_suffix=examples_suffix,
             results_subdir=results_subdir,
+            generation_num=generation_num,
         )
     
     # Clean up distributed process group
@@ -3516,6 +3728,17 @@ Examples:
                        help=f'Validation batch size per device (default: {VAL_BATCH_SIZE}). The script will automatically adjust based on model size and provide memory utilization reports.')
     parser.add_argument('--val_data_size', type=int, default=VAL_DATA_SIZE,
                        help=f'Number of examples to use for validation (default: {VAL_DATA_SIZE}). Output files are suffixed as -<val_data_size>-examples; 1000-example sets contain the same 500 used by 500-example runs.')
+    parser.add_argument('--generation', '--gen', dest='generation_num', type=int, default=0,
+                       help='inputs-refs-preds generation to evaluate (default: 0). '
+                            'All checkpoint input/output files must use an explicit gen<N> filename component.')
+    parser.add_argument('--extend', action='store_true',
+                       help='Extend a smaller gen0 evaluation to --val_data_size by reusing the existing '
+                            'predictions and only generating the additional examples, then recomputing all '
+                            'metrics over the combined set. gen0 only.')
+    parser.add_argument('--extend_from', type=int, default=None, metavar='N',
+                       help='With --extend: the source example count to reuse (e.g. 1000). '
+                            'When omitted, auto-detects the largest existing gen0 predictions file '
+                            'smaller than --val_data_size.')
     parser.add_argument('--val_data_seed', type=int, default=VAL_DATA_SEED,
                        help=f'Random seed for reproducible validation sampling (default: {VAL_DATA_SEED})')
     parser.add_argument('--val_beam_size', type=int, default=VAL_BEAM_SIZE,
@@ -3530,8 +3753,8 @@ Examples:
                        help='Use model parallelism (device_map="auto") to split model across multiple GPUs. Compatible with generation.')
     parser.add_argument('--keep_existing', action='store_true',
                        help='If set, do not rerun evaluation when results already exist (skips checkpoints with saved outputs).')
-    parser.add_argument('--force_recompute', action='store_true',
-                       help='If set, re-run evaluation even when results exist (e.g. after prompt/config corrections). Overwrites existing results.')
+    parser.add_argument('--force_recompute', '--overwrite', action='store_true',
+                       help='If set, re-run evaluation even when results exist (e.g. after prompt/config corrections). Overwrites existing same-generation results.')
     
     # Wandb arguments
     parser.add_argument('--wandb_project', type=str, default='lm-evaluation',
@@ -3586,6 +3809,18 @@ Examples:
     if update_metrics and (args.predict_only or args.metrics_only):
         parser.error("--update_* flags cannot be combined with --predict_only or --metrics_only.")
 
+    # --extend generates predictions for the additional examples, so it is incompatible
+    # with the no-generation modes and only supported for gen0.
+    if args.extend:
+        if args.metrics_only or update_metrics:
+            parser.error("--extend cannot be combined with --metrics_only or --update_* (it generates new predictions).")
+        if args.generation_num != 0:
+            parser.error("--extend is only supported for gen0.")
+        if args.extend_from is not None and args.extend_from < 1:
+            parser.error("--extend_from must be a positive integer.")
+    elif args.extend_from is not None:
+        parser.error("--extend_from requires --extend.")
+
     # --metrics_only and --update_* do not need --val_dataset or model loading
     needs_prediction = not args.metrics_only and not update_metrics and not args.skip_eval
 
@@ -3595,6 +3830,8 @@ Examples:
 
     if args.nli_subset_size < 1:
         parser.error("--nli_subset_size must be a positive integer")
+    if args.generation_num < 0:
+        parser.error("--generation/--gen must be a non-negative integer")
     if args.min_new_tokens < 1:
         parser.error("--min_new_tokens must be >= 1")
     if args.c200k_min_new_tokens is not None and args.c200k_min_new_tokens < 1:
@@ -3670,6 +3907,9 @@ Examples:
                 predict_only=args.predict_only,
                 metrics_only=args.metrics_only,
                 update_metrics=update_metrics or None,
+                generation_num=args.generation_num,
+                extend=args.extend,
+                extend_from=args.extend_from,
             )
         except AlreadyEvaluatedError as e:
             print(f"⚠ SKIPPING: {e}")

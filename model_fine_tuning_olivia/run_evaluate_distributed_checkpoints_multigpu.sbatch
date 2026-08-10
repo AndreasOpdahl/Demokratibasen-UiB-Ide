@@ -45,6 +45,9 @@ CHECKPOINT_BASE_DIR=${CHECKPOINT_BASE_DIR:-"models/${MODEL}-apptainer-fsdp"}
 VAL_DATASET=${VAL_DATASET:-"data/dataset_149978_examples/149978_text_summary_examples_val.jsonl"}
 VAL_BATCH_SIZE=${VAL_BATCH_SIZE:-32}
 VAL_DATA_SIZE=${VAL_DATA_SIZE:-1000}
+GENERATION=${GENERATION:-0}
+EXTEND=${EXTEND:-false}
+EXTEND_FROM=${EXTEND_FROM:-""}
 SPECIFIC_CHECKPOINTS=${SPECIFIC_CHECKPOINTS:-""}
 DRY_RUN=${DRY_RUN:-false}
 # NLI Faithfulness evaluation flags: "auto" (default) = on for major checkpoints only,
@@ -96,6 +99,16 @@ for arg in "$@"; do
         --val_data_size=*)
             VAL_DATA_SIZE="${arg#*=}"
             ;;
+        --generation=*|--gen=*)
+            GENERATION="${arg#*=}"
+            ;;
+        --extend)
+            EXTEND=true
+            ;;
+        --extend_from=*|--extend-from=*)
+            EXTEND=true
+            EXTEND_FROM="${arg#*=}"
+            ;;
         --specific_checkpoints=*)
             SPECIFIC_CHECKPOINTS="${arg#*=}"
             ;;
@@ -111,7 +124,7 @@ for arg in "$@"; do
         --no-keep_existing)
             KEEP_EXISTING=false
             ;;
-        --force_recompute)
+        --force_recompute|--overwrite)
             FORCE_RECOMPUTE=true
             ;;
         --nli_subset_size=*|--nli-subset-size=*)
@@ -182,8 +195,11 @@ for arg in "$@"; do
             echo "  --val_dataset=PATH               Path to validation dataset JSONL file (default: data/dataset_149978_examples/149978_text_summary_examples_val.jsonl)"
             echo "  --val_batch_size=N                Validation batch size per device (default: 32; auto-adjusted by Python script based on model size)"
             echo "  --val_data_size=N                 Number of validation examples (default: 1000; output files end with -N-examples)"
+            echo "  --generation=N|--gen=N            inputs-refs-preds generation to evaluate (default: 0)"
+            echo "  --extend                          Reuse a smaller gen0 run and only generate the extra examples (gen0 only)"
+            echo "  --extend_from=N                   With --extend: source example count to reuse (default: auto-detect)"
             echo "  --specific_checkpoints=\"N1 N2\"   Space-separated checkpoint numbers to evaluate (default: all)"
-            echo "  --force_recompute                  Re-evaluate even when results exist (e.g. backfill missed checkpoints)"
+            echo "  --force_recompute|--overwrite      Re-evaluate even when same-generation results exist"
             echo "  --include_nli_faithfulness        Enable NLI-based faithfulness for ALL checkpoints (default: auto = major only)"
             echo "  --no_nli_faithfulness             Disable NLI-based faithfulness for all checkpoints (override auto)"
             echo "  --nli_subset_size=N               NLI examples (default 100 in Python if omitted); set N = val_data_size for full val NLI"
@@ -293,6 +309,26 @@ if [ -n "${NLI_SUBSET_SIZE:-}" ]; then
     fi
 fi
 
+if ! [[ "$GENERATION" =~ ^[0-9]+$ ]]; then
+    echo "ERROR: generation must be a non-negative integer (got: $GENERATION)"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if [ "$EXTEND" = "true" ]; then
+    if [ "$GENERATION" != "0" ]; then
+        echo "ERROR: --extend is only supported for gen0 (got generation: $GENERATION)"
+        ERRORS=$((ERRORS + 1))
+    fi
+    if [ -n "$EXTEND_FROM" ] && { ! [[ "$EXTEND_FROM" =~ ^[0-9]+$ ]] || [ "$EXTEND_FROM" -lt 1 ]; }; then
+        echo "ERROR: --extend_from must be a positive integer (got: $EXTEND_FROM)"
+        ERRORS=$((ERRORS + 1))
+    fi
+    if [ "$EVAL_MODE" = "metrics_only" ] || [ -n "$UPDATE_METRICS" ]; then
+        echo "ERROR: --extend cannot be combined with --metrics-only or --update-* (it generates new predictions)"
+        ERRORS=$((ERRORS + 1))
+    fi
+fi
+
 if [ "$C200K_FLAGS_FROM_ARGS" = "true" ]; then
     if [ -n "$C200K_MIN_NEW_TOKENS" ] && [ -z "$C200K_MAX_NEW_TOKENS" ]; then
         echo "ERROR: --c200k_min_new_tokens requires --c200k_max_new_tokens"
@@ -326,6 +362,10 @@ echo "  CHECKPOINT_BASE_DIR: $CHECKPOINT_BASE_DIR"
 echo "  VAL_DATASET: $VAL_DATASET"
 echo "  VAL_BATCH_SIZE: $VAL_BATCH_SIZE"
 echo "  VAL_DATA_SIZE: $VAL_DATA_SIZE (output files end with -${VAL_DATA_SIZE}-examples.json/.jsonl)"
+if [ "$EXTEND" = "true" ]; then
+    echo "  EXTEND: true (reuse gen0 source${EXTEND_FROM:+ =$EXTEND_FROM}, generate only the additional examples)"
+fi
+echo "  GENERATION: gen$GENERATION"
 echo "  SPECIFIC_CHECKPOINTS: ${SPECIFIC_CHECKPOINTS:-all}"
 echo "  INCLUDE_NLI_FAITHFULNESS: $INCLUDE_NLI_FAITHFULNESS (auto = major checkpoints only)"
 LENGTH_MODE=false
@@ -438,6 +478,10 @@ if [ "$DRY_RUN" = "true" ]; then
     echo "    --model $MODEL"
     echo "    --checkpoint_dir [checkpoint-dir]"
     echo "    --val_dataset $VAL_DATASET"
+    echo "    --generation $GENERATION"
+    if [ "$EXTEND" = "true" ]; then
+        echo "    --extend${EXTEND_FROM:+ --extend_from $EXTEND_FROM}"
+    fi
     echo "    --hf_token [REDACTED]"
     echo "    --output_dir [optional, defaults to model_dir/all_eval_results]"
     echo "    --wandb_project lm-evaluation"
@@ -668,6 +712,13 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
     if [ "$FORCE_RECOMPUTE" = "true" ]; then
         FORCE_FLAG="--force_recompute"
     fi
+    EXTEND_FLAG=""
+    if [ "$EXTEND" = "true" ]; then
+        EXTEND_FLAG="--extend"
+        if [ -n "$EXTEND_FROM" ]; then
+            EXTEND_FLAG="$EXTEND_FLAG --extend_from $EXTEND_FROM"
+        fi
+    fi
 
     # Python evaluation mode flags
     MODE_FLAGS=""
@@ -694,7 +745,7 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
         fi
     fi
     
-    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_batch_size $VAL_BATCH_SIZE --val_data_size $VAL_DATA_SIZE --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation $DECODE_FLAGS --use_multi_gpu $LENGTH_FLAGS --major_checkpoint_interval $MAJOR_CHECKPOINT_INTERVAL $NLI_FLAGS $KEEP_FLAG $FORCE_FLAG$NLI_SUBSET_FLAG $MODE_FLAGS"
+    EVAL_CMD="export HF_HOME=$HF_HOME && export HF_DATASETS_CACHE=$HF_DATASETS_CACHE && export HF_MODULES_CACHE=$HF_MODULES_CACHE && export HF_METRICS_CACHE=$HF_METRICS_CACHE && export TOKENIZERS_PARALLELISM=false && python -m wandb login $WANDB_API_KEY && python scripts/evaluate_distributed_checkpoints_multigpu.py --model $MODEL --checkpoint_dir $CHECKPOINT_DIR --val_dataset $VAL_DATASET --val_batch_size $VAL_BATCH_SIZE --val_data_size $VAL_DATA_SIZE --generation $GENERATION --hf_token $HUGGINGFACE_TOKEN --wandb_project lm-evaluation $DECODE_FLAGS --use_multi_gpu $LENGTH_FLAGS --major_checkpoint_interval $MAJOR_CHECKPOINT_INTERVAL $NLI_FLAGS $KEEP_FLAG $FORCE_FLAG$NLI_SUBSET_FLAG $MODE_FLAGS $EXTEND_FLAG"
 
     # Apptainer commands - all on one line
     # Install bert_score for BERTScore evaluation (required by evaluate library)
@@ -716,7 +767,7 @@ for CHECKPOINT_DIR in $CHECKPOINTS; do
 done
 
 # Print summary from JSON file (generated by Python script)
-SUMMARY_FILE="$RESULTS_DIR/evaluation_summary.json"
+SUMMARY_FILE="$RESULTS_DIR/gen${GENERATION}_evaluation_summary.json"
 if [ -f "$SUMMARY_FILE" ]; then
     echo "==================================================================="
     echo "EVALUATION SUMMARY"

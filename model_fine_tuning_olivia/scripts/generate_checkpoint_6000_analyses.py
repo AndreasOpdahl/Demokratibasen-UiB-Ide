@@ -32,7 +32,7 @@ PATTERNS = {
 
 
 def load_samples(model: str, n: int = 15) -> list:
-    fpath = MODELS_DIR / model / "all_eval_results" / "checkpoint-6000-inputs-refs-preds.jsonl"
+    fpath = MODELS_DIR / model / "all_eval_results" / "checkpoint-6000-gen0-inputs-refs-preds-1000-examples.jsonl"
     if not fpath.exists():
         return []
     lines = []
@@ -49,7 +49,7 @@ def load_samples(model: str, n: int = 15) -> list:
 
 
 def load_eval_results(model: str) -> dict:
-    fpath = MODELS_DIR / model / "all_eval_results" / "checkpoint-6000-eval-results.json"
+    fpath = MODELS_DIR / model / "all_eval_results" / "checkpoint-6000-gen0-eval-results-1000-examples.json"
     if not fpath.exists():
         return {}
     with open(fpath) as f:
@@ -97,7 +97,7 @@ def generate_report(model: str) -> str:
     short = model_short_name(model)
     samples = load_samples(model)
     if not samples:
-        return f"# {short} Checkpoint 6000: No data\n\nNo checkpoint-6000-inputs-refs-preds.jsonl found."
+        return f"# {short} Checkpoint 6000: No data\n\nNo checkpoint-6000-gen0-inputs-refs-preds-1000-examples.jsonl found."
     eval_res = load_eval_results(model)
     analysis = analyze_predictions(samples)
     issues = analysis["issues"]
@@ -111,7 +111,7 @@ def generate_report(model: str) -> str:
         "",
         "---",
         "",
-        "## Metrics (checkpoint-6000-eval-results.json)",
+        "## Metrics (checkpoint-6000-gen0-eval-results-1000-examples.json)",
         "",
         "| Metric | Value |",
         "|--------|-------|",

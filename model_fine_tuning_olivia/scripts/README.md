@@ -119,7 +119,7 @@ Run NLI faithfulness evaluation on a subset of predictions from a JSONL file. Us
 
 **Example:**
 ```bash
-python run_nli_faithfulness_subset.py --predictions_file models/gemma-7b/all_eval_results/checkpoint-100-inputs-refs-preds.jsonl --subset_size 100
+python run_nli_faithfulness_subset.py --predictions_file models/gemma-7b/all_eval_results/checkpoint-100-gen0-inputs-refs-preds-1000-examples.jsonl --subset_size 100
 ```
 
 ---
@@ -139,7 +139,7 @@ Analyzes prediction files for repetition issues, empty outputs, and repetitive s
 
 **Example:**
 ```bash
-python analyze_predictions.py --predictions_file models/gemma-2-9b/all_eval_results/checkpoint-4100-inputs-refs-preds.jsonl --output_dir analysis_results
+python analyze_predictions.py --predictions_file models/gemma-2-9b/all_eval_results/checkpoint-4100-gen0-inputs-refs-preds-1000-examples.jsonl --output_dir analysis_results
 ```
 
 ---
@@ -189,7 +189,7 @@ python generate_checkpoint_6000_analyses.py
 Loads evaluation results from `all_eval_results/` and creates plots (matplotlib PNG, plotly HTML). Can compare multiple models. Optionally logs to WandB.
 
 **Important functions:**
-- `load_checkpoint_results()` — Loads all `checkpoint-N-eval-results.json` from model dir
+- `load_checkpoint_results()` — Loads all `checkpoint-N-genG-eval-results-X-examples.json` from model dir
 - `extract_metrics()` — Extracts metric series (rougeLsum, faithfulness, etc.) for plotting
 - `create_matplotlib_plots()` — PNG plots
 - `create_plotly_html()` — Interactive HTML

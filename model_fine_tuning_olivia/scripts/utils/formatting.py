@@ -58,12 +58,18 @@ def format_train_example(example: Dict[str, Any], model_name: str, tokenizer: Op
             doc_type=doc_type,
             tokenizer=tokenizer
         )
+        prompt_text = model_config.prompt_config.format_eval(
+            input_text=input_text,
+            doc_type=doc_type,
+            tokenizer=tokenizer
+        )
     else:
         # Fallback to plain format if model config not found
         doc_type_nor = get_doc_type_norwegian(doc_type) if doc_type else "tekst"
-        formatted_text = f"Oppgave: Oppsummer følgende {doc_type_nor}:\n\n###\n\n{input_text}\n\n###\n\nOppsummering:\n\n###\n\n{output_text}\n\n###\n"
+        prompt_text = f"Oppgave: Oppsummer følgende {doc_type_nor}:\n\n###\n\n{input_text}\n\n###\n\nOppsummering:\n\n###\n\n"
+        formatted_text = f"{prompt_text}{output_text}\n\n###\n"
     
-    return {"text": formatted_text}
+    return {"text": formatted_text, "prompt_text": prompt_text}
 
 
 def format_train_examples_batch(
@@ -97,6 +103,7 @@ def format_train_examples_batch(
     # Fast path: skip apply_chat_template (saves ~2 hours for 135k examples)
     skip_tokenizer = use_fast_format
     texts = []
+    prompt_texts = []
     for i in range(len(inputs)):
         input_text = inputs[i] if i < len(inputs) else ""
         output_text = outputs[i] if i < len(outputs) else ""
@@ -111,11 +118,18 @@ def format_train_examples_batch(
                 doc_type=doc_type,
                 tokenizer=None if skip_tokenizer else tokenizer,
             )
+            prompt_text = config.prompt_config.format_eval(
+                input_text=input_text,
+                doc_type=doc_type,
+                tokenizer=None if skip_tokenizer else tokenizer,
+            )
         else:
             doc_type_nor = get_doc_type_norwegian(doc_type) if doc_type else "tekst"
-            formatted_text = f"Oppgave: Oppsummer følgende {doc_type_nor}:\n\n###\n\n{input_text}\n\n###\n\nOppsummering:\n\n###\n\n{output_text}\n\n###\n"
+            prompt_text = f"Oppgave: Oppsummer følgende {doc_type_nor}:\n\n###\n\n{input_text}\n\n###\n\nOppsummering:\n\n###\n\n"
+            formatted_text = f"{prompt_text}{output_text}\n\n###\n"
         texts.append(formatted_text)
-    return {"text": texts}
+        prompt_texts.append(prompt_text)
+    return {"text": texts, "prompt_text": prompt_texts}
 
 
 def format_eval_example(example: Dict[str, Any], model_name: str, tokenizer: Optional[Any] = None) -> Dict[str, Any]:

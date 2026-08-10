@@ -47,21 +47,24 @@ def _normalize_examples_suffix(examples_suffix: Optional[str]) -> Optional[str]:
     return examples_suffix
 
 
+def _normalize_generation_num(generation_num: Optional[int]) -> Optional[int]:
+    """Normalize generation marker; None now means canonical gen0."""
+    if generation_num is None:
+        return 0
+    generation_num = int(generation_num)
+    if generation_num < 0:
+        raise ValueError("generation_num must be non-negative")
+    return generation_num
+
+
+def _generation_part(generation_num: Optional[int]) -> str:
+    generation_num = _normalize_generation_num(generation_num)
+    return f"gen{generation_num}-"
+
+
 def _legacy_examples_suffixes(examples_suffix: Optional[str]) -> List[str]:
     """Return legacy suffix variants that should be checked for reads."""
-    if not examples_suffix:
-        # Legacy 500-example files were often unsuffixed.
-        return []
-    suffix = _normalize_examples_suffix(examples_suffix)
-    legacy: List[str] = []
-    if suffix and suffix.endswith("-examples"):
-        count = suffix.replace("-examples", "")
-        if count.isdigit():
-            legacy.append(f"examples_{count}")
-            if count == "500":
-                # Legacy default 500 often had no suffix.
-                legacy.append("")
-    return legacy
+    return []
 
 
 def get_eval_results_path(
@@ -69,10 +72,11 @@ def get_eval_results_path(
     model_dir: Optional[str] = None,
     examples_suffix: Optional[str] = None,
     results_subdir: str = "all_eval_results",
+    generation_num: Optional[int] = None,
 ) -> str:
     """Get evaluation results file path (new centralized location).
     
-    The new location is: model_dir/all_eval_results/checkpoint-nnn-eval-results-<N>-examples.json
+    The new location is: model_dir/all_eval_results/checkpoint-nnn-genG-eval-results-<N>-examples.json
     
     Args:
         checkpoint_dir: Path to checkpoint directory (may be in regular_checkpoints/ or major_checkpoints/)
@@ -85,7 +89,7 @@ def get_eval_results_path(
     """
     model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
     all_eval_results_dir = os.path.join(model_dir, results_subdir)
-    base = f"{checkpoint_name}-eval-results"
+    base = f"{checkpoint_name}-{_generation_part(generation_num)}eval-results"
     suffix = _normalize_examples_suffix(examples_suffix)
     suffix = f"-{suffix}" if suffix else ""
     return os.path.join(all_eval_results_dir, f"{base}{suffix}.json")
@@ -96,10 +100,11 @@ def get_predictions_file_path(
     model_dir: Optional[str] = None,
     examples_suffix: Optional[str] = None,
     results_subdir: str = "all_eval_results",
+    generation_num: Optional[int] = None,
 ) -> str:
     """Get inputs-refs-preds JSONL file path (in all_eval_results).
     
-    The location is: model_dir/all_eval_results/checkpoint-nnn-inputs-refs-preds-<N>-examples.jsonl
+    The location is: model_dir/all_eval_results/checkpoint-nnn-genG-inputs-refs-preds-<N>-examples.jsonl
     
     Args:
         checkpoint_dir: Path to checkpoint directory (may be in regular_checkpoints/ or major_checkpoints/)
@@ -112,7 +117,7 @@ def get_predictions_file_path(
     """
     model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
     all_eval_results_dir = os.path.join(model_dir, results_subdir)
-    base = f"{checkpoint_name}-inputs-refs-preds"
+    base = f"{checkpoint_name}-{_generation_part(generation_num)}inputs-refs-preds"
     suffix = _normalize_examples_suffix(examples_suffix)
     suffix = f"-{suffix}" if suffix else ""
     return os.path.join(all_eval_results_dir, f"{base}{suffix}.jsonl")
@@ -123,10 +128,11 @@ def get_faithfulness_details_path(
     model_dir: Optional[str] = None,
     examples_suffix: Optional[str] = None,
     results_subdir: str = "all_eval_results",
+    generation_num: Optional[int] = None,
 ) -> str:
     """Get per-example NLI faithfulness details JSONL path (in all_eval_results).
 
-    The location is: model_dir/all_eval_results/checkpoint-nnn-faithfulness-details-<N>-examples.jsonl
+    The location is: model_dir/all_eval_results/checkpoint-nnn-genG-faithfulness-details-<N>-examples.jsonl
 
     Each line in the JSONL contains the full score_and_gate output for one
     example, keyed by ``example_index``.  This file enables incremental
@@ -135,7 +141,7 @@ def get_faithfulness_details_path(
     """
     model_dir, checkpoint_name = _get_model_dir_and_checkpoint_name(checkpoint_dir, model_dir)
     all_eval_results_dir = os.path.join(model_dir, results_subdir)
-    base = f"{checkpoint_name}-faithfulness-details"
+    base = f"{checkpoint_name}-{_generation_part(generation_num)}faithfulness-details"
     suffix = _normalize_examples_suffix(examples_suffix)
     suffix = f"-{suffix}" if suffix else ""
     return os.path.join(all_eval_results_dir, f"{base}{suffix}.jsonl")
@@ -155,6 +161,7 @@ def should_skip_faithfulness_update(
     model_dir: Optional[str] = None,
     examples_suffix: Optional[str] = None,
     results_subdir: str = "all_eval_results",
+    generation_num: Optional[int] = None,
 ) -> bool:
     """Skip --update-faithfulness only when aggregates exist and the details JSONL is on disk.
 
@@ -165,7 +172,8 @@ def should_skip_faithfulness_update(
     if not nli_faithfulness_aggregate_present(existing_results):
         return False
     details_path = get_faithfulness_details_path(
-        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir,
+        generation_num=generation_num,
     )
     return os.path.isfile(details_path)
 
@@ -189,12 +197,12 @@ def load_eval_results(
     model_dir: Optional[str] = None,
     examples_suffix: Optional[str] = None,
     results_subdir: str = "all_eval_results",
+    generation_num: Optional[int] = None,
 ) -> Optional[Dict[str, Any]]:
     """Load evaluation results from new or old location.
     
     Checks both locations for backwards compatibility:
-    1. New location: model_dir/all_eval_results/checkpoint-nnn-eval-results-<N>-examples.json
-       (also checks legacy suffix variants when present)
+    1. New location: model_dir/all_eval_results/checkpoint-nnn-genG-eval-results-<N>-examples.json
     2. Old location: checkpoint_dir/eval_results/eval_results.json
     
     Args:
@@ -209,7 +217,8 @@ def load_eval_results(
 
     # Try new location first (get_eval_results_path resolves model_dir when None)
     new_results_file = get_eval_results_path(
-        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir,
+        generation_num=generation_num,
     )
     if os.path.exists(new_results_file):
         try:
@@ -221,7 +230,8 @@ def load_eval_results(
     # Try known legacy suffixed paths if canonical path is missing
     for legacy_suffix in _legacy_examples_suffixes(examples_suffix):
         legacy_results_file = get_eval_results_path(
-            checkpoint_dir, model_dir, examples_suffix=legacy_suffix if legacy_suffix else None, results_subdir=results_subdir
+            checkpoint_dir, model_dir, examples_suffix=legacy_suffix if legacy_suffix else None,
+            results_subdir=results_subdir, generation_num=generation_num,
         )
         if os.path.exists(legacy_results_file):
             try:
@@ -232,7 +242,7 @@ def load_eval_results(
     
     # Try old location for backwards compatibility
     # When examples_suffix is set, the old file is a legacy 500-example file - do NOT use it.
-    if examples_suffix:
+    if examples_suffix or generation_num is not None:
         return None
     old_results_file = get_old_eval_results_path(checkpoint_dir)
     if os.path.exists(old_results_file):
@@ -252,6 +262,7 @@ def save_eval_results(
     save_to_old_location: bool = True,
     examples_suffix: Optional[str] = None,
     results_subdir: str = "all_eval_results",
+    generation_num: Optional[int] = None,
 ) -> str:
     """Save evaluation results to new location (and optionally old location).
     
@@ -262,7 +273,7 @@ def save_eval_results(
         save_to_old_location: Whether to also save to old location for backwards compatibility.
             Ignored when examples_suffix is set (suffixed variants are only saved to new location).
         examples_suffix: Optional suffix for val_data_size variants (canonical: "1000-examples").
-            When set, results go to checkpoint-N-eval-results-<N>-examples.json and old location is skipped.
+            When set, results go to checkpoint-N-genG-eval-results-<N>-examples.json and old location is skipped.
     
     Returns:
         Path to the new results file
@@ -277,9 +288,10 @@ def save_eval_results(
     
     examples_suffix = _normalize_examples_suffix(examples_suffix)
 
-    # Save to new location (primary): model_dir/all_eval_results/checkpoint-N-eval-results-<N>-examples.json
+    # Save to new location (primary): model_dir/all_eval_results/checkpoint-N-genG-eval-results-<N>-examples.json
     new_results_file = get_eval_results_path(
-        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+        checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir,
+        generation_num=generation_num,
     )
     os.makedirs(os.path.dirname(new_results_file), exist_ok=True)
     
@@ -287,7 +299,7 @@ def save_eval_results(
         json.dump(results, f, indent=2)
     
     # Also save to old location for backwards compatibility (if requested and not a suffixed variant)
-    if save_to_old_location and not examples_suffix:
+    if save_to_old_location and not examples_suffix and generation_num is None:
         old_results_file = get_old_eval_results_path(checkpoint_dir)
         os.makedirs(os.path.dirname(old_results_file), exist_ok=True)
         with open(old_results_file, 'w') as f:
@@ -297,7 +309,10 @@ def save_eval_results(
 
 
 def get_evaluated_checkpoint_steps(
-    model_dir: str, examples_suffix: Optional[str] = None, results_subdir: str = "all_eval_results"
+    model_dir: str,
+    examples_suffix: Optional[str] = None,
+    results_subdir: str = "all_eval_results",
+    generation_num: Optional[int] = None,
 ) -> Set[int]:
     """Get set of already evaluated checkpoint steps.
     
@@ -318,47 +333,36 @@ def get_evaluated_checkpoint_steps(
     normalized_suffix = _normalize_examples_suffix(examples_suffix)
 
     # Check new location:
-    # - checkpoint-*-eval-results-<N>-examples.json (canonical)
-    # - checkpoint-*-eval-results.json (legacy)
+    # - checkpoint-*-genG-eval-results-<N>-examples.json (canonical)
     all_eval_results_dir = os.path.join(model_dir, results_subdir)
     if os.path.exists(all_eval_results_dir):
         if normalized_suffix:
+            gen_part = _generation_part(generation_num)
             patterns = [
-                os.path.join(all_eval_results_dir, f"checkpoint-*-eval-results-{normalized_suffix}.json"),
+                os.path.join(all_eval_results_dir, f"checkpoint-*-{gen_part}eval-results-{normalized_suffix}.json"),
             ]
             for legacy_suffix in _legacy_examples_suffixes(normalized_suffix):
                 if legacy_suffix:
                     patterns.append(
-                        os.path.join(all_eval_results_dir, f"checkpoint-*-eval-results-{legacy_suffix}.json")
+                        os.path.join(all_eval_results_dir, f"checkpoint-*-{gen_part}eval-results-{legacy_suffix}.json")
                     )
-                else:
-                    patterns.append(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results.json"))
         else:
-            patterns = [os.path.join(all_eval_results_dir, "checkpoint-*-eval-results*.json")]
+            generation_num = _normalize_generation_num(generation_num)
+            patterns = [os.path.join(all_eval_results_dir, f"checkpoint-*-gen{generation_num}-eval-results*.json")]
 
         for pattern in patterns:
             for eval_file in glob.glob(pattern):
                 try:
                     # Extract step from filename prefixes like:
-                    # checkpoint-123-eval-results.json
-                    # checkpoint-123-eval-results-500-examples.json
+                    # checkpoint-123-gen0-eval-results-1000-examples.json
+                    # checkpoint-123-gen1-eval-results-1000-examples.json
                     filename = os.path.basename(eval_file)
                     prefix = "checkpoint-"
-                    marker = "-eval-results"
-                    if not filename.startswith(prefix) or marker not in filename:
+                    gen_marker = f"-{_generation_part(generation_num).rstrip('-')}-eval-results"
+                    active_marker = gen_marker
+                    if not filename.startswith(prefix) or active_marker not in filename:
                         continue
-                    step = int(filename[len(prefix):].split(marker, 1)[0])
-                    evaluated.add(step)
-                except (ValueError, IndexError):
-                    pass
-    
-    # Also check old location for backwards compatibility
-    if not normalized_suffix:
-        for ckpt_dir in glob.glob(os.path.join(model_dir, "checkpoint-*")):
-            old_eval_results_file = get_old_eval_results_path(ckpt_dir)
-            if os.path.exists(old_eval_results_file):
-                try:
-                    step = int(os.path.basename(ckpt_dir).split("-")[-1])
+                    step = int(filename[len(prefix):].split(active_marker, 1)[0])
                     evaluated.add(step)
                 except (ValueError, IndexError):
                     pass
@@ -374,8 +378,9 @@ def update_evaluation_summary(
     val_dataset_path: Optional[str] = None,
     examples_suffix: Optional[str] = None,
     results_subdir: str = "all_eval_results",
+    generation_num: Optional[int] = None,
 ) -> str:
-    """Update evaluation_summary.json file.
+    """Update gen<N>_evaluation_summary.json file.
     
     Args:
         results: Evaluation results dictionary
@@ -393,7 +398,9 @@ def update_evaluation_summary(
     from .checkpoint_utils import get_checkpoint_name_and_step
     checkpoint_name, checkpoint_step = get_checkpoint_name_and_step(checkpoint_dir)
     
-    summary_file = os.path.join(model_dir, results_subdir, "evaluation_summary.json")
+    generation_num = _normalize_generation_num(generation_num)
+    summary_name = f"gen{generation_num}_evaluation_summary.json"
+    summary_file = os.path.join(model_dir, results_subdir, summary_name)
     os.makedirs(os.path.dirname(summary_file), exist_ok=True)
     
     # Load existing summary or create new one
@@ -418,9 +425,12 @@ def update_evaluation_summary(
         "status": "success",
         "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
         "result_file": get_eval_results_path(
-            checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir
+            checkpoint_dir, model_dir, examples_suffix=examples_suffix, results_subdir=results_subdir,
+            generation_num=generation_num,
         ),
     }
+    if generation_num is not None:
+        checkpoint_entry["generation"] = generation_num
     
     # Add all metrics from results
     for key, value in results.items():

@@ -202,6 +202,37 @@ def compute_bertscore(
         return {"_timing": {"bertscore_seconds": time.time() - start}}
 
 
+def compute_bertscore_per_example(
+    predictions: List[str],
+    references: List[str],
+) -> List[float]:
+    """Per-example BERTScore F1 (same encoder/settings as compute_bertscore).
+
+    Returns one F1 per (prediction, reference) pair. On failure returns 0.0 for
+    every pair so callers can degrade gracefully.
+    """
+    if not predictions:
+        return []
+    try:
+        bertscore = _get_bertscore()
+        preds_trunc = [_truncate_text_for_bert(t) for t in predictions]
+        refs_trunc = [_truncate_text_for_bert(t) for t in references]
+        b = bertscore.compute(
+            predictions=preds_trunc,
+            references=refs_trunc,
+            model_type="NbAiLab/nb-bert-large",
+            num_layers=24,
+            rescale_with_baseline=False,
+        )
+        return [float(x) for x in b["f1"]]
+    except Exception as e:  # noqa: BLE001 - degrade gracefully
+        print(
+            f"Warning: per-example BERTScore not available ({e}). Returning zeros.",
+            file=sys.stderr,
+        )
+        return [0.0] * len(predictions)
+
+
 # ---------------------------------------------------------------------------
 # Hygiene metrics
 # ---------------------------------------------------------------------------

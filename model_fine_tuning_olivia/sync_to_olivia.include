@@ -4,11 +4,14 @@ run_finetune_multinode.sbatch
 run_finetune_singlenode.sbatch
 run_monitor_evaluation.sbatch
 run_regenerate_bad_hygiene_predictions.sbatch
+run_report_hygiene.sbatch
 run_test_e2e.sbatch
+scripts/olivia_job_local_cache.sh
 scripts/evaluate_distributed_checkpoints_multigpu.py
 scripts/model_configs.py
 scripts/monitor_and_evaluate_checkpoints.py
 scripts/regenerate_bad_hygiene_predictions.py
+scripts/report_hygiene.py
 scripts/run_nli_faithfulness_subset.py
 scripts/test_e2e.py
 scripts/wandb_finetune.py
@@ -21,6 +24,7 @@ scripts/utils/dataset_loading.py
 scripts/utils/eval_results.py
 scripts/utils/faithfulness.py
 scripts/utils/formatting.py
+scripts/utils/generation.py
 scripts/utils/metrics.py
 scripts/utils/nli_subset.py
 scripts/utils/rouge_tokenizer.py

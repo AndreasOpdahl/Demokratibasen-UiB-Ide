@@ -61,6 +61,10 @@ import argparse
 import glob
 import json
 import os
+
+# Must be set before any HuggingFace tokenizer import. The Rust-based tokenizer
+# parallelism deadlocks in forked processes (torchrun/FSDP).
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 import random
 import shutil
 import sys
@@ -499,6 +503,23 @@ class CheckpointBackupCallback(TrainerCallback):
         if not os.path.exists(adapter_file):
             # Checkpoint might still be saving, skip this time
             return
+
+        # Ensure trainer_state.json is saved alongside the checkpoint.
+        # With FSDP + PEFT, the Trainer may not save it automatically.
+        trainer_state_file = os.path.join(checkpoint_dir, "trainer_state.json")
+        if not os.path.exists(trainer_state_file):
+            try:
+                import json as _json
+                state_dict = {
+                    'global_step': state.global_step,
+                    'epoch': state.epoch,
+                    'max_steps': getattr(args, 'max_steps', None),
+                    'log_history': getattr(state, 'log_history', []),
+                }
+                with open(trainer_state_file, 'w') as f:
+                    _json.dump(state_dict, f, indent=2, default=str)
+            except Exception as e:
+                print(f"⚠ Could not save trainer_state.json to {checkpoint_dir}: {e}")
         
         # Check if already backed up in this session to avoid duplicate backups during same run
         # Note: When resuming from a checkpoint, on_save is typically not called for that checkpoint,
@@ -611,6 +632,92 @@ def check_early_stopping_signal(output_dir: str) -> bool:
     """Check if early stopping signal exists from evaluation monitor."""
     signal_file = os.path.join(output_dir, ".early_stop")
     return os.path.exists(signal_file)
+
+
+class FSDPResumeStateCallback(TrainerCallback):
+    """Restore trainer state (global_step, epoch) for FSDP + PEFT resumption.
+
+    With FSDP + PEFT, we cannot pass resume_from_checkpoint to Trainer.train()
+    because HF would try to load full-model sharded checkpoints.  Adapter weights
+    are loaded manually before training starts.  However, Trainer.train() resets
+    TrainerState, losing the step counter.  This callback restores it from
+    trainer_state.json in on_train_begin (after state reset, before training loop).
+
+    It also advances the LR scheduler so the learning rate matches where training
+    left off (avoids repeating warmup).
+    """
+
+    def __init__(self, checkpoint_path: str, trainer_ref=None):
+        self.checkpoint_path = checkpoint_path
+        self.trainer_ref = trainer_ref
+        self._restored = False
+
+    @staticmethod
+    def _infer_step_from_path(checkpoint_path: str) -> int:
+        """Extract step number from checkpoint directory name (e.g. 'checkpoint-5000' → 5000)."""
+        import re
+        basename = os.path.basename(checkpoint_path.rstrip('/'))
+        match = re.search(r'(?:checkpoint|major-checkpoint|regular-checkpoint)-(\d+)$', basename)
+        return int(match.group(1)) if match else 0
+
+    def on_train_begin(self, args, state, control, **kwargs):
+        if self._restored:
+            return
+        trainer_state_path = os.path.join(self.checkpoint_path, "trainer_state.json")
+        if not os.path.exists(trainer_state_path):
+            inferred_step = self._infer_step_from_path(self.checkpoint_path)
+            if inferred_step > 0:
+                print(f"⚠ FSDPResumeStateCallback: no trainer_state.json found.")
+                print(f"  Inferred global_step={inferred_step} from checkpoint directory name.")
+                print(f"  Creating pro-forma trainer_state.json...")
+                import json as _json
+                data = {'global_step': inferred_step, 'epoch': 0.0, 'max_steps': getattr(args, 'max_steps', None)}
+                try:
+                    with open(trainer_state_path, 'w') as f:
+                        _json.dump(data, f, indent=2)
+                except OSError:
+                    pass
+            else:
+                print(f"⚠ FSDPResumeStateCallback: no trainer_state.json and could not infer "
+                      f"step from path '{self.checkpoint_path}'. Training will start from step 0!")
+                return
+        else:
+            data = None
+
+        try:
+            import json as _json
+            if data is None:
+                with open(trainer_state_path, 'r') as f:
+                    data = _json.load(f)
+            restored_step = data.get('global_step', 0)
+            if restored_step == 0:
+                return
+            state.global_step = restored_step
+            state.epoch = data.get('epoch', 0.0)
+            state.max_steps = data.get('max_steps', state.max_steps)
+            print(f"✓ FSDPResumeStateCallback: restored global_step={restored_step}, "
+                  f"epoch={state.epoch:.4f}")
+
+            # Advance the LR scheduler to match the restored step so learning rate
+            # continues from the correct point (avoids re-doing warmup).
+            scheduler = getattr(self.trainer_ref, 'lr_scheduler', None) if self.trainer_ref else None
+            if scheduler is not None:
+                print(f"  Advancing LR scheduler by {restored_step} steps...")
+                for _ in range(restored_step):
+                    scheduler.step()
+                try:
+                    current_lr = scheduler.get_last_lr()[0]
+                    print(f"  LR scheduler advanced. Current LR: {current_lr:.2e}")
+                except Exception:
+                    print(f"  LR scheduler advanced.")
+            else:
+                print(f"  ⚠ Could not access LR scheduler - warmup may repeat")
+
+            self._restored = True
+        except Exception as e:
+            print(f"⚠ FSDPResumeStateCallback: failed to restore state: {e}")
+            import traceback
+            traceback.print_exc()
 
 
 class EarlyStoppingMonitorCallback(TrainerCallback):
@@ -814,6 +921,21 @@ def load_model_with_optional_quantization(
     Returns:
         Loaded model
     """
+    attention_kwargs: Dict[str, str] = {}
+    if "normistral" in model_name.lower():
+        # Normistral/Mistral long-context runs on Olivia have hit intermittent
+        # cuDNN graph failures in PyTorch SDPA. Disable only the cuDNN SDPA
+        # backend so PyTorch can still use other memory-efficient SDPA kernels.
+        enable_cudnn_sdp = getattr(torch.backends.cuda, "enable_cudnn_sdp", None)
+        if enable_cudnn_sdp is not None:
+            enable_cudnn_sdp(False)
+            print("Normistral detected - disabled PyTorch cuDNN SDPA backend")
+        else:
+            # Older PyTorch fallback. This is slower and more memory-hungry, but
+            # avoids the failing SDPA path when the backend toggle is unavailable.
+            attention_kwargs["attn_implementation"] = "eager"
+            print("Normistral detected - forcing attn_implementation='eager' to avoid SDPA/cuDNN failures")
+
     if model_name == 'google/mt5-base':
         return MT5ForConditionalGeneration.from_pretrained(model_name)
     
@@ -836,6 +958,7 @@ def load_model_with_optional_quantization(
                 model_name,
                 torch_dtype=load_dtype,
                 token=hf_token,
+                **attention_kwargs,
                 # DO NOT use device_map for distributed training
                 # Let torchrun/FSDP handle device placement
                 low_cpu_mem_usage=True  # Efficient loading for large models
@@ -850,7 +973,8 @@ def load_model_with_optional_quantization(
                     model_name,
                     torch_dtype=load_dtype,
                     device_map="auto",
-                    token=hf_token
+                    token=hf_token,
+                    **attention_kwargs
                 )
             except Exception as e:
                 print(f"Error loading model with device_map: {e}")
@@ -858,7 +982,8 @@ def load_model_with_optional_quantization(
                 model = AutoModelForCausalLM.from_pretrained(
                     model_name,
                     torch_dtype=load_dtype,
-                    token=hf_token
+                    token=hf_token,
+                    **attention_kwargs
                 ).cuda()
         return model
     
@@ -884,7 +1009,8 @@ def load_model_with_optional_quantization(
             quantization_config=bnb_config,
             torch_dtype=torch.bfloat16,
             device_map="auto" if not (use_ddp or use_fsdp) else None,
-            token=hf_token
+            token=hf_token,
+            **attention_kwargs
         )
         return model
     
@@ -905,7 +1031,8 @@ def load_model_with_optional_quantization(
             quantization_config=bnb_config,
             torch_dtype=torch.bfloat16,
             device_map="auto" if not (use_ddp or use_fsdp) else None,
-            token=hf_token
+            token=hf_token,
+            **attention_kwargs
         )
         return model
     
@@ -1350,10 +1477,13 @@ def fine_tune_model(
         tokenizer.chat_template is not None and
         str(tokenizer.chat_template).strip() != ""
     )
-    use_fast_train_format = not (model_uses_chat_template and tokenizer_has_native_chat_template)
-    if not use_fast_train_format:
+    # Always use the fast manual-template path for training formatting.
+    # apply_chat_template() is 100x slower (~2h vs ~1min for 135k examples) and our
+    # manual templates (train_template in PromptConfig) produce identical output.
+    use_fast_train_format = True
+    if model_uses_chat_template:
         print(
-            f"Using tokenizer chat template for training format "
+            f"Using fast manual template for training format "
             f"({model_name}, template_type={_model_config.prompt_config.template_type if _model_config else 'unknown'})."
         )
     elif model_uses_chat_template:
@@ -1400,14 +1530,16 @@ def fine_tune_model(
             max_output_summary_tokens=max_output_summary_tokens
         )
 
-    # Batched format + num_proc: ~135 batches of 1000 instead of 135k per-example calls; parallel workers
-    _num_proc = min(8, (os.cpu_count() or 4) - 1)  # Leave one CPU for main process
+    # Batched format + num_proc for parallel dataset processing.
+    # TOKENIZERS_PARALLELISM=false (set at module top) prevents Rust-thread deadlocks in forked workers.
+    _num_proc = min(8, (os.cpu_count() or 4) - 1)
     _num_proc = max(1, _num_proc)
     formatted_dataset = dataset.map(
         format_example_train_batch_wrapper,
         batched=True,
         batch_size=1000,
         num_proc=_num_proc,
+        load_from_cache_file=False,
         desc="Formatting train",
     )
     
@@ -1561,7 +1693,7 @@ def fine_tune_model(
             print("=" * 70 + "\n")
 
     # Format and tokenize the VALIDATION dataset differently
-    formatted_val_dataset = val_dataset.map(format_example_eval_wrapper)
+    formatted_val_dataset = val_dataset.map(format_example_eval_wrapper, load_from_cache_file=False)
     tokenized_val_dataset = formatted_val_dataset.map(
         tokenize_function_eval_wrapper, 
         batched=True,
@@ -2016,11 +2148,18 @@ def fine_tune_model(
         training_args_kwargs['local_rank'] = -1
         print("Added local_rank=-1 to TrainingArguments for single-GPU mode")
     
-    # Set resume_from_checkpoint in TrainingArguments if checkpoint is provided
-    # This is important for FSDP to properly resume training
-    if resolved_resume_checkpoint:
+    # Set resume_from_checkpoint in TrainingArguments for non-FSDP only.
+    # For FSDP+LoRA we restore adapter/state manually; passing this path to Trainer
+    # makes HF look for full-model sharded checkpoint indices that adapter-only
+    # checkpoints do not contain.
+    if resolved_resume_checkpoint and not use_fsdp:
         training_args_kwargs['resume_from_checkpoint'] = resolved_resume_checkpoint
         print(f"Setting resume_from_checkpoint in TrainingArguments: {resolved_resume_checkpoint}")
+    elif resolved_resume_checkpoint and use_fsdp:
+        print(
+            "FSDP resume checkpoint provided: skipping TrainingArguments.resume_from_checkpoint "
+            "(adapter-only checkpoint; state restored manually)."
+        )
     
     training_args = TrainingArguments(**training_args_kwargs)
     
@@ -2047,6 +2186,12 @@ def fine_tune_model(
         early_stopping_monitor = EarlyStoppingMonitorCallback(output_dir)
         callbacks.append(early_stopping_monitor)
         print("Added EarlyStoppingMonitorCallback for FSDP (checks for external early stopping signal)")
+
+    # Add FSDP resume state callback to restore global_step after Trainer resets state
+    if use_fsdp and resolved_resume_checkpoint:
+        fsdp_resume_cb = FSDPResumeStateCallback(resolved_resume_checkpoint)
+        callbacks.append(fsdp_resume_cb)
+        print("Adding FSDPResumeStateCallback to restore training step on resume")
     
     # Add examples tracking callback
     examples_tracker = ExamplesTrackingCallback(train_batch_size, gradient_accumulation_steps, num_gpus, 
@@ -2183,6 +2328,14 @@ def fine_tune_model(
     
     trainer = CausalLMTrainer(**trainer_kwargs)
 
+    # Give FSDPResumeStateCallback a reference to the trainer so it can advance
+    # the LR scheduler after state restoration.
+    if use_fsdp and resolved_resume_checkpoint:
+        for cb in trainer.callback_handler.callbacks:
+            if isinstance(cb, FSDPResumeStateCallback):
+                cb.trainer_ref = trainer
+                break
+
     if resolved_resume_checkpoint:
         training_args.resume_from_checkpoint = resolved_resume_checkpoint
         if not use_fsdp:
@@ -2220,21 +2373,18 @@ def fine_tune_model(
             except Exception as rng_error:
                 print(f"WARNING: Failed to restore RNG state: {rng_error}")
         else:
-            print("FSDP detected - skipping manual optimizer/scheduler restore. Trainer will handle resumption internally.")
-            # Even with FSDP, verify the checkpoint state can be read
+            # FSDP + PEFT: optimizer/scheduler cannot be restored from adapter-only checkpoints.
+            # State restoration (global_step, epoch, LR scheduler) is handled by
+            # FSDPResumeStateCallback.on_train_begin which fires after Trainer resets state.
+            print("FSDP detected - state will be restored via FSDPResumeStateCallback.")
             if resolved_resume_checkpoint:
                 trainer_state_path = os.path.join(resolved_resume_checkpoint, "trainer_state.json")
                 if os.path.exists(trainer_state_path):
-                    try:
-                        import json
-                        with open(trainer_state_path, 'r') as f:
-                            trainer_state_data = json.load(f)
-                        checkpoint_step = trainer_state_data.get('global_step', 'unknown')
-                        print(f"✓ Checkpoint trainer_state.json found - will resume from step {checkpoint_step}")
-                    except Exception as e:
-                        print(f"⚠ Could not read trainer_state.json: {e}")
+                    print(f"  Found trainer_state.json at checkpoint — will restore step/epoch/LR.")
                 else:
-                    print(f"⚠ trainer_state.json not found at {trainer_state_path} - training may start from step 0")
+                    print(f"  ⚠ trainer_state.json not found at {trainer_state_path}")
+                    print("    Will infer global_step from checkpoint directory name if possible.")
+                    print(f"    For exact epoch/log history, create trainer_state.json with at least {{\"global_step\": STEP}}.")
 
     # Start training
     manual_resume = resolved_resume_checkpoint is not None and not use_fsdp
@@ -2245,10 +2395,17 @@ def fine_tune_model(
         # aligned with the restored checkpoint (prevents checkpoint numbering reset).
         trainer.train(resume_from_checkpoint=resolved_resume_checkpoint)
     elif resolved_resume_checkpoint is not None:
-        # User explicitly provided a checkpoint - always use it (even with FSDP)
-        # Note: resume_from_checkpoint is already set in TrainingArguments (line ~1692)
-        print(f"Resuming training from checkpoint path: {resolved_resume_checkpoint}")
-        trainer.train(resume_from_checkpoint=resolved_resume_checkpoint)
+        if use_fsdp:
+            # Adapter weights are already loaded above. Avoid HF full-checkpoint loader
+            # which expects model.safetensors.index.json / pytorch_model.bin.index.json.
+            print(
+                f"Continuing training from adapter checkpoint path (FSDP manual resume): "
+                f"{resolved_resume_checkpoint}"
+            )
+            trainer.train()
+        else:
+            print(f"Resuming training from checkpoint path: {resolved_resume_checkpoint}")
+            trainer.train(resume_from_checkpoint=resolved_resume_checkpoint)
     elif checkpoints_exist and not force_restart:
         # No explicit checkpoint, but checkpoints exist - resume from latest
         print("Resuming training from latest checkpoint in output directory...")

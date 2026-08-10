@@ -51,6 +51,7 @@ from utils import (
     get_checkpoint_name_and_step,
     is_major_checkpoint,
     get_evaluated_checkpoint_steps,
+    get_eval_results_path,
     get_model_dir_from_checkpoint,
     get_predictions_file_path,
 )
@@ -247,10 +248,10 @@ def get_best_checkpoint_metric(eval_results_dir: str) -> Optional[Dict]:
     best_metric = None
     best_checkpoint = None
     
-    # Check new location: all_eval_results/checkpoint-nnn-eval-results-<N>-examples.json
+    # Check new location: all_eval_results/checkpoint-nnn-genG-eval-results-<N>-examples.json
     all_eval_results_dir = os.path.join(eval_results_dir, "all_eval_results")
     if os.path.exists(all_eval_results_dir):
-        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-eval-results*.json")):
+        for eval_file in glob.glob(os.path.join(all_eval_results_dir, "checkpoint-*-gen*-eval-results*.json")):
             try:
                 with open(eval_file, 'r') as f:
                     results = json.load(f)
@@ -262,7 +263,7 @@ def get_best_checkpoint_metric(eval_results_dir: str) -> Optional[Dict]:
                         best_metric = metric_value
                         # Extract checkpoint step from filename
                         filename = os.path.basename(eval_file)
-                        match = re.match(r"checkpoint-(\d+)-eval-results", filename)
+                        match = re.match(r"checkpoint-(\d+)-gen\d+-eval-results", filename)
                         if not match:
                             continue
                         best_checkpoint = f"checkpoint-{match.group(1)}"
@@ -525,8 +526,12 @@ def monitor_and_evaluate(
                 # Use utility function to get model_dir (handles backup directories correctly)
                 model_dir = get_model_dir_from_checkpoint(checkpoint_path)
                 
-                all_eval_results_dir = os.path.join(model_dir, "all_eval_results")
-                eval_results_file = os.path.join(all_eval_results_dir, f"{checkpoint_name}-eval-results.json")
+                eval_results_file = get_eval_results_path(
+                    checkpoint_path,
+                    model_dir,
+                    examples_suffix=f"{val_data_size}-examples",
+                    generation_num=0,
+                )
                 
                 # Also check old location for backwards compatibility
                 old_eval_results_file = os.path.join(checkpoint_path, "eval_results", "eval_results.json")

@@ -1,12 +1,12 @@
 """
 Analyze predictions from evaluation runs, focusing on repetition issues.
 
-This script analyzes prediction files (e.g., checkpoint-4100-inputs-refs-preds.jsonl)
+This script analyzes prediction files (e.g., checkpoint-4100-gen0-inputs-refs-preds-1000-examples.jsonl)
 to identify and quantify repetition problems, especially for gemma models.
 
 Usage:
     python analyze_predictions.py \
-        --predictions_file models/gemma-2-9b-apptainer-fsdp/all_eval_results/regular-checkpoint-4100-inputs-refs-preds.jsonl \
+        --predictions_file models/gemma-2-9b-apptainer-fsdp/all_eval_results/regular-checkpoint-4100-gen0-inputs-refs-preds-1000-examples.jsonl \
         --rep_threshold 0.5 \
         --output_dir analysis_results
 """
@@ -535,7 +535,7 @@ def main():
         "--predictions_file",
         type=str,
         required=True,
-        help="Path to JSONL file with predictions (e.g., checkpoint-4100-inputs-refs-preds.jsonl)"
+                       help="Path to JSONL file with predictions (e.g., checkpoint-4100-gen0-inputs-refs-preds-1000-examples.jsonl)"
     )
     parser.add_argument(
         "--rep_threshold",

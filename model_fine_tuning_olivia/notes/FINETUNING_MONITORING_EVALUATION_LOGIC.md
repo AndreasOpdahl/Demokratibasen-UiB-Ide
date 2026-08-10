@@ -169,7 +169,7 @@ The monitor can signal early stopping in these cases:
 - **Checkpoint already evaluated:** With `--keep_existing`, the script skips and exits successfully (so batch scripts can continue).
 - **Missing adapter files:** If `adapter_model.safetensors` is missing, evaluation fails (checkpoint may be incomplete or cleaned up).
 - **Extended evaluation failed:** If BERTScore or NLI fails, the script continues with ROUGE and hygiene only and logs the error.
-- **Different evaluation sizes:** 500 vs 1000 examples are written to different files (e.g. `checkpoint-500-eval-results.json` vs `checkpoint-500-eval-results-examples_1000.json`).
+- **Different evaluation sizes:** 500 vs 1000 examples are written to different files (e.g. `checkpoint-500-gen0-eval-results-500-examples.json` vs `checkpoint-500-gen0-eval-results-1000-examples.json`).
 
 ---
 
@@ -245,8 +245,8 @@ The monitor can signal early stopping in these cases:
 
 | Size | Effect |
 |------|--------|
-| 500 | Default; faster; results in `checkpoint-N-eval-results.json`. |
-| 1000 | More examples; results in `checkpoint-N-eval-results-examples_1000.json`. The first 500 are the same subset for NLI comparability. |
+| 500 | Default; faster; results in `checkpoint-N-gen0-eval-results-500-examples.json`. |
+| 1000 | More examples; results in `checkpoint-N-gen0-eval-results-1000-examples.json`. The first 500 are the same subset for NLI comparability. |
 
 ---
 

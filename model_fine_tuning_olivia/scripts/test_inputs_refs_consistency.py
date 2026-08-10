@@ -15,8 +15,8 @@ Usage:
     # Custom results directory:
     python test_inputs_refs_consistency.py --results_dir /path/to/all_eval_results
 
-    # Use the 1000-example variant:
-    python test_inputs_refs_consistency.py --examples_suffix examples_1000
+    # Use the 1000-example gen0 variant:
+    python test_inputs_refs_consistency.py --examples_suffix 1000-examples --gen 0
 
     # Only check input_text (skip reference check):
     python test_inputs_refs_consistency.py --inputs_only
@@ -41,12 +41,20 @@ def load_jsonl(path: str) -> list[dict]:
         return [json.loads(line) for line in f if line.strip()]
 
 
-def find_predictions_file(results_dir: str, checkpoint_num: int, examples_suffix: str | None) -> str | None:
-    suffix = f"-{examples_suffix}" if examples_suffix else ""
+def normalize_examples_suffix(examples_suffix: str) -> str:
+    if examples_suffix.startswith("examples_"):
+        count = examples_suffix.replace("examples_", "", 1)
+        if count.isdigit():
+            return f"{count}-examples"
+    return examples_suffix
+
+
+def find_predictions_file(results_dir: str, checkpoint_num: int, examples_suffix: str, generation_num: int) -> str | None:
+    suffix = normalize_examples_suffix(examples_suffix)
     candidates = [
-        f"checkpoint-{checkpoint_num}-inputs-refs-preds{suffix}.jsonl",
-        f"major-checkpoint-{checkpoint_num}-inputs-refs-preds{suffix}.jsonl",
-        f"regular-checkpoint-{checkpoint_num}-inputs-refs-preds{suffix}.jsonl",
+        f"checkpoint-{checkpoint_num}-gen{generation_num}-inputs-refs-preds-{suffix}.jsonl",
+        f"major-checkpoint-{checkpoint_num}-gen{generation_num}-inputs-refs-preds-{suffix}.jsonl",
+        f"regular-checkpoint-{checkpoint_num}-gen{generation_num}-inputs-refs-preds-{suffix}.jsonl",
     ]
     for filename in candidates:
         path = os.path.join(results_dir, filename)
@@ -59,14 +67,15 @@ def compare_pair(
     results_dir: str,
     ckpt_a: int,
     ckpt_b: int,
-    examples_suffix: str | None,
+    examples_suffix: str,
+    generation_num: int,
     inputs_only: bool,
 ) -> tuple[bool, list[str]]:
     """Compare two checkpoint files. Returns (passed, list_of_issues)."""
     issues = []
 
-    file_a = find_predictions_file(results_dir, ckpt_a, examples_suffix)
-    file_b = find_predictions_file(results_dir, ckpt_b, examples_suffix)
+    file_a = find_predictions_file(results_dir, ckpt_a, examples_suffix, generation_num)
+    file_b = find_predictions_file(results_dir, ckpt_b, examples_suffix, generation_num)
 
     if file_a is None:
         issues.append(f"File not found for checkpoint {ckpt_a}")
@@ -141,8 +150,12 @@ def main():
         help="Checkpoint numbers to compare (all pairs are checked). Default: 4900 5000",
     )
     parser.add_argument(
-        "--examples_suffix", type=str, default=None,
-        help='Suffix variant, e.g. "examples_1000" for the 1000-example files',
+        "--examples_suffix", type=str, default="1000-examples",
+        help='Examples suffix, e.g. "1000-examples" (legacy "examples_1000" is normalized)',
+    )
+    parser.add_argument(
+        "--gen", type=int, default=0,
+        help="Prediction generation number to compare (default: 0)",
     )
     parser.add_argument(
         "--inputs_only", action="store_true",
@@ -160,7 +173,12 @@ def main():
 
     pairs = list(combinations(args.checkpoints, 2))
     fields_label = "input_text only" if args.inputs_only else "input_text + reference"
-    suffix_label = f" ({args.examples_suffix})" if args.examples_suffix else ""
+    if args.gen < 0:
+        print("ERROR: --gen must be non-negative")
+        sys.exit(1)
+
+    examples_suffix = normalize_examples_suffix(args.examples_suffix)
+    suffix_label = f" (gen{args.gen}, {examples_suffix})"
 
     print(f"Checking {fields_label} consistency across {len(args.checkpoints)} checkpoints{suffix_label}")
     print(f"Results dir: {args.results_dir}")
@@ -170,7 +188,7 @@ def main():
     all_passed = True
     for ckpt_a, ckpt_b in pairs:
         passed, issues = compare_pair(
-            args.results_dir, ckpt_a, ckpt_b, args.examples_suffix, args.inputs_only
+            args.results_dir, ckpt_a, ckpt_b, examples_suffix, args.gen, args.inputs_only
         )
         status = "PASS" if passed else "FAIL"
         print(f"  [{status}] checkpoint-{ckpt_a} vs checkpoint-{ckpt_b}")
