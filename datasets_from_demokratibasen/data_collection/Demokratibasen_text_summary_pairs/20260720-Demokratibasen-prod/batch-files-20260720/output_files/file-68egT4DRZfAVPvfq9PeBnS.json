@@ -1,0 +1,1 @@
+{"id": "batch_req_6a42d9b52800819083fad730681274f6", "custom_id": "8b88d91b-68c8-578e-83a3-04f32bbfc7ae", "response": {"status_code": 500, "request_id": "ee976c89-e057-4873-a197-97d232ce930c", "body": {"error": {"message": "The server had an error while processing your request. Sorry about that!", "type": "server_error", "param": null, "code": null}}}, "error": null}
