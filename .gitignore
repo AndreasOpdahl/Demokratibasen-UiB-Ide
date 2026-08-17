@@ -36,10 +36,10 @@ datasets_from_demokratibasen/cleaned_datasets/**/analysis_results/**
 datasets_from_demokratibasen/cleaned_datasets/**/*.png
 datasets_from_demokratibasen/data_collection/entities_themes/extractions-202512/extracted-data/
 datasets_from_demokratibasen/data_collection/entities_themes/extractions-202512/summaries/
-datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/202505-and-06-Demokratibasen-demo/dokument_jsons/
-datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/**/input_files/
-datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/**/output_files/
-datasets_from_demokratibasen/data_collection/summaries_keywords_newsworthiness/*/*.pkl
+datasets_from_demokratibasen/data_collection/Demokratibasen_text_summary_pairs/202505-and-06-Demokratibasen-demo/dokument_jsons/
+datasets_from_demokratibasen/data_collection/Demokratibasen_text_summary_pairs/**/input_files/
+datasets_from_demokratibasen/data_collection/Demokratibasen_text_summary_pairs/**/output_files/
+datasets_from_demokratibasen/data_collection/Demokratibasen_text_summary_pairs/*/*.pkl
 datasets_from_demokratibasen/prepared_datasets/dataset_bergen_2017_2023/
 datasets_from_demokratibasen/prepared_datasets/text_summary_dataset*/
 datasets_from_demokratibasen/prepared_datasets/text_summary_dataset*/** */
