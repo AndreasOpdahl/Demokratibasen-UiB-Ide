@@ -42,7 +42,9 @@
     "defaultMode": "acceptEdits",
     "additionalDirectories": [
       "/home/sinoa/Local/Tools/GitProjects/Demokratibasen-UiB-Ide/human_evaluations/humeval_202607_08",
-      "/media/disk_7300G/sinoa/Local/Tools/GitProjects/Demokratibasen-UiB-Ide/human_evaluations/humeval_202607_08"
+      "/media/disk_7300G/sinoa/Local/Tools/GitProjects/Demokratibasen-UiB-Ide/human_evaluations/humeval_202607_08",
+      "/media/disk_7300G/sinoa/Local/Tools/GitProjects/Demokratibasen-Datasets",
+      "/media/disk_7300G/sinoa/Local/Tools/GitProjects/Demokratibasen-Evaluate"
     ]
   },
   "sandbox": {

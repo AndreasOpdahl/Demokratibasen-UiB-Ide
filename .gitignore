@@ -49,6 +49,9 @@ datasets_from_demokratibasen/prepared_datasets/**/*.png
 datasets_from_demokratibasen/prepared_datasets/**/*_embeddings.jsonl
 datasets_from_demokratibasen/raw_training_data/*.pkl
 datasets_from_demokratibasen/raw_training_data/*.zip
+
+structured_data_extraction/training_data/extractions/*txt
+
 model_fine_tuning/**/huggingface/
 model_fine_tuning/**/.cache/huggingface/
 model_fine_tuning/scripts/finetune-WORKING-WITH-EVALUATION.py
