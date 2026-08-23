@@ -2,13 +2,6 @@
   "permissions": {
     "allow": [
       "Bash(git config *)",
-      "Bash(git -C checkpoint_selection remote -v)",
-      "Bash(git -C checkpoint_selection branch --show-current)",
-      "Bash(git -C checkpoint_selection log --oneline -3)",
-      "Bash(git -C checkpoint_selection status --short)",
-      "Bash(git -C checkpoint_selection log -1 --oneline)",
-      "Bash(git -C checkpoint_selection branch -a)",
-      "Bash(git -C checkpoint_selection stash list)",
       "Bash(git --version)",
       "Bash(git subtree *)",
       "Bash(git log *)",
@@ -41,11 +34,11 @@
     ],
     "defaultMode": "acceptEdits",
     "additionalDirectories": [
-      "/home/sinoa/Local/Tools/GitProjects/Demokratibasen-UiB-Ide/human_evaluations/humeval_202607_08",
-      "/media/disk_7300G/sinoa/Local/Tools/GitProjects/Demokratibasen-UiB-Ide/human_evaluations/humeval_202607_08",
       "/media/disk_7300G/sinoa/Local/Tools/GitProjects/Demokratibasen-Datasets",
       "/media/disk_7300G/sinoa/Local/Tools/GitProjects/Demokratibasen-Evaluate",
-      "/media/disk_7300G/sinoa/OneDrive/Shared/Demokratibasen-UiB-Ide/DemokratibasenDownloads"
+      "/media/disk_7300G/sinoa/OneDrive/Shared/Demokratibasen-UiB-Ide/DemokratibasenDownloads",
+      "/media/disk_7300G/sinoa/OneDrive/Shared/Demokratibasen-UiB-Ide/TrainingDatasets",
+      "/media/disk_7300G/sinoa/OneDrive/Shared/Demokratibasen-UiB-Ide/ExtractedDatasets"
     ]
   },
   "sandbox": {
