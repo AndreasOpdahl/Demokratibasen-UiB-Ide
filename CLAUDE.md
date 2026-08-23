@@ -6,12 +6,17 @@ This file is the entry point for Claude Code when working in this repository.
 
 This is a support/ops repo for the AI behind [Demokratibasen](https://demokratibasen.no), a Norwegian civic-document platform — not the Demokratibasen product itself (that lives elsewhere). It's a loose collection of largely independent Python pipelines, each in its own top-level folder, covering things like:
 
-- Human evaluation tooling and snapshot reporting (`human_evaluations/`)
-- Checkpoint selection and LLM-as-judge evaluation (`checkpoint_selection/`)
-- Document classification, entity/theme extraction, and case-document summarization pipelines (`extract_document_classes/`, `extract_document_types/`, `structured_data_extraction/`, `case_documents_summary/`)
-- Dataset preparation and cleaning from Demokratibasen exports (`datasets_from_demokratibasen/`, `process_data/`)
+- Document classification and case-document summarization pipelines (`extract_document_classes/`, `extract_document_types/`, `case_documents_summary/`)
+- Dataset cleaning from Demokratibasen exports (`process_data/`)
+- Labelling-sheet generation and assorted model-output experiments (`create_labelling_sheets/`, `model_outputs/`, `perplexity_test/`)
 
-Model fine-tuning code used to live here too, but was split out into the sibling repo `../Demokratibasen-Finetune` (August 2026), preserving its git history via `git filter-repo`. This repo now focuses on everything *around* the models: data prep, evaluation, and analysis.
+Three larger concerns used to live here and were split out into sibling repos during August 2026, each preserving its git history via `git filter-repo`:
+
+- `../Demokratibasen-Finetune` — model fine-tuning (was `model_fine_tuning*/`)
+- `../Demokratibasen-Datasets` — dataset collection, generation and preparation (was `datasets_from_demokratibasen/` and `structured_data_extraction/`)
+- `../Demokratibasen-Evaluate` — checkpoint selection, LLM-as-judge and human evaluation (was `checkpoint_selection/` and `human_evaluations/`)
+
+Work on any of those topics belongs in the sibling repo, not here.
 
 There's no shared entry point or build system — treat each top-level folder as its own project with its own README, `.env`, and often its own `requirements.txt`. Folders/files prefixed `OLD`, `STALE`, or `SCRATCH` are deprecated/scratch and gitignored (`**/OLD*`, `**/STALE*`, `**/SCRATCH*` in `.gitignore`) — don't treat them as current.
 
